@@ -1,6 +1,6 @@
 extends CharacterBody3D
 
-@onready var gunRay = $Head/Camera3d/RayCast3d as RayCast3D
+@onready var gunRay = $Head/Camera3d/AK47/RayCast3d as RayCast3D
 @onready var Cam = $Head/Camera3d as Camera3D
 @export var _bullet_scene : PackedScene
 var mouseSensibility = 1200
@@ -22,6 +22,7 @@ func _ready():
 	gunRay.add_exception(self)
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	currentSpeed = NORMAL_SPEED
+	$Head/Camera3d/CanvasLayer/AmmoCount.text = "%s" % $Head/Camera3d/AK47.magazineSize
 
 func _physics_process(delta):
 	# Add the gravity.
@@ -34,6 +35,8 @@ func _physics_process(delta):
 	# Handle Shooting
 	if Input.is_action_just_pressed("Shoot"):
 		shoot()
+	if Input.is_action_just_pressed("reload"):
+		$Head/Camera3d/AK47.reloadGun()
 	
 	#Set Speed based on if is sprinting or crouching
 	if isSprinting():
@@ -81,13 +84,12 @@ func _input(event):
 		mouse_relative_y = clamp(event.relative.y, -50, 10)
 
 func shoot():
-	if not gunRay.is_colliding():
-		return
-	var bulletInst = _bullet_scene.instantiate() as Node3D
-	bulletInst.set_as_top_level(true)
-	get_parent().add_child(bulletInst)
-	bulletInst.global_transform.origin = gunRay.get_collision_point() as Vector3
-	bulletInst.look_at((gunRay.get_collision_point()+gunRay.get_collision_normal()),Vector3.BACK)
-	print(gunRay.get_collision_point())
-	print(gunRay.get_collision_point()+gunRay.get_collision_normal())
 	get_node("Head/Camera3d/AK47").fireGun()
+
+
+func _on_ak_47_fired():
+	$Head/Camera3d/CanvasLayer/AmmoCount.text = "%s" % $Head/Camera3d/AK47.magazine
+
+
+func _on_ak_47_reloaded():
+	$Head/Camera3d/CanvasLayer/AmmoCount.text = "%s" % $Head/Camera3d/AK47.magazine

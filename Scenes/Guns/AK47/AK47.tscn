@@ -1,10 +1,134 @@
-[gd_scene load_steps=9 format=3 uid="uid://b4jpkpsguwo3b"]
+[gd_scene load_steps=11 format=3 uid="uid://b4jpkpsguwo3b"]
 
 [ext_resource type="PackedScene" uid="uid://b3uhsxl2rkh13" path="res://Scenes/Guns/AK47/AK47-mag.glb" id="1_fyf2o"]
 [ext_resource type="Script" path="res://Scenes/Guns/AK47/AK47.gd" id="1_wtxdm"]
 [ext_resource type="PackedScene" uid="uid://bl3uknjhsaqx8" path="res://Scenes/Guns/AK47/AK47-gun.glb" id="2_d3r2s"]
+[ext_resource type="PackedScene" uid="uid://dbduds4bsaaby" path="res://Scenes/Bullet/Bullet.tscn" id="2_yu8yx"]
 [ext_resource type="Texture2D" uid="uid://yilgohsopxy5" path="res://Scenes/Guns/AK47/PixelMuzzelFlash.png" id="3_8hnok"]
 [ext_resource type="PackedScene" uid="uid://2vxb0s7jixue" path="res://Scenes/Guns/AK47/7.62x39mm-case.glb" id="5_ryyfe"]
+
+[sub_resource type="Animation" id="Animation_dc4hw"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Gun:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Gun:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Gun/MuzzleFlash:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("762x39mm-case:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.0509507, 0.106814, -0.000312787)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("762x39mm-case:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, -1.5708)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("762x39mm-case:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Gun/AK47-gun:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Gun/AK47-gun:rotation")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Gun/AK47-mag:position")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Gun/AK47-mag:rotation")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_klcmi"]
 resource_name = "fire"
@@ -83,96 +207,77 @@ tracks/5/keys = {
 "values": [true, false]
 }
 
-[sub_resource type="Animation" id="Animation_dc4hw"]
-length = 0.001
+[sub_resource type="Animation" id="Animation_qt7gu"]
+resource_name = "reload"
+length = 2.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Gun:position")
+tracks/0/path = NodePath("Gun/AK47-gun:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 2.1),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector3(0, 0, 0)]
+"values": [Vector3(0, 0, 0), Vector3(0, 0, 0)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Gun:rotation")
+tracks/1/path = NodePath("Gun/AK47-gun:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.6, 2.1),
+"transitions": PackedFloat32Array(1, 0.196146, 3.36359),
 "update": 0,
-"values": [Vector3(0, 0, 0)]
+"values": [Vector3(0, 0, 0), Vector3(0.119081, 0.0106595, 0.0894901), Vector3(0, 0, 0)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Gun/MuzzleFlash:visible")
+tracks/2/path = NodePath("Gun/AK47-mag:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
+"times": PackedFloat32Array(0, 0.2, 0.6, 1.4, 2.1, 2.5),
+"transitions": PackedFloat32Array(1, 0.258816, 5.65686, 3.36358, 3.36358, 3.86375),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, -0.0927734, 0), Vector3(-0.710449, -0.641214, -1.62354), Vector3(-0.710449, -0.641214, -1.62354), Vector3(0.0897217, 0, 0), Vector3(0, 0, 0)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("762x39mm-case:position")
+tracks/3/path = NodePath("Gun/AK47-mag:rotation")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.2, 0.6, 1.4, 2.1, 2.5),
+"transitions": PackedFloat32Array(1, 0.297302, 5.27803, 2.2974, 3.36358, 3.03143),
 "update": 0,
-"values": [Vector3(-0.0509507, 0.106814, -0.000312787)]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("762x39mm-case:rotation")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 0, -1.5708)]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("762x39mm-case:visible")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
+"values": [Vector3(0, 0, 0), Vector3(0, 0, 0.28688), Vector3(0.199648, -2.67894e-08, 0.576751), Vector3(0.199648, -2.67894e-08, 0.576751), Vector3(0, 0, 0.251799), Vector3(0, 0, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_7qxeq"]
 _data = {
 "RESET": SubResource("Animation_dc4hw"),
-"fire": SubResource("Animation_klcmi")
+"fire": SubResource("Animation_klcmi"),
+"reload": SubResource("Animation_qt7gu")
 }
 
 [node name="AK47" type="Node3D"]
 script = ExtResource("1_wtxdm")
+_bullet_scene = ExtResource("2_yu8yx")
 
 [node name="Gun" type="Node3D" parent="."]
 transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
 
 [node name="AK47-mag" parent="Gun" instance=ExtResource("1_fyf2o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="AK47-gun" parent="Gun" instance=ExtResource("2_d3r2s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="MuzzleFlash" type="Node3D" parent="Gun"]
 transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 6.66518, 0.917094, 0)
@@ -194,5 +299,9 @@ libraries = {
 }
 
 [node name="762x39mm-case" parent="." instance=ExtResource("5_ryyfe")]
-transform = Transform3D(-6.55671e-09, 0.15, 0, -0.15, -6.55671e-09, 0, 0, 0, 0.15, -0.0509507, 0.106814, -0.000312787)
+transform = Transform3D(-5.42999e-07, 0.15, 0, -0.15, -5.42999e-07, 0, 0, 0, 0.15, -0.0509507, 0.106814, -0.000312787)
 visible = false
+
+[node name="RayCast3d" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.465406, 0.0869756, 0)
+target_position = Vector3(60, 0, 0)
