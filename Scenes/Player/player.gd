@@ -22,6 +22,7 @@ func _ready():
 	gunRay.add_exception(self)
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	currentSpeed = NORMAL_SPEED
+
 func _physics_process(delta):
 	# Add the gravity.
 	if not is_on_floor():
@@ -34,11 +35,17 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("Shoot"):
 		shoot()
 	
-	#Set Speed based on if is sprinting
+	#Set Speed based on if is sprinting or crouching
 	if isSprinting():
 		currentSpeed = RUN_SPEED
+		$CollisionShape3d.get_shape().set_height(2)
+	elif isCrouching():
+		currentSpeed = CROUCH_SPEED
+		$CollisionShape3d.get_shape().set_height(1)
 	else:
 		currentSpeed = NORMAL_SPEED
+		$CollisionShape3d.get_shape().set_height(2)
+
 	# Get the input direction and handle the movement/deceleration.
 	var input_dir = Input.get_vector("moveLeft", "moveRight", "moveUp", "moveDown")
 	var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
@@ -57,6 +64,13 @@ func isSprinting():
 		return false
 	else:
 		return Input.is_action_pressed("sprint")
+		
+func isCrouching():
+	var toggleCrouchEnabled = false
+	if toggleCrouchEnabled:
+		return false
+	else:
+		return Input.is_action_pressed("crouch")
 
 func _input(event):
 	if event is InputEventMouseMotion:
