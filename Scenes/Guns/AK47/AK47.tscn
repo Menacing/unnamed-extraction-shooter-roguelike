@@ -224,4 +224,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.165184, 0.0898134, 0)
 stream = ExtResource("5_vv1hm")
 volume_db = -20.0
 
+[node name="ReloadTimer" type="Timer" parent="."]
+wait_time = 2.5
+
 [editable path="quick_AK47_2"]

@@ -3,23 +3,31 @@ extends Node3D
 signal fired
 signal reloaded
 
-@export var magazineSize = 30
-@export var magazine = magazineSize
+@export var magazineSize: int = 30
+@export var magazine: int = magazineSize
 
 @onready var gunRay = $RayCast3d as RayCast3D
 @export var _bullet_scene : PackedScene
 
+var reloading: bool = false
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass
+	$ReloadTimer.connect("timeout", reloaded_callback)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
 
+func canFire() -> bool:
+	if magazine > 0 and !reloading:
+		return true
+	else:
+		return false
+
 func fireGun():
-	if magazine > 0:
+	if canFire():
 		magazine -= 1
 		$AnimationPlayer.play("fire")
 		fired.emit()
@@ -37,6 +45,13 @@ func fireGun():
 		pass
 
 func reloadGun():
-	magazine = magazineSize
+	$ReloadTimer.start()
+	reloading = true
 	$AnimationPlayer.play("reload")
+	
+func reloaded_callback():
+	magazine = magazineSize
+	$ReloadTimer.stop()
+	reloading = false
 	reloaded.emit()
+	
