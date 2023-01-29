@@ -24,19 +24,21 @@ func _ready():
 	currentSpeed = NORMAL_SPEED
 	$Head/Camera3d/CanvasLayer/AmmoCount.text = "%s" % $Head/Camera3d/AK47.magazineSize
 
+#realtime inputs - movement stuff
 func _physics_process(delta):
 	# Add the gravity.
 	if not is_on_floor():
 		velocity.y -= gravity * delta
-
+		
 	# Handle Jump.
-	if Input.is_action_just_pressed("Jump") and is_on_floor():
+	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
+	
 	# Handle Shooting
-	if Input.is_action_just_pressed("Shoot"):
+	if Input.is_action_just_pressed("shoot"):
 		shoot()
 	if Input.is_action_just_pressed("reload"):
-		$Head/Camera3d/AK47.reloadGun()
+		reload()
 	
 	#Set Speed based on if is sprinting or crouching
 	if isSprinting():
@@ -84,7 +86,10 @@ func _input(event):
 		mouse_relative_y = clamp(event.relative.y, -50, 10)
 
 func shoot():
-	get_node("Head/Camera3d/AK47").fireGun()
+	$Head/Camera3d/AK47.fireGun()
+	
+func reload():
+	$Head/Camera3d/AK47.reloadGun()
 
 
 func _on_ak_47_fired():
