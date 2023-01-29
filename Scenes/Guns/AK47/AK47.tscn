@@ -191,14 +191,16 @@ _bullet_scene = ExtResource("2_pqoii")
 transform = Transform3D(-1, 0, -2.53518e-06, 0, 1, 0, 2.53518e-06, 0, -1, 0.0256636, -0.112793, 0)
 
 [node name="MuzzleFlash" type="Node3D" parent="quick_AK47_2"]
-transform = Transform3D(4.37114e-09, -0.0999999, -8.74227e-09, -0.1, -4.37114e-09, 0, -3.82137e-16, 8.74227e-09, -0.0999999, -0.637661, 0.200067, 0.00145473)
+transform = Transform3D(4.37114e-09, -0.0999999, -8.74226e-09, -0.1, -4.37114e-09, 0, -3.82137e-16, 8.74226e-09, -0.0999999, -0.663444, 0.200067, 0.00145466)
 visible = false
 
 [node name="Sprite3D" type="Sprite3D" parent="quick_AK47_2/MuzzleFlash"]
+alpha_cut = 2
 texture = ExtResource("4_2ljtx")
 
 [node name="Sprite3D2" type="Sprite3D" parent="quick_AK47_2/MuzzleFlash"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
+transform = Transform3D(-4.37114e-08, -3.00649e-19, 1, 0, 1, 9.50574e-16, -1, 0, -4.37114e-08, 0, 0, 0)
+alpha_cut = 2
 texture = ExtResource("4_2ljtx")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="quick_AK47_2/MuzzleFlash"]
