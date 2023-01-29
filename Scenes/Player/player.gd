@@ -2,7 +2,7 @@ extends CharacterBody3D
 
 @onready var gunRay = $Head/Camera3d/AK47/RayCast3d as RayCast3D
 @onready var Cam = $Head/Camera3d as Camera3D
-@export var _bullet_scene : PackedScene
+#@export var _bullet_scene : PackedScene
 var mouseSensibility = 1200
 var mouse_relative_x = 0
 var mouse_relative_y = 0

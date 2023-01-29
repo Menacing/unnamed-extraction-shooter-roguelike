@@ -1,15 +1,11 @@
-[gd_scene load_steps=15 format=3 uid="uid://b4jpkpsguwo3b"]
+[gd_scene load_steps=11 format=3 uid="uid://be8rs32sgqlob"]
 
-[ext_resource type="PackedScene" uid="uid://b3uhsxl2rkh13" path="res://Scenes/Guns/AK47/AK47-mag.glb" id="1_fyf2o"]
-[ext_resource type="Script" path="res://Scenes/Guns/AK47/AK47.gd" id="1_wtxdm"]
-[ext_resource type="PackedScene" uid="uid://bl3uknjhsaqx8" path="res://Scenes/Guns/AK47/AK47-gun.glb" id="2_d3r2s"]
-[ext_resource type="PackedScene" uid="uid://dbduds4bsaaby" path="res://Scenes/Bullet/Bullet.tscn" id="2_yu8yx"]
-[ext_resource type="Texture2D" uid="uid://yilgohsopxy5" path="res://Scenes/Guns/AK47/PixelMuzzelFlash.png" id="3_8hnok"]
-[ext_resource type="PackedScene" uid="uid://2vxb0s7jixue" path="res://Scenes/Guns/AK47/7.62x39mm-case.glb" id="5_ryyfe"]
-[ext_resource type="AudioStream" uid="uid://b1wcyprc24rom" path="res://Scenes/Guns/AK47/ak47_clipout.wav" id="7_anv1t"]
-[ext_resource type="AudioStream" uid="uid://cm1nj06e6vvun" path="res://Scenes/Guns/AK47/ak47-2.wav" id="7_yk47n"]
-[ext_resource type="AudioStream" uid="uid://b8qqfpv60meve" path="res://Scenes/Guns/AK47/ak47_clipin.wav" id="8_tkl0j"]
-[ext_resource type="AudioStream" uid="uid://lir3n6jdoob6" path="res://Scenes/Guns/AK47/ak47_boltpull.wav" id="9_2iguq"]
+[ext_resource type="Script" path="res://Scenes/Guns/AK47/AK47.gd" id="1_84085"]
+[ext_resource type="PackedScene" uid="uid://dbduds4bsaaby" path="res://Scenes/Bullet/Bullet.tscn" id="2_pqoii"]
+[ext_resource type="PackedScene" uid="uid://c4c3y82bwbb5j" path="res://Scenes/Guns/AK47/quick_AK47_2.glb" id="3_xpqyb"]
+[ext_resource type="Texture2D" uid="uid://yilgohsopxy5" path="res://Scenes/Guns/AK47/PixelMuzzelFlash.png" id="4_2ljtx"]
+[ext_resource type="AudioStream" uid="uid://cm1nj06e6vvun" path="res://Scenes/Guns/AK47/ak47-2.wav" id="5_vv1hm"]
+[ext_resource type="PackedScene" uid="uid://2vxb0s7jixue" path="res://Scenes/Guns/AK47/7.62x39mm-case.glb" id="6_c4y84"]
 
 [sub_resource type="Animation" id="Animation_dc4hw"]
 length = 0.001
@@ -17,67 +13,67 @@ step = 0.015
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Gun:position")
+tracks/0/path = NodePath("762x39mm-case:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(0, 0, 0)]
+"values": [Vector3(0, 0, -1.5708)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Gun:rotation")
+tracks/1/path = NodePath("762x39mm-case:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 0, 0)]
+"update": 1,
+"values": [false]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Gun/MuzzleFlash:visible")
+tracks/2/path = NodePath("Gun/AK47-gun:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
+"update": 0,
+"values": [Vector3(0, 0, 0)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("762x39mm-case:position")
+tracks/3/path = NodePath("Gun/AK47-gun:rotation")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(-0.0509507, 0.106814, -0.000312787)]
+"values": [Vector3(0, 0, 0)]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("762x39mm-case:rotation")
+tracks/4/path = NodePath("quick_AK47_2:rotation")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(0, 0, -1.5708)]
+"values": [Vector3(0, -3.14159, 0)]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("762x39mm-case:visible")
+tracks/5/path = NodePath("quick_AK47_2/MuzzleFlash/Sprite3D:visible")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -89,50 +85,14 @@ tracks/5/keys = {
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("Gun/AK47-gun:position")
+tracks/6/path = NodePath("quick_AK47_2/MuzzleFlash/Sprite3D2:visible")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 0, 0)]
-}
-tracks/7/type = "value"
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/path = NodePath("Gun/AK47-gun:rotation")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 0, 0)]
-}
-tracks/8/type = "value"
-tracks/8/imported = false
-tracks/8/enabled = true
-tracks/8/path = NodePath("Gun/AK47-mag:position")
-tracks/8/interp = 1
-tracks/8/loop_wrap = true
-tracks/8/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 0, 0)]
-}
-tracks/9/type = "value"
-tracks/9/imported = false
-tracks/9/enabled = true
-tracks/9/path = NodePath("Gun/AK47-mag:rotation")
-tracks/9/interp = 1
-tracks/9/loop_wrap = true
-tracks/9/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 0, 0)]
+"update": 1,
+"values": [false]
 }
 
 [sub_resource type="Animation" id="Animation_klcmi"]
@@ -142,175 +102,103 @@ step = 0.015
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Gun:position")
+tracks/0/path = NodePath("762x39mm-case:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.015, 0.06),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector3(0, 0, 0), Vector3(-0.05, 0, 0), Vector3(0, 0, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Gun:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.015, 0.06),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0, 0, 0.0523599), Vector3(0, 0, 0)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Gun/MuzzleFlash:visible")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.015, 0.03),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [true, true, false]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("762x39mm-case:position")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
 "times": PackedFloat32Array(0, 0.03, 0.06),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [Vector3(-0.0509507, 0.106814, -0.000312787), Vector3(-0.0509507, 0.184648, 0.137047), Vector3(-0.0509507, 0.0427982, 0.310054)]
 }
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("762x39mm-case:rotation")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("762x39mm-case:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.03, 0.06),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [Vector3(0, 0, -1.5708), Vector3(0.057627, -0.180799, -1.26556), Vector3(0.319256, -0.651995, -0.8315)]
 }
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("762x39mm-case:visible")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("762x39mm-case:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
 "times": PackedFloat32Array(0, 0.06),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [true, false]
 }
-tracks/6/type = "audio"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("AudioStreamPlayer3D")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
+tracks/3/type = "audio"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("AudioStreamPlayer3D")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
 "clips": [{
 "end_offset": 0.0,
 "start_offset": 0.0,
-"stream": ExtResource("7_yk47n")
+"stream": ExtResource("5_vv1hm")
 }],
+"times": PackedFloat32Array(0)
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("quick_AK47_2:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.015, 0.06),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, -3.14159, 0), Vector3(0, -3.14159, -0.0174533), Vector3(0, -3.14159, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("quick_AK47_2/MuzzleFlash/Sprite3D:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.015, 0.06),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("quick_AK47_2/MuzzleFlash/Sprite3D2:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.015, 0.06),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+tracks/7/type = "animation"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("quick_AK47_2/AnimationPlayer")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"clips": PackedStringArray("fireanimationmodelnew"),
 "times": PackedFloat32Array(0)
 }
 
 [sub_resource type="Animation" id="Animation_qt7gu"]
 resource_name = "reload"
 length = 2.5
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Gun/AK47-gun:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1.3),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0, 0, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Gun/AK47-gun:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.8),
-"transitions": PackedFloat32Array(1, 0.196146, 3.36359),
-"update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0.119081, 0.0106595, 0.0894901), Vector3(0, 0, 0)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Gun/AK47-mag:position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.6, 0.9, 1.1),
-"transitions": PackedFloat32Array(1, 0.258816, 5.65686, 3.36358, 3.36358, 3.86375),
-"update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0, -0.0927734, 0), Vector3(-0.710449, -0.641214, -1.62354), Vector3(-0.710449, -0.641214, -1.62354), Vector3(0.0897217, 0, 0), Vector3(0, 0, 0)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Gun/AK47-mag:rotation")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.6, 0.9, 1.1),
-"transitions": PackedFloat32Array(1, 0.297302, 5.27803, 2.2974, 3.36358, 3.03143),
-"update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0, 0, 0.28688), Vector3(0.199648, -2.67894e-08, 0.576751), Vector3(0.199648, -2.67894e-08, 0.576751), Vector3(0, 0, 0.251799), Vector3(0, 0, 0)]
-}
-tracks/4/type = "audio"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("AudioStreamPlayer3D")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"clips": [{
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": ExtResource("7_anv1t")
-}, {
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": ExtResource("8_tkl0j")
-}, {
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": ExtResource("9_2iguq")
-}],
-"times": PackedFloat32Array(0, 0.9, 1.8)
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("Gun:rotation")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(1.1, 1.7, 2.5),
-"transitions": PackedFloat32Array(0.450625, 1, 4.14106),
-"update": 0,
-"values": [Vector3(0, 0, 0), Vector3(-0.620534, 0, 0), Vector3(0, 0, 0)]
-}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_7qxeq"]
 _data = {
@@ -320,28 +208,25 @@ _data = {
 }
 
 [node name="AK47" type="Node3D"]
-script = ExtResource("1_wtxdm")
-_bullet_scene = ExtResource("2_yu8yx")
+script = ExtResource("1_84085")
+_bullet_scene = ExtResource("2_pqoii")
 
-[node name="Gun" type="Node3D" parent="."]
-transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
+[node name="quick_AK47_2" parent="." instance=ExtResource("3_xpqyb")]
+transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 0.0256636, -0.112793, 0)
 
-[node name="AK47-mag" parent="Gun" instance=ExtResource("1_fyf2o")]
+[node name="MuzzleFlash" type="Node3D" parent="quick_AK47_2"]
+transform = Transform3D(4.37114e-09, -0.0999999, -8.74227e-09, -0.1, -4.37114e-09, 0, -3.82137e-16, 8.74227e-09, -0.0999999, -0.637661, 0.200067, 0.00145473)
 
-[node name="AK47-gun" parent="Gun" instance=ExtResource("2_d3r2s")]
-
-[node name="MuzzleFlash" type="Node3D" parent="Gun"]
-transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 6.66518, 0.917094, 0)
+[node name="Sprite3D" type="Sprite3D" parent="quick_AK47_2/MuzzleFlash"]
 visible = false
+texture = ExtResource("4_2ljtx")
 
-[node name="Sprite3D" type="Sprite3D" parent="Gun/MuzzleFlash"]
-texture = ExtResource("3_8hnok")
-
-[node name="Sprite3D2" type="Sprite3D" parent="Gun/MuzzleFlash"]
+[node name="Sprite3D2" type="Sprite3D" parent="quick_AK47_2/MuzzleFlash"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
-texture = ExtResource("3_8hnok")
+visible = false
+texture = ExtResource("4_2ljtx")
 
-[node name="OmniLight3D" type="OmniLight3D" parent="Gun/MuzzleFlash"]
+[node name="OmniLight3D" type="OmniLight3D" parent="quick_AK47_2/MuzzleFlash"]
 light_color = Color(0.988235, 0.54902, 0.188235, 1)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -349,8 +234,8 @@ libraries = {
 "": SubResource("AnimationLibrary_7qxeq")
 }
 
-[node name="762x39mm-case" parent="." instance=ExtResource("5_ryyfe")]
-transform = Transform3D(-5.42999e-07, 0.15, 0, -0.15, -5.42999e-07, 0, 0, 0, 0.15, -0.0509507, 0.106814, -0.000312787)
+[node name="762x39mm-case" parent="." instance=ExtResource("6_c4y84")]
+transform = Transform3D(-5.42999e-07, 0.15, 0, -0.15, -5.42999e-07, 0, 0, 0, 0.15, -0.0509507, 0.0427982, 0.310054)
 visible = false
 
 [node name="RayCast3d" type="RayCast3D" parent="."]
@@ -359,5 +244,7 @@ target_position = Vector3(60, 0, 0)
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.165184, 0.0898134, 0)
-stream = ExtResource("7_yk47n")
+stream = ExtResource("5_vv1hm")
 volume_db = -20.0
+
+[editable path="quick_AK47_2"]
