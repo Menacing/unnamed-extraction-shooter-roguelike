@@ -1,8 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://7gv6q50fuutj"]
+[gd_scene load_steps=5 format=3 uid="uid://c702s4icsohx5"]
 
 [ext_resource type="Script" path="res://Scenes/Player/player.gd" id="1_1w47b"]
-[ext_resource type="PackedScene" uid="uid://dbduds4bsaaby" path="res://Scenes/Bullet/Bullet.tscn" id="2_je25s"]
-[ext_resource type="PackedScene" uid="uid://b4jpkpsguwo3b" path="res://Scenes/Guns/AK47/AK47.tscn" id="3_ns84m"]
+[ext_resource type="PackedScene" uid="uid://be8rs32sgqlob" path="res://Scenes/Guns/AK47/AK47.tscn" id="2_670ii"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_emkox"]
 
@@ -10,7 +9,6 @@
 
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_1w47b")
-_bullet_scene = ExtResource("2_je25s")
 
 [node name="CollisionShape3d" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_emkox")
@@ -23,8 +21,8 @@ mesh = SubResource("CapsuleMesh_6b3ky")
 [node name="Camera3d" type="Camera3D" parent="Head"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.468479, -0.463024)
 
-[node name="AK47" parent="Head/Camera3d" instance=ExtResource("3_ns84m")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.155679, -0.223541, -0.211069)
+[node name="AK47" parent="Head/Camera3d" instance=ExtResource("2_670ii")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.213135, -0.233066, -0.216175)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="Head/Camera3d"]
 
