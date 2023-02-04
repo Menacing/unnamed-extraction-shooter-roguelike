@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://ctahsvj88g1om"]
+[gd_scene load_steps=11 format=3 uid="uid://ctahsvj88g1om"]
 
 [ext_resource type="PackedScene" uid="uid://c702s4icsohx5" path="res://Scenes/Player/player.tscn" id="1_eisjc"]
+[ext_resource type="Script" path="res://levels/node_3d.gd" id="1_lmeut"]
 [ext_resource type="PackedScene" uid="uid://dj26sacnhty4r" path="res://addons/devblocks/blocks/basic_block.tscn" id="1_ujgwk"]
 [ext_resource type="Texture2D" uid="uid://cgp4mvev1cbra" path="res://addons/devblocks/textures/purple/texture_01.png" id="3_m1rsk"]
 
@@ -19,7 +20,13 @@ albedo_texture = ExtResource("3_m1rsk")
 uv1_scale = Vector3(3, 3, 3)
 uv1_triplanar = true
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_vd71y"]
+size = Vector3(1.23809, 6.43444, 23.2969)
+
+[sub_resource type="BoxMesh" id="BoxMesh_pxykj"]
+
 [node name="Node3d" type="Node3D"]
+script = ExtResource("1_lmeut")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_l5pxq")
@@ -39,11 +46,6 @@ light_indirect_energy = 0.884
 light_volumetric_fog_energy = 0.768
 shadow_enabled = true
 
-[node name="BasicBlock3" parent="." instance=ExtResource("1_ujgwk")]
-transform = Transform3D(2, 0, 0, 0, 5, 0, 0, 0, 30, 12.0086, 2.95161, -0.0307474)
-block_color_group = 3
-block_style = 2
-
 [node name="BasicBlock" parent="." instance=ExtResource("1_ujgwk")]
 transform = Transform3D(100, 0, 0, 0, 1, 0, 0, 0, 100, 0, 0, 0)
 
@@ -62,3 +64,15 @@ material = SubResource("StandardMaterial3D_2gtf0")
 transform = Transform3D(4, 0, 0, 0, 1, 0, 0, 0, 4, -13.0662, 2.84246, -1.36987)
 block_color_group = 1
 block_style = 2
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.2616, 0.020462, -0.018549)
+disable_mode = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.66988, 0)
+shape = SubResource("BoxShape3D_vd71y")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 5.2933, 0, 0, 0, 23.2277, 0.00776482, 3.26706, -0.00492668)
+mesh = SubResource("BoxMesh_pxykj")

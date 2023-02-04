@@ -1,14 +1,14 @@
-[gd_scene load_steps=14 format=3 uid="uid://be8rs32sgqlob"]
+[gd_scene load_steps=14 format=3 uid="uid://dr48wela8mtxd"]
 
-[ext_resource type="Script" path="res://Scenes/Guns/AK47/AK47.gd" id="1_84085"]
-[ext_resource type="PackedScene" uid="uid://dbduds4bsaaby" path="res://Scenes/Bullet/Bullet.tscn" id="2_pqoii"]
-[ext_resource type="PackedScene" uid="uid://c4c3y82bwbb5j" path="res://Scenes/Guns/AK47/quick_AK47_2.glb" id="3_xpqyb"]
-[ext_resource type="Texture2D" uid="uid://yilgohsopxy5" path="res://Scenes/Guns/AK47/PixelMuzzelFlash.png" id="4_2ljtx"]
-[ext_resource type="AudioStream" uid="uid://cm1nj06e6vvun" path="res://Scenes/Guns/AK47/ak47-2.wav" id="5_vv1hm"]
-[ext_resource type="PackedScene" uid="uid://2vxb0s7jixue" path="res://Scenes/Guns/AK47/7.62x39mm-case.glb" id="6_c4y84"]
-[ext_resource type="AudioStream" uid="uid://b1wcyprc24rom" path="res://Scenes/Guns/AK47/ak47_clipout.wav" id="6_u7n44"]
-[ext_resource type="AudioStream" uid="uid://b8qqfpv60meve" path="res://Scenes/Guns/AK47/ak47_clipin.wav" id="7_o4euu"]
-[ext_resource type="AudioStream" uid="uid://lir3n6jdoob6" path="res://Scenes/Guns/AK47/ak47_boltpull.wav" id="8_1ahuq"]
+[ext_resource type="Script" path="res://Scenes/Guns/AK47-Projectile/AK47-Projectile.gd" id="1_10ipx"]
+[ext_resource type="PackedScene" uid="uid://du06cmxlbacls" path="res://Scenes/Bullet/Bullet-Proj.tscn" id="2_angkn"]
+[ext_resource type="PackedScene" uid="uid://c4c3y82bwbb5j" path="res://Scenes/Guns/AK47/quick_AK47_2.glb" id="3_68m18"]
+[ext_resource type="Texture2D" uid="uid://yilgohsopxy5" path="res://Scenes/Guns/AK47/PixelMuzzelFlash.png" id="4_6e1bk"]
+[ext_resource type="AudioStream" uid="uid://cm1nj06e6vvun" path="res://Scenes/Guns/AK47/ak47-2.wav" id="5_w1xps"]
+[ext_resource type="AudioStream" uid="uid://b1wcyprc24rom" path="res://Scenes/Guns/AK47/ak47_clipout.wav" id="6_06nuu"]
+[ext_resource type="AudioStream" uid="uid://b8qqfpv60meve" path="res://Scenes/Guns/AK47/ak47_clipin.wav" id="7_hwnfp"]
+[ext_resource type="AudioStream" uid="uid://lir3n6jdoob6" path="res://Scenes/Guns/AK47/ak47_boltpull.wav" id="8_pojwk"]
+[ext_resource type="PackedScene" uid="uid://2vxb0s7jixue" path="res://Scenes/Guns/AK47/7.62x39mm-case.glb" id="9_ro6c0"]
 
 [sub_resource type="Animation" id="Animation_dc4hw"]
 length = 0.001
@@ -184,7 +184,7 @@ tracks/3/keys = {
 "clips": [{
 "end_offset": 0.0,
 "start_offset": 0.0,
-"stream": ExtResource("5_vv1hm")
+"stream": ExtResource("5_w1xps")
 }],
 "times": PackedFloat32Array(0)
 }
@@ -248,15 +248,15 @@ tracks/1/keys = {
 "clips": [{
 "end_offset": 0.0,
 "start_offset": 0.0,
-"stream": ExtResource("6_u7n44")
+"stream": ExtResource("6_06nuu")
 }, {
 "end_offset": 0.0,
 "start_offset": 0.0,
-"stream": ExtResource("7_o4euu")
+"stream": ExtResource("7_hwnfp")
 }, {
 "end_offset": 0.0,
 "start_offset": 0.0,
-"stream": ExtResource("8_1ahuq")
+"stream": ExtResource("8_pojwk")
 }],
 "times": PackedFloat32Array(0, 1.1, 2.1)
 }
@@ -304,12 +304,12 @@ _data = {
 "reload": SubResource("Animation_qt7gu")
 }
 
-[node name="AK47" type="Node3D"]
+[node name="AK47-Projectile" type="Node3D"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
-script = ExtResource("1_84085")
-_bullet_scene = ExtResource("2_pqoii")
+script = ExtResource("1_10ipx")
+_bullet_scene = ExtResource("2_angkn")
 
-[node name="quick_AK47_2" parent="." instance=ExtResource("3_xpqyb")]
+[node name="quick_AK47_2" parent="." instance=ExtResource("3_68m18")]
 transform = Transform3D(-1, 0, -2.53518e-06, 0, 1, 0, 2.53518e-06, 0, -1, 0.0256636, -0.112793, 0)
 
 [node name="Node_18" parent="quick_AK47_2" index="0"]
@@ -327,32 +327,35 @@ visible = false
 
 [node name="Sprite3D" type="Sprite3D" parent="quick_AK47_2/MuzzleFlash"]
 alpha_cut = 2
-texture = ExtResource("4_2ljtx")
+texture = ExtResource("4_6e1bk")
 
 [node name="Sprite3D2" type="Sprite3D" parent="quick_AK47_2/MuzzleFlash"]
 transform = Transform3D(-4.37114e-08, -3.00649e-19, 1, 0, 1, 9.50574e-16, -1, 0, -4.37114e-08, 0, 0, 0)
 alpha_cut = 2
-texture = ExtResource("4_2ljtx")
+texture = ExtResource("4_6e1bk")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="quick_AK47_2/MuzzleFlash"]
 light_color = Color(0.988235, 0.54902, 0.188235, 1)
+
+[node name="Muzzle" type="Node3D" parent="quick_AK47_2"]
+transform = Transform3D(-1, 0, 2.53518e-06, 0, 1, 0, -2.53518e-06, 0, -1, -0.487837, 0.199824, -1.2592e-06)
+
+[node name="RayCast3D" type="RayCast3D" parent="quick_AK47_2"]
+transform = Transform3D(4.37114e-08, 1, 2.53518e-06, 1, -4.37114e-08, 0, 1.10816e-13, 2.53518e-06, -1, -0.439857, 0.198654, -1.13547e-06)
+target_position = Vector3(0, -1000, 0)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_7qxeq")
 }
 
-[node name="762x39mm-case" parent="." instance=ExtResource("6_c4y84")]
-transform = Transform3D(-5.42999e-07, 0.15, 0, -0.15, -5.42999e-07, 0, 0, 0, 0.15, -0.0509507, 0.0427982, 0.310054)
+[node name="762x39mm-case" parent="." instance=ExtResource("9_ro6c0")]
+transform = Transform3D(-5.42999e-07, 0.15, 0, -0.15, -5.42999e-07, 0, 0, 0, 0.15, -0.0509507, 0.106814, -0.000312787)
 visible = false
-
-[node name="RayCast3d" type="RayCast3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.465406, 0.0869756, 0)
-target_position = Vector3(60, 0, 0)
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.165184, 0.0898134, 0)
-stream = ExtResource("8_1ahuq")
+stream = ExtResource("5_w1xps")
 volume_db = -20.0
 
 [node name="ReloadTimer" type="Timer" parent="."]
