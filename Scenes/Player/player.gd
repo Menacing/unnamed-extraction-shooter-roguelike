@@ -1,6 +1,9 @@
 extends CharacterBody3D
 
-@onready var gunRay = $Head/Camera3d/AK47/RayCast3d as RayCast3D
+@export var gun_scene: PackedScene
+var gun
+#@onready var gunRay = $Head/Camera3d/AK47/RayCast3d as RayCast3D
+var gunRay: RayCast3D
 @onready var Cam = $Head/Camera3d as Camera3D
 #@export var _bullet_scene : PackedScene
 var mouseSensibility = 1200
@@ -18,11 +21,20 @@ var sprintToggle:bool = false
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 func _ready():
+	gun = gun_scene.instantiate()
+	#TODO: Pull these from the packed scene instead of being hardcoded
+	gun.magazineSize = 30
+	gun.position = Vector3(0.213,-0.233, -0.216)
+	gun.fired.connect(_on_gun_fired)
+	gun.reloaded.connect(_on_gun_reloaded)
+	$Head/Camera3d.add_child(gun)
+	gunRay = gun.get_node("quick_AK47_2/RayCast3D") 
+	
 	#Captures mouse and stops rgun from hitting yourself
 	gunRay.add_exception(self)
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	currentSpeed = NORMAL_SPEED
-	$Head/Camera3d/CanvasLayer/AmmoCount.text = "%s" % $Head/Camera3d/AK47.magazineSize
+	$Head/Camera3d/CanvasLayer/AmmoCount.text = "%s" % gun.magazineSize
 
 #realtime inputs - movement stuff
 func _physics_process(delta):
@@ -86,15 +98,15 @@ func _input(event):
 		mouse_relative_y = clamp(event.relative.y, -50, 10)
 
 func shoot():
-	$Head/Camera3d/AK47.fireGun()
+	gun.fireGun()
 	
 func reload():
-	$Head/Camera3d/AK47.reloadGun()
+	gun.reloadGun()
 
 
-func _on_ak_47_fired():
-	$Head/Camera3d/CanvasLayer/AmmoCount.text = "%s" % $Head/Camera3d/AK47.magazine
+func _on_gun_fired():
+	$Head/Camera3d/CanvasLayer/AmmoCount.text = "%s" % gun.magazine
 
 
-func _on_ak_47_reloaded():
-	$Head/Camera3d/CanvasLayer/AmmoCount.text = "%s" % $Head/Camera3d/AK47.magazine
+func _on_gun_reloaded():
+	$Head/Camera3d/CanvasLayer/AmmoCount.text = "%s" % gun.magazine

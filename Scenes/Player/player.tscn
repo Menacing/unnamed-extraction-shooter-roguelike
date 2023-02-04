@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://c702s4icsohx5"]
 
 [ext_resource type="Script" path="res://Scenes/Player/player.gd" id="1_1w47b"]
-[ext_resource type="PackedScene" uid="uid://be8rs32sgqlob" path="res://Scenes/Guns/AK47/AK47.tscn" id="2_670ii"]
+[ext_resource type="PackedScene" uid="uid://dr48wela8mtxd" path="res://Scenes/Guns/AK47-Projectile/AK47-Projectile.tscn" id="2_qchmr"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_emkox"]
 
@@ -9,6 +9,7 @@
 
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_1w47b")
+gun_scene = ExtResource("2_qchmr")
 
 [node name="CollisionShape3d" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_emkox")
@@ -21,9 +22,6 @@ mesh = SubResource("CapsuleMesh_6b3ky")
 [node name="Camera3d" type="Camera3D" parent="Head"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.468479, -0.463024)
 
-[node name="AK47" parent="Head/Camera3d" instance=ExtResource("2_670ii")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.213135, -0.233066, -0.216175)
-
 [node name="CanvasLayer" type="CanvasLayer" parent="Head/Camera3d"]
 
 [node name="AmmoCount" type="Label" parent="Head/Camera3d/CanvasLayer"]
@@ -32,6 +30,3 @@ offset_top = 551.0
 offset_right = 1076.0
 offset_bottom = 620.0
 theme_override_font_sizes/font_size = 50
-
-[connection signal="fired" from="Head/Camera3d/AK47" to="." method="_on_ak_47_fired"]
-[connection signal="reloaded" from="Head/Camera3d/AK47" to="." method="_on_ak_47_reloaded"]
