@@ -3,6 +3,7 @@
 [ext_resource type="Script" path="res://Scenes/Bullet/Bullet-Proj.gd" id="1_i0vxr"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_a2qmd"]
+radius = 0.125524
 
 [sub_resource type="SphereMesh" id="SphereMesh_mrjd8"]
 
@@ -15,7 +16,6 @@ lock_rotation = true
 script = ExtResource("1_i0vxr")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
 shape = SubResource("SphereShape3D_a2qmd")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
