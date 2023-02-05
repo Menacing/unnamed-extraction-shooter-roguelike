@@ -7,6 +7,7 @@ var gunRay: RayCast3D
 @onready var Cam = $Head/Camera3d as Camera3D
 #@export var _bullet_scene : PackedScene
 var mouseSensibility = 1200
+var mouse_sensitivity = 0.005
 var mouse_relative_x = 0
 var mouse_relative_y = 0
 const NORMAL_SPEED = 5.0
@@ -90,12 +91,22 @@ func isCrouching():
 		return Input.is_action_pressed("crouch")
 
 func _input(event):
-	if event is InputEventMouseMotion:
-		rotation.y -= event.relative.x / mouseSensibility
-		$Head/Camera3d.rotation.x -= event.relative.y / mouseSensibility
-		$Head/Camera3d.rotation.x = clamp($Head/Camera3d.rotation.x, deg_to_rad(-90), deg_to_rad(90) )
-		mouse_relative_x = clamp(event.relative.x, -50, 50)
-		mouse_relative_y = clamp(event.relative.y, -50, 10)
+	if event is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
+		#legacyMouse(event)
+		transformMouse(event)
+
+
+func transformMouse(event: InputEventMouse):
+	rotate_y(-event.relative.x * mouse_sensitivity)
+	$Head/Camera3d.rotate_x(-event.relative.y * mouse_sensitivity)
+	$Head/Camera3d.rotation.x = clampf($Head/Camera3d.rotation.x, -deg_to_rad(70), deg_to_rad(70))
+
+func legacyMouse(event: InputEventMouse):
+	rotation.y -= event.relative.x / mouseSensibility
+	$Head/Camera3d.rotation.x -= event.relative.y / mouseSensibility
+	$Head/Camera3d.rotation.x = clamp($Head/Camera3d.rotation.x, deg_to_rad(-90), deg_to_rad(90) )
+	mouse_relative_x = clamp(event.relative.x, -50, 50)
+	mouse_relative_y = clamp(event.relative.y, -50, 10)
 
 func shoot():
 	gun.fireGun()
@@ -104,9 +115,17 @@ func reload():
 	gun.reloadGun()
 
 
-func _on_gun_fired():
+func _on_gun_fired(recoil:Vector2):
 	$Head/Camera3d/CanvasLayer/AmmoCount.text = "%s" % gun.magazine
-
-
+#	#flip the mapping so that recoil.y moves the camera vertically	
+	rotate_y(recoil.x)
+	$Head/Camera3d.rotate_x(recoil.y)
+	$Head/Camera3d.rotation.x = clampf($Head/Camera3d.rotation.x, -deg_to_rad(70), deg_to_rad(70))
+	#legacy - We don't want to manually manipulate the rotations
+#	#flip the mapping so that recoil.y moves the camera vertically
+#	$Head/Camera3d.rotation.y += recoil.x
+#	$Head/Camera3d.rotation.x += recoil.y
+	
+	
 func _on_gun_reloaded():
 	$Head/Camera3d/CanvasLayer/AmmoCount.text = "%s" % gun.magazine

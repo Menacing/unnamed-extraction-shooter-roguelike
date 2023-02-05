@@ -7,12 +7,16 @@ signal reloaded
 @export var magazine: int = magazineSize
 @onready var gunRay = $quick_AK47_2/RayCast3D as RayCast3D
 @export var _bullet_scene : PackedScene
+@export var base_recoil: Vector2 = Vector2(0,0.1)
+@export var recoil_variability = Vector2(0.1, 0.05)
 
 var reloading: bool = false
+var rng: RandomNumberGenerator
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$ReloadTimer.connect("timeout", reloaded_callback)
+	rng = RandomNumberGenerator.new()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -38,7 +42,7 @@ func fireGun():
 		
 		magazine -= 1
 		$AnimationPlayer.play("fire")
-		fired.emit()
+		fired.emit(generate_recoil())
 	else:
 		#click
 		pass
@@ -54,3 +58,6 @@ func reloaded_callback():
 	reloading = false
 	reloaded.emit()
 	
+func generate_recoil() -> Vector2:
+	return Vector2(base_recoil.x + rng.randf_range(-recoil_variability.x, recoil_variability.x), \
+		base_recoil.y + rng.randf_range(-recoil_variability.y, recoil_variability.y))
