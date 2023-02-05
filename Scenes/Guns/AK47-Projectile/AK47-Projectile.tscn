@@ -361,4 +361,7 @@ volume_db = -20.0
 [node name="ReloadTimer" type="Timer" parent="."]
 wait_time = 2.5
 
+[node name="FireTimer" type="Timer" parent="."]
+one_shot = true
+
 [editable path="quick_AK47_2"]

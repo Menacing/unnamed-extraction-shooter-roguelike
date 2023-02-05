@@ -16,6 +16,7 @@ const RUN_SPEED = 10.0
 const JUMP_VELOCITY = 4.5
 var currentSpeed = 0.0
 var sprintToggle:bool = false
+var current_fire_mode: String
 
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
@@ -28,6 +29,7 @@ func _ready():
 	gun.position = Vector3(0.213,-0.233, -0.216)
 	gun.fired.connect(_on_gun_fired)
 	gun.reloaded.connect(_on_gun_reloaded)
+	current_fire_mode = gun.current_fire_mode
 	$Head/Camera3d.add_child(gun)
 	gunRay = gun.get_node("quick_AK47_2/RayCast3D") 
 	
@@ -36,6 +38,7 @@ func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	currentSpeed = NORMAL_SPEED
 	$Head/Camera3d/CanvasLayer/AmmoCount.text = "%s" % gun.magazineSize
+	$Head/Camera3d/CanvasLayer/FireMode.text = "%s" % gun.current_fire_mode
 
 #realtime inputs - movement stuff
 func _physics_process(delta):
@@ -48,8 +51,13 @@ func _physics_process(delta):
 		velocity.y = JUMP_VELOCITY
 	
 	# Handle Shooting
-	if Input.is_action_just_pressed("shoot"):
-		shoot()
+	if current_fire_mode == "auto":
+		if Input.is_action_pressed("shoot"):
+			shoot()
+	elif current_fire_mode == "semi":
+		if Input.is_action_just_pressed("shoot"):
+			shoot()
+	
 	if Input.is_action_just_pressed("reload"):
 		reload()
 	
@@ -94,6 +102,11 @@ func _input(event):
 	if event is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
 		#legacyMouse(event)
 		transformMouse(event)
+	elif event.is_action_pressed("toggleFireMode"):
+		if gun.has_method("toggle_fire_mode"):
+			var fire_mode = gun.toggle_fire_mode()
+			$Head/Camera3d/CanvasLayer/FireMode.text = fire_mode
+			current_fire_mode = fire_mode
 
 
 func transformMouse(event: InputEventMouse):

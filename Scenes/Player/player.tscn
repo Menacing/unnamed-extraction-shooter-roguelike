@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://c702s4icsohx5"]
+[gd_scene load_steps=6 format=3 uid="uid://c702s4icsohx5"]
 
 [ext_resource type="Script" path="res://Scenes/Player/player.gd" id="1_1w47b"]
 [ext_resource type="PackedScene" uid="uid://dr48wela8mtxd" path="res://Scenes/Guns/AK47-Projectile/AK47-Projectile.tscn" id="2_qchmr"]
@@ -6,6 +6,8 @@
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_emkox"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_6b3ky"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_m25y7"]
 
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_1w47b")
@@ -30,3 +32,12 @@ offset_top = 551.0
 offset_right = 1076.0
 offset_bottom = 620.0
 theme_override_font_sizes/font_size = 50
+
+[node name="FireMode" type="Label" parent="Head/Camera3d/CanvasLayer"]
+offset_left = 950.0
+offset_top = 551.0
+offset_right = 990.0
+offset_bottom = 574.0
+scale = Vector2(1.8, 2.6)
+theme_override_font_sizes/font_size = 50
+label_settings = SubResource("LabelSettings_m25y7")
