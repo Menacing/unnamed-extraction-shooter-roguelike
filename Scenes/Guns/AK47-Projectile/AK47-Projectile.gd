@@ -6,11 +6,13 @@ signal reloaded
 @export var rpm: int = 600
 @export var magazineSize: int = 30
 @export var magazine: int = magazineSize
-@onready var gunRay = $quick_AK47_2/RayCast3D as RayCast3D
+@onready var gunRay = $gun/RayCast3D as RayCast3D
 @export var _bullet_scene : PackedScene
-@export var base_recoil: Vector2 = Vector2(0,0.1)
-@export var recoil_variability = Vector2(0.1, 0.05)
+@export var base_recoil: Vector2 = Vector2(0,0.05)
+@export var recoil_variability = Vector2(0.05, 0.025)
 @export var fire_modes = ["semi","auto"]
+@export var ads_accel = 0.3
+@export var ads_fov = 50.0
 var current_fire_mode_i = 0
 var current_fire_mode = fire_modes[current_fire_mode_i]
 
@@ -37,7 +39,7 @@ func canFire() -> bool:
 
 func fireGun():
 	if canFire():
-		var muzzle = $quick_AK47_2/Muzzle
+		var muzzle = $gun/Muzzle
 		
 		var shoot_origin = muzzle.global_transform.origin
 		
