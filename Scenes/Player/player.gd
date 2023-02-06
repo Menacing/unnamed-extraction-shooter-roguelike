@@ -24,6 +24,11 @@ var default_fov: float = 75.0
 var ads_fov: float
 var fully_ads: bool = false
 
+var config = ConfigFile.new()
+var both_eyes_open_ads: bool
+var toggle_sprint: bool
+var toggle_crouch: bool
+
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
@@ -41,6 +46,13 @@ func _ready():
 	current_fire_mode = gun.current_fire_mode
 	$Head/Camera3d.add_child(gun)
 	gunRay = gun.get_node("gun/RayCast3D") 
+	
+	var err = config.load("res://game_settings.cfg")
+	if err == OK:
+		for player in config.get_sections():
+			both_eyes_open_ads = config.get_value(player, "both_eyes_open_ads")
+			toggle_sprint = config.get_value(player, "toggle_sprint")
+			toggle_crouch = config.get_value(player, "toggle_crouch")
 	
 	#Captures mouse and stops rgun from hitting yourself
 	gunRay.add_exception(self)
