@@ -1,11 +1,8 @@
 extends CharacterBody3D
 
 @export var gun_scene: PackedScene
-var gun
-#@onready var gunRay = $Head/Camera3d/AK47/RayCast3d as RayCast3D
-var gunRay: RayCast3D
+var gun: Node3D
 @onready var Cam = $Head/Camera3d as Camera3D
-#@export var _bullet_scene : PackedScene
 var mouseSensibility = 1200
 var mouse_sensitivity = 0.005
 var mouse_relative_x = 0
@@ -45,7 +42,6 @@ func _ready():
 	gun.reloaded.connect(_on_gun_reloaded)
 	current_fire_mode = gun.current_fire_mode
 	$Head/Camera3d.add_child(gun)
-	gunRay = gun.get_node("gun/RayCast3D") 
 	
 	var err = config.load("res://game_settings.cfg")
 	if err == OK:
@@ -54,8 +50,6 @@ func _ready():
 			toggle_sprint = config.get_value(player, "toggle_sprint")
 			toggle_crouch = config.get_value(player, "toggle_crouch")
 	
-	#Captures mouse and stops rgun from hitting yourself
-	gunRay.add_exception(self)
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	currentSpeed = NORMAL_SPEED
 	$Head/Camera3d/CanvasLayer/AmmoCount.text = "%s" % gun.magazineSize
@@ -87,10 +81,14 @@ func _physics_process(delta):
 		if (gun.transform.origin - ads_pos).length() < 0.001:
 			fully_ads = true
 		else:
+			if both_eyes_open_ads:
+				gun.make_transparent()
 			gun.transform.origin = gun.transform.origin.lerp(ads_pos, ads_accel)
 			Cam.fov = lerp(Cam.fov, ads_fov, ads_accel)
 	else:
 		fully_ads = false
+		if both_eyes_open_ads:
+			gun.make_opaque()
 		if gun.transform.origin != hf_pos:
 			gun.transform.origin = gun.transform.origin.lerp(hf_pos, ads_accel)
 			Cam.fov = lerp(Cam.fov, default_fov, ads_accel)
