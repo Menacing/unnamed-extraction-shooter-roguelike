@@ -17,7 +17,12 @@ const JUMP_VELOCITY = 4.5
 var currentSpeed = 0.0
 var sprintToggle:bool = false
 var current_fire_mode: String
-
+var ads_pos: Vector3
+var hf_pos: Vector3
+var ads_accel: float
+var default_fov: float = 75.0
+var ads_fov: float
+var fully_ads: bool = false
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
@@ -26,12 +31,16 @@ func _ready():
 	gun = gun_scene.instantiate()
 	#TODO: Pull these from the packed scene instead of being hardcoded
 	gun.magazineSize = 30
-	gun.position = Vector3(0.213,-0.233, -0.216)
+	hf_pos = -gun.get_node("HipFire").position
+	ads_pos = -gun.get_node("ADS").position
+	ads_accel = gun.ads_accel
+	ads_fov = gun.ads_fov
+	gun.position = hf_pos
 	gun.fired.connect(_on_gun_fired)
 	gun.reloaded.connect(_on_gun_reloaded)
 	current_fire_mode = gun.current_fire_mode
 	$Head/Camera3d.add_child(gun)
-	gunRay = gun.get_node("quick_AK47_2/RayCast3D") 
+	gunRay = gun.get_node("gun/RayCast3D") 
 	
 	#Captures mouse and stops rgun from hitting yourself
 	gunRay.add_exception(self)
@@ -60,6 +69,19 @@ func _physics_process(delta):
 	
 	if Input.is_action_just_pressed("reload"):
 		reload()
+		
+	#handle ADS
+	if Input.is_action_pressed("ads"):
+		if (gun.transform.origin - ads_pos).length() < 0.001:
+			fully_ads = true
+		else:
+			gun.transform.origin = gun.transform.origin.lerp(ads_pos, ads_accel)
+			Cam.fov = lerp(Cam.fov, ads_fov, ads_accel)
+	else:
+		fully_ads = false
+		if gun.transform.origin != hf_pos:
+			gun.transform.origin = gun.transform.origin.lerp(hf_pos, ads_accel)
+			Cam.fov = lerp(Cam.fov, default_fov, ads_accel)
 	
 	#Set Speed based on if is sprinting or crouching
 	if isSprinting():
@@ -130,15 +152,22 @@ func reload():
 
 func _on_gun_fired(recoil:Vector2):
 	$Head/Camera3d/CanvasLayer/AmmoCount.text = "%s" % gun.magazine
+	var scaled_recoil = scale_recoil(recoil)
 #	#flip the mapping so that recoil.y moves the camera vertically	
-	rotate_y(recoil.x)
-	$Head/Camera3d.rotate_x(recoil.y)
-	$Head/Camera3d.rotation.x = clampf($Head/Camera3d.rotation.x, -deg_to_rad(70), deg_to_rad(70))
+	rotate_y(scaled_recoil.x)
+	$Head/Camera3d.rotate_x(scaled_recoil.y)
+	$Head/Camera3d.rotation.x = clampf($Head/Camera3d.rotation.x, -deg_to_rad(80), deg_to_rad(80))
 	#legacy - We don't want to manually manipulate the rotations
 #	#flip the mapping so that recoil.y moves the camera vertically
 #	$Head/Camera3d.rotation.y += recoil.x
 #	$Head/Camera3d.rotation.x += recoil.y
+
+func scale_recoil(recoil:Vector2) -> Vector2:
+	var factor = 1.0
+	if fully_ads:
+		factor -= .25
 	
+	return recoil * factor
 	
 func _on_gun_reloaded():
 	$Head/Camera3d/CanvasLayer/AmmoCount.text = "%s" % gun.magazine
