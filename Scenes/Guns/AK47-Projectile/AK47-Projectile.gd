@@ -8,8 +8,8 @@ signal reloaded
 @export var magazine: int = magazineSize
 @onready var gunRay = $gun/RayCast3D as RayCast3D
 @export var _bullet_scene : PackedScene
-@export var base_recoil: Vector2 = Vector2(0,0.05)
-@export var recoil_variability = Vector2(0.05, 0.025)
+@export var base_recoil: Vector2 = Vector2(0,0.025)
+@export var recoil_variability = Vector2(0.025, 0.0125)
 @export var fire_modes = ["semi","auto"]
 @export var ads_accel = 0.3
 @export var ads_fov = 50.0

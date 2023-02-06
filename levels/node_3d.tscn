@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://ctahsvj88g1om"]
+[gd_scene load_steps=18 format=3 uid="uid://ctahsvj88g1om"]
 
 [ext_resource type="PackedScene" uid="uid://c702s4icsohx5" path="res://Scenes/Player/player.tscn" id="1_eisjc"]
 [ext_resource type="Script" path="res://levels/node_3d.gd" id="1_lmeut"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://cgp4mvev1cbra" path="res://addons/devblocks/textures/purple/texture_01.png" id="3_m1rsk"]
 [ext_resource type="Script" path="res://levels/StaticBody3D2-WoodWall.gd" id="5_b6rgw"]
 [ext_resource type="Material" uid="uid://d2jc0ho6nwe5g" path="res://levels/wood.tres" id="6_1m6d8"]
+[ext_resource type="PackedScene" uid="uid://dbduds4bsaaby" path="res://Scenes/Bullet/Bullet_hole.tscn" id="6_flqch"]
 [ext_resource type="Texture2D" uid="uid://bowen45ldiepa" path="res://gunmetal-texture.png" id="7_d5i4x"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_6g5uc"]
@@ -95,6 +96,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.0215, 0.020462, -0.018549)
 disable_mode = 2
 script = ExtResource("5_b6rgw")
 armor_rating = 1
+_bullet_hole_scene = ExtResource("6_flqch")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.66988, 0)
@@ -109,6 +111,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.1329, 0.020462, -0.018549)
 disable_mode = 2
 script = ExtResource("5_b6rgw")
 pen_ratio = 0.0
+_bullet_hole_scene = ExtResource("6_flqch")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D3"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.66988, 0)
