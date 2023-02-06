@@ -12,7 +12,7 @@ const CROUCH_SPEED = 2.5
 const RUN_SPEED = 10.0
 const JUMP_VELOCITY = 4.5
 var currentSpeed = 0.0
-var sprintToggle:bool = false
+
 var current_fire_mode: String
 var ads_pos: Vector3
 var hf_pos: Vector3
@@ -66,12 +66,13 @@ func _physics_process(delta):
 		velocity.y = JUMP_VELOCITY
 	
 	# Handle Shooting
-	if current_fire_mode == "auto":
-		if Input.is_action_pressed("shoot"):
-			shoot()
-	elif current_fire_mode == "semi":
-		if Input.is_action_just_pressed("shoot"):
-			shoot()
+	if can_shoot():
+		if current_fire_mode == "auto":
+			if Input.is_action_pressed("shoot"):
+				shoot()
+		elif current_fire_mode == "semi":
+			if Input.is_action_just_pressed("shoot"):
+				shoot()
 	
 	if Input.is_action_just_pressed("reload"):
 		reload()
@@ -116,19 +117,26 @@ func _physics_process(delta):
 
 	move_and_slide()
 
-func isSprinting():
-	var toggleSprintEnabled = false
-	if toggleSprintEnabled:
-		return false
+var toggle_sprint_f: bool = false
+func isSprinting() -> bool:
+	if toggle_sprint:
+		if Input.is_action_just_pressed("sprint"):
+			toggle_sprint_f = !toggle_sprint_f
+		return toggle_sprint_f
 	else:
 		return Input.is_action_pressed("sprint")
 		
-func isCrouching():
-	var toggleCrouchEnabled = false
-	if toggleCrouchEnabled:
-		return false
+var toggle_crouch_f: bool = false
+func isCrouching() -> bool:
+	if toggle_crouch:
+		if Input.is_action_just_pressed("crouch"):
+			toggle_crouch_f = !toggle_crouch_f
+		return toggle_crouch_f
 	else:
 		return Input.is_action_pressed("crouch")
+		
+func can_shoot() -> bool:
+	return is_on_floor() and !isSprinting()
 
 func _input(event):
 	if event is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
@@ -175,7 +183,9 @@ func _on_gun_fired(recoil:Vector2):
 func scale_recoil(recoil:Vector2) -> Vector2:
 	var factor = 1.0
 	if fully_ads:
-		factor -= .25
+		factor -= .2
+	if isCrouching():
+		factor -= .2
 	
 	return recoil * factor
 	
