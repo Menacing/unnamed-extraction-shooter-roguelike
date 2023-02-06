@@ -2,6 +2,7 @@ extends StaticBody3D
 
 @export var pen_ratio = .8
 @export var armor_rating: int = 6
+@export var _bullet_hole_scene : PackedScene
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -12,8 +13,13 @@ func _ready():
 func _process(delta):
 	pass
 
-func _on_hit(damage = 0.0, pen_rating = 0, position = Vector3.ZERO) -> float:
+func _on_hit(damage = 0.0, pen_rating = 0, position = Vector3.ZERO, normal = Vector3.UP) -> float:
 	print("Took %s damage, pen rating %s at %s" % [damage, pen_rating, position])
+	var bulletInst = _bullet_hole_scene.instantiate() as Node3D
+	bulletInst.set_as_top_level(true)
+	get_parent().add_child(bulletInst)
+	bulletInst.global_transform.origin = position
+	bulletInst.look_at(normal)
 	if pen_rating >= armor_rating:
 		return pen_ratio
 	else:

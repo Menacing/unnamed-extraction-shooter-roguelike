@@ -1,7 +1,7 @@
-[gd_scene load_steps=14 format=3 uid="uid://be8rs32sgqlob"]
+[gd_scene load_steps=14 format=3]
 
 [ext_resource type="Script" path="res://Scenes/Guns/AK47/AK47.gd" id="1_84085"]
-[ext_resource type="PackedScene" uid="uid://dbduds4bsaaby" path="res://Scenes/Bullet/Bullet.tscn" id="2_pqoii"]
+[ext_resource type="PackedScene" uid="uid://dbduds4bsaaby" path="res://Scenes/Bullet/Bullet_hole.tscn" id="2_pqoii"]
 [ext_resource type="PackedScene" uid="uid://c4c3y82bwbb5j" path="res://Scenes/Guns/AK47/quick_AK47_2.glb" id="3_xpqyb"]
 [ext_resource type="Texture2D" uid="uid://yilgohsopxy5" path="res://Scenes/Guns/AK47/PixelMuzzelFlash.png" id="4_2ljtx"]
 [ext_resource type="AudioStream" uid="uid://cm1nj06e6vvun" path="res://Scenes/Guns/AK47/ak47-2.wav" id="5_vv1hm"]
@@ -9,6 +9,7 @@
 [ext_resource type="AudioStream" uid="uid://b1wcyprc24rom" path="res://Scenes/Guns/AK47/ak47_clipout.wav" id="6_u7n44"]
 [ext_resource type="AudioStream" uid="uid://b8qqfpv60meve" path="res://Scenes/Guns/AK47/ak47_clipin.wav" id="7_o4euu"]
 [ext_resource type="AudioStream" uid="uid://lir3n6jdoob6" path="res://Scenes/Guns/AK47/ak47_boltpull.wav" id="8_1ahuq"]
+
 
 [sub_resource type="Animation" id="Animation_dc4hw"]
 length = 0.001
