@@ -6,7 +6,7 @@ signal reloaded
 @export var rpm: int = 600
 @export var magazineSize: int = 30
 @export var magazine: int = magazineSize
-@onready var gunRay = $gun/RayCast3D as RayCast3D
+@onready var gun_mat: BaseMaterial3D = $gun/Node_15/gun/barrel/Cube.get_active_material(0)
 @export var _bullet_scene : PackedScene
 @export var base_recoil: Vector2 = Vector2(0,0.025)
 @export var recoil_variability = Vector2(0.025, 0.0125)
@@ -79,3 +79,22 @@ func toggle_fire_mode() -> String:
 		current_fire_mode_i = next_i
 	current_fire_mode = fire_modes[current_fire_mode_i]
 	return current_fire_mode
+
+var is_transparent: bool = false
+func make_transparent():
+	if !is_transparent:
+		gun_mat.distance_fade_mode = BaseMaterial3D.DISTANCE_FADE_PIXEL_DITHER
+		#Pixel dither looks better, but this is another way of doing it
+		#gun_mat.blend_mode = gun_mat.BLEND_MODE_ADD
+		is_transparent = true
+		pass
+	else:
+		pass
+
+func make_opaque():
+	if is_transparent:
+		gun_mat.distance_fade_mode = BaseMaterial3D.DISTANCE_FADE_DISABLED		
+		#gun_mat.blend_mode = gun_mat.BLEND_MODE_MIX
+		is_transparent = false
+	else:
+		pass
