@@ -9,6 +9,7 @@ var mouse_relative_x = 0
 var mouse_relative_y = 0
 const NORMAL_SPEED = 5.0
 const CROUCH_SPEED = 2.5
+const PRONE_SPEED = 1
 const RUN_SPEED = 10.0
 const JUMP_VELOCITY = 4.5
 var currentSpeed = 0.0
@@ -66,7 +67,7 @@ func _physics_process(delta):
 		velocity.y -= gravity * delta
 		
 	# Handle Jump.
-	if Input.is_action_just_pressed("jump") and is_on_floor():
+	if Input.is_action_just_pressed("jump") and is_on_floor() and !isProne():
 		velocity.y = JUMP_VELOCITY
 	
 	# Handle Shooting
@@ -105,6 +106,9 @@ func _physics_process(delta):
 	elif isCrouching():
 		currentSpeed = CROUCH_SPEED
 		$CollisionShape3d.get_shape().set_height(1)
+	elif isProne():
+		currentSpeed = PRONE_SPEED
+		$CollisionShape3d.get_shape().set_height(.5)
 	else:
 		currentSpeed = NORMAL_SPEED
 		$CollisionShape3d.get_shape().set_height(2)
@@ -138,6 +142,13 @@ func isCrouching() -> bool:
 		return toggle_crouch_f
 	else:
 		return Input.is_action_pressed("crouch")
+		
+var toggle_prone_f: bool = false
+func isProne() -> bool:
+	if Input.is_action_just_pressed("prone"):
+		toggle_prone_f = !toggle_prone_f
+	return toggle_prone_f
+
 		
 func can_shoot() -> bool:
 	return is_on_floor() and !isSprinting()
@@ -190,7 +201,8 @@ func scale_recoil(recoil:Vector2) -> Vector2:
 		factor -= .2
 	if isCrouching():
 		factor -= .2
-	
+	elif isProne():
+		factor -= .4
 	return recoil * factor
 	
 func _on_gun_reloaded():
