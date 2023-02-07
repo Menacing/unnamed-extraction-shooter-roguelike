@@ -16,6 +16,8 @@ var currentSpeed = 0.0
 var current_fire_mode: String
 var ads_pos: Vector3
 var hf_pos: Vector3
+var grip_pos: Vector3
+var handguard_pos: Vector3
 var ads_accel: float
 var default_fov: float = 75.0
 var ads_fov: float
@@ -35,6 +37,8 @@ func _ready():
 	gun.magazineSize = 30
 	hf_pos = -gun.get_node("HipFire").position
 	ads_pos = -gun.get_node("ADS").position
+	grip_pos = -gun.get_node("Grip").position
+	handguard_pos = -gun.get_node("Handguard").position
 	ads_accel = gun.ads_accel
 	ads_fov = gun.ads_fov
 	gun.position = hf_pos

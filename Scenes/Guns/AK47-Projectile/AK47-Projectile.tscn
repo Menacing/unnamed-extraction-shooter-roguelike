@@ -196,4 +196,20 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.364735, 0.256545, 0.485)
 [node name="ADS" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.087, 0.430836)
 
+[node name="Grip" type="BoneAttachment3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.137171, 0.394002)
+override_pose = true
+override_pose = true
+override_mode = null
+use_external_skeleton = true
+external_skeleton = NodePath("")
+
+[node name="Handguard" type="BoneAttachment3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0350224, -0.14009)
+override_pose = true
+override_pose = true
+override_mode = null
+use_external_skeleton = true
+external_skeleton = NodePath("")
+
 [editable path="gun"]
