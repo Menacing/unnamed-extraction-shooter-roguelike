@@ -18,13 +18,13 @@ func _ready():
 func _physics_process(delta):
 #	global_translate(-delta * current_speed * transform.basis.z)
 	elapsed_time += delta
-	var col = move_and_collide(-delta * current_speed * transform.basis.z,false,0.001,true)
+	var col:KinematicCollision3D = move_and_collide(-delta * current_speed * transform.basis.z,false,0.001,true)
 	#If we collide, get the collider and see if it can be hit or if it can be penetrated
 	if col:
 		print(col)
 		var collider = col.get_collider()
 		if collider and collider.has_method("_on_hit"):
-			var pen_ratio = collider._on_hit(current_damage, pen_rating, col.get_position(), col.get_normal())
+			var pen_ratio = collider._on_hit(current_damage, pen_rating, col) #col.get_position(), col.get_normal())
 			var new_speed = current_speed * pen_ratio
 			current_damage = pow(new_speed/current_speed,2) * current_damage
 			current_speed = new_speed

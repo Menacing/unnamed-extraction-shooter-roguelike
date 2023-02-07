@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://ctahsvj88g1om"]
+[gd_scene load_steps=19 format=3 uid="uid://ctahsvj88g1om"]
 
 [ext_resource type="PackedScene" uid="uid://c702s4icsohx5" path="res://Scenes/Player/player.tscn" id="1_eisjc"]
 [ext_resource type="Script" path="res://levels/node_3d.gd" id="1_lmeut"]
@@ -8,6 +8,7 @@
 [ext_resource type="Material" uid="uid://d2jc0ho6nwe5g" path="res://levels/wood.tres" id="6_1m6d8"]
 [ext_resource type="PackedScene" uid="uid://dbduds4bsaaby" path="res://Scenes/Bullet/Bullet_hole.tscn" id="6_flqch"]
 [ext_resource type="Texture2D" uid="uid://bowen45ldiepa" path="res://gunmetal-texture.png" id="7_d5i4x"]
+[ext_resource type="PackedScene" uid="uid://biyb74e3s6cu8" path="res://Scenes/Enemies/DevTurret.tscn" id="9_lyixs"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_6g5uc"]
 
@@ -61,7 +62,7 @@ light_volumetric_fog_energy = 0.768
 shadow_enabled = true
 
 [node name="BasicBlock" parent="." instance=ExtResource("1_ujgwk")]
-transform = Transform3D(100, 0, 0, 0, 1, 0, 0, 0, 100, 0, 0, 0)
+transform = Transform3D(100, 0, 0, 0, 1, 0, 0, 0, 100, 0.329582, -0.405293, 0.416982)
 
 [node name="BasicBlock2" parent="." instance=ExtResource("1_ujgwk")]
 transform = Transform3D(6.981, 0, 0, 0, 1, 0, 0, 0, 4.093, 5.58332, 0.908197, -22.4728)
@@ -94,6 +95,8 @@ mesh = SubResource("BoxMesh_dhkxw")
 [node name="StaticBody3D2" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.0215, 0.020462, -0.018549)
 disable_mode = 2
+collision_layer = 3
+collision_mask = 3
 script = ExtResource("5_b6rgw")
 armor_rating = 1
 _bullet_hole_scene = ExtResource("6_flqch")
@@ -109,6 +112,7 @@ mesh = SubResource("BoxMesh_pxykj")
 [node name="StaticBody3D3" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.1329, 0.020462, -0.018549)
 disable_mode = 2
+collision_layer = 3
 script = ExtResource("5_b6rgw")
 pen_ratio = 0.0
 _bullet_hole_scene = ExtResource("6_flqch")
@@ -120,3 +124,6 @@ shape = SubResource("BoxShape3D_vd71y")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D3"]
 transform = Transform3D(0.160946, 0, 0, 0, 5.38101, 0, 0, 0, 23.2277, 0.00776482, 3.13676, -0.00492668)
 mesh = SubResource("BoxMesh_g4ghf")
+
+[node name="DevTurret" parent="." instance=ExtResource("9_lyixs")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 40.6216, 1.57036, -9.81038)

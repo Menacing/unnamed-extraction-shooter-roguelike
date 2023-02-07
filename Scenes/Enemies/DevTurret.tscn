@@ -1,0 +1,55 @@
+[gd_scene load_steps=10 format=3 uid="uid://biyb74e3s6cu8"]
+
+[ext_resource type="Script" path="res://Scenes/Enemies/DevTurret.gd" id="1_xnkh3"]
+[ext_resource type="PackedScene" uid="uid://dr48wela8mtxd" path="res://Scenes/Guns/AK47-Projectile/AK47-Projectile.tscn" id="2_pqq58"]
+[ext_resource type="Script" path="res://Scenes/Player/HitBox.gd" id="3_5pjd0"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_5sv1q"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_prsdl"]
+transparency = 1
+blend_mode = 1
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_emkox"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_uqamr"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_m44qc"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2an3s"]
+albedo_color = Color(1, 0, 0, 1)
+
+[node name="DevTurret" type="CharacterBody3D"]
+collision_layer = 3
+collision_mask = 3
+script = ExtResource("1_xnkh3")
+gun_scene = ExtResource("2_pqq58")
+damage_multiplier = 0.5
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_5sv1q")
+surface_material_override/0 = SubResource("StandardMaterial3D_prsdl")
+
+[node name="CollisionShape3d" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_emkox")
+
+[node name="Head" type="Node3D" parent="."]
+
+[node name="FireTimer" type="Timer" parent="."]
+autostart = true
+
+[node name="WeakPoint" type="CharacterBody3D" parent="."]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("3_5pjd0")
+damage_multiplier = 2.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="WeakPoint"]
+shape = SubResource("SphereShape3D_uqamr")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="WeakPoint"]
+mesh = SubResource("SphereMesh_m44qc")
+surface_material_override/0 = SubResource("StandardMaterial3D_2an3s")
+
+[connection signal="timeout" from="FireTimer" to="." method="_on_fire_timer_timeout"]
+[connection signal="took_damage" from="WeakPoint" to="." method="_on_took_damage"]
