@@ -1,9 +1,12 @@
 extends CharacterBody3D
 
 @export var gun_scene: PackedScene
+@export var max_health:float = 100.0
+@onready var health:float = max_health
 var gun: Node3D
 @onready var Cam = $Head/Camera3d as Camera3D
 @onready var head = $Head as Node3D
+@onready var life_bar = $Head/Camera3d/CanvasLayer/LifeBar as ProgressBar
 var mouseSensibility = 1200
 var mouse_sensitivity = 0.005
 var mouse_relative_x = 0
@@ -68,6 +71,7 @@ func _ready():
 	currentSpeed = NORMAL_SPEED
 	$Head/Camera3d/CanvasLayer/AmmoCount.text = "%s" % gun.magazineSize
 	$Head/Camera3d/CanvasLayer/FireMode.text = "%s" % gun.current_fire_mode
+	life_bar.value = health/max_health * health
 
 #realtime inputs - movement stuff
 func _physics_process(delta):
@@ -255,3 +259,18 @@ func scale_recoil(recoil:Vector2) -> Vector2:
 	
 func _on_gun_reloaded():
 	$Head/Camera3d/CanvasLayer/AmmoCount.text = "%s" % gun.magazine
+	
+#func _on_hit(damage = 0.0, pen_rating = 0, position = Vector3.ZERO, normal = Vector3.UP) -> float:
+#	var armor_rating = 3
+#	print("Took %s damage, pen rating %s at %s" % [damage, pen_rating, position])
+#	if pen_rating >= armor_rating:
+#		return 1.0
+#	else:
+#		return 0.0
+
+
+func _on_area_3d_took_damage(damage):
+	health-=damage
+	life_bar.value = health/max_health*health
+	if health < 0:
+		print("Game Over")

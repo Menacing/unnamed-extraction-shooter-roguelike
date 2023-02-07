@@ -1,8 +1,9 @@
-[gd_scene load_steps=15 format=3 uid="uid://c702s4icsohx5"]
+[gd_scene load_steps=16 format=3 uid="uid://c702s4icsohx5"]
 
 [ext_resource type="Script" path="res://Scenes/Player/player.gd" id="1_1w47b"]
 [ext_resource type="PackedScene" uid="uid://dr48wela8mtxd" path="res://Scenes/Guns/AK47-Projectile/AK47-Projectile.tscn" id="2_qchmr"]
 [ext_resource type="PackedScene" uid="uid://27t5g23so5hx" path="res://Scenes/Player/player_default_mesh.glb" id="3_qia5y"]
+[ext_resource type="Script" path="res://Scenes/Player/HitBox.gd" id="4_f3bol"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_emkox"]
 
@@ -71,6 +72,13 @@ offset_bottom = 574.0
 scale = Vector2(1.8, 2.6)
 theme_override_font_sizes/font_size = 50
 label_settings = SubResource("LabelSettings_m25y7")
+
+[node name="LifeBar" type="ProgressBar" parent="Head/Camera3d/CanvasLayer"]
+offset_left = 35.0
+offset_top = 551.0
+offset_right = 241.0
+offset_bottom = 578.0
+fill_mode = 1
 
 [node name="player_default_mesh" parent="." instance=ExtResource("3_qia5y")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, -0.922352, 0)
@@ -186,7 +194,7 @@ bones/68/rotation = Quaternion(0.346124, 0.625549, -0.576406, -0.395783)
 bones/69/rotation = Quaternion(-0.71475, 0.0123598, -0.0126355, 0.699157)
 bones/70/rotation = Quaternion(-0.71475, -0.0123598, 0.0126355, 0.699157)
 
-[node name="HitBox" type="Node" parent="."]
+[node name="HitBox" type="Node3D" parent="."]
 
 [node name="ChestBoneAttachment" type="BoneAttachment3D" parent="HitBox"]
 transform = Transform3D(-1, 1.20692e-09, 1.80011e-07, -4.50452e-08, 0.966487, -0.256716, -1.74288e-07, -0.256716, -0.966487, 2.57891e-10, 0.543348, 0.106155)
@@ -195,8 +203,12 @@ bone_idx = 3
 use_external_skeleton = true
 external_skeleton = NodePath("../../player_default_mesh/metarig/Skeleton3D")
 
-[node name="Area3D" type="Area3D" parent="HitBox/ChestBoneAttachment"]
+[node name="Area3D" type="CharacterBody3D" parent="HitBox/ChestBoneAttachment"]
 transform = Transform3D(1, -3.55271e-15, 0, -3.55271e-15, 1, -2.98023e-08, 1.42109e-14, 2.98023e-08, 1, 0, 0, 0)
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("4_f3bol")
+pen_ratio = 0.8
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="HitBox/ChestBoneAttachment/Area3D"]
 transform = Transform3D(1, -2.95192e-08, -2.2364e-09, 2.94865e-08, 0.986479, 0.163894, -2.63191e-09, -0.163894, 0.986479, 2.16087e-08, -0.290187, 0.121986)
@@ -213,7 +225,12 @@ bone_idx = 6
 use_external_skeleton = true
 external_skeleton = NodePath("../../player_default_mesh/metarig/Skeleton3D")
 
-[node name="Area3D" type="Area3D" parent="HitBox/HeadBoneAttachment"]
+[node name="Area3D" type="CharacterBody3D" parent="HitBox/HeadBoneAttachment"]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("4_f3bol")
+pen_ratio = 0.9
+damage_multiplier = 4.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="HitBox/HeadBoneAttachment/Area3D"]
 transform = Transform3D(1, 4.23516e-21, -1.77636e-14, -2.32934e-21, 1, 5.32907e-15, 2.84217e-14, 6.39488e-14, 1, -7.84197e-10, 0.0935162, 0.0179403)
@@ -226,7 +243,12 @@ bone_idx = 5
 use_external_skeleton = true
 external_skeleton = NodePath("../../player_default_mesh/metarig/Skeleton3D")
 
-[node name="Area3D" type="Area3D" parent="HitBox/NeckBoneAttachment"]
+[node name="Area3D" type="CharacterBody3D" parent="HitBox/NeckBoneAttachment"]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("4_f3bol")
+pen_ratio = 0.9
+damage_multiplier = 2.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="HitBox/NeckBoneAttachment/Area3D"]
 transform = Transform3D(-0.349006, -1.46429e-08, -6.94734e-08, -4.55655e-09, 0.345419, -0.0499137, 7.08534e-08, -0.0499136, -0.345419, 3.67229e-09, -0.0116099, 0.0331312)
@@ -239,7 +261,12 @@ bone_idx = 8
 use_external_skeleton = true
 external_skeleton = NodePath("../../player_default_mesh/metarig/Skeleton3D")
 
-[node name="Area3D" type="Area3D" parent="HitBox/LeftUpperArmBoneAttachment"]
+[node name="Area3D" type="CharacterBody3D" parent="HitBox/LeftUpperArmBoneAttachment"]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("4_f3bol")
+pen_ratio = 0.9
+damage_multiplier = 0.5
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="HitBox/LeftUpperArmBoneAttachment/Area3D"]
 transform = Transform3D(-0.347565, -0.00319472, -0.0315199, -0.00367885, 0.348949, 0.00519785, 0.031467, 0.00550867, -0.347542, 0.00266707, 0.164919, 0.00551876)
@@ -252,7 +279,12 @@ bone_idx = 9
 use_external_skeleton = true
 external_skeleton = NodePath("../../player_default_mesh/metarig/Skeleton3D")
 
-[node name="Area3D" type="Area3D" parent="HitBox/LeftLowerArmBoneAttachment"]
+[node name="Area3D" type="CharacterBody3D" parent="HitBox/LeftLowerArmBoneAttachment"]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("4_f3bol")
+pen_ratio = 0.9
+damage_multiplier = 0.25
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="HitBox/LeftLowerArmBoneAttachment/Area3D"]
 transform = Transform3D(-0.347565, -0.00319474, -0.0315199, -0.00367884, 0.348949, 0.00519785, 0.031467, 0.00550867, -0.347542, -0.0106501, 0.185884, 0.00508951)
@@ -265,7 +297,12 @@ bone_idx = 31
 use_external_skeleton = true
 external_skeleton = NodePath("../../player_default_mesh/metarig/Skeleton3D")
 
-[node name="Area3D" type="Area3D" parent="HitBox/RightUpperArmBoneAttachment"]
+[node name="Area3D" type="CharacterBody3D" parent="HitBox/RightUpperArmBoneAttachment"]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("4_f3bol")
+pen_ratio = 0.9
+damage_multiplier = 0.5
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="HitBox/RightUpperArmBoneAttachment/Area3D"]
 transform = Transform3D(-0.347565, -0.00319472, -0.0315199, -0.00367885, 0.348949, 0.00519785, 0.031467, 0.00550867, -0.347542, 0.00266707, 0.164919, 0.00551876)
@@ -278,7 +315,12 @@ bone_idx = 32
 use_external_skeleton = true
 external_skeleton = NodePath("../../player_default_mesh/metarig/Skeleton3D")
 
-[node name="Area3D" type="Area3D" parent="HitBox/RightLowerArmBoneAttachment"]
+[node name="Area3D" type="CharacterBody3D" parent="HitBox/RightLowerArmBoneAttachment"]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("4_f3bol")
+pen_ratio = 0.9
+damage_multiplier = 0.25
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="HitBox/RightLowerArmBoneAttachment/Area3D"]
 transform = Transform3D(-0.347565, -0.00319474, -0.0315199, -0.00367884, 0.348949, 0.00519785, 0.031467, 0.00550867, -0.347542, -0.0106501, 0.185884, 0.00508951)
@@ -291,7 +333,12 @@ bone_idx = 57
 use_external_skeleton = true
 external_skeleton = NodePath("../../player_default_mesh/metarig/Skeleton3D")
 
-[node name="Area3D" type="Area3D" parent="HitBox/LeftUpperLegBoneAttachment"]
+[node name="Area3D" type="CharacterBody3D" parent="HitBox/LeftUpperLegBoneAttachment"]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("4_f3bol")
+pen_ratio = 0.8
+damage_multiplier = 0.75
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="HitBox/LeftUpperLegBoneAttachment/Area3D"]
 transform = Transform3D(-0.347565, -0.00319472, -0.0315199, -0.00367885, 0.348949, 0.00519785, 0.031467, 0.00550867, -0.347542, 0.00266707, 0.164919, 0.00551876)
@@ -304,7 +351,12 @@ bone_idx = 62
 use_external_skeleton = true
 external_skeleton = NodePath("../../player_default_mesh/metarig/Skeleton3D")
 
-[node name="Area3D" type="Area3D" parent="HitBox/RightUpperLegBoneAttachment"]
+[node name="Area3D" type="CharacterBody3D" parent="HitBox/RightUpperLegBoneAttachment"]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("4_f3bol")
+pen_ratio = 0.8
+damage_multiplier = 0.75
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="HitBox/RightUpperLegBoneAttachment/Area3D"]
 transform = Transform3D(-0.347565, -0.00319472, -0.0315199, -0.00367885, 0.348949, 0.00519785, 0.031467, 0.00550867, -0.347542, 0.00266707, 0.164919, 0.00551876)
@@ -317,7 +369,12 @@ bone_idx = 58
 use_external_skeleton = true
 external_skeleton = NodePath("../../player_default_mesh/metarig/Skeleton3D")
 
-[node name="Area3D" type="Area3D" parent="HitBox/LeftLowerLegBoneAttachment"]
+[node name="Area3D" type="CharacterBody3D" parent="HitBox/LeftLowerLegBoneAttachment"]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("4_f3bol")
+pen_ratio = 0.9
+damage_multiplier = 0.25
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="HitBox/LeftLowerLegBoneAttachment/Area3D"]
 transform = Transform3D(-0.347565, -0.00319472, -0.0315199, -0.00367884, 0.348949, 0.00519785, 0.031467, 0.00550867, -0.347542, 0.00581469, 0.243184, 0.0045967)
@@ -330,7 +387,12 @@ bone_idx = 63
 use_external_skeleton = true
 external_skeleton = NodePath("../../player_default_mesh/metarig/Skeleton3D")
 
-[node name="Area3D" type="Area3D" parent="HitBox/RightLowerLegBoneAttachment"]
+[node name="Area3D" type="CharacterBody3D" parent="HitBox/RightLowerLegBoneAttachment"]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("4_f3bol")
+pen_ratio = 0.9
+damage_multiplier = 0.25
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="HitBox/RightLowerLegBoneAttachment/Area3D"]
 transform = Transform3D(-0.347565, -0.00319472, -0.0315199, -0.00367884, 0.348949, 0.00519785, 0.031467, 0.00550867, -0.347542, 0.00581469, 0.243184, 0.0045967)
@@ -343,7 +405,12 @@ bone_idx = 64
 use_external_skeleton = true
 external_skeleton = NodePath("../../player_default_mesh/metarig/Skeleton3D")
 
-[node name="Area3D" type="Area3D" parent="HitBox/RightFootBoneAttachment"]
+[node name="Area3D" type="CharacterBody3D" parent="HitBox/RightFootBoneAttachment"]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("4_f3bol")
+pen_ratio = 0.9
+damage_multiplier = 0.25
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="HitBox/RightFootBoneAttachment/Area3D"]
 transform = Transform3D(-0.347565, -0.00319492, -0.0315199, 0.000957216, 0.34601, -0.0456279, 0.0316669, -0.0455259, -0.344573, 0.00581468, 0.0858164, -0.0103869)
@@ -356,10 +423,28 @@ bone_idx = 59
 use_external_skeleton = true
 external_skeleton = NodePath("../../player_default_mesh/metarig/Skeleton3D")
 
-[node name="Area3D" type="Area3D" parent="HitBox/LeftFootBoneAttachment"]
+[node name="Area3D" type="CharacterBody3D" parent="HitBox/LeftFootBoneAttachment"]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("4_f3bol")
+pen_ratio = 0.9
+damage_multiplier = 0.25
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="HitBox/LeftFootBoneAttachment/Area3D"]
 transform = Transform3D(-0.347565, -0.00319492, -0.0315199, 0.000957216, 0.34601, -0.0456279, 0.0316669, -0.0455259, -0.344573, 0.00581468, 0.0858164, -0.0103869)
 shape = SubResource("CapsuleShape3D_s0fo0")
+
+[connection signal="took_damage" from="HitBox/ChestBoneAttachment/Area3D" to="." method="_on_area_3d_took_damage"]
+[connection signal="took_damage" from="HitBox/HeadBoneAttachment/Area3D" to="." method="_on_area_3d_took_damage"]
+[connection signal="took_damage" from="HitBox/NeckBoneAttachment/Area3D" to="." method="_on_area_3d_took_damage"]
+[connection signal="took_damage" from="HitBox/LeftUpperArmBoneAttachment/Area3D" to="." method="_on_area_3d_took_damage"]
+[connection signal="took_damage" from="HitBox/LeftLowerArmBoneAttachment/Area3D" to="." method="_on_area_3d_took_damage"]
+[connection signal="took_damage" from="HitBox/RightUpperArmBoneAttachment/Area3D" to="." method="_on_area_3d_took_damage"]
+[connection signal="took_damage" from="HitBox/LeftUpperLegBoneAttachment/Area3D" to="." method="_on_area_3d_took_damage"]
+[connection signal="took_damage" from="HitBox/RightUpperLegBoneAttachment/Area3D" to="." method="_on_area_3d_took_damage"]
+[connection signal="took_damage" from="HitBox/LeftLowerLegBoneAttachment/Area3D" to="." method="_on_area_3d_took_damage"]
+[connection signal="took_damage" from="HitBox/RightLowerLegBoneAttachment/Area3D" to="." method="_on_area_3d_took_damage"]
+[connection signal="took_damage" from="HitBox/RightFootBoneAttachment/Area3D" to="." method="_on_area_3d_took_damage"]
+[connection signal="took_damage" from="HitBox/LeftFootBoneAttachment/Area3D" to="." method="_on_area_3d_took_damage"]
 
 [editable path="player_default_mesh"]
