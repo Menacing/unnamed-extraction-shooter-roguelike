@@ -3,6 +3,7 @@ extends CharacterBody3D
 @export var gun_scene: PackedScene
 var gun: Node3D
 @onready var Cam = $Head/Camera3d as Camera3D
+@onready var head = $Head as Node3D
 var mouseSensibility = 1200
 var mouse_sensitivity = 0.005
 var mouse_relative_x = 0
@@ -13,6 +14,7 @@ const PRONE_SPEED = 1
 const RUN_SPEED = 10.0
 const JUMP_VELOCITY = 4.5
 var currentSpeed = 0.0
+var LEAN_AMOUNT = PI/6
 
 var current_fire_mode: String
 var ads_pos: Vector3
@@ -23,11 +25,16 @@ var ads_accel: float
 var default_fov: float = 75.0
 var ads_fov: float
 var fully_ads: bool = false
+@onready var home_basis: Basis = head.transform.basis
+@onready var right_lean_basis: Basis = head.transform.basis.rotated(Vector3.FORWARD, LEAN_AMOUNT)
+@onready var left_lean_basis: Basis = head.transform.basis.rotated(Vector3.FORWARD, -LEAN_AMOUNT)
 
 var config = ConfigFile.new()
 var both_eyes_open_ads: bool
 var toggle_sprint: bool
 var toggle_crouch: bool
+var toggle_ads: bool
+var toggle_lean: bool
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
@@ -54,6 +61,8 @@ func _ready():
 			both_eyes_open_ads = config.get_value(player, "both_eyes_open_ads")
 			toggle_sprint = config.get_value(player, "toggle_sprint")
 			toggle_crouch = config.get_value(player, "toggle_crouch")
+			toggle_lean = config.get_value(player, "toggle_lean")
+			toggle_ads = config.get_value(player, "toggle_ads")
 	
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	currentSpeed = NORMAL_SPEED
@@ -83,7 +92,7 @@ func _physics_process(delta):
 		reload()
 		
 	#handle ADS
-	if Input.is_action_pressed("ads"):
+	if shouldAds():
 		if (gun.transform.origin - ads_pos).length() < 0.001:
 			fully_ads = true
 		else:
@@ -98,6 +107,16 @@ func _physics_process(delta):
 		if gun.transform.origin != hf_pos:
 			gun.transform.origin = gun.transform.origin.lerp(hf_pos, ads_accel)
 			Cam.fov = lerp(Cam.fov, default_fov, ads_accel)
+	
+	#Handle Lean
+	var slr = shouldLeanRight()
+	var sll = shouldLeanLeft()
+	if slr:
+		head.basis = Quaternion(head.basis).slerp(Quaternion(right_lean_basis),0.5)
+	elif sll:
+		head.basis = Quaternion(head.basis).slerp(Quaternion(left_lean_basis),0.5)
+	else:
+		head.basis = Quaternion(head.basis).slerp(Quaternion(home_basis),0.5)		
 	
 	#Set Speed based on if is sprinting or crouching
 	if isSprinting():
@@ -148,6 +167,35 @@ func isProne() -> bool:
 	if Input.is_action_just_pressed("prone"):
 		toggle_prone_f = !toggle_prone_f
 	return toggle_prone_f
+
+var toggle_ads_f: bool = false
+func shouldAds() -> bool:
+	if toggle_ads:
+		if Input.is_action_just_pressed("ads"):
+			toggle_ads_f = !toggle_ads_f
+		return toggle_ads_f
+	else:
+		return Input.is_action_pressed("ads")
+
+var toggle_lean_l_f: bool = false
+var toggle_lean_r_f: bool = false
+func shouldLeanRight() -> bool:
+	if !toggle_lean:
+		return Input.is_action_pressed("leanRight")
+	else:
+		if Input.is_action_just_pressed("leanRight"):
+			toggle_lean_r_f = !toggle_lean_r_f
+			toggle_lean_l_f = false
+		return toggle_lean_r_f
+
+func  shouldLeanLeft() -> bool:
+	if !toggle_lean:
+		return Input.is_action_pressed("leanLeft")
+	else:
+		if Input.is_action_just_pressed("leanLeft"):
+			toggle_lean_l_f = !toggle_lean_l_f
+			toggle_lean_r_f = false
+		return toggle_lean_l_f
 
 		
 func can_shoot() -> bool:
