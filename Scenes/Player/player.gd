@@ -7,6 +7,7 @@ var gun: Node3D
 @onready var Cam = $Head/Camera3d as Camera3D
 @onready var head = $Head as Node3D
 @onready var life_bar = $Head/Camera3d/CanvasLayer/LifeBar as ProgressBar
+@onready var pmsm = $PlayerMotionStateMachine
 var mouseSensibility = 1200
 var mouse_sensitivity = 0.005
 var mouse_relative_x = 0
@@ -16,6 +17,7 @@ const CROUCH_SPEED = 2.5
 const PRONE_SPEED = 1
 const RUN_SPEED = 10.0
 const JUMP_VELOCITY = 4.5
+const accel = 1.0
 var currentSpeed = 0.0
 var LEAN_AMOUNT = PI/6
 
@@ -35,9 +37,13 @@ var fully_ads: bool = false
 var config = ConfigFile.new()
 var both_eyes_open_ads: bool
 var toggle_sprint: bool
+var toggle_sprint_f: bool = false
 var toggle_crouch: bool
+var toggle_crouch_f: bool = false
 var toggle_ads: bool
 var toggle_lean: bool
+var toggle_prone_f: bool = false
+
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
@@ -72,17 +78,10 @@ func _ready():
 	$Head/Camera3d/CanvasLayer/AmmoCount.text = "%s" % gun.magazineSize
 	$Head/Camera3d/CanvasLayer/FireMode.text = "%s" % gun.current_fire_mode
 	life_bar.value = health/max_health * health
+	$PlayerMotionStateMachine._active = true
 
 #realtime inputs - movement stuff
 func _physics_process(delta):
-	# Add the gravity.
-	if not is_on_floor():
-		velocity.y -= gravity * delta
-		
-	# Handle Jump.
-	if Input.is_action_just_pressed("jump") and is_on_floor() and !isProne():
-		velocity.y = JUMP_VELOCITY
-	
 	# Handle Shooting
 	if can_shoot():
 		if current_fire_mode == "auto":
@@ -122,55 +121,7 @@ func _physics_process(delta):
 	else:
 		head.basis = Quaternion(head.basis).slerp(Quaternion(home_basis),0.5)		
 	
-	#Set Speed based on if is sprinting or crouching
-	if isSprinting():
-		currentSpeed = RUN_SPEED
-		$CollisionShape3d.get_shape().set_height(2)
-	elif isCrouching():
-		currentSpeed = CROUCH_SPEED
-		$CollisionShape3d.get_shape().set_height(1)
-	elif isProne():
-		currentSpeed = PRONE_SPEED
-		$CollisionShape3d.get_shape().set_height(.5)
-	else:
-		currentSpeed = NORMAL_SPEED
-		$CollisionShape3d.get_shape().set_height(2)
 
-	# Get the input direction and handle the movement/deceleration.
-	var input_dir = Input.get_vector("moveLeft", "moveRight", "moveUp", "moveDown")
-	var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
-	if direction:
-		velocity.x = direction.x * currentSpeed
-		velocity.z = direction.z * currentSpeed
-	else:
-		velocity.x = move_toward(velocity.x, 0, currentSpeed)
-		velocity.z = move_toward(velocity.z, 0, currentSpeed)
-
-	move_and_slide()
-
-var toggle_sprint_f: bool = false
-func isSprinting() -> bool:
-	if toggle_sprint:
-		if Input.is_action_just_pressed("sprint"):
-			toggle_sprint_f = !toggle_sprint_f
-		return toggle_sprint_f
-	else:
-		return Input.is_action_pressed("sprint")
-		
-var toggle_crouch_f: bool = false
-func isCrouching() -> bool:
-	if toggle_crouch:
-		if Input.is_action_just_pressed("crouch"):
-			toggle_crouch_f = !toggle_crouch_f
-		return toggle_crouch_f
-	else:
-		return Input.is_action_pressed("crouch")
-		
-var toggle_prone_f: bool = false
-func isProne() -> bool:
-	if Input.is_action_just_pressed("prone"):
-		toggle_prone_f = !toggle_prone_f
-	return toggle_prone_f
 
 var toggle_ads_f: bool = false
 func shouldAds() -> bool:
@@ -203,7 +154,7 @@ func  shouldLeanLeft() -> bool:
 
 		
 func can_shoot() -> bool:
-	return is_on_floor() and !isSprinting()
+	return is_on_floor() #and !isSprinting()
 
 func _input(event):
 	if event is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
@@ -251,23 +202,21 @@ func scale_recoil(recoil:Vector2) -> Vector2:
 	var factor = 1.0
 	if fully_ads:
 		factor -= .2
-	if isCrouching():
-		factor -= .2
-	elif isProne():
-		factor -= .4
+	
+	var current_state = pmsm.current_state.name
+	match current_state:
+		"Crouching":
+			factor -= .2
+		"CrouchWalking", "Standing":
+			factor -= .1
+		"Prone":
+			factor -= .4
+
 	return recoil * factor
 	
 func _on_gun_reloaded():
 	$Head/Camera3d/CanvasLayer/AmmoCount.text = "%s" % gun.magazine
 	
-#func _on_hit(damage = 0.0, pen_rating = 0, position = Vector3.ZERO, normal = Vector3.UP) -> float:
-#	var armor_rating = 3
-#	print("Took %s damage, pen rating %s at %s" % [damage, pen_rating, position])
-#	if pen_rating >= armor_rating:
-#		return 1.0
-#	else:
-#		return 0.0
-
 
 func _on_area_3d_took_damage(damage):
 	health-=damage

@@ -36,7 +36,6 @@ shape = SubResource("CapsuleShape3D_emkox")
 [node name="Head" type="Node3D" parent="."]
 
 [node name="FireTimer" type="Timer" parent="."]
-autostart = true
 
 [node name="WeakPoint" type="CharacterBody3D" parent="."]
 collision_layer = 2

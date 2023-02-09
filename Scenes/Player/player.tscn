@@ -1,9 +1,17 @@
-[gd_scene load_steps=16 format=3 uid="uid://c702s4icsohx5"]
+[gd_scene load_steps=24 format=3 uid="uid://dk6vb5wh8wf0i"]
 
 [ext_resource type="Script" path="res://Scenes/Player/player.gd" id="1_1w47b"]
 [ext_resource type="PackedScene" uid="uid://dr48wela8mtxd" path="res://Scenes/Guns/AK47-Projectile/AK47-Projectile.tscn" id="2_qchmr"]
 [ext_resource type="PackedScene" uid="uid://27t5g23so5hx" path="res://Scenes/Player/player_default_mesh.glb" id="3_qia5y"]
 [ext_resource type="Script" path="res://Scenes/Player/HitBox.gd" id="4_f3bol"]
+[ext_resource type="Script" path="res://Scenes/Player/States/motion/player_motion_state_machine.gd" id="5_biar4"]
+[ext_resource type="Script" path="res://Scenes/Player/States/motion/sprinting.gd" id="6_cf0q7"]
+[ext_resource type="Script" path="res://Scenes/Player/States/motion/standing.gd" id="6_touu8"]
+[ext_resource type="Script" path="res://Scenes/Player/States/motion/jumping.gd" id="7_4mpd5"]
+[ext_resource type="Script" path="res://Scenes/Player/States/motion/walking.gd" id="7_qr5lf"]
+[ext_resource type="Script" path="res://Scenes/Player/States/motion/crouching.gd" id="9_m1m7a"]
+[ext_resource type="Script" path="res://Scenes/Player/States/motion/crouch_walking.gd" id="10_p8k8p"]
+[ext_resource type="Script" path="res://Scenes/Player/States/motion/prone.gd" id="12_5yy7f"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_emkox"]
 
@@ -433,6 +441,40 @@ damage_multiplier = 0.25
 [node name="CollisionShape3D" type="CollisionShape3D" parent="HitBox/LeftFootBoneAttachment/Area3D"]
 transform = Transform3D(-0.347565, -0.00319492, -0.0315199, 0.000957216, 0.34601, -0.0456279, 0.0316669, -0.0455259, -0.344573, 0.00581468, 0.0858164, -0.0103869)
 shape = SubResource("CapsuleShape3D_s0fo0")
+
+[node name="PlayerMotionStateMachine" type="Node" parent="."]
+script = ExtResource("5_biar4")
+start_state = NodePath("Standing")
+
+[node name="Standing" type="Node" parent="PlayerMotionStateMachine"]
+script = ExtResource("6_touu8")
+collider_path = NodePath("../../CollisionShape3d")
+
+[node name="Walking" type="Node" parent="PlayerMotionStateMachine"]
+script = ExtResource("7_qr5lf")
+walk_speed = null
+collider_path = NodePath("../../CollisionShape3d")
+
+[node name="Sprinting" type="Node" parent="PlayerMotionStateMachine"]
+script = ExtResource("6_cf0q7")
+sprint_speed = null
+collider_path = NodePath("../../CollisionShape3d")
+
+[node name="Crouching" type="Node" parent="PlayerMotionStateMachine"]
+script = ExtResource("9_m1m7a")
+collider_path = NodePath("../../CollisionShape3d")
+
+[node name="CrouchWalking" type="Node" parent="PlayerMotionStateMachine"]
+script = ExtResource("10_p8k8p")
+collider_path = NodePath("../../CollisionShape3d")
+
+[node name="Jumping" type="Node" parent="PlayerMotionStateMachine"]
+script = ExtResource("7_4mpd5")
+collider_path = NodePath("../../CollisionShape3d")
+
+[node name="Prone" type="Node" parent="PlayerMotionStateMachine"]
+script = ExtResource("12_5yy7f")
+collider_path = NodePath("../../CollisionShape3d")
 
 [connection signal="took_damage" from="HitBox/ChestBoneAttachment/Area3D" to="." method="_on_area_3d_took_damage"]
 [connection signal="took_damage" from="HitBox/HeadBoneAttachment/Area3D" to="." method="_on_area_3d_took_damage"]
