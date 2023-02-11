@@ -1,7 +1,6 @@
-[gd_scene load_steps=24 format=3 uid="uid://dk6vb5wh8wf0i"]
+[gd_scene load_steps=23 format=3 uid="uid://dk6vb5wh8wf0i"]
 
 [ext_resource type="Script" path="res://Scenes/Player/player.gd" id="1_1w47b"]
-[ext_resource type="PackedScene" uid="uid://dr48wela8mtxd" path="res://Scenes/Guns/AK47-Projectile/AK47-Projectile.tscn" id="2_qchmr"]
 [ext_resource type="PackedScene" uid="uid://27t5g23so5hx" path="res://Scenes/Player/player_default_mesh.glb" id="3_qia5y"]
 [ext_resource type="Script" path="res://Scenes/Player/HitBox.gd" id="4_f3bol"]
 [ext_resource type="Script" path="res://Scenes/Player/States/motion/player_motion_state_machine.gd" id="5_biar4"]
@@ -52,7 +51,6 @@ height = 0.967015
 
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_1w47b")
-gun_scene = ExtResource("2_qchmr")
 
 [node name="CollisionShape3d" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_emkox")
@@ -62,6 +60,10 @@ shape = SubResource("CapsuleShape3D_emkox")
 [node name="Camera3d" type="Camera3D" parent="Head"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.468479, -0.463024)
 near = 0.001
+
+[node name="UsePointer" type="RayCast3D" parent="Head/Camera3d"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, -0.821506)
+collision_mask = 4
 
 [node name="CanvasLayer" type="CanvasLayer" parent="Head/Camera3d"]
 
@@ -457,7 +459,6 @@ collider_path = NodePath("../../CollisionShape3d")
 
 [node name="Sprinting" type="Node" parent="PlayerMotionStateMachine"]
 script = ExtResource("6_cf0q7")
-sprint_speed = null
 collider_path = NodePath("../../CollisionShape3d")
 
 [node name="Crouching" type="Node" parent="PlayerMotionStateMachine"]

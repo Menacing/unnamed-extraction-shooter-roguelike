@@ -1,33 +1,44 @@
-extends Node3D
+extends Gun
 
-signal fired
-signal reloaded
-
-@export var rpm: int = 600
 @export var magazineSize: int = 30
 @export var magazine: int = magazineSize
+@warning_ignore("unsafe_method_access")
 @onready var gun_mat: BaseMaterial3D = $gun/Node_15/gun/barrel/Cube.get_active_material(0)
-@export var _bullet_scene : PackedScene
-@export var base_recoil: Vector2 = Vector2(0,0.025)
-@export var recoil_variability = Vector2(0.025, 0.0125)
-@export var fire_modes = ["semi","auto"]
-@export var ads_accel = 0.3
-@export var ads_fov = 50.0
+@onready var _world_collider:CollisionShape3D = $CollisionShape3D
+var world_collider:CollisionShape3D:
+	get:
+		if _world_collider:
+			return _world_collider
+		else:
+			_world_collider = $CollisionShape3D
+			return _world_collider
+
 var current_fire_mode_i = 0
-var current_fire_mode = fire_modes[current_fire_mode_i]
 
 var reloading: bool = false
 var rng: RandomNumberGenerator
 @onready var fire_timer = $FireTimer
 
+func _init():
+	var ak_stats: GunStats = GunStats.new()
+	ak_stats.rpm = 600
+	ak_stats.ads_accel = 0.3
+	ak_stats.ads_fov = 50.0
+	ak_stats.base_recoil = Vector2(0,0.025)
+	ak_stats.fire_modes = ["semi","auto"]
+	ak_stats.recoil_variability = Vector2(0.025, 0.0125)
+	
+	gun_stats = ak_stats
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$ReloadTimer.connect("timeout", reloaded_callback)
 	rng = RandomNumberGenerator.new()
-	fire_timer.wait_time = 60.0/rpm
-
+	fire_timer.wait_time = 60.0/gun_stats.rpm
+	current_fire_mode = gun_stats.fire_modes[current_fire_mode_i]
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
+@warning_ignore("unused_parameter")
 func _process(delta):
 	pass
 
@@ -68,16 +79,16 @@ func reloaded_callback():
 	reloaded.emit()
 	
 func generate_recoil() -> Vector2:
-	return Vector2(base_recoil.x + rng.randf_range(-recoil_variability.x, recoil_variability.x), \
-		base_recoil.y + rng.randf_range(-recoil_variability.y, recoil_variability.y))
+	return Vector2(gun_stats.base_recoil.x + rng.randf_range(-gun_stats.recoil_variability.x, gun_stats.recoil_variability.x), \
+		gun_stats.base_recoil.y + rng.randf_range(-gun_stats.recoil_variability.y, gun_stats.recoil_variability.y))
 
 func toggle_fire_mode() -> String:
 	var next_i = current_fire_mode_i + 1
-	if next_i > fire_modes.size() - 1:
+	if next_i > gun_stats.fire_modes.size() - 1:
 		current_fire_mode_i = 0
 	else:
 		current_fire_mode_i = next_i
-	current_fire_mode = fire_modes[current_fire_mode_i]
+	current_fire_mode = gun_stats.fire_modes[current_fire_mode_i]
 	return current_fire_mode
 
 var is_transparent: bool = false
@@ -98,3 +109,13 @@ func make_opaque():
 		is_transparent = false
 	else:
 		pass
+
+func dropped():
+	world_collider.disabled = true
+	self.freeze = false
+	
+func picked_up():
+	self.transform = Transform3D.IDENTITY
+#	self.gravity_scale = 0
+	world_collider.disabled = true
+	self.freeze = true

@@ -1,6 +1,6 @@
-[gd_scene load_steps=19 format=3 uid="uid://ctahsvj88g1om"]
+[gd_scene load_steps=20 format=3 uid="uid://ctahsvj88g1om"]
 
-[ext_resource type="PackedScene" uid="uid://c702s4icsohx5" path="res://Scenes/Player/player.tscn" id="1_eisjc"]
+[ext_resource type="PackedScene" uid="uid://dk6vb5wh8wf0i" path="res://Scenes/Player/player.tscn" id="1_eisjc"]
 [ext_resource type="Script" path="res://levels/node_3d.gd" id="1_lmeut"]
 [ext_resource type="PackedScene" uid="uid://dj26sacnhty4r" path="res://addons/devblocks/blocks/basic_block.tscn" id="1_ujgwk"]
 [ext_resource type="Texture2D" uid="uid://cgp4mvev1cbra" path="res://addons/devblocks/textures/purple/texture_01.png" id="3_m1rsk"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://dbduds4bsaaby" path="res://Scenes/Bullet/Bullet_hole.tscn" id="6_flqch"]
 [ext_resource type="Texture2D" uid="uid://bowen45ldiepa" path="res://gunmetal-texture.png" id="7_d5i4x"]
 [ext_resource type="PackedScene" uid="uid://biyb74e3s6cu8" path="res://Scenes/Enemies/DevTurret.tscn" id="9_lyixs"]
+[ext_resource type="PackedScene" uid="uid://dr48wela8mtxd" path="res://Scenes/Guns/AK47-Projectile/AK47-Projectile.tscn" id="10_b8533"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_6g5uc"]
 
@@ -127,3 +128,6 @@ mesh = SubResource("BoxMesh_g4ghf")
 
 [node name="DevTurret" parent="." instance=ExtResource("9_lyixs")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 40.6216, 1.57036, -9.81038)
+
+[node name="AK47-Projectile" parent="." instance=ExtResource("10_b8533")]
+transform = Transform3D(0.00366516, 0.999993, 0, -0.999993, 0.00366516, 0, 0, 0, 1, 4.22279, 5.2201, 2.12443)
