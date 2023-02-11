@@ -17,11 +17,27 @@ config/icon="res://icon.svg"
 
 [debug]
 
+settings/stdout/print_fps=true
+settings/stdout/print_gpu_profile=true
 settings/stdout/verbose_stdout=true
+gdscript/warnings/exclude_addons=false
+gdscript/warnings/unsafe_property_access=1
+gdscript/warnings/unsafe_method_access=1
+gdscript/warnings/unsafe_cast=1
+gdscript/warnings/unsafe_call_argument=1
 
 [dotnet]
 
 project/assembly_name="Unnamed-extraction-shooter-roguelike"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/keh_ui/plugin.cfg")
+
+[gui]
+
+theme/custom="res://themes/MetalPixel.tres"
+theme/custom_font="res://themes/Pixeltype.ttf"
 
 [input]
 
