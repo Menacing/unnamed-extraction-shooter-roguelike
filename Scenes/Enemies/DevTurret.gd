@@ -2,7 +2,7 @@ extends CharacterBody3D
 
 @onready var head = $Head as Node3D
 @export var gun_scene: PackedScene
-var gun: Node3D
+var gun: Gun
 var hf_pos: Vector3
 @export var health:float = 100.0
 

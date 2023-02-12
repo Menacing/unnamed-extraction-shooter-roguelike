@@ -1,6 +1,7 @@
-[gd_scene load_steps=23 format=3 uid="uid://dk6vb5wh8wf0i"]
+[gd_scene load_steps=24 format=3 uid="uid://dk6vb5wh8wf0i"]
 
 [ext_resource type="Script" path="res://Scenes/Player/player.gd" id="1_1w47b"]
+[ext_resource type="PackedScene" uid="uid://dwfth7gcdjbxa" path="res://ui/ui.tscn" id="2_hheas"]
 [ext_resource type="PackedScene" uid="uid://27t5g23so5hx" path="res://Scenes/Player/player_default_mesh.glb" id="3_qia5y"]
 [ext_resource type="Script" path="res://Scenes/Player/HitBox.gd" id="4_f3bol"]
 [ext_resource type="Script" path="res://Scenes/Player/States/motion/player_motion_state_machine.gd" id="5_biar4"]
@@ -89,6 +90,9 @@ offset_top = 551.0
 offset_right = 241.0
 offset_bottom = 578.0
 fill_mode = 1
+
+[node name="ui" parent="Head/Camera3d" instance=ExtResource("2_hheas")]
+process_mode = 1
 
 [node name="player_default_mesh" parent="." instance=ExtResource("3_qia5y")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, -0.922352, 0)

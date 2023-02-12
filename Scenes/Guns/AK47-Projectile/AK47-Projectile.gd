@@ -111,7 +111,7 @@ func make_opaque():
 		pass
 
 func dropped():
-	world_collider.disabled = true
+	world_collider.disabled = false
 	self.freeze = false
 	
 func picked_up():
