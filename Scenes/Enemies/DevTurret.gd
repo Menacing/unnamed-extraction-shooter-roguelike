@@ -2,13 +2,15 @@ extends CharacterBody3D
 
 @onready var head = $Head as Node3D
 @export var gun_scene: PackedScene
-var gun: Node3D
+var gun: Gun
 var hf_pos: Vector3
 @export var health:float = 100.0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	gun = gun_scene.instantiate()
+	gun.start_highlighted = false
+	gun.picked_up()
 	#TODO: Pull these from the packed scene instead of being hardcoded
 	gun.magazineSize = 30000
 	gun.magazine= 30000

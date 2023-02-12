@@ -1,13 +1,22 @@
 extends CharacterBody3D
 
-@export var gun_scene: PackedScene
+@export var gun_scene1: PackedScene
+@export var gun_scene2: PackedScene
 @export var max_health:float = 100.0
 @onready var health:float = max_health
-var gun: Node3D
-@onready var Cam = $Head/Camera3d as Camera3D
+var equipped_gun:Gun
+var shoulder_gun:Gun
+@onready var cam = $Head/Camera3d as Camera3D
 @onready var head = $Head as Node3D
 @onready var life_bar = $Head/Camera3d/CanvasLayer/LifeBar as ProgressBar
 @onready var pmsm = $PlayerMotionStateMachine
+@onready var use_ray = $Head/Camera3d/UsePointer
+@onready var inv_ui = $Head/Camera3d/ui/CanvasLayer
+@onready var use_helper = $Head/Camera3d/CanvasLayer/use_helper
+@onready var pickup_helper = $Head/Camera3d/CanvasLayer/pickup_helper
+@onready var gun_slot_1:InventorySpecialSlot = $Head/Camera3d/ui/CanvasLayer/inventory_canvas/gun_1
+@onready var gun_slot_2:InventorySpecialSlot = $Head/Camera3d/ui/CanvasLayer/inventory_canvas/gun_2
+@onready var shoulder_anchor:Node3D = $player_default_mesh/shoulder_anchor
 var mouseSensibility = 1200
 var mouse_sensitivity = 0.005
 var mouse_relative_x = 0
@@ -21,7 +30,9 @@ const accel = 1.0
 var currentSpeed = 0.0
 var LEAN_AMOUNT = PI/6
 
-var current_fire_mode: String
+var current_fire_mode: String:
+	get:
+		return equipped_gun.current_fire_mode
 var ads_pos: Vector3
 var hf_pos: Vector3
 var grip_pos: Vector3
@@ -31,7 +42,9 @@ var default_fov: float = 75.0
 var ads_fov: float
 var fully_ads: bool = false
 @onready var home_basis: Basis = head.transform.basis
+@warning_ignore("unsafe_method_access")
 @onready var right_lean_basis: Basis = head.transform.basis.rotated(Vector3.FORWARD, LEAN_AMOUNT)
+@warning_ignore("unsafe_method_access")
 @onready var left_lean_basis: Basis = head.transform.basis.rotated(Vector3.FORWARD, -LEAN_AMOUNT)
 
 var config = ConfigFile.new()
@@ -49,20 +62,14 @@ var toggle_prone_f: bool = false
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 func _ready():
-	gun = gun_scene.instantiate()
-	#TODO: Pull these from the packed scene instead of being hardcoded
-	gun.magazineSize = 30
-	hf_pos = -gun.get_node("HipFire").position
-	ads_pos = -gun.get_node("ADS").position
-	grip_pos = -gun.get_node("Grip").position
-	handguard_pos = -gun.get_node("Handguard").position
-	ads_accel = gun.ads_accel
-	ads_fov = gun.ads_fov
-	gun.position = hf_pos
-	gun.fired.connect(_on_gun_fired)
-	gun.reloaded.connect(_on_gun_reloaded)
-	current_fire_mode = gun.current_fire_mode
-	$Head/Camera3d.add_child(gun)
+	if gun_scene1:
+		equipped_gun = gun_scene1.instantiate()
+		#TODO: Pull these from the packed scene instead of being hardcoded
+		pick_up_gun(equipped_gun)
+	if gun_scene2:
+		shoulder_gun = gun_scene2.instantiate()
+		#TODO: Pull these from the packed scene instead of being hardcoded
+		pick_up_gun(shoulder_gun)
 	
 	var err = config.load("res://game_settings.cfg")
 	if err == OK:
@@ -75,53 +82,136 @@ func _ready():
 	
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	currentSpeed = NORMAL_SPEED
-	$Head/Camera3d/CanvasLayer/AmmoCount.text = "%s" % gun.magazineSize
-	$Head/Camera3d/CanvasLayer/FireMode.text = "%s" % gun.current_fire_mode
 	life_bar.value = health/max_health * health
 	$PlayerMotionStateMachine._active = true
+	inv_ui.visible = false
+	
+func pick_up_gun(world_gun:Gun):
+	
+	var idata1 = gun_slot_1.get_item_data(true)
+	var idata2 = gun_slot_2.get_item_data(true)
+	if idata1.size() == 0 or idata2.size() == 0:
+		owner.remove_child(world_gun)
+		#self.add_child(world_gun)
+		world_gun.set_owner(self)
+		world_gun.picked_up()
+		if !equipped_gun:
+			move_gun_to_hands(world_gun)
+		elif !shoulder_gun:
+			move_gun_to_shoulder(world_gun)
+		var idata = world_gun.get_node("ItemComponent").idata
+		if idata1.size() == 0:
+			gun_slot_1.add_item(idata)
+		elif idata2.size() == 0:
+			gun_slot_2.add_item(idata)			
+	
+func move_gun_to_hands(gun:Gun):
+	equipped_gun = gun
+	if gun:	
+		shoulder_anchor.remove_child(gun)
+		gun.transform = Transform3D.IDENTITY	
+		@warning_ignore("unsafe_property_access")
+		hf_pos = -gun.get_node("HipFire").position
+		@warning_ignore("unsafe_property_access")
+		ads_pos = -gun.get_node("ADS").position
+		@warning_ignore("unsafe_property_access")
+		grip_pos = -gun.get_node("Grip").position
+		@warning_ignore("unsafe_property_access")
+		handguard_pos = -gun.get_node("Handguard").position
+		ads_accel = gun.gun_stats.ads_accel
+		ads_fov = gun.gun_stats.ads_fov
+		gun.position = hf_pos
+		gun.fired.connect(_on_gun_fired)
+		gun.reloaded.connect(_on_gun_reloaded)
+		current_fire_mode = gun.current_fire_mode
+		cam.add_child(gun)
+		gun.set_owner(cam)
+		$Head/Camera3d/CanvasLayer/AmmoCount.text = "%s" % gun.magazine
+		$Head/Camera3d/CanvasLayer/FireMode.text = "%s" % gun.current_fire_mode
+
+func move_gun_to_shoulder(gun:Gun):
+	shoulder_gun = gun
+	if gun:
+		cam.remove_child(gun)
+		gun.transform = Transform3D.IDENTITY
+		#gun.transform.origin = shoulder_anchor.transform.origin
+		gun.rotate_x(-PI/2)
+		shoulder_anchor.add_child(gun)
+
+func drop_gun():
+	if equipped_gun:
+		var gun_global_pos = equipped_gun.global_position
+		equipped_gun.fired.disconnect(_on_gun_fired)
+		equipped_gun.reloaded.disconnect(_on_gun_reloaded)
+		cam.remove_child(equipped_gun)
+		equipped_gun.position = gun_global_pos
+		get_parent().add_child(equipped_gun)
+		$Head/Camera3d/CanvasLayer/AmmoCount.text = ""
+		$Head/Camera3d/CanvasLayer/FireMode.text = ""
+		equipped_gun.dropped()
+		if gun_in_slot(equipped_gun, gun_slot_1):
+			gun_slot_1.remove_item()
+		elif gun_in_slot(equipped_gun, gun_slot_2):
+			gun_slot_2.remove_item()			
+		equipped_gun = null
+		
 
 #realtime inputs - movement stuff
 func _physics_process(delta):
-	# Handle Shooting
-	if can_shoot():
-		if current_fire_mode == "auto":
-			if Input.is_action_pressed("shoot"):
-				shoot()
-		elif current_fire_mode == "semi":
-			if Input.is_action_just_pressed("shoot"):
-				shoot()
-	
-	if Input.is_action_just_pressed("reload"):
-		reload()
+	if !inv_ui.visible:
+		if equipped_gun:
+			# Handle Shooting
+			if can_shoot():
+				if current_fire_mode == "auto":
+					if Input.is_action_pressed("shoot"):
+						shoot()
+				elif current_fire_mode == "semi":
+					if Input.is_action_just_pressed("shoot"):
+						shoot()
+			
+			if Input.is_action_just_pressed("reload"):
+				reload()
+				
+			#handle ADS
+			if shouldAds():
+				if (equipped_gun.transform.origin - ads_pos).length() < 0.001:
+					fully_ads = true
+				else:
+					if both_eyes_open_ads:
+						equipped_gun.make_transparent()
+					equipped_gun.transform.origin = equipped_gun.transform.origin.lerp(ads_pos, ads_accel)
+					cam.fov = lerp(cam.fov, ads_fov, ads_accel)
+			else:
+				fully_ads = false
+				if both_eyes_open_ads:
+					equipped_gun.make_opaque()
+				if equipped_gun.transform.origin != hf_pos:
+					equipped_gun.transform.origin = equipped_gun.transform.origin.lerp(hf_pos, ads_accel)
+					cam.fov = lerp(cam.fov, default_fov, ads_accel)
 		
-	#handle ADS
-	if shouldAds():
-		if (gun.transform.origin - ads_pos).length() < 0.001:
-			fully_ads = true
+		#Handle Lean
+		var slr = shouldLeanRight()
+		var sll = shouldLeanLeft()
+		if slr:
+			head.basis = Quaternion(head.basis).slerp(Quaternion(right_lean_basis),0.5)
+		elif sll:
+			head.basis = Quaternion(head.basis).slerp(Quaternion(left_lean_basis),0.5)
 		else:
-			if both_eyes_open_ads:
-				gun.make_transparent()
-			gun.transform.origin = gun.transform.origin.lerp(ads_pos, ads_accel)
-			Cam.fov = lerp(Cam.fov, ads_fov, ads_accel)
-	else:
-		fully_ads = false
-		if both_eyes_open_ads:
-			gun.make_opaque()
-		if gun.transform.origin != hf_pos:
-			gun.transform.origin = gun.transform.origin.lerp(hf_pos, ads_accel)
-			Cam.fov = lerp(Cam.fov, default_fov, ads_accel)
-	
-	#Handle Lean
-	var slr = shouldLeanRight()
-	var sll = shouldLeanLeft()
-	if slr:
-		head.basis = Quaternion(head.basis).slerp(Quaternion(right_lean_basis),0.5)
-	elif sll:
-		head.basis = Quaternion(head.basis).slerp(Quaternion(left_lean_basis),0.5)
-	else:
-		head.basis = Quaternion(head.basis).slerp(Quaternion(home_basis),0.5)		
-	
-
+			head.basis = Quaternion(head.basis).slerp(Quaternion(home_basis),0.5)
+		
+		#handle use hint
+		if use_ray.is_colliding():
+				var col = use_ray.get_collider()
+				if col.has_method("picked_up"):
+					pickup_helper.visible = true
+				elif col.has_method("use"):
+					use_helper.visible = false
+				else:
+					use_helper.visible = false
+					pickup_helper.visible = false
+		else:
+			use_helper.visible = false
+			pickup_helper.visible = false
 
 var toggle_ads_f: bool = false
 func shouldAds() -> bool:
@@ -157,15 +247,44 @@ func can_shoot() -> bool:
 	return is_on_floor() #and !isSprinting()
 
 func _input(event):
-	if event is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
-		#legacyMouse(event)
-		transformMouse(event)
-	elif event.is_action_pressed("toggleFireMode"):
-		if gun.has_method("toggle_fire_mode"):
-			var fire_mode = gun.toggle_fire_mode()
-			$Head/Camera3d/CanvasLayer/FireMode.text = fire_mode
-			current_fire_mode = fire_mode
+	if event.is_action_pressed("inventory"):
+		inv_ui.visible = !inv_ui.visible
+		if inv_ui.visible:
+			Input.mouse_mode = Input.MOUSE_MODE_CONFINED
+		else:
+			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	else:
+		if event is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
+			#legacyMouse(event)
+			transformMouse(event)
+		elif event.is_action_pressed("toggleFireMode"):
+			if equipped_gun.has_method("toggle_fire_mode"):
+				var fire_mode = equipped_gun.toggle_fire_mode()
+				$Head/Camera3d/CanvasLayer/FireMode.text = fire_mode
+				current_fire_mode = fire_mode
+		elif event.is_action_pressed("use"):
+			if use_ray.is_colliding():
+				var col = use_ray.get_collider()
+				if col is Gun:
+					print("you found a gun!")
+					pick_up_gun(col)
+		elif event.is_action_pressed("dropGun"):
+			drop_gun()
+		elif event.is_action_pressed("equipGunSlot1"):
+			if !gun_in_slot(equipped_gun, gun_slot_1):
+				var old_gun = equipped_gun
+				move_gun_to_hands(shoulder_gun)
+				move_gun_to_shoulder(old_gun)
+		elif event.is_action_pressed("equipGunSlot2"):
+			if !gun_in_slot(equipped_gun, gun_slot_2):
+				var old_gun = equipped_gun
+				move_gun_to_hands(shoulder_gun)
+				move_gun_to_shoulder(old_gun)
 
+func gun_in_slot(gun:Gun, gun_slot:InventorySpecialSlot) -> bool:
+		var idata = gun_slot.get_item_data(true)
+		var ret = (idata and gun and idata["node_id"] == gun.get_instance_id())
+		return ret
 
 func transformMouse(event: InputEventMouse):
 	rotate_y(-event.relative.x * mouse_sensitivity)
@@ -180,14 +299,14 @@ func legacyMouse(event: InputEventMouse):
 	mouse_relative_y = clamp(event.relative.y, -50, 10)
 
 func shoot():
-	gun.fireGun()
+	equipped_gun.fireGun()
 	
 func reload():
-	gun.reloadGun()
+	equipped_gun.reloadGun()
 
 
 func _on_gun_fired(recoil:Vector2):
-	$Head/Camera3d/CanvasLayer/AmmoCount.text = "%s" % gun.magazine
+	$Head/Camera3d/CanvasLayer/AmmoCount.text = "%s" % equipped_gun.magazine
 	var scaled_recoil = scale_recoil(recoil)
 #	#flip the mapping so that recoil.y moves the camera vertically	
 	rotate_y(scaled_recoil.x)
@@ -215,7 +334,7 @@ func scale_recoil(recoil:Vector2) -> Vector2:
 	return recoil * factor
 	
 func _on_gun_reloaded():
-	$Head/Camera3d/CanvasLayer/AmmoCount.text = "%s" % gun.magazine
+	$Head/Camera3d/CanvasLayer/AmmoCount.text = "%s" % equipped_gun.magazine
 	
 
 func _on_area_3d_took_damage(damage):

@@ -1,0 +1,11 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://33axyah37q7v"]
+
+[ext_resource type="Shader" path="res://themes/item_highlighter.gdshader" id="1_pg1ra"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_pg1ra")
+shader_parameter/shine_color = Color(1, 1, 1, 1)
+shader_parameter/cycle_interval = 1.0
+shader_parameter/shine_speed = 3.0
+shader_parameter/shine_width = 3.0

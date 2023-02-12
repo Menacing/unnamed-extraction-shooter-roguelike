@@ -1,11 +1,16 @@
-[gd_scene load_steps=11 format=3 uid="uid://dr48wela8mtxd"]
+[gd_scene load_steps=14 format=3 uid="uid://dr48wela8mtxd"]
 
 [ext_resource type="Script" path="res://Scenes/Guns/AK47-Projectile/AK47-Projectile.gd" id="1_10ipx"]
 [ext_resource type="PackedScene" uid="uid://du06cmxlbacls" path="res://Scenes/Bullet/Bullet-Proj.tscn" id="2_angkn"]
+[ext_resource type="Script" path="res://Scenes/item_component.gd" id="3_bdert"]
 [ext_resource type="Texture2D" uid="uid://yilgohsopxy5" path="res://Scenes/Guns/AK47/PixelMuzzelFlash.png" id="4_6e1bk"]
+[ext_resource type="Texture2D" uid="uid://ba6swy08v2qk5" path="res://Scenes/Guns/AK47-Projectile/ak48_img.png" id="4_cn0a3"]
 [ext_resource type="AudioStream" uid="uid://cm1nj06e6vvun" path="res://Scenes/Guns/AK47/ak47-2.wav" id="5_w1xps"]
 [ext_resource type="PackedScene" uid="uid://chmb3ke63gvpy" path="res://Scenes/Guns/AK47-Projectile/ak48.glb" id="9_fdr73"]
 [ext_resource type="PackedScene" uid="uid://2vxb0s7jixue" path="res://Scenes/Guns/AK47/7.62x39mm-case.glb" id="9_ro6c0"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_a6wgc"]
+size = Vector3(1.47844, 0.366199, 0.0925606)
 
 [sub_resource type="Animation" id="Animation_dc4hw"]
 length = 0.001
@@ -113,6 +118,7 @@ tracks/3/keys = {
 }],
 "times": PackedFloat32Array(0)
 }
+tracks/3/use_blend = true
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
@@ -137,9 +143,26 @@ _data = {
 "reload": SubResource("Animation_qt7gu")
 }
 
-[node name="AK47-Projectile" type="Node3D"]
+[node name="AK47-Projectile" type="RigidBody3D"]
+disable_mode = 1
+collision_layer = 5
+collision_mask = 5
 script = ExtResource("1_10ipx")
 _bullet_scene = ExtResource("2_angkn")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, -1, -0.0798684, 0.996805, 3.49116e-09, 0.996805, 0.0798684, -4.35718e-08, 0, -0.0521243, 0.115222)
+shape = SubResource("BoxShape3D_a6wgc")
+
+[node name="ItemComponent" type="Node" parent="."]
+script = ExtResource("3_bdert")
+id = "ak_48"
+type = 0
+icon = ExtResource("4_cn0a3")
+stack = 1
+max_stack = 1
+column_span = 5
+row_span = 2
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -199,16 +222,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.087, 0.430836)
 [node name="Grip" type="BoneAttachment3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.137171, 0.394002)
 override_pose = true
-override_pose = true
-override_mode = null
 use_external_skeleton = true
 external_skeleton = NodePath("")
 
 [node name="Handguard" type="BoneAttachment3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0350224, -0.14009)
 override_pose = true
-override_pose = true
-override_mode = null
 use_external_skeleton = true
 external_skeleton = NodePath("")
 

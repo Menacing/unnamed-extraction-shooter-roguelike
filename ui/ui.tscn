@@ -1,0 +1,70 @@
+[gd_scene load_steps=5 format=3 uid="uid://dwfth7gcdjbxa"]
+
+[ext_resource type="Script" path="res://addons/keh_ui/inventory/specialslot.gd" id="1_2ebtl"]
+[ext_resource type="Script" path="res://ui/inventory_canvas.gd" id="1_41dhk"]
+[ext_resource type="Theme" uid="uid://cekps8eebllyj" path="res://themes/MetalPixel.tres" id="3_k2dyc"]
+[ext_resource type="Script" path="res://addons/keh_ui/inventory/bag.gd" id="3_qoy6f"]
+
+[node name="ui" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 2
+
+[node name="inventory_canvas" type="Panel" parent="CanvasLayer"]
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -576.0
+grow_horizontal = 0
+grow_vertical = 2
+script = ExtResource("1_41dhk")
+
+[node name="gun_1" type="Control" parent="CanvasLayer/inventory_canvas"]
+custom_minimum_size = Vector2(256, 96)
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 8.0
+offset_top = -76.0
+offset_right = 264.0
+offset_bottom = 20.0
+grow_vertical = 2
+script = ExtResource("1_2ebtl")
+column_span = 8
+row_span = 3
+
+[node name="gun_2" type="Control" parent="CanvasLayer/inventory_canvas"]
+custom_minimum_size = Vector2(256, 96)
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 8.0
+offset_top = 28.0
+offset_right = 264.0
+offset_bottom = 124.0
+grow_vertical = 2
+script = ExtResource("1_2ebtl")
+column_span = 8
+row_span = 3
+
+[node name="pockets_bag" type="Control" parent="CanvasLayer/inventory_canvas"]
+custom_minimum_size = Vector2(160, 64)
+layout_mode = 1
+anchors_preset = 0
+offset_left = 344.0
+offset_top = 248.0
+offset_right = 504.0
+offset_bottom = 312.0
+theme = ExtResource("3_k2dyc")
+script = ExtResource("3_qoy6f")
+column_count = 5
+row_count = 2
