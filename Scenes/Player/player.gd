@@ -10,6 +10,8 @@ var gun: Gun
 @onready var pmsm = $PlayerMotionStateMachine
 @onready var use_ray = $Head/Camera3d/UsePointer
 @onready var inv_ui = $Head/Camera3d/ui/CanvasLayer
+@onready var use_helper = $Head/Camera3d/CanvasLayer/use_helper
+@onready var pickup_helper = $Head/Camera3d/CanvasLayer/pickup_helper
 @onready var gun_slot_1:InventorySpecialSlot = $Head/Camera3d/ui/CanvasLayer/inventory_canvas/gun_1
 var mouseSensibility = 1200
 var mouse_sensitivity = 0.005
@@ -56,7 +58,6 @@ var toggle_prone_f: bool = false
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 func _ready():
-
 	if gun_scene:
 		gun = gun_scene.instantiate()
 		#TODO: Pull these from the packed scene instead of being hardcoded
@@ -75,6 +76,7 @@ func _ready():
 	currentSpeed = NORMAL_SPEED
 	life_bar.value = health/max_health * health
 	$PlayerMotionStateMachine._active = true
+	inv_ui.visible = false
 	
 func pick_up_gun(world_gun:Gun):
 	
@@ -163,6 +165,20 @@ func _physics_process(delta):
 			head.basis = Quaternion(head.basis).slerp(Quaternion(left_lean_basis),0.5)
 		else:
 			head.basis = Quaternion(head.basis).slerp(Quaternion(home_basis),0.5)
+		
+		#handle use hint
+		if use_ray.is_colliding():
+				var col = use_ray.get_collider()
+				if col.has_method("picked_up"):
+					pickup_helper.visible = true
+				elif col.has_method("use"):
+					use_helper.visible = false
+				else:
+					use_helper.visible = false
+					pickup_helper.visible = false
+		else:
+			use_helper.visible = false
+			pickup_helper.visible = false
 
 var toggle_ads_f: bool = false
 func shouldAds() -> bool:

@@ -1,22 +1,38 @@
-[gd_resource type="Theme" load_steps=53 format=3 uid="uid://cekps8eebllyj"]
+[gd_resource type="Theme" load_steps=51 format=3 uid="uid://cekps8eebllyj"]
 
 [ext_resource type="Texture2D" uid="uid://dnbblws6863lw" path="res://themes/MetalPixel.png" id="1"]
 [ext_resource type="FontFile" uid="uid://dapqwpqvkv87q" path="res://themes/Pixeltype.ttf" id="3"]
 
 [sub_resource type="StyleBoxTexture" id="2"]
 texture = ExtResource("1")
+texture_margin_left = 5.0
+texture_margin_top = 5.0
+texture_margin_right = 5.0
+texture_margin_bottom = 5.0
 region_rect = Rect2(2, 2, 12, 12)
 
 [sub_resource type="StyleBoxTexture" id="3"]
 texture = ExtResource("1")
+texture_margin_left = 5.0
+texture_margin_top = 5.0
+texture_margin_right = 5.0
+texture_margin_bottom = 5.0
 region_rect = Rect2(66, 1, 12, 13)
 
 [sub_resource type="StyleBoxTexture" id="4"]
 texture = ExtResource("1")
+texture_margin_left = 5.0
+texture_margin_top = 5.0
+texture_margin_right = 5.0
+texture_margin_bottom = 5.0
 region_rect = Rect2(34, 2, 12, 12)
 
 [sub_resource type="StyleBoxTexture" id="5"]
 texture = ExtResource("1")
+texture_margin_left = 5.0
+texture_margin_top = 5.0
+texture_margin_right = 5.0
+texture_margin_bottom = 5.0
 region_rect = Rect2(18, 2, 12, 12)
 
 [sub_resource type="FontFile" id="47"]
@@ -33,6 +49,7 @@ cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
 cache/0/16/0/kerning_overrides/18/0 = Vector2(0, 0)
 cache/0/16/0/kerning_overrides/20/0 = Vector2(0, 0)
 cache/0/16/0/kerning_overrides/50/0 = Vector2(0, 0)
+cache/0/16/0/kerning_overrides/30/0 = Vector2(0, 0)
 cache/0/18/0/ascent = 0.0
 cache/0/18/0/descent = 0.0
 cache/0/18/0/underline_position = 0.0
@@ -42,6 +59,7 @@ cache/0/18/0/kerning_overrides/16/0 = Vector2(0, 0)
 cache/0/18/0/kerning_overrides/18/0 = Vector2(0, 0)
 cache/0/18/0/kerning_overrides/20/0 = Vector2(0, 0)
 cache/0/18/0/kerning_overrides/50/0 = Vector2(0, 0)
+cache/0/18/0/kerning_overrides/30/0 = Vector2(0, 0)
 cache/0/20/0/ascent = 0.0
 cache/0/20/0/descent = 0.0
 cache/0/20/0/underline_position = 0.0
@@ -51,6 +69,7 @@ cache/0/20/0/kerning_overrides/16/0 = Vector2(0, 0)
 cache/0/20/0/kerning_overrides/18/0 = Vector2(0, 0)
 cache/0/20/0/kerning_overrides/20/0 = Vector2(0, 0)
 cache/0/20/0/kerning_overrides/50/0 = Vector2(0, 0)
+cache/0/20/0/kerning_overrides/30/0 = Vector2(0, 0)
 cache/0/50/0/ascent = 0.0
 cache/0/50/0/descent = 0.0
 cache/0/50/0/underline_position = 0.0
@@ -60,6 +79,17 @@ cache/0/50/0/kerning_overrides/16/0 = Vector2(0, 0)
 cache/0/50/0/kerning_overrides/18/0 = Vector2(0, 0)
 cache/0/50/0/kerning_overrides/20/0 = Vector2(0, 0)
 cache/0/50/0/kerning_overrides/50/0 = Vector2(0, 0)
+cache/0/50/0/kerning_overrides/30/0 = Vector2(0, 0)
+cache/0/30/0/ascent = 0.0
+cache/0/30/0/descent = 0.0
+cache/0/30/0/underline_position = 0.0
+cache/0/30/0/underline_thickness = 0.0
+cache/0/30/0/scale = 1.0
+cache/0/30/0/kerning_overrides/16/0 = Vector2(0, 0)
+cache/0/30/0/kerning_overrides/18/0 = Vector2(0, 0)
+cache/0/30/0/kerning_overrides/20/0 = Vector2(0, 0)
+cache/0/30/0/kerning_overrides/50/0 = Vector2(0, 0)
+cache/0/30/0/kerning_overrides/30/0 = Vector2(0, 0)
 
 [sub_resource type="AtlasTexture" id="6"]
 atlas = ExtResource("1")
@@ -78,14 +108,6 @@ atlas = ExtResource("1")
 region = Rect2(35, 36, 11, 11)
 
 [sub_resource type="StyleBoxEmpty" id="48"]
-
-[sub_resource type="AtlasTexture" id="11"]
-atlas = ExtResource("1")
-region = Rect2(2, 17, 12, 14)
-
-[sub_resource type="AtlasTexture" id="12"]
-atlas = ExtResource("1")
-region = Rect2(18, 17, 12, 15)
 
 [sub_resource type="StyleBoxEmpty" id="18"]
 
@@ -135,6 +157,10 @@ atlas = ExtResource("1")
 
 [sub_resource type="StyleBoxTexture" id="24"]
 texture = SubResource("23")
+texture_margin_left = 5.0
+texture_margin_top = 2.0
+texture_margin_right = 5.0
+texture_margin_bottom = 2.0
 axis_stretch_horizontal = 1
 region_rect = Rect2(50, 23, 12, 3)
 
@@ -143,8 +169,10 @@ atlas = ExtResource("1")
 
 [sub_resource type="StyleBoxTexture" id="26"]
 texture = SubResource("25")
-axis_stretch_horizontal = 1
-axis_stretch_vertical = 1
+texture_margin_left = 5.0
+texture_margin_top = 5.0
+texture_margin_right = 5.0
+texture_margin_bottom = 5.0
 region_rect = Rect2(81, 48, 14, 16)
 
 [sub_resource type="AtlasTexture" id="27"]
@@ -153,12 +181,20 @@ region = Rect2(0, 0, 112, 96)
 
 [sub_resource type="StyleBoxTexture" id="28"]
 texture = SubResource("27")
+texture_margin_left = 5.0
+texture_margin_top = 5.0
+texture_margin_right = 5.0
+texture_margin_bottom = 5.0
 region_rect = Rect2(83, 19, 26, 10)
 
 [sub_resource type="StyleBoxTexture" id="29"]
 content_margin_left = 6.0
 content_margin_top = 5.0
 texture = SubResource("27")
+texture_margin_left = 5.0
+texture_margin_top = 5.0
+texture_margin_right = 5.0
+texture_margin_bottom = 5.0
 region_rect = Rect2(83, 3, 26, 10)
 
 [sub_resource type="StyleBoxTexture" id="30"]
@@ -167,8 +203,10 @@ content_margin_top = 5.0
 content_margin_right = 6.0
 content_margin_bottom = 5.0
 texture = ExtResource("1")
-axis_stretch_horizontal = 1
-axis_stretch_vertical = 1
+texture_margin_left = 5.0
+texture_margin_top = 5.0
+texture_margin_right = 5.0
+texture_margin_bottom = 5.0
 region_rect = Rect2(3, 35, 26, 26)
 
 [sub_resource type="AtlasTexture" id="49"]
@@ -182,12 +220,20 @@ atlas = ExtResource("1")
 
 [sub_resource type="StyleBoxTexture" id="32"]
 texture = SubResource("31")
+texture_margin_left = 5.0
+texture_margin_top = 3.0
+texture_margin_right = 5.0
+texture_margin_bottom = 3.0
 axis_stretch_horizontal = 1
 axis_stretch_vertical = 1
 region_rect = Rect2(32, 83, 16, 10)
 
 [sub_resource type="StyleBoxTexture" id="33"]
 texture = SubResource("31")
+texture_margin_left = 5.0
+texture_margin_top = 3.0
+texture_margin_right = 5.0
+texture_margin_bottom = 3.0
 axis_stretch_horizontal = 1
 axis_stretch_vertical = 1
 region_rect = Rect2(32, 67, 16, 10)
@@ -198,10 +244,18 @@ region = Rect2(81, 34, 13, 13)
 
 [sub_resource type="StyleBoxTexture" id="35"]
 texture = ExtResource("1")
+texture_margin_left = 5.0
+texture_margin_top = 5.0
+texture_margin_right = 5.0
+texture_margin_bottom = 5.0
 region_rect = Rect2(18, 67, 12, 9)
 
 [sub_resource type="StyleBoxTexture" id="36"]
 texture = ExtResource("1")
+texture_margin_left = 5.0
+texture_margin_top = 5.0
+texture_margin_right = 5.0
+texture_margin_bottom = 5.0
 expand_margin_top = 1.0
 expand_margin_bottom = 1.0
 region_rect = Rect2(2, 67, 12, 9)
@@ -256,6 +310,10 @@ region = Rect2(67, 50, 10, 12)
 
 [sub_resource type="StyleBoxTexture" id="46"]
 texture = ExtResource("1")
+texture_margin_left = 2.0
+texture_margin_top = 5.0
+texture_margin_right = 2.0
+texture_margin_bottom = 5.0
 axis_stretch_vertical = 1
 region_rect = Rect2(71, 33, 3, 14)
 
@@ -304,10 +362,8 @@ CheckButton/colors/font_color_pressed = Color(0.203922, 0.145098, 0.215686, 1)
 CheckButton/constants/check_vadjust = 0
 CheckButton/constants/hseparation = 4
 CheckButton/fonts/font = SubResource("47")
-CheckButton/icons/off = SubResource("11")
-CheckButton/icons/off_disabled = null
-CheckButton/icons/on = SubResource("12")
 CheckButton/icons/on_disabled = null
+CheckButton/icons/unchecked_disabled = null
 CheckButton/styles/disabled = SubResource("18")
 CheckButton/styles/focus = SubResource("18")
 CheckButton/styles/hover = SubResource("18")
@@ -356,15 +412,15 @@ PopupMenu/icons/unchecked = SubResource("9")
 PopupMenu/styles/hover = SubResource("53")
 PopupMenu/styles/panel = SubResource("30")
 PopupPanel/styles/panel = SubResource("30")
-ProgressBar/styles/bg = SubResource("32")
-ProgressBar/styles/fg = SubResource("33")
+ProgressBar/styles/background = SubResource("32")
+ProgressBar/styles/fill = SubResource("33")
 SpinBox/icons/updown = SubResource("34")
 TabContainer/colors/font_color_bg = Color(0.203922, 0.145098, 0.215686, 0.560784)
 TabContainer/colors/font_color_fg = Color(0.203922, 0.145098, 0.215686, 1)
 TabContainer/styles/panel = SubResource("30")
-TabContainer/styles/tab_bg = SubResource("35")
 TabContainer/styles/tab_disabled = SubResource("35")
-TabContainer/styles/tab_fg = SubResource("36")
+TabContainer/styles/tab_selected = SubResource("36")
+TabContainer/styles/tab_unselected = SubResource("35")
 Tabs/styles/tab_fg = SubResource("36")
 TextEdit/colors/caret_color = Color(0.603922, 0.819608, 0.686275, 1)
 TextEdit/colors/font_color = Color(0.603922, 0.819608, 0.686275, 1)
@@ -379,7 +435,7 @@ Tree/icons/checked = SubResource("6")
 Tree/icons/select_arrow = SubResource("19")
 Tree/icons/unchecked = SubResource("9")
 Tree/icons/updown = SubResource("34")
-Tree/styles/bg = SubResource("30")
+Tree/styles/panel = SubResource("30")
 Tree/styles/selected = SubResource("51")
 Tree/styles/selected_focus = SubResource("52")
 VScrollBar/styles/grabber = SubResource("38")
