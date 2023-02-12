@@ -1,7 +1,8 @@
-[gd_resource type="Theme" load_steps=51 format=3 uid="uid://cekps8eebllyj"]
+[gd_resource type="Theme" load_steps=60 format=3 uid="uid://cekps8eebllyj"]
 
 [ext_resource type="Texture2D" uid="uid://dnbblws6863lw" path="res://themes/MetalPixel.png" id="1"]
 [ext_resource type="FontFile" uid="uid://dapqwpqvkv87q" path="res://themes/Pixeltype.ttf" id="3"]
+[ext_resource type="Texture2D" uid="uid://div4fsxkk13mt" path="res://addons/keh_ui/inventory/ihighlight.png" id="3_tj82k"]
 
 [sub_resource type="StyleBoxTexture" id="2"]
 texture = ExtResource("1")
@@ -164,6 +165,82 @@ texture_margin_bottom = 2.0
 axis_stretch_horizontal = 1
 region_rect = Rect2(50, 23, 12, 3)
 
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_clko3"]
+texture = ExtResource("3_tj82k")
+texture_margin_left = 4.0
+texture_margin_top = 4.0
+texture_margin_right = 4.0
+texture_margin_bottom = 4.0
+region_rect = Rect2(0, 0, 16, 16)
+modulate_color = Color(0.2, 0.7, 0.2, 0.7)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1oyml"]
+texture = ExtResource("3_tj82k")
+texture_margin_left = 4.0
+texture_margin_top = 4.0
+texture_margin_right = 4.0
+texture_margin_bottom = 4.0
+region_rect = Rect2(0, 0, 16, 16)
+modulate_color = Color(0.7, 0.2, 0.2, 0.7)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ao8ch"]
+texture = ExtResource("3_tj82k")
+texture_margin_left = 4.0
+texture_margin_top = 4.0
+texture_margin_right = 4.0
+texture_margin_bottom = 4.0
+region_rect = Rect2(0, 0, 16, 16)
+modulate_color = Color(0.7, 0.7, 0.7, 0.7)
+
+[sub_resource type="AtlasTexture" id="27"]
+atlas = ExtResource("1")
+region = Rect2(0, 0, 112, 96)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wih7k"]
+content_margin_left = 6.0
+content_margin_top = 5.0
+texture = SubResource("27")
+texture_margin_left = 5.0
+texture_margin_top = 5.0
+texture_margin_right = 5.0
+texture_margin_bottom = 5.0
+region_rect = Rect2(83, 3, 26, 10)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_j7fim"]
+content_margin_left = 6.0
+content_margin_top = 5.0
+texture = SubResource("27")
+texture_margin_left = 5.0
+texture_margin_top = 5.0
+texture_margin_right = 5.0
+texture_margin_bottom = 5.0
+region_rect = Rect2(83, 3, 26, 10)
+modulate_color = Color(0.1, 0.95, 0.1, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_vo73i"]
+content_margin_left = 6.0
+content_margin_top = 5.0
+texture = SubResource("27")
+texture_margin_left = 5.0
+texture_margin_top = 5.0
+texture_margin_right = 5.0
+texture_margin_bottom = 5.0
+region_rect = Rect2(83, 3, 26, 10)
+modulate_color = Color(0.95, 0.1, 0.1, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nad57"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_tpd6s"]
+content_margin_left = 6.0
+content_margin_top = 5.0
+texture = SubResource("27")
+texture_margin_left = 5.0
+texture_margin_top = 5.0
+texture_margin_right = 5.0
+texture_margin_bottom = 5.0
+region_rect = Rect2(83, 3, 26, 10)
+modulate_color = Color(0.85, 0.85, 0.85, 1)
+
 [sub_resource type="AtlasTexture" id="25"]
 atlas = ExtResource("1")
 
@@ -174,10 +251,6 @@ texture_margin_top = 5.0
 texture_margin_right = 5.0
 texture_margin_bottom = 5.0
 region_rect = Rect2(81, 48, 14, 16)
-
-[sub_resource type="AtlasTexture" id="27"]
-atlas = ExtResource("1")
-region = Rect2(0, 0, 112, 96)
 
 [sub_resource type="StyleBoxTexture" id="28"]
 texture = SubResource("27")
@@ -383,6 +456,19 @@ HSlider/icons/tick = SubResource("22")
 HSlider/styles/grabber_area = SubResource("24")
 HSlider/styles/grabber_area_highlight = SubResource("24")
 HSlider/styles/slider = SubResource("24")
+Inventory/colors/item_disabled = Color(0.75, 0.75, 0.75, 0.35)
+Inventory/colors/item_ghost = Color(1, 1, 1, 0.35)
+Inventory/colors/item_hover = Color(0.75, 0.75, 0.75, 1)
+Inventory/colors/stack_size = Color(0.8, 0.8, 0.8, 1)
+Inventory/styles/item_allow_highlight = SubResource("StyleBoxTexture_clko3")
+Inventory/styles/item_deny_highlight = SubResource("StyleBoxTexture_1oyml")
+Inventory/styles/item_disabled_highlight = null
+Inventory/styles/item_normal_highlight = SubResource("StyleBoxTexture_ao8ch")
+Inventory/styles/slot = SubResource("StyleBoxTexture_wih7k")
+Inventory/styles/slot_allow_highlight = SubResource("StyleBoxTexture_j7fim")
+Inventory/styles/slot_deny_highlight = SubResource("StyleBoxTexture_vo73i")
+Inventory/styles/slot_disabled_highlight = SubResource("StyleBoxEmpty_nad57")
+Inventory/styles/slot_normal_highlight = SubResource("StyleBoxTexture_tpd6s")
 Label/colors/font_color = Color(0.129412, 0.156863, 0.431373, 1)
 Label/constants/line_spacing = 1
 Label/styles/normal = SubResource("26")
