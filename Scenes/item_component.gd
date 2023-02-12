@@ -15,6 +15,11 @@ enum ItemType {
 @export var column_span:int
 @export var row:int
 @export var row_span:int
+var node_id:int:
+	get:
+		return get_parent().get_instance_id()
+	set(value):
+		pass
 
 var idata_keys:Array = ["id",
 		"type",
@@ -24,7 +29,8 @@ var idata_keys:Array = ["id",
 		"column",
 		"column_span",
 		"row",
-		"row_span"]
+		"row_span",
+		"node_id"]
 
 var idata:Dictionary:
 	get:

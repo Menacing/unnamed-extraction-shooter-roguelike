@@ -258,6 +258,9 @@ bones/68/rotation = Quaternion(0.346124, 0.625549, -0.576406, -0.395783)
 bones/69/rotation = Quaternion(-0.71475, 0.0123598, -0.0126355, 0.699157)
 bones/70/rotation = Quaternion(-0.71475, -0.0123598, 0.0126355, 0.699157)
 
+[node name="shoulder_anchor" type="Node3D" parent="player_default_mesh"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -0.186752, 1.55108, 0.102714)
+
 [node name="HitBox" type="Node3D" parent="."]
 
 [node name="ChestBoneAttachment" type="BoneAttachment3D" parent="HitBox"]

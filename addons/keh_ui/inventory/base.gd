@@ -545,6 +545,8 @@ func _check_item_data(idata: Dictionary) -> Dictionary:
 	var highlight: int = idata.get("highlight", InventoryCore.HighlightType.None)
 	var hlman: bool = highlight != InventoryCore.HighlightType.None
 	
+	var node_id:int = idata.get("node_id", 0)
+	
 	return {
 		"id": iid,
 		"type": itype,
@@ -569,6 +571,7 @@ func _check_item_data(idata: Dictionary) -> Dictionary:
 		
 		"highlight_type": highlight,
 		"highlight_manual": hlman,
+		"node_id": node_id
 	}
 
 

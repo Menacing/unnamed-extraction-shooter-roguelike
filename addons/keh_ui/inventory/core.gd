@@ -165,6 +165,7 @@ static func item_to_dictionary(item: Control, res_as_path: bool) -> Dictionary:
 		
 		"highlight_type": item._highlight.get_type(),
 		"highlight_manual": item._highlight.is_manual(),
+		"node_id": item.get_node_id()
 	}
 	
 	var socket_t: Script = load("res://addons/keh_ui/inventory/socket.gd")
@@ -243,7 +244,7 @@ static func dictionary_to_item(idata: Dictionary, edata: Dictionary) -> Control:
 	assert(edata.has("item_size") && edata.item_size is Vector2)
 	assert(edata.has("item_index") && edata.item_index is int)
 	
-	var ret: Control = load("res://addons/keh_ui/inventory/item.gd").new(idata.id, idata.type, idata.icon, edata.get("shared", null))
+	var ret: Item = load("res://addons/keh_ui/inventory/item.gd").new(idata.id, idata.type, idata.icon, edata.get("shared", null), idata.node_id)
 	
 	ret.set_datacode(idata.datacode)
 	ret.init_rects(edata.box_position, edata.box_size, edata.item_position, edata.item_size)

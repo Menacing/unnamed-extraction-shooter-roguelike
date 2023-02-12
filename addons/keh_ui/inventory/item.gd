@@ -20,7 +20,7 @@
 
 @tool
 extends Control
-
+class_name Item
 
 #######################################################################################################################
 ### Signals and definitions
@@ -54,6 +54,9 @@ func get_id() -> String:
 
 func get_type() -> int:
 	return _type
+	
+func get_node_id() -> int:
+	return _node_id
 
 func set_datacode(dc: String) -> void:
 	_datacode = dc
@@ -427,6 +430,8 @@ var _shared: CanvasLayer = null
 # NOTE: Static typing this to Control (the base of ItemGhost) to avoid cyclic references
 var _ghost: Control = null
 
+var _node_id:int
+
 #######################################################################################################################
 ### "Private" functions
 func _set_mouse_over() -> void:
@@ -614,7 +619,7 @@ func _exit_tree() -> void:
 
 
 
-func _init(iid: String = "",itype: int = 0,icon: Texture2D = null,shared: CanvasLayer = null):
+func _init(iid: String = "",itype: int = 0,icon: Texture2D = null,shared: CanvasLayer = null, inodeid:int = 0):
 	_id = iid
 	_type = itype
 	_icon = icon
@@ -625,6 +630,7 @@ func _init(iid: String = "",itype: int = 0,icon: Texture2D = null,shared: Canvas
 	_enabled = true
 	
 	_shared = shared
+	_node_id = inodeid
 	
 	set_ignore_mouse(false)
 
