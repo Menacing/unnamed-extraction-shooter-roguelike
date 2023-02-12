@@ -2,9 +2,13 @@ extends Gun
 
 @export var magazineSize: int = 30
 @export var magazine: int = magazineSize
+@export var start_highlighted:bool = true
 @warning_ignore("unsafe_method_access")
 @onready var gun_mat: BaseMaterial3D = $gun/Node_15/gun/barrel/Cube.get_active_material(0)
 @onready var _world_collider:CollisionShape3D = $CollisionShape3D
+@onready var item_highlight_m:ShaderMaterial = load("res://themes/item_highlighter_m.tres")
+var meshes:Array
+
 var world_collider:CollisionShape3D:
 	get:
 		if _world_collider:
@@ -27,8 +31,8 @@ func _init():
 	ak_stats.base_recoil = Vector2(0,0.025)
 	ak_stats.fire_modes = ["semi","auto"]
 	ak_stats.recoil_variability = Vector2(0.025, 0.0125)
-	
 	gun_stats = ak_stats
+	
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -36,6 +40,30 @@ func _ready():
 	rng = RandomNumberGenerator.new()
 	fire_timer.wait_time = 60.0/gun_stats.rpm
 	current_fire_mode = gun_stats.fire_modes[current_fire_mode_i]
+	meshes = get_all_mesh_nodes(self)
+	if start_highlighted:
+		set_material_overlay(item_highlight_m)
+	else:
+		set_material_overlay(null)
+
+func get_all_mesh_nodes(node) -> Array:
+	var mesh_nodes =[]
+	for N in node.get_children():
+		if N is MeshInstance3D:
+			mesh_nodes.append(N)
+		if N.get_child_count() > 0:
+			print("["+N.get_name()+"]")
+			mesh_nodes.append_array(get_all_mesh_nodes(N))
+		else:
+			# Do something
+			print("- "+N.get_name())
+	return mesh_nodes
+
+func set_material_overlay(mat:Material):
+	for m in meshes:
+		if m != null:
+			var mesh:MeshInstance3D = m
+			mesh.material_overlay = mat
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 @warning_ignore("unused_parameter")
@@ -113,9 +141,11 @@ func make_opaque():
 func dropped():
 	world_collider.disabled = false
 	self.freeze = false
-	
+	set_material_overlay(item_highlight_m)
+
 func picked_up():
 	self.transform = Transform3D.IDENTITY
 #	self.gravity_scale = 0
 	world_collider.disabled = true
 	self.freeze = true
+	set_material_overlay(null)
