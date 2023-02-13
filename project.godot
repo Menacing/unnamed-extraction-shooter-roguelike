@@ -15,6 +15,10 @@ run/main_scene="res://main.tscn"
 config/features=PackedStringArray("4.0", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+Events="*res://Events.gd"
+
 [debug]
 
 settings/stdout/verbose_stdout=true

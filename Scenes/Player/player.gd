@@ -1,4 +1,5 @@
 extends CharacterBody3D
+class_name Player
 
 @export var gun_scene1: PackedScene
 @export var gun_scene2: PackedScene
@@ -12,11 +13,14 @@ var shoulder_gun:Gun
 @onready var pmsm = $PlayerMotionStateMachine
 @onready var use_ray = $Head/Camera3d/UsePointer
 @onready var inv_ui = $Head/Camera3d/ui/CanvasLayer
+@onready var inventory = $Head/Camera3d/ui/CanvasLayer/inventory_canvas
 @onready var use_helper = $Head/Camera3d/CanvasLayer/use_helper
 @onready var pickup_helper = $Head/Camera3d/CanvasLayer/pickup_helper
 @onready var gun_slot_1:InventorySpecialSlot = $Head/Camera3d/ui/CanvasLayer/inventory_canvas/gun_1
 @onready var gun_slot_2:InventorySpecialSlot = $Head/Camera3d/ui/CanvasLayer/inventory_canvas/gun_2
 @onready var shoulder_anchor:Node3D = $player_default_mesh/shoulder_anchor
+
+@onready var backpack_slot:InventorySpecialSlot = $Head/Camera3d/ui/CanvasLayer/inventory_canvas/backpack_slot
 var mouseSensibility = 1200
 var mouse_sensitivity = 0.005
 var mouse_relative_x = 0
@@ -57,7 +61,6 @@ var toggle_ads: bool
 var toggle_lean: bool
 var toggle_prone_f: bool = false
 
-
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
@@ -87,23 +90,34 @@ func _ready():
 	inv_ui.visible = false
 	
 func pick_up_gun(world_gun:Gun):
-	
 	var idata1 = gun_slot_1.get_item_data(true)
 	var idata2 = gun_slot_2.get_item_data(true)
 	if idata1.size() == 0 or idata2.size() == 0:
 		owner.remove_child(world_gun)
 		#self.add_child(world_gun)
 		world_gun.set_owner(self)
-		world_gun.picked_up()
 		if !equipped_gun:
 			move_gun_to_hands(world_gun)
 		elif !shoulder_gun:
 			move_gun_to_shoulder(world_gun)
-		var idata = world_gun.get_node("ItemComponent").idata
+		var ic:ItemComponent = world_gun.get_node("ItemComponent")
+		ic.picked_up()
+		var idata = ic.idata
 		if idata1.size() == 0:
 			gun_slot_1.add_item(idata)
 		elif idata2.size() == 0:
-			gun_slot_2.add_item(idata)			
+			gun_slot_2.add_item(idata)
+
+func pick_up_backpack(world_backpack:Backpack):
+	var idata = backpack_slot.get_item_data(true)
+	if idata.size() == 0:
+		owner.remove_child(world_backpack)
+		world_backpack.set_owner(self)
+		var ic:ItemComponent = world_backpack.get_node("ItemComponent")
+		ic.picked_up()
+		var wdata = ic.idata
+		backpack_slot.add_item(wdata)
+		inventory.set_backpack_size(world_backpack.backpack_size)
 	
 func move_gun_to_hands(gun:Gun):
 	equipped_gun = gun
@@ -148,7 +162,7 @@ func drop_gun():
 		get_parent().add_child(equipped_gun)
 		$Head/Camera3d/CanvasLayer/AmmoCount.text = ""
 		$Head/Camera3d/CanvasLayer/FireMode.text = ""
-		equipped_gun.dropped()
+		equipped_gun.get_node("ItemComponent").dropped()
 		if gun_in_slot(equipped_gun, gun_slot_1):
 			gun_slot_1.remove_item()
 		elif gun_in_slot(equipped_gun, gun_slot_2):
@@ -202,10 +216,11 @@ func _physics_process(delta):
 		#handle use hint
 		if use_ray.is_colliding():
 				var col = use_ray.get_collider()
-				if col.has_method("picked_up"):
+				var ic = col.get_node("ItemComponent")
+				if ic:
 					pickup_helper.visible = true
 				elif col.has_method("use"):
-					use_helper.visible = false
+					use_helper.visible = true
 				else:
 					use_helper.visible = false
 					pickup_helper.visible = false
@@ -248,11 +263,7 @@ func can_shoot() -> bool:
 
 func _input(event):
 	if event.is_action_pressed("inventory"):
-		inv_ui.visible = !inv_ui.visible
-		if inv_ui.visible:
-			Input.mouse_mode = Input.MOUSE_MODE_CONFINED
-		else:
-			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+		toggle_inventory()
 	else:
 		if event is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
 			#legacyMouse(event)
@@ -268,6 +279,11 @@ func _input(event):
 				if col is Gun:
 					print("you found a gun!")
 					pick_up_gun(col)
+				elif col is Backpack:
+					print("you found a backpack!")
+					pick_up_backpack(col)
+				elif col.has_method("use"):
+					col.use(self)
 		elif event.is_action_pressed("dropGun"):
 			drop_gun()
 		elif event.is_action_pressed("equipGunSlot1"):
@@ -285,11 +301,20 @@ func gun_in_slot(gun:Gun, gun_slot:InventorySpecialSlot) -> bool:
 		var idata = gun_slot.get_item_data(true)
 		var ret = (idata and gun and idata["node_id"] == gun.get_instance_id())
 		return ret
+		
+func toggle_inventory():
+	inv_ui.visible = !inv_ui.visible
+	if inv_ui.visible:
+		Input.mouse_mode = Input.MOUSE_MODE_CONFINED
+	else:
+		var cons = Events.inventory_closed.get_connections()
+		Events.inventory_closed.emit(self)
+		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 func transformMouse(event: InputEventMouse):
 	rotate_y(-event.relative.x * mouse_sensitivity)
 	$Head/Camera3d.rotate_x(-event.relative.y * mouse_sensitivity)
-	$Head/Camera3d.rotation.x = clampf($Head/Camera3d.rotation.x, -deg_to_rad(70), deg_to_rad(70))
+	$Head/Camera3d.rotation.x = clampf($Head/Camera3d.rotation.x, -deg_to_rad(85), deg_to_rad(85))
 
 func legacyMouse(event: InputEventMouse):
 	rotation.y -= event.relative.x / mouseSensibility

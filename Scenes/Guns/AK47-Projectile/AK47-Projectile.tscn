@@ -163,6 +163,7 @@ stack = 1
 max_stack = 1
 column_span = 5
 row_span = 2
+world_collider_path = NodePath("../CollisionShape3D")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
