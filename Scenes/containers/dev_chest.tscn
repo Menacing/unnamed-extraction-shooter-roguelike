@@ -41,3 +41,5 @@ offset_right = 447.0
 offset_bottom = 448.0
 script = ExtResource("2_28wor")
 row_count = 10
+
+[connection signal="item_dropped" from="CanvasLayer/Panel/InventoryBag" to="." method="_on_inventory_bag_item_dropped"]

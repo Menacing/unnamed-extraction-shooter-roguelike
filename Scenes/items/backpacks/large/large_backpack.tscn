@@ -29,8 +29,8 @@ id = "lg_backpack"
 type = 1
 icon = ExtResource("3_gi2qw")
 stack = 1
-column_span = 6
-row_span = 7
+column_span = 4
+row_span = 4
 world_collider_path = NodePath("../CollisionShape3D")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]

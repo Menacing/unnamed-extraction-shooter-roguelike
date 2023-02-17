@@ -58,6 +58,9 @@ func get_type() -> int:
 func get_node_id() -> int:
 	return _node_id
 
+func get_source_container_id() -> int:
+	return _source_container_id
+
 func set_datacode(dc: String) -> void:
 	_datacode = dc
 
@@ -167,7 +170,7 @@ func socket_item(idata: Dictionary, sindex: int) -> void:
 
 
 # NOTE: Returning a Control (ItemSocket's base) to avoid cyclic references
-func unsocket_item(sindex: int) -> Control:
+func unsocket_item(sindex: int) -> ItemSocket:
 	assert(sindex >= 0 && sindex < _socket.size())
 	
 	return _socket[sindex].unsocket_item()
@@ -190,7 +193,7 @@ func get_socket_columns() -> int:
 
 
 # NOTE: Static typing the return to Control (ItemSocket's base) to avoid cyclic references
-func get_socket(i: int) -> Control:
+func get_socket(i: int) -> ItemSocket:
 	assert(i < _socket.size())
 	
 	return _socket[i]
@@ -222,12 +225,12 @@ func set_socket_ignore_mouse(e: bool) -> void:
 # Make a copy of this item, allowing a custom stack size to be set. Current stack will be used if custom_stack is negative
 # NOTE: Static typing the return value to Control to avoid a problem that results in memory leak warnings when exiting the
 # game/project/app....
-func copy(custom_stack: int) -> Control:
+func copy(custom_stack: int) -> Item:
 	assert(custom_stack < InventoryCore.MAX16)
 	
 	var stack: int = get_current_stack() if custom_stack < 0 else custom_stack
 	
-	var ret: Control = get_script().new(_id, _type, _icon, _shared)
+	var ret: Item = Item.new(_id, _type, _icon, _shared, _node_id, 0)
 	
 	ret._datacode = _datacode
 	ret._background = _background
@@ -245,7 +248,7 @@ func copy(custom_stack: int) -> Control:
 	ret.set_sockets(get_socket_data(), _socket_cols, false)
 	
 	for si in _socket.size():
-		var socket: Control = _socket[si]
+		var socket: Item = _socket[si]
 		if (!socket.is_empty()):
 			ret.socket_item(socket.get_item_data(), si)
 	
@@ -330,7 +333,7 @@ func set_sockets(sdata: Array, cols: int, preserve_existing: bool) -> void:
 		var diff: int = dsize - cursize
 		for i in diff:
 			var index: int = cursize + i
-			var nsocket: Control = socket_t.new(_shared, _theme)
+			var nsocket: Item = socket_t.new(_shared, _theme)
 			
 			nsocket.set_socket_mask(sdata[index].get("mask", 0xFFFFFFFF))
 			nsocket.set_image(sdata[index].get("image", null))
@@ -431,6 +434,7 @@ var _shared: CanvasLayer = null
 var _ghost: Control = null
 
 var _node_id:int
+var _source_container_id:int
 
 #######################################################################################################################
 ### "Private" functions
@@ -510,7 +514,7 @@ func _calculate_socket_layout() -> void:
 	
 	var ccol: int = 0
 	for i in _socket.size():
-		var s: Control = _socket[i]
+		var s: Item = _socket[i]
 		if (!s):
 			return
 		
@@ -619,7 +623,7 @@ func _exit_tree() -> void:
 
 
 
-func _init(iid: String = "",itype: int = 0,icon: Texture2D = null,shared: CanvasLayer = null, inodeid:int = 0):
+func _init(iid: String,itype: int ,icon: Texture2D ,shared: CanvasLayer, inodeid:int, isourcecontainerid:int):
 	_id = iid
 	_type = itype
 	_icon = icon
@@ -631,6 +635,7 @@ func _init(iid: String = "",itype: int = 0,icon: Texture2D = null,shared: Canvas
 	
 	_shared = shared
 	_node_id = inodeid
+	_source_container_id = isourcecontainerid
 	
 	set_ignore_mouse(false)
 

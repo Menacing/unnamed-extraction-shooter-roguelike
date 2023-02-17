@@ -33,7 +33,8 @@ func _change_state(state_name):
 #	if state_name == "jump" and current_state == move:
 #		jump.initialize(move.speed, move.velocity)
 	if OS.is_debug_build():
-		print("Player State: %s" % state_name)
+		pass
+#		print("Player State: %s" % state_name)
 	super._change_state(state_name)
 
 

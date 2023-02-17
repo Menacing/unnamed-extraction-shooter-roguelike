@@ -10,6 +10,7 @@ enum ItemType {
 @export var id:String
 @export var type:ItemType
 @export var icon:Texture
+@export var icon_r:Texture
 @export var stack:int
 @export var max_stack:int
 @export var column:int

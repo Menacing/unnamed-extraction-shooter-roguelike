@@ -33,3 +33,11 @@ func set_backpack_size(size:Backpack.Size):
 		Backpack.Size.LARGE:
 			set_all_backpack_slots(InventoryCore.HighlightType.Normal)
 			
+
+
+func _on_gun_1_item_dropped(inv_container_event):
+	pass # Replace with function body.
+
+
+func _on_gun_1_item_added(inv_container_event):
+	pass # Replace with function body.

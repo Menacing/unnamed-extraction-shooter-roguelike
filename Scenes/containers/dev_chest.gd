@@ -21,3 +21,11 @@ func use(player:Player):
 func on_inv_closed(player:Player):
 	inv_menu.visible = false
 	Events.inventory_closed.disconnect(on_inv_closed)
+
+
+func _on_inventory_bag_item_dropped(inv_container_event):
+	if inv_container_event.container != container_bag:
+		print("Different Bag")
+	elif inv_container_event.container == container_bag:
+		print("Same Bag")
+	pass # Replace with function body.

@@ -165,7 +165,8 @@ static func item_to_dictionary(item: Control, res_as_path: bool) -> Dictionary:
 		
 		"highlight_type": item._highlight.get_type(),
 		"highlight_manual": item._highlight.is_manual(),
-		"node_id": item.get_node_id()
+		"node_id": item.get_node_id(),
+		"current_container_id": item.get_current_container_id()
 	}
 	
 	var socket_t: Script = load("res://addons/keh_ui/inventory/socket.gd")

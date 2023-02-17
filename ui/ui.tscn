@@ -91,3 +91,6 @@ offset_bottom = 192.0
 script = ExtResource("1_2ebtl")
 column_span = 4
 row_span = 4
+
+[connection signal="item_added" from="CanvasLayer/inventory_canvas/gun_1" to="CanvasLayer/inventory_canvas" method="_on_gun_1_item_added"]
+[connection signal="item_dropped" from="CanvasLayer/inventory_canvas/gun_1" to="CanvasLayer/inventory_canvas" method="_on_gun_1_item_dropped"]
