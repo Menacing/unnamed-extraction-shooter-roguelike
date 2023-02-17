@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://dj47rxqdqfdwk"]
+[gd_scene load_steps=6 format=3 uid="uid://dj47rxqdqfdwk"]
 
 [ext_resource type="Script" path="res://ui/ReworkedInventory.gd" id="1_okv8v"]
 [ext_resource type="Script" path="res://ui/equipment_slots.gd" id="2_cfk5r"]
 [ext_resource type="Script" path="res://ui/GridBackPack.gd" id="2_mirhk"]
 [ext_resource type="Script" path="res://ui/slot.gd" id="3_17277"]
+[ext_resource type="PackedScene" uid="uid://bshm12rhfjlbc" path="res://ui/backpack_cell.tscn" id="5_r4ne2"]
 
 [node name="ReworkedInventory" type="Control"]
 layout_mode = 3
@@ -26,16 +27,16 @@ offset_left = -576.0
 grow_horizontal = 0
 grow_vertical = 2
 
-[node name="EquipmentSlots" type="Panel" parent="."]
+[node name="EquipmentSlots" type="Panel" parent="InventoryBase"]
 modulate = Color(0.686275, 0.686275, 0.686275, 1)
 layout_mode = 0
-offset_left = 592.0
+offset_left = 16.0
 offset_top = 16.0
-offset_right = 904.0
+offset_right = 328.0
 offset_bottom = 624.0
 script = ExtResource("2_cfk5r")
 
-[node name="GunSlot1" type="Panel" parent="EquipmentSlots"]
+[node name="GunSlot1" type="Panel" parent="InventoryBase/EquipmentSlots"]
 modulate = Color(0.686275, 0.686275, 0.686275, 1)
 layout_mode = 0
 offset_left = 40.0
@@ -45,7 +46,7 @@ offset_bottom = 400.0
 script = ExtResource("3_17277")
 types = [0]
 
-[node name="GunSlot2" type="Panel" parent="EquipmentSlots"]
+[node name="GunSlot2" type="Panel" parent="InventoryBase/EquipmentSlots"]
 modulate = Color(0.686275, 0.686275, 0.686275, 1)
 layout_mode = 0
 offset_left = 40.0
@@ -55,7 +56,7 @@ offset_bottom = 528.0
 script = ExtResource("3_17277")
 types = [0]
 
-[node name="BackpackSlot" type="Panel" parent="EquipmentSlots"]
+[node name="BackpackSlot" type="Panel" parent="InventoryBase/EquipmentSlots"]
 modulate = Color(0.686275, 0.686275, 0.686275, 1)
 layout_mode = 0
 offset_left = 168.0
@@ -65,206 +66,69 @@ offset_bottom = 144.0
 script = ExtResource("3_17277")
 types = [1]
 
-[node name="GridBackPack" type="GridContainer" parent="."]
+[node name="GridBackPack" type="GridContainer" parent="InventoryBase"]
 modulate = Color(0.686275, 0.686275, 0.686275, 1)
 layout_mode = 0
-offset_left = 912.0
+offset_left = 336.0
 offset_top = 16.0
-offset_right = 1136.0
+offset_right = 560.0
 offset_bottom = 272.0
 theme_override_constants/h_separation = 0
 theme_override_constants/v_separation = 0
 columns = 7
 script = ExtResource("2_mirhk")
 
-[node name="Panel" type="Panel" parent="GridBackPack"]
+[node name="Panel" parent="InventoryBase/GridBackPack" instance=ExtResource("5_r4ne2")]
+layout_mode = 2
+
+[node name="Panel2" type="Panel" parent="InventoryBase/GridBackPack"]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 
-[node name="Panel2" type="Panel" parent="GridBackPack"]
+[node name="Panel3" type="Panel" parent="InventoryBase/GridBackPack"]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 
-[node name="Panel3" type="Panel" parent="GridBackPack"]
+[node name="Panel4" type="Panel" parent="InventoryBase/GridBackPack"]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 
-[node name="Panel4" type="Panel" parent="GridBackPack"]
+[node name="Panel5" type="Panel" parent="InventoryBase/GridBackPack"]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 
-[node name="Panel5" type="Panel" parent="GridBackPack"]
+[node name="Panel6" type="Panel" parent="InventoryBase/GridBackPack"]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 
-[node name="Panel6" type="Panel" parent="GridBackPack"]
+[node name="Panel43" type="Panel" parent="InventoryBase/GridBackPack"]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 
-[node name="Panel43" type="Panel" parent="GridBackPack"]
+[node name="Panel44" type="Panel" parent="InventoryBase/GridBackPack"]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 
-[node name="Panel44" type="Panel" parent="GridBackPack"]
+[node name="Panel45" type="Panel" parent="InventoryBase/GridBackPack"]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 
-[node name="Panel45" type="Panel" parent="GridBackPack"]
+[node name="Panel46" type="Panel" parent="InventoryBase/GridBackPack"]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 
-[node name="Panel46" type="Panel" parent="GridBackPack"]
+[node name="Panel47" type="Panel" parent="InventoryBase/GridBackPack"]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 
-[node name="Panel47" type="Panel" parent="GridBackPack"]
+[node name="Panel48" type="Panel" parent="InventoryBase/GridBackPack"]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 
-[node name="Panel48" type="Panel" parent="GridBackPack"]
+[node name="Panel7" type="Panel" parent="InventoryBase/GridBackPack"]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 
-[node name="Panel7" type="Panel" parent="GridBackPack"]
-custom_minimum_size = Vector2(32, 32)
-layout_mode = 2
-
-[node name="Panel8" type="Panel" parent="GridBackPack"]
-custom_minimum_size = Vector2(32, 32)
-layout_mode = 2
-
-[node name="Panel9" type="Panel" parent="GridBackPack"]
-custom_minimum_size = Vector2(32, 32)
-layout_mode = 2
-
-[node name="Panel10" type="Panel" parent="GridBackPack"]
-custom_minimum_size = Vector2(32, 32)
-layout_mode = 2
-
-[node name="Panel11" type="Panel" parent="GridBackPack"]
-custom_minimum_size = Vector2(32, 32)
-layout_mode = 2
-
-[node name="Panel12" type="Panel" parent="GridBackPack"]
-custom_minimum_size = Vector2(32, 32)
-layout_mode = 2
-
-[node name="Panel13" type="Panel" parent="GridBackPack"]
-custom_minimum_size = Vector2(32, 32)
-layout_mode = 2
-
-[node name="Panel14" type="Panel" parent="GridBackPack"]
-custom_minimum_size = Vector2(32, 32)
-layout_mode = 2
-
-[node name="Panel15" type="Panel" parent="GridBackPack"]
-custom_minimum_size = Vector2(32, 32)
-layout_mode = 2
-
-[node name="Panel16" type="Panel" parent="GridBackPack"]
-custom_minimum_size = Vector2(32, 32)
-layout_mode = 2
-
-[node name="Panel17" type="Panel" parent="GridBackPack"]
-custom_minimum_size = Vector2(32, 32)
-layout_mode = 2
-
-[node name="Panel18" type="Panel" parent="GridBackPack"]
-custom_minimum_size = Vector2(32, 32)
-layout_mode = 2
-
-[node name="Panel19" type="Panel" parent="GridBackPack"]
-custom_minimum_size = Vector2(32, 32)
-layout_mode = 2
-
-[node name="Panel20" type="Panel" parent="GridBackPack"]
-custom_minimum_size = Vector2(32, 32)
-layout_mode = 2
-
-[node name="Panel21" type="Panel" parent="GridBackPack"]
-custom_minimum_size = Vector2(32, 32)
-layout_mode = 2
-
-[node name="Panel22" type="Panel" parent="GridBackPack"]
-custom_minimum_size = Vector2(32, 32)
-layout_mode = 2
-
-[node name="Panel23" type="Panel" parent="GridBackPack"]
-custom_minimum_size = Vector2(32, 32)
-layout_mode = 2
-
-[node name="Panel24" type="Panel" parent="GridBackPack"]
-custom_minimum_size = Vector2(32, 32)
-layout_mode = 2
-
-[node name="Panel25" type="Panel" parent="GridBackPack"]
-custom_minimum_size = Vector2(32, 32)
-layout_mode = 2
-
-[node name="Panel26" type="Panel" parent="GridBackPack"]
-custom_minimum_size = Vector2(32, 32)
-layout_mode = 2
-
-[node name="Panel27" type="Panel" parent="GridBackPack"]
-custom_minimum_size = Vector2(32, 32)
-layout_mode = 2
-
-[node name="Panel28" type="Panel" parent="GridBackPack"]
-custom_minimum_size = Vector2(32, 32)
-layout_mode = 2
-
-[node name="Panel29" type="Panel" parent="GridBackPack"]
-custom_minimum_size = Vector2(32, 32)
-layout_mode = 2
-
-[node name="Panel30" type="Panel" parent="GridBackPack"]
-custom_minimum_size = Vector2(32, 32)
-layout_mode = 2
-
-[node name="Panel31" type="Panel" parent="GridBackPack"]
-custom_minimum_size = Vector2(32, 32)
-layout_mode = 2
-
-[node name="Panel32" type="Panel" parent="GridBackPack"]
-custom_minimum_size = Vector2(32, 32)
-layout_mode = 2
-
-[node name="Panel33" type="Panel" parent="GridBackPack"]
-custom_minimum_size = Vector2(32, 32)
-layout_mode = 2
-
-[node name="Panel34" type="Panel" parent="GridBackPack"]
-custom_minimum_size = Vector2(32, 32)
-layout_mode = 2
-
-[node name="Panel35" type="Panel" parent="GridBackPack"]
-custom_minimum_size = Vector2(32, 32)
-layout_mode = 2
-
-[node name="Panel36" type="Panel" parent="GridBackPack"]
-custom_minimum_size = Vector2(32, 32)
-layout_mode = 2
-
-[node name="Panel37" type="Panel" parent="GridBackPack"]
-custom_minimum_size = Vector2(32, 32)
-layout_mode = 2
-
-[node name="Panel38" type="Panel" parent="GridBackPack"]
-custom_minimum_size = Vector2(32, 32)
-layout_mode = 2
-
-[node name="Panel39" type="Panel" parent="GridBackPack"]
-custom_minimum_size = Vector2(32, 32)
-layout_mode = 2
-
-[node name="Panel40" type="Panel" parent="GridBackPack"]
-custom_minimum_size = Vector2(32, 32)
-layout_mode = 2
-
-[node name="Panel41" type="Panel" parent="GridBackPack"]
-custom_minimum_size = Vector2(32, 32)
-layout_mode = 2
-
-[node name="Panel42" type="Panel" parent="GridBackPack"]
+[node name="Panel8" type="Panel" parent="InventoryBase/GridBackPack"]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2

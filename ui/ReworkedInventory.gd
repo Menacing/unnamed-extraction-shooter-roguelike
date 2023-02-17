@@ -3,8 +3,8 @@ extends Control
 const item_base = preload("res://ui/inv_item_base.tscn")
 
 @onready var inv_base:Panel = $InventoryBase
-@onready var grid_bkpk:GridBackPack = $GridBackPack
-@onready var eq_slots = $EquipmentSlots
+@onready var grid_bkpk:GridBackPack = $InventoryBase/GridBackPack
+@onready var eq_slots = $InventoryBase/EquipmentSlots
 @onready var cell_size:int = grid_bkpk.cell_size
 
 var item_held:InventoryTransferObject = null
@@ -16,9 +16,11 @@ var last_rotated: bool = false
 func _ready():
 	var gun:Gun = load("res://Scenes/Guns/AK47-Projectile/AK47-Projectile.tscn").instantiate()
 	pickup_item(gun.get_node("ItemComponent"))
+	grid_bkpk.backpack_size = Backpack.Size.LARGE
 
 	var bp = load("res://Scenes/items/backpacks/large/large_backpack.tscn").instantiate()
 	pickup_item(bp.get_node("ItemComponent"))
+#	grid_bkpk.backpack_size = Backpack.Size.NONE
 	
 	pass
 	

@@ -34,6 +34,7 @@ func grab_item(pos):
 		return null
 	
 	items[slot.name] = null
+	Events.item_removed.emit(slot.name, item.item_component)
 	return item
 
 func get_slot_under_pos(pos):
