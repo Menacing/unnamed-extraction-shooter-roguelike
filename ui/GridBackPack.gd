@@ -101,6 +101,7 @@ func insert_item_at_first_available_spot(ito:InventoryTransferObject) -> bool:
 			if !grid[x][y]:
 				ito.inv_item.global_position = global_position + Vector2(x, y) * cell_size
 				if insert_item(ito):
+					Events.item_picked_up.emit(ito.item_component)
 					return true
 	return false
 
@@ -152,7 +153,7 @@ func set_backpack_container_size(number_cells:int) -> void:
 	
 func drop_item(ito:InventoryTransferObject) -> void:
 	ito.inv_item.queue_free()
-	ito.item_component.dropped()
+	Events.item_dropped.emit(ito.item_component)
 	pass
 	#TODO Signal to world to drop item into scene
 	

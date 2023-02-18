@@ -1,6 +1,6 @@
 extends StaticBody3D
 
-@onready var container_bag:InventoryBag = $CanvasLayer/Panel/InventoryBag
+#@onready var container_bag:InventoryBag = $CanvasLayer/Panel/InventoryBag
 @onready var inv_menu:CanvasLayer = $CanvasLayer
 
 # Called when the node enters the scene tree for the first time.
@@ -24,8 +24,8 @@ func on_inv_closed(player:Player):
 
 
 func _on_inventory_bag_item_dropped(inv_container_event):
-	if inv_container_event.container != container_bag:
-		print("Different Bag")
-	elif inv_container_event.container == container_bag:
-		print("Same Bag")
+#	if inv_container_event.container != container_bag:
+#		print("Different Bag")
+#	elif inv_container_event.container == container_bag:
+#		print("Same Bag")
 	pass # Replace with function body.

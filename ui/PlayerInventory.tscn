@@ -1,12 +1,12 @@
-[gd_scene load_steps=6 format=3 uid="uid://dj47rxqdqfdwk"]
+[gd_scene load_steps=6 format=3 uid="uid://b5ddm044nfneb"]
 
-[ext_resource type="Script" path="res://ui/ReworkedInventory.gd" id="1_okv8v"]
+[ext_resource type="Script" path="res://ui/PlayerInventory.gd" id="1_qv7ne"]
 [ext_resource type="Script" path="res://ui/equipment_slots.gd" id="2_cfk5r"]
 [ext_resource type="Script" path="res://ui/GridBackPack.gd" id="2_mirhk"]
 [ext_resource type="Script" path="res://ui/slot.gd" id="3_17277"]
 [ext_resource type="PackedScene" uid="uid://bshm12rhfjlbc" path="res://ui/backpack_cell.tscn" id="5_r4ne2"]
 
-[node name="ReworkedInventory" type="Control"]
+[node name="PlayerInventory" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -15,7 +15,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-script = ExtResource("1_okv8v")
+script = ExtResource("1_qv7ne")
 
 [node name="InventoryBase" type="Panel" parent="."]
 layout_mode = 1

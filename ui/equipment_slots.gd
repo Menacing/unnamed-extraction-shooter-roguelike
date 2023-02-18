@@ -1,4 +1,5 @@
 extends Panel
+class_name EquipmentSlots
 
 @onready var slots = get_children()
 @export var cell_size = 32

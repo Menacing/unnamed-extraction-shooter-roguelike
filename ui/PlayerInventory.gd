@@ -14,14 +14,6 @@ var last_pos = Vector2()
 var last_rotated: bool = false
 
 func _ready():
-	var gun:Gun = load("res://Scenes/Guns/AK47-Projectile/AK47-Projectile.tscn").instantiate()
-	pickup_item(gun.get_node("ItemComponent"))
-	grid_bkpk.backpack_size = Backpack.Size.LARGE
-
-	var bp = load("res://Scenes/items/backpacks/large/large_backpack.tscn").instantiate()
-	pickup_item(bp.get_node("ItemComponent"))
-#	grid_bkpk.backpack_size = Backpack.Size.NONE
-	
 	pass
 	
 
@@ -72,6 +64,7 @@ func get_container_under_cursor(cursor_pos):
 
 func drop_item():
 	item_held.inv_item.queue_free()
+	Events.item_dropped.emit(item_held.item_component)
 	item_held = null
 
 func return_item():
@@ -91,6 +84,13 @@ func pickup_item(item_comp:ItemComponent):
 	var ito = InventoryTransferObject.new()
 	ito.inv_item = item
 	ito.item_component = item_comp
+	
+	#TODO First check item slots
+	var item_slot = item_comp.type
+	for slot in eq_slots.slots:
+		if item_slot in slot.types and eq_slots.items[slot.name] == null:
+			ito.inv_item.global_position = slot.global_position + slot.size / 2 - ito.inv_item.size / 2
+			return eq_slots.insert_item(ito)
 	if !grid_bkpk.insert_item_at_first_available_spot(ito):
 		item.queue_free()
 		return false

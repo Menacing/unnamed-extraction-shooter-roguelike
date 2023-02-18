@@ -1,8 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://dbtbpwqmn424f"]
+[gd_scene load_steps=5 format=3 uid="uid://dbtbpwqmn424f"]
 
 [ext_resource type="Script" path="res://Scenes/containers/dev_chest.gd" id="1_34h7k"]
 [ext_resource type="Material" uid="uid://d2jc0ho6nwe5g" path="res://levels/wood.tres" id="1_iumt4"]
-[ext_resource type="Script" path="res://addons/keh_ui/inventory/bag.gd" id="2_28wor"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_bl1fh"]
 material = ExtResource("1_iumt4")
@@ -30,16 +29,3 @@ anchor_bottom = 1.0
 offset_right = 576.0
 grow_vertical = 2
 size_flags_horizontal = 4
-
-[node name="InventoryBag" type="Control" parent="CanvasLayer/Panel"]
-custom_minimum_size = Vector2(320, 320)
-layout_mode = 3
-anchors_preset = 0
-offset_left = 127.0
-offset_top = 128.0
-offset_right = 447.0
-offset_bottom = 448.0
-script = ExtResource("2_28wor")
-row_count = 10
-
-[connection signal="item_dropped" from="CanvasLayer/Panel/InventoryBag" to="." method="_on_inventory_bag_item_dropped"]
