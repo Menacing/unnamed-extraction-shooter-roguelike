@@ -75,6 +75,7 @@ transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 
 collision_mask = 4
 
 [node name="CanvasLayer" type="CanvasLayer" parent="Head/Camera3d"]
+layer = 5
 
 [node name="AmmoCount" type="Label" parent="Head/Camera3d/CanvasLayer"]
 offset_left = 1029.0

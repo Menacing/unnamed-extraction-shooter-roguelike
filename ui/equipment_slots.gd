@@ -1,4 +1,4 @@
-extends Panel
+extends Control
 class_name EquipmentSlots
 
 @onready var slots = get_children()

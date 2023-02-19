@@ -315,7 +315,7 @@ func toggle_inventory():
 	if inventory.visible:
 		Input.mouse_mode = Input.MOUSE_MODE_CONFINED
 	else:
-#		Events.inventory_closed.emit(self)
+		Events.player_inventory_closed.emit(self)
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 func transformMouse(event: InputEventMouse):

@@ -1,11 +1,23 @@
 extends Control
-
+class_name WorldInventory
 const item_base = preload("res://ui/inv_item_base.tscn")
 
-@onready var inv_base:Control = %InventoryBase
-@onready var grid_bkpk:GridBackPack = %GridBackPack
-@onready var eq_slots = %EquipmentSlots
-@onready var cell_size:int = grid_bkpk.cell_size
+@onready var inv_base:Panel = $InventoryBase
+var _wig:WorldInventoryGrid
+@onready var wig:WorldInventoryGrid:
+	get:
+		if _wig:
+			return _wig
+		else:
+			_wig = $InventoryBase/WorldInventoryGrid
+			return _wig
+var container_size:int:
+	get:
+		return wig.container_size
+	set(value):
+		wig.container_size = value
+		wig.set_container_size(value)
+@onready var cell_size:int = wig.cell_size
 
 var item_held:InventoryTransferObject = null
 var item_offset = Vector2()
@@ -85,13 +97,7 @@ func pickup_item(item_comp:ItemComponent):
 	ito.inv_item = item
 	ito.item_component = item_comp
 	
-	#TODO First check item slots
-	var item_slot = item_comp.type
-	for slot in eq_slots.slots:
-		if item_slot in slot.types and eq_slots.items[slot.name] == null:
-			ito.inv_item.global_position = slot.global_position + slot.size / 2 - ito.inv_item.size / 2
-			return eq_slots.insert_item(ito)
-	if !grid_bkpk.insert_item_at_first_available_spot(ito):
+	if !wig.insert_item_at_first_available_spot(ito):
 		item.queue_free()
 		return false
 	return true
