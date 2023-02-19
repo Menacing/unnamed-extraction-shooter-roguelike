@@ -29,9 +29,4 @@ func make_transparent():
 func make_opaque():
 	pass
 
-func dropped():
-	pass
-	
-func picked_up():
-	pass
 

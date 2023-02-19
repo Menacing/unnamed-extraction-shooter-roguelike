@@ -1,8 +1,8 @@
-[gd_resource type="Theme" load_steps=60 format=3 uid="uid://cekps8eebllyj"]
+[gd_resource type="Theme" load_steps=64 format=3 uid="uid://cekps8eebllyj"]
 
 [ext_resource type="Texture2D" uid="uid://dnbblws6863lw" path="res://themes/MetalPixel.png" id="1"]
 [ext_resource type="FontFile" uid="uid://dapqwpqvkv87q" path="res://themes/Pixeltype.ttf" id="3"]
-[ext_resource type="Texture2D" uid="uid://div4fsxkk13mt" path="res://addons/keh_ui/inventory/ihighlight.png" id="3_tj82k"]
+[ext_resource type="Texture2D" uid="uid://dlgp5s7lc7ldb" path="res://themes/ihighlight.png" id="3_tj82k"]
 
 [sub_resource type="StyleBoxTexture" id="2"]
 texture = ExtResource("1")
@@ -111,6 +111,17 @@ region = Rect2(35, 36, 11, 11)
 [sub_resource type="StyleBoxEmpty" id="48"]
 
 [sub_resource type="StyleBoxEmpty" id="18"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sbuvr"]
+atlas = ExtResource("1")
+region = Rect2(3, 35, 26, 26)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_0c7hb"]
+texture = SubResource("AtlasTexture_sbuvr")
+texture_margin_left = 5.0
+texture_margin_top = 5.0
+texture_margin_right = 5.0
+texture_margin_bottom = 5.0
 
 [sub_resource type="AtlasTexture" id="37"]
 atlas = ExtResource("1")
@@ -343,6 +354,17 @@ region = Rect2(19, 89, 14, 7)
 
 [sub_resource type="StyleBoxEmpty" id="52"]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_p0ibl"]
+atlas = ExtResource("1")
+region = Rect2(3, 35, 26, 26)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_kawef"]
+texture = SubResource("AtlasTexture_p0ibl")
+texture_margin_left = 5.0
+texture_margin_top = 5.0
+texture_margin_right = 5.0
+texture_margin_bottom = 5.0
+
 [sub_resource type="StyleBoxTexture" id="38"]
 texture = SubResource("37")
 axis_stretch_horizontal = 1
@@ -443,6 +465,7 @@ CheckButton/styles/hover = SubResource("18")
 CheckButton/styles/hover_pressed = SubResource("18")
 CheckButton/styles/normal = SubResource("18")
 CheckButton/styles/pressed = SubResource("18")
+HBoxContainer/styles/hbox = SubResource("StyleBoxTexture_0c7hb")
 HScrollBar/styles/grabber = SubResource("54")
 HScrollBar/styles/grabber_highlight = SubResource("55")
 HScrollBar/styles/grabber_pressed = SubResource("55")
@@ -524,6 +547,7 @@ Tree/icons/updown = SubResource("34")
 Tree/styles/panel = SubResource("30")
 Tree/styles/selected = SubResource("51")
 Tree/styles/selected_focus = SubResource("52")
+VBoxContainer/styles/vbox_stylebox = SubResource("StyleBoxTexture_kawef")
 VScrollBar/styles/grabber = SubResource("38")
 VScrollBar/styles/grabber_highlight = SubResource("39")
 VScrollBar/styles/grabber_pressed = SubResource("39")

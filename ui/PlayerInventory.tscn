@@ -1,0 +1,120 @@
+[gd_scene load_steps=6 format=3 uid="uid://b5ddm044nfneb"]
+
+[ext_resource type="Script" path="res://ui/PlayerInventory.gd" id="1_qv7ne"]
+[ext_resource type="Script" path="res://ui/equipment_slots.gd" id="2_cfk5r"]
+[ext_resource type="Script" path="res://ui/GridBackPack.gd" id="2_mirhk"]
+[ext_resource type="Script" path="res://ui/slot.gd" id="3_17277"]
+[ext_resource type="PackedScene" uid="uid://bshm12rhfjlbc" path="res://ui/backpack_cell.tscn" id="5_r4ne2"]
+
+[node name="PlayerInventory" type="HSplitContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+dragger_visibility = 1
+script = ExtResource("1_qv7ne")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="InventoryBase" type="HBoxContainer" parent="." groups=["inventory_controls"]]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="EquipmentSlots" type="VBoxContainer" parent="InventoryBase" groups=["inventory_controls"]]
+unique_name_in_owner = true
+modulate = Color(0.686275, 0.686275, 0.686275, 1)
+layout_mode = 2
+size_flags_horizontal = 3
+script = ExtResource("2_cfk5r")
+
+[node name="BackpackSlot" type="Panel" parent="InventoryBase/EquipmentSlots"]
+modulate = Color(0.686275, 0.686275, 0.686275, 1)
+custom_minimum_size = Vector2(160, 160)
+layout_mode = 2
+size_flags_horizontal = 8
+script = ExtResource("3_17277")
+types = [1]
+
+[node name="GunSlot1" type="Panel" parent="InventoryBase/EquipmentSlots"]
+modulate = Color(0.686275, 0.686275, 0.686275, 1)
+custom_minimum_size = Vector2(256, 128)
+layout_mode = 2
+script = ExtResource("3_17277")
+types = [0]
+
+[node name="GunSlot2" type="Panel" parent="InventoryBase/EquipmentSlots"]
+modulate = Color(0.686275, 0.686275, 0.686275, 1)
+custom_minimum_size = Vector2(256, 128)
+layout_mode = 2
+script = ExtResource("3_17277")
+types = [0]
+
+[node name="GridBackPack" type="GridContainer" parent="InventoryBase" groups=["inventory_controls"]]
+unique_name_in_owner = true
+modulate = Color(0.686275, 0.686275, 0.686275, 1)
+layout_mode = 2
+theme_override_constants/h_separation = 0
+theme_override_constants/v_separation = 0
+columns = 7
+script = ExtResource("2_mirhk")
+
+[node name="Panel" parent="InventoryBase/GridBackPack" instance=ExtResource("5_r4ne2")]
+layout_mode = 2
+
+[node name="Panel2" type="Panel" parent="InventoryBase/GridBackPack"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+
+[node name="Panel3" type="Panel" parent="InventoryBase/GridBackPack"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+
+[node name="Panel4" type="Panel" parent="InventoryBase/GridBackPack"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+
+[node name="Panel5" type="Panel" parent="InventoryBase/GridBackPack"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+
+[node name="Panel6" type="Panel" parent="InventoryBase/GridBackPack"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+
+[node name="Panel43" type="Panel" parent="InventoryBase/GridBackPack"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+
+[node name="Panel44" type="Panel" parent="InventoryBase/GridBackPack"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+
+[node name="Panel45" type="Panel" parent="InventoryBase/GridBackPack"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+
+[node name="Panel46" type="Panel" parent="InventoryBase/GridBackPack"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+
+[node name="Panel47" type="Panel" parent="InventoryBase/GridBackPack"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+
+[node name="Panel48" type="Panel" parent="InventoryBase/GridBackPack"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+
+[node name="Panel7" type="Panel" parent="InventoryBase/GridBackPack"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+
+[node name="Panel8" type="Panel" parent="InventoryBase/GridBackPack"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2

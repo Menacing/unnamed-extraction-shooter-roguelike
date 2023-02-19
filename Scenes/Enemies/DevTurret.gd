@@ -9,8 +9,9 @@ var hf_pos: Vector3
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	gun = gun_scene.instantiate()
-	gun.start_highlighted = false
-	gun.picked_up()
+	var gun_item_comp:ItemComponent = gun.get_node("ItemComponent")
+	gun_item_comp.start_highlighted = false
+	gun_item_comp.picked_up()
 	#TODO: Pull these from the packed scene instead of being hardcoded
 	gun.magazineSize = 30000
 	gun.magazine= 30000
