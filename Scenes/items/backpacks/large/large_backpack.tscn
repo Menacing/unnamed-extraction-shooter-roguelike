@@ -2,19 +2,12 @@
 
 [ext_resource type="Script" path="res://Scenes/items/backpacks/backpack.gd" id="1_1vwom"]
 [ext_resource type="Script" path="res://Scenes/item_component.gd" id="2_s3i7s"]
-[ext_resource type="Texture2D" uid="uid://yeyco700sari" path="res://icon.svg" id="3_gi2qw"]
+[ext_resource type="Texture2D" uid="uid://cx56hl85mqcn" path="res://Scenes/items/backpacks/large/large_backpack_icon.png" id="3_cxn11"]
+[ext_resource type="PackedScene" uid="uid://db3osqjst8fyy" path="res://Scenes/items/backpacks/large/large_backpack_1.glb" id="4_a60g8"]
+[ext_resource type="Texture2D" uid="uid://cempvc5mi4hka" path="res://Scenes/items/backpacks/large/large_backpack_icon_r.png" id="4_n8aal"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ukrlw"]
-albedo_color = Color(0.27451, 0.258824, 0.0235294, 1)
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_hydmv"]
-material = SubResource("StandardMaterial3D_ukrlw")
-radius = 0.25
-height = 1.0
-
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_1j4mi"]
-radius = 0.25
-height = 1.0
+[sub_resource type="BoxShape3D" id="BoxShape3D_lntsr"]
+size = Vector3(0.509955, 1.08099, 0.353562)
 
 [node name="large_backpack" type="RigidBody3D"]
 collision_layer = 5
@@ -27,14 +20,15 @@ backpack_size = 3
 script = ExtResource("2_s3i7s")
 id = "lg_backpack"
 type = 1
-icon = ExtResource("3_gi2qw")
+icon = ExtResource("3_cxn11")
+icon_r = ExtResource("4_n8aal")
 stack = 1
-column_span = 4
-row_span = 4
+column_span = 3
+row_span = 5
 world_collider_path = NodePath("../CollisionShape3D")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-mesh = SubResource("CapsuleMesh_hydmv")
-
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-shape = SubResource("CapsuleShape3D_1j4mi")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.541518, 0.175003)
+shape = SubResource("BoxShape3D_lntsr")
+
+[node name="large_backpack_1" parent="." instance=ExtResource("4_a60g8")]
