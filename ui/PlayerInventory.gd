@@ -63,6 +63,8 @@ func get_container_with_method_under_cursor(cursor_pos:Vector2, method_name:Stri
 	return null
 
 func drop_item():
+	if item_held.is_rotated():
+		item_held.toggle_rotation(cell_size)
 	item_held.inv_item.queue_free()
 	Events.item_dropped.emit(item_held.item_component)
 	item_held = null
@@ -80,6 +82,7 @@ func pickup_item(item_comp:ItemComponent):
 	item.texture = item_comp.icon
 	item.size.x = item_comp.column_span * cell_size
 	item.size.y = item_comp.row_span * cell_size
+	item.z_index = 50
 	add_child(item)
 	var ito = InventoryTransferObject.new()
 	ito.inv_item = item

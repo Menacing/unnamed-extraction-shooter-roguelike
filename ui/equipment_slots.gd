@@ -25,6 +25,7 @@ func insert_item(item:InventoryTransferObject) -> bool:
 	items[slot.name] = item
 
 	item.inv_item.global_position = slot.global_position + slot.size / 2 - item.inv_item.size / 2
+	item.inv_item.reparent(slot)
 	Events.item_equipped.emit(slot.name, item.item_component)
 	return true
 
