@@ -32,6 +32,8 @@ func insert_item(ito:InventoryTransferObject) -> bool:
 			
 		var norm_pos = get_relative_position(g_pos,ito)
 		ito.inv_item.global_position = norm_pos
+		var cell = get_grid_cell_control(g_pos)
+		ito.inv_item.reparent(cell)
 		ito_items.append(ito)
 		return true
 	else:
@@ -164,4 +166,6 @@ func _on_backpack_removed(slot_name, item_comp:ItemComponent):
 	if slot_name == "BackpackSlot":
 		backpack_size = Backpack.Size.NONE
 		
-
+func get_grid_cell_control(g_pos:Dictionary) -> Control:
+	var index = (g_pos.y)*columns + g_pos.x
+	return self.get_child(index)
