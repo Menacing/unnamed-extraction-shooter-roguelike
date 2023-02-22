@@ -5,6 +5,9 @@ signal item_equipped(slot_name:String, item_equipped:ItemComponent)
 signal item_removed(slot_name:String, item_removed:ItemComponent)
 signal item_dropped(item_dropped:ItemComponent)
 signal item_picked_up(item_picked_up:ItemComponent)
+signal context_menu_dropped(iib:InvItemBase, pos:Vector2)
+signal context_menu_opened()
+signal context_menu_closed()
 
 
 signal close_inventory(inventory_name:String)

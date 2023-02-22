@@ -12,22 +12,28 @@ var item_offset = Vector2()
 var last_container = null
 var last_pos = Vector2()
 var last_rotated: bool = false
+var listening_to_mouse:bool = true
+
 
 func _ready():
+	Events.context_menu_dropped.connect(_on_context_menu_dropped)
+	Events.context_menu_closed.connect(_on_context_menu_closed)
+	Events.context_menu_opened.connect(_on_context_menu_opened)
 	pass
 	
 
 func _process(delta):
-	var cursor_pos = get_global_mouse_position()
-	if Input.is_action_just_pressed("inv_grab"):
-		grab(cursor_pos)
-	if Input.is_action_just_released("inv_grab"):
-		release(cursor_pos)
-	if item_held != null:
-		item_held.inv_item.global_position = cursor_pos + item_offset
-		if Input.is_action_just_pressed("rotate_held_item"):
-			item_held.toggle_rotation(cell_size)
-			item_offset = item_held.get_item_offset()
+	if listening_to_mouse:
+		var cursor_pos = get_global_mouse_position()
+		if Input.is_action_just_pressed("inv_grab"):
+			grab(cursor_pos)
+		if Input.is_action_just_released("inv_grab"):
+			release(cursor_pos)
+		if item_held != null:
+			item_held.inv_item.global_position = cursor_pos + item_offset
+			if Input.is_action_just_pressed("rotate_held_item"):
+				item_held.toggle_rotation(cell_size)
+				item_offset = item_held.get_item_offset()
 
 func grab(cursor_pos):
 	var c = get_container_with_method_under_cursor(cursor_pos,"grab_item")
@@ -106,3 +112,13 @@ func pickup_item(item_comp:ItemComponent):
 		item.queue_free()
 		return false
 	return true
+	
+func _on_context_menu_dropped(iib:InvItemBase, pos:Vector2):
+	grab(pos)
+	drop_item()
+	
+func _on_context_menu_opened():
+	listening_to_mouse = false
+
+func _on_context_menu_closed():
+	listening_to_mouse = true
