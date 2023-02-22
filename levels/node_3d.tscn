@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://ctahsvj88g1om"]
+[gd_scene load_steps=24 format=3 uid="uid://ctahsvj88g1om"]
 
 [ext_resource type="PackedScene" uid="uid://du386p0tq7gs0" path="res://Scenes/Player/player.tscn" id="1_eisjc"]
 [ext_resource type="Script" path="res://levels/node_3d.gd" id="1_lmeut"]
@@ -44,6 +44,9 @@ uv1_triplanar = true
 [sub_resource type="BoxMesh" id="BoxMesh_g4ghf"]
 material = SubResource("StandardMaterial3D_ckhie")
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_j36b3"]
+albedo_color = Color(0.443137, 0.431373, 0.431373, 1)
+
 [node name="Node3d" type="Node3D"]
 script = ExtResource("1_lmeut")
 
@@ -56,7 +59,7 @@ block_color_group = 1
 block_style = 2
 
 [node name="Player" parent="." instance=ExtResource("1_eisjc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.9981, 1.22982, -15.9458)
 
 [node name="DirectionalLight3d" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.966349, 0.250904, -0.0567091, 0.182362, -0.512743, 0.838951, 0.181419, -0.821061, -0.541244, -0.00693703, 59.5145, -109.348)
@@ -64,9 +67,6 @@ light_energy = 1.232
 light_indirect_energy = 0.884
 light_volumetric_fog_energy = 0.768
 shadow_enabled = true
-
-[node name="BasicBlock" parent="." instance=ExtResource("1_ujgwk")]
-transform = Transform3D(100, 0, 0, 0, 1, 0, 0, 0, 100, 0.329582, -0.405293, 0.416982)
 
 [node name="BasicBlock2" parent="." instance=ExtResource("1_ujgwk")]
 transform = Transform3D(6.981, 0, 0, 0, 1, 0, 0, 0, 4.093, 5.58332, 0.908197, -22.4728)
@@ -130,7 +130,7 @@ transform = Transform3D(0.160946, 0, 0, 0, 5.38101, 0, 0, 0, 23.2277, 0.00776482
 mesh = SubResource("BoxMesh_g4ghf")
 
 [node name="DevTurret" parent="." instance=ExtResource("9_lyixs")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 40.6216, 1.57036, -9.81038)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40.6216, 1.57036, -9.81038)
 
 [node name="AK47-Projectile" parent="." instance=ExtResource("10_b8533")]
 transform = Transform3D(0.00366516, 0.999993, 0, -0.999993, 0.00366516, 0, 0, 0, 1, 4.22279, 5.2201, 2.12443)
@@ -176,6 +176,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.262049, 0.0292153, 9.26671
 
 [node name="ItemComponent" parent="polymer_pile6" index="2"]
 stack = 5
+
+[node name="Floor" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.42017, 0)
+material_override = SubResource("StandardMaterial3D_j36b3")
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(176.204, 0.998, 185.17)
 
 [editable path="AK47-Projectile"]
 [editable path="AK47-Projectile/gun"]

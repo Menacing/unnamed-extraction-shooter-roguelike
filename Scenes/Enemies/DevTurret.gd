@@ -1,10 +1,15 @@
 extends CharacterBody3D
 
+# Get the gravity from the project settings to be synced with RigidBody nodes.
+var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 @onready var head = $Head as Node3D
 @export var gun_scene: PackedScene
 var gun: Gun
 var hf_pos: Vector3
 @export var health:float = 100.0
+var run_speed = 3
+var accel = 3
+var player = null
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -25,6 +30,23 @@ func _ready():
 func _process(delta):
 	pass
 
+func _physics_process(delta):
+	print(str(velocity) + " Start Velocity")
+	
+	velocity.y -= gravity * delta
+	if player:
+		look_at(player.global_transform.origin, Vector3.UP)		
+		var direction = (player.global_transform.origin - global_transform.origin).normalized()
+		velocity.x = direction.x * run_speed
+		velocity.z = direction.z * run_speed
+	else:
+		velocity.x = move_toward(velocity.x, 0, accel)
+		velocity.z = move_toward(velocity.z, 0, accel)
+	print(str(velocity) + " End Velocity")
+	print(str(self.get_global_position()) + " Position")
+	print(str(is_on_floor()) + "Is on Floor")
+	move_and_slide()
+
 
 func _on_fire_timer_timeout():
 	gun.fireGun()
@@ -43,3 +65,13 @@ func _on_hit(damage = 0.0, pen_rating = 0, col:KinematicCollision3D = null) -> f
 	print("Took %s damage, pen rating %s at %s" % [damage, pen_rating, col.get_position()])
 	_on_took_damage(damage)
 	return pen_ratio
+
+
+func _on_detect_radius_body_entered(body):
+	if body is Player:
+		player = body
+
+
+func _on_detect_radius_body_exited(body):
+	if body is Player:
+		player = null
