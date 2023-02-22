@@ -13,7 +13,7 @@ signal stack_changed(newStack:int)
 @export var type:ItemType
 @export var icon:Texture
 @export var icon_r:Texture
-var _stack:int
+var _stack:int = 1
 @export var stack:int = 1:
 	get:
 		return _stack
