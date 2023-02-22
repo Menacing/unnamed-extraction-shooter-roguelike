@@ -96,6 +96,7 @@ func try_insert_at_grid(x, y, ito:InventoryTransferObject) -> bool:
 #	ito.inv_item.global_position = norm_pos
 	var cell = get_grid_cell_control(g_pos)
 	ito.inv_item.reparent(cell)
+	ito.inv_item.position = Vector2(0,0)
 	ito_items.append(ito)
 	return true
 	
@@ -112,18 +113,16 @@ func try_insert_stack(existing_ic:ItemComponent, inserting_ic:ItemComponent) -> 
 	else:
 		return false
 	
-#func insert_item(ito:InventoryTransferObject) -> bool:
-#	var item_pos = get_item_pos(ito)
-#	var g_pos = pos_to_grid_coord(item_pos)
-##	var item_size = get_grid_size(item)
-#	var item_size = get_item_comp_size(ito.item_component)
-#
-#	if try_insert_at_grid(g_pos.x, g_pos.y, item_size.x, item_size.y,ito.item_component):
-#
-#
-#		return true
-#	else:
-#		return false
+func insert_item(ito:InventoryTransferObject) -> bool:
+	var item_pos = get_item_pos(ito)
+	var g_pos = pos_to_grid_coord(item_pos)
+#	var item_size = get_grid_size(item)
+	var item_size = get_item_comp_size(ito.item_component)
+	if try_insert_at_grid(g_pos.x, g_pos.y, ito):
+		ito
+		return true
+	else:
+		return false
 
 func set_grid_space(x, y, w, h, state:ItemComponent) -> void:
 	for i in range(x, x + w):

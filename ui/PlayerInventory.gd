@@ -58,8 +58,9 @@ func release(cursor_pos):
 func get_container_with_method_under_cursor(cursor_pos:Vector2, method_name:String):
 	var containers = get_tree().get_nodes_in_group("inventory_controls")
 	for c in containers:
-		if c.get_global_rect().has_point(cursor_pos) and c.has_method(method_name):
-			return c
+		if c.get_global_rect().has_point(cursor_pos):
+			if c.has_method(method_name):
+				return c
 	return null
 
 func drop_item():
@@ -93,7 +94,7 @@ func pickup_item(item_comp:ItemComponent):
 	for slot in eq_slots.slots:
 		if item_slot in slot.types and eq_slots.items[slot.name] == null:
 #			ito.inv_item.global_position = slot.global_position + slot.size / 2 - ito.inv_item.size / 2
-			return eq_slots.insert_item(ito)
+			return eq_slots.insert_item_in_slot(ito, slot)
 	if !grid_bkpk.insert_item_at_first_available_spot(ito):
 		item.queue_free()
 		return false

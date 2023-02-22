@@ -10,12 +10,15 @@ func _ready() -> void:
 		items[slot.name] = null
 
 func insert_item(item:InventoryTransferObject) -> bool:
-	if item.is_rotated():
-		item.toggle_rotation(cell_size)
 	var item_pos = item.inv_item.global_position + item.inv_item.size / 2
 	var slot = get_slot_under_pos(item_pos)
+	return insert_item_in_slot(item, slot)
+
+func insert_item_in_slot(item:InventoryTransferObject, slot) -> bool:
 	if slot == null:
 		return false
+	if item.is_rotated():
+		item.toggle_rotation(cell_size)
 	
 	var item_slot = item.item_component.type
 	if item_slot not in slot.types:
