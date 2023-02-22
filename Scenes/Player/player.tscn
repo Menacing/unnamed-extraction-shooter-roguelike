@@ -435,4 +435,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.329041, -1.47753)
 [connection signal="took_damage" from="HitBox/RightFootBoneAttachment/Area3D" to="." method="_on_area_3d_took_damage"]
 [connection signal="took_damage" from="HitBox/LeftFootBoneAttachment/Area3D" to="." method="_on_area_3d_took_damage"]
 
+[editable path="Head/Camera3d/CanvasLayer/PlayerInventory"]
 [editable path="player_default_mesh"]

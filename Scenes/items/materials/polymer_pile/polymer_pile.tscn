@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://dsu2lajkgpbva"]
+
+[ext_resource type="Texture2D" uid="uid://dl5n7p7mtkja2" path="res://Scenes/items/materials/polymer_pile/polymer_pile_icon.png" id="2_amgqe"]
+[ext_resource type="Script" path="res://Scenes/item_component.gd" id="2_lfewf"]
+[ext_resource type="PackedScene" uid="uid://dehe0isaojet1" path="res://Scenes/items/materials/polymer_pile/polymer_pile.glb" id="3_brcr6"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_42oyq"]
+size = Vector3(0.333549, 0.236155, 0.299673)
+
+[node name="polymer_pile" type="RigidBody3D"]
+collision_layer = 5
+collision_mask = 5
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.117739, 0)
+shape = SubResource("BoxShape3D_42oyq")
+
+[node name="polymer_pile" parent="." instance=ExtResource("3_brcr6")]
+
+[node name="ItemComponent" type="Node" parent="."]
+script = ExtResource("2_lfewf")
+id = "polymer_pile"
+type = 2
+icon = ExtResource("2_amgqe")
+icon_r = ExtResource("2_amgqe")
+max_stack = 10
+column_span = 1
+row_span = 1
+world_collider_path = NodePath("../CollisionShape3D")

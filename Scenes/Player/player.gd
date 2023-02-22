@@ -17,7 +17,7 @@ var gun_slot_2:Gun
 @onready var inventory = $Head/Camera3d/CanvasLayer/PlayerInventory
 @onready var use_helper = $Head/Camera3d/CanvasLayer/use_helper
 @onready var pickup_helper = $Head/Camera3d/CanvasLayer/pickup_helper
-@onready var equipment_slots:EquipmentSlots = $Head/Camera3d/CanvasLayer/PlayerInventory/InventoryBase/EquipmentSlots
+@onready var equipment_slots:EquipmentSlots = $Head/Camera3d/CanvasLayer/PlayerInventory/PanelContainer/InventoryBase/EquipmentSlots
 
 @onready var shoulder_anchor:Node3D = $player_default_mesh/shoulder_anchor
 @onready var drop_location:Node3D = $drop_location

@@ -58,8 +58,9 @@ func release(cursor_pos):
 func get_container_with_method_under_cursor(cursor_pos:Vector2, method_name:String):
 	var containers = get_tree().get_nodes_in_group("inventory_controls")
 	for c in containers:
-		if c.get_global_rect().has_point(cursor_pos) and c.has_method(method_name):
-			return c
+		if c.get_global_rect().has_point(cursor_pos):
+			if c.has_method(method_name):
+				return c
 	return null
 
 func drop_item():
@@ -79,21 +80,27 @@ func return_item():
 func pickup_item(item_comp:ItemComponent):
 	var item = item_base.instantiate()
 	item.set_meta("id", item_comp.node_id)
-	item.texture = item_comp.icon
+	item.item_texture_rect.texture = item_comp.icon
 	item.size.x = item_comp.column_span * cell_size
 	item.size.y = item_comp.row_span * cell_size
 	item.z_index = 50
+	
+	if item_comp.max_stack > 1:
+		item.show_count = true
+		item.stacks = item_comp.stack
+	else: item.show_count = false
+	
 	add_child(item)
 	var ito = InventoryTransferObject.new()
 	ito.inv_item = item
 	ito.item_component = item_comp
-	
+	item_comp.stack_changed.connect(ito.inv_item._on_count_changed)
 	#TODO First check item slots
 	var item_slot = item_comp.type
 	for slot in eq_slots.slots:
 		if item_slot in slot.types and eq_slots.items[slot.name] == null:
-			ito.inv_item.global_position = slot.global_position + slot.size / 2 - ito.inv_item.size / 2
-			return eq_slots.insert_item(ito)
+#			ito.inv_item.global_position = slot.global_position + slot.size / 2 - ito.inv_item.size / 2
+			return eq_slots.insert_item_in_slot(ito, slot)
 	if !grid_bkpk.insert_item_at_first_available_spot(ito):
 		item.queue_free()
 		return false
