@@ -31,5 +31,47 @@ var show_count:bool = false:
 		_show_count = value
 		count.visible = _show_count
 
+var contextItems:Array[Dictionary] = [
+	{
+		"label":"Drop Item",
+		"signal": Events.context_menu_dropped
+	}
+]
+
+func _input(event):
+	var cursor_pos = get_global_mouse_position()
+	if event.is_action_pressed("openContextMenu"):
+		openContextMenu(cursor_pos)
+		
+func openContextMenu(pos:Vector2):
+	var menu = PopupMenu.new()
+	for item in contextItems:
+		menu.add_item(item.label)
+	pass
+	self.add_child(menu)
+	var popup_rect = Rect2i()
+	popup_rect.position = Vector2i(pos)
+	menu.id_pressed.connect(_on_context_menu_pressed)
+	menu.close_requested.connect(_on_menu_close_requested)
+	menu.popup_hide.connect(_on_menu_close_requested)
+	menu.popup(popup_rect)
+	Events.context_menu_opened.emit()
+	
+func _on_context_menu_pressed(id:int):
+	var item = contextItems[id]
+	var item_signal:Signal = item["signal"]
+	item_signal.emit(self, self.get_global_position())
+
 func _on_count_changed(new_count:int):
 	count.text = str(new_count)
+
+func _make_custom_tooltip(for_text):
+	var label = RichTextLabel.new()
+	label.bbcode_enabled = true
+	label.custom_minimum_size = Vector2(400,400)
+	label.text = for_text
+	return label
+	
+func _on_menu_close_requested():
+	Events.context_menu_closed.emit()
+
