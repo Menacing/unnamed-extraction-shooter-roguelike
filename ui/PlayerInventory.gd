@@ -80,15 +80,21 @@ func return_item():
 func pickup_item(item_comp:ItemComponent):
 	var item = item_base.instantiate()
 	item.set_meta("id", item_comp.node_id)
-	item.texture = item_comp.icon
+	item.item_texture_rect.texture = item_comp.icon
 	item.size.x = item_comp.column_span * cell_size
 	item.size.y = item_comp.row_span * cell_size
 	item.z_index = 50
+	
+	if item_comp.max_stack > 1:
+		item.show_count = true
+		item.stacks = item_comp.stack
+	else: item.show_count = false
+	
 	add_child(item)
 	var ito = InventoryTransferObject.new()
 	ito.inv_item = item
 	ito.item_component = item_comp
-	
+	item_comp.stack_changed.connect(ito.inv_item._on_count_changed)
 	#TODO First check item slots
 	var item_slot = item_comp.type
 	for slot in eq_slots.slots:

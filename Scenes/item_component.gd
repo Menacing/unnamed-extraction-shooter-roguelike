@@ -7,12 +7,19 @@ enum ItemType {
 	BACKPACK,
 	MATERIAL
 }
+signal stack_changed(newStack:int)
 
 @export var id:String
 @export var type:ItemType
 @export var icon:Texture
 @export var icon_r:Texture
-@export var stack:int = 1
+var _stack:int
+@export var stack:int = 1:
+	get:
+		return _stack
+	set(value):
+		_stack = value
+		stack_changed.emit(_stack)
 @export var max_stack:int = 1
 @export var column:int
 @export var column_span:int

@@ -1,18 +1,18 @@
 extends RefCounted
 class_name InventoryTransferObject
 
-var inv_item:TextureRect
+var inv_item:InvItemBase
 var item_component:ItemComponent
 var _rotated:bool = false
 
 func toggle_rotation(cell_size:int):
 	if _rotated:
-		inv_item.texture = item_component.icon
+		inv_item.item_texture_rect.texture = item_component.icon
 		var orig_col = item_component.column_span
 		item_component.column_span = item_component.row_span
 		item_component.row_span = orig_col
 	else:
-		inv_item.texture = item_component.icon_r
+		inv_item.item_texture_rect.texture = item_component.icon_r
 		var orig_col = item_component.column_span
 		item_component.column_span = item_component.row_span
 		item_component.row_span = orig_col
