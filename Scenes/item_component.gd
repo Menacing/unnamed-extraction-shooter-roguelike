@@ -42,6 +42,7 @@ var world_collider:CollisionShape3D:
 			return _world_collider
 @onready var item_highlight_m:ShaderMaterial = load("res://themes/item_highlighter_m.tres")
 @export var start_highlighted:bool = true
+@export_multiline var tooltip_text:String = "This is a placeholder"
 var _meshes:Array[MeshInstance3D]
 var meshes:Array[MeshInstance3D]:
 	get:

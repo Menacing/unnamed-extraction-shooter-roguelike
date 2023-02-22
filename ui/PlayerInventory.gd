@@ -83,6 +83,7 @@ func pickup_item(item_comp:ItemComponent):
 	item.item_texture_rect.texture = item_comp.icon
 	item.size.x = item_comp.column_span * cell_size
 	item.size.y = item_comp.row_span * cell_size
+	item.tooltip_text = item_comp.tooltip_text
 	item.z_index = 50
 	
 	if item_comp.max_stack > 1:

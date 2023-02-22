@@ -33,3 +33,10 @@ var show_count:bool = false:
 
 func _on_count_changed(new_count:int):
 	count.text = str(new_count)
+
+func _make_custom_tooltip(for_text):
+	var label = RichTextLabel.new()
+	label.bbcode_enabled = true
+	label.custom_minimum_size = Vector2(400,400)
+	label.text = for_text
+	return label
