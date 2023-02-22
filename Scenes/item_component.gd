@@ -4,15 +4,16 @@ class_name ItemComponent
 
 enum ItemType {
 	GUN,
-	BACKPACK
+	BACKPACK,
+	MATERIAL
 }
 
 @export var id:String
 @export var type:ItemType
 @export var icon:Texture
 @export var icon_r:Texture
-@export var stack:int
-@export var max_stack:int
+@export var stack:int = 1
+@export var max_stack:int = 1
 @export var column:int
 @export var column_span:int
 @export var row:int
@@ -107,4 +108,10 @@ func picked_up():
 	world_collider.disabled = true
 	get_parent().freeze = true
 	set_material_overlay(null)
+
 	
+func destroy():
+	var parent = self.get_parent()
+	if parent:
+		parent.call_deferred("queue_free")
+	self.queue_free()
