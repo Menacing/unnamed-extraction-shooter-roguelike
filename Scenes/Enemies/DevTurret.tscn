@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://biyb74e3s6cu8"]
+[gd_scene load_steps=11 format=3 uid="uid://biyb74e3s6cu8"]
 
 [ext_resource type="Script" path="res://Scenes/Enemies/DevTurret.gd" id="1_xnkh3"]
 [ext_resource type="PackedScene" uid="uid://dr48wela8mtxd" path="res://Scenes/Guns/AK47-Projectile/AK47-Projectile.tscn" id="2_pqq58"]
@@ -10,7 +10,7 @@
 transparency = 1
 blend_mode = 1
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_emkox"]
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_ph0oa"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_uqamr"]
 
@@ -19,9 +19,12 @@ blend_mode = 1
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2an3s"]
 albedo_color = Color(1, 0, 0, 1)
 
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_cn06a"]
+height = 6.0
+radius = 50.0
+
 [node name="DevTurret" type="CharacterBody3D"]
 collision_layer = 3
-collision_mask = 3
 script = ExtResource("1_xnkh3")
 gun_scene = ExtResource("2_pqq58")
 damage_multiplier = 0.5
@@ -31,11 +34,12 @@ mesh = SubResource("CapsuleMesh_5sv1q")
 surface_material_override/0 = SubResource("StandardMaterial3D_prsdl")
 
 [node name="CollisionShape3d" type="CollisionShape3D" parent="."]
-shape = SubResource("CapsuleShape3D_emkox")
+shape = SubResource("CylinderShape3D_ph0oa")
 
 [node name="Head" type="Node3D" parent="."]
 
 [node name="FireTimer" type="Timer" parent="."]
+autostart = true
 
 [node name="WeakPoint" type="CharacterBody3D" parent="."]
 collision_layer = 2
@@ -50,5 +54,20 @@ shape = SubResource("SphereShape3D_uqamr")
 mesh = SubResource("SphereMesh_m44qc")
 surface_material_override/0 = SubResource("StandardMaterial3D_2an3s")
 
+[node name="DetectRadius" type="Area3D" parent="."]
+collision_layer = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DetectRadius"]
+shape = SubResource("CylinderShape3D_cn06a")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+agent_height_offset = -1.0
+
+[node name="RepathTimer" type="Timer" parent="."]
+wait_time = 2.0
+
 [connection signal="timeout" from="FireTimer" to="." method="_on_fire_timer_timeout"]
 [connection signal="took_damage" from="WeakPoint" to="." method="_on_took_damage"]
+[connection signal="body_entered" from="DetectRadius" to="." method="_on_detect_radius_body_entered"]
+[connection signal="body_exited" from="DetectRadius" to="." method="_on_detect_radius_body_exited"]
+[connection signal="timeout" from="RepathTimer" to="." method="_on_repath_timer_timeout"]

@@ -396,7 +396,6 @@ collider_path = NodePath("../../CollisionShape3d")
 
 [node name="Walking" type="Node" parent="PlayerMotionStateMachine"]
 script = ExtResource("7_qr5lf")
-walk_speed = null
 collider_path = NodePath("../../CollisionShape3d")
 
 [node name="Sprinting" type="Node" parent="PlayerMotionStateMachine"]
