@@ -39,6 +39,7 @@ shape = SubResource("CylinderShape3D_ph0oa")
 [node name="Head" type="Node3D" parent="."]
 
 [node name="FireTimer" type="Timer" parent="."]
+autostart = true
 
 [node name="WeakPoint" type="CharacterBody3D" parent="."]
 collision_layer = 2
@@ -59,7 +60,14 @@ collision_layer = 0
 [node name="CollisionShape3D" type="CollisionShape3D" parent="DetectRadius"]
 shape = SubResource("CylinderShape3D_cn06a")
 
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+agent_height_offset = -1.0
+
+[node name="RepathTimer" type="Timer" parent="."]
+wait_time = 2.0
+
 [connection signal="timeout" from="FireTimer" to="." method="_on_fire_timer_timeout"]
 [connection signal="took_damage" from="WeakPoint" to="." method="_on_took_damage"]
 [connection signal="body_entered" from="DetectRadius" to="." method="_on_detect_radius_body_entered"]
 [connection signal="body_exited" from="DetectRadius" to="." method="_on_detect_radius_body_exited"]
+[connection signal="timeout" from="RepathTimer" to="." method="_on_repath_timer_timeout"]
