@@ -95,32 +95,45 @@ func _ready():
 	Events.item_equipped.connect(_on_item_equipped)
 	Events.item_dropped.connect(_on_item_dropped)
 	Events.item_picked_up.connect(_on_item_picked_up)
+	Events.item_removed.connect(_on_item_removed)
 
 func _on_item_equipped(slot_name:String, item_equipped:ItemComponent):
 	item_equipped.picked_up()
-	if slot_name == "GunSlot1":
-		gun_slot_1 = item_equipped.get_parent()
-		move_gun_to_player_model(gun_slot_1)
-	if slot_name == "GunSlot2":
-		gun_slot_2 = item_equipped.get_parent()
-		move_gun_to_player_model(gun_slot_2) 
-	if slot_name == "BackpackSlot":
-		item_equipped.picked_up()
-		item_equipped.get_parent().reparent(self,false)
-		item_equipped.get_parent().visible = false
+	match slot_name:
+		"GunSlot1":
+			gun_slot_1 = item_equipped.get_parent()
+			move_gun_to_player_model(gun_slot_1)
+		"GunSlot2":
+			gun_slot_2 = item_equipped.get_parent()
+			move_gun_to_player_model(gun_slot_2) 
+		"BackpackSlot":
+			item_equipped.picked_up()
+			item_equipped.get_parent().reparent(self,false)
+			item_equipped.get_parent().visible = false
 	pass
 	
 func _on_item_picked_up(item_picked_up:ItemComponent):
+	var item_parent = item_picked_up.get_parent()
 	item_picked_up.picked_up()
-	item_picked_up.get_parent().reparent(self,false)
-	item_picked_up.get_parent().visible = false
+	item_parent.reparent(self,false)
+	item_parent.visible = false
 	
+func _on_item_removed(slot_name, item_picked_up:ItemComponent):
+	var item_parent = item_picked_up.get_parent()
+	if item_parent is Gun:
+		if item_parent == equipped_gun:
+			equipped_gun = null	
+		if item_parent == gun_slot_1:
+			gun_slot_1 = null	
+		if item_parent == gun_slot_2:
+			gun_slot_2 = null	
 
 func _on_item_dropped(item_equipped:ItemComponent):
 	drop_item(item_equipped)
 	pass
 
 func move_gun_to_player_model(gun:Gun):
+	gun.show()	
 	if !equipped_gun:
 		move_gun_to_hands(gun)
 	elif !shoulder_gun:

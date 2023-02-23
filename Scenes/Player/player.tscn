@@ -1,11 +1,11 @@
-[gd_scene load_steps=27 format=3 uid="uid://du386p0tq7gs0"]
+[gd_scene load_steps=27 format=3 uid="uid://d08aatgxmymbf"]
 
 [ext_resource type="Script" path="res://Scenes/Player/player.gd" id="1_1w47b"]
 [ext_resource type="Theme" uid="uid://cekps8eebllyj" path="res://themes/MetalPixel.tres" id="2_0bu44"]
 [ext_resource type="PackedScene" uid="uid://27t5g23so5hx" path="res://Scenes/Player/player_default_mesh.glb" id="3_qia5y"]
 [ext_resource type="Texture2D" uid="uid://dx5k6p8icec18" path="res://themes/1-bit without outline_part-1.png" id="4_0effq"]
 [ext_resource type="Script" path="res://Scenes/Player/HitBox.gd" id="4_f3bol"]
-[ext_resource type="PackedScene" uid="uid://b5ddm044nfneb" path="res://ui/PlayerInventory.tscn" id="4_tg74y"]
+[ext_resource type="PackedScene" uid="uid://ddsqkhwkuipda" path="res://ui/inventory/PlayerInventory.tscn" id="4_k05yf"]
 [ext_resource type="Script" path="res://Scenes/Player/States/motion/player_motion_state_machine.gd" id="5_biar4"]
 [ext_resource type="Script" path="res://Scenes/Player/States/motion/sprinting.gd" id="6_cf0q7"]
 [ext_resource type="Script" path="res://Scenes/Player/States/motion/standing.gd" id="6_touu8"]
@@ -138,7 +138,7 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = SubResource("AtlasTexture_3dmoe")
 
-[node name="PlayerInventory" parent="Head/Camera3d/CanvasLayer" instance=ExtResource("4_tg74y")]
+[node name="PlayerInventory" parent="Head/Camera3d/CanvasLayer" instance=ExtResource("4_k05yf")]
 
 [node name="player_default_mesh" parent="." instance=ExtResource("3_qia5y")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, -0.923009, 0)
