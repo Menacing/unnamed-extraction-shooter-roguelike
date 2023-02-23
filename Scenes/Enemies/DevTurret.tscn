@@ -24,6 +24,7 @@ height = 6.0
 radius = 50.0
 
 [node name="DevTurret" type="CharacterBody3D"]
+collision_layer = 3
 script = ExtResource("1_xnkh3")
 gun_scene = ExtResource("2_pqq58")
 damage_multiplier = 0.5

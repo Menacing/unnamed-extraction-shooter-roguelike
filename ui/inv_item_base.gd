@@ -40,7 +40,7 @@ var contextItems:Array[Dictionary] = [
 
 func _input(event):
 	var cursor_pos = get_global_mouse_position()
-	if event.is_action_pressed("openContextMenu"):
+	if self.is_visible_in_tree() and event.is_action_pressed("openContextMenu"):
 		openContextMenu(cursor_pos)
 		
 func openContextMenu(pos:Vector2):
