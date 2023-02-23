@@ -1,0 +1,19 @@
+[gd_scene load_steps=2 format=3 uid="uid://bb7ue7ms53vhu"]
+
+[ext_resource type="Script" path="res://ui/health/life_bar.gd" id="1_abp2l"]
+
+[node name="life_bar" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_abp2l")
+
+[node name="LifeBar" type="ProgressBar" parent="."]
+offset_left = 35.0
+offset_top = 551.0
+offset_right = 241.0
+offset_bottom = 578.0
+fill_mode = 1

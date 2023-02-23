@@ -16,6 +16,8 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 dragger_visibility = 1
 script = ExtResource("1_xvu3o")
+grid_inv_path = NodePath("PanelContainer/InventoryBase/PanelContainer/InventoryGrid")
+eq_slots_path = NodePath("PanelContainer/InventoryBase/EquipmentSlots")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 2
@@ -61,8 +63,7 @@ types = Array[int]([0])
 [node name="PanelContainer" type="PanelContainer" parent="PanelContainer/InventoryBase"]
 layout_mode = 2
 
-[node name="GridBackPack" type="GridContainer" parent="PanelContainer/InventoryBase/PanelContainer" groups=["inventory_controls"]]
-unique_name_in_owner = true
+[node name="InventoryGrid" type="GridContainer" parent="PanelContainer/InventoryBase/PanelContainer" groups=["inventory_controls"]]
 modulate = Color(0.686275, 0.686275, 0.686275, 1)
 layout_mode = 2
 theme_override_constants/h_separation = 0
@@ -70,72 +71,72 @@ theme_override_constants/v_separation = 0
 columns = 7
 script = ExtResource("4_77ttn")
 
-[node name="Panel" parent="PanelContainer/InventoryBase/PanelContainer/GridBackPack" instance=ExtResource("5_h0nvq")]
+[node name="Panel" parent="PanelContainer/InventoryBase/PanelContainer/InventoryGrid" instance=ExtResource("5_h0nvq")]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 
-[node name="Panel2" parent="PanelContainer/InventoryBase/PanelContainer/GridBackPack" instance=ExtResource("5_h0nvq")]
+[node name="Panel2" parent="PanelContainer/InventoryBase/PanelContainer/InventoryGrid" instance=ExtResource("5_h0nvq")]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 
-[node name="Panel3" parent="PanelContainer/InventoryBase/PanelContainer/GridBackPack" instance=ExtResource("5_h0nvq")]
+[node name="Panel3" parent="PanelContainer/InventoryBase/PanelContainer/InventoryGrid" instance=ExtResource("5_h0nvq")]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 
-[node name="Panel4" parent="PanelContainer/InventoryBase/PanelContainer/GridBackPack" instance=ExtResource("5_h0nvq")]
+[node name="Panel4" parent="PanelContainer/InventoryBase/PanelContainer/InventoryGrid" instance=ExtResource("5_h0nvq")]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 
-[node name="Panel5" parent="PanelContainer/InventoryBase/PanelContainer/GridBackPack" instance=ExtResource("5_h0nvq")]
+[node name="Panel5" parent="PanelContainer/InventoryBase/PanelContainer/InventoryGrid" instance=ExtResource("5_h0nvq")]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 
-[node name="Panel6" parent="PanelContainer/InventoryBase/PanelContainer/GridBackPack" instance=ExtResource("5_h0nvq")]
+[node name="Panel6" parent="PanelContainer/InventoryBase/PanelContainer/InventoryGrid" instance=ExtResource("5_h0nvq")]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 
-[node name="Panel7" parent="PanelContainer/InventoryBase/PanelContainer/GridBackPack" instance=ExtResource("5_h0nvq")]
+[node name="Panel7" parent="PanelContainer/InventoryBase/PanelContainer/InventoryGrid" instance=ExtResource("5_h0nvq")]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 
-[node name="Panel8" parent="PanelContainer/InventoryBase/PanelContainer/GridBackPack" instance=ExtResource("5_h0nvq")]
+[node name="Panel8" parent="PanelContainer/InventoryBase/PanelContainer/InventoryGrid" instance=ExtResource("5_h0nvq")]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 
-[node name="Panel9" parent="PanelContainer/InventoryBase/PanelContainer/GridBackPack" instance=ExtResource("5_h0nvq")]
+[node name="Panel9" parent="PanelContainer/InventoryBase/PanelContainer/InventoryGrid" instance=ExtResource("5_h0nvq")]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 
-[node name="Panel10" parent="PanelContainer/InventoryBase/PanelContainer/GridBackPack" instance=ExtResource("5_h0nvq")]
+[node name="Panel10" parent="PanelContainer/InventoryBase/PanelContainer/InventoryGrid" instance=ExtResource("5_h0nvq")]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 
-[node name="Panel11" parent="PanelContainer/InventoryBase/PanelContainer/GridBackPack" instance=ExtResource("5_h0nvq")]
+[node name="Panel11" parent="PanelContainer/InventoryBase/PanelContainer/InventoryGrid" instance=ExtResource("5_h0nvq")]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 
-[node name="Panel12" parent="PanelContainer/InventoryBase/PanelContainer/GridBackPack" instance=ExtResource("5_h0nvq")]
+[node name="Panel12" parent="PanelContainer/InventoryBase/PanelContainer/InventoryGrid" instance=ExtResource("5_h0nvq")]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 
-[node name="Panel13" parent="PanelContainer/InventoryBase/PanelContainer/GridBackPack" instance=ExtResource("5_h0nvq")]
+[node name="Panel13" parent="PanelContainer/InventoryBase/PanelContainer/InventoryGrid" instance=ExtResource("5_h0nvq")]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 
-[node name="Panel14" parent="PanelContainer/InventoryBase/PanelContainer/GridBackPack" instance=ExtResource("5_h0nvq")]
+[node name="Panel14" parent="PanelContainer/InventoryBase/PanelContainer/InventoryGrid" instance=ExtResource("5_h0nvq")]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0

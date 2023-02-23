@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://cnfhk8lyswyee"]
+
+[ext_resource type="Theme" uid="uid://cekps8eebllyj" path="res://themes/MetalPixel.tres" id="1_qf1ly"]
+[ext_resource type="Script" path="res://ui/misc/fire_mode.gd" id="2_mmbhy"]
+
+[node name="FireMode" type="Label"]
+offset_left = 880.0
+offset_top = 551.0
+offset_right = 950.0
+offset_bottom = 584.0
+scale = Vector2(1.8, 2.6)
+theme = ExtResource("1_qf1ly")
+theme_override_font_sizes/font_size = 30
+text = "SEMI"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+script = ExtResource("2_mmbhy")

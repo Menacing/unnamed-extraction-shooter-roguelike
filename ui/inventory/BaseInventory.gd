@@ -3,13 +3,15 @@ class_name BaseInventory
 
 const item_base = preload("res://ui/inventory/inv_item_base.tscn")
 
-@onready var inv_base:Control = %InventoryBase
-@onready var grid_bkpk:GridBackPack = %GridBackPack
-@onready var eq_slots = %EquipmentSlots
-@onready var cell_size:int = grid_bkpk.cell_size
+@export var grid_inv_path:NodePath
+@onready var grid_inv:GridInventoryBase = get_node(grid_inv_path)
+@export var eq_slots_path:NodePath
+@onready var eq_slots = get_node(eq_slots_path)
+@onready var cell_size:int = grid_inv.cell_size
 
 var item_held:InventoryTransferObject = null
 var item_offset = Vector2()
+var last_z
 var last_container = null
 var last_pos = Vector2()
 var last_rotated: bool = false
@@ -38,11 +40,15 @@ func grab(cursor_pos):
 			last_pos = item_held.inv_item.global_position
 			item_offset = item_held.get_item_offset()
 			last_rotated = item_held.is_rotated()
+			last_z = item_held.inv_item.z_index
+			item_held.inv_item.z_index = 1000
 			move_child(item_held.inv_item, get_child_count())
 			
 func release(cursor_pos):
 	if item_held == null:
 		return
+	if last_z:
+		item_held.inv_item.z_index = last_z
 	var c = get_container_with_method_under_cursor(cursor_pos,"insert_item")
 	if c == null:
 		drop_item()
@@ -103,7 +109,7 @@ func pickup_item(item_comp:ItemComponent):
 			if item_slot in slot.types and eq_slots.items[slot.name] == null:
 	#			ito.inv_item.global_position = slot.global_position + slot.size / 2 - ito.inv_item.size / 2
 				return eq_slots.insert_item_in_slot(ito, slot)
-	if !grid_bkpk.insert_item_at_first_available_spot(ito):
+	if !grid_inv.insert_item_at_first_available_spot(ito):
 		item.queue_free()
 		return false
 	return true
