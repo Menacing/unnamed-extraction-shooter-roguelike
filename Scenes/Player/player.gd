@@ -11,18 +11,12 @@ var gun_slot_1:Gun
 var gun_slot_2:Gun
 @onready var cam = $Head/Camera3d as Camera3D
 @onready var head = $Head as Node3D
-#@onready var life_bar = $Head/Camera3d/CanvasLayer/LifeBar as ProgressBar
 @onready var pmsm = $PlayerMotionStateMachine
 @onready var use_ray = $Head/Camera3d/UsePointer
-#@onready var inventory = $Head/Camera3d/CanvasLayer/PlayerInventory
-#@onready var use_helper = $Head/Camera3d/CanvasLayer/use_helper
-#@onready var pickup_helper = $Head/Camera3d/CanvasLayer/pickup_helper
-#@onready var equipment_slots:EquipmentSlots = $Head/Camera3d/CanvasLayer/PlayerInventory/PanelContainer/InventoryBase/EquipmentSlots
 
 @onready var shoulder_anchor:Node3D = $player_default_mesh/shoulder_anchor
 @onready var drop_location:Node3D = $drop_location
 
-#@onready var backpack_slot:InventorySpecialSlot = $Head/Camera3d/ui/CanvasLayer/inventory_canvas/backpack_slot
 var mouseSensibility = 1200
 var mouse_sensitivity = 0.005
 var mouse_relative_x = 0
