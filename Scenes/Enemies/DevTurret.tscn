@@ -45,6 +45,7 @@ autostart = true
 collision_layer = 2
 collision_mask = 2
 script = ExtResource("3_5pjd0")
+pen_ratio = null
 damage_multiplier = 2.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="WeakPoint"]
@@ -67,7 +68,6 @@ agent_height_offset = -1.0
 wait_time = 2.0
 
 [connection signal="timeout" from="FireTimer" to="." method="_on_fire_timer_timeout"]
-[connection signal="took_damage" from="WeakPoint" to="." method="_on_took_damage"]
 [connection signal="body_entered" from="DetectRadius" to="." method="_on_detect_radius_body_entered"]
 [connection signal="body_exited" from="DetectRadius" to="." method="_on_detect_radius_body_exited"]
 [connection signal="timeout" from="RepathTimer" to="." method="_on_repath_timer_timeout"]

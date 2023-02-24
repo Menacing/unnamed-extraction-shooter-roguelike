@@ -1,0 +1,64 @@
+[gd_scene load_steps=8 format=3 uid="uid://vk1criqck6cx"]
+
+[ext_resource type="Script" path="res://Scenes/Enemies/DevTurret.gd" id="1_kfths"]
+[ext_resource type="PackedScene" uid="uid://dr48wela8mtxd" path="res://Scenes/Guns/AK47-Projectile/AK47-Projectile.tscn" id="2_q4rc2"]
+[ext_resource type="PackedScene" uid="uid://bbjimpqtecww7" path="res://Scenes/Enemies/robots/combat-roomba.glb" id="3_pdydb"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_a3j4y"]
+radius = 0.488788
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_06jvm"]
+size = Vector3(0.277075, 1.47764, 0.295358)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_ph0oa"]
+height = 0.518186
+radius = 0.98285
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_cn06a"]
+height = 6.0
+radius = 50.0
+
+[node name="DevTurret" type="CharacterBody3D"]
+collision_layer = 3
+script = ExtResource("1_kfths")
+gun_scene = ExtResource("2_q4rc2")
+damage_multiplier = 0.5
+
+[node name="combat-roomba" parent="." instance=ExtResource("3_pdydb")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.515164, 0)
+shape = SubResource("SphereShape3D_a3j4y")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.67139, 0)
+shape = SubResource("BoxShape3D_06jvm")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.247991, 0)
+shape = SubResource("CylinderShape3D_ph0oa")
+
+[node name="Head" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0238471, 2.14001, 0)
+
+[node name="FireTimer" type="Timer" parent="."]
+autostart = true
+
+[node name="DetectRadius" type="Area3D" parent="."]
+collision_layer = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DetectRadius"]
+shape = SubResource("CylinderShape3D_cn06a")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+path_desired_distance = 3.0
+target_desired_distance = 3.0
+
+[node name="RepathTimer" type="Timer" parent="."]
+wait_time = 2.0
+
+[connection signal="timeout" from="FireTimer" to="." method="_on_fire_timer_timeout"]
+[connection signal="body_entered" from="DetectRadius" to="." method="_on_detect_radius_body_entered"]
+[connection signal="body_exited" from="DetectRadius" to="." method="_on_detect_radius_body_exited"]
+[connection signal="timeout" from="RepathTimer" to="." method="_on_repath_timer_timeout"]
