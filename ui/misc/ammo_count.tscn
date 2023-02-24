@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://cum57ykeo3b7q"]
+
+[ext_resource type="Script" path="res://ui/misc/ammo_count.gd" id="1_7aiio"]
+
+[node name="AmmoCount" type="Label"]
+offset_left = 1029.0
+offset_top = 551.0
+offset_right = 1076.0
+offset_bottom = 628.0
+scale = Vector2(2.32, 1.04)
+theme_override_font_sizes/font_size = 30
+text = "30"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("1_7aiio")

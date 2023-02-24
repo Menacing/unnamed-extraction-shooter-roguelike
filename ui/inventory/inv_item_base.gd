@@ -60,7 +60,7 @@ func openContextMenu(pos:Vector2):
 func _on_context_menu_pressed(id:int):
 	var item = contextItems[id]
 	var item_signal:Signal = item["signal"]
-	item_signal.emit(self, self.get_global_position())
+	item_signal.emit(self, get_global_mouse_position())
 
 func _on_count_changed(new_count:int):
 	count.text = str(new_count)

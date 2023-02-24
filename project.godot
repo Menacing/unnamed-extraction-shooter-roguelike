@@ -166,6 +166,8 @@ openContextMenu={
 
 [layer_names]
 
+2d_render/layer_1="PlayerUI"
+2d_render/layer_2="Menus"
 3d_physics/layer_1="MovementCollision"
 3d_physics/layer_2="BallisticCollision"
 3d_physics/layer_3="ItemCollision"
@@ -176,6 +178,10 @@ openContextMenu={
 
 [rendering]
 
+lights_and_shadows/directional_shadow/size=8192
+lights_and_shadows/directional_shadow/soft_shadow_filter_quality=5
+lights_and_shadows/directional_shadow/16_bits=false
+lights_and_shadows/positional_shadow/soft_shadow_filter_quality=5
 textures/decals/filter=0
 textures/light_projectors/filter=0
 textures/canvas_textures/default_texture_filter=0

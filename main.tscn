@@ -1,9 +1,30 @@
-[gd_scene load_steps=3 format=3 uid="uid://c5h2rw1ua14j2"]
+[gd_scene load_steps=8 format=3 uid="uid://c5h2rw1ua14j2"]
 
 [ext_resource type="PackedScene" uid="uid://ctahsvj88g1om" path="res://levels/node_3d.tscn" id="1_jhhor"]
 [ext_resource type="Script" path="res://main.gd" id="1_rh52i"]
+[ext_resource type="PackedScene" uid="uid://cum57ykeo3b7q" path="res://ui/misc/ammo_count.tscn" id="3_awaq0"]
+[ext_resource type="PackedScene" uid="uid://cnfhk8lyswyee" path="res://ui/misc/fire_mode.tscn" id="4_1vtv1"]
+[ext_resource type="PackedScene" uid="uid://bb7ue7ms53vhu" path="res://ui/health/life_bar.tscn" id="5_cvqtr"]
+[ext_resource type="PackedScene" uid="uid://ddsqkhwkuipda" path="res://ui/inventory/PlayerInventory.tscn" id="5_mtxh8"]
+[ext_resource type="PackedScene" uid="uid://vb7f8fygilde" path="res://ui/misc/interaction_helpers.tscn" id="6_q7dve"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_rh52i")
 
 [node name="World" parent="." instance=ExtResource("1_jhhor")]
+
+[node name="PlayerHUD" type="CanvasLayer" parent="."]
+
+[node name="AmmoCount" parent="PlayerHUD" instance=ExtResource("3_awaq0")]
+
+[node name="FireMode" parent="PlayerHUD" instance=ExtResource("4_1vtv1")]
+
+[node name="PlayerInventory" parent="PlayerHUD" instance=ExtResource("5_mtxh8")]
+visible = false
+
+[node name="life_bar" parent="PlayerHUD" instance=ExtResource("5_cvqtr")]
+
+[node name="interaction_helpers" parent="PlayerHUD" instance=ExtResource("6_q7dve")]
+
+[editable path="PlayerHUD/PlayerInventory"]
+[editable path="PlayerHUD/interaction_helpers"]

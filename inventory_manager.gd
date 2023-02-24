@@ -2,6 +2,8 @@ extends Node
 
 var stored_inventories = {}
 var current_inv_controls:Array[Control] = []
+var ui_node:CanvasLayer
+@export var inventory_ui_layer:NodePath = "Main/PlayerHUD"
 
 func _ready():
 	Events.open_inventory.connect(_on_open_inventory)
@@ -11,9 +13,10 @@ func _ready():
 	
 	
 func _on_open_inventory(inventory_name:String):
+	ui_node = get_tree().get_root().get_node(inventory_ui_layer)
 	var stored_inv_node = stored_inventories[inventory_name]
 	if stored_inv_node and stored_inv_node is Node:
-		get_tree().get_root().add_child(stored_inv_node)
+		ui_node.add_child(stored_inv_node)
 	pass
 	
 func _on_close_inventory(inventory_name:String):

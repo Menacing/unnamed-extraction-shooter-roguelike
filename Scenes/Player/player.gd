@@ -11,18 +11,12 @@ var gun_slot_1:Gun
 var gun_slot_2:Gun
 @onready var cam = $Head/Camera3d as Camera3D
 @onready var head = $Head as Node3D
-@onready var life_bar = $Head/Camera3d/CanvasLayer/LifeBar as ProgressBar
 @onready var pmsm = $PlayerMotionStateMachine
 @onready var use_ray = $Head/Camera3d/UsePointer
-@onready var inventory = $Head/Camera3d/CanvasLayer/PlayerInventory
-@onready var use_helper = $Head/Camera3d/CanvasLayer/use_helper
-@onready var pickup_helper = $Head/Camera3d/CanvasLayer/pickup_helper
-@onready var equipment_slots:EquipmentSlots = $Head/Camera3d/CanvasLayer/PlayerInventory/PanelContainer/InventoryBase/EquipmentSlots
 
 @onready var shoulder_anchor:Node3D = $player_default_mesh/shoulder_anchor
 @onready var drop_location:Node3D = $drop_location
 
-#@onready var backpack_slot:InventorySpecialSlot = $Head/Camera3d/ui/CanvasLayer/inventory_canvas/backpack_slot
 var mouseSensibility = 1200
 var mouse_sensitivity = 0.005
 var mouse_relative_x = 0
@@ -62,6 +56,7 @@ var toggle_crouch_f: bool = false
 var toggle_ads: bool
 var toggle_lean: bool
 var toggle_prone_f: bool = false
+var toggle_inv_f: bool = false
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
@@ -87,40 +82,54 @@ func _ready():
 	
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	currentSpeed = NORMAL_SPEED
-	life_bar.value = health/max_health * health
+	Events.set_health.emit(health,max_health)
 	$PlayerMotionStateMachine._active = true
-	inventory.visible = false
-	$Head/Camera3d/CanvasLayer/AmmoCount.text = ""
-	$Head/Camera3d/CanvasLayer/FireMode.text = ""
+	Events.fire_mode_changed.emit("")
+	Events.ammo_count_changed.emit(0)
 	Events.item_equipped.connect(_on_item_equipped)
 	Events.item_dropped.connect(_on_item_dropped)
 	Events.item_picked_up.connect(_on_item_picked_up)
+	Events.item_removed.connect(_on_item_removed)
+	Events.player_inventory_visibility.emit(toggle_inv_f)
+	Events.set_health.emit(health,max_health)
 
 func _on_item_equipped(slot_name:String, item_equipped:ItemComponent):
 	item_equipped.picked_up()
-	if slot_name == "GunSlot1":
-		gun_slot_1 = item_equipped.get_parent()
-		move_gun_to_player_model(gun_slot_1)
-	if slot_name == "GunSlot2":
-		gun_slot_2 = item_equipped.get_parent()
-		move_gun_to_player_model(gun_slot_2) 
-	if slot_name == "BackpackSlot":
-		item_equipped.picked_up()
-		item_equipped.get_parent().reparent(self,false)
-		item_equipped.get_parent().visible = false
+	match slot_name:
+		"GunSlot1":
+			gun_slot_1 = item_equipped.get_parent()
+			move_gun_to_player_model(gun_slot_1)
+		"GunSlot2":
+			gun_slot_2 = item_equipped.get_parent()
+			move_gun_to_player_model(gun_slot_2) 
+		"BackpackSlot":
+			item_equipped.picked_up()
+			item_equipped.get_parent().reparent(self,false)
+			item_equipped.get_parent().visible = false
 	pass
 	
 func _on_item_picked_up(item_picked_up:ItemComponent):
+	var item_parent = item_picked_up.get_parent()
 	item_picked_up.picked_up()
-	item_picked_up.get_parent().reparent(self,false)
-	item_picked_up.get_parent().visible = false
+	item_parent.reparent(self,false)
+	item_parent.visible = false
 	
+func _on_item_removed(slot_name, item_picked_up:ItemComponent):
+	var item_parent = item_picked_up.get_parent()
+	if item_parent is Gun:
+		if item_parent == equipped_gun:
+			equipped_gun = null	
+		if item_parent == gun_slot_1:
+			gun_slot_1 = null	
+		if item_parent == gun_slot_2:
+			gun_slot_2 = null	
 
 func _on_item_dropped(item_equipped:ItemComponent):
 	drop_item(item_equipped)
 	pass
 
 func move_gun_to_player_model(gun:Gun):
+	gun.show()	
 	if !equipped_gun:
 		move_gun_to_hands(gun)
 	elif !shoulder_gun:
@@ -145,8 +154,8 @@ func move_gun_to_hands(gun:Gun):
 		gun.reloaded.connect(_on_gun_reloaded)
 		current_fire_mode = gun.current_fire_mode
 		gun.reparent(cam,false)
-		$Head/Camera3d/CanvasLayer/AmmoCount.text = "%s" % gun.magazine
-		$Head/Camera3d/CanvasLayer/FireMode.text = "%s" % gun.current_fire_mode
+		Events.fire_mode_changed.emit(gun.current_fire_mode)
+		Events.ammo_count_changed.emit(gun.magazine)
 
 func move_gun_to_shoulder(gun:Gun):
 	shoulder_gun = gun
@@ -160,8 +169,8 @@ func drop_equipped_gun():
 	if equipped_gun:
 		equipped_gun.fired.disconnect(_on_gun_fired)
 		equipped_gun.reloaded.disconnect(_on_gun_reloaded)
-		$Head/Camera3d/CanvasLayer/AmmoCount.text = ""
-		$Head/Camera3d/CanvasLayer/FireMode.text = ""
+		Events.fire_mode_changed.emit("")
+		Events.ammo_count_changed.emit(0)
 		drop_item(equipped_gun.get_node("ItemComponent"))
 #		if gun_in_slot(equipped_gun, gun_slot_1):
 #			gun_slot_1.remove_item()
@@ -188,7 +197,7 @@ func drop_item(item_comp:ItemComponent):
 
 #realtime inputs - movement stuff
 func _physics_process(delta):
-	if !inventory.visible:
+	if !toggle_inv_f:
 		if equipped_gun:
 			# Handle Shooting
 			if can_shoot():
@@ -234,15 +243,15 @@ func _physics_process(delta):
 				var col = use_ray.get_collider()
 				var ic = col.get_node("ItemComponent")
 				if ic:
-					pickup_helper.visible = true
+					Events.pickup_helper_visibility.emit(true)
 				elif col.has_method("use"):
-					use_helper.visible = true
+					Events.use_helper_visibility.emit(true)
 				else:
-					use_helper.visible = false
-					pickup_helper.visible = false
+					Events.use_helper_visibility.emit(false)
+					Events.pickup_helper_visibility.emit(false)
 		else:
-			use_helper.visible = false
-			pickup_helper.visible = false
+			Events.use_helper_visibility.emit(false)
+			Events.pickup_helper_visibility.emit(false)
 
 var toggle_ads_f: bool = false
 func shouldAds() -> bool:
@@ -287,14 +296,14 @@ func _input(event):
 		elif event.is_action_pressed("toggleFireMode"):
 			if equipped_gun.has_method("toggle_fire_mode"):
 				var fire_mode = equipped_gun.toggle_fire_mode()
-				$Head/Camera3d/CanvasLayer/FireMode.text = fire_mode
+				Events.fire_mode_changed.emit(fire_mode)
 				current_fire_mode = fire_mode
 		elif event.is_action_pressed("use"):
 			if use_ray.is_colliding():
 				var col = use_ray.get_collider()
-				var col_icomp:ItemComponent = col.get_node("ItemComponent")
+				var col_icomp = col.get_node("ItemComponent")
 				if col_icomp:
-					var picked_up = inventory.pickup_item(col_icomp)
+					Events.player_inventory_try_pickup.emit(col_icomp)
 				elif col.has_method("use"):
 					col.use(self)
 		elif event.is_action_pressed("dropGun"):
@@ -311,8 +320,9 @@ func _input(event):
 				move_gun_to_shoulder(old_gun)
 		
 func toggle_inventory():
-	inventory.visible = !inventory.visible
-	if inventory.visible:
+	toggle_inv_f = !toggle_inv_f
+	Events.player_inventory_visibility.emit(toggle_inv_f)
+	if toggle_inv_f:
 		Input.mouse_mode = Input.MOUSE_MODE_CONFINED
 	else:
 		Events.player_inventory_closed.emit(self)
@@ -338,7 +348,7 @@ func reload():
 
 
 func _on_gun_fired(recoil:Vector2):
-	$Head/Camera3d/CanvasLayer/AmmoCount.text = "%s" % equipped_gun.magazine
+	Events.ammo_count_changed.emit(equipped_gun.magazine)
 	var scaled_recoil = scale_recoil(recoil)
 #	#flip the mapping so that recoil.y moves the camera vertically	
 	rotate_y(scaled_recoil.x)
@@ -366,11 +376,10 @@ func scale_recoil(recoil:Vector2) -> Vector2:
 	return recoil * factor
 	
 func _on_gun_reloaded():
-	$Head/Camera3d/CanvasLayer/AmmoCount.text = "%s" % equipped_gun.magazine
-	
+	Events.ammo_count_changed.emit(equipped_gun.magazine)	
 
 func _on_area_3d_took_damage(damage):
 	health-=damage
-	life_bar.value = health/max_health*health
+	Events.set_health.emit(health,max_health)
 	if health < 0:
 		print("Game Over")
