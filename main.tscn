@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://c5h2rw1ua14j2"]
+[gd_scene load_steps=9 format=3 uid="uid://c5h2rw1ua14j2"]
 
 [ext_resource type="PackedScene" uid="uid://ctahsvj88g1om" path="res://levels/node_3d.tscn" id="1_jhhor"]
 [ext_resource type="Script" path="res://main.gd" id="1_rh52i"]
@@ -7,11 +7,15 @@
 [ext_resource type="PackedScene" uid="uid://bb7ue7ms53vhu" path="res://ui/health/life_bar.tscn" id="5_cvqtr"]
 [ext_resource type="PackedScene" uid="uid://ddsqkhwkuipda" path="res://ui/inventory/PlayerInventory.tscn" id="5_mtxh8"]
 [ext_resource type="PackedScene" uid="uid://vb7f8fygilde" path="res://ui/misc/interaction_helpers.tscn" id="6_q7dve"]
+[ext_resource type="PackedScene" uid="uid://vk1criqck6cx" path="res://Scenes/Enemies/robots/combat_roomba.tscn" id="8_vo1n2"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_rh52i")
 
 [node name="World" parent="." instance=ExtResource("1_jhhor")]
+
+[node name="762x39mm-case" parent="World/AK47-Projectile" index="3"]
+transform = Transform3D(-5.42999e-07, 0.15, 0, -0.15, -5.42999e-07, 0, 0, 0, 0.15, -0.00116475, 0.0538154, 0.101949)
 
 [node name="PlayerHUD" type="CanvasLayer" parent="."]
 
@@ -26,5 +30,17 @@ visible = false
 
 [node name="interaction_helpers" parent="PlayerHUD" instance=ExtResource("6_q7dve")]
 
+[node name="DevTurret" parent="." instance=ExtResource("8_vo1n2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.3259, 0.0788286, -29.9793)
+
+[editable path="World"]
+[editable path="World/AK47-Projectile"]
+[editable path="World/AK47-Projectile/gun"]
+[editable path="World/polymer_pile"]
+[editable path="World/polymer_pile2"]
+[editable path="World/polymer_pile3"]
+[editable path="World/polymer_pile4"]
+[editable path="World/polymer_pile5"]
+[editable path="World/polymer_pile6"]
 [editable path="PlayerHUD/PlayerInventory"]
 [editable path="PlayerHUD/interaction_helpers"]

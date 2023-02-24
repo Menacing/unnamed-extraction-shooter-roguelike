@@ -12,6 +12,7 @@ grow_vertical = 2
 script = ExtResource("1_abp2l")
 
 [node name="LifeBar" type="ProgressBar" parent="."]
+layout_mode = 0
 offset_left = 35.0
 offset_top = 551.0
 offset_right = 241.0
