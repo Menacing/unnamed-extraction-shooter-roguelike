@@ -32,7 +32,10 @@ var LEAN_AMOUNT = PI/6
 
 var current_fire_mode: String:
 	get:
-		return equipped_gun.current_fire_mode
+		if equipped_gun:
+			return equipped_gun.current_fire_mode
+		else: 
+			return ""
 var ads_pos: Vector3
 var hf_pos: Vector3
 var grip_pos: Vector3
