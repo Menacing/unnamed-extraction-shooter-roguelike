@@ -18,7 +18,6 @@ var alive = true
 var last_damage_normal:Vector3
 var last_damage:float
 
-
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	if gun_scene:
@@ -67,6 +66,10 @@ func die():
 	skeleton.physical_bones_start_simulation()
 	var damage_vector = last_damage_normal.normalized() * 5
 	PhysicsServer3D.body_set_state(physical_bone.get_rid(), PhysicsServer3D.BODY_STATE_LINEAR_VELOCITY, damage_vector)
+	
+#	var inv_node = inv.instantiate()
+#	inv_node.container_size = container_size
+#	Events.create_inventory.emit(inv_node,self.name)
 
 @export var pen_ratio:float = 1.0
 @export var damage_multiplier = 1.0
