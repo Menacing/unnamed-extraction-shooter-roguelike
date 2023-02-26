@@ -2,7 +2,7 @@ extends CharacterBody3D
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
-@onready var head = $Head as Node3D
+@onready var head = $"combat-roomba/Armature/Skeleton3D/Physical Bone Bone/Head" as Node3D
 @export var gun_scene: PackedScene
 var gun: Gun
 var hf_pos: Vector3
@@ -12,67 +12,48 @@ var accel = 3
 var player = null
 @onready var nav_agent:NavigationAgent3D = $NavigationAgent3D
 @onready var repath_timer:Timer = $RepathTimer
+@onready var skeleton:Skeleton3D = $"combat-roomba/Armature/Skeleton3D"
+@onready var physical_bone:PhysicalBone3D = $"combat-roomba/Armature/Skeleton3D/Physical Bone Bone"
 var alive = true
+var last_damage_normal:Vector3
+var last_damage:float
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	gun = gun_scene.instantiate()
-	var gun_item_comp:ItemComponent = gun.get_node("ItemComponent")
-	gun_item_comp.start_highlighted = false
-	gun_item_comp.picked_up()
-	#TODO: Pull these from the packed scene instead of being hardcoded
-	gun.magazineSize = 30000
-	gun.magazine= 30000
-	hf_pos = -gun.get_node("HipFire").position
+	if gun_scene:
+		gun = gun_scene.instantiate()
+		var gun_item_comp:ItemComponent = gun.get_node("ItemComponent")
+		gun_item_comp.start_highlighted = false
+		gun_item_comp.picked_up()
+		#TODO: Pull these from the packed scene instead of being hardcoded
+		gun.magazineSize = 30000
+		gun.magazine= 30000
+		hf_pos = -gun.get_node("HipFire").position
 
-	gun.position = hf_pos
-	head.add_child(gun)
-	# These values need to be adjusted for the actor's speed
-	# and the navigation layout.
-	nav_agent.path_desired_distance = 0.5
-	nav_agent.target_desired_distance = 0.5
+		gun.position = hf_pos
+		head.add_child(gun)
 
-	# Make sure to not await during _ready.
-	call_deferred("actor_setup")
 
-func actor_setup():
-	# Wait for the first physics frame so the NavigationServer can sync.
-	await get_tree().physics_frame
-
-	# Now that the navigation map is no longer empty, set the movement target.
-	set_movement_target(self.global_transform.origin)
 
 func set_movement_target(movement_target : Vector3):
 	nav_agent.set_target_position(movement_target)
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-
 func _physics_process(delta):
 	if alive:
-		velocity.y -= gravity * delta	
 		if nav_agent.is_navigation_finished():
 			return
-		if player:
-			look_at(player.global_transform.origin, Vector3.UP)
-			head.look_at(player.global_transform.origin, Vector3.UP)
-
-		var current_agent_position : Vector3 = global_transform.origin
-		var next_path_position : Vector3 = nav_agent.get_next_path_position()
-
-		var new_velocity : Vector3 = next_path_position - current_agent_position
-		new_velocity = new_velocity.normalized()
-		new_velocity = new_velocity * run_speed
-	#	new_velocity.y = velocity.y
-
-		set_velocity(new_velocity)
+		var current_location = global_transform.origin
+		var next_location = nav_agent.get_next_path_position()
+		var new_velocity = (next_location - current_location).normalized() * run_speed
+		
+		velocity = velocity.move_toward(new_velocity, .25)
 		move_and_slide()
 
 
 func _on_fire_timer_timeout():
-	gun.fireGun()
+	if player and alive and gun:
+		gun.fireGun()
 
 func _on_took_damage(damage:float):
 	health-=damage
@@ -82,6 +63,10 @@ func _on_took_damage(damage:float):
 func die():
 	print("I am dead")
 	alive = false
+	skeleton.animate_physical_bones = true
+	skeleton.physical_bones_start_simulation()
+	var damage_vector = last_damage_normal.normalized() * 5
+	PhysicsServer3D.body_set_state(physical_bone.get_rid(), PhysicsServer3D.BODY_STATE_LINEAR_VELOCITY, damage_vector)
 
 @export var pen_ratio:float = 1.0
 @export var damage_multiplier = 1.0
@@ -89,6 +74,8 @@ func die():
 func _on_hit(damage = 0.0, pen_rating = 0, col:KinematicCollision3D = null) -> float:
 	damage = damage * damage_multiplier
 	print("Took %s damage, pen rating %s at %s" % [damage, pen_rating, col.get_position()])
+	last_damage_normal = col.get_normal()
+	last_damage = damage
 	_on_took_damage(damage)
 	return pen_ratio
 
