@@ -1,12 +1,14 @@
-[gd_scene load_steps=9 format=3 uid="uid://vk1criqck6cx"]
+[gd_scene load_steps=12 format=3 uid="uid://vk1criqck6cx"]
 
 [ext_resource type="Script" path="res://Scenes/Enemies/robots/combat_roomba.gd" id="1_f1cah"]
 [ext_resource type="PackedScene" uid="uid://dr48wela8mtxd" path="res://Scenes/Guns/AK47-Projectile/AK47-Projectile.tscn" id="2_q4rc2"]
 [ext_resource type="PackedScene" uid="uid://bbjimpqtecww7" path="res://Scenes/Enemies/robots/combat-roomba.glb" id="3_wwy82"]
+[ext_resource type="Script" path="res://Scenes/Enemies/robots/corpse_container.gd" id="4_brkc6"]
+[ext_resource type="PackedScene" uid="uid://b6xejgxv7attc" path="res://Scenes/items/backpacks/large/large_backpack.tscn" id="5_may0k"]
+[ext_resource type="PackedScene" uid="uid://dsu2lajkgpbva" path="res://Scenes/items/materials/polymer_pile/polymer_pile.tscn" id="6_guh24"]
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_o5wup"]
-radius = 0.138282
-height = 2.22748
+[sub_resource type="BoxShape3D" id="BoxShape3D_wvt7k"]
+size = Vector3(0.3, 2.1, 0.3)
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_cn06a"]
 height = 6.0
@@ -37,9 +39,13 @@ animate_physical_bones = false
 
 [node name="Physical Bone Bone" type="PhysicalBone3D" parent="combat-roomba/Armature/Skeleton3D" index="1"]
 transform = Transform3D(1, 0, 0, 0, 0, -1, 0, 1, 0, 0, 0.222436, 0)
+collision_layer = 5
 joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.222436)
 body_offset = Transform3D(1, 0, 0, 0, 0, -1, 0, 1, 0, 0, 0.222436, 0)
 bone_name = "Bone"
+script = ExtResource("4_brkc6")
+container_size = 49
+loot_scenes = Array[PackedScene]([ExtResource("5_may0k"), ExtResource("6_guh24")])
 
 [node name="Head" type="Node3D" parent="combat-roomba/Armature/Skeleton3D/Physical Bone Bone"]
 transform = Transform3D(-1, 0, 8.74228e-08, -8.74228e-08, 0, -1, 0, -1, 0, 0.0238471, 2.08478e-09, -1.87783)
@@ -52,7 +58,7 @@ spot_angle = 5.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="combat-roomba/Armature/Skeleton3D/Physical Bone Bone"]
 transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, 0, 0, -0.703788)
-shape = SubResource("CapsuleShape3D_o5wup")
+shape = SubResource("BoxShape3D_wvt7k")
 
 [node name="FireTimer" type="Timer" parent="."]
 autostart = true
