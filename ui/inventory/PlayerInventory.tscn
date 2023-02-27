@@ -46,6 +46,14 @@ size_flags_horizontal = 8
 script = ExtResource("3_qkcqk")
 types = Array[int]([1])
 
+[node name="ArmorSlot" type="Panel" parent="PanelContainer/InventoryBase/EquipmentSlots"]
+modulate = Color(0.686275, 0.686275, 0.686275, 1)
+custom_minimum_size = Vector2(160, 160)
+layout_mode = 2
+size_flags_horizontal = 8
+script = ExtResource("3_qkcqk")
+types = Array[int]([3])
+
 [node name="GunSlot1" type="Panel" parent="PanelContainer/InventoryBase/EquipmentSlots"]
 modulate = Color(0.686275, 0.686275, 0.686275, 1)
 custom_minimum_size = Vector2(256, 128)

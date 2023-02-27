@@ -16,6 +16,9 @@ var gun_slot_2:Gun
 
 @onready var shoulder_anchor:Node3D = $player_default_mesh/shoulder_anchor
 @onready var drop_location:Node3D = $drop_location
+@onready var armor_anchor:Node3D = $HitBox/ChestBoneAttachment/armor_anchor
+@onready var backpack_anchor:Node3D = $HitBox/ChestBoneAttachment/backpack_anchor
+@onready var center_mass:Node3D = $center_mass
 
 var mouseSensibility = 1200
 var mouse_sensitivity = 0.005
@@ -107,8 +110,10 @@ func _on_item_equipped(slot_name:String, item_equipped:ItemComponent):
 			move_gun_to_player_model(gun_slot_2) 
 		"BackpackSlot":
 			item_equipped.picked_up()
-			item_equipped.get_parent().reparent(self,false)
-			item_equipped.get_parent().visible = false
+			move_backpack_to_anchor(item_equipped.get_parent())
+		"ArmorSlot":
+			item_equipped.picked_up()
+			move_armor_to_anchor(item_equipped.get_parent())
 	pass
 	
 func _on_item_picked_up(item_picked_up:ItemComponent):
@@ -167,6 +172,17 @@ func move_gun_to_shoulder(gun:Gun):
 		gun.transform = Transform3D.IDENTITY
 		gun.rotate_x(-PI/2)
 		pass
+
+func move_armor_to_anchor(armor:Node3D):
+	if armor:
+		armor.reparent(armor_anchor)
+		armor.transform = Transform3D.IDENTITY
+		pass
+		
+func move_backpack_to_anchor(backpack:Node3D):
+	if backpack:
+		backpack.reparent(backpack_anchor)
+		backpack.transform = Transform3D.IDENTITY
 
 func drop_equipped_gun():
 	if equipped_gun:

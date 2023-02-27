@@ -5,7 +5,8 @@ class_name ItemComponent
 enum ItemType {
 	GUN,
 	BACKPACK,
-	MATERIAL
+	MATERIAL,
+	ARMOR
 }
 signal stack_changed(newStack:int)
 
