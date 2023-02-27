@@ -80,6 +80,12 @@ bone_idx = 3
 use_external_skeleton = true
 external_skeleton = NodePath("../../player_default_mesh/metarig/Skeleton3D")
 
+[node name="backpack_anchor" type="Node3D" parent="HitBox/ChestBoneAttachment"]
+transform = Transform3D(-1, -4.50452e-08, -1.74289e-07, 1.20706e-09, 0.966487, -0.256716, 1.80011e-07, -0.256716, -0.966487, 1.32703e-08, -0.541344, 0.0759162)
+
+[node name="armor_anchor" type="Node3D" parent="HitBox/ChestBoneAttachment"]
+transform = Transform3D(-1, -4.50452e-08, -1.74289e-07, 1.20706e-09, 0.966487, -0.256716, 1.80011e-07, -0.256716, -0.966487, 1.84545e-08, 0.0337971, 0.100859)
+
 [node name="Area3D" type="CharacterBody3D" parent="HitBox/ChestBoneAttachment"]
 transform = Transform3D(1, -3.55271e-15, 0, -3.55271e-15, 1, -2.98023e-08, 1.42109e-14, 2.98023e-08, 1, 0, 0, 0)
 collision_layer = 2
@@ -345,5 +351,8 @@ collider_path = NodePath("../../CollisionShape3d")
 
 [node name="drop_location" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.329041, -1.47753)
+
+[node name="center_mass" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.515017, 0)
 
 [editable path="player_default_mesh"]

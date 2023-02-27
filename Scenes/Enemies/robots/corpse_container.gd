@@ -20,6 +20,7 @@ func _ready():
 	#	await loot1_node.ready
 		self.add_child(loot1_node)
 		var loot1_item_comp = loot1_node.get_node("ItemComponent")
+		loot1_item_comp.picked_up()
 		loot_item_comps.append(loot1_item_comp)
 	fill_container()
 	
