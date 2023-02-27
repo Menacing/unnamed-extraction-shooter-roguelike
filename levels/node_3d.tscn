@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://ctahsvj88g1om"]
+[gd_scene load_steps=26 format=3 uid="uid://ctahsvj88g1om"]
 
 [ext_resource type="PackedScene" uid="uid://d08aatgxmymbf" path="res://Scenes/Player/player.tscn" id="1_eisjc"]
 [ext_resource type="Script" path="res://levels/node_3d.gd" id="1_lmeut"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://dbtbpwqmn424f" path="res://Scenes/containers/dev_chest.tscn" id="12_ibcly"]
 [ext_resource type="PackedScene" uid="uid://dsu2lajkgpbva" path="res://Scenes/items/materials/polymer_pile/polymer_pile.tscn" id="13_bf20g"]
 [ext_resource type="PackedScene" uid="uid://vk1criqck6cx" path="res://Scenes/Enemies/robots/combat_roomba.tscn" id="14_1p3tt"]
+[ext_resource type="PackedScene" uid="uid://c2mgc1vc3603e" path="res://Scenes/items/armor/light/light_armor_1.tscn" id="14_poylk"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_6g5uc"]
 
@@ -155,6 +156,9 @@ material = SubResource("StandardMaterial3D_2gtf0")
 [node name="AK47-Projectile" parent="." instance=ExtResource("10_b8533")]
 transform = Transform3D(0.00366516, 0.999993, 0, -0.999993, 0.00366516, 0, 0, 0, 1, 4.22279, 5.2201, 2.12443)
 
+[node name="762x39mm-case" parent="AK47-Projectile" index="3"]
+transform = Transform3D(-5.42999e-07, 0.15, 0, -0.15, -5.42999e-07, 0, 0, 0, 0.15, -0.00116475, 0.0538154, 0.101949)
+
 [node name="AK47-Projectile2" parent="." instance=ExtResource("10_b8533")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.26439, 1.96032, -5.15273)
 
@@ -193,6 +197,9 @@ stack = 5
 
 [node name="combat_roomba" parent="." instance=ExtResource("14_1p3tt")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28.2642, 0.0788286, -27.5037)
+
+[node name="light_armor_1" parent="." instance=ExtResource("14_poylk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.69185, 0.548223, -8.79357)
 
 [editable path="AK47-Projectile"]
 [editable path="AK47-Projectile/gun"]
