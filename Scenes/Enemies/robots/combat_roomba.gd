@@ -9,7 +9,15 @@ var hf_pos: Vector3
 @export var health:float = 100.0
 var run_speed = 3
 var accel = 3
-var player_aimpoint:Node3D = null
+var turret_rotation:float = 1.0
+var body_rotation:float = .6
+var player:Player
+var player_aimpoint:Node3D:
+	get:
+		if player:
+			return player.center_mass
+		else:
+			return null
 @onready var nav_agent:NavigationAgent3D = $NavigationAgent3D
 @onready var repath_timer:Timer = $RepathTimer
 @onready var skeleton:Skeleton3D = $"combat-roomba/Armature/Skeleton3D"
@@ -41,8 +49,7 @@ func set_movement_target(movement_target : Vector3):
 func _physics_process(delta):
 	if alive:
 		if player_aimpoint:
-			head.look_at(player_aimpoint.global_transform.origin, Vector3.UP)
-			gun.look_at(player_aimpoint.global_transform.origin, Vector3.UP)
+			Helpers.slow_rotate_to_point(head, player_aimpoint.global_transform.origin, turret_rotation, delta)
 			
 		
 		if nav_agent.is_navigation_finished():
@@ -50,6 +57,8 @@ func _physics_process(delta):
 		var current_location = global_transform.origin
 		var next_location = nav_agent.get_next_path_position()
 		var new_velocity = (next_location - current_location).normalized() * run_speed
+		
+		Helpers.slow_rotate_to_point(self, Vector3(next_location.x,0,next_location.z), body_rotation, delta)
 		
 		velocity = velocity.move_toward(new_velocity, .25)
 		move_and_slide()
@@ -90,14 +99,14 @@ func _on_hit(damage = 0.0, pen_rating = 0, col:KinematicCollision3D = null) -> f
 
 func _on_detect_radius_body_entered(body):
 	if body is Player:
-		player_aimpoint = body.center_mass
+		player = body
 		set_movement_target(player_aimpoint.global_transform.origin)
 		repath_timer.start()
 
 
 func _on_detect_radius_body_exited(body):
 	if body is Player:
-		player_aimpoint = null
+		player = null
 		set_movement_target(self.global_transform.origin)
 		repath_timer.stop()
 

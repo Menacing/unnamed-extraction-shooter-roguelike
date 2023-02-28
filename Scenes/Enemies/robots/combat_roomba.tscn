@@ -11,7 +11,7 @@
 size = Vector3(0.3, 2.1, 0.3)
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_cn06a"]
-height = 6.0
+height = 25.0
 radius = 50.0
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_vlk8q"]
@@ -61,6 +61,7 @@ transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, 0, 0, -0.703788)
 shape = SubResource("BoxShape3D_wvt7k")
 
 [node name="FireTimer" type="Timer" parent="."]
+wait_time = 0.5
 autostart = true
 
 [node name="DetectRadius" type="Area3D" parent="."]
