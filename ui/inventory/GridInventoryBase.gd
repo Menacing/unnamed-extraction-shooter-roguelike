@@ -11,6 +11,7 @@ var backpack_cell = preload("res://ui/inventory/backpack_cell.tscn")
 var _max_height = 8
 
 func _ready():
+	Events.item_destroyed.connect(_on_item_destroyed)
 	var s = get_grid_size(self)
 	grid_width = s.x
 	grid_height = s.y
@@ -142,4 +143,14 @@ func drop_item(ito:InventoryTransferObject) -> void:
 	ito.inv_item.queue_free()
 	Events.item_dropped.emit(ito.item_component)
 	pass
-	#TODO Signal to world to drop item into scene
+
+func _on_item_destroyed(item_comp:ItemComponent):
+	for ito in ito_items:
+		if item_comp == ito.item_comp:
+			var item_pos = get_item_pos(ito)	
+			var g_pos = pos_to_grid_coord(item_pos)
+			var item_size = get_grid_size(ito.inv_item)
+			set_grid_space(g_pos.x, g_pos.y, item_size.x, item_size.y, null)
+			ito_items.remove_at(ito_items.find(ito))
+			ito.queue_free()
+			return

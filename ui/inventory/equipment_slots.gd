@@ -6,6 +6,7 @@ class_name EquipmentSlots
 var items = {}
 
 func _ready() -> void:
+	Events.item_destroyed.connect(_on_item_destroyed)
 	for slot in slots:
 		items[slot.name] = null
 
@@ -55,4 +56,12 @@ func get_item_under_pos(pos) -> InventoryTransferObject:
 		if thing != null and thing.inv_item.get_global_rect().has_point(pos):
 			return thing
 	return null
+	
+func _on_item_destroyed(item_comp:ItemComponent):
+	for ito_key in items:
+		var ito = items[ito_key]
+		if ito and item_comp == ito.item_component:
+			items[ito_key] = null
+			ito.inv_item.queue_free()
+			return
 

@@ -97,11 +97,18 @@ func pickup_item(item_comp:ItemComponent):
 		item.stacks = item_comp.stack
 	else: item.show_count = false
 	
+	if item_comp.max_durability > 1:
+		item.show_durability = true
+		item.durability = item_comp.durability
+		item.max_durability = item_comp.max_durability
+	else: item.show_durability = false
+	
 	add_child(item)
 	var ito = InventoryTransferObject.new()
 	ito.inv_item = item
 	ito.item_component = item_comp
 	item_comp.stack_changed.connect(ito.inv_item._on_count_changed)
+	item_comp.durability_changed.connect(ito.inv_item._on_durability_changed)
 	#TODO First check item slots
 	var item_slot = item_comp.type
 	if eq_slots:
