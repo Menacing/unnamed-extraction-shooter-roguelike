@@ -117,6 +117,7 @@ func dropped():
 	var parent = get_parent()
 	world_collider.disabled = false
 	parent.freeze = false
+	parent.visible = true
 	set_material_overlay(item_highlight_m)
 	if parent is RigidBody3D:
 		parent.apply_torque_impulse(Vector3.FORWARD)

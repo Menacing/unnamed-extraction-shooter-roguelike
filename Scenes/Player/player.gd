@@ -164,6 +164,7 @@ func move_gun_to_hands(gun:Gun):
 		gun.reparent(cam,false)
 		Events.fire_mode_changed.emit(gun.current_fire_mode)
 		Events.ammo_count_changed.emit(gun.magazine)
+		gun.visible = true
 
 func move_gun_to_shoulder(gun:Gun):
 	shoulder_gun = gun
@@ -171,18 +172,21 @@ func move_gun_to_shoulder(gun:Gun):
 		gun.reparent(shoulder_anchor)
 		gun.transform = Transform3D.IDENTITY
 		gun.rotate_x(-PI/2)
+		gun.visible = true
 		pass
 
 func move_armor_to_anchor(armor:Node3D):
 	if armor:
 		armor.reparent(armor_anchor)
 		armor.transform = Transform3D.IDENTITY
+		armor.visible = true
 		pass
 		
 func move_backpack_to_anchor(backpack:Node3D):
 	if backpack:
 		backpack.reparent(backpack_anchor)
 		backpack.transform = Transform3D.IDENTITY
+		backpack.visible = true
 
 func drop_equipped_gun():
 	if equipped_gun:

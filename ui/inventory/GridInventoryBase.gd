@@ -146,7 +146,7 @@ func drop_item(ito:InventoryTransferObject) -> void:
 
 func _on_item_destroyed(item_comp:ItemComponent):
 	for ito in ito_items:
-		if item_comp == ito.item_comp:
+		if item_comp == ito.item_component:
 			var item_pos = get_item_pos(ito)	
 			var g_pos = pos_to_grid_coord(item_pos)
 			var item_size = get_grid_size(ito.inv_item)
