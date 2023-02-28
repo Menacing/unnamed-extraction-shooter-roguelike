@@ -85,6 +85,7 @@ shape = SubResource("BoxShape3D_hycai")
 disabled = true
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+agent_height_offset = 0.2
 debug_enabled = true
 
 [node name="RepathTimer" type="Timer" parent="."]
