@@ -9,8 +9,8 @@ var hf_pos: Vector3
 @export var health:float = 100.0
 var run_speed = 3
 var accel = 3
-var turret_rotation:float = 1.0
-var body_rotation:float = .6
+var turret_rotation:float = 2.0
+var body_rotation:float = 1.0
 var player:Player
 var player_aimpoint:Node3D:
 	get:
@@ -50,6 +50,7 @@ func _physics_process(delta):
 	if alive:
 		if player_aimpoint:
 			Helpers.slow_rotate_to_point(head, player_aimpoint.global_transform.origin, turret_rotation, delta)
+			Helpers.slow_rotate_to_point(gun, player_aimpoint.global_transform.origin, turret_rotation, delta)
 			
 		
 		if nav_agent.is_navigation_finished():
@@ -58,7 +59,7 @@ func _physics_process(delta):
 		var next_location = nav_agent.get_next_path_position()
 		var new_velocity = (next_location - current_location).normalized() * run_speed
 		
-		Helpers.slow_rotate_to_point(self, Vector3(next_location.x,0,next_location.z), body_rotation, delta)
+		Helpers.slow_rotate_to_point_flat(self, next_location, body_rotation, delta)
 		
 		velocity = velocity.move_toward(new_velocity, .25)
 		move_and_slide()
@@ -80,7 +81,9 @@ func die():
 	skeleton.physical_bones_start_simulation()
 	var damage_vector = last_damage_normal.normalized() * 5
 	PhysicsServer3D.body_set_state(physical_bone.get_rid(), PhysicsServer3D.BODY_STATE_LINEAR_VELOCITY, damage_vector)
-	
+	$CollisionShape3D.disabled = true
+	$CollisionShape3D2.disabled = true
+	$CollisionShape3D3.disabled = true
 #	var inv_node = inv.instantiate()
 #	inv_node.container_size = container_size
 #	Events.create_inventory.emit(inv_node,self.name)
