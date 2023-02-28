@@ -23,7 +23,7 @@ func _physics_process(delta):
 	if col:
 		print(col)
 		var collider = col.get_collider()
-		if wcollider and collider.has_method("_on_hit"):
+		if collider and collider.has_method("_on_hit"):
 			var pen_ratio = collider._on_hit(current_damage, pen_rating, col) #col.get_position(), col.get_normal())
 			var new_speed = current_speed * pen_ratio
 			current_damage = pow(new_speed/current_speed,2) * current_damage

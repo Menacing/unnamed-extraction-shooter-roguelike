@@ -30,6 +30,37 @@ var show_count:bool = false:
 	set(value):
 		_show_count = value
 		count.visible = _show_count
+		
+var _durability_label:Label
+var durability_label:Label:
+	get:
+		if !_durability_label:
+			_durability_label = get_node("Durability")
+		return _durability_label
+		
+var _show_durability:bool
+var show_durability:bool = false:
+	get:
+		return _show_durability
+	set(value):
+		_show_durability = value
+		durability_label.visible = _show_durability
+		
+var _durability:int = 0
+var durability:int:
+	get:
+		return _durability
+	set(value):
+		_durability = value
+		_on_durability_changed(_durability, max_durability)
+		
+var _max_durability:int = 0
+var max_durability:int:
+	get:
+		return _max_durability
+	set(value):
+		_max_durability = value
+		_on_durability_changed(durability, _max_durability)
 
 var contextItems:Array[Dictionary] = [
 	{
@@ -64,6 +95,9 @@ func _on_context_menu_pressed(id:int):
 
 func _on_count_changed(new_count:int):
 	count.text = str(new_count)
+	
+func _on_durability_changed(new_durability:int, max_durability:int):
+	durability_label.text = str(new_durability) + "/" + str(max_durability)
 
 func _make_custom_tooltip(for_text):
 	var label = RichTextLabel.new()

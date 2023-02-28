@@ -9,6 +9,7 @@ enum ItemType {
 	ARMOR
 }
 signal stack_changed(newStack:int)
+signal durability_changed(new_durability:int, max_durability:int)
 
 @export var id:String
 @export var type:ItemType
@@ -22,6 +23,16 @@ var _stack:int = 1
 		_stack = value
 		stack_changed.emit(_stack)
 @export var max_stack:int = 1
+var _durability:int = 1
+@export var durability:int = 1:
+	get:
+		return _durability
+	set(value):
+		_durability = value
+		durability_changed.emit(_durability,max_durability)
+		if _durability < 0:
+			self.destroy()
+@export var max_durability:int = 1
 @export var column:int
 @export var column_span:int
 @export var row:int
@@ -106,6 +117,7 @@ func dropped():
 	var parent = get_parent()
 	world_collider.disabled = false
 	parent.freeze = false
+	parent.visible = true
 	set_material_overlay(item_highlight_m)
 	if parent is RigidBody3D:
 		parent.apply_torque_impulse(Vector3.FORWARD)
@@ -120,6 +132,7 @@ func picked_up():
 
 	
 func destroy():
+	Events.item_destroyed.emit(self)
 	var parent = self.get_parent()
 	if parent:
 		parent.call_deferred("queue_free")
