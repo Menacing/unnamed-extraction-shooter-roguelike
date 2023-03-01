@@ -6,3 +6,4 @@ class_name GunStats
 @export var fire_modes:Array
 @export var ads_accel:float
 @export var ads_fov:float
+@export var moa:float

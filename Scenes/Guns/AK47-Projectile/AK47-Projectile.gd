@@ -19,6 +19,7 @@ func _init():
 	ak_stats.base_recoil = Vector2(0,0.025)
 	ak_stats.fire_modes = ["semi","auto"]
 	ak_stats.recoil_variability = Vector2(0.025, 0.0125)
+	ak_stats.moa = 5.0
 	gun_stats = ak_stats
 	
 
@@ -42,10 +43,10 @@ func fireGun():
 		var shoot_origin = muzzle.global_transform.origin
 		
 		var bulletInst = _bullet_scene.instantiate()
+		bulletInst.moa = gun_stats.moa
 		bulletInst.set_as_top_level(true)		
 		get_parent().add_child(bulletInst)
 		bulletInst.global_transform.origin = shoot_origin
-		
 		magazine -= 1
 		$AnimationPlayer.play("fire")
 		fire_timer.start()

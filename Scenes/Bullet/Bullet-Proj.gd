@@ -4,6 +4,7 @@ extends RigidBody3D
 @export var initial_damage = 30.0
 @export var pen_rating: int = 5
 @export var k: float = 0.001289
+@export var moa:float
 
 var current_speed: float
 var current_damage: float
@@ -13,6 +14,7 @@ var elapsed_time: float = 0.0
 func _ready():
 	current_speed = initial_speed
 	current_damage = initial_damage
+	Helpers.random_angle_deviation_moa(self, moa,moa)
 #	connect("body_entered", _on_body_entered)
 
 func _physics_process(delta):

@@ -25,6 +25,9 @@ var player_aimpoint:Node3D:
 var alive = true
 var last_damage_normal:Vector3
 var last_damage:float
+@export var vert_moa:float = 600
+@export var hor_moa:float = 600
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -67,6 +70,7 @@ func _physics_process(delta):
 
 func _on_fire_timer_timeout():
 	if player_aimpoint and alive and gun:
+		Helpers.random_angle_deviation_moa(gun,vert_moa,hor_moa)
 		gun.fireGun()
 
 func _on_took_damage(damage:float):
@@ -117,3 +121,4 @@ func _on_detect_radius_body_exited(body):
 func _on_repath_timer_timeout():
 	if player_aimpoint:
 		set_movement_target(player_aimpoint.global_transform.origin)
+		
