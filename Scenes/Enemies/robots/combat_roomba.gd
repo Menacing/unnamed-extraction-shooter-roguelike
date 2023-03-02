@@ -21,8 +21,20 @@ var player_aimpoint:Node3D:
 		else:
 			return null
 var _last_los_check_result:bool = false
+var last_los_check_result:bool:
+	get:
+		return _last_los_check_result
+	set(value):
+		if value != _last_los_check_result:
+			_last_los_check_result = value
+			los_changed(value)
+var reaction_timed_out:bool = false
+var can_react:bool:
+	get:
+		return last_los_check_result and reaction_timed_out
 @onready var nav_agent:NavigationAgent3D = $NavigationAgent3D
 @onready var repath_timer:Timer = $RepathTimer
+@onready var reaction_timer:Timer = $ReactionTimer
 @onready var skeleton:Skeleton3D = $"combat-roomba/Armature/Skeleton3D"
 @onready var physical_bone:PhysicalBone3D = $"combat-roomba/Armature/Skeleton3D/Physical Bone Bone"
 var alive = true
@@ -56,8 +68,8 @@ func set_movement_target(movement_target : Vector3):
 
 func _physics_process(delta):
 	if alive:
-		_last_los_check_result = has_los_to_player()
-		if _last_los_check_result:
+		last_los_check_result = has_los_to_player()
+		if can_react:
 			Helpers.slow_rotate_to_point(head, player_aimpoint.global_transform.origin, turret_rotation, delta)
 			Helpers.slow_rotate_to_point(gun, player_aimpoint.global_transform.origin, turret_rotation, delta)
 			
@@ -75,7 +87,7 @@ func _physics_process(delta):
 
 
 func _on_fire_timer_timeout():
-	if _last_los_check_result and alive and gun:
+	if can_react and alive and gun:
 		Helpers.random_angle_deviation_moa(gun,vert_moa,hor_moa)
 		gun.fireGun()
 
@@ -132,7 +144,7 @@ func _on_repath_timer_timeout():
 
 func set_new_path():
 	if player:
-		if _last_los_check_result:
+		if can_react:
 			set_movement_target(player_aimpoint.global_transform.origin)
 	else:
 		set_movement_target(self.global_transform.origin)
@@ -143,3 +155,15 @@ func has_los_to_player() -> bool:
 		return los_result
 	else:
 		return false
+		
+func los_changed(new_los:bool):
+	if new_los:
+		if reaction_timer.is_stopped():
+			reaction_timer.start()
+	else:
+		if reaction_timer.is_stopped():
+			reaction_timed_out = false
+
+
+func _on_reaction_timer_timeout():
+	reaction_timed_out = true
