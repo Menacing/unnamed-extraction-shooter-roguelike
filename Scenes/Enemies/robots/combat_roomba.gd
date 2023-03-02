@@ -12,12 +12,15 @@ var accel = 3
 var turret_rotation:float = 2.0
 var body_rotation:float = 1.0
 var player:Player
+@onready var exclusions:Array[RID]
+var self_exclusions:Array[RID]
 var player_aimpoint:Node3D:
 	get:
 		if player:
 			return player.center_mass
 		else:
 			return null
+var _last_los_check_result:bool = false
 @onready var nav_agent:NavigationAgent3D = $NavigationAgent3D
 @onready var repath_timer:Timer = $RepathTimer
 @onready var skeleton:Skeleton3D = $"combat-roomba/Armature/Skeleton3D"
@@ -31,6 +34,8 @@ var last_damage:float
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	self_exclusions = Helpers.get_all_collision_object_3d_recursive(self)
+	exclusions = self_exclusions
 	if gun_scene:
 		gun = gun_scene.instantiate()
 		var gun_item_comp:ItemComponent = gun.get_node("ItemComponent")
@@ -51,7 +56,8 @@ func set_movement_target(movement_target : Vector3):
 
 func _physics_process(delta):
 	if alive:
-		if player_aimpoint:
+		_last_los_check_result = has_los_to_player()
+		if _last_los_check_result:
 			Helpers.slow_rotate_to_point(head, player_aimpoint.global_transform.origin, turret_rotation, delta)
 			Helpers.slow_rotate_to_point(gun, player_aimpoint.global_transform.origin, turret_rotation, delta)
 			
@@ -69,7 +75,7 @@ func _physics_process(delta):
 
 
 func _on_fire_timer_timeout():
-	if player_aimpoint and alive and gun:
+	if _last_los_check_result and alive and gun:
 		Helpers.random_angle_deviation_moa(gun,vert_moa,hor_moa)
 		gun.fireGun()
 
@@ -107,18 +113,33 @@ func _on_hit(damage = 0.0, pen_rating = 0, col:KinematicCollision3D = null) -> f
 func _on_detect_radius_body_entered(body):
 	if body is Player:
 		player = body
-		set_movement_target(player_aimpoint.global_transform.origin)
+		var player_collider_rids = Helpers.get_all_collision_object_3d_recursive(player)
+		exclusions.append_array(player_collider_rids)
 		repath_timer.start()
+		set_new_path()
 
 
 func _on_detect_radius_body_exited(body):
 	if body is Player:
 		player = null
+		exclusions = self_exclusions
 		set_movement_target(self.global_transform.origin)
 		repath_timer.stop()
 
 
 func _on_repath_timer_timeout():
-	if player_aimpoint:
-		set_movement_target(player_aimpoint.global_transform.origin)
-		
+	set_new_path()
+
+func set_new_path():
+	if player:
+		if _last_los_check_result:
+			set_movement_target(player_aimpoint.global_transform.origin)
+	else:
+		set_movement_target(self.global_transform.origin)
+
+func has_los_to_player() -> bool:
+	if player:
+		var los_result = Helpers.los_to_point(head,player.los_check_locations,.6,exclusions)
+		return los_result
+	else:
+		return false

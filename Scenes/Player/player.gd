@@ -19,6 +19,7 @@ var gun_slot_2:Gun
 @onready var armor_anchor:Node3D = $HitBox/ChestBoneAttachment/armor_anchor
 @onready var backpack_anchor:Node3D = $HitBox/ChestBoneAttachment/backpack_anchor
 @onready var center_mass:Node3D = $center_mass
+var los_check_locations:Array[Node3D] = []
 
 var mouseSensibility = 1200
 var mouse_sensitivity = 0.005
@@ -98,6 +99,15 @@ func _ready():
 	Events.item_removed.connect(_on_item_removed)
 	Events.player_inventory_visibility.emit(toggle_inv_f)
 	Events.set_health.emit(health,max_health)
+	
+	los_check_locations.append($HitBox/HeadBoneAttachment/eyes)
+	los_check_locations.append($HitBox/RightFootBoneAttachment)
+	los_check_locations.append($HitBox/LeftFootBoneAttachment)
+	los_check_locations.append($center_mass)
+	los_check_locations.append($HitBox/RightLowerArmBoneAttachment/r_hand)
+	los_check_locations.append($HitBox/LeftLowerArmBoneAttachment/l_hand)
+	
+	
 
 func _on_item_equipped(slot_name:String, item_equipped:ItemComponent):
 	item_equipped.picked_up()
