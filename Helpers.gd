@@ -29,18 +29,21 @@ func los_to_point(target:Node3D, sources:Array[Node3D], threshold:float, exclusi
 	var num_sources = sources.size()
 	var num_los = 0.0
 	var space_state = target.get_world_3d().direct_space_state
-	var target_global_pos = target.global_position
-	for source in sources:
-		var query = PhysicsRayQueryParameters3D.create(source.global_transform.origin,\
-			target_global_pos)
-		if exclusions.size() > 0:
-			query.exclude = exclusions
-		var result = space_state.intersect_ray(query)
-		if result.is_empty():
-			num_los += 1.0
-		pass
-	if (num_los/num_sources > threshold):
-		return true
+	if space_state:
+		var target_global_pos = target.global_position
+		for source in sources:
+			var query = PhysicsRayQueryParameters3D.create(source.global_transform.origin,\
+				target_global_pos)
+			if exclusions.size() > 0:
+				query.exclude = exclusions
+			var result = space_state.intersect_ray(query)
+			if result.is_empty():
+				num_los += 1.0
+			pass
+		if (num_los/num_sources > threshold):
+			return true
+		else:
+			return false
 	else:
 		return false
 
