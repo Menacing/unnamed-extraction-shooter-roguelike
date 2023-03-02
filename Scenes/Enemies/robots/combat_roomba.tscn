@@ -91,9 +91,13 @@ debug_enabled = true
 [node name="RepathTimer" type="Timer" parent="."]
 wait_time = 2.0
 
+[node name="ReactionTimer" type="Timer" parent="."]
+one_shot = true
+
 [connection signal="timeout" from="FireTimer" to="." method="_on_fire_timer_timeout"]
 [connection signal="body_entered" from="DetectRadius" to="." method="_on_detect_radius_body_entered"]
 [connection signal="body_exited" from="DetectRadius" to="." method="_on_detect_radius_body_exited"]
 [connection signal="timeout" from="RepathTimer" to="." method="_on_repath_timer_timeout"]
+[connection signal="timeout" from="ReactionTimer" to="." method="_on_reaction_timer_timeout"]
 
 [editable path="combat-roomba"]
