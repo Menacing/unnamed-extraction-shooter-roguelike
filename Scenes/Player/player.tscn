@@ -108,6 +108,9 @@ bone_idx = 6
 use_external_skeleton = true
 external_skeleton = NodePath("../../player_default_mesh/metarig/Skeleton3D")
 
+[node name="eyes" type="Node3D" parent="HitBox/HeadBoneAttachment"]
+transform = Transform3D(1, 4.23516e-22, -3.19744e-14, -1.55642e-20, 1, 0, 3.19744e-14, 0, 1, -8.91395e-10, 0.108316, 0.0203927)
+
 [node name="Area3D" type="CharacterBody3D" parent="HitBox/HeadBoneAttachment"]
 collision_layer = 2
 collision_mask = 2
@@ -173,6 +176,9 @@ damage_multiplier = 0.25
 transform = Transform3D(-0.347565, -0.00319474, -0.0315199, -0.00367884, 0.348949, 0.00519785, 0.031467, 0.00550867, -0.347542, -0.0106501, 0.185884, 0.00508951)
 shape = SubResource("CapsuleShape3D_y1jax")
 
+[node name="l_hand" type="Node3D" parent="HitBox/LeftLowerArmBoneAttachment"]
+transform = Transform3D(1, -3.21597e-09, -2.32831e-09, -2.94531e-08, 1, -3.72529e-08, -8.3819e-09, 0, 1, -0.0281311, 0.375863, -0.0124965)
+
 [node name="RightUpperArmBoneAttachment" type="BoneAttachment3D" parent="HitBox"]
 transform = Transform3D(0.497254, 0.867028, 0.0316322, 0.867605, -0.496915, -0.0183656, -0.000204828, 0.0365766, -0.999331, 0.170328, 0.61997, 0.0641427)
 bone_name = "upper_arm.R"
@@ -208,6 +214,9 @@ damage_multiplier = 0.25
 [node name="CollisionShape3D" type="CollisionShape3D" parent="HitBox/RightLowerArmBoneAttachment/Area3D"]
 transform = Transform3D(-0.347565, -0.00319474, -0.0315199, -0.00367884, 0.348949, 0.00519785, 0.031467, 0.00550867, -0.347542, -0.0106501, 0.185884, 0.00508951)
 shape = SubResource("CapsuleShape3D_y1jax")
+
+[node name="r_hand" type="Node3D" parent="HitBox/RightLowerArmBoneAttachment"]
+transform = Transform3D(1, -3.53321e-08, 2.04891e-08, 2.26501e-07, 1, 3.72529e-09, -1.07102e-08, 0, 1, 0.00287616, 0.388184, -0.0130171)
 
 [node name="LeftUpperLegBoneAttachment" type="BoneAttachment3D" parent="HitBox"]
 transform = Transform3D(-1, -3.16177e-08, -2.11833e-07, 3.16734e-08, -1, -0.000262868, -2.11824e-07, -0.000262868, 1, -0.098, 0.0940512, 0.0953857)

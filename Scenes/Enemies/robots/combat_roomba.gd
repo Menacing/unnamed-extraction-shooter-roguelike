@@ -12,6 +12,7 @@ var accel = 3
 var turret_rotation:float = 2.0
 var body_rotation:float = 1.0
 var player:Player
+var exclusions:Array[RID] = []
 var player_aimpoint:Node3D:
 	get:
 		if player:
@@ -107,18 +108,30 @@ func _on_hit(damage = 0.0, pen_rating = 0, col:KinematicCollision3D = null) -> f
 func _on_detect_radius_body_entered(body):
 	if body is Player:
 		player = body
-		set_movement_target(player_aimpoint.global_transform.origin)
+		var player_collider_rids = Helpers.get_all_collision_object_3d_recursive(player)
+		exclusions.append_array(player_collider_rids)
 		repath_timer.start()
+		set_new_path()
 
 
 func _on_detect_radius_body_exited(body):
 	if body is Player:
 		player = null
+		exclusions = [self]
 		set_movement_target(self.global_transform.origin)
 		repath_timer.stop()
 
 
 func _on_repath_timer_timeout():
-	if player_aimpoint:
-		set_movement_target(player_aimpoint.global_transform.origin)
-		
+	set_new_path()
+
+func set_new_path():
+	if player:
+		if has_los_to_player():
+			set_movement_target(player_aimpoint.global_transform.origin)
+		else:
+			set_movement_target(self.global_transform.origin)
+
+func has_los_to_player() -> bool:
+	var los_result = Helpers.los_to_point(self,player.los_check_locations,.6,exclusions)
+	return los_result
