@@ -17,7 +17,6 @@ height = 0.16
 collision_layer = 2147483648
 collision_mask = 2
 script = ExtResource("1_smw6v")
-initial_speed = 70.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("SphereShape3D_a2qmd")

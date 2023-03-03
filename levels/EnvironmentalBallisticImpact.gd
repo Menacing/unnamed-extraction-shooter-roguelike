@@ -1,5 +1,7 @@
 extends Node3D
 
+signal object_hit()
+
 @export var pen_ratio = .8
 @export var armor_rating: int = 6
 @export var _bullet_hole_scene : PackedScene = load("res://Scenes/Bullet/Bullet_hole.tscn")
@@ -31,8 +33,8 @@ func _on_hit(damage = 0.0, pen_rating = 0, col:KinematicCollision3D = null) -> f
 		get_parent().add_child(hit_inst)
 		hit_inst.global_transform.origin = position
 		hit_inst.look_at(normal+position,Vector3.UP)
-	
-	
+
+	object_hit.emit()
 	if pen_rating >= armor_rating:
 		return pen_ratio
 	else:
