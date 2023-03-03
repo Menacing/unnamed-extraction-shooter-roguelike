@@ -19,6 +19,7 @@ func _ready():
 
 func _physics_process(delta):
 #	global_translate(-delta * current_speed * transform.basis.z)
+	var exclusions = self.get_collision_exceptions()
 	elapsed_time += delta
 	var motion_dir = -delta * current_speed * transform.basis.z
 	var col:KinematicCollision3D = move_and_collide(motion_dir,false,0.001,true)
