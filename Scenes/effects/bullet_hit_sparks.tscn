@@ -1,0 +1,56 @@
+[gd_scene load_steps=8 format=3 uid="uid://bkeu20ldmdaph"]
+
+[ext_resource type="Texture2D" uid="uid://c54arqngcy0w7" path="res://Scenes/effects/assets/star_09.png" id="1_lciic"]
+[ext_resource type="Script" path="res://Scenes/effects/bullet_hit_sparks.gd" id="2_sacdh"]
+
+[sub_resource type="Gradient" id="Gradient_x68li"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_7b6vo"]
+gradient = SubResource("Gradient_x68li")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_17vp3"]
+lifetime_randomness = 1.0
+direction = Vector3(0, 0, -1)
+initial_velocity_min = 2.0
+initial_velocity_max = 15.0
+damping_min = 1.25
+damping_max = 1.7
+scale_min = 0.05
+scale_max = 0.07
+color_ramp = SubResource("GradientTexture1D_7b6vo")
+turbulence_noise_strength = 0.1
+turbulence_influence_min = 0.01
+turbulence_influence_max = 0.03
+collision_mode = 1
+collision_friction = 0.0
+collision_bounce = 0.23
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5etis"]
+transparency = 1
+blend_mode = 1
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("1_lciic")
+emission_enabled = true
+emission = Color(0.996078, 0.94902, 0, 1)
+emission_energy_multiplier = 5.0
+billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_2cwom"]
+material = SubResource("StandardMaterial3D_5etis")
+size = Vector2(0.1, 0.1)
+
+[node name="bullet_hit_sparks" type="GPUParticles3D"]
+explosiveness = 1.0
+randomness = 1.0
+process_material = SubResource("ParticleProcessMaterial_17vp3")
+draw_pass_1 = SubResource("QuadMesh_2cwom")
+script = ExtResource("2_sacdh")
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
