@@ -1,7 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://5n7aup1d2u20"]
+[gd_scene load_steps=8 format=3 uid="uid://c30xv3xr7rlmy"]
 
-[ext_resource type="Texture2D" uid="uid://klllooljmbsc" path="res://Scenes/effects/assets/star_06.png" id="1_20swa"]
-[ext_resource type="Script" path="res://Scenes/effects/particle_timeout.gd" id="2_6q4ke"]
+[ext_resource type="Texture2D" uid="uid://klllooljmbsc" path="res://Scenes/effects/assets/star_06.png" id="1_rl8ms"]
+[ext_resource type="Script" path="res://Scenes/effects/particle_timeout.gd" id="2_6ajc5"]
 
 [sub_resource type="Gradient" id="Gradient_6u5e8"]
 offsets = PackedFloat32Array(0, 0.477733, 0.898785, 1)
@@ -29,7 +29,7 @@ transparency = 1
 blend_mode = 1
 shading_mode = 0
 vertex_color_use_as_albedo = true
-albedo_texture = ExtResource("1_20swa")
+albedo_texture = ExtResource("1_rl8ms")
 billboard_mode = 3
 particles_anim_h_frames = 1
 particles_anim_v_frames = 1
@@ -46,7 +46,7 @@ explosiveness = 1.0
 randomness = 1.0
 process_material = SubResource("ParticleProcessMaterial_om0fb")
 draw_pass_1 = SubResource("QuadMesh_ano0j")
-script = ExtResource("2_6q4ke")
+script = ExtResource("2_6ajc5")
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.5
