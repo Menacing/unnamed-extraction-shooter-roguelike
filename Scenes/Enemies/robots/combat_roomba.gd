@@ -4,6 +4,7 @@ extends CharacterBody3D
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 @onready var head = $"combat-roomba/Armature/Skeleton3D/Physical Bone Bone/Head" as Node3D
 @export var gun_scene: PackedScene
+@export var hit_effect: PackedScene = load("res://Scenes/effects/bullet_hit_sparks.tscn")
 var gun: Gun
 var hf_pos: Vector3
 @export var health:float = 100.0
@@ -119,6 +120,15 @@ func _on_hit(damage = 0.0, pen_rating = 0, col:KinematicCollision3D = null) -> f
 	last_damage_normal = col.get_normal()
 	last_damage = damage
 	_on_took_damage(damage)
+	var normal = col.get_normal()
+	
+	if hit_effect:
+		var hit_inst = hit_effect.instantiate() as Node3D
+		hit_inst.set_as_top_level(true)
+		get_parent().add_child(hit_inst)
+		hit_inst.global_transform.origin = position
+		hit_inst.look_at(normal+position,Vector3.UP)
+	
 	return pen_ratio
 
 

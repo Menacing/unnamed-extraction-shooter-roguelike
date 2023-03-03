@@ -13,12 +13,10 @@ material = SubResource("StandardMaterial3D_stsvx")
 radius = 0.008
 height = 0.016
 
-[node name="Bullet-Proj" type="RigidBody3D"]
+[node name="Bullet-Proj" type="CharacterBody3D"]
 collision_layer = 2147483648
 collision_mask = 2
-continuous_cd = true
-can_sleep = false
-lock_rotation = true
+motion_mode = 1
 script = ExtResource("1_i0vxr")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]

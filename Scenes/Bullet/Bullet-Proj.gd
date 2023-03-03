@@ -1,4 +1,4 @@
-extends RigidBody3D
+extends PhysicsBody3D
 
 @export var initial_speed = 700.0
 @export var initial_damage = 30.0
@@ -20,7 +20,8 @@ func _ready():
 func _physics_process(delta):
 #	global_translate(-delta * current_speed * transform.basis.z)
 	elapsed_time += delta
-	var col:KinematicCollision3D = move_and_collide(-delta * current_speed * transform.basis.z,false,0.001,true)
+	var motion_dir = -delta * current_speed * transform.basis.z
+	var col:KinematicCollision3D = move_and_collide(motion_dir,false,0.001,true)
 	#If we collide, get the collider and see if it can be hit or if it can be penetrated
 	if col:
 		print(col)

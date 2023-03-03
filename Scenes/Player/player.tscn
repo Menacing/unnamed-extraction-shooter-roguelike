@@ -65,6 +65,8 @@ visible = false
 target_position = Vector3(0, -2, 0)
 collision_mask = 4
 
+[node name="OmniLight3D" type="OmniLight3D" parent="Head/Camera3d"]
+
 [node name="player_default_mesh" parent="." instance=ExtResource("3_qia5y")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, -0.923009, 0)
 

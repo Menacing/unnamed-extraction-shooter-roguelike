@@ -1,0 +1,47 @@
+[gd_scene load_steps=5 format=3 uid="uid://b1moyw0oyh7lb"]
+
+[ext_resource type="PackedScene" uid="uid://d08aatgxmymbf" path="res://Scenes/Player/player.tscn" id="2_4q3dh"]
+[ext_resource type="Script" path="res://levels/EnvironmentalBallisticImpact.gd" id="2_xajhl"]
+[ext_resource type="PackedScene" uid="uid://dr48wela8mtxd" path="res://Scenes/Guns/AK47-Projectile/AK47-Projectile.tscn" id="3_ueeg0"]
+
+[sub_resource type="Environment" id="Environment_ua77q"]
+sdfgi_enabled = true
+sdfgi_use_occlusion = true
+
+[node name="los_test" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_ua77q")
+
+[node name="Player" parent="WorldEnvironment" instance=ExtResource("2_4q3dh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="WorldEnvironment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 339, 438)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="WorldEnvironment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.599808, 0)
+use_collision = true
+size = Vector3(263.232, 1.19316, 307.768)
+script = ExtResource("2_xajhl")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="WorldEnvironment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 1, -6)
+use_collision = true
+size = Vector3(4, 2, 1)
+script = ExtResource("2_xajhl")
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="WorldEnvironment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.97815, 0.483699, -6)
+use_collision = true
+size = Vector3(4, 0.932594, 1)
+script = ExtResource("2_xajhl")
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="WorldEnvironment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.1643, 1, -6)
+use_collision = true
+size = Vector3(4.43275, 7.1618, 1)
+script = ExtResource("2_xajhl")
+
+[node name="AK47-Projectile" parent="." instance=ExtResource("3_ueeg0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.940746, 0.382154, -2.5105)
