@@ -1,11 +1,11 @@
-[gd_scene load_steps=12 format=3 uid="uid://bqk4l8gkc2u0n"]
+[gd_scene load_steps=12 format=3 uid="uid://by4mxbof8gk0n"]
 
-[ext_resource type="Script" path="res://Scenes/Bullet/Bullet-Proj.gd" id="1_smw6v"]
+[ext_resource type="Script" path="res://Scenes/Bullet/bullet_proj_ray.gd" id="1_mnti4"]
 [ext_resource type="Shader" path="res://Scenes/Bullet/tracer_particle.gdshader" id="2_dqing"]
 [ext_resource type="Shader" path="res://Scenes/Bullet/tracer.gdshader" id="2_vygfs"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_a2qmd"]
-radius = 0.0763696
+radius = 0.001
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_stsvx"]
 albedo_color = Color(0.0980392, 0.65098, 0, 1)
@@ -41,7 +41,8 @@ material = SubResource("ShaderMaterial_bh3am")
 [node name="Bullet-Proj" type="CharacterBody3D"]
 collision_layer = 2147483648
 collision_mask = 2
-script = ExtResource("1_smw6v")
+script = ExtResource("1_mnti4")
+initial_speed = 1000.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("SphereShape3D_a2qmd")

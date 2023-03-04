@@ -4,10 +4,10 @@
 [ext_resource type="PackedScene" uid="uid://dr48wela8mtxd" path="res://Scenes/Guns/AK47-Projectile/AK47-Projectile.tscn" id="1_wchf8"]
 [ext_resource type="Script" path="res://levels/EnvironmentalBallisticImpact.gd" id="2_e6w36"]
 
-[sub_resource type="Environment" id="Environment_8p7aq"]
-
 [sub_resource type="LabelSettings" id="LabelSettings_0dgg1"]
 font_size = 60
+
+[sub_resource type="Environment" id="Environment_8p7aq"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_hiwqs"]
 
@@ -64,6 +64,15 @@ size = Vector3(1, 200, 0.001)
 [node name="ballistic_testing" type="Node3D"]
 script = ExtResource("1_ky07f")
 
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+offset_right = 11.0
+offset_bottom = 20.0
+text = "0
+"
+label_settings = SubResource("LabelSettings_0dgg1")
+
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_8p7aq")
 
@@ -72,14 +81,10 @@ transform = Transform3D(-0.0164578, -0.0488708, 0.99867, 0.0114867, 0.99873, 0.0
 projection = 1
 size = 5.0
 
-[node name="CanvasLayer" type="CanvasLayer" parent="Camera3D"]
-
-[node name="Label" type="Label" parent="Camera3D/CanvasLayer"]
-offset_right = 11.0
-offset_bottom = 20.0
-text = "0
-"
-label_settings = SubResource("LabelSettings_0dgg1")
+[node name="Camera3D2" type="Camera3D" parent="."]
+transform = Transform3D(0.989884, -0.0221147, 0.140142, 0.0115534, 0.997061, 0.075731, -0.141405, -0.0733458, 0.987231, 1.53146, 0.231235, -1.72612)
+current = true
+size = 5.0
 
 [node name="AK47-Projectile" parent="." instance=ExtResource("1_wchf8")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.171724, 0.000634313, -2.05242)
@@ -102,7 +107,7 @@ mesh = SubResource("BoxMesh_iomus")
 skeleton = NodePath("../..")
 
 [node name="StaticBody3D2" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.02775)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.780004)
 collision_layer = 3
 script = ExtResource("2_e6w36")
 pen_ratio = 1.0
@@ -118,7 +123,7 @@ mesh = SubResource("BoxMesh_uaubm")
 skeleton = NodePath("../..")
 
 [node name="StaticBody3D3" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.02775)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.550652)
 collision_layer = 3
 script = ExtResource("2_e6w36")
 pen_ratio = 1.0
@@ -134,7 +139,7 @@ mesh = SubResource("BoxMesh_t45ws")
 skeleton = NodePath("../..")
 
 [node name="StaticBody3D4" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.02775)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.295923)
 collision_layer = 3
 script = ExtResource("2_e6w36")
 pen_ratio = 1.0
@@ -150,7 +155,7 @@ mesh = SubResource("BoxMesh_ltxjk")
 skeleton = NodePath("../..")
 
 [node name="StaticBody3D5" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.38545)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.407014)
 collision_layer = 3
 script = ExtResource("2_e6w36")
 pen_ratio = 1.0
@@ -166,7 +171,7 @@ mesh = SubResource("BoxMesh_h6n6o")
 skeleton = NodePath("../..")
 
 [node name="StaticBody3D6" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.38545)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.176087)
 collision_layer = 3
 script = ExtResource("2_e6w36")
 pen_ratio = 1.0
@@ -182,7 +187,7 @@ mesh = SubResource("BoxMesh_lb4on")
 skeleton = NodePath("../..")
 
 [node name="StaticBody3D7" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.65575)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.221488)
 collision_layer = 3
 script = ExtResource("2_e6w36")
 pen_ratio = 1.0
@@ -198,7 +203,7 @@ mesh = SubResource("BoxMesh_we8vr")
 skeleton = NodePath("../..")
 
 [node name="StaticBody3D8" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.87682)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.25781)
 collision_layer = 3
 script = ExtResource("2_e6w36")
 pen_ratio = 1.0
@@ -232,7 +237,7 @@ mesh = SubResource("BoxMesh_qc7ib")
 skeleton = NodePath("../..")
 
 [node name="FireTimer" type="Timer" parent="."]
-wait_time = 2.0
+wait_time = 3.0
 autostart = true
 
 [connection signal="object_hit" from="StaticBody3D" to="." method="_on_csg_mesh_3d_object_hit"]

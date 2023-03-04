@@ -6,7 +6,7 @@ var hit_count:int = 0:
 	set(value):
 		_hit_count = value
 		hit_count_label.text = str(value)
-@onready var hit_count_label:Label = $Camera3D/CanvasLayer/Label
+@onready var hit_count_label:Label = $CanvasLayer/Label
 @onready var gun:Gun = $"AK47-Projectile"
 var fired_gun:bool = false
 
