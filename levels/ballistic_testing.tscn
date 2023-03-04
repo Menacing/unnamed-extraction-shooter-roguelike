@@ -1,9 +1,8 @@
-[gd_scene load_steps=25 format=3 uid="uid://cbt2em6utvs3s"]
+[gd_scene load_steps=24 format=3 uid="uid://cbt2em6utvs3s"]
 
 [ext_resource type="Script" path="res://levels/ballistic_testing.gd" id="1_ky07f"]
 [ext_resource type="PackedScene" uid="uid://dr48wela8mtxd" path="res://Scenes/Guns/AK47-Projectile/AK47-Projectile.tscn" id="1_wchf8"]
 [ext_resource type="Script" path="res://levels/EnvironmentalBallisticImpact.gd" id="2_e6w36"]
-[ext_resource type="PackedScene" uid="uid://bqk4l8gkc2u0n" path="res://Scenes/Bullet/test_bullet.tscn" id="3_y5c2t"]
 
 [sub_resource type="Environment" id="Environment_8p7aq"]
 
@@ -86,7 +85,6 @@ label_settings = SubResource("LabelSettings_0dgg1")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.171724, 0.000634313, -2.05242)
 gravity_scale = 0.0
 magazine = 30
-_bullet_scene = ExtResource("3_y5c2t")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
 collision_layer = 3
@@ -217,6 +215,7 @@ skeleton = NodePath("../..")
 
 [node name="StaticBody3D9" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, -13)
+visible = false
 collision_layer = 3
 script = ExtResource("2_e6w36")
 pen_ratio = 1.0
@@ -225,11 +224,16 @@ armor_rating = 0
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D9"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -90.387, 0.133)
 shape = SubResource("BoxShape3D_3qf68")
+disabled = true
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D9"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -90.3869, 0.132539)
 mesh = SubResource("BoxMesh_qc7ib")
 skeleton = NodePath("../..")
+
+[node name="FireTimer" type="Timer" parent="."]
+wait_time = 2.0
+autostart = true
 
 [connection signal="object_hit" from="StaticBody3D" to="." method="_on_csg_mesh_3d_object_hit"]
 [connection signal="object_hit" from="StaticBody3D2" to="." method="_on_csg_mesh_3d_object_hit"]
@@ -240,3 +244,4 @@ skeleton = NodePath("../..")
 [connection signal="object_hit" from="StaticBody3D7" to="." method="_on_csg_mesh_3d_object_hit"]
 [connection signal="object_hit" from="StaticBody3D8" to="." method="_on_csg_mesh_3d_object_hit"]
 [connection signal="object_hit" from="StaticBody3D9" to="." method="_on_csg_mesh_3d_object_hit"]
+[connection signal="timeout" from="FireTimer" to="." method="_on_fire_timer_timeout"]

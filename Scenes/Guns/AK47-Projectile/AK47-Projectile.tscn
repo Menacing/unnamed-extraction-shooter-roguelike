@@ -1,7 +1,7 @@
 [gd_scene load_steps=15 format=3 uid="uid://dr48wela8mtxd"]
 
 [ext_resource type="Script" path="res://Scenes/Guns/AK47-Projectile/AK47-Projectile.gd" id="1_10ipx"]
-[ext_resource type="PackedScene" uid="uid://du06cmxlbacls" path="res://Scenes/Bullet/Bullet-Proj.tscn" id="2_7iqg6"]
+[ext_resource type="PackedScene" uid="uid://bqk4l8gkc2u0n" path="res://Scenes/Bullet/test_bullet.tscn" id="2_gmtok"]
 [ext_resource type="Script" path="res://Scenes/item_component.gd" id="3_bdert"]
 [ext_resource type="Texture2D" uid="uid://yilgohsopxy5" path="res://Scenes/Guns/AK47/PixelMuzzelFlash.png" id="4_6e1bk"]
 [ext_resource type="Texture2D" uid="uid://ba6swy08v2qk5" path="res://Scenes/Guns/AK47-Projectile/ak48_img.png" id="4_cn0a3"]
@@ -149,7 +149,7 @@ disable_mode = 1
 collision_layer = 5
 collision_mask = 5
 script = ExtResource("1_10ipx")
-_bullet_scene = ExtResource("2_7iqg6")
+_bullet_scene = ExtResource("2_gmtok")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(-4.37114e-08, 0, -1, -0.0798684, 0.996805, 3.49116e-09, 0.996805, 0.0798684, -4.35718e-08, 0, -0.0521243, 0.115222)
