@@ -237,7 +237,7 @@ mesh = SubResource("BoxMesh_qc7ib")
 skeleton = NodePath("../..")
 
 [node name="FireTimer" type="Timer" parent="."]
-wait_time = 3.0
+wait_time = 0.2
 autostart = true
 
 [connection signal="object_hit" from="StaticBody3D" to="." method="_on_csg_mesh_3d_object_hit"]

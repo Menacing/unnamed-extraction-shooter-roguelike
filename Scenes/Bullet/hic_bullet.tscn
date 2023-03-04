@@ -51,10 +51,9 @@ shape = SubResource("SphereShape3D_a2qmd")
 mesh = SubResource("SphereMesh_mrjd8")
 
 [node name="Tracer" type="GPUParticles3D" parent="."]
-amount = 64
-lifetime = 64.0
-speed_scale = 64.0
-fixed_fps = 64
+amount = 2
+lifetime = 2.0
+speed_scale = 30.0
 process_material = SubResource("ShaderMaterial_sr6c2")
 draw_pass_1 = SubResource("QuadMesh_a8vkh")
 
