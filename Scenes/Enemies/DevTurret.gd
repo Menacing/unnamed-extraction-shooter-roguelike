@@ -28,8 +28,8 @@ func die():
 @export var pen_ratio:float = 1.0
 @export var damage_multiplier = 1.0
 
-func _on_hit(damage = 0.0, pen_rating = 0, col:KinematicCollision3D = null) -> float:
+func _on_hit(damage = 0.0, pen_rating = 0, col:CollisionInformation = null) -> float:
 	damage = damage * damage_multiplier
-	print("Took %s damage, pen rating %s at %s" % [damage, pen_rating, col.get_position()])
+	print("Took %s damage, pen rating %s at %s" % [damage, pen_rating, col.position])
 	_on_took_damage(damage)
 	return pen_ratio

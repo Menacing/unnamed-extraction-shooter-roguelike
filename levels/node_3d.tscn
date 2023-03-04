@@ -203,6 +203,9 @@ material = SubResource("StandardMaterial3D_2gtf0")
 [node name="AK47-Projectile" parent="." instance=ExtResource("10_b8533")]
 transform = Transform3D(0.00366516, 0.999993, 0, -0.999993, 0.00366516, 0, 0, 0, 1, 4.22279, 5.2201, 2.12443)
 
+[node name="762x39mm-case" parent="AK47-Projectile" index="3"]
+transform = Transform3D(-5.42999e-07, 0.15, 0, -0.15, -5.42999e-07, 0, 0, 0, 0.15, -0.00116475, 0.0538154, 0.101949)
+
 [node name="AK47-Projectile2" parent="." instance=ExtResource("10_b8533")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.26439, 1.96032, -5.15273)
 

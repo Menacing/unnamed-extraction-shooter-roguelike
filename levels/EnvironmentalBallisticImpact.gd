@@ -16,10 +16,10 @@ func _ready():
 func _process(delta):
 	pass
 
-func _on_hit(damage = 0.0, pen_rating = 0, col:KinematicCollision3D = null) -> float:
-	var position = col.get_position()
-	var normal = col.get_normal()
-	var collider = col.get_collider()
+func _on_hit(damage = 0.0, pen_rating = 0, col:CollisionInformation = null) -> float:
+	var position = col.position
+	var normal = col.normal
+	var collider = col.collider
 	print("Took %s damage, pen rating %s at %s" % [damage, pen_rating, position])
 	
 	if _bullet_hole_scene:

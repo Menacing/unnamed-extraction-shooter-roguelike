@@ -1,7 +1,12 @@
 extends Node3D
-
-var hit_count:int = 0
-@onready var hit_count_label:Label = $Camera3D/CanvasLayer/Label
+var _hit_count:int = 0
+var hit_count:int = 0:
+	get:
+		return _hit_count
+	set(value):
+		_hit_count = value
+		hit_count_label.text = str(value)
+@onready var hit_count_label:Label = $CanvasLayer/Label
 @onready var gun:Gun = $"AK47-Projectile"
 var fired_gun:bool = false
 
@@ -19,4 +24,8 @@ func _process(delta):
 
 func _on_csg_mesh_3d_object_hit():
 	hit_count += 1
-	hit_count_label.text = str(hit_count)
+
+
+func _on_fire_timer_timeout():
+	fired_gun = false
+	hit_count = 0
