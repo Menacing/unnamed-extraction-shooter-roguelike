@@ -12,6 +12,8 @@ signal stack_changed(newStack:int)
 signal durability_changed(new_durability:int, max_durability:int)
 
 @export var id:String
+@export var display_name:String
+@export var show_name:bool
 @export var type:ItemType
 @export var icon:Texture
 @export var icon_r:Texture
