@@ -86,6 +86,8 @@ func return_item():
 func pickup_item(item_comp:ItemComponent):
 	var item = item_base.instantiate()
 	item.set_meta("id", item_comp.node_id)
+	item.name_label.text = item_comp.display_name
+	item.show_name = item_comp.show_name
 	item.item_texture_rect.texture = item_comp.icon
 	item.size.x = item_comp.column_span * cell_size
 	item.size.y = item_comp.row_span * cell_size

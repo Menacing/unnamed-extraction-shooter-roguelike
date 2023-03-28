@@ -22,6 +22,21 @@ var count:Label:
 		if !_count:
 			_count = get_node("Count")
 		return _count
+
+var _name_label:Label
+var name_label:Label:
+	get:
+		if !_name_label:
+			_name_label = get_node("Name")
+		return _name_label
+		
+var _show_name:bool
+var show_name:bool = false:
+	get:
+		return _show_name
+	set(value):
+		_show_name = value
+		name_label.visible = _show_name
 		
 var _show_count:bool
 var show_count:bool = false:
@@ -70,8 +85,8 @@ var contextItems:Array[Dictionary] = [
 ]
 
 func _input(event):
-	var cursor_pos = get_global_mouse_position()
 	if self.is_visible_in_tree() and event.is_action_pressed("openContextMenu"):
+		var cursor_pos = get_global_mouse_position()
 		openContextMenu(cursor_pos)
 		
 func openContextMenu(pos:Vector2):
