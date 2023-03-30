@@ -1,0 +1,87 @@
+[gd_scene load_steps=5 format=3 uid="uid://cucj5boko1qpn"]
+
+[ext_resource type="Script" path="res://Scenes/debug/animation_tester.gd" id="1_q42px"]
+[ext_resource type="PackedScene" uid="uid://d08aatgxmymbf" path="res://Scenes/Player/player.tscn" id="2_8jxdu"]
+[ext_resource type="PackedScene" uid="uid://dr48wela8mtxd" path="res://Scenes/Guns/AK47-Projectile/AK47-Projectile.tscn" id="3_jl4nq"]
+[ext_resource type="PackedScene" uid="uid://ddsqkhwkuipda" path="res://ui/inventory/PlayerInventory.tscn" id="3_w3nvw"]
+
+[node name="animation_tester" type="Node3D"]
+script = ExtResource("1_q42px")
+
+[node name="Player" parent="." instance=ExtResource("2_8jxdu")]
+mouse_sensitivity = 0.003
+
+[node name="Chest" parent="Player/Waist" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00634074, -0.00170296, 0.0220692)
+
+[node name="ChestBoneAttachment" parent="Player/HitBox" index="0"]
+transform = Transform3D(-1, 1.20704e-09, 1.80011e-07, -4.50451e-08, 0.966487, -0.256716, -1.74289e-07, -0.256716, -0.966487, 2.57899e-10, 0.542691, 0.106155)
+
+[node name="HeadBoneAttachment" parent="Player/HitBox" index="1"]
+transform = Transform3D(-1, 1.23162e-14, -4.37115e-08, 1.06581e-14, 1, 1.49012e-08, 4.37114e-08, 1.19209e-07, -1, -1.07969e-09, 0.83546, 0.0385254)
+
+[node name="NeckBoneAttachment" parent="Player/HitBox" index="2"]
+transform = Transform3D(-1, -1.30558e-08, 2.03015e-07, -4.1956e-08, 0.98972, -0.143016, -1.99061e-07, -0.143016, -0.98972, -5.68263e-10, 0.796691, 0.0441277)
+
+[node name="LeftUpperArmBoneAttachment" parent="Player/HitBox" index="3"]
+transform = Transform3D(0.497254, -0.867028, -0.0316322, -0.867605, -0.496915, -0.0183658, 0.000205022, 0.0365766, -0.999331, -0.170328, 0.61997, 0.0641427)
+
+[node name="LeftLowerArmBoneAttachment" parent="Player/HitBox" index="4"]
+transform = Transform3D(0.537521, -0.842849, 0.026013, -0.843239, -0.537104, 0.0215992, -0.00423335, -0.0335453, -0.999428, -0.456548, 0.45593, 0.0762172)
+
+[node name="RightUpperArmBoneAttachment" parent="Player/HitBox" index="5"]
+transform = Transform3D(0.497254, 0.867028, 0.0316322, 0.867605, -0.496915, -0.0183656, -0.000204828, 0.0365766, -0.999331, 0.170328, 0.61997, 0.0641427)
+
+[node name="RightLowerArmBoneAttachment" parent="Player/HitBox" index="6"]
+transform = Transform3D(0.537521, 0.842849, -0.0260131, 0.84324, -0.537104, 0.0215996, 0.00423366, -0.0335455, -0.999428, 0.456548, 0.45593, 0.0762172)
+
+[node name="LeftUpperLegBoneAttachment" parent="Player/HitBox" index="7"]
+transform = Transform3D(-1, -3.16177e-08, -2.11833e-07, 3.16734e-08, -1, -0.000262868, -2.11824e-07, -0.000262868, 1, -0.098, 0.0940512, 0.0953857)
+
+[node name="RightUpperLegBoneAttachment" parent="Player/HitBox" index="8"]
+transform = Transform3D(-1, 2.62198e-09, 2.99254e-07, -2.70064e-09, -1, -0.000262868, 2.99253e-07, -0.000262868, 1, 0.098, 0.0940512, 0.0953857)
+
+[node name="LeftLowerLegBoneAttachment" parent="Player/HitBox" index="9"]
+transform = Transform3D(-0.999184, 0.0402265, 0.00354919, -0.0401823, -0.999123, 0.0117708, 0.00401958, 0.0116186, 0.999925, -0.098, -0.34115, 0.0952713)
+
+[node name="RightLowerLegBoneAttachment" parent="Player/HitBox" index="10"]
+transform = Transform3D(-0.999184, -0.0402265, -0.0035491, 0.0401823, -0.999123, 0.0117708, -0.00401949, 0.0116186, 0.999925, 0.098, -0.34115, 0.0952713)
+
+[node name="RightFootBoneAttachment" parent="Player/HitBox" index="11"]
+transform = Transform3D(-1, 2.48789e-09, 3.89824e-06, -3.85227e-06, -0.160193, -0.987086, 6.23693e-07, -0.987086, 0.160193, 0.076595, -0.872795, 0.101454)
+
+[node name="LeftFootBoneAttachment" parent="Player/HitBox" index="12"]
+transform = Transform3D(-1, -8.94802e-08, -3.88447e-06, 3.85599e-06, -0.160193, -0.987086, -5.35804e-07, -0.987086, 0.160193, -0.076595, -0.872795, 0.101454)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.43478, 0)
+use_collision = true
+collision_layer = 7
+collision_mask = 7
+size = Vector3(7.76008, 1, 5.93696)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -1.46609, 0.765232, -0.346139)
+projection = 1
+current = true
+fov = 90.0
+size = 0.551148
+
+[node name="PlayerHUD" type="CanvasLayer" parent="Camera3D"]
+
+[node name="PlayerInventory" parent="Camera3D/PlayerHUD" instance=ExtResource("3_w3nvw")]
+visible = false
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+autostart = true
+
+[node name="AK47-Projectile" parent="." instance=ExtResource("3_jl4nq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+
+[editable path="Player"]
+[editable path="Player/player_default_mesh"]
+[editable path="Camera3D/PlayerHUD/PlayerInventory"]

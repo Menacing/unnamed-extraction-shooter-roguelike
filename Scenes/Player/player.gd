@@ -9,20 +9,26 @@ var equipped_gun:Gun
 var shoulder_gun:Gun
 var gun_slot_1:Gun 
 var gun_slot_2:Gun
-@onready var cam = $Head/Camera3d as Camera3D
-@onready var head = $Head as Node3D
+@onready var waist = $Waist
+@onready var chest = $Waist/Chest
+@onready var cam = $Waist/Chest/Head/Camera3d as Camera3D
+@onready var head = $Waist/Chest/Head as Node3D
 @onready var pmsm = $PlayerMotionStateMachine
-@onready var use_ray = $Head/Camera3d/UsePointer
+@onready var use_ray = $Waist/Chest/Head/Camera3d/UsePointer
+var pov_rotation_node:Node3D
 
 @onready var shoulder_anchor:Node3D = $player_default_mesh/shoulder_anchor
 @onready var drop_location:Node3D = $drop_location
 @onready var armor_anchor:Node3D = $HitBox/ChestBoneAttachment/armor_anchor
 @onready var backpack_anchor:Node3D = $HitBox/ChestBoneAttachment/backpack_anchor
 @onready var center_mass:Node3D = $center_mass
+@onready var ik_right_hand:SkeletonIK3D = $player_default_mesh/metarig/Skeleton3D/SkeletonIK3D_Hand_Right
+@onready var ik_left_hand:SkeletonIK3D = $player_default_mesh/metarig/Skeleton3D/SkeletonIK3D_Hand_Left
+@onready var ik_head:SkeletonIK3D = $player_default_mesh/metarig/Skeleton3D/SkeletonIK3D_Head
 var los_check_locations:Array[Node3D] = []
 
 var mouseSensibility = 1200
-var mouse_sensitivity = 0.005
+@export var mouse_sensitivity = 0.005
 var mouse_relative_x = 0
 var mouse_relative_y = 0
 const NORMAL_SPEED = 5.0
@@ -42,17 +48,17 @@ var current_fire_mode: String:
 			return ""
 var ads_pos: Vector3
 var hf_pos: Vector3
-var grip_pos: Vector3
-var handguard_pos: Vector3
+var grip_pos: Node3D
+var handguard_pos: Node3D
 var ads_accel: float
 var default_fov: float = 75.0
 var ads_fov: float
 var fully_ads: bool = false
-@onready var home_basis: Basis = head.transform.basis
+@onready var home_basis: Basis = waist.transform.basis
 @warning_ignore("unsafe_method_access")
-@onready var right_lean_basis: Basis = head.transform.basis.rotated(Vector3.FORWARD, LEAN_AMOUNT)
+@onready var right_lean_basis: Basis = waist.transform.basis.rotated(Vector3.FORWARD, LEAN_AMOUNT)
 @warning_ignore("unsafe_method_access")
-@onready var left_lean_basis: Basis = head.transform.basis.rotated(Vector3.FORWARD, -LEAN_AMOUNT)
+@onready var left_lean_basis: Basis = waist.transform.basis.rotated(Vector3.FORWARD, -LEAN_AMOUNT)
 
 var config = ConfigFile.new()
 var both_eyes_open_ads: bool
@@ -107,6 +113,9 @@ func _ready():
 	los_check_locations.append($HitBox/RightLowerArmBoneAttachment/r_hand)
 	los_check_locations.append($HitBox/LeftLowerArmBoneAttachment/l_hand)
 	
+	ik_head.start()
+	
+	pov_rotation_node = chest
 	
 
 func _on_item_equipped(slot_name:String, item_equipped:ItemComponent):
@@ -162,9 +171,9 @@ func move_gun_to_hands(gun:Gun):
 		@warning_ignore("unsafe_property_access")
 		ads_pos = -gun.get_node("ADS").position
 		@warning_ignore("unsafe_property_access")
-		grip_pos = -gun.get_node("Grip").position
+		grip_pos = gun.get_node("Grip")
 		@warning_ignore("unsafe_property_access")
-		handguard_pos = -gun.get_node("Handguard").position
+		handguard_pos = gun.get_node("Handguard")
 		ads_accel = gun.gun_stats.ads_accel
 		ads_fov = gun.gun_stats.ads_fov
 		gun.position = hf_pos
@@ -175,6 +184,11 @@ func move_gun_to_hands(gun:Gun):
 		Events.fire_mode_changed.emit(gun.current_fire_mode)
 		Events.ammo_count_changed.emit(gun.magazine)
 		gun.visible = true
+		ik_right_hand.target_node = grip_pos.get_path()
+		ik_right_hand.start()
+		ik_left_hand.target_node = handguard_pos.get_path()
+		ik_left_hand.start()
+		
 
 func move_gun_to_shoulder(gun:Gun):
 	shoulder_gun = gun
@@ -265,11 +279,11 @@ func _physics_process(delta):
 		var slr = shouldLeanRight()
 		var sll = shouldLeanLeft()
 		if slr:
-			head.basis = Quaternion(head.basis).slerp(Quaternion(right_lean_basis),0.5)
+			waist.basis = Quaternion(waist.basis).slerp(Quaternion(right_lean_basis),0.5)
 		elif sll:
-			head.basis = Quaternion(head.basis).slerp(Quaternion(left_lean_basis),0.5)
+			waist.basis = Quaternion(waist.basis).slerp(Quaternion(left_lean_basis),0.5)
 		else:
-			head.basis = Quaternion(head.basis).slerp(Quaternion(home_basis),0.5)
+			waist.basis = Quaternion(waist.basis).slerp(Quaternion(home_basis),0.5)
 		
 		#handle use hint
 		if use_ray.is_colliding():
@@ -363,13 +377,13 @@ func toggle_inventory():
 
 func transformMouse(event: InputEventMouse):
 	rotate_y(-event.relative.x * mouse_sensitivity)
-	$Head/Camera3d.rotate_x(-event.relative.y * mouse_sensitivity)
-	$Head/Camera3d.rotation.x = clampf($Head/Camera3d.rotation.x, -deg_to_rad(85), deg_to_rad(85))
+	pov_rotation_node.rotate_x(-event.relative.y * mouse_sensitivity)
+	pov_rotation_node.rotation.x = clampf(pov_rotation_node.rotation.x, -deg_to_rad(85), deg_to_rad(85))
 
 func legacyMouse(event: InputEventMouse):
 	rotation.y -= event.relative.x / mouseSensibility
-	$Head/Camera3d.rotation.x -= event.relative.y / mouseSensibility
-	$Head/Camera3d.rotation.x = clamp($Head/Camera3d.rotation.x, deg_to_rad(-90), deg_to_rad(90) )
+	pov_rotation_node.rotation.x -= event.relative.y / mouseSensibility
+	pov_rotation_node.rotation.x = clamp(pov_rotation_node.rotation.x, deg_to_rad(-90), deg_to_rad(90) )
 	mouse_relative_x = clamp(event.relative.x, -50, 50)
 	mouse_relative_y = clamp(event.relative.y, -50, 10)
 
@@ -385,8 +399,8 @@ func _on_gun_fired(recoil:Vector2):
 	var scaled_recoil = scale_recoil(recoil)
 #	#flip the mapping so that recoil.y moves the camera vertically	
 	rotate_y(scaled_recoil.x)
-	$Head/Camera3d.rotate_x(scaled_recoil.y)
-	$Head/Camera3d.rotation.x = clampf($Head/Camera3d.rotation.x, -deg_to_rad(80), deg_to_rad(80))
+	pov_rotation_node.rotate_x(scaled_recoil.y)
+	pov_rotation_node.rotation.x = clampf(pov_rotation_node.rotation.x, -deg_to_rad(80), deg_to_rad(80))
 	#legacy - We don't want to manually manipulate the rotations
 #	#flip the mapping so that recoil.y moves the camera vertically
 #	$Head/Camera3d.rotation.y += recoil.x
