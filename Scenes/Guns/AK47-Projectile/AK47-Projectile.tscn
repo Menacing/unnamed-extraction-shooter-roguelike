@@ -221,8 +221,11 @@ transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -0.645
 transform = Transform3D(4.37114e-08, 1, -8.74228e-08, 1, -4.37114e-08, 0, -3.82165e-15, -8.74228e-08, -1, -0.634384, 0.00716722, 2.77251e-08)
 target_position = Vector3(0, -1000, 0)
 
-[node name="Grip" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 7.10543e-15, 0, 1, 0, -7.10543e-15, 0, 1, 0.00501081, -0.0880789, 0.241874)
+[node name="Right_Hand" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 7.10543e-15, 0, 1, 0, -7.10543e-15, 0, 1, 0.025, -0.088, 0.281)
+
+[node name="Right_Fingers" type="Node3D" parent="."]
+transform = Transform3D(-1, 8.74228e-08, 7.10543e-15, -8.74228e-08, -1, 0, 7.10543e-15, -6.21177e-22, 1, -0.0017045, -0.088, -0.0446781)
 
 [node name="HipFire" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.168, 0.21, 0.468)
@@ -230,7 +233,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.168, 0.21, 0.468)
 [node name="ADS" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0521843, 0.430836)
 
-[node name="Handguard" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0299468, -0.0768944)
+[node name="Left_Hand" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0283023, -0.0299468, -0.0768944)
+
+[node name="Left_Fingers" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.179712, -0.0299468, -0.0768944)
 
 [editable path="gun"]

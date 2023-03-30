@@ -76,7 +76,7 @@ collision_mask = 4
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.147355, -0.177441)
 
 [node name="HeadTarget" type="Node3D" parent="Waist/Chest/Head/Camera3d"]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0.117303, 0.0861844)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0.117303, 0.171949)
 
 [node name="player_default_mesh" parent="." instance=ExtResource("3_qia5y")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, -0.923009, 0)
@@ -87,13 +87,23 @@ root_bone = &"upper_arm.R"
 tip_bone = &"hand.R"
 override_tip_basis = false
 
-[node name="SkeletonIK3D_Hand_Left" type="SkeletonIK3D" parent="player_default_mesh/metarig/Skeleton3D" index="3"]
+[node name="SkeletonIK3D_Hand_Right_Fingers" type="SkeletonIK3D" parent="player_default_mesh/metarig/Skeleton3D" index="3"]
+process_priority = 1
+root_bone = &"hand.R"
+tip_bone = &"f_middle.02.R"
+
+[node name="SkeletonIK3D_Hand_Left_Fingers" type="SkeletonIK3D" parent="player_default_mesh/metarig/Skeleton3D" index="4"]
+process_priority = 1
+root_bone = &"hand.L"
+tip_bone = &"f_middle.02.L"
+
+[node name="SkeletonIK3D_Hand_Left" type="SkeletonIK3D" parent="player_default_mesh/metarig/Skeleton3D" index="5"]
 process_priority = 1
 root_bone = &"upper_arm.L"
 tip_bone = &"hand.L"
 override_tip_basis = false
 
-[node name="SkeletonIK3D_Head" type="SkeletonIK3D" parent="player_default_mesh/metarig/Skeleton3D" index="4"]
+[node name="SkeletonIK3D_Head" type="SkeletonIK3D" parent="player_default_mesh/metarig/Skeleton3D" index="6"]
 process_priority = 1
 root_bone = &"spine.001"
 tip_bone = &"spine.006"

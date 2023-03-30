@@ -23,7 +23,9 @@ var pov_rotation_node:Node3D
 @onready var backpack_anchor:Node3D = $HitBox/ChestBoneAttachment/backpack_anchor
 @onready var center_mass:Node3D = $center_mass
 @onready var ik_right_hand:SkeletonIK3D = $player_default_mesh/metarig/Skeleton3D/SkeletonIK3D_Hand_Right
+@onready var ik_right_hand_fingers:SkeletonIK3D = $player_default_mesh/metarig/Skeleton3D/SkeletonIK3D_Hand_Right_Fingers
 @onready var ik_left_hand:SkeletonIK3D = $player_default_mesh/metarig/Skeleton3D/SkeletonIK3D_Hand_Left
+@onready var ik_left_hand_fingers:SkeletonIK3D = $player_default_mesh/metarig/Skeleton3D/SkeletonIK3D_Hand_Left_Fingers
 @onready var ik_head:SkeletonIK3D = $player_default_mesh/metarig/Skeleton3D/SkeletonIK3D_Head
 var los_check_locations:Array[Node3D] = []
 
@@ -145,6 +147,7 @@ func _on_item_removed(slot_name, item_picked_up:ItemComponent):
 	var item_parent = item_picked_up.get_parent()
 	if item_parent is Gun:
 		if item_parent == equipped_gun:
+			stop_arms_ik()
 			equipped_gun = null	
 		if item_parent == gun_slot_1:
 			gun_slot_1 = null	
@@ -184,10 +187,7 @@ func move_gun_to_hands(gun:Gun):
 		Events.fire_mode_changed.emit(gun.current_fire_mode)
 		Events.ammo_count_changed.emit(gun.magazine)
 		gun.visible = true
-		ik_right_hand.target_node = grip_pos.get_path()
-		ik_right_hand.start()
-		ik_left_hand.target_node = handguard_pos.get_path()
-		ik_left_hand.start()
+		start_arms_ik(gun.Right_Hand, gun.Right_Fingers, gun.Left_Hand, gun.Left_Fingers)
 		
 
 func move_gun_to_shoulder(gun:Gun):
@@ -224,6 +224,7 @@ func drop_equipped_gun():
 #		elif gun_in_slot(equipped_gun, gun_slot_2):
 #			gun_slot_2.remove_item()			
 		equipped_gun = null
+		stop_arms_ik()
 
 func drop_item(item_comp:ItemComponent):
 	var item_parent = item_comp.get_parent()
@@ -430,3 +431,26 @@ func _on_area_3d_took_damage(damage):
 	Events.set_health.emit(health,max_health)
 	if health < 0:
 		print("Game Over")
+		
+func start_arms_ik(right_arm_loc:Node3D, right_fingers_loc:Node3D, left_arm_loc:Node3D, left_fingers_loc:Node3D):
+	if right_arm_loc:
+		ik_right_hand.target_node = right_arm_loc.get_path()
+		ik_right_hand.start()
+		
+	if right_fingers_loc:
+		ik_right_hand_fingers.target_node = right_fingers_loc.get_path()
+		ik_right_hand_fingers.start()
+		
+	if left_arm_loc:
+		ik_left_hand.target_node = left_arm_loc.get_path()
+		ik_left_hand.start()
+		
+	if left_fingers_loc:
+		ik_left_hand_fingers.target_node = left_fingers_loc.get_path()
+		ik_left_hand_fingers.start()
+
+func stop_arms_ik():
+	ik_right_hand.stop()
+	ik_right_hand_fingers.stop()
+	ik_left_hand.stop()
+	ik_left_hand_fingers.stop()
