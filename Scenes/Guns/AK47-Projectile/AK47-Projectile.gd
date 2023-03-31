@@ -83,6 +83,7 @@ var is_transparent: bool = false
 func make_transparent():
 	if !is_transparent:
 		gun_mat.distance_fade_mode = BaseMaterial3D.DISTANCE_FADE_PIXEL_DITHER
+		gun_mat.distance_fade_max_distance = .75
 		#Pixel dither looks better, but this is another way of doing it
 		#gun_mat.blend_mode = gun_mat.BLEND_MODE_ADD
 		is_transparent = true

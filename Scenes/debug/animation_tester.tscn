@@ -1,0 +1,48 @@
+[gd_scene load_steps=5 format=3 uid="uid://cucj5boko1qpn"]
+
+[ext_resource type="Script" path="res://Scenes/debug/animation_tester.gd" id="1_q42px"]
+[ext_resource type="PackedScene" uid="uid://d08aatgxmymbf" path="res://Scenes/Player/player.tscn" id="2_8jxdu"]
+[ext_resource type="PackedScene" uid="uid://dr48wela8mtxd" path="res://Scenes/Guns/AK47-Projectile/AK47-Projectile.tscn" id="3_jl4nq"]
+[ext_resource type="PackedScene" uid="uid://ddsqkhwkuipda" path="res://ui/inventory/PlayerInventory.tscn" id="3_w3nvw"]
+
+[node name="animation_tester" type="Node3D"]
+script = ExtResource("1_q42px")
+
+[node name="Player" parent="." instance=ExtResource("2_8jxdu")]
+mouse_sensitivity = 0.003
+
+[node name="Chest" parent="Player/Waist" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00634074, -0.00170296, 0.0220692)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.43478, 0)
+use_collision = true
+collision_layer = 7
+collision_mask = 7
+size = Vector3(7.76008, 1, 5.93696)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -1.46609, 0.765232, -0.346139)
+projection = 1
+current = true
+fov = 90.0
+size = 0.719036
+
+[node name="PlayerHUD" type="CanvasLayer" parent="Camera3D"]
+
+[node name="PlayerInventory" parent="Camera3D/PlayerHUD" instance=ExtResource("3_w3nvw")]
+visible = false
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+autostart = true
+
+[node name="AK47-Projectile" parent="." instance=ExtResource("3_jl4nq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+
+[editable path="Player"]
+[editable path="Player/player_default_mesh"]
+[editable path="Camera3D/PlayerHUD/PlayerInventory"]
