@@ -239,4 +239,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0283023, -0.0299468, -0.07
 [node name="Left_Fingers" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.179712, -0.0299468, -0.0768944)
 
+[node name="ADS_Head" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2, 0.6, -0.088)
+
 [editable path="gun"]

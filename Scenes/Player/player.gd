@@ -49,6 +49,8 @@ var current_fire_mode: String:
 		else: 
 			return ""
 var ads_pos: Vector3
+var ads_head_pos: Vector3
+@onready var ads_normal_pos: Vector3 = head.position
 var hf_pos: Vector3
 var grip_pos: Node3D
 var handguard_pos: Node3D
@@ -75,6 +77,7 @@ var toggle_inv_f: bool = false
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
+@onready var player_mat: BaseMaterial3D = $player_default_mesh/metarig/Skeleton3D/Cube.get_active_material(0)
 
 func _ready():
 	if gun_scene1:
@@ -174,6 +177,8 @@ func move_gun_to_hands(gun:Gun):
 		@warning_ignore("unsafe_property_access")
 		ads_pos = -gun.get_node("ADS").position
 		@warning_ignore("unsafe_property_access")
+		ads_head_pos = gun.get_node("ADS_Head").position
+		@warning_ignore("unsafe_property_access")
 		grip_pos = gun.get_node("Grip")
 		@warning_ignore("unsafe_property_access")
 		handguard_pos = gun.get_node("Handguard")
@@ -266,14 +271,18 @@ func _physics_process(delta):
 				else:
 					if both_eyes_open_ads:
 						equipped_gun.make_transparent()
+						make_transparent()
 					equipped_gun.transform.origin = equipped_gun.transform.origin.lerp(ads_pos, ads_accel)
+					head.transform.origin = head.transform.origin.lerp(ads_head_pos, ads_accel)
 					cam.fov = lerp(cam.fov, ads_fov, ads_accel)
 			else:
 				fully_ads = false
 				if both_eyes_open_ads:
 					equipped_gun.make_opaque()
+					make_opaque()
 				if equipped_gun.transform.origin != hf_pos:
 					equipped_gun.transform.origin = equipped_gun.transform.origin.lerp(hf_pos, ads_accel)
+					head.transform.origin = head.transform.origin.lerp(ads_normal_pos, ads_accel)
 					cam.fov = lerp(cam.fov, default_fov, ads_accel)
 		
 		#Handle Lean
@@ -454,3 +463,22 @@ func stop_arms_ik():
 	ik_right_hand_fingers.stop()
 	ik_left_hand.stop()
 	ik_left_hand_fingers.stop()
+	
+var is_transparent: bool = false
+func make_transparent():
+	if !is_transparent:
+		player_mat.distance_fade_mode = BaseMaterial3D.DISTANCE_FADE_PIXEL_DITHER
+		#Pixel dither looks better, but this is another way of doing it
+		#gun_mat.blend_mode = gun_mat.BLEND_MODE_ADD
+		is_transparent = true
+		pass
+	else:
+		pass
+
+func make_opaque():
+	if is_transparent:
+		player_mat.distance_fade_mode = BaseMaterial3D.DISTANCE_FADE_DISABLED		
+		#gun_mat.blend_mode = gun_mat.BLEND_MODE_MIX
+		is_transparent = false
+	else:
+		pass

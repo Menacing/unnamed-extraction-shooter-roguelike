@@ -5,6 +5,7 @@ signal fired
 signal reloaded
 
 @export var _bullet_scene : PackedScene
+@export var ads_lean_factor:float = 1.0
 var gun_stats:GunStats
 var current_fire_mode:String
 
