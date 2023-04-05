@@ -57,3 +57,11 @@ func get_all_collision_object_3d_recursive(node: Node) -> Array[RID]:
 			var child_cols = get_all_collision_object_3d_recursive(child)
 			list.append_array(child_cols)
 	return list
+	
+func gddeg_to_compass_deg(unnormal_deg:int) -> int:
+	var normal_deg = 0 
+	if unnormal_deg < 0:
+		normal_deg = -unnormal_deg
+	elif unnormal_deg > 0:
+		normal_deg = 360 - (unnormal_deg % 360)
+	return normal_deg % 360
