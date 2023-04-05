@@ -121,7 +121,9 @@ func _ready():
 	ik_head.start()
 	
 	pov_rotation_node = chest
-	
+
+func _process(delta):
+	Events.compass_player_pulse.emit(self.global_position, self.global_rotation_degrees)
 
 func _on_item_equipped(slot_name:String, item_equipped:ItemComponent):
 	item_equipped.picked_up()

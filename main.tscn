@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://c5h2rw1ua14j2"]
+[gd_scene load_steps=10 format=3 uid="uid://c5h2rw1ua14j2"]
 
 [ext_resource type="PackedScene" uid="uid://ctahsvj88g1om" path="res://levels/node_3d.tscn" id="1_jhhor"]
 [ext_resource type="Script" path="res://main.gd" id="1_rh52i"]
@@ -7,6 +7,10 @@
 [ext_resource type="PackedScene" uid="uid://bb7ue7ms53vhu" path="res://ui/health/life_bar.tscn" id="5_cvqtr"]
 [ext_resource type="PackedScene" uid="uid://ddsqkhwkuipda" path="res://ui/inventory/PlayerInventory.tscn" id="5_mtxh8"]
 [ext_resource type="PackedScene" uid="uid://vb7f8fygilde" path="res://ui/misc/interaction_helpers.tscn" id="6_q7dve"]
+[ext_resource type="PackedScene" uid="uid://dhlk3rc74daq2" path="res://ui/misc/compass.tscn" id="8_alh60"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4m38t"]
+size = Vector3(16, 13, 13)
 
 [node name="Main" type="Node"]
 script = ExtResource("1_rh52i")
@@ -55,6 +59,24 @@ transform = Transform3D(-1, -8.94802e-08, -3.88447e-06, 3.85599e-06, -0.160193, 
 [node name="762x39mm-case" parent="World/AK47-Projectile" index="3"]
 transform = Transform3D(-5.42999e-07, 0.15, 0, -0.15, -5.42999e-07, 0, 0, 0, 0.15, -0.00116475, 0.0538154, 0.101949)
 
+[node name="Extract2" type="Area3D" parent="World" groups=["Extract"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.720451, 0.16243, -76.0471)
+collision_layer = 0
+input_ray_pickable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Extract2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 13)
+shape = SubResource("BoxShape3D_4m38t")
+
+[node name="Extract1" type="Area3D" parent="World" groups=["Extract"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 61.6739, 0, 64.1142)
+collision_layer = 0
+input_ray_pickable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Extract1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 13)
+shape = SubResource("BoxShape3D_4m38t")
+
 [node name="PlayerHUD" type="CanvasLayer" parent="."]
 
 [node name="AmmoCount" parent="PlayerHUD" instance=ExtResource("3_awaq0")]
@@ -67,6 +89,8 @@ visible = false
 [node name="life_bar" parent="PlayerHUD" instance=ExtResource("5_cvqtr")]
 
 [node name="interaction_helpers" parent="PlayerHUD" instance=ExtResource("6_q7dve")]
+
+[node name="CompassLabel" parent="PlayerHUD" instance=ExtResource("8_alh60")]
 
 [editable path="World"]
 [editable path="World/Player"]

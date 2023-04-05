@@ -1,0 +1,112 @@
+[gd_scene load_steps=5 format=3 uid="uid://dhlk3rc74daq2"]
+
+[ext_resource type="Theme" uid="uid://cekps8eebllyj" path="res://themes/MetalPixel.tres" id="1_nxxj1"]
+[ext_resource type="Script" path="res://ui/misc/compass.gd" id="2_8gqx7"]
+[ext_resource type="Texture2D" uid="uid://dnbblws6863lw" path="res://themes/MetalPixel.png" id="2_p1abm"]
+[ext_resource type="Script" path="res://ui/misc/CompassPanel.gd" id="4_agrwu"]
+
+[node name="Compass" type="MarginContainer"]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 57.0
+grow_horizontal = 2
+theme = ExtResource("1_nxxj1")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+alignment = 1
+
+[node name="Panel" type="Panel" parent="VBoxContainer"]
+clip_contents = true
+custom_minimum_size = Vector2(500, 25)
+layout_mode = 2
+size_flags_horizontal = 4
+script = ExtResource("4_agrwu")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer/Panel"]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+scroll_horizontal = 500
+horizontal_scroll_mode = 3
+vertical_scroll_mode = 3
+
+[node name="CompassBackground" type="NinePatchRect" parent="VBoxContainer/Panel/ScrollContainer"]
+custom_minimum_size = Vector2(1500, 25)
+layout_mode = 2
+texture = ExtResource("2_p1abm")
+region_rect = Rect2(36, 68, 8, 8)
+patch_margin_left = 1
+patch_margin_top = 1
+patch_margin_right = 1
+patch_margin_bottom = 1
+axis_stretch_horizontal = 1
+
+[node name="South2" type="Label" parent="VBoxContainer/Panel/ScrollContainer/CompassBackground"]
+layout_mode = 0
+offset_left = 242.0
+offset_top = 2.0
+offset_right = 258.0
+offset_bottom = 23.0
+theme_override_font_sizes/font_size = 16
+text = "S"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="West" type="Label" parent="VBoxContainer/Panel/ScrollContainer/CompassBackground"]
+layout_mode = 0
+offset_left = 492.0
+offset_top = 2.0
+offset_right = 508.0
+offset_bottom = 23.0
+theme_override_font_sizes/font_size = 16
+text = "W"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="North" type="Label" parent="VBoxContainer/Panel/ScrollContainer/CompassBackground"]
+layout_mode = 0
+offset_left = 742.0
+offset_top = 2.0
+offset_right = 758.0
+offset_bottom = 23.0
+theme_override_font_sizes/font_size = 16
+text = "N"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="East" type="Label" parent="VBoxContainer/Panel/ScrollContainer/CompassBackground"]
+layout_mode = 0
+offset_left = 992.0
+offset_top = 2.0
+offset_right = 1008.0
+offset_bottom = 23.0
+theme_override_font_sizes/font_size = 16
+text = "E"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="South" type="Label" parent="VBoxContainer/Panel/ScrollContainer/CompassBackground"]
+layout_mode = 0
+offset_left = 1242.0
+offset_top = 2.0
+offset_right = 1258.0
+offset_bottom = 23.0
+theme_override_font_sizes/font_size = 16
+text = "S"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CompassLabel" type="Label" parent="VBoxContainer"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 50
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("2_8gqx7")
