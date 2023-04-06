@@ -44,6 +44,9 @@ func test_deg_to_target() -> void:
 	assert_int(HitIndicator.deg_to_target(Vector3.ZERO,0,Vector3.BACK)).is_equal(180)
 	assert_int(HitIndicator.deg_to_target(Vector3.ZERO,-90,Vector3.BACK)).is_equal(-90)
 	assert_int(HitIndicator.deg_to_target(Vector3.ZERO,90,Vector3.LEFT)).is_equal(0)
+	
+func test_deg_to_target_live_cases() -> void:
+	assert_int(HitIndicator.deg_to_target(Vector3(-0.679,0,23.861), -10, Vector3(0.852, 0, 5.363))).is_between(-45,45)
 
 
 func test_deg_to_vector3() -> void:

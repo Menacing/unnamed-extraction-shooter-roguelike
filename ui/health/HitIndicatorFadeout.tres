@@ -3,5 +3,6 @@
 [ext_resource type="Shader" path="res://ui/health/HitIndicatorFadeout.gdshader" id="1_vjc60"]
 
 [resource]
+resource_local_to_scene = true
 shader = ExtResource("1_vjc60")
 shader_parameter/sensitivity = 0.0

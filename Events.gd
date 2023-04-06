@@ -18,6 +18,7 @@ signal open_inventory(inventory_name:String)
 signal create_inventory(inventory:Node, inventory_name:String)
 
 #Health Events
+signal took_damage(damage:float, hit_origin:Vector3)
 signal set_health(current_health:float, max_health:float)
 
 #Misc Events

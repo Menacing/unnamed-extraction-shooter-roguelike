@@ -8,6 +8,7 @@ var player_pos:Vector3
 var player_r:int
 @export var icon_margin = 15
 @onready var FadeoutTimer:Timer = $FadeoutTimer
+@onready var LifeTimer:Timer = $LifeTimer
 @onready var icon_tex:TextureRect = $TextureRect
 var fading_out:bool = false
 var fade_out_amount:float = 0.0
@@ -18,8 +19,8 @@ func _ready():
 	Events.compass_player_pulse.connect(_on_compass_player_pulse)
 	screen_w = get_viewport().size.x
 	screen_h = get_viewport().size.y
-	var extract_nodes = get_tree().get_nodes_in_group("Extract")
-	target_pos = extract_nodes[0].global_position
+	var timeleft = LifeTimer.time_left
+
 	pass # Replace with function body.
 
 
@@ -32,6 +33,7 @@ func _process(delta):
 
 
 func _on_timer_timeout():
+	var timeleft = LifeTimer.time_left
 	fading_out = true
 	FadeoutTimer.start()
 
@@ -50,7 +52,7 @@ static func deg_to_target(player_pos:Vector3, player_r:int, target_pos:Vector3) 
 	var direction_to_target = target_pos - player_pos
 	#Calculate player_heading
 	var player_heading:Vector3 = deg_to_vector3(player_r)
-	var rad_result = player_heading.signed_angle_to(target_pos, Vector3.UP)
+	var rad_result = player_heading.signed_angle_to(direction_to_target, Vector3.UP)
 	var deg_result = rad_to_deg(rad_result)
 	return int(round(deg_result))
 

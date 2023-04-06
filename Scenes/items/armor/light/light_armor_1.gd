@@ -5,7 +5,7 @@ extends RigidBody3D
 @onready var item_comp:ItemComponent = $ItemComponent
 
 
-func _on_hit(damage = 0.0, pen_rating = 0, col:CollisionInformation = null) -> float:
+func _on_hit(damage, pen_rating, col:CollisionInformation, hit_origin:Vector3) -> float:
 	if pen_rating >= armor_rating:
 		item_comp.durability -= damage/2
 		return pen_ratio
