@@ -1,13 +1,15 @@
-[gd_scene load_steps=10 format=3 uid="uid://c5h2rw1ua14j2"]
+[gd_scene load_steps=12 format=3 uid="uid://c5h2rw1ua14j2"]
 
 [ext_resource type="PackedScene" uid="uid://ctahsvj88g1om" path="res://levels/node_3d.tscn" id="1_jhhor"]
 [ext_resource type="Script" path="res://main.gd" id="1_rh52i"]
 [ext_resource type="PackedScene" uid="uid://cum57ykeo3b7q" path="res://ui/misc/ammo_count.tscn" id="3_awaq0"]
+[ext_resource type="PackedScene" uid="uid://vk1criqck6cx" path="res://Scenes/Enemies/robots/combat_roomba.tscn" id="3_lbe65"]
 [ext_resource type="PackedScene" uid="uid://cnfhk8lyswyee" path="res://ui/misc/fire_mode.tscn" id="4_1vtv1"]
 [ext_resource type="PackedScene" uid="uid://bb7ue7ms53vhu" path="res://ui/health/life_bar.tscn" id="5_cvqtr"]
 [ext_resource type="PackedScene" uid="uid://ddsqkhwkuipda" path="res://ui/inventory/PlayerInventory.tscn" id="5_mtxh8"]
 [ext_resource type="PackedScene" uid="uid://vb7f8fygilde" path="res://ui/misc/interaction_helpers.tscn" id="6_q7dve"]
 [ext_resource type="PackedScene" uid="uid://dhlk3rc74daq2" path="res://ui/misc/compass.tscn" id="8_alh60"]
+[ext_resource type="PackedScene" uid="uid://3bnbwe1cyhrq" path="res://ui/health/HitIndicatorParent.tscn" id="10_ct3lu"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_4m38t"]
 size = Vector3(16, 13, 13)
@@ -77,6 +79,15 @@ input_ray_pickable = false
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 13)
 shape = SubResource("BoxShape3D_4m38t")
 
+[node name="combat_roomba2" parent="World" instance=ExtResource("3_lbe65")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.99122, 0.357656, 0)
+
+[node name="combat_roomba3" parent="World" instance=ExtResource("3_lbe65")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.5532, 0, -24.9389)
+
+[node name="combat_roomba4" parent="World" instance=ExtResource("3_lbe65")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 9.9343)
+
 [node name="PlayerHUD" type="CanvasLayer" parent="."]
 
 [node name="AmmoCount" parent="PlayerHUD" instance=ExtResource("3_awaq0")]
@@ -91,6 +102,8 @@ visible = false
 [node name="interaction_helpers" parent="PlayerHUD" instance=ExtResource("6_q7dve")]
 
 [node name="CompassLabel" parent="PlayerHUD" instance=ExtResource("8_alh60")]
+
+[node name="HitIndicatorParent" parent="PlayerHUD" instance=ExtResource("10_ct3lu")]
 
 [editable path="World"]
 [editable path="World/Player"]

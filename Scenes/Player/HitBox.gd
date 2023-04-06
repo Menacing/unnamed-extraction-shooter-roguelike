@@ -1,11 +1,11 @@
-extends Node
+extends CharacterBody3D
+class_name PlayerHitBox
 
-signal took_damage(damage:float)
 @export var pen_ratio:float = 1.0
 @export var damage_multiplier = 1.0
 
-func _on_hit(damage = 0.0, pen_rating = 0, col:CollisionInformation = null) -> float:
+func _on_hit(damage, pen_rating, col:CollisionInformation, hit_origin:Vector3) -> float:
 	damage = damage * damage_multiplier
 	print("Took %s damage, pen rating %s at %s" % [damage, pen_rating, col.position])
-	emit_signal("took_damage", damage)
+	Events.took_damage.emit(damage, hit_origin)
 	return pen_ratio

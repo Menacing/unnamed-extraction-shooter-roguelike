@@ -110,6 +110,7 @@ func _ready():
 	Events.item_removed.connect(_on_item_removed)
 	Events.player_inventory_visibility.emit(toggle_inv_f)
 	Events.set_health.emit(health,max_health)
+	Events.took_damage.connect(_on_took_damage)
 	
 	los_check_locations.append($HitBox/HeadBoneAttachment/eyes)
 	los_check_locations.append($HitBox/RightFootBoneAttachment)
@@ -437,7 +438,7 @@ func scale_recoil(recoil:Vector2) -> Vector2:
 func _on_gun_reloaded():
 	Events.ammo_count_changed.emit(equipped_gun.magazine)	
 
-func _on_area_3d_took_damage(damage):
+func _on_took_damage(damage:float, hit_origin:Vector3):
 	health-=damage
 	Events.set_health.emit(health,max_health)
 	if health < 0:

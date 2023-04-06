@@ -176,8 +176,6 @@ external_skeleton = NodePath("../../player_default_mesh/metarig/Skeleton3D")
 collision_layer = 2
 collision_mask = 2
 script = ExtResource("4_f3bol")
-pen_ratio = 0.9
-damage_multiplier = 2.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="HitBox/NeckBoneAttachment/Area3D"]
 transform = Transform3D(-0.349006, -1.46429e-08, -6.94734e-08, -4.55655e-09, 0.345419, -0.0499137, 7.08534e-08, -0.0499136, -0.345419, 3.67229e-09, -0.0116099, 0.0331312)
