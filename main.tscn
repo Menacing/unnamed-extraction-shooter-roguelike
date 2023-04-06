@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://c5h2rw1ua14j2"]
+[gd_scene load_steps=11 format=3 uid="uid://c5h2rw1ua14j2"]
 
 [ext_resource type="PackedScene" uid="uid://ctahsvj88g1om" path="res://levels/node_3d.tscn" id="1_jhhor"]
 [ext_resource type="Script" path="res://main.gd" id="1_rh52i"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://ddsqkhwkuipda" path="res://ui/inventory/PlayerInventory.tscn" id="5_mtxh8"]
 [ext_resource type="PackedScene" uid="uid://vb7f8fygilde" path="res://ui/misc/interaction_helpers.tscn" id="6_q7dve"]
 [ext_resource type="PackedScene" uid="uid://dhlk3rc74daq2" path="res://ui/misc/compass.tscn" id="8_alh60"]
+[ext_resource type="PackedScene" uid="uid://gs87quvpcdn" path="res://ui/health/HitIndicator.tscn" id="9_l1jf3"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_4m38t"]
 size = Vector3(16, 13, 13)
@@ -91,6 +92,8 @@ visible = false
 [node name="interaction_helpers" parent="PlayerHUD" instance=ExtResource("6_q7dve")]
 
 [node name="CompassLabel" parent="PlayerHUD" instance=ExtResource("8_alh60")]
+
+[node name="HitIndicator" parent="PlayerHUD" instance=ExtResource("9_l1jf3")]
 
 [editable path="World"]
 [editable path="World/Player"]

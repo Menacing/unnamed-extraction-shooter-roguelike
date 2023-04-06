@@ -1,0 +1,7 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://blqw4xmxy7pl0"]
+
+[ext_resource type="Shader" path="res://ui/health/HitIndicatorFadeout.gdshader" id="1_vjc60"]
+
+[resource]
+shader = ExtResource("1_vjc60")
+shader_parameter/sensitivity = 0.0

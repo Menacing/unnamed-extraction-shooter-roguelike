@@ -1,0 +1,34 @@
+[gd_scene load_steps=5 format=3 uid="uid://gs87quvpcdn"]
+
+[ext_resource type="Script" path="res://ui/health/HitIndicator.gd" id="1_7gpui"]
+[ext_resource type="Texture2D" uid="uid://btxr68tr2d8o0" path="res://themes/1-bit without outline_part-2.png" id="1_wggpu"]
+[ext_resource type="Material" uid="uid://blqw4xmxy7pl0" path="res://ui/health/HitIndicatorFadeout.tres" id="2_o0sj2"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sho8b"]
+atlas = ExtResource("1_wggpu")
+region = Rect2(165, 66, 7, 12)
+
+[node name="HitIndicator" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_7gpui")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+material = ExtResource("2_o0sj2")
+layout_mode = 0
+offset_left = -20.0
+offset_top = 40.0
+offset_right = 20.0
+offset_bottom = 80.0
+rotation = -1.5708
+texture = SubResource("AtlasTexture_sho8b")
+
+[node name="LifeTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+autostart = true
+
+[node name="FadeoutTimer" type="Timer" parent="."]
+
+[connection signal="timeout" from="LifeTimer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="FadeoutTimer" to="." method="_on_fadeout_timer_timeout"]
