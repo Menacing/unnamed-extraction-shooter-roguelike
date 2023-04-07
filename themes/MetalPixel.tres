@@ -162,15 +162,8 @@ axis_stretch_horizontal = 1
 axis_stretch_vertical = 1
 region_rect = Rect2(64, 67, 16, 11)
 
-[sub_resource type="AtlasTexture" id="19"]
-atlas = ExtResource("1")
-region = Rect2(99, 66, 9, 11)
-
-[sub_resource type="StyleBoxTexture" id="20"]
-texture = SubResource("19")
-axis_stretch_horizontal = 1
-axis_stretch_vertical = 1
-region_rect = Rect2(97, 39, 14, 6)
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_bp4sj"]
+thickness = 3
 
 [sub_resource type="AtlasTexture" id="21"]
 atlas = ExtResource("1")
@@ -296,6 +289,10 @@ texture_margin_top = 5.0
 texture_margin_right = 5.0
 texture_margin_bottom = 5.0
 region_rect = Rect2(83, 3, 26, 10)
+
+[sub_resource type="AtlasTexture" id="19"]
+atlas = ExtResource("1")
+region = Rect2(50, 23, 12, 3)
 
 [sub_resource type="StyleBoxTexture" id="30"]
 content_margin_left = 7.0
@@ -487,7 +484,7 @@ HScrollBar/styles/grabber_highlight = SubResource("55")
 HScrollBar/styles/grabber_pressed = SubResource("55")
 HScrollBar/styles/scroll = SubResource("56")
 HScrollBar/styles/scroll_focus = SubResource("56")
-HSeparator/styles/separator = SubResource("20")
+HSeparator/styles/separator = SubResource("StyleBoxLine_bp4sj")
 HSlider/icons/grabber = SubResource("21")
 HSlider/icons/grabber_disabled = SubResource("21")
 HSlider/icons/grabber_highlight = SubResource("21")

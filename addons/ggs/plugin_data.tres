@@ -1,0 +1,488 @@
+[gd_resource type="Resource" script_class="ggsPluginData" load_steps=46 format=3 uid="uid://dpk53al471l8m"]
+
+[ext_resource type="Script" path="res://addons/ggs/classes/resources/ggs_category.gd" id="1_k6wsq"]
+[ext_resource type="Script" path="res://addons/ggs/classes/resources/ggs_plugin_data.gd" id="1_wabe0"]
+[ext_resource type="Texture2D" uid="uid://dbtn4d6130bdj" path="res://addons/ggs/assets/game_settings/audio_mute.svg" id="3_h73ug"]
+[ext_resource type="Script" path="res://game_settings/settings/audio_mute.gd" id="4_p6m1c"]
+[ext_resource type="Texture2D" uid="uid://buotak2dk5n0x" path="res://addons/ggs/assets/game_settings/audio_volume.svg" id="5_2ag7l"]
+[ext_resource type="Script" path="res://game_settings/settings/audio_volume.gd" id="6_k85gx"]
+[ext_resource type="Texture2D" uid="uid://7rnrnfes2clm" path="res://addons/ggs/assets/game_settings/display_fullscreen.svg" id="7_rh23p"]
+[ext_resource type="Script" path="res://game_settings/settings/display_fullscreen.gd" id="8_4worf"]
+[ext_resource type="Texture2D" uid="uid://dimhb46k7ud10" path="res://addons/ggs/assets/game_settings/display_scale.svg" id="9_v3iro"]
+[ext_resource type="Script" path="res://game_settings/settings/display_scale.gd" id="10_m8o61"]
+[ext_resource type="Texture2D" uid="uid://dlvhau28nu82n" path="res://addons/ggs/assets/game_settings/display_size.svg" id="11_q5xtq"]
+[ext_resource type="Script" path="res://game_settings/settings/display_size.gd" id="12_gkg7h"]
+[ext_resource type="Texture2D" uid="uid://c4vunn2rkqj83" path="res://addons/ggs/assets/game_settings/input_setting.svg" id="13_1ch4w"]
+[ext_resource type="Script" path="res://game_settings/settings/input.gd" id="14_t43c8"]
+
+[sub_resource type="Resource" id="Resource_nuq1d"]
+resource_name = "audio"
+script = ExtResource("1_k6wsq")
+name = "audio"
+settings = {}
+item_order = Array[Resource("res://addons/ggs/classes/resources/ggs_setting.gd")]([])
+
+[sub_resource type="Resource" id="Resource_nepbr"]
+resource_name = "move_left_kb"
+script = ExtResource("14_t43c8")
+action = "moveLeft"
+type = 0
+current = "a"
+default = "a"
+name = "move_left_kb"
+category = "controls"
+icon = ExtResource("13_1ch4w")
+desc = "Rebind keyboard or gamepad input of a specific input action."
+value_type = 4
+value_hint = 0
+value_hint_string = ""
+
+[sub_resource type="Resource" id="Resource_qnkl6"]
+resource_name = "move__right_kb"
+script = ExtResource("14_t43c8")
+action = "moveRight"
+type = 0
+current = "d"
+default = "d"
+name = "move__right_kb"
+category = "controls"
+icon = ExtResource("13_1ch4w")
+desc = "Rebind keyboard or gamepad input of a specific input action."
+value_type = 4
+value_hint = 0
+value_hint_string = ""
+
+[sub_resource type="Resource" id="Resource_mxd56"]
+resource_name = "move_forward_kb"
+script = ExtResource("14_t43c8")
+action = "moveUp"
+type = 0
+current = "w"
+default = "w"
+name = "move_forward_kb"
+category = "controls"
+icon = ExtResource("13_1ch4w")
+desc = "Rebind keyboard or gamepad input of a specific input action."
+value_type = 4
+value_hint = 0
+value_hint_string = ""
+
+[sub_resource type="Resource" id="Resource_0ssk6"]
+resource_name = "move_back_kb"
+script = ExtResource("14_t43c8")
+action = "moveDown"
+type = 0
+current = "s"
+default = "s"
+name = "move_back_kb"
+category = "controls"
+icon = ExtResource("13_1ch4w")
+desc = "Rebind keyboard or gamepad input of a specific input action."
+value_type = 4
+value_hint = 0
+value_hint_string = ""
+
+[sub_resource type="Resource" id="Resource_5s7xi"]
+resource_name = "jump_kb"
+script = ExtResource("14_t43c8")
+action = "jump"
+type = 0
+current = "space"
+default = " space"
+name = "jump_kb"
+category = "controls"
+icon = ExtResource("13_1ch4w")
+desc = "Rebind keyboard or gamepad input of a specific input action."
+value_type = 4
+value_hint = 0
+value_hint_string = ""
+
+[sub_resource type="Resource" id="Resource_an0pk"]
+resource_name = "shoot_kb"
+script = ExtResource("14_t43c8")
+action = "shoot"
+type = 0
+current = "lmb"
+default = "lmb"
+name = "shoot_kb"
+category = "controls"
+icon = ExtResource("13_1ch4w")
+desc = "Rebind keyboard or gamepad input of a specific input action."
+value_type = 4
+value_hint = 0
+value_hint_string = ""
+
+[sub_resource type="Resource" id="Resource_jg1lv"]
+resource_name = "sprint_kb"
+script = ExtResource("14_t43c8")
+action = "sprint"
+type = 0
+current = "shift"
+default = "shift"
+name = "sprint_kb"
+category = "controls"
+icon = ExtResource("13_1ch4w")
+desc = "Rebind keyboard or gamepad input of a specific input action."
+value_type = 4
+value_hint = 0
+value_hint_string = ""
+
+[sub_resource type="Resource" id="Resource_k132l"]
+resource_name = "crouch_kb"
+script = ExtResource("14_t43c8")
+action = "crouch"
+type = 0
+current = "ctrl"
+default = "ctrl"
+name = "crouch_kb"
+category = "controls"
+icon = ExtResource("13_1ch4w")
+desc = "Rebind keyboard or gamepad input of a specific input action."
+value_type = 4
+value_hint = 0
+value_hint_string = ""
+
+[sub_resource type="Resource" id="Resource_w3of5"]
+resource_name = "reload_kb"
+script = ExtResource("14_t43c8")
+action = "reload"
+type = 0
+current = "r"
+default = "r"
+name = "reload_kb"
+category = "controls"
+icon = ExtResource("13_1ch4w")
+desc = "Rebind keyboard or gamepad input of a specific input action."
+value_type = 4
+value_hint = 0
+value_hint_string = ""
+
+[sub_resource type="Resource" id="Resource_r2poy"]
+resource_name = "fire_mode_kb"
+script = ExtResource("14_t43c8")
+action = "toggleFireMode"
+type = 0
+current = "b"
+default = "b"
+name = "fire_mode_kb"
+category = "controls"
+icon = ExtResource("13_1ch4w")
+desc = "Rebind keyboard or gamepad input of a specific input action."
+value_type = 4
+value_hint = 0
+value_hint_string = ""
+
+[sub_resource type="Resource" id="Resource_lhtf5"]
+resource_name = "ads_kb"
+script = ExtResource("14_t43c8")
+action = "ads"
+type = 0
+current = "rmb"
+default = "rmb"
+name = "ads_kb"
+category = "controls"
+icon = ExtResource("13_1ch4w")
+desc = "Rebind keyboard or gamepad input of a specific input action."
+value_type = 4
+value_hint = 0
+value_hint_string = ""
+
+[sub_resource type="Resource" id="Resource_uwhsk"]
+resource_name = "prone_kb"
+script = ExtResource("14_t43c8")
+action = "prone"
+type = 0
+current = "z"
+default = "z"
+name = "prone_kb"
+category = "controls"
+icon = ExtResource("13_1ch4w")
+desc = "Rebind keyboard or gamepad input of a specific input action."
+value_type = 4
+value_hint = 0
+value_hint_string = ""
+
+[sub_resource type="Resource" id="Resource_68382"]
+resource_name = "lean_left_kb"
+script = ExtResource("14_t43c8")
+action = "leanLeft"
+type = 0
+current = "q"
+default = "q"
+name = "lean_left_kb"
+category = "controls"
+icon = ExtResource("13_1ch4w")
+desc = "Rebind keyboard or gamepad input of a specific input action."
+value_type = 4
+value_hint = 0
+value_hint_string = ""
+
+[sub_resource type="Resource" id="Resource_f3h3l"]
+resource_name = "lean_right_kb"
+script = ExtResource("14_t43c8")
+action = "leanRight"
+type = 0
+current = "e"
+default = "e"
+name = "lean_right_kb"
+category = "controls"
+icon = ExtResource("13_1ch4w")
+desc = "Rebind keyboard or gamepad input of a specific input action."
+value_type = 4
+value_hint = 0
+value_hint_string = ""
+
+[sub_resource type="Resource" id="Resource_h4g6b"]
+resource_name = "use_kb"
+script = ExtResource("14_t43c8")
+action = "use"
+type = 0
+current = "e"
+default = "e"
+name = "use_kb"
+category = "controls"
+icon = ExtResource("13_1ch4w")
+desc = "Rebind keyboard or gamepad input of a specific input action."
+value_type = 4
+value_hint = 0
+value_hint_string = ""
+
+[sub_resource type="Resource" id="Resource_5al3a"]
+resource_name = "drop_gun_kb"
+script = ExtResource("14_t43c8")
+action = "dropGun"
+type = 0
+current = "backspace"
+default = "backspace"
+name = "drop_gun_kb"
+category = "controls"
+icon = ExtResource("13_1ch4w")
+desc = "Rebind keyboard or gamepad input of a specific input action."
+value_type = 4
+value_hint = 0
+value_hint_string = ""
+
+[sub_resource type="Resource" id="Resource_b4ve8"]
+resource_name = "inventory_kb"
+script = ExtResource("14_t43c8")
+action = "inventory"
+type = 0
+current = "tab"
+default = "tab"
+name = "inventory_kb"
+category = "controls"
+icon = ExtResource("13_1ch4w")
+desc = "Rebind keyboard or gamepad input of a specific input action."
+value_type = 4
+value_hint = 0
+value_hint_string = ""
+
+[sub_resource type="Resource" id="Resource_5iar8"]
+resource_name = "gun_slot_1_kb"
+script = ExtResource("14_t43c8")
+action = "equipGunSlot1"
+type = 0
+current = "1"
+default = "1"
+name = "gun_slot_1_kb"
+category = "controls"
+icon = ExtResource("13_1ch4w")
+desc = "Rebind keyboard or gamepad input of a specific input action."
+value_type = 4
+value_hint = 0
+value_hint_string = ""
+
+[sub_resource type="Resource" id="Resource_o2bgq"]
+resource_name = "gun_slot_2_kb"
+script = ExtResource("14_t43c8")
+action = "equipGunSlot2"
+type = 0
+current = "2"
+default = "2"
+name = "gun_slot_2_kb"
+category = "controls"
+icon = ExtResource("13_1ch4w")
+desc = "Rebind keyboard or gamepad input of a specific input action."
+value_type = 4
+value_hint = 0
+value_hint_string = ""
+
+[sub_resource type="Resource" id="Resource_s5lrt"]
+resource_name = "inv_grab_kb"
+script = ExtResource("14_t43c8")
+action = "inv_grab"
+type = 0
+current = "lmb"
+default = "lmb"
+name = "inv_grab_kb"
+category = "controls"
+icon = ExtResource("13_1ch4w")
+desc = "Rebind keyboard or gamepad input of a specific input action."
+value_type = 4
+value_hint = 0
+value_hint_string = ""
+
+[sub_resource type="Resource" id="Resource_6lj6n"]
+resource_name = "rotate_item_kb"
+script = ExtResource("14_t43c8")
+action = "rotate_held_item"
+type = 0
+current = "r"
+default = "r"
+name = "rotate_item_kb"
+category = "controls"
+icon = ExtResource("13_1ch4w")
+desc = "Rebind keyboard or gamepad input of a specific input action."
+value_type = 4
+value_hint = 0
+value_hint_string = ""
+
+[sub_resource type="Resource" id="Resource_30olv"]
+resource_name = "open_context_menu_kb"
+script = ExtResource("14_t43c8")
+action = "openContextMenu"
+type = 0
+current = "rmb"
+default = "rmb"
+name = "open_context_menu_kb"
+category = "controls"
+icon = ExtResource("13_1ch4w")
+desc = "Rebind keyboard or gamepad input of a specific input action."
+value_type = 4
+value_hint = 0
+value_hint_string = ""
+
+[sub_resource type="Resource" id="Resource_rf8pj"]
+resource_name = "controls"
+script = ExtResource("1_k6wsq")
+name = "controls"
+settings = {
+"ads_kb": SubResource("Resource_lhtf5"),
+"crouch_kb": SubResource("Resource_k132l"),
+"drop_gun_kb": SubResource("Resource_5al3a"),
+"fire_mode_kb": SubResource("Resource_r2poy"),
+"gun_slot_1_kb": SubResource("Resource_5iar8"),
+"gun_slot_2_kb": SubResource("Resource_o2bgq"),
+"inv_grab_kb": SubResource("Resource_s5lrt"),
+"inventory_kb": SubResource("Resource_b4ve8"),
+"jump_kb": SubResource("Resource_5s7xi"),
+"lean_left_kb": SubResource("Resource_68382"),
+"lean_right_kb": SubResource("Resource_f3h3l"),
+"move__right_kb": SubResource("Resource_qnkl6"),
+"move_back_kb": SubResource("Resource_0ssk6"),
+"move_forward_kb": SubResource("Resource_mxd56"),
+"move_left_kb": SubResource("Resource_nepbr"),
+"open_context_menu_kb": SubResource("Resource_30olv"),
+"prone_kb": SubResource("Resource_uwhsk"),
+"reload_kb": SubResource("Resource_w3of5"),
+"rotate_item_kb": SubResource("Resource_6lj6n"),
+"shoot_kb": SubResource("Resource_an0pk"),
+"sprint_kb": SubResource("Resource_jg1lv"),
+"use_kb": SubResource("Resource_h4g6b")
+}
+item_order = Array[Resource("res://addons/ggs/classes/resources/ggs_setting.gd")]([SubResource("Resource_nepbr"), SubResource("Resource_qnkl6"), SubResource("Resource_mxd56"), SubResource("Resource_0ssk6"), SubResource("Resource_5s7xi"), SubResource("Resource_an0pk"), SubResource("Resource_jg1lv"), SubResource("Resource_k132l"), SubResource("Resource_w3of5"), SubResource("Resource_r2poy"), SubResource("Resource_lhtf5"), SubResource("Resource_uwhsk"), SubResource("Resource_68382"), SubResource("Resource_f3h3l"), SubResource("Resource_h4g6b"), SubResource("Resource_5al3a"), SubResource("Resource_b4ve8"), SubResource("Resource_5iar8"), SubResource("Resource_o2bgq"), SubResource("Resource_s5lrt"), SubResource("Resource_6lj6n"), SubResource("Resource_30olv")])
+
+[sub_resource type="Resource" id="Resource_dg48d"]
+resource_name = "display"
+script = ExtResource("1_k6wsq")
+name = "display"
+settings = {}
+item_order = Array[Resource("res://addons/ggs/classes/resources/ggs_setting.gd")]([])
+
+[sub_resource type="Resource" id="Resource_l7sqc"]
+resource_name = "Input Binding"
+script = ExtResource("14_t43c8")
+action = ""
+type = 0
+current = ""
+default = ""
+name = "Input Binding"
+category = ""
+icon = ExtResource("13_1ch4w")
+desc = "Rebind keyboard or gamepad input of a specific input action."
+value_type = 4
+value_hint = 0
+value_hint_string = ""
+
+[sub_resource type="Resource" id="Resource_yawd3"]
+resource_name = "Audio Mute"
+script = ExtResource("4_p6m1c")
+current = false
+default = false
+name = "Audio Mute"
+category = ""
+icon = ExtResource("3_h73ug")
+desc = "Toggle mute state of a specific audio bus."
+value_type = 1
+value_hint = 0
+value_hint_string = ""
+
+[sub_resource type="Resource" id="Resource_rshgp"]
+resource_name = "Audio Volume"
+script = ExtResource("6_k85gx")
+current = 80.0
+default = 80.0
+name = "Audio Volume"
+category = ""
+icon = ExtResource("5_2ag7l")
+desc = "Change volume of a specific audio bus."
+value_type = 3
+value_hint = 1
+value_hint_string = "0,100"
+
+[sub_resource type="Resource" id="Resource_wa7wq"]
+resource_name = "Fullscreen Mode"
+script = ExtResource("8_4worf")
+current = false
+default = false
+name = "Fullscreen Mode"
+category = ""
+icon = ExtResource("7_rh23p")
+desc = "Toggle Fullscreen mode."
+value_type = 1
+value_hint = 0
+value_hint_string = ""
+
+[sub_resource type="Resource" id="Resource_vfdnb"]
+resource_name = "Window Scale"
+script = ExtResource("10_m8o61")
+scales = Array[float]([])
+current = null
+default = null
+name = "Window Scale"
+category = ""
+icon = ExtResource("9_v3iro")
+desc = "Change window size by multiplying its width and height by a specific value."
+value_type = 2
+value_hint = 2
+value_hint_string = ""
+
+[sub_resource type="Resource" id="Resource_vyp6y"]
+resource_name = "Window Size"
+script = ExtResource("12_gkg7h")
+sizes = Array[Vector2]([])
+current = null
+default = null
+name = "Window Size"
+category = ""
+icon = ExtResource("11_q5xtq")
+desc = "Change window size by setting its width and height to specific values."
+value_type = 2
+value_hint = 2
+value_hint_string = ""
+
+[resource]
+script = ExtResource("1_wabe0")
+categories = {
+"audio": SubResource("Resource_nuq1d"),
+"controls": SubResource("Resource_rf8pj"),
+"display": SubResource("Resource_dg48d")
+}
+category_order = Array[ExtResource("1_k6wsq")]([null, SubResource("Resource_rf8pj"), SubResource("Resource_nuq1d"), SubResource("Resource_dg48d")])
+recent_settings = Array[Resource("res://addons/ggs/classes/resources/ggs_setting.gd")]([SubResource("Resource_l7sqc")])
+setting_list_cache = Array[Resource("res://addons/ggs/classes/resources/ggs_setting.gd")]([SubResource("Resource_yawd3"), SubResource("Resource_rshgp"), SubResource("Resource_wa7wq"), SubResource("Resource_vfdnb"), SubResource("Resource_vyp6y"), SubResource("Resource_l7sqc")])
+dir_settings = "res://game_settings/settings"
+dir_components = "res://game_settings/components"
+dir_save_file = "user://settings.cfg"
+split_offset_0 = -225
+split_offset_1 = 420

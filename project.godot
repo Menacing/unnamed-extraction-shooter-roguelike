@@ -20,6 +20,7 @@ config/icon="res://icon.svg"
 Events="*res://Events.gd"
 InventoryManager="*res://inventory_manager.gd"
 Helpers="*res://Helpers.gd"
+GGS="*res://addons/ggs/classes/ggs_globals.gd"
 
 [debug]
 
@@ -36,7 +37,7 @@ project/assembly_name="Unnamed-extraction-shooter-roguelike"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/gdUnit4/plugin.cfg")
+enabled=PackedStringArray("res://addons/gdUnit4/plugin.cfg", "res://addons/ggs/plugin.cfg")
 
 [gui]
 
