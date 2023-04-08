@@ -18,9 +18,11 @@ config/icon="res://icon.svg"
 [autoload]
 
 Events="*res://Events.gd"
-InventoryManager="*res://inventory_manager.gd"
+GameSettings="*res://GameSettings.gd"
 Helpers="*res://Helpers.gd"
+InventoryManager="*res://inventory_manager.gd"
 GGS="*res://addons/ggs/classes/ggs_globals.gd"
+MenuManager="*res://menu_manager.gd"
 
 [debug]
 
