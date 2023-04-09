@@ -29,10 +29,6 @@ var pov_rotation_node:Node3D
 @onready var ik_head:SkeletonIK3D = $player_default_mesh/metarig/Skeleton3D/SkeletonIK3D_Head
 var los_check_locations:Array[Node3D] = []
 
-var mouseSensibility = 1200
-@export var mouse_sensitivity = 0.005
-var mouse_relative_x = 0
-var mouse_relative_y = 0
 const NORMAL_SPEED = 5.0
 const CROUCH_SPEED = 2.5
 const PRONE_SPEED = 1
@@ -379,16 +375,17 @@ func toggle_inventory():
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 func transformMouse(event: InputEventMouse):
-	rotate_y(-event.relative.x * mouse_sensitivity)
-	pov_rotation_node.rotate_x(-event.relative.y * mouse_sensitivity)
+	var vert_rotation = -event.relative.x * GameSettings.h_mouse_sens/1000.0
+	var hor_rotation = -event.relative.y * GameSettings.v_mouse_sens/1000.0
+	
+	if (fully_ads):
+		vert_rotation = vert_rotation * GameSettings.ads_look_factor
+		hor_rotation = hor_rotation * GameSettings.ads_look_factor
+	
+	rotate_y(vert_rotation)
+	pov_rotation_node.rotate_x(hor_rotation)
 	pov_rotation_node.rotation.x = clampf(pov_rotation_node.rotation.x, -deg_to_rad(85), deg_to_rad(85))
 
-func legacyMouse(event: InputEventMouse):
-	rotation.y -= event.relative.x / mouseSensibility
-	pov_rotation_node.rotation.x -= event.relative.y / mouseSensibility
-	pov_rotation_node.rotation.x = clamp(pov_rotation_node.rotation.x, deg_to_rad(-90), deg_to_rad(90) )
-	mouse_relative_x = clamp(event.relative.x, -50, 50)
-	mouse_relative_y = clamp(event.relative.y, -50, 10)
 
 func shoot():
 	equipped_gun.fireGun()
