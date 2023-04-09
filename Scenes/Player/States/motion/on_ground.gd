@@ -2,8 +2,7 @@ extends PlayerMotion
 class_name OnGround
 
 # warning-ignore-all:unused_class_variable
-var toggle_sprint: bool = false
-var toggle_crouch: bool = false
+
 var accel:float = 1.0
 
 func handle_input(event):
@@ -13,12 +12,10 @@ func handle_input(event):
 
 func enter():
 	super()
-	toggle_sprint = owner.toggle_sprint
-	toggle_crouch = owner.toggle_crouch
 	accel = owner.accel
 
 func should_sprint() -> bool:
-	if toggle_sprint:
+	if GameSettings.toggle_sprint:
 		if Input.is_action_just_pressed("sprint"):
 			owner.toggle_sprint_f = !owner.toggle_sprint_f
 		return owner.toggle_sprint_f
@@ -26,7 +23,7 @@ func should_sprint() -> bool:
 		return Input.is_action_pressed("sprint")
 		
 func should_crouch() -> bool:
-	if toggle_crouch:
+	if GameSettings.toggle_crouch:
 		if Input.is_action_just_pressed("crouch"):
 			owner.toggle_crouch_f = !owner.toggle_crouch_f
 		return owner.toggle_crouch_f

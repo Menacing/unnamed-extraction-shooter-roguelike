@@ -27,3 +27,6 @@ signal pickup_helper_visibility(show:bool)
 signal ammo_count_changed(new_count:int)
 signal fire_mode_changed(new_firemode:String)
 signal compass_player_pulse(player_position:Vector3, player_rotation:Vector3)
+
+#UI Events
+signal pause()

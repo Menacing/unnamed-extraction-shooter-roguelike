@@ -1,0 +1,62 @@
+[gd_scene load_steps=4 format=3 uid="uid://bo6x6p6ooowcx"]
+
+[ext_resource type="Script" path="res://ui/menu/pause.gd" id="1_1nbik"]
+
+[sub_resource type="InputEventAction" id="InputEventAction_1sy1t"]
+action = &"ui_cancel"
+pressed = true
+
+[sub_resource type="Shortcut" id="Shortcut_o2ej0"]
+events = [SubResource("InputEventAction_1sy1t")]
+
+[node name="pause" type="ColorRect"]
+process_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.568627)
+script = ExtResource("1_1nbik")
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer"]
+custom_minimum_size = Vector2(500, 400)
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CenterContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Paused"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="CenterContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="resume_button" type="Button" parent="CenterContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+shortcut = SubResource("Shortcut_o2ej0")
+shortcut_feedback = false
+shortcut_in_tooltip = false
+text = "Resume"
+
+[node name="options_button" type="Button" parent="CenterContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Options"
+
+[node name="quit_game_button" type="Button" parent="CenterContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Quit Game"

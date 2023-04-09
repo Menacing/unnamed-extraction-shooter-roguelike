@@ -29,10 +29,6 @@ var pov_rotation_node:Node3D
 @onready var ik_head:SkeletonIK3D = $player_default_mesh/metarig/Skeleton3D/SkeletonIK3D_Head
 var los_check_locations:Array[Node3D] = []
 
-var mouseSensibility = 1200
-@export var mouse_sensitivity = 0.005
-var mouse_relative_x = 0
-var mouse_relative_y = 0
 const NORMAL_SPEED = 5.0
 const CROUCH_SPEED = 2.5
 const PRONE_SPEED = 1
@@ -64,14 +60,9 @@ var fully_ads: bool = false
 @warning_ignore("unsafe_method_access")
 @onready var left_lean_basis: Basis = waist.transform.basis.rotated(Vector3.FORWARD, -LEAN_AMOUNT)
 
-var config = ConfigFile.new()
-var both_eyes_open_ads: bool
-var toggle_sprint: bool
+
 var toggle_sprint_f: bool = false
-var toggle_crouch: bool
 var toggle_crouch_f: bool = false
-var toggle_ads: bool
-var toggle_lean: bool
 var toggle_prone_f: bool = false
 var toggle_inv_f: bool = false
 
@@ -88,15 +79,6 @@ func _ready():
 		shoulder_gun = gun_scene2.instantiate()
 		#TODO: Pull these from the packed scene instead of being hardcoded
 		#pick_up_gun(shoulder_gun)
-	
-	var err = config.load("res://game_settings.cfg")
-	if err == OK:
-		for player in config.get_sections():
-			both_eyes_open_ads = config.get_value(player, "both_eyes_open_ads")
-			toggle_sprint = config.get_value(player, "toggle_sprint")
-			toggle_crouch = config.get_value(player, "toggle_crouch")
-			toggle_lean = config.get_value(player, "toggle_lean")
-			toggle_ads = config.get_value(player, "toggle_ads")
 	
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	currentSpeed = NORMAL_SPEED
@@ -272,7 +254,7 @@ func _physics_process(delta):
 				if (equipped_gun.transform.origin - ads_pos).length() < 0.001:
 					fully_ads = true
 				else:
-					if both_eyes_open_ads:
+					if GameSettings.both_eyes_open_ads:
 						equipped_gun.make_transparent()
 						make_transparent()
 					equipped_gun.transform.origin = equipped_gun.transform.origin.lerp(ads_pos, ads_accel)
@@ -280,7 +262,7 @@ func _physics_process(delta):
 					cam.fov = lerp(cam.fov, ads_fov, ads_accel)
 			else:
 				fully_ads = false
-				if both_eyes_open_ads:
+				if GameSettings.both_eyes_open_ads:
 					equipped_gun.make_opaque()
 					make_opaque()
 				if equipped_gun.transform.origin != hf_pos:
@@ -315,7 +297,7 @@ func _physics_process(delta):
 
 var toggle_ads_f: bool = false
 func shouldAds() -> bool:
-	if toggle_ads:
+	if GameSettings.toggle_ads:
 		if Input.is_action_just_pressed("ads"):
 			toggle_ads_f = !toggle_ads_f
 		return toggle_ads_f
@@ -325,7 +307,7 @@ func shouldAds() -> bool:
 var toggle_lean_l_f: bool = false
 var toggle_lean_r_f: bool = false
 func shouldLeanRight() -> bool:
-	if !toggle_lean:
+	if !GameSettings.toggle_lean:
 		return Input.is_action_pressed("leanRight")
 	else:
 		if Input.is_action_just_pressed("leanRight"):
@@ -334,7 +316,7 @@ func shouldLeanRight() -> bool:
 		return toggle_lean_r_f
 
 func  shouldLeanLeft() -> bool:
-	if !toggle_lean:
+	if !GameSettings.toggle_lean:
 		return Input.is_action_pressed("leanLeft")
 	else:
 		if Input.is_action_just_pressed("leanLeft"):
@@ -345,6 +327,10 @@ func  shouldLeanLeft() -> bool:
 		
 func can_shoot() -> bool:
 	return is_on_floor() #and !isSprinting()
+
+func _unhandled_input(event):
+	if event.is_action_pressed("ui_cancel"):
+		MenuManager.load_menu(MenuManager.MENU_LEVEL.PAUSE)
 
 func _input(event):
 	if event.is_action_pressed("inventory"):
@@ -389,16 +375,17 @@ func toggle_inventory():
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 func transformMouse(event: InputEventMouse):
-	rotate_y(-event.relative.x * mouse_sensitivity)
-	pov_rotation_node.rotate_x(-event.relative.y * mouse_sensitivity)
+	var vert_rotation = -event.relative.x * GameSettings.h_mouse_sens/1000.0
+	var hor_rotation = -event.relative.y * GameSettings.v_mouse_sens/1000.0
+	
+	if (fully_ads):
+		vert_rotation = vert_rotation * GameSettings.ads_look_factor
+		hor_rotation = hor_rotation * GameSettings.ads_look_factor
+	
+	rotate_y(vert_rotation)
+	pov_rotation_node.rotate_x(hor_rotation)
 	pov_rotation_node.rotation.x = clampf(pov_rotation_node.rotation.x, -deg_to_rad(85), deg_to_rad(85))
 
-func legacyMouse(event: InputEventMouse):
-	rotation.y -= event.relative.x / mouseSensibility
-	pov_rotation_node.rotation.x -= event.relative.y / mouseSensibility
-	pov_rotation_node.rotation.x = clamp(pov_rotation_node.rotation.x, deg_to_rad(-90), deg_to_rad(90) )
-	mouse_relative_x = clamp(event.relative.x, -50, 50)
-	mouse_relative_y = clamp(event.relative.y, -50, 10)
 
 func shoot():
 	equipped_gun.fireGun()
