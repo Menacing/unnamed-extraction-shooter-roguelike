@@ -11,7 +11,7 @@ var loot_item_comps = []
 func _ready():
 	var inv_node:WorldInventory = inv_scene.instantiate()
 	inv_node.container_size = container_size
-	inv_name = inv_node.name
+	inv_name = str(inv_node.get_instance_id())
 	Events.create_inventory.emit(inv_node,inv_name)
 	
 	for loot in loot_scenes:
