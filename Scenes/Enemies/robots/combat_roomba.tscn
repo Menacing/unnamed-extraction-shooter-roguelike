@@ -1,8 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://vk1criqck6cx"]
+[gd_scene load_steps=13 format=3 uid="uid://vk1criqck6cx"]
 
 [ext_resource type="Script" path="res://Scenes/Enemies/robots/combat_roomba.gd" id="1_f1cah"]
 [ext_resource type="PackedScene" uid="uid://dr48wela8mtxd" path="res://Scenes/Guns/AK47-Projectile/AK47-Projectile.tscn" id="2_q4rc2"]
 [ext_resource type="PackedScene" uid="uid://bbjimpqtecww7" path="res://Scenes/Enemies/robots/combat-roomba.glb" id="3_wwy82"]
+[ext_resource type="PackedScene" uid="uid://5n7aup1d2u20" path="res://Scenes/effects/bullet_hit_sparks.tscn" id="3_x3mdn"]
 [ext_resource type="Script" path="res://Scenes/Enemies/robots/corpse_container.gd" id="4_brkc6"]
 [ext_resource type="PackedScene" uid="uid://b6xejgxv7attc" path="res://Scenes/items/backpacks/large/large_backpack.tscn" id="5_may0k"]
 [ext_resource type="PackedScene" uid="uid://dsu2lajkgpbva" path="res://Scenes/items/materials/polymer_pile/polymer_pile.tscn" id="6_guh24"]
@@ -28,6 +29,9 @@ size = Vector3(0.285396, 1.55914, 0.278187)
 collision_layer = 3
 script = ExtResource("1_f1cah")
 gun_scene = ExtResource("2_q4rc2")
+hit_effect = ExtResource("3_x3mdn")
+vert_moa = 60.0
+hor_moa = 60.0
 
 [node name="combat-roomba" parent="." instance=ExtResource("3_wwy82")]
 
