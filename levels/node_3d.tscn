@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://ctahsvj88g1om"]
+[gd_scene load_steps=29 format=3 uid="uid://ctahsvj88g1om"]
 
 [ext_resource type="PackedScene" uid="uid://d08aatgxmymbf" path="res://Scenes/Player/player.tscn" id="1_eisjc"]
 [ext_resource type="Script" path="res://levels/node_3d.gd" id="1_lmeut"]
@@ -15,9 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://b6xejgxv7attc" path="res://Scenes/items/backpacks/large/large_backpack.tscn" id="11_ufdnn"]
 [ext_resource type="PackedScene" uid="uid://dbtbpwqmn424f" path="res://Scenes/containers/dev_chest.tscn" id="12_ibcly"]
 [ext_resource type="PackedScene" uid="uid://dsu2lajkgpbva" path="res://Scenes/items/materials/polymer_pile/polymer_pile.tscn" id="13_bf20g"]
-[ext_resource type="PackedScene" uid="uid://vk1criqck6cx" path="res://Scenes/Enemies/robots/combat_roomba.tscn" id="14_1p3tt"]
 [ext_resource type="PackedScene" uid="uid://c2mgc1vc3603e" path="res://Scenes/items/armor/light/light_armor_1.tscn" id="14_poylk"]
-[ext_resource type="PackedScene" uid="uid://biyb74e3s6cu8" path="res://Scenes/Enemies/DevTurret.tscn" id="15_o6jek"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_6g5uc"]
 
@@ -283,12 +281,6 @@ stack = 5
 
 [node name="light_armor_1" parent="." instance=ExtResource("14_poylk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.69185, 0.548223, -8.79357)
-
-[node name="DevTurret" parent="." instance=ExtResource("15_o6jek")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.9179, 1.3061, -12.3591)
-
-[node name="combat_roomba" parent="." instance=ExtResource("14_1p3tt")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.5758, 0.0788296, -20.0803)
 
 [node name="bullet_hit_sparks" parent="." instance=ExtResource("6_jgw4a")]
 transform = Transform3D(-0.173648, 0, 0.984808, 0, 1, 0, -0.984808, 0, -0.173648, 29.3228, 1.96791, -8.61756)
