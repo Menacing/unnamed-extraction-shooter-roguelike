@@ -145,7 +145,6 @@ _data = {
 }
 
 [node name="AK47-Projectile" type="RigidBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0011673, -0.520684)
 disable_mode = 1
 collision_layer = 5
 collision_mask = 5
@@ -153,7 +152,7 @@ script = ExtResource("1_10ipx")
 _bullet_scene = ExtResource("2_himgn")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, -0.0521243, 0.0719389)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0.115114, 0.0719389)
 shape = SubResource("BoxShape3D_a6wgc")
 
 [node name="ItemComponent" type="Node" parent="."]
@@ -182,7 +181,7 @@ transform = Transform3D(-5.42999e-07, 0.15, 0, -0.15, -5.42999e-07, 0, 0, 0, 0.1
 visible = false
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.274242)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.167238, -0.274242)
 stream = ExtResource("5_w1xps")
 volume_db = -20.0
 
@@ -193,7 +192,7 @@ wait_time = 2.5
 one_shot = true
 
 [node name="gun" parent="." instance=ExtResource("9_fdr73")]
-transform = Transform3D(-2.62268e-08, 0, -0.6, 0, 0.6, 0, 0.6, 0, -2.62268e-08, 0, 0, 0)
+transform = Transform3D(-2.62268e-08, 0, -0.6, 0, 0.6, 0, 0.6, 0, -2.62268e-08, 0, 0.167238, 0)
 
 [node name="Node_15" parent="gun" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.338339, 0)
@@ -222,24 +221,24 @@ transform = Transform3D(4.37114e-08, 1, -8.74228e-08, 1, -4.37114e-08, 0, -3.821
 target_position = Vector3(0, -1000, 0)
 
 [node name="Right_Hand" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 7.10543e-15, 0, 1, 0, -7.10543e-15, 0, 1, 0.025, -0.088, 0.281)
+transform = Transform3D(1, 0, 7.10543e-15, 0, 1, 0, -7.10543e-15, 0, 1, 0.025, 0.0792384, 0.281)
 
 [node name="Right_Fingers" type="Node3D" parent="."]
-transform = Transform3D(-1, 8.74228e-08, 7.10543e-15, -8.74228e-08, -1, 0, 7.10543e-15, -6.21177e-22, 1, -0.0017045, -0.088, -0.0446781)
+transform = Transform3D(-1, 8.74228e-08, 7.10543e-15, -8.74228e-08, -1, 0, 7.10543e-15, -6.21177e-22, 1, -0.0017045, 0.0792384, -0.0446781)
 
 [node name="HipFire" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.168, 0.21, 0.468)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.168, 0.377238, 0.468)
 
 [node name="ADS" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0521843, 0.430836)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.219423, 0.430836)
 
 [node name="Left_Hand" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0283023, -0.0299468, -0.0768944)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0283023, 0.137292, -0.0768944)
 
 [node name="Left_Fingers" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.179712, -0.0299468, -0.0768944)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.179712, 0.137292, -0.0768944)
 
 [node name="ADS_Head" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2, 0.6, -0.088)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2, 0.767238, -0.088)
 
 [editable path="gun"]
