@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://ctahsvj88g1om"]
+[gd_scene load_steps=28 format=3 uid="uid://ctahsvj88g1om"]
 
 [ext_resource type="PackedScene" uid="uid://d08aatgxmymbf" path="res://Scenes/Player/player.tscn" id="1_eisjc"]
 [ext_resource type="Script" path="res://levels/node_3d.gd" id="1_lmeut"]
@@ -11,11 +11,9 @@
 [ext_resource type="PackedScene" uid="uid://5n7aup1d2u20" path="res://Scenes/effects/bullet_hit_sparks.tscn" id="6_jgw4a"]
 [ext_resource type="Texture2D" uid="uid://bowen45ldiepa" path="res://gunmetal-texture.png" id="7_d5i4x"]
 [ext_resource type="Script" path="res://levels/EnvironmentalBallisticImpact.gd" id="9_63y4f"]
-[ext_resource type="PackedScene" uid="uid://dr48wela8mtxd" path="res://Scenes/Guns/AK47-Projectile/AK47-Projectile.tscn" id="10_b8533"]
-[ext_resource type="PackedScene" uid="uid://b6xejgxv7attc" path="res://Scenes/items/backpacks/large/large_backpack.tscn" id="11_ufdnn"]
-[ext_resource type="PackedScene" uid="uid://dbtbpwqmn424f" path="res://Scenes/containers/dev_chest.tscn" id="12_ibcly"]
-[ext_resource type="PackedScene" uid="uid://dsu2lajkgpbva" path="res://Scenes/items/materials/polymer_pile/polymer_pile.tscn" id="13_bf20g"]
-[ext_resource type="PackedScene" uid="uid://c2mgc1vc3603e" path="res://Scenes/items/armor/light/light_armor_1.tscn" id="14_poylk"]
+[ext_resource type="Script" path="res://ui/inventory/WorldInventory.gd" id="11_1jhpg"]
+[ext_resource type="PackedScene" uid="uid://rcso16s616y" path="res://Scenes/containers/dev_chest.tscn" id="12_ibcly"]
+[ext_resource type="Script" path="res://ui/inventory/WorldInventoryGrid.gd" id="12_mtjvm"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_6g5uc"]
 
@@ -54,6 +52,20 @@ uv1_triplanar = true
 
 [sub_resource type="BoxMesh" id="BoxMesh_g4ghf"]
 material = SubResource("StandardMaterial3D_ckhie")
+
+[sub_resource type="PackedScene" id="PackedScene_fd581"]
+resource_local_to_scene = true
+_bundled = {
+"conn_count": 0,
+"conns": PackedInt32Array(),
+"editable_instances": [],
+"names": PackedStringArray("WorldInventory", "layout_mode", "anchors_preset", "anchor_right", "anchor_bottom", "grow_horizontal", "grow_vertical", "size_flags_horizontal", "size_flags_vertical", "script", "grid_inv_path", "Control", "InventoryBase", "offset_right", "inventory_controls", "Panel", "WorldInventoryGrid", "modulate", "anchor_left", "anchor_top", "offset_left", "offset_top", "offset_bottom", "theme_override_constants/h_separation", "theme_override_constants/v_separation", "columns", "GridContainer"),
+"node_count": 3,
+"node_paths": [],
+"nodes": PackedInt32Array(-1, -1, 11, 0, -1, 10, 1, 0, 2, 1, 3, 2, 4, 2, 5, 3, 6, 3, 7, 0, 8, 0, 9, 4, 10, 5, 0, 0, 0, 15, 12, -1, 5, 1, 6, 2, 7, 4, 2, 13, 8, 6, 3, 1, 14, 1, 0, 26, 16, -1, 17, 17, 9, 1, 6, 2, 10, 18, 11, 19, 11, 3, 11, 4, 11, 20, 12, 21, 13, 13, 14, 22, 15, 5, 3, 6, 3, 23, 16, 24, 16, 25, 17, 9, 18, 1, 14),
+"variants": [3, 15, 1.0, 2, ExtResource("11_1jhpg"), NodePath("InventoryBase/WorldInventoryGrid"), 1, 9, 576.0, Color(0.686275, 0.686275, 0.686275, 1), 8, 0.5, -112.0, -128.0, 112.0, 128.0, 0, 7, ExtResource("12_mtjvm")],
+"version": 3
+}
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_j36b3"]
 albedo_color = Color(0.443137, 0.431373, 0.431373, 1)
@@ -170,6 +182,7 @@ mesh = SubResource("BoxMesh_g4ghf")
 
 [node name="dev_chest" parent="NavigationRegion3D" instance=ExtResource("12_ibcly")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.6849, 0.103674, -6.53131)
+inv = SubResource("PackedScene_fd581")
 
 [node name="Floor" type="CSGBox3D" parent="NavigationRegion3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.42017, 0)
@@ -237,61 +250,8 @@ use_collision = true
 polygon = PackedVector2Array(0, 0, 0, 1, 0, 1, 1, 0)
 material = SubResource("StandardMaterial3D_2gtf0")
 
-[node name="AK47-Projectile" parent="." instance=ExtResource("10_b8533")]
-transform = Transform3D(0.00366516, 0.999993, 0, -0.999993, 0.00366516, 0, 0, 0, 1, 4.22279, 5.2201, 2.12443)
-
-[node name="762x39mm-case" parent="AK47-Projectile" index="3"]
-transform = Transform3D(-5.42999e-07, 0.15, 0, -0.15, -5.42999e-07, 0, 0, 0, 0.15, -0.00116475, 0.0538154, 0.101949)
-
-[node name="AK47-Projectile2" parent="." instance=ExtResource("10_b8533")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.26439, 1.96032, -5.15273)
-
-[node name="large_backpack" parent="." instance=ExtResource("11_ufdnn")]
-transform = Transform3D(1, 0, 0, 0, 0.999578, 0.0290556, 0, -0.0290556, 0.999578, -7.65885, 3.64063, -1.41212)
-
-[node name="large_backpack2" parent="." instance=ExtResource("11_ufdnn")]
-transform = Transform3D(1, 0, 0, 0, 0.999578, 0.0290556, 0, -0.0290556, 0.999578, -5.61581, 3.64063, -1.41212)
-
-[node name="polymer_pile" parent="." instance=ExtResource("13_bf20g")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 6.2352)
-
-[node name="ItemComponent" parent="polymer_pile" index="2"]
-stack = 10
-
-[node name="polymer_pile2" parent="." instance=ExtResource("13_bf20g")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.65582, 0, 6.2352)
-
-[node name="ItemComponent" parent="polymer_pile2" index="2"]
-stack = 5
-
-[node name="polymer_pile3" parent="." instance=ExtResource("13_bf20g")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.65582, 0, 7.14723)
-
-[node name="polymer_pile4" parent="." instance=ExtResource("13_bf20g")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.65582, 0, 8.29139)
-
-[node name="polymer_pile5" parent="." instance=ExtResource("13_bf20g")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.65582, 0, 9.26287)
-
-[node name="polymer_pile6" parent="." instance=ExtResource("13_bf20g")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.262049, 0.0292153, 9.26671)
-
-[node name="ItemComponent" parent="polymer_pile6" index="2"]
-stack = 5
-
-[node name="light_armor_1" parent="." instance=ExtResource("14_poylk")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.69185, 0.548223, -8.79357)
-
 [node name="bullet_hit_sparks" parent="." instance=ExtResource("6_jgw4a")]
 transform = Transform3D(-0.173648, 0, 0.984808, 0, 1, 0, -0.984808, 0, -0.173648, 29.3228, 1.96791, -8.61756)
 
 [editable path="Player"]
 [editable path="Player/player_default_mesh"]
-[editable path="AK47-Projectile"]
-[editable path="AK47-Projectile/gun"]
-[editable path="polymer_pile"]
-[editable path="polymer_pile2"]
-[editable path="polymer_pile3"]
-[editable path="polymer_pile4"]
-[editable path="polymer_pile5"]
-[editable path="polymer_pile6"]

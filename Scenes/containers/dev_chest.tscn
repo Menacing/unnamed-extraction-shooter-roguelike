@@ -1,7 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://dbtbpwqmn424f"]
+[gd_scene load_steps=6 format=3 uid="uid://rcso16s616y"]
 
-[ext_resource type="Script" path="res://Scenes/containers/dev_chest.gd" id="1_34h7k"]
 [ext_resource type="Material" uid="uid://d2jc0ho6nwe5g" path="res://levels/wood.tres" id="1_iumt4"]
+[ext_resource type="Script" path="res://Scenes/containers/world_container.gd" id="1_sw0p7"]
 [ext_resource type="PackedScene" uid="uid://douyxwjscs4ff" path="res://ui/inventory/WorldInventory.tscn" id="2_co3n3"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_bl1fh"]
@@ -12,7 +12,7 @@ material = ExtResource("1_iumt4")
 [node name="dev_chest" type="StaticBody3D"]
 collision_layer = 7
 collision_mask = 7
-script = ExtResource("1_34h7k")
+script = ExtResource("1_sw0p7")
 inv = ExtResource("2_co3n3")
 container_size = 49
 
