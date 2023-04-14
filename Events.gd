@@ -19,7 +19,15 @@ signal create_inventory(inventory:Node, inventory_name:String)
 
 #Health Events
 signal took_damage(damage:float, hit_origin:Vector3)
-signal set_health(current_health:float, max_health:float)
+signal player_health_pulse(health:Array[HealthLocation])
+signal health_changed(actor_id:int, location:HealthLocation.HEALTH_LOCATION, \
+	current_health:float, max_health:float)
+signal location_hit(actor_id:int, location:HealthLocation.HEALTH_LOCATION, \
+	damage:float)
+signal location_healed(actor_id:int, location:HealthLocation.HEALTH_LOCATION, \
+	healed:float)
+signal location_destroyed(actor_id:int, location:HealthLocation.HEALTH_LOCATION)
+signal location_restored(actor_id:int, location:HealthLocation.HEALTH_LOCATION)
 
 #Misc Events
 signal use_helper_visibility(show:bool)

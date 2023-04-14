@@ -98,6 +98,45 @@ min_spawned = 10
 max_spawned = 10
 spawn_info = Array[ExtResource("6_6lmcw")]([SubResource("Resource_3xsmh"), SubResource("Resource_olp20"), SubResource("Resource_prf8b")])
 
+[node name="ChestBoneAttachment" parent="World/Player/HitBox" index="0"]
+transform = Transform3D(-1, 1.20704e-09, 1.80011e-07, -4.50451e-08, 0.966487, -0.256716, -1.74289e-07, -0.256716, -0.966487, 0, 0.542691, 0.106155)
+
+[node name="HeadBoneAttachment" parent="World/Player/HitBox" index="1"]
+transform = Transform3D(-1, 1.23162e-14, -4.37115e-08, 1.06581e-14, 1, 1.49012e-08, 4.37114e-08, 1.19209e-07, -1, -1.86265e-09, 0.83546, 0.0385256)
+
+[node name="NeckBoneAttachment" parent="World/Player/HitBox" index="2"]
+transform = Transform3D(-1, -1.30558e-08, 2.03015e-07, -4.1956e-08, 0.98972, -0.143016, -1.99061e-07, -0.143016, -0.98972, 0, 0.796691, 0.0441279)
+
+[node name="LeftUpperArmBoneAttachment" parent="World/Player/HitBox" index="3"]
+transform = Transform3D(0.497254, -0.867028, -0.0316322, -0.867605, -0.496915, -0.0183658, 0.000205022, 0.0365766, -0.999331, -0.170328, 0.61997, 0.0641427)
+
+[node name="LeftLowerArmBoneAttachment" parent="World/Player/HitBox" index="4"]
+transform = Transform3D(0.537521, -0.842849, 0.026013, -0.843239, -0.537104, 0.0215992, -0.00423335, -0.0335453, -0.999428, -0.456548, 0.45593, 0.0762172)
+
+[node name="RightUpperArmBoneAttachment" parent="World/Player/HitBox" index="5"]
+transform = Transform3D(0.497254, 0.867028, 0.0316322, 0.867605, -0.496915, -0.0183656, -0.000204828, 0.0365766, -0.999331, 0.170328, 0.61997, 0.0641427)
+
+[node name="RightLowerArmBoneAttachment" parent="World/Player/HitBox" index="6"]
+transform = Transform3D(0.537521, 0.842849, -0.0260131, 0.84324, -0.537104, 0.0215996, 0.00423366, -0.0335455, -0.999428, 0.456548, 0.45593, 0.0762172)
+
+[node name="LeftUpperLegBoneAttachment" parent="World/Player/HitBox" index="7"]
+transform = Transform3D(-1, -3.16177e-08, -2.11833e-07, 3.16734e-08, -1, -0.000262868, -2.11824e-07, -0.000262868, 1, -0.098, 0.0940511, 0.0953856)
+
+[node name="RightUpperLegBoneAttachment" parent="World/Player/HitBox" index="8"]
+transform = Transform3D(-1, 2.62198e-09, 2.99254e-07, -2.70064e-09, -1, -0.000262868, 2.99253e-07, -0.000262868, 1, 0.098, 0.0940511, 0.0953856)
+
+[node name="LeftLowerLegBoneAttachment" parent="World/Player/HitBox" index="9"]
+transform = Transform3D(-0.999184, 0.0402265, 0.00354919, -0.0401823, -0.999123, 0.0117708, 0.00401958, 0.0116186, 0.999925, -0.098, -0.34115, 0.0952711)
+
+[node name="RightLowerLegBoneAttachment" parent="World/Player/HitBox" index="10"]
+transform = Transform3D(-0.999184, -0.0402265, -0.0035491, 0.0401823, -0.999123, 0.0117708, -0.00401949, 0.0116186, 0.999925, 0.098, -0.34115, 0.0952711)
+
+[node name="RightFootBoneAttachment" parent="World/Player/HitBox" index="11"]
+transform = Transform3D(-1, 2.48789e-09, 3.89824e-06, -3.85227e-06, -0.160193, -0.987086, 6.23693e-07, -0.987086, 0.160193, 0.076595, -0.872795, 0.101454)
+
+[node name="LeftFootBoneAttachment" parent="World/Player/HitBox" index="12"]
+transform = Transform3D(-1, -8.94802e-08, -3.88447e-06, 3.85599e-06, -0.160193, -0.987086, -5.35804e-07, -0.987086, 0.160193, -0.076595, -0.872795, 0.101454)
+
 [node name="Extract2" type="Area3D" parent="World" groups=["Extract"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.720451, 0.16243, -76.0471)
 collision_layer = 0

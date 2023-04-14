@@ -82,7 +82,6 @@ func _ready():
 	
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	currentSpeed = NORMAL_SPEED
-	Events.set_health.emit(health,max_health)
 	$PlayerMotionStateMachine._active = true
 	Events.fire_mode_changed.emit("")
 	Events.ammo_count_changed.emit(0)
@@ -91,8 +90,6 @@ func _ready():
 	Events.item_picked_up.connect(_on_item_picked_up)
 	Events.item_removed.connect(_on_item_removed)
 	Events.player_inventory_visibility.emit(toggle_inv_f)
-	Events.set_health.emit(health,max_health)
-	Events.took_damage.connect(_on_took_damage)
 	
 	los_check_locations.append($HitBox/HeadBoneAttachment/eyes)
 	los_check_locations.append($HitBox/RightFootBoneAttachment)
@@ -424,12 +421,6 @@ func scale_recoil(recoil:Vector2) -> Vector2:
 	
 func _on_gun_reloaded():
 	Events.ammo_count_changed.emit(equipped_gun.magazine)	
-
-func _on_took_damage(damage:float, hit_origin:Vector3):
-	health-=damage
-	Events.set_health.emit(health,max_health)
-	if health < 0:
-		print("Game Over")
 		
 func start_arms_ik(right_arm_loc:Node3D, right_fingers_loc:Node3D, left_arm_loc:Node3D, left_fingers_loc:Node3D):
 	if right_arm_loc:
