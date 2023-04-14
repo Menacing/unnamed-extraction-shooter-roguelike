@@ -31,6 +31,6 @@ func _on_location_hit(actor_id:int, location:HealthLocation.HEALTH_LOCATION, \
 					if loc.location != main_loc.location:
 						var overflow_damage = -loc.current_health
 						loc.current_health = 0
-						main_loc -= overflow_damage
+						main_loc.current_health -= overflow_damage
 						if main_loc.current_health <= 0:
 							Events.location_destroyed.emit(parent_id, main_loc.location)

@@ -8,7 +8,7 @@ class_name PlayerMotionStateMachine
 @onready var jumping = $Jumping
 @onready var prone = $Prone
 
-
+@onready var parent_id:int = get_parent().get_instance_id()
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -22,6 +22,8 @@ func _ready():
 		"crouch_walking": crouch_walking,
 		"prone": prone,
 	}
+	Events.location_destroyed.connect(_on_location_destroyed)
+	Events.location_restored.connect(_on_location_restored)
 
 
 func _change_state(state_name):
@@ -47,3 +49,14 @@ func _unhandled_input(event):
 #		_change_state("attack")
 #		return
 	current_state.handle_input(event)
+	
+func _on_location_destroyed(actor_id:int, location:HealthLocation.HEALTH_LOCATION):
+	if actor_id == parent_id:
+		if location == HealthLocation.HEALTH_LOCATION.LEGS:
+			owner.legs_destroyed = true
+			emit_signal("finished", "prone")
+
+func _on_location_restored(actor_id:int, location:HealthLocation.HEALTH_LOCATION):
+	if actor_id == parent_id:
+		if location == HealthLocation.HEALTH_LOCATION.LEGS:
+			owner.legs_destroyed = false

@@ -6,7 +6,7 @@ class_name OnGround
 var accel:float = 1.0
 
 func handle_input(event):
-	if event.is_action_pressed("jump"):
+	if event.is_action_pressed("jump") and !owner.legs_destroyed:
 		emit_signal("finished", "standing")
 	return super.handle_input(event)
 
@@ -31,6 +31,8 @@ func should_crouch() -> bool:
 		return Input.is_action_pressed("crouch")
 		
 func should_prone() -> bool:
+	if owner.legs_destroyed:
+		return true
 	if Input.is_action_just_pressed("prone"):
 		owner.toggle_prone_f = !owner.toggle_prone_f
 	return owner.toggle_prone_f
