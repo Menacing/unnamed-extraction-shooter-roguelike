@@ -1,19 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://cum57ykeo3b7q"]
+[gd_scene load_steps=3 format=3 uid="uid://cum57ykeo3b7q"]
 
 [ext_resource type="Script" path="res://ui/misc/ammo_count.gd" id="1_7aiio"]
-[ext_resource type="Shader" path="res://ui/misc/tv_noise.gdshader" id="1_o0x28"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_g0mlg"]
-shader = ExtResource("1_o0x28")
-shader_parameter/amount = 0.1
+[ext_resource type="Material" uid="uid://c0ipdgk1m22gh" path="res://ui/misc/ui_static_mat.tres" id="1_r7iq7"]
 
 [node name="AmmoCount" type="Label"]
-material = SubResource("ShaderMaterial_g0mlg")
-offset_left = 1029.0
-offset_top = 551.0
-offset_right = 1076.0
-offset_bottom = 628.0
-scale = Vector2(2.32, 1.04)
+material = ExtResource("1_r7iq7")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 theme_override_font_sizes/font_size = 30
 text = "30"
 horizontal_alignment = 1
