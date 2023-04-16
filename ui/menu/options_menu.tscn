@@ -575,6 +575,7 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 30
 text = "Options"
 horizontal_alignment = 1
+uppercase = true
 
 [node name="option_tab_container" type="TabContainer" parent="main_container/vert_container"]
 custom_minimum_size = Vector2(500, 600)
@@ -614,6 +615,7 @@ size_flags_horizontal = 3
 [node name="Label" type="Label" parent="main_container/vert_container/option_tab_container/Controls/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/movement_section"]
 layout_mode = 2
 text = "Movement"
+uppercase = true
 
 [node name="HSeparator2" type="HSeparator" parent="main_container/vert_container/option_tab_container/Controls/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/movement_section"]
 layout_mode = 2
@@ -875,6 +877,7 @@ size_flags_horizontal = 3
 [node name="Label" type="Label" parent="main_container/vert_container/option_tab_container/Controls/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/shooting_section"]
 layout_mode = 2
 text = "Shooting"
+uppercase = true
 
 [node name="HSeparator2" type="HSeparator" parent="main_container/vert_container/option_tab_container/Controls/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/shooting_section"]
 layout_mode = 2
@@ -1102,6 +1105,7 @@ size_flags_horizontal = 3
 [node name="Label" type="Label" parent="main_container/vert_container/option_tab_container/Controls/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/misc"]
 layout_mode = 2
 text = "Miscellaneous"
+uppercase = true
 
 [node name="HSeparator2" type="HSeparator" parent="main_container/vert_container/option_tab_container/Controls/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/misc"]
 layout_mode = 2
