@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://dhlk3rc74daq2"]
+[gd_scene load_steps=6 format=3 uid="uid://dhlk3rc74daq2"]
 
 [ext_resource type="Theme" uid="uid://cekps8eebllyj" path="res://themes/MetalPixel.tres" id="1_nxxj1"]
 [ext_resource type="Script" path="res://ui/misc/compass.gd" id="2_8gqx7"]
 [ext_resource type="Texture2D" uid="uid://dnbblws6863lw" path="res://themes/MetalPixel.png" id="2_p1abm"]
+[ext_resource type="Material" uid="uid://c0ipdgk1m22gh" path="res://ui/misc/ui_static_mat.tres" id="4_3fdlo"]
 [ext_resource type="Script" path="res://ui/misc/CompassPanel.gd" id="4_agrwu"]
 
 [node name="Compass" type="MarginContainer"]
@@ -47,6 +48,7 @@ patch_margin_bottom = 1
 axis_stretch_horizontal = 1
 
 [node name="South2" type="Label" parent="VBoxContainer/Panel/ScrollContainer/CompassBackground"]
+material = ExtResource("4_3fdlo")
 layout_mode = 0
 offset_left = 242.0
 offset_top = 2.0
@@ -58,6 +60,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="West" type="Label" parent="VBoxContainer/Panel/ScrollContainer/CompassBackground"]
+material = ExtResource("4_3fdlo")
 layout_mode = 0
 offset_left = 492.0
 offset_top = 2.0
@@ -69,6 +72,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="North" type="Label" parent="VBoxContainer/Panel/ScrollContainer/CompassBackground"]
+material = ExtResource("4_3fdlo")
 layout_mode = 0
 offset_left = 742.0
 offset_top = 2.0
@@ -80,6 +84,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="East" type="Label" parent="VBoxContainer/Panel/ScrollContainer/CompassBackground"]
+material = ExtResource("4_3fdlo")
 layout_mode = 0
 offset_left = 992.0
 offset_top = 2.0
@@ -91,6 +96,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="South" type="Label" parent="VBoxContainer/Panel/ScrollContainer/CompassBackground"]
+material = ExtResource("4_3fdlo")
 layout_mode = 0
 offset_left = 1242.0
 offset_top = 2.0
@@ -102,6 +108,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="CompassLabel" type="Label" parent="VBoxContainer"]
+material = ExtResource("4_3fdlo")
 custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
 size_flags_horizontal = 4

@@ -1,0 +1,7 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://c0ipdgk1m22gh"]
+
+[ext_resource type="Shader" path="res://ui/misc/tv_noise.gdshader" id="1_86q6h"]
+
+[resource]
+shader = ExtResource("1_86q6h")
+shader_parameter/amount = 0.1
