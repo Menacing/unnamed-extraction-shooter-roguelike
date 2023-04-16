@@ -9,7 +9,6 @@
 script = ExtResource("1_q42px")
 
 [node name="Player" parent="." instance=ExtResource("2_8jxdu")]
-mouse_sensitivity = 0.003
 
 [node name="Chest" parent="Player/Waist" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00634074, -0.00170296, 0.0220692)
