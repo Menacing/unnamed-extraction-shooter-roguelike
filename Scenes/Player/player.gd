@@ -51,7 +51,6 @@ var ads_head_pos: Vector3
 var hf_offset: Vector3
 var grip_pos: Node3D
 var handguard_pos: Node3D
-var default_fov: float = 75.0
 var fully_ads: bool:
 	get:
 		if ads_fac == 1.0:
@@ -349,7 +348,7 @@ func align_trailers_to_head(delta:float):
 		#set head anchor position between normal and ads position by ads_factor
 		head_anchor.transform.origin = ads_normal_pos.lerp(ads_head_pos, ads_fac)
 		#set camera fov between default and ads fov by ads_factor
-		cam.fov = lerp(default_fov, ads_fov, ads_fac)
+		cam.fov = lerp(GameSettings.default_fov, ads_fov, ads_fac)
 
 		var gun_turn_factor = 1.0 / equipped_gun.get_turn_speed()
 		#get current rotation as quat

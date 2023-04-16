@@ -1,4 +1,4 @@
-[gd_scene load_steps=60 format=3 uid="uid://b37h35qgnmcvk"]
+[gd_scene load_steps=62 format=3 uid="uid://b37h35qgnmcvk"]
 
 [ext_resource type="Script" path="res://ui/menu/options_menu.gd" id="1_0sxhr"]
 [ext_resource type="PackedScene" uid="uid://dm1av7skxvp1j" path="res://game_settings/components/input_btn/input_btn.tscn" id="1_lvxjt"]
@@ -24,6 +24,7 @@
 [ext_resource type="Texture2D" uid="uid://dlvhau28nu82n" path="res://addons/ggs/assets/game_settings/display_size.svg" id="21_0f2pa"]
 [ext_resource type="Script" path="res://game_settings/settings/display_size.gd" id="22_dv0t2"]
 [ext_resource type="Script" path="res://game_settings/settings/int_setting.gd" id="23_80h07"]
+[ext_resource type="Script" path="res://ui/menu/fov_update_label.gd" id="24_rgung"]
 
 [sub_resource type="Resource" id="Resource_nepbr"]
 resource_name = "move_left_kb"
@@ -523,6 +524,20 @@ value_type = 2
 value_hint = 2
 value_hint_string = "800 x 600,1280 x 720,1600 x 900,1920 x 1080,2560 x 1440,4096 x 2160"
 
+[sub_resource type="Resource" id="Resource_v18oj"]
+resource_name = "default_fov"
+script = ExtResource("9_y5jte")
+game_setting_name = "default_fov"
+current = 75.0
+default = 75.0
+name = "default_fov"
+category = "display"
+icon = ExtResource("5_fol31")
+desc = "No description available."
+value_type = 3
+value_hint = 0
+value_hint_string = ""
+
 [sub_resource type="Resource" id="Resource_m50kf"]
 resource_name = "health_display_mode"
 script = ExtResource("23_80h07")
@@ -582,6 +597,7 @@ custom_minimum_size = Vector2(500, 600)
 layout_mode = 2
 
 [node name="Controls" type="MarginContainer" parent="main_container/vert_container/option_tab_container"]
+visible = false
 layout_mode = 2
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="main_container/vert_container/option_tab_container/Controls"]
@@ -1310,7 +1326,6 @@ text = "Reset to Default"
 group = "audio_settings"
 
 [node name="Display" type="MarginContainer" parent="main_container/vert_container/option_tab_container"]
-visible = false
 layout_mode = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="main_container/vert_container/option_tab_container/Display"]
@@ -1373,6 +1388,34 @@ popup/item_4/text = "2560x1440"
 popup/item_4/id = 4
 popup/item_5/text = "4096x2160"
 popup/item_5/id = 5
+
+[node name="fov_slider" type="HBoxContainer" parent="main_container/vert_container/option_tab_container/Display/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="main_container/vert_container/option_tab_container/Display/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/fov_slider"]
+layout_mode = 2
+text = "Field of View"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="main_container/vert_container/option_tab_container/Display/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/fov_slider"]
+layout_mode = 2
+size_flags_horizontal = 10
+
+[node name="Slider" parent="main_container/vert_container/option_tab_container/Display/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/fov_slider/HBoxContainer" groups=["display_settings"] instance=ExtResource("10_aqhiy")]
+layout_mode = 2
+setting = SubResource("Resource_v18oj")
+
+[node name="Slider" parent="main_container/vert_container/option_tab_container/Display/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/fov_slider/HBoxContainer/Slider" index="0"]
+custom_minimum_size = Vector2(200, 0)
+min_value = 50.0
+max_value = 120.0
+value = 75.0
+
+[node name="fov_display" type="Label" parent="main_container/vert_container/option_tab_container/Display/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/fov_slider/HBoxContainer"]
+layout_mode = 2
+text = "75"
+horizontal_alignment = 2
+script = ExtResource("24_rgung")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="main_container/vert_container/option_tab_container/Display/VBoxContainer"]
 layout_mode = 2
@@ -1456,6 +1499,7 @@ group = "audio_settings"
 [node name="InputConfirmWindow" parent="." instance=ExtResource("4_5ngqd")]
 
 [connection signal="pressed" from="main_container/vert_container/HBoxContainer/back_button" to="." method="_on_back_button_pressed"]
+[connection signal="value_changed" from="main_container/vert_container/option_tab_container/Display/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/fov_slider/HBoxContainer/Slider/Slider" to="main_container/vert_container/option_tab_container/Display/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/fov_slider/HBoxContainer/fov_display" method="_on_slider_value_changed"]
 
 [editable path="main_container/vert_container/option_tab_container/Controls/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/move_left/HBoxContainer/InputBtn"]
 [editable path="main_container/vert_container/option_tab_container/Controls/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/move_forward/HBoxContainer/InputBtn"]
@@ -1490,4 +1534,5 @@ group = "audio_settings"
 [editable path="main_container/vert_container/option_tab_container/Audio/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer/Switch"]
 [editable path="main_container/vert_container/option_tab_container/Audio/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer/Slider"]
 [editable path="main_container/vert_container/option_tab_container/Display/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/resolution/OptionList"]
+[editable path="main_container/vert_container/option_tab_container/Display/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/fov_slider/HBoxContainer/Slider"]
 [editable path="main_container/vert_container/option_tab_container/Game Play/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer/OptionList"]
