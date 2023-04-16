@@ -1,4 +1,5 @@
 extends Gun
+class_name AK
 
 @export var magazineSize: int = 30
 @export var magazine: int = magazineSize
@@ -11,24 +12,12 @@ var reloading: bool = false
 var rng: RandomNumberGenerator
 @onready var fire_timer = $FireTimer
 
-func _init():
-	var ak_stats: GunStats = GunStats.new()
-	ak_stats.rpm = 600
-	ak_stats.ads_accel = 0.3
-	ak_stats.ads_fov = 50.0
-	ak_stats.base_recoil = Vector2(0,0.025)
-	ak_stats.fire_modes = ["semi","auto"]
-	ak_stats.recoil_variability = Vector2(0.025, 0.0125)
-	ak_stats.moa = 5.0
-	gun_stats = ak_stats
-	
-
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$ReloadTimer.connect("timeout", reloaded_callback)
 	rng = RandomNumberGenerator.new()
-	fire_timer.wait_time = 60.0/gun_stats.rpm
-	current_fire_mode = gun_stats.fire_modes[current_fire_mode_i]
+	fire_timer.wait_time = 60.0/_gun_stats.rpm
+	current_fire_mode = _gun_stats.fire_modes[current_fire_mode_i]
 
 func canFire() -> bool:
 	if magazine > 0 and !reloading and fire_timer.time_left == 0:
@@ -43,7 +32,7 @@ func fireGun():
 		var shoot_origin = muzzle.global_transform.origin
 		
 		var bulletInst = _bullet_scene.instantiate()
-		bulletInst.moa = gun_stats.moa
+		bulletInst.moa = _gun_stats.moa
 		bulletInst.set_as_top_level(true)		
 		get_parent().add_child(bulletInst)
 		bulletInst.global_transform.origin = shoot_origin
@@ -67,16 +56,16 @@ func reloaded_callback():
 	reloaded.emit()
 	
 func generate_recoil() -> Vector2:
-	return Vector2(gun_stats.base_recoil.x + rng.randf_range(-gun_stats.recoil_variability.x, gun_stats.recoil_variability.x), \
-		gun_stats.base_recoil.y + rng.randf_range(-gun_stats.recoil_variability.y, gun_stats.recoil_variability.y))
+	return Vector2(_gun_stats.base_recoil.x + rng.randf_range(-_gun_stats.recoil_variability.x, _gun_stats.recoil_variability.x), \
+		_gun_stats.base_recoil.y + rng.randf_range(-_gun_stats.recoil_variability.y, _gun_stats.recoil_variability.y))
 
 func toggle_fire_mode() -> String:
 	var next_i = current_fire_mode_i + 1
-	if next_i > gun_stats.fire_modes.size() - 1:
+	if next_i > _gun_stats.fire_modes.size() - 1:
 		current_fire_mode_i = 0
 	else:
 		current_fire_mode_i = next_i
-	current_fire_mode = gun_stats.fire_modes[current_fire_mode_i]
+	current_fire_mode = _gun_stats.fire_modes[current_fire_mode_i]
 	return current_fire_mode
 
 var is_transparent: bool = false
@@ -98,4 +87,3 @@ func make_opaque():
 		is_transparent = false
 	else:
 		pass
-

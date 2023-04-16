@@ -49,7 +49,7 @@ var last_damage:float
 func _ready():
 	self_exclusions = Helpers.get_all_collision_object_3d_recursive(self)
 	exclusions = self_exclusions
-	if gun_scene:
+	if gun_scene: 
 		gun = gun_scene.instantiate()
 		var gun_item_comp:ItemComponent = gun.get_node("ItemComponent")
 		gun_item_comp.start_highlighted = false

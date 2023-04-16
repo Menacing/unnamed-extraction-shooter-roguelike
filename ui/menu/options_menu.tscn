@@ -337,7 +337,7 @@ value_hint_string = ""
 resource_name = "both_eyes_open"
 script = ExtResource("6_pqhr0")
 game_setting_name = "both_eyes_open_ads"
-current = false
+current = true
 default = false
 name = "both_eyes_open"
 category = "controls"
@@ -527,7 +527,7 @@ value_hint_string = "800 x 600,1280 x 720,1600 x 900,1920 x 1080,2560 x 1440,409
 resource_name = "health_display_mode"
 script = ExtResource("23_80h07")
 game_setting_name = "selected_health_display"
-current = 1
+current = 0
 default = false
 name = "health_display_mode"
 category = "ui"
@@ -581,7 +581,6 @@ custom_minimum_size = Vector2(500, 600)
 layout_mode = 2
 
 [node name="Controls" type="MarginContainer" parent="main_container/vert_container/option_tab_container"]
-visible = false
 layout_mode = 2
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="main_container/vert_container/option_tab_container/Controls"]
@@ -1387,6 +1386,7 @@ text = "Reset to Default"
 group = "display_settings"
 
 [node name="Game Play" type="MarginContainer" parent="main_container/vert_container/option_tab_container"]
+visible = false
 layout_mode = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="main_container/vert_container/option_tab_container/Game Play"]

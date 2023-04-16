@@ -30,3 +30,10 @@ func test_combine_degrees() -> void:
 	assert_int(CompassBar.combine_degrees(90,90)).is_equal(0)
 	assert_int(CompassBar.combine_degrees(90,-90)).is_equal(-180)
 	assert_int(CompassBar.combine_degrees(-90,90)).is_equal(180)
+	
+func test_rotate_vector() -> void:
+	var original_vec = Vector3.FORWARD
+	var target_vec = Vector3.RIGHT
+	var result_vec = original_vec.rotated(Vector3.UP,deg_to_rad(-90))
+	
+	assert_vector3(result_vec).is_equal_approx(target_vec, Vector3(0.01,0.01,0.01))

@@ -1,4 +1,4 @@
-extends Node
+extends Resource
 class_name GunStats
 @export var rpm: int
 @export var base_recoil: Vector2 
@@ -7,3 +7,4 @@ class_name GunStats
 @export var ads_accel:float
 @export var ads_fov:float
 @export var moa:float
+@export var turn_speed:float

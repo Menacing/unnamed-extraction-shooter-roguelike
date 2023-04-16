@@ -11,10 +11,11 @@ var gun_slot_1:Gun
 var gun_slot_2:Gun
 @onready var waist = $Waist
 @onready var chest = $Waist/Chest
-@onready var cam = $Waist/Chest/Head/Camera3d as Camera3D
-@onready var head = $Waist/Chest/Head as Node3D
+@onready var cam = $Waist/Chest/head_anchor/Head/Camera3d as Camera3D
+@onready var head = $Waist/Chest/head_anchor/Head as Node3D
+@onready var head_anchor = $Waist/Chest/head_anchor as Node3D
 @onready var pmsm = $PlayerMotionStateMachine
-@onready var use_ray = $Waist/Chest/Head/Camera3d/UsePointer
+@onready var use_ray = $Waist/Chest/head_anchor/Head/Camera3d/UsePointer
 var pov_rotation_node:Node3D
 
 @onready var shoulder_anchor:Node3D = $player_default_mesh/shoulder_anchor
@@ -44,21 +45,32 @@ var current_fire_mode: String:
 			return equipped_gun.current_fire_mode
 		else: 
 			return ""
-var ads_pos: Vector3
+var ads_offset: Vector3
 var ads_head_pos: Vector3
-@onready var ads_normal_pos: Vector3 = head.position
-var hf_pos: Vector3
+@onready var ads_normal_pos: Vector3 = head_anchor.position
+var hf_offset: Vector3
 var grip_pos: Node3D
 var handguard_pos: Node3D
-var ads_accel: float
 var default_fov: float = 75.0
-var ads_fov: float
-var fully_ads: bool = false
+var fully_ads: bool:
+	get:
+		if ads_fac == 1.0:
+			return true
+		else:
+			return false
 @onready var home_basis: Basis = waist.transform.basis
 @warning_ignore("unsafe_method_access")
 @onready var right_lean_basis: Basis = waist.transform.basis.rotated(Vector3.FORWARD, LEAN_AMOUNT)
 @warning_ignore("unsafe_method_access")
 @onready var left_lean_basis: Basis = waist.transform.basis.rotated(Vector3.FORWARD, -LEAN_AMOUNT)
+
+var mouse_mov
+var sway_threshold = 5
+var sway_lerp = 5
+
+@export var sway_left:Vector3
+@export var sway_right:Vector3
+@export var sway_normal:Vector3
 
 
 var toggle_sprint_f: bool = false
@@ -156,18 +168,15 @@ func move_gun_to_hands(gun:Gun):
 	if gun:	
 		gun.transform = Transform3D.IDENTITY	
 		@warning_ignore("unsafe_property_access")
-		hf_pos = -gun.get_node("HipFire").position
+		hf_offset = -gun.get_node("HipFire").position
 		@warning_ignore("unsafe_property_access")
-		ads_pos = -gun.get_node("ADS").position
+		ads_offset = -gun.get_node("ADS").position
 		@warning_ignore("unsafe_property_access")
 		ads_head_pos = gun.get_node("ADS_Head").position
 		@warning_ignore("unsafe_property_access")
 		grip_pos = gun.get_node("Grip")
 		@warning_ignore("unsafe_property_access")
 		handguard_pos = gun.get_node("Handguard")
-		ads_accel = gun.gun_stats.ads_accel
-		ads_fov = gun.gun_stats.ads_fov
-		gun.position = hf_pos
 		gun.fired.connect(_on_gun_fired)
 		gun.reloaded.connect(_on_gun_reloaded)
 		current_fire_mode = gun.current_fire_mode
@@ -175,6 +184,7 @@ func move_gun_to_hands(gun:Gun):
 		Events.fire_mode_changed.emit(gun.current_fire_mode)
 		Events.ammo_count_changed.emit(gun.magazine)
 		gun.visible = true
+		gun.top_level = true
 		start_arms_ik(gun.Right_Hand, gun.Right_Fingers, gun.Left_Hand, gun.Left_Fingers)
 		
 
@@ -185,6 +195,7 @@ func move_gun_to_shoulder(gun:Gun):
 		gun.transform = Transform3D.IDENTITY
 		gun.rotate_x(-PI/2)
 		gun.visible = true
+		gun.top_level = false
 		pass
 
 func move_armor_to_anchor(armor:Node3D):
@@ -233,6 +244,8 @@ func drop_item(item_comp:ItemComponent):
 
 #realtime inputs - movement stuff
 func _physics_process(delta):
+	point_camera_at_target()
+	align_trailers_to_head(delta)
 	if !toggle_inv_f:
 		if equipped_gun:
 			# Handle Shooting
@@ -246,28 +259,6 @@ func _physics_process(delta):
 			
 			if Input.is_action_just_pressed("reload"):
 				reload()
-				
-			#handle ADS
-			if shouldAds():
-				if (equipped_gun.transform.origin - ads_pos).length() < 0.001:
-					fully_ads = true
-				else:
-					if GameSettings.both_eyes_open_ads:
-						equipped_gun.make_transparent()
-						make_transparent()
-					equipped_gun.transform.origin = equipped_gun.transform.origin.lerp(ads_pos, ads_accel)
-					head.transform.origin = head.transform.origin.lerp(ads_head_pos, ads_accel)
-					cam.fov = lerp(cam.fov, ads_fov, ads_accel)
-			else:
-				fully_ads = false
-				if GameSettings.both_eyes_open_ads:
-					equipped_gun.make_opaque()
-					make_opaque()
-				if equipped_gun.transform.origin != hf_pos:
-					equipped_gun.transform.origin = equipped_gun.transform.origin.lerp(hf_pos, ads_accel)
-					head.transform.origin = head.transform.origin.lerp(ads_normal_pos, ads_accel)
-					cam.fov = lerp(cam.fov, default_fov, ads_accel)
-		
 		#Handle Lean
 		var slr = shouldLeanRight()
 		var sll = shouldLeanLeft()
@@ -292,6 +283,81 @@ func _physics_process(delta):
 		else:
 			Events.use_helper_visibility.emit(false)
 			Events.pickup_helper_visibility.emit(false)
+
+func point_camera_at_target():
+	head.transform.basis = Basis() # reset rotation
+	head.rotate_object_local(Vector3(0, 1, 0), v_rot_acc) # first rotate in Y
+	head.rotate_object_local(Vector3(1, 0, 0), h_rot_acc) # then rotate in X
+	head.rotation.x = clampf(head.rotation.x, -deg_to_rad(85), deg_to_rad(85))
+
+
+var _ads_fac = 0.0
+var ads_fac:float:
+	get:
+		return _ads_fac
+	set(value):
+		if value < 0.0:
+			_ads_fac = 0.0
+		elif value > 1.0:
+			_ads_fac = 1.0
+		else:
+			_ads_fac = value
+
+func align_trailers_to_head(delta:float):
+	#move head to anchor
+	head.global_position = head_anchor.global_position
+	
+#	waist.basis = Quaternion(waist.basis).slerp(Quaternion(right_lean_basis),0.5)
+#	self.rotation.y = head.rotation.y
+	
+	#lerp horizontal body rotation to match camera
+	var body_turn_speed = 4
+	var body_source_y_quat = Quaternion(Basis(Vector3.UP,self.rotation.y))
+	var body_target_y_quat = Quaternion(Basis(Vector3.UP,head.rotation.y))
+	self.basis = body_source_y_quat.slerp(body_target_y_quat, body_turn_speed*delta)
+
+	#match vertical rotation
+	pov_rotation_node.rotation.x = head.rotation.x
+	
+	
+	if equipped_gun:
+		#calculate target positions
+		var ads_rotated_offset = (cam.position + ads_offset) * head.basis.inverse()
+		var ads_g_pos = head.global_position + ads_rotated_offset
+		var hf_rotated_offset = (cam.position + hf_offset) * head.basis.inverse()
+		var hf_g_pos = head.global_position + hf_rotated_offset
+		var ads_accel = 1.0 / equipped_gun.get_ADS_acceleration()
+		var ads_fov = equipped_gun.get_ADS_FOV()
+		
+		#if should ads, move factor towards ads
+		if shouldAds():
+			ads_fac += delta / ads_accel
+		else:
+			ads_fac -= delta / ads_accel
+			
+		#if fully ads, change transparency, else undo transparency
+		if GameSettings.both_eyes_open_ads:
+			if fully_ads:
+					equipped_gun.make_transparent()
+					make_transparent()
+			else:
+					equipped_gun.make_opaque()
+					make_opaque()
+		
+		#set gun position between hipfire position and ads position by ads_factor
+		equipped_gun.global_position = hf_g_pos.lerp(ads_g_pos, ads_fac)
+		#set head anchor position between normal and ads position by ads_factor
+		head_anchor.transform.origin = ads_normal_pos.lerp(ads_head_pos, ads_fac)
+		#set camera fov between default and ads fov by ads_factor
+		cam.fov = lerp(default_fov, ads_fov, ads_fac)
+
+		var gun_turn_factor = 1.0 / equipped_gun.get_turn_speed()
+		#get current rotation as quat
+		var gun_source_y_quat = Quaternion(Basis(equipped_gun.basis))
+		#get rotation of head to use as target as quat
+		var gun_target_y_quat = Quaternion(Basis(head.basis))
+		#slerp from source to target
+		equipped_gun.basis = gun_source_y_quat.slerp(gun_target_y_quat, delta/gun_turn_factor)
 
 var toggle_ads_f: bool = false
 func shouldAds() -> bool:
@@ -336,7 +402,8 @@ func _input(event):
 	else:
 		if event is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
 			#legacyMouse(event)
-			transformMouse(event)
+#			transformMouse(event)
+			sway_transform_mouse(event)
 		elif event.is_action_pressed("toggleFireMode"):
 			if equipped_gun.has_method("toggle_fire_mode"):
 				var fire_mode = equipped_gun.toggle_fire_mode()
@@ -384,6 +451,27 @@ func transformMouse(event: InputEventMouse):
 	pov_rotation_node.rotate_x(hor_rotation)
 	pov_rotation_node.rotation.x = clampf(pov_rotation_node.rotation.x, -deg_to_rad(85), deg_to_rad(85))
 
+var _v_rot_acc:float = 0.0
+var v_rot_acc:float:
+	get:
+		return _v_rot_acc
+	set(value):
+		_v_rot_acc = fmod(value, 2*PI)
+var _h_rot_acc = 0.0
+var h_rot_acc:float:
+	get:
+		return _h_rot_acc
+	set(value):
+		_h_rot_acc = fmod(value, 2*PI)
+		_h_rot_acc = clampf(_h_rot_acc, -deg_to_rad(85), deg_to_rad(85))
+func sway_transform_mouse(event: InputEventMouse):
+	if (fully_ads):
+		v_rot_acc += -event.relative.x * GameSettings.h_mouse_sens/1000.0 * GameSettings.ads_look_factor
+		h_rot_acc += -event.relative.y * GameSettings.v_mouse_sens/1000.0 * GameSettings.ads_look_factor
+	else:
+		v_rot_acc += -event.relative.x * GameSettings.h_mouse_sens/1000.0
+		h_rot_acc += -event.relative.y * GameSettings.v_mouse_sens/1000.0
+
 
 func shoot():
 	equipped_gun.fireGun()
@@ -395,10 +483,12 @@ func reload():
 func _on_gun_fired(recoil:Vector2):
 	Events.ammo_count_changed.emit(equipped_gun.magazine)
 	var scaled_recoil = scale_recoil(recoil)
-#	#flip the mapping so that recoil.y moves the camera vertically	
-	rotate_y(scaled_recoil.x)
-	pov_rotation_node.rotate_x(scaled_recoil.y)
-	pov_rotation_node.rotation.x = clampf(pov_rotation_node.rotation.x, -deg_to_rad(80), deg_to_rad(80))
+#	#flip the mapping so that recoil.y moves the camera vertically
+	v_rot_acc += scaled_recoil.x
+	h_rot_acc += scaled_recoil.y
+#	rotate_y(scaled_recoil.x)
+#	pov_rotation_node.rotate_x(scaled_recoil.y)
+#	pov_rotation_node.rotation.x = clampf(pov_rotation_node.rotation.x, -deg_to_rad(80), deg_to_rad(80))
 	#legacy - We don't want to manually manipulate the rotations
 #	#flip the mapping so that recoil.y moves the camera vertically
 #	$Head/Camera3d.rotation.y += recoil.x
