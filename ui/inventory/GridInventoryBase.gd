@@ -84,14 +84,14 @@ func insert_item(ito:InventoryTransferObject) -> bool:
 		
 func get_item_comp_size(item_comp:ItemComponent) -> Dictionary:
 	var results = {}
-	results.x = item_comp.column_span
-	results.y = item_comp.row_span
+	results.x = item_comp.inventory_info.column_span
+	results.y = item_comp.inventory_info.row_span
 	return results
 	
 func try_insert_at_grid(x, y, ito:InventoryTransferObject) -> bool:
 	var ic = ito.item_component
-	var w = ic.column_span
-	var h = ic.row_span
+	var w = ito.cell_width
+	var h = ito.cell_height
 	if x < 0 or y < 0:
 		return false
 	if x + w > grid_width or y + h > grid_height:

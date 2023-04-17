@@ -6,6 +6,7 @@ func _ready():
 	Events.context_menu_closed.connect(_on_context_menu_closed)
 	Events.context_menu_opened.connect(_on_context_menu_opened)
 	Events.player_inventory_try_pickup.connect(_on_player_inventory_try_pickup)
+	Events.open_detail_popup.connect(_on_open_detail_popup)
 	pass
 	
 func _on_player_inventory_visibility(show:bool):

@@ -21,7 +21,7 @@ func insert_item_in_slot(item:InventoryTransferObject, slot) -> bool:
 	if item.is_rotated():
 		item.toggle_rotation(cell_size)
 	
-	var item_slot = item.item_component.type
+	var item_slot = item.item_component.inventory_info.item_type
 	if item_slot not in slot.types:
 		return false
 	if items[slot.name] != null:

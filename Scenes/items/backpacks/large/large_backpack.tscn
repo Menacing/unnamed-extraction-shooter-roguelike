@@ -1,10 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://b6xejgxv7attc"]
+[gd_scene load_steps=6 format=3 uid="uid://b6xejgxv7attc"]
 
 [ext_resource type="Script" path="res://Scenes/items/backpacks/backpack.gd" id="1_1vwom"]
 [ext_resource type="Script" path="res://Scenes/item_component.gd" id="2_s3i7s"]
-[ext_resource type="Texture2D" uid="uid://cx56hl85mqcn" path="res://Scenes/items/backpacks/large/large_backpack_icon.png" id="3_cxn11"]
+[ext_resource type="Resource" uid="uid://dv187kl8jcl01" path="res://Scenes/items/backpacks/large/large_backpack_1_inventory_info.tres" id="3_ret7r"]
 [ext_resource type="PackedScene" uid="uid://db3osqjst8fyy" path="res://Scenes/items/backpacks/large/large_backpack_1.glb" id="4_a60g8"]
-[ext_resource type="Texture2D" uid="uid://cempvc5mi4hka" path="res://Scenes/items/backpacks/large/large_backpack_icon_r.png" id="4_n8aal"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_lntsr"]
 size = Vector3(0.509955, 1.08099, 0.353562)
@@ -18,14 +17,8 @@ backpack_size = 3
 
 [node name="ItemComponent" type="Node" parent="."]
 script = ExtResource("2_s3i7s")
+inventory_info = ExtResource("3_ret7r")
 id = "lg_backpack"
-display_name = "Large Backpack"
-show_name = true
-type = 1
-icon = ExtResource("3_cxn11")
-icon_r = ExtResource("4_n8aal")
-column_span = 3
-row_span = 5
 world_collider_path = NodePath("../CollisionShape3D")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]

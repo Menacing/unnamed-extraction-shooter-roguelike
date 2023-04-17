@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="InventoryItemInfo" load_steps=5 format=3 uid="uid://dv187kl8jcl01"]
+
+[ext_resource type="Resource" uid="uid://d00xymsq3bymw" path="res://Scenes/Guns/AK47-Projectile/drop_item_context_menu_option.tres" id="1_v1lw5"]
+[ext_resource type="Texture2D" uid="uid://cx56hl85mqcn" path="res://Scenes/items/backpacks/large/large_backpack_icon.png" id="2_skr10"]
+[ext_resource type="Texture2D" uid="uid://cempvc5mi4hka" path="res://Scenes/items/backpacks/large/large_backpack_icon_r.png" id="3_dwmoj"]
+[ext_resource type="Script" path="res://Scenes/inventory_item_info.gd" id="4_l1oi8"]
+
+[resource]
+script = ExtResource("4_l1oi8")
+show_name = true
+display_name = "Large Backpack"
+item_type = 1
+icon = ExtResource("2_skr10")
+icon_r = ExtResource("3_dwmoj")
+mod_slots = Array[Resource("res://Scenes/Guns/mod_slot.gd")]([])
+context_menu_items = Array[Resource("res://ui/inventory/item_context_item.gd")]([ExtResource("1_v1lw5")])
+max_stacks = 1
+max_durability = 1
+column_span = 2
+row_span = 4
+tooltip_text = ""

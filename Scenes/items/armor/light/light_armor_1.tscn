@@ -1,10 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://c2mgc1vc3603e"]
+[gd_scene load_steps=6 format=3 uid="uid://c2mgc1vc3603e"]
 
 [ext_resource type="PackedScene" uid="uid://bn3jmrccdstcl" path="res://Scenes/items/armor/light/light_armor_1.glb" id="1_7lj6r"]
 [ext_resource type="Script" path="res://Scenes/items/armor/light/light_armor_1.gd" id="1_efpyw"]
 [ext_resource type="Script" path="res://Scenes/items/armor/armor_component.gd" id="3_07gr4"]
-[ext_resource type="Texture2D" uid="uid://coprbtc0u8k1s" path="res://Scenes/items/armor/light/light_armor_1_icon.png" id="3_do8jw"]
-[ext_resource type="Texture2D" uid="uid://d0vjv5gg8p7mi" path="res://Scenes/items/armor/light/light_armor_1_icon_r.png" id="4_clqyv"]
+[ext_resource type="Resource" uid="uid://25dmf2cpvdfq" path="res://Scenes/items/armor/light/light_armor_1_inventory_info.tres" id="4_3ckkj"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_mupep"]
 size = Vector3(0.378402, 0.4538, 0.305015)
@@ -19,15 +18,9 @@ transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 
 
 [node name="ItemComponent" type="Node" parent="."]
 script = ExtResource("3_07gr4")
+inventory_info = ExtResource("4_3ckkj")
 id = "light_armor_1"
-display_name = "Light Armor"
-type = 3
-icon = ExtResource("3_do8jw")
-icon_r = ExtResource("4_clqyv")
 durability = 100
-max_durability = 100
-column_span = 3
-row_span = 3
 world_collider_path = NodePath("../CollisionShape3D")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]

@@ -10,6 +10,7 @@ signal item_dropped(item_dropped:ItemComponent)
 signal item_picked_up(item_picked_up:ItemComponent)
 signal item_destroyed(item_comp:ItemComponent)
 signal context_menu_dropped(iib:InvItemBase, pos:Vector2)
+signal open_detail_popup(iib:InvItemBase, pos:Vector2)
 signal context_menu_opened()
 signal context_menu_closed()
 

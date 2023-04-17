@@ -1,22 +1,13 @@
 extends Node
-
 class_name ItemComponent
 
-enum ItemType {
-	GUN,
-	BACKPACK,
-	MATERIAL,
-	ARMOR
-}
 signal stack_changed(newStack:int)
 signal durability_changed(new_durability:int, max_durability:int)
 
+@export var inventory_info:InventoryItemInfo
+
 @export var id:String
-@export var display_name:String
-@export var show_name:bool
-@export var type:ItemType
-@export var icon:Texture
-@export var icon_r:Texture
+
 var _stack:int = 1
 @export var stack:int = 1:
 	get:
@@ -24,21 +15,17 @@ var _stack:int = 1
 	set(value):
 		_stack = value
 		stack_changed.emit(_stack)
-@export var max_stack:int = 1
+
 var _durability:int = 1
 @export var durability:int = 1:
 	get:
 		return _durability
 	set(value):
 		_durability = value
-		durability_changed.emit(_durability,max_durability)
+		durability_changed.emit(_durability,inventory_info.max_durability)
 		if _durability < 0:
 			self.destroy()
-@export var max_durability:int = 1
-@export var column:int
-@export var column_span:int
-@export var row:int
-@export var row_span:int
+
 var node_id:int:
 	get:
 		return get_parent().get_instance_id()
@@ -73,30 +60,6 @@ func _ready():
 	else:
 		set_material_overlay(null)
 
-var idata_keys:Array = ["id",
-		"type",
-		"icon",
-		"stack",
-		"max_stack",
-		"column",
-		"column_span",
-		"row",
-		"row_span",
-		"node_id"]
-
-var idata:Dictionary:
-	get:
-		var dict = {}
-		for key in idata_keys:
-			var val = self.get(key)
-			if val:
-				dict[key] = val
-		return dict
-	set(value):
-		for key in idata_keys:
-			if value.has(key):
-				self.set(key,value[key])
-				
 func get_all_mesh_nodes(node) -> Array[MeshInstance3D]:
 	var mesh_nodes:Array[MeshInstance3D] =[]
 	for N in node.get_children():

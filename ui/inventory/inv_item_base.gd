@@ -77,12 +77,7 @@ var max_durability:int:
 		_max_durability = value
 		_on_durability_changed(durability, _max_durability)
 
-var contextItems:Array[Dictionary] = [
-	{
-		"label":"Drop Item",
-		"signal": Events.context_menu_dropped
-	}
-]
+var context_items:Array[ItemContextItem]
 
 func _input(event):
 	if self.is_visible_in_tree() and event.is_action_pressed("openContextMenu"):
@@ -91,7 +86,7 @@ func _input(event):
 		
 func openContextMenu(pos:Vector2):
 	var menu = PopupMenu.new()
-	for item in contextItems:
+	for item in context_items:
 		menu.add_item(item.label)
 	pass
 	self.add_child(menu)
@@ -104,9 +99,9 @@ func openContextMenu(pos:Vector2):
 	Events.context_menu_opened.emit()
 	
 func _on_context_menu_pressed(id:int):
-	var item = contextItems[id]
-	var item_signal:Signal = item["signal"]
-	item_signal.emit(self, get_global_mouse_position())
+	var item = context_items[id]
+	Events.emit_signal(item.signal_name, self, get_global_mouse_position())
+
 
 func _on_count_changed(new_count:int):
 	count.text = str(new_count)

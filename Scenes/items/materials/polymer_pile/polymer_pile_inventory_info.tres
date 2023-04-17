@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="InventoryItemInfo" load_steps=4 format=3 uid="uid://bk7x5qi5hl1p8"]
+
+[ext_resource type="Resource" uid="uid://d00xymsq3bymw" path="res://Scenes/Guns/AK47-Projectile/drop_item_context_menu_option.tres" id="1_nuhoy"]
+[ext_resource type="Texture2D" uid="uid://dl5n7p7mtkja2" path="res://Scenes/items/materials/polymer_pile/polymer_pile_icon.png" id="2_5ac7r"]
+[ext_resource type="Script" path="res://Scenes/inventory_item_info.gd" id="3_n33q0"]
+
+[resource]
+script = ExtResource("3_n33q0")
+show_name = false
+display_name = "PolymerPile"
+item_type = 2
+icon = ExtResource("2_5ac7r")
+icon_r = ExtResource("2_5ac7r")
+mod_slots = Array[Resource("res://Scenes/Guns/mod_slot.gd")]([])
+context_menu_items = Array[Resource("res://ui/inventory/item_context_item.gd")]([ExtResource("1_nuhoy")])
+max_stacks = 10
+max_durability = 1
+column_span = 1
+row_span = 1
+tooltip_text = "Plastic"

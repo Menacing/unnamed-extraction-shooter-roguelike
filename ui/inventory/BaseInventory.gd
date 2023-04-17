@@ -2,6 +2,7 @@ extends Control
 class_name BaseInventory
 
 const item_base = preload("res://ui/inventory/inv_item_base.tscn")
+const backpack_cell = preload("res://ui/inventory/backpack_cell.tscn")
 
 @export var grid_inv_path:NodePath
 @onready var grid_inv:GridInventoryBase = get_node(grid_inv_path)
@@ -86,33 +87,36 @@ func return_item():
 func pickup_item(item_comp:ItemComponent):
 	var item = item_base.instantiate()
 	item.set_meta("id", item_comp.node_id)
-	item.name_label.text = item_comp.display_name
-	item.show_name = item_comp.show_name
-	item.item_texture_rect.texture = item_comp.icon
-	item.size.x = item_comp.column_span * cell_size
-	item.size.y = item_comp.row_span * cell_size
-	item.tooltip_text = item_comp.tooltip_text
+	item.name_label.text = item_comp.inventory_info.display_name
+	item.show_name = item_comp.inventory_info.show_name
+	item.item_texture_rect.texture = item_comp.inventory_info.icon
+	item.size.x = item_comp.inventory_info.column_span * cell_size
+	item.size.y = item_comp.inventory_info.row_span * cell_size
+	item.tooltip_text = item_comp.inventory_info.tooltip_text
 	item.z_index = 50
 	
-	if item_comp.max_stack > 1:
+	if item_comp.inventory_info.max_stacks > 1:
 		item.show_count = true
 		item.stacks = item_comp.stack
 	else: item.show_count = false
 	
-	if item_comp.max_durability > 1:
+	if item_comp.inventory_info.max_durability > 1:
 		item.show_durability = true
 		item.durability = item_comp.durability
-		item.max_durability = item_comp.max_durability
+		item.max_durability = item_comp.inventory_info.max_durability
 	else: item.show_durability = false
+	item.context_items = item_comp.inventory_info.context_menu_items
 	
 	add_child(item)
 	var ito = InventoryTransferObject.new()
 	ito.inv_item = item
 	ito.item_component = item_comp
+	ito.cell_width = item_comp.inventory_info.column_span
+	ito.cell_height = item_comp.inventory_info.row_span
 	item_comp.stack_changed.connect(ito.inv_item._on_count_changed)
 	item_comp.durability_changed.connect(ito.inv_item._on_durability_changed)
 	#TODO First check item slots
-	var item_slot = item_comp.type
+	var item_slot = item_comp.inventory_info.item_type
 	if eq_slots:
 		for slot in eq_slots.slots:
 			if item_slot in slot.types and eq_slots.items[slot.name] == null:
@@ -132,3 +136,9 @@ func _on_context_menu_opened():
 
 func _on_context_menu_closed():
 	listening_to_mouse = true
+
+func _on_open_detail_popup(iib:InvItemBase, pos:Vector2):
+	var popup = load("res://ui/inventory/item_detail_popup.tscn").instantiate()
+	add_child(popup)
+	popup.popup_centered()
+	pass

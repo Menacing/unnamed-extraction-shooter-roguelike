@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="ItemContextItem" load_steps=2 format=3 uid="uid://d00xymsq3bymw"]
+
+[ext_resource type="Script" path="res://ui/inventory/item_context_item.gd" id="1_no06g"]
+
+[resource]
+script = ExtResource("1_no06g")
+label = "Drop Item"
+signal_name = "context_menu_dropped"

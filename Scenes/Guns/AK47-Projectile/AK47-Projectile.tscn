@@ -1,15 +1,20 @@
-[gd_scene load_steps=16 format=3 uid="uid://dr48wela8mtxd"]
+[gd_scene load_steps=17 format=3 uid="uid://dr48wela8mtxd"]
 
 [ext_resource type="Script" path="res://Scenes/Guns/AK47-Projectile/AK47-Projectile.gd" id="1_10ipx"]
 [ext_resource type="PackedScene" uid="uid://du06cmxlbacls" path="res://Scenes/Bullet/hic_bullet.tscn" id="2_himgn"]
 [ext_resource type="Resource" uid="uid://dls8psqyu06aw" path="res://Scenes/Guns/AK47-Projectile/ak_gun_stats.tres" id="3_4bo8w"]
 [ext_resource type="Script" path="res://Scenes/item_component.gd" id="3_bdert"]
 [ext_resource type="Texture2D" uid="uid://yilgohsopxy5" path="res://Scenes/Guns/AK47/PixelMuzzelFlash.png" id="4_6e1bk"]
-[ext_resource type="Texture2D" uid="uid://ba6swy08v2qk5" path="res://Scenes/Guns/AK47-Projectile/ak48_img.png" id="4_cn0a3"]
-[ext_resource type="Texture2D" uid="uid://dr6sjdo1s66wv" path="res://Scenes/Guns/AK47-Projectile/ak48_img_r.png" id="5_6twu8"]
+[ext_resource type="Script" path="res://Scenes/Guns/mod_slot.gd" id="4_i5ghb"]
 [ext_resource type="AudioStream" uid="uid://cm1nj06e6vvun" path="res://Scenes/Guns/AK47/ak47-2.wav" id="5_w1xps"]
+[ext_resource type="Resource" uid="uid://xufa6auvjw6t" path="res://Scenes/Guns/AK47-Projectile/zs_52_inventory_info.tres" id="6_3d2ub"]
 [ext_resource type="PackedScene" uid="uid://chmb3ke63gvpy" path="res://Scenes/Guns/AK47-Projectile/ak48.glb" id="9_fdr73"]
 [ext_resource type="PackedScene" uid="uid://2vxb0s7jixue" path="res://Scenes/Guns/AK47/7.62x39mm-case.glb" id="9_ro6c0"]
+
+[sub_resource type="Resource" id="Resource_bjmso"]
+script = ExtResource("4_i5ghb")
+slot_location = Vector2(3, 0)
+slot_type = 0
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_a6wgc"]
 size = Vector3(0.88, 0.22, 0.056)
@@ -152,6 +157,7 @@ collision_mask = 5
 script = ExtResource("1_10ipx")
 _bullet_scene = ExtResource("2_himgn")
 _gun_stats = ExtResource("3_4bo8w")
+mod_slots = Array[ExtResource("4_i5ghb")]([SubResource("Resource_bjmso")])
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0.115114, 0.0719389)
@@ -159,13 +165,8 @@ shape = SubResource("BoxShape3D_a6wgc")
 
 [node name="ItemComponent" type="Node" parent="."]
 script = ExtResource("3_bdert")
+inventory_info = ExtResource("6_3d2ub")
 id = "ak_48"
-display_name = "ZS-84"
-show_name = true
-icon = ExtResource("4_cn0a3")
-icon_r = ExtResource("5_6twu8")
-column_span = 5
-row_span = 2
 world_collider_path = NodePath("../CollisionShape3D")
 tooltip_text = "[b]0AK 48[/b]
 [b]AK Family[/b]
