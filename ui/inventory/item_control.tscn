@@ -1,12 +1,13 @@
 [gd_scene load_steps=2 format=3 uid="uid://cn3ywqty7xvvr"]
 
-[ext_resource type="Script" path="res://ui/inventory/inv_item_base.gd" id="1_7aqyn"]
+[ext_resource type="Script" path="res://ui/inventory/item_control.gd" id="1_gir5a"]
 
 [node name="InvItemBase" type="MarginContainer"]
+z_index = 1
 custom_minimum_size = Vector2(32, 32)
 size_flags_horizontal = 0
 size_flags_vertical = 0
-script = ExtResource("1_7aqyn")
+script = ExtResource("1_gir5a")
 
 [node name="ItemTexture" type="TextureRect" parent="."]
 custom_minimum_size = Vector2(32, 32)

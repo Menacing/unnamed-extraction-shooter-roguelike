@@ -1,10 +1,20 @@
-[gd_scene load_steps=6 format=3 uid="uid://ddsqkhwkuipda"]
+[gd_scene load_steps=7 format=3 uid="uid://ddsqkhwkuipda"]
 
-[ext_resource type="Script" path="res://ui/inventory/PlayerInventory.gd" id="1_xvu3o"]
-[ext_resource type="Script" path="res://ui/inventory/equipment_slots.gd" id="2_welna"]
-[ext_resource type="Script" path="res://ui/inventory/slot.gd" id="3_qkcqk"]
-[ext_resource type="Script" path="res://ui/inventory/GridBackPack.gd" id="4_77ttn"]
+[ext_resource type="Script" path="res://ui/inventory/player_inventory.gd" id="1_3codq"]
+[ext_resource type="Script" path="res://resource_access/Inventory.gd" id="2_5ekbt"]
+[ext_resource type="Script" path="res://resource_access/equipment_slot.gd" id="3_mpebu"]
 [ext_resource type="PackedScene" uid="uid://bshm12rhfjlbc" path="res://ui/inventory/backpack_cell.tscn" id="5_h0nvq"]
+[ext_resource type="Script" path="res://ui/inventory/inventory_grid_container.gd" id="5_lwrwb"]
+
+[sub_resource type="Resource" id="Resource_80smb"]
+script = ExtResource("2_5ekbt")
+initial_height = 2
+initial_width = 7
+equipment_slots = Array[ExtResource("3_mpebu")]([Object(Panel,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"editor_description":"","visible":true,"modulate":Color(0.686275, 0.686275, 0.686275, 1),"self_modulate":Color(1, 1, 1, 1),"show_behind_parent":false,"top_level":false,"clip_children":0,"light_mask":1,"visibility_layer":1,"z_index":0,"z_as_relative":true,"y_sort_enabled":false,"texture_filter":0,"texture_repeat":0,"material":null,"use_parent_material":false,"clip_contents":false,"custom_minimum_size":Vector2(160, 160),"layout_direction":0,"layout_mode":3,"anchors_preset":0,"anchor_left":0.0,"anchor_top":0.0,"anchor_right":0.0,"anchor_bottom":0.0,"offset_left":0.0,"offset_top":0.0,"offset_right":0.0,"offset_bottom":0.0,"grow_horizontal":1,"grow_vertical":1,"rotation":0.0,"scale":Vector2(1, 1),"pivot_offset":Vector2(0, 0),"size_flags_horizontal":8,"size_flags_vertical":1,"size_flags_stretch_ratio":1.0,"auto_translate":true,"localize_numeral_system":true,"tooltip_text":"","focus_neighbor_left":NodePath(""),"focus_neighbor_top":NodePath(""),"focus_neighbor_right":NodePath(""),"focus_neighbor_bottom":NodePath(""),"focus_next":NodePath(""),"focus_previous":NodePath(""),"focus_mode":0,"mouse_filter":0,"mouse_force_pass_scroll_events":true,"mouse_default_cursor_shape":0,"shortcut_context":null,"theme":null,"theme_type_variation":&"","script":ExtResource("3_mpebu"),"allowed_types":Array[int]([1]))
+, Object(Panel,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"editor_description":"","visible":true,"modulate":Color(0.686275, 0.686275, 0.686275, 1),"self_modulate":Color(1, 1, 1, 1),"show_behind_parent":false,"top_level":false,"clip_children":0,"light_mask":1,"visibility_layer":1,"z_index":0,"z_as_relative":true,"y_sort_enabled":false,"texture_filter":0,"texture_repeat":0,"material":null,"use_parent_material":false,"clip_contents":false,"custom_minimum_size":Vector2(160, 160),"layout_direction":0,"layout_mode":3,"anchors_preset":0,"anchor_left":0.0,"anchor_top":0.0,"anchor_right":0.0,"anchor_bottom":0.0,"offset_left":0.0,"offset_top":0.0,"offset_right":0.0,"offset_bottom":0.0,"grow_horizontal":1,"grow_vertical":1,"rotation":0.0,"scale":Vector2(1, 1),"pivot_offset":Vector2(0, 0),"size_flags_horizontal":8,"size_flags_vertical":1,"size_flags_stretch_ratio":1.0,"auto_translate":true,"localize_numeral_system":true,"tooltip_text":"","focus_neighbor_left":NodePath(""),"focus_neighbor_top":NodePath(""),"focus_neighbor_right":NodePath(""),"focus_neighbor_bottom":NodePath(""),"focus_next":NodePath(""),"focus_previous":NodePath(""),"focus_mode":0,"mouse_filter":0,"mouse_force_pass_scroll_events":true,"mouse_default_cursor_shape":0,"shortcut_context":null,"theme":null,"theme_type_variation":&"","script":ExtResource("3_mpebu"),"allowed_types":Array[int]([3]))
+, Object(Panel,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"editor_description":"","visible":true,"modulate":Color(0.686275, 0.686275, 0.686275, 1),"self_modulate":Color(1, 1, 1, 1),"show_behind_parent":false,"top_level":false,"clip_children":0,"light_mask":1,"visibility_layer":1,"z_index":0,"z_as_relative":true,"y_sort_enabled":false,"texture_filter":0,"texture_repeat":0,"material":null,"use_parent_material":false,"clip_contents":false,"custom_minimum_size":Vector2(256, 128),"layout_direction":0,"layout_mode":3,"anchors_preset":0,"anchor_left":0.0,"anchor_top":0.0,"anchor_right":0.0,"anchor_bottom":0.0,"offset_left":0.0,"offset_top":0.0,"offset_right":0.0,"offset_bottom":0.0,"grow_horizontal":1,"grow_vertical":1,"rotation":0.0,"scale":Vector2(1, 1),"pivot_offset":Vector2(0, 0),"size_flags_horizontal":1,"size_flags_vertical":1,"size_flags_stretch_ratio":1.0,"auto_translate":true,"localize_numeral_system":true,"tooltip_text":"","focus_neighbor_left":NodePath(""),"focus_neighbor_top":NodePath(""),"focus_neighbor_right":NodePath(""),"focus_neighbor_bottom":NodePath(""),"focus_next":NodePath(""),"focus_previous":NodePath(""),"focus_mode":0,"mouse_filter":0,"mouse_force_pass_scroll_events":true,"mouse_default_cursor_shape":0,"shortcut_context":null,"theme":null,"theme_type_variation":&"","script":ExtResource("3_mpebu"),"allowed_types":Array[int]([0]))
+, Object(Panel,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"editor_description":"","visible":true,"modulate":Color(0.686275, 0.686275, 0.686275, 1),"self_modulate":Color(1, 1, 1, 1),"show_behind_parent":false,"top_level":false,"clip_children":0,"light_mask":1,"visibility_layer":1,"z_index":0,"z_as_relative":true,"y_sort_enabled":false,"texture_filter":0,"texture_repeat":0,"material":null,"use_parent_material":false,"clip_contents":false,"custom_minimum_size":Vector2(256, 128),"layout_direction":0,"layout_mode":3,"anchors_preset":0,"anchor_left":0.0,"anchor_top":0.0,"anchor_right":0.0,"anchor_bottom":0.0,"offset_left":0.0,"offset_top":0.0,"offset_right":0.0,"offset_bottom":0.0,"grow_horizontal":1,"grow_vertical":1,"rotation":0.0,"scale":Vector2(1, 1),"pivot_offset":Vector2(0, 0),"size_flags_horizontal":1,"size_flags_vertical":1,"size_flags_stretch_ratio":1.0,"auto_translate":true,"localize_numeral_system":true,"tooltip_text":"","focus_neighbor_left":NodePath(""),"focus_neighbor_top":NodePath(""),"focus_neighbor_right":NodePath(""),"focus_neighbor_bottom":NodePath(""),"focus_next":NodePath(""),"focus_previous":NodePath(""),"focus_mode":0,"mouse_filter":0,"mouse_force_pass_scroll_events":true,"mouse_default_cursor_shape":0,"shortcut_context":null,"theme":null,"theme_type_variation":&"","script":ExtResource("3_mpebu"),"allowed_types":Array[int]([0]))
+])
 
 [node name="PlayerInventory" type="HSplitContainer"]
 anchors_preset = 15
@@ -15,9 +25,8 @@ grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 dragger_visibility = 1
-script = ExtResource("1_xvu3o")
-grid_inv_path = NodePath("PanelContainer/InventoryBase/PanelContainer/InventoryGrid")
-eq_slots_path = NodePath("PanelContainer/InventoryBase/EquipmentSlots")
+script = ExtResource("1_3codq")
+_player_inventory = SubResource("Resource_80smb")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 2
@@ -36,37 +45,36 @@ unique_name_in_owner = true
 modulate = Color(0.686275, 0.686275, 0.686275, 1)
 layout_mode = 2
 size_flags_horizontal = 3
-script = ExtResource("2_welna")
 
 [node name="BackpackSlot" type="Panel" parent="PanelContainer/InventoryBase/EquipmentSlots"]
 modulate = Color(0.686275, 0.686275, 0.686275, 1)
 custom_minimum_size = Vector2(160, 160)
 layout_mode = 2
 size_flags_horizontal = 8
-script = ExtResource("3_qkcqk")
-types = Array[int]([1])
+script = ExtResource("3_mpebu")
+allowed_types = Array[int]([1])
 
 [node name="ArmorSlot" type="Panel" parent="PanelContainer/InventoryBase/EquipmentSlots"]
 modulate = Color(0.686275, 0.686275, 0.686275, 1)
 custom_minimum_size = Vector2(160, 160)
 layout_mode = 2
 size_flags_horizontal = 8
-script = ExtResource("3_qkcqk")
-types = Array[int]([3])
+script = ExtResource("3_mpebu")
+allowed_types = Array[int]([3])
 
 [node name="GunSlot1" type="Panel" parent="PanelContainer/InventoryBase/EquipmentSlots"]
 modulate = Color(0.686275, 0.686275, 0.686275, 1)
 custom_minimum_size = Vector2(256, 128)
 layout_mode = 2
-script = ExtResource("3_qkcqk")
-types = Array[int]([0])
+script = ExtResource("3_mpebu")
+allowed_types = Array[int]([0])
 
 [node name="GunSlot2" type="Panel" parent="PanelContainer/InventoryBase/EquipmentSlots"]
 modulate = Color(0.686275, 0.686275, 0.686275, 1)
 custom_minimum_size = Vector2(256, 128)
 layout_mode = 2
-script = ExtResource("3_qkcqk")
-types = Array[int]([0])
+script = ExtResource("3_mpebu")
+allowed_types = Array[int]([0])
 
 [node name="PanelContainer" type="PanelContainer" parent="PanelContainer/InventoryBase"]
 layout_mode = 2
@@ -77,7 +85,7 @@ layout_mode = 2
 theme_override_constants/h_separation = 0
 theme_override_constants/v_separation = 0
 columns = 7
-script = ExtResource("4_77ttn")
+script = ExtResource("5_lwrwb")
 
 [node name="Panel" parent="PanelContainer/InventoryBase/PanelContainer/InventoryGrid" instance=ExtResource("5_h0nvq")]
 layout_mode = 2

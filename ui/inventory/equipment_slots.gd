@@ -6,14 +6,14 @@ class_name EquipmentSlots
 var items = {}
 
 func _ready() -> void:
-	Events.item_destroyed.connect(_on_item_destroyed)
+	EventBus.item_destroyed.connect(_on_item_destroyed)
 	for slot in slots:
 		items[slot.name] = null
 
-func insert_item(item:InventoryTransferObject) -> bool:
-	var item_pos = item.inv_item.global_position + item.inv_item.size / 2
-	var slot = get_slot_under_pos(item_pos)
-	return insert_item_in_slot(item, slot)
+#func insert_item(item:InventoryTransferObject) -> bool:
+#	var item_pos = item.inv_item.global_position + item.inv_item.size / 2
+#	var slot = get_slot_under_pos(item_pos)
+#	return insert_item_in_slot(item, slot)
 
 func insert_item_in_slot(item:InventoryTransferObject, slot) -> bool:
 	if slot == null:
@@ -30,7 +30,7 @@ func insert_item_in_slot(item:InventoryTransferObject, slot) -> bool:
 
 	item.inv_item.global_position = slot.global_position + slot.size / 2 - item.inv_item.size / 2
 	item.inv_item.reparent(slot)
-	Events.item_equipped.emit(slot.name, item.item_component)
+	EventBus.item_equipped.emit(slot.name, item.item_component)
 	return true
 
 func grab_item(pos):
@@ -40,7 +40,7 @@ func grab_item(pos):
 		return null
 	
 	items[slot.name] = null
-	Events.item_removed.emit(slot.name, item.item_component)
+	EventBus.item_removed.emit(slot.name, item.item_component)
 	return item
 
 func get_slot_under_pos(pos):

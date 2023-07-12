@@ -1,5 +1,5 @@
 extends MarginContainer
-class_name InvItemBase
+class_name ItemControl
 
 var _item_texture_rect:TextureRect
 var item_texture_rect:TextureRect:
@@ -96,11 +96,11 @@ func openContextMenu(pos:Vector2):
 	menu.close_requested.connect(_on_menu_close_requested)
 	menu.popup_hide.connect(_on_menu_close_requested)
 	menu.popup(popup_rect)
-	Events.context_menu_opened.emit()
+	EventBus.context_menu_opened.emit()
 	
 func _on_context_menu_pressed(id:int):
 	var item = context_items[id]
-	Events.emit_signal(item.signal_name, self, get_global_mouse_position())
+	EventBus.emit_signal(item.signal_name, self, get_global_mouse_position())
 
 
 func _on_count_changed(new_count:int):
@@ -117,5 +117,5 @@ func _make_custom_tooltip(for_text):
 	return label
 	
 func _on_menu_close_requested():
-	Events.context_menu_closed.emit()
+	EventBus.context_menu_closed.emit()
 

@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://djau6lpwpwnqa"]
+
+[ext_resource type="Script" path="res://test/item_pickup_test_stacks.gd" id="1_4pvre"]
+[ext_resource type="PackedScene" uid="uid://ddsqkhwkuipda" path="res://ui/inventory/PlayerInventory.tscn" id="2_tl3w1"]
+
+[node name="item_pickup_test_stacks" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_4pvre")
+
+[node name="PlayerInventory" parent="." instance=ExtResource("2_tl3w1")]
+layout_mode = 0
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+grow_horizontal = 1
+grow_vertical = 1

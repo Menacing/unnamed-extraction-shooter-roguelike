@@ -127,7 +127,7 @@ func pickup_item(item_comp:ItemComponent):
 		return false
 	return true
 	
-func _on_context_menu_dropped(iib:InvItemBase, pos:Vector2):
+func _on_context_menu_dropped(iib:ItemControl, pos:Vector2):
 	grab(pos)
 	drop_item()
 	
@@ -137,7 +137,7 @@ func _on_context_menu_opened():
 func _on_context_menu_closed():
 	listening_to_mouse = true
 
-func _on_open_detail_popup(iib:InvItemBase, pos:Vector2):
+func _on_open_detail_popup(iib:ItemControl, pos:Vector2):
 	var popup = load("res://ui/inventory/item_detail_popup.tscn").instantiate()
 	add_child(popup)
 	popup.popup_centered()

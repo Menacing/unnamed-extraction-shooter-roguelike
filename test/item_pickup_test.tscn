@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://7t4uhk3cv4bf"]
+
+[ext_resource type="Script" path="res://test/item_pickup_test.gd" id="1_xxigi"]
+[ext_resource type="PackedScene" uid="uid://ddsqkhwkuipda" path="res://ui/inventory/PlayerInventory.tscn" id="2_gcdav"]
+
+[node name="item_pickup_test" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_xxigi")
+
+[node name="PlayerInventory" parent="." instance=ExtResource("2_gcdav")]
+layout_mode = 0
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+grow_horizontal = 1
+grow_vertical = 1

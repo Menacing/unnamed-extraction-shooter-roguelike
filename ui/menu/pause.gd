@@ -8,7 +8,7 @@ extends ColorRect
 func _ready():
 	resume_button.pressed.connect(unpause)
 	quit_button.pressed.connect(get_tree().quit)
-	Events.pause.connect(pause)
+	EventBus.pause.connect(pause)
 	options_button.pressed.connect(_on_options_pressed)
 	visibility_changed.connect(_on_visibility_changed)
 	pause()

@@ -4,8 +4,8 @@ class_name GridBackPack
 
 
 func _ready():
-	Events.item_equipped.connect(_on_backpack_added)
-	Events.item_removed.connect(_on_backpack_removed)
+	EventBus.item_equipped.connect(_on_backpack_added)
+	EventBus.item_removed.connect(_on_backpack_removed)
 	super()
 
 #func get_relative_position(g_pos:Dictionary, ito:InventoryTransferObject) -> Vector2:
