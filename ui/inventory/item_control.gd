@@ -79,8 +79,9 @@ var max_durability:int:
 
 var context_items:Array[ItemContextItem]
 
-func _input(event):
+func _gui_input(event):
 	if self.is_visible_in_tree() and event.is_action_pressed("openContextMenu"):
+		accept_event()
 		var cursor_pos = get_global_mouse_position()
 		openContextMenu(cursor_pos)
 		
@@ -119,3 +120,33 @@ func _make_custom_tooltip(for_text):
 func _on_menu_close_requested():
 	EventBus.context_menu_closed.emit()
 
+func toggle_rotation():
+	#TODO: Reimplement
+#	if _rotated:
+#		inv_item.item_texture_rect.texture = item_component.inventory_info.icon
+#	else:
+#		inv_item.item_texture_rect.texture = item_component.inventory_info.icon_r
+#	var orig_col = cell_width
+#	cell_width = cell_height
+#	cell_height = orig_col
+#	inv_item.size.x = cell_width * cell_size
+#	inv_item.size.y = cell_height * cell_size
+#	_rotated = !_rotated
+	pass
+
+func _get_drag_data(position):
+	var data = {}
+	var drag_texture = TextureRect.new()
+	drag_texture.expand_mode = TextureRect.EXPAND_FIT_HEIGHT_PROPORTIONAL
+	drag_texture.texture = item_texture_rect.texture
+	drag_texture.size = item_texture_rect.size
+	
+	var drag_control = Control.new()
+	drag_control.size = self.size
+	drag_control.add_child(drag_texture)
+	drag_texture.position = -0.25 * drag_texture.size
+	drag_control.z_index = self.z_index + 1
+	drag_control.modulate = Color(Color.WHITE, .5)
+	set_drag_preview(drag_control)
+	
+	return data

@@ -1,4 +1,4 @@
-extends HSplitContainer
+extends InventoryControlBase
 
 @export var _player_inventory:Inventory
 
@@ -10,11 +10,6 @@ func _ready():
 	EventBus.add_inventory.emit(_player_inventory)
 	EventBus.item_picked_up.connect(_on_item_picked_up)
 	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
 
 func _on_item_picked_up(result:InventoryInsertResult):
 	var self_object_id = self.get_instance_id()
