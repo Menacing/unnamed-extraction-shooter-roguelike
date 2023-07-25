@@ -23,3 +23,14 @@ func _on_item_picked_up(result:InventoryInsertResult):
 			var slot:EquipmentSlot = instance_from_id(location.slot_id)
 		elif location.location == InventoryLocationResult.LocationType.GRID:
 			inventory_grid.add_item_control(item_control, location.grid_x, location.grid_y)
+
+
+func _can_drop_data(at_position, data):
+	#Find where the drop location is
+	
+	#query inventory manager if can drop data there
+	
+	#return result
+	
+	print(data)
+	
