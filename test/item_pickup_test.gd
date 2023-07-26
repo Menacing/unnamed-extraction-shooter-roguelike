@@ -24,6 +24,7 @@ func add_test_item():
 	item_control.item_texture_rect.texture = load("res://Scenes/items/materials/polymer_pile/polymer_pile_icon.png")
 	item_control.size.x = item_info.row_span * cell_size
 	item_control.size.y = item_info.column_span * cell_size
+	item_control.item_instance_id = item.get_instance_id()
 	
 	item.id_2d = item_control.get_instance_id()
 	

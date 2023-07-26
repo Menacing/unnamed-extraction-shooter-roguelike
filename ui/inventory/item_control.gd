@@ -1,6 +1,8 @@
 extends MarginContainer
 class_name ItemControl
 
+var item_instance_id:int
+
 var _item_texture_rect:TextureRect
 var item_texture_rect:TextureRect:
 	get:
@@ -148,5 +150,7 @@ func _get_drag_data(position):
 	drag_control.z_index = self.z_index + 1
 	drag_control.modulate = Color(Color.WHITE, .5)
 	set_drag_preview(drag_control)
+	
+	data["item_inst"] = InventoryManager.get_item(item_instance_id)
 	
 	return data
