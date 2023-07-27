@@ -1,12 +1,12 @@
 extends Control
 
 @onready var player_inv_control = $PlayerInventory
-@onready var player_inv_id:int = player_inv_control._player_inventory.get_instance_id()
+@onready var player_inv_id:int = player_inv_control._inventory.get_instance_id()
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	add_test_item()
-	add_test_item()
+	#add_test_item()
 	pass # Replace with function body.
 
 func add_test_item():
@@ -15,7 +15,7 @@ func add_test_item():
 	var item_info:ItemInformation = ItemInformation.new()
 	item_info.row_span = 2
 	item_info.column_span = 2
-	item_info.item_type = ItemInformation.ItemType.MATERIAL
+	item_info.item_type = ItemInformation.ItemType.GUN
 	item_info.display_name = "Test Item"
 	item_info.item_type_id = 1
 	item._item_info = item_info

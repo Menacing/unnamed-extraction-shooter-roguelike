@@ -23,7 +23,7 @@ func pickup_item(item:ItemInstance, inventory_id:int) -> InventoryInsertResult:
 				slot.item = item
 				result.status = InventoryInsertResult.PickupItemResult.PICKED_UP
 				result.location = InventoryLocationResult.new()
-				result.location.LocationType = InventoryLocationResult.LocationType.SLOT
+				result.location.location = InventoryLocationResult.LocationType.SLOT
 				result.location.slot_id = slot.get_instance_id()
 				return result
 
@@ -37,9 +37,11 @@ func can_place_item_in_slot(item_inst:ItemInstance, inventory_id:int, slot_name:
 	return _can_place_item_in_slot(item_inst, inventory, slot_name)
 	
 static func _can_place_item_in_slot(item_inst:ItemInstance, inventory:Inventory, slot_name:String) -> bool:
-	for slot in inventory.equipment_slots:
-		if slot_name == slot.name and item_inst.get_item_type() in slot.allowed_types and slot.item == null:
-			return true
+	var slot = Inventory.get_slot_by_name(inventory,slot_name)
+	if slot:
+		if slot.item == null:
+			if item_inst.get_item_type() in slot.allowed_types: 
+				return true	
 	return false
 	
 
@@ -60,8 +62,8 @@ func can_place_item_at_grid(item_inst:ItemInstance, inventory_id:int, grid_locat
 	var inventory = get_inventory(inventory_id)
 	if inventory == null:
 		return false
-	var result =  _can_place_item_at_grid(item_inst, inventory, grid_location)
-	if result != InventoryInsertResult.PickupItemResult.NOT_PICKED_UP:
+	var result:InventoryInsertResult = _can_place_item_at_grid(item_inst, inventory, grid_location)
+	if result.status != InventoryInsertResult.PickupItemResult.NOT_PICKED_UP:
 		return true
 	else:
 		return false

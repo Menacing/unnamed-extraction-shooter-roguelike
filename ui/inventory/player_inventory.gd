@@ -15,9 +15,14 @@ func _on_item_picked_up(result:InventoryInsertResult):
 	if result.inventory_id == _inventory.get_instance_id():
 		print("item picked up")
 		
-		var item_control:Control = instance_from_id(result.item.id_2d)
+		var item_control:ItemControl = instance_from_id(result.item.id_2d)
 		var location = result.location
 		if location.location == InventoryLocationResult.LocationType.SLOT:
-			var slot:EquipmentSlot = instance_from_id(location.slot_id)
+			#TODO: Move ItemControl to slot Control
+			var slot_type:EquipmentSlotType = instance_from_id(location.slot_id)
+			if slot_type:
+				var slot_control:EquipmentSlotControl = self.find_child(slot_type.name)
+				if slot_control:
+					slot_control.add_item_control(item_control)
 		elif location.location == InventoryLocationResult.LocationType.GRID:
 			inventory_grid.add_item_control(item_control, location.grid_x, location.grid_y)

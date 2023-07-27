@@ -75,22 +75,22 @@ func _get_droppable_container_under_cursor(pos:Vector2) -> Control:
 			return c
 	return null
 
-func _can_drop_data(at_position, data) -> bool:
-	print(data)	
-	var item_inst:ItemInstance = data["item_inst"]
-	#Find where the drop location is
-	var c = _get_droppable_container_under_cursor(at_position)
-	if c != null:
-		return false
-	
-	#query inventory manager if can drop data there
-	if c is EquipmentSlot:
-		return InventoryManager.can_place_item_in_slot(item_inst, _inventory.get_instance_id(), c.name)
-	if c is InventoryGridContainer:
-		#find the grid coordanates
-		var grid_pos = c._get_grid_coordinates(at_position)
-		return InventoryManager.can_place_item_at_grid(item_inst,_inventory.get_instance_id(),grid_pos)
-	return false
+#func _can_drop_data(at_position, data) -> bool:
+	#print(data)	
+	#var item_inst:ItemInstance = data["item_inst"]
+	##Find where the drop location is
+	#var c = _get_droppable_container_under_cursor(at_position)
+	#if c != null:
+		#return false
+#
+	##query inventory manager if can drop data there
+	#if c is EquipmentSlot:
+		#return InventoryManager.can_place_item_in_slot(item_inst, _inventory.get_instance_id(), c.name)
+	#if c is InventoryGridContainer:
+		##find the grid coordanates
+		#var grid_pos = c._get_grid_coordinates(at_position)
+		#return InventoryManager.can_place_item_at_grid(item_inst,_inventory.get_instance_id(),grid_pos)
+	#return false
 	
 
 func _on_context_menu_opened():

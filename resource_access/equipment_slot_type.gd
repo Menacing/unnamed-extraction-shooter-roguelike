@@ -1,6 +1,6 @@
-extends Panel
-class_name EquipmentSlot
+extends Resource
+class_name EquipmentSlotType
 
+@export var name:String
 @export var allowed_types:Array[ItemInformation.ItemType]
 var item:ItemInstance
-

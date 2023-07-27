@@ -1,7 +1,7 @@
 extends Control
 
 @onready var player_inv_control = $PlayerInventory
-@onready var player_inv_id:int = player_inv_control._player_inventory.get_instance_id()
+@onready var player_inv_id:int = player_inv_control._inventory.get_instance_id()
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

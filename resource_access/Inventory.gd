@@ -19,7 +19,15 @@ var _current_height:int
 var _current_width:int
 
 var grid_slots = {}
-@export var equipment_slots:Array[EquipmentSlot] = []
+@export var equipment_slots:Array[EquipmentSlotType] = []
+
+static func get_slot_by_name(inventory:Inventory, slot_name:String) ->EquipmentSlotType:
+	for slot in inventory.equipment_slots:
+		printt("test:", slot.get_instance_id(), slot.name)
+		if slot.name == slot_name:
+			return slot
+	
+	return null
 
 func setup():
 	_current_height = initial_height
