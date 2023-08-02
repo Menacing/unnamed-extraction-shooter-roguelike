@@ -37,13 +37,25 @@ func can_place_item_in_slot(item_inst:ItemInstance, inventory_id:int, slot_name:
 	return _can_place_item_in_slot(item_inst, inventory, slot_name)
 	
 static func _can_place_item_in_slot(item_inst:ItemInstance, inventory:Inventory, slot_name:String) -> bool:
-	var slot = Inventory.get_slot_by_name(inventory,slot_name)
+	var slot:EquipmentSlotType = Inventory.get_slot_by_name(inventory,slot_name)
 	if slot:
 		if slot.item == null:
 			if item_inst.get_item_type() in slot.allowed_types: 
 				return true	
 	return false
-	
+
+static func place_item_in_slot(item_inst:ItemInstance, inventory:Inventory, slot_name:String) -> InventoryInsertResult:
+	var result = InventoryInsertResult.new(item_inst, inventory.get_instance_id())	
+	if _can_place_item_in_slot(item_inst,inventory,slot_name):
+		var slot:EquipmentSlotType = Inventory.get_slot_by_name(inventory,slot_name)
+		if slot:
+			slot.item = item_inst
+			result.status = InventoryInsertResult.PickupItemResult.PICKED_UP
+			result.location = InventoryLocationResult.new()
+			result.location.location = InventoryLocationResult.LocationType.SLOT
+			result.location.slot_id = slot.get_instance_id()
+			return result
+	return result
 
 static func _insert_item_at_first_available_grid_location(item:ItemInstance, inventory:Inventory) -> InventoryInsertResult:
 	var result = InventoryInsertResult.new(item, inventory.get_instance_id())

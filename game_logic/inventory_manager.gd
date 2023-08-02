@@ -13,6 +13,9 @@ func _ready():
 
 func on_pickup_item(item_inst:ItemInstance, target_inventory_id:int):
 	var pickup_result:InventoryInsertResult = _inventory_access.pickup_item(item_inst, target_inventory_id)
+	_handle_insert_result(pickup_result, item_inst)
+		
+func _handle_insert_result(pickup_result:InventoryInsertResult, item_inst:ItemInstance):
 	if pickup_result.status == InventoryInsertResult.PickupItemResult.PICKED_UP:
 		EventBus.item_picked_up.emit(pickup_result)
 	elif pickup_result.status == InventoryInsertResult.PickupItemResult.STACK_COMBINED:
@@ -21,10 +24,15 @@ func on_pickup_item(item_inst:ItemInstance, target_inventory_id:int):
 			destroy_item(item_inst)
 			pass
 		pass
-		#TODO Handle stack stuff
-		
+	#TODO Handle stack stuff
+
 func can_place_item_in_slot(item_inst:ItemInstance, target_inventory_id:int, slot_name:String) -> bool:
 	return _inventory_access.can_place_item_in_slot(item_inst, target_inventory_id, slot_name)
+	
+func place_item_in_slot(item_inst:ItemInstance, target_inventory_id:int, slot_name:String):
+	var target_inventory = _inventory_access.get_inventory(target_inventory_id)
+	var result:InventoryInsertResult = _inventory_access.place_item_in_slot(item_inst, target_inventory, slot_name)
+	_handle_insert_result(result, item_inst)
 	
 func can_place_item_at_grid(item_inst:ItemInstance, target_inventory_id:int, grid_location:Vector2i) -> bool:
 	return _inventory_access.can_place_item_at_grid(item_inst, target_inventory_id, grid_location)	
