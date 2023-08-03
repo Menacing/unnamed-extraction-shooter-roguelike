@@ -22,6 +22,7 @@ extends Node
 signal add_inventory(inventory:Inventory)
 signal pickup_item(item_inst:ItemInstance, target_inventory_id:int)
 signal item_picked_up(result:InventoryInsertResult)
+signal item_removed_from_inventory(item_inst:ItemInstance, inventory_id:int)
 
 #Health Events
 signal took_damage(damage:float, hit_origin:Vector3)

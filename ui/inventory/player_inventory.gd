@@ -26,3 +26,7 @@ func _on_item_picked_up(result:InventoryInsertResult):
 					slot_control.add_item_control(item_control)
 		elif location.location == InventoryLocationResult.LocationType.GRID:
 			inventory_grid.add_item_control(item_control, location.grid_x, location.grid_y)
+
+func _on_item_removed_from_inventory(item_inst:ItemInstance, inventory_id:int):
+	if inventory_id == _inventory.get_instance_id():
+		pass

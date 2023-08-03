@@ -62,7 +62,8 @@ static func _insert_item_at_first_available_grid_location(item:ItemInstance, inv
 	
 	for y in range(inventory.get_height()):
 		for x in range(inventory.get_width()):
-			var try_result = _try_insert_at_grid(x,y,item,inventory)
+			var grid_loc = Vector2i(x,y)
+			var try_result = _try_insert_at_grid(item, inventory, grid_loc)
 			#if we do anything besides finding space for it, return that result
 			if try_result.status != InventoryInsertResult.PickupItemResult.NOT_PICKED_UP:
 				return try_result
@@ -70,7 +71,7 @@ static func _insert_item_at_first_available_grid_location(item:ItemInstance, inv
 	
 	return result
 	
-func can_place_item_at_grid(item_inst:ItemInstance, inventory_id:int, grid_location:Vector2) -> bool:
+func can_place_item_at_grid(item_inst:ItemInstance, inventory_id:int, grid_location:Vector2i) -> bool:
 	var inventory = get_inventory(inventory_id)
 	if inventory == null:
 		return false
@@ -80,7 +81,7 @@ func can_place_item_at_grid(item_inst:ItemInstance, inventory_id:int, grid_locat
 	else:
 		return false
 	
-static func _can_place_item_at_grid(item:ItemInstance, inventory:Inventory, grid_location:Vector2) -> InventoryInsertResult:
+static func _can_place_item_at_grid(item:ItemInstance, inventory:Inventory, grid_location:Vector2i) -> InventoryInsertResult:
 	var result = InventoryInsertResult.new(item, inventory.get_instance_id())
 	
 	var x = grid_location.x
@@ -117,12 +118,18 @@ static func _can_place_item_at_grid(item:ItemInstance, inventory:Inventory, grid
 	result.location.grid_y = y
 	return result
 	
-static func _try_insert_at_grid(x,y,item:ItemInstance, inventory:Inventory) -> InventoryInsertResult:
-	var result = _can_place_item_at_grid(item, inventory, Vector2(x,y))
+func place_item_at_grid(item_inst:ItemInstance, inventory:Inventory, grid_location:Vector2i) -> InventoryInsertResult:
+	var result = InventoryInsertResult.new(item_inst, inventory.get_instance_id())	
+	if _can_place_item_at_grid(item_inst, inventory, grid_location):
+		result = _try_insert_at_grid(item_inst, inventory, grid_location)
+	return result
+
+static func _try_insert_at_grid(item:ItemInstance, inventory:Inventory, grid_location:Vector2i) -> InventoryInsertResult:
+	var result = _can_place_item_at_grid(item, inventory, grid_location)
 	if result.status == InventoryInsertResult.PickupItemResult.PICKED_UP:
 		var w = item.get_width()
 		var h = item.get_height()
-		_set_grid_slots(x, y, w, h, item, inventory)
+		_set_grid_slots(grid_location.x, grid_location.y, w, h, item, inventory)
 	return result
 
 static func _should_insert_stacks(source_stack:ItemInstance, destination_stack:ItemInstance) -> bool:
@@ -138,3 +145,18 @@ static func _set_grid_slots(x, y, w, h, item:ItemInstance, inventory:Inventory) 
 	for i in range(x, x + w):
 		for j in range(y, y + h):
 			inventory.grid_slots[i][j] = item
+
+static func remove_item(item:ItemInstance, inventory:Inventory) -> void:
+	if inventory:
+		for slot in inventory.equipment_slots:
+			if slot.item:
+				if slot.item.get_instance_id() == item.get_instance_id():
+					slot.item = null
+
+		for x in range (0, inventory.get_width()):
+			for y in range(0,inventory.get_height()):
+				var cell = inventory.grid_slots[x][y]
+				if cell is ItemInstance and cell.get_instance_id() == item.get_instance_id():
+					inventory.grid_slots[x][y] = null
+	
+	item.current_inventory_id = 0
