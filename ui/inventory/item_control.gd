@@ -1,9 +1,23 @@
 extends MarginContainer
 class_name ItemControl
 
-var item_instance_id:int
+var item_instance:ItemInstance
 
+func update_dimensions():
+	var cell_size = Helpers.get_cell_size()
+	if _is_rotated:
+		self.size.y = item_instance.get_width() * cell_size
+		self.size.x = item_instance.get_height() * cell_size
+		item_texture_rect.texture = item_instance.get_texture_r()
+	else:
+		self.size.x = item_instance.get_width() * cell_size
+		self.size.y = item_instance.get_height() * cell_size
+		item_texture_rect.texture = item_instance.get_texture()
+		
+
+var _orig_is_rotated:bool
 var _is_rotated:bool
+
 var _item_texture_rect:TextureRect
 var item_texture_rect:TextureRect:
 	get:
@@ -145,6 +159,9 @@ func _on_menu_close_requested():
 	EventBus.context_menu_closed.emit()
 
 func toggle_rotation():
+	_is_rotated = !_is_rotated
+	set_drag_preview(_create_drag_control())
+	
 	#TODO: Reimplement
 #	if _rotated:
 #		inv_item.item_texture_rect.texture = item_component.inventory_info.icon
@@ -160,9 +177,16 @@ func toggle_rotation():
 
 func _create_drag_control() -> Control:
 	var drag_texture = TextureRect.new()
-	drag_texture.expand_mode = TextureRect.EXPAND_FIT_HEIGHT_PROPORTIONAL
-	drag_texture.texture = item_texture_rect.texture
-	drag_texture.size = item_texture_rect.size
+	drag_texture.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+	var cell_size = Helpers.get_cell_size()
+	if _is_rotated:
+		drag_texture.size.y = item_instance.get_width() * cell_size
+		drag_texture.size.x = item_instance.get_height() * cell_size
+		drag_texture.texture = item_instance.get_texture_r()
+	else:
+		drag_texture.size.x = item_instance.get_width() * cell_size
+		drag_texture.size.y = item_instance.get_height() * cell_size
+		drag_texture.texture = item_instance.get_texture()
 	
 	var drag_control = Control.new()
 	drag_control.size = self.size
@@ -177,10 +201,12 @@ func _get_drag_data(position):
 
 	set_drag_preview(_create_drag_control())
 	
-	data["item_inst"] = InventoryManager.get_item(item_instance_id)
+	data["item_inst"] = item_instance
 	_is_dragging = true
+	_orig_is_rotated = _is_rotated
 	return data
 
 func _notification(what):
 	if what == Node.NOTIFICATION_DRAG_END:
 		_is_dragging = false
+		_is_rotated = _orig_is_rotated

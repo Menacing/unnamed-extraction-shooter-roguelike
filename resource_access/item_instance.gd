@@ -21,3 +21,9 @@ func get_item_type_id() -> int:
 
 func get_max_allowed_stacks() -> int:
 	return _item_info.max_stacks
+
+func get_texture() -> Texture:
+	return _item_info.icon
+	
+func get_texture_r() -> Texture:
+	return _item_info.icon_r

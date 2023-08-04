@@ -2,6 +2,9 @@ extends Node
 
 func _ready():
 	randomize()
+	
+func get_cell_size() -> int:
+	return 32
 
 func slow_rotate_to_point(node:Node3D, point:Vector3, rotation_speed:float, delta:float):
 	var T=node.global_transform.looking_at(point, Vector3(0,1,0))
