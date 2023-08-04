@@ -5,18 +5,18 @@ class_name EquipmentSlotControl
 
 func _can_drop_data(at_position, data) -> bool:
 	print(data)	
-	var item_inst:ItemInstance = data["item_inst"]
+	var item_instance_id:int = data["item_instance_id"]
 
-	return InventoryManager.can_place_item_in_slot(item_inst, parent_inventory_control_base._inventory.get_instance_id(), self.name)
+	return InventoryManager.can_place_item_in_slot(item_instance_id, parent_inventory_control_base._inventory.get_instance_id(), self.name)
 
 func _drop_data(at_position, data):
 	print(data)	
-	var item_inst:ItemInstance = data["item_inst"]
+	var item_instance_id:int = data["item_instance_id"]
 	var target_inventory_id = parent_inventory_control_base._inventory.get_instance_id()
 
-	var can_drop = InventoryManager.can_place_item_in_slot(item_inst, target_inventory_id, self.name)
+	var can_drop = InventoryManager.can_place_item_in_slot(item_instance_id, target_inventory_id, self.name)
 	if can_drop:
-		InventoryManager.place_item_in_slot(item_inst, target_inventory_id, self.name)
+		InventoryManager.place_item_in_slot(item_instance_id, target_inventory_id, self.name)
 
 
 func add_item_control(item_control:ItemControl):

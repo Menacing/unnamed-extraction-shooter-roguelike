@@ -27,7 +27,7 @@ func add_test_item():
 	item.stacks = 1
 	
 	var item_control:ItemControl = load("res://ui/inventory/item_control.tscn").instantiate()
-	item_control.item_instance = item
+	item_control.item_instance_id= item.get_instance_id()
 	item_control.update_dimensions()
 	
 	item.id_2d = item_control.get_instance_id()

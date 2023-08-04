@@ -7,7 +7,10 @@ func add_inventory(inventory:Inventory):
 	inventories[inventory.get_instance_id()] = inventory
 	
 func get_inventory(inventory_id:int) -> Inventory:
-	return inventories[inventory_id]
+	if inventory_id != 0:
+		return inventories[inventory_id]
+	else:
+		return null
 
 func pickup_item(item:ItemInstance, inventory_id:int) -> InventoryInsertResult:
 	var result = InventoryInsertResult.new(item, inventory_id)
@@ -19,7 +22,7 @@ func pickup_item(item:ItemInstance, inventory_id:int) -> InventoryInsertResult:
 	#First check item slots
 	if inventory.equipment_slots:
 		for slot in inventory.equipment_slots:
-			if item.get_item_type() in slot.allowed_types and slot.item == null:
+			if item.get_item_type() in slot.allowed_types and slot.item_instance_id != 0:
 				slot.item = item
 				result.status = InventoryInsertResult.PickupItemResult.PICKED_UP
 				result.location = InventoryLocationResult.new()
@@ -39,7 +42,7 @@ func can_place_item_in_slot(item_inst:ItemInstance, inventory_id:int, slot_name:
 static func _can_place_item_in_slot(item_inst:ItemInstance, inventory:Inventory, slot_name:String) -> bool:
 	var slot:EquipmentSlotType = Inventory.get_slot_by_name(inventory,slot_name)
 	if slot:
-		if slot.item == null:
+		if slot.item_instance_id != 0:
 			if item_inst.get_item_type() in slot.allowed_types: 
 				return true	
 	return false
@@ -149,7 +152,7 @@ static func _set_grid_slots(x, y, w, h, item:ItemInstance, inventory:Inventory) 
 static func remove_item(item:ItemInstance, inventory:Inventory) -> void:
 	if inventory:
 		for slot in inventory.equipment_slots:
-			if slot.item:
+			if slot.item_instance_id != 0:
 				if slot.item.get_instance_id() == item.get_instance_id():
 					slot.item = null
 

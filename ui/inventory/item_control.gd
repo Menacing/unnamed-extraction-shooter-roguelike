@@ -1,22 +1,31 @@
 extends MarginContainer
 class_name ItemControl
 
-var item_instance:ItemInstance
+var item_instance_id:int
+var _item_instance:ItemInstance:
+	get:
+		return InventoryManager.get_item(item_instance_id)
+
+func _ready():
+	EventBus.item_picked_up.connect(_on_item_picked_up)
+
+func _on_item_picked_up(result:InventoryInsertResult):
+	if result.item.get_instance_id() == _item_instance.get_instance_id():
+		update_dimensions()
 
 func update_dimensions():
 	var cell_size = Helpers.get_cell_size()
-	if _is_rotated:
-		self.size.y = item_instance.get_width() * cell_size
-		self.size.x = item_instance.get_height() * cell_size
-		item_texture_rect.texture = item_instance.get_texture_r()
-	else:
-		self.size.x = item_instance.get_width() * cell_size
-		self.size.y = item_instance.get_height() * cell_size
-		item_texture_rect.texture = item_instance.get_texture()
+	self.size.x = _item_instance.get_width() * cell_size
+	self.size.y = _item_instance.get_height() * cell_size
+	item_texture_rect.texture = _item_instance.get_texture()
 		
 
 var _orig_is_rotated:bool
-var _is_rotated:bool
+var _is_rotated:bool:
+	get:
+		return _item_instance.is_rotated
+	set(value):
+		_item_instance.is_rotated = value
 
 var _item_texture_rect:TextureRect
 var item_texture_rect:TextureRect:
@@ -161,32 +170,15 @@ func _on_menu_close_requested():
 func toggle_rotation():
 	_is_rotated = !_is_rotated
 	set_drag_preview(_create_drag_control())
-	
-	#TODO: Reimplement
-#	if _rotated:
-#		inv_item.item_texture_rect.texture = item_component.inventory_info.icon
-#	else:
-#		inv_item.item_texture_rect.texture = item_component.inventory_info.icon_r
-#	var orig_col = cell_width
-#	cell_width = cell_height
-#	cell_height = orig_col
-#	inv_item.size.x = cell_width * cell_size
-#	inv_item.size.y = cell_height * cell_size
-#	_rotated = !_rotated
-	pass
 
 func _create_drag_control() -> Control:
 	var drag_texture = TextureRect.new()
 	drag_texture.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
 	var cell_size = Helpers.get_cell_size()
-	if _is_rotated:
-		drag_texture.size.y = item_instance.get_width() * cell_size
-		drag_texture.size.x = item_instance.get_height() * cell_size
-		drag_texture.texture = item_instance.get_texture_r()
-	else:
-		drag_texture.size.x = item_instance.get_width() * cell_size
-		drag_texture.size.y = item_instance.get_height() * cell_size
-		drag_texture.texture = item_instance.get_texture()
+
+	drag_texture.size.x = _item_instance.get_width() * cell_size
+	drag_texture.size.y = _item_instance.get_height() * cell_size
+	drag_texture.texture = _item_instance.get_texture()
 	
 	var drag_control = Control.new()
 	drag_control.size = self.size
@@ -201,7 +193,7 @@ func _get_drag_data(position):
 
 	set_drag_preview(_create_drag_control())
 	
-	data["item_inst"] = item_instance
+	data["item_instance_id"] = item_instance_id
 	_is_dragging = true
 	_orig_is_rotated = _is_rotated
 	return data

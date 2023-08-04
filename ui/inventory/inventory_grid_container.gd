@@ -38,17 +38,17 @@ func _get_droppable_container_under_cursor(pos:Vector2) -> Control:
 
 func _can_drop_data(at_position, data) -> bool:
 	print(data)	
-	var item_inst:ItemInstance = data["item_inst"]
+	var item_instance_id:int = data["item_instance_id"]
 	#find the grid coordanates
 	var grid_pos = _get_grid_coordinates_from_local(at_position)
-	return InventoryManager.can_place_item_at_grid(item_inst,parent_inventory_control_base._inventory.get_instance_id(),grid_pos)
+	return InventoryManager.can_place_item_at_grid(item_instance_id,parent_inventory_control_base._inventory.get_instance_id(),grid_pos)
 	
 func _drop_data(at_position, data):
 	print(data)	
-	var item_inst:ItemInstance = data["item_inst"]
+	var item_instance_id:int = data["item_instance_id"]
 	var target_inventory_id = parent_inventory_control_base._inventory.get_instance_id()
 
 	var grid_pos = _get_grid_coordinates_from_local(at_position)
-	var can_drop = InventoryManager.can_place_item_at_grid(item_inst,parent_inventory_control_base._inventory.get_instance_id(),grid_pos)
+	var can_drop = InventoryManager.can_place_item_at_grid(item_instance_id,parent_inventory_control_base._inventory.get_instance_id(),grid_pos)
 	if can_drop:
-		InventoryManager.place_item_at_grid(item_inst, target_inventory_id, grid_pos)
+		InventoryManager.place_item_at_grid(item_instance_id, target_inventory_id, grid_pos)
