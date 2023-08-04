@@ -6,7 +6,7 @@ extends Control
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	add_test_item()
-	#add_test_item()
+	add_test_item()
 	pass # Replace with function body.
 
 func add_test_item():

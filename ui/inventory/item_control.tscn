@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://cn3ywqty7xvvr"]
+[gd_scene load_steps=3 format=3 uid="uid://cn3ywqty7xvvr"]
 
 [ext_resource type="Script" path="res://ui/inventory/item_control.gd" id="1_gir5a"]
+[ext_resource type="Texture2D" uid="uid://dl5n7p7mtkja2" path="res://Scenes/items/materials/polymer_pile/polymer_pile_icon.png" id="2_ysxsk"]
 
 [node name="InvItemBase" type="MarginContainer"]
 z_index = 1
@@ -12,6 +13,7 @@ script = ExtResource("1_gir5a")
 [node name="ItemTexture" type="TextureRect" parent="."]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
+texture = ExtResource("2_ysxsk")
 expand_mode = 1
 
 [node name="Count" type="Label" parent="."]

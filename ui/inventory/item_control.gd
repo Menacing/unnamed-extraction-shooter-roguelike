@@ -3,6 +3,7 @@ class_name ItemControl
 
 var item_instance_id:int
 
+var _is_rotated:bool
 var _item_texture_rect:TextureRect
 var item_texture_rect:TextureRect:
 	get:
@@ -81,7 +82,28 @@ var max_durability:int:
 
 var context_items:Array[ItemContextItem]
 
-func _gui_input(event):
+##func _process(delta):
+	##if listening_to_mouse:
+		##var cursor_pos = get_global_mouse_position()
+		##if Input.is_action_just_pressed("inv_grab"):
+			##grab(cursor_pos)
+		##if Input.is_action_just_released("inv_grab"):
+			##release(cursor_pos)
+		##if item_held != null:
+			##item_held.global_position = cursor_pos + item_offset
+			###TODO Reimpliment Rotation
+	###		if Input.is_action_just_pressed("rotate_held_item"):
+	###			item_held.toggle_rotation(cell_size)
+	###			item_offset = item_held.get_item_offset()
+	
+var _is_dragging:bool
+	
+func _input(event:InputEvent):
+	if _is_dragging:
+		if event.is_action_pressed("rotate_held_item"):
+			toggle_rotation()
+
+func _gui_input(event:InputEvent):
 	if self.is_visible_in_tree() and event.is_action_pressed("openContextMenu"):
 		accept_event()
 		var cursor_pos = get_global_mouse_position()
@@ -136,8 +158,7 @@ func toggle_rotation():
 #	_rotated = !_rotated
 	pass
 
-func _get_drag_data(position):
-	var data = {}
+func _create_drag_control() -> Control:
 	var drag_texture = TextureRect.new()
 	drag_texture.expand_mode = TextureRect.EXPAND_FIT_HEIGHT_PROPORTIONAL
 	drag_texture.texture = item_texture_rect.texture
@@ -149,8 +170,17 @@ func _get_drag_data(position):
 	drag_texture.position = -0.25 * drag_texture.size
 	drag_control.z_index = self.z_index + 1
 	drag_control.modulate = Color(Color.WHITE, .5)
-	set_drag_preview(drag_control)
+	return drag_control
+
+func _get_drag_data(position):
+	var data = {}
+
+	set_drag_preview(_create_drag_control())
 	
 	data["item_inst"] = InventoryManager.get_item(item_instance_id)
-	
+	_is_dragging = true
 	return data
+
+func _notification(what):
+	if what == Node.NOTIFICATION_DRAG_END:
+		_is_dragging = false
