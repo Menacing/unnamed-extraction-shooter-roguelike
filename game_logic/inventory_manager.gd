@@ -18,7 +18,8 @@ func _on_pickup_item(item_inst:ItemInstance, target_inventory_id:int):
 func _handle_insert_result(pickup_result:InventoryInsertResult, item_inst:ItemInstance, source_inventory:Inventory):
 	if pickup_result.status == InventoryInsertResult.PickupItemResult.PICKED_UP:
 		var source_inventory_id = source_inventory.get_instance_id() if source_inventory else 0
-		remove_item(item_inst.get_instance_id(), source_inventory_id)
+		if source_inventory_id != pickup_result.inventory_id:
+			remove_item(item_inst.get_instance_id(), source_inventory_id)
 		item_inst.current_inventory_id = pickup_result.inventory_id
 		EventBus.item_picked_up.emit(pickup_result)
 	elif pickup_result.status == InventoryInsertResult.PickupItemResult.STACK_COMBINED:
