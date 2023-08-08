@@ -68,3 +68,11 @@ func gddeg_to_compass_deg(unnormal_deg:int) -> int:
 	elif unnormal_deg > 0:
 		normal_deg = 360 - (unnormal_deg % 360)
 	return normal_deg % 360
+
+func get_control_in_group_with_method_at_position(cursor_pos:Vector2, group_name:String, method_name:String) -> Control:
+	var containers = get_tree().get_nodes_in_group(group_name)
+	for c in containers:
+		if c.get_global_rect().has_point(cursor_pos) and c is Control:
+			if c.has_method(method_name):
+				return c
+	return null

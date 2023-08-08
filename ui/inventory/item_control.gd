@@ -135,6 +135,20 @@ func _input(event:InputEvent):
 	if _is_dragging:
 		if event.is_action_pressed("rotate_held_item"):
 			toggle_rotation()
+			accept_event()
+			
+		if event.is_action_pressed("place_single_of_stack"):
+			# Detect control under mouse
+			var control: Control = Helpers.get_control_in_group_with_method_at_position(event.global_position, "droppable_inventory_controls", "_can_drop_data")
+			
+			# If control exists and has _can_drop_data function, call it
+			if control:
+				var local_pos = event.global_position - control.global_position
+				var drop_data = get_viewport().gui_get_drag_data()
+				if control._can_drop_data(local_pos, drop_data):
+					control._drop_data(local_pos, drop_data)
+			accept_event()
+			
 
 func _gui_input(event:InputEvent):
 	if self.is_visible_in_tree() and event.is_action_pressed("openContextMenu"):
@@ -198,15 +212,16 @@ func _create_drag_control() -> Control:
 	drag_control.modulate = Color(Color.WHITE, .5)
 	return drag_control
 
-func _get_drag_data(position):
+func create_drag_data_data():
 	var data = {}
-
-	set_drag_preview(_create_drag_control())
-	
 	data["item_instance_id"] = item_instance_id
+	return data
+
+func _get_drag_data(position):
+	set_drag_preview(_create_drag_control())
 	_is_dragging = true
 	_orig_is_rotated = _is_rotated
-	return data
+	return create_drag_data_data()
 
 func _notification(what):
 	if what == Node.NOTIFICATION_DRAG_END:
