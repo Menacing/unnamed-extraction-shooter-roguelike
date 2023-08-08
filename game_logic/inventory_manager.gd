@@ -26,6 +26,11 @@ func _handle_insert_result(pickup_result:InventoryInsertResult, item_inst:ItemIn
 		var combine_result:ItemCombineStackResult = _item_access.combine_stacks(pickup_result.sourceStack, pickup_result.destinationStack)
 		if combine_result.result == ItemCombineStackResult.ResultTypes.FULLY_COMBINED:
 			destroy_item(item_inst.get_instance_id())
+			EventBus.item_stack_count_changed.emit(pickup_result.destinationStack)
+			pass
+		elif combine_result.result == ItemCombineStackResult.ResultTypes.PARTIALLY_COMBINED:
+			pass
+		elif combine_result.result == ItemCombineStackResult.ResultTypes.NOT_COMBINED:
 			pass
 		pass
 	#TODO Handle stack stuff

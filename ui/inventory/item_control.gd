@@ -8,11 +8,20 @@ var _item_instance:ItemInstance:
 
 func _ready():
 	EventBus.item_picked_up.connect(_on_item_picked_up)
+	EventBus.item_stack_count_changed.connect(_on_item_stack_count_changed)
+	show_durability = _item_instance.get_has_durability()
+	show_count = _item_instance.get_has_stacks()
+	name_label.text = _item_instance.get_display_name()
+	show_name = _item_instance.get_show_name()
 
 func _on_item_picked_up(result:InventoryInsertResult):
 	if result.item.get_instance_id() == _item_instance.get_instance_id():
 		_orig_is_rotated = _is_rotated
 		update_dimensions()
+
+func _on_item_stack_count_changed(item_inst:ItemInstance):
+	if !is_queued_for_deletion() and item_inst.get_instance_id() == _item_instance.get_instance_id():
+		stacks = item_inst.stacks
 
 func update_dimensions():
 	var cell_size = Helpers.get_cell_size()

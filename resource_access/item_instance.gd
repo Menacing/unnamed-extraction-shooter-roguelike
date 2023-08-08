@@ -8,6 +8,12 @@ var durability:int
 var current_inventory_id:int
 var is_rotated:bool
 
+func get_show_name() -> bool:
+	return _item_info.show_name
+	
+func get_display_name() -> String:
+	return _item_info.display_name
+	
 func get_item_type() -> ItemInformation.ItemType:
 	return _item_info.item_type
 
@@ -28,6 +34,15 @@ func get_item_type_id() -> int:
 
 func get_max_allowed_stacks() -> int:
 	return _item_info.max_stacks
+
+func get_has_stacks() -> bool:
+	return _item_info.has_stacks
+	
+func get_max_durability() -> int:
+	return _item_info.max_durability
+	
+func get_has_durability() -> bool:
+	return _item_info.has_durability
 
 func get_texture() -> Texture:
 	if !is_rotated:

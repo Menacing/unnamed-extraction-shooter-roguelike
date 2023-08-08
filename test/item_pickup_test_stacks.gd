@@ -7,6 +7,7 @@ extends Control
 func _ready():
 	add_test_item()
 	add_test_item()
+	add_test_item()
 	pass # Replace with function body.
 
 func add_test_item():
@@ -17,13 +18,17 @@ func add_test_item():
 	item_info.column_span = 2
 	item_info.item_type = ItemInformation.ItemType.MATERIAL
 	item_info.display_name = "Test Item"
+	item_info.show_name = true
 	item_info.item_type_id = 1
 	item_info.max_stacks = 5
+	item_info.has_stacks = true
+	item_info.icon = load("res://Scenes/items/materials/polymer_pile/polymer_pile_icon.png")
+	item_info.icon_r = load("res://Scenes/items/materials/polymer_pile/polymer_pile_icon.png")
+	item_info.show_name = false
 	item._item_info = item_info
 	item.stacks = 1
 	
 	var item_control:ItemControl = load("res://ui/inventory/item_control.tscn").instantiate()
-	item_control.item_texture_rect.texture = load("res://Scenes/items/materials/polymer_pile/polymer_pile_icon.png")
 	item_control.size.x = item_info.row_span * cell_size
 	item_control.size.y = item_info.column_span * cell_size
 	item_control.item_instance_id = item.get_instance_id()

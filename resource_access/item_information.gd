@@ -18,7 +18,9 @@ enum ItemType {
 @export var detail_scene:PackedScene
 #@export var context_menu_items:Array[ItemContextItem]
 @export var max_stacks:int = 1
+@export var has_stacks:bool = false
 @export var max_durability:int = 1
+@export var has_durability:bool = false
 @export var column_span:int = 1
 @export var row_span:int = 1
 @export_multiline var tooltip_text:String
