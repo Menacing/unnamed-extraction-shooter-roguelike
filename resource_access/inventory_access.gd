@@ -242,6 +242,31 @@ func place_stack_in_slot(item_inst:ItemInstance, inventory_id:int, slot_name:Str
 #
 	#item.current_inventory_id = 0
 
+func can_place_item_in_grid(item_inst:ItemInstance, inventory_id:int, grid_location:Vector2i) -> bool:
+	var inventory = get_inventory(inventory_id)
+	if inventory == null:
+		return false
+		
+	var x = grid_location.x
+	var y = grid_location.y
+	var w = item_inst.get_width()
+	var h = item_inst.get_height()
+	#invalid coordinates
+	if x < 0 or y < 0:
+		return false
+	#item bigger than available space
+	if x + w > inventory.get_width() or y + h > inventory.get_height():
+		return false
+	
+	#check if there's an item alredy there
+	for i in range(x, x + w):
+		for j in range(y, y + h):
+			var grid_val = inventory.grid_slots[i][j]
+			if grid_val:
+				return false
+	#if nothing is found, the space is clear
+	return true
+	
 func remove_item_from_slot(item:ItemInstance, inventory_id:int) -> void:
 	var inventory = get_inventory(inventory_id)
 	if inventory:
