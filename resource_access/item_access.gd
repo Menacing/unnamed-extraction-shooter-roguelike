@@ -9,50 +9,33 @@ func get_item(item_id:int) -> ItemInstance:
 	else:
 		return null
 		
-func combine_stacks(source_item:ItemInstance, destination_item:ItemInstance) -> ItemCombineStackResult:
-	var result = ItemCombineStackResult.new()
-	if source_item.get_item_type_id() != destination_item.get_item_type_id():
-		return result
-	elif destination_item.stacks == destination_item.get_max_allowed_stacks():
-		return result
-	elif destination_item.get_max_allowed_stacks() > 1:
-		destination_item.stacks += source_item.stacks
-		source_item.stacks = 0
-		if destination_item.stacks > destination_item.get_max_allowed_stacks():
-			source_item.stacks = destination_item.stacks - destination_item.get_max_allowed_stacks()
-			destination_item.stacks = destination_item.get_max_allowed_stacks()
-			result.result = ItemCombineStackResult.ResultTypes.PARTIALLY_COMBINED
-			return result
+func combine_stacks(source:ItemInstance, destination:ItemInstance, amount:int) -> int:
+	var remainder:int = 0
+	if source:
+		remainder = source.stacks
+	
+	if _can_combine_stacks(source, destination, amount):
+		#if source stack has enough, do the amount
+		if amount <= source.stacks:
+			destination.stacks += amount
+			source.stacks -= amount
+		#else give what you have
 		else:
-			result.result = ItemCombineStackResult.ResultTypes.FULLY_COMBINED
-			return result
-	else:
-		return result
-
-func partially_combine_stacks(source_item:ItemInstance, destination_item:ItemInstance, number:int) -> ItemCombineStackResult:
-	var result = ItemCombineStackResult.new()
-	#can't combine different item types
-	if source_item.get_item_type_id() != destination_item.get_item_type_id():
-		return result
-	#can't combine if destination is full
-	elif destination_item.stacks == destination_item.get_max_allowed_stacks():
-		return result
-	#can't combine if source doesn't have enough 
-	elif source_item.stacks < number:
-		return result
-	elif destination_item.get_max_allowed_stacks() > 1:
-		destination_item.stacks += number
-		source_item.stacks -= number
-		if destination_item.stacks > destination_item.get_max_allowed_stacks():
-			source_item.stacks += destination_item.stacks - destination_item.get_max_allowed_stacks()
-			destination_item.stacks = destination_item.get_max_allowed_stacks()
-			result.result = ItemCombineStackResult.ResultTypes.PARTIALLY_COMBINED
-			return result
+			destination.stacks += source.stacks
+			source.stacks = 0
+		if destination.stacks > destination.get_max_allowed_stacks():
+			source.stacks += destination.stacks - destination.get_max_allowed_stacks()
+			destination.stacks = destination.get_max_allowed_stacks()
+		remainder = source.stacks
+	
+	return remainder
+	
+static func _can_combine_stacks(source:ItemInstance, destination:ItemInstance, amount:int) -> bool:
+		if source and destination and source.get_has_stacks() and destination.get_has_stacks() and \
+		source.get_item_type_id() == destination.get_item_type_id():
+			return true
 		else:
-			result.result = ItemCombineStackResult.ResultTypes.FULLY_COMBINED
-			return result
-	else:
-		return result
+			return false
 
 func destroy_item(item:ItemInstance):
 	if item:
