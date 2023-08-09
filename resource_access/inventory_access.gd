@@ -94,6 +94,7 @@ func place_stack_in_slot(item_inst:ItemInstance, inventory_id:int, slot_name:Str
 				else:
 					return false
 	return false
+
 #func pickup_item(item:ItemInstance, inventory_id:int) -> InventoryInsertResult:
 	#var result = InventoryInsertResult.new(item, inventory_id)
 #
@@ -293,7 +294,7 @@ func can_place_stack_in_grid(item_inst:ItemInstance, inventory_id:int, grid_loca
 
 	#if nothing is found, the space is clear
 	return true
-	
+
 func place_item_in_grid(item_inst:ItemInstance, inventory_id:int, grid_location:Vector2i) -> bool:
 	#if we can place the item in the grid, set the cells
 	if can_place_item_in_grid(item_inst, inventory_id, grid_location):
@@ -308,7 +309,44 @@ func place_item_in_grid(item_inst:ItemInstance, inventory_id:int, grid_location:
 		return true
 	else:
 		return false
-	
+
+func place_stack_in_grid(item_inst:ItemInstance, inventory_id:int, grid_location:Vector2i, amount:int) -> bool:
+	#if we can place the item in the grid, set the cells
+	if can_place_stack_in_grid(item_inst, inventory_id, grid_location, amount):
+		var inventory = get_inventory(inventory_id)
+		var x = grid_location.x
+		var y = grid_location.y
+		var w = item_inst.get_width()
+		var h = item_inst.get_height()
+		for i in range(x, x + w):
+			for j in range(y, y + h):
+				var grid_val = inventory.grid_slots[i][j]
+				if grid_val == null:
+					#if cell empty and we're moving everything in source stack, just move the instance
+					if amount >= item_inst.stacks:
+						remove_item_from_slot(item_inst,item_inst.current_inventory_id)
+						grid_val = item_inst
+						return true
+					#else we're moving only some to a new instance
+					else:
+						var new_inst = ItemAccess.clone_instance(item_inst)
+						grid_val = new_inst.get_instance_id()
+						new_inst.stacks = amount
+						item_inst.stacks -= amount
+						return false
+				#else we have to combine stacks
+				else:
+					var remainder = ItemAccess.combine_stacks(item_inst, grid_val, amount)
+
+					if remainder == 0:
+						return true
+					else:
+						return false
+		return true
+	else:
+		return false
+		
+
 func remove_item_from_slot(item:ItemInstance, inventory_id:int) -> void:
 	var inventory = get_inventory(inventory_id)
 	if inventory:
