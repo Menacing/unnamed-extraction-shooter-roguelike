@@ -267,6 +267,33 @@ func can_place_item_in_grid(item_inst:ItemInstance, inventory_id:int, grid_locat
 	#if nothing is found, the space is clear
 	return true
 	
+func can_place_stack_in_grid(item_inst:ItemInstance, inventory_id:int, grid_location:Vector2i, amount:int) -> bool:
+	var inventory = get_inventory(inventory_id)
+	if inventory == null:
+		return false
+		
+	var x = grid_location.x
+	var y = grid_location.y
+	var w = item_inst.get_width()
+	var h = item_inst.get_height()
+	#invalid coordinates
+	if x < 0 or y < 0:
+		return false
+	#item bigger than available space
+	if x + w > inventory.get_width() or y + h > inventory.get_height():
+		return false
+	
+	#check if there's an item alredy there
+	for i in range(x, x + w):
+		for j in range(y, y + h):
+			var grid_val = inventory.grid_slots[i][j]
+			if grid_val:
+				#if something is there, check if we can combine stacks
+				return ItemAccess.can_combine_stacks(item_inst,grid_val,amount)
+
+	#if nothing is found, the space is clear
+	return true
+	
 func place_item_in_grid(item_inst:ItemInstance, inventory_id:int, grid_location:Vector2i) -> bool:
 	#if we can place the item in the grid, set the cells
 	if can_place_item_in_grid(item_inst, inventory_id, grid_location):
