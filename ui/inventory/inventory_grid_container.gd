@@ -46,9 +46,12 @@ func _can_drop_data(at_position, data) -> bool:
 func _drop_data(at_position, data):
 	print(data)	
 	var item_instance_id:int = data["item_instance_id"]
+	var number_to_drop:int = 0
+	if data.has("number_to_drop"):
+		number_to_drop = data["number_to_drop"]
 	var target_inventory_id = parent_inventory_control_base._inventory.get_instance_id()
 
 	var grid_pos = _get_grid_coordinates_from_local(at_position)
 	var can_drop = InventoryManager.can_place_item_at_grid(item_instance_id,parent_inventory_control_base._inventory.get_instance_id(),grid_pos)
 	if can_drop:
-		InventoryManager.place_item_at_grid(item_instance_id, target_inventory_id, grid_pos)
+		InventoryManager.place_item_at_grid(item_instance_id, target_inventory_id, grid_pos, number_to_drop)

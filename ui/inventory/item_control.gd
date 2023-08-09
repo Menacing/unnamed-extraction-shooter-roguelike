@@ -137,7 +137,7 @@ func _input(event:InputEvent):
 			toggle_rotation()
 			accept_event()
 			
-		if event.is_action_pressed("place_single_of_stack"):
+		if event.is_action_pressed("place_single_of_stack") and stacks > 0:
 			# Detect control under mouse
 			var control: Control = Helpers.get_control_in_group_with_method_at_position(event.global_position, "droppable_inventory_controls", "_can_drop_data")
 			
@@ -145,6 +145,7 @@ func _input(event:InputEvent):
 			if control:
 				var local_pos = event.global_position - control.global_position
 				var drop_data = get_viewport().gui_get_drag_data()
+				drop_data["number_to_drop"] = 1
 				if control._can_drop_data(local_pos, drop_data):
 					control._drop_data(local_pos, drop_data)
 			accept_event()

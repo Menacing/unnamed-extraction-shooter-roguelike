@@ -67,7 +67,7 @@ static func _insert_item_at_first_available_grid_location(item:ItemInstance, inv
 	for y in range(inventory.get_height()):
 		for x in range(inventory.get_width()):
 			var grid_loc = Vector2i(x,y)
-			var try_result = _try_insert_at_grid(item, inventory, grid_loc)
+			var try_result = _try_insert_at_grid(item, inventory, grid_loc, 0)
 			#if we do anything besides finding space for it, return that result
 			if try_result.status != InventoryInsertResult.PickupItemResult.NOT_PICKED_UP:
 				return try_result
@@ -79,13 +79,13 @@ func can_place_item_at_grid(item_inst:ItemInstance, inventory_id:int, grid_locat
 	var inventory = get_inventory(inventory_id)
 	if inventory == null:
 		return false
-	var result:InventoryInsertResult = _can_place_item_at_grid(item_inst, inventory, grid_location)
+	var result:InventoryInsertResult = _can_place_item_at_grid(item_inst, inventory, grid_location, 0)
 	if result.status != InventoryInsertResult.PickupItemResult.NOT_PICKED_UP:
 		return true
 	else:
 		return false
 	
-static func _can_place_item_at_grid(item:ItemInstance, inventory:Inventory, grid_location:Vector2i) -> InventoryInsertResult:
+static func _can_place_item_at_grid(item:ItemInstance, inventory:Inventory, grid_location:Vector2i, number:int) -> InventoryInsertResult:
 	var result = InventoryInsertResult.new(item, inventory.get_instance_id())
 	
 	var x = grid_location.x
@@ -103,7 +103,7 @@ static func _can_place_item_at_grid(item:ItemInstance, inventory:Inventory, grid
 	for i in range(x, x + w):
 		for j in range(y, y + h):
 			var grid_val = inventory.grid_slots[i][j]
-			if _should_insert_stacks(item, grid_val):
+			if _should_insert_stacks(item, grid_val, number):
 				result.status = InventoryInsertResult.PickupItemResult.STACK_COMBINED
 				result.sourceStack = item
 				result.destinationStack = grid_val
@@ -114,6 +114,14 @@ static func _can_place_item_at_grid(item:ItemInstance, inventory:Inventory, grid
 				return result
 			elif grid_val:
 				return result
+			elif grid_val == null and number > 0:
+				result.status = InventoryInsertResult.PickupItemResult.STACK_CREATED
+				result.sourceStack = item
+				result.location = InventoryLocationResult.new()
+				result.location.location = InventoryLocationResult.LocationType.GRID
+				result.location.grid_x = x
+				result.location.grid_y = y
+				return result
 	#if nothing is found, the space is clear, set the inventory and report it's picked up
 	result.status = InventoryInsertResult.PickupItemResult.PICKED_UP
 	result.location = InventoryLocationResult.new()
@@ -122,24 +130,25 @@ static func _can_place_item_at_grid(item:ItemInstance, inventory:Inventory, grid
 	result.location.grid_y = y
 	return result
 	
-func place_item_at_grid(item_inst:ItemInstance, inventory:Inventory, grid_location:Vector2i) -> InventoryInsertResult:
+func place_item_at_grid(item_inst:ItemInstance, inventory:Inventory, grid_location:Vector2i, number:int) -> InventoryInsertResult:
 	var result = InventoryInsertResult.new(item_inst, inventory.get_instance_id())	
-	if _can_place_item_at_grid(item_inst, inventory, grid_location):
-		_remove_item_from_grid(item_inst, inventory)
-		result = _try_insert_at_grid(item_inst, inventory, grid_location)
+	if _can_place_item_at_grid(item_inst, inventory, grid_location,number):
+		result = _try_insert_at_grid(item_inst, inventory, grid_location, number)
+		if result.status == InventoryInsertResult.PickupItemResult.PICKED_UP:
+			_remove_item_from_grid(item_inst, inventory)
 	return result
 
-static func _try_insert_at_grid(item:ItemInstance, inventory:Inventory, grid_location:Vector2i) -> InventoryInsertResult:
-	var result = _can_place_item_at_grid(item, inventory, grid_location)
+static func _try_insert_at_grid(item:ItemInstance, inventory:Inventory, grid_location:Vector2i, number:int) -> InventoryInsertResult:
+	var result = _can_place_item_at_grid(item, inventory, grid_location, number)
 	if result.status == InventoryInsertResult.PickupItemResult.PICKED_UP:
 		var w = item.get_width()
 		var h = item.get_height()
 		_set_grid_slots(grid_location.x, grid_location.y, w, h, item, inventory)
 	return result
 
-static func _should_insert_stacks(source_stack:ItemInstance, destination_stack:ItemInstance) -> bool:
-	if destination_stack and destination_stack.get_item_type_id() == source_stack.get_item_type_id() and source_stack.get_max_allowed_stacks() > 1 :
-		if destination_stack.stacks < destination_stack.get_max_allowed_stacks():
+static func _should_insert_stacks(source_stack:ItemInstance, destination_stack:ItemInstance, number:int) -> bool:
+	if destination_stack and destination_stack.get_item_type_id() == source_stack.get_item_type_id() and destination_stack.get_max_allowed_stacks() > 1 :
+		if destination_stack.stacks + number < destination_stack.get_max_allowed_stacks():
 			return true
 		else:
 			return false

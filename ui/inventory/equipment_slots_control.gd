@@ -13,10 +13,12 @@ func _drop_data(at_position, data):
 	print(data)	
 	var item_instance_id:int = data["item_instance_id"]
 	var target_inventory_id = parent_inventory_control_base._inventory.get_instance_id()
-
+	var number_to_drop:int = 0
+	if data.has("number_to_drop"):
+		number_to_drop = data["number_to_drop"]
 	var can_drop = InventoryManager.can_place_item_in_slot(item_instance_id, target_inventory_id, self.name)
 	if can_drop:
-		InventoryManager.place_item_in_slot(item_instance_id, target_inventory_id, self.name)
+		InventoryManager.place_item_in_slot(item_instance_id, target_inventory_id, self.name, number_to_drop)
 
 
 func add_item_control(item_control:ItemControl):

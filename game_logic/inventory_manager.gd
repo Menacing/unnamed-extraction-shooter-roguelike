@@ -15,30 +15,47 @@ func _on_pickup_item(item_inst:ItemInstance, target_inventory_id:int):
 	var pickup_result:InventoryInsertResult = _inventory_access.pickup_item(item_inst, target_inventory_id)
 	_handle_insert_result(pickup_result, item_inst, null)
 		
-func _handle_insert_result(pickup_result:InventoryInsertResult, item_inst:ItemInstance, source_inventory:Inventory):
+func _handle_insert_result(pickup_result:InventoryInsertResult, item_inst:ItemInstance, source_inventory:Inventory, number:int = 0):
 	if pickup_result.status == InventoryInsertResult.PickupItemResult.PICKED_UP:
 		var source_inventory_id = source_inventory.get_instance_id() if source_inventory else 0
 		if source_inventory_id != pickup_result.inventory_id:
 			remove_item(item_inst.get_instance_id(), source_inventory_id)
 		item_inst.current_inventory_id = pickup_result.inventory_id
 		EventBus.item_picked_up.emit(pickup_result)
-	elif pickup_result.status == InventoryInsertResult.PickupItemResult.STACK_COMBINED:
-		var combine_result:ItemCombineStackResult = _item_access.combine_stacks(pickup_result.sourceStack, pickup_result.destinationStack)
+	elif pickup_result.status == InventoryInsertResult.PickupItemResult.STACK_OPERATION:
+		var source_stack_instance:ItemInstance = pickup_result.sourceStack
+		var destination_stack_instance:ItemInstance = pickup_result.destinationStack
+		
+		#if destination doesn't exist, create it and add it
+		if !destination_stack_instance:
+			destination_stack_instance = source_stack_instance.duplicate()
+			destination_stack_instance.stacks = 0
+			pass
+		
+		var combine_result:ItemCombineStackResult
+		if number > 0:
+			combine_result = _item_access.partially_combine_stacks(source_stack_instance, destination_stack_instance, number)
+		else:
+			combine_result = _item_access.combine_stacks(source_stack_instance, destination_stack_instance)
+			
 		if combine_result.result == ItemCombineStackResult.ResultTypes.FULLY_COMBINED:
 			destroy_item(item_inst.get_instance_id())
-			EventBus.item_stack_count_changed.emit(pickup_result.destinationStack)
+			EventBus.item_stack_count_changed.emit(destination_stack_instance)
 			pass
 		elif combine_result.result == ItemCombineStackResult.ResultTypes.PARTIALLY_COMBINED:
+			EventBus.item_stack_count_changed.emit(destination_stack_instance)			
+			EventBus.item_stack_count_changed.emit(source_stack_instance)			
 			pass
 		elif combine_result.result == ItemCombineStackResult.ResultTypes.NOT_COMBINED:
 			pass
 		pass
-	#TODO Handle stack stuff
+	
+
 
 func can_place_item_in_slot(item_instance_id:int, target_inventory_id:int, slot_name:String) -> bool:
 	return _inventory_access.can_place_item_in_slot(get_item(item_instance_id), target_inventory_id, slot_name)
 	
-func place_item_in_slot(item_instance_id:int, target_inventory_id:int, slot_name:String):
+func place_item_in_slot(item_instance_id:int, target_inventory_id:int, slot_name:String, number: int):
 	var item_inst = get_item(item_instance_id)
 	var target_inventory = _inventory_access.get_inventory(target_inventory_id)
 	var source_inventory = _inventory_access.get_inventory(item_inst.current_inventory_id)
@@ -49,12 +66,12 @@ func can_place_item_at_grid(item_instance_id:int, target_inventory_id:int, grid_
 	var item_inst = get_item(item_instance_id)	
 	return _inventory_access.can_place_item_at_grid(item_inst, target_inventory_id, grid_location)
 	
-func place_item_at_grid(item_instance_id:int, target_inventory_id:int, grid_location:Vector2i):
+func place_item_at_grid(item_instance_id:int, target_inventory_id:int, grid_location:Vector2i, number: int):
 	var item_inst = get_item(item_instance_id)	
 	var target_inventory = _inventory_access.get_inventory(target_inventory_id)
 	var source_inventory = _inventory_access.get_inventory(item_inst.current_inventory_id)
-	var result:InventoryInsertResult = _inventory_access.place_item_at_grid(item_inst, target_inventory, grid_location)
-	_handle_insert_result(result, item_inst, source_inventory)
+	var result:InventoryInsertResult = _inventory_access.place_item_at_grid(item_inst, target_inventory, grid_location, number)
+	_handle_insert_result(result, item_inst, source_inventory, number)
 
 func add_inventory(inventory:Inventory):
 	_inventory_access.add_inventory(inventory)

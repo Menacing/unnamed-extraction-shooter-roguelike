@@ -4,7 +4,7 @@ class_name InventoryInsertResult
 enum PickupItemResult {
 	NOT_PICKED_UP,
 	PICKED_UP,
-	STACK_COMBINED
+	STACK_OPERATION
 }
 
 func _init(_item:ItemInstance, _inventory_id:int):
