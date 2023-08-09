@@ -367,7 +367,7 @@ func test_can_place_item_in_grid_occupied() -> void:
 	#assert
 	assert_bool(result).is_false()
 	inventory_access._clear_inventory(test_inventory_id)
-	
+
 
 func test_can_place_item_in_grid_empty() -> void:
 	#arrange
@@ -451,4 +451,34 @@ func test_can_place_item_in_grid_item_too_big() -> void:
 
 	#assert
 	assert_bool(result).is_false()
+	inventory_access._clear_inventory(test_inventory_id)
+
+func test_place_item_in_grid_empty() -> void:
+	#arrange
+	var inventory_access = InventoryAccess.new()
+	var test_inventory:Inventory = load("res://test/resource_access/test_inventory.tres")
+	test_inventory.setup()
+	inventory_access.add_inventory(test_inventory)
+	var test_inventory_id:int = test_inventory.get_instance_id()
+	
+	var item:ItemInstance = ItemInstance.new()
+	var item_info:ItemInformation = ItemInformation.new()
+	item_info.row_span = 1
+	item_info.column_span = 2
+	item_info.item_type = ItemInformation.ItemType.GUN
+	item_info.display_name = "AK47"
+	item_info.item_type_id = 1
+	item_info.max_stacks = 1
+	item_info.icon = load("res://Scenes/Guns/AK47-Projectile/ak48_img.png")
+	item_info.icon_r = load("res://Scenes/Guns/AK47-Projectile/ak48_img_r.png")
+
+	item._item_info = item_info
+
+	#act
+	var result = inventory_access.place_item_in_grid(item, test_inventory.get_instance_id(), Vector2i(0,0))
+
+	#assert
+	assert_bool(result).is_true()
+	assert_object(test_inventory.grid_slots[0][0]).is_equal(item)
+	assert_object(test_inventory.grid_slots[1][0]).is_equal(item)
 	inventory_access._clear_inventory(test_inventory_id)

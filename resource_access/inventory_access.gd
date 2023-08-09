@@ -267,6 +267,21 @@ func can_place_item_in_grid(item_inst:ItemInstance, inventory_id:int, grid_locat
 	#if nothing is found, the space is clear
 	return true
 	
+func place_item_in_grid(item_inst:ItemInstance, inventory_id:int, grid_location:Vector2i) -> bool:
+	#if we can place the item in the grid, set the cells
+	if can_place_item_in_grid(item_inst, inventory_id, grid_location):
+		var inventory = get_inventory(inventory_id)
+		var x = grid_location.x
+		var y = grid_location.y
+		var w = item_inst.get_width()
+		var h = item_inst.get_height()
+		for i in range(x, x + w):
+			for j in range(y, y + h):
+				inventory.grid_slots[i][j] = item_inst
+		return true
+	else:
+		return false
+	
 func remove_item_from_slot(item:ItemInstance, inventory_id:int) -> void:
 	var inventory = get_inventory(inventory_id)
 	if inventory:
