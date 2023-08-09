@@ -55,18 +55,45 @@ func can_place_stack_in_slot(item_inst:ItemInstance, inventory_id:int, slot_name
 			return ItemAccess.can_combine_stacks(item_inst,destination_item,amount)
 	return false
 
-func place_item_in_slot(item_inst:ItemInstance, inventory_id:int, slot_name:String) -> InventoryInsertResult:
+func place_item_in_slot(item_inst:ItemInstance, inventory_id:int, slot_name:String) -> bool:
 	var inventory = get_inventory(inventory_id)	
-	var result = InventoryInsertResult.new(item_inst, inventory.get_instance_id())	
 	if can_place_item_in_slot(item_inst,inventory_id,slot_name):
 		var slot:EquipmentSlotType = Inventory.get_slot_by_name(inventory,slot_name)
 		if slot:
-			remove_item_from_slot(item_inst,inventory_id)
+			remove_item_from_slot(item_inst,item_inst.current_inventory_id)
 			slot.item_instance_id = item_inst.get_instance_id()
-			result.picked_up = true
-			return result
-	return result
+			return true
+	return false
 	
+func place_stack_in_slot(item_inst:ItemInstance, inventory_id:int, slot_name:String, amount:int) -> bool:
+	var inventory = get_inventory(inventory_id)
+	if can_place_stack_in_slot(item_inst,inventory_id,slot_name, amount):
+		var slot:EquipmentSlotType = Inventory.get_slot_by_name(inventory,slot_name)
+		if slot:
+			#check if slot is empty
+			if slot.item_instance_id == 0:
+				#if slot empty and we're moving everything in source stack, just move the instance
+				if amount >= item_inst.stacks:
+					remove_item_from_slot(item_inst,item_inst.current_inventory_id)
+					slot.item_instance_id = item_inst.get_instance_id()
+					return true
+				#else we're moving only some to a new instance
+				else:
+					var new_inst = ItemAccess.clone_instance(item_inst)
+					slot.item_instance_id = new_inst.get_instance_id()
+					new_inst.stacks = amount
+					item_inst.stacks -= amount
+					return false
+			#else we have to combine stacks
+			else:
+				var destination_item:ItemInstance = ItemAccess.get_item(slot.item_instance_id)
+				var remainder = ItemAccess.combine_stacks(item_inst, destination_item, amount)
+				
+				if remainder == 0:
+					return true
+				else:
+					return false
+	return false
 #func pickup_item(item:ItemInstance, inventory_id:int) -> InventoryInsertResult:
 	#var result = InventoryInsertResult.new(item, inventory_id)
 #
@@ -214,7 +241,7 @@ func place_item_in_slot(item_inst:ItemInstance, inventory_id:int, slot_name:Stri
 					#inventory.grid_slots[x][y] = null
 #
 	#item.current_inventory_id = 0
-#
+
 func remove_item_from_slot(item:ItemInstance, inventory_id:int) -> void:
 	var inventory = get_inventory(inventory_id)
 	if inventory:
