@@ -2,19 +2,19 @@ extends Object
 class_name ItemAccess
 
 
-func get_item(item_id:int) -> ItemInstance:
+static func get_item(item_id:int) -> ItemInstance:
 	var item = instance_from_id(item_id)
 	if item is ItemInstance:
 		return item
 	else:
 		return null
 		
-func combine_stacks(source:ItemInstance, destination:ItemInstance, amount:int) -> int:
+static func combine_stacks(source:ItemInstance, destination:ItemInstance, amount:int) -> int:
 	var remainder:int = 0
 	if source:
 		remainder = source.stacks
 	
-	if _can_combine_stacks(source, destination, amount):
+	if can_combine_stacks(source, destination, amount):
 		#if source stack has enough, do the amount
 		if amount <= source.stacks:
 			destination.stacks += amount
@@ -30,14 +30,14 @@ func combine_stacks(source:ItemInstance, destination:ItemInstance, amount:int) -
 	
 	return remainder
 	
-static func _can_combine_stacks(source:ItemInstance, destination:ItemInstance, amount:int) -> bool:
+static func can_combine_stacks(source:ItemInstance, destination:ItemInstance, amount:int) -> bool:
 		if source and destination and source.get_has_stacks() and destination.get_has_stacks() and \
 		source.get_item_type_id() == destination.get_item_type_id():
 			return true
 		else:
 			return false
 
-func destroy_item(item:ItemInstance):
+static func destroy_item(item:ItemInstance):
 	if item:
 		if item.id_3d:
 			var item_3d:Node = instance_from_id(item.id_3d)
@@ -47,7 +47,7 @@ func destroy_item(item:ItemInstance):
 			item_2d.queue_free()
 		item.free()
 
-func clone_instance(original: ItemInstance) -> ItemInstance:
+static func clone_instance(original: ItemInstance) -> ItemInstance:
 	var new_instance = ItemInstance.new()
 
 	# Copy properties
