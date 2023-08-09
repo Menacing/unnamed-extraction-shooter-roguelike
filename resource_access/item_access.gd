@@ -46,3 +46,23 @@ func destroy_item(item:ItemInstance):
 			var item_2d:Node = instance_from_id(item.id_2d)
 			item_2d.queue_free()
 		item.free()
+
+func clone_instance(original: ItemInstance) -> ItemInstance:
+	var new_instance = ItemInstance.new()
+
+	# Copy properties
+	if original.id_3d != 0:
+		new_instance.id_3d = Helpers.duplicate_node_by_id(original.id_3d).get_instance_id()
+	if original.id_2d != 0:
+		new_instance.id_2d = Helpers.duplicate_node_by_id(original.id_2d).get_instance_id()
+
+	# If ItemInformation class also needs to be deep-copied, you'd have to make 
+	# a similar function for that and replace the line below.
+	new_instance._item_info = original._item_info  
+
+	new_instance.stacks = original.stacks
+	new_instance.durability = original.durability
+	new_instance.current_inventory_id = original.current_inventory_id
+	new_instance.is_rotated = original.is_rotated
+
+	return new_instance

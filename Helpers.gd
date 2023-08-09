@@ -76,3 +76,19 @@ func get_control_in_group_with_method_at_position(cursor_pos:Vector2, group_name
 			if c.has_method(method_name):
 				return c
 	return null
+
+func duplicate_node_by_id(node_id: int) -> Node:
+	# Retrieve the node using the ID
+	var original_node:Node 
+	if node_id != 0:
+		original_node = instance_from_id(node_id)
+	
+	# If the node doesn't exist, return null
+	if original_node == null:
+		return null
+	
+	# Duplicate the node
+	var duplicated_node = original_node.duplicate()
+	
+	# Return the duplicated node
+	return duplicated_node
