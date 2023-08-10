@@ -7,69 +7,6 @@ extends GdUnitTestSuite
 # TestSuite generated from
 const __source = 'res://resource_access/inventory_access.gd'
 
-
-
-#
-#func test__can_place_item_at_grid_combined_stacks() -> void:
-	##arrange
-	#var inventory_access = InventoryAccess.new()
-	#var test_inventory:Inventory = load("res://test/resource_access/test_inventory.tres")
-	#test_inventory.setup()
-	#inventory_access.add_inventory(test_inventory)
-	#var item1:ItemInstance = ItemInstance.new()
-	#var item_info:ItemInformation = ItemInformation.new()
-	#item_info.row_span = 1
-	#item_info.column_span = 2
-	#item_info.item_type = ItemInformation.ItemType.GUN
-	#item_info.display_name = "AK47"
-	#item_info.item_type_id = 1
-	#item_info.max_stacks = 5
-	#item_info.icon = load("res://Scenes/Guns/AK47-Projectile/ak48_img.png")
-	#item_info.icon_r = load("res://Scenes/Guns/AK47-Projectile/ak48_img_r.png")
-#
-	#item1._item_info = item_info
-	#item1.stacks = 1
-#
-	#test_inventory.grid_slots[0][0] = item1
-#
-	#var item2:ItemInstance = ItemInstance.new()
-	#item2._item_info = item_info
-	#item2.stacks = 3
-#
-	##act
-	#var result = inventory_access.place_item_at_grid(item2, test_inventory, Vector2i(0,0),1)
-	#var test_result = result.status == InventoryInsertResult.PickupItemResult.STACK_COMBINED
-#
-	##assert
-	#assert_bool(test_result).is_true()
-#
-#func test__can_place_item_at_empty_grid_created_stacks() -> void:
-	##arrange
-	#var inventory_access = InventoryAccess.new()
-	#var test_inventory:Inventory = load("res://test/resource_access/test_inventory.tres")
-	#test_inventory.setup()
-	#inventory_access.add_inventory(test_inventory)
-	#var item1:ItemInstance = ItemInstance.new()
-	#var item_info:ItemInformation = ItemInformation.new()
-	#item_info.row_span = 1
-	#item_info.column_span = 2
-	#item_info.item_type = ItemInformation.ItemType.GUN
-	#item_info.display_name = "AK47"
-	#item_info.item_type_id = 1
-	#item_info.max_stacks = 5
-	#item_info.icon = load("res://Scenes/Guns/AK47-Projectile/ak48_img.png")
-	#item_info.icon_r = load("res://Scenes/Guns/AK47-Projectile/ak48_img_r.png")
-#
-	#item1._item_info = item_info
-	#item1.stacks = 3
-#
-	##act
-	#var result = inventory_access.place_item_at_grid(item1, test_inventory, Vector2i(0,0),1)
-	#var test_result = result.status == InventoryInsertResult.PickupItemResult.STACK_CREATED
-#
-	##assert
-	#assert_bool(test_result).is_true()
-
 ##---------------------------------------------------------------------
 #REMEMBER THE INVENTORY STATE CARRIES ACROSS TESTS UNLESS YOU EXPLICITLY CLEAR IT
 ##---------------------------------------------------------------------
@@ -685,4 +622,82 @@ func test_place_stack_in_occupied_grid_half_stack() -> void:
 	assert_int(item.get_instance_id()).is_equal(test_inventory.grid_slots[0][0].get_instance_id())
 	assert_int(item.stacks).is_equal(2)
 	assert_int(item2.stacks).is_equal(1)
+	inventory_access._clear_inventory(test_inventory_id)
+
+
+func test_remove_item_from_grid() -> void:
+	#arrange
+	var inventory_access = InventoryAccess.new()
+	var test_inventory:Inventory = load("res://test/resource_access/test_inventory.tres")
+	test_inventory.setup()
+	inventory_access.add_inventory(test_inventory)
+	var test_inventory_id:int = test_inventory.get_instance_id()
+	
+	var item:ItemInstance = ItemInstance.new()
+	var item_info:ItemInformation = ItemInformation.new()
+	item_info.row_span = 1
+	item_info.column_span = 2
+	item_info.item_type = ItemInformation.ItemType.GUN
+	item_info.display_name = "AK47"
+	item_info.item_type_id = 1
+	item_info.max_stacks = 1
+	item_info.icon = load("res://Scenes/Guns/AK47-Projectile/ak48_img.png")
+	item_info.icon_r = load("res://Scenes/Guns/AK47-Projectile/ak48_img_r.png")
+
+	item._item_info = item_info
+	
+	test_inventory.grid_slots[0][0] = item
+	test_inventory.grid_slots[1][0] = item
+	assert_object(test_inventory.grid_slots[0][0]).is_equal(item)
+	assert_object(test_inventory.grid_slots[1][0]).is_equal(item)
+
+	#act
+	inventory_access.remove_item_from_grid(item, test_inventory.get_instance_id())
+
+	#assert
+	assert_object(test_inventory.grid_slots[0][0]).is_null()
+	assert_object(test_inventory.grid_slots[1][0]).is_null()
+	inventory_access._clear_inventory(test_inventory_id)
+
+
+func test_remove_item() -> void:
+	#arrange
+	var inventory_access = InventoryAccess.new()
+	var test_inventory:Inventory = load("res://test/resource_access/test_inventory.tres")
+	test_inventory.setup()
+	inventory_access.add_inventory(test_inventory)
+	var test_inventory_id:int = test_inventory.get_instance_id()
+	
+	var item:ItemInstance = ItemInstance.new()
+	var item_info:ItemInformation = ItemInformation.new()
+	item_info.row_span = 1
+	item_info.column_span = 2
+	item_info.item_type = ItemInformation.ItemType.GUN
+	item_info.display_name = "AK47"
+	item_info.item_type_id = 1
+	item_info.max_stacks = 1
+	item_info.icon = load("res://Scenes/Guns/AK47-Projectile/ak48_img.png")
+	item_info.icon_r = load("res://Scenes/Guns/AK47-Projectile/ak48_img_r.png")
+
+	item._item_info = item_info
+	
+	var item2:ItemInstance = ItemInstance.new()
+	item2._item_info = item_info
+	
+	test_inventory.grid_slots[0][0] = item
+	test_inventory.grid_slots[1][0] = item
+	test_inventory.equipment_slots[0].item_instance_id = item2.get_instance_id()
+	
+	assert_object(test_inventory.grid_slots[0][0]).is_equal(item)
+	assert_object(test_inventory.grid_slots[1][0]).is_equal(item)
+	assert_int(test_inventory.equipment_slots[0].item_instance_id).is_equal(item2.get_instance_id())
+
+	#act
+	inventory_access.remove_item(item, test_inventory.get_instance_id())
+	inventory_access.remove_item(item2, test_inventory.get_instance_id())
+
+	#assert
+	assert_object(test_inventory.grid_slots[0][0]).is_null()
+	assert_object(test_inventory.grid_slots[1][0]).is_null()
+	assert_int(test_inventory.equipment_slots[0].item_instance_id).is_equal(0)	
 	inventory_access._clear_inventory(test_inventory_id)

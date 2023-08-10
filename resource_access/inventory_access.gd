@@ -60,7 +60,7 @@ func place_item_in_slot(item_inst:ItemInstance, inventory_id:int, slot_name:Stri
 	if can_place_item_in_slot(item_inst,inventory_id,slot_name):
 		var slot:EquipmentSlotType = Inventory.get_slot_by_name(inventory,slot_name)
 		if slot:
-			remove_item_from_slot(item_inst,item_inst.current_inventory_id)
+			remove_item(item_inst,item_inst.current_inventory_id)
 			slot.item_instance_id = item_inst.get_instance_id()
 			return true
 	return false
@@ -74,7 +74,7 @@ func place_stack_in_slot(item_inst:ItemInstance, inventory_id:int, slot_name:Str
 			if slot.item_instance_id == 0:
 				#if slot empty and we're moving everything in source stack, just move the instance
 				if amount >= item_inst.stacks:
-					remove_item_from_slot(item_inst,item_inst.current_inventory_id)
+					remove_item(item_inst,item_inst.current_inventory_id)
 					slot.item_instance_id = item_inst.get_instance_id()
 					return true
 				#else we're moving only some to a new instance
@@ -324,7 +324,7 @@ func place_stack_in_grid(item_inst:ItemInstance, inventory_id:int, grid_location
 				if grid_val == null:
 					#if cell empty and we're moving everything in source stack, just move the instance
 					if amount >= item_inst.stacks:
-						remove_item_from_slot(item_inst,item_inst.current_inventory_id)
+						remove_item(item_inst,item_inst.current_inventory_id)
 						inventory.grid_slots[i][j] = item_inst
 						return true
 					#else we're moving only some to a new instance
@@ -345,14 +345,28 @@ func place_stack_in_grid(item_inst:ItemInstance, inventory_id:int, grid_location
 		return true
 	else:
 		return false
-		
+	
+func remove_item(item:ItemInstance,  inventory_id:int) -> void:
+	remove_item_from_slot(item,inventory_id)
+	remove_item_from_grid(item,inventory_id)
+
+func remove_item_from_grid(item:ItemInstance,  inventory_id:int) -> void:
+	var inventory = get_inventory(inventory_id)
+	if inventory:
+		for x in range (0, inventory.get_width()):
+			for y in range(0,inventory.get_height()):
+				var cell = inventory.grid_slots[x][y]
+				if cell is ItemInstance and cell.get_instance_id() == item.get_instance_id():
+					inventory.grid_slots[x][y] = null
+	
+	item.current_inventory_id = 0
 
 func remove_item_from_slot(item:ItemInstance, inventory_id:int) -> void:
 	var inventory = get_inventory(inventory_id)
 	if inventory:
 		for slot in inventory.equipment_slots:
-			if slot.item_instance_id != 0:
-				if slot.item.get_instance_id() == item.get_instance_id():
-					slot.item = null
+			if slot.item_instance_id == item.get_instance_id():
+				slot.item_instance_id = 0
 
 	item.current_inventory_id = 0
+
