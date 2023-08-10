@@ -48,7 +48,7 @@ func _on_pickup_item(item_inst:ItemInstance, target_inventory_id:int):
 		var amount = item_inst.stacks
 		if inventory.equipment_slots:
 			for slot in inventory.equipment_slots:
-				if item_inst.stacks > 0 and  _inventory_access.can_place_stack_in_slot(item_inst, target_inventory_id, slot.name, item_inst.stacks):
+				if item_inst.stacks > 0 and  _inventory_access.can_place_stack_in_slot(item_inst, target_inventory_id, slot.name):
 					pickup_result.picked_up = _inventory_access.place_stack_in_slot(item_inst, target_inventory_id, slot.name, item_inst.stacks)
 					pickup_result.location = InventoryLocationResult.new()
 					pickup_result.location.location = InventoryLocationResult.LocationType.SLOT
@@ -58,7 +58,7 @@ func _on_pickup_item(item_inst:ItemInstance, target_inventory_id:int):
 		for y in range(inventory.get_height()):
 			for x in range(inventory.get_width()):
 				var grid_loc = Vector2i(x,y)
-				if item_inst.stacks > 0 and _inventory_access.can_place_stack_in_grid(item_inst, target_inventory_id, grid_loc, item_inst.stacks):
+				if item_inst.stacks > 0 and _inventory_access.can_place_stack_in_grid(item_inst, target_inventory_id, grid_loc):
 					pickup_result.picked_up = _inventory_access.place_stack_in_grid(item_inst, target_inventory_id, grid_loc, item_inst.stacks)
 					pickup_result.location = InventoryLocationResult.new()
 					pickup_result.location.location = InventoryLocationResult.LocationType.GRID
@@ -68,12 +68,11 @@ func _on_pickup_item(item_inst:ItemInstance, target_inventory_id:int):
 		##TODO try rotating and repeating
 	pass
 
-
 func can_place_item_in_slot(item_instance_id:int, target_inventory_id:int, slot_name:String) -> bool:
 	return _inventory_access.can_place_item_in_slot(get_item(item_instance_id), target_inventory_id, slot_name)
 
 func can_place_stack_in_slot(item_instance_id:int, target_inventory_id:int, slot_name:String, amount:int) -> bool:
-	return _inventory_access.can_place_stack_in_slot(get_item(item_instance_id), target_inventory_id, slot_name, amount)
+	return _inventory_access.can_place_stack_in_slot(get_item(item_instance_id), target_inventory_id, slot_name)
 	
 func place_item_in_slot(item_instance_id:int, target_inventory_id:int, slot_name:String):
 	var item_inst = get_item(item_instance_id)
@@ -95,11 +94,11 @@ func place_stack_in_slot(item_instance_id:int, target_inventory_id:int, slot_nam
 	
 func can_place_item_at_grid(item_instance_id:int, target_inventory_id:int, grid_location:Vector2i) -> bool:
 	var item_inst = get_item(item_instance_id)	
-	return _inventory_access.can_place_item_at_grid(item_inst, target_inventory_id, grid_location)
+	return _inventory_access.can_place_item_in_grid(item_inst, target_inventory_id, grid_location)
 
 func can_place_stack_at_grid(item_instance_id:int, target_inventory_id:int, grid_location:Vector2i, amount:int) -> bool:
 	var item_inst = get_item(item_instance_id)	
-	return _inventory_access.can_place_stack_in_grid(item_inst, target_inventory_id, grid_location, amount)
+	return _inventory_access.can_place_stack_in_grid(item_inst, target_inventory_id, grid_location)
 	
 func place_item_at_grid(item_instance_id:int, target_inventory_id:int, grid_location:Vector2i):
 	var item_inst = get_item(item_instance_id)

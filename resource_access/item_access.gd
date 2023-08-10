@@ -14,7 +14,7 @@ static func combine_stacks(source:ItemInstance, destination:ItemInstance, amount
 	if source:
 		remainder = source.stacks
 	
-	if can_combine_stacks(source, destination, amount):
+	if can_combine_stacks(source, destination):
 		#if source stack has enough, do the amount
 		if amount <= source.stacks:
 			destination.stacks += amount
@@ -30,9 +30,9 @@ static func combine_stacks(source:ItemInstance, destination:ItemInstance, amount
 	
 	return remainder
 	
-static func can_combine_stacks(source:ItemInstance, destination:ItemInstance, amount:int) -> bool:
+static func can_combine_stacks(source:ItemInstance, destination:ItemInstance) -> bool:
 		if source and destination and source.get_has_stacks() and destination.get_has_stacks() and \
-		source.get_item_type_id() == destination.get_item_type_id():
+		source.get_item_type_id() == destination.get_item_type_id() and destination.stacks < destination.get_max_allowed_stacks():
 			return true
 		else:
 			return false

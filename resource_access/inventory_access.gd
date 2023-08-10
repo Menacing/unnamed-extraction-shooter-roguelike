@@ -38,7 +38,7 @@ func can_place_item_in_slot(item_inst:ItemInstance, inventory_id:int, slot_name:
 				return true	
 	return false
 	
-func can_place_stack_in_slot(item_inst:ItemInstance, inventory_id:int, slot_name:String, amount:int) -> bool:
+func can_place_stack_in_slot(item_inst:ItemInstance, inventory_id:int, slot_name:String) -> bool:
 	var inventory = get_inventory(inventory_id)
 	if inventory == null or item_inst == null or !item_inst.get_has_stacks():
 		return false
@@ -52,7 +52,7 @@ func can_place_stack_in_slot(item_inst:ItemInstance, inventory_id:int, slot_name
 		#check if we can combine stacks
 		else:
 			var destination_item:ItemInstance = ItemAccess.get_item(slot.item_instance_id)
-			return ItemAccess.can_combine_stacks(item_inst,destination_item,amount)
+			return ItemAccess.can_combine_stacks(item_inst,destination_item)
 	return false
 
 func place_item_in_slot(item_inst:ItemInstance, inventory_id:int, slot_name:String) -> bool:
@@ -67,7 +67,7 @@ func place_item_in_slot(item_inst:ItemInstance, inventory_id:int, slot_name:Stri
 	
 func place_stack_in_slot(item_inst:ItemInstance, inventory_id:int, slot_name:String, amount:int) -> bool:
 	var inventory = get_inventory(inventory_id)
-	if can_place_stack_in_slot(item_inst,inventory_id,slot_name, amount):
+	if can_place_stack_in_slot(item_inst,inventory_id,slot_name):
 		var slot:EquipmentSlotType = Inventory.get_slot_by_name(inventory,slot_name)
 		if slot:
 			#check if slot is empty
@@ -120,7 +120,7 @@ func can_place_item_in_grid(item_inst:ItemInstance, inventory_id:int, grid_locat
 	#if nothing is found, the space is clear
 	return true
 	
-func can_place_stack_in_grid(item_inst:ItemInstance, inventory_id:int, grid_location:Vector2i, amount:int) -> bool:
+func can_place_stack_in_grid(item_inst:ItemInstance, inventory_id:int, grid_location:Vector2i) -> bool:
 	var inventory = get_inventory(inventory_id)
 	if inventory == null:
 		return false
@@ -142,7 +142,7 @@ func can_place_stack_in_grid(item_inst:ItemInstance, inventory_id:int, grid_loca
 			var grid_val = inventory.grid_slots[i][j]
 			if grid_val:
 				#if something is there, check if we can combine stacks
-				return ItemAccess.can_combine_stacks(item_inst,grid_val,amount)
+				return ItemAccess.can_combine_stacks(item_inst,grid_val)
 
 	#if nothing is found, the space is clear
 	return true
@@ -164,7 +164,7 @@ func place_item_in_grid(item_inst:ItemInstance, inventory_id:int, grid_location:
 
 func place_stack_in_grid(item_inst:ItemInstance, inventory_id:int, grid_location:Vector2i, amount:int) -> bool:
 	#if we can place the item in the grid, set the cells
-	if can_place_stack_in_grid(item_inst, inventory_id, grid_location, amount):
+	if can_place_stack_in_grid(item_inst, inventory_id, grid_location):
 		var inventory = get_inventory(inventory_id)
 		var x = grid_location.x
 		var y = grid_location.y

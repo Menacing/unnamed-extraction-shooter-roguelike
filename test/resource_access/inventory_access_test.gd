@@ -127,7 +127,7 @@ func test_can_place_stack_in_slot() -> void:
 	var item2_has_stacks = item2.get_has_stacks()
 	var item2_id = item2.get_instance_id()
 	#act
-	var result = inventory_access.can_place_stack_in_slot(item2, test_inventory_id, "test_slot_1", 1)
+	var result = inventory_access.can_place_stack_in_slot(item2, test_inventory_id, "test_slot_1")
 
 	#assert
 	assert_bool(result).is_true()
@@ -443,7 +443,7 @@ func test_can_place_stack_in_grid_empty() -> void:
 	item._item_info = item_info
 	item.stacks = 1
 	#act
-	var result = inventory_access.can_place_stack_in_grid(item, test_inventory.get_instance_id(), Vector2i(0,0),1)
+	var result = inventory_access.can_place_stack_in_grid(item, test_inventory.get_instance_id(), Vector2i(0,0))
 
 	#assert
 	assert_bool(result).is_true()
@@ -476,7 +476,7 @@ func test_can_place_stack_in_grid_occupied() -> void:
 	var item2 = ItemAccess.clone_instance(item)
 	
 	#act
-	var result = inventory_access.can_place_stack_in_grid(item2, test_inventory.get_instance_id(), Vector2i(0,0),1)
+	var result = inventory_access.can_place_stack_in_grid(item2, test_inventory.get_instance_id(), Vector2i(0,0))
 
 	#assert
 	assert_bool(result).is_true()

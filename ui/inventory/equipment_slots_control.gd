@@ -16,10 +16,15 @@ func _drop_data(at_position, data):
 	var number_to_drop:int = 0
 	if data.has("number_to_drop"):
 		number_to_drop = data["number_to_drop"]
-	var can_drop = InventoryManager.can_place_item_in_slot(item_instance_id, target_inventory_id, self.name)
-	if can_drop:
-		InventoryManager.place_item_in_slot(item_instance_id, target_inventory_id, self.name, number_to_drop)
-
+		
+	#its a stack
+	if number_to_drop > 0:
+		if InventoryManager.can_place_stack_in_slot(item_instance_id, target_inventory_id, self.name, number_to_drop):
+			InventoryManager.place_stack_in_slot(item_instance_id, target_inventory_id, self.name, number_to_drop)
+	#its not a stack
+	else:
+		if InventoryManager.can_place_item_in_slot(item_instance_id, target_inventory_id, self.name):
+			InventoryManager.place_item_in_slot(item_instance_id, target_inventory_id, self.name)
 
 func add_item_control(item_control:ItemControl):
 	item_control.reparent(self)
