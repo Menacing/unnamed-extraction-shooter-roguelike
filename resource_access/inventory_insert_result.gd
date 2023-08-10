@@ -8,3 +8,4 @@ func _init(_item:ItemInstance, _inventory_id:int):
 var item:ItemInstance
 var inventory_id:int
 var picked_up:bool
+var location:InventoryLocationResult
