@@ -15,7 +15,7 @@ func _ready():
 	show_name = _item_instance.get_show_name()
 
 func _on_item_picked_up(result:InventoryInsertResult):
-	if result.item.get_instance_id() == _item_instance.get_instance_id():
+	if result.item_instance_id == _item_instance.get_instance_id():
 		_orig_is_rotated = _is_rotated
 		update_dimensions()
 

@@ -24,11 +24,11 @@ var grid_y:int:
 			return 0
 	set(value):
 		grid_y = value
-var slot_id:int:
+var slot_name:String:
 	get:
 		if location == LocationType.SLOT:
-			return slot_id
+			return slot_name
 		else:
-			return 0
+			return ""
 	set(value):
-		slot_id = value
+		slot_name = value

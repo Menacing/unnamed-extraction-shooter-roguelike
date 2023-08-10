@@ -89,7 +89,7 @@ class_name InventoryControlBase
 	#if c is InventoryGridContainer:
 		##find the grid coordanates
 		#var grid_pos = c._get_grid_coordinates(at_position)
-		#return InventoryManager.can_place_item_at_grid(item_inst,_inventory.get_instance_id(),grid_pos)
+		#return InventoryManager.can_place_item_in_grid(item_inst,_inventory.get_instance_id(),grid_pos)
 	#return false
 	
 

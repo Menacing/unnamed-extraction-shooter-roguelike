@@ -15,7 +15,8 @@ func _on_item_picked_up(result:InventoryInsertResult):
 	if result.inventory_id == _inventory.get_instance_id():
 		print("item picked up")
 		
-		var item_control:ItemControl = instance_from_id(result.item.id_2d)
+		var item_instance:ItemInstance = InventoryManager.get_item(result.item_instance_id)
+		var item_control:ItemControl = instance_from_id(item_instance.id_2d)
 		var location = result.location
 		if location.location == InventoryLocationResult.LocationType.SLOT:
 			#TODO: Move ItemControl to slot Control
