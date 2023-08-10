@@ -325,13 +325,13 @@ func place_stack_in_grid(item_inst:ItemInstance, inventory_id:int, grid_location
 					#if cell empty and we're moving everything in source stack, just move the instance
 					if amount >= item_inst.stacks:
 						remove_item_from_slot(item_inst,item_inst.current_inventory_id)
-						grid_val = item_inst
+						inventory.grid_slots[i][j] = item_inst
 						return true
 					#else we're moving only some to a new instance
 					else:
 						var new_inst = ItemAccess.clone_instance(item_inst)
-						grid_val = new_inst.get_instance_id()
 						new_inst.stacks = amount
+						inventory.grid_slots[i][j] = new_inst
 						item_inst.stacks -= amount
 						return false
 				#else we have to combine stacks

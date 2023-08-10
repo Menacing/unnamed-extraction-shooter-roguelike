@@ -544,3 +544,145 @@ func test_can_place_stack_in_grid_occupied() -> void:
 	#assert
 	assert_bool(result).is_true()
 	inventory_access._clear_inventory(test_inventory_id)
+
+func test_place_stack_in_empty_grid_whole_stack() -> void:
+	#arrange
+	var inventory_access = InventoryAccess.new()
+	var test_inventory:Inventory = load("res://test/resource_access/test_inventory.tres")
+	test_inventory.setup()
+	inventory_access.add_inventory(test_inventory)
+	var test_inventory_id:int = test_inventory.get_instance_id()
+	var item:ItemInstance = ItemInstance.new()
+	var item_info:ItemInformation = ItemInformation.new()
+	item_info.row_span = 1
+	item_info.column_span = 2
+	item_info.item_type = ItemInformation.ItemType.GUN
+	item_info.display_name = "AK47"
+	item_info.item_type_id = 1
+	item_info.max_stacks = 10
+	item_info.has_stacks = true
+	item_info.icon = load("res://Scenes/Guns/AK47-Projectile/ak48_img.png")
+	item_info.icon_r = load("res://Scenes/Guns/AK47-Projectile/ak48_img_r.png")
+
+	item._item_info = item_info
+	item.stacks = 1
+	
+	#act
+	var place_result = inventory_access.place_stack_in_grid(item, test_inventory_id, Vector2i(0,0), 1)
+
+	#assert
+	assert_bool(place_result).is_true()
+	assert_int(item.get_instance_id()).is_equal(test_inventory.grid_slots[0][0].get_instance_id())
+	assert_int(item.stacks).is_equal(1)
+	inventory_access._clear_inventory(test_inventory_id)
+
+func test_place_stack_in_empty_grid_half_stack() -> void:
+	#arrange
+	var inventory_access = InventoryAccess.new()
+	var test_inventory:Inventory = load("res://test/resource_access/test_inventory.tres")
+	test_inventory.setup()
+	inventory_access.add_inventory(test_inventory)
+	var test_inventory_id:int = test_inventory.get_instance_id()
+	var item:ItemInstance = ItemInstance.new()
+	var item_info:ItemInformation = ItemInformation.new()
+	item_info.row_span = 1
+	item_info.column_span = 2
+	item_info.item_type = ItemInformation.ItemType.GUN
+	item_info.display_name = "AK47"
+	item_info.item_type_id = 1
+	item_info.max_stacks = 10
+	item_info.has_stacks = true
+	item_info.icon = load("res://Scenes/Guns/AK47-Projectile/ak48_img.png")
+	item_info.icon_r = load("res://Scenes/Guns/AK47-Projectile/ak48_img_r.png")
+
+	item._item_info = item_info
+	item.stacks = 4
+	
+	#act
+	var place_result = inventory_access.place_stack_in_grid(item, test_inventory_id, Vector2i(0,0), 2)
+
+	#assert
+	assert_bool(place_result).is_false()
+	assert_int(item.get_instance_id()).is_not_equal(test_inventory.grid_slots[0][0].get_instance_id())
+	assert_int(item.stacks).is_equal(2)
+	inventory_access._clear_inventory(test_inventory_id)
+
+func test_place_stack_in_occupied_grid_whole_stack() -> void:
+	#arrange
+	var inventory_access = InventoryAccess.new()
+	var test_inventory:Inventory = load("res://test/resource_access/test_inventory.tres")
+	test_inventory.setup()
+	inventory_access.add_inventory(test_inventory)
+	var test_inventory_id:int = test_inventory.get_instance_id()
+	var item:ItemInstance = ItemInstance.new()
+	var item_info:ItemInformation = ItemInformation.new()
+	item_info.row_span = 1
+	item_info.column_span = 2
+	item_info.item_type = ItemInformation.ItemType.GUN
+	item_info.display_name = "AK47"
+	item_info.item_type_id = 1
+	item_info.max_stacks = 10
+	item_info.has_stacks = true
+	item_info.icon = load("res://Scenes/Guns/AK47-Projectile/ak48_img.png")
+	item_info.icon_r = load("res://Scenes/Guns/AK47-Projectile/ak48_img_r.png")
+
+	item._item_info = item_info
+	item.stacks = 1
+	
+	var place_result = inventory_access.place_stack_in_grid(item, test_inventory_id, Vector2i(0,0), 1)
+	
+	var item2:ItemInstance = ItemInstance.new()
+	item2._item_info = item_info
+	item2.stacks = 1
+	var item2_has_stacks = item2.get_has_stacks()
+	var item2_id = item2.get_instance_id()
+	#act
+	var result = inventory_access.place_stack_in_grid(item2, test_inventory_id, Vector2i(0,0), 1)
+
+	#assert
+	assert_bool(result).is_true()
+	assert_bool(place_result).is_true()
+	assert_int(item.get_instance_id()).is_equal(test_inventory.grid_slots[0][0].get_instance_id())
+	assert_int(item.stacks).is_equal(2)
+	assert_int(item2.stacks).is_equal(0)
+	inventory_access._clear_inventory(test_inventory_id)
+
+func test_place_stack_in_occupied_grid_half_stack() -> void:
+	#arrange
+	var inventory_access = InventoryAccess.new()
+	var test_inventory:Inventory = load("res://test/resource_access/test_inventory.tres")
+	test_inventory.setup()
+	inventory_access.add_inventory(test_inventory)
+	var test_inventory_id:int = test_inventory.get_instance_id()
+	var item:ItemInstance = ItemInstance.new()
+	var item_info:ItemInformation = ItemInformation.new()
+	item_info.row_span = 1
+	item_info.column_span = 2
+	item_info.item_type = ItemInformation.ItemType.GUN
+	item_info.display_name = "AK47"
+	item_info.item_type_id = 1
+	item_info.max_stacks = 10
+	item_info.has_stacks = true
+	item_info.icon = load("res://Scenes/Guns/AK47-Projectile/ak48_img.png")
+	item_info.icon_r = load("res://Scenes/Guns/AK47-Projectile/ak48_img_r.png")
+
+	item._item_info = item_info
+	item.stacks = 1
+	
+	var place_result = inventory_access.place_stack_in_grid(item, test_inventory_id, Vector2i(0,0), 1)
+	
+	var item2:ItemInstance = ItemInstance.new()
+	item2._item_info = item_info
+	item2.stacks = 2
+	var item2_has_stacks = item2.get_has_stacks()
+	var item2_id = item2.get_instance_id()
+	#act
+	var result = inventory_access.place_stack_in_grid(item2, test_inventory_id, Vector2i(0,0), 1)
+
+	#assert
+	assert_bool(result).is_false()
+	assert_bool(place_result).is_true()
+	assert_int(item.get_instance_id()).is_equal(test_inventory.grid_slots[0][0].get_instance_id())
+	assert_int(item.stacks).is_equal(2)
+	assert_int(item2.stacks).is_equal(1)
+	inventory_access._clear_inventory(test_inventory_id)
