@@ -35,7 +35,7 @@ func _drop_data(at_position, data):
 			InventoryManager.place_item_in_slot(item_instance_id, target_inventory_id, self.name)
 
 func add_item_control(item_control:ItemControl):
-	item_control.reparent(self)
+	Helpers.force_parent(item_control,self)
 	var new_pos = Vector2()
 	new_pos.x = (self.size.x/2) - (item_control.size.x/2)
 	new_pos.y = (self.size.y/2) - (item_control.size.y/2)

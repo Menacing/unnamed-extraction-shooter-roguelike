@@ -53,8 +53,11 @@ static func clone_instance(original: ItemInstance) -> ItemInstance:
 	# Copy properties
 	if original.id_3d != 0:
 		new_instance.id_3d = Helpers.duplicate_node_by_id(original.id_3d).get_instance_id()
+		#TODO: Tie the 3d representation to the item instance
 	if original.id_2d != 0:
-		new_instance.id_2d = Helpers.duplicate_node_by_id(original.id_2d).get_instance_id()
+		var new_item_control:ItemControl = Helpers.duplicate_node_by_id(original.id_2d)
+		new_item_control.item_instance_id = new_instance.get_instance_id()
+		new_instance.id_2d = new_item_control.get_instance_id()
 
 	# If ItemInformation class also needs to be deep-copied, you'd have to make 
 	# a similar function for that and replace the line below.

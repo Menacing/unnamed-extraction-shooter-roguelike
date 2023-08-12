@@ -92,3 +92,8 @@ func duplicate_node_by_id(node_id: int) -> Node:
 	
 	# Return the duplicated node
 	return duplicated_node
+
+func force_parent(child:Node, parent:Node):
+	if child.get_parent():
+		child.get_parent().remove_child(child)
+	parent.add_child(child)

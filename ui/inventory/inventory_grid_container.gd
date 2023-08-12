@@ -9,7 +9,7 @@ var cell_size:int:
 
 func add_item_control(item_control:ItemControl, x:int, y:int):
 	var cell = _get_grid_cell_control(x,y)
-	item_control.reparent(cell)
+	Helpers.force_parent(item_control, cell)
 	item_control.position = Vector2(0,0)
 	
 func _get_grid_cell_control(x:int, y:int) -> Control:
