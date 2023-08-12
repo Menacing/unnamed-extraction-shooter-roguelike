@@ -37,12 +37,20 @@ func _get_droppable_container_under_cursor(pos:Vector2) -> Control:
 	return null
 
 func _can_drop_data(at_position, data) -> bool:
-	print(data)	
 	var item_instance_id:int = data["item_instance_id"]
-	#find the grid coordanates
+	var number_to_drop:int = 0
+	if data.has("number_to_drop"):
+		number_to_drop = data["number_to_drop"]
+	var target_inventory_id = parent_inventory_control_base._inventory.get_instance_id()
+
 	var grid_pos = _get_grid_coordinates_from_local(at_position)
-	return InventoryManager.can_place_item_in_grid(item_instance_id,parent_inventory_control_base._inventory.get_instance_id(),grid_pos)
-	
+	#its a stack
+	if number_to_drop > 0:
+		return InventoryManager.can_place_stack_in_grid(item_instance_id,target_inventory_id, grid_pos, number_to_drop)
+	#its not a stack
+	else:
+		return InventoryManager.can_place_item_in_grid(item_instance_id,target_inventory_id,grid_pos)
+
 func _drop_data(at_position, data):
 	print(data)	
 	var item_instance_id:int = data["item_instance_id"]
@@ -54,9 +62,9 @@ func _drop_data(at_position, data):
 	var grid_pos = _get_grid_coordinates_from_local(at_position)
 	#its a stack
 	if number_to_drop > 0:
-		if InventoryManager.can_place_stack_at_grid(item_instance_id,parent_inventory_control_base._inventory.get_instance_id(), grid_pos, number_to_drop):
-			InventoryManager.place_stack_at_grid(item_instance_id, target_inventory_id, grid_pos, number_to_drop)
+		if InventoryManager.can_place_stack_in_grid(item_instance_id,target_inventory_id, grid_pos, number_to_drop):
+			InventoryManager.place_stack_in_grid(item_instance_id, target_inventory_id, grid_pos, number_to_drop)
 	#its not a stack
 	else:
-		if InventoryManager.can_place_item_in_grid(item_instance_id,parent_inventory_control_base._inventory.get_instance_id(),grid_pos):
+		if InventoryManager.can_place_item_in_grid(item_instance_id,target_inventory_id,grid_pos):
 			InventoryManager.place_item_in_grid(item_instance_id, target_inventory_id, grid_pos)

@@ -105,7 +105,7 @@ func can_place_item_in_grid(item_instance_id:int, target_inventory_id:int, grid_
 	var item_inst = get_item(item_instance_id)	
 	return _inventory_access.can_place_item_in_grid(item_inst, target_inventory_id, grid_location)
 
-func can_place_stack_at_grid(item_instance_id:int, target_inventory_id:int, grid_location:Vector2i, amount:int) -> bool:
+func can_place_stack_in_grid(item_instance_id:int, target_inventory_id:int, grid_location:Vector2i, amount:int) -> bool:
 	var item_inst = get_item(item_instance_id)	
 	return _inventory_access.can_place_stack_in_grid(item_inst, target_inventory_id, grid_location)
 	

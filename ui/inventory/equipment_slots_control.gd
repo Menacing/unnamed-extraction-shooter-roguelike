@@ -4,10 +4,18 @@ class_name EquipmentSlotControl
 @export var parent_inventory_control_base:InventoryControlBase
 
 func _can_drop_data(at_position, data) -> bool:
-	print(data)	
 	var item_instance_id:int = data["item_instance_id"]
-
-	return InventoryManager.can_place_item_in_slot(item_instance_id, parent_inventory_control_base._inventory.get_instance_id(), self.name)
+	var target_inventory_id = parent_inventory_control_base._inventory.get_instance_id()
+	var number_to_drop:int = 0
+	if data.has("number_to_drop"):
+		number_to_drop = data["number_to_drop"]
+		
+	#its a stack
+	if number_to_drop > 0:
+		return InventoryManager.can_place_stack_in_slot(item_instance_id, target_inventory_id, self.name, number_to_drop)
+	#its not a stack
+	else:
+		return InventoryManager.can_place_item_in_slot(item_instance_id, target_inventory_id, self.name)
 
 func _drop_data(at_position, data):
 	print(data)	

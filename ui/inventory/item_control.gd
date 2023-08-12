@@ -216,6 +216,8 @@ func _create_drag_control() -> Control:
 func create_drag_data_data():
 	var data = {}
 	data["item_instance_id"] = item_instance_id
+	if _item_instance.get_has_stacks():
+		data["number_to_drop"] = _item_instance.stacks
 	return data
 
 func _get_drag_data(position):
