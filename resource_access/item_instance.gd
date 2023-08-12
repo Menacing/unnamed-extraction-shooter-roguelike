@@ -3,7 +3,13 @@ class_name ItemInstance
 var id_3d:int
 var id_2d:int
 var _item_info:ItemInformation
-var stacks:int
+var _stacks: int
+var stacks:int:
+	get:
+		return _stacks
+	set(value):
+		_stacks = value
+		EventBus.item_stack_count_changed.emit(self)
 var durability:int
 var current_inventory_id:int
 var is_rotated:bool

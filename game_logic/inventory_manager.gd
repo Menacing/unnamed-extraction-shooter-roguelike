@@ -14,6 +14,7 @@ func _ready():
 func _on_pickup_item(item_inst:ItemInstance, target_inventory_id:int):
 	#Are we dealing with a stack or not
 	var inventory = _inventory_access.get_inventory(target_inventory_id)
+	var item_instance_id:int = item_inst.get_instance_id()
 	if inventory == null:
 		return
 	if !item_inst.get_has_stacks():
@@ -53,8 +54,10 @@ func _on_pickup_item(item_inst:ItemInstance, target_inventory_id:int):
 					pickup_result.location.location = InventoryLocationResult.LocationType.SLOT
 					pickup_result.location.slot_id = slot.get_instance_id()
 					EventBus.item_picked_up.emit(pickup_result)
+					_destroy_empty_stack(item_inst)
 					if pickup_result.picked_up:
 						return
+
 		#Next try to insert in first grid space
 		for y in range(inventory.get_height()):
 			for x in range(inventory.get_width()):
@@ -66,8 +69,10 @@ func _on_pickup_item(item_inst:ItemInstance, target_inventory_id:int):
 					pickup_result.location.grid_x = grid_loc.x
 					pickup_result.location.grid_y = grid_loc.y
 					EventBus.item_picked_up.emit(pickup_result)
+					_destroy_empty_stack(item_inst)
 					if pickup_result.picked_up:
 						return
+
 		##TODO try rotating and repeating
 	pass
 
@@ -92,8 +97,9 @@ func place_stack_in_slot(item_instance_id:int, target_inventory_id:int, slot_nam
 	pickup_result.location.location = InventoryLocationResult.LocationType.SLOT
 	pickup_result.location.slot_name = slot_name
 	pickup_result.picked_up = _inventory_access.place_stack_in_slot(item_inst, target_inventory_id, slot_name, amount)
-	
 	EventBus.item_picked_up.emit(pickup_result)
+	_destroy_empty_stack(item_inst)
+
 	
 func can_place_item_in_grid(item_instance_id:int, target_inventory_id:int, grid_location:Vector2i) -> bool:
 	var item_inst = get_item(item_instance_id)	
@@ -113,15 +119,20 @@ func place_item_in_grid(item_instance_id:int, target_inventory_id:int, grid_loca
 	
 	EventBus.item_picked_up.emit(pickup_result)
 	
-func place_stack_at_grid(item_instance_id:int, target_inventory_id:int, grid_location:Vector2i, amount: int):
+func place_stack_in_grid(item_instance_id:int, target_inventory_id:int, grid_location:Vector2i, amount: int):
 	var item_inst = get_item(item_instance_id)
 	var pickup_result:InventoryInsertResult = InventoryInsertResult.new(item_inst,target_inventory_id, InventoryLocationResult.new())
 	pickup_result.location.location = InventoryLocationResult.LocationType.GRID
 	pickup_result.location.grid_x = grid_location.x
 	pickup_result.location.grid_y = grid_location.y
 	pickup_result.picked_up = _inventory_access.place_stack_in_grid(item_inst, target_inventory_id, grid_location, amount)
-	
 	EventBus.item_picked_up.emit(pickup_result)
+	_destroy_empty_stack(item_inst)
+	
+func _destroy_empty_stack(item_instance:ItemInstance):
+	if item_instance and item_instance.get_has_stacks():
+		if item_instance.stacks <= 0:
+			destroy_item(item_instance.get_instance_id())
 
 func add_inventory(inventory:Inventory):
 	_inventory_access.add_inventory(inventory)

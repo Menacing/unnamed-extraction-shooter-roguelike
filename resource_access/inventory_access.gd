@@ -140,7 +140,7 @@ func can_place_stack_in_grid(item_inst:ItemInstance, inventory_id:int, grid_loca
 	for i in range(x, x + w):
 		for j in range(y, y + h):
 			var grid_val = inventory.grid_slots[i][j]
-			if grid_val:
+			if grid_val != null:
 				#if something is there, check if we can combine stacks
 				return ItemAccess.can_combine_stacks(item_inst,grid_val)
 

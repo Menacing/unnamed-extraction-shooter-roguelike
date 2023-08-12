@@ -15,12 +15,12 @@ func _ready():
 	show_name = _item_instance.get_show_name()
 
 func _on_item_picked_up(result:InventoryInsertResult):
-	if result.item_instance_id == _item_instance.get_instance_id():
+	if result.item_instance_id == item_instance_id:
 		_orig_is_rotated = _is_rotated
 		update_dimensions()
 
 func _on_item_stack_count_changed(item_inst:ItemInstance):
-	if !is_queued_for_deletion() and item_inst.get_instance_id() == _item_instance.get_instance_id():
+	if !is_queued_for_deletion() and item_instance_id == item_inst.get_instance_id():
 		stacks = item_inst.stacks
 
 func update_dimensions():
