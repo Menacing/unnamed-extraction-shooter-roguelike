@@ -21,7 +21,7 @@ var leg_m:float
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	Events.player_health_pulse.connect(_on_player_health_pulse)
+	EventBus.player_health_pulse.connect(_on_player_health_pulse)
 	set_health_mode()
 
 

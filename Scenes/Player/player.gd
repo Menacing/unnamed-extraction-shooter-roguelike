@@ -95,13 +95,13 @@ func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	currentSpeed = NORMAL_SPEED
 	$PlayerMotionStateMachine._active = true
-	Events.fire_mode_changed.emit("")
-	Events.ammo_count_changed.emit(0)
-	Events.item_equipped.connect(_on_item_equipped)
-	Events.item_dropped.connect(_on_item_dropped)
-	Events.item_picked_up.connect(_on_item_picked_up)
-	Events.item_removed.connect(_on_item_removed)
-	Events.player_inventory_visibility.emit(toggle_inv_f)
+	EventBus.fire_mode_changed.emit("")
+	EventBus.ammo_count_changed.emit(0)
+	EventBus.item_equipped.connect(_on_item_equipped)
+	EventBus.item_dropped.connect(_on_item_dropped)
+	EventBus.item_picked_up.connect(_on_item_picked_up)
+	EventBus.item_removed.connect(_on_item_removed)
+	EventBus.player_inventory_visibility.emit(toggle_inv_f)
 	
 	los_check_locations.append($HitBox/HeadBoneAttachment/eyes)
 	los_check_locations.append($HitBox/RightFootBoneAttachment)
@@ -115,7 +115,7 @@ func _ready():
 	pov_rotation_node = chest
 
 func _process(delta):
-	Events.compass_player_pulse.emit(self.global_position, self.global_rotation_degrees)
+	EventBus.compass_player_pulse.emit(self.global_position, self.global_rotation_degrees)
 
 func _on_item_equipped(slot_name:String, item_equipped:ItemComponent):
 	item_equipped.picked_up()
@@ -180,8 +180,8 @@ func move_gun_to_hands(gun:Gun):
 		gun.reloaded.connect(_on_gun_reloaded)
 		current_fire_mode = gun.current_fire_mode
 		gun.reparent(cam,false)
-		Events.fire_mode_changed.emit(gun.current_fire_mode)
-		Events.ammo_count_changed.emit(gun.magazine)
+		EventBus.fire_mode_changed.emit(gun.current_fire_mode)
+		EventBus.ammo_count_changed.emit(gun.magazine)
 		gun.visible = true
 		gun.top_level = true
 		start_arms_ik(gun.Right_Hand, gun.Right_Fingers, gun.Left_Hand, gun.Left_Fingers)
@@ -214,8 +214,8 @@ func drop_equipped_gun():
 	if equipped_gun:
 		equipped_gun.fired.disconnect(_on_gun_fired)
 		equipped_gun.reloaded.disconnect(_on_gun_reloaded)
-		Events.fire_mode_changed.emit("")
-		Events.ammo_count_changed.emit(0)
+		EventBus.fire_mode_changed.emit("")
+		EventBus.ammo_count_changed.emit(0)
 		drop_item(equipped_gun.get_node("ItemComponent"))
 #		if gun_in_slot(equipped_gun, gun_slot_1):
 #			gun_slot_1.remove_item()
@@ -273,15 +273,15 @@ func _physics_process(delta):
 				var col = use_ray.get_collider()
 				var ic = col.get_node("ItemComponent")
 				if ic:
-					Events.pickup_helper_visibility.emit(true)
+					EventBus.pickup_helper_visibility.emit(true)
 				elif col.has_method("use"):
-					Events.use_helper_visibility.emit(true)
+					EventBus.use_helper_visibility.emit(true)
 				else:
-					Events.use_helper_visibility.emit(false)
-					Events.pickup_helper_visibility.emit(false)
+					EventBus.use_helper_visibility.emit(false)
+					EventBus.pickup_helper_visibility.emit(false)
 		else:
-			Events.use_helper_visibility.emit(false)
-			Events.pickup_helper_visibility.emit(false)
+			EventBus.use_helper_visibility.emit(false)
+			EventBus.pickup_helper_visibility.emit(false)
 
 func point_camera_at_target():
 	head.transform.basis = Basis() # reset rotation
@@ -406,14 +406,14 @@ func _input(event):
 		elif event.is_action_pressed("toggleFireMode"):
 			if equipped_gun.has_method("toggle_fire_mode"):
 				var fire_mode = equipped_gun.toggle_fire_mode()
-				Events.fire_mode_changed.emit(fire_mode)
+				EventBus.fire_mode_changed.emit(fire_mode)
 				current_fire_mode = fire_mode
 		elif event.is_action_pressed("use"):
 			if use_ray.is_colliding():
 				var col = use_ray.get_collider()
 				var col_icomp = col.get_node("ItemComponent")
 				if col_icomp:
-					Events.player_inventory_try_pickup.emit(col_icomp)
+					EventBus.player_inventory_try_pickup.emit(col_icomp)
 				elif col.has_method("use"):
 					col.use(self)
 		elif event.is_action_pressed("dropGun"):
@@ -431,11 +431,11 @@ func _input(event):
 		
 func toggle_inventory():
 	toggle_inv_f = !toggle_inv_f
-	Events.player_inventory_visibility.emit(toggle_inv_f)
+	EventBus.player_inventory_visibility.emit(toggle_inv_f)
 	if toggle_inv_f:
 		Input.mouse_mode = Input.MOUSE_MODE_CONFINED
 	else:
-		Events.player_inventory_closed.emit(self)
+		EventBus.player_inventory_closed.emit(self)
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 func transformMouse(event: InputEventMouse):
@@ -480,7 +480,7 @@ func reload():
 
 
 func _on_gun_fired(recoil:Vector2):
-	Events.ammo_count_changed.emit(equipped_gun.magazine)
+	EventBus.ammo_count_changed.emit(equipped_gun.magazine)
 	var scaled_recoil = scale_recoil(recoil)
 #	#flip the mapping so that recoil.y moves the camera vertically
 	v_rot_acc += scaled_recoil.x
@@ -510,7 +510,7 @@ func scale_recoil(recoil:Vector2) -> Vector2:
 	return recoil * factor
 	
 func _on_gun_reloaded():
-	Events.ammo_count_changed.emit(equipped_gun.magazine)	
+	EventBus.ammo_count_changed.emit(equipped_gun.magazine)	
 		
 func start_arms_ik(right_arm_loc:Node3D, right_fingers_loc:Node3D, left_arm_loc:Node3D, left_fingers_loc:Node3D):
 	if right_arm_loc:

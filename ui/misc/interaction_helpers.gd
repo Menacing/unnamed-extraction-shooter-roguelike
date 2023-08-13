@@ -5,8 +5,8 @@ extends Control
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	Events.use_helper_visibility.connect(_on_use_helper_change)
-	Events.pickup_helper_visibility.connect(_on_pickup_helper_change)
+	EventBus.use_helper_visibility.connect(_on_use_helper_change)
+	EventBus.pickup_helper_visibility.connect(_on_pickup_helper_change)
 	pass # Replace with function body.
 
 

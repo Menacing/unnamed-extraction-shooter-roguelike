@@ -22,8 +22,8 @@ func _ready():
 		"crouch_walking": crouch_walking,
 		"prone": prone,
 	}
-	Events.location_destroyed.connect(_on_location_destroyed)
-	Events.location_restored.connect(_on_location_restored)
+	EventBus.location_destroyed.connect(_on_location_destroyed)
+	EventBus.location_restored.connect(_on_location_restored)
 
 
 func _change_state(state_name):
