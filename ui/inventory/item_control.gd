@@ -35,7 +35,8 @@ var _is_rotated:bool:
 	get:
 		return _item_instance.is_rotated
 	set(value):
-		_item_instance.is_rotated = value
+		if _item_instance:
+			_item_instance.is_rotated = value
 
 var _item_texture_rect:TextureRect
 var item_texture_rect:TextureRect:
@@ -143,11 +144,15 @@ func _input(event:InputEvent):
 			
 			# If control exists and has _can_drop_data function, call it
 			if control:
-				var local_pos = event.global_position - control.global_position
 				var drop_data = get_viewport().gui_get_drag_data()
+				var orig_number_to_drop:int = drop_data["number_to_drop"]
+				var local_pos = event.global_position - control.global_position
 				drop_data["number_to_drop"] = 1
 				if control._can_drop_data(local_pos, drop_data):
 					control._drop_data(local_pos, drop_data)
+					if _item_instance and !is_queued_for_deletion():
+						force_drag(create_drag_data_data(), _create_drag_control())
+					
 			accept_event()
 			
 

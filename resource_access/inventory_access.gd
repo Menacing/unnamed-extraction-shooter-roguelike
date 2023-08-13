@@ -62,6 +62,7 @@ func place_item_in_slot(item_inst:ItemInstance, inventory_id:int, slot_name:Stri
 		if slot:
 			remove_item(item_inst,item_inst.current_inventory_id)
 			slot.item_instance_id = item_inst.get_instance_id()
+			item_inst.current_inventory_id = inventory_id
 			return true
 	return false
 	
@@ -76,18 +77,20 @@ func place_stack_in_slot(item_inst:ItemInstance, inventory_id:int, slot_name:Str
 				if amount >= item_inst.stacks:
 					remove_item(item_inst,item_inst.current_inventory_id)
 					slot.item_instance_id = item_inst.get_instance_id()
+					item_inst.current_inventory_id = inventory_id
 					return true
 				#else we're moving only some to a new instance
 				else:
 					var new_inst = ItemAccess.clone_instance(item_inst)
 					slot.item_instance_id = new_inst.get_instance_id()
-					new_inst.stacks = amount
-					item_inst.stacks -= amount
+					new_inst.current_inventory_id = inventory_id
 					var new_instance_insert_result:InventoryInsertResult = InventoryInsertResult.new(new_inst,inventory_id, InventoryLocationResult.new())
 					new_instance_insert_result.picked_up = true
 					new_instance_insert_result.location.location = InventoryLocationResult.LocationType.SLOT
 					new_instance_insert_result.location.slot_name = slot.name
 					EventBus.item_picked_up.emit(new_instance_insert_result)
+					new_inst.stacks = amount
+					item_inst.stacks -= amount
 					return false
 			#else we have to combine stacks
 			else:
@@ -95,6 +98,7 @@ func place_stack_in_slot(item_inst:ItemInstance, inventory_id:int, slot_name:Str
 				var remainder = ItemAccess.combine_stacks(item_inst, destination_item, amount)
 				
 				if remainder == 0:
+					remove_item(item_inst,item_inst.current_inventory_id)
 					return true
 				else:
 					return false
@@ -156,6 +160,8 @@ func can_place_stack_in_grid(item_inst:ItemInstance, inventory_id:int, grid_loca
 func place_item_in_grid(item_inst:ItemInstance, inventory_id:int, grid_location:Vector2i) -> bool:
 	#if we can place the item in the grid, set the cells
 	if can_place_item_in_grid(item_inst, inventory_id, grid_location):
+		remove_item(item_inst,item_inst.current_inventory_id)
+		item_inst.current_inventory_id = inventory_id
 		var inventory = get_inventory(inventory_id)
 		var x = grid_location.x
 		var y = grid_location.y
@@ -198,11 +204,10 @@ func place_stack_in_grid(item_inst:ItemInstance, inventory_id:int, grid_location
 				remove_item(item_inst,item_inst.current_inventory_id)
 				return_val = true
 				inventory_val = item_inst
+				item_inst.current_inventory_id = inventory_id
 			#else we're moving only some to a new instance
 			else:
 				var new_inst = ItemAccess.clone_instance(item_inst)
-				new_inst.stacks = amount
-				item_inst.stacks -= amount
 				var new_instance_insert_result:InventoryInsertResult = InventoryInsertResult.new(new_inst,inventory_id, InventoryLocationResult.new())
 				new_instance_insert_result.picked_up = true
 				new_instance_insert_result.location.location = InventoryLocationResult.LocationType.GRID
@@ -211,6 +216,8 @@ func place_stack_in_grid(item_inst:ItemInstance, inventory_id:int, grid_location
 				EventBus.item_picked_up.emit(new_instance_insert_result)
 				return_val = false
 				inventory_val = new_inst
+				new_inst.stacks = amount
+				item_inst.stacks -= amount
 			for i in range(x, x + w):
 				for j in range(y, y + h):
 					inventory.grid_slots[i][j] = inventory_val
@@ -219,6 +226,8 @@ func place_stack_in_grid(item_inst:ItemInstance, inventory_id:int, grid_location
 			var remainder = ItemAccess.combine_stacks(item_inst, destination_inst, amount)
 
 			if remainder == 0:
+				remove_item(item_inst,item_inst.current_inventory_id)
+				item_inst.current_inventory_id = inventory_id
 				return true
 			else:
 				return false

@@ -146,8 +146,7 @@ func remove_item(item_instance_id:int, source_inventory_id:int):
 func destroy_item(item_instance_id:int):
 	var item_inst = get_item(item_instance_id)		
 	if item_inst.current_inventory_id != 0:
-		var inventory = _inventory_access.get_inventory(item_inst.current_inventory_id)
-		remove_item(item_inst, inventory)
+		remove_item(item_instance_id, item_inst.current_inventory_id)
 	_item_access.destroy_item(item_inst)
 	
 func get_item(item_instance_id:int) -> ItemInstance:

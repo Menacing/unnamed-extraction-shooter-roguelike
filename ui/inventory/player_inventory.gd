@@ -12,7 +12,7 @@ func _ready():
 func _on_item_picked_up(result:InventoryInsertResult):
 	var self_object_id = self.get_instance_id()
 	var inv_id = _inventory.get_instance_id()
-	if result.inventory_id == _inventory.get_instance_id():
+	if result.inventory_id == _inventory.get_instance_id() and result.picked_up:
 		print("item picked up")
 		
 		var item_instance:ItemInstance = InventoryManager.get_item(result.item_instance_id)
