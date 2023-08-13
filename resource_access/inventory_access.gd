@@ -26,34 +26,40 @@ func _clear_inventory(inventory_id:int):
 			inventory.grid_slots[w][h] = null
 
 func can_place_item_in_slot(item_inst:ItemInstance, inventory_id:int, slot_name:String) -> bool:
-	var inventory = get_inventory(inventory_id)
-	if inventory == null:
+	if item_inst:
+		var inventory = get_inventory(inventory_id)
+		if inventory == null:
+			return false
+			
+		var slot:EquipmentSlotType = Inventory.get_slot_by_name(inventory,slot_name)
+		if slot:
+			#check if slot is empty
+			if slot.item_instance_id == 0:
+				if item_inst.get_item_type() in slot.allowed_types: 
+					return true	
 		return false
-		
-	var slot:EquipmentSlotType = Inventory.get_slot_by_name(inventory,slot_name)
-	if slot:
-		#check if slot is empty
-		if slot.item_instance_id == 0:
-			if item_inst.get_item_type() in slot.allowed_types: 
-				return true	
-	return false
+	else:
+		return false
 	
 func can_place_stack_in_slot(item_inst:ItemInstance, inventory_id:int, slot_name:String) -> bool:
-	var inventory = get_inventory(inventory_id)
-	if inventory == null or item_inst == null or !item_inst.get_has_stacks():
+	if item_inst:
+		var inventory = get_inventory(inventory_id)
+		if inventory == null or item_inst == null or !item_inst.get_has_stacks():
+			return false
+			
+		var slot:EquipmentSlotType = Inventory.get_slot_by_name(inventory,slot_name)
+		if slot:
+			#check if slot is empty
+			if slot.item_instance_id == 0:
+				if item_inst.get_item_type() in slot.allowed_types: 
+					return true
+			#check if we can combine stacks
+			else:
+				var destination_item:ItemInstance = ItemAccess.get_item(slot.item_instance_id)
+				return ItemAccess.can_combine_stacks(item_inst,destination_item)
 		return false
-		
-	var slot:EquipmentSlotType = Inventory.get_slot_by_name(inventory,slot_name)
-	if slot:
-		#check if slot is empty
-		if slot.item_instance_id == 0:
-			if item_inst.get_item_type() in slot.allowed_types: 
-				return true
-		#check if we can combine stacks
-		else:
-			var destination_item:ItemInstance = ItemAccess.get_item(slot.item_instance_id)
-			return ItemAccess.can_combine_stacks(item_inst,destination_item)
-	return false
+	else:
+		return false
 
 func place_item_in_slot(item_inst:ItemInstance, inventory_id:int, slot_name:String) -> bool:
 	var inventory = get_inventory(inventory_id)	
@@ -105,57 +111,63 @@ func place_stack_in_slot(item_inst:ItemInstance, inventory_id:int, slot_name:Str
 	return false
 
 func can_place_item_in_grid(item_inst:ItemInstance, inventory_id:int, grid_location:Vector2i) -> bool:
-	var inventory = get_inventory(inventory_id)
-	if inventory == null:
-		return false
+	if item_inst:
+		var inventory = get_inventory(inventory_id)
+		if inventory == null:
+			return false
+			
+		var x = grid_location.x
+		var y = grid_location.y
+		var w = item_inst.get_width()
+		var h = item_inst.get_height()
+		#invalid coordinates
+		if x < 0 or y < 0:
+			return false
+		#item bigger than available space
+		if x + w > inventory.get_width() or y + h > inventory.get_height():
+			return false
 		
-	var x = grid_location.x
-	var y = grid_location.y
-	var w = item_inst.get_width()
-	var h = item_inst.get_height()
-	#invalid coordinates
-	if x < 0 or y < 0:
+		#check if there's an item alredy there
+		for i in range(x, x + w):
+			for j in range(y, y + h):
+				var grid_val = inventory.grid_slots[i][j]
+				if grid_val:
+					return false
+		#if nothing is found, the space is clear
+		return true
+	else:
 		return false
-	#item bigger than available space
-	if x + w > inventory.get_width() or y + h > inventory.get_height():
-		return false
-	
-	#check if there's an item alredy there
-	for i in range(x, x + w):
-		for j in range(y, y + h):
-			var grid_val = inventory.grid_slots[i][j]
-			if grid_val:
-				return false
-	#if nothing is found, the space is clear
-	return true
 	
 func can_place_stack_in_grid(item_inst:ItemInstance, inventory_id:int, grid_location:Vector2i) -> bool:
-	var inventory = get_inventory(inventory_id)
-	if inventory == null:
-		return false
+	if item_inst:
+		var inventory = get_inventory(inventory_id)
+		if inventory == null:
+			return false
+			
+		var x = grid_location.x
+		var y = grid_location.y
+		var w = item_inst.get_width()
+		var h = item_inst.get_height()
+		#invalid coordinates
+		if x < 0 or y < 0:
+			return false
+		#item bigger than available space
+		if x + w > inventory.get_width() or y + h > inventory.get_height():
+			return false
 		
-	var x = grid_location.x
-	var y = grid_location.y
-	var w = item_inst.get_width()
-	var h = item_inst.get_height()
-	#invalid coordinates
-	if x < 0 or y < 0:
-		return false
-	#item bigger than available space
-	if x + w > inventory.get_width() or y + h > inventory.get_height():
-		return false
-	
-	#check if there's an item alredy there
-	for i in range(x, x + w):
-		for j in range(y, y + h):
-			var grid_val = inventory.grid_slots[i][j]
-			if grid_val != null:
-				#if something is there, check if we can combine stacks
-				if !ItemAccess.can_combine_stacks(item_inst,grid_val):
-					return false
+		#check if there's an item alredy there
+		for i in range(x, x + w):
+			for j in range(y, y + h):
+				var grid_val = inventory.grid_slots[i][j]
+				if grid_val != null:
+					#if something is there, check if we can combine stacks
+					if !ItemAccess.can_combine_stacks(item_inst,grid_val):
+						return false
 
-	#if nothing is found, the space is clear
-	return true
+		#if nothing is found, the space is clear
+		return true
+	else:
+		return false
 
 func place_item_in_grid(item_inst:ItemInstance, inventory_id:int, grid_location:Vector2i) -> bool:
 	#if we can place the item in the grid, set the cells
