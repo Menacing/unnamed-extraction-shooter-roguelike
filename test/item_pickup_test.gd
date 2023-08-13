@@ -17,6 +17,8 @@ func add_test_item():
 	item_info.column_span = 2
 	item_info.item_type = ItemInformation.ItemType.GUN
 	item_info.display_name = "Test Item"
+	item_info.icon = load("res://Scenes/items/materials/polymer_pile/polymer_pile_icon.png")
+	item_info.icon_r = load("res://Scenes/items/materials/polymer_pile/polymer_pile_icon.png")
 	item_info.item_type_id = 1
 	item._item_info = item_info
 	

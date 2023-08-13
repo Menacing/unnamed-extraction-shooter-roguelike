@@ -25,7 +25,7 @@ func _on_pickup_item(item_inst:ItemInstance, target_inventory_id:int):
 					var pickup_result:InventoryInsertResult = InventoryInsertResult.new(item_inst,target_inventory_id,InventoryLocationResult.new())
 					pickup_result.picked_up = _inventory_access.place_item_in_slot(item_inst, target_inventory_id, slot.name)
 					pickup_result.location.location = InventoryLocationResult.LocationType.SLOT
-					pickup_result.location.slot_id = slot.get_instance_id()
+					pickup_result.location.slot_name = slot.name
 					EventBus.item_picked_up.emit(pickup_result)
 					return
 	#
@@ -52,7 +52,7 @@ func _on_pickup_item(item_inst:ItemInstance, target_inventory_id:int):
 					var pickup_result:InventoryInsertResult = InventoryInsertResult.new(item_inst,target_inventory_id,InventoryLocationResult.new())					
 					pickup_result.picked_up = _inventory_access.place_stack_in_slot(item_inst, target_inventory_id, slot.name, item_inst.stacks)
 					pickup_result.location.location = InventoryLocationResult.LocationType.SLOT
-					pickup_result.location.slot_id = slot.get_instance_id()
+					pickup_result.location.slot_name = slot.name
 					EventBus.item_picked_up.emit(pickup_result)
 					_destroy_empty_stack(item_inst)
 					if pickup_result.picked_up:

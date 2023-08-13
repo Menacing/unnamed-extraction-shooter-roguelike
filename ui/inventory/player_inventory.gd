@@ -20,7 +20,7 @@ func _on_item_picked_up(result:InventoryInsertResult):
 		var location = result.location
 		if location.location == InventoryLocationResult.LocationType.SLOT:
 			#TODO: Move ItemControl to slot Control
-			var slot_type:EquipmentSlotType = instance_from_id(location.slot_id)
+			var slot_type:EquipmentSlotType = Inventory.get_slot_by_name(_inventory, location.slot_name)
 			if slot_type:
 				var slot_control:EquipmentSlotControl = self.find_child(slot_type.name)
 				if slot_control:
