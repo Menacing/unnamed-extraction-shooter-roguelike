@@ -22,6 +22,10 @@ func _on_item_picked_up(result:InventoryInsertResult):
 func _on_item_stack_count_changed(item_inst:ItemInstance):
 	if !is_queued_for_deletion() and item_instance_id == item_inst.get_instance_id():
 		stacks = item_inst.stacks
+		
+func _on_item_durability_count_changed(item_inst:ItemInstance):
+	if !is_queued_for_deletion() and item_instance_id == item_inst.get_instance_id():
+		durability = item_inst.durability
 
 func update_dimensions():
 	var cell_size = Helpers.get_cell_size()

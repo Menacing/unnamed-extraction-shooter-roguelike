@@ -10,7 +10,13 @@ var stacks:int:
 	set(value):
 		_stacks = value
 		EventBus.item_stack_count_changed.emit(self)
-var durability:int
+var _durability:int = 1
+var durability:int:
+	get:
+		return _durability
+	set(value):
+		_durability = value
+		EventBus.item_durability_changed.emit(self)
 var current_inventory_id:int
 var is_rotated:bool
 

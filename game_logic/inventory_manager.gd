@@ -10,6 +10,8 @@ func _init():
 func _ready():
 	EventBus.pickup_item.connect(_on_pickup_item)
 	EventBus.add_inventory.connect(add_inventory)
+	EventBus.item_durability_changed.connect(_destroy_depleted_durability)
+
 
 func _on_pickup_item(item_inst:ItemInstance, target_inventory_id:int):
 	#Are we dealing with a stack or not
@@ -132,6 +134,11 @@ func place_stack_in_grid(item_instance_id:int, target_inventory_id:int, grid_loc
 func _destroy_empty_stack(item_instance:ItemInstance):
 	if item_instance and item_instance.get_has_stacks():
 		if item_instance.stacks <= 0:
+			destroy_item(item_instance.get_instance_id())
+			
+func _destroy_depleted_durability(item_instance:ItemInstance):
+	if item_instance and item_instance.get_has_durability():
+		if item_instance.durability <= 0:
 			destroy_item(item_instance.get_instance_id())
 
 func add_inventory(inventory:Inventory):
