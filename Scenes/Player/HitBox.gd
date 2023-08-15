@@ -10,6 +10,6 @@ class_name PlayerHitBox
 func _on_hit(damage, pen_rating, col:CollisionInformation, hit_origin:Vector3) -> float:
 	damage = damage * damage_multiplier
 	print("Took %s damage, pen rating %s at %s" % [damage, pen_rating, col.position])
-	Events.took_damage.emit(damage, hit_origin)
-	Events.location_hit.emit(parent_id, location_type, damage)
+	EventBus.took_damage.emit(damage, hit_origin)
+	EventBus.location_hit.emit(parent_id, location_type, damage)
 	return pen_ratio

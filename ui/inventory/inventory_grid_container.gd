@@ -2,6 +2,9 @@ extends GridContainer
 class_name InventoryGridContainer
 
 @export var parent_inventory_control_base:InventoryControlBase
+@export var grid_cell:PackedScene
+var grid_width = 0
+var grid_height = 0
 
 var cell_size:int:
 	get:
@@ -11,6 +14,13 @@ func add_item_control(item_control:ItemControl, x:int, y:int):
 	var cell = _get_grid_cell_control(x,y)
 	Helpers.force_parent(item_control, cell)
 	item_control.position = Vector2(0,0)
+	
+func _get_grid_size(item:Control) -> Dictionary:
+	var results = {}
+	var s = item.size
+	results.x = clamp(int(s.x / cell_size), 1, 500)
+	results.y = clamp(int(s.y / cell_size), 1, 500)
+	return results
 	
 func _get_grid_cell_control(x:int, y:int) -> Control:
 	var index = (y)*columns + x

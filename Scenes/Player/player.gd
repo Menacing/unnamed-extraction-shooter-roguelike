@@ -97,10 +97,10 @@ func _ready():
 	$PlayerMotionStateMachine._active = true
 	EventBus.fire_mode_changed.emit("")
 	EventBus.ammo_count_changed.emit(0)
-	EventBus.item_equipped.connect(_on_item_equipped)
-	EventBus.item_dropped.connect(_on_item_dropped)
-	EventBus.item_picked_up.connect(_on_item_picked_up)
-	EventBus.item_removed.connect(_on_item_removed)
+	#EventBus.item_equipped.connect(_on_item_equipped)
+	#EventBus.item_dropped.connect(_on_item_dropped)
+	#EventBus.item_picked_up.connect(_on_item_picked_up)
+	#EventBus.item_removed.connect(_on_item_removed)
 	EventBus.player_inventory_visibility.emit(toggle_inv_f)
 	
 	los_check_locations.append($HitBox/HeadBoneAttachment/eyes)
@@ -116,44 +116,44 @@ func _ready():
 
 func _process(delta):
 	EventBus.compass_player_pulse.emit(self.global_position, self.global_rotation_degrees)
-
-func _on_item_equipped(slot_name:String, item_equipped:ItemComponent):
-	item_equipped.picked_up()
-	match slot_name:
-		"GunSlot1":
-			gun_slot_1 = item_equipped.get_parent()
-			move_gun_to_player_model(gun_slot_1)
-		"GunSlot2":
-			gun_slot_2 = item_equipped.get_parent()
-			move_gun_to_player_model(gun_slot_2) 
-		"BackpackSlot":
-			item_equipped.picked_up()
-			move_backpack_to_anchor(item_equipped.get_parent())
-		"ArmorSlot":
-			item_equipped.picked_up()
-			move_armor_to_anchor(item_equipped.get_parent())
-	pass
-	
-func _on_item_picked_up(item_picked_up:ItemComponent):
-	var item_parent = item_picked_up.get_parent()
-	item_picked_up.picked_up()
-	item_parent.reparent(self,false)
-	item_parent.visible = false
-	
-func _on_item_removed(slot_name, item_picked_up:ItemComponent):
-	var item_parent = item_picked_up.get_parent()
-	if item_parent is Gun:
-		if item_parent == equipped_gun:
-			stop_arms_ik()
-			equipped_gun = null	
-		if item_parent == gun_slot_1:
-			gun_slot_1 = null	
-		if item_parent == gun_slot_2:
-			gun_slot_2 = null	
-
-func _on_item_dropped(item_equipped:ItemComponent):
-	drop_item(item_equipped)
-	pass
+#
+#func _on_item_equipped(slot_name:String, item_equipped:ItemComponent):
+	#item_equipped.picked_up()
+	#match slot_name:
+		#"GunSlot1":
+			#gun_slot_1 = item_equipped.get_parent()
+			#move_gun_to_player_model(gun_slot_1)
+		#"GunSlot2":
+			#gun_slot_2 = item_equipped.get_parent()
+			#move_gun_to_player_model(gun_slot_2) 
+		#"BackpackSlot":
+			#item_equipped.picked_up()
+			#move_backpack_to_anchor(item_equipped.get_parent())
+		#"ArmorSlot":
+			#item_equipped.picked_up()
+			#move_armor_to_anchor(item_equipped.get_parent())
+	#pass
+#
+#func _on_item_picked_up(item_picked_up:ItemComponent):
+	#var item_parent = item_picked_up.get_parent()
+	#item_picked_up.picked_up()
+	#item_parent.reparent(self,false)
+	#item_parent.visible = false
+#
+#func _on_item_removed(slot_name, item_picked_up:ItemComponent):
+	#var item_parent = item_picked_up.get_parent()
+	#if item_parent is Gun:
+		#if item_parent == equipped_gun:
+			#stop_arms_ik()
+			#equipped_gun = null	
+		#if item_parent == gun_slot_1:
+			#gun_slot_1 = null	
+		#if item_parent == gun_slot_2:
+			#gun_slot_2 = null	
+#
+#func _on_item_dropped(item_equipped:ItemComponent):
+	#drop_item(item_equipped)
+	#pass
 
 func move_gun_to_player_model(gun:Gun):
 	gun.show()	
@@ -216,30 +216,27 @@ func drop_equipped_gun():
 		equipped_gun.reloaded.disconnect(_on_gun_reloaded)
 		EventBus.fire_mode_changed.emit("")
 		EventBus.ammo_count_changed.emit(0)
-		drop_item(equipped_gun.get_node("ItemComponent"))
-#		if gun_in_slot(equipped_gun, gun_slot_1):
-#			gun_slot_1.remove_item()
-#		elif gun_in_slot(equipped_gun, gun_slot_2):
-#			gun_slot_2.remove_item()			
+		#drop_item(equipped_gun.get_node("ItemComponent"))
+			
 		equipped_gun = null
 		stop_arms_ik()
 
-func drop_item(item_comp:ItemComponent):
-	var item_parent = item_comp.get_parent()
-#	var item_parent_global_pos = drop_location.global_position
-	item_parent.reparent(self.get_parent())
-	item_comp.dropped()
-	item_parent.visible = true
-	item_parent.global_position = drop_location.global_position
-	if item_parent is Gun:
-		if item_parent == gun_slot_1:
-			gun_slot_1 = null
-		if item_parent == gun_slot_2:
-			gun_slot_2 = null
-		if item_parent == equipped_gun:
-			equipped_gun = null
-		if item_parent == shoulder_gun:
-			shoulder_gun = null
+#func drop_item(item_comp:ItemComponent):
+	#var item_parent = item_comp.get_parent()
+##	var item_parent_global_pos = drop_location.global_position
+	#item_parent.reparent(self.get_parent())
+	#item_comp.dropped()
+	#item_parent.visible = true
+	#item_parent.global_position = drop_location.global_position
+	#if item_parent is Gun:
+		#if item_parent == gun_slot_1:
+			#gun_slot_1 = null
+		#if item_parent == gun_slot_2:
+			#gun_slot_2 = null
+		#if item_parent == equipped_gun:
+			#equipped_gun = null
+		#if item_parent == shoulder_gun:
+			#shoulder_gun = null
 
 #realtime inputs - movement stuff
 func _physics_process(delta):

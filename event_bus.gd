@@ -14,17 +14,19 @@ extends Node
 #signal context_menu_opened()
 #signal context_menu_closed()
 #
-#signal close_inventory(inventory_name:String)
-#signal open_inventory(inventory_name:String)
+
 #signal create_inventory(inventory:Node, inventory_name:String)
 
 #Inventory Events Rework
 signal add_inventory(inventory:Inventory)
 signal pickup_item(item_inst:ItemInstance, target_inventory_id:int)
+signal drop_item(item_inst:ItemInstance, inventory_id:int)
 signal item_picked_up(result:InventoryInsertResult)
 signal item_removed_from_inventory(item_inst:ItemInstance, inventory_id:int)
 signal item_stack_count_changed(item_inst:ItemInstance)
 signal item_durability_changed(item_inst:ItemInstance)
+signal close_inventory(inventory_id:int)
+signal open_inventory(inventory_id:int)
 #Health Events
 signal took_damage(damage:float, hit_origin:Vector3)
 signal player_health_pulse(health:Array[HealthLocation])

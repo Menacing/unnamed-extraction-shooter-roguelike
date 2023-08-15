@@ -1,37 +1,11 @@
-extends Node
-class_name ItemComponent
+extends Node3D
+class_name Item3D
 
-signal stack_changed(newStack:int)
-signal durability_changed(new_durability:int, max_durability:int)
-
-@export var inventory_info:InventoryItemInfo
-
-@export var id:String
-
-var _stack:int = 1
-@export var stack:int = 1:
+var item_instance_id:int
+var _item_instance:ItemInstance:
 	get:
-		return _stack
-	set(value):
-		_stack = value
-		stack_changed.emit(_stack)
+		return InventoryManager.get_item(item_instance_id)
 
-var _durability:int = 1
-@export var durability:int = 1:
-	get:
-		return _durability
-	set(value):
-		_durability = value
-		durability_changed.emit(_durability,inventory_info.max_durability)
-		if _durability < 0:
-			self.destroy()
-
-var node_id:int:
-	get:
-		return get_parent().get_instance_id()
-	set(value):
-		pass
-		
 @export var world_collider_path:NodePath
 var _world_collider:CollisionShape3D
 var world_collider:CollisionShape3D:
@@ -77,7 +51,7 @@ func set_material_overlay(mat:Material):
 		if m != null:
 			var mesh:MeshInstance3D = m
 			mesh.material_overlay = mat
-			
+
 func dropped():
 	var parent = get_parent()
 	world_collider.disabled = false
@@ -97,7 +71,7 @@ func picked_up():
 
 	
 func destroy():
-	Events.item_destroyed.emit(self)
+	#Events.item_destroyed.emit(self)
 	var parent = self.get_parent()
 	if parent:
 		parent.call_deferred("queue_free")

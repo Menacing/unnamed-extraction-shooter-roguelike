@@ -1,8 +1,8 @@
 extends CollisionObject3D
 
 #@onready var container_bag:InventoryBag = $CanvasLayer/Panel/InventoryBag
-@export var inv: PackedScene
-var inv_name:String
+@export var inventory_scene: PackedScene
+var inventory_id:int
 @export var container_size:int
 @export var min_spawned:int
 @export var max_spawned:int
@@ -13,10 +13,10 @@ var current_shuffle_bag:Array[LootInformation] = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	var inv_node = inv.instantiate()
+	var inv_node = inventory_scene.instantiate()
 	inv_node.container_size = container_size
-	inv_name = str(inv_node.get_instance_id())
-	Events.create_inventory.emit(inv_node,inv_name)
+	inventory_id = inv_node.get_instance_id()
+	EventBus.add_inventory.emit(inv_node)
 	randomize()
 	await inv_node.ready
 	call_deferred("spawn_loot")
@@ -34,7 +34,7 @@ func spawn_loot():
 	current_shuffle_bag = model_shuffle_bag.duplicate(true)
 	current_shuffle_bag.shuffle()
 			
-	var inv_inst = InventoryManager.get_inventory(inv_name)
+	var inv_inst = InventoryManager.get_inventory(inventory_id)
 	
 #	for loot in loot_scenes:
 #		var loot1_node = loot.instantiate()
@@ -50,7 +50,7 @@ func spawn_loot():
 			var scene = info.scene.instantiate()
 			self.add_child(scene)
 			scene.visible = false
-			var ic = scene.get_node("ItemComponent") as ItemComponent
+			var ic 
 			ic.picked_up()
 			
 			if info.max_stack > 0:
@@ -67,12 +67,12 @@ func get_spawn_info():
 
 func use(player:Player):
 	player.toggle_inventory()
-	Events.player_inventory_closed.connect(on_inv_closed)
-	Events.open_inventory.emit(inv_name)
+	EventBus.player_inventory_closed.connect(on_inv_closed)
+	EventBus.open_inventory.emit(inventory_id)
 
 func on_inv_closed(player:Player):
-	Events.close_inventory.emit(inv_name)
-	Events.player_inventory_closed.disconnect(on_inv_closed)
+	EventBus.close_inventory.emit(inventory_id)
+	EventBus.player_inventory_closed.disconnect(on_inv_closed)
 
 
 func _on_inventory_bag_item_dropped(inv_container_event):

@@ -1,4 +1,4 @@
-extends Node3D
+extends Item3D
 class_name Gun
 
 signal fired

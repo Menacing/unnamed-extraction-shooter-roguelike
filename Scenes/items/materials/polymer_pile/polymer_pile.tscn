@@ -1,8 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://dsu2lajkgpbva"]
+[gd_scene load_steps=3 format=3 uid="uid://dsu2lajkgpbva"]
 
-[ext_resource type="Script" path="res://Scenes/item_component.gd" id="2_lfewf"]
 [ext_resource type="PackedScene" uid="uid://dehe0isaojet1" path="res://Scenes/items/materials/polymer_pile/polymer_pile.glb" id="3_brcr6"]
-[ext_resource type="Resource" uid="uid://bk7x5qi5hl1p8" path="res://Scenes/items/materials/polymer_pile/polymer_pile_inventory_info.tres" id="3_g68vn"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_42oyq"]
 size = Vector3(0.333549, 0.236155, 0.299673)
@@ -16,9 +14,3 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.117739, 0)
 shape = SubResource("BoxShape3D_42oyq")
 
 [node name="polymer_pile" parent="." instance=ExtResource("3_brcr6")]
-
-[node name="ItemComponent" type="Node" parent="."]
-script = ExtResource("2_lfewf")
-inventory_info = ExtResource("3_g68vn")
-id = "polymer_pile"
-world_collider_path = NodePath("../CollisionShape3D")

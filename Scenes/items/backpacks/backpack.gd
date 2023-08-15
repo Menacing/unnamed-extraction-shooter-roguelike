@@ -1,4 +1,4 @@
-extends RigidBody3D
+extends Item3D
 class_name Backpack
 
 enum Size {
