@@ -1,4 +1,4 @@
-extends BaseInventory
+extends InventoryControlBase
 class_name WorldInventory
 
 var _wig:WorldInventoryGrid

@@ -16,7 +16,7 @@ var fade_out_amount:float = 0.0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	Events.compass_player_pulse.connect(_on_compass_player_pulse)
+	EventBus.compass_player_pulse.connect(_on_compass_player_pulse)
 	screen_w = get_viewport().size.x
 	screen_h = get_viewport().size.y
 	var timeleft = LifeTimer.time_left

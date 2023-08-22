@@ -44,19 +44,18 @@ func _ready():
 					loc_free = false
 			#if clear, spawn scene
 			if loc_free:
-				var scene = info.scene.instantiate()
-				var ic = scene.get_node("ItemComponent") as ItemComponent
+				var item = info.scene.instantiate()
 				
 				if info.max_stack > 0:
 					var stack:int = randi_range(info.min_stack, info.max_stack)
-					ic.stack = stack
+					item.stack = stack
 				
 				#scene.set_as_top_level(true)
-				get_parent().add_child.call_deferred(scene)
-				scene.global_position = try_pos + self.global_position
+				get_parent().add_child.call_deferred(item)
+				item.global_position = try_pos + self.global_position
 				spawned_locations.append(try_pos)
 				remaining_tries = 0
-				ic.dropped()
+				item.dropped()
 			else:
 				remaining_tries -= 1
 
