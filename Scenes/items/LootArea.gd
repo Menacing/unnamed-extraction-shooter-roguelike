@@ -48,7 +48,7 @@ func _ready():
 				
 				if info.max_stack > 0:
 					var stack:int = randi_range(info.min_stack, info.max_stack)
-					item.stack = stack
+					item.set_stacks(stack)
 				
 				#scene.set_as_top_level(true)
 				get_parent().add_child.call_deferred(item)

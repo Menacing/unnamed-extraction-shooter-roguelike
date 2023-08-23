@@ -77,6 +77,7 @@ var toggle_crouch_f: bool = false
 var toggle_prone_f: bool = false
 var toggle_inv_f: bool = false
 var legs_destroyed: bool = false
+@onready var player_inventory_id = $PlayerHUD/PlayerInventory.inventory_id
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
@@ -101,7 +102,10 @@ func _ready():
 	#EventBus.item_dropped.connect(_on_item_dropped)
 	#EventBus.item_picked_up.connect(_on_item_picked_up)
 	#EventBus.item_removed.connect(_on_item_removed)
-	EventBus.player_inventory_visibility.emit(toggle_inv_f)
+	if toggle_inv_f:
+		EventBus.open_inventory.emit(player_inventory_id)
+	else:
+		EventBus.close_inventory.emit(player_inventory_id)
 	
 	los_check_locations.append($HitBox/HeadBoneAttachment/eyes)
 	los_check_locations.append($HitBox/RightFootBoneAttachment)

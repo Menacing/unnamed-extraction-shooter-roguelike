@@ -1,5 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://dsu2lajkgpbva"]
+[gd_scene load_steps=4 format=3 uid="uid://dsu2lajkgpbva"]
 
+[ext_resource type="Script" path="res://Scenes/item_3d.gd" id="1_oxvb5"]
 [ext_resource type="PackedScene" uid="uid://dehe0isaojet1" path="res://Scenes/items/materials/polymer_pile/polymer_pile.glb" id="3_brcr6"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_42oyq"]
@@ -8,6 +9,8 @@ size = Vector3(0.333549, 0.236155, 0.299673)
 [node name="polymer_pile" type="RigidBody3D"]
 collision_layer = 5
 collision_mask = 5
+script = ExtResource("1_oxvb5")
+world_collider_path = NodePath("CollisionShape3D")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.117739, 0)

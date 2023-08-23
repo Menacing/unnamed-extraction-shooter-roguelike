@@ -12,6 +12,7 @@ collision_mask = 5
 mass = 6.0
 script = ExtResource("1_1vwom")
 backpack_size = 3
+world_collider_path = NodePath("CollisionShape3D")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.541518, 0.175003)

@@ -7,6 +7,10 @@ signal reloaded
 @export var _bullet_scene : PackedScene
 @export var ads_lean_factor:float = 1.0
 @export var _gun_stats:GunStats
+
+func _ready():
+	super()
+
 var current_fire_mode:String
 
 var Right_Hand:Node3D:

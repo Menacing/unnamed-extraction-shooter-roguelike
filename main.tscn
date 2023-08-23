@@ -1,30 +1,13 @@
-[gd_scene load_steps=21 format=3 uid="uid://c5h2rw1ua14j2"]
+[gd_scene load_steps=17 format=3 uid="uid://c5h2rw1ua14j2"]
 
 [ext_resource type="PackedScene" uid="uid://ctahsvj88g1om" path="res://levels/node_3d.tscn" id="1_jhhor"]
 [ext_resource type="Script" path="res://main.gd" id="1_rh52i"]
-[ext_resource type="Script" path="res://ui/inventory/WorldInventory.gd" id="3_b4tq8"]
 [ext_resource type="PackedScene" uid="uid://daw0xr0lphx2q" path="res://Scenes/Enemies/SpawnArea.tscn" id="3_kf2sg"]
-[ext_resource type="PackedScene" uid="uid://gt018qo38blj" path="res://ui/player_hud.tscn" id="4_4g5aj"]
 [ext_resource type="PackedScene" uid="uid://tyw5186p32ou" path="res://Scenes/items/LootArea.tscn" id="4_k8u6a"]
-[ext_resource type="Script" path="res://ui/inventory/WorldInventoryGrid.gd" id="4_vdfta"]
 [ext_resource type="PackedScene" uid="uid://dsu2lajkgpbva" path="res://Scenes/items/materials/polymer_pile/polymer_pile.tscn" id="5_vgeft"]
 [ext_resource type="Script" path="res://Scenes/items/LootInformation.gd" id="6_6lmcw"]
 [ext_resource type="PackedScene" uid="uid://dr48wela8mtxd" path="res://Scenes/Guns/AK47-Projectile/AK47-Projectile.tscn" id="7_t48wy"]
 [ext_resource type="PackedScene" uid="uid://b6xejgxv7attc" path="res://Scenes/items/backpacks/large/large_backpack.tscn" id="8_lsfc7"]
-
-[sub_resource type="PackedScene" id="PackedScene_v3suu"]
-resource_local_to_scene = true
-_bundled = {
-"conn_count": 0,
-"conns": PackedInt32Array(),
-"editable_instances": [],
-"names": PackedStringArray("WorldInventory", "layout_mode", "anchors_preset", "anchor_right", "anchor_bottom", "grow_horizontal", "grow_vertical", "size_flags_horizontal", "size_flags_vertical", "script", "grid_inv_path", "Control", "InventoryBase", "offset_right", "inventory_controls", "Panel", "WorldInventoryGrid", "modulate", "anchor_left", "anchor_top", "offset_left", "offset_top", "offset_bottom", "theme_override_constants/h_separation", "theme_override_constants/v_separation", "columns", "GridContainer"),
-"node_count": 3,
-"node_paths": [],
-"nodes": PackedInt32Array(-1, -1, 11, 0, -1, 10, 1, 0, 2, 1, 3, 2, 4, 2, 5, 3, 6, 3, 7, 0, 8, 0, 9, 4, 10, 5, 0, 0, 0, 15, 12, -1, 5, 1, 6, 2, 7, 4, 2, 13, 8, 6, 3, 1, 14, 1, 0, 26, 16, -1, 17, 17, 9, 1, 6, 2, 10, 18, 11, 19, 11, 3, 11, 4, 11, 20, 12, 21, 13, 13, 14, 22, 15, 5, 3, 6, 3, 23, 16, 24, 16, 25, 17, 9, 18, 1, 14),
-"variants": [3, 15, 1.0, 2, ExtResource("3_b4tq8"), NodePath("InventoryBase/WorldInventoryGrid"), 1, 9, 576.0, Color(0.686275, 0.686275, 0.686275, 1), 8, 0.5, -112.0, -128.0, 112.0, 128.0, 0, 7, ExtResource("4_vdfta")],
-"version": 3
-}
 
 [sub_resource type="Resource" id="Resource_3xsmh"]
 script = ExtResource("6_6lmcw")
@@ -93,7 +76,6 @@ script = ExtResource("1_rh52i")
 [node name="World" parent="." instance=ExtResource("1_jhhor")]
 
 [node name="dev_chest" parent="World/NavigationRegion3D" index="8"]
-inv = SubResource("PackedScene_v3suu")
 min_spawned = 10
 max_spawned = 10
 spawn_info = Array[ExtResource("6_6lmcw")]([SubResource("Resource_3xsmh"), SubResource("Resource_olp20"), SubResource("Resource_prf8b")])
@@ -175,10 +157,11 @@ shape = SubResource("BoxShape3D_mxaif")
 [node name="AK47-Projectile" parent="World" instance=ExtResource("7_t48wy")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.164297, -9.16399)
 
-[node name="PlayerHUD" parent="." instance=ExtResource("4_4g5aj")]
-
 [editable path="World"]
 [editable path="World/Player"]
 [editable path="World/Player/player_default_mesh"]
+[editable path="World/Player/PlayerHUD"]
+[editable path="World/Player/PlayerHUD/interaction_helpers"]
+[editable path="World/Player/PlayerHUD/PlayerInventory"]
 [editable path="World/SpawnArea"]
 [editable path="World/LootArea"]

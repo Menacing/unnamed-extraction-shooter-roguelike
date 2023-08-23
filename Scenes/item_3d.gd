@@ -1,4 +1,4 @@
-extends Node3D
+extends RigidBody3D
 class_name Item3D
 
 var item_instance_id:int
@@ -24,11 +24,12 @@ var meshes:Array[MeshInstance3D]:
 		if _meshes:
 			return _meshes
 		else:
-			_meshes = get_all_mesh_nodes(get_parent())
+			_meshes = get_all_mesh_nodes(self)
 			return _meshes
 
 
 func _ready():
+	assert(world_collider_path != null)
 	if start_highlighted:
 		set_material_overlay(item_highlight_m)
 	else:
@@ -53,26 +54,25 @@ func set_material_overlay(mat:Material):
 			mesh.material_overlay = mat
 
 func dropped():
-	var parent = get_parent()
 	world_collider.disabled = false
-	parent.freeze = false
-	parent.visible = true
+	self.freeze = false
+	self.visible = true
 	set_material_overlay(item_highlight_m)
-	if parent is RigidBody3D:
-		parent.apply_torque_impulse(Vector3.FORWARD)
+	
+	self.apply_torque_impulse(Vector3.FORWARD)
 	
 
 func picked_up():
-	get_parent().transform = Transform3D.IDENTITY
+	self.transform = Transform3D.IDENTITY
 #	self.gravity_scale = 0
 	world_collider.disabled = true
-	get_parent().freeze = true
+	self.freeze = true
 	set_material_overlay(null)
 
 	
 func destroy():
 	#Events.item_destroyed.emit(self)
-	var parent = self.get_parent()
-	if parent:
-		parent.call_deferred("queue_free")
-	self.queue_free()
+	self.call_deferred("queue_free")
+
+func set_stacks(amount:int):
+	_item_instance.stacks = amount

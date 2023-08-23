@@ -14,6 +14,7 @@ var rng: RandomNumberGenerator
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	super()
 	$ReloadTimer.connect("timeout", reloaded_callback)
 	rng = RandomNumberGenerator.new()
 	fire_timer.wait_time = 60.0/_gun_stats.rpm
