@@ -1,21 +1,25 @@
-[gd_resource type="Resource" script_class="InventoryItemInfo" load_steps=5 format=3 uid="uid://dv187kl8jcl01"]
+[gd_resource type="Resource" script_class="ItemInformation" load_steps=6 format=3 uid="uid://dv187kl8jcl01"]
 
-[ext_resource type="Resource" uid="uid://d00xymsq3bymw" path="res://Scenes/Guns/AK47-Projectile/drop_item_context_menu_option.tres" id="1_v1lw5"]
 [ext_resource type="Texture2D" uid="uid://cx56hl85mqcn" path="res://Scenes/items/backpacks/large/large_backpack_icon.png" id="2_skr10"]
 [ext_resource type="Texture2D" uid="uid://cempvc5mi4hka" path="res://Scenes/items/backpacks/large/large_backpack_icon_r.png" id="3_dwmoj"]
-[ext_resource type="Script" path="res://Scenes/inventory_item_info.gd" id="4_l1oi8"]
+[ext_resource type="PackedScene" uid="uid://b6xejgxv7attc" path="res://Scenes/items/backpacks/large/large_backpack.tscn" id="3_wwaa4"]
+[ext_resource type="Script" path="res://resource_access/item_information.gd" id="4_l1oi8"]
+[ext_resource type="PackedScene" uid="uid://cn3ywqty7xvvr" path="res://ui/inventory/item_control.tscn" id="4_ws1fs"]
 
 [resource]
 script = ExtResource("4_l1oi8")
+item_control_scene = ExtResource("4_ws1fs")
+item_3d_scene = ExtResource("3_wwaa4")
+item_type_id = 0
 show_name = true
 display_name = "Large Backpack"
 item_type = 1
 icon = ExtResource("2_skr10")
 icon_r = ExtResource("3_dwmoj")
-mod_slots = Array[Resource("res://Scenes/Guns/mod_slot.gd")]([])
-context_menu_items = Array[Resource("res://ui/inventory/item_context_item.gd")]([ExtResource("1_v1lw5")])
 max_stacks = 1
+has_stacks = false
 max_durability = 1
+has_durability = false
 column_span = 2
 row_span = 4
 tooltip_text = ""

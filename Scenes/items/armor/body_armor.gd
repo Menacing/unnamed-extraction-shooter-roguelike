@@ -21,20 +21,17 @@ var existing_layer_bitmask
 var existing_mask_bitmask
 
 func picked_up():
-	var parent:PhysicsBody3D = get_parent()
-	parent.transform = Transform3D.IDENTITY
-	existing_layer_bitmask = parent.collision_layer
-	existing_mask_bitmask = parent.collision_mask
-	parent.collision_layer = ballistic_layer_bitmask
-	parent.collision_mask = ballistic_mask_bitmask
+	self.transform = Transform3D.IDENTITY
+	existing_layer_bitmask = self.collision_layer
+	existing_mask_bitmask = self.collision_mask
+	self.collision_layer = ballistic_layer_bitmask
+	self.collision_mask = ballistic_mask_bitmask
 	set_material_overlay(null)
-	parent.freeze = true
+	self.freeze = true
 
 func dropped():
-	var parent = get_parent()
-	parent.collision_layer = existing_layer_bitmask
-	parent.collision_mask = existing_mask_bitmask
+	self.collision_layer = existing_layer_bitmask
+	self.collision_mask = existing_mask_bitmask
 	set_material_overlay(item_highlight_m)
-	parent.freeze = false
-	if parent is RigidBody3D:
-		parent.apply_torque_impulse(Vector3.FORWARD)
+	self.freeze = false
+	self.apply_torque_impulse(Vector3.FORWARD)

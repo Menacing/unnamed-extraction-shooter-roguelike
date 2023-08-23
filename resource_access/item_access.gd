@@ -48,7 +48,7 @@ static func destroy_item(item:ItemInstance):
 		item.free()
 
 static func clone_instance(original: ItemInstance) -> ItemInstance:
-	var new_instance = ItemInstance.new()
+	var new_instance = ItemInstance.new(original._item_info)
 
 	# Copy properties
 	if original.id_3d != 0:

@@ -30,7 +30,9 @@ func _ready():
 	current_shuffle_bag.shuffle()
 	
 	for i in range(number_to_spawn):
-		var info = get_spawn_info()
+		var info:LootInformation = get_spawn_info()
+		var item_instance = ItemInstance.new(info.item_information)
+		item_instance.spawn_item()
 		
 		var final_pos:Vector3
 		var remaining_tries = 5
@@ -44,23 +46,23 @@ func _ready():
 					loc_free = false
 			#if clear, spawn scene
 			if loc_free:
-				var item = info.scene.instantiate()
+				var item_3d:Item3D = instance_from_id(item_instance.id_3d)
 				
 				if info.max_stack > 0:
 					var stack:int = randi_range(info.min_stack, info.max_stack)
-					item.set_stacks(stack)
+					item_instance.stacks = stack
 				
 				#scene.set_as_top_level(true)
-				get_parent().add_child.call_deferred(item)
-				item.global_position = try_pos + self.global_position
+				get_parent().add_child.call_deferred(item_3d)
+				item_3d.global_position = try_pos + self.global_position
 				spawned_locations.append(try_pos)
 				remaining_tries = 0
-				item.dropped()
+				item_3d.dropped()
 			else:
 				remaining_tries -= 1
 
 
-func get_spawn_info():
+func get_spawn_info() -> LootInformation:
 	if current_shuffle_bag.is_empty():
 		current_shuffle_bag = model_shuffle_bag.duplicate(true)
 		current_shuffle_bag.shuffle()

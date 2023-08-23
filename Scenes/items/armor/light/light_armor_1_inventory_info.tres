@@ -1,21 +1,25 @@
-[gd_resource type="Resource" script_class="InventoryItemInfo" load_steps=5 format=3 uid="uid://25dmf2cpvdfq"]
+[gd_resource type="Resource" script_class="ItemInformation" load_steps=6 format=3 uid="uid://25dmf2cpvdfq"]
 
-[ext_resource type="Resource" uid="uid://d00xymsq3bymw" path="res://Scenes/Guns/AK47-Projectile/drop_item_context_menu_option.tres" id="1_amrtp"]
 [ext_resource type="Texture2D" uid="uid://coprbtc0u8k1s" path="res://Scenes/items/armor/light/light_armor_1_icon.png" id="2_l1s25"]
+[ext_resource type="PackedScene" uid="uid://c2mgc1vc3603e" path="res://Scenes/items/armor/light/light_armor_1.tscn" id="3_08liq"]
 [ext_resource type="Texture2D" uid="uid://d0vjv5gg8p7mi" path="res://Scenes/items/armor/light/light_armor_1_icon_r.png" id="3_33vnq"]
-[ext_resource type="Script" path="res://Scenes/inventory_item_info.gd" id="4_b3cb6"]
+[ext_resource type="Script" path="res://resource_access/item_information.gd" id="4_b3cb6"]
+[ext_resource type="PackedScene" uid="uid://cn3ywqty7xvvr" path="res://ui/inventory/item_control.tscn" id="4_ycr26"]
 
 [resource]
 script = ExtResource("4_b3cb6")
+item_control_scene = ExtResource("4_ycr26")
+item_3d_scene = ExtResource("3_08liq")
+item_type_id = 0
 show_name = true
 display_name = "Light Armor"
 item_type = 3
 icon = ExtResource("2_l1s25")
 icon_r = ExtResource("3_33vnq")
-mod_slots = Array[Resource("res://Scenes/Guns/mod_slot.gd")]([])
-context_menu_items = Array[Resource("res://ui/inventory/item_context_item.gd")]([ExtResource("1_amrtp")])
 max_stacks = 1
+has_stacks = false
 max_durability = 100
+has_durability = false
 column_span = 3
 row_span = 3
 tooltip_text = ""

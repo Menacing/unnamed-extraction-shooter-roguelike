@@ -12,7 +12,6 @@
 script = ExtResource("7_bspv3")
 name = "ak"
 spawn_weight = 1
-scene = ExtResource("2_q4rc2")
 test_radius = 0.0
 min_stack = 0
 max_stack = 0
@@ -57,7 +56,7 @@ joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.222436)
 body_offset = Transform3D(1, 0, 0, 0, 0, -1, 0, 1, 0, 0, 0.222436, 0)
 bone_name = "Bone"
 script = ExtResource("5_grn4r")
-inv = ExtResource("6_sg0n5")
+inventory_scene = ExtResource("6_sg0n5")
 container_size = 21
 max_spawned = 1
 spawn_info = Array[ExtResource("7_bspv3")]([SubResource("Resource_w58g1")])
@@ -98,7 +97,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.59569, 0)
 shape = SubResource("BoxShape3D_hycai")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
-agent_height_offset = 0.2
+path_height_offset = 0.2
 debug_enabled = true
 
 [node name="RepathTimer" type="Timer" parent="."]

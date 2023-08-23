@@ -1,5 +1,9 @@
 extends Object
 class_name ItemInstance
+
+func _init(item_info:ItemInformation):
+	_item_info = item_info
+
 var id_3d:int
 var id_2d:int
 var _item_info:ItemInformation
@@ -62,4 +66,12 @@ func get_texture() -> Texture:
 	else:
 		return _item_info.icon_r
 
-
+#after you call this you must add the instanced scenes to the scene tree
+func spawn_item():
+	if _item_info.item_control_scene:
+		var item_control:ItemControl = _item_info.item_control_scene.instantiate()
+		self.id_2d = item_control.get_instance_id()
+	if _item_info.item_3d_scene:
+		var item_3d:Item3D = _item_info.item_3d_scene.instantiate()
+		self.id_3d = item_3d.get_instance_id()
+		
