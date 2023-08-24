@@ -36,7 +36,6 @@ func spawn_loot():
 			var info:LootInformation = get_spawn_info()
 			var item_instance = ItemInstance.new(info.item_information)
 			item_instance.spawn_item()
-			
 			if info.max_stack > 0:
 				var stack:int = randi_range(info.min_stack, info.max_stack)
 				item_instance.stacks = stack

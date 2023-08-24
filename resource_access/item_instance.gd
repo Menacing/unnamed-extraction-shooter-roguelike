@@ -71,7 +71,9 @@ func spawn_item():
 	if _item_info.item_control_scene:
 		var item_control:ItemControl = _item_info.item_control_scene.instantiate()
 		self.id_2d = item_control.get_instance_id()
+		item_control.item_instance_id = self.get_instance_id()
 	if _item_info.item_3d_scene:
 		var item_3d:Item3D = _item_info.item_3d_scene.instantiate()
 		self.id_3d = item_3d.get_instance_id()
+		item_3d.item_instance_id = self.get_instance_id()
 		

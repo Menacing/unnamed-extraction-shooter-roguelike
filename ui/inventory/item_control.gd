@@ -13,6 +13,7 @@ func _ready():
 	show_count = _item_instance.get_has_stacks()
 	name_label.text = _item_instance.get_display_name()
 	show_name = _item_instance.get_show_name()
+	update_dimensions()
 
 func _on_item_picked_up(result:InventoryInsertResult):
 	if result.item_instance_id == item_instance_id:
@@ -37,7 +38,10 @@ func update_dimensions():
 var _orig_is_rotated:bool
 var _is_rotated:bool:
 	get:
-		return _item_instance.is_rotated
+		if _item_instance:
+			return _item_instance.is_rotated
+		else:
+			return false
 	set(value):
 		if _item_instance:
 			_item_instance.is_rotated = value

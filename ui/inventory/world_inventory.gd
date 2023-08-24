@@ -22,7 +22,6 @@ func _ready():
 	EventBus.item_picked_up.connect(_on_item_picked_up)
 
 func _on_item_picked_up(result:InventoryInsertResult):
-	var self_object_id = self.get_instance_id()
 	var inv_id = _inventory.get_instance_id()
 	if result.inventory_id == _inventory.get_instance_id() and result.picked_up:
 		
