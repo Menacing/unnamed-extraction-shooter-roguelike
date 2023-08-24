@@ -1,13 +1,13 @@
 extends CharacterBody3D
 
 @onready var nav_agent = $NavigationAgent3D
-@onready var gun_item_component = $"Node3D/AK47-Projectile/ItemComponent"
+@onready var gun = $"Node3D/AK47-Projectile"
 
 var SPEED = 3.0
 var player
 
 func _ready():
-	gun_item_component.picked_up()
+	gun.picked_up()
 
 func _physics_process(delta):
 	var current_location = global_transform.origin

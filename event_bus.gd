@@ -1,23 +1,6 @@
 extends Node
 
 #Inventory Events
-#signal player_inventory_visibility(show:bool)
-#signal player_inventory_closed(player:Player)
-#signal player_inventory_try_pickup(item_component:ItemComponent)
-#signal item_equipped(slot_name:String, item_equipped:ItemComponent)
-#signal item_removed(slot_name:String, item_removed:ItemComponent)
-#signal item_dropped(item_dropped:ItemComponent)
-#signal item_picked_up(item_picked_up:ItemComponent)
-#signal item_destroyed(item_comp:ItemComponent)
-#signal context_menu_dropped(iib:InvItemBase, pos:Vector2)
-#signal open_detail_popup(iib:InvItemBase, pos:Vector2)
-#signal context_menu_opened()
-#signal context_menu_closed()
-#
-
-#signal create_inventory(inventory:Node, inventory_name:String)
-
-#Inventory Events Rework
 signal add_inventory(inventory:Inventory)
 signal pickup_item(item_inst:ItemInstance, target_inventory_id:int)
 signal drop_item(item_inst:ItemInstance, inventory_id:int)

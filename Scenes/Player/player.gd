@@ -272,8 +272,7 @@ func _physics_process(delta):
 		#handle use hint
 		if use_ray.is_colliding():
 				var col = use_ray.get_collider()
-				var ic = col.get_node("ItemComponent")
-				if ic:
+				if col is Item3D:
 					EventBus.pickup_helper_visibility.emit(true)
 				elif col.has_method("use"):
 					EventBus.use_helper_visibility.emit(true)
@@ -412,9 +411,8 @@ func _input(event):
 		elif event.is_action_pressed("use"):
 			if use_ray.is_colliding():
 				var col = use_ray.get_collider()
-				var col_icomp = col.get_node("ItemComponent")
-				if col_icomp:
-					EventBus.player_inventory_try_pickup.emit(col_icomp)
+				if col is Item3D:
+					EventBus.pickup_item.emit(col._item_instance, player_inventory_id)
 				elif col.has_method("use"):
 					col.use(self)
 		elif event.is_action_pressed("dropGun"):
@@ -432,12 +430,13 @@ func _input(event):
 		
 func toggle_inventory():
 	toggle_inv_f = !toggle_inv_f
-	EventBus.player_inventory_visibility.emit(toggle_inv_f)
+	
 	if toggle_inv_f:
 		Input.mouse_mode = Input.MOUSE_MODE_CONFINED
+		EventBus.open_inventory.emit(player_inventory_id)
 	else:
-		EventBus.player_inventory_closed.emit(self)
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+		EventBus.close_inventory.emit(player_inventory_id)
 
 func transformMouse(event: InputEventMouse):
 	var vert_rotation = -event.relative.x * GameSettings.h_mouse_sens/1000.0

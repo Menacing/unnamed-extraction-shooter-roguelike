@@ -15,7 +15,7 @@ var current_shuffle_bag:Array[LootInformation] = []
 func _ready():
 	var inv_node = inventory_scene.instantiate()
 	inv_node.container_size = container_size
-	inventory_id = inv_node.get_instance_id()
+	inventory_id = inv_node.inventory_id
 	EventBus.add_inventory.emit(inv_node)
 	randomize()
 	await inv_node.ready
@@ -35,14 +35,6 @@ func spawn_loot():
 	current_shuffle_bag.shuffle()
 			
 	var inv_inst = InventoryManager.get_inventory(inventory_id)
-	
-#	for loot in loot_scenes:
-#		var loot1_node = loot.instantiate()
-#		self.add_child(loot1_node)
-#		loot1_node.visible = false
-#		var loot1_item_comp = loot1_node.get_node("ItemComponent")
-#		loot1_item_comp.picked_up()
-#		loot_item_comps.append(loot1_item_comp)
 	
 	if inv_inst:
 		for i in range(number_to_spawn):
@@ -67,12 +59,12 @@ func get_spawn_info():
 
 func use(player:Player):
 	player.toggle_inventory()
-	EventBus.player_inventory_closed.connect(on_inv_closed)
+	#EventBus.player_inventory_closed.connect(on_inv_closed)
 	EventBus.open_inventory.emit(inventory_id)
 
 func on_inv_closed(player:Player):
 	EventBus.close_inventory.emit(inventory_id)
-	EventBus.player_inventory_closed.disconnect(on_inv_closed)
+	#EventBus.player_inventory_closed.disconnect(on_inv_closed)
 
 
 func _on_inventory_bag_item_dropped(inv_container_event):

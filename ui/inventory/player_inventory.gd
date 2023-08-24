@@ -4,8 +4,7 @@ extends InventoryControlBase
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	_inventory.setup()
-	EventBus.add_inventory.emit(_inventory)
+	super()
 	EventBus.item_picked_up.connect(_on_item_picked_up)
 	pass # Replace with function body.
 
