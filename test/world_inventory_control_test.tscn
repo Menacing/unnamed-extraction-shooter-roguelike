@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://c3vhfj3a62or4"]
+
+[ext_resource type="Script" path="res://test/world_inventory_control_test.gd" id="1_hou4v"]
+[ext_resource type="PackedScene" uid="uid://douyxwjscs4ff" path="res://ui/inventory/world_inventory.tscn" id="1_k430c"]
+
+[node name="world_inventory_control_test" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_hou4v")
+
+[node name="WorldInventory" parent="." instance=ExtResource("1_k430c")]
+layout_mode = 1
+
+[editable path="WorldInventory"]

@@ -105,7 +105,7 @@ func _ready():
 	if toggle_inv_f:
 		EventBus.open_inventory.emit(player_inventory_id)
 	else:
-		EventBus.close_inventory.emit(player_inventory_id)
+		EventBus.close_all_inventories.emit()
 	
 	los_check_locations.append($HitBox/HeadBoneAttachment/eyes)
 	los_check_locations.append($HitBox/RightFootBoneAttachment)
@@ -432,11 +432,19 @@ func toggle_inventory():
 	toggle_inv_f = !toggle_inv_f
 	
 	if toggle_inv_f:
-		Input.mouse_mode = Input.MOUSE_MODE_CONFINED
-		EventBus.open_inventory.emit(player_inventory_id)
+		open_inventory()
 	else:
-		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-		EventBus.close_inventory.emit(player_inventory_id)
+		close_inventory()
+		
+func open_inventory():
+	toggle_inv_f = true
+	Input.mouse_mode = Input.MOUSE_MODE_CONFINED
+	EventBus.open_inventory.emit(player_inventory_id)
+	
+func close_inventory():
+	toggle_inv_f = false
+	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	EventBus.close_all_inventories.emit()
 
 func transformMouse(event: InputEventMouse):
 	var vert_rotation = -event.relative.x * GameSettings.h_mouse_sens/1000.0

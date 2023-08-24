@@ -15,6 +15,7 @@ var current_menu:Node = null
 var current_scene:Node = null
 var current_menu_level:MENU_LEVEL = MENU_LEVEL.NONE
 var previous_menu_level:MENU_LEVEL = MENU_LEVEL.NONE
+var menu_layer:int = 15
 
 func _ready():
 	var root = get_tree().root
@@ -36,6 +37,7 @@ func _deffered_load_menu(menuLevel:MENU_LEVEL):
 		var menunode = CanvasLayer.new()
 		menunode.set_name("menu")
 		menunode.process_mode = Node.PROCESS_MODE_ALWAYS
+		menunode.layer = menu_layer
 		current_scene.add_child(menunode)
 		container = menunode
 	#clear the current menu item/s

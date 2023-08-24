@@ -50,9 +50,12 @@ func get_spawn_info() -> LootInformation:
 	return current_shuffle_bag.pop_front()
 
 func use(player:Player):
-	player.toggle_inventory()
-	#EventBus.player_inventory_closed.connect(on_inv_closed)
-	EventBus.open_inventory.emit(inventory_id)
+	if world_inventory_control.visible:
+		player.close_inventory()
+		EventBus.close_inventory.emit(inventory_id)
+	else:
+		player.open_inventory()
+		EventBus.open_inventory.emit(inventory_id)
 
 func on_inv_closed(player:Player):
 	EventBus.close_inventory.emit(inventory_id)

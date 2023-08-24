@@ -1,7 +1,7 @@
 extends Control
 
-@onready var player_inv_control = $PlayerInventory
-@onready var player_inv_id:int = player_inv_control._inventory.get_instance_id()
+@onready var world_inv_control = $WorldInventory
+@onready var world_inv_id:int = world_inv_control._inventory.get_instance_id()
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -31,11 +31,4 @@ func add_test_item():
 	item.id_2d = item_control.get_instance_id()
 	
 	self.add_child(item_control)
-	EventBus.pickup_item.emit(item,player_inv_id)
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-
-
-
+	EventBus.pickup_item.emit(item,world_inv_id)

@@ -9,6 +9,7 @@ signal item_removed_from_inventory(item_inst:ItemInstance, inventory_id:int)
 signal item_stack_count_changed(item_inst:ItemInstance)
 signal item_durability_changed(item_inst:ItemInstance)
 signal close_inventory(inventory_id:int)
+signal close_all_inventories()
 signal open_inventory(inventory_id:int)
 #Health Events
 signal took_damage(damage:float, hit_origin:Vector3)
