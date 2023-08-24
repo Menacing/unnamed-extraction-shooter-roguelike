@@ -9,6 +9,9 @@ var grid_height = 0
 var cell_size:int:
 	get:
 		return self.get_child(0).custom_minimum_size.x
+		
+func _ready():
+	pass
 
 func add_item_control(item_control:ItemControl, x:int, y:int):
 	var cell = _get_grid_cell_control(x,y)

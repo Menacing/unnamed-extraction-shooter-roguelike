@@ -143,6 +143,9 @@ func _destroy_depleted_durability(item_instance:ItemInstance):
 
 func add_inventory(inventory:Inventory):
 	_inventory_access.add_inventory(inventory)
+	
+func inventory_exists(inventory_id:int) -> bool:
+	return _inventory_access.get_inventory(inventory_id) != null
 
 func remove_item(item_instance_id:int, source_inventory_id:int):
 	var item_inst = get_item(item_instance_id)	

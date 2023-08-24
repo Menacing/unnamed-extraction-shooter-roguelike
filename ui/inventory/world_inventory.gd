@@ -16,3 +16,5 @@ var container_size:int:
 		wig.container_size = value
 		wig.set_container_size(value)
 
+func _ready():
+	super()

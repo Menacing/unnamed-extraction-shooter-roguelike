@@ -4,8 +4,8 @@ class_name WorldInventoryGrid
 @export var container_size:int = 14
 
 func _ready():
-	set_container_size(container_size)
 	super()
+	set_container_size(container_size)
 	
 func set_container_size(number_cells:int) -> void:
 	#find number current cells

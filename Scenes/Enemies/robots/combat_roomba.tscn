@@ -1,17 +1,19 @@
-[gd_scene load_steps=14 format=3 uid="uid://ciaqbr34myu5w"]
+[gd_scene load_steps=15 format=3 uid="uid://ciaqbr34myu5w"]
 
 [ext_resource type="Script" path="res://Scenes/Enemies/robots/combat_roomba.gd" id="1_f1cah"]
 [ext_resource type="PackedScene" uid="uid://dr48wela8mtxd" path="res://Scenes/Guns/AK47-Projectile/AK47-Projectile.tscn" id="2_q4rc2"]
 [ext_resource type="PackedScene" uid="uid://bbjimpqtecww7" path="res://Scenes/Enemies/robots/combat-roomba.glb" id="3_wwy82"]
 [ext_resource type="PackedScene" uid="uid://5n7aup1d2u20" path="res://Scenes/effects/bullet_hit_sparks.tscn" id="3_x3mdn"]
 [ext_resource type="Script" path="res://Scenes/containers/world_container.gd" id="5_grn4r"]
-[ext_resource type="PackedScene" uid="uid://douyxwjscs4ff" path="res://ui/inventory/world_inventory.tscn" id="6_sg0n5"]
+[ext_resource type="Resource" uid="uid://xufa6auvjw6t" path="res://Scenes/Guns/AK47-Projectile/zs_52_inventory_info.tres" id="6_654bm"]
 [ext_resource type="Script" path="res://Scenes/items/LootInformation.gd" id="7_bspv3"]
+[ext_resource type="PackedScene" uid="uid://douyxwjscs4ff" path="res://ui/inventory/world_inventory.tscn" id="7_gxy1y"]
 
 [sub_resource type="Resource" id="Resource_w58g1"]
 script = ExtResource("7_bspv3")
 name = "ak"
 spawn_weight = 1
+item_information = ExtResource("6_654bm")
 test_radius = 0.0
 min_stack = 0
 max_stack = 0
@@ -56,7 +58,6 @@ joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.222436)
 body_offset = Transform3D(1, 0, 0, 0, 0, -1, 0, 1, 0, 0, 0.222436, 0)
 bone_name = "Bone"
 script = ExtResource("5_grn4r")
-inventory_scene = ExtResource("6_sg0n5")
 container_size = 21
 max_spawned = 1
 spawn_info = Array[ExtResource("7_bspv3")]([SubResource("Resource_w58g1")])
@@ -73,6 +74,9 @@ spot_angle = 5.0
 [node name="CollisionShape3D" type="CollisionShape3D" parent="combat-roomba/Armature/Skeleton3D/Physical Bone Bone"]
 transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, 0, 0, -0.703788)
 shape = SubResource("BoxShape3D_wvt7k")
+
+[node name="WorldInventory" parent="combat-roomba/Armature/Skeleton3D/Physical Bone Bone" instance=ExtResource("7_gxy1y")]
+visible = false
 
 [node name="FireTimer" type="Timer" parent="."]
 wait_time = 0.5
