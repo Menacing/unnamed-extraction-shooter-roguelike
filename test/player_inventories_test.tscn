@@ -20,6 +20,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 [node name="dev_chest" parent="." instance=ExtResource("1_m5v6f")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 0)
 min_spawned = 1
+max_spawned = 2
 spawn_info = Array[ExtResource("3_be1y6")]([SubResource("Resource_toxma")])
 
 [node name="Player" parent="." instance=ExtResource("2_2lo2l")]

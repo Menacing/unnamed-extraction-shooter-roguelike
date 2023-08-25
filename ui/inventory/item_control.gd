@@ -221,7 +221,7 @@ func _create_drag_control() -> Control:
 	var drag_control = Control.new()
 	drag_control.size = self.size
 	drag_control.add_child(drag_texture)
-	drag_texture.position = -0.25 * drag_texture.size
+	drag_texture.position = Vector2(-cell_size/2,-cell_size/2)
 	drag_control.z_index = self.z_index + 1
 	drag_control.modulate = Color(Color.WHITE, .5)
 	return drag_control
