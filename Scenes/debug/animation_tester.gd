@@ -14,5 +14,5 @@ func _process(delta):
 
 
 func _on_timer_timeout():
-	EventBus.pickup_item.emit(gun._item_instance, player.player_inventory_id)
+	EventBus.pickup_item.emit(gun.get_item_instance(), player.player_inventory_id)
 	pass # Replace with function body.

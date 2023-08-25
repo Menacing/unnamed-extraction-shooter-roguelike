@@ -2,10 +2,12 @@ extends RigidBody3D
 class_name Item3D
 
 var item_instance_id:int
-var _item_instance:ItemInstance:
-	get:
-		return InventoryManager.get_item(item_instance_id)
-
+func get_item_instance() -> ItemInstance:
+	if item_instance_id == 0:
+		spawn_item()
+	return InventoryManager.get_item(item_instance_id)
+			
+@export var item_information_path:String
 @export var world_collider_path:NodePath
 var _world_collider:CollisionShape3D
 var world_collider:CollisionShape3D:
@@ -75,4 +77,12 @@ func destroy():
 	self.call_deferred("queue_free")
 
 func set_stacks(amount:int):
-	_item_instance.stacks = amount
+	get_item_instance().stacks = amount
+	
+func spawn_item():
+	if item_information_path:
+		var item_info:ItemInformation = load(item_information_path)
+		var item_instance = ItemInstance.new(item_info)
+		item_instance_id = item_instance.get_instance_id()
+		item_instance.id_3d = self.get_instance_id()
+		item_instance.spawn_item()

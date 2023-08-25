@@ -412,7 +412,7 @@ func _input(event):
 			if use_ray.is_colliding():
 				var col = use_ray.get_collider()
 				if col is Item3D:
-					EventBus.pickup_item.emit(col._item_instance, player_inventory_id)
+					EventBus.pickup_item.emit(col.get_item_instance(), player_inventory_id)
 				elif col.has_method("use"):
 					col.use(self)
 		elif event.is_action_pressed("dropGun"):

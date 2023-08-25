@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="ItemInformation" load_steps=7 format=3 uid="uid://xufa6auvjw6t"]
 
 [ext_resource type="PackedScene" uid="uid://0hy4cl1x7qwx" path="res://ui/inventory/item_detail_popup.tscn" id="3_ixxjo"]
-[ext_resource type="PackedScene" uid="uid://dr48wela8mtxd" path="res://Scenes/Guns/AK47-Projectile/AK47-Projectile.tscn" id="4_d87bp"]
+[ext_resource type="PackedScene" uid="uid://dr48wela8mtxd" path="res://Scenes/Guns/AK47-Projectile/AK47-Projectile.tscn" id="4_0ycxn"]
 [ext_resource type="Texture2D" uid="uid://ba6swy08v2qk5" path="res://Scenes/Guns/AK47-Projectile/ak48_img.png" id="4_gb6x6"]
 [ext_resource type="Texture2D" uid="uid://dr6sjdo1s66wv" path="res://Scenes/Guns/AK47-Projectile/ak48_img_r.png" id="5_26m2q"]
 [ext_resource type="PackedScene" uid="uid://cn3ywqty7xvvr" path="res://ui/inventory/item_control.tscn" id="5_iyay8"]
@@ -10,7 +10,7 @@
 [resource]
 script = ExtResource("7_xa41m")
 item_control_scene = ExtResource("5_iyay8")
-item_3d_scene = ExtResource("4_d87bp")
+item_3d_scene = ExtResource("4_0ycxn")
 item_type_id = 0
 show_name = true
 display_name = "ZS-52"

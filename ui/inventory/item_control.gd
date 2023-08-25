@@ -2,17 +2,16 @@ extends MarginContainer
 class_name ItemControl
 
 var item_instance_id:int
-var _item_instance:ItemInstance:
-	get:
-		return InventoryManager.get_item(item_instance_id)
+func get_item_instance() -> ItemInstance:
+	return InventoryManager.get_item(item_instance_id)
 
 func _ready():
 	EventBus.item_picked_up.connect(_on_item_picked_up)
 	EventBus.item_stack_count_changed.connect(_on_item_stack_count_changed)
-	show_durability = _item_instance.get_has_durability()
-	show_count = _item_instance.get_has_stacks()
-	name_label.text = _item_instance.get_display_name()
-	show_name = _item_instance.get_show_name()
+	show_durability = get_item_instance().get_has_durability()
+	show_count = get_item_instance().get_has_stacks()
+	name_label.text = get_item_instance().get_display_name()
+	show_name = get_item_instance().get_show_name()
 	update_dimensions()
 
 func _on_item_picked_up(result:InventoryInsertResult):
@@ -30,21 +29,21 @@ func _on_item_durability_count_changed(item_inst:ItemInstance):
 
 func update_dimensions():
 	var cell_size = Helpers.get_cell_size()
-	self.size.x = _item_instance.get_width() * cell_size
-	self.size.y = _item_instance.get_height() * cell_size
-	item_texture_rect.texture = _item_instance.get_texture()
+	self.size.x = get_item_instance().get_width() * cell_size
+	self.size.y = get_item_instance().get_height() * cell_size
+	item_texture_rect.texture = get_item_instance().get_texture()
 		
 
 var _orig_is_rotated:bool
 var _is_rotated:bool:
 	get:
-		if _item_instance:
-			return _item_instance.is_rotated
+		if get_item_instance():
+			return get_item_instance().is_rotated
 		else:
 			return false
 	set(value):
-		if _item_instance:
-			_item_instance.is_rotated = value
+		if get_item_instance():
+			get_item_instance().is_rotated = value
 
 var _item_texture_rect:TextureRect
 var item_texture_rect:TextureRect:
@@ -158,7 +157,7 @@ func _input(event:InputEvent):
 				drop_data["number_to_drop"] = 1
 				if control._can_drop_data(local_pos, drop_data):
 					control._drop_data(local_pos, drop_data)
-					if _item_instance and !is_queued_for_deletion():
+					if get_item_instance() and !is_queued_for_deletion():
 						force_drag(create_drag_data_data(), _create_drag_control())
 					
 			accept_event()
@@ -214,9 +213,9 @@ func _create_drag_control() -> Control:
 	drag_texture.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
 	var cell_size = Helpers.get_cell_size()
 
-	drag_texture.size.x = _item_instance.get_width() * cell_size
-	drag_texture.size.y = _item_instance.get_height() * cell_size
-	drag_texture.texture = _item_instance.get_texture()
+	drag_texture.size.x = get_item_instance().get_width() * cell_size
+	drag_texture.size.y = get_item_instance().get_height() * cell_size
+	drag_texture.texture = get_item_instance().get_texture()
 	
 	var drag_control = Control.new()
 	drag_control.size = self.size
@@ -229,8 +228,8 @@ func _create_drag_control() -> Control:
 func create_drag_data_data():
 	var data = {}
 	data["item_instance_id"] = item_instance_id
-	if _item_instance.get_has_stacks():
-		data["number_to_drop"] = _item_instance.stacks
+	if get_item_instance().get_has_stacks():
+		data["number_to_drop"] = get_item_instance().stacks
 	return data
 
 func _get_drag_data(position):

@@ -68,11 +68,11 @@ func get_texture() -> Texture:
 
 #after you call this you must add the instanced scenes to the scene tree
 func spawn_item():
-	if _item_info.item_control_scene:
+	if _item_info.item_control_scene and id_2d == 0:
 		var item_control:ItemControl = _item_info.item_control_scene.instantiate()
 		self.id_2d = item_control.get_instance_id()
 		item_control.item_instance_id = self.get_instance_id()
-	if _item_info.item_3d_scene:
+	if _item_info.item_3d_scene and id_3d == 0:
 		var item_3d:Item3D = _item_info.item_3d_scene.instantiate()
 		self.id_3d = item_3d.get_instance_id()
 		item_3d.item_instance_id = self.get_instance_id()
