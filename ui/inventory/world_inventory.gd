@@ -15,6 +15,8 @@ var container_size:int:
 	set(value):
 		wig.container_size = value
 		wig.set_container_size(value)
+		
+@onready var original_parent:Node = self.get_parent()
 
 func _ready():
 	super()
@@ -30,3 +32,18 @@ func _on_item_picked_up(result:InventoryInsertResult):
 		var location = result.location
 		if location.location == InventoryLocationResult.LocationType.GRID:
 			wig.add_item_control(item_control, location.grid_x, location.grid_y)
+
+func _on_open_inventory(inventory_id:int):
+	super(inventory_id)
+	if inventory_id == self.inventory_id:
+		EventBus.add_inventory_to_HUD.emit(self)
+		
+func _on_close_inventory(inventory_id:int):
+	super(inventory_id)
+	if inventory_id == self.inventory_id:
+		EventBus.remove_inventory_from_HUD.emit(self)
+
+func _on_close_all_inventories():
+	super()
+	EventBus.remove_inventory_from_HUD.emit(self, original_parent)
+	

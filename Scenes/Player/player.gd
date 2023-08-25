@@ -77,7 +77,7 @@ var toggle_crouch_f: bool = false
 var toggle_prone_f: bool = false
 var toggle_inv_f: bool = false
 var legs_destroyed: bool = false
-@onready var player_inventory_id = $PlayerHUD/PlayerInventory.inventory_id
+@onready var player_inventory_id = $PlayerInventories.player_inventory_id
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")

@@ -11,6 +11,11 @@ signal item_durability_changed(item_inst:ItemInstance)
 signal close_inventory(inventory_id:int)
 signal close_all_inventories()
 signal open_inventory(inventory_id:int)
+
+#Inventory Control Events
+signal add_inventory_to_HUD(inventory_control:InventoryControlBase)
+signal remove_inventory_from_HUD(inventory_control:InventoryControlBase, new_parent:Node)
+
 #Health Events
 signal took_damage(damage:float, hit_origin:Vector3)
 signal player_health_pulse(health:Array[HealthLocation])

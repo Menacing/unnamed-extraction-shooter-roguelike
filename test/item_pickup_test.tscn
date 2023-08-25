@@ -13,9 +13,4 @@ grow_vertical = 2
 script = ExtResource("1_xxigi")
 
 [node name="PlayerInventory" parent="." instance=ExtResource("2_gcdav")]
-layout_mode = 0
-anchors_preset = 0
-anchor_right = 0.0
-anchor_bottom = 0.0
-grow_horizontal = 1
-grow_vertical = 1
+layout_mode = 1

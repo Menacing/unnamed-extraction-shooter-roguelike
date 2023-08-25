@@ -1,6 +1,5 @@
-[gd_scene load_steps=7 format=3 uid="uid://gt018qo38blj"]
+[gd_scene load_steps=6 format=3 uid="uid://gt018qo38blj"]
 
-[ext_resource type="PackedScene" uid="uid://ddsqkhwkuipda" path="res://ui/inventory/player_inventory.tscn" id="3_2os4x"]
 [ext_resource type="PackedScene" uid="uid://bb7ue7ms53vhu" path="res://ui/health/life_bar.tscn" id="4_qme8g"]
 [ext_resource type="PackedScene" uid="uid://vb7f8fygilde" path="res://ui/misc/interaction_helpers.tscn" id="5_3ew52"]
 [ext_resource type="PackedScene" uid="uid://b62h82bx7vban" path="res://weapon_info_hud.tscn" id="6_efrey"]
@@ -15,9 +14,6 @@
 
 [node name="CompassLabel" parent="." instance=ExtResource("6_h13ew")]
 
-[node name="PlayerInventory" parent="." instance=ExtResource("3_2os4x")]
-visible = false
-
 [node name="HitIndicatorParent" parent="." instance=ExtResource("7_4osqb")]
 
 [node name="menu" type="Node" parent="."]
@@ -25,4 +21,3 @@ visible = false
 [node name="weapon_info_hud" parent="." instance=ExtResource("6_efrey")]
 
 [editable path="interaction_helpers"]
-[editable path="PlayerInventory"]

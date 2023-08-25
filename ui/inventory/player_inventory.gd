@@ -6,7 +6,7 @@ extends InventoryControlBase
 func _ready():
 	super()
 	EventBus.item_picked_up.connect(_on_item_picked_up)
-
+	
 func _on_item_picked_up(result:InventoryInsertResult):
 	var self_object_id = self.get_instance_id()
 	var inv_id = _inventory.get_instance_id()
@@ -29,3 +29,4 @@ func _on_item_removed_from_inventory(item_inst:ItemInstance, inventory_id:int):
 	if inventory_id == _inventory.get_instance_id():
 		#TODO: Finish this method
 		pass
+
