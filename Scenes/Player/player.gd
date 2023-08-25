@@ -98,9 +98,8 @@ func _ready():
 	$PlayerMotionStateMachine._active = true
 	EventBus.fire_mode_changed.emit("")
 	EventBus.ammo_count_changed.emit(0)
-	#EventBus.item_equipped.connect(_on_item_equipped)
+	EventBus.item_picked_up.connect(_on_item_picked_up)
 	#EventBus.item_dropped.connect(_on_item_dropped)
-	#EventBus.item_picked_up.connect(_on_item_picked_up)
 	#EventBus.item_removed.connect(_on_item_removed)
 	if toggle_inv_f:
 		EventBus.open_inventory.emit(player_inventory_id)
@@ -120,30 +119,29 @@ func _ready():
 
 func _process(delta):
 	EventBus.compass_player_pulse.emit(self.global_position, self.global_rotation_degrees)
-#
-#func _on_item_equipped(slot_name:String, item_equipped:ItemComponent):
-	#item_equipped.picked_up()
-	#match slot_name:
-		#"GunSlot1":
-			#gun_slot_1 = item_equipped.get_parent()
-			#move_gun_to_player_model(gun_slot_1)
-		#"GunSlot2":
-			#gun_slot_2 = item_equipped.get_parent()
-			#move_gun_to_player_model(gun_slot_2) 
-		#"BackpackSlot":
-			#item_equipped.picked_up()
-			#move_backpack_to_anchor(item_equipped.get_parent())
-		#"ArmorSlot":
-			#item_equipped.picked_up()
-			#move_armor_to_anchor(item_equipped.get_parent())
-	#pass
-#
-#func _on_item_picked_up(item_picked_up:ItemComponent):
-	#var item_parent = item_picked_up.get_parent()
-	#item_picked_up.picked_up()
-	#item_parent.reparent(self,false)
-	#item_parent.visible = false
-#
+
+func _on_item_picked_up(result:InventoryInsertResult):
+	if result.inventory_id == player_inventory_id:
+		var item_instance:ItemInstance = InventoryManager.get_item(result.item_instance_id)
+		var item_3d:Item3D = instance_from_id(item_instance.id_3d)
+		Helpers.force_parent(item_3d,self)
+		item_3d.picked_up()
+		if result.location.location == InventoryLocationResult.LocationType.SLOT:
+			match result.location.slot_name:
+				"GunSlot1":
+					gun_slot_1 = item_3d as Gun
+					move_gun_to_player_model(gun_slot_1)
+				"GunSlot2":
+					gun_slot_2 = item_3d as Gun
+					move_gun_to_player_model(gun_slot_2) 
+				"BackpackSlot":
+					move_backpack_to_anchor(item_3d)
+				"ArmorSlot":
+					move_armor_to_anchor(item_3d)
+		elif result.location.location == InventoryLocationResult.LocationType.GRID:
+			item_3d.visible = false
+
+
 #func _on_item_removed(slot_name, item_picked_up:ItemComponent):
 	#var item_parent = item_picked_up.get_parent()
 	#if item_parent is Gun:
@@ -183,7 +181,7 @@ func move_gun_to_hands(gun:Gun):
 		gun.fired.connect(_on_gun_fired)
 		gun.reloaded.connect(_on_gun_reloaded)
 		current_fire_mode = gun.current_fire_mode
-		gun.reparent(cam,false)
+		Helpers.force_parent(gun, cam)
 		EventBus.fire_mode_changed.emit(gun.current_fire_mode)
 		EventBus.ammo_count_changed.emit(gun.magazine)
 		gun.visible = true
@@ -194,7 +192,7 @@ func move_gun_to_hands(gun:Gun):
 func move_gun_to_shoulder(gun:Gun):
 	shoulder_gun = gun
 	if gun:
-		gun.reparent(shoulder_anchor)
+		Helpers.force_parent(gun,shoulder_anchor)
 		gun.transform = Transform3D.IDENTITY
 		gun.rotate_x(-PI/2)
 		gun.visible = true
@@ -203,14 +201,14 @@ func move_gun_to_shoulder(gun:Gun):
 
 func move_armor_to_anchor(armor:Node3D):
 	if armor:
-		armor.reparent(armor_anchor)
+		Helpers.force_parent(armor, armor_anchor)
 		armor.transform = Transform3D.IDENTITY
 		armor.visible = true
 		pass
 		
 func move_backpack_to_anchor(backpack:Node3D):
 	if backpack:
-		backpack.reparent(backpack_anchor)
+		Helpers.force_parent(backpack, backpack_anchor)
 		backpack.transform = Transform3D.IDENTITY
 		backpack.visible = true
 
