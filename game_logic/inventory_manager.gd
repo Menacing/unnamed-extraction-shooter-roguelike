@@ -45,7 +45,7 @@ func _on_pickup_item(item_inst:ItemInstance, target_inventory_id:int):
 					return
 		##TODO try rotating and repeating
 	#do stack stuff
-	elif item_inst.stacks > 0:
+	else:
 		#First check item slots
 		var amount = item_inst.stacks
 		if inventory.equipment_slots:

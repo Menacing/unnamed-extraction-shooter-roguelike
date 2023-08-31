@@ -117,3 +117,4 @@ one_shot = true
 [connection signal="timeout" from="ReactionTimer" to="." method="_on_reaction_timer_timeout"]
 
 [editable path="combat-roomba"]
+[editable path="combat-roomba/Armature/Skeleton3D/Physical Bone Bone/WorldInventory"]
