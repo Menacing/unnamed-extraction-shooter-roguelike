@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://c5h2rw1ua14j2"]
+[gd_scene load_steps=20 format=3 uid="uid://c5h2rw1ua14j2"]
 
 [ext_resource type="PackedScene" uid="uid://ctahsvj88g1om" path="res://levels/node_3d.tscn" id="1_jhhor"]
 [ext_resource type="Script" path="res://main.gd" id="1_rh52i"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://Scenes/items/LootInformation.gd" id="6_6lmcw"]
 [ext_resource type="Resource" uid="uid://bk7x5qi5hl1p8" path="res://Scenes/items/materials/polymer_pile/polymer_pile_inventory_info.tres" id="6_nrx4i"]
 [ext_resource type="Resource" uid="uid://xufa6auvjw6t" path="res://Scenes/Guns/AK47-Projectile/zs_52_inventory_info.tres" id="7_8ou4x"]
+[ext_resource type="Script" path="res://resource_access/Inventory.gd" id="7_dhqcv"]
 [ext_resource type="PackedScene" uid="uid://dr48wela8mtxd" path="res://Scenes/Guns/AK47-Projectile/AK47-Projectile.tscn" id="7_t48wy"]
 [ext_resource type="Resource" uid="uid://dv187kl8jcl01" path="res://Scenes/items/backpacks/large/large_backpack_1_inventory_info.tres" id="8_3g67c"]
 
@@ -36,6 +37,13 @@ item_information = ExtResource("8_3g67c")
 test_radius = 0.0
 min_stack = 0
 max_stack = 0
+
+[sub_resource type="Resource" id="Resource_tb5rq"]
+resource_local_to_scene = true
+script = ExtResource("7_dhqcv")
+initial_height = 7
+initial_width = 7
+equipment_slots = Array[Resource("res://resource_access/equipment_slot_type.gd")]([])
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_4m38t"]
 size = Vector3(16, 13, 13)
@@ -80,6 +88,9 @@ script = ExtResource("1_rh52i")
 min_spawned = 10
 max_spawned = 10
 spawn_info = Array[ExtResource("6_6lmcw")]([SubResource("Resource_3xsmh"), SubResource("Resource_olp20"), SubResource("Resource_prf8b")])
+
+[node name="WorldInventory" parent="World/NavigationRegion3D/dev_chest" index="2"]
+_inventory = SubResource("Resource_tb5rq")
 
 [node name="AK47-Projectile" parent="World/NavigationRegion3D" index="10" instance=ExtResource("7_t48wy")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.49927, 0.261611, -9.24725)
