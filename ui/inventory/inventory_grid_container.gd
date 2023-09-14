@@ -3,8 +3,7 @@ class_name InventoryGridContainer
 
 @export var parent_inventory_control_base:InventoryControlBase
 @export var grid_cell:PackedScene
-var grid_width = 0
-var grid_height = 0
+
 
 var cell_size:int:
 	get:
@@ -82,3 +81,26 @@ func _drop_data(at_position, data):
 	else:
 		if InventoryManager.can_place_item_in_grid(item_instance_id,target_inventory_id,grid_pos):
 			InventoryManager.place_item_in_grid(item_instance_id, target_inventory_id, grid_pos)
+
+	
+func set_grid_container_size(number_cells:int) -> void:
+	#find number current cells
+	var current_cells:int = self.get_children().size()
+	#figure out if we need to get larger or smaller
+	#if larger, easy, just add more cells
+	if current_cells < number_cells:
+		while( self.get_children().size() < number_cells):
+			self.add_child(grid_cell.instantiate())
+	elif current_cells > number_cells:
+		#if smaller, drop items in cells to be dropped
+		var children = self.get_children()
+		while children.size() > number_cells :
+			var current_cell = children.pop_back()
+			var cell_global_pos = current_cell.get_global_position()
+			#then remove cells
+			self.remove_child(current_cell)
+	else:
+		pass
+	self.size.x = columns * cell_size
+	self.size.y = number_cells / columns * cell_size
+	

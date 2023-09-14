@@ -14,7 +14,7 @@ var container_size:int:
 		return wig.container_size
 	set(value):
 		wig.container_size = value
-		wig.set_container_size(value)
+		wig.set_grid_container_size(value)
 		
 @onready var original_parent:Node = self.get_parent()
 

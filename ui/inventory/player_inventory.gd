@@ -16,7 +16,6 @@ func _on_item_picked_up(result:InventoryInsertResult):
 		var item_control:ItemControl = instance_from_id(item_instance.id_2d)
 		var location = result.location
 		if location.location == InventoryLocationResult.LocationType.SLOT:
-			#TODO: Move ItemControl to slot Control
 			var slot_type:EquipmentSlotType = Inventory.get_slot_by_name(_inventory, location.slot_name)
 			if slot_type:
 				var slot_control:EquipmentSlotControl = self.find_child(slot_type.name)
@@ -30,3 +29,6 @@ func _on_item_removed_from_inventory(item_inst:ItemInstance, inventory_id:int):
 		#TODO: Finish this method
 		pass
 
+func _on_inventory_size_changed(inventory_id:int, size:Vector2i) -> void:
+	if inventory_id == _inventory.get_instance_id():
+		inventory_grid.set_grid_container_size(size.x * size.y)

@@ -136,6 +136,16 @@ func _on_item_picked_up(result:InventoryInsertResult):
 					move_gun_to_player_model(gun_slot_2) 
 				"BackpackSlot":
 					move_backpack_to_anchor(item_3d)
+					var backpack:Backpack = item_3d as Backpack
+					if backpack:
+						if backpack.backpack_size == Backpack.Size.NONE:
+							InventoryManager.set_inventory_size(player_inventory_id, Vector2i(7,2))
+						elif backpack.backpack_size == Backpack.Size.SMALL:
+							InventoryManager.set_inventory_size(player_inventory_id, Vector2i(7,4))
+						elif backpack.backpack_size == Backpack.Size.MEDIUM:
+							InventoryManager.set_inventory_size(player_inventory_id, Vector2i(7,6))
+						elif backpack.backpack_size == Backpack.Size.LARGE:
+							InventoryManager.set_inventory_size(player_inventory_id, Vector2i(7,8))
 				"ArmorSlot":
 					move_armor_to_anchor(item_3d)
 		elif result.location.location == InventoryLocationResult.LocationType.GRID:

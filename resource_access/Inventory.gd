@@ -10,6 +10,8 @@ class_name Inventory
 		initial_height = value
 var _current_height:int
 
+		
+
 @export var initial_width:int:
 	get:
 		return initial_width
@@ -18,6 +20,8 @@ var _current_height:int
 		initial_width = value
 var _current_width:int
 
+		
+		
 var grid_slots = {}
 @export var equipment_slots:Array[EquipmentSlotType] = []
 
@@ -36,6 +40,16 @@ func setup():
 		grid_slots[w] = {}
 		for h in range(initial_height):
 			grid_slots[w][h] = null
+			
+func create_new_grid_slots(width:int, height:int):
+	var new_grid_slots = {}
+	
+	for w in range(width):
+		new_grid_slots[w] = {}
+		for h in range(height):
+			new_grid_slots[w][h] = null
+	
+	return new_grid_slots
 
 func get_height():
 	return _current_height

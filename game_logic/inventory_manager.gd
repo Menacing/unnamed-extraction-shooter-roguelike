@@ -161,3 +161,31 @@ func destroy_item(item_instance_id:int):
 	
 func get_item(item_instance_id:int) -> ItemInstance:
 	return _item_access.get_item(item_instance_id)
+
+func set_inventory_size(inventory_id:int, size:Vector2i):
+	var inventory:Inventory = _inventory_access.get_inventory(inventory_id)
+	var current_width = inventory.get_width()
+	var current_height = inventory.get_height()
+	
+	#copy old dictionary
+	var old_dictionary = inventory.grid_slots
+	#create new inventory dictionary
+	var new_dictionary = inventory.create_new_grid_slots(size.x, size.y)
+	
+	#Copy from old dictionary to new
+	for cw in range(current_width):
+		for ch in range(current_height):
+			#if old spot doesn't exist, trigger drop of item
+			var item_id =  old_dictionary[cw][ch]
+			if cw > size.x or ch > size.y and item_id:
+				remove_item(item_id, inventory_id)
+			elif item_id:
+				new_dictionary[cw][ch] = item_id
+	
+	#set new dictionary
+	inventory.grid_slots = new_dictionary
+	
+	#set new size
+	inventory._current_height = size.y
+	inventory._current_width = size.x
+	EventBus.inventory_size_changed.emit(inventory_id, size)
