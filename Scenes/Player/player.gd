@@ -99,7 +99,7 @@ func _ready():
 	EventBus.fire_mode_changed.emit("")
 	EventBus.ammo_count_changed.emit(0)
 	EventBus.item_picked_up.connect(_on_item_picked_up)
-	#EventBus.item_dropped.connect(_on_item_dropped)
+	EventBus.item_removed_from_slot.connect(_on_item_removed_from_slot)
 	#EventBus.item_removed.connect(_on_item_removed)
 	if toggle_inv_f:
 		EventBus.open_inventory.emit(player_inventory_id)
@@ -152,20 +152,24 @@ func _on_item_picked_up(result:InventoryInsertResult):
 			item_3d.visible = false
 
 
-#func _on_item_removed(slot_name, item_picked_up:ItemComponent):
-	#var item_parent = item_picked_up.get_parent()
-	#if item_parent is Gun:
-		#if item_parent == equipped_gun:
-			#stop_arms_ik()
-			#equipped_gun = null	
-		#if item_parent == gun_slot_1:
-			#gun_slot_1 = null	
-		#if item_parent == gun_slot_2:
-			#gun_slot_2 = null	
-#
-#func _on_item_dropped(item_equipped:ItemComponent):
-	#drop_item(item_equipped)
-	#pass
+func _on_item_removed_from_slot(item_inst:ItemInstance, inventory_id:int, slot_name:String):
+	if inventory_id == player_inventory_id:
+		var item_3d:Item3D = instance_from_id(item_inst.id_3d)
+		Helpers.force_parent(item_3d,get_parent())
+		item_3d.dropped()
+		item_3d.global_position = drop_location.global_position
+		
+		if item_3d is Gun:
+			if item_3d == equipped_gun:
+				stop_arms_ik()
+				equipped_gun = null	
+			if item_3d == gun_slot_1:
+				gun_slot_1 = null	
+			if item_3d == gun_slot_2:
+				gun_slot_2 = null	
+			if item_3d == shoulder_gun:
+				shoulder_gun = null
+
 
 func move_gun_to_player_model(gun:Gun):
 	gun.show()	
