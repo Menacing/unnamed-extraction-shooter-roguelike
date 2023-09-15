@@ -252,6 +252,7 @@ func place_stack_in_grid(item_inst:ItemInstance, inventory_id:int, grid_location
 func remove_item(item:ItemInstance,  inventory_id:int) -> void:
 	remove_item_from_slot(item,inventory_id)
 	remove_item_from_grid(item,inventory_id)
+	EventBus.item_removed_from_inventory.emit(item, inventory_id)
 
 func remove_item_from_grid(item:ItemInstance,  inventory_id:int) -> void:
 	var inventory = get_inventory(inventory_id)
@@ -270,6 +271,7 @@ func remove_item_from_slot(item:ItemInstance, inventory_id:int) -> void:
 		for slot in inventory.equipment_slots:
 			if slot.item_instance_id == item.get_instance_id():
 				slot.item_instance_id = 0
+				EventBus.item_removed_from_slot.emit(item, inventory_id, slot.name)
 
 	item.current_inventory_id = 0
 

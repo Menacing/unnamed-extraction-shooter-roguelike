@@ -97,6 +97,7 @@ theme_override_constants/v_separation = 0
 columns = 7
 script = ExtResource("5_lwrwb")
 parent_inventory_control_base = NodePath("../../../..")
+grid_cell = ExtResource("5_h0nvq")
 
 [node name="Panel" parent="PanelContainer/InventoryBase/PanelContainer/InventoryGrid" instance=ExtResource("5_h0nvq")]
 layout_mode = 2

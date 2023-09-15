@@ -1,7 +1,36 @@
-[gd_scene load_steps=3 format=3 uid="uid://djau6lpwpwnqa"]
+[gd_scene load_steps=10 format=3 uid="uid://djau6lpwpwnqa"]
 
 [ext_resource type="Script" path="res://test/item_pickup_test_stacks.gd" id="1_4pvre"]
 [ext_resource type="PackedScene" uid="uid://ddsqkhwkuipda" path="res://ui/inventory/player_inventory.tscn" id="2_tl3w1"]
+[ext_resource type="Script" path="res://resource_access/equipment_slot_type.gd" id="3_oncc7"]
+[ext_resource type="Script" path="res://resource_access/Inventory.gd" id="4_54rhr"]
+
+[sub_resource type="Resource" id="Resource_c2lqt"]
+script = ExtResource("3_oncc7")
+name = "BackpackSlot"
+allowed_types = Array[int]([1])
+
+[sub_resource type="Resource" id="Resource_5xhft"]
+script = ExtResource("3_oncc7")
+name = "ArmorSlot"
+allowed_types = Array[int]([3])
+
+[sub_resource type="Resource" id="Resource_3yuyw"]
+script = ExtResource("3_oncc7")
+name = "GunSlot1"
+allowed_types = Array[int]([0])
+
+[sub_resource type="Resource" id="Resource_k0qab"]
+script = ExtResource("3_oncc7")
+name = "GunSlot2"
+allowed_types = Array[int]([0])
+
+[sub_resource type="Resource" id="Resource_fsurp"]
+resource_local_to_scene = true
+script = ExtResource("4_54rhr")
+initial_height = 2
+initial_width = 7
+equipment_slots = Array[ExtResource("3_oncc7")]([SubResource("Resource_c2lqt"), SubResource("Resource_5xhft"), SubResource("Resource_3yuyw"), SubResource("Resource_k0qab")])
 
 [node name="item_pickup_test_stacks" type="Control"]
 layout_mode = 3
@@ -14,8 +43,4 @@ script = ExtResource("1_4pvre")
 
 [node name="PlayerInventory" parent="." instance=ExtResource("2_tl3w1")]
 layout_mode = 0
-anchors_preset = 0
-anchor_right = 0.0
-anchor_bottom = 0.0
-grow_horizontal = 1
-grow_vertical = 1
+_inventory = SubResource("Resource_fsurp")

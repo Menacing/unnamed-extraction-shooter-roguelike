@@ -150,7 +150,6 @@ func inventory_exists(inventory_id:int) -> bool:
 func remove_item(item_instance_id:int, source_inventory_id:int):
 	var item_inst = get_item(item_instance_id)	
 	_inventory_access.remove_item(item_inst, source_inventory_id)
-	EventBus.item_removed_from_inventory.emit(item_inst, source_inventory_id)
 	
 
 func destroy_item(item_instance_id:int):
