@@ -17,6 +17,9 @@ signal open_inventory(inventory_id:int)
 signal add_inventory_to_HUD(inventory_control:InventoryControlBase)
 signal remove_inventory_from_HUD(inventory_control:InventoryControlBase, new_parent:Node)
 signal inventory_size_changed(inventory_id:int, size:Vector2i)
+signal context_menu_opened()
+signal context_menu_closed()
+signal context_menus_drop_item(item_inst:ItemInstance, cursor_pos:Vector2)
 
 #Health Events
 signal took_damage(damage:float, hit_origin:Vector3)

@@ -66,6 +66,9 @@ func get_texture() -> Texture:
 	else:
 		return _item_info.icon_r
 
+func get_context_menu_items() -> Array[ItemContextItem]:
+	return _item_info.context_menu_items
+
 #after you call this you must add the instanced scenes to the scene tree
 func spawn_item():
 	if _item_info.item_control_scene and id_2d == 0:

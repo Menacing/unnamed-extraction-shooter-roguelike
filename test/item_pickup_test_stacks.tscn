@@ -25,7 +25,7 @@ script = ExtResource("3_oncc7")
 name = "GunSlot2"
 allowed_types = Array[int]([0])
 
-[sub_resource type="Resource" id="Resource_fsurp"]
+[sub_resource type="Resource" id="Resource_437jg"]
 resource_local_to_scene = true
 script = ExtResource("4_54rhr")
 initial_height = 2
@@ -43,4 +43,4 @@ script = ExtResource("1_4pvre")
 
 [node name="PlayerInventory" parent="." instance=ExtResource("2_tl3w1")]
 layout_mode = 0
-_inventory = SubResource("Resource_fsurp")
+_inventory = SubResource("Resource_437jg")

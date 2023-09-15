@@ -8,6 +8,7 @@ func get_item_instance() -> ItemInstance:
 func _ready():
 	EventBus.item_picked_up.connect(_on_item_picked_up)
 	EventBus.item_stack_count_changed.connect(_on_item_stack_count_changed)
+	EventBus.context_menus_drop_item.connect(_on_context_menus_drop_item)
 	show_durability = get_item_instance().get_has_durability()
 	show_count = get_item_instance().get_has_stacks()
 	name_label.text = get_item_instance().get_display_name()
@@ -121,7 +122,9 @@ var max_durability:int:
 		_max_durability = value
 		_on_durability_changed(durability, _max_durability)
 
-var context_items:Array[ItemContextItem]
+var context_items:Array[ItemContextItem]:
+	get:
+		return get_item_instance().get_context_menu_items()
 
 ##func _process(delta):
 	##if listening_to_mouse:
@@ -194,8 +197,13 @@ func openContextMenu(pos:Vector2):
 	
 func _on_context_menu_pressed(id:int):
 	var item = context_items[id]
-	EventBus.emit_signal(item.signal_name, self, get_global_mouse_position())
+	EventBus.emit_signal(item.signal_name, get_item_instance(), get_global_mouse_position())
 
+func _on_context_menus_drop_item(item_inst:ItemInstance, cursor_pos:Vector2):
+	if item_inst and item_inst.get_instance_id() == item_instance_id:
+		var original_inventory_id = item_inst.current_inventory_id
+		InventoryManager.remove_item(item_instance_id, original_inventory_id)
+		EventBus.drop_item.emit(item_inst, original_inventory_id)
 
 func _on_count_changed(new_count:int):
 	count.text = str(new_count)

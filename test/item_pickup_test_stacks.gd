@@ -12,7 +12,6 @@ func _ready():
 
 func add_test_item():
 	var cell_size = 32
-	var item:ItemInstance = ItemInstance.new()
 	var item_info:ItemInformation = ItemInformation.new()
 	item_info.row_span = 2
 	item_info.column_span = 2
@@ -25,6 +24,8 @@ func add_test_item():
 	item_info.icon = load("res://Scenes/items/materials/polymer_pile/polymer_pile_icon.png")
 	item_info.icon_r = load("res://Scenes/items/materials/polymer_pile/polymer_pile_icon.png")
 	item_info.show_name = false
+	item_info.context_menu_items = [load("res://ui/inventory/drop_item_context_item.tres")]
+	var item:ItemInstance = ItemInstance.new(item_info)
 	item._item_info = item_info
 	item.stacks = 1
 	

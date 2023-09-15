@@ -18,7 +18,7 @@ enum ItemType {
 @export var icon_r:Texture
 #@export var mod_slots:Array[ModSlot]
 @export var detail_scene:PackedScene
-#@export var context_menu_items:Array[ItemContextItem]
+@export var context_menu_items:Array[ItemContextItem]
 @export var max_stacks:int = 1
 @export var has_stacks:bool = false
 @export var max_durability:int = 1
