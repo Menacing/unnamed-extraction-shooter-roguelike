@@ -7,7 +7,6 @@ func _ready():
 	super()
 	EventBus.item_picked_up.connect(_on_item_picked_up)
 	EventBus.inventory_size_changed.connect(_on_inventory_size_changed)
-	EventBus.item_removed_from_inventory.connect(_on_item_removed_from_inventory)
 	EventBus.item_removed_from_slot.connect(_on_item_removed_from_slot)
 	
 func _on_item_picked_up(result:InventoryInsertResult):
@@ -27,10 +26,8 @@ func _on_item_picked_up(result:InventoryInsertResult):
 		elif location.location == InventoryLocationResult.LocationType.GRID:
 			inventory_grid.add_item_control(item_control, location.grid_x, location.grid_y)
 
-func _on_item_removed_from_inventory(item_inst:ItemInstance, inventory_id:int):
-	if inventory_id == _inventory.get_instance_id():
-		#TODO: Finish this method
-		pass
+
+		
 		
 func _on_item_removed_from_slot(item_inst:ItemInstance, inventory_id:int, slot_name:String):
 	if inventory_id == _inventory.get_instance_id():

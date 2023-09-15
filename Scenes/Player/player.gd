@@ -100,7 +100,7 @@ func _ready():
 	EventBus.ammo_count_changed.emit(0)
 	EventBus.item_picked_up.connect(_on_item_picked_up)
 	EventBus.item_removed_from_slot.connect(_on_item_removed_from_slot)
-	#EventBus.item_removed.connect(_on_item_removed)
+	EventBus.drop_item.connect(_on_drop_item)
 	if toggle_inv_f:
 		EventBus.open_inventory.emit(player_inventory_id)
 	else:
@@ -155,10 +155,6 @@ func _on_item_picked_up(result:InventoryInsertResult):
 func _on_item_removed_from_slot(item_inst:ItemInstance, inventory_id:int, slot_name:String):
 	if inventory_id == player_inventory_id:
 		var item_3d:Item3D = instance_from_id(item_inst.id_3d)
-		Helpers.force_parent(item_3d,get_parent())
-		item_3d.dropped()
-		item_3d.global_position = drop_location.global_position
-		
 		if item_3d is Gun:
 			if item_3d == equipped_gun:
 				stop_arms_ik()
@@ -237,22 +233,23 @@ func drop_equipped_gun():
 		equipped_gun = null
 		stop_arms_ik()
 
-#func drop_item(item_comp:ItemComponent):
-	#var item_parent = item_comp.get_parent()
-##	var item_parent_global_pos = drop_location.global_position
-	#item_parent.reparent(self.get_parent())
-	#item_comp.dropped()
-	#item_parent.visible = true
-	#item_parent.global_position = drop_location.global_position
-	#if item_parent is Gun:
-		#if item_parent == gun_slot_1:
-			#gun_slot_1 = null
-		#if item_parent == gun_slot_2:
-			#gun_slot_2 = null
-		#if item_parent == equipped_gun:
-			#equipped_gun = null
-		#if item_parent == shoulder_gun:
-			#shoulder_gun = null
+func _on_drop_item(item_inst:ItemInstance, inventory_id:int):
+	if inventory_id == player_inventory_id:
+		var item_3d:Item3D = instance_from_id(item_inst.id_3d)
+		Helpers.force_parent(item_3d,get_parent())
+		item_3d.dropped()
+		item_3d.global_position = drop_location.global_position
+		
+		if item_3d is Gun:
+			if item_3d == equipped_gun:
+				stop_arms_ik()
+				equipped_gun = null	
+			if item_3d == gun_slot_1:
+				gun_slot_1 = null	
+			if item_3d == gun_slot_2:
+				gun_slot_2 = null	
+			if item_3d == shoulder_gun:
+				shoulder_gun = null
 
 #realtime inputs - movement stuff
 func _physics_process(delta):

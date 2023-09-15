@@ -1,7 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://cm8qyueikhkpf"]
+[gd_scene load_steps=11 format=3 uid="uid://cm8qyueikhkpf"]
 
 [ext_resource type="PackedScene" uid="uid://ddsqkhwkuipda" path="res://ui/inventory/player_inventory.tscn" id="1_lt07x"]
 [ext_resource type="Script" path="res://ui/inventory/player_inventories.gd" id="1_tuubu"]
+[ext_resource type="Script" path="res://ui/inventory/spacer_container.gd" id="2_hlryk"]
 [ext_resource type="Script" path="res://resource_access/equipment_slot_type.gd" id="3_rg8a8"]
 [ext_resource type="Script" path="res://resource_access/Inventory.gd" id="4_m6wl0"]
 
@@ -25,7 +26,7 @@ script = ExtResource("3_rg8a8")
 name = "GunSlot2"
 allowed_types = Array[int]([0])
 
-[sub_resource type="Resource" id="Resource_h345p"]
+[sub_resource type="Resource" id="Resource_reeb2"]
 resource_local_to_scene = true
 script = ExtResource("4_m6wl0")
 initial_height = 2
@@ -53,6 +54,7 @@ size_flags_horizontal = 3
 [node name="SpacerContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+script = ExtResource("2_hlryk")
 
 [node name="PlayerInventoryContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer"]
 layout_mode = 2
@@ -60,6 +62,6 @@ size_flags_horizontal = 3
 
 [node name="PlayerInventory" parent="MarginContainer/HBoxContainer/PlayerInventoryContainer" instance=ExtResource("1_lt07x")]
 layout_mode = 2
-_inventory = SubResource("Resource_h345p")
+_inventory = SubResource("Resource_reeb2")
 
 [editable path="MarginContainer/HBoxContainer/PlayerInventoryContainer/PlayerInventory"]
