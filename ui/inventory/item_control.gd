@@ -164,10 +164,19 @@ func _input(event:InputEvent):
 			
 
 func _gui_input(event:InputEvent):
-	if self.is_visible_in_tree() and event.is_action_pressed("openContextMenu"):
-		accept_event()
-		var cursor_pos = get_global_mouse_position()
-		openContextMenu(cursor_pos)
+	if self.is_visible_in_tree(): 
+		if event.is_action_pressed("openContextMenu"):
+			accept_event()
+			var cursor_pos = get_global_mouse_position()
+			openContextMenu(cursor_pos)
+		elif event.is_action_pressed("drop_item"):
+			accept_event()
+			var item_instance:ItemInstance = get_item_instance()
+			if item_instance:
+				var original_inventory_id = item_instance.current_inventory_id
+				InventoryManager.remove_item(item_instance_id, original_inventory_id)
+				EventBus.drop_item.emit(item_instance, original_inventory_id)
+			
 		
 func openContextMenu(pos:Vector2):
 	var menu = PopupMenu.new()
