@@ -137,7 +137,23 @@ func _input(event:InputEvent):
 			toggle_rotation()
 			accept_event()
 			
-		if event.is_action_pressed("place_single_of_stack") and stacks > 0:
+		if event.is_action_pressed("place_half_of_stack") and stacks > 0:
+			# Detect control under mouse
+			var control: Control = Helpers.get_control_in_group_with_method_at_position(event.global_position, "droppable_inventory_controls", "_can_drop_data")
+			
+			# If control exists and has _can_drop_data function, call it
+			if control:
+				var drop_data = get_viewport().gui_get_drag_data()
+				var orig_number_to_drop:int = drop_data["number_to_drop"]
+				var local_pos = event.global_position - control.global_position
+				drop_data["number_to_drop"] = round(orig_number_to_drop/2)
+				if control._can_drop_data(local_pos, drop_data):
+					control._drop_data(local_pos, drop_data)
+					if get_item_instance() and !is_queued_for_deletion():
+						force_drag(create_drag_data_data(), _create_drag_control())
+					
+			accept_event()
+		elif event.is_action_pressed("place_single_of_stack") and stacks > 0:
 			# Detect control under mouse
 			var control: Control = Helpers.get_control_in_group_with_method_at_position(event.global_position, "droppable_inventory_controls", "_can_drop_data")
 			
@@ -153,7 +169,6 @@ func _input(event:InputEvent):
 						force_drag(create_drag_data_data(), _create_drag_control())
 					
 			accept_event()
-			
 
 func _gui_input(event:InputEvent):
 	if self.is_visible_in_tree(): 

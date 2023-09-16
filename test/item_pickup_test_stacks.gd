@@ -8,6 +8,9 @@ func _ready():
 	add_test_item()
 	add_test_item()
 	add_test_item()
+	add_test_item()
+	add_test_item()
+	add_test_item()
 	pass # Replace with function body.
 
 func add_test_item():
