@@ -16,6 +16,7 @@ func _ready():
 	inventory_id = world_inventory_control.inventory_id
 	randomize()
 	call_deferred("spawn_loot")
+	EventBus.item_picked_up.connect(_on_item_picked_up)
 
 
 func spawn_loot():
@@ -60,4 +61,10 @@ func on_inv_closed(player:Player):
 	EventBus.close_inventory.emit(inventory_id)
 	#EventBus.player_inventory_closed.disconnect(on_inv_closed)
 
-
+func _on_item_picked_up(result:InventoryInsertResult):
+	if result.inventory_id == inventory_id:
+		var item_instance:ItemInstance = InventoryManager.get_item(result.item_instance_id)
+		var item_3d:Item3D = instance_from_id(item_instance.id_3d)
+		Helpers.force_parent(item_3d,self)
+		item_3d.picked_up()
+		item_3d.visible = false

@@ -168,6 +168,9 @@ func _gui_input(event:InputEvent):
 				var original_inventory_id = item_instance.current_inventory_id
 				InventoryManager.remove_item(item_instance_id, original_inventory_id)
 				EventBus.drop_item.emit(item_instance, original_inventory_id)
+		elif event.is_action_pressed("quick_item_transfer"):
+			accept_event()
+			EventBus.item_control_quick_transfer.emit(self)
 			
 		
 func openContextMenu(pos:Vector2):
