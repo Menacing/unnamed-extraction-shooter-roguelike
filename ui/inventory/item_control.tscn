@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://cn3ywqty7xvvr"]
+[gd_scene load_steps=7 format=3 uid="uid://cn3ywqty7xvvr"]
 
 [ext_resource type="Script" path="res://ui/inventory/item_control.gd" id="1_gir5a"]
 [ext_resource type="Texture2D" uid="uid://yeyco700sari" path="res://icon.svg" id="2_1kmv5"]
@@ -7,6 +7,12 @@
 [sub_resource type="LabelSettings" id="LabelSettings_340fq"]
 line_spacing = 1.0
 font = ExtResource("3_h8mhj")
+font_size = 10
+
+[sub_resource type="LabelSettings" id="LabelSettings_pcw8t"]
+font_size = 10
+
+[sub_resource type="LabelSettings" id="LabelSettings_1cl4g"]
 font_size = 10
 
 [node name="InvItemBase" type="MarginContainer"]
@@ -40,6 +46,7 @@ layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 8
 text = "1"
+label_settings = SubResource("LabelSettings_pcw8t")
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -48,5 +55,6 @@ layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 8
 text = "1/1"
+label_settings = SubResource("LabelSettings_1cl4g")
 horizontal_alignment = 1
 vertical_alignment = 1

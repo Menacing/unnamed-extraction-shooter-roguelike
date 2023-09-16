@@ -1,0 +1,68 @@
+[gd_scene load_steps=6 format=3 uid="uid://cvt8jn2qdwikh"]
+
+[ext_resource type="Script" path="res://ui/inventory/stack_splitter.gd" id="1_mty4s"]
+
+[sub_resource type="InputEventAction" id="InputEventAction_81h1v"]
+action = &"ui_cancel"
+
+[sub_resource type="Shortcut" id="Shortcut_2w4a8"]
+events = [SubResource("InputEventAction_81h1v")]
+
+[sub_resource type="InputEventAction" id="InputEventAction_x41ev"]
+action = &"ui_accept"
+
+[sub_resource type="Shortcut" id="Shortcut_htwue"]
+events = [SubResource("InputEventAction_x41ev")]
+
+[node name="StackSplitter" type="PanelContainer"]
+offset_right = 151.0
+offset_bottom = 100.0
+script = ExtResource("1_mty4s")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="LeftSpinBox" type="SpinBox" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+rounded = true
+
+[node name="RightSpinBox" type="SpinBox" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 10
+rounded = true
+alignment = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 6
+
+[node name="HSlider" type="HSlider" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+min_value = 1.0
+value = 1.0
+rounded = true
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 10
+
+[node name="CancelButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+shortcut = SubResource("Shortcut_2w4a8")
+text = "Cancel"
+
+[node name="AcceptButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 10
+shortcut = SubResource("Shortcut_htwue")
+text = "Accept"
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer3/CancelButton" to="." method="_on_cancel_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer3/AcceptButton" to="." method="_on_accept_button_pressed"]

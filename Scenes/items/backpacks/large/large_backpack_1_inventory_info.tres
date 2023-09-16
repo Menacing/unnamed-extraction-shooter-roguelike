@@ -1,5 +1,6 @@
-[gd_resource type="Resource" script_class="ItemInformation" load_steps=6 format=3 uid="uid://dv187kl8jcl01"]
+[gd_resource type="Resource" script_class="ItemInformation" load_steps=7 format=3 uid="uid://dv187kl8jcl01"]
 
+[ext_resource type="Resource" uid="uid://o6tesi76nbth" path="res://ui/inventory/drop_item_context_item.tres" id="1_fwfsn"]
 [ext_resource type="Texture2D" uid="uid://cx56hl85mqcn" path="res://Scenes/items/backpacks/large/large_backpack_icon.png" id="2_skr10"]
 [ext_resource type="Texture2D" uid="uid://cempvc5mi4hka" path="res://Scenes/items/backpacks/large/large_backpack_icon_r.png" id="3_dwmoj"]
 [ext_resource type="PackedScene" uid="uid://b6xejgxv7attc" path="res://Scenes/items/backpacks/large/large_backpack.tscn" id="3_wwaa4"]
@@ -16,6 +17,7 @@ display_name = "Large Backpack"
 item_type = 1
 icon = ExtResource("2_skr10")
 icon_r = ExtResource("3_dwmoj")
+context_menu_items = Array[Resource("res://ui/inventory/item_context_item.gd")]([ExtResource("1_fwfsn")])
 max_stacks = 1
 has_stacks = false
 max_durability = 1

@@ -20,6 +20,7 @@ signal inventory_size_changed(inventory_id:int, size:Vector2i)
 signal context_menu_opened()
 signal context_menu_closed()
 signal context_menus_drop_item(item_inst:ItemInstance, cursor_pos:Vector2)
+signal context_menus_split_stack(item_inst:ItemInstance, cursor_pos:Vector2)
 
 #Health Events
 signal took_damage(damage:float, hit_origin:Vector3)

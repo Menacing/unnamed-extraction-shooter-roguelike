@@ -10,6 +10,7 @@ size = Vector3(0.333549, 0.236155, 0.299673)
 collision_layer = 5
 collision_mask = 5
 script = ExtResource("1_oxvb5")
+item_information_path = "res://Scenes/items/materials/polymer_pile/polymer_pile_inventory_info.tres"
 world_collider_path = NodePath("CollisionShape3D")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]

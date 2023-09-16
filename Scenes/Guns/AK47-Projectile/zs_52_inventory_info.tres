@@ -1,5 +1,6 @@
-[gd_resource type="Resource" script_class="ItemInformation" load_steps=7 format=3 uid="uid://xufa6auvjw6t"]
+[gd_resource type="Resource" script_class="ItemInformation" load_steps=8 format=3 uid="uid://xufa6auvjw6t"]
 
+[ext_resource type="Resource" uid="uid://o6tesi76nbth" path="res://ui/inventory/drop_item_context_item.tres" id="1_buf67"]
 [ext_resource type="PackedScene" uid="uid://0hy4cl1x7qwx" path="res://ui/inventory/item_detail_popup.tscn" id="3_ixxjo"]
 [ext_resource type="PackedScene" uid="uid://dr48wela8mtxd" path="res://Scenes/Guns/AK47-Projectile/AK47-Projectile.tscn" id="4_0ycxn"]
 [ext_resource type="Texture2D" uid="uid://ba6swy08v2qk5" path="res://Scenes/Guns/AK47-Projectile/ak48_img.png" id="4_gb6x6"]
@@ -18,6 +19,7 @@ item_type = 0
 icon = ExtResource("4_gb6x6")
 icon_r = ExtResource("5_26m2q")
 detail_scene = ExtResource("3_ixxjo")
+context_menu_items = Array[Resource("res://ui/inventory/item_context_item.gd")]([ExtResource("1_buf67")])
 max_stacks = 1
 has_stacks = false
 max_durability = 1

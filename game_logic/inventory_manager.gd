@@ -131,6 +131,17 @@ func place_stack_in_grid(item_instance_id:int, target_inventory_id:int, grid_loc
 	EventBus.item_picked_up.emit(pickup_result)
 	_destroy_empty_stack(item_inst)
 	
+func find_clear_area_in_grid(item_instance_id:int, target_inventory_id:int):
+	var inventory = _inventory_access.get_inventory(target_inventory_id)
+	var item_inst = _item_access.get_item(item_instance_id)
+	if inventory and item_inst:
+		for y in range(inventory.get_height()):
+			for x in range(inventory.get_width()):
+				var grid_loc = Vector2i(x,y)
+				if _inventory_access.can_place_item_in_grid(item_inst, target_inventory_id, grid_loc):
+					return grid_loc
+	return null
+	
 func _destroy_empty_stack(item_instance:ItemInstance):
 	if item_instance and item_instance.get_has_stacks():
 		if item_instance.stacks <= 0:

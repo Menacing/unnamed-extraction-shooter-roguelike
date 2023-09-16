@@ -1,6 +1,8 @@
 extends MarginContainer
 class_name ItemControl
 
+var stack_splitter_popup_scene = preload("res://ui/inventory/stack_splitter.tscn")
+
 var item_instance_id:int
 func get_item_instance() -> ItemInstance:
 	return InventoryManager.get_item(item_instance_id)
@@ -9,6 +11,7 @@ func _ready():
 	EventBus.item_picked_up.connect(_on_item_picked_up)
 	EventBus.item_stack_count_changed.connect(_on_item_stack_count_changed)
 	EventBus.context_menus_drop_item.connect(_on_context_menus_drop_item)
+	EventBus.context_menus_split_stack.connect(_on_context_menus_split_stack)
 	show_durability = get_item_instance().get_has_durability()
 	show_count = get_item_instance().get_has_stacks()
 	name_label.text = get_item_instance().get_display_name()
@@ -125,20 +128,6 @@ var max_durability:int:
 var context_items:Array[ItemContextItem]:
 	get:
 		return get_item_instance().get_context_menu_items()
-
-##func _process(delta):
-	##if listening_to_mouse:
-		##var cursor_pos = get_global_mouse_position()
-		##if Input.is_action_just_pressed("inv_grab"):
-			##grab(cursor_pos)
-		##if Input.is_action_just_released("inv_grab"):
-			##release(cursor_pos)
-		##if item_held != null:
-			##item_held.global_position = cursor_pos + item_offset
-			###TODO Reimpliment Rotation
-	###		if Input.is_action_just_pressed("rotate_held_item"):
-	###			item_held.toggle_rotation(cell_size)
-	###			item_offset = item_held.get_item_offset()
 	
 var _is_dragging:bool
 	
@@ -204,6 +193,14 @@ func _on_context_menus_drop_item(item_inst:ItemInstance, cursor_pos:Vector2):
 		var original_inventory_id = item_inst.current_inventory_id
 		InventoryManager.remove_item(item_instance_id, original_inventory_id)
 		EventBus.drop_item.emit(item_inst, original_inventory_id)
+
+func _on_context_menus_split_stack(item_inst:ItemInstance, cursor_pos:Vector2):
+	if item_inst and item_inst.get_instance_id() == item_instance_id:
+		var stack_splitter_popup:StackSplitter = stack_splitter_popup_scene.instantiate()
+		stack_splitter_popup.item_instance_id = item_instance_id
+		self.get_parent().add_child(stack_splitter_popup)
+		stack_splitter_popup.top_level = true
+		stack_splitter_popup.position = cursor_pos 
 
 func _on_count_changed(new_count:int):
 	count.text = str(new_count)
