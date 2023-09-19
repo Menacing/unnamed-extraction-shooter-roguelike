@@ -1,11 +1,22 @@
-[gd_scene load_steps=4 format=3 uid="uid://0hy4cl1x7qwx"]
+[gd_scene load_steps=7 format=3 uid="uid://0hy4cl1x7qwx"]
 
+[ext_resource type="PackedScene" uid="uid://bxbcxff4orl6n" path="res://Scenes/Guns/AK47-Projectile/quick_AK47_2.glb" id="1_egeas"]
 [ext_resource type="PackedScene" uid="uid://bshm12rhfjlbc" path="res://ui/inventory/backpack_cell.tscn" id="2_4v6w4"]
+[ext_resource type="Shader" path="res://ui/inventory/item_detail_popup.gdshader" id="2_gjmw2"]
 
-[sub_resource type="Environment" id="Environment_cdtq0"]
+[sub_resource type="Environment" id="Environment_xstyd"]
+background_mode = 1
 
-[sub_resource type="World3D" id="World3D_pvuw6"]
-environment = SubResource("Environment_cdtq0")
+[sub_resource type="World3D" id="World3D_numqj"]
+environment = SubResource("Environment_xstyd")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_g2wy8"]
+shader = ExtResource("2_gjmw2")
+shader_parameter/crt_curve = 0.001
+shader_parameter/crt_scan_line_color = 0.347
+shader_parameter/aperture_grille_rate = 0.4
+shader_parameter/rf_switch_esque_blur = 1.0
+shader_parameter/white_noise_rate = 0.053
 
 [node name="item_detail_popup" type="PanelContainer"]
 offset_right = 500.0
@@ -17,22 +28,32 @@ layout_mode = 2
 [node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="VBoxContainer/MarginContainer"]
 layout_mode = 2
 stretch = true
 
 [node name="SubViewport" type="SubViewport" parent="VBoxContainer/MarginContainer/SubViewportContainer"]
-world_3d = SubResource("World3D_pvuw6")
-transparent_bg = true
+world_3d = SubResource("World3D_numqj")
 handle_input_locally = false
-size = Vector2i(487, 254)
+size = Vector2i(477, 244)
 render_target_update_mode = 4
 
+[node name="quick_AK47_2" parent="VBoxContainer/MarginContainer/SubViewportContainer/SubViewport" instance=ExtResource("1_egeas")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.154545, 0)
+
 [node name="Camera3D" type="Camera3D" parent="VBoxContainer/MarginContainer/SubViewportContainer/SubViewport"]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -1.75566, 0.107545, 0.0667049)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)
 projection = 1
-size = 0.766
+size = 0.613116
+
+[node name="ColorRect" type="ColorRect" parent="VBoxContainer/MarginContainer"]
+material = SubResource("ShaderMaterial_g2wy8")
+layout_mode = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
