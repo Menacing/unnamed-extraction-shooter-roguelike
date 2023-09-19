@@ -1,8 +1,8 @@
 [gd_scene load_steps=7 format=3 uid="uid://0hy4cl1x7qwx"]
 
 [ext_resource type="PackedScene" uid="uid://bxbcxff4orl6n" path="res://Scenes/Guns/AK47-Projectile/quick_AK47_2.glb" id="1_egeas"]
-[ext_resource type="PackedScene" uid="uid://bshm12rhfjlbc" path="res://ui/inventory/backpack_cell.tscn" id="2_4v6w4"]
 [ext_resource type="Shader" path="res://ui/inventory/item_detail_popup.gdshader" id="2_gjmw2"]
+[ext_resource type="Script" path="res://ui/inventory/equipment_slots_control.gd" id="3_taixe"]
 
 [sub_resource type="Environment" id="Environment_xstyd"]
 background_mode = 1
@@ -19,56 +19,106 @@ shader_parameter/rf_switch_esque_blur = 1.0
 shader_parameter/white_noise_rate = 0.053
 
 [node name="item_detail_popup" type="PanelContainer"]
-offset_right = 500.0
+offset_right = 700.0
 offset_bottom = 300.0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+text = "LONG PLACEHOLDER TEXT"
+
+[node name="Button" type="Button" parent="HBoxContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 10
+text = "DONE
+"
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_constants/margin_left = 5
-theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 5
-theme_override_constants/margin_bottom = 5
 
-[node name="SubViewportContainer" type="SubViewportContainer" parent="VBoxContainer/MarginContainer"]
+[node name="SubViewportContainer" type="SubViewportContainer" parent="HBoxContainer/VBoxContainer/MarginContainer"]
 layout_mode = 2
 stretch = true
 
-[node name="SubViewport" type="SubViewport" parent="VBoxContainer/MarginContainer/SubViewportContainer"]
+[node name="SubViewport" type="SubViewport" parent="HBoxContainer/VBoxContainer/MarginContainer/SubViewportContainer"]
 world_3d = SubResource("World3D_numqj")
 handle_input_locally = false
-size = Vector2i(477, 244)
+size = Vector2i(396, 161)
 render_target_update_mode = 4
 
-[node name="quick_AK47_2" parent="VBoxContainer/MarginContainer/SubViewportContainer/SubViewport" instance=ExtResource("1_egeas")]
+[node name="quick_AK47_2" parent="HBoxContainer/VBoxContainer/MarginContainer/SubViewportContainer/SubViewport" instance=ExtResource("1_egeas")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.154545, 0)
 
-[node name="Camera3D" type="Camera3D" parent="VBoxContainer/MarginContainer/SubViewportContainer/SubViewport"]
+[node name="Camera3D" type="Camera3D" parent="HBoxContainer/VBoxContainer/MarginContainer/SubViewportContainer/SubViewport"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)
 projection = 1
 size = 0.613116
 
-[node name="ColorRect" type="ColorRect" parent="VBoxContainer/MarginContainer"]
+[node name="ColorRect" type="ColorRect" parent="HBoxContainer/VBoxContainer/MarginContainer"]
 material = SubResource("ShaderMaterial_g2wy8")
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="Panel" parent="VBoxContainer/HBoxContainer" instance=ExtResource("2_4v6w4")]
+[node name="BackpackSlot" type="Panel" parent="HBoxContainer/VBoxContainer/HBoxContainer" node_paths=PackedStringArray("parent_inventory_control_base") groups=["droppable_inventory_controls"]]
+modulate = Color(0.686275, 0.686275, 0.686275, 1)
+custom_minimum_size = Vector2(96, 96)
 layout_mode = 2
+size_flags_horizontal = 8
+script = ExtResource("3_taixe")
+parent_inventory_control_base = NodePath("")
 
-[node name="Panel2" parent="VBoxContainer/HBoxContainer" instance=ExtResource("2_4v6w4")]
+[node name="BackpackSlot2" type="Panel" parent="HBoxContainer/VBoxContainer/HBoxContainer" node_paths=PackedStringArray("parent_inventory_control_base") groups=["droppable_inventory_controls"]]
+modulate = Color(0.686275, 0.686275, 0.686275, 1)
+custom_minimum_size = Vector2(96, 96)
 layout_mode = 2
+size_flags_horizontal = 8
+script = ExtResource("3_taixe")
+parent_inventory_control_base = NodePath("")
 
-[node name="Panel3" parent="VBoxContainer/HBoxContainer" instance=ExtResource("2_4v6w4")]
+[node name="BackpackSlot3" type="Panel" parent="HBoxContainer/VBoxContainer/HBoxContainer" node_paths=PackedStringArray("parent_inventory_control_base") groups=["droppable_inventory_controls"]]
+modulate = Color(0.686275, 0.686275, 0.686275, 1)
+custom_minimum_size = Vector2(96, 96)
 layout_mode = 2
+size_flags_horizontal = 8
+script = ExtResource("3_taixe")
+parent_inventory_control_base = NodePath("")
 
-[node name="Panel4" parent="VBoxContainer/HBoxContainer" instance=ExtResource("2_4v6w4")]
+[node name="BackpackSlot4" type="Panel" parent="HBoxContainer/VBoxContainer/HBoxContainer" node_paths=PackedStringArray("parent_inventory_control_base") groups=["droppable_inventory_controls"]]
+modulate = Color(0.686275, 0.686275, 0.686275, 1)
+custom_minimum_size = Vector2(96, 96)
 layout_mode = 2
+size_flags_horizontal = 8
+script = ExtResource("3_taixe")
+parent_inventory_control_base = NodePath("")
 
-[node name="Panel5" parent="VBoxContainer/HBoxContainer" instance=ExtResource("2_4v6w4")]
+[node name="VBoxContainer2" type="VBoxContainer" parent="HBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ScrollContainer" type="ScrollContainer" parent="HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 3
+vertical_scroll_mode = 2
+
+[node name="Label" type="TextEdit" parent="HBoxContainer/VBoxContainer2/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 12
+text = "The ZS-52 was developed shortly after the 2nd Great War to replace the service rifle, submachine gun, and light machine gun in the commie army. It didn't quite do that, but it they did make a ton of them. This one is in decent condition"
+editable = false
+context_menu_enabled = false
+shortcut_keys_enabled = false
+selecting_enabled = false
+wrap_mode = 1
