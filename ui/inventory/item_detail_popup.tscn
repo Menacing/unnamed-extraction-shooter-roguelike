@@ -80,6 +80,17 @@ layout_mode = 2
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/StatsVBoxContainer"]
 layout_mode = 2
 
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer/StatsVBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Magazine Size"
+uppercase = true
+
+[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/HBoxContainer/StatsVBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "30"
+fit_content = true
+
 [node name="ModificationSlotVBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
 

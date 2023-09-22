@@ -1,8 +1,5 @@
 extends Gun
 class_name AK
-
-@export var magazineSize: int = 30
-@export var magazine: int = magazineSize
 @warning_ignore("unsafe_method_access")
 @onready var gun_mat: BaseMaterial3D = $gun/Node_15/gun/barrel/Cube.get_active_material(0)
 
@@ -21,7 +18,7 @@ func _ready():
 	current_fire_mode = _gun_stats.fire_modes[current_fire_mode_i]
 
 func canFire() -> bool:
-	if magazine > 0 and !reloading and fire_timer.time_left == 0:
+	if current_magazine_size > 0 and !reloading and fire_timer.time_left == 0:
 		return true
 	else:
 		return false
@@ -37,7 +34,7 @@ func fireGun():
 		bulletInst.set_as_top_level(true)		
 		get_parent().add_child(bulletInst)
 		bulletInst.global_transform.origin = shoot_origin
-		magazine -= 1
+		current_magazine_size -= 1
 		$AnimationPlayer.play("fire")
 		fire_timer.start()
 		fired.emit(generate_recoil())
@@ -51,7 +48,7 @@ func reloadGun():
 	$AnimationPlayer.play("reload")
 	
 func reloaded_callback():
-	magazine = magazineSize
+	current_magazine_size = _gun_stats.magazine_size
 	$ReloadTimer.stop()
 	reloading = false
 	reloaded.emit()

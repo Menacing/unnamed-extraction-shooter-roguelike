@@ -7,6 +7,7 @@ signal reloaded
 @export var _bullet_scene : PackedScene
 @export var ads_lean_factor:float = 1.0
 @export var _gun_stats:GunStats
+@export var current_magazine_size: int = _gun_stats.magazine_size
 
 func _ready():
 	super()
