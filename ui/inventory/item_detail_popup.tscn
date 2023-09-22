@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://0hy4cl1x7qwx"]
+[gd_scene load_steps=8 format=3 uid="uid://0hy4cl1x7qwx"]
 
 [ext_resource type="PackedScene" uid="uid://bxbcxff4orl6n" path="res://Scenes/Guns/AK47-Projectile/quick_AK47_2.glb" id="1_egeas"]
 [ext_resource type="Shader" path="res://ui/inventory/item_detail_popup.gdshader" id="2_gjmw2"]
@@ -17,6 +17,9 @@ shader_parameter/crt_scan_line_color = 0.347
 shader_parameter/aperture_grille_rate = 0.4
 shader_parameter/rf_switch_esque_blur = 1.0
 shader_parameter/white_noise_rate = 0.053
+
+[sub_resource type="Theme" id="Theme_s1mk1"]
+resource_local_to_scene = true
 
 [node name="item_detail_popup" type="PanelContainer"]
 offset_right = 700.0
@@ -119,6 +122,7 @@ size_flags_horizontal = 3
 [node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
+theme = SubResource("Theme_s1mk1")
 scroll_vertical = 1
 horizontal_scroll_mode = 0
 vertical_scroll_mode = 2
