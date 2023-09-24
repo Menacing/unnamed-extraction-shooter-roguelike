@@ -58,7 +58,7 @@ stretch = true
 [node name="SubViewport" type="SubViewport" parent="VBoxContainer/HBoxContainer/MarginContainer/SubViewportContainer"]
 world_3d = SubResource("World3D_numqj")
 handle_input_locally = false
-size = Vector2i(483, 300)
+size = Vector2i(459, 300)
 render_target_update_mode = 4
 
 [node name="quick_AK47_2" parent="VBoxContainer/HBoxContainer/MarginContainer/SubViewportContainer/SubViewport" instance=ExtResource("1_egeas")]
@@ -77,19 +77,96 @@ layout_mode = 2
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/StatsVBoxContainer"]
+[node name="MagazineSizeHBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/StatsVBoxContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer/StatsVBoxContainer/HBoxContainer"]
+[node name="StatLabel" type="Label" parent="VBoxContainer/HBoxContainer/StatsVBoxContainer/MagazineSizeHBoxContainer"]
 layout_mode = 2
 text = "Magazine Size"
 uppercase = true
 
-[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/HBoxContainer/StatsVBoxContainer/HBoxContainer"]
+[node name="ValueLabel" type="Label" parent="VBoxContainer/HBoxContainer/StatsVBoxContainer/MagazineSizeHBoxContainer"]
 layout_mode = 2
-size_flags_horizontal = 3
+size_flags_horizontal = 10
 text = "30"
-fit_content = true
+
+[node name="RPMHBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/StatsVBoxContainer"]
+layout_mode = 2
+
+[node name="StatLabel" type="Label" parent="VBoxContainer/HBoxContainer/StatsVBoxContainer/RPMHBoxContainer"]
+layout_mode = 2
+text = "RPM"
+uppercase = true
+
+[node name="ValueLabel" type="Label" parent="VBoxContainer/HBoxContainer/StatsVBoxContainer/RPMHBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 10
+text = "600"
+
+[node name="VerticalRecoilHBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/StatsVBoxContainer"]
+layout_mode = 2
+
+[node name="StatLabel" type="Label" parent="VBoxContainer/HBoxContainer/StatsVBoxContainer/VerticalRecoilHBoxContainer"]
+layout_mode = 2
+text = "Vertical Recoil"
+uppercase = true
+
+[node name="ValueLabel" type="Label" parent="VBoxContainer/HBoxContainer/StatsVBoxContainer/VerticalRecoilHBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 10
+text = "25±13"
+
+[node name="HorizontalHBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/StatsVBoxContainer"]
+layout_mode = 2
+
+[node name="StatLabel" type="Label" parent="VBoxContainer/HBoxContainer/StatsVBoxContainer/HorizontalHBoxContainer"]
+layout_mode = 2
+text = "Horizontal Recoil"
+uppercase = true
+
+[node name="ValueLabel" type="Label" parent="VBoxContainer/HBoxContainer/StatsVBoxContainer/HorizontalHBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 10
+text = "0±25"
+
+[node name="ADSSpeedHBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/StatsVBoxContainer"]
+layout_mode = 2
+
+[node name="StatLabel" type="Label" parent="VBoxContainer/HBoxContainer/StatsVBoxContainer/ADSSpeedHBoxContainer"]
+layout_mode = 2
+text = "ADS Speed"
+uppercase = true
+
+[node name="ValueLabel" type="Label" parent="VBoxContainer/HBoxContainer/StatsVBoxContainer/ADSSpeedHBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 10
+text = "10"
+
+[node name="MOAHBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/StatsVBoxContainer"]
+layout_mode = 2
+
+[node name="StatLabel" type="Label" parent="VBoxContainer/HBoxContainer/StatsVBoxContainer/MOAHBoxContainer"]
+layout_mode = 2
+text = "MOA"
+uppercase = true
+
+[node name="ValueLabel" type="Label" parent="VBoxContainer/HBoxContainer/StatsVBoxContainer/MOAHBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 10
+text = "5"
+
+[node name="TurnSpeedHBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/StatsVBoxContainer"]
+layout_mode = 2
+
+[node name="StatLabel" type="Label" parent="VBoxContainer/HBoxContainer/StatsVBoxContainer/TurnSpeedHBoxContainer"]
+layout_mode = 2
+text = "Turn Speed"
+uppercase = true
+
+[node name="ValueLabel" type="Label" parent="VBoxContainer/HBoxContainer/StatsVBoxContainer/TurnSpeedHBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 10
+text = "25"
 
 [node name="ModificationSlotVBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
