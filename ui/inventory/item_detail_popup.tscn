@@ -22,8 +22,17 @@ shader_parameter/white_noise_rate = 0.053
 resource_local_to_scene = true
 
 [node name="item_detail_popup" type="PanelContainer"]
-offset_right = 700.0
-offset_bottom = 500.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -350.0
+offset_top = -250.0
+offset_right = 350.0
+offset_bottom = 250.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 2
