@@ -54,8 +54,8 @@ func _ready():
 		gun.start_highlighted = false
 		gun.picked_up()
 		#TODO: Pull these from the packed scene instead of being hardcoded
-		gun.magazineSize = 30000
-		gun.magazine= 30000
+		gun._gun_stats.magazine_size = 30000
+		gun.current_magazine_size = 30000
 		hf_pos = -gun.get_node("HipFire").position
 
 		gun.position = hf_pos

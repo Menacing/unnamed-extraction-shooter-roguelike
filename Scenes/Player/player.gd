@@ -193,7 +193,7 @@ func move_gun_to_hands(gun:Gun):
 		current_fire_mode = gun.current_fire_mode
 		Helpers.force_parent(gun, cam)
 		EventBus.fire_mode_changed.emit(gun.current_fire_mode)
-		EventBus.ammo_count_changed.emit(gun.magazine)
+		EventBus.ammo_count_changed.emit(gun.current_magazine_size)
 		gun.visible = true
 		gun.top_level = true
 		start_arms_ik(gun.Right_Hand, gun.Right_Fingers, gun.Left_Hand, gun.Left_Fingers)
@@ -497,7 +497,7 @@ func reload():
 
 
 func _on_gun_fired(recoil:Vector2):
-	EventBus.ammo_count_changed.emit(equipped_gun.magazine)
+	EventBus.ammo_count_changed.emit(equipped_gun.current_magazine_size)
 	var scaled_recoil = scale_recoil(recoil)
 #	#flip the mapping so that recoil.y moves the camera vertically
 	v_rot_acc += scaled_recoil.x
@@ -527,7 +527,7 @@ func scale_recoil(recoil:Vector2) -> Vector2:
 	return recoil * factor
 	
 func _on_gun_reloaded():
-	EventBus.ammo_count_changed.emit(equipped_gun.magazine)	
+	EventBus.ammo_count_changed.emit(equipped_gun.current_magazine_size)	
 		
 func start_arms_ik(right_arm_loc:Node3D, right_fingers_loc:Node3D, left_arm_loc:Node3D, left_fingers_loc:Node3D):
 	if right_arm_loc:
