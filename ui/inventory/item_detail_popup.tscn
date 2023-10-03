@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://0hy4cl1x7qwx"]
+[gd_scene load_steps=9 format=3 uid="uid://0hy4cl1x7qwx"]
 
 [ext_resource type="PackedScene" uid="uid://bxbcxff4orl6n" path="res://Scenes/Guns/AK47-Projectile/quick_AK47_2.glb" id="1_egeas"]
+[ext_resource type="Script" path="res://ui/inventory/item_detail_popup.gd" id="1_kcedd"]
 [ext_resource type="Shader" path="res://ui/inventory/item_detail_popup.gdshader" id="2_gjmw2"]
 [ext_resource type="Script" path="res://ui/inventory/equipment_slots_control.gd" id="3_taixe"]
 
@@ -33,6 +34,7 @@ offset_right = 350.0
 offset_bottom = 250.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_kcedd")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 2
@@ -44,7 +46,7 @@ layout_mode = 2
 layout_mode = 2
 text = "LONG PLACEHOLDER TEXT"
 
-[node name="Button" type="Button" parent="VBoxContainer/TitleHBoxContainer"]
+[node name="DoneButton" type="Button" parent="VBoxContainer/TitleHBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 10
 text = "DONE
@@ -245,3 +247,5 @@ In eget nunc iaculis, ultrices quam vitae, tincidunt turpis. Phasellus eget arcu
 autowrap_mode = 3
 clip_text = true
 uppercase = true
+
+[connection signal="pressed" from="VBoxContainer/TitleHBoxContainer/DoneButton" to="." method="_on_done_button_pressed"]

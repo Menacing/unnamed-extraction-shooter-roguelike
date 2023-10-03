@@ -402,7 +402,12 @@ func can_shoot() -> bool:
 
 func _unhandled_input(event):
 	if event.is_action_pressed("ui_cancel"):
-		MenuManager.load_menu(MenuManager.MENU_LEVEL.PAUSE)
+		#If inventories are closed, trigger the pause menu, else close open inventories
+		if !toggle_inv_f:
+			MenuManager.load_menu(MenuManager.MENU_LEVEL.PAUSE)
+		else:
+			close_inventory()
+		
 
 func _input(event):
 	if event.is_action_pressed("inventory"):
