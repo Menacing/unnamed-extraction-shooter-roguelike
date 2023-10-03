@@ -2,7 +2,7 @@ extends MarginContainer
 class_name ItemControl
 
 var stack_splitter_popup_scene = preload("res://ui/inventory/stack_splitter.tscn")
-var item_detail_popup_scene = preload("res://ui/inventory/item_detail_popup.tscn")
+var item_detail_popup_scene = preload("res://ui/inventory/gun_detail_popup.tscn")
 
 var item_instance_id:int
 func get_item_instance() -> ItemInstance:

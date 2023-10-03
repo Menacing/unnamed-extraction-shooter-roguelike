@@ -1,9 +1,9 @@
 [gd_scene load_steps=9 format=3 uid="uid://0hy4cl1x7qwx"]
 
-[ext_resource type="PackedScene" uid="uid://bxbcxff4orl6n" path="res://Scenes/Guns/AK47-Projectile/quick_AK47_2.glb" id="1_egeas"]
-[ext_resource type="Script" path="res://ui/inventory/item_detail_popup.gd" id="1_kcedd"]
-[ext_resource type="Shader" path="res://ui/inventory/item_detail_popup.gdshader" id="2_gjmw2"]
-[ext_resource type="Script" path="res://ui/inventory/equipment_slots_control.gd" id="3_taixe"]
+[ext_resource type="Script" path="res://ui/inventory/gun_detail_popup.gd" id="1_kgmg4"]
+[ext_resource type="PackedScene" uid="uid://bxbcxff4orl6n" path="res://Scenes/Guns/AK47-Projectile/quick_AK47_2.glb" id="2_3qdj7"]
+[ext_resource type="Shader" path="res://ui/inventory/item_detail_popup.gdshader" id="3_5b770"]
+[ext_resource type="Script" path="res://ui/inventory/equipment_slots_control.gd" id="4_j4g6b"]
 
 [sub_resource type="Environment" id="Environment_xstyd"]
 background_mode = 1
@@ -12,7 +12,7 @@ background_mode = 1
 environment = SubResource("Environment_xstyd")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_g2wy8"]
-shader = ExtResource("2_gjmw2")
+shader = ExtResource("3_5b770")
 shader_parameter/crt_curve = 0.001
 shader_parameter/crt_scan_line_color = 0.347
 shader_parameter/aperture_grille_rate = 0.4
@@ -22,7 +22,7 @@ shader_parameter/white_noise_rate = 0.053
 [sub_resource type="Theme" id="Theme_s1mk1"]
 resource_local_to_scene = true
 
-[node name="item_detail_popup" type="PanelContainer"]
+[node name="gun_detail_popup" type="PanelContainer"]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -34,7 +34,7 @@ offset_right = 350.0
 offset_bottom = 250.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_kcedd")
+script = ExtResource("1_kgmg4")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 2
@@ -72,7 +72,7 @@ handle_input_locally = false
 size = Vector2i(459, 300)
 render_target_update_mode = 4
 
-[node name="quick_AK47_2" parent="VBoxContainer/HBoxContainer/MarginContainer/SubViewportContainer/SubViewport" instance=ExtResource("1_egeas")]
+[node name="quick_AK47_2" parent="VBoxContainer/HBoxContainer/MarginContainer/SubViewportContainer/SubViewport" instance=ExtResource("2_3qdj7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.154545, 0)
 
 [node name="Camera3D" type="Camera3D" parent="VBoxContainer/HBoxContainer/MarginContainer/SubViewportContainer/SubViewport"]
@@ -191,28 +191,28 @@ modulate = Color(0.686275, 0.686275, 0.686275, 1)
 custom_minimum_size = Vector2(96, 96)
 layout_mode = 2
 size_flags_horizontal = 8
-script = ExtResource("3_taixe")
+script = ExtResource("4_j4g6b")
 
 [node name="BackpackSlot2" type="Panel" parent="VBoxContainer/ModificationSlotVBoxContainer" groups=["droppable_inventory_controls"]]
 modulate = Color(0.686275, 0.686275, 0.686275, 1)
 custom_minimum_size = Vector2(96, 96)
 layout_mode = 2
 size_flags_horizontal = 8
-script = ExtResource("3_taixe")
+script = ExtResource("4_j4g6b")
 
 [node name="BackpackSlot3" type="Panel" parent="VBoxContainer/ModificationSlotVBoxContainer" groups=["droppable_inventory_controls"]]
 modulate = Color(0.686275, 0.686275, 0.686275, 1)
 custom_minimum_size = Vector2(96, 96)
 layout_mode = 2
 size_flags_horizontal = 8
-script = ExtResource("3_taixe")
+script = ExtResource("4_j4g6b")
 
 [node name="BackpackSlot4" type="Panel" parent="VBoxContainer/ModificationSlotVBoxContainer" groups=["droppable_inventory_controls"]]
 modulate = Color(0.686275, 0.686275, 0.686275, 1)
 custom_minimum_size = Vector2(96, 96)
 layout_mode = 2
 size_flags_horizontal = 8
-script = ExtResource("3_taixe")
+script = ExtResource("4_j4g6b")
 
 [node name="Container2" type="Container" parent="VBoxContainer/ModificationSlotVBoxContainer"]
 layout_mode = 2
