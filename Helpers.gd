@@ -7,11 +7,11 @@ func get_cell_size() -> int:
 	return 32
 
 func slow_rotate_to_point(node:Node3D, point:Vector3, rotation_speed:float, delta:float):
-	var T=node.global_transform.looking_at(point, Vector3(0,1,0))
-	var sourceQ = Quaternion(node.global_transform.basis)
-	var destQ = Quaternion(T.basis)
-	var calc_speed = rotation_speed*delta
-	var resultQ = sourceQ.slerp(destQ,calc_speed)
+	var T:Transform3D=node.global_transform.looking_at(point, Vector3(0,1,0))
+	var sourceQ:Quaternion = Quaternion(node.global_transform.basis)
+	var destQ:Quaternion = Quaternion(T.basis)
+	var calc_speed:float = rotation_speed*delta
+	var resultQ:Quaternion = sourceQ.slerp(destQ,calc_speed)
 	node.global_transform.basis = Basis(resultQ)
 
 func slow_rotate_to_point_flat(node:Node3D, point:Vector3, rotation_speed:float, delta:float):
@@ -19,8 +19,8 @@ func slow_rotate_to_point_flat(node:Node3D, point:Vector3, rotation_speed:float,
 	slow_rotate_to_point(node, flattened_target, rotation_speed, delta)
 
 func random_angle_deviation_moa(node:Node3D, max_vert_moa:float, max_hor_moa:float):
-	var vert_moa = randf_range(-max_vert_moa/2, max_vert_moa/2)
-	var hor_moa = randf_range(-max_hor_moa/2, max_hor_moa/2)
+	var vert_moa:float = randf_range(-max_vert_moa/2, max_vert_moa/2)
+	var hor_moa:float = randf_range(-max_hor_moa/2, max_hor_moa/2)
 	node.rotate_x(moa_to_rad(vert_moa))
 	node.rotate_y(moa_to_rad(hor_moa))
 	
@@ -33,9 +33,9 @@ func los_to_point(target:Node3D, sources:Array[Node3D], threshold:float, exclusi
 	var num_los = 0.0
 	var space_state = target.get_world_3d().direct_space_state
 	if space_state:
-		var target_global_pos = target.global_position
+		var target_global_pos:Vector3 = target.global_position
 		for source in sources:
-			var query = PhysicsRayQueryParameters3D.create(source.global_transform.origin,\
+			var query:PhysicsRayQueryParameters3D = PhysicsRayQueryParameters3D.create(source.global_transform.origin,\
 				target_global_pos)
 			if exclusions.size() > 0:
 				query.exclude = exclusions
@@ -55,9 +55,9 @@ func get_all_collision_object_3d_recursive(node: Node) -> Array[RID]:
 	if node is CollisionObject3D :
 		list.append(node.get_rid())
 	for i in range(node.get_child_count()):
-		var child = node.get_child(i)
+		var child:Node = node.get_child(i)
 		if child.get_child_count() > 0:
-			var child_cols = get_all_collision_object_3d_recursive(child)
+			var child_cols:Array[RID] = get_all_collision_object_3d_recursive(child)
 			list.append_array(child_cols)
 	return list
 	
@@ -72,7 +72,7 @@ func gddeg_to_compass_deg(unnormal_deg:int) -> int:
 func get_control_in_group_with_method_at_position(cursor_pos:Vector2, group_name:String, method_name:String) -> Control:
 	var containers = get_tree().get_nodes_in_group(group_name)
 	for c in containers:
-		if c.get_global_rect().has_point(cursor_pos) and c is Control:
+		if c is Control and c.get_global_rect().has_point(cursor_pos):
 			if c.has_method(method_name):
 				return c
 	return null

@@ -54,7 +54,7 @@ func _ready():
 				
 				#scene.set_as_top_level(true)
 				get_parent().add_child.call_deferred(item_3d)
-				item_3d.global_position = try_pos + self.global_position
+				item_3d.set_global_position.call_deferred(try_pos + self.global_position)
 				spawned_locations.append(try_pos)
 				remaining_tries = 0
 				item_3d.dropped()

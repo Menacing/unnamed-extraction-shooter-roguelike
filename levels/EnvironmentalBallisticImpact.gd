@@ -25,14 +25,18 @@ func _on_hit(damage, pen_rating, col:CollisionInformation, hit_origin:Vector3) -
 	if _bullet_hole_scene:
 		var bulletInst = _bullet_hole_scene.instantiate() as Node3D
 		add_child(bulletInst)
-		bulletInst.global_transform.origin = position
-		bulletInst.look_at(normal+position,Vector3.UP)
+		if normal == Vector3.UP or normal == Vector3.DOWN:
+			bulletInst.look_at_from_position(position, normal, Vector3.RIGHT)
+		else:
+			bulletInst.look_at_from_position(position, normal)
 	if _impact_hit:
 		var hit_inst = _impact_hit.instantiate() as Node3D
 		hit_inst.set_as_top_level(true)
 		get_parent().add_child(hit_inst)
-		hit_inst.global_transform.origin = position
-		hit_inst.look_at(normal+position,Vector3.UP)
+		if normal == Vector3.UP or normal == Vector3.DOWN:
+			hit_inst.look_at_from_position(position, normal, Vector3.RIGHT)
+		else:
+			hit_inst.look_at_from_position(position, normal)
 
 	object_hit.emit()
 	if pen_rating >= armor_rating:

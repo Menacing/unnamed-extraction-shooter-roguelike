@@ -27,7 +27,7 @@ func _clear_inventory(inventory_id:int):
 
 func can_place_item_in_slot(item_inst:ItemInstance, inventory_id:int, slot_name:String) -> bool:
 	if item_inst:
-		var inventory = get_inventory(inventory_id)
+		var inventory:Inventory = get_inventory(inventory_id)
 		if inventory == null:
 			return false
 			
@@ -43,7 +43,7 @@ func can_place_item_in_slot(item_inst:ItemInstance, inventory_id:int, slot_name:
 	
 func can_place_stack_in_slot(item_inst:ItemInstance, inventory_id:int, slot_name:String) -> bool:
 	if item_inst:
-		var inventory = get_inventory(inventory_id)
+		var inventory:Inventory = get_inventory(inventory_id)
 		if inventory == null or item_inst == null or !item_inst.get_has_stacks():
 			return false
 			
@@ -62,7 +62,7 @@ func can_place_stack_in_slot(item_inst:ItemInstance, inventory_id:int, slot_name
 		return false
 
 func place_item_in_slot(item_inst:ItemInstance, inventory_id:int, slot_name:String) -> bool:
-	var inventory = get_inventory(inventory_id)	
+	var inventory:Inventory = get_inventory(inventory_id)	
 	if can_place_item_in_slot(item_inst,inventory_id,slot_name):
 		var slot:EquipmentSlotType = Inventory.get_slot_by_name(inventory,slot_name)
 		if slot:
@@ -73,7 +73,7 @@ func place_item_in_slot(item_inst:ItemInstance, inventory_id:int, slot_name:Stri
 	return false
 	
 func place_stack_in_slot(item_inst:ItemInstance, inventory_id:int, slot_name:String, amount:int) -> bool:
-	var inventory = get_inventory(inventory_id)
+	var inventory:Inventory = get_inventory(inventory_id)
 	if can_place_stack_in_slot(item_inst,inventory_id,slot_name):
 		var slot:EquipmentSlotType = Inventory.get_slot_by_name(inventory,slot_name)
 		if slot:
@@ -87,7 +87,7 @@ func place_stack_in_slot(item_inst:ItemInstance, inventory_id:int, slot_name:Str
 					return true
 				#else we're moving only some to a new instance
 				else:
-					var new_inst = ItemAccess.clone_instance(item_inst)
+					var new_inst:ItemInstance = ItemAccess.clone_instance(item_inst)
 					slot.item_instance_id = new_inst.get_instance_id()
 					new_inst.current_inventory_id = inventory_id
 					var new_instance_insert_result:InventoryInsertResult = InventoryInsertResult.new(new_inst,inventory_id, InventoryLocationResult.new())
@@ -158,7 +158,7 @@ func can_place_stack_in_grid(item_inst:ItemInstance, inventory_id:int, grid_loca
 		#check if there's an item alredy there
 		for i in range(x, x + w):
 			for j in range(y, y + h):
-				var grid_val = inventory.grid_slots[i][j]
+				var grid_val:ItemInstance = inventory.grid_slots[i][j]
 				if grid_val != null:
 					#if something is there, check if we can combine stacks
 					if !ItemAccess.can_combine_stacks(item_inst,grid_val):
@@ -200,7 +200,7 @@ func place_stack_in_grid(item_inst:ItemInstance, inventory_id:int, grid_location
 		var destination_inst:ItemInstance
 		for i in range(x, x + w):
 			for j in range(y, y + h):
-				var grid_val = inventory.grid_slots[i][j]
+				var grid_val:ItemInstance = inventory.grid_slots[i][j]
 				if grid_val != null:
 					section_empty = false
 					#if we can combine, grab the destination
@@ -219,7 +219,7 @@ func place_stack_in_grid(item_inst:ItemInstance, inventory_id:int, grid_location
 				item_inst.current_inventory_id = inventory_id
 			#else we're moving only some to a new instance
 			else:
-				var new_inst = ItemAccess.clone_instance(item_inst)
+				var new_inst:ItemInstance = ItemAccess.clone_instance(item_inst)
 				var new_instance_insert_result:InventoryInsertResult = InventoryInsertResult.new(new_inst,inventory_id, InventoryLocationResult.new())
 				new_instance_insert_result.picked_up = true
 				new_instance_insert_result.location.location = InventoryLocationResult.LocationType.GRID
@@ -243,9 +243,6 @@ func place_stack_in_grid(item_inst:ItemInstance, inventory_id:int, grid_location
 				return true
 			else:
 				return false
-		
-
-		return true
 	else:
 		return false
 	
@@ -259,7 +256,7 @@ func remove_item_from_grid(item:ItemInstance,  inventory_id:int) -> void:
 	if inventory:
 		for x in range (0, inventory.get_width()):
 			for y in range(0,inventory.get_height()):
-				var cell = inventory.grid_slots[x][y]
+				var cell:ItemInstance = inventory.grid_slots[x][y]
 				if cell is ItemInstance and cell.get_instance_id() == item.get_instance_id():
 					inventory.grid_slots[x][y] = null
 	
