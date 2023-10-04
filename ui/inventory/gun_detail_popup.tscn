@@ -69,7 +69,7 @@ stretch = true
 [node name="SubViewport" type="SubViewport" parent="VBoxContainer/HBoxContainer/MarginContainer/SubViewportContainer"]
 world_3d = SubResource("World3D_numqj")
 handle_input_locally = false
-size = Vector2i(459, 300)
+size = Vector2i(2, 2)
 render_target_update_mode = 4
 
 [node name="quick_AK47_2" parent="VBoxContainer/HBoxContainer/MarginContainer/SubViewportContainer/SubViewport" instance=ExtResource("2_3qdj7")]

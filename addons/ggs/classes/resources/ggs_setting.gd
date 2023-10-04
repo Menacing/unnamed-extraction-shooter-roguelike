@@ -69,7 +69,7 @@ func set_default(value: Variant) -> void:
 		if plugin_data != null:
 			plugin_data.save()
 
-@warning_ignore("native_method_override")
+
 func set_name(value: String) -> void:
 	name = value
 	resource_name = value
