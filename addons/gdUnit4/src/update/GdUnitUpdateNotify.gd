@@ -16,15 +16,12 @@ const spinner_icon := "res://addons/gdUnit4/src/ui/assets/spinner.tres"
 
 var _debug_mode := false
 
-var _editor_interface :EditorInterface
 var _patcher :GdUnitPatcher = GdUnitPatcher.new()
 var _current_version := GdUnit4Version.current()
 var _available_versions :Array
 var _download_zip_url :String
 
-
 func _ready():
-	_editor_interface = Engine.get_meta("GdUnitEditorPlugin").get_editor_interface()
 	_update_button.disabled = true
 	_md_reader.set_http_client(_update_client)
 	GdUnitFonts.init_fonts(_content)
@@ -120,7 +117,7 @@ func rescan() -> void:
 	if Engine.is_editor_hint():
 		if OS.is_stdout_verbose():
 			prints(".. reimport release resources")
-		var fs := _editor_interface.get_resource_filesystem()
+		var fs := EditorInterface.get_resource_filesystem()
 		fs.scan()
 		while fs.is_scanning():
 			if OS.is_stdout_verbose():
@@ -153,7 +150,7 @@ func _on_update_pressed():
 	dest.store_string(content)
 	hide()
 	var update = load("res://addons/.gdunit_update/GdUnitUpdate.tscn").instantiate()
-	update.setup(_editor_interface, _update_client, _download_zip_url)
+	update.setup(EditorInterface, _update_client, _download_zip_url)
 	Engine.get_main_loop().root.add_child(update)
 	update.popup_centered()
 
