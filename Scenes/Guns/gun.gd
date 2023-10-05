@@ -54,3 +54,6 @@ func get_turn_speed() -> float:
 	
 func get_ADS_FOV() -> float:
 	return _gun_stats.ads_fov
+
+func get_gun_model() -> Node3D:
+	return Node3D.new()

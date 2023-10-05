@@ -9,6 +9,8 @@ var reloading: bool = false
 var rng: RandomNumberGenerator
 @onready var fire_timer = $FireTimer
 
+@onready var gun_model_node = $gun
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	super()
@@ -85,3 +87,6 @@ func make_opaque():
 		is_transparent = false
 	else:
 		pass
+
+func get_gun_model() -> Node3D:
+	return gun_model_node
