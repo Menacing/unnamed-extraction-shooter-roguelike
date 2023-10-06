@@ -57,3 +57,6 @@ func get_ADS_FOV() -> float:
 
 func copy_gun_model() -> Node3D:
 	return Node3D.new()
+
+func get_gun_stats() -> GunStats:
+	return _gun_stats

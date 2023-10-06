@@ -12,7 +12,7 @@ class_name GunDetailPopup
 @onready var slots_box:Control = $VBoxContainer/ModificationSlotVBoxContainer
 @onready var item_model_anchor:Node3D = $VBoxContainer/HBoxContainer/MarginContainer/SubViewportContainer/SubViewport/ItemModelAnchor
 @onready var viewport_camera:Camera3D = $VBoxContainer/HBoxContainer/MarginContainer/SubViewportContainer/SubViewport/Camera3D
-
+@onready var item_description_label:Label = $VBoxContainer/ScrollContainer/Label
 
 var _gun_3d:Gun
 var gun_3d:Gun:
@@ -51,10 +51,17 @@ func _close_self():
 	self.queue_free()
 
 func map_gun_stats(gun:Gun):
-	pass
+	var gun_stats:GunStats = gun.get_gun_stats()
+	mag_size_label.text = str(gun_stats.magazine_size)
+	rpm_label.text = str(gun_stats.rpm)
+	vertical_recoil_label.text = str(round(gun_stats.base_recoil.y*1000)) + "±" + str(round(gun_stats.recoil_variability.y*1000))
+	horizontal_recoil_label.text = str(round(gun_stats.base_recoil.x*1000)) + "±" + str(round(gun_stats.recoil_variability.x*1000))
+	ads_speed_label.text = str(gun_stats.ads_accel)
+	moa_label.text = str(gun_stats.moa)
+	turn_speed_label.text = str(gun_stats.turn_speed)
 
 func map_gun_description(gun:Gun):
-	pass
+	item_description_label.text = gun.get_item_instance().get_item_tooltip_text()
 	
 func setup_gun_model(gun:Gun):
 	Helpers.force_parent(gun.copy_gun_model(), item_model_anchor)
