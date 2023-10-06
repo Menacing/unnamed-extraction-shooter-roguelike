@@ -224,12 +224,11 @@ func _on_context_menus_split_stack(item_inst:ItemInstance, cursor_pos:Vector2):
 		
 func _on_context_menus_open_item_detail(item_inst:ItemInstance, cursor_pos:Vector2):
 	if item_inst and item_inst.get_instance_id() == item_instance_id:
-		var item_detail_popup = item_detail_popup_scene.instantiate()
-		#item_detail_popup.item_instance_id = item_instance_id
+		var item_detail_popup:ItemDetailPopup = item_detail_popup_scene.instantiate()
+		item_detail_popup.item_instance_id = item_instance_id
 		self.get_parent().add_child(item_detail_popup)
 		item_detail_popup.top_level = true
 		item_detail_popup.z_index = 2
-		#item_detail_popup.position = get_viewport_rect().size / 2.0 
 
 func _on_count_changed(new_count:int):
 	count.text = str(new_count)

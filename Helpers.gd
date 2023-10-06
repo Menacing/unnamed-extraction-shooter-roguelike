@@ -97,3 +97,11 @@ func force_parent(child:Node, parent:Node):
 	if child.get_parent():
 		child.get_parent().remove_child(child)
 	parent.add_child(child)
+
+func get_aabb_of_node(node:Node3D):
+	var aabb = AABB()
+	if node is VisualInstance3D and node.visible:
+		aabb = node.get_aabb()
+	for child in node.get_children():
+		aabb = aabb.merge(get_aabb_of_node(child))
+	return aabb

@@ -1,7 +1,6 @@
-[gd_scene load_steps=9 format=3 uid="uid://0hy4cl1x7qwx"]
+[gd_scene load_steps=8 format=3 uid="uid://0hy4cl1x7qwx"]
 
 [ext_resource type="Script" path="res://ui/inventory/gun_detail_popup.gd" id="1_kgmg4"]
-[ext_resource type="PackedScene" uid="uid://bxbcxff4orl6n" path="res://Scenes/Guns/AK47-Projectile/quick_AK47_2.glb" id="2_3qdj7"]
 [ext_resource type="Shader" path="res://ui/inventory/item_detail_popup.gdshader" id="3_5b770"]
 [ext_resource type="Script" path="res://ui/inventory/equipment_slots_control.gd" id="4_j4g6b"]
 
@@ -69,14 +68,13 @@ stretch = true
 [node name="SubViewport" type="SubViewport" parent="VBoxContainer/HBoxContainer/MarginContainer/SubViewportContainer"]
 world_3d = SubResource("World3D_numqj")
 handle_input_locally = false
-size = Vector2i(2, 2)
+size = Vector2i(459, 300)
 render_target_update_mode = 4
 
-[node name="quick_AK47_2" parent="VBoxContainer/HBoxContainer/MarginContainer/SubViewportContainer/SubViewport" instance=ExtResource("2_3qdj7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.154545, 0)
+[node name="ItemModelAnchor" type="Node3D" parent="VBoxContainer/HBoxContainer/MarginContainer/SubViewportContainer/SubViewport"]
 
 [node name="Camera3D" type="Camera3D" parent="VBoxContainer/HBoxContainer/MarginContainer/SubViewportContainer/SubViewport"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10)
 projection = 1
 size = 0.613116
 

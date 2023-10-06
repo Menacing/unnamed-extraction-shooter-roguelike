@@ -1,4 +1,5 @@
-extends PanelContainer
+extends ItemDetailPopup
+class_name GunDetailPopup
 
 @onready var mag_size_label:Label = $VBoxContainer/HBoxContainer/StatsVBoxContainer/MagazineSizeHBoxContainer/ValueLabel
 @onready var rpm_label:Label = $VBoxContainer/HBoxContainer/StatsVBoxContainer/RPMHBoxContainer/ValueLabel
@@ -9,8 +10,10 @@ extends PanelContainer
 @onready var turn_speed_label:Label = $VBoxContainer/HBoxContainer/StatsVBoxContainer/TurnSpeedHBoxContainer/ValueLabel
 @onready var stats_box:Control = $VBoxContainer/HBoxContainer/StatsVBoxContainer
 @onready var slots_box:Control = $VBoxContainer/ModificationSlotVBoxContainer
+@onready var item_model_anchor:Node3D = $VBoxContainer/HBoxContainer/MarginContainer/SubViewportContainer/SubViewport/ItemModelAnchor
+@onready var viewport_camera:Camera3D = $VBoxContainer/HBoxContainer/MarginContainer/SubViewportContainer/SubViewport/Camera3D
 
-var item_instance_id:int
+
 var _gun_3d:Gun
 var gun_3d:Gun:
 	get:
@@ -54,7 +57,18 @@ func map_gun_description(gun:Gun):
 	pass
 	
 func setup_gun_model(gun:Gun):
-	pass
+	Helpers.force_parent(gun.copy_gun_model(), item_model_anchor)
+	adjust_camera_to_fit()
 	
 func setup_mod_slots(gun:Gun):
 	pass
+
+func adjust_camera_to_fit():
+	# Ensure item_model_anchor has content.
+	if item_model_anchor.get_child_count() == 0:
+		return
+
+	# Calculate the AABB (Axis-Aligned Bounding Box) of the entire model container.
+	var aabb:AABB = Helpers.get_aabb_of_node(item_model_anchor)
+	var largest_axis:float = aabb.get_longest_axis_size()
+	viewport_camera.size = largest_axis * 1.1
