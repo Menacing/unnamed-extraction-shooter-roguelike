@@ -30,7 +30,7 @@ func get_show_name() -> bool:
 func get_display_name() -> String:
 	return _item_info.display_name
 	
-func get_item_type() -> ItemInformation.ItemType:
+func get_item_type() -> GameplayEnums.ItemType:
 	return _item_info.item_type
 
 func get_width() -> int:

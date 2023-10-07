@@ -1,6 +1,7 @@
 extends ItemDetailPopup
 class_name GunDetailPopup
 
+@onready var item_name_label:Label = $VBoxContainer/TitleHBoxContainer/Label
 @onready var mag_size_label:Label = $VBoxContainer/HBoxContainer/StatsVBoxContainer/MagazineSizeHBoxContainer/ValueLabel
 @onready var rpm_label:Label = $VBoxContainer/HBoxContainer/StatsVBoxContainer/RPMHBoxContainer/ValueLabel
 @onready var vertical_recoil_label:Label = $VBoxContainer/HBoxContainer/StatsVBoxContainer/VerticalRecoilHBoxContainer/ValueLabel
@@ -13,6 +14,9 @@ class_name GunDetailPopup
 @onready var item_model_anchor:Node3D = $VBoxContainer/HBoxContainer/MarginContainer/SubViewportContainer/SubViewport/ItemModelAnchor
 @onready var viewport_camera:Camera3D = $VBoxContainer/HBoxContainer/MarginContainer/SubViewportContainer/SubViewport/Camera3D
 @onready var item_description_label:Label = $VBoxContainer/ScrollContainer/Label
+@onready var weapon_modification_container:Container = $VBoxContainer/ModificationSlotVBoxContainer
+
+var weapon_mod_template_scene = preload("res://ui/inventory/weapon_modification_slot.tscn")
 
 var _gun_3d:Gun
 var gun_3d:Gun:
@@ -20,6 +24,7 @@ var gun_3d:Gun:
 		return _gun_3d
 	set(value):
 		_gun_3d = value
+		map_item_name(value)
 		map_gun_stats(value)
 		map_gun_description(value)
 		setup_gun_model(value)
@@ -63,11 +68,23 @@ func map_gun_stats(gun:Gun):
 func map_gun_description(gun:Gun):
 	item_description_label.text = gun.get_item_instance().get_item_tooltip_text()
 	
+func map_item_name(gun:Gun):
+	item_name_label.text = gun.get_item_instance().get_display_name()
+	
 func setup_gun_model(gun:Gun):
 	Helpers.force_parent(gun.copy_gun_model(), item_model_anchor)
 	adjust_camera_to_fit()
 	
 func setup_mod_slots(gun:Gun):
+	#get the item information
+	var item_information:ItemInformation = gun.get_item_instance().get_internal_inventory()
+	#get the internal inventory
+	#get the equipment slot
+	#for each equipment slot, create a weapon mod slot instance
+	#set the name and icon based on the slot info
+	#TODO Set up connection to inventory control, probably the vbox container
+	#add it as child to vbox container
+	#TODO reorder so spacer containers are first and last
 	pass
 
 func adjust_camera_to_fit():

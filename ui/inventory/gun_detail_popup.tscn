@@ -1,8 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://0hy4cl1x7qwx"]
+[gd_scene load_steps=7 format=3 uid="uid://0hy4cl1x7qwx"]
 
 [ext_resource type="Script" path="res://ui/inventory/gun_detail_popup.gd" id="1_kgmg4"]
 [ext_resource type="Shader" path="res://ui/inventory/item_detail_popup.gdshader" id="3_5b770"]
-[ext_resource type="Script" path="res://ui/inventory/equipment_slots_control.gd" id="4_j4g6b"]
 
 [sub_resource type="Environment" id="Environment_xstyd"]
 background_mode = 1
@@ -183,34 +182,6 @@ layout_mode = 2
 [node name="Container" type="Container" parent="VBoxContainer/ModificationSlotVBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-
-[node name="BackpackSlot" type="Panel" parent="VBoxContainer/ModificationSlotVBoxContainer" groups=["droppable_inventory_controls"]]
-modulate = Color(0.686275, 0.686275, 0.686275, 1)
-custom_minimum_size = Vector2(96, 96)
-layout_mode = 2
-size_flags_horizontal = 8
-script = ExtResource("4_j4g6b")
-
-[node name="BackpackSlot2" type="Panel" parent="VBoxContainer/ModificationSlotVBoxContainer" groups=["droppable_inventory_controls"]]
-modulate = Color(0.686275, 0.686275, 0.686275, 1)
-custom_minimum_size = Vector2(96, 96)
-layout_mode = 2
-size_flags_horizontal = 8
-script = ExtResource("4_j4g6b")
-
-[node name="BackpackSlot3" type="Panel" parent="VBoxContainer/ModificationSlotVBoxContainer" groups=["droppable_inventory_controls"]]
-modulate = Color(0.686275, 0.686275, 0.686275, 1)
-custom_minimum_size = Vector2(96, 96)
-layout_mode = 2
-size_flags_horizontal = 8
-script = ExtResource("4_j4g6b")
-
-[node name="BackpackSlot4" type="Panel" parent="VBoxContainer/ModificationSlotVBoxContainer" groups=["droppable_inventory_controls"]]
-modulate = Color(0.686275, 0.686275, 0.686275, 1)
-custom_minimum_size = Vector2(96, 96)
-layout_mode = 2
-size_flags_horizontal = 8
-script = ExtResource("4_j4g6b")
 
 [node name="Container2" type="Container" parent="VBoxContainer/ModificationSlotVBoxContainer"]
 layout_mode = 2
