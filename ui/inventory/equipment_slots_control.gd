@@ -2,6 +2,11 @@ extends Panel
 class_name EquipmentSlotControl
 
 @export var parent_inventory_control_base:InventoryControlBase
+@onready var slot_icon_texture_rect:TextureRect = $MarginContainer/TextureRect
+var slot_icon:Texture2D
+
+func _ready():
+	slot_icon_texture_rect.texture = slot_icon
 
 func _can_drop_data(at_position, data) -> bool:
 	var item_instance_id:int = data["item_instance_id"]

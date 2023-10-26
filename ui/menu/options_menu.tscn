@@ -8,9 +8,9 @@
 [ext_resource type="PackedScene" uid="uid://bhkyf3l4ee800" path="res://game_settings/components/checkbox/checkbox.tscn" id="4_l86j1"]
 [ext_resource type="Texture2D" uid="uid://dar0xtpo48ma0" path="res://addons/ggs/assets/game_settings/_default.svg" id="5_fol31"]
 [ext_resource type="Script" path="res://game_settings/settings/bool_setting.gd" id="6_pqhr0"]
-[ext_resource type="PackedScene" path="res://game_settings/components/_misc_components/apply_btn/apply_btn.tscn" id="7_h0jo0"]
+[ext_resource type="PackedScene" uid="uid://c7hc26d1jj4fy" path="res://game_settings/components/_misc_components/apply_btn/apply_btn.tscn" id="7_h0jo0"]
 [ext_resource type="PackedScene" uid="uid://bqi00h7i7sg3u" path="res://game_settings/components/spinbox/spinbox.tscn" id="8_24oih"]
-[ext_resource type="PackedScene" path="res://game_settings/components/_misc_components/reset_btn/reset_btn.tscn" id="8_411hw"]
+[ext_resource type="PackedScene" uid="uid://6uf3453l3fhj" path="res://game_settings/components/_misc_components/reset_btn/reset_btn.tscn" id="8_411hw"]
 [ext_resource type="Script" path="res://game_settings/settings/float_setting.gd" id="9_y5jte"]
 [ext_resource type="PackedScene" uid="uid://ds06mwhee8ygm" path="res://game_settings/components/slider/slider.tscn" id="10_aqhiy"]
 [ext_resource type="PackedScene" uid="uid://cha8xesfthpfk" path="res://game_settings/components/switch/switch.tscn" id="13_7wq5f"]
@@ -91,7 +91,7 @@ resource_name = "jump_kb"
 script = ExtResource("3_d1o6r")
 action = "jump"
 type = 0
-current = " space"
+current = "space"
 default = " space"
 name = "jump_kb"
 category = "controls"
@@ -149,7 +149,7 @@ value_hint_string = ""
 resource_name = "toggle_crouch"
 script = ExtResource("6_pqhr0")
 game_setting_name = "toggle_crouch"
-current = false
+current = true
 default = false
 name = "toggle_crouch"
 category = "controls"
@@ -222,7 +222,7 @@ value_hint_string = ""
 resource_name = "h_mouse_sens"
 script = ExtResource("9_y5jte")
 game_setting_name = "h_mouse_sens"
-current = 5.0
+current = 3.2
 default = 5.0
 name = "h_mouse_sens"
 category = "controls"
@@ -236,7 +236,7 @@ value_hint_string = ""
 resource_name = "v_mouse_sens"
 script = ExtResource("9_y5jte")
 game_setting_name = "v_mouse_sens"
-current = 5.0
+current = 3.2
 default = 5.0
 name = "v_mouse_sens"
 category = "controls"
@@ -310,7 +310,7 @@ value_hint_string = ""
 resource_name = "ads_factor"
 script = ExtResource("9_y5jte")
 game_setting_name = "ads_look_factor"
-current = 1.0
+current = 0.37
 default = 1.0
 name = "ads_factor"
 category = "controls"
@@ -338,7 +338,7 @@ value_hint_string = ""
 resource_name = "both_eyes_open"
 script = ExtResource("6_pqhr0")
 game_setting_name = "both_eyes_open_ads"
-current = false
+current = true
 default = false
 name = "both_eyes_open"
 category = "controls"
@@ -398,7 +398,7 @@ resource_name = "drop_gun_kb"
 script = ExtResource("3_d1o6r")
 action = "dropGun"
 type = 0
-current = ""
+current = "backspace"
 default = ""
 name = "drop_gun_kb"
 category = "controls"
@@ -486,7 +486,7 @@ value_hint_string = ""
 resource_name = "master_volume"
 script = ExtResource("17_dmwxq")
 bus_name = "Master"
-current = 80.0
+current = 77.0
 default = 80.0
 name = "master_volume"
 category = "audio"
@@ -500,7 +500,7 @@ value_hint_string = "0,100"
 resource_name = "Fullscreen_Mode"
 script = ExtResource("19_a6ht2")
 size_setting = "Window_Size"
-current = true
+current = false
 default = false
 name = "Fullscreen_Mode"
 category = "display"
@@ -542,7 +542,7 @@ value_hint_string = ""
 resource_name = "health_display_mode"
 script = ExtResource("23_80h07")
 game_setting_name = "selected_health_display"
-current = false
+current = 0
 default = false
 name = "health_display_mode"
 category = "ui"

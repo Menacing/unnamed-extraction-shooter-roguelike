@@ -3,6 +3,7 @@
 [ext_resource type="Script" path="res://Scenes/Guns/gun_stats.gd" id="1_0a7nh"]
 
 [resource]
+resource_local_to_scene = true
 script = ExtResource("1_0a7nh")
 magazine_size = 30
 rpm = 600

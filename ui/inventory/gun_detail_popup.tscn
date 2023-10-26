@@ -179,11 +179,11 @@ text = "25"
 [node name="ModificationSlotVBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
 
-[node name="Container" type="Container" parent="VBoxContainer/ModificationSlotVBoxContainer"]
+[node name="FrontSpacer" type="Container" parent="VBoxContainer/ModificationSlotVBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Container2" type="Container" parent="VBoxContainer/ModificationSlotVBoxContainer"]
+[node name="BackSpacer" type="Container" parent="VBoxContainer/ModificationSlotVBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 

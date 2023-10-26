@@ -83,3 +83,6 @@ func spawn_item():
 		self.id_3d = item_3d.get_instance_id()
 		item_3d.item_instance_id = self.get_instance_id()
 		
+
+func get_item_inventory() -> Inventory:
+	return _item_info.item_internal_inventory

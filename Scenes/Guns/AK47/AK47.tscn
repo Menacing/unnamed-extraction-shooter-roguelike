@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3]
+[gd_scene load_steps=14 format=3 uid="uid://frj5qey1666r"]
 
 [ext_resource type="Script" path="res://Scenes/Guns/AK47/AK47.gd" id="1_84085"]
 [ext_resource type="PackedScene" uid="uid://dbduds4bsaaby" path="res://Scenes/Bullet/Bullet_hole.tscn" id="2_pqoii"]
@@ -9,7 +9,6 @@
 [ext_resource type="AudioStream" uid="uid://b1wcyprc24rom" path="res://Scenes/Guns/AK47/ak47_clipout.wav" id="6_u7n44"]
 [ext_resource type="AudioStream" uid="uid://b8qqfpv60meve" path="res://Scenes/Guns/AK47/ak47_clipin.wav" id="7_o4euu"]
 [ext_resource type="AudioStream" uid="uid://lir3n6jdoob6" path="res://Scenes/Guns/AK47/ak47_boltpull.wav" id="8_1ahuq"]
-
 
 [sub_resource type="Animation" id="Animation_dc4hw"]
 length = 0.001
@@ -189,6 +188,7 @@ tracks/3/keys = {
 }],
 "times": PackedFloat32Array(0)
 }
+tracks/3/use_blend = true
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
@@ -261,6 +261,7 @@ tracks/1/keys = {
 }],
 "times": PackedFloat32Array(0, 1.1, 2.1)
 }
+tracks/1/use_blend = true
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
