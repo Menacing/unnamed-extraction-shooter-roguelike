@@ -1,0 +1,18 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://c8btnt361a84t"]
+
+[ext_resource type="Shader" path="res://red_dot_shader.gdshader" id="1_7ppjf"]
+[ext_resource type="Texture2D" uid="uid://dev6exdl1yata" path="res://Scenes/effects/assets/circle_05.png" id="2_rn0yb"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_7ppjf")
+shader_parameter/lens_color = Color(0.909804, 0.462745, 0.054902, 0.298039)
+shader_parameter/retical_color = Color(1, 1, 1, 1)
+shader_parameter/retical_size = 42.169
+shader_parameter/flicker = false
+shader_parameter/flicker_rate = 60.0
+shader_parameter/depth = 12.485
+shader_parameter/offset_x = 0.0
+shader_parameter/offset_y = 0.0
+shader_parameter/emission_strength = 0.2
+shader_parameter/retical_texture = ExtResource("2_rn0yb")
