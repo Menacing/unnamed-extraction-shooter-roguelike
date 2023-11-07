@@ -1,0 +1,87 @@
+[gd_scene load_steps=7 format=3 uid="uid://dr48wela8mtxd"]
+
+[ext_resource type="Script" path="res://Scenes/items/weapons/easi_early_service_rifles/zs_52/zs_52.gd" id="1_dkqwt"]
+[ext_resource type="PackedScene" uid="uid://du06cmxlbacls" path="res://Scenes/Bullet/hic_bullet.tscn" id="2_5qbyx"]
+[ext_resource type="Resource" uid="uid://dls8psqyu06aw" path="res://Scenes/items/weapons/easi_early_service_rifles/easi_early_service_rifle_gun_stats.tres" id="3_5vh7j"]
+[ext_resource type="PackedScene" uid="uid://ctxxdrrqtcdvc" path="res://Scenes/items/weapons/easi_early_service_rifles/zs_52/zs_52.blend" id="6_78q42"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_a6wgc"]
+size = Vector3(0.88, 0.22, 0.056)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_1gjre"]
+load_path = "res://.godot/imported/PixelMuzzelFlash.png-528d212ad0fee6020287580a964471cc.s3tc.ctex"
+
+[node name="zs_52" type="RigidBody3D"]
+disable_mode = 1
+collision_layer = 5
+collision_mask = 5
+script = ExtResource("1_dkqwt")
+_bullet_scene = ExtResource("2_5qbyx")
+_gun_stats = ExtResource("3_5vh7j")
+item_information_path = "res://Scenes/items/weapons/easi_early_service_rifles/zs_52/zs_52_inventory_info.tres"
+world_collider_path = NodePath("CollisionShape3D")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0.115114, 0.0719389)
+shape = SubResource("BoxShape3D_a6wgc")
+
+[node name="ReloadTimer" type="Timer" parent="."]
+wait_time = 2.5
+
+[node name="FireTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="gun" parent="." instance=ExtResource("6_78q42")]
+transform = Transform3D(-2.62268e-08, 0, -0.6, 0, 0.6, 0, 0.6, 0, -2.62268e-08, 0, 0.167238, 0)
+
+[node name="Node_15" parent="gun" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.338339, 0)
+
+[node name="scope_mount" parent="gun/Node_15" index="1"]
+visible = false
+
+[node name="MuzzleFlash" type="Node3D" parent="gun"]
+transform = Transform3D(4.37114e-09, -0.0999999, -2.71002e-07, -0.1, -4.37114e-09, 0, -1.18459e-14, 2.71002e-07, -0.0999999, -0.829474, 0.00883391, 0.00145641)
+visible = false
+
+[node name="Sprite3D" type="Sprite3D" parent="gun/MuzzleFlash"]
+alpha_cut = 2
+texture = SubResource("CompressedTexture2D_1gjre")
+
+[node name="Sprite3D2" type="Sprite3D" parent="gun/MuzzleFlash"]
+transform = Transform3D(-4.37114e-08, -3.00649e-19, 1, 0, 1, 9.50574e-16, -1, 0, -4.37114e-08, 0, 0, 0)
+alpha_cut = 2
+texture = SubResource("CompressedTexture2D_1gjre")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="gun/MuzzleFlash"]
+light_color = Color(0.988235, 0.54902, 0.188235, 1)
+
+[node name="Muzzle" type="Node3D" parent="gun"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -0.64561, 0.00695148, 2.8221e-08)
+
+[node name="RayCast3D" type="RayCast3D" parent="gun"]
+transform = Transform3D(4.37114e-08, 1, -8.74228e-08, 1, -4.37114e-08, 0, -3.82165e-15, -8.74228e-08, -1, -0.634384, 0.00716719, 2.77251e-08)
+target_position = Vector3(0, -1000, 0)
+
+[node name="Right_Hand" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 7.10543e-15, 0, 1, 0, -7.10543e-15, 0, 1, 0.025, 0.0792384, 0.281)
+
+[node name="Right_Fingers" type="Node3D" parent="."]
+transform = Transform3D(-1, 8.74228e-08, 7.10543e-15, -8.74228e-08, -1, 0, 7.10543e-15, -6.21177e-22, 1, -0.0017045, 0.0792384, -0.0446781)
+
+[node name="HipFire" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.168, 0.377238, 0.468)
+
+[node name="ADS" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.219423, 0.430836)
+
+[node name="Left_Hand" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0283023, 0.137292, -0.0768944)
+
+[node name="Left_Fingers" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.179712, 0.137292, -0.0768944)
+
+[node name="ADS_Head" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2, 0.767238, -0.088)
+
+[editable path="gun"]
