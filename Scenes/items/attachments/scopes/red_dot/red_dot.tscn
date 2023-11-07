@@ -1,10 +1,20 @@
-[gd_scene load_steps=2 format=3 uid="uid://trlm60n2q0k4"]
+[gd_scene load_steps=4 format=3 uid="uid://trlm60n2q0k4"]
 
+[ext_resource type="Script" path="res://Scenes/item_3d.gd" id="1_whine"]
 [ext_resource type="PackedScene" uid="uid://quwc3mwy0gd3" path="res://Scenes/items/attachments/scopes/red_dot/red_dot.blend" id="1_y2y11"]
 
-[node name="RedDot" type="Node3D"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_3j3gl"]
+size = Vector3(0.0576782, 0.0583496, 0.0874939)
 
-[node name="red_dot-6b8ac8cb7c0e5c25440d671c6f131a02" parent="." instance=ExtResource("1_y2y11")]
+[node name="red_dot" type="RigidBody3D"]
+script = ExtResource("1_whine")
+world_collider_path = NodePath("CollisionShape3D")
+
+[node name="red_dot_model" parent="." instance=ExtResource("1_y2y11")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
 
-[editable path="red_dot-6b8ac8cb7c0e5c25440d671c6f131a02"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000335693, 0.0196533, 0.00038147)
+shape = SubResource("BoxShape3D_3j3gl")
+
+[editable path="red_dot_model"]
