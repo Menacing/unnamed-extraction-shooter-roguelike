@@ -14,7 +14,12 @@ class_name GunDetailPopup
 @onready var item_model_anchor:Node3D = $VBoxContainer/HBoxContainer/MarginContainer/SubViewportContainer/SubViewport/ItemModelAnchor
 @onready var viewport_camera:Camera3D = $VBoxContainer/HBoxContainer/MarginContainer/SubViewportContainer/SubViewport/Camera3D
 @onready var item_description_label:Label = $VBoxContainer/ScrollContainer/Label
-@onready var weapon_modification_container:Container = $VBoxContainer/ModificationSlotVBoxContainer
+
+var _weapon_modification_container:InventoryControlBase
+var weapon_modification_container:InventoryControlBase:
+	get:
+		return $VBoxContainer/ModificationSlotVBoxContainer
+
 
 var weapon_mod_template_scene = preload("res://ui/inventory/weapon_modification_slot.tscn")
 
@@ -40,9 +45,8 @@ func _ready():
 		
 		
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
+func set_internal_inventory(internal_inventory:Inventory):
+	weapon_modification_container._inventory = internal_inventory
 
 func _input(event:InputEvent):
 	if event.is_action_pressed("ui_cancel"):
@@ -78,6 +82,7 @@ func setup_gun_model(gun:Gun):
 func setup_mod_slots(gun:Gun):
 	#get the internal inventory
 	var item_inventory:Inventory = gun.get_item_instance().get_item_inventory()
+
 	#get the equipment slots
 	var item_equipment_slots:Array[EquipmentSlotType] = item_inventory.equipment_slots
 	var current_sibling:Node = $VBoxContainer/ModificationSlotVBoxContainer/FrontSpacer
@@ -87,9 +92,11 @@ func setup_mod_slots(gun:Gun):
 		#set the name and icon based on the slot info
 		slot_control.name = slot.name
 		slot_control.slot_icon = _get_slot_icon(slot.allowed_types)
-		#TODO Set up connection to inventory control, probably the vbox container
+		#Set up connection to inventory control, probably the vbox container
+		slot_control.parent_inventory_control_base = weapon_modification_container
 		#add it as child to vbox container
 		current_sibling.add_sibling(slot_control)
+		slot_control.owner = self
 		current_sibling = slot_control
 		pass
 	pass

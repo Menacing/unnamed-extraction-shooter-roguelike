@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://0hy4cl1x7qwx"]
+[gd_scene load_steps=8 format=3 uid="uid://0hy4cl1x7qwx"]
 
 [ext_resource type="Script" path="res://ui/inventory/gun_detail_popup.gd" id="1_kgmg4"]
 [ext_resource type="Shader" path="res://ui/inventory/item_detail_popup.gdshader" id="3_5b770"]
+[ext_resource type="Script" path="res://ui/inventory/inventory_control_base.gd" id="3_x8c03"]
 
 [sub_resource type="Environment" id="Environment_xstyd"]
 background_mode = 1
@@ -67,7 +68,7 @@ stretch = true
 [node name="SubViewport" type="SubViewport" parent="VBoxContainer/HBoxContainer/MarginContainer/SubViewportContainer"]
 world_3d = SubResource("World3D_numqj")
 handle_input_locally = false
-size = Vector2i(459, 300)
+size = Vector2i(461, 300)
 render_target_update_mode = 4
 
 [node name="ItemModelAnchor" type="Node3D" parent="VBoxContainer/HBoxContainer/MarginContainer/SubViewportContainer/SubViewport"]
@@ -178,6 +179,7 @@ text = "25"
 
 [node name="ModificationSlotVBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
+script = ExtResource("3_x8c03")
 
 [node name="FrontSpacer" type="Container" parent="VBoxContainer/ModificationSlotVBoxContainer"]
 layout_mode = 2

@@ -226,6 +226,9 @@ func _on_context_menus_open_item_detail(item_inst:ItemInstance, cursor_pos:Vecto
 	if item_inst and item_inst.get_instance_id() == item_instance_id:
 		var item_detail_popup:ItemDetailPopup = item_detail_popup_scene.instantiate()
 		item_detail_popup.item_instance_id = item_instance_id
+		var internal_inventory = item_inst.get_item_inventory()
+		if (internal_inventory):
+			item_detail_popup.set_internal_inventory(internal_inventory)
 		self.get_parent().add_child(item_detail_popup)
 		item_detail_popup.top_level = true
 		item_detail_popup.z_index = 2
