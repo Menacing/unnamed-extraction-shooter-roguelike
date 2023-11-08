@@ -98,6 +98,14 @@ func setup_mod_slots(gun:Gun):
 		current_sibling.add_sibling(slot_control)
 		slot_control.owner = self
 		current_sibling = slot_control
+		
+		#if the slot has an item, put the item control in the slot
+		if slot.item_instance_id != 0:
+			var item_instance:ItemInstance = instance_from_id(slot.item_instance_id)
+			if item_instance:
+				var item_control:ItemControl = item_instance.get_item_control()
+				if item_control:
+					slot_control.add_item_control(item_control)
 		pass
 	pass
 

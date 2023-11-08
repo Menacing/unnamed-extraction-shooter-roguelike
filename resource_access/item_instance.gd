@@ -2,7 +2,10 @@ extends Object
 class_name ItemInstance
 
 func _init(item_info:ItemInformation):
-	_item_info = item_info
+	_item_info = item_info.duplicate(true)
+	if _item_info.item_internal_inventory:
+		_item_info.item_internal_inventory.setup()
+		
 
 var id_3d:int
 var id_2d:int
@@ -75,14 +78,35 @@ func get_item_tooltip_text() -> String:
 #after you call this you must add the instanced scenes to the scene tree
 func spawn_item():
 	if _item_info.item_control_scene and id_2d == 0:
-		var item_control:ItemControl = _item_info.item_control_scene.instantiate()
-		self.id_2d = item_control.get_instance_id()
-		item_control.item_instance_id = self.get_instance_id()
+		_spawn_item_control()
 	if _item_info.item_3d_scene and id_3d == 0:
-		var item_3d:Item3D = _item_info.item_3d_scene.instantiate()
-		self.id_3d = item_3d.get_instance_id()
-		item_3d.item_instance_id = self.get_instance_id()
-		
+		_spawn_item_3d()
+
+func get_item_3d() -> Item3D:
+	var item_3d:Item3D = instance_from_id(id_3d)
+	if item_3d:
+		return item_3d
+	else:
+		return _spawn_item_3d()
+	
+func get_item_control() -> ItemControl:
+	var item_control:ItemControl = instance_from_id(id_2d)
+	if item_control:
+		return item_control
+	else:
+		return _spawn_item_control()
+
+func _spawn_item_3d() -> Item3D:
+	var item_3d:Item3D = _item_info.item_3d_scene.instantiate()
+	self.id_3d = item_3d.get_instance_id()
+	item_3d.item_instance_id = self.get_instance_id()
+	return item_3d
+
+func _spawn_item_control() -> ItemControl:
+	var item_control:ItemControl = _item_info.item_control_scene.instantiate()
+	self.id_2d = item_control.get_instance_id()
+	item_control.item_instance_id = self.get_instance_id()
+	return item_control
 
 func get_item_inventory() -> Inventory:
 	return _item_info.item_internal_inventory
