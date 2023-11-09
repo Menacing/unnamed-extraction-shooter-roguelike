@@ -37,6 +37,9 @@ transform = Transform3D(-2.62268e-08, 0, -0.6, 0, 0.6, 0, 0.6, 0, -2.62268e-08, 
 [node name="Node_15" parent="gun" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.338339, 0)
 
+[node name="scope_mount" parent="gun/Node_15" index="1"]
+visible = false
+
 [node name="MuzzleFlash" type="Node3D" parent="gun"]
 transform = Transform3D(4.37114e-09, -0.0999999, -2.71002e-07, -0.1, -4.37114e-09, 0, -1.18459e-14, 2.71002e-07, -0.0999999, -0.829474, 0.00883391, 0.00145641)
 visible = false

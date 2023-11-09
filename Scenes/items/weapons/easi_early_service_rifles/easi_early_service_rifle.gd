@@ -119,3 +119,12 @@ func get_ads_anchor() -> Vector3:
 	if scope:
 		base_position += scope.get_ads_offset()
 	return base_position
+	
+func _on_item_removed_from_slot(item_inst:ItemInstance, inventory_id:int, slot_name:String):
+	if inventory_id == internal_inventory_id:
+		var item_3d:Item3D = instance_from_id(item_inst.id_3d)
+		match slot_name:
+			"OpticsSlot":
+				scope = null
+				scope_mount_model.visible = false
+				pass

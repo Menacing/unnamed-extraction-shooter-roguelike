@@ -52,6 +52,7 @@ func _ready():
 		if item_internal_inventory:
 			internal_inventory_id = item_internal_inventory.get_instance_id()
 			EventBus.item_picked_up.connect(_on_item_picked_up)
+			EventBus.item_removed_from_slot.connect(_on_item_removed_from_slot)
 
 func get_all_mesh_nodes(node) -> Array[MeshInstance3D]:
 	var mesh_nodes:Array[MeshInstance3D] =[]
@@ -113,3 +114,6 @@ func _on_item_picked_up(result:InventoryInsertResult):
 			pass
 		elif result.location.location == InventoryLocationResult.LocationType.GRID:
 			item_3d.visible = false
+			
+func _on_item_removed_from_slot(item_inst:ItemInstance, inventory_id:int, slot_name:String):
+	pass
