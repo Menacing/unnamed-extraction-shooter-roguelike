@@ -1,9 +1,7 @@
-[gd_scene load_steps=25 format=3 uid="uid://ctahsvj88g1om"]
+[gd_scene load_steps=24 format=3 uid="uid://ctahsvj88g1om"]
 
 [ext_resource type="PackedScene" uid="uid://d08aatgxmymbf" path="res://Scenes/Player/player.tscn" id="1_eisjc"]
 [ext_resource type="Script" path="res://levels/node_3d.gd" id="1_lmeut"]
-[ext_resource type="PackedScene" uid="uid://dj26sacnhty4r" path="res://addons/devblocks/blocks/basic_block.tscn" id="1_ujgwk"]
-[ext_resource type="Texture2D" uid="uid://cgp4mvev1cbra" path="res://addons/devblocks/textures/purple/texture_01.png" id="3_m1rsk"]
 [ext_resource type="PackedScene" uid="uid://b7x11nf8gbi6e" path="res://Scenes/effects/bullet_hit_stone.tscn" id="4_tnmp4"]
 [ext_resource type="PackedScene" uid="uid://c30xv3xr7rlmy" path="res://Scenes/effects/bullet_hit_wood.tscn" id="5_y5ugi"]
 [ext_resource type="Material" uid="uid://d2jc0ho6nwe5g" path="res://levels/wood.tres" id="6_1m6d8"]
@@ -54,8 +52,11 @@ material = SubResource("StandardMaterial3D_ckhie")
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_j36b3"]
 albedo_color = Color(0.443137, 0.431373, 0.431373, 1)
 
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_uc5kb"]
+load_path = "res://.godot/imported/texture_01.png-d7b79fddbd2b29485d6a21e25d0ccaba.s3tc.ctex"
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2gtf0"]
-albedo_texture = ExtResource("3_m1rsk")
+albedo_texture = SubResource("CompressedTexture2D_uc5kb")
 uv1_scale = Vector3(3, 3, 3)
 uv1_triplanar = true
 
@@ -67,21 +68,6 @@ environment = SubResource("Environment_l5pxq")
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
 navigation_mesh = SubResource("NavigationMesh_d4jkc")
-
-[node name="BasicBlock4" parent="NavigationRegion3D" instance=ExtResource("1_ujgwk")]
-transform = Transform3D(9.10803, 0, 0, 0, 1, 0, 0, 0, 9, 6.49497, 2.07954, -31.5179)
-block_color_group = 1
-block_style = 2
-
-[node name="BasicBlock2" parent="NavigationRegion3D" instance=ExtResource("1_ujgwk")]
-transform = Transform3D(6.981, 0, 0, 0, 1, 0, 0, 0, 4.093, 5.58332, 0.908197, -22.4728)
-block_color_group = 1
-block_style = 2
-
-[node name="BasicBlock5" parent="NavigationRegion3D" instance=ExtResource("1_ujgwk")]
-transform = Transform3D(4, 0, 0, 0, 1, 0, 0, 0, 4, -13.0662, 2.84246, -1.36987)
-block_color_group = 1
-block_style = 2
 
 [node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.2616, 0.020462, -0.018549)
@@ -238,3 +224,5 @@ transform = Transform3D(-0.173648, 0, 0.984808, 0, 1, 0, -0.984808, 0, -0.173648
 
 [editable path="Player"]
 [editable path="Player/player_default_mesh"]
+[editable path="Player/PlayerHUD"]
+[editable path="Player/PlayerHUD/interaction_helpers"]
