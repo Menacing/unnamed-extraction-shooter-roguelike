@@ -39,7 +39,7 @@ func _ready():
 
 func init_buttons() -> void:
 	var editor :EditorPlugin = Engine.get_meta("GdUnitEditorPlugin")
-	var editiorTheme := editor.get_editor_interface().get_base_control().theme
+	var editiorTheme := EditorInterface.get_editor_theme()
 	_button_run_overall.icon = overall_icon_image
 	_button_run_overall.visible = GdUnitSettings.is_inspector_toolbar_button_show()
 	_button_run.icon = editiorTheme.get_icon("Play", "EditorIcons")
@@ -56,6 +56,7 @@ func init_shortcuts(command_handler :GdUnitCommandHandler) -> void:
 	_button_stop.shortcut = command_handler.get_shortcut(GdUnitShortcut.ShortCut.STOP_TEST_RUN)
 	# register for shortcut changes
 	GdUnitSignals.instance().gdunit_settings_changed.connect(_on_settings_changed.bind(command_handler))
+
 
 func _on_runoverall_pressed(debug := false):
 	run_overall_pressed.emit(debug)

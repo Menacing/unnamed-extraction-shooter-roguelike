@@ -14,6 +14,5 @@ func _process(delta):
 
 
 func _on_timer_timeout():
-	var col_icomp = gun.get_node("ItemComponent")
-	Events.player_inventory_try_pickup.emit(col_icomp)
+	EventBus.pickup_item.emit(gun.get_item_instance(), player.player_inventory_id)
 	pass # Replace with function body.

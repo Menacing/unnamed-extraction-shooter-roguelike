@@ -1,0 +1,67 @@
+[gd_scene load_steps=11 format=3 uid="uid://cm8qyueikhkpf"]
+
+[ext_resource type="PackedScene" uid="uid://ddsqkhwkuipda" path="res://ui/inventory/player_inventory.tscn" id="1_lt07x"]
+[ext_resource type="Script" path="res://ui/inventory/player_inventories.gd" id="1_tuubu"]
+[ext_resource type="Script" path="res://ui/inventory/spacer_container.gd" id="2_hlryk"]
+[ext_resource type="Script" path="res://resource_access/equipment_slot_type.gd" id="3_rg8a8"]
+[ext_resource type="Script" path="res://resource_access/Inventory.gd" id="4_m6wl0"]
+
+[sub_resource type="Resource" id="Resource_c2lqt"]
+script = ExtResource("3_rg8a8")
+name = "BackpackSlot"
+allowed_types = Array[int]([1])
+
+[sub_resource type="Resource" id="Resource_5xhft"]
+script = ExtResource("3_rg8a8")
+name = "ArmorSlot"
+allowed_types = Array[int]([3])
+
+[sub_resource type="Resource" id="Resource_3yuyw"]
+script = ExtResource("3_rg8a8")
+name = "GunSlot1"
+allowed_types = Array[int]([0])
+
+[sub_resource type="Resource" id="Resource_k0qab"]
+script = ExtResource("3_rg8a8")
+name = "GunSlot2"
+allowed_types = Array[int]([0])
+
+[sub_resource type="Resource" id="Resource_8vum5"]
+resource_local_to_scene = true
+script = ExtResource("4_m6wl0")
+initial_height = 2
+initial_width = 7
+equipment_slots = Array[ExtResource("3_rg8a8")]([SubResource("Resource_c2lqt"), SubResource("Resource_5xhft"), SubResource("Resource_3yuyw"), SubResource("Resource_k0qab")])
+
+[node name="PlayerInventories" type="CanvasLayer"]
+layer = 2
+script = ExtResource("1_tuubu")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="WorldInventoryContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="SpacerContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+script = ExtResource("2_hlryk")
+
+[node name="PlayerInventoryContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="PlayerInventory" parent="MarginContainer/HBoxContainer/PlayerInventoryContainer" instance=ExtResource("1_lt07x")]
+layout_mode = 2
+_inventory = SubResource("Resource_8vum5")
+
+[editable path="MarginContainer/HBoxContainer/PlayerInventoryContainer/PlayerInventory"]

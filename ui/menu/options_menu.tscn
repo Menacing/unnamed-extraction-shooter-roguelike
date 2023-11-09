@@ -8,9 +8,9 @@
 [ext_resource type="PackedScene" uid="uid://bhkyf3l4ee800" path="res://game_settings/components/checkbox/checkbox.tscn" id="4_l86j1"]
 [ext_resource type="Texture2D" uid="uid://dar0xtpo48ma0" path="res://addons/ggs/assets/game_settings/_default.svg" id="5_fol31"]
 [ext_resource type="Script" path="res://game_settings/settings/bool_setting.gd" id="6_pqhr0"]
-[ext_resource type="PackedScene" path="res://game_settings/components/_misc_components/apply_btn/apply_btn.tscn" id="7_h0jo0"]
+[ext_resource type="PackedScene" uid="uid://c7hc26d1jj4fy" path="res://game_settings/components/_misc_components/apply_btn/apply_btn.tscn" id="7_h0jo0"]
 [ext_resource type="PackedScene" uid="uid://bqi00h7i7sg3u" path="res://game_settings/components/spinbox/spinbox.tscn" id="8_24oih"]
-[ext_resource type="PackedScene" path="res://game_settings/components/_misc_components/reset_btn/reset_btn.tscn" id="8_411hw"]
+[ext_resource type="PackedScene" uid="uid://6uf3453l3fhj" path="res://game_settings/components/_misc_components/reset_btn/reset_btn.tscn" id="8_411hw"]
 [ext_resource type="Script" path="res://game_settings/settings/float_setting.gd" id="9_y5jte"]
 [ext_resource type="PackedScene" uid="uid://ds06mwhee8ygm" path="res://game_settings/components/slider/slider.tscn" id="10_aqhiy"]
 [ext_resource type="PackedScene" uid="uid://cha8xesfthpfk" path="res://game_settings/components/switch/switch.tscn" id="13_7wq5f"]
@@ -472,7 +472,7 @@ value_hint_string = ""
 resource_name = "master_mute"
 script = ExtResource("15_ek608")
 bus_name = "Master"
-current = false
+current = true
 default = false
 name = "master_mute"
 category = "audio"
@@ -597,7 +597,6 @@ custom_minimum_size = Vector2(500, 600)
 layout_mode = 2
 
 [node name="Controls" type="MarginContainer" parent="main_container/vert_container/option_tab_container"]
-visible = false
 layout_mode = 2
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="main_container/vert_container/option_tab_container/Controls"]
@@ -1227,6 +1226,25 @@ setting = SubResource("Resource_6lj6n")
 [node name="Btn" parent="main_container/vert_container/option_tab_container/Controls/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/rotate_item/HBoxContainer/InputBtn" index="0"]
 custom_minimum_size = Vector2(80, 0)
 
+[node name="drop_item" type="HBoxContainer" parent="main_container/vert_container/option_tab_container/Controls/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="main_container/vert_container/option_tab_container/Controls/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/drop_item"]
+layout_mode = 2
+text = "Drop Item
+"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="main_container/vert_container/option_tab_container/Controls/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/drop_item"]
+layout_mode = 2
+size_flags_horizontal = 10
+
+[node name="InputBtn" parent="main_container/vert_container/option_tab_container/Controls/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/drop_item/HBoxContainer" groups=["controls_settings"] instance=ExtResource("1_lvxjt")]
+layout_mode = 2
+icw = NodePath("../../../../../../../../../../../InputConfirmWindow")
+
+[node name="Btn" parent="main_container/vert_container/option_tab_container/Controls/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/drop_item/HBoxContainer/InputBtn" index="0"]
+custom_minimum_size = Vector2(80, 0)
+
 [node name="item_context_menu" type="HBoxContainer" parent="main_container/vert_container/option_tab_container/Controls/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
@@ -1326,6 +1344,7 @@ text = "Reset to Default"
 group = "audio_settings"
 
 [node name="Display" type="MarginContainer" parent="main_container/vert_container/option_tab_container"]
+visible = false
 layout_mode = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="main_container/vert_container/option_tab_container/Display"]
@@ -1530,6 +1549,7 @@ group = "audio_settings"
 [editable path="main_container/vert_container/option_tab_container/Controls/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/inventory/HBoxContainer/InputBtn"]
 [editable path="main_container/vert_container/option_tab_container/Controls/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/inv_grab/HBoxContainer/InputBtn"]
 [editable path="main_container/vert_container/option_tab_container/Controls/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/rotate_item/HBoxContainer/InputBtn"]
+[editable path="main_container/vert_container/option_tab_container/Controls/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/drop_item/HBoxContainer/InputBtn"]
 [editable path="main_container/vert_container/option_tab_container/Controls/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/item_context_menu/HBoxContainer/InputBtn"]
 [editable path="main_container/vert_container/option_tab_container/Audio/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer/Switch"]
 [editable path="main_container/vert_container/option_tab_container/Audio/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer/Slider"]

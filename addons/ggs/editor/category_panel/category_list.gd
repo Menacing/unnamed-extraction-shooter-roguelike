@@ -22,9 +22,10 @@ func _load_list() -> void:
 
 
 func add_item(category: ggsCategory) -> void:
-	var created_item: TreeItem = create_item(root)
-	created_item.set_text(0, category.name)
-	created_item.set_metadata(0, category)
+	if category:
+		var created_item: TreeItem = create_item(root)
+		created_item.set_text(0, category.name)
+		created_item.set_metadata(0, category)
 
 
 func remove_item(item: TreeItem) -> void:

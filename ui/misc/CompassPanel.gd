@@ -21,7 +21,7 @@ var obj_markers:Array[Control]
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	Events.compass_player_pulse.connect(_on_compass_player_pulse)
+	EventBus.compass_player_pulse.connect(_on_compass_player_pulse)
 	compass_bar.scroll_horizontal = pixels_per_360
 	var extract_nodes = get_tree().get_nodes_in_group("Extract")
 	extracts = extract_nodes

@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://d08aatgxmymbf"]
+[gd_scene load_steps=29 format=3 uid="uid://d08aatgxmymbf"]
 
 [ext_resource type="Script" path="res://Scenes/Player/player.gd" id="1_1w47b"]
 [ext_resource type="PackedScene" uid="uid://27t5g23so5hx" path="res://Scenes/Player/player_default_mesh.glb" id="3_qia5y"]
@@ -13,6 +13,8 @@
 [ext_resource type="Script" path="res://Scenes/Player/States/motion/prone.gd" id="12_5yy7f"]
 [ext_resource type="Script" path="res://Scenes/health_component.gd" id="12_mgyrw"]
 [ext_resource type="Script" path="res://Scenes/health_location.gd" id="13_e6mpe"]
+[ext_resource type="PackedScene" uid="uid://gt018qo38blj" path="res://ui/player_hud.tscn" id="14_uksyk"]
+[ext_resource type="PackedScene" uid="uid://cm8qyueikhkpf" path="res://ui/inventory/player_inventories.tscn" id="15_tshwi"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_emkox"]
 
@@ -439,4 +441,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.515017, 0)
 script = ExtResource("12_mgyrw")
 health_locs = Array[ExtResource("13_e6mpe")]([SubResource("Resource_keaja"), SubResource("Resource_tm6hc"), SubResource("Resource_t7fph")])
 
+[node name="PlayerHUD" parent="." instance=ExtResource("14_uksyk")]
+
+[node name="PlayerInventories" parent="." instance=ExtResource("15_tshwi")]
+
 [editable path="player_default_mesh"]
+[editable path="PlayerHUD"]
+[editable path="PlayerHUD/interaction_helpers"]

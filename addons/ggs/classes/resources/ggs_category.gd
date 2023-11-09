@@ -21,7 +21,7 @@ func _get_property_list() -> Array:
 	
 	return properties
 
-@warning_ignore("native_method_override")
+
 func set_name(value: String) -> void:
 	name = value
 	resource_name = value

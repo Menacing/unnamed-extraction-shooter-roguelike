@@ -7,12 +7,12 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 var run_speed = 3
 var accel = 3
 var alive = true
-@onready var armor = $light_armor_1
+@onready var armor: BodyArmor = $light_armor_1
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	armor.get_node("ItemComponent").picked_up()
+	armor.picked_up()
 	pass
 
 

@@ -49,7 +49,7 @@ func _ready():
 				var scene = info.scene.instantiate()
 				scene.set_as_top_level(true)		
 				get_parent().add_child.call_deferred(scene)
-				scene.global_position = try_pos + self.global_position
+				scene.set_global_position.call_deferred(try_pos + self.global_position)
 				spawned_locations.append(try_pos)
 				remaining_tries = 0
 			else:

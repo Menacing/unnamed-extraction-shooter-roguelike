@@ -1,0 +1,46 @@
+[gd_scene load_steps=6 format=3 uid="uid://douyxwjscs4ff"]
+
+[ext_resource type="Script" path="res://ui/inventory/world_inventory.gd" id="1_auvkm"]
+[ext_resource type="Script" path="res://ui/inventory/world_inventory_grid.gd" id="2_f23fe"]
+[ext_resource type="Script" path="res://resource_access/Inventory.gd" id="2_rm51w"]
+[ext_resource type="PackedScene" uid="uid://bshm12rhfjlbc" path="res://ui/inventory/backpack_cell.tscn" id="4_hxnux"]
+
+[sub_resource type="Resource" id="Resource_pul18"]
+resource_local_to_scene = true
+script = ExtResource("2_rm51w")
+initial_height = 7
+initial_width = 7
+equipment_slots = Array[Resource("res://resource_access/equipment_slot_type.gd")]([])
+
+[node name="WorldInventory" type="MarginContainer"]
+offset_right = 593.5
+offset_bottom = 561.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_auvkm")
+_inventory = SubResource("Resource_pul18")
+
+[node name="InventoryBase" type="Panel" parent="." groups=["inventory_controls"]]
+layout_mode = 2
+
+[node name="WorldInventoryGrid" type="GridContainer" parent="InventoryBase" node_paths=PackedStringArray("parent_inventory_control_base") groups=["inventory_controls"]]
+modulate = Color(0.686275, 0.686275, 0.686275, 1)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -112.0
+offset_top = -128.0
+offset_right = 112.0
+offset_bottom = 128.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/h_separation = 0
+theme_override_constants/v_separation = 0
+columns = 7
+script = ExtResource("2_f23fe")
+container_size = 49
+parent_inventory_control_base = NodePath("../..")
+grid_cell = ExtResource("4_hxnux")

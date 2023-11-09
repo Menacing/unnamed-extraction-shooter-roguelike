@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="Inventory" load_steps=4 format=3 uid="uid://dltmlltchublh"]
+
+[ext_resource type="Script" path="res://resource_access/equipment_slot_type.gd" id="1_a4js4"]
+[ext_resource type="Script" path="res://resource_access/Inventory.gd" id="1_k4kty"]
+
+[sub_resource type="Resource" id="Resource_wovin"]
+script = ExtResource("1_a4js4")
+name = "test_slot_1"
+allowed_types = Array[int]([0])
+
+[resource]
+script = ExtResource("1_k4kty")
+initial_height = 3
+initial_width = 3
+equipment_slots = Array[ExtResource("1_a4js4")]([SubResource("Resource_wovin")])

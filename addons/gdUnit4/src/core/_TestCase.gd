@@ -6,6 +6,8 @@ signal completed()
 # default timeout 5min
 const DEFAULT_TIMEOUT := -1
 const ARGUMENT_TIMEOUT := "timeout"
+const ARGUMENT_SKIP := "do_skip"
+const ARGUMENT_SKIP_REASON := "skip_reason"
 
 var _iterations: int = 1
 var _current_iteration :int = -1
@@ -16,19 +18,22 @@ var _test_param_index := -1
 var _line_number: int = -1
 var _script_path: String
 var _skipped := false
-var _skip_info := ""
+var _skip_reason := ""
 var _expect_to_interupt := false
 var _timer : Timer
 var _interupted :bool = false
 var _failed := false
 var _timeout :int
-var _default_timeout :int
-var _monitor := GodotGdErrorMonitor.new()
 var _report :GdUnitReport = null
 
 
-func _init():
-	_default_timeout = GdUnitSettings.test_timeout()
+var monitor : GodotGdErrorMonitor = null:
+	set (value):
+		monitor = value
+	get:
+		if monitor == null:
+			monitor = GodotGdErrorMonitor.new()
+		return monitor
 
 
 @warning_ignore("shadowed_variable_base_class")
@@ -39,34 +44,36 @@ func configure(p_name: String, p_line_number: int, p_script_path: String, p_time
 	_iterations = p_iterations
 	_seed = p_seed
 	_script_path = p_script_path
-	_timeout = _default_timeout
-	if p_timeout != DEFAULT_TIMEOUT:
-		_timeout = p_timeout
+	_timeout = p_timeout if p_timeout != DEFAULT_TIMEOUT else GdUnitSettings.test_timeout()
 	return self
 
 
 func execute(p_test_parameter := Array(), p_iteration := 0):
+	_failure_received(false)
 	_current_iteration = p_iteration - 1
 	if p_iteration == 0:
 		_set_failure_handler()
 		set_timeout()
-	_monitor.start()
+	monitor.start()
 	if not p_test_parameter.is_empty():
 		update_fuzzers(p_test_parameter, p_iteration)
 		_execute_test_case(name, p_test_parameter) 
 	else:
 		_execute_test_case(name, [])
 	await completed
-	_monitor.stop()
-	for report_ in _monitor.reports():
+	monitor.stop()
+	for report_ in monitor.reports():
 		if report_.is_error():
 			_report = report_
 			_interupted = true
 
 
 func dispose():
+	# unreference last used assert form the test to prevent memory leaks
+	GdUnitThreadManager.get_current_context().set_assert(null)
 	stop_timer()
 	_remove_failure_handler()
+	_fuzzers.clear()
 
 
 @warning_ignore("shadowed_variable_base_class", "redundant_await")
@@ -152,7 +159,8 @@ func report() -> GdUnitReport:
 
 
 func skip_info() -> String:
-	return _skip_info
+	return _skip_reason
+
 
 func line_number() -> int:
 	return _line_number
@@ -191,9 +199,9 @@ func generate_seed() -> void:
 		seed(_seed)
 
 
-func skip(skipped :bool, error :String = "") -> void:
+func skip(skipped :bool, reason :String = "") -> void:
 	_skipped = skipped
-	_skip_info = error
+	_skip_reason = reason
 
 
 func set_test_parameters(p_test_parameters :Array) -> void:

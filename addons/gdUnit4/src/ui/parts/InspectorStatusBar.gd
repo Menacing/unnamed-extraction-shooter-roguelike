@@ -17,7 +17,7 @@ func _ready():
 	_failures.text = "0"
 	_errors.text = "0"
 	var editor :EditorPlugin = Engine.get_meta("GdUnitEditorPlugin")
-	var editiorTheme := editor.get_editor_interface().get_base_control().theme
+	var editiorTheme := EditorInterface.get_editor_theme()
 	_button_failure_up.icon = editiorTheme.get_icon("ArrowUp", "EditorIcons")
 	_button_failure_down.icon = editiorTheme.get_icon("ArrowDown", "EditorIcons")
 

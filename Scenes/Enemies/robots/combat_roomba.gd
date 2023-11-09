@@ -51,13 +51,12 @@ func _ready():
 	exclusions = self_exclusions
 	if gun_scene: 
 		gun = gun_scene.instantiate()
-		var gun_item_comp:ItemComponent = gun.get_node("ItemComponent")
-		gun_item_comp.start_highlighted = false
-		gun_item_comp.picked_up()
+		gun.start_highlighted = false
+		gun.picked_up()
 		#TODO: Pull these from the packed scene instead of being hardcoded
-		gun.magazineSize = 30000
-		gun.magazine= 30000
-		hf_pos = -gun.get_node("HipFire").position
+		gun._gun_stats.magazine_size = 30000
+		gun.current_magazine_size = 30000
+		hf_pos = -gun.get_hip_fire_anchor()
 
 		gun.position = hf_pos
 		head.add_child(gun)

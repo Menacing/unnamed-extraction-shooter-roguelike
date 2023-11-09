@@ -5,8 +5,10 @@ extends RefCounted
 const ALLOWED_CHARACTERS := "0123456789_abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ\""
 
 var TOKEN_NOT_MATCH := Token.new("")
-var TOKEN_SPACE := Token.new(" ")
-var TOKEN_COMMENT := Token.new("#")
+var TOKEN_SPACE := SkippableToken.new(" ")
+var TOKEN_TABULATOR := SkippableToken.new("\t")
+var TOKEN_NEW_LINE := SkippableToken.new("\n")
+var TOKEN_COMMENT := SkippableToken.new("#")
 var TOKEN_CLASS_NAME := Token.new("class_name")
 var TOKEN_INNER_CLASS := Token.new("class")
 var TOKEN_EXTENDS := Token.new("extends")
@@ -25,7 +27,7 @@ var TOKEN_BRACKET_OPEN := Token.new("(")
 var TOKEN_BRACKET_CLOSE := Token.new(")")
 var TOKEN_ARRAY_OPEN := Token.new("[")
 var TOKEN_ARRAY_CLOSE := Token.new("]")
-var TOKEN_NEW_LINE := Token.new("\n")
+
 var OPERATOR_ADD := Operator.new("+")
 var OPERATOR_SUB := Operator.new("-")
 var OPERATOR_MUL := Operator.new("*")
@@ -34,6 +36,8 @@ var OPERATOR_REMAINDER := Operator.new("%")
 
 var TOKENS := [
 	TOKEN_SPACE,
+	TOKEN_TABULATOR,
+	TOKEN_NEW_LINE,
 	TOKEN_COMMENT,
 	TOKEN_BRACKET_OPEN,
 	TOKEN_BRACKET_CLOSE,
@@ -52,7 +56,6 @@ var TOKENS := [
 	TOKEN_FUNCTION,
 	TOKEN_ARGUMENT_SEPARATOR,
 	TOKEN_FUNCTION_RETURN_TYPE,
-	TOKEN_NEW_LINE,
 	OPERATOR_ADD,
 	OPERATOR_SUB,
 	OPERATOR_MUL,
@@ -107,6 +110,9 @@ class Token extends RefCounted:
 	func is_token(token_name :String) -> bool:
 		return _token == token_name
 	
+	func is_skippable() -> bool:
+		return false
+	
 	func _to_string():
 		return "Token{" + _token + "}"
 
@@ -117,6 +123,16 @@ class Operator extends Token:
 	
 	func _to_string():
 		return "OperatorToken{%s}" % [_token]
+
+
+# A skippable token, is just a placeholder like space or tabs
+class SkippableToken extends Token:
+	
+	func _init(p_token: String):
+		super(p_token)
+	
+	func is_skippable() -> bool:
+		return true
 
 
 # Token to parse Fuzzers
@@ -340,19 +356,19 @@ func _process_values(left: Token, token_stack: Array, operator: Token) -> Token:
 		var lvalue = left.value()
 		var value = null
 		var next_token_ = token_stack.pop_front() as Token
-	
-		if operator == OPERATOR_ADD:
-			value =  lvalue + next_token_.value()
-		elif operator == OPERATOR_SUB:
-			value =  lvalue - next_token_.value()
-		elif operator == OPERATOR_MUL:
-			value =  lvalue * next_token_.value()
-		elif operator == OPERATOR_DIV:
-			value =  lvalue / next_token_.value()
-		elif operator == OPERATOR_REMAINDER:
-			value =  lvalue & next_token_.value()
-		else:
-			assert(false, "Unsupported operator %s" % operator)
+		match operator:
+			OPERATOR_ADD:
+				value =  lvalue + next_token_.value()
+			OPERATOR_SUB:
+				value =  lvalue - next_token_.value()
+			OPERATOR_MUL:
+				value =  lvalue * next_token_.value()
+			OPERATOR_DIV:
+				value =  lvalue / next_token_.value()
+			OPERATOR_REMAINDER:
+				value =  lvalue & next_token_.value()
+			_:
+				assert(false, "Unsupported operator %s" % operator)
 		return Variable.new( str(value))
 	return operator
 
@@ -363,14 +379,15 @@ func parse_func_return_type(row: String) -> int:
 		return TYPE_NIL
 	return token.type()
 
+
 func parse_return_token(input: String) -> Token:
 	var index := input.rfind(TOKEN_FUNCTION_RETURN_TYPE._token)
 	if index == -1:
 		return TOKEN_NOT_MATCH
 	index += TOKEN_FUNCTION_RETURN_TYPE._consumed
 	var token := next_token(input, index)
-	if token == TOKEN_SPACE:
-		index += TOKEN_SPACE._consumed
+	while !token.is_variable() and token != TOKEN_NOT_MATCH:
+		index += token._consumed
 		token = next_token(input, index)
 	return token
 
@@ -385,8 +402,21 @@ func parse_arguments(input: String) -> Array[GdFunctionArgument]:
 	var in_function := false
 	while current_index < len(input):
 		token = next_token(input, current_index)
+		# fallback to not end in a endless loop
+		if token == TOKEN_NOT_MATCH:
+			var error : = """
+				Parsing Error: Invalid token at pos %d found.
+				Please report this error!
+				source_code:
+				--------------------------------------------------------------
+				%s
+				--------------------------------------------------------------
+			""".dedent() % [current_index, input]
+			push_error(error)
+			current_index += 1
+			continue
 		current_index += token._consumed
-		if token == TOKEN_SPACE:
+		if token.is_skippable():
 			continue
 		if token == TOKEN_BRACKET_OPEN:
 			in_function = true
@@ -417,23 +447,23 @@ func parse_arguments(input: String) -> Array[GdFunctionArgument]:
 			while current_index < len(input):
 				token = next_token(input, current_index)
 				current_index += token._consumed
-				#match token:
-				if token == TOKEN_SPACE:
-						continue
-				elif token == TOKEN_ARGUMENT_TYPE:
+				if token.is_skippable():
+					continue
+				match token:
+					TOKEN_ARGUMENT_TYPE:
 						token = next_token(input, current_index)
 						if token == TOKEN_SPACE:
 							current_index += token._consumed
 							token = next_token(input, current_index)
 						arg_type = GdObjects.string_as_typeof(token._token)
-				elif token == TOKEN_ARGUMENT_TYPE_ASIGNMENT:
+					TOKEN_ARGUMENT_TYPE_ASIGNMENT:
 						arg_value = _parse_end_function(input.substr(current_index), true)
 						current_index += arg_value.length()
-				elif token == TOKEN_ARGUMENT_ASIGNMENT:
+					TOKEN_ARGUMENT_ASIGNMENT:
 						token = next_token(input, current_index)
 						arg_value = _parse_end_function(input.substr(current_index), true)
 						current_index += arg_value.length()
-				elif token == TOKEN_BRACKET_OPEN:
+					TOKEN_BRACKET_OPEN:
 						bracket += 1
 						# if value a function?
 						if bracket > 1:
@@ -443,12 +473,12 @@ func parse_arguments(input: String) -> Array[GdFunctionArgument]:
 							arg_value += func_body
 							# fix parse index to end of value
 							current_index += func_body.length() - TOKEN_BRACKET_OPEN._consumed - TOKEN_BRACKET_CLOSE._consumed
-				elif token == TOKEN_BRACKET_CLOSE:
+					TOKEN_BRACKET_CLOSE:
 						bracket -= 1
 						# end of function
 						if bracket == 0:
 							break
-				elif token == TOKEN_ARGUMENT_SEPARATOR:
+					TOKEN_ARGUMENT_SEPARATOR:
 						if bracket <= 1:
 							break
 			arg_value = arg_value.lstrip(" ")
@@ -509,6 +539,24 @@ func _parse_end_function(input: String, remove_trailing_char := false) -> String
 	
 	while current_index < len(input) and not end_of_func:
 		var character = input[current_index]
+		# step over strings
+		if character == "'" :
+			current_index = input.find("'", current_index+1) + 1
+			if current_index == 0:
+				push_error("Parsing error on '%s', can't evaluate end of string." % input)
+				return ""
+			continue
+		if character == '"' :
+			# test for string blocks
+			if input.find('"""', current_index) == current_index:
+				current_index = input.find('"""', current_index+3) + 3
+			else:
+				current_index = input.find('"', current_index+1) + 1
+			if current_index == 0:
+				push_error("Parsing error on '%s', can't evaluate end of string." % input)
+				return ""
+			continue
+		
 		match character:
 			# count if inside an array
 			"[": in_array += 1
@@ -517,7 +565,7 @@ func _parse_end_function(input: String, remove_trailing_char := false) -> String
 			"(": bracket_count += 1
 			")":
 				bracket_count -= 1
-				if bracket_count <= 0 and in_array <= 0:
+				if bracket_count < 0 and in_array <= 0:
 					end_of_func = true
 			",":
 				if bracket_count == 0 and in_array == 0:
@@ -559,11 +607,13 @@ func extract_source_code(script_path :PackedStringArray) -> PackedStringArray:
 
 
 func extract_func_signature(rows :PackedStringArray, index :int) -> String:
-	var signature = ""
+	var signature := ""
+	
 	for rowIndex in range(index, rows.size()):
-		signature += rows[rowIndex].strip_edges().replace("\t", "")
-		if is_func_end(signature):
-			return signature
+		var row := rows[rowIndex]
+		signature += row + "\n"
+		if is_func_end(row):
+			return signature.strip_edges()
 	push_error("Can't fully extract function signature of '%s'" % rows[index])
 	return ""
 
@@ -614,8 +664,8 @@ func parse_func_name(row :String) -> String:
 	return token._token
 
 
-func parse_functions(rows :PackedStringArray, clazz_name :String, clazz_path :PackedStringArray, included_functions :PackedStringArray = PackedStringArray()) -> Array:
-	var func_descriptors := Array()
+func parse_functions(rows :PackedStringArray, clazz_name :String, clazz_path :PackedStringArray, included_functions := PackedStringArray()) -> Array[GdFunctionDescriptor]:
+	var func_descriptors :Array[GdFunctionDescriptor] = []
 	for rowIndex in rows.size():
 		var row = rows[rowIndex]
 		# step over inner class functions

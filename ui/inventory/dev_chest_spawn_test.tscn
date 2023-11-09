@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://cgbrrb330dnb2"]
+
+[ext_resource type="PackedScene" uid="uid://rcso16s616y" path="res://Scenes/containers/dev_chest.tscn" id="1_oif34"]
+[ext_resource type="Resource" uid="uid://bk7x5qi5hl1p8" path="res://Scenes/items/materials/polymer_pile/polymer_pile_inventory_info.tres" id="2_ijd6p"]
+[ext_resource type="Script" path="res://Scenes/items/LootInformation.gd" id="3_5yw3h"]
+
+[sub_resource type="Resource" id="Resource_2wktj"]
+script = ExtResource("3_5yw3h")
+name = "poly"
+spawn_weight = 1
+item_information = ExtResource("2_ijd6p")
+test_radius = 0.0
+min_stack = 1
+max_stack = 10
+
+[node name="DevChestSpawnTest" type="Node3D"]
+
+[node name="dev_chest" parent="." instance=ExtResource("1_oif34")]
+min_spawned = 1
+max_spawned = 5
+spawn_info = Array[ExtResource("3_5yw3h")]([SubResource("Resource_2wktj")])
+
+[node name="WorldInventory" parent="dev_chest" index="2"]
+visible = true
+
+[editable path="dev_chest"]

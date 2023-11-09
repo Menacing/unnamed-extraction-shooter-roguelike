@@ -81,7 +81,8 @@ func do_raycast_movement(delta:float):
 				target_destination = raycast_result.position + (-remaining_delta * current_speed * transform.basis.z)
 			else:
 				startDespawn()
-			self.add_collision_exception_with(collider)
+			if collider is CollisionObject3D:
+				self.add_collision_exception_with(collider)
 			collision_exclusions.append(raycast_result.rid)
 			
 			#set current position to collision location

@@ -1,0 +1,201 @@
+extends Node
+
+var _inventory_access:InventoryAccess
+var _item_access:ItemAccess
+
+func _init():
+	_inventory_access = InventoryAccess.new()
+	_item_access = ItemAccess.new()
+
+func _ready():
+	EventBus.pickup_item.connect(_on_pickup_item)
+	EventBus.add_inventory.connect(add_inventory)
+	EventBus.item_durability_changed.connect(_destroy_depleted_durability)
+
+
+func _on_pickup_item(item_inst:ItemInstance, target_inventory_id:int):
+	#Are we dealing with a stack or not
+	var inventory = _inventory_access.get_inventory(target_inventory_id)
+	var item_instance_id:int = item_inst.get_instance_id()
+	if inventory == null:
+		return
+	if !item_inst.get_has_stacks():
+		#First check item slots
+		if inventory.equipment_slots:
+			for slot in inventory.equipment_slots:
+				if _inventory_access.can_place_item_in_slot(item_inst, target_inventory_id, slot.name):
+					var pickup_result:InventoryInsertResult = InventoryInsertResult.new(item_inst,target_inventory_id,InventoryLocationResult.new())
+					pickup_result.picked_up = _inventory_access.place_item_in_slot(item_inst, target_inventory_id, slot.name)
+					pickup_result.location.location = InventoryLocationResult.LocationType.SLOT
+					pickup_result.location.slot_name = slot.name
+					EventBus.item_picked_up.emit(pickup_result)
+					return
+	#
+		#Next try to insert in first grid space
+		for y in range(inventory.get_height()):
+			for x in range(inventory.get_width()):
+				var grid_loc = Vector2i(x,y)
+				if _inventory_access.can_place_item_in_grid(item_inst, target_inventory_id, grid_loc):
+					var pickup_result:InventoryInsertResult = InventoryInsertResult.new(item_inst,target_inventory_id,InventoryLocationResult.new())
+					pickup_result.picked_up = _inventory_access.place_item_in_grid(item_inst, target_inventory_id, grid_loc)
+					pickup_result.location.location = InventoryLocationResult.LocationType.GRID
+					pickup_result.location.grid_x = grid_loc.x
+					pickup_result.location.grid_y = grid_loc.y
+					EventBus.item_picked_up.emit(pickup_result)
+					return
+		##TODO try rotating and repeating
+	#do stack stuff
+	else:
+		#First check item slots
+		var amount = item_inst.stacks
+		if inventory.equipment_slots:
+			for slot in inventory.equipment_slots:
+				if item_inst.stacks > 0 and  _inventory_access.can_place_stack_in_slot(item_inst, target_inventory_id, slot.name):
+					var pickup_result:InventoryInsertResult = InventoryInsertResult.new(item_inst,target_inventory_id,InventoryLocationResult.new())					
+					pickup_result.picked_up = _inventory_access.place_stack_in_slot(item_inst, target_inventory_id, slot.name, item_inst.stacks)
+					pickup_result.location.location = InventoryLocationResult.LocationType.SLOT
+					pickup_result.location.slot_name = slot.name
+					EventBus.item_picked_up.emit(pickup_result)
+					_destroy_empty_stack(item_inst)
+					if pickup_result.picked_up:
+						return
+
+		#Next try to insert in first grid space
+		for y in range(inventory.get_height()):
+			for x in range(inventory.get_width()):
+				var grid_loc = Vector2i(x,y)
+				if item_inst.stacks > 0 and _inventory_access.can_place_stack_in_grid(item_inst, target_inventory_id, grid_loc):
+					var pickup_result:InventoryInsertResult = InventoryInsertResult.new(item_inst,target_inventory_id,InventoryLocationResult.new())
+					pickup_result.picked_up = _inventory_access.place_stack_in_grid(item_inst, target_inventory_id, grid_loc, item_inst.stacks)
+					pickup_result.location.location = InventoryLocationResult.LocationType.GRID
+					pickup_result.location.grid_x = grid_loc.x
+					pickup_result.location.grid_y = grid_loc.y
+					EventBus.item_picked_up.emit(pickup_result)
+					_destroy_empty_stack(item_inst)
+					if pickup_result.picked_up:
+						return
+
+		##TODO try rotating and repeating
+	pass
+
+func can_place_item_in_slot(item_instance_id:int, target_inventory_id:int, slot_name:String) -> bool:
+	return _inventory_access.can_place_item_in_slot(get_item(item_instance_id), target_inventory_id, slot_name)
+
+func can_place_stack_in_slot(item_instance_id:int, target_inventory_id:int, slot_name:String, amount:int) -> bool:
+	return _inventory_access.can_place_stack_in_slot(get_item(item_instance_id), target_inventory_id, slot_name)
+	
+func place_item_in_slot(item_instance_id:int, target_inventory_id:int, slot_name:String):
+	var item_inst = get_item(item_instance_id)
+	var pickup_result:InventoryInsertResult = InventoryInsertResult.new(item_inst,target_inventory_id, InventoryLocationResult.new())
+	pickup_result.location.location = InventoryLocationResult.LocationType.SLOT
+	pickup_result.location.slot_name = slot_name
+	pickup_result.picked_up = _inventory_access.place_item_in_slot(item_inst, target_inventory_id, slot_name)
+	
+	EventBus.item_picked_up.emit(pickup_result)
+	
+func place_stack_in_slot(item_instance_id:int, target_inventory_id:int, slot_name:String, amount: int):
+	var item_inst = get_item(item_instance_id)
+	var pickup_result:InventoryInsertResult = InventoryInsertResult.new(item_inst,target_inventory_id, InventoryLocationResult.new())
+	pickup_result.location.location = InventoryLocationResult.LocationType.SLOT
+	pickup_result.location.slot_name = slot_name
+	pickup_result.picked_up = _inventory_access.place_stack_in_slot(item_inst, target_inventory_id, slot_name, amount)
+	EventBus.item_picked_up.emit(pickup_result)
+	_destroy_empty_stack(item_inst)
+
+	
+func can_place_item_in_grid(item_instance_id:int, target_inventory_id:int, grid_location:Vector2i) -> bool:
+	var item_inst = get_item(item_instance_id)	
+	return _inventory_access.can_place_item_in_grid(item_inst, target_inventory_id, grid_location)
+
+func can_place_stack_in_grid(item_instance_id:int, target_inventory_id:int, grid_location:Vector2i, amount:int) -> bool:
+	var item_inst = get_item(item_instance_id)	
+	return _inventory_access.can_place_stack_in_grid(item_inst, target_inventory_id, grid_location)
+	
+func place_item_in_grid(item_instance_id:int, target_inventory_id:int, grid_location:Vector2i):
+	var item_inst = get_item(item_instance_id)
+	var pickup_result:InventoryInsertResult = InventoryInsertResult.new(item_inst,target_inventory_id, InventoryLocationResult.new())
+	pickup_result.location.location = InventoryLocationResult.LocationType.GRID
+	pickup_result.location.grid_x = grid_location.x
+	pickup_result.location.grid_y = grid_location.y
+	pickup_result.picked_up = _inventory_access.place_item_in_grid(item_inst, target_inventory_id, grid_location)
+	
+	EventBus.item_picked_up.emit(pickup_result)
+	
+func place_stack_in_grid(item_instance_id:int, target_inventory_id:int, grid_location:Vector2i, amount: int):
+	var item_inst = get_item(item_instance_id)
+	var pickup_result:InventoryInsertResult = InventoryInsertResult.new(item_inst,target_inventory_id, InventoryLocationResult.new())
+	pickup_result.location.location = InventoryLocationResult.LocationType.GRID
+	pickup_result.location.grid_x = grid_location.x
+	pickup_result.location.grid_y = grid_location.y
+	pickup_result.picked_up = _inventory_access.place_stack_in_grid(item_inst, target_inventory_id, grid_location, amount)
+	EventBus.item_picked_up.emit(pickup_result)
+	_destroy_empty_stack(item_inst)
+	
+func find_clear_area_in_grid(item_instance_id:int, target_inventory_id:int):
+	var inventory = _inventory_access.get_inventory(target_inventory_id)
+	var item_inst = _item_access.get_item(item_instance_id)
+	if inventory and item_inst:
+		for y in range(inventory.get_height()):
+			for x in range(inventory.get_width()):
+				var grid_loc = Vector2i(x,y)
+				if _inventory_access.can_place_item_in_grid(item_inst, target_inventory_id, grid_loc):
+					return grid_loc
+	return null
+	
+func _destroy_empty_stack(item_instance:ItemInstance):
+	if item_instance and item_instance.get_has_stacks():
+		if item_instance.stacks <= 0:
+			destroy_item(item_instance.get_instance_id())
+			
+func _destroy_depleted_durability(item_instance:ItemInstance):
+	if item_instance and item_instance.get_has_durability():
+		if item_instance.durability <= 0:
+			destroy_item(item_instance.get_instance_id())
+
+func add_inventory(inventory:Inventory):
+	_inventory_access.add_inventory(inventory)
+	
+func inventory_exists(inventory_id:int) -> bool:
+	return _inventory_access.get_inventory(inventory_id) != null
+
+func remove_item(item_instance_id:int, source_inventory_id:int):
+	var item_inst = get_item(item_instance_id)	
+	_inventory_access.remove_item(item_inst, source_inventory_id)
+	
+
+func destroy_item(item_instance_id:int):
+	var item_inst = get_item(item_instance_id)		
+	if item_inst.current_inventory_id != 0:
+		remove_item(item_instance_id, item_inst.current_inventory_id)
+	_item_access.destroy_item(item_inst)
+	
+func get_item(item_instance_id:int) -> ItemInstance:
+	return _item_access.get_item(item_instance_id)
+
+func set_inventory_size(inventory_id:int, size:Vector2i):
+	var inventory:Inventory = _inventory_access.get_inventory(inventory_id)
+	var current_width = inventory.get_width()
+	var current_height = inventory.get_height()
+	
+	#copy old dictionary
+	var old_dictionary = inventory.grid_slots
+	#create new inventory dictionary
+	var new_dictionary = inventory.create_new_grid_slots(size.x, size.y)
+	
+	#Copy from old dictionary to new
+	for cw in range(current_width):
+		for ch in range(current_height):
+			#if old spot doesn't exist, trigger drop of item
+			var item_id =  old_dictionary[cw][ch]
+			if cw > size.x or ch > size.y and item_id:
+				remove_item(item_id, inventory_id)
+			elif item_id:
+				new_dictionary[cw][ch] = item_id
+	
+	#set new dictionary
+	inventory.grid_slots = new_dictionary
+	
+	#set new size
+	inventory._current_height = size.y
+	inventory._current_width = size.x
+	EventBus.inventory_size_changed.emit(inventory_id, size)

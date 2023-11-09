@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" path="res://Scenes/debug/animation_tester.gd" id="1_q42px"]
 [ext_resource type="PackedScene" uid="uid://d08aatgxmymbf" path="res://Scenes/Player/player.tscn" id="2_8jxdu"]
-[ext_resource type="PackedScene" uid="uid://dr48wela8mtxd" path="res://Scenes/Guns/AK47-Projectile/AK47-Projectile.tscn" id="3_jl4nq"]
-[ext_resource type="PackedScene" uid="uid://ddsqkhwkuipda" path="res://ui/inventory/PlayerInventory.tscn" id="3_w3nvw"]
+[ext_resource type="PackedScene" uid="uid://dr48wela8mtxd" path="res://Scenes/items/weapons/easi_early_service_rifles/zs_52/zs_52.tscn" id="3_jl4nq"]
+[ext_resource type="PackedScene" uid="uid://ddsqkhwkuipda" path="res://ui/inventory/player_inventory.tscn" id="3_w3nvw"]
 
 [node name="animation_tester" type="Node3D"]
 script = ExtResource("1_q42px")

@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="EquipmentSlotType" load_steps=2 format=3 uid="uid://cfint47docku3"]
+
+[ext_resource type="Script" path="res://resource_access/equipment_slot_type.gd" id="1_tsvw7"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("1_tsvw7")
+name = "StocksSlot"
+allowed_types = Array[int]([7])

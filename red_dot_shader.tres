@@ -1,0 +1,11 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://c8btnt361a84t"]
+
+[ext_resource type="Shader" path="res://red_dot_shader2.gdshader" id="1_7mb18"]
+[ext_resource type="Texture2D" uid="uid://cckmkhndpq0l5" path="res://Scenes/items/attachments/scopes/red_dot/pixel-dot.png" id="2_7n4dp"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_7mb18")
+shader_parameter/reticle_color = Color(1, 0, 0, 1)
+shader_parameter/reticle_size = 0.06
+shader_parameter/reticle = ExtResource("2_7n4dp")

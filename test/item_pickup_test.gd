@@ -1,0 +1,41 @@
+extends Control
+
+@onready var player_inv_control = $PlayerInventory
+@onready var player_inv_id:int = player_inv_control._inventory.get_instance_id()
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	add_test_item()
+	add_test_item()
+	pass # Replace with function body.
+
+func add_test_item():
+	var cell_size = 32
+	var item_info:ItemInformation = ItemInformation.new()
+	var item:ItemInstance = ItemInstance.new(item_info)
+	item_info.row_span = 2
+	item_info.column_span = 2
+	item_info.item_type = ItemInformation.ItemType.GUN
+	item_info.display_name = "Test Item"
+	item_info.icon = load("res://Scenes/items/materials/polymer_pile/polymer_pile_icon.png")
+	item_info.icon_r = load("res://Scenes/items/materials/polymer_pile/polymer_pile_icon.png")
+	item_info.item_type_id = 1
+	item._item_info = item_info
+	
+	var item_control:ItemControl = load("res://ui/inventory/item_control.tscn").instantiate()
+	item_control.item_texture_rect.texture = load("res://Scenes/items/materials/polymer_pile/polymer_pile_icon.png")
+	item_control.size.x = item_info.row_span * cell_size
+	item_control.size.y = item_info.column_span * cell_size
+	item_control.item_instance_id = item.get_instance_id()
+	
+	item.id_2d = item_control.get_instance_id()
+	
+	self.add_child(item_control)
+	EventBus.pickup_item.emit(item,player_inv_id)
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	pass
+
+
+

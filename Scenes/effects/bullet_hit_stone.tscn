@@ -18,16 +18,16 @@ curve = SubResource("Curve_t6le4")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_om0fb"]
 lifetime_randomness = 0.5
+angle_max = 85.8
 direction = Vector3(0, 0, -1)
 spread = 20.0
-gravity = Vector3(0, 1, 0)
 initial_velocity_min = 5.0
 initial_velocity_max = 10.0
 angular_velocity_min = -25.0
 angular_velocity_max = 25.0
+gravity = Vector3(0, 1, 0)
 damping_min = 15.0
 damping_max = 75.0
-angle_max = 85.8
 scale_min = 0.8
 scale_max = 1.2
 scale_curve = SubResource("CurveTexture_4fvvw")
@@ -55,9 +55,9 @@ gradient = ExtResource("1_80p5h")
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_jkyl8"]
 direction = Vector3(0, 0, -1)
 spread = 180.0
-gravity = Vector3(0, 1, 0)
 initial_velocity_min = 0.1
 initial_velocity_max = 0.2
+gravity = Vector3(0, 1, 0)
 scale_min = 0.8
 scale_max = 1.2
 color_ramp = SubResource("GradientTexture1D_8kf1k")

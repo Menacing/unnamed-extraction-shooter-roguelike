@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="EquipmentSlotType" load_steps=2 format=3 uid="uid://d2e8vacodeiau"]
+
+[ext_resource type="Script" path="res://resource_access/equipment_slot_type.gd" id="1_w2byn"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("1_w2byn")
+name = "ForegripsSlot"
+allowed_types = Array[int]([9])

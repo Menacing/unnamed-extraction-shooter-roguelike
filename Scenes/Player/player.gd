@@ -45,10 +45,7 @@ var current_fire_mode: String:
 			return equipped_gun.current_fire_mode
 		else: 
 			return ""
-var ads_offset: Vector3
-var ads_head_pos: Vector3
 @onready var ads_normal_pos: Vector3 = head_anchor.position
-var hf_offset: Vector3
 var grip_pos: Node3D
 var handguard_pos: Node3D
 var fully_ads: bool:
@@ -77,6 +74,7 @@ var toggle_crouch_f: bool = false
 var toggle_prone_f: bool = false
 var toggle_inv_f: bool = false
 var legs_destroyed: bool = false
+@onready var player_inventory_id = $PlayerInventories.player_inventory_id
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
@@ -95,13 +93,15 @@ func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	currentSpeed = NORMAL_SPEED
 	$PlayerMotionStateMachine._active = true
-	Events.fire_mode_changed.emit("")
-	Events.ammo_count_changed.emit(0)
-	Events.item_equipped.connect(_on_item_equipped)
-	Events.item_dropped.connect(_on_item_dropped)
-	Events.item_picked_up.connect(_on_item_picked_up)
-	Events.item_removed.connect(_on_item_removed)
-	Events.player_inventory_visibility.emit(toggle_inv_f)
+	EventBus.fire_mode_changed.emit("")
+	EventBus.ammo_count_changed.emit(0)
+	EventBus.item_picked_up.connect(_on_item_picked_up)
+	EventBus.item_removed_from_slot.connect(_on_item_removed_from_slot)
+	EventBus.drop_item.connect(_on_drop_item)
+	if toggle_inv_f:
+		EventBus.open_inventory.emit(player_inventory_id)
+	else:
+		EventBus.close_all_inventories.emit()
 	
 	los_check_locations.append($HitBox/HeadBoneAttachment/eyes)
 	los_check_locations.append($HitBox/RightFootBoneAttachment)
@@ -115,45 +115,54 @@ func _ready():
 	pov_rotation_node = chest
 
 func _process(delta):
-	Events.compass_player_pulse.emit(self.global_position, self.global_rotation_degrees)
+	EventBus.compass_player_pulse.emit(self.global_position, self.global_rotation_degrees)
 
-func _on_item_equipped(slot_name:String, item_equipped:ItemComponent):
-	item_equipped.picked_up()
-	match slot_name:
-		"GunSlot1":
-			gun_slot_1 = item_equipped.get_parent()
-			move_gun_to_player_model(gun_slot_1)
-		"GunSlot2":
-			gun_slot_2 = item_equipped.get_parent()
-			move_gun_to_player_model(gun_slot_2) 
-		"BackpackSlot":
-			item_equipped.picked_up()
-			move_backpack_to_anchor(item_equipped.get_parent())
-		"ArmorSlot":
-			item_equipped.picked_up()
-			move_armor_to_anchor(item_equipped.get_parent())
-	pass
-	
-func _on_item_picked_up(item_picked_up:ItemComponent):
-	var item_parent = item_picked_up.get_parent()
-	item_picked_up.picked_up()
-	item_parent.reparent(self,false)
-	item_parent.visible = false
-	
-func _on_item_removed(slot_name, item_picked_up:ItemComponent):
-	var item_parent = item_picked_up.get_parent()
-	if item_parent is Gun:
-		if item_parent == equipped_gun:
-			stop_arms_ik()
-			equipped_gun = null	
-		if item_parent == gun_slot_1:
-			gun_slot_1 = null	
-		if item_parent == gun_slot_2:
-			gun_slot_2 = null	
+func _on_item_picked_up(result:InventoryInsertResult):
+	if result.inventory_id == player_inventory_id:
+		var item_instance:ItemInstance = InventoryManager.get_item(result.item_instance_id)
+		var item_3d:Item3D = instance_from_id(item_instance.id_3d)
+		Helpers.force_parent(item_3d,self)
+		item_3d.picked_up()
+		if result.location.location == InventoryLocationResult.LocationType.SLOT:
+			match result.location.slot_name:
+				"GunSlot1":
+					gun_slot_1 = item_3d as Gun
+					move_gun_to_player_model(gun_slot_1)
+				"GunSlot2":
+					gun_slot_2 = item_3d as Gun
+					move_gun_to_player_model(gun_slot_2) 
+				"BackpackSlot":
+					move_backpack_to_anchor(item_3d)
+					var backpack:Backpack = item_3d as Backpack
+					if backpack:
+						if backpack.backpack_size == Backpack.Size.NONE:
+							InventoryManager.set_inventory_size(player_inventory_id, Vector2i(7,2))
+						elif backpack.backpack_size == Backpack.Size.SMALL:
+							InventoryManager.set_inventory_size(player_inventory_id, Vector2i(7,4))
+						elif backpack.backpack_size == Backpack.Size.MEDIUM:
+							InventoryManager.set_inventory_size(player_inventory_id, Vector2i(7,6))
+						elif backpack.backpack_size == Backpack.Size.LARGE:
+							InventoryManager.set_inventory_size(player_inventory_id, Vector2i(7,8))
+				"ArmorSlot":
+					move_armor_to_anchor(item_3d)
+		elif result.location.location == InventoryLocationResult.LocationType.GRID:
+			item_3d.visible = false
 
-func _on_item_dropped(item_equipped:ItemComponent):
-	drop_item(item_equipped)
-	pass
+
+func _on_item_removed_from_slot(item_inst:ItemInstance, inventory_id:int, slot_name:String):
+	if inventory_id == player_inventory_id:
+		var item_3d:Item3D = instance_from_id(item_inst.id_3d)
+		if item_3d is Gun:
+			if item_3d == equipped_gun:
+				stop_arms_ik()
+				equipped_gun = null	
+			if item_3d == gun_slot_1:
+				gun_slot_1 = null	
+			if item_3d == gun_slot_2:
+				gun_slot_2 = null	
+			if item_3d == shoulder_gun:
+				shoulder_gun = null
+
 
 func move_gun_to_player_model(gun:Gun):
 	gun.show()	
@@ -165,32 +174,23 @@ func move_gun_to_player_model(gun:Gun):
 func move_gun_to_hands(gun:Gun):
 	equipped_gun = gun
 	if gun:	
-		gun.transform = Transform3D.IDENTITY	
-		@warning_ignore("unsafe_property_access")
-		hf_offset = -gun.get_node("HipFire").position
-		@warning_ignore("unsafe_property_access")
-		ads_offset = -gun.get_node("ADS").position
-		@warning_ignore("unsafe_property_access")
-		ads_head_pos = gun.get_node("ADS_Head").position
-		@warning_ignore("unsafe_property_access")
-		grip_pos = gun.get_node("Grip")
-		@warning_ignore("unsafe_property_access")
-		handguard_pos = gun.get_node("Handguard")
+		gun.transform = Transform3D.IDENTITY
+		grip_pos = gun.get_grip_node()
+		handguard_pos = gun.get_handguard_node()
 		gun.fired.connect(_on_gun_fired)
 		gun.reloaded.connect(_on_gun_reloaded)
 		current_fire_mode = gun.current_fire_mode
-		gun.reparent(cam,false)
-		Events.fire_mode_changed.emit(gun.current_fire_mode)
-		Events.ammo_count_changed.emit(gun.magazine)
+		Helpers.force_parent(gun, cam)
+		EventBus.fire_mode_changed.emit(gun.current_fire_mode) 
 		gun.visible = true
 		gun.top_level = true
-		start_arms_ik(gun.Right_Hand, gun.Right_Fingers, gun.Left_Hand, gun.Left_Fingers)
+		start_arms_ik(gun.get_right_hand_node(), gun.get_right_fingers_node(), gun.get_left_hand_node(), gun.get_left_fingers_node())
 		
 
 func move_gun_to_shoulder(gun:Gun):
 	shoulder_gun = gun
 	if gun:
-		gun.reparent(shoulder_anchor)
+		Helpers.force_parent(gun,shoulder_anchor)
 		gun.transform = Transform3D.IDENTITY
 		gun.rotate_x(-PI/2)
 		gun.visible = true
@@ -199,14 +199,14 @@ func move_gun_to_shoulder(gun:Gun):
 
 func move_armor_to_anchor(armor:Node3D):
 	if armor:
-		armor.reparent(armor_anchor)
+		Helpers.force_parent(armor, armor_anchor)
 		armor.transform = Transform3D.IDENTITY
 		armor.visible = true
 		pass
 		
 func move_backpack_to_anchor(backpack:Node3D):
 	if backpack:
-		backpack.reparent(backpack_anchor)
+		Helpers.force_parent(backpack, backpack_anchor)
 		backpack.transform = Transform3D.IDENTITY
 		backpack.visible = true
 
@@ -214,32 +214,29 @@ func drop_equipped_gun():
 	if equipped_gun:
 		equipped_gun.fired.disconnect(_on_gun_fired)
 		equipped_gun.reloaded.disconnect(_on_gun_reloaded)
-		Events.fire_mode_changed.emit("")
-		Events.ammo_count_changed.emit(0)
-		drop_item(equipped_gun.get_node("ItemComponent"))
-#		if gun_in_slot(equipped_gun, gun_slot_1):
-#			gun_slot_1.remove_item()
-#		elif gun_in_slot(equipped_gun, gun_slot_2):
-#			gun_slot_2.remove_item()			
+		EventBus.fire_mode_changed.emit("")
+		EventBus.ammo_count_changed.emit(0)
+		
 		equipped_gun = null
 		stop_arms_ik()
 
-func drop_item(item_comp:ItemComponent):
-	var item_parent = item_comp.get_parent()
-#	var item_parent_global_pos = drop_location.global_position
-	item_parent.reparent(self.get_parent())
-	item_comp.dropped()
-	item_parent.visible = true
-	item_parent.global_position = drop_location.global_position
-	if item_parent is Gun:
-		if item_parent == gun_slot_1:
-			gun_slot_1 = null
-		if item_parent == gun_slot_2:
-			gun_slot_2 = null
-		if item_parent == equipped_gun:
-			equipped_gun = null
-		if item_parent == shoulder_gun:
-			shoulder_gun = null
+func _on_drop_item(item_inst:ItemInstance, inventory_id:int):
+	if inventory_id == player_inventory_id:
+		var item_3d:Item3D = instance_from_id(item_inst.id_3d)
+		Helpers.force_parent(item_3d,get_parent())
+		item_3d.dropped()
+		item_3d.global_position = drop_location.global_position
+		
+		if item_3d is Gun:
+			if item_3d == equipped_gun:
+				stop_arms_ik()
+				equipped_gun = null	
+			if item_3d == gun_slot_1:
+				gun_slot_1 = null	
+			if item_3d == gun_slot_2:
+				gun_slot_2 = null	
+			if item_3d == shoulder_gun:
+				shoulder_gun = null
 
 #realtime inputs - movement stuff
 func _physics_process(delta):
@@ -271,17 +268,16 @@ func _physics_process(delta):
 		#handle use hint
 		if use_ray.is_colliding():
 				var col = use_ray.get_collider()
-				var ic = col.get_node("ItemComponent")
-				if ic:
-					Events.pickup_helper_visibility.emit(true)
+				if col is Item3D:
+					EventBus.pickup_helper_visibility.emit(true)
 				elif col.has_method("use"):
-					Events.use_helper_visibility.emit(true)
+					EventBus.use_helper_visibility.emit(true)
 				else:
-					Events.use_helper_visibility.emit(false)
-					Events.pickup_helper_visibility.emit(false)
+					EventBus.use_helper_visibility.emit(false)
+					EventBus.pickup_helper_visibility.emit(false)
 		else:
-			Events.use_helper_visibility.emit(false)
-			Events.pickup_helper_visibility.emit(false)
+			EventBus.use_helper_visibility.emit(false)
+			EventBus.pickup_helper_visibility.emit(false)
 
 func point_camera_at_target():
 	head.transform.basis = Basis() # reset rotation
@@ -321,9 +317,9 @@ func align_trailers_to_head(delta:float):
 	
 	if equipped_gun:
 		#calculate target positions
-		var ads_rotated_offset = (cam.position + ads_offset) * head.basis.inverse()
+		var ads_rotated_offset = (cam.position - equipped_gun.get_ads_anchor()) * head.basis.inverse()
 		var ads_g_pos = head.global_position + ads_rotated_offset
-		var hf_rotated_offset = (cam.position + hf_offset) * head.basis.inverse()
+		var hf_rotated_offset = (cam.position - equipped_gun.get_hip_fire_anchor()) * head.basis.inverse()
 		var hf_g_pos = head.global_position + hf_rotated_offset
 		var ads_accel = 1.0 / equipped_gun.get_ADS_acceleration()
 		var ads_fov = equipped_gun.get_ADS_FOV()
@@ -346,7 +342,7 @@ func align_trailers_to_head(delta:float):
 		#set gun position between hipfire position and ads position by ads_factor
 		equipped_gun.global_position = hf_g_pos.lerp(ads_g_pos, ads_fac)
 		#set head anchor position between normal and ads position by ads_factor
-		head_anchor.transform.origin = ads_normal_pos.lerp(ads_head_pos, ads_fac)
+		head_anchor.transform.origin = ads_normal_pos.lerp(equipped_gun.get_ads_head_anchor(), ads_fac)
 		#set camera fov between default and ads fov by ads_factor
 		cam.fov = lerp(GameSettings.default_fov, ads_fov, ads_fac)
 
@@ -393,7 +389,12 @@ func can_shoot() -> bool:
 
 func _unhandled_input(event):
 	if event.is_action_pressed("ui_cancel"):
-		MenuManager.load_menu(MenuManager.MENU_LEVEL.PAUSE)
+		#If inventories are closed, trigger the pause menu, else close open inventories
+		if !toggle_inv_f:
+			MenuManager.load_menu(MenuManager.MENU_LEVEL.PAUSE)
+		else:
+			close_inventory()
+		
 
 func _input(event):
 	if event.is_action_pressed("inventory"):
@@ -406,14 +407,13 @@ func _input(event):
 		elif event.is_action_pressed("toggleFireMode"):
 			if equipped_gun.has_method("toggle_fire_mode"):
 				var fire_mode = equipped_gun.toggle_fire_mode()
-				Events.fire_mode_changed.emit(fire_mode)
+				EventBus.fire_mode_changed.emit(fire_mode)
 				current_fire_mode = fire_mode
 		elif event.is_action_pressed("use"):
 			if use_ray.is_colliding():
 				var col = use_ray.get_collider()
-				var col_icomp = col.get_node("ItemComponent")
-				if col_icomp:
-					Events.player_inventory_try_pickup.emit(col_icomp)
+				if col is Item3D:
+					EventBus.pickup_item.emit(col.get_item_instance(), player_inventory_id)
 				elif col.has_method("use"):
 					col.use(self)
 		elif event.is_action_pressed("dropGun"):
@@ -431,12 +431,21 @@ func _input(event):
 		
 func toggle_inventory():
 	toggle_inv_f = !toggle_inv_f
-	Events.player_inventory_visibility.emit(toggle_inv_f)
+	
 	if toggle_inv_f:
-		Input.mouse_mode = Input.MOUSE_MODE_CONFINED
+		open_inventory()
 	else:
-		Events.player_inventory_closed.emit(self)
-		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+		close_inventory()
+		
+func open_inventory():
+	toggle_inv_f = true
+	Input.mouse_mode = Input.MOUSE_MODE_CONFINED
+	EventBus.open_inventory.emit(player_inventory_id)
+	
+func close_inventory():
+	toggle_inv_f = false
+	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	EventBus.close_all_inventories.emit()
 
 func transformMouse(event: InputEventMouse):
 	var vert_rotation = -event.relative.x * GameSettings.h_mouse_sens/1000.0
@@ -480,7 +489,7 @@ func reload():
 
 
 func _on_gun_fired(recoil:Vector2):
-	Events.ammo_count_changed.emit(equipped_gun.magazine)
+	EventBus.ammo_count_changed.emit(equipped_gun.current_magazine_size)
 	var scaled_recoil = scale_recoil(recoil)
 #	#flip the mapping so that recoil.y moves the camera vertically
 	v_rot_acc += scaled_recoil.x
@@ -510,7 +519,7 @@ func scale_recoil(recoil:Vector2) -> Vector2:
 	return recoil * factor
 	
 func _on_gun_reloaded():
-	Events.ammo_count_changed.emit(equipped_gun.magazine)	
+	EventBus.ammo_count_changed.emit(equipped_gun.current_magazine_size)	
 		
 func start_arms_ik(right_arm_loc:Node3D, right_fingers_loc:Node3D, left_arm_loc:Node3D, left_fingers_loc:Node3D):
 	if right_arm_loc:

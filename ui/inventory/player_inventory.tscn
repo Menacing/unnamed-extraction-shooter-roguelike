@@ -1,0 +1,243 @@
+[gd_scene load_steps=15 format=3 uid="uid://ddsqkhwkuipda"]
+
+[ext_resource type="Script" path="res://ui/inventory/player_inventory.gd" id="1_3codq"]
+[ext_resource type="Script" path="res://resource_access/Inventory.gd" id="2_5ekbt"]
+[ext_resource type="Script" path="res://resource_access/equipment_slot_type.gd" id="2_j8487"]
+[ext_resource type="Script" path="res://ui/inventory/equipment_slots_control.gd" id="4_h1h63"]
+[ext_resource type="Texture2D" uid="uid://bwpnv12qt7ivw" path="res://themes/BackpackSlotIcon-1.png.png" id="5_5opwg"]
+[ext_resource type="PackedScene" uid="uid://bshm12rhfjlbc" path="res://ui/inventory/backpack_cell.tscn" id="5_h0nvq"]
+[ext_resource type="Script" path="res://ui/inventory/inventory_grid_container.gd" id="5_lwrwb"]
+[ext_resource type="Texture2D" uid="uid://j3l2030fmp3w" path="res://themes/ArmorSlotIcon-1.png.png" id="6_248g1"]
+[ext_resource type="Texture2D" uid="uid://b3pnako3nkowp" path="res://themes/GunSlotIcon-1.png.png" id="7_q8r57"]
+
+[sub_resource type="Resource" id="Resource_c2lqt"]
+script = ExtResource("2_j8487")
+name = "BackpackSlot"
+allowed_types = Array[int]([1])
+
+[sub_resource type="Resource" id="Resource_5xhft"]
+script = ExtResource("2_j8487")
+name = "ArmorSlot"
+allowed_types = Array[int]([3])
+
+[sub_resource type="Resource" id="Resource_3yuyw"]
+script = ExtResource("2_j8487")
+name = "GunSlot1"
+allowed_types = Array[int]([0])
+
+[sub_resource type="Resource" id="Resource_k0qab"]
+script = ExtResource("2_j8487")
+name = "GunSlot2"
+allowed_types = Array[int]([0])
+
+[sub_resource type="Resource" id="Resource_qic1g"]
+resource_local_to_scene = true
+script = ExtResource("2_5ekbt")
+initial_height = 2
+initial_width = 7
+equipment_slots = Array[ExtResource("2_j8487")]([SubResource("Resource_c2lqt"), SubResource("Resource_5xhft"), SubResource("Resource_3yuyw"), SubResource("Resource_k0qab")])
+
+[node name="PlayerInventory" type="MarginContainer"]
+offset_right = 510.0
+offset_bottom = 598.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_3codq")
+_inventory = SubResource("Resource_qic1g")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 2
+
+[node name="InventoryBase" type="HBoxContainer" parent="PanelContainer" groups=["inventory_controls"]]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="EquipmentSlots" type="VBoxContainer" parent="PanelContainer/InventoryBase" groups=["inventory_controls"]]
+unique_name_in_owner = true
+modulate = Color(0.686275, 0.686275, 0.686275, 1)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="BackpackSlot" type="Panel" parent="PanelContainer/InventoryBase/EquipmentSlots" node_paths=PackedStringArray("parent_inventory_control_base") groups=["droppable_inventory_controls"]]
+modulate = Color(0.686275, 0.686275, 0.686275, 1)
+custom_minimum_size = Vector2(160, 160)
+layout_mode = 2
+size_flags_horizontal = 8
+script = ExtResource("4_h1h63")
+parent_inventory_control_base = NodePath("../../../..")
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/InventoryBase/EquipmentSlots/BackpackSlot"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 40
+
+[node name="TextureRect" type="TextureRect" parent="PanelContainer/InventoryBase/EquipmentSlots/BackpackSlot/MarginContainer"]
+layout_mode = 2
+texture = ExtResource("5_5opwg")
+expand_mode = 2
+
+[node name="ArmorSlot" type="Panel" parent="PanelContainer/InventoryBase/EquipmentSlots" node_paths=PackedStringArray("parent_inventory_control_base") groups=["droppable_inventory_controls"]]
+modulate = Color(0.686275, 0.686275, 0.686275, 1)
+custom_minimum_size = Vector2(160, 160)
+layout_mode = 2
+size_flags_horizontal = 8
+script = ExtResource("4_h1h63")
+parent_inventory_control_base = NodePath("../../../..")
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/InventoryBase/EquipmentSlots/ArmorSlot"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 40
+
+[node name="TextureRect" type="TextureRect" parent="PanelContainer/InventoryBase/EquipmentSlots/ArmorSlot/MarginContainer"]
+layout_mode = 2
+texture = ExtResource("6_248g1")
+expand_mode = 2
+
+[node name="GunSlot1" type="Panel" parent="PanelContainer/InventoryBase/EquipmentSlots" node_paths=PackedStringArray("parent_inventory_control_base") groups=["droppable_inventory_controls"]]
+modulate = Color(0.686275, 0.686275, 0.686275, 1)
+custom_minimum_size = Vector2(256, 128)
+layout_mode = 2
+script = ExtResource("4_h1h63")
+parent_inventory_control_base = NodePath("../../../..")
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/InventoryBase/EquipmentSlots/GunSlot1"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 25
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 25
+
+[node name="TextureRect" type="TextureRect" parent="PanelContainer/InventoryBase/EquipmentSlots/GunSlot1/MarginContainer"]
+layout_mode = 2
+texture = ExtResource("7_q8r57")
+expand_mode = 3
+stretch_mode = 4
+
+[node name="GunSlot2" type="Panel" parent="PanelContainer/InventoryBase/EquipmentSlots" node_paths=PackedStringArray("parent_inventory_control_base") groups=["droppable_inventory_controls"]]
+modulate = Color(0.686275, 0.686275, 0.686275, 1)
+custom_minimum_size = Vector2(256, 128)
+layout_mode = 2
+script = ExtResource("4_h1h63")
+parent_inventory_control_base = NodePath("../../../..")
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/InventoryBase/EquipmentSlots/GunSlot2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 25
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 25
+
+[node name="TextureRect" type="TextureRect" parent="PanelContainer/InventoryBase/EquipmentSlots/GunSlot2/MarginContainer"]
+layout_mode = 2
+texture = ExtResource("7_q8r57")
+expand_mode = 3
+stretch_mode = 4
+
+[node name="PanelContainer" type="PanelContainer" parent="PanelContainer/InventoryBase"]
+layout_mode = 2
+
+[node name="InventoryGrid" type="GridContainer" parent="PanelContainer/InventoryBase/PanelContainer" node_paths=PackedStringArray("parent_inventory_control_base") groups=["droppable_inventory_controls", "inventory_controls"]]
+modulate = Color(0.686275, 0.686275, 0.686275, 1)
+layout_mode = 2
+theme_override_constants/h_separation = 0
+theme_override_constants/v_separation = 0
+columns = 7
+script = ExtResource("5_lwrwb")
+parent_inventory_control_base = NodePath("../../../..")
+grid_cell = ExtResource("5_h0nvq")
+
+[node name="Panel" parent="PanelContainer/InventoryBase/PanelContainer/InventoryGrid" instance=ExtResource("5_h0nvq")]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="Panel2" parent="PanelContainer/InventoryBase/PanelContainer/InventoryGrid" instance=ExtResource("5_h0nvq")]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="Panel3" parent="PanelContainer/InventoryBase/PanelContainer/InventoryGrid" instance=ExtResource("5_h0nvq")]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="Panel4" parent="PanelContainer/InventoryBase/PanelContainer/InventoryGrid" instance=ExtResource("5_h0nvq")]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="Panel5" parent="PanelContainer/InventoryBase/PanelContainer/InventoryGrid" instance=ExtResource("5_h0nvq")]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="Panel6" parent="PanelContainer/InventoryBase/PanelContainer/InventoryGrid" instance=ExtResource("5_h0nvq")]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="Panel7" parent="PanelContainer/InventoryBase/PanelContainer/InventoryGrid" instance=ExtResource("5_h0nvq")]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="Panel8" parent="PanelContainer/InventoryBase/PanelContainer/InventoryGrid" instance=ExtResource("5_h0nvq")]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="Panel9" parent="PanelContainer/InventoryBase/PanelContainer/InventoryGrid" instance=ExtResource("5_h0nvq")]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="Panel10" parent="PanelContainer/InventoryBase/PanelContainer/InventoryGrid" instance=ExtResource("5_h0nvq")]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="Panel11" parent="PanelContainer/InventoryBase/PanelContainer/InventoryGrid" instance=ExtResource("5_h0nvq")]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="Panel12" parent="PanelContainer/InventoryBase/PanelContainer/InventoryGrid" instance=ExtResource("5_h0nvq")]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="Panel13" parent="PanelContainer/InventoryBase/PanelContainer/InventoryGrid" instance=ExtResource("5_h0nvq")]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="Panel14" parent="PanelContainer/InventoryBase/PanelContainer/InventoryGrid" instance=ExtResource("5_h0nvq")]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0

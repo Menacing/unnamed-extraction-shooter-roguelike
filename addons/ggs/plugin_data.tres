@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="ggsPluginData" load_steps=75 format=3 uid="uid://dpk53al471l8m"]
+[gd_resource type="Resource" script_class="ggsPluginData" load_steps=79 format=3 uid="uid://dpk53al471l8m"]
 
 [ext_resource type="Script" path="res://addons/ggs/classes/resources/ggs_category.gd" id="1_k6wsq"]
 [ext_resource type="Script" path="res://addons/ggs/classes/resources/ggs_plugin_data.gd" id="1_wabe0"]
@@ -37,7 +37,7 @@ value_hint_string = "0,100"
 resource_name = "master_mute"
 script = ExtResource("4_p6m1c")
 bus_name = "Master"
-current = false
+current = true
 default = false
 name = "master_mute"
 category = "audio"
@@ -499,6 +499,66 @@ value_type = 3
 value_hint = 0
 value_hint_string = ""
 
+[sub_resource type="Resource" id="Resource_8qumx"]
+resource_name = "place_single_of_stack_kb"
+script = ExtResource("14_t43c8")
+action = "place_single_of_stack"
+type = 0
+current = "rmb"
+default = "rmb"
+name = "place_single_of_stack_kb"
+category = "controls"
+icon = ExtResource("13_1ch4w")
+desc = "Rebind keyboard or gamepad input of a specific input action."
+value_type = 4
+value_hint = 0
+value_hint_string = ""
+
+[sub_resource type="Resource" id="Resource_uerat"]
+resource_name = "drop_item_kb"
+script = ExtResource("14_t43c8")
+action = "drop_item"
+type = 0
+current = "mmb"
+default = "mmb"
+name = "drop_item_kb"
+category = "controls"
+icon = ExtResource("13_1ch4w")
+desc = "Rebind keyboard or gamepad input of a specific input action."
+value_type = 4
+value_hint = 0
+value_hint_string = ""
+
+[sub_resource type="Resource" id="Resource_kjlwn"]
+resource_name = "quick_item_transfer_kb"
+script = ExtResource("14_t43c8")
+action = "quick_item_transfer"
+type = 0
+current = "ctrl,lmb"
+default = "ctrl,lmb"
+name = "quick_item_transfer_kb"
+category = "controls"
+icon = ExtResource("13_1ch4w")
+desc = "Rebind keyboard or gamepad input of a specific input action."
+value_type = 4
+value_hint = 0
+value_hint_string = ""
+
+[sub_resource type="Resource" id="Resource_oomd5"]
+resource_name = "place_half_of_stack_kb"
+script = ExtResource("14_t43c8")
+action = "place_half_of_stack"
+type = 0
+current = "shift,rmb"
+default = "shift,rmb"
+name = "place_half_of_stack_kb"
+category = "controls"
+icon = ExtResource("13_1ch4w")
+desc = "Rebind keyboard or gamepad input of a specific input action."
+value_type = 4
+value_hint = 0
+value_hint_string = ""
+
 [sub_resource type="Resource" id="Resource_rf8pj"]
 resource_name = "controls"
 script = ExtResource("1_k6wsq")
@@ -509,6 +569,7 @@ settings = {
 "both_eyes_open": SubResource("Resource_7i2aw"),
 "crouch_kb": SubResource("Resource_k132l"),
 "drop_gun_kb": SubResource("Resource_5al3a"),
+"drop_item_kb": SubResource("Resource_uerat"),
 "fire_mode_kb": SubResource("Resource_r2poy"),
 "gun_slot_1_kb": SubResource("Resource_5iar8"),
 "gun_slot_2_kb": SubResource("Resource_o2bgq"),
@@ -523,7 +584,10 @@ settings = {
 "move_forward_kb": SubResource("Resource_mxd56"),
 "move_left_kb": SubResource("Resource_nepbr"),
 "open_context_menu_kb": SubResource("Resource_30olv"),
+"place_half_of_stack_kb": SubResource("Resource_oomd5"),
+"place_single_of_stack_kb": SubResource("Resource_8qumx"),
 "prone_kb": SubResource("Resource_uwhsk"),
+"quick_item_transfer_kb": SubResource("Resource_kjlwn"),
 "reload_kb": SubResource("Resource_w3of5"),
 "rotate_item_kb": SubResource("Resource_6lj6n"),
 "shoot_kb": SubResource("Resource_an0pk"),
@@ -535,7 +599,7 @@ settings = {
 "use_kb": SubResource("Resource_h4g6b"),
 "v_mouse_sens": SubResource("Resource_igase")
 }
-item_order = Array[Resource("res://addons/ggs/classes/resources/ggs_setting.gd")]([SubResource("Resource_nepbr"), SubResource("Resource_qnkl6"), SubResource("Resource_mxd56"), SubResource("Resource_0ssk6"), SubResource("Resource_5s7xi"), SubResource("Resource_an0pk"), SubResource("Resource_jg1lv"), SubResource("Resource_k132l"), SubResource("Resource_w3of5"), SubResource("Resource_r2poy"), SubResource("Resource_lhtf5"), SubResource("Resource_uwhsk"), SubResource("Resource_68382"), SubResource("Resource_f3h3l"), SubResource("Resource_h4g6b"), SubResource("Resource_5al3a"), SubResource("Resource_b4ve8"), SubResource("Resource_5iar8"), SubResource("Resource_o2bgq"), SubResource("Resource_s5lrt"), SubResource("Resource_6lj6n"), SubResource("Resource_30olv"), SubResource("Resource_dn1eh"), SubResource("Resource_vc5r5"), SubResource("Resource_ersch"), SubResource("Resource_4eghg"), SubResource("Resource_7i2aw"), SubResource("Resource_4uemx"), SubResource("Resource_igase"), SubResource("Resource_ltl7a")])
+item_order = Array[Resource("res://addons/ggs/classes/resources/ggs_setting.gd")]([SubResource("Resource_nepbr"), SubResource("Resource_qnkl6"), SubResource("Resource_mxd56"), SubResource("Resource_0ssk6"), SubResource("Resource_5s7xi"), SubResource("Resource_an0pk"), SubResource("Resource_jg1lv"), SubResource("Resource_k132l"), SubResource("Resource_w3of5"), SubResource("Resource_r2poy"), SubResource("Resource_lhtf5"), SubResource("Resource_uwhsk"), SubResource("Resource_68382"), SubResource("Resource_f3h3l"), SubResource("Resource_h4g6b"), SubResource("Resource_5al3a"), SubResource("Resource_b4ve8"), SubResource("Resource_5iar8"), SubResource("Resource_o2bgq"), SubResource("Resource_s5lrt"), SubResource("Resource_6lj6n"), SubResource("Resource_30olv"), SubResource("Resource_dn1eh"), SubResource("Resource_vc5r5"), SubResource("Resource_ersch"), SubResource("Resource_4eghg"), SubResource("Resource_7i2aw"), SubResource("Resource_4uemx"), SubResource("Resource_igase"), SubResource("Resource_ltl7a"), SubResource("Resource_8qumx"), SubResource("Resource_uerat"), SubResource("Resource_kjlwn"), SubResource("Resource_oomd5")])
 
 [sub_resource type="Resource" id="Resource_t0ory"]
 resource_name = "Fullscreen_Mode"
@@ -612,6 +676,36 @@ settings = {
 "health_display_mode": SubResource("Resource_m50kf")
 }
 item_order = Array[Resource("res://addons/ggs/classes/resources/ggs_setting.gd")]([SubResource("Resource_m50kf")])
+
+[sub_resource type="Resource" id="Resource_ds2ur"]
+resource_name = "Input Binding"
+script = ExtResource("14_t43c8")
+action = ""
+type = 0
+current = ""
+default = ""
+name = "Input Binding"
+category = ""
+icon = ExtResource("13_1ch4w")
+desc = "Rebind keyboard or gamepad input of a specific input action."
+value_type = 4
+value_hint = 0
+value_hint_string = ""
+
+[sub_resource type="Resource" id="Resource_l7sqc"]
+resource_name = "Input Binding"
+script = ExtResource("14_t43c8")
+action = ""
+type = 0
+current = ""
+default = ""
+name = "Input Binding"
+category = ""
+icon = ExtResource("13_1ch4w")
+desc = "Rebind keyboard or gamepad input of a specific input action."
+value_type = 4
+value_hint = 0
+value_hint_string = ""
 
 [sub_resource type="Resource" id="Resource_erguy"]
 resource_name = "float_game_setting"
@@ -722,21 +816,6 @@ value_type = 1
 value_hint = 0
 value_hint_string = ""
 
-[sub_resource type="Resource" id="Resource_l7sqc"]
-resource_name = "Input Binding"
-script = ExtResource("14_t43c8")
-action = ""
-type = 0
-current = ""
-default = ""
-name = "Input Binding"
-category = ""
-icon = ExtResource("13_1ch4w")
-desc = "Rebind keyboard or gamepad input of a specific input action."
-value_type = 4
-value_hint = 0
-value_hint_string = ""
-
 [sub_resource type="Resource" id="Resource_dr857"]
 resource_name = "Audio Mute"
 script = ExtResource("4_p6m1c")
@@ -818,21 +897,6 @@ value_type = 2
 value_hint = 2
 value_hint_string = ""
 
-[sub_resource type="Resource" id="Resource_ds2ur"]
-resource_name = "Input Binding"
-script = ExtResource("14_t43c8")
-action = ""
-type = 0
-current = ""
-default = ""
-name = "Input Binding"
-category = ""
-icon = ExtResource("13_1ch4w")
-desc = "Rebind keyboard or gamepad input of a specific input action."
-value_type = 4
-value_hint = 0
-value_hint_string = ""
-
 [resource]
 script = ExtResource("1_wabe0")
 categories = {
@@ -842,7 +906,7 @@ categories = {
 "ui": SubResource("Resource_w2wja")
 }
 category_order = Array[ExtResource("1_k6wsq")]([null, SubResource("Resource_rf8pj"), SubResource("Resource_nuq1d"), SubResource("Resource_dg48d"), SubResource("Resource_w2wja")])
-recent_settings = Array[Resource("res://addons/ggs/classes/resources/ggs_setting.gd")]([SubResource("Resource_erguy"), SubResource("Resource_rkf8f"), SubResource("Resource_38b3s"), SubResource("Resource_7rbo0"), SubResource("Resource_nh50f"), SubResource("Resource_jgjxg"), SubResource("Resource_xi2s3"), SubResource("Resource_fshjj"), SubResource("Resource_l7sqc")])
+recent_settings = Array[Resource("res://addons/ggs/classes/resources/ggs_setting.gd")]([SubResource("Resource_ds2ur"), SubResource("Resource_l7sqc"), SubResource("Resource_erguy"), SubResource("Resource_rkf8f"), SubResource("Resource_38b3s"), SubResource("Resource_7rbo0"), SubResource("Resource_nh50f"), SubResource("Resource_jgjxg"), SubResource("Resource_xi2s3"), SubResource("Resource_fshjj")])
 setting_list_cache = Array[Resource("res://addons/ggs/classes/resources/ggs_setting.gd")]([SubResource("Resource_dr857"), SubResource("Resource_ixctw"), SubResource("Resource_6uwu5"), SubResource("Resource_6wkhc"), SubResource("Resource_qi8vu"), SubResource("Resource_ky35l"), SubResource("Resource_erguy"), SubResource("Resource_ds2ur"), SubResource("Resource_rkf8f")])
 dir_settings = "res://game_settings/settings"
 dir_components = "res://game_settings/components"
