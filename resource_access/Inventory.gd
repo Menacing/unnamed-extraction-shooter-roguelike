@@ -33,18 +33,25 @@ static func get_slot_by_name(inventory:Inventory, slot_name:String) ->EquipmentS
 	
 	return null
 
-func setup():
-	#setup the grid
-	_current_height = initial_height
-	_current_width = initial_width
-	for w in range(initial_width):
-		grid_slots[w] = {}
-		for h in range(initial_height):
-			grid_slots[w][h] = null
-	#copy any equipment slots since there's an issue with duplicating resource arrays
-	#https://github.com/godotengine/godot/issues/74918
-	var slots_copy = equipment_slots.map( func(x): return x.duplicate() )
-	equipment_slots = slots_copy
+var _is_setup:bool = false
+
+func setup(resetup = false):
+	if resetup or !_is_setup:
+		#setup the grid
+		_current_height = initial_height
+		_current_width = initial_width
+		for w in range(initial_width):
+			grid_slots[w] = {}
+			for h in range(initial_height):
+				grid_slots[w][h] = null
+		#copy any equipment slots since there's an issue with duplicating resource arrays
+		#https://github.com/godotengine/godot/issues/74918
+		if equipment_slots.size() > 0:
+			var slots_copy:Array[EquipmentSlotType] = []
+			for slot in equipment_slots:
+				slots_copy.append(slot.duplicate(true))
+			equipment_slots = slots_copy
+		_is_setup = true
 			
 func create_new_grid_slots(width:int, height:int):
 	var new_grid_slots = {}
