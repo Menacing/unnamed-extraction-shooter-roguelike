@@ -1,5 +1,5 @@
 extends Gun
-class_name AK
+class_name EasiEarlyServiceRifle
 @warning_ignore("unsafe_method_access")
 @onready var gun_mat: BaseMaterial3D = $gun/Node_15/gun/barrel/Cube.get_active_material(0)
 
@@ -10,7 +10,8 @@ var rng: RandomNumberGenerator
 @onready var fire_timer = $FireTimer
 
 @onready var gun_model_node = $gun/Node_15
-
+@onready var scope_mount_model = $gun/Node_15/scope_mount
+@onready var scope_anchor = $scope_anchor
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	super()
@@ -90,3 +91,23 @@ func make_opaque():
 
 func copy_gun_model() -> Node3D:
 	return gun_model_node.duplicate()
+
+func _on_item_picked_up(result:InventoryInsertResult):
+	if result.inventory_id == internal_inventory_id:
+		super(result)
+		var item_instance:ItemInstance = InventoryManager.get_item(result.item_instance_id)
+		var item_3d:Item3D = instance_from_id(item_instance.id_3d)
+		if result.location.location == InventoryLocationResult.LocationType.SLOT:
+			match result.location.slot_name:
+				"OpticsSlot":
+					scope_mount_model.visible = true
+					move_attachment_to_anchor(item_3d, scope_anchor)
+					pass
+		elif result.location.location == InventoryLocationResult.LocationType.GRID:
+			item_3d.visible = false
+			
+func move_attachment_to_anchor(attachment:Node3D, anchor:Node3D):
+	if attachment:
+		Helpers.force_parent(attachment, anchor)
+		attachment.transform = Transform3D.IDENTITY
+		attachment.visible = true

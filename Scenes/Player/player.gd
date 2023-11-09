@@ -178,25 +178,19 @@ func move_gun_to_hands(gun:Gun):
 	equipped_gun = gun
 	if gun:	
 		gun.transform = Transform3D.IDENTITY	
-		@warning_ignore("unsafe_property_access")
-		hf_offset = -gun.get_node("HipFire").position
-		@warning_ignore("unsafe_property_access")
-		ads_offset = -gun.get_node("ADS").position
-		@warning_ignore("unsafe_property_access")
-		ads_head_pos = gun.get_node("ADS_Head").position
-		@warning_ignore("unsafe_property_access")
-		grip_pos = gun.get_node("Grip")
-		@warning_ignore("unsafe_property_access")
-		handguard_pos = gun.get_node("Handguard")
+		hf_offset = -gun.get_hip_fire_anchor().position
+		ads_offset = -gun.get_ads_anchor().position
+		ads_head_pos = gun.get_ads_head_anchor().position
+		grip_pos = gun.get_grip_anchor()
+		handguard_pos = gun.get_handguard_anchor()
 		gun.fired.connect(_on_gun_fired)
 		gun.reloaded.connect(_on_gun_reloaded)
 		current_fire_mode = gun.current_fire_mode
 		Helpers.force_parent(gun, cam)
-		EventBus.fire_mode_changed.emit(gun.current_fire_mode)
-		EventBus.ammo_count_changed.emit(gun.current_magazine_size)
+		EventBus.fire_mode_changed.emit(gun.current_fire_mode) 
 		gun.visible = true
 		gun.top_level = true
-		start_arms_ik(gun.Right_Hand, gun.Right_Fingers, gun.Left_Hand, gun.Left_Fingers)
+		start_arms_ik(gun.get_right_hand_anchor(), gun.get_right_fingers_anchor(), gun.get_left_hand_anchor(), gun.get_left_fingers_anchor())
 		
 
 func move_gun_to_shoulder(gun:Gun):
@@ -228,8 +222,7 @@ func drop_equipped_gun():
 		equipped_gun.reloaded.disconnect(_on_gun_reloaded)
 		EventBus.fire_mode_changed.emit("")
 		EventBus.ammo_count_changed.emit(0)
-		#drop_item(equipped_gun.get_node("ItemComponent"))
-			
+		
 		equipped_gun = null
 		stop_arms_ik()
 

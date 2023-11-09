@@ -14,19 +14,32 @@ func _ready():
 
 var current_fire_mode:String
 
-var Right_Hand:Node3D:
-	get:
-		return self.get_node("Right_Hand")
-var Right_Fingers:Node3D:
-	get:
-		return self.get_node("Right_Fingers")
+func get_right_hand_anchor() -> Node3D:
+	return self.get_node("Right_Hand")
+	
+func get_right_fingers_anchor() -> Node3D:
+	return self.get_node("Right_Fingers")
 		
-var Left_Hand:Node3D:
-	get:
-		return self.get_node("Left_Hand")
-var Left_Fingers:Node3D:
-	get:
-		return self.get_node("Left_Fingers")
+func get_left_hand_anchor() -> Node3D:
+	return self.get_node("Left_Hand")
+	
+func get_left_fingers_anchor() -> Node3D:
+	return self.get_node("Left_Fingers")
+	
+func get_ads_anchor() -> Node3D:
+	return self.get_node("ADS")
+	
+func get_ads_head_anchor() -> Node3D:
+	return self.get_node("ADS_Head")
+	
+func get_hip_fire_anchor() -> Node3D:
+	return self.get_node("HipFire")
+	
+func get_grip_anchor() -> Node3D:
+	return self.get_node("grip")
+	
+func get_handguard_anchor() -> Node3D:
+	return self.get_node("handguard")
 
 func canFire() -> bool:
 	return false

@@ -56,7 +56,7 @@ func _ready():
 		#TODO: Pull these from the packed scene instead of being hardcoded
 		gun._gun_stats.magazine_size = 30000
 		gun.current_magazine_size = 30000
-		hf_pos = -gun.get_node("HipFire").position
+		hf_pos = -gun.get_hip_fire_anchor().position
 
 		gun.position = hf_pos
 		head.add_child(gun)
