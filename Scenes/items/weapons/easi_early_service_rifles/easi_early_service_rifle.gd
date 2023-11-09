@@ -12,6 +12,7 @@ var rng: RandomNumberGenerator
 @onready var gun_model_node = $gun/Node_15
 @onready var scope_mount_model = $gun/Node_15/scope_mount
 @onready var scope_anchor = $scope_anchor
+var scope:Scope
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	super()
@@ -100,6 +101,7 @@ func _on_item_picked_up(result:InventoryInsertResult):
 		if result.location.location == InventoryLocationResult.LocationType.SLOT:
 			match result.location.slot_name:
 				"OpticsSlot":
+					scope = item_3d as Scope
 					scope_mount_model.visible = true
 					move_attachment_to_anchor(item_3d, scope_anchor)
 					pass
@@ -111,3 +113,9 @@ func move_attachment_to_anchor(attachment:Node3D, anchor:Node3D):
 		Helpers.force_parent(attachment, anchor)
 		attachment.transform = Transform3D.IDENTITY
 		attachment.visible = true
+
+func get_ads_anchor() -> Vector3:
+	var base_position = super()
+	if scope:
+		base_position += scope.get_ads_offset()
+	return base_position

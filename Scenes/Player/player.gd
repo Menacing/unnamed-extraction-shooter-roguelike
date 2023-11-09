@@ -45,10 +45,7 @@ var current_fire_mode: String:
 			return equipped_gun.current_fire_mode
 		else: 
 			return ""
-var ads_offset: Vector3
-var ads_head_pos: Vector3
 @onready var ads_normal_pos: Vector3 = head_anchor.position
-var hf_offset: Vector3
 var grip_pos: Node3D
 var handguard_pos: Node3D
 var fully_ads: bool:
@@ -177,12 +174,9 @@ func move_gun_to_player_model(gun:Gun):
 func move_gun_to_hands(gun:Gun):
 	equipped_gun = gun
 	if gun:	
-		gun.transform = Transform3D.IDENTITY	
-		hf_offset = -gun.get_hip_fire_anchor().position
-		ads_offset = -gun.get_ads_anchor().position
-		ads_head_pos = gun.get_ads_head_anchor().position
-		grip_pos = gun.get_grip_anchor()
-		handguard_pos = gun.get_handguard_anchor()
+		gun.transform = Transform3D.IDENTITY
+		grip_pos = gun.get_grip_node()
+		handguard_pos = gun.get_handguard_node()
 		gun.fired.connect(_on_gun_fired)
 		gun.reloaded.connect(_on_gun_reloaded)
 		current_fire_mode = gun.current_fire_mode
@@ -190,7 +184,7 @@ func move_gun_to_hands(gun:Gun):
 		EventBus.fire_mode_changed.emit(gun.current_fire_mode) 
 		gun.visible = true
 		gun.top_level = true
-		start_arms_ik(gun.get_right_hand_anchor(), gun.get_right_fingers_anchor(), gun.get_left_hand_anchor(), gun.get_left_fingers_anchor())
+		start_arms_ik(gun.get_right_hand_node(), gun.get_right_fingers_node(), gun.get_left_hand_node(), gun.get_left_fingers_node())
 		
 
 func move_gun_to_shoulder(gun:Gun):
@@ -323,9 +317,9 @@ func align_trailers_to_head(delta:float):
 	
 	if equipped_gun:
 		#calculate target positions
-		var ads_rotated_offset = (cam.position + ads_offset) * head.basis.inverse()
+		var ads_rotated_offset = (cam.position - equipped_gun.get_ads_anchor()) * head.basis.inverse()
 		var ads_g_pos = head.global_position + ads_rotated_offset
-		var hf_rotated_offset = (cam.position + hf_offset) * head.basis.inverse()
+		var hf_rotated_offset = (cam.position - equipped_gun.get_hip_fire_anchor()) * head.basis.inverse()
 		var hf_g_pos = head.global_position + hf_rotated_offset
 		var ads_accel = 1.0 / equipped_gun.get_ADS_acceleration()
 		var ads_fov = equipped_gun.get_ADS_FOV()
@@ -348,7 +342,7 @@ func align_trailers_to_head(delta:float):
 		#set gun position between hipfire position and ads position by ads_factor
 		equipped_gun.global_position = hf_g_pos.lerp(ads_g_pos, ads_fac)
 		#set head anchor position between normal and ads position by ads_factor
-		head_anchor.transform.origin = ads_normal_pos.lerp(ads_head_pos, ads_fac)
+		head_anchor.transform.origin = ads_normal_pos.lerp(equipped_gun.get_ads_head_anchor(), ads_fac)
 		#set camera fov between default and ads fov by ads_factor
 		cam.fov = lerp(GameSettings.default_fov, ads_fov, ads_fac)
 
