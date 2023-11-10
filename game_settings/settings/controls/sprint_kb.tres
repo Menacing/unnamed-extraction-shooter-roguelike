@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="ggsInputSetting" load_steps=4 format=3 uid="uid://cyw0vxm6edd20"]
+
+[ext_resource type="Script" path="res://game_settings/templates/input.gd" id="1_igwxf"]
+
+[sub_resource type="InputEventKey" id="InputEventKey_ggsc0"]
+physical_keycode = 4194325
+
+[sub_resource type="InputEventKey" id="InputEventKey_b4lkt"]
+physical_keycode = 4194325
+
+[resource]
+resource_name = "sprint_kb"
+script = ExtResource("1_igwxf")
+action = "sprint"
+event_index = 0
+type = 1
+default_as_event = SubResource("InputEventKey_b4lkt")
+current_as_event = SubResource("InputEventKey_ggsc0")
+current = [1, 4194325]
+default = [1, 4194325]
+name = "sprint_kb"
+category = "controls"
+value_type = 28
+value_hint = 0
+value_hint_string = ""

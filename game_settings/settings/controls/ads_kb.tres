@@ -1,0 +1,27 @@
+[gd_resource type="Resource" script_class="ggsInputSetting" load_steps=4 format=3 uid="uid://m1eyi6srk0i8"]
+
+[ext_resource type="Script" path="res://game_settings/templates/input.gd" id="1_cx5h1"]
+
+[sub_resource type="InputEventMouseButton" id="InputEventMouseButton_agjwu"]
+device = -1
+button_index = 2
+
+[sub_resource type="InputEventMouseButton" id="InputEventMouseButton_bkiqd"]
+device = -1
+button_index = 2
+
+[resource]
+resource_name = "ads_kb"
+script = ExtResource("1_cx5h1")
+action = "ads"
+event_index = 0
+type = 2
+default_as_event = SubResource("InputEventMouseButton_bkiqd")
+current_as_event = SubResource("InputEventMouseButton_agjwu")
+current = [2, 2]
+default = [2, 2]
+name = "ads_kb"
+category = "controls"
+value_type = 28
+value_hint = 0
+value_hint_string = ""

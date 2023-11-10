@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="ggsInputSetting" load_steps=4 format=3 uid="uid://cq358bopsi3j8"]
+
+[ext_resource type="Script" path="res://game_settings/templates/input.gd" id="1_fndfk"]
+
+[sub_resource type="InputEventKey" id="InputEventKey_mkdbj"]
+physical_keycode = 4194326
+
+[sub_resource type="InputEventKey" id="InputEventKey_l2vjl"]
+physical_keycode = 4194326
+
+[resource]
+resource_name = "crouch_kb"
+script = ExtResource("1_fndfk")
+action = "crouch"
+event_index = 0
+type = 1
+default_as_event = SubResource("InputEventKey_l2vjl")
+current_as_event = SubResource("InputEventKey_mkdbj")
+current = [1, 4194326]
+default = [1, 4194326]
+name = "crouch_kb"
+category = "controls"
+value_type = 28
+value_hint = 0
+value_hint_string = ""

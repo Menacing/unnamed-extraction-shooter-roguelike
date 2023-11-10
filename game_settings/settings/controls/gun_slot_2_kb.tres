@@ -1,0 +1,29 @@
+[gd_resource type="Resource" script_class="ggsInputSetting" load_steps=4 format=3 uid="uid://ch0jopbdfjcsc"]
+
+[ext_resource type="Script" path="res://game_settings/templates/input.gd" id="1_ecsh3"]
+
+[sub_resource type="InputEventKey" id="InputEventKey_sjium"]
+device = -1
+physical_keycode = 50
+unicode = 50
+
+[sub_resource type="InputEventKey" id="InputEventKey_4insv"]
+device = -1
+physical_keycode = 50
+unicode = 50
+
+[resource]
+resource_name = "gun_slot_2_kb"
+script = ExtResource("1_ecsh3")
+action = "equipGunSlot2"
+event_index = 0
+type = 1
+default_as_event = SubResource("InputEventKey_4insv")
+current_as_event = SubResource("InputEventKey_sjium")
+current = [1, 50]
+default = [1, 50]
+name = "gun_slot_2_kb"
+category = "controls"
+value_type = 28
+value_hint = 0
+value_hint_string = ""
