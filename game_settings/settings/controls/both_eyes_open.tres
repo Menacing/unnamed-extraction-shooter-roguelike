@@ -1,13 +1,14 @@
-[gd_resource type="Resource" load_steps=2 format=3 uid="uid://bp82lcwky5mo"]
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://4m1gc6743yhj"]
 
-[ext_resource type="Script" path="res://game_settings/settings/controls/both_eyes_open.gd" id="1_80545"]
+[ext_resource type="Script" path="res://game_settings/templates/bool_setting.gd" id="1_5haxp"]
 
 [resource]
-script = ExtResource("1_80545")
-current = null
-default = null
-name = ""
-category = ""
-value_type = 0
+resource_name = "both_eyes_open"
+script = ExtResource("1_5haxp")
+current = false
+default = false
+name = "both_eyes_open"
+category = "controls"
+value_type = 1
 value_hint = 0
 value_hint_string = ""

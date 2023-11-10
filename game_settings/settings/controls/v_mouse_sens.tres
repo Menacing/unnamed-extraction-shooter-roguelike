@@ -1,13 +1,14 @@
-[gd_resource type="Resource" load_steps=2 format=3 uid="uid://d4g2jeefy4ub"]
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://bw1sceah6a7qy"]
 
-[ext_resource type="Script" path="res://game_settings/settings/controls/v_mouse_sens.gd" id="1_kp0ef"]
+[ext_resource type="Script" path="res://game_settings/templates/float_setting.gd" id="1_ihajq"]
 
 [resource]
-script = ExtResource("1_kp0ef")
-current = null
-default = null
-name = ""
-category = ""
-value_type = 0
-value_hint = 0
-value_hint_string = ""
+resource_name = "v_mouse_sens"
+script = ExtResource("1_ihajq")
+current = 5.0
+default = 5.0
+name = "v_mouse_sens"
+category = "controls"
+value_type = 3
+value_hint = 1
+value_hint_string = "0,10"

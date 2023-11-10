@@ -1,13 +1,13 @@
-[gd_resource type="Resource" load_steps=2 format=3 uid="uid://052kemo0wxun"]
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://blgl21g0rau2q"]
 
-[ext_resource type="Script" path="res://game_settings/settings/controls/toggle_ads.gd" id="1_u4m72"]
+[ext_resource type="Script" path="res://game_settings/templates/bool_setting.gd" id="1_gs2a5"]
 
 [resource]
-script = ExtResource("1_u4m72")
-current = null
-default = null
+script = ExtResource("1_gs2a5")
+current = false
+default = false
 name = ""
 category = ""
-value_type = 0
+value_type = 1
 value_hint = 0
 value_hint_string = ""

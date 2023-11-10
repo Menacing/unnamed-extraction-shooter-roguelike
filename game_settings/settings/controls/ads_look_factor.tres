@@ -1,13 +1,14 @@
-[gd_resource type="Resource" load_steps=2 format=3 uid="uid://b1072mqw86t7n"]
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://bt5juesj8aglk"]
 
-[ext_resource type="Script" path="res://game_settings/settings/controls/ads_look_factor.gd" id="1_tw7bi"]
+[ext_resource type="Script" path="res://game_settings/templates/float_setting.gd" id="1_i307i"]
 
 [resource]
-script = ExtResource("1_tw7bi")
-current = null
-default = null
-name = ""
-category = ""
-value_type = 0
-value_hint = 0
-value_hint_string = ""
+resource_name = "ads_look_factor"
+script = ExtResource("1_i307i")
+current = 0.37
+default = 1.0
+name = "ads_look_factor"
+category = "controls"
+value_type = 3
+value_hint = 1
+value_hint_string = "0,2"

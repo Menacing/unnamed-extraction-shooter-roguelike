@@ -1,14 +1,14 @@
-[gd_resource type="Resource" load_steps=2 format=3 uid="uid://sevfhnxc3367"]
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://5ncapys43e0n"]
 
-[ext_resource type="Script" path="res://game_settings/settings/display/default_fov.gd" id="1_upo37"]
+[ext_resource type="Script" path="res://game_settings/templates/float_setting.gd" id="1_a023l"]
 
 [resource]
 resource_name = "default_fov"
-script = ExtResource("1_upo37")
-current = null
-default = null
+script = ExtResource("1_a023l")
+current = 75.0
+default = 75.0
 name = "default_fov"
 category = "display"
-value_type = 2
+value_type = 3
 value_hint = 1
-value_hint_string = ""
+value_hint_string = "50,120"
