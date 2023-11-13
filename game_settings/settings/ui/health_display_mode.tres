@@ -1,14 +1,15 @@
-[gd_resource type="Resource" load_steps=2 format=3 uid="uid://gt0u8n6gl7ru"]
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://o8o6hnt6k74j"]
 
-[ext_resource type="Script" path="res://game_settings/settings/ui/health_display_mode.gd" id="1_srmhs"]
+[ext_resource type="Script" path="res://game_settings/templates/int_setting.gd" id="1_tlt8l"]
 
 [resource]
 resource_name = "health_display_mode"
-script = ExtResource("1_srmhs")
-current = null
-default = null
+script = ExtResource("1_tlt8l")
+game_setting_name = ""
+current = false
+default = false
 name = "health_display_mode"
 category = "ui"
 value_type = 2
-value_hint = 2
-value_hint_string = ""
+value_hint = 0
+value_hint_string = "0,3"
