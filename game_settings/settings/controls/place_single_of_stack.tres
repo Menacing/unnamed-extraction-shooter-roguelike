@@ -1,0 +1,27 @@
+[gd_resource type="Resource" script_class="ggsInputSetting" load_steps=4 format=3 uid="uid://b21jr8brgncnq"]
+
+[ext_resource type="Script" path="res://game_settings/templates/input.gd" id="1_kubf8"]
+
+[sub_resource type="InputEventMouseButton" id="InputEventMouseButton_04mf6"]
+device = -1
+button_index = 2
+
+[sub_resource type="InputEventMouseButton" id="InputEventMouseButton_jr7yx"]
+device = -1
+button_index = 2
+
+[resource]
+resource_name = "place_single_of_stack"
+script = ExtResource("1_kubf8")
+action = "place_single_of_stack"
+event_index = 0
+type = 2
+default_as_event = SubResource("InputEventMouseButton_jr7yx")
+current_as_event = SubResource("InputEventMouseButton_04mf6")
+current = [2, 2]
+default = [2, 2]
+name = "place_single_of_stack"
+category = "controls"
+value_type = 28
+value_hint = 0
+value_hint_string = ""

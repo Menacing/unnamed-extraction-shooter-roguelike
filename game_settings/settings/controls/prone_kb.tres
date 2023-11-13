@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="ggsInputSetting" load_steps=4 format=3 uid="uid://csylta77dgg1f"]
+
+[ext_resource type="Script" path="res://game_settings/templates/input.gd" id="1_428xr"]
+
+[sub_resource type="InputEventKey" id="InputEventKey_k8ea7"]
+physical_keycode = 90
+
+[sub_resource type="InputEventKey" id="InputEventKey_ijvvw"]
+physical_keycode = 90
+
+[resource]
+resource_name = "prone_kb"
+script = ExtResource("1_428xr")
+action = "prone"
+event_index = 0
+type = 1
+default_as_event = SubResource("InputEventKey_ijvvw")
+current_as_event = SubResource("InputEventKey_k8ea7")
+current = [1, 90]
+default = [1, 90]
+name = "prone_kb"
+category = "controls"
+value_type = 28
+value_hint = 0
+value_hint_string = ""

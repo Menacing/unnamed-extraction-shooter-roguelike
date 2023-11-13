@@ -1,0 +1,27 @@
+[gd_resource type="Resource" script_class="ggsInputSetting" load_steps=4 format=3 uid="uid://cf32gcg3rpkem"]
+
+[ext_resource type="Script" path="res://game_settings/templates/input.gd" id="1_5gvqp"]
+
+[sub_resource type="InputEventMouseButton" id="InputEventMouseButton_6pua2"]
+device = -1
+button_index = 1
+
+[sub_resource type="InputEventMouseButton" id="InputEventMouseButton_pf3yr"]
+device = -1
+button_index = 1
+
+[resource]
+resource_name = "jump_kb"
+script = ExtResource("1_5gvqp")
+action = "shoot"
+event_index = 0
+type = 2
+default_as_event = SubResource("InputEventMouseButton_pf3yr")
+current_as_event = SubResource("InputEventMouseButton_6pua2")
+current = [2, 1]
+default = [2, 1]
+name = "jump_kb"
+category = "controls"
+value_type = 28
+value_hint = 0
+value_hint_string = ""

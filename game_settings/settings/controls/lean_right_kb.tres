@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="ggsInputSetting" load_steps=4 format=3 uid="uid://b70xxi4dboh6r"]
+
+[ext_resource type="Script" path="res://game_settings/templates/input.gd" id="1_ffk7d"]
+
+[sub_resource type="InputEventKey" id="InputEventKey_fp2p1"]
+physical_keycode = 69
+
+[sub_resource type="InputEventKey" id="InputEventKey_8wi63"]
+physical_keycode = 69
+
+[resource]
+resource_name = "lean_right_kb"
+script = ExtResource("1_ffk7d")
+action = "leanRight"
+event_index = 0
+type = 1
+default_as_event = SubResource("InputEventKey_8wi63")
+current_as_event = SubResource("InputEventKey_fp2p1")
+current = [1, 69]
+default = [1, 69]
+name = "lean_right_kb"
+category = "controls"
+value_type = 28
+value_hint = 0
+value_hint_string = ""

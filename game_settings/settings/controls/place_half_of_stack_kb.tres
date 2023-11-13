@@ -1,0 +1,29 @@
+[gd_resource type="Resource" script_class="ggsInputSetting" load_steps=4 format=3 uid="uid://b2cjr1ewogun"]
+
+[ext_resource type="Script" path="res://game_settings/templates/input.gd" id="1_65l6b"]
+
+[sub_resource type="InputEventMouseButton" id="InputEventMouseButton_b7p1k"]
+device = -1
+shift_pressed = true
+button_index = 2
+
+[sub_resource type="InputEventMouseButton" id="InputEventMouseButton_xtxb2"]
+device = -1
+shift_pressed = true
+button_index = 2
+
+[resource]
+resource_name = "place_half_of_stack_kb"
+script = ExtResource("1_65l6b")
+action = "place_half_of_stack"
+event_index = 0
+type = 2
+default_as_event = SubResource("InputEventMouseButton_xtxb2")
+current_as_event = SubResource("InputEventMouseButton_b7p1k")
+current = [2, 33554434]
+default = [2, 33554434]
+name = "place_half_of_stack_kb"
+category = "controls"
+value_type = 28
+value_hint = 0
+value_hint_string = ""

@@ -1,0 +1,14 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://bt5juesj8aglk"]
+
+[ext_resource type="Script" path="res://game_settings/templates/float_setting.gd" id="1_i307i"]
+
+[resource]
+resource_name = "ads_look_factor"
+script = ExtResource("1_i307i")
+current = 0.37
+default = 1.0
+name = "ads_look_factor"
+category = "controls"
+value_type = 3
+value_hint = 1
+value_hint_string = "0,2"
