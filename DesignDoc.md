@@ -19,51 +19,51 @@ Players will shoot and loot through various stages. There will be optional dynam
 ### Gameplay reference
 * Escape from Tarkov
   * like
-    * high stakes fighting
-    * "realistic" gunplay
-    * looting and scavenging is fun
-    * basebuilding/upgrading
-    * semi session based
+	* high stakes fighting
+	* "realistic" gunplay
+	* looting and scavenging is fun
+	* basebuilding/upgrading
+	* semi session based
   * dislike
-    * overly punishing, without thought to fun
-    * mod system too fidly
-    * hackers
-    * AI is not fun to fight
-    * Sound is garbage
-    * generally buggy
-    * too grindy
+	* overly punishing, without thought to fun
+	* mod system too fidly
+	* hackers
+	* AI is not fun to fight
+	* Sound is garbage
+	* generally buggy
+	* too grindy
 * Due Process
   * like
-    * art style
-    * able to parse the visual scene
+	* art style
+	* able to parse the visual scene
   * dislike
-    * world objects don't have physics
-    * gunplay, somewhat
-    * PvP and playerbase is dead
+	* world objects don't have physics
+	* gunplay, somewhat
+	* PvP and playerbase is dead
 * Risk of Rain 2
   * like
-    * roguelike
-    * difficulty ramping up over time
-    * fast paced
-    * lore
-    * art style
-    * tons of upgrades
-    * co-op
+	* roguelike
+	* difficulty ramping up over time
+	* fast paced
+	* lore
+	* art style
+	* tons of upgrades
+	* co-op
   * dislike
-    * dying ends run
-    * teammate dying causes death spiral
-    * hidden math
-    * bullet sponge enemies
-    * instant death
+	* dying ends run
+	* teammate dying causes death spiral
+	* hidden math
+	* bullet sponge enemies
+	* instant death
 * Deus Ex
   * like
-    * setting
-    * multiple playstyles
-    * augmentations
-    * enemy design
+	* setting
+	* multiple playstyles
+	* augmentations
+	* enemy design
   * dislike
-    * gunplay
-    * weapon mod system
+	* gunplay
+	* weapon mod system
 ### Art reference
 * Prodeus
 * Morrowind
