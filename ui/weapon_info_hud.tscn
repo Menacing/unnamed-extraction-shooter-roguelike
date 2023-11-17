@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://b62h82bx7vban"]
 
-[ext_resource type="PackedScene" uid="uid://cnfhk8lyswyee" path="res://ui/misc/fire_mode.tscn" id="1_x82nj"]
-[ext_resource type="PackedScene" uid="uid://cum57ykeo3b7q" path="res://ui/misc/ammo_count.tscn" id="2_0hqjl"]
+[ext_resource type="PackedScene" uid="uid://cnfhk8lyswyee" path="res://ui/misc/fire_mode.tscn" id="1_geiol"]
+[ext_resource type="PackedScene" uid="uid://cum57ykeo3b7q" path="res://ui/misc/ammo_count.tscn" id="2_n6ljv"]
 
 [node name="weapon_info_hud" type="MarginContainer"]
 anchors_preset = 3
@@ -26,7 +26,7 @@ theme_override_constants/margin_top = 50
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 50
 
-[node name="FireMode" parent="HBoxContainer/MarginContainer" instance=ExtResource("1_x82nj")]
+[node name="FireMode" parent="HBoxContainer/MarginContainer" instance=ExtResource("1_geiol")]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
@@ -39,7 +39,7 @@ theme_override_constants/margin_top = 50
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 50
 
-[node name="AmmoCount" parent="HBoxContainer/MarginContainer2" instance=ExtResource("2_0hqjl")]
+[node name="AmmoCount" parent="HBoxContainer/MarginContainer2" instance=ExtResource("2_n6ljv")]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
