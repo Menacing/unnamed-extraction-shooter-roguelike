@@ -13,5 +13,6 @@ enum ItemType {
 	STOCK,
 	MUZZLE,
 	FOREGRIP,
-	LASER
+	LASER,
+	AMMO
 }
