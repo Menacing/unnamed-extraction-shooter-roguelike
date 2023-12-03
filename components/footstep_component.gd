@@ -10,7 +10,7 @@ class_name footstep_manager
 
 func _physics_process(delta):
 	#Check if moving
-	if (is_state_a_motion_state(stepper_state_machine.current_state)):
+	if (stepper_state_machine and is_state_a_motion_state(stepper_state_machine.current_state)):
 		#If Moving check if timer is expired
 		if timer.time_left <= 0:
 			#If timer is expired, play step and restart timer
