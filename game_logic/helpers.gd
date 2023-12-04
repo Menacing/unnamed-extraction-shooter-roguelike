@@ -106,3 +106,4 @@ func get_aabb_of_node(node:Node3D):
 	for child in node.get_children():
 		aabb = aabb.merge(get_aabb_of_node(child))
 	return aabb
+

@@ -77,6 +77,10 @@ func get_item_tooltip_text() -> String:
 
 #after you call this you must add the instanced scenes to the scene tree
 func spawn_item():
+	if _item_info.has_stacks:
+		var stack:int = randi_range(1, _item_info.max_stacks)
+		stacks = stack
+		
 	if _item_info.item_control_scene and id_2d == 0:
 		_spawn_item_control()
 	if _item_info.item_3d_scene and id_3d == 0:

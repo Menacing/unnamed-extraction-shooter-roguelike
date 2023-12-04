@@ -48,10 +48,6 @@ func _ready():
 			if loc_free:
 				var item_3d:Item3D = instance_from_id(item_instance.id_3d)
 				
-				if info.max_stack > 0:
-					var stack:int = randi_range(info.min_stack, info.max_stack)
-					item_instance.stacks = stack
-				
 				#scene.set_as_top_level(true)
 				get_parent().add_child.call_deferred(item_3d)
 				item_3d.set_global_position.call_deferred(try_pos + self.global_position)

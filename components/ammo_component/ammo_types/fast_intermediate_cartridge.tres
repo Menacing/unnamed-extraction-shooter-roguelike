@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="AmmoType" load_steps=5 format=3 uid="uid://bikewy7dlkv20"]
+
+[ext_resource type="Script" path="res://components/ammo_component/ammo_type.gd" id="1_3a3r8"]
+[ext_resource type="Resource" uid="uid://cct85d3u48yuj" path="res://components/ammo_component/ammo_subtypes/full_metal_jacket.tres" id="2_1oafs"]
+[ext_resource type="Resource" uid="uid://e74bf0ee7eck" path="res://components/ammo_component/ammo_subtypes/armor_piercing.tres" id="3_n5qmo"]
+[ext_resource type="Resource" uid="uid://ddqopa64822e6" path="res://components/ammo_component/ammo_subtypes/hollow_point.tres" id="4_xdbcf"]
+
+[resource]
+script = ExtResource("1_3a3r8")
+name = "Fast Intermediate Cartdridge"
+sub_types = Array[Resource("res://components/ammo_component/ammo_subtype.gd")]([ExtResource("2_1oafs"), ExtResource("3_n5qmo"), ExtResource("4_xdbcf")])

@@ -149,7 +149,7 @@ func _on_item_picked_up(result:InventoryInsertResult):
 		
 		if item_instance.get_item_type() == GameplayEnums.ItemType.AMMO:
 			var ammo_information:AmmoInformation = item_instance._item_info
-			var remainder = ammo_component.add_ammo(ammo_information.ammo_type, ammo_information.ammo_subtype, item_instance.get_stacks())
+			var remainder = ammo_component.add_ammo(ammo_information.ammo_type, ammo_information.ammo_subtype, item_instance.stacks)
 			
 
 func _on_item_removed_from_slot(item_inst:ItemInstance, inventory_id:int, slot_name:String):
