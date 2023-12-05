@@ -18,8 +18,6 @@ func _ready():
 			file_name = dir.get_next()
 	else:
 		print("An error occurred when trying to access the path.")
-	pass # Replace with function body.
-
 
 func get_ammo_types() -> Array[AmmoType]:
 	return _ammo_types
