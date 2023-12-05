@@ -9,3 +9,4 @@ class_name GunStats
 @export var ads_fov:float
 @export var moa:float
 @export var turn_speed:float
+@export var ammo_type:AmmoType

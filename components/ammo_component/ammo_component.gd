@@ -13,7 +13,8 @@ func _ready():
 			var aci = AmmoCountInfo.new()
 			aci.current_max = st.maximum_capacity
 			_ammo_map[at.name][st.name] = aci
-	pass
+	EventBus.reserve_ammo_count_changed.emit(0)
+
 
 
 #add ammo of a certain amount. Return the remainder over max
@@ -48,6 +49,7 @@ func request_ammo(ammo_type:AmmoType, ammo_subtype:AmmoSubtype, amount:int) -> i
 func set_active_ammo(ammo_type:AmmoType, ammo_subtype:AmmoSubtype):
 	_active_ammo_type = ammo_type
 	_active_ammo_subtype = ammo_subtype
+	_signal_change(ammo_type, ammo_subtype, _ammo_map[ammo_type.name][ammo_subtype.name].current_amount)
 	
 func _is_active_ammo(ammo_type:AmmoType, ammo_subtype:AmmoSubtype) -> bool:
 	if _active_ammo_type and _active_ammo_type.name == ammo_type.name and _active_ammo_subtype and _active_ammo_subtype.name == ammo_subtype.name:

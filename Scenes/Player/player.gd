@@ -150,6 +150,7 @@ func _on_item_picked_up(result:InventoryInsertResult):
 		if item_instance.get_item_type() == GameplayEnums.ItemType.AMMO:
 			var ammo_information:AmmoInformation = item_instance._item_info
 			var remainder = ammo_component.add_ammo(ammo_information.ammo_type, ammo_information.ammo_subtype, item_instance.stacks)
+			item_instance.stacks = remainder
 			
 
 func _on_item_removed_from_slot(item_inst:ItemInstance, inventory_id:int, slot_name:String):
@@ -190,6 +191,8 @@ func move_gun_to_hands(gun:Gun):
 		gun.top_level = true
 		start_arms_ik(gun.get_right_hand_node(), gun.get_right_fingers_node(), gun.get_left_hand_node(), gun.get_left_fingers_node())
 		
+		var gun_stats = gun.get_gun_stats()
+		ammo_component.set_active_ammo(gun_stats.ammo_type, gun_stats.ammo_type.sub_types[0])
 
 func move_gun_to_shoulder(gun:Gun):
 	shoulder_gun = gun
@@ -490,7 +493,9 @@ func shoot():
 	equipped_gun.fireGun()
 	
 func reload():
-	equipped_gun.reloadGun()
+	var needed_ammo = equipped_gun.get_max_magazine_size() - equipped_gun.current_magazine_size
+	var available_ammo = ammo_component.request_ammo(ammo_component._active_ammo_type, ammo_component._active_ammo_subtype, needed_ammo)
+	equipped_gun.reloadGun(available_ammo)
 
 
 func _on_gun_fired(recoil:Vector2):
