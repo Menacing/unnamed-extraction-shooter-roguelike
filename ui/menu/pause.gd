@@ -8,6 +8,7 @@ var original_mouse_mode:Input.MouseMode
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	original_mouse_mode = Input.mouse_mode
 	resume_button.pressed.connect(unpause)
 	quit_button.pressed.connect(get_tree().quit)
 	EventBus.pause.connect(pause)
@@ -28,7 +29,6 @@ func unpause():
 	
 func pause():
 	get_tree().paused = true
-	original_mouse_mode = Input.mouse_mode
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	
 func _on_options_pressed():

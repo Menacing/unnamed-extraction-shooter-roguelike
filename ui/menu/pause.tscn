@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://bo6x6p6ooowcx"]
+[gd_scene load_steps=5 format=3 uid="uid://bo6x6p6ooowcx"]
 
 [ext_resource type="Script" path="res://ui/menu/pause.gd" id="1_1nbik"]
+[ext_resource type="Material" uid="uid://c7ue21fd8ydgm" path="res://ui/menu/vhs_pause_material.tres" id="1_piv1o"]
 
 [sub_resource type="InputEventAction" id="InputEventAction_1sy1t"]
 action = &"ui_cancel"
@@ -11,6 +12,7 @@ events = [SubResource("InputEventAction_1sy1t")]
 
 [node name="pause" type="ColorRect"]
 process_mode = 3
+material = ExtResource("1_piv1o")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0

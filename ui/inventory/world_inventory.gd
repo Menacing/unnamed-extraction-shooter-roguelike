@@ -7,7 +7,7 @@ var _wig:WorldInventoryGrid
 		if _wig:
 			return _wig
 		else:
-			_wig = $InventoryBase/WorldInventoryGrid
+			_wig = %WorldInventoryGrid
 			return _wig
 var container_size:int:
 	get:
