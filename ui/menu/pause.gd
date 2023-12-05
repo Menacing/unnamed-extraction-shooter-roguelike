@@ -1,8 +1,8 @@
 extends ColorRect
 
-@onready var resume_button:Button = find_child("resume_button")
-@onready var quit_button:Button = find_child("quit_game_button")
-@onready var options_button:Button = find_child("options_button")
+@onready var resume_button:Button = %resume_button
+@onready var quit_button:Button = %quit_game_button
+@onready var options_button:Button = %options_button
 
 var original_mouse_mode:Input.MouseMode
 

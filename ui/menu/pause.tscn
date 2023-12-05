@@ -49,6 +49,7 @@ horizontal_alignment = 1
 layout_mode = 2
 
 [node name="resume_button" type="Button" parent="CenterContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 shortcut = SubResource("Shortcut_o2ej0")
 shortcut_feedback = false
@@ -56,9 +57,11 @@ shortcut_in_tooltip = false
 text = "Resume"
 
 [node name="options_button" type="Button" parent="CenterContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 text = "Options"
 
 [node name="quit_game_button" type="Button" parent="CenterContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 text = "Quit Game"
