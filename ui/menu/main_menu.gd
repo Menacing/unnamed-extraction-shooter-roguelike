@@ -12,6 +12,8 @@ func _process(delta):
 
 
 func _on_start_demo_button_pressed():
+	get_tree().root.add_child(load("res://levels/demo_level.tscn").instantiate())
+	MenuManager.load_menu(MenuManager.MENU_LEVEL.NONE)
 	pass # Replace with function body.
 
 
