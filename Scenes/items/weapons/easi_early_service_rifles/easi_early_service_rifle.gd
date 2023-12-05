@@ -6,6 +6,7 @@ class_name EasiEarlyServiceRifle
 var current_fire_mode_i = 0
 
 var reloading: bool = false
+var _new_bullets:int = 0
 var rng: RandomNumberGenerator
 @onready var fire_timer = $FireTimer
 
@@ -46,13 +47,17 @@ func fireGun():
 		#click
 		pass
 
-func reloadGun():
+func reloadGun(new_bullets:int):
 	$ReloadTimer.start()
 	reloading = true
 	#$AnimationPlayer.play("reload")
+	_new_bullets = new_bullets
 	
 func reloaded_callback():
-	current_magazine_size = _gun_stats.magazine_size
+	
+	current_magazine_size = current_magazine_size + _new_bullets
+	assert(current_magazine_size <= _gun_stats.magazine_size)
+	_new_bullets = 0
 	$ReloadTimer.stop()
 	reloading = false
 	reloaded.emit()

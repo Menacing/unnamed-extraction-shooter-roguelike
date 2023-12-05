@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://bsbn8mi7fx0o2"]
+
+[ext_resource type="Script" path="res://components/footstep_component/footstep_component.gd" id="1_k4wki"]
+[ext_resource type="AudioStream" uid="uid://bxakhll281jbw" path="res://Scenes/effects/sounds/steps/footstep_concrete_001.ogg" id="2_l45ik"]
+
+[node name="FootstepComponent" type="Node3D" node_paths=PackedStringArray("stepper_state_machine")]
+script = ExtResource("1_k4wki")
+stepper_state_machine = NodePath("")
+
+[node name="FootstepAudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.902889, 0)
+stream = ExtResource("2_l45ik")
+
+[node name="FoostepTimer" type="Timer" parent="."]
+one_shot = true

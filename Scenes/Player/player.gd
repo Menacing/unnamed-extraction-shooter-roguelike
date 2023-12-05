@@ -80,6 +80,8 @@ var legs_destroyed: bool = false
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 @onready var player_mat: BaseMaterial3D = $player_default_mesh/metarig/Skeleton3D/Cube.get_active_material(0)
 
+@onready var ammo_component:AmmoComponent = $AmmoComponent
+
 func _ready():
 	if gun_scene1:
 		equipped_gun = gun_scene1.instantiate()
@@ -94,7 +96,7 @@ func _ready():
 	currentSpeed = NORMAL_SPEED
 	$PlayerMotionStateMachine._active = true
 	EventBus.fire_mode_changed.emit("")
-	EventBus.ammo_count_changed.emit(0)
+	EventBus.magazine_ammo_count_changed.emit(0)
 	EventBus.item_picked_up.connect(_on_item_picked_up)
 	EventBus.item_removed_from_slot.connect(_on_item_removed_from_slot)
 	EventBus.drop_item.connect(_on_drop_item)
@@ -113,9 +115,6 @@ func _ready():
 	ik_head.start()
 	
 	pov_rotation_node = chest
-
-func _process(delta):
-	EventBus.compass_player_pulse.emit(self.global_position, self.global_rotation_degrees)
 
 func _on_item_picked_up(result:InventoryInsertResult):
 	if result.inventory_id == player_inventory_id:
@@ -147,7 +146,12 @@ func _on_item_picked_up(result:InventoryInsertResult):
 					move_armor_to_anchor(item_3d)
 		elif result.location.location == InventoryLocationResult.LocationType.GRID:
 			item_3d.visible = false
-
+		
+		if item_instance.get_item_type() == GameplayEnums.ItemType.AMMO:
+			var ammo_information:AmmoInformation = item_instance._item_info
+			var remainder = ammo_component.add_ammo(ammo_information.ammo_type, ammo_information.ammo_subtype, item_instance.stacks)
+			item_instance.stacks = remainder
+			
 
 func _on_item_removed_from_slot(item_inst:ItemInstance, inventory_id:int, slot_name:String):
 	if inventory_id == player_inventory_id:
@@ -181,11 +185,14 @@ func move_gun_to_hands(gun:Gun):
 		gun.reloaded.connect(_on_gun_reloaded)
 		current_fire_mode = gun.current_fire_mode
 		Helpers.force_parent(gun, cam)
-		EventBus.fire_mode_changed.emit(gun.current_fire_mode) 
+		EventBus.fire_mode_changed.emit(gun.current_fire_mode)
+		EventBus.magazine_ammo_count_changed.emit(gun.current_magazine_size)
 		gun.visible = true
 		gun.top_level = true
 		start_arms_ik(gun.get_right_hand_node(), gun.get_right_fingers_node(), gun.get_left_hand_node(), gun.get_left_fingers_node())
 		
+		var gun_stats = gun.get_gun_stats()
+		ammo_component.set_active_ammo(gun_stats.ammo_type, gun_stats.ammo_type.sub_types[0])
 
 func move_gun_to_shoulder(gun:Gun):
 	shoulder_gun = gun
@@ -215,7 +222,7 @@ func drop_equipped_gun():
 		equipped_gun.fired.disconnect(_on_gun_fired)
 		equipped_gun.reloaded.disconnect(_on_gun_reloaded)
 		EventBus.fire_mode_changed.emit("")
-		EventBus.ammo_count_changed.emit(0)
+		EventBus.magazine_ammo_count_changed.emit(0)
 		
 		equipped_gun = null
 		stop_arms_ik()
@@ -240,6 +247,7 @@ func _on_drop_item(item_inst:ItemInstance, inventory_id:int):
 
 #realtime inputs - movement stuff
 func _physics_process(delta):
+	EventBus.compass_player_pulse.emit(self.global_position, self.global_rotation_degrees)
 	point_camera_at_target()
 	align_trailers_to_head(delta)
 	if !toggle_inv_f:
@@ -485,11 +493,13 @@ func shoot():
 	equipped_gun.fireGun()
 	
 func reload():
-	equipped_gun.reloadGun()
+	var needed_ammo = equipped_gun.get_max_magazine_size() - equipped_gun.current_magazine_size
+	var available_ammo = ammo_component.request_ammo(ammo_component._active_ammo_type, ammo_component._active_ammo_subtype, needed_ammo)
+	equipped_gun.reloadGun(available_ammo)
 
 
 func _on_gun_fired(recoil:Vector2):
-	EventBus.ammo_count_changed.emit(equipped_gun.current_magazine_size)
+	EventBus.magazine_ammo_count_changed.emit(equipped_gun.current_magazine_size)
 	var scaled_recoil = scale_recoil(recoil)
 #	#flip the mapping so that recoil.y moves the camera vertically
 	v_rot_acc += scaled_recoil.x
@@ -519,7 +529,7 @@ func scale_recoil(recoil:Vector2) -> Vector2:
 	return recoil * factor
 	
 func _on_gun_reloaded():
-	EventBus.ammo_count_changed.emit(equipped_gun.current_magazine_size)	
+	EventBus.magazine_ammo_count_changed.emit(equipped_gun.current_magazine_size)	
 		
 func start_arms_ik(right_arm_loc:Node3D, right_fingers_loc:Node3D, left_arm_loc:Node3D, left_fingers_loc:Node3D):
 	if right_arm_loc:

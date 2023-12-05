@@ -1,0 +1,49 @@
+[gd_scene load_steps=3 format=3 uid="uid://dcmky3ljjd1pt"]
+
+[ext_resource type="Material" uid="uid://c0ipdgk1m22gh" path="res://ui/misc/ui_static_mat.tres" id="1_1xucv"]
+[ext_resource type="Script" path="res://ui/misc/reserve_ammo_count.gd" id="2_fr0uv"]
+
+[node name="ReserveAmmoCount" type="MarginContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("2_fr0uv")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+material = ExtResource("1_1xucv")
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+use_parent_material = true
+layout_mode = 2
+
+[node name="AmmoType" type="Label" parent="VBoxContainer/HBoxContainer"]
+use_parent_material = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 20
+text = "HIC"
+horizontal_alignment = 2
+
+[node name="AmmoSubtype" type="Label" parent="VBoxContainer/HBoxContainer"]
+use_parent_material = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 20
+text = "FMJ"
+
+[node name="ReserveAmmoCount" type="Label" parent="VBoxContainer"]
+use_parent_material = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 20
+text = "200
+"
+horizontal_alignment = 1

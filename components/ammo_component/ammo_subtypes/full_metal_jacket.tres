@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="AmmoSubtype" load_steps=2 format=3 uid="uid://cct85d3u48yuj"]
+
+[ext_resource type="Script" path="res://components/ammo_component/ammo_subtype.gd" id="1_vn3cp"]
+
+[resource]
+script = ExtResource("1_vn3cp")
+name = "Full Metal Jacket"
+abbreviation = "FMJ"
+maximum_capacity = 200

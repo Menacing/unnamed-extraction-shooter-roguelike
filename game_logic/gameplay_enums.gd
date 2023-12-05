@@ -1,6 +1,4 @@
-extends Object
-class_name GameplayEnums
-
+extends Node
 
 enum ItemType {
 	GUN,
@@ -13,5 +11,6 @@ enum ItemType {
 	STOCK,
 	MUZZLE,
 	FOREGRIP,
-	LASER
+	LASER,
+	AMMO
 }

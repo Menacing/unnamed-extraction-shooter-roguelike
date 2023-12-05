@@ -47,7 +47,7 @@ func canFire() -> bool:
 func fireGun() -> void:
 	pass
 
-func reloadGun() -> void:
+func reloadGun(new_bullets:int) -> void:
 	pass
 	
 func toggle_fire_mode() -> String:
@@ -67,6 +67,9 @@ func get_turn_speed() -> float:
 	
 func get_ADS_FOV() -> float:
 	return _gun_stats.ads_fov
+	
+func get_max_magazine_size() -> int:
+	return _gun_stats.magazine_size
 
 func copy_gun_model() -> Node3D:
 	return Node3D.new()
