@@ -16,6 +16,7 @@ var current_scene:Node = null
 var current_menu_level:MENU_LEVEL = MENU_LEVEL.NONE
 var previous_menu_level:MENU_LEVEL = MENU_LEVEL.NONE
 var menu_layer:int = 15
+var menu_material = load("res://ui/menu/vhs_pause_material.tres")
 
 func _ready():
 	var root = get_tree().root
@@ -46,6 +47,8 @@ func _deffered_load_menu(menuLevel:MENU_LEVEL):
 	#add our selected menu
 	#replace the current menus instance with the new ones
 	current_menu = menus[menuLevel]
+	if menu_material and current_menu is Control:
+		current_menu.material = menu_material
 	current_menu_level = menuLevel
 	container.add_child(current_menu)
 	container.visible = true

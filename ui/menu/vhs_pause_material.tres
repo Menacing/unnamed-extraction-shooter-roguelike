@@ -1,0 +1,11 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://c7ue21fd8ydgm"]
+
+[ext_resource type="Shader" path="res://ui/inventory/item_detail_popup.gdshader" id="1_mfgt2"]
+
+[resource]
+shader = ExtResource("1_mfgt2")
+shader_parameter/crt_curve = 0.02
+shader_parameter/crt_scan_line_color = 0.347
+shader_parameter/aperture_grille_rate = 0.4
+shader_parameter/rf_switch_esque_blur = 1.0
+shader_parameter/white_noise_rate = 0.0
