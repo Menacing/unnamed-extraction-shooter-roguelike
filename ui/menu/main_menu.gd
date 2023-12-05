@@ -20,4 +20,9 @@ func _on_credits_button_pressed():
 
 
 func _on_quit_game_button_pressed():
-	get_tree().quit
+	get_tree().quit()
+	
+
+
+func _on_options_button_pressed():
+	MenuManager.load_menu(MenuManager.MENU_LEVEL.OPTIONS)
