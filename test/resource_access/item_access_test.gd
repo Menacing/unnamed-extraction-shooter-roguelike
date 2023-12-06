@@ -11,18 +11,18 @@ const __source = 'res://resource_access/item_access.gd'
 func test_combine_stacks_fully_combined() -> void:
 	#arrange
 	var _itemAccess = ItemAccess.new()
-	var item1:ItemInstance = ItemInstance.new()
 	var item_info:ItemInformation = ItemInformation.new()
 	item_info.row_span = 1
 	item_info.column_span = 2
 	item_info.item_type_id = 1
 	item_info.max_stacks = 5
 	item_info.has_stacks = true
+	var item1:ItemInstance = ItemInstance.new(item_info)
 	
-	item1._item_info = item_info
+	
 	item1.stacks = 1
 	
-	var item2:ItemInstance = ItemInstance.new()
+	var item2:ItemInstance = ItemInstance.new(item_info)
 	item2._item_info = item_info
 	item2.stacks = 3
 	#act
@@ -33,18 +33,18 @@ func test_combine_stacks_fully_combined() -> void:
 func test_combine_stacks_too_much_amount() -> void:
 	#arrange
 	var _itemAccess = ItemAccess.new()
-	var item1:ItemInstance = ItemInstance.new()
 	var item_info:ItemInformation = ItemInformation.new()
 	item_info.row_span = 1
 	item_info.column_span = 2
 	item_info.item_type_id = 1
 	item_info.max_stacks = 5
 	item_info.has_stacks = true
+	var item1:ItemInstance = ItemInstance.new(item_info)
 	
-	item1._item_info = item_info
+	
 	item1.stacks = 1
 	
-	var item2:ItemInstance = ItemInstance.new()
+	var item2:ItemInstance = ItemInstance.new(item_info)
 	item2._item_info = item_info
 	item2.stacks = 3
 	#act
@@ -57,18 +57,18 @@ func test_combine_stacks_too_much_amount() -> void:
 func test_combine_stacks_too_much_destination() -> void:
 	#arrange
 	var _itemAccess = ItemAccess.new()
-	var item1:ItemInstance = ItemInstance.new()
 	var item_info:ItemInformation = ItemInformation.new()
 	item_info.row_span = 1
 	item_info.column_span = 2
 	item_info.item_type_id = 1
 	item_info.max_stacks = 5
 	item_info.has_stacks = true
+	var item1:ItemInstance = ItemInstance.new(item_info)
 	
-	item1._item_info = item_info
+	
 	item1.stacks = 5
 	
-	var item2:ItemInstance = ItemInstance.new()
+	var item2:ItemInstance = ItemInstance.new(item_info)
 	item2._item_info = item_info
 	item2.stacks = 3
 	#act
@@ -82,17 +82,17 @@ func test_combine_stacks_too_much_destination() -> void:
 func test_clone_instance() -> void:
 	#arrange
 	var _itemAccess = ItemAccess.new()
-	var item1:ItemInstance = ItemInstance.new()
 	var item_info:ItemInformation = ItemInformation.new()
 	item_info.row_span = 1
 	item_info.column_span = 2
 	item_info.item_type_id = 1
 	item_info.max_stacks = 5
 	item_info.has_stacks = true
+	var item1:ItemInstance = ItemInstance.new(item_info)
 	
-	item1._item_info = item_info
+	
 	item1.stacks = 5
-	var node1 = Node2D.new()
+	var node1 = ItemControl.new()
 	item1.id_2d = node1.get_instance_id()
 	
 	#act
