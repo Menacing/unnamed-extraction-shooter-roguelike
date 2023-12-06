@@ -1,0 +1,114 @@
+[gd_scene load_steps=14 format=3 uid="uid://b52vin8bgmm0h"]
+
+[ext_resource type="PackedScene" uid="uid://gt018qo38blj" path="res://ui/player_hud.tscn" id="1_gd74f"]
+[ext_resource type="PackedScene" uid="uid://27t5g23so5hx" path="res://Scenes/Player/player_default_mesh.glb" id="1_qshqd"]
+[ext_resource type="Texture2D" uid="uid://dr48lycw5grsq" path="res://Scenes/items/weapons/easi_early_service_rifles/zs_52/PixelMuzzelFlash.png" id="2_vnupo"]
+[ext_resource type="PackedScene" uid="uid://bbjimpqtecww7" path="res://Scenes/Enemies/robots/combat-roomba.glb" id="3_16oun"]
+[ext_resource type="PackedScene" uid="uid://dr48wela8mtxd" path="res://Scenes/items/weapons/easi_early_service_rifles/zs_52/zs_52.tscn" id="4_pkc5m"]
+[ext_resource type="PackedScene" uid="uid://ctxxdrrqtcdvc" path="res://Scenes/items/weapons/easi_early_service_rifles/zs_52/zs_52.blend" id="4_xsc4f"]
+[ext_resource type="Resource" uid="uid://3nqgvhg4lre8" path="res://components/ammo_component/ammo_types/heavy_intermediate_cartridge.tres" id="5_6hjw3"]
+[ext_resource type="Script" path="res://Scenes/items/weapons/gun_stats.gd" id="6_lvsh8"]
+
+[sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_hn4k3"]
+
+[sub_resource type="Sky" id="Sky_ifvcu"]
+sky_material = SubResource("PhysicalSkyMaterial_hn4k3")
+
+[sub_resource type="Environment" id="Environment_omek1"]
+background_mode = 2
+sky = SubResource("Sky_ifvcu")
+ambient_light_source = 1
+ssr_enabled = true
+ssao_enabled = true
+sdfgi_enabled = true
+sdfgi_use_occlusion = true
+volumetric_fog_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_68nao"]
+albedo_color = Color(0.552941, 0.552941, 0.552941, 1)
+metallic = 1.0
+
+[sub_resource type="Resource" id="Resource_cthcn"]
+resource_local_to_scene = true
+script = ExtResource("6_lvsh8")
+magazine_size = 30
+rpm = 600
+base_recoil = Vector2(0, 0.025)
+recoil_variability = Vector2(0.025, 0.013)
+fire_modes = ["semi", "auto"]
+ads_accel = 10.0
+ads_fov = 50.0
+moa = 5.0
+turn_speed = 25.0
+ammo_type = ExtResource("5_6hjw3")
+
+[node name="VibeCheck" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_omek1")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="WorldEnvironment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.904053, -0.253174, -0.429688)
+size = Vector3(12.7896, 0.493652, 21.5625)
+material = SubResource("StandardMaterial3D_68nao")
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="WorldEnvironment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.900605, 3.33513, -0.422328)
+size = Vector3(12.7896, 0.493652, 21.5625)
+material = SubResource("StandardMaterial3D_68nao")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="WorldEnvironment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5, 1.5, -6.73321)
+size = Vector3(8, 4, 1)
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="WorldEnvironment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.78833, 1.5, -10.442)
+size = Vector3(16.5767, 4, 1)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="WorldEnvironment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.52591, 1.53282, -6.79885)
+size = Vector3(8, 4, 1)
+
+[node name="player_default_mesh" parent="WorldEnvironment" instance=ExtResource("1_qshqd")]
+transform = Transform3D(0.69699, 0, -0.717081, 0, 1, 0, 0.717081, 0, 0.69699, 0, 0, -4.6065)
+
+[node name="SpotLight3D" type="SpotLight3D" parent="WorldEnvironment"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 3, -3)
+spot_range = 7.0
+spot_angle = 46.5348
+
+[node name="OmniLight3D" type="OmniLight3D" parent="WorldEnvironment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 3, -9)
+light_color = Color(0.580392, 0.568627, 0, 1)
+omni_range = 10.2
+
+[node name="Sprite3D" type="Sprite3D" parent="WorldEnvironment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -5)
+centered = false
+offset = Vector2(-250, 0)
+pixel_size = 0.005
+billboard = 1
+texture_filter = 1
+texture = ExtResource("2_vnupo")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="WorldEnvironment/Sprite3D"]
+light_color = Color(1, 0.215686, 0, 1)
+
+[node name="FogVolume" type="FogVolume" parent="WorldEnvironment/Sprite3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.984214, 0)
+size = Vector3(2, 4.98044, 2)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.67354, 0.962177)
+
+[node name="PlayerHUD" parent="Camera3D" instance=ExtResource("1_gd74f")]
+
+[node name="zs_52" parent="Camera3D" instance=ExtResource("4_xsc4f")]
+transform = Transform3D(-0.0975308, 0, -0.995233, 0, 1, 0, 0.995233, 0, -0.0975308, 0.290631, -0.59187, -0.494354)
+
+[node name="combat-roomba" parent="." instance=ExtResource("3_16oun")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.38036, 0, -8.77306)
+
+[node name="zs_52" parent="." instance=ExtResource("4_pkc5m")]
+transform = Transform3D(0.319439, 0.947607, 0, -0.947607, 0.319439, 0, 0, 0, 1, -2.08298, 0.0846666, -5.56101)
+_gun_stats = SubResource("Resource_cthcn")
