@@ -1,15 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://vb7f8fygilde"]
+[gd_scene load_steps=3 format=3 uid="uid://vb7f8fygilde"]
 
 [ext_resource type="Script" path="res://ui/misc/interaction_helpers.gd" id="1_5ctho"]
-[ext_resource type="Texture2D" uid="uid://dx5k6p8icec18" path="res://themes/1-bit without outline_part-1.png" id="1_d332v"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_oy7b6"]
-atlas = ExtResource("1_d332v")
-region = Rect2(42, 89, 14, 15)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_oiijn"]
-atlas = ExtResource("1_d332v")
-region = Rect2(64, 88, 16, 16)
+[ext_resource type="Texture2D" uid="uid://d3etpewuqvera" path="res://ui/icons/White/skill_07.png" id="2_kl3lf"]
 
 [node name="interaction_helpers" type="Control"]
 layout_mode = 3
@@ -34,7 +26,7 @@ offset_right = 20.0
 offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = SubResource("AtlasTexture_oy7b6")
+texture = ExtResource("2_kl3lf")
 
 [node name="pickup_helper" type="TextureRect" parent="."]
 visible = false
@@ -50,4 +42,4 @@ offset_right = 20.0
 offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = SubResource("AtlasTexture_oiijn")
+texture = ExtResource("2_kl3lf")
