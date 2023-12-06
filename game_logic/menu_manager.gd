@@ -4,13 +4,15 @@ enum MENU_LEVEL {
 	NONE,
 	MAIN,
 	PAUSE,
-	OPTIONS
+	OPTIONS,
+	CREDITS
 }
 
 var menus = {
 	MENU_LEVEL.MAIN : preload("res://ui/menu/main_menu.tscn").instantiate(),
 	MENU_LEVEL.PAUSE : preload("res://ui/menu/pause.tscn").instantiate(),
-	MENU_LEVEL.OPTIONS: preload("res://ui/menu/options_menu.tscn").instantiate()
+	MENU_LEVEL.OPTIONS: preload("res://ui/menu/options_menu.tscn").instantiate(),
+	MENU_LEVEL.CREDITS: preload("res://ui/menu/credits/credits.tscn").instantiate()
 }
 
 var current_menu:Node = null
