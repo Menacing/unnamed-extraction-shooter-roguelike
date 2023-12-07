@@ -14,9 +14,21 @@
 [resource]
 script = ExtResource("3_8vw40")
 export_file = false
-trenchbroom_games_folder = ""
-game_name = "Qodot"
+trenchbroom_games_folder = "C:/TrenchBroom/2023.1/games"
+game_name = "UESRL"
 icon = ExtResource("2_jej4n")
+map_formats = Array[Dictionary]([{
+"format": "Valve",
+"initialmap": "initial_valve.map"
+}, {
+"format": "Standard",
+"initialmap": "initial_standard.map"
+}, {
+"format": "Quake2",
+"initialmap": "initial_quake2.map"
+}, {
+"format": "Quake3"
+}])
 fgd_files = Array[Resource]([ExtResource("5_lvbhp"), ExtResource("5_j6v5h"), ExtResource("6_8ndd7"), ExtResource("6_6fyp8")])
 entity_scale = "1"
 default_uv_scale = Vector2(1, 1)
