@@ -12,7 +12,7 @@ config_version=5
 
 config/name="Unnamed-extraction-shooter-roguelike"
 run/main_scene="res://main.tscn"
-config/features=PackedStringArray("4.2", "Forward Plus")
+config/features=PackedStringArray("4.2", "C#", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
@@ -46,7 +46,7 @@ project/assembly_name="Unnamed-extraction-shooter-roguelike"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/gdUnit4/plugin.cfg", "res://addons/ggs/plugin.cfg")
+enabled=PackedStringArray("res://addons/gdUnit4/plugin.cfg", "res://addons/ggs/plugin.cfg", "res://addons/qodot/plugin.cfg")
 
 [gui]
 
