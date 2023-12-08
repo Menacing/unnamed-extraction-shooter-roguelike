@@ -72,21 +72,41 @@ uppercase = true
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="tools_section" type="HBoxContainer" parent="MarginContainer/VBoxContainer2/ScrollContainer/VBoxContainer"]
+[node name="tools_section" type="VBoxContainer" parent="MarginContainer/VBoxContainer2/ScrollContainer/VBoxContainer"]
 layout_mode = 2
 alignment = 1
 
-[node name="godot_logo" type="TextureRect" parent="MarginContainer/VBoxContainer2/ScrollContainer/VBoxContainer/tools_section"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer2/ScrollContainer/VBoxContainer/tools_section"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="godot_logo" type="TextureRect" parent="MarginContainer/VBoxContainer2/ScrollContainer/VBoxContainer/tools_section/HBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 texture = ExtResource("2_pqc7l")
 expand_mode = 3
 
-[node name="blender_logo" type="TextureRect" parent="MarginContainer/VBoxContainer2/ScrollContainer/VBoxContainer/tools_section"]
+[node name="blender_logo" type="TextureRect" parent="MarginContainer/VBoxContainer2/ScrollContainer/VBoxContainer/tools_section/HBoxContainer"]
 layout_mode = 2
 texture = ExtResource("3_uy3j4")
 expand_mode = 3
+
+[node name="img2pixel_label" type="Label" parent="MarginContainer/VBoxContainer2/ScrollContainer/VBoxContainer/tools_section"]
+layout_mode = 2
+tooltip_text = "https://github.com/Captain4LK/SoftLK-tools/blob/master/docs/SLK_img2pixel.md"
+mouse_filter = 1
+text = "SLK_img2pixel"
+horizontal_alignment = 1
+uppercase = true
+
+[node name="trenchbroom_label" type="Label" parent="MarginContainer/VBoxContainer2/ScrollContainer/VBoxContainer/tools_section"]
+layout_mode = 2
+tooltip_text = "https://github.com/TrenchBroom/TrenchBroom"
+mouse_filter = 1
+text = "TrenchBroom"
+horizontal_alignment = 1
+uppercase = true
 
 [node name="addons_section_header" type="HBoxContainer" parent="MarginContainer/VBoxContainer2/ScrollContainer/VBoxContainer"]
 layout_mode = 2
@@ -146,6 +166,20 @@ tooltip_text = "https://kenney.nl/"
 mouse_filter = 1
 text = "VARIOUS SPRITES AND SOUNDS - KENNEY"
 horizontal_alignment = 1
+
+[node name="texturer_label" type="Label" parent="MarginContainer/VBoxContainer2/ScrollContainer/VBoxContainer/assets_section"]
+layout_mode = 2
+mouse_filter = 1
+text = "various level textures - texturer.com"
+horizontal_alignment = 1
+uppercase = true
+
+[node name="texturer_label2" type="Label" parent="MarginContainer/VBoxContainer2/ScrollContainer/VBoxContainer/assets_section"]
+layout_mode = 2
+mouse_filter = 1
+text = "various level textures - opengameart.org"
+horizontal_alignment = 1
+uppercase = true
 
 [node name="minimalist_ui_theme_label" type="Label" parent="MarginContainer/VBoxContainer2/ScrollContainer/VBoxContainer/assets_section"]
 layout_mode = 2
