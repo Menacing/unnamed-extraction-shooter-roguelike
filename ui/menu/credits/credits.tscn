@@ -174,7 +174,7 @@ text = "various level textures - texturer.com"
 horizontal_alignment = 1
 uppercase = true
 
-[node name="texturer_label2" type="Label" parent="MarginContainer/VBoxContainer2/ScrollContainer/VBoxContainer/assets_section"]
+[node name="open_game_art_label" type="Label" parent="MarginContainer/VBoxContainer2/ScrollContainer/VBoxContainer/assets_section"]
 layout_mode = 2
 mouse_filter = 1
 text = "various level textures - opengameart.org"
@@ -195,11 +195,19 @@ mouse_filter = 1
 text = "VCR OSD MONO FONT - MRMANET"
 horizontal_alignment = 1
 
-[node name="minimalist_ui_theme_label2" type="Label" parent="MarginContainer/VBoxContainer2/ScrollContainer/VBoxContainer/assets_section"]
+[node name="tactical_pixel_icons_label" type="Label" parent="MarginContainer/VBoxContainer2/ScrollContainer/VBoxContainer/assets_section"]
 layout_mode = 2
 tooltip_text = "https://gcoms-games.itch.io/tacpixelicon"
 mouse_filter = 1
 text = "Tactical Military Pixel 150 Icons and Items - GCoMs Games"
+horizontal_alignment = 1
+uppercase = true
+
+[node name="tiny_texture_pack_label" type="Label" parent="MarginContainer/VBoxContainer2/ScrollContainer/VBoxContainer/assets_section"]
+layout_mode = 2
+tooltip_text = "https://screamingbrainstudios.itch.io/tiny-texture-pack"
+mouse_filter = 1
+text = "tiny texture pack 1 - Screaming Brain Studios"
 horizontal_alignment = 1
 uppercase = true
 
