@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://b52vin8bgmm0h"]
+[gd_scene load_steps=15 format=3 uid="uid://b52vin8bgmm0h"]
 
 [ext_resource type="Environment" uid="uid://s6q0fqlhuodl" path="res://Scenes/debug/vibe_check_environment.tres" id="1_51p0d"]
 [ext_resource type="PackedScene" uid="uid://gt018qo38blj" path="res://ui/player_hud.tscn" id="1_gd74f"]
@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://dr48lycw5grsq" path="res://Scenes/items/weapons/easi_early_service_rifles/zs_52/PixelMuzzelFlash.png" id="2_vnupo"]
 [ext_resource type="CameraAttributesPractical" uid="uid://jafbi2bjurvn" path="res://Scenes/debug/vibe_check_camera.tres" id="2_ybngr"]
 [ext_resource type="PackedScene" uid="uid://bbjimpqtecww7" path="res://Scenes/Enemies/robots/combat-roomba.glb" id="3_16oun"]
-[ext_resource type="Shader" path="res://Scenes/debug/vibe_check2.gdshader" id="3_bi6rj"]
+[ext_resource type="Shader" path="res://levels/textures/glass/glass_1.gdshader" id="3_bi6rj"]
 [ext_resource type="PackedScene" uid="uid://dr48wela8mtxd" path="res://Scenes/items/weapons/easi_early_service_rifles/zs_52/zs_52.tscn" id="4_pkc5m"]
 [ext_resource type="PackedScene" uid="uid://ctxxdrrqtcdvc" path="res://Scenes/items/weapons/easi_early_service_rifles/zs_52/zs_52.blend" id="4_xsc4f"]
 [ext_resource type="Resource" uid="uid://3nqgvhg4lre8" path="res://components/ammo_component/ammo_types/heavy_intermediate_cartridge.tres" id="5_6hjw3"]
@@ -16,13 +16,13 @@
 albedo_color = Color(0.552941, 0.552941, 0.552941, 1)
 metallic = 1.0
 
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_53xjm"]
-
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_7h1hw"]
 render_priority = 0
 shader = ExtResource("3_bi6rj")
-shader_parameter/distortion_size = 0.1
-shader_parameter/glass = SubResource("NoiseTexture2D_53xjm")
+shader_parameter/albedo = Color(1, 1, 1, 0)
+shader_parameter/roughness = 0.15
+shader_parameter/normal_strength = 1.0
+shader_parameter/edge_color = Color(0, 0, 0, 1)
 
 [sub_resource type="Resource" id="Resource_cthcn"]
 resource_local_to_scene = true
