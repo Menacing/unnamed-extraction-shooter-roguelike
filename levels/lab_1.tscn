@@ -6574,6 +6574,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.4761, -0.126424, 12.3843)
 light_color = Color(1, 0.25098, 0.25098, 1)
 shadow_enabled = true
 
+[node name="OmniLight3D2" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.323157, 3.16045, -4.69743)
+light_energy = 0.5
+shadow_enabled = true
+
 [node name="zs_52" parent="." instance=ExtResource("33_3ok0k")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.322563, 0.4, -6.2126)
 _gun_stats = SubResource("Resource_dw1bs")
