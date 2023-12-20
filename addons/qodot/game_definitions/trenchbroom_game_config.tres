@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="TrenchBroomGameConfig" load_steps=11 format=3 uid="uid://clrlcaks60tgr"]
+[gd_resource type="Resource" script_class="TrenchBroomGameConfig" load_steps=12 format=3 uid="uid://clrlcaks60tgr"]
 
 [ext_resource type="Resource" path="res://addons/qodot/game_definitions/brush_tags/detail_tag.tres" id="1_bjrlk"]
 [ext_resource type="Texture2D" uid="uid://b2k2iutnsgjfy" path="res://addons/qodot/icon.png" id="2_jej4n"]
@@ -10,6 +10,7 @@
 [ext_resource type="Resource" uid="uid://dtrwmwppklvpw" path="res://addons/qodot/game_definitions/fgd/essentials_fgd.tres" id="5_lvbhp"]
 [ext_resource type="Resource" uid="uid://c6c7ca1bms133" path="res://addons/qodot/game_definitions/fgd/demo_entities_fgd.tres" id="6_6fyp8"]
 [ext_resource type="Resource" uid="uid://bkmh5qlqkolvt" path="res://addons/qodot/game_definitions/fgd/reciever_signal_fgd.tres" id="6_8ndd7"]
+[ext_resource type="Resource" uid="uid://dr0etevtbyukb" path="res://levels/entities/uesrl_fgd_entities.tres" id="9_h1tc3"]
 
 [resource]
 script = ExtResource("3_8vw40")
@@ -29,7 +30,7 @@ map_formats = Array[Dictionary]([{
 }, {
 "format": "Quake3"
 }])
-fgd_files = Array[Resource]([ExtResource("5_lvbhp"), ExtResource("5_j6v5h"), ExtResource("6_8ndd7"), ExtResource("6_6fyp8")])
+fgd_files = Array[Resource]([ExtResource("5_lvbhp"), ExtResource("5_j6v5h"), ExtResource("6_8ndd7"), ExtResource("6_6fyp8"), ExtResource("9_h1tc3")])
 entity_scale = "1"
 default_uv_scale = Vector2(1, 1)
 brush_tags = Array[Resource]([ExtResource("1_bjrlk"), ExtResource("2_kk04y")])

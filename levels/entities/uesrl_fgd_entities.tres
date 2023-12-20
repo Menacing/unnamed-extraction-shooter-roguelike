@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="QodotFGDFile" load_steps=4 format=3 uid="uid://dr0etevtbyukb"]
+
+[ext_resource type="Resource" uid="uid://v4lnxr4qkmtl" path="res://levels/entities/ballistic_entity.tres" id="1_2vioq"]
+[ext_resource type="Script" path="res://addons/qodot/src/resources/game-definitions/fgd/qodot_fgd_file.gd" id="1_stowr"]
+[ext_resource type="Resource" uid="uid://dtrwmwppklvpw" path="res://addons/qodot/game_definitions/fgd/essentials_fgd.tres" id="1_vsuvj"]
+
+[resource]
+script = ExtResource("1_stowr")
+export_file = false
+target_folder = ""
+fgd_name = "uesrl_fgd"
+base_fgd_files = Array[Resource]([ExtResource("1_vsuvj")])
+entity_definitions = Array[Resource]([ExtResource("1_2vioq")])

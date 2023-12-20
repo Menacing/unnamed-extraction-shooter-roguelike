@@ -107,3 +107,14 @@ func get_aabb_of_node(node:Node3D):
 		aabb = aabb.merge(get_aabb_of_node(child))
 	return aabb
 
+func get_all_mesh_nodes(node) -> Array[MeshInstance3D]:
+	var mesh_nodes:Array[MeshInstance3D] =[]
+	for N in node.get_children():
+		if N is MeshInstance3D:
+			mesh_nodes.append(N)
+		if N.get_child_count() > 0:
+			mesh_nodes.append_array(get_all_mesh_nodes(N))
+		else:
+			# Do something
+			pass
+	return mesh_nodes

@@ -1,14 +1,11 @@
-[gd_scene load_steps=24 format=3 uid="uid://ctahsvj88g1om"]
+[gd_scene load_steps=21 format=3 uid="uid://ctahsvj88g1om"]
 
 [ext_resource type="PackedScene" uid="uid://d08aatgxmymbf" path="res://Scenes/Player/player.tscn" id="1_eisjc"]
 [ext_resource type="Script" path="res://levels/node_3d.gd" id="1_lmeut"]
-[ext_resource type="PackedScene" uid="uid://b7x11nf8gbi6e" path="res://Scenes/effects/bullet_hit_stone.tscn" id="4_tnmp4"]
-[ext_resource type="PackedScene" uid="uid://c30xv3xr7rlmy" path="res://Scenes/effects/bullet_hit_wood.tscn" id="5_y5ugi"]
 [ext_resource type="Material" uid="uid://d2jc0ho6nwe5g" path="res://levels/wood.tres" id="6_1m6d8"]
-[ext_resource type="PackedScene" uid="uid://dbduds4bsaaby" path="res://Scenes/Bullet/Bullet_hole.tscn" id="6_flqch"]
 [ext_resource type="PackedScene" uid="uid://5n7aup1d2u20" path="res://Scenes/effects/bullet_hit_sparks.tscn" id="6_jgw4a"]
 [ext_resource type="Texture2D" uid="uid://b0cnmm34ai52n" path="res://levels/gunmetal-texture.png" id="7_d5i4x"]
-[ext_resource type="Script" path="res://levels/EnvironmentalBallisticImpact.gd" id="9_63y4f"]
+[ext_resource type="Script" path="res://levels/ballistic_entity.gd" id="9_63y4f"]
 [ext_resource type="PackedScene" uid="uid://rcso16s616y" path="res://Scenes/containers/dev_chest.tscn" id="12_ibcly"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_6g5uc"]
@@ -53,7 +50,6 @@ material = SubResource("StandardMaterial3D_ckhie")
 albedo_color = Color(0.443137, 0.431373, 0.431373, 1)
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_uc5kb"]
-load_path = "res://.godot/imported/texture_01.png-d7b79fddbd2b29485d6a21e25d0ccaba.s3tc.ctex"
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2gtf0"]
 albedo_texture = SubResource("CompressedTexture2D_uc5kb")
@@ -74,7 +70,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.2616, 0.020462, -0.018549)
 disable_mode = 2
 collision_layer = 3
 script = ExtResource("9_63y4f")
-_impact_hit = ExtResource("4_tnmp4")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.66988, 0)
@@ -85,14 +80,12 @@ transform = Transform3D(1, 0, 0, 0, 5.2933, 0, 0, 0, 23.2277, 0.0240192, 3.26706
 mesh = SubResource("BoxMesh_dhkxw")
 
 [node name="StaticBody3D2" type="StaticBody3D" parent="NavigationRegion3D"]
-transform = Transform3D(0.901289, 0, 0.433219, 0, 1, 0, -0.433219, 0, 0.901289, 22.0215, 0.020462, -0.018549)
+transform = Transform3D(0.901289, 0, 0.433219, 0, 1, 0, -0.433219, 0, 0.901289, 22.0267, 0.104681, -0.0367289)
 disable_mode = 2
 collision_layer = 3
 collision_mask = 3
 script = ExtResource("9_63y4f")
 armor_rating = 1
-_bullet_hole_scene = ExtResource("6_flqch")
-_impact_hit = ExtResource("5_y5ugi")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/StaticBody3D2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.66988, 0)
@@ -108,8 +101,6 @@ disable_mode = 2
 collision_layer = 3
 script = ExtResource("9_63y4f")
 pen_ratio = 0.0
-_bullet_hole_scene = ExtResource("6_flqch")
-_impact_hit = ExtResource("6_jgw4a")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/StaticBody3D3"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.66988, 0)
@@ -161,8 +152,6 @@ collision_layer = 3
 collision_mask = 3
 size = Vector3(176.204, 0.998, 185.17)
 script = ExtResource("9_63y4f")
-_bullet_hole_scene = ExtResource("6_flqch")
-_impact_hit = ExtResource("4_tnmp4")
 
 [node name="Player" parent="." instance=ExtResource("1_eisjc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0191708, 1.22982, -4.46893)
