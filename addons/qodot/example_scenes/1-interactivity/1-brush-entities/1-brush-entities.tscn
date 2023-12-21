@@ -256,22 +256,10 @@ transform = Transform3D(0.642788, 0, -0.766044, 0, 1, 0, 0.766044, 0, 0.642788, 
 [node name="QodotMap" type="Node3D" parent="."]
 script = ExtResource("1")
 map_file = "C:/Users/Embyr/Repos/Qodot/addons/qodot/example_scenes/1-interactivity/1-brush-entities/1-brush-entities.map"
-inverse_scale_factor = 16.0
 entity_fgd = ExtResource("2")
 base_texture_dir = "res://addons/qodot/textures"
 texture_file_extensions = PackedStringArray("png")
-worldspawn_layers = []
-brush_clip_texture = "special/clip"
-face_skip_texture = "special/skip"
-texture_wads = []
-material_file_extension = "tres"
-unshaded = false
-default_material_albedo_uniform = ""
 default_material = SubResource("3")
-uv_unwrap_texel_size = 1.0
-print_profiling_data = false
-use_trenchbroom_group_hierarchy = false
-tree_attach_batch_size = null
 set_owner_batch_size = 16
 
 [node name="entity_0_worldspawn" type="StaticBody3D" parent="QodotMap"]

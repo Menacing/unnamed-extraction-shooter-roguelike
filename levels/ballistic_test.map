@@ -5,30 +5,29 @@
 "mapversion" "220"
 "classname" "worldspawn"
 "_tb_textures" "textures/asphalt;textures/brick;textures/concrete;textures/fabric;textures/glass;textures/ground;textures/marble;textures/metal;textures/plants;textures/plaster;textures/plastic;textures/roof;textures/tile;textures/wood"
-"_tb_def" "builtin:uesrl_fgd.fgd"
+"_tb_def" "builtin:uesrl_fgd_entities.fgd"
 "_tb_mod" "levels"
 }
 // entity 1
 {
-"classname" "ballistic_entity"
-"armor_rating" "6"
-"pen_ratio" "0.8"
+"classname" "geo_ballistic_solid"
+"armor_rating" "10"
+"pen_ratio" ".5"
+"game_material_info_path" "res://levels/game_material_info/metal.tres"
 // brush 0
 {
-( -96 0 -32 ) ( -96 1 -32 ) ( -96 0 -31 ) asphalt/asphalt_1 [ 0 -1 0 0 ] [ 0 0 -1 0 ] 0 1 1
-( 0 -96 -32 ) ( 0 -96 -31 ) ( 1 -96 -32 ) asphalt/asphalt_1 [ 1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
-( 0 0 -32 ) ( 1 0 -32 ) ( 0 1 -32 ) asphalt/asphalt_1 [ -1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
-( 128 128 0 ) ( 128 129 0 ) ( 129 128 0 ) asphalt/asphalt_1 [ 1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
-( 128 1488 0 ) ( 129 1488 0 ) ( 128 1488 1 ) asphalt/asphalt_1 [ -1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
-( 1104 128 0 ) ( 1104 128 1 ) ( 1104 129 0 ) asphalt/asphalt_1 [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( 304 0 0 ) ( 304 1 0 ) ( 304 0 1 ) metal/metal_1 [ 0 -1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( 304 0 0 ) ( 304 0 1 ) ( 305 0 0 ) metal/metal_1 [ 1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( 304 0 0 ) ( 305 0 0 ) ( 304 1 0 ) metal/metal_1 [ -1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( 320 160 192 ) ( 320 161 192 ) ( 321 160 192 ) metal/metal_1 [ 1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( 320 160 32 ) ( 321 160 32 ) ( 320 160 33 ) metal/metal_1 [ -1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( 320 160 32 ) ( 320 160 33 ) ( 320 161 32 ) metal/metal_1 [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
 }
 }
 // entity 2
 {
-"classname" "ballistic_entity"
-"armor_rating" "1"
-"pen_ratio" ".8"
-"impact_hit_scene_path" "res://Scenes/effects/bullet_hit_wood.tscn"
+"classname" "geo_ballistic_solid"
+"game_material_info_path" "res://levels/game_material_info/wood.tres"
 // brush 0
 {
 ( 176 0 0 ) ( 176 1 0 ) ( 176 0 1 ) wood/wood_1 [ 0 -1 0 0 ] [ 0 0 -1 0 ] 0 1 1
@@ -41,10 +40,8 @@
 }
 // entity 3
 {
-"classname" "ballistic_entity"
-"armor_rating" "5"
-"pen_ratio" ".5"
-"impact_hit_scene_path" "res://Scenes/effects/bullet_hit_stone.tres"
+"classname" "geo_ballistic_solid"
+"game_material_info_path" "res://levels/game_material_info/brick.tres"
 // brush 0
 {
 ( 240 0 0 ) ( 240 1 0 ) ( 240 0 1 ) brick/brick_1 [ 0 -1 0 0 ] [ 0 0 -1 0 ] 0 1 1
@@ -57,16 +54,15 @@
 }
 // entity 4
 {
-"classname" "ballistic_entity"
-"armor_rating" "10"
-"pen_ratio" ".5"
+"classname" "geo_ballistic_solid"
+"game_material_info_path" "res://levels/game_material_info/stone.tres"
 // brush 0
 {
-( 304 0 0 ) ( 304 1 0 ) ( 304 0 1 ) metal/metal_1 [ 0 -1 0 0 ] [ 0 0 -1 0 ] 0 1 1
-( 304 0 0 ) ( 304 0 1 ) ( 305 0 0 ) metal/metal_1 [ 1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
-( 304 0 0 ) ( 305 0 0 ) ( 304 1 0 ) metal/metal_1 [ -1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
-( 320 160 192 ) ( 320 161 192 ) ( 321 160 192 ) metal/metal_1 [ 1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
-( 320 160 32 ) ( 321 160 32 ) ( 320 160 33 ) metal/metal_1 [ -1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
-( 320 160 32 ) ( 320 160 33 ) ( 320 161 32 ) metal/metal_1 [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( -96 0 -32 ) ( -96 1 -32 ) ( -96 0 -31 ) asphalt/asphalt_1 [ 0 -1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( 0 -96 -32 ) ( 0 -96 -31 ) ( 1 -96 -32 ) asphalt/asphalt_1 [ 1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( 0 0 -32 ) ( 1 0 -32 ) ( 0 1 -32 ) asphalt/asphalt_1 [ -1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( 128 128 0 ) ( 128 129 0 ) ( 129 128 0 ) asphalt/asphalt_1 [ 1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( 128 1488 0 ) ( 129 1488 0 ) ( 128 1488 1 ) asphalt/asphalt_1 [ -1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( 1104 128 0 ) ( 1104 128 1 ) ( 1104 129 0 ) asphalt/asphalt_1 [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
 }
 }

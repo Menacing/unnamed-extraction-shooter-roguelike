@@ -3,189 +3,27 @@
 [ext_resource type="Script" path="res://levels/ballistic_testing.gd" id="1_gbeur"]
 [ext_resource type="PackedScene" uid="uid://dr48wela8mtxd" path="res://Scenes/items/weapons/easi_early_service_rifles/zs_52/zs_52.tscn" id="2_cebdm"]
 [ext_resource type="Resource" uid="uid://3nqgvhg4lre8" path="res://components/ammo_component/ammo_types/heavy_intermediate_cartridge.tres" id="3_8bfkd"]
-[ext_resource type="Shader" path="res://Scenes/Bullet/tracer_particle.gdshader" id="3_aso3t"]
+[ext_resource type="PackedScene" uid="uid://by4mxbof8gk0n" path="res://Scenes/Bullet/test_bullet.tscn" id="3_qi338"]
 [ext_resource type="Script" path="res://Scenes/items/weapons/gun_stats.gd" id="4_opxar"]
-[ext_resource type="Shader" path="res://Scenes/Bullet/tracer.gdshader" id="4_yrfpe"]
 [ext_resource type="Script" path="res://addons/qodot/src/nodes/qodot_map.gd" id="7_qt56y"]
-[ext_resource type="Resource" uid="uid://c36hv0o6g0udo" path="res://addons/qodot/game_definitions/fgd/qodot_fgd.tres" id="8_1jxhf"]
+[ext_resource type="Resource" uid="uid://dr0etevtbyukb" path="res://levels/entities/uesrl_fgd_entities.tres" id="8_3s7ds"]
 [ext_resource type="Script" path="res://addons/qodot/src/nodes/qodot_entity.gd" id="9_x5xon"]
+[ext_resource type="Script" path="res://levels/entities/geo_ballistic_solid.gd" id="10_0hi85"]
 [ext_resource type="Texture2D" uid="uid://2yar0fdlryun" path="res://levels/textures/asphalt/asphalt_1.png" id="10_eoss8"]
 [ext_resource type="Texture2D" uid="uid://c8nfaujucr7gf" path="res://levels/textures/wood/wood_1.png" id="11_4xtol"]
+[ext_resource type="PackedScene" uid="uid://dbduds4bsaaby" path="res://Scenes/Bullet/Bullet_hole.tscn" id="11_yjd08"]
 [ext_resource type="Texture2D" uid="uid://bacba4kxh1kbb" path="res://levels/textures/brick/brick_1.png" id="12_4loe8"]
+[ext_resource type="PackedScene" uid="uid://5n7aup1d2u20" path="res://Scenes/effects/bullet_hit_sparks.tscn" id="12_p6nk0"]
+[ext_resource type="AudioStream" uid="uid://bxakhll281jbw" path="res://Scenes/effects/sounds/steps/footstep_concrete_001.ogg" id="13_okg0b"]
 [ext_resource type="Texture2D" uid="uid://h2humy226aea" path="res://levels/textures/metal/metal_1.png" id="13_t7kyq"]
+[ext_resource type="PackedScene" uid="uid://c30xv3xr7rlmy" path="res://Scenes/effects/bullet_hit_wood.tscn" id="16_a0ajw"]
+[ext_resource type="AudioStream" uid="uid://bpl1v3m2xtfwo" path="res://Scenes/effects/sounds/steps/footstep_wood_000.ogg" id="17_4grip"]
+[ext_resource type="PackedScene" uid="uid://b7x11nf8gbi6e" path="res://Scenes/effects/bullet_hit_stone.tscn" id="19_685x4"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_0dgg1"]
 font_size = 60
 
 [sub_resource type="Environment" id="Environment_8p7aq"]
-
-[sub_resource type="GDScript" id="GDScript_wgcu0"]
-script/source = "extends PhysicsBody3D
-
-@export var initial_speed = 700.0
-@export var initial_damage = 30.0
-@export var pen_rating: int = 5
-@export var k: float = 0.001289
-@export var moa:float
-var shot_origin:Vector3
-
-var current_speed: float
-var current_damage: float
-var elapsed_time: float = 0.0
-
-@onready var col_shape:CollisionShape3D = $CollisionShape3D
-@onready var mesh_inst:MeshInstance3D = $MeshInstance3D
-@onready var bullet_radius:float = $CollisionShape3D.shape.radius
-var continue_process:bool = true
-@onready var despawn_timer:Timer = $DespawnTimer
-var collision_exclusions:Array[RID] = []
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	current_speed = initial_speed
-	current_damage = initial_damage
-	Helpers.random_angle_deviation_moa(self, moa,moa)
-	shot_origin = self.global_position
-#	connect(\"body_entered\", _on_body_entered)
-
-func _physics_process(delta):
-	elapsed_time += delta
-	if continue_process:
-		do_raycast_movement(delta)
-
-func raycast_to_dest(source_global_pos:Vector3,destination_global_pos:Vector3) -> Dictionary:
-	var space_state = self.get_world_3d().direct_space_state
-	if space_state:
-		var query = PhysicsRayQueryParameters3D.create(source_global_pos, destination_global_pos)
-		query.collision_mask = self.collision_mask
-		query.exclude = collision_exclusions
-		var result = space_state.intersect_ray(query)
-		return result
-	return {}
-
-func do_raycast_movement(delta:float):
-	#set up initial value and destination
-	var motion_dir = -delta * current_speed * transform.basis.z
-	var travel_vector:Vector3 = Vector3() 
-	var remaining_delta:float = delta
-	var start_source_destination:Vector3 = self.global_position
-	var start_target_destination:Vector3 = self.global_position + motion_dir
-	var remaining_distance:float = (start_target_destination - start_source_destination).length()
-	var source_destination:Vector3 = start_source_destination
-	var target_destination:Vector3 = start_target_destination
-	#While we have distance to cover, loop
-	while remaining_distance > 0.0001:
-		#Raycast to target location
-		var raycast_result = raycast_to_dest(source_destination,target_destination)
-		#If we didn't hit anything, add the travel distance and break
-		if raycast_result.is_empty():
-			travel_vector += (target_destination - source_destination)
-			remaining_distance = 0.0
-		#else, handle collision
-		else:
-			#Add traveled distance to collision location
-			travel_vector += (raycast_result.position - source_destination)
-			#if collider has an onhit function, call it and handle result
-			var collider = raycast_result.collider
-			if collider:
-				var meshes = Helpers.get_all_mesh_nodes(collider)
-				
-				var material = collider.get_node(\"MeshInstance\").mesh.material
-				
-			#if collider and collider.has_method(\"_on_hit\"):
-				#var col = CollisionInformation.map_from_ray_result(raycast_result)
-				##call on hit
-				#var pen_ratio = collider._on_hit(current_damage, pen_rating, col,shot_origin)
-				##handle speed and damage reduction
-				#var new_speed = current_speed * pen_ratio
-				#
-				##calculate new target and delta
-				#var distance_went:float = (raycast_result.position - source_destination).length()
-				#var time_took:float = distance_went * remaining_delta / (target_destination - source_destination).length()
-				#remaining_delta -= time_took
-				#current_damage = pow(new_speed/current_speed,2) * current_damage
-				#current_speed = new_speed
-				#target_destination = raycast_result.position + (-remaining_delta * current_speed * transform.basis.z)
-			else:
-				startDespawn()
-			if collider is CollisionObject3D:
-				self.add_collision_exception_with(collider)
-			collision_exclusions.append(raycast_result.rid)
-			
-			#set current position to collision location
-			source_destination = raycast_result.position
-			#set remaining distance to cover
-			remaining_distance = (target_destination - source_destination).length()
-			pass
-			
-	var col:KinematicCollision3D = move_and_collide(travel_vector,false,0.001,true)
-#	if col:
-#		print(\"something went wrong, col should always be null doing it this way\")
-	var new_speed = (current_speed/ (1+k*delta*current_speed))
-	current_damage = pow(new_speed/current_speed,2) * current_damage
-	current_speed = new_speed
-	if is_nan(current_damage) or current_damage / initial_damage < .25:
-		print(\"bullet peetered out after %s\" % elapsed_time)
-		startDespawn()
-
-
-func startDespawn():
-	continue_process = false
-	col_shape.disabled = true
-	mesh_inst.visible = false
-	despawn_timer.start()
-
-
-func _on_despawn_timer_timeout():
-	queue_free()
-"
-
-[sub_resource type="SphereShape3D" id="SphereShape3D_a2qmd"]
-radius = 0.01
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_stsvx"]
-albedo_color = Color(0.0980392, 0.65098, 0, 1)
-
-[sub_resource type="SphereMesh" id="SphereMesh_mrjd8"]
-material = SubResource("StandardMaterial3D_stsvx")
-radius = 0.008
-height = 0.016
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_sr6c2"]
-shader = ExtResource("3_aso3t")
-shader_parameter/height = 0.01
-
-[sub_resource type="Gradient" id="Gradient_vh87s"]
-interpolation_mode = 2
-colors = PackedColorArray(0.11, 3, 0.13, 1, 0.109804, 3, 0.129412, 0)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_10bv2"]
-gradient = SubResource("Gradient_vh87s")
-use_hdr = true
-fill = 1
-fill_from = Vector2(0.5, 0.5)
-fill_to = Vector2(1, 1)
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_bhr6y"]
-render_priority = 0
-shader = ExtResource("4_yrfpe")
-shader_parameter/tex = SubResource("GradientTexture2D_10bv2")
-
-[sub_resource type="QuadMesh" id="QuadMesh_a8vkh"]
-material = SubResource("ShaderMaterial_bhr6y")
-
-[sub_resource type="PackedScene" id="PackedScene_itimk"]
-_bundled = {
-"conn_count": 1,
-"conns": PackedInt32Array(4, 0, 22, 21, 2, 0, 0),
-"editable_instances": [],
-"names": PackedStringArray("hic_bullet", "collision_layer", "collision_mask", "motion_mode", "script", "CharacterBody3D", "CollisionShape3D", "shape", "MeshInstance3D", "mesh", "Tracer", "amount", "lifetime", "speed_scale", "process_material", "draw_pass_1", "GPUParticles3D", "DespawnTimer", "wait_time", "one_shot", "Timer", "_on_despawn_timer_timeout", "timeout"),
-"node_count": 5,
-"node_paths": [],
-"nodes": PackedInt32Array(-1, -1, 5, 0, -1, 4, 1, 0, 2, 1, 3, 2, 4, 3, 0, 0, 0, 6, 6, -1, 1, 7, 4, 0, 0, 0, 8, 8, -1, 1, 9, 5, 0, 0, 0, 16, 10, -1, 5, 11, 1, 12, 6, 13, 7, 14, 8, 15, 9, 0, 0, 0, 20, 17, -1, 2, 18, 10, 19, 11, 0),
-"variants": [2147483648, 2, 1, SubResource("GDScript_wgcu0"), SubResource("SphereShape3D_a2qmd"), SubResource("SphereMesh_mrjd8"), 2.0, 30.0, SubResource("ShaderMaterial_sr6c2"), SubResource("QuadMesh_a8vkh"), 0.1, true],
-"version": 3
-}
 
 [sub_resource type="Resource" id="Resource_20lvj"]
 resource_local_to_scene = true
@@ -203,35 +41,38 @@ ammo_type = ExtResource("3_8bfkd")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_i0rsr"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h02iq"]
-albedo_texture = ExtResource("10_eoss8")
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dx8oq"]
+albedo_texture = ExtResource("13_t7kyq")
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_4pxg0"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_knf8k"]
 _surfaces = [{
-"aabb": AABB(-19.8, -0.4, -15, 39.6, 0.80001, 30),
-"attribute_data": PackedByteArray(0, 0, 64, 63, 0, 0, 0, 0, 0, 0, 64, 63, 0, 0, 128, 62, 0, 0, 58, 193, 0, 0, 128, 62, 0, 0, 58, 193, 0, 0, 0, 0, 0, 0, 64, 191, 0, 0, 0, 0, 0, 0, 10, 65, 0, 0, 0, 0, 0, 0, 10, 65, 0, 0, 128, 62, 0, 0, 64, 191, 0, 0, 128, 62, 0, 0, 64, 63, 0, 0, 58, 193, 0, 0, 64, 63, 0, 0, 64, 63, 0, 0, 10, 193, 0, 0, 64, 63, 0, 0, 10, 193, 0, 0, 58, 193, 0, 0, 64, 191, 0, 0, 58, 193, 0, 0, 10, 65, 0, 0, 58, 193, 0, 0, 10, 65, 0, 0, 64, 63, 0, 0, 64, 191, 0, 0, 64, 63, 0, 0, 64, 63, 0, 0, 0, 0, 0, 0, 64, 63, 0, 0, 128, 62, 0, 0, 10, 193, 0, 0, 128, 62, 0, 0, 10, 193, 0, 0, 0, 0, 0, 0, 64, 191, 0, 0, 0, 0, 0, 0, 58, 65, 0, 0, 0, 0, 0, 0, 58, 65, 0, 0, 128, 62, 0, 0, 64, 191, 0, 0, 128, 62),
+"aabb": AABB(-2, -2.4, -0.2, 4, 4.80001, 0.4),
+"attribute_data": PackedByteArray(0, 0, 0, 0, 0, 0, 192, 191, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 160, 191, 0, 0, 0, 0, 0, 0, 160, 191, 0, 0, 192, 191, 0, 0, 24, 64, 0, 0, 192, 191, 0, 0, 32, 64, 0, 0, 192, 191, 0, 0, 32, 64, 0, 0, 0, 0, 0, 0, 24, 64, 0, 0, 0, 0, 0, 0, 24, 192, 0, 0, 160, 191, 0, 0, 24, 192, 0, 0, 0, 0, 0, 0, 32, 192, 0, 0, 0, 0, 0, 0, 32, 192, 0, 0, 160, 191, 0, 0, 24, 64, 0, 0, 160, 191, 0, 0, 32, 64, 0, 0, 160, 191, 0, 0, 32, 64, 0, 0, 0, 0, 0, 0, 24, 64, 0, 0, 0, 0, 0, 0, 24, 192, 0, 0, 192, 191, 0, 0, 24, 192, 0, 0, 0, 0, 0, 0, 32, 192, 0, 0, 0, 0, 0, 0, 32, 192, 0, 0, 192, 191, 0, 0, 0, 0, 0, 0, 192, 191, 0, 0, 160, 63, 0, 0, 192, 191, 0, 0, 160, 63, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 "format": 34359742487,
 "index_count": 36,
 "index_data": PackedByteArray(0, 0, 1, 0, 2, 0, 0, 0, 2, 0, 3, 0, 4, 0, 5, 0, 6, 0, 4, 0, 6, 0, 7, 0, 8, 0, 9, 0, 10, 0, 8, 0, 10, 0, 11, 0, 12, 0, 13, 0, 14, 0, 12, 0, 14, 0, 15, 0, 16, 0, 17, 0, 18, 0, 16, 0, 18, 0, 19, 0, 20, 0, 21, 0, 22, 0, 20, 0, 22, 0, 23, 0),
-"material": SubResource("StandardMaterial3D_h02iq"),
-"name": "asphalt/asphalt_1",
+"material": SubResource("StandardMaterial3D_dx8oq"),
+"name": "metal/metal_1",
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
 "vertex_count": 24,
-"vertex_data": PackedByteArray(102, 102, 158, 193, 205, 204, 204, 62, 0, 0, 112, 193, 102, 102, 158, 193, 205, 204, 204, 190, 0, 0, 112, 193, 102, 102, 158, 65, 205, 204, 204, 190, 0, 0, 112, 193, 102, 102, 158, 65, 205, 204, 204, 62, 0, 0, 112, 193, 102, 102, 158, 193, 205, 204, 204, 62, 0, 0, 112, 193, 102, 102, 158, 193, 205, 204, 204, 62, 0, 0, 112, 65, 102, 102, 158, 193, 205, 204, 204, 190, 0, 0, 112, 65, 102, 102, 158, 193, 205, 204, 204, 190, 0, 0, 112, 193, 102, 102, 158, 65, 205, 204, 204, 190, 0, 0, 112, 193, 102, 102, 158, 193, 205, 204, 204, 190, 0, 0, 112, 193, 102, 102, 158, 193, 205, 204, 204, 190, 0, 0, 112, 65, 102, 102, 158, 65, 205, 204, 204, 190, 0, 0, 112, 65, 102, 102, 158, 65, 205, 204, 204, 62, 0, 0, 112, 193, 102, 102, 158, 65, 205, 204, 204, 62, 0, 0, 112, 65, 102, 102, 158, 193, 205, 204, 204, 62, 0, 0, 112, 65, 102, 102, 158, 193, 205, 204, 204, 62, 0, 0, 112, 193, 102, 102, 158, 65, 205, 204, 204, 62, 0, 0, 112, 193, 102, 102, 158, 65, 205, 204, 204, 190, 0, 0, 112, 193, 102, 102, 158, 65, 205, 204, 204, 190, 0, 0, 112, 65, 102, 102, 158, 65, 205, 204, 204, 62, 0, 0, 112, 65, 102, 102, 158, 193, 205, 204, 204, 62, 0, 0, 112, 65, 102, 102, 158, 65, 205, 204, 204, 62, 0, 0, 112, 65, 102, 102, 158, 65, 205, 204, 204, 190, 0, 0, 112, 65, 102, 102, 158, 193, 205, 204, 204, 190, 0, 0, 112, 65, 255, 255, 255, 255, 0, 0, 255, 191, 255, 255, 255, 255, 0, 0, 255, 191, 255, 255, 255, 255, 0, 0, 255, 191, 255, 255, 255, 255, 0, 0, 255, 191, 0, 0, 255, 127, 255, 127, 255, 191, 0, 0, 255, 127, 255, 127, 255, 191, 0, 0, 255, 127, 255, 127, 255, 191, 0, 0, 255, 127, 255, 127, 255, 191, 255, 127, 0, 0, 255, 255, 255, 255, 255, 127, 0, 0, 255, 255, 255, 255, 255, 127, 0, 0, 255, 255, 255, 255, 255, 127, 0, 0, 255, 255, 255, 255, 255, 127, 255, 255, 255, 127, 255, 191, 255, 127, 255, 255, 255, 127, 255, 191, 255, 127, 255, 255, 255, 127, 255, 191, 255, 127, 255, 255, 255, 127, 255, 191, 255, 255, 255, 127, 255, 255, 255, 255, 255, 255, 255, 127, 255, 255, 255, 255, 255, 255, 255, 127, 255, 255, 255, 255, 255, 255, 255, 127, 255, 255, 255, 255, 255, 127, 255, 127, 255, 255, 255, 191, 255, 127, 255, 127, 255, 255, 255, 191, 255, 127, 255, 127, 255, 255, 255, 191, 255, 127, 255, 127, 255, 255, 255, 191)
+"vertex_data": PackedByteArray(0, 0, 0, 192, 154, 153, 25, 64, 205, 204, 76, 190, 0, 0, 0, 192, 154, 153, 25, 192, 205, 204, 76, 190, 0, 0, 0, 64, 154, 153, 25, 192, 205, 204, 76, 190, 0, 0, 0, 64, 154, 153, 25, 64, 205, 204, 76, 190, 0, 0, 0, 192, 154, 153, 25, 64, 205, 204, 76, 190, 0, 0, 0, 192, 154, 153, 25, 64, 205, 204, 76, 62, 0, 0, 0, 192, 154, 153, 25, 192, 205, 204, 76, 62, 0, 0, 0, 192, 154, 153, 25, 192, 205, 204, 76, 190, 0, 0, 0, 64, 154, 153, 25, 192, 205, 204, 76, 190, 0, 0, 0, 192, 154, 153, 25, 192, 205, 204, 76, 190, 0, 0, 0, 192, 154, 153, 25, 192, 205, 204, 76, 62, 0, 0, 0, 64, 154, 153, 25, 192, 205, 204, 76, 62, 0, 0, 0, 64, 154, 153, 25, 64, 205, 204, 76, 190, 0, 0, 0, 64, 154, 153, 25, 64, 205, 204, 76, 62, 0, 0, 0, 192, 154, 153, 25, 64, 205, 204, 76, 62, 0, 0, 0, 192, 154, 153, 25, 64, 205, 204, 76, 190, 0, 0, 0, 64, 154, 153, 25, 64, 205, 204, 76, 190, 0, 0, 0, 64, 154, 153, 25, 192, 205, 204, 76, 190, 0, 0, 0, 64, 154, 153, 25, 192, 205, 204, 76, 62, 0, 0, 0, 64, 154, 153, 25, 64, 205, 204, 76, 62, 0, 0, 0, 192, 154, 153, 25, 64, 205, 204, 76, 62, 0, 0, 0, 64, 154, 153, 25, 64, 205, 204, 76, 62, 0, 0, 0, 64, 154, 153, 25, 192, 205, 204, 76, 62, 0, 0, 0, 192, 154, 153, 25, 192, 205, 204, 76, 62, 255, 255, 255, 255, 0, 0, 255, 191, 255, 255, 255, 255, 0, 0, 255, 191, 255, 255, 255, 255, 0, 0, 255, 191, 255, 255, 255, 255, 0, 0, 255, 191, 0, 0, 255, 127, 255, 127, 255, 191, 0, 0, 255, 127, 255, 127, 255, 191, 0, 0, 255, 127, 255, 127, 255, 191, 0, 0, 255, 127, 255, 127, 255, 191, 255, 127, 0, 0, 255, 255, 255, 255, 255, 127, 0, 0, 255, 255, 255, 255, 255, 127, 0, 0, 255, 255, 255, 255, 255, 127, 0, 0, 255, 255, 255, 255, 255, 127, 255, 255, 255, 127, 255, 191, 255, 127, 255, 255, 255, 127, 255, 191, 255, 127, 255, 255, 255, 127, 255, 191, 255, 127, 255, 255, 255, 127, 255, 191, 255, 255, 255, 127, 255, 255, 255, 255, 255, 255, 255, 127, 255, 255, 255, 255, 255, 255, 255, 127, 255, 255, 255, 255, 255, 255, 255, 127, 255, 255, 255, 255, 255, 127, 255, 127, 255, 255, 255, 191, 255, 127, 255, 127, 255, 255, 255, 191, 255, 127, 255, 127, 255, 255, 255, 191, 255, 127, 255, 127, 255, 255, 255, 191)
 }]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ijsxv"]
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_an7m5"]
+points = PackedVector3Array(-2, 2.4, -0.2, -2, -2.4, -0.2, 2, -2.4, -0.2, 2, 2.4, -0.2, -2, 2.4, 0.2, -2, -2.4, 0.2, 2, -2.4, 0.2, 2, 2.4, 0.2)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oirbs"]
 albedo_texture = ExtResource("11_4xtol")
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_ytbem"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_xu8mb"]
 _surfaces = [{
 "aabb": AABB(-2, -2.4, -0.2, 4, 4.80001, 0.4),
 "attribute_data": PackedByteArray(0, 0, 0, 0, 0, 0, 192, 191, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 160, 191, 0, 0, 0, 0, 0, 0, 160, 191, 0, 0, 192, 191, 0, 0, 176, 63, 0, 0, 192, 191, 0, 0, 192, 63, 0, 0, 192, 191, 0, 0, 192, 63, 0, 0, 0, 0, 0, 0, 176, 63, 0, 0, 0, 0, 0, 0, 176, 191, 0, 0, 160, 191, 0, 0, 176, 191, 0, 0, 0, 0, 0, 0, 192, 191, 0, 0, 0, 0, 0, 0, 192, 191, 0, 0, 160, 191, 0, 0, 176, 63, 0, 0, 160, 191, 0, 0, 192, 63, 0, 0, 160, 191, 0, 0, 192, 63, 0, 0, 0, 0, 0, 0, 176, 63, 0, 0, 0, 0, 0, 0, 176, 191, 0, 0, 192, 191, 0, 0, 176, 191, 0, 0, 0, 0, 0, 0, 192, 191, 0, 0, 0, 0, 0, 0, 192, 191, 0, 0, 192, 191, 0, 0, 0, 0, 0, 0, 192, 191, 0, 0, 160, 63, 0, 0, 192, 191, 0, 0, 160, 63, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 "format": 34359742487,
 "index_count": 36,
 "index_data": PackedByteArray(0, 0, 1, 0, 2, 0, 0, 0, 2, 0, 3, 0, 4, 0, 5, 0, 6, 0, 4, 0, 6, 0, 7, 0, 8, 0, 9, 0, 10, 0, 8, 0, 10, 0, 11, 0, 12, 0, 13, 0, 14, 0, 12, 0, 14, 0, 15, 0, 16, 0, 17, 0, 18, 0, 16, 0, 18, 0, 19, 0, 20, 0, 21, 0, 22, 0, 20, 0, 22, 0, 23, 0),
-"material": SubResource("StandardMaterial3D_ijsxv"),
+"material": SubResource("StandardMaterial3D_oirbs"),
 "name": "wood/wood_1",
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
@@ -239,17 +80,20 @@ _surfaces = [{
 "vertex_data": PackedByteArray(0, 0, 0, 192, 154, 153, 25, 64, 205, 204, 76, 190, 0, 0, 0, 192, 154, 153, 25, 192, 205, 204, 76, 190, 0, 0, 0, 64, 154, 153, 25, 192, 205, 204, 76, 190, 0, 0, 0, 64, 154, 153, 25, 64, 205, 204, 76, 190, 0, 0, 0, 192, 154, 153, 25, 64, 205, 204, 76, 190, 0, 0, 0, 192, 154, 153, 25, 64, 205, 204, 76, 62, 0, 0, 0, 192, 154, 153, 25, 192, 205, 204, 76, 62, 0, 0, 0, 192, 154, 153, 25, 192, 205, 204, 76, 190, 0, 0, 0, 64, 154, 153, 25, 192, 205, 204, 76, 190, 0, 0, 0, 192, 154, 153, 25, 192, 205, 204, 76, 190, 0, 0, 0, 192, 154, 153, 25, 192, 205, 204, 76, 62, 0, 0, 0, 64, 154, 153, 25, 192, 205, 204, 76, 62, 0, 0, 0, 64, 154, 153, 25, 64, 205, 204, 76, 190, 0, 0, 0, 64, 154, 153, 25, 64, 205, 204, 76, 62, 0, 0, 0, 192, 154, 153, 25, 64, 205, 204, 76, 62, 0, 0, 0, 192, 154, 153, 25, 64, 205, 204, 76, 190, 0, 0, 0, 64, 154, 153, 25, 64, 205, 204, 76, 190, 0, 0, 0, 64, 154, 153, 25, 192, 205, 204, 76, 190, 0, 0, 0, 64, 154, 153, 25, 192, 205, 204, 76, 62, 0, 0, 0, 64, 154, 153, 25, 64, 205, 204, 76, 62, 0, 0, 0, 192, 154, 153, 25, 64, 205, 204, 76, 62, 0, 0, 0, 64, 154, 153, 25, 64, 205, 204, 76, 62, 0, 0, 0, 64, 154, 153, 25, 192, 205, 204, 76, 62, 0, 0, 0, 192, 154, 153, 25, 192, 205, 204, 76, 62, 255, 255, 255, 255, 0, 0, 255, 191, 255, 255, 255, 255, 0, 0, 255, 191, 255, 255, 255, 255, 0, 0, 255, 191, 255, 255, 255, 255, 0, 0, 255, 191, 0, 0, 255, 127, 255, 127, 255, 191, 0, 0, 255, 127, 255, 127, 255, 191, 0, 0, 255, 127, 255, 127, 255, 191, 0, 0, 255, 127, 255, 127, 255, 191, 255, 127, 0, 0, 255, 255, 255, 255, 255, 127, 0, 0, 255, 255, 255, 255, 255, 127, 0, 0, 255, 255, 255, 255, 255, 127, 0, 0, 255, 255, 255, 255, 255, 127, 255, 255, 255, 127, 255, 191, 255, 127, 255, 255, 255, 127, 255, 191, 255, 127, 255, 255, 255, 127, 255, 191, 255, 127, 255, 255, 255, 127, 255, 191, 255, 255, 255, 127, 255, 255, 255, 255, 255, 255, 255, 127, 255, 255, 255, 255, 255, 255, 255, 127, 255, 255, 255, 255, 255, 255, 255, 127, 255, 255, 255, 255, 255, 127, 255, 127, 255, 255, 255, 191, 255, 127, 255, 127, 255, 255, 255, 191, 255, 127, 255, 127, 255, 255, 255, 191, 255, 127, 255, 127, 255, 255, 255, 191)
 }]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7awmf"]
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_ns8md"]
+points = PackedVector3Array(-2, 2.4, -0.2, -2, -2.4, -0.2, 2, -2.4, -0.2, 2, 2.4, -0.2, -2, 2.4, 0.2, -2, -2.4, 0.2, 2, -2.4, 0.2, 2, 2.4, 0.2)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_twl10"]
 albedo_texture = ExtResource("12_4loe8")
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_byeh7"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_loecn"]
 _surfaces = [{
 "aabb": AABB(-2, -2.4, -0.2, 4, 4.80001, 0.4),
 "attribute_data": PackedByteArray(0, 0, 0, 0, 0, 0, 192, 191, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 160, 191, 0, 0, 0, 0, 0, 0, 160, 191, 0, 0, 192, 191, 0, 0, 240, 63, 0, 0, 192, 191, 0, 0, 0, 64, 0, 0, 192, 191, 0, 0, 0, 64, 0, 0, 0, 0, 0, 0, 240, 63, 0, 0, 0, 0, 0, 0, 240, 191, 0, 0, 160, 191, 0, 0, 240, 191, 0, 0, 0, 0, 0, 0, 0, 192, 0, 0, 0, 0, 0, 0, 0, 192, 0, 0, 160, 191, 0, 0, 240, 63, 0, 0, 160, 191, 0, 0, 0, 64, 0, 0, 160, 191, 0, 0, 0, 64, 0, 0, 0, 0, 0, 0, 240, 63, 0, 0, 0, 0, 0, 0, 240, 191, 0, 0, 192, 191, 0, 0, 240, 191, 0, 0, 0, 0, 0, 0, 0, 192, 0, 0, 0, 0, 0, 0, 0, 192, 0, 0, 192, 191, 0, 0, 0, 0, 0, 0, 192, 191, 0, 0, 160, 63, 0, 0, 192, 191, 0, 0, 160, 63, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 "format": 34359742487,
 "index_count": 36,
 "index_data": PackedByteArray(0, 0, 1, 0, 2, 0, 0, 0, 2, 0, 3, 0, 4, 0, 5, 0, 6, 0, 4, 0, 6, 0, 7, 0, 8, 0, 9, 0, 10, 0, 8, 0, 10, 0, 11, 0, 12, 0, 13, 0, 14, 0, 12, 0, 14, 0, 15, 0, 16, 0, 17, 0, 18, 0, 16, 0, 18, 0, 19, 0, 20, 0, 21, 0, 22, 0, 20, 0, 22, 0, 23, 0),
-"material": SubResource("StandardMaterial3D_7awmf"),
+"material": SubResource("StandardMaterial3D_twl10"),
 "name": "brick/brick_1",
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
@@ -257,23 +101,29 @@ _surfaces = [{
 "vertex_data": PackedByteArray(0, 0, 0, 192, 154, 153, 25, 64, 205, 204, 76, 190, 0, 0, 0, 192, 154, 153, 25, 192, 205, 204, 76, 190, 0, 0, 0, 64, 154, 153, 25, 192, 205, 204, 76, 190, 0, 0, 0, 64, 154, 153, 25, 64, 205, 204, 76, 190, 0, 0, 0, 192, 154, 153, 25, 64, 205, 204, 76, 190, 0, 0, 0, 192, 154, 153, 25, 64, 205, 204, 76, 62, 0, 0, 0, 192, 154, 153, 25, 192, 205, 204, 76, 62, 0, 0, 0, 192, 154, 153, 25, 192, 205, 204, 76, 190, 0, 0, 0, 64, 154, 153, 25, 192, 205, 204, 76, 190, 0, 0, 0, 192, 154, 153, 25, 192, 205, 204, 76, 190, 0, 0, 0, 192, 154, 153, 25, 192, 205, 204, 76, 62, 0, 0, 0, 64, 154, 153, 25, 192, 205, 204, 76, 62, 0, 0, 0, 64, 154, 153, 25, 64, 205, 204, 76, 190, 0, 0, 0, 64, 154, 153, 25, 64, 205, 204, 76, 62, 0, 0, 0, 192, 154, 153, 25, 64, 205, 204, 76, 62, 0, 0, 0, 192, 154, 153, 25, 64, 205, 204, 76, 190, 0, 0, 0, 64, 154, 153, 25, 64, 205, 204, 76, 190, 0, 0, 0, 64, 154, 153, 25, 192, 205, 204, 76, 190, 0, 0, 0, 64, 154, 153, 25, 192, 205, 204, 76, 62, 0, 0, 0, 64, 154, 153, 25, 64, 205, 204, 76, 62, 0, 0, 0, 192, 154, 153, 25, 64, 205, 204, 76, 62, 0, 0, 0, 64, 154, 153, 25, 64, 205, 204, 76, 62, 0, 0, 0, 64, 154, 153, 25, 192, 205, 204, 76, 62, 0, 0, 0, 192, 154, 153, 25, 192, 205, 204, 76, 62, 255, 255, 255, 255, 0, 0, 255, 191, 255, 255, 255, 255, 0, 0, 255, 191, 255, 255, 255, 255, 0, 0, 255, 191, 255, 255, 255, 255, 0, 0, 255, 191, 0, 0, 255, 127, 255, 127, 255, 191, 0, 0, 255, 127, 255, 127, 255, 191, 0, 0, 255, 127, 255, 127, 255, 191, 0, 0, 255, 127, 255, 127, 255, 191, 255, 127, 0, 0, 255, 255, 255, 255, 255, 127, 0, 0, 255, 255, 255, 255, 255, 127, 0, 0, 255, 255, 255, 255, 255, 127, 0, 0, 255, 255, 255, 255, 255, 127, 255, 255, 255, 127, 255, 191, 255, 127, 255, 255, 255, 127, 255, 191, 255, 127, 255, 255, 255, 127, 255, 191, 255, 127, 255, 255, 255, 127, 255, 191, 255, 255, 255, 127, 255, 255, 255, 255, 255, 255, 255, 127, 255, 255, 255, 255, 255, 255, 255, 127, 255, 255, 255, 255, 255, 255, 255, 127, 255, 255, 255, 255, 255, 127, 255, 127, 255, 255, 255, 191, 255, 127, 255, 127, 255, 255, 255, 191, 255, 127, 255, 127, 255, 255, 255, 191, 255, 127, 255, 127, 255, 255, 255, 191)
 }]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0s27w"]
-albedo_texture = ExtResource("13_t7kyq")
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_0kjo3"]
+points = PackedVector3Array(-2, 2.4, -0.2, -2, -2.4, -0.2, 2, -2.4, -0.2, 2, 2.4, -0.2, -2, 2.4, 0.2, -2, -2.4, 0.2, 2, -2.4, 0.2, 2, 2.4, 0.2)
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_daws8"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bsm28"]
+albedo_texture = ExtResource("10_eoss8")
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_7grt2"]
 _surfaces = [{
-"aabb": AABB(-2, -2.4, -0.2, 4, 4.80001, 0.4),
-"attribute_data": PackedByteArray(0, 0, 0, 0, 0, 0, 192, 191, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 160, 191, 0, 0, 0, 0, 0, 0, 160, 191, 0, 0, 192, 191, 0, 0, 24, 64, 0, 0, 192, 191, 0, 0, 32, 64, 0, 0, 192, 191, 0, 0, 32, 64, 0, 0, 0, 0, 0, 0, 24, 64, 0, 0, 0, 0, 0, 0, 24, 192, 0, 0, 160, 191, 0, 0, 24, 192, 0, 0, 0, 0, 0, 0, 32, 192, 0, 0, 0, 0, 0, 0, 32, 192, 0, 0, 160, 191, 0, 0, 24, 64, 0, 0, 160, 191, 0, 0, 32, 64, 0, 0, 160, 191, 0, 0, 32, 64, 0, 0, 0, 0, 0, 0, 24, 64, 0, 0, 0, 0, 0, 0, 24, 192, 0, 0, 192, 191, 0, 0, 24, 192, 0, 0, 0, 0, 0, 0, 32, 192, 0, 0, 0, 0, 0, 0, 32, 192, 0, 0, 192, 191, 0, 0, 0, 0, 0, 0, 192, 191, 0, 0, 160, 63, 0, 0, 192, 191, 0, 0, 160, 63, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+"aabb": AABB(-19.8, -0.4, -15, 39.6, 0.80001, 30),
+"attribute_data": PackedByteArray(0, 0, 64, 63, 0, 0, 0, 0, 0, 0, 64, 63, 0, 0, 128, 62, 0, 0, 58, 193, 0, 0, 128, 62, 0, 0, 58, 193, 0, 0, 0, 0, 0, 0, 64, 191, 0, 0, 0, 0, 0, 0, 10, 65, 0, 0, 0, 0, 0, 0, 10, 65, 0, 0, 128, 62, 0, 0, 64, 191, 0, 0, 128, 62, 0, 0, 64, 63, 0, 0, 58, 193, 0, 0, 64, 63, 0, 0, 64, 63, 0, 0, 10, 193, 0, 0, 64, 63, 0, 0, 10, 193, 0, 0, 58, 193, 0, 0, 64, 191, 0, 0, 58, 193, 0, 0, 10, 65, 0, 0, 58, 193, 0, 0, 10, 65, 0, 0, 64, 63, 0, 0, 64, 191, 0, 0, 64, 63, 0, 0, 64, 63, 0, 0, 0, 0, 0, 0, 64, 63, 0, 0, 128, 62, 0, 0, 10, 193, 0, 0, 128, 62, 0, 0, 10, 193, 0, 0, 0, 0, 0, 0, 64, 191, 0, 0, 0, 0, 0, 0, 58, 65, 0, 0, 0, 0, 0, 0, 58, 65, 0, 0, 128, 62, 0, 0, 64, 191, 0, 0, 128, 62),
 "format": 34359742487,
 "index_count": 36,
 "index_data": PackedByteArray(0, 0, 1, 0, 2, 0, 0, 0, 2, 0, 3, 0, 4, 0, 5, 0, 6, 0, 4, 0, 6, 0, 7, 0, 8, 0, 9, 0, 10, 0, 8, 0, 10, 0, 11, 0, 12, 0, 13, 0, 14, 0, 12, 0, 14, 0, 15, 0, 16, 0, 17, 0, 18, 0, 16, 0, 18, 0, 19, 0, 20, 0, 21, 0, 22, 0, 20, 0, 22, 0, 23, 0),
-"material": SubResource("StandardMaterial3D_0s27w"),
-"name": "metal/metal_1",
+"material": SubResource("StandardMaterial3D_bsm28"),
+"name": "asphalt/asphalt_1",
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
 "vertex_count": 24,
-"vertex_data": PackedByteArray(0, 0, 0, 192, 154, 153, 25, 64, 205, 204, 76, 190, 0, 0, 0, 192, 154, 153, 25, 192, 205, 204, 76, 190, 0, 0, 0, 64, 154, 153, 25, 192, 205, 204, 76, 190, 0, 0, 0, 64, 154, 153, 25, 64, 205, 204, 76, 190, 0, 0, 0, 192, 154, 153, 25, 64, 205, 204, 76, 190, 0, 0, 0, 192, 154, 153, 25, 64, 205, 204, 76, 62, 0, 0, 0, 192, 154, 153, 25, 192, 205, 204, 76, 62, 0, 0, 0, 192, 154, 153, 25, 192, 205, 204, 76, 190, 0, 0, 0, 64, 154, 153, 25, 192, 205, 204, 76, 190, 0, 0, 0, 192, 154, 153, 25, 192, 205, 204, 76, 190, 0, 0, 0, 192, 154, 153, 25, 192, 205, 204, 76, 62, 0, 0, 0, 64, 154, 153, 25, 192, 205, 204, 76, 62, 0, 0, 0, 64, 154, 153, 25, 64, 205, 204, 76, 190, 0, 0, 0, 64, 154, 153, 25, 64, 205, 204, 76, 62, 0, 0, 0, 192, 154, 153, 25, 64, 205, 204, 76, 62, 0, 0, 0, 192, 154, 153, 25, 64, 205, 204, 76, 190, 0, 0, 0, 64, 154, 153, 25, 64, 205, 204, 76, 190, 0, 0, 0, 64, 154, 153, 25, 192, 205, 204, 76, 190, 0, 0, 0, 64, 154, 153, 25, 192, 205, 204, 76, 62, 0, 0, 0, 64, 154, 153, 25, 64, 205, 204, 76, 62, 0, 0, 0, 192, 154, 153, 25, 64, 205, 204, 76, 62, 0, 0, 0, 64, 154, 153, 25, 64, 205, 204, 76, 62, 0, 0, 0, 64, 154, 153, 25, 192, 205, 204, 76, 62, 0, 0, 0, 192, 154, 153, 25, 192, 205, 204, 76, 62, 255, 255, 255, 255, 0, 0, 255, 191, 255, 255, 255, 255, 0, 0, 255, 191, 255, 255, 255, 255, 0, 0, 255, 191, 255, 255, 255, 255, 0, 0, 255, 191, 0, 0, 255, 127, 255, 127, 255, 191, 0, 0, 255, 127, 255, 127, 255, 191, 0, 0, 255, 127, 255, 127, 255, 191, 0, 0, 255, 127, 255, 127, 255, 191, 255, 127, 0, 0, 255, 255, 255, 255, 255, 127, 0, 0, 255, 255, 255, 255, 255, 127, 0, 0, 255, 255, 255, 255, 255, 127, 0, 0, 255, 255, 255, 255, 255, 127, 255, 255, 255, 127, 255, 191, 255, 127, 255, 255, 255, 127, 255, 191, 255, 127, 255, 255, 255, 127, 255, 191, 255, 127, 255, 255, 255, 127, 255, 191, 255, 255, 255, 127, 255, 255, 255, 255, 255, 255, 255, 127, 255, 255, 255, 255, 255, 255, 255, 127, 255, 255, 255, 255, 255, 255, 255, 127, 255, 255, 255, 255, 255, 127, 255, 127, 255, 255, 255, 191, 255, 127, 255, 127, 255, 255, 255, 191, 255, 127, 255, 127, 255, 255, 255, 191, 255, 127, 255, 127, 255, 255, 255, 191)
+"vertex_data": PackedByteArray(102, 102, 158, 193, 205, 204, 204, 62, 0, 0, 112, 193, 102, 102, 158, 193, 205, 204, 204, 190, 0, 0, 112, 193, 102, 102, 158, 65, 205, 204, 204, 190, 0, 0, 112, 193, 102, 102, 158, 65, 205, 204, 204, 62, 0, 0, 112, 193, 102, 102, 158, 193, 205, 204, 204, 62, 0, 0, 112, 193, 102, 102, 158, 193, 205, 204, 204, 62, 0, 0, 112, 65, 102, 102, 158, 193, 205, 204, 204, 190, 0, 0, 112, 65, 102, 102, 158, 193, 205, 204, 204, 190, 0, 0, 112, 193, 102, 102, 158, 65, 205, 204, 204, 190, 0, 0, 112, 193, 102, 102, 158, 193, 205, 204, 204, 190, 0, 0, 112, 193, 102, 102, 158, 193, 205, 204, 204, 190, 0, 0, 112, 65, 102, 102, 158, 65, 205, 204, 204, 190, 0, 0, 112, 65, 102, 102, 158, 65, 205, 204, 204, 62, 0, 0, 112, 193, 102, 102, 158, 65, 205, 204, 204, 62, 0, 0, 112, 65, 102, 102, 158, 193, 205, 204, 204, 62, 0, 0, 112, 65, 102, 102, 158, 193, 205, 204, 204, 62, 0, 0, 112, 193, 102, 102, 158, 65, 205, 204, 204, 62, 0, 0, 112, 193, 102, 102, 158, 65, 205, 204, 204, 190, 0, 0, 112, 193, 102, 102, 158, 65, 205, 204, 204, 190, 0, 0, 112, 65, 102, 102, 158, 65, 205, 204, 204, 62, 0, 0, 112, 65, 102, 102, 158, 193, 205, 204, 204, 62, 0, 0, 112, 65, 102, 102, 158, 65, 205, 204, 204, 62, 0, 0, 112, 65, 102, 102, 158, 65, 205, 204, 204, 190, 0, 0, 112, 65, 102, 102, 158, 193, 205, 204, 204, 190, 0, 0, 112, 65, 255, 255, 255, 255, 0, 0, 255, 191, 255, 255, 255, 255, 0, 0, 255, 191, 255, 255, 255, 255, 0, 0, 255, 191, 255, 255, 255, 255, 0, 0, 255, 191, 0, 0, 255, 127, 255, 127, 255, 191, 0, 0, 255, 127, 255, 127, 255, 191, 0, 0, 255, 127, 255, 127, 255, 191, 0, 0, 255, 127, 255, 127, 255, 191, 255, 127, 0, 0, 255, 255, 255, 255, 255, 127, 0, 0, 255, 255, 255, 255, 255, 127, 0, 0, 255, 255, 255, 255, 255, 127, 0, 0, 255, 255, 255, 255, 255, 127, 255, 255, 255, 127, 255, 191, 255, 127, 255, 255, 255, 127, 255, 191, 255, 127, 255, 255, 255, 127, 255, 191, 255, 127, 255, 255, 255, 127, 255, 191, 255, 255, 255, 127, 255, 255, 255, 255, 255, 255, 255, 127, 255, 255, 255, 255, 255, 255, 255, 127, 255, 255, 255, 255, 255, 255, 255, 127, 255, 255, 255, 255, 255, 127, 255, 127, 255, 255, 255, 191, 255, 127, 255, 127, 255, 255, 255, 191, 255, 127, 255, 127, 255, 255, 255, 191, 255, 127, 255, 127, 255, 255, 255, 191)
 }]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_7vna8"]
+points = PackedVector3Array(-19.8, 0.4, -15, -19.8, -0.4, -15, 19.8, -0.4, -15, 19.8, 0.4, -15, -19.8, 0.4, 15, -19.8, -0.4, 15, 19.8, -0.4, 15, 19.8, 0.4, 15)
 
 [node name="ballistic_testing" type="Node3D"]
 script = ExtResource("1_gbeur")
@@ -303,7 +153,7 @@ size = 5.0
 [node name="AK47-Projectile" parent="." instance=ExtResource("2_cebdm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.171724, 0.000634313, -2.05242)
 gravity_scale = 0.0
-_bullet_scene = SubResource("PackedScene_itimk")
+_bullet_scene = ExtResource("3_qi338")
 _gun_stats = SubResource("Resource_20lvj")
 
 [node name="FireTimer" type="Timer" parent="."]
@@ -315,69 +165,101 @@ transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.1913
 script = ExtResource("7_qt56y")
 map_file = "C:/Godot Projects/UESRL/unnamed-extraction-shooter-roguelike/levels/ballistic_test.map"
 inverse_scale_factor = 40.0
-entity_fgd = ExtResource("8_1jxhf")
+entity_fgd = ExtResource("8_3s7ds")
 base_texture_dir = "res://levels/textures"
 texture_file_extensions = PackedStringArray("png", "jpg", "jpeg", "bmp")
 default_material = SubResource("StandardMaterial3D_i0rsr")
 
-[node name="entity_0_worldspawn" type="StaticBody3D" parent="QodotMap"]
-
-[node name="entity_1_ballistic_entity" type="Node3D" parent="QodotMap"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.4, -0.4, 12.6)
+[node name="entity_0_worldspawn" type="Node3D" parent="QodotMap"]
 script = ExtResource("9_x5xon")
 properties = {
-"armor_rating": "6",
-"classname": "ballistic_entity",
-"pen_ratio": "0.8"
+"_tb_def": "builtin:uesrl_fgd_entities.fgd",
+"_tb_mod": "levels",
+"_tb_textures": "textures/asphalt;textures/brick;textures/concrete;textures/fabric;textures/glass;textures/ground;textures/marble;textures/metal;textures/plants;textures/plaster;textures/plastic;textures/roof;textures/tile;textures/wood",
+"classname": "worldspawn",
+"mapversion": "220"
 }
 
-[node name="entity_1_mesh_instance" type="MeshInstance3D" parent="QodotMap/entity_1_ballistic_entity"]
-cast_shadow = 2
-gi_mode = 0
-mesh = SubResource("ArrayMesh_4pxg0")
-
-[node name="entity_2_ballistic_entity" type="Node3D" parent="QodotMap"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 2.4, 4.6)
-script = ExtResource("9_x5xon")
-properties = {
-"armor_rating": "1",
-"classname": "ballistic_entity",
-"impact_hit_scene_path": "res://Scenes/effects/bullet_hit_wood.tscn",
-"pen_ratio": ".8"
-}
-
-[node name="entity_2_mesh_instance" type="MeshInstance3D" parent="QodotMap/entity_2_ballistic_entity"]
-cast_shadow = 2
-gi_mode = 0
-mesh = SubResource("ArrayMesh_ytbem")
-
-[node name="entity_3_ballistic_entity" type="Node3D" parent="QodotMap"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 2.4, 6.2)
-script = ExtResource("9_x5xon")
-properties = {
-"armor_rating": "5",
-"classname": "ballistic_entity",
-"impact_hit_scene_path": "res://Scenes/effects/bullet_hit_stone.tres",
-"pen_ratio": ".5"
-}
-
-[node name="entity_3_mesh_instance" type="MeshInstance3D" parent="QodotMap/entity_3_ballistic_entity"]
-cast_shadow = 2
-gi_mode = 0
-mesh = SubResource("ArrayMesh_byeh7")
-
-[node name="entity_4_ballistic_entity" type="Node3D" parent="QodotMap"]
+[node name="entity_1_geo_ballistic_solid" type="StaticBody3D" parent="QodotMap"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 2.4, 7.8)
-script = ExtResource("9_x5xon")
+collision_layer = 3
+script = ExtResource("10_0hi85")
 properties = {
 "armor_rating": "10",
-"classname": "ballistic_entity",
+"classname": "geo_ballistic_solid",
+"game_material_info_path": "res://levels/game_material_info/metal.tres",
 "pen_ratio": ".5"
 }
+_pen_ratio = 0.5
+_armor_rating = 10
+_bullet_hole_scene = ExtResource("11_yjd08")
+_impact_hit_scene = ExtResource("12_p6nk0")
+_footstep_sound = ExtResource("13_okg0b")
 
-[node name="entity_4_mesh_instance" type="MeshInstance3D" parent="QodotMap/entity_4_ballistic_entity"]
-cast_shadow = 2
-gi_mode = 0
-mesh = SubResource("ArrayMesh_daws8")
+[node name="entity_1_mesh_instance" type="MeshInstance3D" parent="QodotMap/entity_1_geo_ballistic_solid"]
+mesh = SubResource("ArrayMesh_knf8k")
+
+[node name="entity_1_brush_0_collision_shape" type="CollisionShape3D" parent="QodotMap/entity_1_geo_ballistic_solid"]
+shape = SubResource("ConvexPolygonShape3D_an7m5")
+
+[node name="entity_2_geo_ballistic_solid" type="StaticBody3D" parent="QodotMap"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 2.4, 4.6)
+collision_layer = 3
+script = ExtResource("10_0hi85")
+properties = {
+"classname": "geo_ballistic_solid",
+"game_material_info_path": "res://levels/game_material_info/wood.tres"
+}
+_pen_ratio = 0.8
+_armor_rating = 2
+_bullet_hole_scene = ExtResource("11_yjd08")
+_impact_hit_scene = ExtResource("16_a0ajw")
+_footstep_sound = ExtResource("17_4grip")
+
+[node name="entity_2_mesh_instance" type="MeshInstance3D" parent="QodotMap/entity_2_geo_ballistic_solid"]
+mesh = SubResource("ArrayMesh_xu8mb")
+
+[node name="entity_2_brush_0_collision_shape" type="CollisionShape3D" parent="QodotMap/entity_2_geo_ballistic_solid"]
+shape = SubResource("ConvexPolygonShape3D_ns8md")
+
+[node name="entity_3_geo_ballistic_solid" type="StaticBody3D" parent="QodotMap"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 2.4, 6.2)
+collision_layer = 3
+script = ExtResource("10_0hi85")
+properties = {
+"classname": "geo_ballistic_solid",
+"game_material_info_path": "res://levels/game_material_info/brick.tres"
+}
+_pen_ratio = 0.6
+_armor_rating = 6
+_bullet_hole_scene = ExtResource("11_yjd08")
+_impact_hit_scene = ExtResource("19_685x4")
+_footstep_sound = ExtResource("13_okg0b")
+
+[node name="entity_3_mesh_instance" type="MeshInstance3D" parent="QodotMap/entity_3_geo_ballistic_solid"]
+mesh = SubResource("ArrayMesh_loecn")
+
+[node name="entity_3_brush_0_collision_shape" type="CollisionShape3D" parent="QodotMap/entity_3_geo_ballistic_solid"]
+shape = SubResource("ConvexPolygonShape3D_0kjo3")
+
+[node name="entity_4_geo_ballistic_solid" type="StaticBody3D" parent="QodotMap"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.4, -0.4, 12.6)
+collision_layer = 3
+script = ExtResource("10_0hi85")
+properties = {
+"classname": "geo_ballistic_solid",
+"game_material_info_path": "res://levels/game_material_info/stone.tres"
+}
+_pen_ratio = 0.4
+_armor_rating = 8
+_bullet_hole_scene = ExtResource("11_yjd08")
+_impact_hit_scene = ExtResource("19_685x4")
+_footstep_sound = ExtResource("13_okg0b")
+
+[node name="entity_4_mesh_instance" type="MeshInstance3D" parent="QodotMap/entity_4_geo_ballistic_solid"]
+mesh = SubResource("ArrayMesh_7grt2")
+
+[node name="entity_4_brush_0_collision_shape" type="CollisionShape3D" parent="QodotMap/entity_4_geo_ballistic_solid"]
+shape = SubResource("ConvexPolygonShape3D_7vna8")
 
 [connection signal="timeout" from="FireTimer" to="." method="_on_fire_timer_timeout"]
