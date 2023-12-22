@@ -1,38 +1,59 @@
+@tool
+class_name AreaEnemySpawn
 extends Area3D
 
+@export var properties: Dictionary :
+	get:
+		return properties
+	set(new_properties):
+		if(properties != new_properties):
+			properties = new_properties
+			update_properties()
+
+@export var biome_index:int
+@export var tier_index:int
 @export var min_spawned:int
 @export var max_spawned:int
-@export var spawn_info:Array[SpawnInformation]
 
-@onready var area:BoxShape3D = $CollisionShape3D.shape
+func update_properties():
+	if 'biome' in properties:
+		biome_index = int(properties['biome'])	
+	if 'tier' in properties:
+		tier_index = int(properties['tier'])
+	if 'min_spawned' in properties:
+		min_spawned = int(properties['min_spawned'])
+	if 'max_spawned' in properties:
+		max_spawned = int(properties['max_spawned'])
 
-var model_shuffle_bag:Array[SpawnInformation] = []
-var test:Array[String] = []
-var current_shuffle_bag:Array[SpawnInformation] = []
+var model_shuffle_bag:Array[EnemySpawnInformation] = []
+var current_shuffle_bag:Array[EnemySpawnInformation] = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	add_to_group("enemy_spawn_area")
+	
+	var enemy_spawn_mapping:EnemySpawnMapping = EnemySpawnManager.get_enemy_spawn_mapping(biome_index,tier_index)
+	
 	randomize()
 	var number_to_spawn = randi_range(min_spawned,max_spawned)
-	
-	var x_size = area.size.x
-	var z_size = area.size.z
+	var aabb = Helpers.get_aabb_of_node(self)
+	var x_size = aabb.size.x
+	var z_size = aabb.size.z
 	
 	var spawned_locations:Array[Vector3] = []
 	var spawned_test_radii:Array[float] = []
 	
 	#generate shufflebags
-	for i in range(spawn_info.size()):
-		var info = spawn_info[i]
-		for j in range(info.spawn_weight):
-			model_shuffle_bag.append(info.duplicate())
-			test.append(info.name)
+	for i in range(enemy_spawn_mapping.spawn_weights.size()):
+		var weight:EnemySpawnWeight = enemy_spawn_mapping.spawn_weights[i]
+		for j in range(weight.weight):
+			model_shuffle_bag.append(weight.enemy.duplicate())
 	
 	current_shuffle_bag = model_shuffle_bag.duplicate(true)
 	current_shuffle_bag.shuffle()
 	
 	for i in range(number_to_spawn):
-		var info = get_spawn_info()
+		var info:EnemySpawnInformation = get_spawn_info()
 		
 		var final_pos:Vector3
 		var remaining_tries = 5
@@ -56,7 +77,7 @@ func _ready():
 				remaining_tries -= 1
 
 
-func get_spawn_info():
+func get_spawn_info() -> EnemySpawnInformation:
 	if current_shuffle_bag.is_empty():
 		current_shuffle_bag = model_shuffle_bag.duplicate(true)
 		current_shuffle_bag.shuffle()

@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="QodotFGDFile" load_steps=7 format=3 uid="uid://dr0etevtbyukb"]
+[gd_resource type="Resource" script_class="QodotFGDFile" load_steps=8 format=3 uid="uid://dr0etevtbyukb"]
 
 [ext_resource type="Resource" uid="uid://7ku1upps1bda" path="res://levels/entities/func_base.tres" id="1_nvqrx"]
 [ext_resource type="Script" path="res://addons/qodot/src/resources/game-definitions/fgd/qodot_fgd_file.gd" id="1_stowr"]
@@ -6,6 +6,7 @@
 [ext_resource type="Resource" uid="uid://puiwokbb5q7r" path="res://levels/entities/shadow_base.tres" id="3_k4xej"]
 [ext_resource type="Resource" uid="uid://cj5mwfh4ud4us" path="res://levels/entities/target.tres" id="4_7ra6j"]
 [ext_resource type="Resource" uid="uid://doitqv8ilkq7k" path="res://levels/entities/geo_ballistic_solid.tres" id="5_pn05p"]
+[ext_resource type="Resource" uid="uid://cjgo41cd3dare" path="res://levels/entities/area_enemy_spawn.tres" id="6_gj7jd"]
 
 [resource]
 script = ExtResource("1_stowr")
@@ -13,4 +14,4 @@ export_file = false
 target_folder = ""
 fgd_name = "uesrl_fgd_entities"
 base_fgd_files = Array[Resource]([])
-entity_definitions = Array[Resource]([ExtResource("1_nvqrx"), ExtResource("2_pfojj"), ExtResource("3_k4xej"), ExtResource("4_7ra6j"), ExtResource("5_pn05p")])
+entity_definitions = Array[Resource]([ExtResource("1_nvqrx"), ExtResource("2_pfojj"), ExtResource("3_k4xej"), ExtResource("4_7ra6j"), ExtResource("5_pn05p"), ExtResource("6_gj7jd")])

@@ -4,7 +4,7 @@
 {
 "mapversion" "220"
 "classname" "worldspawn"
-"_tb_textures" "textures/asphalt;textures/brick;textures/concrete;textures/fabric;textures/ground;textures/marble;textures/metal;textures/plants;textures/plaster;textures/plastic;textures/tile;textures/wood"
+"_tb_textures" "textures/asphalt;textures/brick;textures/concrete;textures/fabric;textures/glass;textures/ground;textures/marble;textures/metal;textures/plants;textures/plaster;textures/plastic;textures/roof;textures/special;textures/tile;textures/wood"
 "_tb_mod" "levels"
 }
 // entity 1
@@ -8500,13 +8500,30 @@
 }
 // entity 59
 {
+"classname" "area_enemy_spawn"
+"test" "value"
+"biome" "0"
+"tier" "0"
+"max_spawned" "5"
+// brush 0
+{
+( 192 -288 -128 ) ( 192 -287 -128 ) ( 192 -288 -127 ) special/skip [ 0 -1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( 192 -288 -128 ) ( 192 -288 -127 ) ( 193 -288 -128 ) special/skip [ 1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( 192 -288 -128 ) ( 193 -288 -128 ) ( 192 -287 -128 ) special/skip [ -1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( 496 0 -16 ) ( 496 1 -16 ) ( 497 0 -16 ) special/skip [ 1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( 496 0 -112 ) ( 497 0 -112 ) ( 496 0 -111 ) special/skip [ -1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( 496 0 -112 ) ( 496 0 -111 ) ( 496 1 -112 ) special/skip [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+}
+}
+// entity 60
+{
 "classname" "func_group"
 "_tb_type" "_tb_layer"
 "_tb_name" "upstairs_bathroom"
 "_tb_id" "1"
 "_tb_layer_sort_index" "0"
 }
-// entity 60
+// entity 61
 {
 "classname" "func_group"
 "_tb_type" "_tb_layer"
@@ -8514,7 +8531,7 @@
 "_tb_id" "2"
 "_tb_layer_sort_index" "1"
 }
-// entity 61
+// entity 62
 {
 "classname" "func_group"
 "_tb_type" "_tb_layer"
@@ -8522,7 +8539,7 @@
 "_tb_id" "20"
 "_tb_layer_sort_index" "2"
 }
-// entity 62
+// entity 63
 {
 "classname" "func_group"
 "_tb_type" "_tb_layer"
