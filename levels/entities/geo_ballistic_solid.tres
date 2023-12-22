@@ -22,9 +22,16 @@ description = "Solid geometry with ballistic penetration"
 qodot_internal = false
 base_classes = Array[Resource]([])
 class_properties = {
+"game_material_info": {
+"brick": 0,
+"metal": 1,
+"stone": 2,
+"wood": 3
+},
 "game_material_info_path": ""
 }
 class_property_descriptions = {
+"game_material_info": "List of GameMaterialInfo objects. Keep the order in sync with the GameMaterialInfoList or the linkage will break",
 "game_material_info_path": "godot path to the GameMaterialInfo file for this brush"
 }
 meta_properties = {

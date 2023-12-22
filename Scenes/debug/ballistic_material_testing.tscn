@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://bose3ay7o32xw"]
+[gd_scene load_steps=35 format=3 uid="uid://bose3ay7o32xw"]
 
 [ext_resource type="Script" path="res://levels/ballistic_testing.gd" id="1_gbeur"]
 [ext_resource type="PackedScene" uid="uid://dr48wela8mtxd" path="res://Scenes/items/weapons/easi_early_service_rifles/zs_52/zs_52.tscn" id="2_cebdm"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://Scenes/items/weapons/gun_stats.gd" id="4_opxar"]
 [ext_resource type="Script" path="res://addons/qodot/src/nodes/qodot_map.gd" id="7_qt56y"]
 [ext_resource type="Resource" uid="uid://dr0etevtbyukb" path="res://levels/entities/uesrl_fgd_entities.tres" id="8_3s7ds"]
+[ext_resource type="Material" uid="uid://c3acx86os52gf" path="res://levels/textures/qodot_default.tres" id="8_30jwu"]
 [ext_resource type="Script" path="res://addons/qodot/src/nodes/qodot_entity.gd" id="9_x5xon"]
 [ext_resource type="Script" path="res://levels/entities/geo_ballistic_solid.gd" id="10_0hi85"]
 [ext_resource type="Texture2D" uid="uid://2yar0fdlryun" path="res://levels/textures/asphalt/asphalt_1.png" id="10_eoss8"]
@@ -16,8 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://5n7aup1d2u20" path="res://Scenes/effects/bullet_hit_sparks.tscn" id="12_p6nk0"]
 [ext_resource type="AudioStream" uid="uid://bxakhll281jbw" path="res://Scenes/effects/sounds/steps/footstep_concrete_001.ogg" id="13_okg0b"]
 [ext_resource type="Texture2D" uid="uid://h2humy226aea" path="res://levels/textures/metal/metal_1.png" id="13_t7kyq"]
-[ext_resource type="PackedScene" uid="uid://c30xv3xr7rlmy" path="res://Scenes/effects/bullet_hit_wood.tscn" id="16_a0ajw"]
-[ext_resource type="AudioStream" uid="uid://bpl1v3m2xtfwo" path="res://Scenes/effects/sounds/steps/footstep_wood_000.ogg" id="17_4grip"]
+[ext_resource type="Resource" uid="uid://qumpyqn8mcmo" path="res://levels/game_material_info/uesrl_game_material_info_list.tres" id="14_tdacx"]
 [ext_resource type="PackedScene" uid="uid://b7x11nf8gbi6e" path="res://Scenes/effects/bullet_hit_stone.tscn" id="19_685x4"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_0dgg1"]
@@ -39,19 +39,18 @@ moa = 5.0
 turn_speed = 25.0
 ammo_type = ExtResource("3_8bfkd")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_i0rsr"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dx8oq"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hkji3"]
 albedo_texture = ExtResource("13_t7kyq")
+texture_filter = 0
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_knf8k"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_6k02i"]
 _surfaces = [{
 "aabb": AABB(-2, -2.4, -0.2, 4, 4.80001, 0.4),
 "attribute_data": PackedByteArray(0, 0, 0, 0, 0, 0, 192, 191, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 160, 191, 0, 0, 0, 0, 0, 0, 160, 191, 0, 0, 192, 191, 0, 0, 24, 64, 0, 0, 192, 191, 0, 0, 32, 64, 0, 0, 192, 191, 0, 0, 32, 64, 0, 0, 0, 0, 0, 0, 24, 64, 0, 0, 0, 0, 0, 0, 24, 192, 0, 0, 160, 191, 0, 0, 24, 192, 0, 0, 0, 0, 0, 0, 32, 192, 0, 0, 0, 0, 0, 0, 32, 192, 0, 0, 160, 191, 0, 0, 24, 64, 0, 0, 160, 191, 0, 0, 32, 64, 0, 0, 160, 191, 0, 0, 32, 64, 0, 0, 0, 0, 0, 0, 24, 64, 0, 0, 0, 0, 0, 0, 24, 192, 0, 0, 192, 191, 0, 0, 24, 192, 0, 0, 0, 0, 0, 0, 32, 192, 0, 0, 0, 0, 0, 0, 32, 192, 0, 0, 192, 191, 0, 0, 0, 0, 0, 0, 192, 191, 0, 0, 160, 63, 0, 0, 192, 191, 0, 0, 160, 63, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 "format": 34359742487,
 "index_count": 36,
 "index_data": PackedByteArray(0, 0, 1, 0, 2, 0, 0, 0, 2, 0, 3, 0, 4, 0, 5, 0, 6, 0, 4, 0, 6, 0, 7, 0, 8, 0, 9, 0, 10, 0, 8, 0, 10, 0, 11, 0, 12, 0, 13, 0, 14, 0, 12, 0, 14, 0, 15, 0, 16, 0, 17, 0, 18, 0, 16, 0, 18, 0, 19, 0, 20, 0, 21, 0, 22, 0, 20, 0, 22, 0, 23, 0),
-"material": SubResource("StandardMaterial3D_dx8oq"),
+"material": SubResource("StandardMaterial3D_hkji3"),
 "name": "metal/metal_1",
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
@@ -59,41 +58,21 @@ _surfaces = [{
 "vertex_data": PackedByteArray(0, 0, 0, 192, 154, 153, 25, 64, 205, 204, 76, 190, 0, 0, 0, 192, 154, 153, 25, 192, 205, 204, 76, 190, 0, 0, 0, 64, 154, 153, 25, 192, 205, 204, 76, 190, 0, 0, 0, 64, 154, 153, 25, 64, 205, 204, 76, 190, 0, 0, 0, 192, 154, 153, 25, 64, 205, 204, 76, 190, 0, 0, 0, 192, 154, 153, 25, 64, 205, 204, 76, 62, 0, 0, 0, 192, 154, 153, 25, 192, 205, 204, 76, 62, 0, 0, 0, 192, 154, 153, 25, 192, 205, 204, 76, 190, 0, 0, 0, 64, 154, 153, 25, 192, 205, 204, 76, 190, 0, 0, 0, 192, 154, 153, 25, 192, 205, 204, 76, 190, 0, 0, 0, 192, 154, 153, 25, 192, 205, 204, 76, 62, 0, 0, 0, 64, 154, 153, 25, 192, 205, 204, 76, 62, 0, 0, 0, 64, 154, 153, 25, 64, 205, 204, 76, 190, 0, 0, 0, 64, 154, 153, 25, 64, 205, 204, 76, 62, 0, 0, 0, 192, 154, 153, 25, 64, 205, 204, 76, 62, 0, 0, 0, 192, 154, 153, 25, 64, 205, 204, 76, 190, 0, 0, 0, 64, 154, 153, 25, 64, 205, 204, 76, 190, 0, 0, 0, 64, 154, 153, 25, 192, 205, 204, 76, 190, 0, 0, 0, 64, 154, 153, 25, 192, 205, 204, 76, 62, 0, 0, 0, 64, 154, 153, 25, 64, 205, 204, 76, 62, 0, 0, 0, 192, 154, 153, 25, 64, 205, 204, 76, 62, 0, 0, 0, 64, 154, 153, 25, 64, 205, 204, 76, 62, 0, 0, 0, 64, 154, 153, 25, 192, 205, 204, 76, 62, 0, 0, 0, 192, 154, 153, 25, 192, 205, 204, 76, 62, 255, 255, 255, 255, 0, 0, 255, 191, 255, 255, 255, 255, 0, 0, 255, 191, 255, 255, 255, 255, 0, 0, 255, 191, 255, 255, 255, 255, 0, 0, 255, 191, 0, 0, 255, 127, 255, 127, 255, 191, 0, 0, 255, 127, 255, 127, 255, 191, 0, 0, 255, 127, 255, 127, 255, 191, 0, 0, 255, 127, 255, 127, 255, 191, 255, 127, 0, 0, 255, 255, 255, 255, 255, 127, 0, 0, 255, 255, 255, 255, 255, 127, 0, 0, 255, 255, 255, 255, 255, 127, 0, 0, 255, 255, 255, 255, 255, 127, 255, 255, 255, 127, 255, 191, 255, 127, 255, 255, 255, 127, 255, 191, 255, 127, 255, 255, 255, 127, 255, 191, 255, 127, 255, 255, 255, 127, 255, 191, 255, 255, 255, 127, 255, 255, 255, 255, 255, 255, 255, 127, 255, 255, 255, 255, 255, 255, 255, 127, 255, 255, 255, 255, 255, 255, 255, 127, 255, 255, 255, 255, 255, 127, 255, 127, 255, 255, 255, 191, 255, 127, 255, 127, 255, 255, 255, 191, 255, 127, 255, 127, 255, 255, 255, 191, 255, 127, 255, 127, 255, 255, 255, 191)
 }]
 
-[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_an7m5"]
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_dm1r2"]
 points = PackedVector3Array(-2, 2.4, -0.2, -2, -2.4, -0.2, 2, -2.4, -0.2, 2, 2.4, -0.2, -2, 2.4, 0.2, -2, -2.4, 0.2, 2, -2.4, 0.2, 2, 2.4, 0.2)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oirbs"]
-albedo_texture = ExtResource("11_4xtol")
-
-[sub_resource type="ArrayMesh" id="ArrayMesh_xu8mb"]
-_surfaces = [{
-"aabb": AABB(-2, -2.4, -0.2, 4, 4.80001, 0.4),
-"attribute_data": PackedByteArray(0, 0, 0, 0, 0, 0, 192, 191, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 160, 191, 0, 0, 0, 0, 0, 0, 160, 191, 0, 0, 192, 191, 0, 0, 176, 63, 0, 0, 192, 191, 0, 0, 192, 63, 0, 0, 192, 191, 0, 0, 192, 63, 0, 0, 0, 0, 0, 0, 176, 63, 0, 0, 0, 0, 0, 0, 176, 191, 0, 0, 160, 191, 0, 0, 176, 191, 0, 0, 0, 0, 0, 0, 192, 191, 0, 0, 0, 0, 0, 0, 192, 191, 0, 0, 160, 191, 0, 0, 176, 63, 0, 0, 160, 191, 0, 0, 192, 63, 0, 0, 160, 191, 0, 0, 192, 63, 0, 0, 0, 0, 0, 0, 176, 63, 0, 0, 0, 0, 0, 0, 176, 191, 0, 0, 192, 191, 0, 0, 176, 191, 0, 0, 0, 0, 0, 0, 192, 191, 0, 0, 0, 0, 0, 0, 192, 191, 0, 0, 192, 191, 0, 0, 0, 0, 0, 0, 192, 191, 0, 0, 160, 63, 0, 0, 192, 191, 0, 0, 160, 63, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-"format": 34359742487,
-"index_count": 36,
-"index_data": PackedByteArray(0, 0, 1, 0, 2, 0, 0, 0, 2, 0, 3, 0, 4, 0, 5, 0, 6, 0, 4, 0, 6, 0, 7, 0, 8, 0, 9, 0, 10, 0, 8, 0, 10, 0, 11, 0, 12, 0, 13, 0, 14, 0, 12, 0, 14, 0, 15, 0, 16, 0, 17, 0, 18, 0, 16, 0, 18, 0, 19, 0, 20, 0, 21, 0, 22, 0, 20, 0, 22, 0, 23, 0),
-"material": SubResource("StandardMaterial3D_oirbs"),
-"name": "wood/wood_1",
-"primitive": 3,
-"uv_scale": Vector4(0, 0, 0, 0),
-"vertex_count": 24,
-"vertex_data": PackedByteArray(0, 0, 0, 192, 154, 153, 25, 64, 205, 204, 76, 190, 0, 0, 0, 192, 154, 153, 25, 192, 205, 204, 76, 190, 0, 0, 0, 64, 154, 153, 25, 192, 205, 204, 76, 190, 0, 0, 0, 64, 154, 153, 25, 64, 205, 204, 76, 190, 0, 0, 0, 192, 154, 153, 25, 64, 205, 204, 76, 190, 0, 0, 0, 192, 154, 153, 25, 64, 205, 204, 76, 62, 0, 0, 0, 192, 154, 153, 25, 192, 205, 204, 76, 62, 0, 0, 0, 192, 154, 153, 25, 192, 205, 204, 76, 190, 0, 0, 0, 64, 154, 153, 25, 192, 205, 204, 76, 190, 0, 0, 0, 192, 154, 153, 25, 192, 205, 204, 76, 190, 0, 0, 0, 192, 154, 153, 25, 192, 205, 204, 76, 62, 0, 0, 0, 64, 154, 153, 25, 192, 205, 204, 76, 62, 0, 0, 0, 64, 154, 153, 25, 64, 205, 204, 76, 190, 0, 0, 0, 64, 154, 153, 25, 64, 205, 204, 76, 62, 0, 0, 0, 192, 154, 153, 25, 64, 205, 204, 76, 62, 0, 0, 0, 192, 154, 153, 25, 64, 205, 204, 76, 190, 0, 0, 0, 64, 154, 153, 25, 64, 205, 204, 76, 190, 0, 0, 0, 64, 154, 153, 25, 192, 205, 204, 76, 190, 0, 0, 0, 64, 154, 153, 25, 192, 205, 204, 76, 62, 0, 0, 0, 64, 154, 153, 25, 64, 205, 204, 76, 62, 0, 0, 0, 192, 154, 153, 25, 64, 205, 204, 76, 62, 0, 0, 0, 64, 154, 153, 25, 64, 205, 204, 76, 62, 0, 0, 0, 64, 154, 153, 25, 192, 205, 204, 76, 62, 0, 0, 0, 192, 154, 153, 25, 192, 205, 204, 76, 62, 255, 255, 255, 255, 0, 0, 255, 191, 255, 255, 255, 255, 0, 0, 255, 191, 255, 255, 255, 255, 0, 0, 255, 191, 255, 255, 255, 255, 0, 0, 255, 191, 0, 0, 255, 127, 255, 127, 255, 191, 0, 0, 255, 127, 255, 127, 255, 191, 0, 0, 255, 127, 255, 127, 255, 191, 0, 0, 255, 127, 255, 127, 255, 191, 255, 127, 0, 0, 255, 255, 255, 255, 255, 127, 0, 0, 255, 255, 255, 255, 255, 127, 0, 0, 255, 255, 255, 255, 255, 127, 0, 0, 255, 255, 255, 255, 255, 127, 255, 255, 255, 127, 255, 191, 255, 127, 255, 255, 255, 127, 255, 191, 255, 127, 255, 255, 255, 127, 255, 191, 255, 127, 255, 255, 255, 127, 255, 191, 255, 255, 255, 127, 255, 255, 255, 255, 255, 255, 255, 127, 255, 255, 255, 255, 255, 255, 255, 127, 255, 255, 255, 255, 255, 255, 255, 127, 255, 255, 255, 255, 255, 127, 255, 127, 255, 255, 255, 191, 255, 127, 255, 127, 255, 255, 255, 191, 255, 127, 255, 127, 255, 255, 255, 191, 255, 127, 255, 127, 255, 255, 255, 191)
-}]
-
-[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_ns8md"]
-points = PackedVector3Array(-2, 2.4, -0.2, -2, -2.4, -0.2, 2, -2.4, -0.2, 2, 2.4, -0.2, -2, 2.4, 0.2, -2, -2.4, 0.2, 2, -2.4, 0.2, 2, 2.4, 0.2)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_twl10"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6uhw4"]
 albedo_texture = ExtResource("12_4loe8")
+texture_filter = 0
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_loecn"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_tc8r8"]
 _surfaces = [{
 "aabb": AABB(-2, -2.4, -0.2, 4, 4.80001, 0.4),
 "attribute_data": PackedByteArray(0, 0, 0, 0, 0, 0, 192, 191, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 160, 191, 0, 0, 0, 0, 0, 0, 160, 191, 0, 0, 192, 191, 0, 0, 240, 63, 0, 0, 192, 191, 0, 0, 0, 64, 0, 0, 192, 191, 0, 0, 0, 64, 0, 0, 0, 0, 0, 0, 240, 63, 0, 0, 0, 0, 0, 0, 240, 191, 0, 0, 160, 191, 0, 0, 240, 191, 0, 0, 0, 0, 0, 0, 0, 192, 0, 0, 0, 0, 0, 0, 0, 192, 0, 0, 160, 191, 0, 0, 240, 63, 0, 0, 160, 191, 0, 0, 0, 64, 0, 0, 160, 191, 0, 0, 0, 64, 0, 0, 0, 0, 0, 0, 240, 63, 0, 0, 0, 0, 0, 0, 240, 191, 0, 0, 192, 191, 0, 0, 240, 191, 0, 0, 0, 0, 0, 0, 0, 192, 0, 0, 0, 0, 0, 0, 0, 192, 0, 0, 192, 191, 0, 0, 0, 0, 0, 0, 192, 191, 0, 0, 160, 63, 0, 0, 192, 191, 0, 0, 160, 63, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 "format": 34359742487,
 "index_count": 36,
 "index_data": PackedByteArray(0, 0, 1, 0, 2, 0, 0, 0, 2, 0, 3, 0, 4, 0, 5, 0, 6, 0, 4, 0, 6, 0, 7, 0, 8, 0, 9, 0, 10, 0, 8, 0, 10, 0, 11, 0, 12, 0, 13, 0, 14, 0, 12, 0, 14, 0, 15, 0, 16, 0, 17, 0, 18, 0, 16, 0, 18, 0, 19, 0, 20, 0, 21, 0, 22, 0, 20, 0, 22, 0, 23, 0),
-"material": SubResource("StandardMaterial3D_twl10"),
+"material": SubResource("StandardMaterial3D_6uhw4"),
 "name": "brick/brick_1",
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
@@ -101,20 +80,21 @@ _surfaces = [{
 "vertex_data": PackedByteArray(0, 0, 0, 192, 154, 153, 25, 64, 205, 204, 76, 190, 0, 0, 0, 192, 154, 153, 25, 192, 205, 204, 76, 190, 0, 0, 0, 64, 154, 153, 25, 192, 205, 204, 76, 190, 0, 0, 0, 64, 154, 153, 25, 64, 205, 204, 76, 190, 0, 0, 0, 192, 154, 153, 25, 64, 205, 204, 76, 190, 0, 0, 0, 192, 154, 153, 25, 64, 205, 204, 76, 62, 0, 0, 0, 192, 154, 153, 25, 192, 205, 204, 76, 62, 0, 0, 0, 192, 154, 153, 25, 192, 205, 204, 76, 190, 0, 0, 0, 64, 154, 153, 25, 192, 205, 204, 76, 190, 0, 0, 0, 192, 154, 153, 25, 192, 205, 204, 76, 190, 0, 0, 0, 192, 154, 153, 25, 192, 205, 204, 76, 62, 0, 0, 0, 64, 154, 153, 25, 192, 205, 204, 76, 62, 0, 0, 0, 64, 154, 153, 25, 64, 205, 204, 76, 190, 0, 0, 0, 64, 154, 153, 25, 64, 205, 204, 76, 62, 0, 0, 0, 192, 154, 153, 25, 64, 205, 204, 76, 62, 0, 0, 0, 192, 154, 153, 25, 64, 205, 204, 76, 190, 0, 0, 0, 64, 154, 153, 25, 64, 205, 204, 76, 190, 0, 0, 0, 64, 154, 153, 25, 192, 205, 204, 76, 190, 0, 0, 0, 64, 154, 153, 25, 192, 205, 204, 76, 62, 0, 0, 0, 64, 154, 153, 25, 64, 205, 204, 76, 62, 0, 0, 0, 192, 154, 153, 25, 64, 205, 204, 76, 62, 0, 0, 0, 64, 154, 153, 25, 64, 205, 204, 76, 62, 0, 0, 0, 64, 154, 153, 25, 192, 205, 204, 76, 62, 0, 0, 0, 192, 154, 153, 25, 192, 205, 204, 76, 62, 255, 255, 255, 255, 0, 0, 255, 191, 255, 255, 255, 255, 0, 0, 255, 191, 255, 255, 255, 255, 0, 0, 255, 191, 255, 255, 255, 255, 0, 0, 255, 191, 0, 0, 255, 127, 255, 127, 255, 191, 0, 0, 255, 127, 255, 127, 255, 191, 0, 0, 255, 127, 255, 127, 255, 191, 0, 0, 255, 127, 255, 127, 255, 191, 255, 127, 0, 0, 255, 255, 255, 255, 255, 127, 0, 0, 255, 255, 255, 255, 255, 127, 0, 0, 255, 255, 255, 255, 255, 127, 0, 0, 255, 255, 255, 255, 255, 127, 255, 255, 255, 127, 255, 191, 255, 127, 255, 255, 255, 127, 255, 191, 255, 127, 255, 255, 255, 127, 255, 191, 255, 127, 255, 255, 255, 127, 255, 191, 255, 255, 255, 127, 255, 255, 255, 255, 255, 255, 255, 127, 255, 255, 255, 255, 255, 255, 255, 127, 255, 255, 255, 255, 255, 255, 255, 127, 255, 255, 255, 255, 255, 127, 255, 127, 255, 255, 255, 191, 255, 127, 255, 127, 255, 255, 255, 191, 255, 127, 255, 127, 255, 255, 255, 191, 255, 127, 255, 127, 255, 255, 255, 191)
 }]
 
-[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_0kjo3"]
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_6sbyt"]
 points = PackedVector3Array(-2, 2.4, -0.2, -2, -2.4, -0.2, 2, -2.4, -0.2, 2, 2.4, -0.2, -2, 2.4, 0.2, -2, -2.4, 0.2, 2, -2.4, 0.2, 2, 2.4, 0.2)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bsm28"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h00so"]
 albedo_texture = ExtResource("10_eoss8")
+texture_filter = 0
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_7grt2"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_rerdg"]
 _surfaces = [{
 "aabb": AABB(-19.8, -0.4, -15, 39.6, 0.80001, 30),
 "attribute_data": PackedByteArray(0, 0, 64, 63, 0, 0, 0, 0, 0, 0, 64, 63, 0, 0, 128, 62, 0, 0, 58, 193, 0, 0, 128, 62, 0, 0, 58, 193, 0, 0, 0, 0, 0, 0, 64, 191, 0, 0, 0, 0, 0, 0, 10, 65, 0, 0, 0, 0, 0, 0, 10, 65, 0, 0, 128, 62, 0, 0, 64, 191, 0, 0, 128, 62, 0, 0, 64, 63, 0, 0, 58, 193, 0, 0, 64, 63, 0, 0, 64, 63, 0, 0, 10, 193, 0, 0, 64, 63, 0, 0, 10, 193, 0, 0, 58, 193, 0, 0, 64, 191, 0, 0, 58, 193, 0, 0, 10, 65, 0, 0, 58, 193, 0, 0, 10, 65, 0, 0, 64, 63, 0, 0, 64, 191, 0, 0, 64, 63, 0, 0, 64, 63, 0, 0, 0, 0, 0, 0, 64, 63, 0, 0, 128, 62, 0, 0, 10, 193, 0, 0, 128, 62, 0, 0, 10, 193, 0, 0, 0, 0, 0, 0, 64, 191, 0, 0, 0, 0, 0, 0, 58, 65, 0, 0, 0, 0, 0, 0, 58, 65, 0, 0, 128, 62, 0, 0, 64, 191, 0, 0, 128, 62),
 "format": 34359742487,
 "index_count": 36,
 "index_data": PackedByteArray(0, 0, 1, 0, 2, 0, 0, 0, 2, 0, 3, 0, 4, 0, 5, 0, 6, 0, 4, 0, 6, 0, 7, 0, 8, 0, 9, 0, 10, 0, 8, 0, 10, 0, 11, 0, 12, 0, 13, 0, 14, 0, 12, 0, 14, 0, 15, 0, 16, 0, 17, 0, 18, 0, 16, 0, 18, 0, 19, 0, 20, 0, 21, 0, 22, 0, 20, 0, 22, 0, 23, 0),
-"material": SubResource("StandardMaterial3D_bsm28"),
+"material": SubResource("StandardMaterial3D_h00so"),
 "name": "asphalt/asphalt_1",
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
@@ -122,8 +102,30 @@ _surfaces = [{
 "vertex_data": PackedByteArray(102, 102, 158, 193, 205, 204, 204, 62, 0, 0, 112, 193, 102, 102, 158, 193, 205, 204, 204, 190, 0, 0, 112, 193, 102, 102, 158, 65, 205, 204, 204, 190, 0, 0, 112, 193, 102, 102, 158, 65, 205, 204, 204, 62, 0, 0, 112, 193, 102, 102, 158, 193, 205, 204, 204, 62, 0, 0, 112, 193, 102, 102, 158, 193, 205, 204, 204, 62, 0, 0, 112, 65, 102, 102, 158, 193, 205, 204, 204, 190, 0, 0, 112, 65, 102, 102, 158, 193, 205, 204, 204, 190, 0, 0, 112, 193, 102, 102, 158, 65, 205, 204, 204, 190, 0, 0, 112, 193, 102, 102, 158, 193, 205, 204, 204, 190, 0, 0, 112, 193, 102, 102, 158, 193, 205, 204, 204, 190, 0, 0, 112, 65, 102, 102, 158, 65, 205, 204, 204, 190, 0, 0, 112, 65, 102, 102, 158, 65, 205, 204, 204, 62, 0, 0, 112, 193, 102, 102, 158, 65, 205, 204, 204, 62, 0, 0, 112, 65, 102, 102, 158, 193, 205, 204, 204, 62, 0, 0, 112, 65, 102, 102, 158, 193, 205, 204, 204, 62, 0, 0, 112, 193, 102, 102, 158, 65, 205, 204, 204, 62, 0, 0, 112, 193, 102, 102, 158, 65, 205, 204, 204, 190, 0, 0, 112, 193, 102, 102, 158, 65, 205, 204, 204, 190, 0, 0, 112, 65, 102, 102, 158, 65, 205, 204, 204, 62, 0, 0, 112, 65, 102, 102, 158, 193, 205, 204, 204, 62, 0, 0, 112, 65, 102, 102, 158, 65, 205, 204, 204, 62, 0, 0, 112, 65, 102, 102, 158, 65, 205, 204, 204, 190, 0, 0, 112, 65, 102, 102, 158, 193, 205, 204, 204, 190, 0, 0, 112, 65, 255, 255, 255, 255, 0, 0, 255, 191, 255, 255, 255, 255, 0, 0, 255, 191, 255, 255, 255, 255, 0, 0, 255, 191, 255, 255, 255, 255, 0, 0, 255, 191, 0, 0, 255, 127, 255, 127, 255, 191, 0, 0, 255, 127, 255, 127, 255, 191, 0, 0, 255, 127, 255, 127, 255, 191, 0, 0, 255, 127, 255, 127, 255, 191, 255, 127, 0, 0, 255, 255, 255, 255, 255, 127, 0, 0, 255, 255, 255, 255, 255, 127, 0, 0, 255, 255, 255, 255, 255, 127, 0, 0, 255, 255, 255, 255, 255, 127, 255, 255, 255, 127, 255, 191, 255, 127, 255, 255, 255, 127, 255, 191, 255, 127, 255, 255, 255, 127, 255, 191, 255, 127, 255, 255, 255, 127, 255, 191, 255, 255, 255, 127, 255, 255, 255, 255, 255, 255, 255, 127, 255, 255, 255, 255, 255, 255, 255, 127, 255, 255, 255, 255, 255, 255, 255, 127, 255, 255, 255, 255, 255, 127, 255, 127, 255, 255, 255, 191, 255, 127, 255, 127, 255, 255, 255, 191, 255, 127, 255, 127, 255, 255, 255, 191, 255, 127, 255, 127, 255, 255, 255, 191)
 }]
 
-[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_7vna8"]
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_dnh2d"]
 points = PackedVector3Array(-19.8, 0.4, -15, -19.8, -0.4, -15, 19.8, -0.4, -15, 19.8, 0.4, -15, -19.8, 0.4, 15, -19.8, -0.4, 15, 19.8, -0.4, 15, 19.8, 0.4, 15)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vhow2"]
+albedo_texture = ExtResource("11_4xtol")
+texture_filter = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_yxkvc"]
+_surfaces = [{
+"aabb": AABB(-2, -2.4, -0.2, 4, 4.80001, 0.4),
+"attribute_data": PackedByteArray(0, 0, 0, 0, 0, 0, 192, 191, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 160, 191, 0, 0, 0, 0, 0, 0, 160, 191, 0, 0, 192, 191, 0, 0, 176, 63, 0, 0, 192, 191, 0, 0, 192, 63, 0, 0, 192, 191, 0, 0, 192, 63, 0, 0, 0, 0, 0, 0, 176, 63, 0, 0, 0, 0, 0, 0, 176, 191, 0, 0, 160, 191, 0, 0, 176, 191, 0, 0, 0, 0, 0, 0, 192, 191, 0, 0, 0, 0, 0, 0, 192, 191, 0, 0, 160, 191, 0, 0, 176, 63, 0, 0, 160, 191, 0, 0, 192, 63, 0, 0, 160, 191, 0, 0, 192, 63, 0, 0, 0, 0, 0, 0, 176, 63, 0, 0, 0, 0, 0, 0, 176, 191, 0, 0, 192, 191, 0, 0, 176, 191, 0, 0, 0, 0, 0, 0, 192, 191, 0, 0, 0, 0, 0, 0, 192, 191, 0, 0, 192, 191, 0, 0, 0, 0, 0, 0, 192, 191, 0, 0, 160, 63, 0, 0, 192, 191, 0, 0, 160, 63, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+"format": 34359742487,
+"index_count": 36,
+"index_data": PackedByteArray(0, 0, 1, 0, 2, 0, 0, 0, 2, 0, 3, 0, 4, 0, 5, 0, 6, 0, 4, 0, 6, 0, 7, 0, 8, 0, 9, 0, 10, 0, 8, 0, 10, 0, 11, 0, 12, 0, 13, 0, 14, 0, 12, 0, 14, 0, 15, 0, 16, 0, 17, 0, 18, 0, 16, 0, 18, 0, 19, 0, 20, 0, 21, 0, 22, 0, 20, 0, 22, 0, 23, 0),
+"material": SubResource("StandardMaterial3D_vhow2"),
+"name": "wood/wood_1",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 24,
+"vertex_data": PackedByteArray(0, 0, 0, 192, 154, 153, 25, 64, 205, 204, 76, 190, 0, 0, 0, 192, 154, 153, 25, 192, 205, 204, 76, 190, 0, 0, 0, 64, 154, 153, 25, 192, 205, 204, 76, 190, 0, 0, 0, 64, 154, 153, 25, 64, 205, 204, 76, 190, 0, 0, 0, 192, 154, 153, 25, 64, 205, 204, 76, 190, 0, 0, 0, 192, 154, 153, 25, 64, 205, 204, 76, 62, 0, 0, 0, 192, 154, 153, 25, 192, 205, 204, 76, 62, 0, 0, 0, 192, 154, 153, 25, 192, 205, 204, 76, 190, 0, 0, 0, 64, 154, 153, 25, 192, 205, 204, 76, 190, 0, 0, 0, 192, 154, 153, 25, 192, 205, 204, 76, 190, 0, 0, 0, 192, 154, 153, 25, 192, 205, 204, 76, 62, 0, 0, 0, 64, 154, 153, 25, 192, 205, 204, 76, 62, 0, 0, 0, 64, 154, 153, 25, 64, 205, 204, 76, 190, 0, 0, 0, 64, 154, 153, 25, 64, 205, 204, 76, 62, 0, 0, 0, 192, 154, 153, 25, 64, 205, 204, 76, 62, 0, 0, 0, 192, 154, 153, 25, 64, 205, 204, 76, 190, 0, 0, 0, 64, 154, 153, 25, 64, 205, 204, 76, 190, 0, 0, 0, 64, 154, 153, 25, 192, 205, 204, 76, 190, 0, 0, 0, 64, 154, 153, 25, 192, 205, 204, 76, 62, 0, 0, 0, 64, 154, 153, 25, 64, 205, 204, 76, 62, 0, 0, 0, 192, 154, 153, 25, 64, 205, 204, 76, 62, 0, 0, 0, 64, 154, 153, 25, 64, 205, 204, 76, 62, 0, 0, 0, 64, 154, 153, 25, 192, 205, 204, 76, 62, 0, 0, 0, 192, 154, 153, 25, 192, 205, 204, 76, 62, 255, 255, 255, 255, 0, 0, 255, 191, 255, 255, 255, 255, 0, 0, 255, 191, 255, 255, 255, 255, 0, 0, 255, 191, 255, 255, 255, 255, 0, 0, 255, 191, 0, 0, 255, 127, 255, 127, 255, 191, 0, 0, 255, 127, 255, 127, 255, 191, 0, 0, 255, 127, 255, 127, 255, 191, 0, 0, 255, 127, 255, 127, 255, 191, 255, 127, 0, 0, 255, 255, 255, 255, 255, 127, 0, 0, 255, 255, 255, 255, 255, 127, 0, 0, 255, 255, 255, 255, 255, 127, 0, 0, 255, 255, 255, 255, 255, 127, 255, 255, 255, 127, 255, 191, 255, 127, 255, 255, 255, 127, 255, 191, 255, 127, 255, 255, 255, 127, 255, 191, 255, 127, 255, 255, 255, 127, 255, 191, 255, 255, 255, 127, 255, 255, 255, 255, 255, 255, 255, 127, 255, 255, 255, 255, 255, 255, 255, 127, 255, 255, 255, 255, 255, 255, 255, 127, 255, 255, 255, 255, 255, 127, 255, 127, 255, 255, 255, 191, 255, 127, 255, 127, 255, 255, 255, 191, 255, 127, 255, 127, 255, 255, 255, 191, 255, 127, 255, 127, 255, 255, 255, 191)
+}]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_vv530"]
+points = PackedVector3Array(-2, 2.4, -0.2, -2, -2.4, -0.2, 2, -2.4, -0.2, 2, 2.4, -0.2, -2, 2.4, 0.2, -2, -2.4, 0.2, 2, -2.4, 0.2, 2, 2.4, 0.2)
 
 [node name="ballistic_testing" type="Node3D"]
 script = ExtResource("1_gbeur")
@@ -168,7 +170,7 @@ inverse_scale_factor = 40.0
 entity_fgd = ExtResource("8_3s7ds")
 base_texture_dir = "res://levels/textures"
 texture_file_extensions = PackedStringArray("png", "jpg", "jpeg", "bmp")
-default_material = SubResource("StandardMaterial3D_i0rsr")
+default_material = ExtResource("8_30jwu")
 
 [node name="entity_0_worldspawn" type="Node3D" parent="QodotMap"]
 script = ExtResource("9_x5xon")
@@ -187,6 +189,7 @@ script = ExtResource("10_0hi85")
 properties = {
 "armor_rating": "10",
 "classname": "geo_ballistic_solid",
+"game_material_info": 0,
 "game_material_info_path": "res://levels/game_material_info/metal.tres",
 "pen_ratio": ".5"
 }
@@ -195,39 +198,21 @@ _armor_rating = 10
 _bullet_hole_scene = ExtResource("11_yjd08")
 _impact_hit_scene = ExtResource("12_p6nk0")
 _footstep_sound = ExtResource("13_okg0b")
+game_material_info_list = ExtResource("14_tdacx")
 
 [node name="entity_1_mesh_instance" type="MeshInstance3D" parent="QodotMap/entity_1_geo_ballistic_solid"]
-mesh = SubResource("ArrayMesh_knf8k")
+mesh = SubResource("ArrayMesh_6k02i")
 
 [node name="entity_1_brush_0_collision_shape" type="CollisionShape3D" parent="QodotMap/entity_1_geo_ballistic_solid"]
-shape = SubResource("ConvexPolygonShape3D_an7m5")
+shape = SubResource("ConvexPolygonShape3D_dm1r2")
 
 [node name="entity_2_geo_ballistic_solid" type="StaticBody3D" parent="QodotMap"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 2.4, 4.6)
-collision_layer = 3
-script = ExtResource("10_0hi85")
-properties = {
-"classname": "geo_ballistic_solid",
-"game_material_info_path": "res://levels/game_material_info/wood.tres"
-}
-_pen_ratio = 0.8
-_armor_rating = 2
-_bullet_hole_scene = ExtResource("11_yjd08")
-_impact_hit_scene = ExtResource("16_a0ajw")
-_footstep_sound = ExtResource("17_4grip")
-
-[node name="entity_2_mesh_instance" type="MeshInstance3D" parent="QodotMap/entity_2_geo_ballistic_solid"]
-mesh = SubResource("ArrayMesh_xu8mb")
-
-[node name="entity_2_brush_0_collision_shape" type="CollisionShape3D" parent="QodotMap/entity_2_geo_ballistic_solid"]
-shape = SubResource("ConvexPolygonShape3D_ns8md")
-
-[node name="entity_3_geo_ballistic_solid" type="StaticBody3D" parent="QodotMap"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 2.4, 6.2)
 collision_layer = 3
 script = ExtResource("10_0hi85")
 properties = {
 "classname": "geo_ballistic_solid",
+"game_material_info": 0,
 "game_material_info_path": "res://levels/game_material_info/brick.tres"
 }
 _pen_ratio = 0.6
@@ -235,19 +220,21 @@ _armor_rating = 6
 _bullet_hole_scene = ExtResource("11_yjd08")
 _impact_hit_scene = ExtResource("19_685x4")
 _footstep_sound = ExtResource("13_okg0b")
+game_material_info_list = ExtResource("14_tdacx")
 
-[node name="entity_3_mesh_instance" type="MeshInstance3D" parent="QodotMap/entity_3_geo_ballistic_solid"]
-mesh = SubResource("ArrayMesh_loecn")
+[node name="entity_2_mesh_instance" type="MeshInstance3D" parent="QodotMap/entity_2_geo_ballistic_solid"]
+mesh = SubResource("ArrayMesh_tc8r8")
 
-[node name="entity_3_brush_0_collision_shape" type="CollisionShape3D" parent="QodotMap/entity_3_geo_ballistic_solid"]
-shape = SubResource("ConvexPolygonShape3D_0kjo3")
+[node name="entity_2_brush_0_collision_shape" type="CollisionShape3D" parent="QodotMap/entity_2_geo_ballistic_solid"]
+shape = SubResource("ConvexPolygonShape3D_6sbyt")
 
-[node name="entity_4_geo_ballistic_solid" type="StaticBody3D" parent="QodotMap"]
+[node name="entity_3_geo_ballistic_solid" type="StaticBody3D" parent="QodotMap"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.4, -0.4, 12.6)
 collision_layer = 3
 script = ExtResource("10_0hi85")
 properties = {
 "classname": "geo_ballistic_solid",
+"game_material_info": 0,
 "game_material_info_path": "res://levels/game_material_info/stone.tres"
 }
 _pen_ratio = 0.4
@@ -255,11 +242,34 @@ _armor_rating = 8
 _bullet_hole_scene = ExtResource("11_yjd08")
 _impact_hit_scene = ExtResource("19_685x4")
 _footstep_sound = ExtResource("13_okg0b")
+game_material_info_list = ExtResource("14_tdacx")
+
+[node name="entity_3_mesh_instance" type="MeshInstance3D" parent="QodotMap/entity_3_geo_ballistic_solid"]
+mesh = SubResource("ArrayMesh_rerdg")
+
+[node name="entity_3_brush_0_collision_shape" type="CollisionShape3D" parent="QodotMap/entity_3_geo_ballistic_solid"]
+shape = SubResource("ConvexPolygonShape3D_dnh2d")
+
+[node name="entity_4_geo_ballistic_solid" type="StaticBody3D" parent="QodotMap"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 2.4, 4.6)
+collision_layer = 3
+script = ExtResource("10_0hi85")
+properties = {
+"classname": "geo_ballistic_solid",
+"game_material_info": 1,
+"game_material_info_path": ""
+}
+_pen_ratio = 0.4
+_armor_rating = 8
+_bullet_hole_scene = ExtResource("11_yjd08")
+_impact_hit_scene = ExtResource("12_p6nk0")
+_footstep_sound = ExtResource("13_okg0b")
+game_material_info_list = ExtResource("14_tdacx")
 
 [node name="entity_4_mesh_instance" type="MeshInstance3D" parent="QodotMap/entity_4_geo_ballistic_solid"]
-mesh = SubResource("ArrayMesh_7grt2")
+mesh = SubResource("ArrayMesh_yxkvc")
 
 [node name="entity_4_brush_0_collision_shape" type="CollisionShape3D" parent="QodotMap/entity_4_geo_ballistic_solid"]
-shape = SubResource("ConvexPolygonShape3D_7vna8")
+shape = SubResource("ConvexPolygonShape3D_vv530")
 
 [connection signal="timeout" from="FireTimer" to="." method="_on_fire_timer_timeout"]

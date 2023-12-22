@@ -27,21 +27,8 @@
 // entity 2
 {
 "classname" "geo_ballistic_solid"
-"game_material_info_path" "res://levels/game_material_info/wood.tres"
-// brush 0
-{
-( 176 0 0 ) ( 176 1 0 ) ( 176 0 1 ) wood/wood_1 [ 0 -1 0 0 ] [ 0 0 -1 0 ] 0 1 1
-( 176 0 0 ) ( 176 0 1 ) ( 177 0 0 ) wood/wood_1 [ 1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
-( 176 0 0 ) ( 177 0 0 ) ( 176 1 0 ) wood/wood_1 [ -1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
-( 192 160 192 ) ( 192 161 192 ) ( 193 160 192 ) wood/wood_1 [ 1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
-( 192 160 32 ) ( 193 160 32 ) ( 192 160 33 ) wood/wood_1 [ -1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
-( 192 160 32 ) ( 192 160 33 ) ( 192 161 32 ) wood/wood_1 [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
-}
-}
-// entity 3
-{
-"classname" "geo_ballistic_solid"
 "game_material_info_path" "res://levels/game_material_info/brick.tres"
+"game_material_info" "0"
 // brush 0
 {
 ( 240 0 0 ) ( 240 1 0 ) ( 240 0 1 ) brick/brick_1 [ 0 -1 0 0 ] [ 0 0 -1 0 ] 0 1 1
@@ -52,7 +39,7 @@
 ( 256 160 32 ) ( 256 160 33 ) ( 256 161 32 ) brick/brick_1 [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
 }
 }
-// entity 4
+// entity 3
 {
 "classname" "geo_ballistic_solid"
 "game_material_info_path" "res://levels/game_material_info/stone.tres"
@@ -64,5 +51,19 @@
 ( 128 128 0 ) ( 128 129 0 ) ( 129 128 0 ) asphalt/asphalt_1 [ 1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
 ( 128 1488 0 ) ( 129 1488 0 ) ( 128 1488 1 ) asphalt/asphalt_1 [ -1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
 ( 1104 128 0 ) ( 1104 128 1 ) ( 1104 129 0 ) asphalt/asphalt_1 [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+}
+}
+// entity 4
+{
+"classname" "geo_ballistic_solid"
+"game_material_info" "1"
+// brush 0
+{
+( 176 0 0 ) ( 176 1 0 ) ( 176 0 1 ) wood/wood_1 [ 0 -1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( 176 0 0 ) ( 176 0 1 ) ( 177 0 0 ) wood/wood_1 [ 1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( 176 0 0 ) ( 177 0 0 ) ( 176 1 0 ) wood/wood_1 [ -1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( 192 160 192 ) ( 192 161 192 ) ( 193 160 192 ) wood/wood_1 [ 1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( 192 160 32 ) ( 193 160 32 ) ( 192 160 33 ) wood/wood_1 [ -1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( 192 160 32 ) ( 192 160 33 ) ( 192 161 32 ) wood/wood_1 [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
 }
 }

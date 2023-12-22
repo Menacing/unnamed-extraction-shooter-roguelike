@@ -14,14 +14,24 @@ signal object_hit()
 
 func update_properties():
 	
-	if 'game_material_info_path' in properties:
-		
-		var gmi:GameMaterialInfo = load(properties['game_material_info_path'])
+	if 'game_material_info' in properties:
+		#determine gmi path
+		var gmi:GameMaterialInfo = game_material_info_list.game_material_infos[properties['game_material_info']]
 		_pen_ratio = gmi.pen_ratio
 		_armor_rating = gmi.armor_rating
 		_bullet_hole_scene = gmi.bullet_hole_scene
 		_impact_hit_scene = gmi.impact_hit_scene
 		_footstep_sound = gmi.footstep_sound
+	
+	if 'game_material_info_path' in properties:
+		var path = properties['game_material_info_path']
+		if path:
+			var gmi:GameMaterialInfo = load(path)
+			_pen_ratio = gmi.pen_ratio
+			_armor_rating = gmi.armor_rating
+			_bullet_hole_scene = gmi.bullet_hole_scene
+			_impact_hit_scene = gmi.impact_hit_scene
+			_footstep_sound = gmi.footstep_sound
 
 	#These exist for overrides
 	if 'pen_ratio' in properties:
@@ -53,6 +63,8 @@ func update_properties():
 @export var _bullet_hole_scene:PackedScene
 @export var _impact_hit_scene:PackedScene
 @export var _footstep_sound:AudioStream
+
+@export var game_material_info_list:GameMaterialInfoList = load('res://levels/game_material_info/uesrl_game_material_info_list.tres')
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
