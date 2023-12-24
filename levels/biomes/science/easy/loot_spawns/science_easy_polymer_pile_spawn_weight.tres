@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="LootSpawnWeight" load_steps=3 format=3 uid="uid://cfi8lq50axkxg"]
+
+[ext_resource type="Resource" uid="uid://bb703jva7e110" path="res://Scenes/items/materials/polymer_pile/polymer_pile_spawn_info.tres" id="1_1bqmx"]
+[ext_resource type="Script" path="res://Scenes/items/loot_spawn_weight.gd" id="1_ra4g0"]
+
+[resource]
+script = ExtResource("1_ra4g0")
+weight = 3
+loot = ExtResource("1_1bqmx")

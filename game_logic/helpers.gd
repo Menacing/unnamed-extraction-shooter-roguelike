@@ -99,12 +99,19 @@ func force_parent(child:Node, parent:Node):
 	parent.add_child(child)
 	child.set_owner(parent)
 
+
 func get_aabb_of_node(node:Node3D):
 	var aabb = AABB()
 	if node.has_method("get_aabb") and node.visible:
 		aabb = node.get_aabb()
+	elif node is CollisionShape3D:
+		var shape:Shape3D = node.shape
+		var array_mesh:ArrayMesh = shape.get_debug_mesh()
+		aabb = array_mesh.get_aabb()
 	for child in node.get_children():
 		aabb = aabb.merge(get_aabb_of_node(child))
+		
+	print_debug("returning aabb for node:" + node.name + " with aabb " + str(aabb))
 	return aabb
 
 func get_all_mesh_nodes(node) -> Array[MeshInstance3D]:

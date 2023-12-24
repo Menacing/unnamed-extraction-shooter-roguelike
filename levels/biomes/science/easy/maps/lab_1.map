@@ -8517,13 +8517,30 @@
 }
 // entity 60
 {
+"classname" "area_loot_spawn"
+"biome" "0"
+"tier" "0"
+"min_spawned" "4"
+"max_spawned" "6"
+// brush 0
+{
+( 352 32 16 ) ( 352 33 16 ) ( 352 32 17 ) special/skip [ 0 -1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( 352 16 16 ) ( 352 16 17 ) ( 353 16 16 ) special/skip [ 1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( 352 32 16 ) ( 353 32 16 ) ( 352 33 16 ) special/skip [ -1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( 464 192 80 ) ( 464 193 80 ) ( 465 192 80 ) special/skip [ 1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( 464 192 32 ) ( 465 192 32 ) ( 464 192 33 ) special/skip [ -1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( 464 192 32 ) ( 464 192 33 ) ( 464 193 32 ) special/skip [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+}
+}
+// entity 61
+{
 "classname" "func_group"
 "_tb_type" "_tb_layer"
 "_tb_name" "upstairs_bathroom"
 "_tb_id" "1"
 "_tb_layer_sort_index" "0"
 }
-// entity 61
+// entity 62
 {
 "classname" "func_group"
 "_tb_type" "_tb_layer"
@@ -8531,7 +8548,7 @@
 "_tb_id" "2"
 "_tb_layer_sort_index" "1"
 }
-// entity 62
+// entity 63
 {
 "classname" "func_group"
 "_tb_type" "_tb_layer"
@@ -8539,7 +8556,7 @@
 "_tb_id" "20"
 "_tb_layer_sort_index" "2"
 }
-// entity 63
+// entity 64
 {
 "classname" "func_group"
 "_tb_type" "_tb_layer"

@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="LootSpawnInformation" load_steps=3 format=3 uid="uid://cbmk0nj8v80dn"]
+
+[ext_resource type="Script" path="res://Scenes/items/loot_spawn_information.gd" id="1_h61ui"]
+[ext_resource type="Resource" uid="uid://xufa6auvjw6t" path="res://Scenes/items/weapons/easi_early_service_rifles/zs_52/zs_52_inventory_info.tres" id="1_ncaom"]
+
+[resource]
+script = ExtResource("1_h61ui")
+item_information = ExtResource("1_ncaom")
+test_radius = 0.5
+min_stack = 0
+max_stack = 0
