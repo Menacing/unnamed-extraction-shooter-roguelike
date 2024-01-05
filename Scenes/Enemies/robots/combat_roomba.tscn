@@ -34,16 +34,17 @@ height = 25.0
 radius = 50.0
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_vlk8q"]
-height = 0.481318
-radius = 0.980524
+height = 0.171738
+radius = 0.35
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_tkxva"]
-radius = 0.480917
+radius = 0.160629
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_hycai"]
-size = Vector3(0.285396, 1.55914, 0.278187)
+size = Vector3(0.0996854, 0.507972, 0.102156)
 
 [node name="combat_roomba" type="CharacterBody3D"]
+transform = Transform3D(1.00409, 0, 0, 0, 1.00409, 0, 0, 0, 1.00409, 0, 0, 0)
 collision_layer = 3
 script = ExtResource("1_f1cah")
 gun_scene = ExtResource("2_q4rc2")
@@ -52,6 +53,7 @@ vert_moa = 60.0
 hor_moa = 60.0
 
 [node name="combat-roomba" parent="." instance=ExtResource("3_wwy82")]
+transform = Transform3D(0.35, 0, 0, 0, 0.35, 0, 0, 0, 0.35, 0, 0, 0)
 
 [node name="Armature" parent="combat-roomba" index="0"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0.242868, 0)
@@ -60,10 +62,10 @@ transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0.2
 animate_physical_bones = false
 
 [node name="Physical Bone Bone" type="PhysicalBone3D" parent="combat-roomba/Armature/Skeleton3D" index="1"]
-transform = Transform3D(1, 0, 0, 0, 0, -1, 0, 1, 0, 0, 0.222436, 0)
+transform = Transform3D(1, -2.84217e-13, 0, 0, 0, -1, 1.84741e-13, 1, 0, 0, 0.222436, 0)
 collision_layer = 5
-joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.222436)
-body_offset = Transform3D(1, 0, 0, 0, 0, -1, 0, 1, 0, 0, 0.222436, 0)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.222435)
+body_offset = Transform3D(1, -2.70006e-13, 0, 0, 0, -1, 1.84741e-13, 1, 0, 0, 0.222436, 0)
 bone_name = "Bone"
 script = ExtResource("5_grn4r")
 container_size = 21
@@ -76,6 +78,9 @@ transform = Transform3D(-1, 0, 8.74228e-08, -8.74228e-08, 0, -1, 0, -1, 0, 0.023
 [node name="SpotLight3D" type="SpotLight3D" parent="combat-roomba/Armature/Skeleton3D/Physical Bone Bone/Head"]
 light_color = Color(1, 0, 0, 1)
 light_energy = 100.0
+shadow_enabled = true
+distance_fade_enabled = true
+distance_fade_begin = 50.0
 spot_range = 50.0
 spot_angle = 5.0
 
@@ -98,15 +103,15 @@ collision_layer = 0
 shape = SubResource("CylinderShape3D_cn06a")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.251154, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0857681, 0)
 shape = SubResource("CylinderShape3D_vlk8q")
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.176822, 0)
 shape = SubResource("SphereShape3D_tkxva")
 
 [node name="CollisionShape3D3" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.59569, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000492002, 0.578961, 0.000890537)
 shape = SubResource("BoxShape3D_hycai")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]

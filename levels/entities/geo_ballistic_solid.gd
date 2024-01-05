@@ -1,6 +1,6 @@
 @tool
 class_name GeoBallisticSolid
-extends StaticBody3D
+extends CollisionObject3D
 
 signal object_hit()
 
