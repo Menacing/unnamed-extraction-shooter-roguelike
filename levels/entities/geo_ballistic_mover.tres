@@ -23,9 +23,7 @@ classname = "geo_ballistic_mover"
 description = "Solid geometry with ballistic penetration that can move"
 qodot_internal = false
 base_classes = Array[Resource]([ExtResource("1_xi1ja"), ExtResource("2_pvrfw")])
-class_properties = {
-"rotation_offset": Vector3(0, 0, 0)
-}
+class_properties = {}
 class_property_descriptions = {}
 meta_properties = {
 "color": Color(0.8, 0.8, 0.8, 1),

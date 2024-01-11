@@ -5,7 +5,7 @@ extends GeoBallisticSolid
 var base_transform: Transform3D
 var offset_transform: Transform3D
 var target_transform: Transform3D
-var rotation_offset: Vector3
+
 
 var speed := 1.0
 
@@ -26,19 +26,12 @@ func update_properties() -> void:
 
 	if 'speed' in properties:
 		speed = properties.speed
-	
-	if 'rotation_offset' in properties:
-		rotation_offset = properties.rotation_offset
 
 func _process(delta: float) -> void:
 	transform = transform.interpolate_with(target_transform, speed * delta)
 
 func _ready() -> void:
 	super()
-	self.transform.origin += rotation_offset
-	for child in get_children():
-		if child is Node3D:
-			child.transform.origin -= rotation_offset
 	base_transform = transform
 	target_transform = base_transform
 
