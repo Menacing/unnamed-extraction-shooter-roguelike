@@ -125,3 +125,13 @@ func get_all_mesh_nodes(node) -> Array[MeshInstance3D]:
 			# Do something
 			pass
 	return mesh_nodes
+	
+func set_material_overlay(meshes:Array[MeshInstance3D],mat:Material):
+	for m in meshes:
+		if m != null:
+			var mesh:MeshInstance3D = m
+			mesh.material_overlay = mat
+
+func apply_material_overlay_to_children(target:Node, mat:Material):
+	var meshes = Helpers.get_all_mesh_nodes(target)
+	set_material_overlay(meshes,mat)

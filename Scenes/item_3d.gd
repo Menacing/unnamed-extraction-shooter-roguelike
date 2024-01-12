@@ -29,22 +29,13 @@ var world_collider:CollisionShape3D:
 @onready var item_highlight_m:ShaderMaterial = load("res://themes/item_highlighter_m.tres")
 @export var start_highlighted:bool = true
 @export_multiline var tooltip_text:String = "This is a placeholder"
-var _meshes:Array[MeshInstance3D]
-var meshes:Array[MeshInstance3D]:
-	get:
-		if _meshes:
-			return _meshes
-		else:
-			_meshes = Helpers.get_all_mesh_nodes(self)
-			return _meshes
-
 
 func _ready():
 	assert(world_collider_path != null)
 	if start_highlighted:
-		set_material_overlay(item_highlight_m)
+		Helpers.apply_material_overlay_to_children(self,item_highlight_m)
 	else:
-		set_material_overlay(null)
+		Helpers.apply_material_overlay_to_children(self,null)
 	
 	var item_instance = get_item_instance()
 	if item_instance:
@@ -56,17 +47,13 @@ func _ready():
 
 
 	
-func set_material_overlay(mat:Material):
-	for m in meshes:
-		if m != null:
-			var mesh:MeshInstance3D = m
-			mesh.material_overlay = mat
+
 
 func dropped():
 	world_collider.disabled = false
 	self.freeze = false
 	self.visible = true
-	set_material_overlay(item_highlight_m)
+	Helpers.apply_material_overlay_to_children(self,item_highlight_m)
 	
 	self.apply_torque_impulse(Vector3.FORWARD)
 	
@@ -76,7 +63,7 @@ func picked_up():
 #	self.gravity_scale = 0
 	world_collider.disabled = true
 	self.freeze = true
-	set_material_overlay(null)
+	Helpers.apply_material_overlay_to_children(self,null)
 
 	
 func destroy():

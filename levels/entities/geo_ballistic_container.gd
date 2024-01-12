@@ -2,6 +2,7 @@
 class_name GeoBallisticContainer
 extends GeoBallisticSolid
 
+@onready var item_highlight_m:ShaderMaterial = load("res://themes/item_highlighter_m.tres")
 @export var world_inventory_control_scene:PackedScene = preload("res://ui/inventory/world_inventory.tscn")
 @export var biome_index:int
 @export var tier_index:int
@@ -39,6 +40,7 @@ func _ready():
 	inventory_id = world_inventory_control.inventory_id
 	call_deferred("spawn_loot")
 	EventBus.item_picked_up.connect(_on_item_picked_up)
+	Helpers.apply_material_overlay_to_children(self, item_highlight_m)
 
 func spawn_loot():
 	add_to_group("loot_container")
