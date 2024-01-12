@@ -7989,11 +7989,12 @@ properties = {
 "targetname": ""
 }
 
-[node name="entity_62_geo_ballistic_door" type="CharacterBody3D" parent="QodotMap"]
+[node name="entity_62_geo_ballistic_door" type="CharacterBody3D" parent="QodotMap" node_paths=PackedStringArray("_hinge")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.825, 1.825, 4.7)
 collision_layer = 7
 script = ExtResource("45_3hmmn")
 _target_name = "bathroom_entrance_hinge"
+_hinge = NodePath("../bathroom_entrance_hinge")
 properties = {
 "classname": "geo_ballistic_door",
 "game_material_info": 1,
@@ -8035,11 +8036,12 @@ properties = {
 "targetname": ""
 }
 
-[node name="entity_64_geo_ballistic_door" type="CharacterBody3D" parent="QodotMap"]
+[node name="entity_64_geo_ballistic_door" type="CharacterBody3D" parent="QodotMap" node_paths=PackedStringArray("_hinge")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.1, 1.825, 5.425)
 collision_layer = 7
 script = ExtResource("45_3hmmn")
 _target_name = "bathroom_foyer_hinge"
+_hinge = NodePath("../bathroom_foyer_hinge")
 properties = {
 "classname": "geo_ballistic_door",
 "game_material_info": 1,
@@ -8081,11 +8083,12 @@ properties = {
 "targetname": ""
 }
 
-[node name="entity_66_geo_ballistic_door" type="CharacterBody3D" parent="QodotMap"]
+[node name="entity_66_geo_ballistic_door" type="CharacterBody3D" parent="QodotMap" node_paths=PackedStringArray("_hinge")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.1, 1.825, 13.375)
 collision_layer = 7
 script = ExtResource("45_3hmmn")
 _target_name = "second_floor_back"
+_hinge = NodePath("../second_floor_back")
 properties = {
 "classname": "geo_ballistic_door",
 "game_material_info": 1,
@@ -8127,11 +8130,12 @@ properties = {
 "targetname": ""
 }
 
-[node name="entity_68_geo_ballistic_door" type="CharacterBody3D" parent="QodotMap"]
+[node name="entity_68_geo_ballistic_door" type="CharacterBody3D" parent="QodotMap" node_paths=PackedStringArray("_hinge")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.225, -1.525, 4.7)
 collision_layer = 7
 script = ExtResource("45_3hmmn")
 _target_name = "first_floor_under_stairs"
+_hinge = NodePath("../first_floor_under_stairs")
 properties = {
 "classname": "geo_ballistic_door",
 "game_material_info": 1,
@@ -8173,11 +8177,12 @@ properties = {
 "targetname": ""
 }
 
-[node name="entity_70_geo_ballistic_door" type="CharacterBody3D" parent="QodotMap"]
+[node name="entity_70_geo_ballistic_door" type="CharacterBody3D" parent="QodotMap" node_paths=PackedStringArray("_hinge")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.775, -1.575, 14.5)
 collision_layer = 7
 script = ExtResource("45_3hmmn")
 _target_name = "security_room_hinge"
+_hinge = NodePath("../security_room_hinge")
 properties = {
 "classname": "geo_ballistic_door",
 "game_material_info": 1,
@@ -8219,11 +8224,12 @@ properties = {
 "targetname": ""
 }
 
-[node name="entity_72_geo_ballistic_door" type="CharacterBody3D" parent="QodotMap"]
+[node name="entity_72_geo_ballistic_door" type="CharacterBody3D" parent="QodotMap" node_paths=PackedStringArray("_hinge")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.625, -1.575, 9.9)
 collision_layer = 7
 script = ExtResource("45_3hmmn")
 _target_name = "hallway_office_hinge"
+_hinge = NodePath("../hallway_office_hinge")
 properties = {
 "classname": "geo_ballistic_door",
 "game_material_info": 1,
