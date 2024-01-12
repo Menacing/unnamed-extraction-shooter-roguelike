@@ -1,0 +1,21 @@
+[gd_resource type="Environment" load_steps=3 format=3 uid="uid://s6q0fqlhuodl"]
+
+[sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_hn4k3"]
+
+[sub_resource type="Sky" id="Sky_ifvcu"]
+sky_material = SubResource("PhysicalSkyMaterial_hn4k3")
+
+[resource]
+background_mode = 2
+sky = SubResource("Sky_ifvcu")
+ambient_light_source = 3
+ambient_light_color = Color(1, 1, 1, 1)
+ambient_light_energy = 2.04
+ssr_enabled = true
+ssao_enabled = true
+ssil_enabled = true
+sdfgi_enabled = true
+sdfgi_use_occlusion = true
+sdfgi_bounce_feedback = 1.0
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.03

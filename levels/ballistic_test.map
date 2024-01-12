@@ -1,0 +1,69 @@
+// Game: UESRL
+// Format: Valve
+// entity 0
+{
+"mapversion" "220"
+"classname" "worldspawn"
+"_tb_textures" "textures/asphalt;textures/brick;textures/concrete;textures/fabric;textures/glass;textures/ground;textures/marble;textures/metal;textures/plants;textures/plaster;textures/plastic;textures/roof;textures/tile;textures/wood"
+"_tb_def" "builtin:uesrl_fgd_entities.fgd"
+"_tb_mod" "levels"
+}
+// entity 1
+{
+"classname" "geo_ballistic_solid"
+"armor_rating" "10"
+"pen_ratio" ".5"
+"game_material_info_path" "res://levels/game_material_info/metal.tres"
+// brush 0
+{
+( 304 0 0 ) ( 304 1 0 ) ( 304 0 1 ) metal/metal_1 [ 0 -1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( 304 0 0 ) ( 304 0 1 ) ( 305 0 0 ) metal/metal_1 [ 1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( 304 0 0 ) ( 305 0 0 ) ( 304 1 0 ) metal/metal_1 [ -1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( 320 160 192 ) ( 320 161 192 ) ( 321 160 192 ) metal/metal_1 [ 1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( 320 160 32 ) ( 321 160 32 ) ( 320 160 33 ) metal/metal_1 [ -1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( 320 160 32 ) ( 320 160 33 ) ( 320 161 32 ) metal/metal_1 [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+}
+}
+// entity 2
+{
+"classname" "geo_ballistic_solid"
+"game_material_info_path" "res://levels/game_material_info/brick.tres"
+"game_material_info" "0"
+// brush 0
+{
+( 240 0 0 ) ( 240 1 0 ) ( 240 0 1 ) brick/brick_1 [ 0 -1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( 240 0 0 ) ( 240 0 1 ) ( 241 0 0 ) brick/brick_1 [ 1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( 240 0 0 ) ( 241 0 0 ) ( 240 1 0 ) brick/brick_1 [ -1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( 256 160 192 ) ( 256 161 192 ) ( 257 160 192 ) brick/brick_1 [ 1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( 256 160 32 ) ( 257 160 32 ) ( 256 160 33 ) brick/brick_1 [ -1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( 256 160 32 ) ( 256 160 33 ) ( 256 161 32 ) brick/brick_1 [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+}
+}
+// entity 3
+{
+"classname" "geo_ballistic_solid"
+"game_material_info_path" "res://levels/game_material_info/stone.tres"
+// brush 0
+{
+( -96 0 -32 ) ( -96 1 -32 ) ( -96 0 -31 ) asphalt/asphalt_1 [ 0 -1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( 0 -96 -32 ) ( 0 -96 -31 ) ( 1 -96 -32 ) asphalt/asphalt_1 [ 1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( 0 0 -32 ) ( 1 0 -32 ) ( 0 1 -32 ) asphalt/asphalt_1 [ -1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( 128 128 0 ) ( 128 129 0 ) ( 129 128 0 ) asphalt/asphalt_1 [ 1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( 128 1488 0 ) ( 129 1488 0 ) ( 128 1488 1 ) asphalt/asphalt_1 [ -1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( 1104 128 0 ) ( 1104 128 1 ) ( 1104 129 0 ) asphalt/asphalt_1 [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+}
+}
+// entity 4
+{
+"classname" "geo_ballistic_solid"
+"game_material_info" "1"
+// brush 0
+{
+( 176 0 0 ) ( 176 1 0 ) ( 176 0 1 ) wood/wood_1 [ 0 -1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( 176 0 0 ) ( 176 0 1 ) ( 177 0 0 ) wood/wood_1 [ 1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( 176 0 0 ) ( 177 0 0 ) ( 176 1 0 ) wood/wood_1 [ -1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( 192 160 192 ) ( 192 161 192 ) ( 193 160 192 ) wood/wood_1 [ 1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( 192 160 32 ) ( 193 160 32 ) ( 192 160 33 ) wood/wood_1 [ -1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( 192 160 32 ) ( 192 160 33 ) ( 192 161 32 ) wood/wood_1 [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+}
+}

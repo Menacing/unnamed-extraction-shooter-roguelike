@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="QodotFGDPointClass" load_steps=4 format=3 uid="uid://bc5ln3q4l5vfd"]
+
+[ext_resource type="Script" path="res://addons/qodot/src/resources/game-definitions/fgd/qodot_fgd_point_class.gd" id="1_ge70b"]
+[ext_resource type="Resource" uid="uid://cj5mwfh4ud4us" path="res://levels/entities/target.tres" id="1_xmixh"]
+[ext_resource type="Script" path="res://levels/entities/door_hinge.gd" id="3_680u5"]
+
+[resource]
+script = ExtResource("1_ge70b")
+script_class = ExtResource("3_680u5")
+apply_rotation_on_map_build = false
+classname = "door_hinge"
+description = ""
+qodot_internal = false
+base_classes = Array[Resource]([ExtResource("1_xmixh")])
+class_properties = {}
+class_property_descriptions = {}
+meta_properties = {
+"color": Color(0.8, 0.8, 0.8, 1),
+"size": AABB(-2, -2, -2, 2, 2, 2)
+}
+node_class = "Node3D"
+transient_node = false

@@ -99,11 +99,39 @@ func force_parent(child:Node, parent:Node):
 	parent.add_child(child)
 	child.set_owner(parent)
 
-func get_aabb_of_node(node:Node3D):
+
+func get_aabb_of_node(node:Node):
 	var aabb = AABB()
-	if node is VisualInstance3D and node.visible:
+	if node.has_method("get_aabb") and node.visible:
 		aabb = node.get_aabb()
+	elif node is CollisionShape3D:
+		var shape:Shape3D = node.shape
+		var array_mesh:ArrayMesh = shape.get_debug_mesh()
+		aabb = array_mesh.get_aabb()
 	for child in node.get_children():
 		aabb = aabb.merge(get_aabb_of_node(child))
+		
+	print_debug("returning aabb for node:" + node.name + " with aabb " + str(aabb))
 	return aabb
 
+func get_all_mesh_nodes(node) -> Array[MeshInstance3D]:
+	var mesh_nodes:Array[MeshInstance3D] =[]
+	for N in node.get_children():
+		if N is MeshInstance3D:
+			mesh_nodes.append(N)
+		if N.get_child_count() > 0:
+			mesh_nodes.append_array(get_all_mesh_nodes(N))
+		else:
+			# Do something
+			pass
+	return mesh_nodes
+	
+func set_material_overlay(meshes:Array[MeshInstance3D],mat:Material):
+	for m in meshes:
+		if m != null:
+			var mesh:MeshInstance3D = m
+			mesh.material_overlay = mat
+
+func apply_material_overlay_to_children(target:Node, mat:Material):
+	var meshes = Helpers.get_all_mesh_nodes(target)
+	set_material_overlay(meshes,mat)

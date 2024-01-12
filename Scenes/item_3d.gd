@@ -29,22 +29,13 @@ var world_collider:CollisionShape3D:
 @onready var item_highlight_m:ShaderMaterial = load("res://themes/item_highlighter_m.tres")
 @export var start_highlighted:bool = true
 @export_multiline var tooltip_text:String = "This is a placeholder"
-var _meshes:Array[MeshInstance3D]
-var meshes:Array[MeshInstance3D]:
-	get:
-		if _meshes:
-			return _meshes
-		else:
-			_meshes = get_all_mesh_nodes(self)
-			return _meshes
-
 
 func _ready():
 	assert(world_collider_path != null)
 	if start_highlighted:
-		set_material_overlay(item_highlight_m)
+		Helpers.apply_material_overlay_to_children(self,item_highlight_m)
 	else:
-		set_material_overlay(null)
+		Helpers.apply_material_overlay_to_children(self,null)
 	
 	var item_instance = get_item_instance()
 	if item_instance:
@@ -54,29 +45,15 @@ func _ready():
 			EventBus.item_picked_up.connect(_on_item_picked_up)
 			EventBus.item_removed_from_slot.connect(_on_item_removed_from_slot)
 
-func get_all_mesh_nodes(node) -> Array[MeshInstance3D]:
-	var mesh_nodes:Array[MeshInstance3D] =[]
-	for N in node.get_children():
-		if N is MeshInstance3D:
-			mesh_nodes.append(N)
-		if N.get_child_count() > 0:
-			mesh_nodes.append_array(get_all_mesh_nodes(N))
-		else:
-			# Do something
-			pass
-	return mesh_nodes
+
 	
-func set_material_overlay(mat:Material):
-	for m in meshes:
-		if m != null:
-			var mesh:MeshInstance3D = m
-			mesh.material_overlay = mat
+
 
 func dropped():
 	world_collider.disabled = false
 	self.freeze = false
 	self.visible = true
-	set_material_overlay(item_highlight_m)
+	Helpers.apply_material_overlay_to_children(self,item_highlight_m)
 	
 	self.apply_torque_impulse(Vector3.FORWARD)
 	
@@ -86,7 +63,7 @@ func picked_up():
 #	self.gravity_scale = 0
 	world_collider.disabled = true
 	self.freeze = true
-	set_material_overlay(null)
+	Helpers.apply_material_overlay_to_children(self,null)
 
 	
 func destroy():

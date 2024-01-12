@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="GameMaterialInfo" load_steps=5 format=3 uid="uid://dq8tifqn526xt"]
+
+[ext_resource type="PackedScene" uid="uid://dbduds4bsaaby" path="res://Scenes/Bullet/Bullet_hole.tscn" id="1_tpvcj"]
+[ext_resource type="AudioStream" uid="uid://bxakhll281jbw" path="res://Scenes/effects/sounds/steps/footstep_concrete_001.ogg" id="2_mfop5"]
+[ext_resource type="PackedScene" uid="uid://b7x11nf8gbi6e" path="res://Scenes/effects/bullet_hit_stone.tscn" id="3_a4nsl"]
+[ext_resource type="Script" path="res://levels/game_material_info/game_material_info.gd" id="4_gg0vr"]
+
+[resource]
+script = ExtResource("4_gg0vr")
+pen_ratio = 0.7
+armor_rating = 6
+bullet_hole_scene = ExtResource("1_tpvcj")
+impact_hit_scene = ExtResource("3_a4nsl")
+footstep_sound = ExtResource("2_mfop5")

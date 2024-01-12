@@ -36,20 +36,12 @@ _subresources={
 "use_external/path": "res://Scenes/items/attachments/scopes/red_dot/dot_lense.tres"
 },
 "m_gun": {
-"use_external/enabled": true,
+"use_external/enabled": false,
 "use_external/path": "res://Scenes/items/attachments/scopes/red_dot/m_gun.tres"
 }
-},
-"nodes": {
-"PATH:Camera": {
-"import/skip_import": true
-},
-"PATH:Light": {
-"import/skip_import": true
 }
 }
-}
-gltf/naming_version=0
+gltf/naming_version=1
 gltf/embedded_image_handling=1
 blender/nodes/visible=0
 blender/nodes/punctual_lights=true

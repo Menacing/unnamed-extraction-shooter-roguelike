@@ -1,0 +1,27 @@
+[gd_resource type="Resource" script_class="QodotFGDFile" load_steps=18 format=3 uid="uid://dr0etevtbyukb"]
+
+[ext_resource type="Resource" uid="uid://7ku1upps1bda" path="res://levels/entities/func_base.tres" id="1_nvqrx"]
+[ext_resource type="Script" path="res://addons/qodot/src/resources/game-definitions/fgd/qodot_fgd_file.gd" id="1_stowr"]
+[ext_resource type="Resource" uid="uid://cfautyv8pg54b" path="res://levels/entities/func_geo.tres" id="2_pfojj"]
+[ext_resource type="Resource" uid="uid://puiwokbb5q7r" path="res://levels/entities/shadow_base.tres" id="3_k4xej"]
+[ext_resource type="Resource" uid="uid://cj5mwfh4ud4us" path="res://levels/entities/target.tres" id="4_7ra6j"]
+[ext_resource type="Resource" uid="uid://doitqv8ilkq7k" path="res://levels/entities/geo_ballistic_solid.tres" id="5_pn05p"]
+[ext_resource type="Resource" uid="uid://cjgo41cd3dare" path="res://levels/entities/area_enemy_spawn.tres" id="6_gj7jd"]
+[ext_resource type="Resource" uid="uid://bknsg6gid8rfg" path="res://levels/entities/area_loot_spawn.tres" id="7_bjhl7"]
+[ext_resource type="Resource" uid="uid://y4flxjg8kcuf" path="res://levels/entities/geo_ballistic_mover.tres" id="8_0v3ra"]
+[ext_resource type="Resource" uid="uid://c4v7c3aqi5fft" path="res://levels/entities/geo_ballistic_door.tres" id="9_57eth"]
+[ext_resource type="Resource" uid="uid://djf46ymeuqmrn" path="res://levels/entities/trigger_solid_class.tres" id="9_j1ugm"]
+[ext_resource type="Resource" uid="uid://c6k8mgul6n2ct" path="res://levels/entities/physics_solid_class.tres" id="10_8hdhp"]
+[ext_resource type="Resource" uid="uid://doj1ik2l0nf1o" path="res://levels/entities/mover_solid_class.tres" id="11_7n3by"]
+[ext_resource type="Resource" uid="uid://bc5ln3q4l5vfd" path="res://levels/entities/door_hinge.tres" id="12_ccfyh"]
+[ext_resource type="Resource" uid="uid://crt2qgbpnlvjm" path="res://levels/entities/light_omni.tres" id="14_4acly"]
+[ext_resource type="Resource" uid="uid://cnboggtfi856d" path="res://levels/entities/light_spot.tres" id="15_j616q"]
+[ext_resource type="Resource" uid="uid://bdggb6cw20jvc" path="res://levels/entities/geo_ballistic_container.tres" id="16_6lfdf"]
+
+[resource]
+script = ExtResource("1_stowr")
+export_file = false
+target_folder = ""
+fgd_name = "uesrl_fgd_entities"
+base_fgd_files = Array[Resource]([])
+entity_definitions = Array[Resource]([ExtResource("1_nvqrx"), ExtResource("2_pfojj"), ExtResource("3_k4xej"), ExtResource("4_7ra6j"), ExtResource("5_pn05p"), ExtResource("6_gj7jd"), ExtResource("7_bjhl7"), ExtResource("8_0v3ra"), ExtResource("9_57eth"), ExtResource("9_j1ugm"), ExtResource("10_8hdhp"), ExtResource("11_7n3by"), ExtResource("12_ccfyh"), ExtResource("14_4acly"), ExtResource("15_j616q"), ExtResource("16_6lfdf")])
