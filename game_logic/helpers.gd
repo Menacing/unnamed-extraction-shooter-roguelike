@@ -100,7 +100,7 @@ func force_parent(child:Node, parent:Node):
 	child.set_owner(parent)
 
 
-func get_aabb_of_node(node:Node3D):
+func get_aabb_of_node(node:Node):
 	var aabb = AABB()
 	if node.has_method("get_aabb") and node.visible:
 		aabb = node.get_aabb()

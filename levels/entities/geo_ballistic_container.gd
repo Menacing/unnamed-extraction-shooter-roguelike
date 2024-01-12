@@ -68,7 +68,7 @@ func spawn_loot():
 			var item_info:ItemInformation = lsi.item_information
 			var item_instance = ItemInstance.new(item_info)
 			item_instance.spawn_item()
-			if item_info.max_stack > 0:
+			if item_info.max_stacks > 0:
 				var stack:int = randi_range(lsi.min_stack, lsi.max_stack)
 				item_instance.stacks = stack
 			EventBus.pickup_item.emit(item_instance, inventory_id)
