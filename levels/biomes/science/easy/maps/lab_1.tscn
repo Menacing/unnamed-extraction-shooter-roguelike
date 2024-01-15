@@ -1,16 +1,16 @@
 [gd_scene load_steps=1026 format=3 uid="uid://bgog375hnhshb"]
 
-[ext_resource type="Environment" uid="uid://s6q0fqlhuodl" path="res://Scenes/debug/vibe_check_environment.tres" id="1_3scuf"]
-[ext_resource type="CameraAttributesPractical" uid="uid://jafbi2bjurvn" path="res://Scenes/debug/vibe_check_camera.tres" id="2_ecxrf"]
+[ext_resource type="Environment" uid="uid://s6q0fqlhuodl" path="res://scenes/debug/vibe_check_environment.tres" id="1_3scuf"]
+[ext_resource type="CameraAttributesPractical" uid="uid://jafbi2bjurvn" path="res://scenes/debug/vibe_check_camera.tres" id="2_ecxrf"]
 [ext_resource type="Script" path="res://addons/qodot/src/nodes/qodot_map.gd" id="3_4x0my"]
 [ext_resource type="Resource" uid="uid://dr0etevtbyukb" path="res://levels/entities/uesrl_fgd_entities.tres" id="4_dglsm"]
 [ext_resource type="Material" uid="uid://c3acx86os52gf" path="res://levels/textures/qodot_default.tres" id="5_sdfta"]
 [ext_resource type="Script" path="res://addons/qodot/src/nodes/qodot_entity.gd" id="6_7bd7h"]
 [ext_resource type="Script" path="res://levels/entities/geo_ballistic_solid.gd" id="7_2n45x"]
 [ext_resource type="Texture2D" uid="uid://u2wcee3m6onu" path="res://levels/textures/wood/wood_16.png" id="7_pm68f"]
-[ext_resource type="PackedScene" uid="uid://dbduds4bsaaby" path="res://Scenes/Bullet/Bullet_hole.tscn" id="8_x57tl"]
-[ext_resource type="PackedScene" uid="uid://b7x11nf8gbi6e" path="res://Scenes/effects/bullet_hit_stone.tscn" id="9_bijp8"]
-[ext_resource type="AudioStream" uid="uid://bxakhll281jbw" path="res://Scenes/effects/sounds/steps/footstep_concrete_001.ogg" id="10_47x28"]
+[ext_resource type="PackedScene" uid="uid://dbduds4bsaaby" path="res://scenes/Bullet/Bullet_hole.tscn" id="8_x57tl"]
+[ext_resource type="PackedScene" uid="uid://b7x11nf8gbi6e" path="res://scenes/effects/bullet_hit_stone.tscn" id="9_bijp8"]
+[ext_resource type="AudioStream" uid="uid://bxakhll281jbw" path="res://scenes/effects/sounds/steps/footstep_concrete_001.ogg" id="10_47x28"]
 [ext_resource type="Resource" uid="uid://qumpyqn8mcmo" path="res://levels/game_material_info/uesrl_game_material_info_list.tres" id="11_nbvpw"]
 [ext_resource type="Texture2D" uid="uid://b2l0ttb7o202e" path="res://levels/textures/tile/tile_2.png" id="12_ke21b"]
 [ext_resource type="Texture2D" uid="uid://dlbltlra8vk8v" path="res://levels/textures/tile/tile_4.png" id="13_53q26"]
@@ -18,12 +18,12 @@
 [ext_resource type="Texture2D" uid="uid://dj5bbhti85yc3" path="res://levels/textures/concrete/concrete_3.png" id="15_f321l"]
 [ext_resource type="Texture2D" uid="uid://dhm0uoivwda3t" path="res://levels/textures/concrete/concrete_1.png" id="16_l47ep"]
 [ext_resource type="Texture2D" uid="uid://fn24w1j4vxtr" path="res://levels/textures/plaster/plaster_7.png" id="17_wytsx"]
-[ext_resource type="PackedScene" uid="uid://c30xv3xr7rlmy" path="res://Scenes/effects/bullet_hit_wood.tscn" id="18_cn8n4"]
-[ext_resource type="AudioStream" uid="uid://bpl1v3m2xtfwo" path="res://Scenes/effects/sounds/steps/footstep_wood_000.ogg" id="19_8m84q"]
+[ext_resource type="PackedScene" uid="uid://c30xv3xr7rlmy" path="res://scenes/effects/bullet_hit_wood.tscn" id="18_cn8n4"]
+[ext_resource type="AudioStream" uid="uid://bpl1v3m2xtfwo" path="res://scenes/effects/sounds/steps/footstep_wood_000.ogg" id="19_8m84q"]
 [ext_resource type="Texture2D" uid="uid://b0j8be7sjcplb" path="res://levels/textures/marble/marble_19.png" id="20_28053"]
 [ext_resource type="Texture2D" uid="uid://1hhxl6pgwmak" path="res://levels/textures/marble/marble_1.png" id="21_lypf4"]
 [ext_resource type="Texture2D" uid="uid://dvsh8dogdxobw" path="res://levels/textures/tile/tile_6.png" id="22_82s5j"]
-[ext_resource type="PackedScene" uid="uid://5n7aup1d2u20" path="res://Scenes/effects/bullet_hit_sparks.tscn" id="23_5wyqu"]
+[ext_resource type="PackedScene" uid="uid://5n7aup1d2u20" path="res://scenes/effects/bullet_hit_sparks.tscn" id="23_5wyqu"]
 [ext_resource type="Texture2D" uid="uid://cu2ilyrh6rau5" path="res://levels/textures/metal/metal_2.png" id="24_0hu1m"]
 [ext_resource type="Texture2D" uid="uid://dl0vvv0f0k2ci" path="res://levels/textures/metal/metal_13.png" id="25_a18fp"]
 [ext_resource type="Texture2D" uid="uid://c16e3fi7asxlg" path="res://levels/textures/metal/metal_5.png" id="26_dvih2"]
@@ -43,14 +43,14 @@
 [ext_resource type="Texture2D" uid="uid://dr5l4m1yk2xmr" path="res://levels/textures/metal/metal_4.png" id="40_oh0gh"]
 [ext_resource type="Script" path="res://levels/entities/area_enemy_spawn.gd" id="41_ya8c8"]
 [ext_resource type="Script" path="res://levels/entities/area_loot_spawn.gd" id="42_swg40"]
-[ext_resource type="PackedScene" uid="uid://d08aatgxmymbf" path="res://Scenes/Player/player.tscn" id="42_ygbs3"]
-[ext_resource type="PackedScene" uid="uid://dr48wela8mtxd" path="res://Scenes/items/weapons/easi_early_service_rifles/zs_52/zs_52.tscn" id="43_me08l"]
+[ext_resource type="PackedScene" uid="uid://d08aatgxmymbf" path="res://scenes/player/player.tscn" id="42_ygbs3"]
+[ext_resource type="PackedScene" uid="uid://dr48wela8mtxd" path="res://scenes/items/weapons/easi_early_service_rifles/zs_52/zs_52.tscn" id="43_me08l"]
 [ext_resource type="Script" path="res://levels/entities/door_hinge.gd" id="44_h17jd"]
 [ext_resource type="Resource" uid="uid://3nqgvhg4lre8" path="res://components/ammo_component/ammo_types/heavy_intermediate_cartridge.tres" id="44_kdlx2"]
 [ext_resource type="Script" path="res://levels/entities/geo_ballistic_door.gd" id="45_3hmmn"]
 [ext_resource type="Script" path="res://addons/qodot/game_definitions/fgd/point_classes/light.gd" id="45_i10a3"]
-[ext_resource type="Script" path="res://Scenes/items/weapons/gun_stats.gd" id="45_lrm5y"]
-[ext_resource type="PackedScene" uid="uid://trlm60n2q0k4" path="res://Scenes/items/attachments/scopes/red_dot/red_dot.tscn" id="46_ex0jf"]
+[ext_resource type="Script" path="res://scenes/items/weapons/gun_stats.gd" id="45_lrm5y"]
+[ext_resource type="PackedScene" uid="uid://trlm60n2q0k4" path="res://scenes/items/attachments/scopes/red_dot/red_dot.tscn" id="46_ex0jf"]
 [ext_resource type="Script" path="res://levels/entities/geo_ballistic_container.gd" id="47_b1v23"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lkvkd"]
@@ -7979,7 +7979,7 @@ shape = SubResource("ConvexPolygonShape3D_u18lr")
 
 [node name="bathroom_entrance_hinge" type="Node3D" parent="QodotMap"]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.6, 1.65, 4.7)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.825, 1.825, 4.7)
 script = ExtResource("44_h17jd")
 properties = {
 "classname": "door_hinge",
@@ -8026,7 +8026,7 @@ shape = SubResource("ConvexPolygonShape3D_7mq4o")
 
 [node name="bathroom_foyer_hinge" type="Node3D" parent="QodotMap"]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.1, 1.9, 6.2)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.1, 1.825, 5.425)
 script = ExtResource("44_h17jd")
 properties = {
 "classname": "door_hinge",
@@ -8073,7 +8073,7 @@ shape = SubResource("ConvexPolygonShape3D_bytbj")
 
 [node name="second_floor_back" type="Node3D" parent="QodotMap"]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.1, 1.85, 12.6)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.1, 1.825, 13.375)
 script = ExtResource("44_h17jd")
 properties = {
 "classname": "door_hinge",
@@ -8120,7 +8120,7 @@ shape = SubResource("ConvexPolygonShape3D_ljlwm")
 
 [node name="first_floor_under_stairs" type="Node3D" parent="QodotMap"]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, -1.65, 4.7)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.225, -1.525, 4.7)
 script = ExtResource("44_h17jd")
 properties = {
 "classname": "door_hinge",
@@ -8167,7 +8167,7 @@ shape = SubResource("ConvexPolygonShape3D_e1myb")
 
 [node name="security_room_hinge" type="Node3D" parent="QodotMap"]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, -1.55, 14.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.775, -1.575, 14.5)
 script = ExtResource("44_h17jd")
 properties = {
 "classname": "door_hinge",
@@ -8214,7 +8214,7 @@ shape = SubResource("ConvexPolygonShape3D_doqor")
 
 [node name="hallway_office_hinge" type="Node3D" parent="QodotMap"]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.4, -1.5, 9.9)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.625, -1.575, 9.9)
 script = ExtResource("44_h17jd")
 properties = {
 "classname": "door_hinge",

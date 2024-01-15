@@ -1,9 +1,9 @@
 [gd_resource type="Resource" script_class="GameMaterialInfo" load_steps=5 format=3 uid="uid://ba2j8g1h1ru5y"]
 
 [ext_resource type="Script" path="res://levels/game_material_info/game_material_info.gd" id="1_0elna"]
-[ext_resource type="PackedScene" uid="uid://dbduds4bsaaby" path="res://Scenes/Bullet/Bullet_hole.tscn" id="1_gx42n"]
-[ext_resource type="AudioStream" uid="uid://bpl1v3m2xtfwo" path="res://Scenes/effects/sounds/steps/footstep_wood_000.ogg" id="2_n8xf1"]
-[ext_resource type="PackedScene" uid="uid://c30xv3xr7rlmy" path="res://Scenes/effects/bullet_hit_wood.tscn" id="3_yeme2"]
+[ext_resource type="PackedScene" uid="uid://dbduds4bsaaby" path="res://scenes/Bullet/Bullet_hole.tscn" id="1_gx42n"]
+[ext_resource type="AudioStream" uid="uid://bpl1v3m2xtfwo" path="res://scenes/effects/sounds/steps/footstep_wood_000.ogg" id="2_n8xf1"]
+[ext_resource type="PackedScene" uid="uid://c30xv3xr7rlmy" path="res://scenes/effects/bullet_hit_wood.tscn" id="3_yeme2"]
 
 [resource]
 script = ExtResource("1_0elna")

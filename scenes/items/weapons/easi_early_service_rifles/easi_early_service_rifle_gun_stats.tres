@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="GunStats" load_steps=3 format=3 uid="uid://dls8psqyu06aw"]
+
+[ext_resource type="Script" path="res://scenes/items/weapons/gun_stats.gd" id="1_0a7nh"]
+[ext_resource type="Resource" uid="uid://3nqgvhg4lre8" path="res://components/ammo_component/ammo_types/heavy_intermediate_cartridge.tres" id="1_t38sq"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("1_0a7nh")
+magazine_size = 30
+rpm = 600
+base_recoil = Vector2(0, 0.025)
+recoil_variability = Vector2(0.025, 0.013)
+fire_modes = ["semi", "auto"]
+ads_accel = 10.0
+ads_fov = 50.0
+moa = 5.0
+turn_speed = 25.0
+ammo_type = ExtResource("1_t38sq")

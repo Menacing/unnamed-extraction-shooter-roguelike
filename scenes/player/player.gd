@@ -1,0 +1,576 @@
+extends CharacterBody3D
+class_name Player
+
+@onready var state_chart :StateChart = %StateChart
+@export var gun_scene1: PackedScene
+@export var gun_scene2: PackedScene
+@export var max_health:float = 100.0
+@onready var health:float = max_health
+var equipped_gun:Gun
+var shoulder_gun:Gun
+var gun_slot_1:Gun 
+var gun_slot_2:Gun
+@onready var waist = $Waist
+@onready var chest = $Waist/Chest
+@onready var cam = $Waist/Chest/head_anchor/Head/Camera3d as Camera3D
+@onready var head = $Waist/Chest/head_anchor/Head as Node3D
+@onready var head_anchor = $Waist/Chest/head_anchor as Node3D
+@onready var use_ray = $Waist/Chest/head_anchor/Head/Camera3d/UsePointer
+var pov_rotation_node:Node3D
+
+@onready var shoulder_anchor:Node3D = $player_default_mesh/shoulder_anchor
+@onready var drop_location:Node3D = $drop_location
+@onready var armor_anchor:Node3D = $HitBox/ChestBoneAttachment/armor_anchor
+@onready var backpack_anchor:Node3D = $HitBox/ChestBoneAttachment/backpack_anchor
+@onready var center_mass:Node3D = $center_mass
+@onready var ik_right_hand:SkeletonIK3D = $player_default_mesh/metarig/Skeleton3D/SkeletonIK3D_Hand_Right
+@onready var ik_right_hand_fingers:SkeletonIK3D = $player_default_mesh/metarig/Skeleton3D/SkeletonIK3D_Hand_Right_Fingers
+@onready var ik_left_hand:SkeletonIK3D = $player_default_mesh/metarig/Skeleton3D/SkeletonIK3D_Hand_Left
+@onready var ik_left_hand_fingers:SkeletonIK3D = $player_default_mesh/metarig/Skeleton3D/SkeletonIK3D_Hand_Left_Fingers
+@onready var ik_head:SkeletonIK3D = $player_default_mesh/metarig/Skeleton3D/SkeletonIK3D_Head
+var los_check_locations:Array[Node3D] = []
+
+const NORMAL_SPEED = 5.0
+const CROUCH_SPEED = 2.5
+const PRONE_SPEED = 1
+const RUN_SPEED = 10.0
+const JUMP_VELOCITY = 4.5
+const accel = 1.0
+var currentSpeed = 0.0
+var LEAN_AMOUNT = PI/6
+
+var current_fire_mode: String:
+	get:
+		if equipped_gun:
+			return equipped_gun.current_fire_mode
+		else: 
+			return ""
+@onready var ads_normal_pos: Vector3 = head_anchor.position
+var grip_pos: Node3D
+var handguard_pos: Node3D
+var fully_ads: bool:
+	get:
+		if ads_fac == 1.0:
+			return true
+		else:
+			return false
+@onready var home_basis: Basis = waist.transform.basis
+@warning_ignore("unsafe_method_access")
+@onready var right_lean_basis: Basis = waist.transform.basis.rotated(Vector3.FORWARD, LEAN_AMOUNT)
+@warning_ignore("unsafe_method_access")
+@onready var left_lean_basis: Basis = waist.transform.basis.rotated(Vector3.FORWARD, -LEAN_AMOUNT)
+
+var mouse_mov
+var sway_threshold = 5
+var sway_lerp = 5
+
+@export var sway_left:Vector3
+@export var sway_right:Vector3
+@export var sway_normal:Vector3
+
+
+var toggle_sprint_f: bool = false
+var toggle_crouch_f: bool = false
+var toggle_prone_f: bool = false
+var toggle_inv_f: bool = false
+var legs_destroyed: bool = false
+@onready var player_inventory_id = $PlayerInventories.player_inventory_id
+
+# Get the gravity from the project settings to be synced with RigidBody nodes.
+var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
+@onready var player_mat: BaseMaterial3D = $player_default_mesh/metarig/Skeleton3D/Cube.get_active_material(0)
+
+@onready var ammo_component:AmmoComponent = $AmmoComponent
+
+func _ready():
+	if gun_scene1:
+		equipped_gun = gun_scene1.instantiate()
+		#TODO: Pull these from the packed scene instead of being hardcoded
+		#pick_up_gun(equipped_gun)
+	if gun_scene2:
+		shoulder_gun = gun_scene2.instantiate()
+		#TODO: Pull these from the packed scene instead of being hardcoded
+		#pick_up_gun(shoulder_gun)
+	
+	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	currentSpeed = NORMAL_SPEED
+	EventBus.fire_mode_changed.emit("")
+	EventBus.magazine_ammo_count_changed.emit(0)
+	EventBus.item_picked_up.connect(_on_item_picked_up)
+	EventBus.item_removed_from_slot.connect(_on_item_removed_from_slot)
+	EventBus.drop_item.connect(_on_drop_item)
+	if toggle_inv_f:
+		EventBus.open_inventory.emit(player_inventory_id)
+	else:
+		EventBus.close_all_inventories.emit()
+	
+	los_check_locations.append($HitBox/HeadBoneAttachment/eyes)
+	los_check_locations.append($HitBox/RightFootBoneAttachment)
+	los_check_locations.append($HitBox/LeftFootBoneAttachment)
+	los_check_locations.append($center_mass)
+	los_check_locations.append($HitBox/RightLowerArmBoneAttachment/r_hand)
+	los_check_locations.append($HitBox/LeftLowerArmBoneAttachment/l_hand)
+	
+	ik_head.start()
+	
+	pov_rotation_node = chest
+
+func _on_item_picked_up(result:InventoryInsertResult):
+	if result.inventory_id == player_inventory_id:
+		var item_instance:ItemInstance = InventoryManager.get_item(result.item_instance_id)
+		var item_3d:Item3D = instance_from_id(item_instance.id_3d)
+		Helpers.force_parent(item_3d,self)
+		item_3d.picked_up()
+		if result.location.location == InventoryLocationResult.LocationType.SLOT:
+			match result.location.slot_name:
+				"GunSlot1":
+					gun_slot_1 = item_3d as Gun
+					move_gun_to_player_model(gun_slot_1)
+				"GunSlot2":
+					gun_slot_2 = item_3d as Gun
+					move_gun_to_player_model(gun_slot_2) 
+				"BackpackSlot":
+					move_backpack_to_anchor(item_3d)
+					var backpack:Backpack = item_3d as Backpack
+					if backpack:
+						if backpack.backpack_size == Backpack.Size.NONE:
+							InventoryManager.set_inventory_size(player_inventory_id, Vector2i(7,2))
+						elif backpack.backpack_size == Backpack.Size.SMALL:
+							InventoryManager.set_inventory_size(player_inventory_id, Vector2i(7,4))
+						elif backpack.backpack_size == Backpack.Size.MEDIUM:
+							InventoryManager.set_inventory_size(player_inventory_id, Vector2i(7,6))
+						elif backpack.backpack_size == Backpack.Size.LARGE:
+							InventoryManager.set_inventory_size(player_inventory_id, Vector2i(7,8))
+				"ArmorSlot":
+					move_armor_to_anchor(item_3d)
+		elif result.location.location == InventoryLocationResult.LocationType.GRID:
+			item_3d.visible = false
+		
+		if item_instance.get_item_type() == GameplayEnums.ItemType.AMMO:
+			var ammo_information:AmmoInformation = item_instance._item_info
+			var remainder = ammo_component.add_ammo(ammo_information.ammo_type, ammo_information.ammo_subtype, item_instance.stacks)
+			item_instance.stacks = remainder
+			
+
+func _on_item_removed_from_slot(item_inst:ItemInstance, inventory_id:int, slot_name:String):
+	if inventory_id == player_inventory_id:
+		var item_3d:Item3D = instance_from_id(item_inst.id_3d)
+		if item_3d is Gun:
+			if item_3d == equipped_gun:
+				stop_arms_ik()
+				equipped_gun = null	
+			if item_3d == gun_slot_1:
+				gun_slot_1 = null	
+			if item_3d == gun_slot_2:
+				gun_slot_2 = null	
+			if item_3d == shoulder_gun:
+				shoulder_gun = null
+
+
+func move_gun_to_player_model(gun:Gun):
+	gun.show()	
+	if !equipped_gun:
+		move_gun_to_hands(gun)
+	elif !shoulder_gun:
+		move_gun_to_shoulder(gun)
+	
+func move_gun_to_hands(gun:Gun):
+	equipped_gun = gun
+	if gun:	
+		gun.transform = Transform3D.IDENTITY
+		grip_pos = gun.get_grip_node()
+		handguard_pos = gun.get_handguard_node()
+		gun.fired.connect(_on_gun_fired)
+		gun.reloaded.connect(_on_gun_reloaded)
+		current_fire_mode = gun.current_fire_mode
+		Helpers.force_parent(gun, cam)
+		EventBus.fire_mode_changed.emit(gun.current_fire_mode)
+		EventBus.magazine_ammo_count_changed.emit(gun.current_magazine_size)
+		gun.visible = true
+		gun.top_level = true
+		start_arms_ik(gun.get_right_hand_node(), gun.get_right_fingers_node(), gun.get_left_hand_node(), gun.get_left_fingers_node())
+		
+		var gun_stats = gun.get_gun_stats()
+		ammo_component.set_active_ammo(gun_stats.ammo_type, gun_stats.ammo_type.sub_types[0])
+
+func move_gun_to_shoulder(gun:Gun):
+	shoulder_gun = gun
+	if gun:
+		Helpers.force_parent(gun,shoulder_anchor)
+		gun.transform = Transform3D.IDENTITY
+		gun.rotate_x(-PI/2)
+		gun.visible = true
+		gun.top_level = false
+		pass
+
+func move_armor_to_anchor(armor:Node3D):
+	if armor:
+		Helpers.force_parent(armor, armor_anchor)
+		armor.transform = Transform3D.IDENTITY
+		armor.visible = true
+		pass
+		
+func move_backpack_to_anchor(backpack:Node3D):
+	if backpack:
+		Helpers.force_parent(backpack, backpack_anchor)
+		backpack.transform = Transform3D.IDENTITY
+		backpack.visible = true
+
+func drop_equipped_gun():
+	if equipped_gun:
+		equipped_gun.fired.disconnect(_on_gun_fired)
+		equipped_gun.reloaded.disconnect(_on_gun_reloaded)
+		EventBus.fire_mode_changed.emit("")
+		EventBus.magazine_ammo_count_changed.emit(0)
+		
+		equipped_gun = null
+		stop_arms_ik()
+
+func _on_drop_item(item_inst:ItemInstance, inventory_id:int):
+	if inventory_id == player_inventory_id:
+		var item_3d:Item3D = instance_from_id(item_inst.id_3d)
+		Helpers.force_parent(item_3d,get_parent())
+		item_3d.dropped()
+		item_3d.global_position = drop_location.global_position
+		
+		if item_3d is Gun:
+			if item_3d == equipped_gun:
+				stop_arms_ik()
+				equipped_gun = null	
+			if item_3d == gun_slot_1:
+				gun_slot_1 = null	
+			if item_3d == gun_slot_2:
+				gun_slot_2 = null	
+			if item_3d == shoulder_gun:
+				shoulder_gun = null
+
+#realtime inputs - movement stuff
+func _physics_process(delta):
+	EventBus.compass_player_pulse.emit(self.global_position, self.global_rotation_degrees)
+	point_camera_at_target()
+	align_trailers_to_head(delta)
+	if !toggle_inv_f:
+		if equipped_gun:
+			# Handle Shooting
+			if can_shoot():
+				if current_fire_mode == "auto":
+					if Input.is_action_pressed("shoot"):
+						shoot()
+				elif current_fire_mode == "semi":
+					if Input.is_action_just_pressed("shoot"):
+						shoot()
+			
+			if Input.is_action_just_pressed("reload"):
+				reload()
+		#Handle Lean
+		var slr = shouldLeanRight()
+		var sll = shouldLeanLeft()
+		if slr:
+			waist.basis = Quaternion(waist.basis).slerp(Quaternion(right_lean_basis),0.5)
+		elif sll:
+			waist.basis = Quaternion(waist.basis).slerp(Quaternion(left_lean_basis),0.5)
+		else:
+			waist.basis = Quaternion(waist.basis).slerp(Quaternion(home_basis),0.5)
+		
+		#handle use hint
+		if use_ray.is_colliding():
+				var col = use_ray.get_collider()
+				if col is Item3D:
+					EventBus.pickup_helper_visibility.emit(true)
+				elif col.has_method("use"):
+					EventBus.use_helper_visibility.emit(true)
+				else:
+					EventBus.use_helper_visibility.emit(false)
+					EventBus.pickup_helper_visibility.emit(false)
+		else:
+			EventBus.use_helper_visibility.emit(false)
+			EventBus.pickup_helper_visibility.emit(false)
+			
+		var input_direction = Input.get_vector("moveLeft", "moveRight", "moveUp", "moveDown")
+		
+
+func point_camera_at_target():
+	head.transform.basis = Basis() # reset rotation
+	head.rotate_object_local(Vector3(0, 1, 0), v_rot_acc) # first rotate in Y
+	head.rotate_object_local(Vector3(1, 0, 0), h_rot_acc) # then rotate in X
+	head.rotation.x = clampf(head.rotation.x, -deg_to_rad(85), deg_to_rad(85))
+
+
+var _ads_fac = 0.0
+var ads_fac:float:
+	get:
+		return _ads_fac
+	set(value):
+		if value < 0.0:
+			_ads_fac = 0.0
+		elif value > 1.0:
+			_ads_fac = 1.0
+		else:
+			_ads_fac = value
+
+func align_trailers_to_head(delta:float):
+	#move head to anchor
+	head.global_position = head_anchor.global_position
+	
+#	waist.basis = Quaternion(waist.basis).slerp(Quaternion(right_lean_basis),0.5)
+#	self.rotation.y = head.rotation.y
+	
+	#lerp horizontal body rotation to match camera
+	var body_turn_speed = 4
+	var body_source_y_quat = Quaternion(Basis(Vector3.UP,self.rotation.y))
+	var body_target_y_quat = Quaternion(Basis(Vector3.UP,head.rotation.y))
+	self.basis = body_source_y_quat.slerp(body_target_y_quat, body_turn_speed*delta)
+
+	#match vertical rotation
+	pov_rotation_node.rotation.x = head.rotation.x
+	
+	
+	if equipped_gun:
+		#calculate target positions
+		var ads_rotated_offset = (cam.position - equipped_gun.get_ads_anchor()) * head.basis.inverse()
+		var ads_g_pos = head.global_position + ads_rotated_offset
+		var hf_rotated_offset = (cam.position - equipped_gun.get_hip_fire_anchor()) * head.basis.inverse()
+		var hf_g_pos = head.global_position + hf_rotated_offset
+		var ads_accel = 1.0 / equipped_gun.get_ADS_acceleration()
+		var ads_fov = equipped_gun.get_ADS_FOV()
+		
+		#if should ads, move factor towards ads
+		if shouldAds():
+			ads_fac += delta / ads_accel
+		else:
+			ads_fac -= delta / ads_accel
+			
+		#if fully ads, change transparency, else undo transparency
+		if GameSettings.both_eyes_open_ads:
+			if fully_ads:
+					equipped_gun.make_transparent()
+					make_transparent()
+			else:
+					equipped_gun.make_opaque()
+					make_opaque()
+		
+		#set gun position between hipfire position and ads position by ads_factor
+		equipped_gun.global_position = hf_g_pos.lerp(ads_g_pos, ads_fac)
+		#set head anchor position between normal and ads position by ads_factor
+		head_anchor.transform.origin = ads_normal_pos.lerp(equipped_gun.get_ads_head_anchor(), ads_fac)
+		#set camera fov between default and ads fov by ads_factor
+		cam.fov = lerp(GameSettings.default_fov, ads_fov, ads_fac)
+
+		var gun_turn_factor = 1.0 / equipped_gun.get_turn_speed()
+		#get current rotation as quat
+		var gun_source_y_quat = Quaternion(Basis(equipped_gun.basis))
+		#get rotation of head to use as target as quat
+		var gun_target_y_quat = Quaternion(Basis(head.basis))
+		#slerp from source to target
+		equipped_gun.basis = gun_source_y_quat.slerp(gun_target_y_quat, delta/gun_turn_factor)
+
+var toggle_ads_f: bool = false
+func shouldAds() -> bool:
+	if GameSettings.toggle_ads:
+		if Input.is_action_just_pressed("ads"):
+			toggle_ads_f = !toggle_ads_f
+		return toggle_ads_f
+	else:
+		return Input.is_action_pressed("ads")
+
+var toggle_lean_l_f: bool = false
+var toggle_lean_r_f: bool = false
+func shouldLeanRight() -> bool:
+	if !GameSettings.toggle_lean:
+		return Input.is_action_pressed("leanRight")
+	else:
+		if Input.is_action_just_pressed("leanRight"):
+			toggle_lean_r_f = !toggle_lean_r_f
+			toggle_lean_l_f = false
+		return toggle_lean_r_f
+
+func  shouldLeanLeft() -> bool:
+	if !GameSettings.toggle_lean:
+		return Input.is_action_pressed("leanLeft")
+	else:
+		if Input.is_action_just_pressed("leanLeft"):
+			toggle_lean_l_f = !toggle_lean_l_f
+			toggle_lean_r_f = false
+		return toggle_lean_l_f
+
+		
+func can_shoot() -> bool:
+	return is_on_floor() #and !isSprinting()
+
+func _unhandled_input(event):
+	if event.is_action_pressed("ui_cancel"):
+		#If inventories are closed, trigger the pause menu, else close open inventories
+		if !toggle_inv_f:
+			MenuManager.load_menu(MenuManager.MENU_LEVEL.PAUSE)
+		else:
+			close_inventory()
+		
+
+func _input(event):
+	if event.is_action_pressed("inventory"):
+		toggle_inventory()
+	else:
+		if event is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
+			#legacyMouse(event)
+#			transformMouse(event)
+			sway_transform_mouse(event)
+		elif event.is_action_pressed("toggleFireMode"):
+			if equipped_gun.has_method("toggle_fire_mode"):
+				var fire_mode = equipped_gun.toggle_fire_mode()
+				EventBus.fire_mode_changed.emit(fire_mode)
+				current_fire_mode = fire_mode
+		elif event.is_action_pressed("use"):
+			if use_ray.is_colliding():
+				var col = use_ray.get_collider()
+				if col is Item3D:
+					EventBus.pickup_item.emit(col.get_item_instance(), player_inventory_id)
+				elif col.has_method("use"):
+					col.use(self)
+		elif event.is_action_pressed("dropGun"):
+			drop_equipped_gun()
+		elif event.is_action_pressed("equipGunSlot1"):
+			if !equipped_gun != gun_slot_1 :
+				var old_gun = equipped_gun
+				move_gun_to_hands(shoulder_gun)
+				move_gun_to_shoulder(old_gun)
+		elif event.is_action_pressed("equipGunSlot2"):
+			if !equipped_gun != gun_slot_2 :
+				var old_gun = equipped_gun
+				move_gun_to_hands(shoulder_gun)
+				move_gun_to_shoulder(old_gun)
+		
+func toggle_inventory():
+	toggle_inv_f = !toggle_inv_f
+	
+	if toggle_inv_f:
+		open_inventory()
+	else:
+		close_inventory()
+		
+func open_inventory():
+	toggle_inv_f = true
+	Input.mouse_mode = Input.MOUSE_MODE_CONFINED
+	EventBus.open_inventory.emit(player_inventory_id)
+	
+func close_inventory():
+	toggle_inv_f = false
+	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	EventBus.close_all_inventories.emit()
+
+func transformMouse(event: InputEventMouse):
+	var vert_rotation = -event.relative.x * GameSettings.h_mouse_sens/1000.0
+	var hor_rotation = -event.relative.y * GameSettings.v_mouse_sens/1000.0
+	
+	if (fully_ads):
+		vert_rotation = vert_rotation * GameSettings.ads_look_factor
+		hor_rotation = hor_rotation * GameSettings.ads_look_factor
+	
+	rotate_y(vert_rotation)
+	pov_rotation_node.rotate_x(hor_rotation)
+	pov_rotation_node.rotation.x = clampf(pov_rotation_node.rotation.x, -deg_to_rad(85), deg_to_rad(85))
+
+var _v_rot_acc:float = 0.0
+var v_rot_acc:float:
+	get:
+		return _v_rot_acc
+	set(value):
+		_v_rot_acc = fmod(value, 2*PI)
+var _h_rot_acc = 0.0
+var h_rot_acc:float:
+	get:
+		return _h_rot_acc
+	set(value):
+		_h_rot_acc = fmod(value, 2*PI)
+		_h_rot_acc = clampf(_h_rot_acc, -deg_to_rad(85), deg_to_rad(85))
+func sway_transform_mouse(event: InputEventMouse):
+	if (fully_ads):
+		v_rot_acc += -event.relative.x * GameSettings.h_mouse_sens/1000.0 * GameSettings.ads_look_factor
+		h_rot_acc += -event.relative.y * GameSettings.v_mouse_sens/1000.0 * GameSettings.ads_look_factor
+	else:
+		v_rot_acc += -event.relative.x * GameSettings.h_mouse_sens/1000.0
+		h_rot_acc += -event.relative.y * GameSettings.v_mouse_sens/1000.0
+
+
+func shoot():
+	equipped_gun.fireGun()
+	
+func reload():
+	var needed_ammo = equipped_gun.get_max_magazine_size() - equipped_gun.current_magazine_size
+	var available_ammo = ammo_component.request_ammo(ammo_component._active_ammo_type, ammo_component._active_ammo_subtype, needed_ammo)
+	equipped_gun.reloadGun(available_ammo)
+
+
+func _on_gun_fired(recoil:Vector2):
+	EventBus.magazine_ammo_count_changed.emit(equipped_gun.current_magazine_size)
+	var scaled_recoil = scale_recoil(recoil)
+#	#flip the mapping so that recoil.y moves the camera vertically
+	v_rot_acc += scaled_recoil.x
+	h_rot_acc += scaled_recoil.y
+#	rotate_y(scaled_recoil.x)
+#	pov_rotation_node.rotate_x(scaled_recoil.y)
+#	pov_rotation_node.rotation.x = clampf(pov_rotation_node.rotation.x, -deg_to_rad(80), deg_to_rad(80))
+	#legacy - We don't want to manually manipulate the rotations
+#	#flip the mapping so that recoil.y moves the camera vertically
+#	$Head/Camera3d.rotation.y += recoil.x
+#	$Head/Camera3d.rotation.x += recoil.y
+
+func scale_recoil(recoil:Vector2) -> Vector2:
+	var factor = 1.0
+	if fully_ads:
+		factor -= .2
+	
+	var current_state = "TODO"
+	match current_state:
+		"Crouching":
+			factor -= .2
+		"CrouchWalking", "Standing":
+			factor -= .1
+		"Prone":
+			factor -= .4
+
+	return recoil * factor
+	
+func _on_gun_reloaded():
+	EventBus.magazine_ammo_count_changed.emit(equipped_gun.current_magazine_size)	
+		
+func start_arms_ik(right_arm_loc:Node3D, right_fingers_loc:Node3D, left_arm_loc:Node3D, left_fingers_loc:Node3D):
+	if right_arm_loc:
+		ik_right_hand.target_node = right_arm_loc.get_path()
+		ik_right_hand.start()
+		
+	if right_fingers_loc:
+		ik_right_hand_fingers.target_node = right_fingers_loc.get_path()
+		ik_right_hand_fingers.start()
+		
+	if left_arm_loc:
+		ik_left_hand.target_node = left_arm_loc.get_path()
+		ik_left_hand.start()
+		
+	if left_fingers_loc:
+		ik_left_hand_fingers.target_node = left_fingers_loc.get_path()
+		ik_left_hand_fingers.start()
+
+func stop_arms_ik():
+	ik_right_hand.stop()
+	ik_right_hand_fingers.stop()
+	ik_left_hand.stop()
+	ik_left_hand_fingers.stop()
+	
+var is_transparent: bool = false
+func make_transparent():
+	if !is_transparent:
+		player_mat.distance_fade_mode = BaseMaterial3D.DISTANCE_FADE_PIXEL_DITHER
+		#Pixel dither looks better, but this is another way of doing it
+		#gun_mat.blend_mode = gun_mat.BLEND_MODE_ADD
+		is_transparent = true
+		pass
+	else:
+		pass
+
+func make_opaque():
+	if is_transparent:
+		player_mat.distance_fade_mode = BaseMaterial3D.DISTANCE_FADE_DISABLED		
+		#gun_mat.blend_mode = gun_mat.BLEND_MODE_MIX
+		is_transparent = false
+	else:
+		pass

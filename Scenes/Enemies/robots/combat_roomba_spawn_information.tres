@@ -1,9 +1,0 @@
-[gd_resource type="Resource" script_class="EnemySpawnInformation" load_steps=3 format=3 uid="uid://ubvrd4an5bl1"]
-
-[ext_resource type="PackedScene" uid="uid://ciaqbr34myu5w" path="res://Scenes/Enemies/robots/combat_roomba.tscn" id="1_ktjyi"]
-[ext_resource type="Script" path="res://Scenes/Enemies/enemy_spawn_information.gd" id="1_whuo2"]
-
-[resource]
-script = ExtResource("1_whuo2")
-scene = ExtResource("1_ktjyi")
-test_radius = 1.0

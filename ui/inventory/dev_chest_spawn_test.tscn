@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://cgbrrb330dnb2"]
 
-[ext_resource type="PackedScene" uid="uid://rcso16s616y" path="res://Scenes/containers/dev_chest.tscn" id="1_oif34"]
-[ext_resource type="Resource" uid="uid://bk7x5qi5hl1p8" path="res://Scenes/items/materials/polymer_pile/polymer_pile_inventory_info.tres" id="2_ijd6p"]
-[ext_resource type="Script" path="res://Scenes/items/LootInformation.gd" id="3_5yw3h"]
+[ext_resource type="PackedScene" uid="uid://rcso16s616y" path="res://scenes/containers/dev_chest.tscn" id="1_oif34"]
+[ext_resource type="Resource" uid="uid://bk7x5qi5hl1p8" path="res://scenes/items/materials/polymer_pile/polymer_pile_inventory_info.tres" id="2_ijd6p"]
+[ext_resource type="Script" path="res://scenes/items/LootInformation.gd" id="3_5yw3h"]
 
 [sub_resource type="Resource" id="Resource_2wktj"]
 script = ExtResource("3_5yw3h")

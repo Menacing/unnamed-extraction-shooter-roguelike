@@ -1,0 +1,29 @@
+[gd_resource type="Resource" script_class="AmmoInformation" load_steps=7 format=3 uid="uid://dya7rlkh21lv3"]
+
+[ext_resource type="Resource" uid="uid://cct85d3u48yuj" path="res://components/ammo_component/ammo_subtypes/full_metal_jacket.tres" id="1_exnif"]
+[ext_resource type="Texture2D" uid="uid://deetewjhemtiu" path="res://scenes/items/ammo/hic/hic_box_fmj_icon.png" id="2_ntolu"]
+[ext_resource type="Script" path="res://scenes/items/ammo/ammo_information.gd" id="2_t5hlb"]
+[ext_resource type="Resource" uid="uid://3nqgvhg4lre8" path="res://components/ammo_component/ammo_types/heavy_intermediate_cartridge.tres" id="2_y3bj1"]
+[ext_resource type="PackedScene" uid="uid://bbsjagcj1p70g" path="res://scenes/items/ammo/hic/hic_box.tscn" id="4_7g2br"]
+[ext_resource type="PackedScene" uid="uid://cn3ywqty7xvvr" path="res://ui/inventory/item_control.tscn" id="5_yo5w2"]
+
+[resource]
+script = ExtResource("2_t5hlb")
+ammo_type = ExtResource("2_y3bj1")
+ammo_subtype = ExtResource("1_exnif")
+item_control_scene = ExtResource("5_yo5w2")
+item_3d_scene = ExtResource("4_7g2br")
+item_type_id = 5
+show_name = false
+display_name = ""
+item_type = 11
+icon = ExtResource("2_ntolu")
+icon_r = ExtResource("2_ntolu")
+context_menu_items = Array[Resource("res://ui/inventory/item_context_item.gd")]([])
+max_stacks = 20
+has_stacks = true
+max_durability = 1
+has_durability = false
+column_span = 1
+row_span = 1
+tooltip_text = "Plastic"

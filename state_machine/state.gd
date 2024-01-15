@@ -1,5 +1,5 @@
 extends Node
-class_name State
+class_name CState
 # Base interface for all states: it doesn't do anything by itself,
 # but forces us to pass the right arguments to the methods below
 # and makes sure every State object had all of these methods.

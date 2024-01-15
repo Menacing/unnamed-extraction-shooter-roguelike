@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://c2mgc1vc3603e"]
+
+[ext_resource type="PackedScene" uid="uid://bn3jmrccdstcl" path="res://scenes/items/armor/light/light_armor_1.glb" id="1_7lj6r"]
+[ext_resource type="Script" path="res://scenes/items/armor/body_armor.gd" id="1_er0ts"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_mupep"]
+size = Vector3(0.378402, 0.4538, 0.305015)
+
+[node name="light_armor_1" type="RigidBody3D"]
+collision_layer = 7
+collision_mask = 5
+script = ExtResource("1_er0ts")
+world_collider_path = NodePath("CollisionShape3D")
+
+[node name="light_armor_1" parent="." instance=ExtResource("1_7lj6r")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0230582, 0.0499593)
+shape = SubResource("BoxShape3D_mupep")
+
+[editable path="light_armor_1"]

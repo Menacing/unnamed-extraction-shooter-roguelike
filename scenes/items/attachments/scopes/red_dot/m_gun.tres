@@ -1,0 +1,12 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://yjsxiscedmgf"]
+
+[ext_resource type="Texture2D" uid="uid://eaf7n3datkr3" path="res://scenes/items/attachments/scopes/red_dot/red_dot_texture.png" id="1_1jiv1"]
+
+[resource]
+resource_name = "m_gun"
+transparency = 2
+alpha_scissor_threshold = 0.05
+alpha_antialiasing_mode = 0
+cull_mode = 2
+emission_texture = ExtResource("1_1jiv1")
+texture_filter = 0
