@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="EnemySpawnMapping" load_steps=2 format=3 uid="uid://b1vqctqha0ava"]
+
+[ext_resource type="Script" path="res://game_objects/items/loot_spawn_mapping.gd" id="1_hg6y0"]
+
+[resource]
+script = ExtResource("1_hg6y0")
+spawn_weights = Array[Resource("res://Scenes/items/loot_spawn_weight.gd")]([])

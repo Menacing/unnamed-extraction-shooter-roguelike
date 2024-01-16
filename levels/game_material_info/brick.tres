@@ -1,9 +1,9 @@
 [gd_resource type="Resource" script_class="GameMaterialInfo" load_steps=5 format=3 uid="uid://cw8ltee1c2mrt"]
 
-[ext_resource type="PackedScene" uid="uid://dbduds4bsaaby" path="res://scenes/bullet/Bullet_hole.tscn" id="1_dikhy"]
+[ext_resource type="PackedScene" uid="uid://dbduds4bsaaby" path="res://game_objects/bullet/bullet_hole.tscn" id="1_dikhy"]
 [ext_resource type="Script" path="res://levels/game_material_info/game_material_info.gd" id="1_trjlt"]
-[ext_resource type="AudioStream" uid="uid://bxakhll281jbw" path="res://scenes/effects/sounds/steps/footstep_concrete_001.ogg" id="2_dwsau"]
-[ext_resource type="PackedScene" uid="uid://b7x11nf8gbi6e" path="res://scenes/effects/bullet_hit_stone.tscn" id="3_mveum"]
+[ext_resource type="AudioStream" uid="uid://chvv4165nfb61" path="res://game_objects/effects/sounds/steps/footstep_concrete_001.ogg" id="2_dwsau"]
+[ext_resource type="PackedScene" uid="uid://b7x11nf8gbi6e" path="res://game_objects/effects/bullet_hit_stone.tscn" id="3_mveum"]
 
 [resource]
 script = ExtResource("1_trjlt")

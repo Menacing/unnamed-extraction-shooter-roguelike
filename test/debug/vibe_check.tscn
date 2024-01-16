@@ -1,0 +1,248 @@
+[gd_scene load_steps=15 format=3 uid="uid://b52vin8bgmm0h"]
+
+[ext_resource type="Environment" uid="uid://s6q0fqlhuodl" path="res://test/debug/vibe_check_environment.tres" id="1_51p0d"]
+[ext_resource type="PackedScene" uid="uid://gt018qo38blj" path="res://ui/player_hud.tscn" id="1_gd74f"]
+[ext_resource type="PackedScene" uid="uid://s2gmpuugbea3" path="res://game_objects/player/player_default_mesh.glb" id="1_qshqd"]
+[ext_resource type="Texture2D" uid="uid://dkcxx06s6kdp6" path="res://game_objects/items/weapons/easi_early_service_rifles/zs_52/PixelMuzzelFlash.png" id="2_vnupo"]
+[ext_resource type="CameraAttributesPractical" uid="uid://jafbi2bjurvn" path="res://test/debug/vibe_check_camera.tres" id="2_ybngr"]
+[ext_resource type="PackedScene" uid="uid://o7vvmqxsny5t" path="res://game_objects/enemies/robots/combat-roomba.glb" id="3_16oun"]
+[ext_resource type="Shader" path="res://levels/textures/glass/glass_1.gdshader" id="3_bi6rj"]
+[ext_resource type="PackedScene" uid="uid://dr48wela8mtxd" path="res://game_objects/items/weapons/easi_early_service_rifles/zs_52/zs_52.tscn" id="4_pkc5m"]
+[ext_resource type="PackedScene" uid="uid://pm3nps6dkjt8" path="res://game_objects/items/weapons/easi_early_service_rifles/zs_52/zs_52.blend" id="4_xsc4f"]
+[ext_resource type="Resource" uid="uid://3nqgvhg4lre8" path="res://components/ammo_component/ammo_types/heavy_intermediate_cartridge.tres" id="5_6hjw3"]
+[ext_resource type="Script" path="res://game_objects/items/weapons/gun_stats.gd" id="6_lvsh8"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_68nao"]
+albedo_color = Color(0.552941, 0.552941, 0.552941, 1)
+metallic = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7h1hw"]
+render_priority = 0
+shader = ExtResource("3_bi6rj")
+shader_parameter/albedo = Color(1, 1, 1, 0)
+shader_parameter/roughness = 0.15
+shader_parameter/normal_strength = 1.0
+shader_parameter/edge_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Resource" id="Resource_cthcn"]
+resource_local_to_scene = true
+script = ExtResource("6_lvsh8")
+magazine_size = 30
+rpm = 600
+base_recoil = Vector2(0, 0.025)
+recoil_variability = Vector2(0.025, 0.013)
+fire_modes = ["semi", "auto"]
+ads_accel = 10.0
+ads_fov = 50.0
+moa = 5.0
+turn_speed = 25.0
+ammo_type = ExtResource("5_6hjw3")
+
+[node name="VibeCheck" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource("1_51p0d")
+camera_attributes = ExtResource("2_ybngr")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="WorldEnvironment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.32434, -0.253174, -0.429688)
+size = Vector3(21.2463, 0.493652, 21.5625)
+material = SubResource("StandardMaterial3D_68nao")
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="WorldEnvironment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.65347, 3.33513, -0.422328)
+size = Vector3(19.8977, 0.493652, 21.5625)
+material = SubResource("StandardMaterial3D_68nao")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="WorldEnvironment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5, 1.5, -6.73321)
+size = Vector3(8, 4, 1)
+
+[node name="CSGBox3D8" type="CSGBox3D" parent="WorldEnvironment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.30957, 1.5, 5.32648)
+size = Vector3(17.6191, 4, 1)
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="WorldEnvironment"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 7.05897, 1.5, -0.0115814)
+size = Vector3(10.2622, 4, 1)
+
+[node name="CSGBox3D9" type="CSGBox3D" parent="WorldEnvironment"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 7.05897, 1.5, -11.7613)
+size = Vector3(10.2622, 4, 1)
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="WorldEnvironment"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -9.35118, 1.5, -8.78349)
+size = Vector3(27.806, 4, 1)
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="WorldEnvironment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.78833, 1.5, -10.442)
+size = Vector3(16.5767, 4, 1)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="WorldEnvironment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.07889, 1.53282, -6.79885)
+size = Vector3(11.106, 4, 1)
+
+[node name="CSGBox3D10" type="CSGBox3D" parent="WorldEnvironment"]
+transform = Transform3D(0.956131, 0, -0.292939, 0, 1, 0, 0.292939, 0, 0.956131, -3.38051, 1.57109, -2.75341)
+size = Vector3(11.106, 4, 0.174683)
+material = SubResource("ShaderMaterial_7h1hw")
+
+[node name="player_default_mesh" parent="WorldEnvironment" instance=ExtResource("1_qshqd")]
+transform = Transform3D(0.69699, 0, -0.717081, 0, 1, 0, 0.717081, 0, 0.69699, 0, 0, -4.6065)
+
+[node name="Skeleton3D" parent="WorldEnvironment/player_default_mesh/metarig" index="0"]
+bones/1/rotation = Quaternion(-0.0186162, -2.36373e-07, 2.30433e-09, 0.999827)
+bones/1/scale = Vector3(1, 1, 1)
+bones/2/rotation = Quaternion(0.065448, 6.23539e-09, -9.47522e-09, 0.997856)
+bones/3/rotation = Quaternion(0.098627, 5.05573e-09, -1.83581e-08, 0.995124)
+bones/4/rotation = Quaternion(-0.0113423, -1.50796e-08, -9.03869e-09, 0.999936)
+bones/4/scale = Vector3(1, 1, 1)
+bones/5/rotation = Quaternion(-0.0466974, 2.65914e-09, 1.37571e-08, 0.998909)
+bones/6/rotation = Quaternion(-0.0716927, 1.22578e-07, 1.22215e-08, 0.997427)
+bones/6/scale = Vector3(1, 1, 1)
+bones/7/rotation = Quaternion(0.631447, 0.479328, 0.368832, -0.485267)
+bones/7/scale = Vector3(1, 1, 1)
+bones/9/rotation = Quaternion(0.035004, -0.00218289, -0.0235359, 0.999108)
+bones/9/scale = Vector3(1, 1, 1)
+bones/10/rotation = Quaternion(-0.00679618, -0.0854439, 0.0817258, 0.992962)
+bones/10/scale = Vector3(1, 1, 1)
+bones/11/rotation = Quaternion(0.0849947, 0.746135, 0.0903776, 0.654133)
+bones/11/scale = Vector3(1, 1, 1)
+bones/12/rotation = Quaternion(0.166648, 0.0561586, -0.0766173, 0.98143)
+bones/13/rotation = Quaternion(0.0926919, 0.00665522, -0.126744, 0.987573)
+bones/14/rotation = Quaternion(-0.144557, -0.00736058, 0.00767103, 0.989439)
+bones/15/scale = Vector3(1, 1, 1)
+bones/16/rotation = Quaternion(0.0875437, 0.105352, -0.0165103, 0.990436)
+bones/17/rotation = Quaternion(-0.00137203, 0.00140203, 0.0995897, 0.995027)
+bones/17/scale = Vector3(1, 1, 1)
+bones/18/rotation = Quaternion(0.0461463, 0.750618, 0.0703526, 0.655358)
+bones/19/rotation = Quaternion(0.174844, 0.0395665, -0.0874593, 0.979906)
+bones/19/scale = Vector3(1, 1, 1)
+bones/20/rotation = Quaternion(0.0765798, -0.0311454, 0.040804, 0.995741)
+bones/21/rotation = Quaternion(-0.0674445, -0.0129744, -0.0208203, 0.997421)
+bones/21/scale = Vector3(1, 1, 1)
+bones/22/rotation = Quaternion(0.00360204, 0.751731, 0.0279303, 0.658868)
+bones/23/rotation = Quaternion(0.110823, -0.0196138, -0.018359, 0.993477)
+bones/24/rotation = Quaternion(0.115972, -0.00380623, -0.0148722, 0.993134)
+bones/24/scale = Vector3(1, 1, 1)
+bones/25/rotation = Quaternion(-0.0806765, -0.00752948, 0.0299561, 0.996262)
+bones/25/scale = Vector3(1, 1, 1)
+bones/26/rotation = Quaternion(-0.0616454, 0.769722, -0.030181, 0.634679)
+bones/26/scale = Vector3(1, 1, 1)
+bones/27/rotation = Quaternion(0.0987786, -0.0890667, 0.0533165, 0.98968)
+bones/27/scale = Vector3(1, 1, 1)
+bones/28/rotation = Quaternion(0.127275, 0.00181761, -0.0269318, 0.9915)
+bones/28/scale = Vector3(1, 1, 1)
+bones/29/rotation = Quaternion(-0.112338, -0.0263501, 0.0266454, 0.992963)
+bones/29/scale = Vector3(1, 1, 1)
+bones/30/rotation = Quaternion(0.631447, -0.479328, -0.368832, -0.485266)
+bones/31/rotation = Quaternion(-0.0993881, -0.706698, 0.25971, 0.650577)
+bones/32/rotation = Quaternion(0.0350041, 0.00218295, 0.0235359, 0.999108)
+bones/32/scale = Vector3(1, 1, 1)
+bones/33/rotation = Quaternion(-0.00679619, 0.0854439, -0.0817258, 0.992962)
+bones/33/scale = Vector3(1, 1, 1)
+bones/34/rotation = Quaternion(0.0849947, -0.746135, -0.0903776, 0.654133)
+bones/34/scale = Vector3(1, 1, 1)
+bones/35/rotation = Quaternion(0.166648, -0.0561586, 0.0766173, 0.98143)
+bones/36/rotation = Quaternion(0.0926919, -0.00665523, 0.126744, 0.987573)
+bones/36/scale = Vector3(1, 1, 1)
+bones/37/rotation = Quaternion(-0.144557, 0.00736057, -0.00767103, 0.989439)
+bones/38/scale = Vector3(1, 1, 1)
+bones/39/rotation = Quaternion(0.0875437, -0.105352, 0.0165103, 0.990436)
+bones/40/rotation = Quaternion(-0.00137203, -0.00140198, -0.0995897, 0.995027)
+bones/40/scale = Vector3(1, 1, 1)
+bones/41/rotation = Quaternion(0.0461463, -0.750618, -0.0703526, 0.655357)
+bones/41/scale = Vector3(1, 1, 1)
+bones/42/rotation = Quaternion(0.174844, -0.0395665, 0.0874593, 0.979906)
+bones/42/scale = Vector3(1, 1, 1)
+bones/43/rotation = Quaternion(0.0765799, 0.0311454, -0.040804, 0.995741)
+bones/44/rotation = Quaternion(-0.0674445, 0.0129744, 0.0208202, 0.997421)
+bones/44/scale = Vector3(1, 1, 1)
+bones/45/rotation = Quaternion(0.003602, -0.751731, -0.0279303, 0.658868)
+bones/45/scale = Vector3(1, 1, 1)
+bones/46/rotation = Quaternion(0.110823, 0.0196138, 0.018359, 0.993477)
+bones/47/rotation = Quaternion(0.115972, 0.00380622, 0.0148722, 0.993134)
+bones/47/scale = Vector3(1, 1, 1)
+bones/48/rotation = Quaternion(-0.0806766, 0.00752948, -0.0299561, 0.996262)
+bones/49/rotation = Quaternion(-0.0616454, -0.769722, 0.030181, 0.634679)
+bones/49/scale = Vector3(1, 1, 1)
+bones/50/rotation = Quaternion(0.0987785, 0.0890666, -0.0533165, 0.98968)
+bones/50/scale = Vector3(1, 1, 1)
+bones/51/rotation = Quaternion(0.127275, -0.00181757, 0.0269318, 0.9915)
+bones/51/scale = Vector3(1, 1, 1)
+bones/52/rotation = Quaternion(-0.112338, 0.0263501, -0.0266454, 0.992963)
+bones/52/scale = Vector3(1, 1, 1)
+bones/53/rotation = Quaternion(8.90192e-08, 0.79269, 0.609625, -5.98464e-08)
+bones/54/rotation = Quaternion(8.90192e-08, 0.79269, 0.609625, -5.98464e-08)
+bones/55/rotation = Quaternion(-0.102453, -0.698564, -0.500688, 0.500822)
+bones/55/scale = Vector3(1, 1, 1)
+bones/56/rotation = Quaternion(-0.102454, 0.698564, 0.500688, 0.500822)
+bones/56/scale = Vector3(1, 1, 1)
+bones/57/rotation = Quaternion(0.999876, 2.18939e-08, 2.40973e-07, -0.0157219)
+bones/57/scale = Vector3(1, 1, 1)
+bones/58/rotation = Quaternion(0.00598004, -0.00189536, 0.0201064, 0.999778)
+bones/58/scale = Vector3(1, 1, 1)
+bones/60/rotation = Quaternion(0.00233945, 0.999531, -0.0270523, 0.0141724)
+bones/60/scale = Vector3(1, 1, 1)
+bones/61/rotation = Quaternion(0.70482, 0.70482, -0.0568191, 0.0568219)
+bones/61/scale = Vector3(1, 1, 1)
+bones/62/rotation = Quaternion(0.999876, 8.79381e-09, -1.48074e-08, -0.0157219)
+bones/62/scale = Vector3(1, 1, 1)
+bones/63/rotation = Quaternion(0.00598004, 0.00189536, -0.0201064, 0.999778)
+bones/63/scale = Vector3(1, 1, 1)
+bones/64/rotation = Quaternion(-0.652311, -0.014472, 0.0140889, 0.757682)
+bones/64/scale = Vector3(1, 1, 1)
+bones/65/rotation = Quaternion(-0.00233945, 0.999531, -0.0270523, -0.0141724)
+bones/66/rotation = Quaternion(0.70482, -0.70482, 0.0568191, 0.0568219)
+bones/66/scale = Vector3(1, 1, 1)
+bones/67/rotation = Quaternion(-0.346124, 0.625549, -0.576406, 0.395783)
+bones/68/rotation = Quaternion(0.346124, 0.625549, -0.576406, -0.395783)
+bones/69/rotation = Quaternion(-0.71475, 0.0123598, -0.0126355, 0.699157)
+bones/70/rotation = Quaternion(-0.71475, -0.0123598, 0.0126355, 0.699157)
+
+[node name="SpotLight3D" type="SpotLight3D" parent="WorldEnvironment"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 3, -3)
+spot_range = 7.0
+spot_angle = 46.5348
+
+[node name="OmniLight3D" type="OmniLight3D" parent="WorldEnvironment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 3, -9)
+light_color = Color(0.580392, 0.568627, 0, 1)
+omni_range = 10.2
+
+[node name="Sprite3D" type="Sprite3D" parent="WorldEnvironment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -5)
+centered = false
+offset = Vector2(-250, 0)
+pixel_size = 0.005
+billboard = 1
+texture_filter = 1
+texture = ExtResource("2_vnupo")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="WorldEnvironment/Sprite3D"]
+light_color = Color(1, 0.215686, 0, 1)
+
+[node name="FogVolume" type="FogVolume" parent="WorldEnvironment/Sprite3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.984214, 0)
+size = Vector3(2, 4.98044, 2)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="WorldEnvironment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19, 31, 0)
+shadow_enabled = true
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.67354, 0.962177)
+
+[node name="PlayerHUD" parent="Camera3D" instance=ExtResource("1_gd74f")]
+
+[node name="zs_52" parent="Camera3D" instance=ExtResource("4_xsc4f")]
+transform = Transform3D(-0.0975308, 0, -0.995233, 0, 1, 0, 0.995233, 0, -0.0975308, 0.290631, -0.59187, -0.494354)
+
+[node name="combat-roomba" parent="." instance=ExtResource("3_16oun")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.38036, 0, -8.77306)
+
+[node name="zs_52" parent="." instance=ExtResource("4_pkc5m")]
+transform = Transform3D(0.319439, 0.947607, 0, -0.947607, 0.319439, 0, 0, 0, 1, -2.08298, 0.0846666, -5.56101)
+_gun_stats = SubResource("Resource_cthcn")
+
+[editable path="WorldEnvironment/player_default_mesh"]

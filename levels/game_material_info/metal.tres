@@ -1,8 +1,8 @@
 [gd_resource type="Resource" script_class="GameMaterialInfo" load_steps=5 format=3 uid="uid://gucihxbxv6nm"]
 
-[ext_resource type="PackedScene" uid="uid://dbduds4bsaaby" path="res://scenes/bullet/Bullet_hole.tscn" id="1_ohs1i"]
-[ext_resource type="AudioStream" uid="uid://bxakhll281jbw" path="res://scenes/effects/sounds/steps/footstep_concrete_001.ogg" id="2_gbi0h"]
-[ext_resource type="PackedScene" uid="uid://5n7aup1d2u20" path="res://scenes/effects/bullet_hit_sparks.tscn" id="3_f5ewq"]
+[ext_resource type="PackedScene" uid="uid://dbduds4bsaaby" path="res://game_objects/bullet/bullet_hole.tscn" id="1_ohs1i"]
+[ext_resource type="AudioStream" uid="uid://chvv4165nfb61" path="res://game_objects/effects/sounds/steps/footstep_concrete_001.ogg" id="2_gbi0h"]
+[ext_resource type="PackedScene" uid="uid://5n7aup1d2u20" path="res://game_objects/effects/bullet_hit_sparks.tscn" id="3_f5ewq"]
 [ext_resource type="Script" path="res://levels/game_material_info/game_material_info.gd" id="4_eyx12"]
 
 [resource]

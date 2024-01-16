@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="LootSpawnWeight" load_steps=3 format=3 uid="uid://df8lvowpq8vte"]
 
-[ext_resource type="Script" path="res://scenes/items/loot_spawn_weight.gd" id="1_fwqdh"]
-[ext_resource type="Resource" uid="uid://cbmk0nj8v80dn" path="res://scenes/items/weapons/easi_early_service_rifles/zs_52/zs_52_spawn_info.tres" id="1_ubdo5"]
+[ext_resource type="Script" path="res://game_objects/items/loot_spawn_weight.gd" id="1_fwqdh"]
+[ext_resource type="Resource" uid="uid://cbmk0nj8v80dn" path="res://game_objects/items/weapons/easi_early_service_rifles/zs_52/zs_52_spawn_info.tres" id="1_ubdo5"]
 
 [resource]
 script = ExtResource("1_fwqdh")
