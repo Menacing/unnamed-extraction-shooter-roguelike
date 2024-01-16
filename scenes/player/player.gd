@@ -250,6 +250,7 @@ func _physics_process(delta):
 	point_camera_at_target()
 	align_trailers_to_head(delta)
 	if !toggle_inv_f:
+		#TODO Move this to Input?
 		if equipped_gun:
 			# Handle Shooting
 			if can_shoot():
@@ -312,9 +313,6 @@ func align_trailers_to_head(delta:float):
 	#move head to anchor
 	head.global_position = head_anchor.global_position
 	
-#	waist.basis = Quaternion(waist.basis).slerp(Quaternion(right_lean_basis),0.5)
-#	self.rotation.y = head.rotation.y
-	
 	#lerp horizontal body rotation to match camera
 	var body_turn_speed = 4
 	var body_source_y_quat = Quaternion(Basis(Vector3.UP,self.rotation.y))
@@ -323,7 +321,6 @@ func align_trailers_to_head(delta:float):
 
 	#match vertical rotation
 	pov_rotation_node.rotation.x = head.rotation.x
-	
 	
 	if equipped_gun:
 		#calculate target positions
@@ -366,12 +363,15 @@ func align_trailers_to_head(delta:float):
 
 var toggle_ads_f: bool = false
 func shouldAds() -> bool:
-	if GameSettings.toggle_ads:
-		if Input.is_action_just_pressed("ads"):
-			toggle_ads_f = !toggle_ads_f
-		return toggle_ads_f
+	if !toggle_inv_f:
+		if GameSettings.toggle_ads:
+			if Input.is_action_just_pressed("ads"):
+				toggle_ads_f = !toggle_ads_f
+			return toggle_ads_f
+		else:
+			return Input.is_action_pressed("ads")
 	else:
-		return Input.is_action_pressed("ads")
+		return false
 
 var toggle_lean_l_f: bool = false
 var toggle_lean_r_f: bool = false
@@ -411,8 +411,6 @@ func _input(event):
 		toggle_inventory()
 	else:
 		if event is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
-			#legacyMouse(event)
-#			transformMouse(event)
 			sway_transform_mouse(event)
 		elif event.is_action_pressed("toggleFireMode"):
 			if equipped_gun.has_method("toggle_fire_mode"):

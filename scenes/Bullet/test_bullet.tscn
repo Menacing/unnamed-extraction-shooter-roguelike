@@ -1,8 +1,8 @@
 [gd_scene load_steps=12 format=3 uid="uid://by4mxbof8gk0n"]
 
-[ext_resource type="Script" path="res://scenes/Bullet/bullet_proj_ray.gd" id="1_mnti4"]
-[ext_resource type="Shader" path="res://scenes/Bullet/tracer_particle.gdshader" id="2_dqing"]
-[ext_resource type="Shader" path="res://scenes/Bullet/tracer.gdshader" id="2_vygfs"]
+[ext_resource type="Script" path="res://scenes/bullet/bullet_proj_ray.gd" id="1_mnti4"]
+[ext_resource type="Shader" path="res://scenes/bullet/tracer_particle.gdshader" id="2_dqing"]
+[ext_resource type="Shader" path="res://scenes/bullet/tracer.gdshader" id="2_vygfs"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_a2qmd"]
 radius = 0.001
