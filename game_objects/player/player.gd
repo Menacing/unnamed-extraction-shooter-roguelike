@@ -30,13 +30,13 @@ var pov_rotation_node:Node3D
 @onready var ik_head:SkeletonIK3D = $player_default_mesh/metarig/Skeleton3D/SkeletonIK3D_Head
 var los_check_locations:Array[Node3D] = []
 
-const NORMAL_SPEED = 5.0
+const WALKING_SPEED = 5.0
 const CROUCH_SPEED = 2.5
 const PRONE_SPEED = 1
 const RUN_SPEED = 10.0
 const JUMP_VELOCITY = 4.5
 const accel = 1.0
-var currentSpeed = 0.0
+var current_speed = 0.0
 var LEAN_AMOUNT = PI/6
 
 var current_fire_mode: String:
@@ -93,7 +93,6 @@ func _ready():
 		#pick_up_gun(shoulder_gun)
 	
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-	currentSpeed = NORMAL_SPEED
 	EventBus.fire_mode_changed.emit("")
 	EventBus.magazine_ammo_count_changed.emit(0)
 	EventBus.item_picked_up.connect(_on_item_picked_up)
@@ -287,17 +286,6 @@ func _physics_process(delta):
 			EventBus.use_helper_visibility.emit(false)
 			EventBus.pickup_helper_visibility.emit(false)
 			
-		var input_direction = Input.get_vector("moveLeft", "moveRight", "moveUp", "moveDown")
-		if not is_on_floor():
-			velocity.y -= gravity * delta
-		else:
-			velocity.y = 0
-		var direction:Vector3 = (transform.basis * Vector3(input_direction.x, 0, input_direction.y)).normalized()
-		if !is_equal_approx(input_direction.length(), 0.0):
-			state_chart.send_event("Move")
-		velocity.x = move_toward(velocity.x, direction.x, accel)
-		velocity.z = move_toward(velocity.z, direction.z, accel)
-		move_and_slide()
 
 func point_camera_at_target():
 	head.transform.basis = Basis() # reset rotation
@@ -581,3 +569,44 @@ func make_opaque():
 		is_transparent = false
 	else:
 		pass
+
+func move(move_velocity:Vector3, delta:float):
+	if not is_on_floor():
+		velocity.y -= gravity * delta
+
+	velocity.x = move_toward(velocity.x, move_velocity.x, accel)
+	velocity.z = move_toward(velocity.z, move_velocity.z, accel)
+
+	move_and_slide()
+
+
+func _on_standing_state_entered():
+	current_speed = 0.0
+	
+func _on_walking_state_entered():
+	current_speed = WALKING_SPEED
+	
+func _on_running_state_entered():
+	current_speed = RUN_SPEED
+
+func _on_standing_state_physics_processing(delta):
+	var input_direction = Input.get_vector("moveLeft", "moveRight", "moveUp", "moveDown")
+	var direction:Vector3 = (transform.basis * Vector3(input_direction.x, 0, input_direction.y)).normalized()
+	if !is_equal_approx(input_direction.length(), 0.0):
+		state_chart.send_event("Move")
+		pass
+	else:
+		move(direction, delta)
+
+func _on_walking_state_physics_processing(delta):
+	var input_direction = Input.get_vector("moveLeft", "moveRight", "moveUp", "moveDown")
+	var direction:Vector3 = (transform.basis * Vector3(input_direction.x, 0, input_direction.y)).normalized()
+	if is_equal_approx(input_direction.length(), 0.0):
+		state_chart.send_event("Stop")
+		pass
+	else:
+		move(direction * current_speed, delta)
+
+
+
+
