@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://d08aatgxmymbf"]
+[gd_scene load_steps=29 format=3 uid="uid://d08aatgxmymbf"]
 
 [ext_resource type="Script" path="res://game_objects/player/player.gd" id="1_1w47b"]
 [ext_resource type="PackedScene" uid="uid://s2gmpuugbea3" path="res://game_objects/player/player_default_mesh.glb" id="3_qia5y"]
@@ -15,7 +15,6 @@
 [ext_resource type="Script" path="res://addons/godot_state_charts/compound_state.gd" id="20_8eyuc"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/atomic_state.gd" id="21_cw2n6"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/transition.gd" id="22_n3f1l"]
-[ext_resource type="Script" path="res://addons/godot_state_charts/expression_guard.gd" id="23_2tron"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_emkox"]
 radius = 0.4
@@ -71,14 +70,6 @@ script = ExtResource("13_e6mpe")
 location = 2
 current_health = 100.0
 max_health = 100.0
-
-[sub_resource type="Resource" id="Resource_68i6m"]
-script = ExtResource("23_2tron")
-expression = "is_sprinting == true"
-
-[sub_resource type="Resource" id="Resource_15qnc"]
-script = ExtResource("23_2tron")
-expression = "is_sprinting != true"
 
 [node name="Player" type="CharacterBody3D" groups=["players"]]
 script = ExtResource("1_1w47b")
@@ -574,7 +565,7 @@ script = ExtResource("21_cw2n6")
 [node name="ToWalking" type="Node" parent="StateChart/Root/Legs/Standing"]
 script = ExtResource("22_n3f1l")
 to = NodePath("../../Walking")
-event = &"Move"
+event = &"Walk"
 
 [node name="ToCrouching" type="Node" parent="StateChart/Root/Legs/Standing"]
 script = ExtResource("22_n3f1l")
@@ -594,11 +585,10 @@ script = ExtResource("22_n3f1l")
 to = NodePath("../../Standing")
 event = &"Stop"
 
-[node name="ToRunning" type="Node" parent="StateChart/Root/Legs/Walking"]
+[node name="ToSprinting" type="Node" parent="StateChart/Root/Legs/Walking"]
 script = ExtResource("22_n3f1l")
-to = NodePath("../../Running")
-event = &"Move"
-guard = SubResource("Resource_68i6m")
+to = NodePath("../../Sprinting")
+event = &"Sprint"
 
 [node name="ToCrouching" type="Node" parent="StateChart/Root/Legs/Walking"]
 script = ExtResource("22_n3f1l")
@@ -610,25 +600,25 @@ script = ExtResource("22_n3f1l")
 to = NodePath("../../Prone")
 event = &"Prone"
 
-[node name="Running" type="Node" parent="StateChart/Root/Legs"]
+[node name="Sprinting" type="Node" parent="StateChart/Root/Legs"]
 script = ExtResource("21_cw2n6")
 
-[node name="ToStanding" type="Node" parent="StateChart/Root/Legs/Running"]
+[node name="ToStanding" type="Node" parent="StateChart/Root/Legs/Sprinting"]
 script = ExtResource("22_n3f1l")
 to = NodePath("../../Standing")
+event = &"Stop"
 
-[node name="ToWalking" type="Node" parent="StateChart/Root/Legs/Running"]
+[node name="ToWalking" type="Node" parent="StateChart/Root/Legs/Sprinting"]
 script = ExtResource("22_n3f1l")
 to = NodePath("../../Walking")
-event = &"Move"
-guard = SubResource("Resource_15qnc")
+event = &"Walk"
 
-[node name="ToCrouching" type="Node" parent="StateChart/Root/Legs/Running"]
+[node name="ToCrouching" type="Node" parent="StateChart/Root/Legs/Sprinting"]
 script = ExtResource("22_n3f1l")
 to = NodePath("../../Crouching")
 event = &"Crouch"
 
-[node name="ToProne" type="Node" parent="StateChart/Root/Legs/Running"]
+[node name="ToProne" type="Node" parent="StateChart/Root/Legs/Sprinting"]
 script = ExtResource("22_n3f1l")
 to = NodePath("../../Prone")
 event = &"Prone"
@@ -644,7 +634,7 @@ event = &"Stand"
 [node name="ToCrouchWalking" type="Node" parent="StateChart/Root/Legs/Crouching"]
 script = ExtResource("22_n3f1l")
 to = NodePath("../../CrouchWalking")
-event = &"Move"
+event = &"CrouchWalk"
 
 [node name="ToProne" type="Node" parent="StateChart/Root/Legs/Crouching"]
 script = ExtResource("22_n3f1l")
@@ -657,6 +647,7 @@ script = ExtResource("21_cw2n6")
 [node name="ToCrouching" type="Node" parent="StateChart/Root/Legs/CrouchWalking"]
 script = ExtResource("22_n3f1l")
 to = NodePath("../../Crouching")
+event = &"Stop"
 
 [node name="ToStanding" type="Node" parent="StateChart/Root/Legs/CrouchWalking"]
 script = ExtResource("22_n3f1l")
@@ -679,11 +670,12 @@ event = &"Stand"
 [node name="ToCrouching" type="Node" parent="StateChart/Root/Legs/Prone"]
 script = ExtResource("22_n3f1l")
 to = NodePath("../../Crouching")
+event = &"Crouch"
 
 [node name="ToCrawling" type="Node" parent="StateChart/Root/Legs/Prone"]
 script = ExtResource("22_n3f1l")
 to = NodePath("../../Crawling")
-event = &"Move"
+event = &"Crawl"
 
 [node name="Crawling" type="Node" parent="StateChart/Root/Legs"]
 script = ExtResource("21_cw2n6")
@@ -691,6 +683,7 @@ script = ExtResource("21_cw2n6")
 [node name="ToProne" type="Node" parent="StateChart/Root/Legs/Crawling"]
 script = ExtResource("22_n3f1l")
 to = NodePath("../../Prone")
+event = &"Stop"
 
 [node name="ToStanding" type="Node" parent="StateChart/Root/Legs/Crawling"]
 script = ExtResource("22_n3f1l")
@@ -700,6 +693,7 @@ event = &"Stand"
 [node name="ToCrouching" type="Node" parent="StateChart/Root/Legs/Crawling"]
 script = ExtResource("22_n3f1l")
 to = NodePath("../../Crouching")
+event = &"Crouch"
 
 [node name="Arms" type="Node" parent="StateChart/Root"]
 script = ExtResource("20_8eyuc")
@@ -715,11 +709,12 @@ script = ExtResource("21_cw2n6")
 script = ExtResource("21_cw2n6")
 
 [connection signal="state_entered" from="StateChart/Root/Legs/Standing" to="." method="_on_standing_state_entered"]
-[connection signal="state_physics_processing" from="StateChart/Root/Legs/Standing" to="." method="_standing_physics_processing"]
 [connection signal="state_physics_processing" from="StateChart/Root/Legs/Standing" to="." method="_on_standing_state_physics_processing"]
+[connection signal="state_physics_processing" from="StateChart/Root/Legs/Standing" to="." method="_standing_physics_processing"]
 [connection signal="state_entered" from="StateChart/Root/Legs/Walking" to="." method="_on_walking_state_entered"]
 [connection signal="state_physics_processing" from="StateChart/Root/Legs/Walking" to="." method="_on_walking_state_physics_processing"]
-[connection signal="state_entered" from="StateChart/Root/Legs/Running" to="." method="_on_running_state_entered"]
+[connection signal="state_entered" from="StateChart/Root/Legs/Sprinting" to="." method="_on_running_state_entered"]
+[connection signal="state_physics_processing" from="StateChart/Root/Legs/Sprinting" to="." method="_on_sprinting_state_physics_processing"]
 
 [editable path="player_default_mesh"]
 [editable path="PlayerHUD"]

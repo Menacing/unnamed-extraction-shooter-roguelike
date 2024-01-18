@@ -30,12 +30,12 @@ var pov_rotation_node:Node3D
 @onready var ik_head:SkeletonIK3D = $player_default_mesh/metarig/Skeleton3D/SkeletonIK3D_Head
 var los_check_locations:Array[Node3D] = []
 
-const WALKING_SPEED = 5.0
-const CROUCH_SPEED = 2.5
-const PRONE_SPEED = 1
-const RUN_SPEED = 10.0
-const JUMP_VELOCITY = 4.5
-const accel = 1.0
+@export var WALKING_SPEED = 5.0
+@export var CROUCH_SPEED = 2.5
+@export var PRONE_SPEED = 1
+@export var RUN_SPEED = 10.0
+@export var JUMP_VELOCITY = 4.5
+@export var accel = 1.0
 var current_speed = 0.0
 var LEAN_AMOUNT = PI/6
 
@@ -245,9 +245,14 @@ func _on_drop_item(item_inst:ItemInstance, inventory_id:int):
 
 #realtime inputs - movement stuff
 func _physics_process(delta):
+	#Emit event for player compass with player heading
 	EventBus.compass_player_pulse.emit(self.global_position, self.global_rotation_degrees)
+	
+	#Handle mouse look
 	point_camera_at_target()
 	align_trailers_to_head(delta)
+	
+	#if not in inventory, handle real time inputs
 	if !toggle_inv_f:
 		#TODO Move this to Input?
 		if equipped_gun:
@@ -285,7 +290,8 @@ func _physics_process(delta):
 		else:
 			EventBus.use_helper_visibility.emit(false)
 			EventBus.pickup_helper_visibility.emit(false)
-			
+		
+
 
 func point_camera_at_target():
 	head.transform.basis = Basis() # reset rotation
@@ -498,16 +504,8 @@ func reload():
 func _on_gun_fired(recoil:Vector2):
 	EventBus.magazine_ammo_count_changed.emit(equipped_gun.current_magazine_size)
 	var scaled_recoil = scale_recoil(recoil)
-#	#flip the mapping so that recoil.y moves the camera vertically
 	v_rot_acc += scaled_recoil.x
 	h_rot_acc += scaled_recoil.y
-#	rotate_y(scaled_recoil.x)
-#	pov_rotation_node.rotate_x(scaled_recoil.y)
-#	pov_rotation_node.rotation.x = clampf(pov_rotation_node.rotation.x, -deg_to_rad(80), deg_to_rad(80))
-	#legacy - We don't want to manually manipulate the rotations
-#	#flip the mapping so that recoil.y moves the camera vertically
-#	$Head/Camera3d.rotation.y += recoil.x
-#	$Head/Camera3d.rotation.x += recoil.y
 
 func scale_recoil(recoil:Vector2) -> Vector2:
 	var factor = 1.0
@@ -569,6 +567,32 @@ func make_opaque():
 		is_transparent = false
 	else:
 		pass
+		
+
+		
+#region Movement Code
+func should_sprint() -> bool:
+	if GameSettings.toggle_sprint:
+		if Input.is_action_just_pressed("sprint"):
+			toggle_sprint_f = !toggle_sprint_f
+		return toggle_sprint_f
+	else:
+		return Input.is_action_pressed("sprint")
+		
+func should_crouch() -> bool:
+	if GameSettings.toggle_crouch:
+		if Input.is_action_just_pressed("crouch"):
+			toggle_crouch_f = !toggle_crouch_f
+		return toggle_crouch_f
+	else:
+		return Input.is_action_pressed("crouch")
+		
+func should_prone() -> bool:
+	if legs_destroyed:
+		return true
+	if Input.is_action_just_pressed("prone"):
+		toggle_prone_f = !toggle_prone_f
+	return toggle_prone_f
 
 func move(move_velocity:Vector3, delta:float):
 	if not is_on_floor():
@@ -590,22 +614,64 @@ func _on_running_state_entered():
 	current_speed = RUN_SPEED
 
 func _on_standing_state_physics_processing(delta):
+	if should_crouch():
+		state_chart.send_event("Crouch")
+		return
+	
+	if should_prone():
+		state_chart.send_event("Prone")
+		return
+	
 	var input_direction = Input.get_vector("moveLeft", "moveRight", "moveUp", "moveDown")
 	var direction:Vector3 = (transform.basis * Vector3(input_direction.x, 0, input_direction.y)).normalized()
 	if !is_equal_approx(input_direction.length(), 0.0):
-		state_chart.send_event("Move")
-		pass
+		state_chart.send_event("Walk")
+		return
 	else:
 		move(direction, delta)
 
 func _on_walking_state_physics_processing(delta):
+	if should_crouch():
+		state_chart.send_event("Crouch")
+		return
+	
+	if should_prone():
+		state_chart.send_event("Prone")
+		return
+	
 	var input_direction = Input.get_vector("moveLeft", "moveRight", "moveUp", "moveDown")
 	var direction:Vector3 = (transform.basis * Vector3(input_direction.x, 0, input_direction.y)).normalized()
 	if is_equal_approx(input_direction.length(), 0.0):
 		state_chart.send_event("Stop")
-		pass
+		return
+	elif should_sprint():
+		state_chart.send_event("Sprint")
+		return
 	else:
 		move(direction * current_speed, delta)
+		
+func _on_sprinting_state_physics_processing(delta):
+	if should_crouch():
+		state_chart.send_event("Crouch")
+		return
+	
+	if should_prone():
+		state_chart.send_event("Prone")
+		return
+	
+	var input_direction = Input.get_vector("moveLeft", "moveRight", "moveUp", "moveDown")
+	var direction:Vector3 = (transform.basis * Vector3(input_direction.x, 0, input_direction.y)).normalized()
+	if is_equal_approx(input_direction.length(), 0.0):
+		state_chart.send_event("Stop")
+		return
+	elif !should_sprint():
+		state_chart.send_event("Walk")
+		return
+	else:
+		move(direction * current_speed, delta)
+#endregion
+
+
 
 
 
