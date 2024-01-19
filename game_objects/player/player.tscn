@@ -584,6 +584,11 @@ script = ExtResource("22_n3f1l")
 to = NodePath("../../Busy")
 event = &"Busy"
 
+[node name="ToJumping" type="Node" parent="StateChart/Root/Legs/Standing"]
+script = ExtResource("22_n3f1l")
+to = NodePath("../../Jumping")
+event = &"Jump"
+
 [node name="Walking" type="Node" parent="StateChart/Root/Legs"]
 script = ExtResource("21_cw2n6")
 
@@ -612,6 +617,11 @@ script = ExtResource("22_n3f1l")
 to = NodePath("../../Busy")
 event = &"Busy"
 
+[node name="ToJumping" type="Node" parent="StateChart/Root/Legs/Walking"]
+script = ExtResource("22_n3f1l")
+to = NodePath("../../Jumping")
+event = &"Jump"
+
 [node name="Sprinting" type="Node" parent="StateChart/Root/Legs"]
 script = ExtResource("21_cw2n6")
 
@@ -639,6 +649,11 @@ event = &"Prone"
 script = ExtResource("22_n3f1l")
 to = NodePath("../../Busy")
 event = &"Busy"
+
+[node name="ToJumping" type="Node" parent="StateChart/Root/Legs/Sprinting"]
+script = ExtResource("22_n3f1l")
+to = NodePath("../../Jumping")
+event = &"Jump"
 
 [node name="Crouching" type="Node" parent="StateChart/Root/Legs"]
 script = ExtResource("21_cw2n6")
@@ -744,6 +759,14 @@ event = &"Done"
 script = ExtResource("16_udw3d")
 default_state = NodePath("../Standing")
 
+[node name="Jumping" type="Node" parent="StateChart/Root/Legs"]
+script = ExtResource("21_cw2n6")
+
+[node name="ToResume" type="Node" parent="StateChart/Root/Legs/Jumping"]
+script = ExtResource("22_n3f1l")
+to = NodePath("../../Resume")
+event = &"Done"
+
 [node name="Arms" type="Node" parent="StateChart/Root"]
 script = ExtResource("20_8eyuc")
 initial_state = NodePath("Ready")
@@ -758,11 +781,14 @@ script = ExtResource("21_cw2n6")
 script = ExtResource("21_cw2n6")
 
 [connection signal="state_entered" from="StateChart/Root/Legs/Standing" to="." method="_on_standing_state_entered"]
+[connection signal="state_input" from="StateChart/Root/Legs/Standing" to="." method="_on_standing_state_input"]
 [connection signal="state_physics_processing" from="StateChart/Root/Legs/Standing" to="." method="_on_standing_state_physics_processing"]
 [connection signal="state_physics_processing" from="StateChart/Root/Legs/Standing" to="." method="_standing_physics_processing"]
 [connection signal="state_entered" from="StateChart/Root/Legs/Walking" to="." method="_on_walking_state_entered"]
+[connection signal="state_input" from="StateChart/Root/Legs/Walking" to="." method="_on_walking_state_input"]
 [connection signal="state_physics_processing" from="StateChart/Root/Legs/Walking" to="." method="_on_walking_state_physics_processing"]
-[connection signal="state_entered" from="StateChart/Root/Legs/Sprinting" to="." method="_on_running_state_entered"]
+[connection signal="state_entered" from="StateChart/Root/Legs/Sprinting" to="." method="_on_sprinting_state_entered"]
+[connection signal="state_input" from="StateChart/Root/Legs/Sprinting" to="." method="_on_sprinting_state_input"]
 [connection signal="state_physics_processing" from="StateChart/Root/Legs/Sprinting" to="." method="_on_sprinting_state_physics_processing"]
 [connection signal="state_entered" from="StateChart/Root/Legs/Crouching" to="." method="_on_crouching_state_entered"]
 [connection signal="state_physics_processing" from="StateChart/Root/Legs/Crouching" to="." method="_on_crouching_state_physics_processing"]
@@ -772,6 +798,8 @@ script = ExtResource("21_cw2n6")
 [connection signal="state_physics_processing" from="StateChart/Root/Legs/Prone" to="." method="_on_prone_state_physics_processing"]
 [connection signal="state_entered" from="StateChart/Root/Legs/Crawling" to="." method="_on_crawling_state_entered"]
 [connection signal="state_physics_processing" from="StateChart/Root/Legs/Crawling" to="." method="_on_crawling_state_physics_processing"]
+[connection signal="state_entered" from="StateChart/Root/Legs/Jumping" to="." method="_on_jumping_state_entered"]
+[connection signal="state_physics_processing" from="StateChart/Root/Legs/Jumping" to="." method="_on_jumping_state_physics_processing"]
 
 [editable path="player_default_mesh"]
 [editable path="PlayerHUD"]

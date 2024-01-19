@@ -615,10 +615,25 @@ func _on_standing_state_entered():
 	current_speed = 0.0
 	world_collider.get_shape().set_height(STANDING_HEIGHT)
 	
+func _on_standing_state_input(event):
+	if event.is_action_pressed("jump") and !legs_destroyed:
+		state_chart.send_event("Jump")
+		return
+		
 func _on_walking_state_entered():
 	current_speed = WALKING_SPEED
 	
-func _on_running_state_entered():
+func _on_walking_state_input(event):
+	if event.is_action_pressed("jump") and !legs_destroyed:
+		state_chart.send_event("Jump")
+		return
+
+func _on_sprinting_state_input(event):
+	if event.is_action_pressed("jump") and !legs_destroyed:
+		state_chart.send_event("Jump")
+		return
+	
+func _on_sprinting_state_entered():
 	current_speed = RUN_SPEED
 	
 func _on_crouching_state_entered():
@@ -765,12 +780,16 @@ func _on_crawling_state_physics_processing(delta):
 		return
 	else:
 		move(direction * current_speed, delta)
+
+func _on_jumping_state_entered():
+	velocity.y = JUMP_VELOCITY
+	
+func _on_jumping_state_physics_processing(delta):
+	if not is_on_floor():
+		velocity.y -= gravity * delta
+		move_and_slide()
+	else:
+		state_chart.send_event("Done")
+		return
+	
 #endregion
-
-
-
-
-
-
-
-
