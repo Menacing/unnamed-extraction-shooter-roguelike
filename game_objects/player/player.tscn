@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://d08aatgxmymbf"]
+[gd_scene load_steps=30 format=3 uid="uid://d08aatgxmymbf"]
 
 [ext_resource type="Script" path="res://game_objects/player/player.gd" id="1_1w47b"]
 [ext_resource type="PackedScene" uid="uid://s2gmpuugbea3" path="res://game_objects/player/player_default_mesh.glb" id="3_qia5y"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://gt018qo38blj" path="res://ui/player_hud.tscn" id="14_uksyk"]
 [ext_resource type="PackedScene" uid="uid://cm8qyueikhkpf" path="res://ui/inventory/player_inventories.tscn" id="15_tshwi"]
 [ext_resource type="PackedScene" uid="uid://bsbn8mi7fx0o2" path="res://components/footstep_component/footstep_component.tscn" id="16_akrkr"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/history_state.gd" id="16_udw3d"]
 [ext_resource type="PackedScene" uid="uid://bs4mtx1ot5ygk" path="res://components/ammo_component/ammo_component.tscn" id="17_2e4c3"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/state_chart.gd" id="18_r5h3h"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/parallel_state.gd" id="19_lbe7e"]
@@ -578,6 +579,11 @@ script = ExtResource("22_n3f1l")
 to = NodePath("../../Prone")
 event = &"Prone"
 
+[node name="ToBusy" type="Node" parent="StateChart/Root/Legs/Standing"]
+script = ExtResource("22_n3f1l")
+to = NodePath("../../Busy")
+event = &"Busy"
+
 [node name="Walking" type="Node" parent="StateChart/Root/Legs"]
 script = ExtResource("21_cw2n6")
 
@@ -600,6 +606,11 @@ event = &"Crouch"
 script = ExtResource("22_n3f1l")
 to = NodePath("../../Prone")
 event = &"Prone"
+
+[node name="ToBusy" type="Node" parent="StateChart/Root/Legs/Walking"]
+script = ExtResource("22_n3f1l")
+to = NodePath("../../Busy")
+event = &"Busy"
 
 [node name="Sprinting" type="Node" parent="StateChart/Root/Legs"]
 script = ExtResource("21_cw2n6")
@@ -624,6 +635,11 @@ script = ExtResource("22_n3f1l")
 to = NodePath("../../Prone")
 event = &"Prone"
 
+[node name="ToBusy" type="Node" parent="StateChart/Root/Legs/Sprinting"]
+script = ExtResource("22_n3f1l")
+to = NodePath("../../Busy")
+event = &"Busy"
+
 [node name="Crouching" type="Node" parent="StateChart/Root/Legs"]
 script = ExtResource("21_cw2n6")
 
@@ -641,6 +657,11 @@ event = &"CrouchWalk"
 script = ExtResource("22_n3f1l")
 to = NodePath("../../Prone")
 event = &"Prone"
+
+[node name="ToBusy" type="Node" parent="StateChart/Root/Legs/Crouching"]
+script = ExtResource("22_n3f1l")
+to = NodePath("../../Busy")
+event = &"Busy"
 
 [node name="CrouchWalking" type="Node" parent="StateChart/Root/Legs"]
 script = ExtResource("21_cw2n6")
@@ -660,6 +681,11 @@ script = ExtResource("22_n3f1l")
 to = NodePath("../../Prone")
 event = &"Prone"
 
+[node name="ToBusy" type="Node" parent="StateChart/Root/Legs/CrouchWalking"]
+script = ExtResource("22_n3f1l")
+to = NodePath("../../Busy")
+event = &"Busy"
+
 [node name="Prone" type="Node" parent="StateChart/Root/Legs"]
 script = ExtResource("21_cw2n6")
 
@@ -678,6 +704,11 @@ script = ExtResource("22_n3f1l")
 to = NodePath("../../Crawling")
 event = &"Crawl"
 
+[node name="ToBusy" type="Node" parent="StateChart/Root/Legs/Prone"]
+script = ExtResource("22_n3f1l")
+to = NodePath("../../Busy")
+event = &"Busy"
+
 [node name="Crawling" type="Node" parent="StateChart/Root/Legs"]
 script = ExtResource("21_cw2n6")
 
@@ -695,6 +726,23 @@ event = &"Stand"
 script = ExtResource("22_n3f1l")
 to = NodePath("../../Crouching")
 event = &"Crouch"
+
+[node name="ToBusy" type="Node" parent="StateChart/Root/Legs/Crawling"]
+script = ExtResource("22_n3f1l")
+to = NodePath("../../Busy")
+event = &"Busy"
+
+[node name="Busy" type="Node" parent="StateChart/Root/Legs"]
+script = ExtResource("21_cw2n6")
+
+[node name="ToResume" type="Node" parent="StateChart/Root/Legs/Busy"]
+script = ExtResource("22_n3f1l")
+to = NodePath("../../Resume")
+event = &"Done"
+
+[node name="Resume" type="Node" parent="StateChart/Root/Legs"]
+script = ExtResource("16_udw3d")
+default_state = NodePath("../Standing")
 
 [node name="Arms" type="Node" parent="StateChart/Root"]
 script = ExtResource("20_8eyuc")

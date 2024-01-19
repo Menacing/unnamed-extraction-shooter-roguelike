@@ -31,8 +31,8 @@ var los_check_locations:Array[Node3D] = []
 
 @export_category("Movement")
 @export var WALKING_SPEED = 5.0
-@export var CROUCH_SPEED = 2.5
-@export var PRONE_SPEED = 1
+@export var CROUCH_SPEED = 1.5
+@export var PRONE_SPEED = 2.0
 @export var RUN_SPEED = 10.0
 @export var JUMP_VELOCITY = 4.5
 @export var accel = 1.0
@@ -456,11 +456,14 @@ func open_inventory():
 	toggle_inv_f = true
 	Input.mouse_mode = Input.MOUSE_MODE_CONFINED
 	EventBus.open_inventory.emit(player_inventory_id)
+	state_chart.send_event("Busy")
+	
 	
 func close_inventory():
 	toggle_inv_f = false
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	EventBus.close_all_inventories.emit()
+	state_chart.send_event("Done")
 
 func transformMouse(event: InputEventMouse):
 	var vert_rotation = -event.relative.x * GameSettings.h_mouse_sens/1000.0
