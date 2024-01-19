@@ -2,10 +2,9 @@ extends CharacterBody3D
 class_name Player
 
 @onready var state_chart :StateChart = %StateChart
+@onready var world_collider:CollisionShape3D = $CollisionShape3d
 @export var gun_scene1: PackedScene
 @export var gun_scene2: PackedScene
-@export var max_health:float = 100.0
-@onready var health:float = max_health
 var equipped_gun:Gun
 var shoulder_gun:Gun
 var gun_slot_1:Gun 
@@ -30,14 +29,19 @@ var pov_rotation_node:Node3D
 @onready var ik_head:SkeletonIK3D = $player_default_mesh/metarig/Skeleton3D/SkeletonIK3D_Head
 var los_check_locations:Array[Node3D] = []
 
+@export_category("Movement")
 @export var WALKING_SPEED = 5.0
 @export var CROUCH_SPEED = 2.5
 @export var PRONE_SPEED = 1
 @export var RUN_SPEED = 10.0
 @export var JUMP_VELOCITY = 4.5
 @export var accel = 1.0
+@export var STANDING_HEIGHT = 2.0
+@export var CROUCHING_HEIGHT = 1.0
+@export var PRONE_HEIGHT = 0.5
 var current_speed = 0.0
 var LEAN_AMOUNT = PI/6
+@export_category("")
 
 var current_fire_mode: String:
 	get:
@@ -606,13 +610,28 @@ func move(move_velocity:Vector3, delta:float):
 
 func _on_standing_state_entered():
 	current_speed = 0.0
+	world_collider.get_shape().set_height(STANDING_HEIGHT)
 	
 func _on_walking_state_entered():
 	current_speed = WALKING_SPEED
 	
 func _on_running_state_entered():
 	current_speed = RUN_SPEED
+	
+func _on_crouching_state_entered():
+	current_speed = 0.0
+	world_collider.get_shape().set_height(CROUCHING_HEIGHT)
+	
+func _on_crouch_walking_state_entered():
+	current_speed = CROUCH_SPEED
 
+func _on_prone_state_entered():
+	current_speed = 0.0
+	world_collider.get_shape().set_height(PRONE_HEIGHT)
+
+func _on_crawling_state_entered():
+	current_speed = PRONE_SPEED
+	
 func _on_standing_state_physics_processing(delta):
 	if should_crouch():
 		state_chart.send_event("Crouch")
@@ -669,7 +688,83 @@ func _on_sprinting_state_physics_processing(delta):
 		return
 	else:
 		move(direction * current_speed, delta)
+		
+func _on_crouching_state_physics_processing(delta):
+	if !should_crouch():
+		state_chart.send_event("Stand")
+		return
+	
+	if should_prone():
+		state_chart.send_event("Prone")
+		return
+	
+	var input_direction = Input.get_vector("moveLeft", "moveRight", "moveUp", "moveDown")
+	var direction:Vector3 = (transform.basis * Vector3(input_direction.x, 0, input_direction.y)).normalized()
+	if should_sprint():
+		state_chart.send_event("Stand")
+		return
+	elif !is_equal_approx(input_direction.length(), 0.0):
+		state_chart.send_event("CrouchWalk")
+		return
+	else:
+		move(direction, delta)
+	
+func _on_crouch_walking_state_physics_processing(delta):
+	if !should_crouch():
+		state_chart.send_event("Stand")
+		return
+	
+	if should_prone():
+		state_chart.send_event("Prone")
+		return
+	
+	var input_direction = Input.get_vector("moveLeft", "moveRight", "moveUp", "moveDown")
+	var direction:Vector3 = (transform.basis * Vector3(input_direction.x, 0, input_direction.y)).normalized()
+	if should_sprint():
+		state_chart.send_event("Stand")
+		return
+	elif is_equal_approx(input_direction.length(), 0.0):
+		state_chart.send_event("Stop")
+		return
+	else:
+		move(direction * current_speed, delta)
+		
+func _on_prone_state_physics_processing(delta):
+	if should_crouch():
+		state_chart.send_event("Crouch")
+		return
+	
+	if !should_prone():
+		state_chart.send_event("Stand")
+		return
+	
+	var input_direction = Input.get_vector("moveLeft", "moveRight", "moveUp", "moveDown")
+	var direction:Vector3 = (transform.basis * Vector3(input_direction.x, 0, input_direction.y)).normalized()
+	if !is_equal_approx(input_direction.length(), 0.0):
+		state_chart.send_event("Crawl")
+		return
+	else:
+		move(direction, delta)
+		
+func _on_crawling_state_physics_processing(delta):
+	if should_crouch():
+		state_chart.send_event("Crouch")
+		return
+	
+	if !should_prone():
+		state_chart.send_event("Stand")
+		return
+	
+	var input_direction = Input.get_vector("moveLeft", "moveRight", "moveUp", "moveDown")
+	var direction:Vector3 = (transform.basis * Vector3(input_direction.x, 0, input_direction.y)).normalized()
+	if is_equal_approx(input_direction.length(), 0.0):
+		state_chart.send_event("Stop")
+		return
+	else:
+		move(direction * current_speed, delta)
 #endregion
+
+
 
 
 
