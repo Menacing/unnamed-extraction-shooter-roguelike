@@ -252,25 +252,9 @@ func _physics_process(delta):
 	#Emit event for player compass with player heading
 	EventBus.compass_player_pulse.emit(self.global_position, self.global_rotation_degrees)
 	
-	#Handle mouse look
-	point_camera_at_target()
-	align_trailers_to_head(delta)
-	
 	#if not in inventory, handle real time inputs
 	if !toggle_inv_f:
-		#TODO Move this to Input?
-		if equipped_gun:
-			# Handle Shooting
-			if can_shoot():
-				if current_fire_mode == "auto":
-					if Input.is_action_pressed("shoot"):
-						shoot()
-				elif current_fire_mode == "semi":
-					if Input.is_action_just_pressed("shoot"):
-						shoot()
-			
-			if Input.is_action_just_pressed("reload"):
-				reload()
+
 		#Handle Lean
 		var slr = shouldLeanRight()
 		var sll = shouldLeanLeft()
@@ -368,17 +352,7 @@ func align_trailers_to_head(delta:float):
 		#slerp from source to target
 		equipped_gun.basis = gun_source_y_quat.slerp(gun_target_y_quat, delta/gun_turn_factor)
 
-var toggle_ads_f: bool = false
-func shouldAds() -> bool:
-	if !toggle_inv_f:
-		if GameSettings.toggle_ads:
-			if Input.is_action_just_pressed("ads"):
-				toggle_ads_f = !toggle_ads_f
-			return toggle_ads_f
-		else:
-			return Input.is_action_pressed("ads")
-	else:
-		return false
+
 
 var toggle_lean_l_f: bool = false
 var toggle_lean_r_f: bool = false
@@ -400,9 +374,6 @@ func  shouldLeanLeft() -> bool:
 			toggle_lean_r_f = false
 		return toggle_lean_l_f
 
-		
-func can_shoot() -> bool:
-	return is_on_floor() #and !isSprinting()
 
 func _unhandled_input(event):
 	if event.is_action_pressed("ui_cancel"):
@@ -417,9 +388,7 @@ func _input(event):
 	if event.is_action_pressed("inventory"):
 		toggle_inventory()
 	else:
-		if event is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
-			sway_transform_mouse(event)
-		elif event.is_action_pressed("toggleFireMode"):
+		if event.is_action_pressed("toggleFireMode"):
 			if equipped_gun.has_method("toggle_fire_mode"):
 				var fire_mode = equipped_gun.toggle_fire_mode()
 				EventBus.fire_mode_changed.emit(fire_mode)
@@ -456,47 +425,16 @@ func open_inventory():
 	toggle_inv_f = true
 	Input.mouse_mode = Input.MOUSE_MODE_CONFINED
 	EventBus.open_inventory.emit(player_inventory_id)
-	state_chart.send_event("Busy")
+	state_chart.send_event("LegsBusy")
+	state_chart.send_event("ArmsBusy")
 	
 	
 func close_inventory():
 	toggle_inv_f = false
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	EventBus.close_all_inventories.emit()
-	state_chart.send_event("Done")
-
-func transformMouse(event: InputEventMouse):
-	var vert_rotation = -event.relative.x * GameSettings.h_mouse_sens/1000.0
-	var hor_rotation = -event.relative.y * GameSettings.v_mouse_sens/1000.0
-	
-	if (fully_ads):
-		vert_rotation = vert_rotation * GameSettings.ads_look_factor
-		hor_rotation = hor_rotation * GameSettings.ads_look_factor
-	
-	rotate_y(vert_rotation)
-	pov_rotation_node.rotate_x(hor_rotation)
-	pov_rotation_node.rotation.x = clampf(pov_rotation_node.rotation.x, -deg_to_rad(85), deg_to_rad(85))
-
-var _v_rot_acc:float = 0.0
-var v_rot_acc:float:
-	get:
-		return _v_rot_acc
-	set(value):
-		_v_rot_acc = fmod(value, 2*PI)
-var _h_rot_acc = 0.0
-var h_rot_acc:float:
-	get:
-		return _h_rot_acc
-	set(value):
-		_h_rot_acc = fmod(value, 2*PI)
-		_h_rot_acc = clampf(_h_rot_acc, -deg_to_rad(85), deg_to_rad(85))
-func sway_transform_mouse(event: InputEventMouse):
-	if (fully_ads):
-		v_rot_acc += -event.relative.x * GameSettings.h_mouse_sens/1000.0 * GameSettings.ads_look_factor
-		h_rot_acc += -event.relative.y * GameSettings.v_mouse_sens/1000.0 * GameSettings.ads_look_factor
-	else:
-		v_rot_acc += -event.relative.x * GameSettings.h_mouse_sens/1000.0
-		h_rot_acc += -event.relative.y * GameSettings.v_mouse_sens/1000.0
+	state_chart.send_event("LegsDone")
+	state_chart.send_event("ArmsDone")
 
 
 func shoot():
@@ -604,9 +542,9 @@ func should_prone() -> bool:
 func move(move_velocity:Vector3, delta:float):
 	if not is_on_floor():
 		velocity.y -= gravity * delta
-
-	velocity.x = move_toward(velocity.x, move_velocity.x, accel)
-	velocity.z = move_toward(velocity.z, move_velocity.z, accel)
+	else:
+		velocity.x = move_toward(velocity.x, move_velocity.x, accel)
+		velocity.z = move_toward(velocity.z, move_velocity.z, accel)
 
 	move_and_slide()
 
@@ -616,7 +554,7 @@ func _on_standing_state_entered():
 	world_collider.get_shape().set_height(STANDING_HEIGHT)
 	
 func _on_standing_state_input(event):
-	if event.is_action_pressed("jump") and !legs_destroyed:
+	if event.is_action_pressed("jump") and !legs_destroyed and is_on_floor():
 		state_chart.send_event("Jump")
 		return
 		
@@ -624,17 +562,21 @@ func _on_walking_state_entered():
 	current_speed = WALKING_SPEED
 	
 func _on_walking_state_input(event):
-	if event.is_action_pressed("jump") and !legs_destroyed:
+	if event.is_action_pressed("jump") and !legs_destroyed and is_on_floor():
 		state_chart.send_event("Jump")
 		return
 
 func _on_sprinting_state_input(event):
-	if event.is_action_pressed("jump") and !legs_destroyed:
+	if event.is_action_pressed("jump") and !legs_destroyed and is_on_floor():
 		state_chart.send_event("Jump")
 		return
 	
 func _on_sprinting_state_entered():
 	current_speed = RUN_SPEED
+	state_chart.send_event("ArmsBusy")
+	
+func _on_sprinting_state_exited():
+	state_chart.send_event("ArmsDone")
 	
 func _on_crouching_state_entered():
 	current_speed = 0.0
@@ -783,13 +725,111 @@ func _on_crawling_state_physics_processing(delta):
 
 func _on_jumping_state_entered():
 	velocity.y = JUMP_VELOCITY
+	state_chart.send_event("ArmsBusy")
+	
+func _on_jumping_state_exited():
+	state_chart.send_event("ArmsDone")
 	
 func _on_jumping_state_physics_processing(delta):
 	if not is_on_floor():
 		velocity.y -= gravity * delta
 		move_and_slide()
 	else:
-		state_chart.send_event("Done")
+		state_chart.send_event("LegsDone")
 		return
 	
+#endregion
+
+#region Arms Code
+var _v_rot_acc:float = 0.0
+var v_rot_acc:float:
+	get:
+		return _v_rot_acc
+	set(value):
+		_v_rot_acc = fmod(value, 2*PI)
+var _h_rot_acc = 0.0
+var h_rot_acc:float:
+	get:
+		return _h_rot_acc
+	set(value):
+		_h_rot_acc = fmod(value, 2*PI)
+		_h_rot_acc = clampf(_h_rot_acc, -deg_to_rad(85), deg_to_rad(85))
+func sway_transform_mouse(event: InputEventMouse):
+	if (fully_ads):
+		v_rot_acc += -event.relative.x * GameSettings.h_mouse_sens/1000.0 * GameSettings.ads_look_factor
+		h_rot_acc += -event.relative.y * GameSettings.v_mouse_sens/1000.0 * GameSettings.ads_look_factor
+	else:
+		v_rot_acc += -event.relative.x * GameSettings.h_mouse_sens/1000.0
+		h_rot_acc += -event.relative.y * GameSettings.v_mouse_sens/1000.0
+
+var toggle_ads_f: bool = false
+func shouldAds() -> bool:
+	if !toggle_inv_f and equipped_gun:
+		if GameSettings.toggle_ads:
+			if Input.is_action_just_pressed("ads"):
+				toggle_ads_f = !toggle_ads_f
+			return toggle_ads_f
+		else:
+			return Input.is_action_pressed("ads")
+	else:
+		return false
+
+func _on_ready_state_physics_processing(delta):
+	if shouldAds():
+		state_chart.send_event("ADS")
+		return
+	
+	#Handle mouse look
+	point_camera_at_target()
+	align_trailers_to_head(delta)
+	
+	if equipped_gun:
+		# Handle Shooting
+		if current_fire_mode == "auto":
+			if Input.is_action_pressed("shoot"):
+				shoot()
+		elif current_fire_mode == "semi":
+			if Input.is_action_just_pressed("shoot"):
+				shoot()
+		
+		if Input.is_action_just_pressed("reload"):
+			reload()
+
+func _on_ready_state_input(event):
+	if event is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
+		sway_transform_mouse(event)
+
+func _on_ads_state_physics_processing(delta):
+	if !shouldAds():
+		state_chart.send_event("StopADS")
+		return
+	
+	#Handle mouse look
+	point_camera_at_target()
+	align_trailers_to_head(delta)
+	
+	if equipped_gun:
+		# Handle Shooting
+		if current_fire_mode == "auto":
+			if Input.is_action_pressed("shoot"):
+				shoot()
+		elif current_fire_mode == "semi":
+			if Input.is_action_just_pressed("shoot"):
+				shoot()
+		
+		if Input.is_action_just_pressed("reload"):
+			reload()
+
+func _on_ads_state_input(event):
+	if event is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
+		sway_transform_mouse(event)
+	
+func _on_arms_busy_state_physics_processing(delta):
+	#Handle mouse look
+	point_camera_at_target()
+	align_trailers_to_head(delta)
+	
+func _on_arms_busy_state_input(event):
+	if event is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
+		sway_transform_mouse(event)
 #endregion

@@ -581,8 +581,8 @@ event = &"Prone"
 
 [node name="ToBusy" type="Node" parent="StateChart/Root/Legs/Standing"]
 script = ExtResource("22_n3f1l")
-to = NodePath("../../Busy")
-event = &"Busy"
+to = NodePath("../../LegsBusy")
+event = &"LegsBusy"
 
 [node name="ToJumping" type="Node" parent="StateChart/Root/Legs/Standing"]
 script = ExtResource("22_n3f1l")
@@ -614,8 +614,8 @@ event = &"Prone"
 
 [node name="ToBusy" type="Node" parent="StateChart/Root/Legs/Walking"]
 script = ExtResource("22_n3f1l")
-to = NodePath("../../Busy")
-event = &"Busy"
+to = NodePath("../../LegsBusy")
+event = &"LegsBusy"
 
 [node name="ToJumping" type="Node" parent="StateChart/Root/Legs/Walking"]
 script = ExtResource("22_n3f1l")
@@ -647,8 +647,8 @@ event = &"Prone"
 
 [node name="ToBusy" type="Node" parent="StateChart/Root/Legs/Sprinting"]
 script = ExtResource("22_n3f1l")
-to = NodePath("../../Busy")
-event = &"Busy"
+to = NodePath("../../LegsBusy")
+event = &"LegsBusy"
 
 [node name="ToJumping" type="Node" parent="StateChart/Root/Legs/Sprinting"]
 script = ExtResource("22_n3f1l")
@@ -675,8 +675,8 @@ event = &"Prone"
 
 [node name="ToBusy" type="Node" parent="StateChart/Root/Legs/Crouching"]
 script = ExtResource("22_n3f1l")
-to = NodePath("../../Busy")
-event = &"Busy"
+to = NodePath("../../LegsBusy")
+event = &"LegsBusy"
 
 [node name="CrouchWalking" type="Node" parent="StateChart/Root/Legs"]
 script = ExtResource("21_cw2n6")
@@ -698,8 +698,8 @@ event = &"Prone"
 
 [node name="ToBusy" type="Node" parent="StateChart/Root/Legs/CrouchWalking"]
 script = ExtResource("22_n3f1l")
-to = NodePath("../../Busy")
-event = &"Busy"
+to = NodePath("../../LegsBusy")
+event = &"LegsBusy"
 
 [node name="Prone" type="Node" parent="StateChart/Root/Legs"]
 script = ExtResource("21_cw2n6")
@@ -721,8 +721,8 @@ event = &"Crawl"
 
 [node name="ToBusy" type="Node" parent="StateChart/Root/Legs/Prone"]
 script = ExtResource("22_n3f1l")
-to = NodePath("../../Busy")
-event = &"Busy"
+to = NodePath("../../LegsBusy")
+event = &"LegsBusy"
 
 [node name="Crawling" type="Node" parent="StateChart/Root/Legs"]
 script = ExtResource("21_cw2n6")
@@ -744,16 +744,16 @@ event = &"Crouch"
 
 [node name="ToBusy" type="Node" parent="StateChart/Root/Legs/Crawling"]
 script = ExtResource("22_n3f1l")
-to = NodePath("../../Busy")
-event = &"Busy"
+to = NodePath("../../LegsBusy")
+event = &"LegsBusy"
 
-[node name="Busy" type="Node" parent="StateChart/Root/Legs"]
+[node name="LegsBusy" type="Node" parent="StateChart/Root/Legs"]
 script = ExtResource("21_cw2n6")
 
-[node name="ToResume" type="Node" parent="StateChart/Root/Legs/Busy"]
+[node name="ToResume" type="Node" parent="StateChart/Root/Legs/LegsBusy"]
 script = ExtResource("22_n3f1l")
 to = NodePath("../../Resume")
-event = &"Done"
+event = &"LegsDone"
 
 [node name="Resume" type="Node" parent="StateChart/Root/Legs"]
 script = ExtResource("16_udw3d")
@@ -765,7 +765,7 @@ script = ExtResource("21_cw2n6")
 [node name="ToResume" type="Node" parent="StateChart/Root/Legs/Jumping"]
 script = ExtResource("22_n3f1l")
 to = NodePath("../../Resume")
-event = &"Done"
+event = &"LegsDone"
 
 [node name="Arms" type="Node" parent="StateChart/Root"]
 script = ExtResource("20_8eyuc")
@@ -774,11 +774,58 @@ initial_state = NodePath("Ready")
 [node name="Ready" type="Node" parent="StateChart/Root/Arms"]
 script = ExtResource("21_cw2n6")
 
+[node name="ToADS" type="Node" parent="StateChart/Root/Arms/Ready"]
+script = ExtResource("22_n3f1l")
+to = NodePath("../../ADS")
+event = &"ADS"
+
+[node name="ToUsing" type="Node" parent="StateChart/Root/Arms/Ready"]
+script = ExtResource("22_n3f1l")
+to = NodePath("../../Using")
+event = &"Use"
+
+[node name="ToBusy" type="Node" parent="StateChart/Root/Arms/Ready"]
+script = ExtResource("22_n3f1l")
+to = NodePath("../../ArmsBusy")
+event = &"ArmsBusy"
+
 [node name="ADS" type="Node" parent="StateChart/Root/Arms"]
 script = ExtResource("21_cw2n6")
 
+[node name="ToReady" type="Node" parent="StateChart/Root/Arms/ADS"]
+script = ExtResource("22_n3f1l")
+to = NodePath("../../Ready")
+event = &"StopADS"
+
+[node name="ToBusy" type="Node" parent="StateChart/Root/Arms/ADS"]
+script = ExtResource("22_n3f1l")
+to = NodePath("../../ArmsBusy")
+event = &"ArmsBusy"
+
 [node name="Using" type="Node" parent="StateChart/Root/Arms"]
 script = ExtResource("21_cw2n6")
+
+[node name="ToReady" type="Node" parent="StateChart/Root/Arms/Using"]
+script = ExtResource("22_n3f1l")
+to = NodePath("../../Ready")
+event = &"LegsDone"
+
+[node name="ToBusy" type="Node" parent="StateChart/Root/Arms/Using"]
+script = ExtResource("22_n3f1l")
+to = NodePath("../../ArmsBusy")
+event = &"ArmsBusy"
+
+[node name="ArmsBusy" type="Node" parent="StateChart/Root/Arms"]
+script = ExtResource("21_cw2n6")
+
+[node name="ToResume" type="Node" parent="StateChart/Root/Arms/ArmsBusy"]
+script = ExtResource("22_n3f1l")
+to = NodePath("../../Resume")
+event = &"ArmsDone"
+
+[node name="Resume" type="Node" parent="StateChart/Root/Arms"]
+script = ExtResource("16_udw3d")
+default_state = NodePath("../Ready")
 
 [connection signal="state_entered" from="StateChart/Root/Legs/Standing" to="." method="_on_standing_state_entered"]
 [connection signal="state_input" from="StateChart/Root/Legs/Standing" to="." method="_on_standing_state_input"]
@@ -788,6 +835,7 @@ script = ExtResource("21_cw2n6")
 [connection signal="state_input" from="StateChart/Root/Legs/Walking" to="." method="_on_walking_state_input"]
 [connection signal="state_physics_processing" from="StateChart/Root/Legs/Walking" to="." method="_on_walking_state_physics_processing"]
 [connection signal="state_entered" from="StateChart/Root/Legs/Sprinting" to="." method="_on_sprinting_state_entered"]
+[connection signal="state_exited" from="StateChart/Root/Legs/Sprinting" to="." method="_on_sprinting_state_exited"]
 [connection signal="state_input" from="StateChart/Root/Legs/Sprinting" to="." method="_on_sprinting_state_input"]
 [connection signal="state_physics_processing" from="StateChart/Root/Legs/Sprinting" to="." method="_on_sprinting_state_physics_processing"]
 [connection signal="state_entered" from="StateChart/Root/Legs/Crouching" to="." method="_on_crouching_state_entered"]
@@ -799,7 +847,14 @@ script = ExtResource("21_cw2n6")
 [connection signal="state_entered" from="StateChart/Root/Legs/Crawling" to="." method="_on_crawling_state_entered"]
 [connection signal="state_physics_processing" from="StateChart/Root/Legs/Crawling" to="." method="_on_crawling_state_physics_processing"]
 [connection signal="state_entered" from="StateChart/Root/Legs/Jumping" to="." method="_on_jumping_state_entered"]
+[connection signal="state_exited" from="StateChart/Root/Legs/Jumping" to="." method="_on_jumping_state_exited"]
 [connection signal="state_physics_processing" from="StateChart/Root/Legs/Jumping" to="." method="_on_jumping_state_physics_processing"]
+[connection signal="state_input" from="StateChart/Root/Arms/Ready" to="." method="_on_ready_state_input"]
+[connection signal="state_physics_processing" from="StateChart/Root/Arms/Ready" to="." method="_on_ready_state_physics_processing"]
+[connection signal="state_input" from="StateChart/Root/Arms/ADS" to="." method="_on_ads_state_input"]
+[connection signal="state_physics_processing" from="StateChart/Root/Arms/ADS" to="." method="_on_ads_state_physics_processing"]
+[connection signal="state_input" from="StateChart/Root/Arms/ArmsBusy" to="." method="_on_arms_busy_state_input"]
+[connection signal="state_physics_processing" from="StateChart/Root/Arms/ArmsBusy" to="." method="_on_arms_busy_state_physics_processing"]
 
 [editable path="player_default_mesh"]
 [editable path="PlayerHUD"]
