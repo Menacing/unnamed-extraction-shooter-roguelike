@@ -278,81 +278,6 @@ func _physics_process(delta):
 		else:
 			EventBus.use_helper_visibility.emit(false)
 			EventBus.pickup_helper_visibility.emit(false)
-		
-
-
-func point_camera_at_target():
-	head.transform.basis = Basis() # reset rotation
-	head.rotate_object_local(Vector3(0, 1, 0), v_rot_acc) # first rotate in Y
-	head.rotate_object_local(Vector3(1, 0, 0), h_rot_acc) # then rotate in X
-	head.rotation.x = clampf(head.rotation.x, -deg_to_rad(85), deg_to_rad(85))
-
-
-var _ads_fac = 0.0
-var ads_fac:float:
-	get:
-		return _ads_fac
-	set(value):
-		if value < 0.0:
-			_ads_fac = 0.0
-		elif value > 1.0:
-			_ads_fac = 1.0
-		else:
-			_ads_fac = value
-
-func align_trailers_to_head(delta:float):
-	#move head to anchor
-	head.global_position = head_anchor.global_position
-	
-	#lerp horizontal body rotation to match camera
-	var body_turn_speed = 4
-	var body_source_y_quat = Quaternion(Basis(Vector3.UP,self.rotation.y))
-	var body_target_y_quat = Quaternion(Basis(Vector3.UP,head.rotation.y))
-	self.basis = body_source_y_quat.slerp(body_target_y_quat, body_turn_speed*delta)
-
-	#match vertical rotation
-	pov_rotation_node.rotation.x = head.rotation.x
-	
-	if equipped_gun:
-		#calculate target positions
-		var ads_rotated_offset = (cam.position - equipped_gun.get_ads_anchor()) * head.basis.inverse()
-		var ads_g_pos = head.global_position + ads_rotated_offset
-		var hf_rotated_offset = (cam.position - equipped_gun.get_hip_fire_anchor()) * head.basis.inverse()
-		var hf_g_pos = head.global_position + hf_rotated_offset
-		var ads_accel = 1.0 / equipped_gun.get_ADS_acceleration()
-		var ads_fov = equipped_gun.get_ADS_FOV()
-		
-		#if should ads, move factor towards ads
-		if shouldAds():
-			ads_fac += delta / ads_accel
-		else:
-			ads_fac -= delta / ads_accel
-			
-		#if fully ads, change transparency, else undo transparency
-		if GameSettings.both_eyes_open_ads:
-			if fully_ads:
-					equipped_gun.make_transparent()
-					make_transparent()
-			else:
-					equipped_gun.make_opaque()
-					make_opaque()
-		
-		#set gun position between hipfire position and ads position by ads_factor
-		equipped_gun.global_position = hf_g_pos.lerp(ads_g_pos, ads_fac)
-		#set head anchor position between normal and ads position by ads_factor
-		head_anchor.transform.origin = ads_normal_pos.lerp(equipped_gun.get_ads_head_anchor(), ads_fac)
-		#set camera fov between default and ads fov by ads_factor
-		cam.fov = lerp(GameSettings.default_fov, ads_fov, ads_fac)
-
-		var gun_turn_factor = 1.0 / equipped_gun.get_turn_speed()
-		#get current rotation as quat
-		var gun_source_y_quat = Quaternion(Basis(equipped_gun.basis))
-		#get rotation of head to use as target as quat
-		var gun_target_y_quat = Quaternion(Basis(head.basis))
-		#slerp from source to target
-		equipped_gun.basis = gun_source_y_quat.slerp(gun_target_y_quat, delta/gun_turn_factor)
-
-
 
 var toggle_lean_l_f: bool = false
 var toggle_lean_r_f: bool = false
@@ -762,6 +687,76 @@ func sway_transform_mouse(event: InputEventMouse):
 		v_rot_acc += -event.relative.x * GameSettings.h_mouse_sens/1000.0
 		h_rot_acc += -event.relative.y * GameSettings.v_mouse_sens/1000.0
 
+func point_camera_at_target():
+	head.transform.basis = Basis() # reset rotation
+	head.rotate_object_local(Vector3(0, 1, 0), v_rot_acc) # first rotate in Y
+	head.rotate_object_local(Vector3(1, 0, 0), h_rot_acc) # then rotate in X
+	head.rotation.x = clampf(head.rotation.x, -deg_to_rad(85), deg_to_rad(85))
+
+
+var _ads_fac = 0.0
+var ads_fac:float:
+	get:
+		return _ads_fac
+	set(value):
+		if value < 0.0:
+			_ads_fac = 0.0
+		elif value > 1.0:
+			_ads_fac = 1.0
+		else:
+			_ads_fac = value
+			
+func get_ads_acceleration() -> float:
+	if equipped_gun:
+		return 1.0 / equipped_gun.get_ADS_acceleration()
+	else:
+		return 0.0
+
+func align_trailers_to_head(delta:float):
+	#move head to anchor
+	head.global_position = head_anchor.global_position
+	
+	#lerp horizontal body rotation to match camera
+	var body_turn_speed = 4
+	var body_source_y_quat = Quaternion(Basis(Vector3.UP,self.rotation.y))
+	var body_target_y_quat = Quaternion(Basis(Vector3.UP,head.rotation.y))
+	self.basis = body_source_y_quat.slerp(body_target_y_quat, body_turn_speed*delta)
+
+	#match vertical rotation
+	pov_rotation_node.rotation.x = head.rotation.x
+
+func align_gun_trailer_to_head(delta:float):
+	#calculate target positions
+	var ads_rotated_offset = (cam.position - equipped_gun.get_ads_anchor()) * head.basis.inverse()
+	var ads_g_pos = head.global_position + ads_rotated_offset
+	var hf_rotated_offset = (cam.position - equipped_gun.get_hip_fire_anchor()) * head.basis.inverse()
+	var hf_g_pos = head.global_position + hf_rotated_offset
+	var ads_fov = equipped_gun.get_ADS_FOV()
+		
+	#if fully ads, change transparency, else undo transparency
+	if GameSettings.both_eyes_open_ads:
+		if fully_ads:
+				equipped_gun.make_transparent()
+				make_transparent()
+		else:
+				equipped_gun.make_opaque()
+				make_opaque()
+	
+	#set gun position between hipfire position and ads position by ads_factor
+	equipped_gun.global_position = hf_g_pos.lerp(ads_g_pos, ads_fac)
+	#set head anchor position between normal and ads position by ads_factor
+	head_anchor.transform.origin = ads_normal_pos.lerp(equipped_gun.get_ads_head_anchor(), ads_fac)
+	#set camera fov between default and ads fov by ads_factor
+	cam.fov = lerp(GameSettings.default_fov, ads_fov, ads_fac)
+
+	var gun_turn_factor = 1.0 / equipped_gun.get_turn_speed()
+	#get current rotation as quat
+	var gun_source_y_quat = Quaternion(Basis(equipped_gun.basis))
+	#get rotation of head to use as target as quat
+	var gun_target_y_quat = Quaternion(Basis(head.basis))
+	#slerp from source to target
+	equipped_gun.basis = gun_source_y_quat.slerp(gun_target_y_quat, delta/gun_turn_factor)
+
 var toggle_ads_f: bool = false
 func shouldAds() -> bool:
 	if !toggle_inv_f and equipped_gun:
@@ -778,12 +773,14 @@ func _on_ready_state_physics_processing(delta):
 	if shouldAds():
 		state_chart.send_event("ADS")
 		return
-	
+		
 	#Handle mouse look
 	point_camera_at_target()
 	align_trailers_to_head(delta)
-	
 	if equipped_gun:
+		ads_fac -= delta / get_ads_acceleration()
+		align_gun_trailer_to_head(delta)
+		
 		# Handle Shooting
 		if current_fire_mode == "auto":
 			if Input.is_action_pressed("shoot"):
@@ -794,6 +791,10 @@ func _on_ready_state_physics_processing(delta):
 		
 		if Input.is_action_just_pressed("reload"):
 			reload()
+	
+	
+
+	
 
 func _on_ready_state_input(event):
 	if event is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
@@ -809,6 +810,8 @@ func _on_ads_state_physics_processing(delta):
 	align_trailers_to_head(delta)
 	
 	if equipped_gun:
+		ads_fac += delta / get_ads_acceleration()
+		align_gun_trailer_to_head(delta)
 		# Handle Shooting
 		if current_fire_mode == "auto":
 			if Input.is_action_pressed("shoot"):
@@ -819,6 +822,7 @@ func _on_ads_state_physics_processing(delta):
 		
 		if Input.is_action_just_pressed("reload"):
 			reload()
+	
 
 func _on_ads_state_input(event):
 	if event is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
@@ -828,6 +832,8 @@ func _on_arms_busy_state_physics_processing(delta):
 	#Handle mouse look
 	point_camera_at_target()
 	align_trailers_to_head(delta)
+	align_gun_trailer_to_head(delta)
+	
 	
 func _on_arms_busy_state_input(event):
 	if event is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
