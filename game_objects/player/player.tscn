@@ -571,12 +571,12 @@ event = &"Walk"
 
 [node name="ToCrouching" type="Node" parent="StateChart/Root/Legs/Standing"]
 script = ExtResource("22_n3f1l")
-to = NodePath("../../Crouching")
+to = NodePath("../../StandingToCrouching")
 event = &"Crouch"
 
 [node name="ToProne" type="Node" parent="StateChart/Root/Legs/Standing"]
 script = ExtResource("22_n3f1l")
-to = NodePath("../../Prone")
+to = NodePath("../../StandingToProne")
 event = &"Prone"
 
 [node name="ToBusy" type="Node" parent="StateChart/Root/Legs/Standing"]
@@ -604,12 +604,12 @@ event = &"Sprint"
 
 [node name="ToCrouching" type="Node" parent="StateChart/Root/Legs/Walking"]
 script = ExtResource("22_n3f1l")
-to = NodePath("../../Crouching")
+to = NodePath("../../StandingToCrouching")
 event = &"Crouch"
 
 [node name="ToProne" type="Node" parent="StateChart/Root/Legs/Walking"]
 script = ExtResource("22_n3f1l")
-to = NodePath("../../Prone")
+to = NodePath("../../StandingToProne")
 event = &"Prone"
 
 [node name="ToBusy" type="Node" parent="StateChart/Root/Legs/Walking"]
@@ -637,12 +637,12 @@ event = &"Walk"
 
 [node name="ToCrouching" type="Node" parent="StateChart/Root/Legs/Sprinting"]
 script = ExtResource("22_n3f1l")
-to = NodePath("../../Crouching")
+to = NodePath("../../StandingToCrouching")
 event = &"Crouch"
 
 [node name="ToProne" type="Node" parent="StateChart/Root/Legs/Sprinting"]
 script = ExtResource("22_n3f1l")
-to = NodePath("../../Prone")
+to = NodePath("../../StandingToProne")
 event = &"Prone"
 
 [node name="ToBusy" type="Node" parent="StateChart/Root/Legs/Sprinting"]
@@ -655,12 +655,20 @@ script = ExtResource("22_n3f1l")
 to = NodePath("../../Jumping")
 event = &"Jump"
 
+[node name="StandingToCrouching" type="Node" parent="StateChart/Root/Legs"]
+script = ExtResource("21_cw2n6")
+
+[node name="ToCrouching" type="Node" parent="StateChart/Root/Legs/StandingToCrouching"]
+script = ExtResource("22_n3f1l")
+to = NodePath("../../Crouching")
+delay_seconds = 0.5
+
 [node name="Crouching" type="Node" parent="StateChart/Root/Legs"]
 script = ExtResource("21_cw2n6")
 
 [node name="ToStanding" type="Node" parent="StateChart/Root/Legs/Crouching"]
 script = ExtResource("22_n3f1l")
-to = NodePath("../../Standing")
+to = NodePath("../../CrouchingToStanding")
 event = &"Stand"
 
 [node name="ToCrouchWalking" type="Node" parent="StateChart/Root/Legs/Crouching"]
@@ -670,13 +678,21 @@ event = &"CrouchWalk"
 
 [node name="ToProne" type="Node" parent="StateChart/Root/Legs/Crouching"]
 script = ExtResource("22_n3f1l")
-to = NodePath("../../Prone")
+to = NodePath("../../CrouchingToProne")
 event = &"Prone"
 
 [node name="ToBusy" type="Node" parent="StateChart/Root/Legs/Crouching"]
 script = ExtResource("22_n3f1l")
 to = NodePath("../../LegsBusy")
 event = &"LegsBusy"
+
+[node name="CrouchingToStanding" type="Node" parent="StateChart/Root/Legs"]
+script = ExtResource("21_cw2n6")
+
+[node name="ToStanding" type="Node" parent="StateChart/Root/Legs/CrouchingToStanding"]
+script = ExtResource("22_n3f1l")
+to = NodePath("../../Standing")
+delay_seconds = 0.5
 
 [node name="CrouchWalking" type="Node" parent="StateChart/Root/Legs"]
 script = ExtResource("21_cw2n6")
@@ -688,12 +704,12 @@ event = &"Stop"
 
 [node name="ToStanding" type="Node" parent="StateChart/Root/Legs/CrouchWalking"]
 script = ExtResource("22_n3f1l")
-to = NodePath("../../Standing")
+to = NodePath("../../CrouchingToStanding")
 event = &"Stand"
 
 [node name="ToProne" type="Node" parent="StateChart/Root/Legs/CrouchWalking"]
 script = ExtResource("22_n3f1l")
-to = NodePath("../../Prone")
+to = NodePath("../../CrouchingToProne")
 event = &"Prone"
 
 [node name="ToBusy" type="Node" parent="StateChart/Root/Legs/CrouchWalking"]
@@ -701,17 +717,33 @@ script = ExtResource("22_n3f1l")
 to = NodePath("../../LegsBusy")
 event = &"LegsBusy"
 
+[node name="StandingToProne" type="Node" parent="StateChart/Root/Legs"]
+script = ExtResource("21_cw2n6")
+
+[node name="ToProne" type="Node" parent="StateChart/Root/Legs/StandingToProne"]
+script = ExtResource("22_n3f1l")
+to = NodePath("../../Prone")
+delay_seconds = 1.0
+
+[node name="CrouchingToProne" type="Node" parent="StateChart/Root/Legs"]
+script = ExtResource("21_cw2n6")
+
+[node name="ToProne" type="Node" parent="StateChart/Root/Legs/CrouchingToProne"]
+script = ExtResource("22_n3f1l")
+to = NodePath("../../Prone")
+delay_seconds = 1.0
+
 [node name="Prone" type="Node" parent="StateChart/Root/Legs"]
 script = ExtResource("21_cw2n6")
 
 [node name="ToStanding" type="Node" parent="StateChart/Root/Legs/Prone"]
 script = ExtResource("22_n3f1l")
-to = NodePath("../../Standing")
+to = NodePath("../../ProneToStanding")
 event = &"Stand"
 
 [node name="ToCrouching" type="Node" parent="StateChart/Root/Legs/Prone"]
 script = ExtResource("22_n3f1l")
-to = NodePath("../../Crouching")
+to = NodePath("../../ProneToCrouching")
 event = &"Crouch"
 
 [node name="ToCrawling" type="Node" parent="StateChart/Root/Legs/Prone"]
@@ -724,6 +756,22 @@ script = ExtResource("22_n3f1l")
 to = NodePath("../../LegsBusy")
 event = &"LegsBusy"
 
+[node name="ProneToStanding" type="Node" parent="StateChart/Root/Legs"]
+script = ExtResource("21_cw2n6")
+
+[node name="ToStanding" type="Node" parent="StateChart/Root/Legs/ProneToStanding"]
+script = ExtResource("22_n3f1l")
+to = NodePath("../../Standing")
+delay_seconds = 1.0
+
+[node name="ProneToCrouching" type="Node" parent="StateChart/Root/Legs"]
+script = ExtResource("21_cw2n6")
+
+[node name="ToCrouching" type="Node" parent="StateChart/Root/Legs/ProneToCrouching"]
+script = ExtResource("22_n3f1l")
+to = NodePath("../../Crouching")
+delay_seconds = 1.0
+
 [node name="Crawling" type="Node" parent="StateChart/Root/Legs"]
 script = ExtResource("21_cw2n6")
 
@@ -734,12 +782,12 @@ event = &"Stop"
 
 [node name="ToStanding" type="Node" parent="StateChart/Root/Legs/Crawling"]
 script = ExtResource("22_n3f1l")
-to = NodePath("../../Standing")
+to = NodePath("../../ProneToStanding")
 event = &"Stand"
 
 [node name="ToCrouching" type="Node" parent="StateChart/Root/Legs/Crawling"]
 script = ExtResource("22_n3f1l")
-to = NodePath("../../Crouching")
+to = NodePath("../../ProneToCrouching")
 event = &"Crouch"
 
 [node name="ToBusy" type="Node" parent="StateChart/Root/Legs/Crawling"]

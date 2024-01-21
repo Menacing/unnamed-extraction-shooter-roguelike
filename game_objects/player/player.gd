@@ -474,6 +474,7 @@ func move(move_velocity:Vector3, delta:float):
 	move_and_slide()
 
 
+#region Standing
 func _on_standing_state_entered():
 	current_speed = 0.0
 	world_collider.get_shape().set_height(STANDING_HEIGHT)
@@ -482,6 +483,24 @@ func _on_standing_state_input(event):
 	if event.is_action_pressed("jump") and !legs_destroyed and is_on_floor():
 		state_chart.send_event("Jump")
 		return
+		
+func _on_standing_state_physics_processing(delta):
+	if should_crouch():
+		state_chart.send_event("Crouch")
+		return
+	
+	if should_prone():
+		state_chart.send_event("Prone")
+		return
+	
+	var input_direction = Input.get_vector("moveLeft", "moveRight", "moveUp", "moveDown")
+	var direction:Vector3 = (transform.basis * Vector3(input_direction.x, 0, input_direction.y)).normalized()
+	if !is_equal_approx(input_direction.length(), 0.0):
+		state_chart.send_event("Walk")
+		return
+	else:
+		move(direction, delta)
+#endregion
 		
 func _on_walking_state_entered():
 	current_speed = WALKING_SPEED
@@ -517,22 +536,6 @@ func _on_prone_state_entered():
 func _on_crawling_state_entered():
 	current_speed = PRONE_SPEED
 	
-func _on_standing_state_physics_processing(delta):
-	if should_crouch():
-		state_chart.send_event("Crouch")
-		return
-	
-	if should_prone():
-		state_chart.send_event("Prone")
-		return
-	
-	var input_direction = Input.get_vector("moveLeft", "moveRight", "moveUp", "moveDown")
-	var direction:Vector3 = (transform.basis * Vector3(input_direction.x, 0, input_direction.y)).normalized()
-	if !is_equal_approx(input_direction.length(), 0.0):
-		state_chart.send_event("Walk")
-		return
-	else:
-		move(direction, delta)
 
 func _on_walking_state_physics_processing(delta):
 	if should_crouch():
@@ -791,10 +794,6 @@ func _on_ready_state_physics_processing(delta):
 		
 		if Input.is_action_just_pressed("reload"):
 			reload()
-	
-	
-
-	
 
 func _on_ready_state_input(event):
 	if event is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
@@ -832,7 +831,8 @@ func _on_arms_busy_state_physics_processing(delta):
 	#Handle mouse look
 	point_camera_at_target()
 	align_trailers_to_head(delta)
-	align_gun_trailer_to_head(delta)
+	if equipped_gun:
+		align_gun_trailer_to_head(delta)
 	
 	
 func _on_arms_busy_state_input(event):
