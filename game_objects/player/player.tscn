@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://d08aatgxmymbf"]
+[gd_scene load_steps=50 format=3 uid="uid://d08aatgxmymbf"]
 
 [ext_resource type="Script" path="res://game_objects/player/player.gd" id="1_1w47b"]
 [ext_resource type="PackedScene" uid="uid://s2gmpuugbea3" path="res://game_objects/player/player_default_mesh.glb" id="3_qia5y"]
@@ -107,6 +107,42 @@ guards = Array[Resource("res://addons/godot_state_charts/guard.gd")]([SubResourc
 [sub_resource type="Resource" id="Resource_jadr3"]
 script = ExtResource("19_wn5lv")
 guard = SubResource("Resource_npt1w")
+
+[sub_resource type="Resource" id="Resource_8rmb0"]
+script = ExtResource("17_jqole")
+state = NodePath("../../../Legs/Sprinting")
+
+[sub_resource type="Resource" id="Resource_qhxb5"]
+script = ExtResource("17_jqole")
+state = NodePath("../../../Legs/StandingToProne")
+
+[sub_resource type="Resource" id="Resource_lvppm"]
+script = ExtResource("17_jqole")
+state = NodePath("../../../Legs/CrouchingToProne")
+
+[sub_resource type="Resource" id="Resource_57tnq"]
+script = ExtResource("17_jqole")
+state = NodePath("../../../Legs/ProneToStanding")
+
+[sub_resource type="Resource" id="Resource_yli8t"]
+script = ExtResource("17_jqole")
+state = NodePath("../../../Legs/ProneToCrouching")
+
+[sub_resource type="Resource" id="Resource_efjlr"]
+script = ExtResource("17_jqole")
+state = NodePath("../../../Legs/Crawling")
+
+[sub_resource type="Resource" id="Resource_u1kdx"]
+script = ExtResource("17_jqole")
+state = NodePath("../../../Legs/Jumping")
+
+[sub_resource type="Resource" id="Resource_n748b"]
+script = ExtResource("18_swygp")
+guards = Array[Resource("res://addons/godot_state_charts/guard.gd")]([SubResource("Resource_8rmb0"), SubResource("Resource_qhxb5"), SubResource("Resource_lvppm"), SubResource("Resource_57tnq"), SubResource("Resource_yli8t"), SubResource("Resource_efjlr"), SubResource("Resource_u1kdx")])
+
+[sub_resource type="Resource" id="Resource_u7xi3"]
+script = ExtResource("19_wn5lv")
+guard = SubResource("Resource_n748b")
 
 [node name="Player" type="CharacterBody3D" groups=["players"]]
 script = ExtResource("1_1w47b")
@@ -911,6 +947,41 @@ event = &"ArmsDone"
 script = ExtResource("16_udw3d")
 default_state = NodePath("../Ready")
 
+[node name="Waist" type="Node" parent="StateChart/Root"]
+script = ExtResource("20_8eyuc")
+initial_state = NodePath("Center")
+
+[node name="Center" type="Node" parent="StateChart/Root/Waist"]
+script = ExtResource("21_cw2n6")
+
+[node name="ToRight" type="Node" parent="StateChart/Root/Waist/Center"]
+script = ExtResource("22_n3f1l")
+to = NodePath("../../Right")
+event = &"LeanRight"
+guard = SubResource("Resource_u7xi3")
+
+[node name="ToLeft" type="Node" parent="StateChart/Root/Waist/Center"]
+script = ExtResource("22_n3f1l")
+to = NodePath("../../Left")
+event = &"LeanLeft"
+guard = SubResource("Resource_u7xi3")
+
+[node name="Left" type="Node" parent="StateChart/Root/Waist"]
+script = ExtResource("21_cw2n6")
+
+[node name="ToCenter" type="Node" parent="StateChart/Root/Waist/Left"]
+script = ExtResource("22_n3f1l")
+to = NodePath("../../Center")
+event = &"StopLean"
+
+[node name="Right" type="Node" parent="StateChart/Root/Waist"]
+script = ExtResource("21_cw2n6")
+
+[node name="ToCenter" type="Node" parent="StateChart/Root/Waist/Right"]
+script = ExtResource("22_n3f1l")
+to = NodePath("../../Center")
+event = &"StopLean"
+
 [connection signal="state_entered" from="StateChart/Root/Legs/Standing" to="." method="_on_standing_state_entered"]
 [connection signal="state_exited" from="StateChart/Root/Legs/Standing" to="." method="_on_standing_state_exited"]
 [connection signal="state_input" from="StateChart/Root/Legs/Standing" to="." method="_on_standing_state_input"]
@@ -957,6 +1028,9 @@ default_state = NodePath("../Ready")
 [connection signal="state_physics_processing" from="StateChart/Root/Arms/ADS" to="." method="_on_ads_state_physics_processing"]
 [connection signal="state_input" from="StateChart/Root/Arms/ArmsBusy" to="." method="_on_arms_busy_state_input"]
 [connection signal="state_physics_processing" from="StateChart/Root/Arms/ArmsBusy" to="." method="_on_arms_busy_state_physics_processing"]
+[connection signal="state_physics_processing" from="StateChart/Root/Waist/Center" to="." method="_on_center_state_physics_processing"]
+[connection signal="state_physics_processing" from="StateChart/Root/Waist/Left" to="." method="_on_left_state_physics_processing"]
+[connection signal="state_physics_processing" from="StateChart/Root/Waist/Right" to="." method="_on_right_state_physics_processing"]
 
 [editable path="player_default_mesh"]
 [editable path="PlayerHUD"]

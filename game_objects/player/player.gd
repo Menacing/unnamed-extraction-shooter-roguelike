@@ -255,15 +255,7 @@ func _physics_process(delta):
 	#if not in inventory, handle real time inputs
 	if !toggle_inv_f:
 
-		#Handle Lean
-		var slr = shouldLeanRight()
-		var sll = shouldLeanLeft()
-		if slr:
-			waist.basis = Quaternion(waist.basis).slerp(Quaternion(right_lean_basis),0.5)
-		elif sll:
-			waist.basis = Quaternion(waist.basis).slerp(Quaternion(left_lean_basis),0.5)
-		else:
-			waist.basis = Quaternion(waist.basis).slerp(Quaternion(home_basis),0.5)
+
 		
 		#handle use hint
 		if use_ray.is_colliding():
@@ -278,27 +270,6 @@ func _physics_process(delta):
 		else:
 			EventBus.use_helper_visibility.emit(false)
 			EventBus.pickup_helper_visibility.emit(false)
-
-var toggle_lean_l_f: bool = false
-var toggle_lean_r_f: bool = false
-func shouldLeanRight() -> bool:
-	if !GameSettings.toggle_lean:
-		return Input.is_action_pressed("leanRight")
-	else:
-		if Input.is_action_just_pressed("leanRight"):
-			toggle_lean_r_f = !toggle_lean_r_f
-			toggle_lean_l_f = false
-		return toggle_lean_r_f
-
-func  shouldLeanLeft() -> bool:
-	if !GameSettings.toggle_lean:
-		return Input.is_action_pressed("leanLeft")
-	else:
-		if Input.is_action_just_pressed("leanLeft"):
-			toggle_lean_l_f = !toggle_lean_l_f
-			toggle_lean_r_f = false
-		return toggle_lean_l_f
-
 
 func _unhandled_input(event):
 	if event.is_action_pressed("ui_cancel"):
@@ -352,6 +323,7 @@ func open_inventory():
 	EventBus.open_inventory.emit(player_inventory_id)
 	state_chart.send_event("LegsBusy")
 	state_chart.send_event("ArmsBusy")
+	state_chart.send_event("StopLean")
 	
 	
 func close_inventory():
@@ -540,6 +512,7 @@ func _on_sprinting_state_input(event):
 func _on_sprinting_state_entered():
 	current_speed = RUN_SPEED
 	state_chart.send_event("ArmsBusy")
+	state_chart.send_event("StopLean")
 	
 func _on_sprinting_state_exited():
 	state_chart.send_event("ArmsDone")
@@ -650,6 +623,8 @@ func _on_prone_state_physics_processing(delta):
 		
 func _on_prone_transitions_entered():
 	state_chart.send_event("ArmsBusy")
+	state_chart.send_event("StopLean")
+	
 
 func _on_prone_transitions_exited():
 	state_chart.send_event("ArmsDone")
@@ -659,6 +634,8 @@ func _on_prone_transitions_exited():
 func _on_crawling_state_entered():
 	current_speed = PRONE_SPEED
 	state_chart.send_event("ArmsBusy")
+	state_chart.send_event("StopLean")
+	
 	
 func _on_crawling_state_exited():
 	state_chart.send_event("ArmsDone")
@@ -685,6 +662,8 @@ func _on_crawling_state_physics_processing(delta):
 func _on_jumping_state_entered():
 	velocity.y = JUMP_VELOCITY
 	state_chart.send_event("ArmsBusy")
+	state_chart.send_event("StopLean")
+	
 	
 func _on_jumping_state_exited():
 	state_chart.send_event("ArmsDone")
@@ -877,6 +856,53 @@ func _on_arms_busy_state_input(event):
 		sway_transform_mouse(event)
 		
 #endregion
+
+#region Waist Code
+var toggle_lean_l_f: bool = false
+var toggle_lean_r_f: bool = false
+func shouldLeanRight() -> bool:
+	if !GameSettings.toggle_lean:
+		return Input.is_action_pressed("leanRight")
+	else:
+		if Input.is_action_just_pressed("leanRight"):
+			toggle_lean_r_f = !toggle_lean_r_f
+			toggle_lean_l_f = false
+		return toggle_lean_r_f
+
+func  shouldLeanLeft() -> bool:
+	if !GameSettings.toggle_lean:
+		return Input.is_action_pressed("leanLeft")
+	else:
+		if Input.is_action_just_pressed("leanLeft"):
+			toggle_lean_l_f = !toggle_lean_l_f
+			toggle_lean_r_f = false
+		return toggle_lean_l_f
+		
+func _on_center_state_physics_processing(delta):
+	if shouldLeanLeft():
+		state_chart.send_event("LeanLeft")
+		return
+	elif shouldLeanRight():
+		state_chart.send_event("LeanRight")
+		return
+		
+	waist.basis = Quaternion(waist.basis).slerp(Quaternion(home_basis),0.5)
+
+
+func _on_left_state_physics_processing(delta):
+	if !shouldLeanLeft():
+		state_chart.send_event("StopLean")
+		return
+	waist.basis = Quaternion(waist.basis).slerp(Quaternion(left_lean_basis),0.5)
+
+func _on_right_state_physics_processing(delta):
+	if !shouldLeanRight():
+		state_chart.send_event("StopLean")
+		return
+	waist.basis = Quaternion(waist.basis).slerp(Quaternion(right_lean_basis),0.5)
+#endregion
+
+
 
 
 
