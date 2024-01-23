@@ -1,12 +1,12 @@
 [gd_scene load_steps=21 format=3 uid="uid://ctahsvj88g1om"]
 
-[ext_resource type="PackedScene" uid="uid://d08aatgxmymbf" path="res://Scenes/Player/player.tscn" id="1_eisjc"]
+[ext_resource type="PackedScene" uid="uid://d08aatgxmymbf" path="res://game_objects/player/player.tscn" id="1_eisjc"]
 [ext_resource type="Script" path="res://levels/node_3d.gd" id="1_lmeut"]
-[ext_resource type="Material" uid="uid://d2jc0ho6nwe5g" path="res://levels/wood.tres" id="6_1m6d8"]
-[ext_resource type="PackedScene" uid="uid://5n7aup1d2u20" path="res://Scenes/effects/bullet_hit_sparks.tscn" id="6_jgw4a"]
-[ext_resource type="Texture2D" uid="uid://b0cnmm34ai52n" path="res://levels/gunmetal-texture.png" id="7_d5i4x"]
+[ext_resource type="Material" path="res://levels/wood.tres" id="6_1m6d8"]
+[ext_resource type="PackedScene" uid="uid://5n7aup1d2u20" path="res://game_objects/effects/bullet_hit_sparks.tscn" id="6_jgw4a"]
+[ext_resource type="Texture2D" path="res://levels/gunmetal-texture.png" id="7_d5i4x"]
 [ext_resource type="Script" path="res://levels/entities/geo_ballistic_solid.gd" id="9_63y4f"]
-[ext_resource type="PackedScene" uid="uid://rcso16s616y" path="res://Scenes/containers/dev_chest.tscn" id="12_ibcly"]
+[ext_resource type="PackedScene" uid="uid://rcso16s616y" path="res://game_objects/containers/dev_chest.tscn" id="12_ibcly"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_6g5uc"]
 

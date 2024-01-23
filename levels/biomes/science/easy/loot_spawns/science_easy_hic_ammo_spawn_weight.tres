@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="LootSpawnWeight" load_steps=3 format=3 uid="uid://21g3836qkavm"]
 
-[ext_resource type="Resource" uid="uid://8dt1ajyi4jfi" path="res://Scenes/items/ammo/hic/hic_box_spawn_info.tres" id="1_j5w43"]
-[ext_resource type="Script" path="res://Scenes/items/loot_spawn_weight.gd" id="2_lpvm8"]
+[ext_resource type="Resource" uid="uid://8dt1ajyi4jfi" path="res://game_objects/items/ammo/hic/hic_box_spawn_info.tres" id="1_j5w43"]
+[ext_resource type="Script" path="res://game_objects/items/loot_spawn_weight.gd" id="2_lpvm8"]
 
 [resource]
 script = ExtResource("2_lpvm8")

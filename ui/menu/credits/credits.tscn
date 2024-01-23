@@ -141,6 +141,13 @@ mouse_filter = 1
 text = "GDUNIT4 - MIKESCHULZE"
 horizontal_alignment = 1
 
+[node name="godot_state_charts_label" type="Label" parent="MarginContainer/VBoxContainer2/ScrollContainer/VBoxContainer/addons_section"]
+layout_mode = 2
+tooltip_text = "https://github.com/derkork/godot-statecharts"
+mouse_filter = 1
+text = "GODOT STATE CHARTS - DERKORK"
+horizontal_alignment = 1
+
 [node name="assets_section_header" type="HBoxContainer" parent="MarginContainer/VBoxContainer2/ScrollContainer/VBoxContainer"]
 layout_mode = 2
 

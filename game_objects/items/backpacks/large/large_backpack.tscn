@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://b6xejgxv7attc"]
+
+[ext_resource type="Script" path="res://game_objects/items/backpacks/backpack.gd" id="1_1vwom"]
+[ext_resource type="PackedScene" uid="uid://bi0xia4rstdus" path="res://game_objects/items/backpacks/large/large_backpack_1.glb" id="4_a60g8"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_lntsr"]
+size = Vector3(0.509955, 1.08099, 0.353562)
+
+[node name="large_backpack" type="RigidBody3D"]
+collision_layer = 5
+collision_mask = 5
+mass = 6.0
+script = ExtResource("1_1vwom")
+backpack_size = 3
+item_information_path = "res://game_objects/items/backpacks/large/large_backpack_1_inventory_info.tres"
+world_collider_path = NodePath("CollisionShape3D")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.541518, 0.175003)
+shape = SubResource("BoxShape3D_lntsr")
+
+[node name="large_backpack_1" parent="." instance=ExtResource("4_a60g8")]

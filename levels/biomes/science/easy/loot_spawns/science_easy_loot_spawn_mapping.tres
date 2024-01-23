@@ -1,10 +1,10 @@
 [gd_resource type="Resource" script_class="LootSpawnMapping" load_steps=5 format=3 uid="uid://cpkios25eab1h"]
 
-[ext_resource type="Script" path="res://Scenes/items/loot_spawn_mapping.gd" id="1_4pmu7"]
+[ext_resource type="Script" path="res://game_objects/items/loot_spawn_mapping.gd" id="1_4pmu7"]
 [ext_resource type="Resource" uid="uid://cfi8lq50axkxg" path="res://levels/biomes/science/easy/loot_spawns/science_easy_polymer_pile_spawn_weight.tres" id="2_1m4cd"]
 [ext_resource type="Resource" uid="uid://df8lvowpq8vte" path="res://levels/biomes/science/easy/loot_spawns/science_easy_zs_52_spawn_weight.tres" id="3_u0ejk"]
 [ext_resource type="Resource" uid="uid://21g3836qkavm" path="res://levels/biomes/science/easy/loot_spawns/science_easy_hic_ammo_spawn_weight.tres" id="4_dx76d"]
 
 [resource]
 script = ExtResource("1_4pmu7")
-spawn_weights = Array[Resource("res://Scenes/items/loot_spawn_weight.gd")]([ExtResource("2_1m4cd"), ExtResource("3_u0ejk"), ExtResource("4_dx76d")])
+spawn_weights = Array[Resource("res://game_objects/items/loot_spawn_weight.gd")]([ExtResource("4_dx76d"), ExtResource("2_1m4cd"), ExtResource("3_u0ejk")])

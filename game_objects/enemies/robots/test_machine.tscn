@@ -1,0 +1,70 @@
+[gd_scene load_steps=9 format=3 uid="uid://c2p3hfj2ikwka"]
+
+[ext_resource type="Script" path="res://game_objects/enemies/robots/test_script.gd" id="1_1bxso"]
+[ext_resource type="PackedScene" uid="uid://dr48wela8mtxd" path="res://game_objects/items/weapons/easi_early_service_rifles/zs_52/zs_52.tscn" id="2_4dkfg"]
+[ext_resource type="PackedScene" uid="uid://o7vvmqxsny5t" path="res://game_objects/enemies/robots/combat-roomba.glb" id="3_vl76q"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_80lkd"]
+height = 1.0
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_24c6t"]
+height = 1.0
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_ls0ls"]
+height = 6.0
+radius = 50.0
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_t1qfr"]
+size = Vector3(0.475193, 1, 1.94549)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_egd5j"]
+radius = 0.0444872
+height = 0.444872
+
+[node name="test_machine" type="CharacterBody3D"]
+collision_layer = 3
+script = ExtResource("1_1bxso")
+
+[node name="Node3D" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.00936, 0)
+
+[node name="AK47-Projectile" parent="Node3D" instance=ExtResource("2_4dkfg")]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+mesh = SubResource("CylinderMesh_80lkd")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("CylinderShape3D_24c6t")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+
+[node name="RenavigationTimer" type="Timer" parent="."]
+autostart = true
+
+[node name="DetectRadius" type="Area3D" parent="."]
+collision_layer = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DetectRadius"]
+shape = SubResource("CylinderShape3D_ls0ls")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("BoxShape3D_t1qfr")
+
+[node name="combat-roomba" parent="." instance=ExtResource("3_vl76q")]
+
+[node name="Physical Bone Bone" type="PhysicalBone3D" parent="combat-roomba/Armature/Skeleton3D" index="1"]
+transform = Transform3D(1, 0, 0, 0, 0, -1, 0, 1, 0, 0, 0.222436, 0)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.222436)
+body_offset = Transform3D(1, 0, 0, 0, 0, -1, 0, 1, 0, 0, 0.222436, 0)
+bone_name = "Bone"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="combat-roomba/Armature/Skeleton3D/Physical Bone Bone"]
+transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, 0, 0, 0)
+shape = SubResource("CapsuleShape3D_egd5j")
+
+[connection signal="timeout" from="RenavigationTimer" to="." method="_on_renavigation_timer_timeout"]
+
+[editable path="combat-roomba"]

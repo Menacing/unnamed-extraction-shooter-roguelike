@@ -1,3 +1,4 @@
+@tool
 extends Node
 
 var _biome_index_mapping:Array[String] = ["science"]
