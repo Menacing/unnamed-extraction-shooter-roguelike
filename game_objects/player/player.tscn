@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://d08aatgxmymbf"]
+[gd_scene load_steps=41 format=3 uid="uid://d08aatgxmymbf"]
 
 [ext_resource type="Script" path="res://game_objects/player/player.gd" id="1_1w47b"]
 [ext_resource type="PackedScene" uid="uid://s2gmpuugbea3" path="res://game_objects/player/player_default_mesh.glb" id="3_qia5y"]
@@ -11,8 +11,11 @@
 [ext_resource type="PackedScene" uid="uid://bsbn8mi7fx0o2" path="res://components/footstep_component/footstep_component.tscn" id="16_akrkr"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/history_state.gd" id="16_udw3d"]
 [ext_resource type="PackedScene" uid="uid://bs4mtx1ot5ygk" path="res://components/ammo_component/ammo_component.tscn" id="17_2e4c3"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/state_is_active_guard.gd" id="17_jqole"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/state_chart.gd" id="18_r5h3h"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/any_of_guard.gd" id="18_swygp"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/parallel_state.gd" id="19_lbe7e"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/not_guard.gd" id="19_wn5lv"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/compound_state.gd" id="20_8eyuc"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/atomic_state.gd" id="21_cw2n6"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/transition.gd" id="22_n3f1l"]
@@ -72,6 +75,38 @@ script = ExtResource("13_e6mpe")
 location = 2
 current_health = 100.0
 max_health = 100.0
+
+[sub_resource type="Resource" id="Resource_gu127"]
+script = ExtResource("17_jqole")
+state = NodePath("../../../Legs/StandingToProne")
+
+[sub_resource type="Resource" id="Resource_05yvh"]
+script = ExtResource("17_jqole")
+state = NodePath("../../../Legs/CrouchingToProne")
+
+[sub_resource type="Resource" id="Resource_k0fw2"]
+script = ExtResource("17_jqole")
+state = NodePath("../../../Legs/ProneToStanding")
+
+[sub_resource type="Resource" id="Resource_glpcb"]
+script = ExtResource("17_jqole")
+state = NodePath("../../../Legs/ProneToCrouching")
+
+[sub_resource type="Resource" id="Resource_7xaj5"]
+script = ExtResource("17_jqole")
+state = NodePath("../../../Legs/Crawling")
+
+[sub_resource type="Resource" id="Resource_1i338"]
+script = ExtResource("17_jqole")
+state = NodePath("../../../Legs/Jumping")
+
+[sub_resource type="Resource" id="Resource_npt1w"]
+script = ExtResource("18_swygp")
+guards = Array[Resource("res://addons/godot_state_charts/guard.gd")]([SubResource("Resource_gu127"), SubResource("Resource_05yvh"), SubResource("Resource_k0fw2"), SubResource("Resource_glpcb"), SubResource("Resource_7xaj5"), SubResource("Resource_1i338")])
+
+[sub_resource type="Resource" id="Resource_jadr3"]
+script = ExtResource("19_wn5lv")
+guard = SubResource("Resource_npt1w")
 
 [node name="Player" type="CharacterBody3D" groups=["players"]]
 script = ExtResource("1_1w47b")
@@ -661,7 +696,7 @@ script = ExtResource("21_cw2n6")
 [node name="ToCrouching" type="Node" parent="StateChart/Root/Legs/StandingToCrouching"]
 script = ExtResource("22_n3f1l")
 to = NodePath("../../Crouching")
-delay_seconds = 0.5
+delay_seconds = 0.25
 
 [node name="Crouching" type="Node" parent="StateChart/Root/Legs"]
 script = ExtResource("21_cw2n6")
@@ -692,7 +727,7 @@ script = ExtResource("21_cw2n6")
 [node name="ToStanding" type="Node" parent="StateChart/Root/Legs/CrouchingToStanding"]
 script = ExtResource("22_n3f1l")
 to = NodePath("../../Standing")
-delay_seconds = 0.5
+delay_seconds = 0.25
 
 [node name="CrouchWalking" type="Node" parent="StateChart/Root/Legs"]
 script = ExtResource("21_cw2n6")
@@ -723,7 +758,7 @@ script = ExtResource("21_cw2n6")
 [node name="ToProne" type="Node" parent="StateChart/Root/Legs/StandingToProne"]
 script = ExtResource("22_n3f1l")
 to = NodePath("../../Prone")
-delay_seconds = 1.0
+delay_seconds = 0.5
 
 [node name="CrouchingToProne" type="Node" parent="StateChart/Root/Legs"]
 script = ExtResource("21_cw2n6")
@@ -731,7 +766,7 @@ script = ExtResource("21_cw2n6")
 [node name="ToProne" type="Node" parent="StateChart/Root/Legs/CrouchingToProne"]
 script = ExtResource("22_n3f1l")
 to = NodePath("../../Prone")
-delay_seconds = 1.0
+delay_seconds = 0.25
 
 [node name="Prone" type="Node" parent="StateChart/Root/Legs"]
 script = ExtResource("21_cw2n6")
@@ -762,7 +797,7 @@ script = ExtResource("21_cw2n6")
 [node name="ToStanding" type="Node" parent="StateChart/Root/Legs/ProneToStanding"]
 script = ExtResource("22_n3f1l")
 to = NodePath("../../Standing")
-delay_seconds = 1.0
+delay_seconds = 0.5
 
 [node name="ProneToCrouching" type="Node" parent="StateChart/Root/Legs"]
 script = ExtResource("21_cw2n6")
@@ -770,7 +805,7 @@ script = ExtResource("21_cw2n6")
 [node name="ToCrouching" type="Node" parent="StateChart/Root/Legs/ProneToCrouching"]
 script = ExtResource("22_n3f1l")
 to = NodePath("../../Crouching")
-delay_seconds = 1.0
+delay_seconds = 0.5
 
 [node name="Crawling" type="Node" parent="StateChart/Root/Legs"]
 script = ExtResource("21_cw2n6")
@@ -826,6 +861,7 @@ script = ExtResource("21_cw2n6")
 script = ExtResource("22_n3f1l")
 to = NodePath("../../ADS")
 event = &"ADS"
+guard = SubResource("Resource_jadr3")
 
 [node name="ToUsing" type="Node" parent="StateChart/Root/Arms/Ready"]
 script = ExtResource("22_n3f1l")
@@ -890,8 +926,18 @@ default_state = NodePath("../Ready")
 [connection signal="state_physics_processing" from="StateChart/Root/Legs/Crouching" to="." method="_on_crouching_state_physics_processing"]
 [connection signal="state_entered" from="StateChart/Root/Legs/CrouchWalking" to="." method="_on_crouch_walking_state_entered"]
 [connection signal="state_physics_processing" from="StateChart/Root/Legs/CrouchWalking" to="." method="_on_crouch_walking_state_physics_processing"]
+[connection signal="state_entered" from="StateChart/Root/Legs/StandingToProne" to="." method="_on_prone_transitions_entered"]
+[connection signal="state_exited" from="StateChart/Root/Legs/StandingToProne" to="." method="_on_prone_transitions_exited"]
+[connection signal="state_entered" from="StateChart/Root/Legs/CrouchingToProne" to="." method="_on_prone_transitions_entered"]
+[connection signal="state_exited" from="StateChart/Root/Legs/CrouchingToProne" to="." method="_on_prone_transitions_exited"]
 [connection signal="state_entered" from="StateChart/Root/Legs/Prone" to="." method="_on_prone_state_entered"]
 [connection signal="state_physics_processing" from="StateChart/Root/Legs/Prone" to="." method="_on_prone_state_physics_processing"]
+[connection signal="state_entered" from="StateChart/Root/Legs/ProneToStanding" to="." method="_on_prone_transitions_entered"]
+[connection signal="state_exited" from="StateChart/Root/Legs/ProneToStanding" to="." method="_on_prone_transitions_exited"]
+[connection signal="state_exited" from="StateChart/Root/Legs/ProneToStanding" to="." method="_on_prone_to_crouching_state_exited"]
+[connection signal="state_entered" from="StateChart/Root/Legs/ProneToCrouching" to="." method="_on_prone_transitions_entered"]
+[connection signal="state_exited" from="StateChart/Root/Legs/ProneToCrouching" to="." method="_on_prone_transitions_exited"]
+[connection signal="state_exited" from="StateChart/Root/Legs/ProneToCrouching" to="." method="_on_prone_to_crouching_state_exited"]
 [connection signal="state_entered" from="StateChart/Root/Legs/Crawling" to="." method="_on_crawling_state_entered"]
 [connection signal="state_physics_processing" from="StateChart/Root/Legs/Crawling" to="." method="_on_crawling_state_physics_processing"]
 [connection signal="state_entered" from="StateChart/Root/Legs/Jumping" to="." method="_on_jumping_state_entered"]

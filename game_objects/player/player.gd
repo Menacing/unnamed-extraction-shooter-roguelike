@@ -832,6 +832,7 @@ func _on_arms_busy_state_physics_processing(delta):
 	point_camera_at_target()
 	align_trailers_to_head(delta)
 	if equipped_gun:
+		ads_fac -= delta / get_ads_acceleration()
 		align_gun_trailer_to_head(delta)
 	
 	
@@ -839,3 +840,11 @@ func _on_arms_busy_state_input(event):
 	if event is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
 		sway_transform_mouse(event)
 #endregion
+
+
+func _on_prone_transitions_entered():
+	state_chart.send_event("ArmsBusy")
+
+
+func _on_prone_transitions_exited():
+	state_chart.send_event("ArmsDone")
