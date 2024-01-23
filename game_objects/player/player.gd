@@ -494,6 +494,11 @@ func _on_standing_state_physics_processing(delta):
 		return
 	else:
 		move(direction, delta)
+
+func _on_standing_transitions_physics_processing(delta):
+	var input_direction = Input.get_vector("moveLeft", "moveRight", "moveUp", "moveDown")
+	var direction:Vector3 = (transform.basis * Vector3(input_direction.x, 0, input_direction.y)).normalized()
+	move(direction, delta)
 #endregion
 
 #region Walking
@@ -653,6 +658,10 @@ func _on_prone_transitions_exited():
 #region Crawling
 func _on_crawling_state_entered():
 	current_speed = PRONE_SPEED
+	state_chart.send_event("ArmsBusy")
+	
+func _on_crawling_state_exited():
+	state_chart.send_event("ArmsDone")
 	
 func _on_crawling_state_physics_processing(delta):
 	if should_crouch():

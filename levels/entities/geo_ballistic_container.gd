@@ -8,7 +8,7 @@ extends GeoBallisticSolid
 @export var tier_index:int
 @export var min_spawned:int
 @export var max_spawned:int
-var world_inventory_control
+var world_inventory_control:WorldInventory
 var container_size:int
 var inventory_id:int
 
