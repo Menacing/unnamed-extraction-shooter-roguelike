@@ -438,8 +438,6 @@ func make_opaque():
 	else:
 		pass
 		
-
-		
 #region Movement Code
 func should_sprint() -> bool:
 	if GameSettings.toggle_sprint:
@@ -473,7 +471,6 @@ func move(move_velocity:Vector3, delta:float):
 
 	move_and_slide()
 
-
 #region Standing
 func _on_standing_state_entered():
 	current_speed = 0.0
@@ -501,7 +498,8 @@ func _on_standing_state_physics_processing(delta):
 	else:
 		move(direction, delta)
 #endregion
-		
+
+#region Walking
 func _on_walking_state_entered():
 	current_speed = WALKING_SPEED
 	
@@ -509,34 +507,7 @@ func _on_walking_state_input(event):
 	if event.is_action_pressed("jump") and !legs_destroyed and is_on_floor():
 		state_chart.send_event("Jump")
 		return
-
-func _on_sprinting_state_input(event):
-	if event.is_action_pressed("jump") and !legs_destroyed and is_on_floor():
-		state_chart.send_event("Jump")
-		return
-	
-func _on_sprinting_state_entered():
-	current_speed = RUN_SPEED
-	state_chart.send_event("ArmsBusy")
-	
-func _on_sprinting_state_exited():
-	state_chart.send_event("ArmsDone")
-	
-func _on_crouching_state_entered():
-	current_speed = 0.0
-	world_collider.get_shape().set_height(CROUCHING_HEIGHT)
-	
-func _on_crouch_walking_state_entered():
-	current_speed = CROUCH_SPEED
-
-func _on_prone_state_entered():
-	current_speed = 0.0
-	world_collider.get_shape().set_height(PRONE_HEIGHT)
-
-func _on_crawling_state_entered():
-	current_speed = PRONE_SPEED
-	
-
+		
 func _on_walking_state_physics_processing(delta):
 	if should_crouch():
 		state_chart.send_event("Crouch")
@@ -556,7 +527,21 @@ func _on_walking_state_physics_processing(delta):
 		return
 	else:
 		move(direction * current_speed, delta)
-		
+#endregion
+
+#region Sprinting
+func _on_sprinting_state_input(event):
+	if event.is_action_pressed("jump") and !legs_destroyed and is_on_floor():
+		state_chart.send_event("Jump")
+		return
+	
+func _on_sprinting_state_entered():
+	current_speed = RUN_SPEED
+	state_chart.send_event("ArmsBusy")
+	
+func _on_sprinting_state_exited():
+	state_chart.send_event("ArmsDone")
+
 func _on_sprinting_state_physics_processing(delta):
 	if should_crouch():
 		state_chart.send_event("Crouch")
@@ -576,7 +561,16 @@ func _on_sprinting_state_physics_processing(delta):
 		return
 	else:
 		move(direction * current_speed, delta)
-		
+#endregion
+	
+#region Crouching
+func _on_crouching_state_entered():
+	current_speed = 0.0
+	world_collider.get_shape().set_height(CROUCHING_HEIGHT)
+	
+func _on_crouch_walking_state_entered():
+	current_speed = CROUCH_SPEED
+
 func _on_crouching_state_physics_processing(delta):
 	if !should_crouch():
 		state_chart.send_event("Stand")
@@ -596,7 +590,7 @@ func _on_crouching_state_physics_processing(delta):
 		return
 	else:
 		move(direction, delta)
-	
+		
 func _on_crouch_walking_state_physics_processing(delta):
 	if !should_crouch():
 		state_chart.send_event("Stand")
@@ -616,7 +610,13 @@ func _on_crouch_walking_state_physics_processing(delta):
 		return
 	else:
 		move(direction * current_speed, delta)
-		
+#endregion
+
+#region Prone
+func _on_prone_state_entered():
+	current_speed = 0.0
+	world_collider.get_shape().set_height(PRONE_HEIGHT)
+
 func _on_prone_state_physics_processing(delta):
 	if should_crouch():
 		state_chart.send_event("Crouch")
@@ -634,6 +634,17 @@ func _on_prone_state_physics_processing(delta):
 	else:
 		move(direction, delta)
 		
+func _on_prone_transitions_entered():
+	state_chart.send_event("ArmsBusy")
+
+func _on_prone_transitions_exited():
+	state_chart.send_event("ArmsDone")
+#endregion
+
+#region Crawling
+func _on_crawling_state_entered():
+	current_speed = PRONE_SPEED
+	
 func _on_crawling_state_physics_processing(delta):
 	if should_crouch():
 		state_chart.send_event("Crouch")
@@ -650,7 +661,9 @@ func _on_crawling_state_physics_processing(delta):
 		return
 	else:
 		move(direction * current_speed, delta)
-
+#endregion
+	
+#region Jumping
 func _on_jumping_state_entered():
 	velocity.y = JUMP_VELOCITY
 	state_chart.send_event("ArmsBusy")
@@ -665,7 +678,7 @@ func _on_jumping_state_physics_processing(delta):
 	else:
 		state_chart.send_event("LegsDone")
 		return
-	
+#endregion
 #endregion
 
 #region Arms Code
@@ -839,12 +852,7 @@ func _on_arms_busy_state_physics_processing(delta):
 func _on_arms_busy_state_input(event):
 	if event is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
 		sway_transform_mouse(event)
+		
 #endregion
 
 
-func _on_prone_transitions_entered():
-	state_chart.send_event("ArmsBusy")
-
-
-func _on_prone_transitions_exited():
-	state_chart.send_event("ArmsDone")
