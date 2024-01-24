@@ -3,7 +3,6 @@
 [ext_resource type="Script" path="res://game_objects/items/weapons/easi_early_service_rifles/easi_early_service_rifle.gd" id="1_xmoyr"]
 [ext_resource type="PackedScene" uid="uid://du06cmxlbacls" path="res://game_objects/bullet/hic_bullet.tscn" id="2_5qbyx"]
 [ext_resource type="Resource" uid="uid://dls8psqyu06aw" path="res://game_objects/items/weapons/easi_early_service_rifles/easi_early_service_rifle_gun_stats.tres" id="3_5vh7j"]
-[ext_resource type="Shader" path="res://game_objects/items/weapons/easi_early_service_rifles/zs_52/perspective_billboard.gdshader" id="5_qerqp"]
 [ext_resource type="PackedScene" uid="uid://pm3nps6dkjt8" path="res://game_objects/items/weapons/easi_early_service_rifles/zs_52/zs_52.blend" id="6_78q42"]
 [ext_resource type="Texture2D" uid="uid://dkcxx06s6kdp6" path="res://game_objects/items/weapons/easi_early_service_rifles/zs_52/PixelMuzzelFlash.png" id="6_ok4lf"]
 
@@ -12,11 +11,27 @@ size = Vector3(0.88, 0.22, 0.056)
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_1gjre"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_mwp4g"]
-render_priority = 0
-shader = ExtResource("5_qerqp")
-shader_parameter/albedo = Color(1, 1, 1, 1)
-shader_parameter/texture_albedo = ExtResource("6_ok4lf")
+[sub_resource type="Animation" id="Animation_048m7"]
+resource_name = "fire"
+length = 0.1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_clf16"]
+_data = {
+"fire": SubResource("Animation_048m7")
+}
 
 [node name="zs_52" type="RigidBody3D"]
 disable_mode = 1
@@ -94,12 +109,35 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2, 0.767238, -0.088)
 [node name="scope_anchor" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.214971, 0.168235)
 
-[node name="FlashSprite3D" type="Sprite3D" parent="."]
-transform = Transform3D(0.12, 0, 0, 0, 0.12, 0, 0, 0, 0.12, -0.0141845, 0.17493, -0.573593)
-material_override = SubResource("ShaderMaterial_mwp4g")
-pixel_size = 0.001
+[node name="MuzzleFlash" type="Node3D" parent="."]
+visible = false
+
+[node name="FlashSpriteV3D" type="Sprite3D" parent="MuzzleFlash"]
+transform = Transform3D(0.12, 0, 0, 0, 0.12, 0, 0, 0, 0.12, 0, 0.175, -0.602602)
+cast_shadow = 0
 axis = 1
+alpha_cut = 2
 texture_filter = 0
 texture = ExtResource("6_ok4lf")
+
+[node name="FlashSpriteH3D" type="Sprite3D" parent="MuzzleFlash"]
+transform = Transform3D(-5.24537e-09, 0.12, 0, -0.12, -5.24537e-09, 0, 0, 0, 0.12, 0, 0.175, -0.602602)
+cast_shadow = 0
+axis = 1
+alpha_cut = 2
+texture_filter = 0
+texture = ExtResource("6_ok4lf")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="MuzzleFlash"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.178028, -0.406895)
+light_color = Color(0.917647, 0.784314, 0.611765, 1)
+shadow_enabled = true
+distance_fade_enabled = true
+
+[node name="MuzzleFlashAnimationPlayer" type="AnimationPlayer" parent="MuzzleFlash"]
+unique_name_in_owner = true
+libraries = {
+"": SubResource("AnimationLibrary_clf16")
+}
 
 [editable path="gun"]
