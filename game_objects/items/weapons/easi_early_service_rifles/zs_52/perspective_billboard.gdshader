@@ -5,19 +5,19 @@ uniform sampler2D texture_albedo : source_color,repeat_enable;
 
 
 void vertex() {
-	vec3 local_up = MODEL_MATRIX[1].xyz;
-	//cross of:
-	//	local_transform.basis.y     and    to_world(view_space.forward)
-	//normalized
+	 // Transform the vertex position to world space
+    vec4 vertex_world_position = MODEL_MATRIX * vec4(VERTEX, 1.0);
+
+    // Compute the vector from the vertex to the camera
+    vec3 to_camera_vector = CAMERA_POSITION_WORLD - vertex_world_position.xyz;
+	vec3 to_camera_minus_z = vec3(to_camera_vector.x, to_camera_vector.y, 0.0);
+
 	//(represents right direction)
-	vec4 ax = vec4(normalize(cross(local_up, INV_VIEW_MATRIX[2].xyz)), 0.0);
-	//local_transform.basis.y
+	vec4 ax = vec4(normalize(cross(MODEL_MATRIX[0].xyz, to_camera_vector)), 0.0);
 	//(represents up direction)
-	vec4 ay = vec4(local_up.xyz, 0.0);
-	//cross of:
-	//	to_world(view_space.right)    and    local_transform.basis.y
+	vec4 ay = vec4(normalize(cross(MODEL_MATRIX[2].xyz, to_camera_vector)), 0.0);
 	//(represents forward direction)
-	vec4 az = vec4(normalize(cross(INV_VIEW_MATRIX[0].xyz, local_up)), 0.0);
+	vec4 az = vec4(normalize(MODEL_MATRIX[2].xyz), 0.0);
 	MODELVIEW_MATRIX = VIEW_MATRIX * mat4(ax, ay, az, MODEL_MATRIX[3]);
 	MODELVIEW_NORMAL_MATRIX = mat3(MODELVIEW_MATRIX);
 }

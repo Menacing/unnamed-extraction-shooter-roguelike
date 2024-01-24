@@ -4,8 +4,8 @@
 [ext_resource type="PackedScene" uid="uid://du06cmxlbacls" path="res://game_objects/bullet/hic_bullet.tscn" id="2_5qbyx"]
 [ext_resource type="Resource" uid="uid://dls8psqyu06aw" path="res://game_objects/items/weapons/easi_early_service_rifles/easi_early_service_rifle_gun_stats.tres" id="3_5vh7j"]
 [ext_resource type="Shader" path="res://game_objects/items/weapons/easi_early_service_rifles/zs_52/perspective_billboard.gdshader" id="5_qerqp"]
-[ext_resource type="Texture2D" uid="uid://dkcxx06s6kdp6" path="res://game_objects/items/weapons/easi_early_service_rifles/zs_52/PixelMuzzelFlash.png" id="5_reb6w"]
 [ext_resource type="PackedScene" uid="uid://pm3nps6dkjt8" path="res://game_objects/items/weapons/easi_early_service_rifles/zs_52/zs_52.blend" id="6_78q42"]
+[ext_resource type="Texture2D" uid="uid://dkcxx06s6kdp6" path="res://game_objects/items/weapons/easi_early_service_rifles/zs_52/PixelMuzzelFlash.png" id="6_ok4lf"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_a6wgc"]
 size = Vector3(0.88, 0.22, 0.056)
@@ -16,7 +16,7 @@ size = Vector3(0.88, 0.22, 0.056)
 render_priority = 0
 shader = ExtResource("5_qerqp")
 shader_parameter/albedo = Color(1, 1, 1, 1)
-shader_parameter/texture_albedo = ExtResource("5_reb6w")
+shader_parameter/texture_albedo = ExtResource("6_ok4lf")
 
 [node name="zs_52" type="RigidBody3D"]
 disable_mode = 1
@@ -95,10 +95,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2, 0.767238, -0.088)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.214971, 0.168235)
 
 [node name="FlashSprite3D" type="Sprite3D" parent="."]
-transform = Transform3D(0.12, 0, 0, 0, 0.12, 0, 0, 0, 0.12, 0, 0.169886, -0.666964)
+transform = Transform3D(0.12, 0, 0, 0, 0.12, 0, 0, 0, 0.12, -0.0141845, 0.17493, -0.573593)
 material_override = SubResource("ShaderMaterial_mwp4g")
+pixel_size = 0.001
 axis = 1
 texture_filter = 0
-texture = ExtResource("5_reb6w")
+texture = ExtResource("6_ok4lf")
 
 [editable path="gun"]
