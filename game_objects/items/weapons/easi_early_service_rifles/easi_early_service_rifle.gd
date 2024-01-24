@@ -9,6 +9,7 @@ var reloading: bool = false
 var _new_bullets:int = 0
 var rng: RandomNumberGenerator
 @onready var fire_timer = $FireTimer
+@onready var muzzle_flash_animation_player:AnimationPlayer = %MuzzleFlashAnimationPlayer
 
 @onready var gun_model_node = $gun/Node_15
 @onready var scope_mount_model = $gun/Node_15/scope_mount
@@ -40,7 +41,7 @@ func fireGun():
 		get_parent().add_child(bulletInst)
 		bulletInst.global_transform.origin = shoot_origin
 		current_magazine_size -= 1
-		#$AnimationPlayer.play("fire")
+		muzzle_flash_animation_player.play("fire")
 		fire_timer.start()
 		fired.emit(generate_recoil())
 	else:
