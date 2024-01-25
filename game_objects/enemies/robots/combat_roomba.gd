@@ -101,11 +101,12 @@ func die():
 	alive = false
 	skeleton.animate_physical_bones = true
 	skeleton.physical_bones_start_simulation()
-	var damage_vector = last_damage_normal.normalized() * 5
-	PhysicsServer3D.body_set_state(physical_bone.get_rid(), PhysicsServer3D.BODY_STATE_LINEAR_VELOCITY, damage_vector)
+	var damage_vector = last_damage_normal.normalized() * last_damage / 100
+	PhysicsServer3D.body_set_state(physical_bone.get_rid(), PhysicsServer3D.BODY_STATE_LINEAR_VELOCITY, -damage_vector)
 	$CollisionShape3D.disabled = true
 	$CollisionShape3D2.disabled = true
 	$CollisionShape3D3.disabled = true
+	$"combat-roomba/Armature/Skeleton3D/Physical Bone Bone/Head/SpotLight3D".visible = false
 #	var inv_node = inv.instantiate()
 #	inv_node.container_size = container_size
 #	Events.create_inventory.emit(inv_node,self.name)
