@@ -55,6 +55,13 @@ enabled=PackedStringArray("res://addons/gdUnit4/plugin.cfg", "res://addons/ggs/p
 theme/custom="res://themes/minimalistic/MinimalUI.tres"
 theme/custom_font="res://themes/VCR_OSD_MONO.ttf"
 
+[importer_defaults]
+
+texture={
+"detect_3d/compress_to": 0,
+"mipmaps/generate": true
+}
+
 [input]
 
 moveLeft={

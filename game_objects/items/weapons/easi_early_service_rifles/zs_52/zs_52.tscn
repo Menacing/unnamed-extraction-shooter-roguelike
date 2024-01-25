@@ -63,7 +63,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.338339, 0)
 visible = false
 
 [node name="MuzzleFlash" type="Node3D" parent="gun"]
-transform = Transform3D(4.37114e-09, -0.0999999, -2.71002e-07, -0.1, -4.37114e-09, 0, -1.18459e-14, 2.71002e-07, -0.0999999, -0.829474, 0.00883391, 0.00145641)
 visible = false
 
 [node name="Sprite3D" type="Sprite3D" parent="gun/MuzzleFlash"]
@@ -79,10 +78,8 @@ texture = SubResource("CompressedTexture2D_1gjre")
 light_color = Color(0.988235, 0.54902, 0.188235, 1)
 
 [node name="Muzzle" type="Node3D" parent="gun"]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -0.64561, 0.00695148, 2.8221e-08)
 
 [node name="RayCast3D" type="RayCast3D" parent="gun"]
-transform = Transform3D(4.37114e-08, 1, -8.74228e-08, 1, -4.37114e-08, 0, -3.82165e-15, -8.74228e-08, -1, -0.634384, 0.00716719, 2.77251e-08)
 target_position = Vector3(0, -1000, 0)
 
 [node name="Right_Hand" type="Node3D" parent="."]

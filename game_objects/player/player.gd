@@ -260,10 +260,11 @@ func _physics_process(delta):
 		#handle use hint
 		if use_ray.is_colliding():
 				var col = use_ray.get_collider()
-				if col is Item3D:
-					EventBus.pickup_helper_visibility.emit(true)
-				elif col.has_method("use"):
-					EventBus.use_helper_visibility.emit(true)
+				if col:
+					if col is Item3D:
+						EventBus.pickup_helper_visibility.emit(true)
+					elif col.has_method("use"):
+						EventBus.use_helper_visibility.emit(true)
 				else:
 					EventBus.use_helper_visibility.emit(false)
 					EventBus.pickup_helper_visibility.emit(false)

@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://vb7f8fygilde"]
 
 [ext_resource type="Script" path="res://ui/misc/interaction_helpers.gd" id="1_5ctho"]
-[ext_resource type="Texture2D" uid="uid://d3etpewuqvera" path="res://ui/icons/White/skill_07.png" id="2_kl3lf"]
+[ext_resource type="Texture2D" uid="uid://d36mb0mqtrp68" path="res://ui/icons/White/skill_07_outline.png" id="2_v774h"]
 
 [node name="interaction_helpers" type="Control"]
 layout_mode = 3
@@ -26,7 +26,7 @@ offset_right = 20.0
 offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("2_kl3lf")
+texture = ExtResource("2_v774h")
 
 [node name="pickup_helper" type="TextureRect" parent="."]
 visible = false
@@ -42,4 +42,4 @@ offset_right = 20.0
 offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("2_kl3lf")
+texture = ExtResource("2_v774h")
