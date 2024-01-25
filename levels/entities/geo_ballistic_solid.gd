@@ -8,9 +8,10 @@ signal object_hit()
 	get:
 		return properties
 	set(new_properties):
-		if(properties != new_properties):
-			properties = new_properties
-			update_properties()
+		properties = new_properties
+		if !Engine.is_editor_hint():
+			return
+		update_properties()
 
 func update_properties():
 	
@@ -68,6 +69,8 @@ func update_properties():
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	if Engine.is_editor_hint():
+		return
 	if _bullet_hole_scene_path:
 		_bullet_hole_scene = load(_bullet_hole_scene_path)
 	if _impact_hit_scene_path:
@@ -78,6 +81,8 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	if Engine.is_editor_hint():
+		return
 	pass
 
 func _on_hit(damage, pen_rating, col:CollisionInformation, hit_origin:Vector3) -> float:

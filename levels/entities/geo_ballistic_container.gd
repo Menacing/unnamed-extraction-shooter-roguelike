@@ -9,13 +9,13 @@ extends GeoBallisticSolid
 @export var min_spawned:int
 @export var max_spawned:int
 var world_inventory_control:WorldInventory
-var container_size:int
+@export var container_size:int
 var inventory_id:int
 
 func update_properties():
 	super()
 	if 'container_size' in properties:
-		container_size = properties.container_size
+		container_size = int(properties['container_size'])
 	if 'biome' in properties:
 		biome_index = int(properties['biome'])	
 	if 'tier' in properties:
@@ -29,6 +29,8 @@ var model_shuffle_bag:Array[LootSpawnInformation] = []
 var current_shuffle_bag:Array[LootSpawnInformation] = []
 
 func _ready():
+	if Engine.is_editor_hint():
+		return
 	#do ballistic solid stuff
 	super()
 	#instantiate inventory control

@@ -98,7 +98,10 @@ func force_parent(child:Node, parent:Node):
 	if child.get_parent():
 		child.get_parent().remove_child(child)
 	parent.add_child(child)
-	child.set_owner(parent)
+	if parent.owner:
+		child.set_owner(parent.owner)
+	else:
+		child.set_owner(parent)
 
 
 func get_aabb_of_node(node:Node):

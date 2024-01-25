@@ -11,12 +11,16 @@ func update_properties() -> void:
 		_target_name = properties.targetname
 
 func _process(delta: float) -> void:
+	if Engine.is_editor_hint():
+		return
 	if _hinge:
 		_hinge.transform = _hinge.transform.interpolate_with(target_transform, speed * delta)
 	else:
 		super(delta)
 
 func _ready() -> void:
+	if Engine.is_editor_hint():
+		return
 	super()
 	if _target_name:
 		var hinge_node = get_node("%"+_target_name)
