@@ -441,7 +441,7 @@ func move(move_velocity:Vector3, delta:float):
 func _on_standing_state_entered():
 	current_speed = 0.0
 	world_collider.get_shape().set_height(STANDING_HEIGHT)
-	recoil_modifiers.get_or_add("standing", -0.1)
+	recoil_modifiers["standing"] = -0.1
 	
 func _on_standing_state_exited():
 	recoil_modifiers.erase("standing")
@@ -543,14 +543,14 @@ func _on_sprinting_state_physics_processing(delta):
 func _on_crouching_state_entered():
 	current_speed = 0.0
 	world_collider.get_shape().set_height(CROUCHING_HEIGHT)
-	recoil_modifiers.get_or_add("crouching", -0.2)
+	recoil_modifiers["crouching"] = -0.2
 	
 func _on_crouching_state_exited():
 	recoil_modifiers.erase("crouching")
 	
 func _on_crouch_walking_state_entered():
 	current_speed = CROUCH_SPEED
-	recoil_modifiers.get_or_add("crouch_walking", -0.1)
+	recoil_modifiers["crouch_walking"] = -0.1
 	
 func _on_crouch_walking_state_exited():
 	recoil_modifiers.erase("crouch_walking")
@@ -600,7 +600,7 @@ func _on_crouch_walking_state_physics_processing(delta):
 func _on_prone_state_entered():
 	current_speed = 0.0
 	world_collider.get_shape().set_height(PRONE_HEIGHT)
-	recoil_modifiers.get_or_add("prone", -0.4)
+	recoil_modifiers["prone"] = -0.4
 	
 func _on_prone_state_exited():
 	recoil_modifiers.erase("prone")
@@ -834,7 +834,7 @@ func _on_ads_state_physics_processing(delta):
 			reload()
 
 func _on_ads_state_entered():
-	recoil_modifiers.get_or_add("ADS", -0.2)
+	recoil_modifiers["ADS"] = -0.2
 
 func _on_ads_state_exited():
 	recoil_modifiers.erase("ADS")
