@@ -17,6 +17,7 @@ func update_properties() -> void:
 		offset_transform.origin = properties.translation
 
 	if 'rotation' in properties:
+		offset_transform.basis = Basis()
 		offset_transform.basis = offset_transform.basis.rotated(Vector3.RIGHT, properties.rotation.x)
 		offset_transform.basis = offset_transform.basis.rotated(Vector3.UP, properties.rotation.y)
 		offset_transform.basis = offset_transform.basis.rotated(Vector3.FORWARD, properties.rotation.z)
