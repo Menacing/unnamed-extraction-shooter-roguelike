@@ -298,10 +298,22 @@ far = 200.0
 [node name="QodotMap" type="Node3D" parent="."]
 script = ExtResource("1")
 map_file = "C:/Users/Embyr/Desktop/qmap-development/addons/qodot/example_scenes/1-interactivity/3-basic-signal-wiring/3-basic-signal-wiring.map"
+inverse_scale_factor = 16.0
 entity_fgd = ExtResource("2")
 base_texture_dir = "res://addons/qodot/textures"
 texture_file_extensions = PackedStringArray("png")
+worldspawn_layers = []
+brush_clip_texture = "special/clip"
+face_skip_texture = "special/skip"
+texture_wads = []
+material_file_extension = "tres"
+unshaded = false
+default_material_albedo_uniform = ""
 default_material = SubResource("4")
+uv_unwrap_texel_size = 1.0
+print_profiling_data = false
+use_trenchbroom_group_hierarchy = false
+tree_attach_batch_size = null
 set_owner_batch_size = 16
 
 [node name="entity_0_worldspawn" type="StaticBody3D" parent="QodotMap"]
@@ -443,28 +455,6 @@ mesh = SubResource("ArrayMesh_o4i68")
 [node name="entity_2_brush_0_collision_shape" type="CollisionShape3D" parent="QodotMap/entity_2_button"]
 shape = SubResource("ConvexPolygonShape3D_y8bsp")
 
-[node name="entity_2_button" type="Area3D" parent="QodotMap/entity_2_button"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 4.5, 0)
-script = ExtResource("6")
-properties = {
-"axis": Vector3(0, -1, 0),
-"classname": "button",
-"depth": 0.8,
-"press_signal_delay": 0.0,
-"release_delay": -1.0,
-"release_signal_delay": 0.0,
-"speed": 8.0,
-"target": "button_door_1",
-"trigger_signal_delay": 0.0
-}
-
-[node name="entity_2_mesh_instance" type="MeshInstance3D" parent="QodotMap/entity_2_button/entity_2_button"]
-gi_mode = 2
-mesh = SubResource("ArrayMesh_o4i68")
-
-[node name="entity_2_brush_0_collision_shape" type="CollisionShape3D" parent="QodotMap/entity_2_button/entity_2_button"]
-shape = SubResource("ConvexPolygonShape3D_y8bsp")
-
 [node name="entity_3_mover" type="CharacterBody3D" parent="QodotMap"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.5, 7.5, 0)
 script = ExtResource("4")
@@ -567,6 +557,5 @@ mesh = SubResource("ArrayMesh_sfqi2")
 shape = SubResource("ConvexPolygonShape3D_po2j6")
 
 [connection signal="trigger" from="QodotMap/entity_2_button" to="QodotMap/entity_3_mover" method="use"]
-[connection signal="trigger" from="QodotMap/entity_2_button/entity_2_button" to="QodotMap/entity_3_mover" method="use"]
 [connection signal="trigger" from="QodotMap/entity_7_button" to="QodotMap/entity_9_mover" method="use"]
 [connection signal="trigger" from="QodotMap/entity_8_button" to="QodotMap/entity_10_mover" method="use"]
