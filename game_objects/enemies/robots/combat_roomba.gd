@@ -106,6 +106,7 @@ func die():
 	$CollisionShape3D.disabled = true
 	$CollisionShape3D2.disabled = true
 	$CollisionShape3D3.disabled = true
+	$"combat-roomba/Armature/Skeleton3D/Physical Bone Bone/Head/SpotLight3D".visible = false
 #	var inv_node = inv.instantiate()
 #	inv_node.container_size = container_size
 #	Events.create_inventory.emit(inv_node,self.name)

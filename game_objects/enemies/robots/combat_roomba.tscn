@@ -65,7 +65,7 @@ animate_physical_bones = false
 transform = Transform3D(1, -2.70006e-13, 0, 0, 0, -1, 1.77636e-13, 1, 0, 0, 0.222436, 0)
 collision_layer = 5
 joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.222436)
-body_offset = Transform3D(1, -2.70006e-13, 0, 0, 0, -1, 1.84741e-13, 1, 0, 0, 0.222436, 0)
+body_offset = Transform3D(1, -2.70006e-13, 0, 0, 0, -1, 1.77636e-13, 1, 0, 0, 0.222436, 0)
 bone_name = "Bone"
 script = ExtResource("5_grn4r")
 container_size = 21
@@ -91,9 +91,6 @@ shape = SubResource("BoxShape3D_wvt7k")
 [node name="WorldInventory" parent="combat-roomba/Armature/Skeleton3D/Physical Bone Bone" instance=ExtResource("7_gxy1y")]
 visible = false
 _inventory = SubResource("Resource_1qy4a")
-
-[node name="WorldInventoryGrid" parent="combat-roomba/Armature/Skeleton3D/Physical Bone Bone/WorldInventory/PanelContainer/InventoryBase" index="0" node_paths=PackedStringArray("parent_inventory_control_base")]
-parent_inventory_control_base = NodePath("../../..")
 
 [node name="FireTimer" type="Timer" parent="."]
 wait_time = 0.5
