@@ -22,7 +22,7 @@ var _current_width:int
 
 		
 		
-var grid_slots = {}
+var grid_slots := {}
 @export var equipment_slots:Array[EquipmentSlotType] = []
 
 static func get_slot_by_name(inventory:Inventory, slot_name:String) ->EquipmentSlotType:
@@ -35,7 +35,7 @@ static func get_slot_by_name(inventory:Inventory, slot_name:String) ->EquipmentS
 
 var _is_setup:bool = false
 
-func setup(resetup = false):
+func setup(resetup := false) -> void:
 	if resetup or !_is_setup:
 		#setup the grid
 		_current_height = initial_height
@@ -53,8 +53,8 @@ func setup(resetup = false):
 			equipment_slots = slots_copy
 		_is_setup = true
 			
-func create_new_grid_slots(width:int, height:int):
-	var new_grid_slots = {}
+func create_new_grid_slots(width:int, height:int) -> Dictionary:
+	var new_grid_slots := {}
 	
 	for w in range(width):
 		new_grid_slots[w] = {}
@@ -63,8 +63,8 @@ func create_new_grid_slots(width:int, height:int):
 	
 	return new_grid_slots
 
-func get_height():
+func get_height() -> int:
 	return _current_height
 	
-func get_width():
+func get_width() -> int:
 	return _current_width

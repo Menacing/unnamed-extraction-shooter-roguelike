@@ -30,16 +30,16 @@ var world_collider:CollisionShape3D:
 @export var start_highlighted:bool = true
 @export_multiline var tooltip_text:String = "This is a placeholder"
 
-func _ready():
+func _ready() -> void:
 	assert(world_collider_path != null)
 	if start_highlighted:
 		Helpers.apply_material_overlay_to_children(self,item_highlight_m)
 	else:
 		Helpers.apply_material_overlay_to_children(self,null)
 	
-	var item_instance = get_item_instance()
+	var item_instance := get_item_instance()
 	if item_instance:
-		var item_internal_inventory = item_instance.get_item_inventory()
+		var item_internal_inventory := item_instance.get_item_inventory()
 		if item_internal_inventory:
 			internal_inventory_id = item_internal_inventory.get_instance_id()
 			EventBus.item_picked_up.connect(_on_item_picked_up)
@@ -49,7 +49,7 @@ func _ready():
 	
 
 
-func dropped():
+func dropped() -> void:
 	world_collider.disabled = false
 	self.freeze = false
 	self.visible = true
@@ -58,7 +58,7 @@ func dropped():
 	self.apply_torque_impulse(Vector3.FORWARD)
 	
 
-func picked_up():
+func picked_up() -> void:
 	self.transform = Transform3D.IDENTITY
 #	self.gravity_scale = 0
 	world_collider.disabled = true
@@ -66,22 +66,22 @@ func picked_up():
 	Helpers.apply_material_overlay_to_children(self,null)
 
 	
-func destroy():
+func destroy() -> void:
 	#Events.item_destroyed.emit(self)
 	self.call_deferred("queue_free")
 
-func set_stacks(amount:int):
+func set_stacks(amount:int) -> void:
 	get_item_instance().stacks = amount
 	
-func spawn_item():
+func spawn_item() -> void:
 	var item_info:ItemInformation = get_item_information()
 	if item_info:
-		var item_instance = ItemInstance.new(item_info)
+		var item_instance := ItemInstance.new(item_info)
 		item_instance_id = item_instance.get_instance_id()
 		item_instance.id_3d = self.get_instance_id()
 		item_instance.spawn_item()
 
-func _on_item_picked_up(result:InventoryInsertResult):
+func _on_item_picked_up(result:InventoryInsertResult) -> void:
 	if result.inventory_id == internal_inventory_id:
 		var item_instance:ItemInstance = InventoryManager.get_item(result.item_instance_id)
 		var item_3d:Item3D = instance_from_id(item_instance.id_3d)
@@ -92,5 +92,5 @@ func _on_item_picked_up(result:InventoryInsertResult):
 		elif result.location.location == InventoryLocationResult.LocationType.GRID:
 			item_3d.visible = false
 			
-func _on_item_removed_from_slot(item_inst:ItemInstance, inventory_id:int, slot_name:String):
+func _on_item_removed_from_slot(item_inst:ItemInstance, inventory_id:int, slot_name:String) -> void:
 	pass

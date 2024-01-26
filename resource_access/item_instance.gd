@@ -1,7 +1,7 @@
 extends Object
 class_name ItemInstance
 
-func _init(item_info:ItemInformation):
+func _init(item_info:ItemInformation) -> void:
 	_item_info = item_info.duplicate(true)
 	if _item_info.item_internal_inventory:
 		_item_info.item_internal_inventory.setup()
@@ -76,7 +76,7 @@ func get_item_tooltip_text() -> String:
 	return _item_info.tooltip_text
 
 #after you call this you must add the instanced scenes to the scene tree
-func spawn_item():
+func spawn_item() -> void:
 	if _item_info.has_stacks:
 		var stack:int = randi_range(1, _item_info.max_stacks)
 		stacks = stack
