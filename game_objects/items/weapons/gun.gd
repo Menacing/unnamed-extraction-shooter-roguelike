@@ -4,6 +4,7 @@ class_name Gun
 signal fired
 signal reloaded
 
+@warning_ignore("unused_private_class_variable")
 @export var _bullet_scene : PackedScene
 @export var ads_lean_factor:float = 1.0
 @export var _gun_stats:GunStats
@@ -47,7 +48,7 @@ func canFire() -> bool:
 func fireGun() -> void:
 	pass
 
-func reloadGun(new_bullets:int) -> void:
+func reloadGun(_new_bullets:int) -> void:
 	pass
 	
 func toggle_fire_mode() -> String:

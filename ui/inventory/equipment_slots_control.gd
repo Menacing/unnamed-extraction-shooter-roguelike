@@ -8,7 +8,7 @@ var slot_icon:Texture2D
 func _ready():
 	slot_icon_texture_rect.texture = slot_icon
 
-func _can_drop_data(at_position, data) -> bool:
+func _can_drop_data(_at_position, data) -> bool:
 	var item_instance_id:int = data["item_instance_id"]
 	var target_inventory_id = parent_inventory_control_base._inventory.get_instance_id()
 	var number_to_drop:int = 0
@@ -22,7 +22,7 @@ func _can_drop_data(at_position, data) -> bool:
 	else:
 		return InventoryManager.can_place_item_in_slot(item_instance_id, target_inventory_id, self.name)
 
-func _drop_data(at_position, data):
+func _drop_data(_at_position, data):
 	print(data)	
 	var item_instance_id:int = data["item_instance_id"]
 	var target_inventory_id = parent_inventory_control_base._inventory.get_instance_id()

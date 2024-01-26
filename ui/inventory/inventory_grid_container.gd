@@ -100,11 +100,11 @@ func set_grid_container_size(number_cells:int) -> void:
 		var children = self.get_children()
 		while children.size() > number_cells :
 			var current_cell = children.pop_back()
-			var cell_global_pos = current_cell.get_global_position()
 			#then remove cells
 			self.remove_child(current_cell)
 	else:
 		pass
 	self.size.x = columns * cell_size
+	@warning_ignore("integer_division")
 	self.size.y = number_cells / columns * cell_size
 	
