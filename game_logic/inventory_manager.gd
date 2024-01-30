@@ -16,7 +16,7 @@ func _ready() -> void:
 func _on_pickup_item(item_inst:ItemInstance, target_inventory_id:int) -> void:
 	#Are we dealing with a stack or not
 	var inventory:Inventory = _inventory_access.get_inventory(target_inventory_id)
-	var item_instance_id:int = item_inst.get_instance_id()
+	var _item_instance_id:int = item_inst.get_instance_id()
 	if inventory == null:
 		return
 	if !item_inst.get_has_stacks():
@@ -81,7 +81,7 @@ func _on_pickup_item(item_inst:ItemInstance, target_inventory_id:int) -> void:
 func can_place_item_in_slot(item_instance_id:int, target_inventory_id:int, slot_name:String) -> bool:
 	return _inventory_access.can_place_item_in_slot(get_item(item_instance_id), target_inventory_id, slot_name)
 
-func can_place_stack_in_slot(item_instance_id:int, target_inventory_id:int, slot_name:String, amount:int) -> bool:
+func can_place_stack_in_slot(item_instance_id:int, target_inventory_id:int, slot_name:String, _amount:int) -> bool:
 	return _inventory_access.can_place_stack_in_slot(get_item(item_instance_id), target_inventory_id, slot_name)
 	
 func place_item_in_slot(item_instance_id:int, target_inventory_id:int, slot_name:String) -> void:
@@ -107,7 +107,7 @@ func can_place_item_in_grid(item_instance_id:int, target_inventory_id:int, grid_
 	var item_inst := get_item(item_instance_id)	
 	return _inventory_access.can_place_item_in_grid(item_inst, target_inventory_id, grid_location)
 
-func can_place_stack_in_grid(item_instance_id:int, target_inventory_id:int, grid_location:Vector2i, amount:int) -> bool:
+func can_place_stack_in_grid(item_instance_id:int, target_inventory_id:int, grid_location:Vector2i, _amount:int) -> bool:
 	var item_inst := get_item(item_instance_id)	
 	return _inventory_access.can_place_stack_in_grid(item_inst, target_inventory_id, grid_location)
 	
@@ -134,7 +134,7 @@ func place_stack_in_grid(item_instance_id:int, target_inventory_id:int, grid_loc
 func find_clear_area_in_grid(item_instance_id:int, target_inventory_id:int) -> Vector2IResult:
 	var result := Vector2IResult.new()
 	var inventory:Inventory = _inventory_access.get_inventory(target_inventory_id)
-	var item_inst := _item_access.get_item(item_instance_id)
+	var item_inst := ItemAccess.get_item(item_instance_id)
 	if inventory and item_inst:
 		for y in range(inventory.get_height()):
 			for x in range(inventory.get_width()):
@@ -170,10 +170,10 @@ func destroy_item(item_instance_id:int) -> void:
 	var item_inst:ItemInstance = get_item(item_instance_id)		
 	if item_inst.current_inventory_id != 0:
 		remove_item(item_instance_id, item_inst.current_inventory_id)
-	_item_access.destroy_item(item_inst)
+	ItemAccess.destroy_item(item_inst)
 	
 func get_item(item_instance_id:int) -> ItemInstance:
-	return _item_access.get_item(item_instance_id)
+	return ItemAccess.get_item(item_instance_id)
 
 func set_inventory_size(inventory_id:int, size:Vector2i) -> void:
 	var inventory:Inventory = _inventory_access.get_inventory(inventory_id)

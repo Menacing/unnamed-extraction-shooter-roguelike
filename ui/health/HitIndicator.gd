@@ -19,7 +19,6 @@ func _ready():
 	EventBus.compass_player_pulse.connect(_on_compass_player_pulse)
 	screen_w = get_viewport().size.x
 	screen_h = get_viewport().size.y
-	var timeleft = LifeTimer.time_left
 
 	pass # Replace with function body.
 
@@ -33,7 +32,6 @@ func _process(delta):
 
 
 func _on_timer_timeout():
-	var timeleft = LifeTimer.time_left
 	fading_out = true
 	FadeoutTimer.start()
 
@@ -41,8 +39,8 @@ func _on_compass_player_pulse(player_position:Vector3, player_rotation:Vector3):
 	player_pos = player_position
 	player_pos.y = 0
 	player_r = int(round(player_rotation.y))
-	var deg = deg_to_target(player_pos, player_r, target_pos)
-	self.global_position = add_margin(deg_to_screen_edge(deg, screen_h, screen_w),screen_h,screen_w,icon_margin)
+	var deg = HitIndicator.deg_to_target(player_pos, player_r, target_pos)
+	self.global_position = HitIndicator.add_margin(HitIndicator.deg_to_screen_edge(deg, screen_h, screen_w),screen_h,screen_w,icon_margin)
 	var icon_r = deg
 	self.rotation_degrees = -icon_r
 	
@@ -57,11 +55,16 @@ static func deg_to_target(player_pos:Vector3, player_r:int, target_pos:Vector3) 
 	return int(round(deg_result))
 
 static func deg_to_screen_edge(deg:int,screen_h:int, screen_w:int)->Vector2:
+	@warning_ignore("integer_division")
 	var ste = screen_h/2
+	@warning_ignore("integer_division")
 	var sre = screen_w/2
+	@warning_ignore("integer_division")
 	var sbe = -screen_h/2
+	@warning_ignore("integer_division")
 	var sle = -screen_w/2
 	var screen_mag = Vector2(screen_w, screen_h).length()
+	@warning_ignore("integer_division")
 	var screen_offset = Vector2(screen_w/2,screen_h/2)
 	var rdeg = deg_to_rad(deg)
 	var direction_vec:Vector2 = deg_to_vector2(deg) * screen_mag
@@ -119,6 +122,7 @@ static func screen_coord_is_in_view(vec:Vector2, screen_h:int, screen_w:int) -> 
 		return false
 	
 static func convert_to_screen_coordinate(vec:Vector2, screen_h:int, screen_w:int) -> Vector2:
+	@warning_ignore("integer_division")
 	var origin = Vector2(screen_w/2,screen_h/2)
 	return Vector2(vec.x+origin.x,-vec.y+origin.y)
 	

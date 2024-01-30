@@ -92,5 +92,5 @@ func _on_item_picked_up(result:InventoryInsertResult) -> void:
 		elif result.location.location == InventoryLocationResult.LocationType.GRID:
 			item_3d.visible = false
 			
-func _on_item_removed_from_slot(item_inst:ItemInstance, inventory_id:int, slot_name:String) -> void:
+func _on_item_removed_from_slot(_item_inst:ItemInstance, _inventory_id:int, _slot_name:String) -> void:
 	pass

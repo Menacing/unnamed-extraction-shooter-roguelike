@@ -148,6 +148,7 @@ func _input(event:InputEvent):
 				var drop_data = get_viewport().gui_get_drag_data()
 				var orig_number_to_drop:int = drop_data["number_to_drop"]
 				var local_pos = event.global_position - control.global_position
+				@warning_ignore("integer_division")
 				drop_data["number_to_drop"] = round(orig_number_to_drop/2)
 				if control._can_drop_data(local_pos, drop_data):
 					control._drop_data(local_pos, drop_data)
@@ -162,7 +163,7 @@ func _input(event:InputEvent):
 			# If control exists and has _can_drop_data function, call it
 			if control:
 				var drop_data = get_viewport().gui_get_drag_data()
-				var orig_number_to_drop:int = drop_data["number_to_drop"]
+				var _orig_number_to_drop:int = drop_data["number_to_drop"]
 				var local_pos = event.global_position - control.global_position
 				drop_data["number_to_drop"] = 1
 				if control._can_drop_data(local_pos, drop_data):
@@ -208,21 +209,21 @@ func _on_context_menu_pressed(id:int):
 	var item = context_items[id]
 	EventBus.emit_signal(item.signal_name, get_item_instance(), get_global_mouse_position())
 
-func _on_context_menus_drop_item(item_inst:ItemInstance, cursor_pos:Vector2):
+func _on_context_menus_drop_item(item_inst:ItemInstance, _cursor_pos:Vector2):
 	if item_inst and item_inst.get_instance_id() == item_instance_id:
 		var original_inventory_id = item_inst.current_inventory_id
 		InventoryManager.remove_item(item_instance_id, original_inventory_id)
 		EventBus.drop_item.emit(item_inst, original_inventory_id)
 
-func _on_context_menus_split_stack(item_inst:ItemInstance, cursor_pos:Vector2):
+func _on_context_menus_split_stack(item_inst:ItemInstance, _cursor_pos:Vector2):
 	if item_inst and item_inst.get_instance_id() == item_instance_id:
 		var stack_splitter_popup:StackSplitter = stack_splitter_popup_scene.instantiate()
 		stack_splitter_popup.item_instance_id = item_instance_id
 		self.get_parent().add_child(stack_splitter_popup)
 		stack_splitter_popup.top_level = true
-		stack_splitter_popup.position = cursor_pos 
+		stack_splitter_popup.position = _cursor_pos 
 		
-func _on_context_menus_open_item_detail(item_inst:ItemInstance, cursor_pos:Vector2):
+func _on_context_menus_open_item_detail(item_inst:ItemInstance, _cursor_pos:Vector2):
 	if item_inst and item_inst.get_instance_id() == item_instance_id:
 		var item_detail_popup:ItemDetailPopup = item_detail_popup_scene.instantiate()
 		item_detail_popup.item_instance_id = item_instance_id
@@ -236,8 +237,8 @@ func _on_context_menus_open_item_detail(item_inst:ItemInstance, cursor_pos:Vecto
 func _on_count_changed(new_count:int):
 	count.text = str(new_count)
 	
-func _on_durability_changed(new_durability:int, max_durability:int):
-	durability_label.text = str(new_durability) + "/" + str(max_durability)
+func _on_durability_changed(new_durability:int, new_max_durability:int):
+	durability_label.text = str(new_durability) + "/" + str(new_max_durability)
 
 func _make_custom_tooltip(for_text):
 	var label = RichTextLabel.new()
@@ -265,6 +266,7 @@ func _create_drag_control() -> Control:
 	var drag_control = Control.new()
 	drag_control.size = self.size
 	drag_control.add_child(drag_texture)
+	@warning_ignore("integer_division")
 	drag_texture.position = Vector2(-cell_size/2,-cell_size/2)
 	drag_control.z_index = self.z_index + 1
 	drag_control.modulate = Color(Color.WHITE, .5)
@@ -277,7 +279,7 @@ func create_drag_data_data():
 		data["number_to_drop"] = get_item_instance().stacks
 	return data
 
-func _get_drag_data(position):
+func _get_drag_data(_position):
 	set_drag_preview(_create_drag_control())
 	_is_dragging = true
 	_orig_is_rotated = _is_rotated

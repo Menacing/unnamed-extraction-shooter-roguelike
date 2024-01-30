@@ -11,7 +11,7 @@ func slow_rotate_to_point(node:Node3D, point:Vector3, rotation_speed:float, delt
 	const dot_threshold = .999
 	var T:Transform3D
 
-	var target_direction = (point-node.global_transform.origin).normalized()
+	var target_direction := (point-node.global_transform.origin).normalized()
 	if abs(target_direction.dot(Vector3.UP)) < dot_threshold:
 		#use Vector3.UP
 		T=node.global_transform.looking_at(point, Vector3.UP)
