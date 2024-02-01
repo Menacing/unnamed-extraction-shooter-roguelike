@@ -3,7 +3,7 @@ class_name ItemAccess
 
 
 static func get_item(item_id:int) -> ItemInstance:
-	var item = instance_from_id(item_id)
+	var item:Object = instance_from_id(item_id)
 	if item is ItemInstance:
 		return item
 	else:
@@ -37,7 +37,7 @@ static func can_combine_stacks(source:ItemInstance, destination:ItemInstance) ->
 		else:
 			return false
 
-static func destroy_item(item:ItemInstance):
+static func destroy_item(item:ItemInstance) -> void:
 	if item:
 		if item.id_3d:
 			var item_3d:Node = instance_from_id(item.id_3d)
@@ -48,7 +48,7 @@ static func destroy_item(item:ItemInstance):
 		item.free()
 
 static func clone_instance(original: ItemInstance) -> ItemInstance:
-	var new_instance = ItemInstance.new(original._item_info)
+	var new_instance := ItemInstance.new(original._item_info)
 
 	# Copy properties
 	if original.id_3d != 0:

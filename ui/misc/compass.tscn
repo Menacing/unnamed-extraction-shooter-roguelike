@@ -1,8 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://dhlk3rc74daq2"]
+[gd_scene load_steps=6 format=3 uid="uid://dhlk3rc74daq2"]
 
 [ext_resource type="Theme" uid="uid://b3qbjy2fpoq6d" path="res://themes/minimalistic/MinimalUI.tres" id="1_nxxj1"]
 [ext_resource type="Script" path="res://ui/misc/compass.gd" id="2_8gqx7"]
-[ext_resource type="Texture2D" uid="uid://dig5x55r5fhwk" path="res://themes/minimalistic/icons.svg" id="2_p1abm"]
 [ext_resource type="Material" uid="uid://c0ipdgk1m22gh" path="res://ui/misc/ui_static_mat.tres" id="4_3fdlo"]
 [ext_resource type="Script" path="res://ui/misc/CompassPanel.gd" id="4_agrwu"]
 
@@ -42,7 +41,6 @@ vertical_scroll_mode = 3
 [node name="CompassBackground" type="NinePatchRect" parent="VBoxContainer/Panel/ScrollContainer"]
 custom_minimum_size = Vector2(1500, 25)
 layout_mode = 2
-texture = ExtResource("2_p1abm")
 region_rect = Rect2(36, 68, 8, 8)
 patch_margin_left = 1
 patch_margin_top = 1

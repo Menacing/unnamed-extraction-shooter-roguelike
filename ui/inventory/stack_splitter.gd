@@ -1,9 +1,9 @@
 extends PanelContainer
 class_name StackSplitter
 
-@onready var left_spin_box = $MarginContainer/VBoxContainer/HBoxContainer/LeftSpinBox
-@onready var right_spin_box = $MarginContainer/VBoxContainer/HBoxContainer/RightSpinBox
-@onready var hor_slider = $MarginContainer/VBoxContainer/HBoxContainer2/HSlider
+@onready var left_spin_box:SpinBox = $MarginContainer/VBoxContainer/HBoxContainer/LeftSpinBox
+@onready var right_spin_box:SpinBox = $MarginContainer/VBoxContainer/HBoxContainer/RightSpinBox
+@onready var hor_slider:HSlider = $MarginContainer/VBoxContainer/HBoxContainer2/HSlider
 
 var item_instance_id:int
 var _max_stacks:int = 100
@@ -14,7 +14,7 @@ var max_stacks:int:
 		_max_stacks = value
 		hor_slider.min_value = 1
 		hor_slider.max_value = _max_stacks - 1
-		hor_slider.value = _max_stacks / 2
+		hor_slider.value = int(_max_stacks / 2.0)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -46,7 +46,7 @@ func _on_accept_button_pressed():
 	#TODO Do the stack stuff
 	var item_instance:ItemInstance = InventoryManager.get_item(item_instance_id)
 	if item_instance:
-		var destination = InventoryManager.find_clear_area_in_grid(item_instance_id, item_instance.current_inventory_id)
-		if destination:
-			InventoryManager.place_stack_in_grid(item_instance_id, item_instance.current_inventory_id, destination, right_spin_box.value)
+		var result: Vector2IResult= InventoryManager.find_clear_area_in_grid(item_instance_id, item_instance.current_inventory_id)
+		if result.result:
+			InventoryManager.place_stack_in_grid(item_instance_id, item_instance.current_inventory_id, result.value, int(right_spin_box.value))
 	self.queue_free()

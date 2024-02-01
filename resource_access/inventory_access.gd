@@ -3,7 +3,7 @@ class_name InventoryAccess
 
 var inventories:Dictionary = {}
 
-func add_inventory(inventory:Inventory):
+func add_inventory(inventory:Inventory) -> void:
 	inventories[inventory.get_instance_id()] = inventory
 	
 func get_inventory(inventory_id:int) -> Inventory:
@@ -12,8 +12,8 @@ func get_inventory(inventory_id:int) -> Inventory:
 	else:
 		return null
 
-func _clear_inventory(inventory_id:int):
-	var inventory = get_inventory(inventory_id)
+func _clear_inventory(inventory_id:int) -> void:
+	var inventory := get_inventory(inventory_id)
 	if inventory == null:
 		return
 		
@@ -101,7 +101,7 @@ func place_stack_in_slot(item_inst:ItemInstance, inventory_id:int, slot_name:Str
 			#else we have to combine stacks
 			else:
 				var destination_item:ItemInstance = ItemAccess.get_item(slot.item_instance_id)
-				var remainder = ItemAccess.combine_stacks(item_inst, destination_item, amount)
+				var remainder:int = ItemAccess.combine_stacks(item_inst, destination_item, amount)
 				
 				if remainder == 0:
 					remove_item(item_inst,item_inst.current_inventory_id)
@@ -112,14 +112,14 @@ func place_stack_in_slot(item_inst:ItemInstance, inventory_id:int, slot_name:Str
 
 func can_place_item_in_grid(item_inst:ItemInstance, inventory_id:int, grid_location:Vector2i) -> bool:
 	if item_inst:
-		var inventory = get_inventory(inventory_id)
+		var inventory := get_inventory(inventory_id)
 		if inventory == null:
 			return false
 			
-		var x = grid_location.x
-		var y = grid_location.y
-		var w = item_inst.get_width()
-		var h = item_inst.get_height()
+		var x:int = grid_location.x
+		var y:int = grid_location.y
+		var w:int = item_inst.get_width()
+		var h:int = item_inst.get_height()
 		#invalid coordinates
 		if x < 0 or y < 0:
 			return false
@@ -130,7 +130,7 @@ func can_place_item_in_grid(item_inst:ItemInstance, inventory_id:int, grid_locat
 		#check if there's an item alredy there
 		for i in range(x, x + w):
 			for j in range(y, y + h):
-				var grid_val = inventory.grid_slots[i][j]
+				var grid_val:ItemInstance = inventory.grid_slots[i][j]
 				if grid_val:
 					return false
 		#if nothing is found, the space is clear
@@ -140,14 +140,14 @@ func can_place_item_in_grid(item_inst:ItemInstance, inventory_id:int, grid_locat
 	
 func can_place_stack_in_grid(item_inst:ItemInstance, inventory_id:int, grid_location:Vector2i) -> bool:
 	if item_inst:
-		var inventory = get_inventory(inventory_id)
+		var inventory := get_inventory(inventory_id)
 		if inventory == null:
 			return false
 			
-		var x = grid_location.x
-		var y = grid_location.y
-		var w = item_inst.get_width()
-		var h = item_inst.get_height()
+		var x:int = grid_location.x
+		var y:int = grid_location.y
+		var w:int = item_inst.get_width()
+		var h:int = item_inst.get_height()
 		#invalid coordinates
 		if x < 0 or y < 0:
 			return false
@@ -174,11 +174,11 @@ func place_item_in_grid(item_inst:ItemInstance, inventory_id:int, grid_location:
 	if can_place_item_in_grid(item_inst, inventory_id, grid_location):
 		remove_item(item_inst,item_inst.current_inventory_id)
 		item_inst.current_inventory_id = inventory_id
-		var inventory = get_inventory(inventory_id)
-		var x = grid_location.x
-		var y = grid_location.y
-		var w = item_inst.get_width()
-		var h = item_inst.get_height()
+		var inventory := get_inventory(inventory_id)
+		var x:int = grid_location.x
+		var y:int = grid_location.y
+		var w:int = item_inst.get_width()
+		var h:int = item_inst.get_height()
 		for i in range(x, x + w):
 			for j in range(y, y + h):
 				inventory.grid_slots[i][j] = item_inst
@@ -189,11 +189,11 @@ func place_item_in_grid(item_inst:ItemInstance, inventory_id:int, grid_location:
 func place_stack_in_grid(item_inst:ItemInstance, inventory_id:int, grid_location:Vector2i, amount:int) -> bool:
 	#check if can drop
 	if can_place_stack_in_grid(item_inst, inventory_id, grid_location):
-		var inventory = get_inventory(inventory_id)
-		var x = grid_location.x
-		var y = grid_location.y
-		var w = item_inst.get_width()
-		var h = item_inst.get_height()
+		var inventory := get_inventory(inventory_id)
+		var x:int = grid_location.x
+		var y:int = grid_location.y
+		var w:int = item_inst.get_width()
+		var h:int = item_inst.get_height()
 		
 		#check affected cells
 		var section_empty:bool = true
@@ -235,7 +235,7 @@ func place_stack_in_grid(item_inst:ItemInstance, inventory_id:int, grid_location
 					inventory.grid_slots[i][j] = inventory_val
 			return return_val
 		else:
-			var remainder = ItemAccess.combine_stacks(item_inst, destination_inst, amount)
+			var remainder:int = ItemAccess.combine_stacks(item_inst, destination_inst, amount)
 
 			if remainder == 0:
 				remove_item(item_inst,item_inst.current_inventory_id)
@@ -252,7 +252,7 @@ func remove_item(item:ItemInstance,  inventory_id:int) -> void:
 	EventBus.item_removed_from_inventory.emit(item, inventory_id)
 
 func remove_item_from_grid(item:ItemInstance,  inventory_id:int) -> void:
-	var inventory = get_inventory(inventory_id)
+	var inventory := get_inventory(inventory_id)
 	if inventory:
 		for x in range (0, inventory.get_width()):
 			for y in range(0,inventory.get_height()):
@@ -263,7 +263,7 @@ func remove_item_from_grid(item:ItemInstance,  inventory_id:int) -> void:
 	item.current_inventory_id = 0
 
 func remove_item_from_slot(item:ItemInstance, inventory_id:int) -> void:
-	var inventory = get_inventory(inventory_id)
+	var inventory := get_inventory(inventory_id)
 	if inventory:
 		for slot in inventory.equipment_slots:
 			if slot.item_instance_id == item.get_instance_id():

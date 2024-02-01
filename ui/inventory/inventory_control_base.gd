@@ -37,19 +37,19 @@ func _on_item_picked_up(result:InventoryInsertResult):
 		elif location.location == InventoryLocationResult.LocationType.GRID and get_inventory_grid():
 			get_inventory_grid().add_item_control(item_control, location.grid_x, location.grid_y)
 
-func _on_open_inventory(inventory_id:int):
-	if inventory_id == self.inventory_id:
+func _on_open_inventory(in_inventory_id:int):
+	if in_inventory_id == self.inventory_id:
 		visible = true
 		
-func _on_close_inventory(inventory_id:int):
-	if inventory_id == self.inventory_id:
+func _on_close_inventory(in_inventory_id:int):
+	if in_inventory_id == self.inventory_id:
 		visible = false
 
 func _on_close_all_inventories():
 	visible = false
 
-func _on_item_removed_from_inventory(item_inst:ItemInstance, inventory_id:int):
-	if inventory_id == _inventory.get_instance_id():
+func _on_item_removed_from_inventory(item_inst:ItemInstance, in_inventory_id:int):
+	if in_inventory_id == _inventory.get_instance_id():
 		var item_control:ItemControl = instance_from_id(item_inst.id_2d)
 		if item_control:
 			var parent = item_control.get_parent()
