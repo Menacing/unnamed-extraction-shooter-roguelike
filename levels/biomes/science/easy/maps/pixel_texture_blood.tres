@@ -1,0 +1,67 @@
+[gd_resource type="VisualShader" load_steps=5 format=3 uid="uid://e8l06aanmdpa"]
+
+[sub_resource type="VisualShaderNodeColorParameter" id="VisualShaderNodeColorParameter_eojsp"]
+parameter_name = "ColorParameter"
+
+[sub_resource type="VisualShaderNodeTexture2DParameter" id="VisualShaderNodeTexture2DParameter_ax0qw"]
+parameter_name = "Texture2DParameter"
+texture_type = 1
+texture_filter = 1
+texture_repeat = 2
+
+[sub_resource type="VisualShaderNodeVectorOp" id="VisualShaderNodeVectorOp_78y0b"]
+output_port_for_preview = 0
+operator = 2
+
+[sub_resource type="VisualShaderNodeBillboard" id="VisualShaderNodeBillboard_8ak31"]
+
+[resource]
+code = "shader_type spatial;
+render_mode blend_mix, depth_draw_opaque, cull_back, diffuse_lambert, specular_schlick_ggx;
+
+uniform vec4 ColorParameter : source_color;
+
+
+
+void vertex() {
+	mat4 n_out2p0;
+// GetBillboardMatrix:2
+	{
+		mat4 __mvm = VIEW_MATRIX * mat4(INV_VIEW_MATRIX[0], INV_VIEW_MATRIX[1], INV_VIEW_MATRIX[2], MODEL_MATRIX[3]);
+		n_out2p0 = __mvm;
+	}
+
+
+// Output:0
+	MODELVIEW_MATRIX = n_out2p0;
+
+
+}
+
+void fragment() {
+// ColorParameter:2
+	vec4 n_out2p0 = ColorParameter;
+
+
+// VectorOp:4
+	vec3 n_in4p1 = vec3(0.00000, 0.00000, 0.00000);
+	vec3 n_out4p0 = vec3(n_out2p0.xyz) * n_in4p1;
+
+
+// Output:0
+	ALBEDO = n_out4p0;
+
+
+}
+"
+graph_offset = Vector2(-581.737, -14.357)
+nodes/vertex/2/node = SubResource("VisualShaderNodeBillboard_8ak31")
+nodes/vertex/2/position = Vector2(-220, 260)
+nodes/vertex/connections = PackedInt32Array(2, 0, 0, 10)
+nodes/fragment/2/node = SubResource("VisualShaderNodeColorParameter_eojsp")
+nodes/fragment/2/position = Vector2(-440, 120)
+nodes/fragment/3/node = SubResource("VisualShaderNodeTexture2DParameter_ax0qw")
+nodes/fragment/3/position = Vector2(-620, 320)
+nodes/fragment/4/node = SubResource("VisualShaderNodeVectorOp_78y0b")
+nodes/fragment/4/position = Vector2(40, 80)
+nodes/fragment/connections = PackedInt32Array(2, 0, 4, 0, 4, 0, 0, 0)

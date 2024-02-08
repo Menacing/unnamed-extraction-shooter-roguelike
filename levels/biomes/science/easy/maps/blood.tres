@@ -29,8 +29,6 @@ noise_type = 3
 fractal_type = 0
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_xsyfx"]
-width = 32
-height = 32
 generate_mipmaps = false
 noise = SubResource("FastNoiseLite_6mlm1")
 
@@ -43,6 +41,7 @@ default_input_values = [0, 0.0, 1, 5.0]
 operator = 5
 
 [sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_3fcia"]
+output_port_for_preview = 0
 input_name = "uv"
 
 [sub_resource type="VisualShaderNodeUVPolarCoord" id="VisualShaderNodeUVPolarCoord_p6agn"]
@@ -194,7 +193,6 @@ void fragment() {
 
 }
 "
-graph_offset = Vector2(-625.826, -56.3683)
 nodes/vertex/2/node = SubResource("VisualShaderNodeBillboard_iivve")
 nodes/vertex/2/position = Vector2(-200, 360)
 nodes/vertex/3/node = SubResource("VisualShaderNodeInput_t0lhj")
@@ -202,13 +200,13 @@ nodes/vertex/3/position = Vector2(-500, 180)
 nodes/vertex/4/node = SubResource("VisualShaderNodeVectorCompose_ndt6c")
 nodes/vertex/4/position = Vector2(-86.2015, 111.836)
 nodes/vertex/connections = PackedInt32Array(3, 0, 4, 0, 4, 0, 0, 6, 2, 0, 0, 10)
-nodes/fragment/0/position = Vector2(1220, 140)
+nodes/fragment/0/position = Vector2(1600, 220)
 nodes/fragment/2/node = SubResource("VisualShaderNodeTexture_qil2o")
-nodes/fragment/2/position = Vector2(-260, 460)
+nodes/fragment/2/position = Vector2(-260, 440)
 nodes/fragment/3/node = SubResource("VisualShaderNodeFloatOp_gva6a")
-nodes/fragment/3/position = Vector2(120, 520)
+nodes/fragment/3/position = Vector2(-20, 520)
 nodes/fragment/4/node = SubResource("VisualShaderNodeInput_3fcia")
-nodes/fragment/4/position = Vector2(-840, 180)
+nodes/fragment/4/position = Vector2(-840, 80)
 nodes/fragment/5/node = SubResource("VisualShaderNodeUVPolarCoord_p6agn")
 nodes/fragment/5/position = Vector2(-300, 180)
 nodes/fragment/6/node = SubResource("VisualShaderNodeColorFunc_r56b5")
@@ -216,15 +214,15 @@ nodes/fragment/6/position = Vector2(-20, 180)
 nodes/fragment/7/node = SubResource("VisualShaderNodeFloatFunc_syc6y")
 nodes/fragment/7/position = Vector2(200, 200)
 nodes/fragment/8/node = SubResource("VisualShaderNodeVectorOp_14f66")
-nodes/fragment/8/position = Vector2(400, 400)
+nodes/fragment/8/position = Vector2(400, 440)
 nodes/fragment/9/node = SubResource("VisualShaderNodeVectorOp_ouq0g")
-nodes/fragment/9/position = Vector2(840, 140)
+nodes/fragment/9/position = Vector2(740, 140)
 nodes/fragment/10/node = SubResource("VisualShaderNodeColorParameter_wli0u")
 nodes/fragment/10/position = Vector2(440, 120)
 nodes/fragment/11/node = SubResource("VisualShaderNodeFloatParameter_1ax6s")
-nodes/fragment/11/position = Vector2(860, 420)
+nodes/fragment/11/position = Vector2(1000, -100)
 nodes/fragment/12/node = SubResource("VisualShaderNodeFloatFunc_177ri")
-nodes/fragment/12/position = Vector2(740, 620)
+nodes/fragment/12/position = Vector2(700, 760)
 nodes/fragment/13/node = SubResource("VisualShaderNodeInput_416hm")
 nodes/fragment/13/position = Vector2(-1340, 260)
 nodes/fragment/14/node = SubResource("VisualShaderNodeVectorDecompose_y6gvo")
