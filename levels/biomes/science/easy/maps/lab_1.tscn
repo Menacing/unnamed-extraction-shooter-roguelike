@@ -1,4 +1,4 @@
-[gd_scene load_steps=1027 format=3 uid="uid://bgog375hnhshb"]
+[gd_scene load_steps=1026 format=3 uid="uid://bgog375hnhshb"]
 
 [ext_resource type="Environment" uid="uid://s6q0fqlhuodl" path="res://test/debug/vibe_check_environment.tres" id="1_3scuf"]
 [ext_resource type="CameraAttributesPractical" uid="uid://jafbi2bjurvn" path="res://test/debug/vibe_check_camera.tres" id="2_ecxrf"]
@@ -52,7 +52,6 @@
 [ext_resource type="Script" path="res://game_objects/items/weapons/gun_stats.gd" id="45_lrm5y"]
 [ext_resource type="PackedScene" uid="uid://trlm60n2q0k4" path="res://game_objects/items/attachments/scopes/red_dot/red_dot.tscn" id="46_ex0jf"]
 [ext_resource type="Script" path="res://levels/entities/geo_ballistic_container.gd" id="47_b1v23"]
-[ext_resource type="PackedScene" uid="uid://douyxwjscs4ff" path="res://ui/inventory/world_inventory.tscn" id="48_874kh"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_i2lct"]
 albedo_texture = ExtResource("7_pm68f")
@@ -4298,9 +4297,6 @@ properties = {
 }
 _pen_ratio = 0.7
 _armor_rating = 6
-_bullet_hole_scene_path = null
-_impact_hit_scene_path = null
-_footstep_sound_path = null
 _bullet_hole_scene = ExtResource("8_x57tl")
 _impact_hit_scene = ExtResource("9_bijp8")
 _footstep_sound = ExtResource("10_47x28")
@@ -4326,9 +4322,6 @@ properties = {
 }
 _pen_ratio = 0.7
 _armor_rating = 6
-_bullet_hole_scene_path = null
-_impact_hit_scene_path = null
-_footstep_sound_path = null
 _bullet_hole_scene = ExtResource("8_x57tl")
 _impact_hit_scene = ExtResource("9_bijp8")
 _footstep_sound = ExtResource("10_47x28")
@@ -4354,9 +4347,6 @@ properties = {
 }
 _pen_ratio = 0.7
 _armor_rating = 6
-_bullet_hole_scene_path = null
-_impact_hit_scene_path = null
-_footstep_sound_path = null
 _bullet_hole_scene = ExtResource("8_x57tl")
 _impact_hit_scene = ExtResource("9_bijp8")
 _footstep_sound = ExtResource("10_47x28")
@@ -4394,9 +4384,6 @@ properties = {
 }
 _pen_ratio = 0.7
 _armor_rating = 6
-_bullet_hole_scene_path = null
-_impact_hit_scene_path = null
-_footstep_sound_path = null
 _bullet_hole_scene = ExtResource("8_x57tl")
 _impact_hit_scene = ExtResource("9_bijp8")
 _footstep_sound = ExtResource("10_47x28")
@@ -4404,6 +4391,10 @@ game_material_info_list = ExtResource("11_nbvpw")
 
 [node name="entity_4_mesh_instance" type="MeshInstance3D" parent="QodotMap/entity_4_geo_ballistic_solid"]
 mesh = SubResource("ArrayMesh_npmjr")
+
+[node name="GPUParticlesCollisionBox3D" type="GPUParticlesCollisionBox3D" parent="QodotMap/entity_4_geo_ballistic_solid/entity_4_mesh_instance"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.185, -0.325562, -2.14185)
+size = Vector3(6.37, 1.34888, 6.28369)
 
 [node name="entity_4_brush_0_collision_shape" type="CollisionShape3D" parent="QodotMap/entity_4_geo_ballistic_solid"]
 shape = SubResource("ConvexPolygonShape3D_tvuga")
@@ -4425,9 +4416,6 @@ properties = {
 }
 _pen_ratio = 0.7
 _armor_rating = 6
-_bullet_hole_scene_path = null
-_impact_hit_scene_path = null
-_footstep_sound_path = null
 _bullet_hole_scene = ExtResource("8_x57tl")
 _impact_hit_scene = ExtResource("9_bijp8")
 _footstep_sound = ExtResource("10_47x28")
@@ -4453,9 +4441,6 @@ properties = {
 }
 _pen_ratio = 0.4
 _armor_rating = 8
-_bullet_hole_scene_path = null
-_impact_hit_scene_path = null
-_footstep_sound_path = null
 _bullet_hole_scene = ExtResource("8_x57tl")
 _impact_hit_scene = ExtResource("9_bijp8")
 _footstep_sound = ExtResource("10_47x28")
@@ -4586,9 +4571,6 @@ properties = {
 }
 _pen_ratio = 0.7
 _armor_rating = 6
-_bullet_hole_scene_path = null
-_impact_hit_scene_path = null
-_footstep_sound_path = null
 _bullet_hole_scene = ExtResource("8_x57tl")
 _impact_hit_scene = ExtResource("9_bijp8")
 _footstep_sound = ExtResource("10_47x28")
@@ -4611,9 +4593,6 @@ properties = {
 }
 _pen_ratio = 0.4
 _armor_rating = 8
-_bullet_hole_scene_path = null
-_impact_hit_scene_path = null
-_footstep_sound_path = null
 _bullet_hole_scene = ExtResource("8_x57tl")
 _impact_hit_scene = ExtResource("9_bijp8")
 _footstep_sound = ExtResource("10_47x28")
@@ -4669,9 +4648,6 @@ properties = {
 }
 _pen_ratio = 0.7
 _armor_rating = 6
-_bullet_hole_scene_path = null
-_impact_hit_scene_path = null
-_footstep_sound_path = null
 _bullet_hole_scene = ExtResource("8_x57tl")
 _impact_hit_scene = ExtResource("9_bijp8")
 _footstep_sound = ExtResource("10_47x28")
@@ -4694,9 +4670,6 @@ properties = {
 }
 _pen_ratio = 0.7
 _armor_rating = 6
-_bullet_hole_scene_path = null
-_impact_hit_scene_path = null
-_footstep_sound_path = null
 _bullet_hole_scene = ExtResource("8_x57tl")
 _impact_hit_scene = ExtResource("9_bijp8")
 _footstep_sound = ExtResource("10_47x28")
@@ -4719,9 +4692,6 @@ properties = {
 }
 _pen_ratio = 0.8
 _armor_rating = 2
-_bullet_hole_scene_path = null
-_impact_hit_scene_path = null
-_footstep_sound_path = null
 _bullet_hole_scene = ExtResource("8_x57tl")
 _impact_hit_scene = ExtResource("18_cn8n4")
 _footstep_sound = ExtResource("19_8m84q")
@@ -4777,9 +4747,6 @@ properties = {
 }
 _pen_ratio = 0.7
 _armor_rating = 6
-_bullet_hole_scene_path = null
-_impact_hit_scene_path = null
-_footstep_sound_path = null
 _bullet_hole_scene = ExtResource("8_x57tl")
 _impact_hit_scene = ExtResource("9_bijp8")
 _footstep_sound = ExtResource("10_47x28")
@@ -4814,9 +4781,6 @@ properties = {
 }
 _pen_ratio = 0.8
 _armor_rating = 2
-_bullet_hole_scene_path = null
-_impact_hit_scene_path = null
-_footstep_sound_path = null
 _bullet_hole_scene = ExtResource("8_x57tl")
 _impact_hit_scene = ExtResource("18_cn8n4")
 _footstep_sound = ExtResource("19_8m84q")
@@ -4872,9 +4836,6 @@ properties = {
 }
 _pen_ratio = 0.4
 _armor_rating = 8
-_bullet_hole_scene_path = null
-_impact_hit_scene_path = null
-_footstep_sound_path = null
 _bullet_hole_scene = ExtResource("8_x57tl")
 _impact_hit_scene = ExtResource("23_5wyqu")
 _footstep_sound = ExtResource("10_47x28")
@@ -4909,9 +4870,6 @@ properties = {
 }
 _pen_ratio = 0.7
 _armor_rating = 6
-_bullet_hole_scene_path = null
-_impact_hit_scene_path = null
-_footstep_sound_path = null
 _bullet_hole_scene = ExtResource("8_x57tl")
 _impact_hit_scene = ExtResource("9_bijp8")
 _footstep_sound = ExtResource("10_47x28")
@@ -4952,9 +4910,6 @@ properties = {
 }
 _pen_ratio = 0.7
 _armor_rating = 6
-_bullet_hole_scene_path = null
-_impact_hit_scene_path = null
-_footstep_sound_path = null
 _bullet_hole_scene = ExtResource("8_x57tl")
 _impact_hit_scene = ExtResource("9_bijp8")
 _footstep_sound = ExtResource("10_47x28")
@@ -5058,9 +5013,6 @@ properties = {
 }
 _pen_ratio = 0.4
 _armor_rating = 8
-_bullet_hole_scene_path = null
-_impact_hit_scene_path = null
-_footstep_sound_path = null
 _bullet_hole_scene = ExtResource("8_x57tl")
 _impact_hit_scene = ExtResource("23_5wyqu")
 _footstep_sound = ExtResource("10_47x28")
@@ -5248,9 +5200,6 @@ properties = {
 }
 _pen_ratio = 0.4
 _armor_rating = 8
-_bullet_hole_scene_path = null
-_impact_hit_scene_path = null
-_footstep_sound_path = null
 _bullet_hole_scene = ExtResource("8_x57tl")
 _impact_hit_scene = ExtResource("23_5wyqu")
 _footstep_sound = ExtResource("10_47x28")
@@ -5438,9 +5387,6 @@ properties = {
 }
 _pen_ratio = 0.4
 _armor_rating = 8
-_bullet_hole_scene_path = null
-_impact_hit_scene_path = null
-_footstep_sound_path = null
 _bullet_hole_scene = ExtResource("8_x57tl")
 _impact_hit_scene = ExtResource("23_5wyqu")
 _footstep_sound = ExtResource("10_47x28")
@@ -5556,9 +5502,6 @@ properties = {
 }
 _pen_ratio = 0.7
 _armor_rating = 6
-_bullet_hole_scene_path = null
-_impact_hit_scene_path = null
-_footstep_sound_path = null
 _bullet_hole_scene = ExtResource("8_x57tl")
 _impact_hit_scene = ExtResource("9_bijp8")
 _footstep_sound = ExtResource("10_47x28")
@@ -5590,9 +5533,6 @@ properties = {
 }
 _pen_ratio = 0.7
 _armor_rating = 6
-_bullet_hole_scene_path = null
-_impact_hit_scene_path = null
-_footstep_sound_path = null
 _bullet_hole_scene = ExtResource("8_x57tl")
 _impact_hit_scene = ExtResource("9_bijp8")
 _footstep_sound = ExtResource("10_47x28")
@@ -5615,9 +5555,6 @@ properties = {
 }
 _pen_ratio = 0.7
 _armor_rating = 6
-_bullet_hole_scene_path = null
-_impact_hit_scene_path = null
-_footstep_sound_path = null
 _bullet_hole_scene = ExtResource("8_x57tl")
 _impact_hit_scene = ExtResource("9_bijp8")
 _footstep_sound = ExtResource("10_47x28")
@@ -5661,9 +5598,6 @@ properties = {
 }
 _pen_ratio = 0.7
 _armor_rating = 6
-_bullet_hole_scene_path = null
-_impact_hit_scene_path = null
-_footstep_sound_path = null
 _bullet_hole_scene = ExtResource("8_x57tl")
 _impact_hit_scene = ExtResource("9_bijp8")
 _footstep_sound = ExtResource("10_47x28")
@@ -5719,9 +5653,6 @@ properties = {
 }
 _pen_ratio = 0.7
 _armor_rating = 6
-_bullet_hole_scene_path = null
-_impact_hit_scene_path = null
-_footstep_sound_path = null
 _bullet_hole_scene = ExtResource("8_x57tl")
 _impact_hit_scene = ExtResource("9_bijp8")
 _footstep_sound = ExtResource("10_47x28")
@@ -5744,9 +5675,6 @@ properties = {
 }
 _pen_ratio = 0.7
 _armor_rating = 6
-_bullet_hole_scene_path = null
-_impact_hit_scene_path = null
-_footstep_sound_path = null
 _bullet_hole_scene = ExtResource("8_x57tl")
 _impact_hit_scene = ExtResource("9_bijp8")
 _footstep_sound = ExtResource("10_47x28")
@@ -5769,9 +5697,6 @@ properties = {
 }
 _pen_ratio = 0.7
 _armor_rating = 6
-_bullet_hole_scene_path = null
-_impact_hit_scene_path = null
-_footstep_sound_path = null
 _bullet_hole_scene = ExtResource("8_x57tl")
 _impact_hit_scene = ExtResource("9_bijp8")
 _footstep_sound = ExtResource("10_47x28")
@@ -5803,9 +5728,6 @@ properties = {
 }
 _pen_ratio = 0.7
 _armor_rating = 6
-_bullet_hole_scene_path = null
-_impact_hit_scene_path = null
-_footstep_sound_path = null
 _bullet_hole_scene = ExtResource("8_x57tl")
 _impact_hit_scene = ExtResource("9_bijp8")
 _footstep_sound = ExtResource("10_47x28")
@@ -5831,9 +5753,6 @@ properties = {
 }
 _pen_ratio = 0.6
 _armor_rating = 6
-_bullet_hole_scene_path = null
-_impact_hit_scene_path = null
-_footstep_sound_path = null
 _bullet_hole_scene = ExtResource("8_x57tl")
 _impact_hit_scene = ExtResource("9_bijp8")
 _footstep_sound = ExtResource("10_47x28")
@@ -5859,9 +5778,6 @@ properties = {
 }
 _pen_ratio = 0.4
 _armor_rating = 8
-_bullet_hole_scene_path = null
-_impact_hit_scene_path = null
-_footstep_sound_path = null
 _bullet_hole_scene = ExtResource("8_x57tl")
 _impact_hit_scene = ExtResource("23_5wyqu")
 _footstep_sound = ExtResource("10_47x28")
@@ -5986,9 +5902,6 @@ properties = {
 }
 _pen_ratio = 0.4
 _armor_rating = 8
-_bullet_hole_scene_path = null
-_impact_hit_scene_path = null
-_footstep_sound_path = null
 _bullet_hole_scene = ExtResource("8_x57tl")
 _impact_hit_scene = ExtResource("23_5wyqu")
 _footstep_sound = ExtResource("10_47x28")
@@ -6221,9 +6134,6 @@ properties = {
 }
 _pen_ratio = 0.4
 _armor_rating = 8
-_bullet_hole_scene_path = null
-_impact_hit_scene_path = null
-_footstep_sound_path = null
 _bullet_hole_scene = ExtResource("8_x57tl")
 _impact_hit_scene = ExtResource("23_5wyqu")
 _footstep_sound = ExtResource("10_47x28")
@@ -6246,9 +6156,6 @@ properties = {
 }
 _pen_ratio = 0.4
 _armor_rating = 8
-_bullet_hole_scene_path = null
-_impact_hit_scene_path = null
-_footstep_sound_path = null
 _bullet_hole_scene = ExtResource("8_x57tl")
 _impact_hit_scene = ExtResource("9_bijp8")
 _footstep_sound = ExtResource("10_47x28")
@@ -6271,9 +6178,6 @@ properties = {
 }
 _pen_ratio = 0.7
 _armor_rating = 6
-_bullet_hole_scene_path = null
-_impact_hit_scene_path = null
-_footstep_sound_path = null
 _bullet_hole_scene = ExtResource("8_x57tl")
 _impact_hit_scene = ExtResource("9_bijp8")
 _footstep_sound = ExtResource("10_47x28")
@@ -6314,9 +6218,6 @@ properties = {
 }
 _pen_ratio = 0.4
 _armor_rating = 8
-_bullet_hole_scene_path = null
-_impact_hit_scene_path = null
-_footstep_sound_path = null
 _bullet_hole_scene = ExtResource("8_x57tl")
 _impact_hit_scene = ExtResource("9_bijp8")
 _footstep_sound = ExtResource("10_47x28")
@@ -6339,9 +6240,6 @@ properties = {
 }
 _pen_ratio = 0.4
 _armor_rating = 8
-_bullet_hole_scene_path = null
-_impact_hit_scene_path = null
-_footstep_sound_path = null
 _bullet_hole_scene = ExtResource("8_x57tl")
 _impact_hit_scene = ExtResource("23_5wyqu")
 _footstep_sound = ExtResource("10_47x28")
@@ -6388,9 +6286,6 @@ properties = {
 }
 _pen_ratio = 0.4
 _armor_rating = 8
-_bullet_hole_scene_path = null
-_impact_hit_scene_path = null
-_footstep_sound_path = null
 _bullet_hole_scene = ExtResource("8_x57tl")
 _impact_hit_scene = ExtResource("23_5wyqu")
 _footstep_sound = ExtResource("10_47x28")
@@ -6437,9 +6332,6 @@ properties = {
 }
 _pen_ratio = 0.4
 _armor_rating = 8
-_bullet_hole_scene_path = null
-_impact_hit_scene_path = null
-_footstep_sound_path = null
 _bullet_hole_scene = ExtResource("8_x57tl")
 _impact_hit_scene = ExtResource("23_5wyqu")
 _footstep_sound = ExtResource("10_47x28")
@@ -6486,9 +6378,6 @@ properties = {
 }
 _pen_ratio = 0.7
 _armor_rating = 6
-_bullet_hole_scene_path = null
-_impact_hit_scene_path = null
-_footstep_sound_path = null
 _bullet_hole_scene = ExtResource("8_x57tl")
 _impact_hit_scene = ExtResource("9_bijp8")
 _footstep_sound = ExtResource("10_47x28")
@@ -6529,9 +6418,6 @@ properties = {
 }
 _pen_ratio = 0.4
 _armor_rating = 8
-_bullet_hole_scene_path = null
-_impact_hit_scene_path = null
-_footstep_sound_path = null
 _bullet_hole_scene = ExtResource("8_x57tl")
 _impact_hit_scene = ExtResource("23_5wyqu")
 _footstep_sound = ExtResource("10_47x28")
@@ -6734,9 +6620,6 @@ properties = {
 }
 _pen_ratio = 0.4
 _armor_rating = 8
-_bullet_hole_scene_path = null
-_impact_hit_scene_path = null
-_footstep_sound_path = null
 _bullet_hole_scene = ExtResource("8_x57tl")
 _impact_hit_scene = ExtResource("9_bijp8")
 _footstep_sound = ExtResource("10_47x28")
@@ -6834,9 +6717,6 @@ properties = {
 }
 _pen_ratio = 0.7
 _armor_rating = 6
-_bullet_hole_scene_path = null
-_impact_hit_scene_path = null
-_footstep_sound_path = null
 _bullet_hole_scene = ExtResource("8_x57tl")
 _impact_hit_scene = ExtResource("9_bijp8")
 _footstep_sound = ExtResource("10_47x28")
@@ -6865,9 +6745,6 @@ properties = {
 }
 _pen_ratio = 0.7
 _armor_rating = 6
-_bullet_hole_scene_path = null
-_impact_hit_scene_path = null
-_footstep_sound_path = null
 _bullet_hole_scene = ExtResource("8_x57tl")
 _impact_hit_scene = ExtResource("9_bijp8")
 _footstep_sound = ExtResource("10_47x28")
@@ -6914,9 +6791,6 @@ properties = {
 }
 _pen_ratio = 0.7
 _armor_rating = 6
-_bullet_hole_scene_path = null
-_impact_hit_scene_path = null
-_footstep_sound_path = null
 _bullet_hole_scene = ExtResource("8_x57tl")
 _impact_hit_scene = ExtResource("9_bijp8")
 _footstep_sound = ExtResource("10_47x28")
@@ -6969,9 +6843,6 @@ properties = {
 }
 _pen_ratio = 0.7
 _armor_rating = 6
-_bullet_hole_scene_path = null
-_impact_hit_scene_path = null
-_footstep_sound_path = null
 _bullet_hole_scene = ExtResource("8_x57tl")
 _impact_hit_scene = ExtResource("9_bijp8")
 _footstep_sound = ExtResource("10_47x28")
@@ -7015,9 +6886,6 @@ properties = {
 }
 _pen_ratio = 0.7
 _armor_rating = 6
-_bullet_hole_scene_path = null
-_impact_hit_scene_path = null
-_footstep_sound_path = null
 _bullet_hole_scene = ExtResource("8_x57tl")
 _impact_hit_scene = ExtResource("9_bijp8")
 _footstep_sound = ExtResource("10_47x28")
@@ -7082,9 +6950,6 @@ properties = {
 }
 _pen_ratio = 0.4
 _armor_rating = 8
-_bullet_hole_scene_path = null
-_impact_hit_scene_path = null
-_footstep_sound_path = null
 _bullet_hole_scene = ExtResource("8_x57tl")
 _impact_hit_scene = ExtResource("23_5wyqu")
 _footstep_sound = ExtResource("10_47x28")
@@ -7176,9 +7041,6 @@ properties = {
 }
 _pen_ratio = 0.4
 _armor_rating = 8
-_bullet_hole_scene_path = null
-_impact_hit_scene_path = null
-_footstep_sound_path = null
 _bullet_hole_scene = ExtResource("8_x57tl")
 _impact_hit_scene = ExtResource("23_5wyqu")
 _footstep_sound = ExtResource("10_47x28")
@@ -7321,9 +7183,6 @@ properties = {
 }
 _pen_ratio = 0.7
 _armor_rating = 6
-_bullet_hole_scene_path = null
-_impact_hit_scene_path = null
-_footstep_sound_path = null
 _bullet_hole_scene = ExtResource("8_x57tl")
 _impact_hit_scene = ExtResource("9_bijp8")
 _footstep_sound = ExtResource("10_47x28")
@@ -7382,9 +7241,6 @@ properties = {
 }
 _pen_ratio = 0.4
 _armor_rating = 8
-_bullet_hole_scene_path = null
-_impact_hit_scene_path = null
-_footstep_sound_path = null
 _bullet_hole_scene = ExtResource("8_x57tl")
 _impact_hit_scene = ExtResource("9_bijp8")
 _footstep_sound = ExtResource("10_47x28")
@@ -7467,9 +7323,6 @@ properties = {
 }
 _pen_ratio = 0.7
 _armor_rating = 6
-_bullet_hole_scene_path = null
-_impact_hit_scene_path = null
-_footstep_sound_path = null
 _bullet_hole_scene = ExtResource("8_x57tl")
 _impact_hit_scene = ExtResource("9_bijp8")
 _footstep_sound = ExtResource("10_47x28")
@@ -7591,9 +7444,6 @@ properties = {
 }
 _pen_ratio = 0.7
 _armor_rating = 6
-_bullet_hole_scene_path = null
-_impact_hit_scene_path = null
-_footstep_sound_path = null
 _bullet_hole_scene = ExtResource("8_x57tl")
 _impact_hit_scene = ExtResource("9_bijp8")
 _footstep_sound = ExtResource("10_47x28")
@@ -7682,9 +7532,6 @@ properties = {
 }
 _pen_ratio = 0.7
 _armor_rating = 6
-_bullet_hole_scene_path = null
-_impact_hit_scene_path = null
-_footstep_sound_path = null
 _bullet_hole_scene = ExtResource("8_x57tl")
 _impact_hit_scene = ExtResource("9_bijp8")
 _footstep_sound = ExtResource("10_47x28")
@@ -7707,9 +7554,6 @@ properties = {
 }
 _pen_ratio = 0.7
 _armor_rating = 6
-_bullet_hole_scene_path = null
-_impact_hit_scene_path = null
-_footstep_sound_path = null
 _bullet_hole_scene = ExtResource("8_x57tl")
 _impact_hit_scene = ExtResource("9_bijp8")
 _footstep_sound = ExtResource("10_47x28")
@@ -7756,9 +7600,6 @@ properties = {
 }
 _pen_ratio = 0.7
 _armor_rating = 6
-_bullet_hole_scene_path = null
-_impact_hit_scene_path = null
-_footstep_sound_path = null
 _bullet_hole_scene = ExtResource("8_x57tl")
 _impact_hit_scene = ExtResource("9_bijp8")
 _footstep_sound = ExtResource("10_47x28")
@@ -7808,9 +7649,6 @@ properties = {
 }
 _pen_ratio = 0.7
 _armor_rating = 6
-_bullet_hole_scene_path = null
-_impact_hit_scene_path = null
-_footstep_sound_path = null
 _bullet_hole_scene = ExtResource("8_x57tl")
 _impact_hit_scene = ExtResource("9_bijp8")
 _footstep_sound = ExtResource("10_47x28")
@@ -7848,9 +7686,6 @@ properties = {
 }
 _pen_ratio = 0.4
 _armor_rating = 8
-_bullet_hole_scene_path = null
-_impact_hit_scene_path = null
-_footstep_sound_path = null
 _bullet_hole_scene = ExtResource("8_x57tl")
 _impact_hit_scene = ExtResource("23_5wyqu")
 _footstep_sound = ExtResource("10_47x28")
@@ -7882,9 +7717,6 @@ properties = {
 }
 _pen_ratio = 0.4
 _armor_rating = 8
-_bullet_hole_scene_path = null
-_impact_hit_scene_path = null
-_footstep_sound_path = null
 _bullet_hole_scene = ExtResource("8_x57tl")
 _impact_hit_scene = ExtResource("23_5wyqu")
 _footstep_sound = ExtResource("10_47x28")
@@ -7913,9 +7745,6 @@ properties = {
 }
 _pen_ratio = 0.4
 _armor_rating = 8
-_bullet_hole_scene_path = null
-_impact_hit_scene_path = null
-_footstep_sound_path = null
 _bullet_hole_scene = ExtResource("8_x57tl")
 _impact_hit_scene = ExtResource("23_5wyqu")
 _footstep_sound = ExtResource("10_47x28")
@@ -8130,8 +7959,6 @@ properties = {
 "test": "value",
 "tier": 0
 }
-biome_index = 0
-tier_index = 0
 min_spawned = 1
 max_spawned = 5
 
@@ -8148,8 +7975,6 @@ properties = {
 "min_spawned": 4,
 "tier": 0
 }
-biome_index = 0
-tier_index = 0
 min_spawned = 4
 max_spawned = 6
 
@@ -8173,10 +7998,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.825, 1.825, 4.7)
 collision_layer = 7
 script = ExtResource("45_eat3n")
 _target_name = "bathroom_entrance_hinge"
-base_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 offset_transform = Transform3D(-0.448074, 0, 0.893997, 0, 1, 0, -0.893997, 0, -0.448074, 0, 0, 0)
-target_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
-speed = 1.0
 properties = {
 "classname": "geo_ballistic_door",
 "game_material_info": 1,
@@ -8192,9 +8014,6 @@ properties = {
 }
 _pen_ratio = 0.4
 _armor_rating = 8
-_bullet_hole_scene_path = null
-_impact_hit_scene_path = null
-_footstep_sound_path = null
 _bullet_hole_scene = ExtResource("8_x57tl")
 _impact_hit_scene = ExtResource("23_5wyqu")
 _footstep_sound = ExtResource("10_47x28")
@@ -8226,10 +8045,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.1, 1.825, 5.425)
 collision_layer = 7
 script = ExtResource("45_eat3n")
 _target_name = "bathroom_foyer_hinge"
-base_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 offset_transform = Transform3D(-0.448074, 0, 0.893997, 0, 1, 0, -0.893997, 0, -0.448074, 0, 0, 0)
-target_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
-speed = 1.0
 properties = {
 "classname": "geo_ballistic_door",
 "game_material_info": 1,
@@ -8245,9 +8061,6 @@ properties = {
 }
 _pen_ratio = 0.4
 _armor_rating = 8
-_bullet_hole_scene_path = null
-_impact_hit_scene_path = null
-_footstep_sound_path = null
 _bullet_hole_scene = ExtResource("8_x57tl")
 _impact_hit_scene = ExtResource("23_5wyqu")
 _footstep_sound = ExtResource("10_47x28")
@@ -8279,10 +8092,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.1, 1.825, 13.375)
 collision_layer = 7
 script = ExtResource("45_eat3n")
 _target_name = "second_floor_back"
-base_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 offset_transform = Transform3D(-0.448074, 0, 0.893997, 0, 1, 0, -0.893997, 0, -0.448074, 0, 0, 0)
-target_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
-speed = 1.0
 properties = {
 "classname": "geo_ballistic_door",
 "game_material_info": 1,
@@ -8298,9 +8108,6 @@ properties = {
 }
 _pen_ratio = 0.4
 _armor_rating = 8
-_bullet_hole_scene_path = null
-_impact_hit_scene_path = null
-_footstep_sound_path = null
 _bullet_hole_scene = ExtResource("8_x57tl")
 _impact_hit_scene = ExtResource("23_5wyqu")
 _footstep_sound = ExtResource("10_47x28")
@@ -8332,10 +8139,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.225, -1.525, 4.7)
 collision_layer = 7
 script = ExtResource("45_eat3n")
 _target_name = "first_floor_under_stairs"
-base_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 offset_transform = Transform3D(-0.448074, 0, 0.893997, 0, 1, 0, -0.893997, 0, -0.448074, 0, 0, 0)
-target_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
-speed = 1.0
 properties = {
 "classname": "geo_ballistic_door",
 "game_material_info": 1,
@@ -8351,9 +8155,6 @@ properties = {
 }
 _pen_ratio = 0.4
 _armor_rating = 8
-_bullet_hole_scene_path = null
-_impact_hit_scene_path = null
-_footstep_sound_path = null
 _bullet_hole_scene = ExtResource("8_x57tl")
 _impact_hit_scene = ExtResource("23_5wyqu")
 _footstep_sound = ExtResource("10_47x28")
@@ -8385,10 +8186,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.775, -1.575, 14.5)
 collision_layer = 7
 script = ExtResource("45_eat3n")
 _target_name = "security_room_hinge"
-base_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 offset_transform = Transform3D(-0.448074, 0, 0.893997, 0, 1, 0, -0.893997, 0, -0.448074, 0, 0, 0)
-target_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
-speed = 1.0
 properties = {
 "classname": "geo_ballistic_door",
 "game_material_info": 1,
@@ -8404,9 +8202,6 @@ properties = {
 }
 _pen_ratio = 0.4
 _armor_rating = 8
-_bullet_hole_scene_path = null
-_impact_hit_scene_path = null
-_footstep_sound_path = null
 _bullet_hole_scene = ExtResource("8_x57tl")
 _impact_hit_scene = ExtResource("23_5wyqu")
 _footstep_sound = ExtResource("10_47x28")
@@ -8438,10 +8233,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.625, -1.575, 9.9)
 collision_layer = 7
 script = ExtResource("45_eat3n")
 _target_name = "hallway_office_hinge"
-base_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 offset_transform = Transform3D(-0.448074, 0, 0.893997, 0, 1, 0, -0.893997, 0, -0.448074, 0, 0, 0)
-target_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
-speed = 1.0
 properties = {
 "classname": "geo_ballistic_door",
 "game_material_info": 1,
@@ -8457,9 +8249,6 @@ properties = {
 }
 _pen_ratio = 0.4
 _armor_rating = 8
-_bullet_hole_scene_path = null
-_impact_hit_scene_path = null
-_footstep_sound_path = null
 _bullet_hole_scene = ExtResource("8_x57tl")
 _impact_hit_scene = ExtResource("23_5wyqu")
 _footstep_sound = ExtResource("10_47x28")
@@ -8536,9 +8325,6 @@ omni_range = 4.0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.4, -2.02917, -1.93333)
 collision_layer = 7
 script = ExtResource("47_b1v23")
-world_inventory_control_scene = ExtResource("48_874kh")
-biome_index = 0
-tier_index = 0
 min_spawned = 5
 max_spawned = 10
 container_size = 70
@@ -8554,9 +8340,6 @@ properties = {
 }
 _pen_ratio = 0.8
 _armor_rating = 2
-_bullet_hole_scene_path = null
-_impact_hit_scene_path = null
-_footstep_sound_path = null
 _bullet_hole_scene = ExtResource("8_x57tl")
 _impact_hit_scene = ExtResource("18_cn8n4")
 _footstep_sound = ExtResource("19_8m84q")
