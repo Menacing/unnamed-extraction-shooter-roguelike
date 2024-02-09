@@ -1,9 +1,9 @@
-[gd_scene load_steps=51 format=3 uid="uid://d08aatgxmymbf"]
+[gd_scene load_steps=52 format=3 uid="uid://d08aatgxmymbf"]
 
 [ext_resource type="Script" path="res://game_objects/player/player.gd" id="1_1w47b"]
+[ext_resource type="Script" path="res://game_logic/modifiable_stat.gd" id="2_d07qn"]
 [ext_resource type="PackedScene" uid="uid://s2gmpuugbea3" path="res://game_objects/player/player_default_mesh.glb" id="3_qia5y"]
 [ext_resource type="Script" path="res://game_objects/player/HitBox.gd" id="4_f3bol"]
-[ext_resource type="Texture2D" uid="uid://d36mb0mqtrp68" path="res://ui/icons/White/skill_07_outline.png" id="7_iyjhq"]
 [ext_resource type="PackedScene" uid="uid://bcwkugn6v3oy7" path="res://addons/godot_state_charts/utilities/state_chart_debugger.tscn" id="7_k4gmo"]
 [ext_resource type="Script" path="res://game_objects/health_component.gd" id="12_mgyrw"]
 [ext_resource type="Script" path="res://game_objects/health_location.gd" id="13_e6mpe"]
@@ -20,6 +20,10 @@
 [ext_resource type="Script" path="res://addons/godot_state_charts/compound_state.gd" id="20_8eyuc"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/atomic_state.gd" id="21_cw2n6"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/transition.gd" id="22_n3f1l"]
+
+[sub_resource type="Resource" id="Resource_ahrbp"]
+script = ExtResource("2_d07qn")
+base_value = 1.0
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_emkox"]
 resource_local_to_scene = true
@@ -147,6 +151,7 @@ guard = SubResource("Resource_n748b")
 
 [node name="Player" type="CharacterBody3D" groups=["players"]]
 script = ExtResource("1_1w47b")
+recoil_factor = SubResource("Resource_ahrbp")
 
 [node name="CollisionShape3d" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_emkox")
@@ -604,12 +609,6 @@ script = ExtResource("12_mgyrw")
 health_locs = Array[ExtResource("13_e6mpe")]([SubResource("Resource_keaja"), SubResource("Resource_tm6hc"), SubResource("Resource_t7fph")])
 
 [node name="PlayerHUD" parent="." instance=ExtResource("14_uksyk")]
-
-[node name="use_helper" parent="PlayerHUD/interaction_helpers" index="0"]
-texture = ExtResource("7_iyjhq")
-
-[node name="pickup_helper" parent="PlayerHUD/interaction_helpers" index="1"]
-texture = ExtResource("7_iyjhq")
 
 [node name="StateChartDebugger" parent="PlayerHUD" instance=ExtResource("7_k4gmo")]
 anchors_preset = 0
