@@ -1,4 +1,4 @@
-[gd_scene load_steps=1048 format=3 uid="uid://bgog375hnhshb"]
+[gd_scene load_steps=1026 format=3 uid="uid://bgog375hnhshb"]
 
 [ext_resource type="Environment" uid="uid://s6q0fqlhuodl" path="res://test/debug/vibe_check_environment.tres" id="1_3scuf"]
 [ext_resource type="CameraAttributesPractical" uid="uid://jafbi2bjurvn" path="res://test/debug/vibe_check_camera.tres" id="2_ecxrf"]
@@ -52,11 +52,6 @@
 [ext_resource type="Script" path="res://game_objects/items/weapons/gun_stats.gd" id="45_lrm5y"]
 [ext_resource type="PackedScene" uid="uid://trlm60n2q0k4" path="res://game_objects/items/attachments/scopes/red_dot/red_dot.tscn" id="46_ex0jf"]
 [ext_resource type="Script" path="res://levels/entities/geo_ballistic_container.gd" id="47_b1v23"]
-[ext_resource type="Shader" uid="uid://rx2qukv54ng6" path="res://levels/biomes/science/easy/maps/blood.tres" id="53_at7jb"]
-[ext_resource type="Shader" uid="uid://7t411mpk2h0f" path="res://levels/biomes/science/easy/maps/blood_spot.tres" id="54_auvpx"]
-[ext_resource type="Shader" uid="uid://cflt50ihcyglf" path="res://levels/biomes/science/easy/maps/pixel_blood.tres" id="55_v5dmf"]
-[ext_resource type="Texture2D" uid="uid://dgbqaaqxt1hgc" path="res://game_objects/effects/assets/dirt_03_x64.png" id="56_5fdma"]
-[ext_resource type="Texture2D" uid="uid://b0dmvnpqogkyb" path="res://game_objects/effects/assets/dirt_01_x64.png" id="57_nuhrc"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_i2lct"]
 albedo_texture = ExtResource("7_pm68f")
@@ -4263,112 +4258,6 @@ moa = 5.0
 turn_speed = 25.0
 ammo_type = ExtResource("44_kdlx2")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_yblij"]
-render_priority = 0
-shader = ExtResource("53_at7jb")
-shader_parameter/ColorParameter = Color(0.734813, 0.035823, 0, 1)
-shader_parameter/FloatParameter = 0.6
-
-[sub_resource type="Curve" id="Curve_ipaiq"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.549451), 0.0, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="CurveTexture" id="CurveTexture_7uimu"]
-curve = SubResource("Curve_ipaiq")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_c305i"]
-spread = 2.53
-initial_velocity_min = 4.0
-initial_velocity_max = 6.0
-linear_accel_min = 4.0
-linear_accel_max = 4.0
-scale_max = 3.0
-scale_curve = SubResource("CurveTexture_7uimu")
-collision_mode = 2
-sub_emitter_mode = 3
-sub_emitter_amount_at_collision = 1
-
-[sub_resource type="QuadMesh" id="QuadMesh_ev04q"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_3qsto"]
-render_priority = 0
-shader = ExtResource("54_auvpx")
-shader_parameter/ColorParameter = Color(0.734813, 0.035823, 0, 1)
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_cisp0"]
-gravity = Vector3(0, 0, 0)
-linear_accel_min = -2.0
-linear_accel_max = -1.0
-scale_max = 3.0
-
-[sub_resource type="QuadMesh" id="QuadMesh_ooena"]
-orientation = 1
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_1f5ek"]
-spread = 10.0
-initial_velocity_min = 1.0
-initial_velocity_max = 10.0
-linear_accel_min = -10.0
-linear_accel_max = -5.0
-scale_min = 0.25
-scale_max = 0.5
-sub_emitter_mode = 1
-sub_emitter_frequency = 100.0
-sub_emitter_keep_velocity = true
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_ofe3c"]
-render_priority = 0
-shader = ExtResource("55_v5dmf")
-shader_parameter/ColorParameter = Color(0.858824, 0, 0, 1)
-
-[sub_resource type="QuadMesh" id="QuadMesh_2acyn"]
-material = SubResource("ShaderMaterial_ofe3c")
-size = Vector2(0.05, 0.05)
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_awrd2"]
-spread = 180.0
-initial_velocity_min = 2.0
-initial_velocity_max = 5.0
-linear_accel_min = -20.0
-linear_accel_max = -10.0
-scale_min = 0.5
-scale_max = 2.0
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_j2w0w"]
-spread = 20.0
-initial_velocity_min = 1.0
-initial_velocity_max = 6.0
-linear_accel_min = 1.0
-linear_accel_max = 6.0
-scale_min = 0.5
-scale_max = 2.0
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_a1w8g"]
-transparency = 1
-vertex_color_use_as_albedo = true
-albedo_color = Color(0.788235, 0, 0, 1)
-albedo_texture = ExtResource("56_5fdma")
-texture_filter = 0
-billboard_mode = 1
-
-[sub_resource type="QuadMesh" id="QuadMesh_m3gxb"]
-material = SubResource("StandardMaterial3D_a1w8g")
-size = Vector2(1.5, 1.5)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_spd15"]
-transparency = 2
-alpha_scissor_threshold = 0.5
-alpha_antialiasing_mode = 0
-vertex_color_use_as_albedo = true
-albedo_color = Color(0.788235, 0, 0, 1)
-albedo_texture = ExtResource("57_nuhrc")
-texture_filter = 0
-billboard_mode = 1
-
-[sub_resource type="QuadMesh" id="QuadMesh_nswc3"]
-material = SubResource("StandardMaterial3D_spd15")
-size = Vector2(1.5, 1.5)
-
 [node name="Lab1" type="WorldEnvironment"]
 environment = ExtResource("1_3scuf")
 camera_attributes = ExtResource("2_ecxrf")
@@ -8550,52 +8439,3 @@ _gun_stats = SubResource("Resource_dw1bs")
 
 [node name="red_dot" parent="." instance=ExtResource("46_ex0jf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.190895, 0.400001, -6.98891)
-
-[node name="blood" type="GPUParticles3D" parent="."]
-transform = Transform3D(0.83598, 0, -0.54876, 0, 1, 0, 0.54876, 0, 0.83598, 0, 1.78122, -3.42176)
-visible = false
-material_override = SubResource("ShaderMaterial_yblij")
-amount = 100
-sub_emitter = NodePath("../blood_spot")
-process_material = SubResource("ParticleProcessMaterial_c305i")
-draw_pass_1 = SubResource("QuadMesh_ev04q")
-
-[node name="blood_spot" type="GPUParticles3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.564535, -2.68905)
-visible = false
-material_override = SubResource("ShaderMaterial_3qsto")
-cast_shadow = 0
-amount = 100
-process_material = SubResource("ParticleProcessMaterial_cisp0")
-draw_pass_1 = SubResource("QuadMesh_ooena")
-
-[node name="pixel_blood" type="GPUParticles3D" parent="."]
-transform = Transform3D(0.750953, -0.660356, 0, 0.660356, 0.750953, 0, 0, 0, 1, 0, 1.626, -3.93315)
-amount = 50
-sub_emitter = NodePath("../pixel_blood2")
-randomness = 0.2
-process_material = SubResource("ParticleProcessMaterial_1f5ek")
-draw_pass_1 = SubResource("QuadMesh_2acyn")
-
-[node name="pixel_blood2" type="GPUParticles3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.626, -3.93315)
-amount = 30
-randomness = 0.2
-process_material = SubResource("ParticleProcessMaterial_awrd2")
-draw_pass_1 = SubResource("QuadMesh_2acyn")
-
-[node name="Node3D" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.85222, -5.42396)
-visible = false
-
-[node name="pixel_texture_blood" type="GPUParticles3D" parent="Node3D"]
-amount = 2
-lifetime = 0.75
-explosiveness = 1.0
-process_material = SubResource("ParticleProcessMaterial_j2w0w")
-draw_pass_1 = SubResource("QuadMesh_m3gxb")
-
-[node name="pixel_texture_blood2" type="GPUParticles3D" parent="Node3D"]
-amount = 5
-process_material = SubResource("ParticleProcessMaterial_j2w0w")
-draw_pass_1 = SubResource("QuadMesh_nswc3")
