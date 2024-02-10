@@ -78,6 +78,48 @@ func _on_pickup_item(item_inst:ItemInstance, target_inventory_id:int) -> void:
 		##TODO try rotating and repeating
 	pass
 
+func place_item_in_inventory(item_instance_id:int, target_inventory_id:int) -> void:
+	var item_inst = _item_access.get_item(item_instance_id)
+	_on_pickup_item(item_inst, target_inventory_id)
+
+func can_place_item_in_inventory(item_instance_id:int, target_inventory_id:int) -> bool:
+	#Are we dealing with a stack or not
+	var item_inst:ItemInstance = _item_access.get_item(item_instance_id)
+	var inventory:Inventory = _inventory_access.get_inventory(target_inventory_id)
+	if inventory == null:
+		return false
+	if !item_inst.get_has_stacks():
+		#First check item slots
+		if inventory.equipment_slots:
+			for slot in inventory.equipment_slots:
+				if _inventory_access.can_place_item_in_slot(item_inst, target_inventory_id, slot.name):
+					return true
+	#
+		#Next try to insert in first grid space
+		for y in range(inventory.get_height()):
+			for x in range(inventory.get_width()):
+				var grid_loc := Vector2i(x,y)
+				if _inventory_access.can_place_item_in_grid(item_inst, target_inventory_id, grid_loc):
+					return true
+		##TODO try rotating and repeating
+	#do stack stuff
+	else:
+		#First check item slots
+		var amount:int = item_inst.stacks
+		if inventory.equipment_slots:
+			for slot in inventory.equipment_slots:
+				if item_inst.stacks > 0 and  _inventory_access.can_place_stack_in_slot(item_inst, target_inventory_id, slot.name):
+					return true
+
+		#Next try to insert in first grid space
+		for y in range(inventory.get_height()):
+			for x in range(inventory.get_width()):
+				var grid_loc := Vector2i(x,y)
+				if item_inst.stacks > 0 and _inventory_access.can_place_stack_in_grid(item_inst, target_inventory_id, grid_loc):
+					return true
+		##TODO try rotating and repeating
+	return false
+
 func can_place_item_in_slot(item_instance_id:int, target_inventory_id:int, slot_name:String) -> bool:
 	return _inventory_access.can_place_item_in_slot(get_item(item_instance_id), target_inventory_id, slot_name)
 

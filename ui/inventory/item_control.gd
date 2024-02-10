@@ -18,6 +18,12 @@ func _ready():
 	show_count = get_item_instance().get_has_stacks()
 	name_label.text = get_item_instance().get_display_name()
 	show_name = get_item_instance().get_show_name()
+	
+	var item_inventory = get_item_instance().get_item_inventory()
+	if item_inventory:
+		_has_inventory = true
+		_item_inventory_id = item_inventory.get_instance_id()
+	
 	update_dimensions()
 
 func _on_item_picked_up(result:InventoryInsertResult):
@@ -132,6 +138,9 @@ var context_items:Array[ItemContextItem]:
 		return get_item_instance().get_context_menu_items()
 	
 var _is_dragging:bool
+
+var _has_inventory:bool = false
+var _item_inventory_id:int
 	
 func _input(event:InputEvent):
 	if _is_dragging:
@@ -289,3 +298,20 @@ func _notification(what):
 	if what == Node.NOTIFICATION_DRAG_END:
 		_is_dragging = false
 		_is_rotated = _orig_is_rotated
+		
+func _can_drop_data(_at_position, data) -> bool:
+	if _has_inventory:
+		var item_instance_id:int = data["item_instance_id"]
+		var target_inventory_id = _item_inventory_id
+		return InventoryManager.can_place_item_in_inventory(item_instance_id, target_inventory_id)
+	else:
+		return false
+
+func _drop_data(_at_position, data):
+	if _has_inventory:
+		var item_instance_id:int = data["item_instance_id"]
+		var target_inventory_id = _item_inventory_id
+		InventoryManager.place_item_in_inventory(item_instance_id, target_inventory_id)
+		return 
+	else:
+		return
