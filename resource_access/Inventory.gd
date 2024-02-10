@@ -52,6 +52,7 @@ func setup(resetup := false) -> void:
 				slots_copy.append(slot.duplicate(true))
 			equipment_slots = slots_copy
 		_is_setup = true
+		EventBus.add_inventory.emit(self)
 			
 func create_new_grid_slots(width:int, height:int) -> Dictionary:
 	var new_grid_slots := {}
