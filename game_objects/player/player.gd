@@ -30,16 +30,59 @@ var pov_rotation_node:Node3D
 var los_check_locations:Array[Node3D] = []
 
 @export_category("Movement")
-@export var WALKING_SPEED = 5.0
-@export var CROUCH_SPEED = 1.5
-@export var PRONE_SPEED = 2.0
-@export var RUN_SPEED = 10.0
-@export var JUMP_VELOCITY = 4.5
-@export var accel = 1.0
+@export_category("Standing")
 @export var STANDING_HEIGHT = 2.0
+@export var STANDING_BOB_TRANSLATION_X = 0.005
+@export var STANDING_BOB_TRANSLATION_Y = 0.01
+@export var STANDING_BOB_ROTATION_X = .75
+@export var STANDING_BOB_ROTATION_Y = 1.5
+@export_category("Walking")
+@export var WALKING_SPEED = 5.0
+@export var WALKING_BOB_TRANSLATION_X = 0.01
+@export var WALKING_BOB_TRANSLATION_Y = 0.02
+@export var WALKING_BOB_ROTATION_X = 2.5
+@export var WALKING_BOB_ROTATION_Y = 5.0
+@export_category("Crouching")
+@export var CROUCH_SPEED = 1.5
 @export var CROUCHING_HEIGHT = 1.0
+@export var CROUCHING_BOB_TRANSLATION_X = 0.0025
+@export var CROUCHING_BOB_TRANSLATION_Y = 0.005
+@export var CROUCHING_BOB_ROTATION_X = .5
+@export var CROUCHING_BOB_ROTATION_Y = 1.0
+@export var CROUCH_WALKING_BOB_TRANSLATION_X = 0.005
+@export var CROUCH_WALKING_BOB_TRANSLATION_Y = 0.01
+@export var CROUCH_WALKING_BOB_ROTATION_X = 1
+@export var CROUCH_WALKING_BOB_ROTATION_Y = 2.5
+@export_category("Prone")
+@export var PRONE_SPEED = 2.0
 @export var PRONE_HEIGHT = 0.5
-var current_speed = 0.0
+@export var PRONE_BOB_TRANSLATION_X = 0.0
+@export var PRONE_BOB_TRANSLATION_Y = 0.0
+@export var PRONE_BOB_ROTATION_X = 0.0
+@export var PRONE_BOB_ROTATION_Y = 0.0
+@export var CRAWLING_BOB_TRANSLATION_X = 0.05
+@export var CRAWLING_BOB_TRANSLATION_Y = 0.1
+@export var CRAWLING_BOB_ROTATION_X = 5.0
+@export var CRAWLING_BOB_ROTATION_Y = 10.0
+@export_category("Running")
+@export var RUN_SPEED = 10.0
+@export var RUNNING_BOB_TRANSLATION_X = 0.1
+@export var RUNNING_BOB_TRANSLATION_Y = 0.2
+@export var RUNNING_BOB_ROTATION_X = 10.0
+@export var RUNNING_BOB_ROTATION_Y = 20.0
+@export_category("Jumping")
+@export var JUMP_VELOCITY = 4.5
+@export var JUMPING_BOB_TRANSLATION_X = 0.2
+@export var JUMPING_BOB_TRANSLATION_Y = 0.4
+@export var JUMPING_BOB_ROTATION_X = 15.0
+@export var JUMPING_BOB_ROTATION_Y = 30.0
+@export var accel = 1.0
+var current_speed:ModifiableStat = ModifiableStat.new(0.0)
+var current_bob_amount_x : ModifiableStat = ModifiableStat.new(0.01)
+var current_bob_amount_y : ModifiableStat = ModifiableStat.new(0.01)
+var current_bob_freq : ModifiableStat = ModifiableStat.new(0.0025)
+var current_bob_amount_max_degrees_x : ModifiableStat = ModifiableStat.new(15.0)
+var current_bob_amount_max_degrees_y : ModifiableStat = ModifiableStat.new(15.0)
 var LEAN_AMOUNT = PI/6
 @export_category("")
 
@@ -351,7 +394,7 @@ func _on_gun_fired(recoil:Vector2):
 	h_rot_acc += scaled_recoil.y
 
 
-@export var recoil_factor:ModifiableStat
+var recoil_factor:ModifiableStat = ModifiableStat.new(1.0)
 
 func scale_recoil(recoil:Vector2) -> Vector2:
 	return recoil * recoil_factor.get_modified_value()
@@ -436,7 +479,11 @@ func move(move_velocity:Vector3, delta:float):
 
 #region Standing
 func _on_standing_state_entered():
-	current_speed = 0.0
+	current_speed.base_value = 0.0
+	current_bob_amount_max_degrees_x.base_value = STANDING_BOB_ROTATION_X
+	current_bob_amount_max_degrees_y.base_value = STANDING_BOB_ROTATION_Y
+	current_bob_amount_x.base_value = STANDING_BOB_TRANSLATION_X
+	current_bob_amount_y.base_value = STANDING_BOB_TRANSLATION_Y
 	world_collider.get_shape().set_height(STANDING_HEIGHT)
 	
 	recoil_factor.add_modifier(StatModifier.new("standing", StatModifier.Operation.MUL, -0.1))
@@ -474,7 +521,16 @@ func _on_standing_transitions_physics_processing(delta):
 
 #region Walking
 func _on_walking_state_entered():
-	current_speed = WALKING_SPEED
+	current_speed.base_value = WALKING_SPEED
+	current_bob_amount_max_degrees_x.base_value = WALKING_BOB_ROTATION_X
+	current_bob_amount_max_degrees_y.base_value = WALKING_BOB_ROTATION_Y
+	current_bob_amount_x.base_value = WALKING_BOB_TRANSLATION_X
+	current_bob_amount_y.base_value = WALKING_BOB_TRANSLATION_Y
+	current_bob_freq.add_modifier(StatModifier.new("walking", StatModifier.Operation.ADD, 0.0075))
+	
+func _on_walking_state_exited() -> void:
+	current_bob_freq.remove_modifier_by_name("walking")
+
 	
 func _on_walking_state_input(event):
 	if event.is_action_pressed("jump") and !legs_destroyed and is_on_floor():
@@ -499,7 +555,7 @@ func _on_walking_state_physics_processing(delta):
 		state_chart.send_event("Sprint")
 		return
 	else:
-		move(direction * current_speed, delta)
+		move(direction * current_speed.get_modified_value(), delta)
 #endregion
 
 #region Sprinting
@@ -509,12 +565,19 @@ func _on_sprinting_state_input(event):
 		return
 	
 func _on_sprinting_state_entered():
-	current_speed = RUN_SPEED
+	current_speed.base_value = RUN_SPEED
+	current_bob_amount_max_degrees_x.base_value = RUNNING_BOB_ROTATION_X
+	current_bob_amount_max_degrees_y.base_value = RUNNING_BOB_ROTATION_Y
+	current_bob_amount_x.base_value = RUNNING_BOB_TRANSLATION_X
+	current_bob_amount_y.base_value = RUNNING_BOB_TRANSLATION_Y
+	current_bob_freq.add_modifier(StatModifier.new("sprinting", StatModifier.Operation.ADD, 0.02))
 	state_chart.send_event("ArmsBusy")
 	state_chart.send_event("StopLean")
 	
 func _on_sprinting_state_exited():
+	current_bob_freq.remove_modifier_by_name("sprinting")
 	state_chart.send_event("ArmsDone")
+	
 
 func _on_sprinting_state_physics_processing(delta):
 	if should_crouch():
@@ -534,20 +597,30 @@ func _on_sprinting_state_physics_processing(delta):
 		state_chart.send_event("Walk")
 		return
 	else:
-		move(direction * current_speed, delta)
+		move(direction * current_speed.get_modified_value(), delta)
 #endregion
 	
 #region Crouching
 func _on_crouching_state_entered():
-	current_speed = 0.0
+	current_speed.base_value = 0.0
+	current_bob_amount_max_degrees_x.base_value = CROUCHING_BOB_ROTATION_X
+	current_bob_amount_max_degrees_y.base_value = CROUCHING_BOB_ROTATION_Y
+	current_bob_amount_x.base_value = CROUCHING_BOB_TRANSLATION_X
+	current_bob_amount_y.base_value = CROUCHING_BOB_TRANSLATION_Y
 	world_collider.get_shape().set_height(CROUCHING_HEIGHT)
 	recoil_factor.add_modifier(StatModifier.new("crouching", StatModifier.Operation.MUL, -0.2))
+	current_bob_freq.add_modifier(StatModifier.new("crouching", StatModifier.Operation.MUL, -0.5))
 	
 func _on_crouching_state_exited():
 	recoil_factor.remove_modifier_by_name("crouching")
+	current_bob_freq.remove_modifier_by_name("crouching")
 	
 func _on_crouch_walking_state_entered():
-	current_speed = CROUCH_SPEED
+	current_speed.base_value = CROUCH_SPEED
+	current_bob_amount_max_degrees_x.base_value = STANDING_BOB_ROTATION_X
+	current_bob_amount_max_degrees_y.base_value = STANDING_BOB_ROTATION_Y
+	current_bob_amount_x.base_value = STANDING_BOB_TRANSLATION_X
+	current_bob_amount_y.base_value = STANDING_BOB_TRANSLATION_Y
 	recoil_factor.add_modifier(StatModifier.new("crouch_walking", StatModifier.Operation.MUL, -0.1))
 	
 func _on_crouch_walking_state_exited():
@@ -591,12 +664,16 @@ func _on_crouch_walking_state_physics_processing(delta):
 		state_chart.send_event("Stop")
 		return
 	else:
-		move(direction * current_speed, delta)
+		move(direction * current_speed.get_modified_value(), delta)
 #endregion
 
 #region Prone
 func _on_prone_state_entered():
-	current_speed = 0.0
+	current_speed.base_value = 0.0
+	current_bob_amount_max_degrees_x.base_value = PRONE_BOB_ROTATION_X
+	current_bob_amount_max_degrees_y.base_value = PRONE_BOB_ROTATION_Y
+	current_bob_amount_x.base_value = PRONE_BOB_TRANSLATION_X
+	current_bob_amount_y.base_value = PRONE_BOB_TRANSLATION_Y
 	world_collider.get_shape().set_height(PRONE_HEIGHT)
 	recoil_factor.add_modifier(StatModifier.new("prone", StatModifier.Operation.MUL, -0.4))
 	
@@ -631,12 +708,18 @@ func _on_prone_transitions_exited():
 
 #region Crawling
 func _on_crawling_state_entered():
-	current_speed = PRONE_SPEED
+	current_speed.base_value = PRONE_SPEED
+	current_bob_amount_max_degrees_x.base_value = CRAWLING_BOB_ROTATION_X
+	current_bob_amount_max_degrees_y.base_value = CRAWLING_BOB_ROTATION_Y
+	current_bob_amount_x.base_value = CRAWLING_BOB_TRANSLATION_X
+	current_bob_amount_y.base_value = CRAWLING_BOB_TRANSLATION_Y
+	current_bob_freq.add_modifier(StatModifier.new("crawling", StatModifier.Operation.MUL, -0.5))	
 	state_chart.send_event("ArmsBusy")
 	state_chart.send_event("StopLean")
 	
 	
 func _on_crawling_state_exited():
+	current_bob_freq.remove_modifier_by_name("crawling")
 	state_chart.send_event("ArmsDone")
 	
 func _on_crawling_state_physics_processing(delta):
@@ -654,12 +737,16 @@ func _on_crawling_state_physics_processing(delta):
 		state_chart.send_event("Stop")
 		return
 	else:
-		move(direction * current_speed, delta)
+		move(direction * current_speed.get_modified_value(), delta)
 #endregion
 	
 #region Jumping
 func _on_jumping_state_entered():
 	velocity.y = JUMP_VELOCITY
+	current_bob_amount_max_degrees_x.base_value = JUMPING_BOB_ROTATION_X
+	current_bob_amount_max_degrees_y.base_value = JUMPING_BOB_ROTATION_Y
+	current_bob_amount_x.base_value = JUMPING_BOB_TRANSLATION_X
+	current_bob_amount_y.base_value = JUMPING_BOB_TRANSLATION_Y
 	state_chart.send_event("ArmsBusy")
 	state_chart.send_event("StopLean")
 	
@@ -770,29 +857,20 @@ func align_gun_trailer_to_head(delta:float):
 	equipped_gun.basis = gun_source_y_quat.slerp(gun_target_y_quat, delta/gun_turn_factor)
 	bob_equipped_gun(delta, equipped_gun, gun_turn_factor)
 
-var bob_amount : float = 0.01
-var bob_freq : float = 0.01
-var bob_amount_max_degrees_y : float = 15.0
+
 func bob_equipped_gun(delta:float, _equipped_gun:Node3D, gun_turn_factor:float) -> void:
 	#Use something like this to calculate translation offset
 	#Amplitude and Frequency should be influnce by movement state machine
-	#_equipped_gun.position.y = lerp(_equipped_gun.position.y, _equipped_gun.position.y + sin(Time.get_ticks_msec() * bob_freq) * bob_amount, 10*delta)
-	#_equipped_gun.position.x = lerp(_equipped_gun.position.x, _equipped_gun.position.x + sin(Time.get_ticks_msec() * bob_freq* 0.5) * bob_amount, 10*delta)
-		#if vel > 0 and is_on_floor():
-			#var bob_amount : float = 0.01
-			#var bob_freq : float = 0.01
-			#weapon_holder.position.y = lerp(weapon_holder.position.y, def_weapon_holder_pos.y + sin(Time.get_ticks_msec() * bob_freq) * bob_amount, 10 * delta)
-			#weapon_holder.position.x = lerp(weapon_holder.position.x, def_weapon_holder_pos.x + sin(Time.get_ticks_msec() * bob_freq * 0.5) * bob_amount, 10 * delta)
-			#
-		#else:
-			#weapon_holder.position.y = lerp(weapon_holder.position.y, def_weapon_holder_pos.y, 10 * delta)
-			#weapon_holder.position.x = lerp(weapon_holder.position.x, def_weapon_holder_pos.x, 10 * delta)
-			
-	#Calculate Quaternion also using sin to represent rotational offset. More Vertical but a little horizontal
-	var bob_y_rot_deg = sin(Time.get_ticks_msec() * bob_freq) * bob_amount_max_degrees_y
+	var raw_sin_y_result = sin(Time.get_ticks_msec() * current_bob_freq.get_modified_value())
+	var raw_sin_x_result = sin(Time.get_ticks_msec() * current_bob_freq.get_modified_value() * 0.5)
+	_equipped_gun.position.y = lerp(_equipped_gun.position.y, _equipped_gun.position.y + raw_sin_y_result * current_bob_amount_y.get_modified_value(), 10*delta)
+	_equipped_gun.position.x = lerp(_equipped_gun.position.x, _equipped_gun.position.x + raw_sin_x_result * current_bob_amount_x.get_modified_value(), 10*delta)
+
+	var bob_y_rot_deg = raw_sin_y_result * current_bob_amount_max_degrees_y.get_modified_value()
+	var bob_x_rot_deg = raw_sin_x_result * current_bob_amount_max_degrees_x.get_modified_value()
 	
-	_equipped_gun.rotation_degrees.x = lerp(_equipped_gun.rotation_degrees.x, _equipped_gun.rotation_degrees.x + bob_y_rot_deg , 10 * delta)	
-	
+	_equipped_gun.rotation_degrees.x = lerp(_equipped_gun.rotation_degrees.x, _equipped_gun.rotation_degrees.x + bob_y_rot_deg , 10 * delta)
+	_equipped_gun.rotation_degrees.y = lerp(_equipped_gun.rotation_degrees.y, _equipped_gun.rotation_degrees.y + bob_x_rot_deg , 10 * delta)
 	pass
 
 var toggle_ads_f: bool = false
@@ -859,9 +937,22 @@ func _on_ads_state_physics_processing(delta):
 
 func _on_ads_state_entered():
 	recoil_factor.add_modifier(StatModifier.new("ADS", StatModifier.Operation.MUL, -0.2))
-
+	current_bob_freq.add_modifier(StatModifier.new("ADS", StatModifier.Operation.MUL, -0.2))
+	current_speed.add_modifier(StatModifier.new("ADS", StatModifier.Operation.MUL, -0.4))
+	
+	current_bob_amount_max_degrees_x.add_modifier(StatModifier.new("ADS", StatModifier.Operation.MUL, -0.4))
+	current_bob_amount_max_degrees_y.add_modifier(StatModifier.new("ADS", StatModifier.Operation.MUL, -0.4))
+	current_bob_amount_x.add_modifier(StatModifier.new("ADS", StatModifier.Operation.MUL, -0.4))
+	current_bob_amount_y.add_modifier(StatModifier.new("ADS", StatModifier.Operation.MUL, -0.4))
+ 
 func _on_ads_state_exited():
 	recoil_factor.remove_modifier_by_name("ADS")
+	current_bob_freq.remove_modifier_by_name("ADS")
+	current_speed.remove_modifier_by_name("ADS")
+	current_bob_amount_max_degrees_x.remove_modifier_by_name("ADS")
+	current_bob_amount_max_degrees_y.remove_modifier_by_name("ADS")
+	current_bob_amount_x.remove_modifier_by_name("ADS")
+	current_bob_amount_y.remove_modifier_by_name("ADS")
 
 func _on_ads_state_input(event):
 	if event is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
@@ -926,6 +1017,8 @@ func _on_right_state_physics_processing(delta):
 		return
 	waist.basis = Quaternion(waist.basis).slerp(Quaternion(right_lean_basis),0.5)
 #endregion
+
+
 
 
 
