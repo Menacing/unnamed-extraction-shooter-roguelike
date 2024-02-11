@@ -768,6 +768,32 @@ func align_gun_trailer_to_head(delta:float):
 	var gun_target_y_quat = Quaternion(Basis(head.basis))
 	#slerp from source to target
 	equipped_gun.basis = gun_source_y_quat.slerp(gun_target_y_quat, delta/gun_turn_factor)
+	bob_equipped_gun(delta, equipped_gun, gun_turn_factor)
+
+var bob_amount : float = 0.01
+var bob_freq : float = 0.01
+var bob_amount_max_degrees_y : float = 15.0
+func bob_equipped_gun(delta:float, _equipped_gun:Node3D, gun_turn_factor:float) -> void:
+	#Use something like this to calculate translation offset
+	#Amplitude and Frequency should be influnce by movement state machine
+	#_equipped_gun.position.y = lerp(_equipped_gun.position.y, _equipped_gun.position.y + sin(Time.get_ticks_msec() * bob_freq) * bob_amount, 10*delta)
+	#_equipped_gun.position.x = lerp(_equipped_gun.position.x, _equipped_gun.position.x + sin(Time.get_ticks_msec() * bob_freq* 0.5) * bob_amount, 10*delta)
+		#if vel > 0 and is_on_floor():
+			#var bob_amount : float = 0.01
+			#var bob_freq : float = 0.01
+			#weapon_holder.position.y = lerp(weapon_holder.position.y, def_weapon_holder_pos.y + sin(Time.get_ticks_msec() * bob_freq) * bob_amount, 10 * delta)
+			#weapon_holder.position.x = lerp(weapon_holder.position.x, def_weapon_holder_pos.x + sin(Time.get_ticks_msec() * bob_freq * 0.5) * bob_amount, 10 * delta)
+			#
+		#else:
+			#weapon_holder.position.y = lerp(weapon_holder.position.y, def_weapon_holder_pos.y, 10 * delta)
+			#weapon_holder.position.x = lerp(weapon_holder.position.x, def_weapon_holder_pos.x, 10 * delta)
+			
+	#Calculate Quaternion also using sin to represent rotational offset. More Vertical but a little horizontal
+	var bob_y_rot_deg = sin(Time.get_ticks_msec() * bob_freq) * bob_amount_max_degrees_y
+	
+	_equipped_gun.rotation_degrees.x = lerp(_equipped_gun.rotation_degrees.x, _equipped_gun.rotation_degrees.x + bob_y_rot_deg , 10 * delta)	
+	
+	pass
 
 var toggle_ads_f: bool = false
 func shouldAds() -> bool:
