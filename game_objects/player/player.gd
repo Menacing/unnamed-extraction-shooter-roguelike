@@ -38,10 +38,10 @@ var los_check_locations:Array[Node3D] = []
 @export var STANDING_BOB_ROTATION_Y = 1.5
 @export_category("Walking")
 @export var WALKING_SPEED = 5.0
-@export var WALKING_BOB_TRANSLATION_X = 0.01
+@export var WALKING_BOB_TRANSLATION_X = 0.001
 @export var WALKING_BOB_TRANSLATION_Y = 0.02
-@export var WALKING_BOB_ROTATION_X = 2.5
-@export var WALKING_BOB_ROTATION_Y = 5.0
+@export var WALKING_BOB_ROTATION_X = 1.0
+@export var WALKING_BOB_ROTATION_Y = 3.0
 @export_category("Crouching")
 @export var CROUCH_SPEED = 1.5
 @export var CROUCHING_HEIGHT = 1.0
@@ -68,14 +68,14 @@ var los_check_locations:Array[Node3D] = []
 @export var RUN_SPEED = 10.0
 @export var RUNNING_BOB_TRANSLATION_X = 0.1
 @export var RUNNING_BOB_TRANSLATION_Y = 0.2
-@export var RUNNING_BOB_ROTATION_X = 10.0
-@export var RUNNING_BOB_ROTATION_Y = 20.0
+@export var RUNNING_BOB_ROTATION_X = 7.0
+@export var RUNNING_BOB_ROTATION_Y = 12.0
 @export_category("Jumping")
 @export var JUMP_VELOCITY = 4.5
 @export var JUMPING_BOB_TRANSLATION_X = 0.2
 @export var JUMPING_BOB_TRANSLATION_Y = 0.4
-@export var JUMPING_BOB_ROTATION_X = 15.0
-@export var JUMPING_BOB_ROTATION_Y = 30.0
+@export var JUMPING_BOB_ROTATION_X = 7.0
+@export var JUMPING_BOB_ROTATION_Y = 20.0
 @export var accel = 1.0
 var current_speed:ModifiableStat = ModifiableStat.new(0.0)
 var current_bob_amount_x : ModifiableStat = ModifiableStat.new(0.01)
@@ -747,11 +747,13 @@ func _on_jumping_state_entered():
 	current_bob_amount_max_degrees_y.base_value = JUMPING_BOB_ROTATION_Y
 	current_bob_amount_x.base_value = JUMPING_BOB_TRANSLATION_X
 	current_bob_amount_y.base_value = JUMPING_BOB_TRANSLATION_Y
+	current_bob_freq.add_modifier(StatModifier.new("jumping", StatModifier.Operation.MUL, -0.7))		
 	state_chart.send_event("ArmsBusy")
 	state_chart.send_event("StopLean")
 	
 	
 func _on_jumping_state_exited():
+	current_bob_freq.remove_modifier_by_name("jumping")
 	state_chart.send_event("ArmsDone")
 	
 func _on_jumping_state_physics_processing(delta):
