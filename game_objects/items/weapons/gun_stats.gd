@@ -10,3 +10,8 @@ class_name GunStats
 @export var moa:float
 @export var turn_speed:float
 @export var ammo_type:AmmoType
+## Total time in seconds a full reload should take
+@export var reload_time_Sec:float
+## Thresholds at which the reload will restart at if interrupted for some reason. 
+## Should be an ordered list from largest to smallest all smaller than reload_time_sec
+@export var reload_thresholds:Array[float]
