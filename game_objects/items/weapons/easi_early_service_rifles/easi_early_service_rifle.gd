@@ -8,7 +8,9 @@ var current_fire_mode_i = 0
 var reloading: bool = false
 var _new_bullets:int = 0
 var rng: RandomNumberGenerator
-@onready var fire_timer = $FireTimer
+@onready var fire_timer:Timer = $FireTimer
+@onready var reload_timer:Timer = $ReloadTimer
+var reload_time:ModifiableStat = ModifiableStat.new(1.0)
 @onready var muzzle_flash_animation_player:AnimationPlayer = %MuzzleFlashAnimationPlayer
 
 @onready var gun_model_node = $gun/Node_15
@@ -18,10 +20,12 @@ var scope:Scope
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	super()
-	$ReloadTimer.connect("timeout", reloaded_callback)
+	reload_timer.connect("timeout", reloaded_callback)
 	rng = RandomNumberGenerator.new()
 	fire_timer.wait_time = 60.0/_gun_stats.rpm
 	current_fire_mode = _gun_stats.fire_modes[current_fire_mode_i]
+	reload_time.base_value = _gun_stats.reload_time_Sec
+	reload_timer.wait_time = reload_time.get_modified_value()
 
 func canFire() -> bool:
 	if current_magazine_size > 0 and !reloading and fire_timer.time_left == 0:
@@ -49,7 +53,7 @@ func fireGun():
 		pass
 
 func reloadGun(new_bullets:int):
-	$ReloadTimer.start()
+	reload_timer.start(reload_time.get_modified_value())
 	reloading = true
 	#$AnimationPlayer.play("reload")
 	_new_bullets = new_bullets
@@ -59,9 +63,27 @@ func reloaded_callback():
 	current_magazine_size = current_magazine_size + _new_bullets
 	assert(current_magazine_size <= _gun_stats.magazine_size)
 	_new_bullets = 0
-	$ReloadTimer.stop()
+	reload_timer.stop()
 	reloading = false
 	reloaded.emit()
+	
+func _on_equipped(player:Player):
+	if reloading:
+		reload_timer.paused = false
+		print_debug("raw reload time left:" + str(reload_timer.time_left))
+		for threshold in _gun_stats.reload_thresholds:
+			if reload_timer.time_left < threshold:
+				reload_timer.stop()
+				reload_timer.start(threshold)
+				break
+		print_debug("reload time left after threshold:" + str(reload_timer.time_left))
+
+	
+func _on_unequipped(player:Player):
+	if reloading:
+		reload_timer.paused = true
+		print_debug("reload time left:" + str(reload_timer.time_left))
+		
 	
 func generate_recoil() -> Vector2:
 	return Vector2(_gun_stats.base_recoil.x + rng.randf_range(-_gun_stats.recoil_variability.x, _gun_stats.recoil_variability.x), \

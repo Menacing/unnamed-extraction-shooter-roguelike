@@ -42,6 +42,12 @@ func get_grip_node() -> Node3D:
 func get_handguard_node() -> Node3D:
 	return self.get_node("handguard")
 
+func _on_equipped(player:Player):
+	pass
+	
+func _on_unequipped(player:Player):
+	pass
+
 func canFire() -> bool:
 	return false
 	

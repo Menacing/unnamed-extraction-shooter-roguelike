@@ -5,7 +5,16 @@ class_name Player
 @onready var world_collider:CollisionShape3D = $CollisionShape3d
 @export var gun_scene1: PackedScene
 @export var gun_scene2: PackedScene
-var equipped_gun:Gun
+var _equipped_gun:Gun
+var equipped_gun:Gun:
+	get:
+		return _equipped_gun
+	set(value):
+		if _equipped_gun:
+			_equipped_gun._on_unequipped(self)
+		_equipped_gun = value
+		_equipped_gun._on_equipped(self)
+		
 var shoulder_gun:Gun
 var gun_slot_1:Gun 
 var gun_slot_2:Gun
@@ -967,6 +976,9 @@ func _on_arms_busy_state_physics_processing(delta):
 	if equipped_gun:
 		ads_fac -= delta / get_ads_acceleration()
 		align_gun_trailer_to_head(delta)
+		
+		if Input.is_action_just_pressed("reload"):
+			reload()
 	
 	
 func _on_arms_busy_state_input(event):
