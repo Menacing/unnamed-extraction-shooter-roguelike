@@ -26,16 +26,16 @@ var gun_slot_2:Gun
 @onready var use_ray = $Waist/Chest/head_anchor/Head/Camera3d/UsePointer
 var pov_rotation_node:Node3D
 
-@onready var shoulder_anchor:Node3D = $player_default_mesh/shoulder_anchor
+@onready var shoulder_anchor:Node3D = $player_default_mesh_animated/shoulder_anchor
 @onready var drop_location:Node3D = $drop_location
 @onready var armor_anchor:Node3D = $HitBox/ChestBoneAttachment/armor_anchor
 @onready var backpack_anchor:Node3D = $HitBox/ChestBoneAttachment/backpack_anchor
 @onready var center_mass:Node3D = $center_mass
-@onready var ik_right_hand:SkeletonIK3D = $player_default_mesh/metarig/Skeleton3D/SkeletonIK3D_Hand_Right
-@onready var ik_right_hand_fingers:SkeletonIK3D = $player_default_mesh/metarig/Skeleton3D/SkeletonIK3D_Hand_Right_Fingers
-@onready var ik_left_hand:SkeletonIK3D = $player_default_mesh/metarig/Skeleton3D/SkeletonIK3D_Hand_Left
-@onready var ik_left_hand_fingers:SkeletonIK3D = $player_default_mesh/metarig/Skeleton3D/SkeletonIK3D_Hand_Left_Fingers
-@onready var ik_head:SkeletonIK3D = $player_default_mesh/metarig/Skeleton3D/SkeletonIK3D_Head
+@onready var ik_right_hand:SkeletonIK3D = $player_default_mesh_animated/Armature/Skeleton3D/SkeletonIK3D_Hand_Right
+@onready var ik_right_hand_fingers:SkeletonIK3D = $player_default_mesh_animated/Armature/Skeleton3D/SkeletonIK3D_Hand_Right_Fingers
+@onready var ik_left_hand:SkeletonIK3D = $player_default_mesh_animated/Armature/Skeleton3D/SkeletonIK3D_Hand_Left_Fingers
+@onready var ik_left_hand_fingers:SkeletonIK3D = $player_default_mesh_animated/Armature/Skeleton3D/SkeletonIK3D_Hand_Left
+@onready var ik_head:SkeletonIK3D = $player_default_mesh_animated/Armature/Skeleton3D/SkeletonIK3D_Head
 var los_check_locations:Array[Node3D] = []
 
 @export_category("Movement")
@@ -134,7 +134,7 @@ var legs_destroyed: bool = false
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
-@onready var player_mat: BaseMaterial3D = $player_default_mesh/metarig/Skeleton3D/Cube.get_active_material(0)
+@onready var player_mat: BaseMaterial3D = $player_default_mesh_animated/Armature/Skeleton3D/Head.get_active_material(0)
 
 @onready var ammo_component:AmmoComponent = $AmmoComponent
 

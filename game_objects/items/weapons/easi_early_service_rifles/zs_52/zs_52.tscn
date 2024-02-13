@@ -91,6 +91,10 @@ transform = Transform3D(-1, 8.74228e-08, 7.10543e-15, -8.74228e-08, -1, 0, 7.105
 [node name="HipFire" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.168, 0.377238, 0.468)
 
+[node name="Label3D" type="Label3D" parent="HipFire"]
+billboard = 1
+text = "HF"
+
 [node name="ADS" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.219423, 0.430836)
 
