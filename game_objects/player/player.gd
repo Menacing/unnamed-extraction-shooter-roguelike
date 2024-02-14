@@ -13,7 +13,8 @@ var equipped_gun:Gun:
 		if _equipped_gun:
 			_equipped_gun._on_unequipped(self)
 		_equipped_gun = value
-		_equipped_gun._on_equipped(self)
+		if _equipped_gun:
+			_equipped_gun._on_equipped(self)
 		
 var shoulder_gun:Gun
 var gun_slot_1:Gun 
