@@ -27,7 +27,7 @@ var gun_slot_2:Gun
 @onready var use_ray = $Waist/Chest/head_anchor/Head/Camera3d/UsePointer
 var pov_rotation_node:Node3D
 
-@onready var shoulder_anchor:Node3D = $player_default_mesh_animated/shoulder_anchor
+@onready var shoulder_anchor:Node3D = $HitBox/ChestBoneAttachment/shoulder_anchor
 @onready var drop_location:Node3D = $drop_location
 @onready var armor_anchor:Node3D = $HitBox/ChestBoneAttachment/armor_anchor
 @onready var backpack_anchor:Node3D = $HitBox/ChestBoneAttachment/backpack_anchor

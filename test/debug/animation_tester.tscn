@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://cucj5boko1qpn"]
+[gd_scene load_steps=17 format=3 uid="uid://cucj5boko1qpn"]
 
 [ext_resource type="Script" path="res://test/debug/animation_tester.gd" id="1_q42px"]
 [ext_resource type="PackedScene" uid="uid://d08aatgxmymbf" path="res://game_objects/player/player.tscn" id="2_8jxdu"]
@@ -57,6 +57,22 @@ ammo_type = ExtResource("7_acq5m")
 reload_time_Sec = 2.5
 reload_thresholds = Array[float]([1.0])
 
+[sub_resource type="Resource" id="Resource_8yqet"]
+resource_local_to_scene = true
+script = ExtResource("8_tkvb8")
+magazine_size = 30
+rpm = 600
+base_recoil = Vector2(0, 0.025)
+recoil_variability = Vector2(0.025, 0.013)
+fire_modes = ["semi", "auto"]
+ads_accel = 10.0
+ads_fov = 50.0
+moa = 5.0
+turn_speed = 25.0
+ammo_type = ExtResource("7_acq5m")
+reload_time_Sec = 2.5
+reload_thresholds = Array[float]([1.0])
+
 [node name="animation_tester" type="Node3D"]
 script = ExtResource("1_q42px")
 
@@ -95,6 +111,10 @@ autostart = true
 [node name="AK47-Projectile" parent="." instance=ExtResource("3_jl4nq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
 _gun_stats = SubResource("Resource_rlsbf")
+
+[node name="AK47-Projectile2" parent="." instance=ExtResource("3_jl4nq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
+_gun_stats = SubResource("Resource_8yqet")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 
