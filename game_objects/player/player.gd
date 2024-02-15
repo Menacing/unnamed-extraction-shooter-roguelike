@@ -610,6 +610,7 @@ func _on_sprinting_state_physics_processing(delta):
 		state_chart.send_event("Walk")
 		return
 	else:
+		animation_tree["parameters/Sprinting/blend_position"] = input_direction
 		move(direction * current_speed.get_modified_value(), delta)
 #endregion
 	
