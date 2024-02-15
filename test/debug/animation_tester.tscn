@@ -84,6 +84,84 @@ shape = SubResource("CapsuleShape3D_23hth")
 [node name="Chest" parent="Player/Waist" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00634074, -0.00170296, 0.0220692)
 
+[node name="Skeleton3D" parent="Player/player_default_mesh_animated/Armature" index="0"]
+bones/0/position = Vector3(0.00839539, -0.00718216, -1.04654)
+bones/0/rotation = Quaternion(0.674234, 0.338783, -0.312498, -0.577043)
+bones/1/rotation = Quaternion(0.0832047, 0.00773268, 0.00454369, 0.996492)
+bones/2/rotation = Quaternion(0.052153, 0.0136614, 0.00890726, 0.998506)
+bones/3/rotation = Quaternion(0.0947058, 0.0154911, -0.00627848, 0.995365)
+bones/4/rotation = Quaternion(-0.00153634, 0.0500207, -0.00660954, 0.998725)
+bones/5/rotation = Quaternion(-0.0292923, 0.301722, -0.0609628, 0.950994)
+bones/7/rotation = Quaternion(0.752563, 0.317772, -0.407208, 0.408474)
+bones/8/rotation = Quaternion(0.312636, -0.246238, 0.135384, 0.907357)
+bones/9/rotation = Quaternion(0.510247, -0.562126, 0.465817, 0.454617)
+bones/10/rotation = Quaternion(0.00570446, -0.184082, 0.0714256, 0.980296)
+bones/11/rotation = Quaternion(0.213385, 0.0485799, 0.144304, 0.96503)
+bones/12/rotation = Quaternion(0.0298533, 0.000276738, -0.00863253, 0.999517)
+bones/13/rotation = Quaternion(-0.178081, -0.0588467, 0.204491, 0.960733)
+bones/14/position = Vector3(0.00438283, 0.031446, -1.71391e-05)
+bones/15/rotation = Quaternion(0.179369, 0.0860668, 0.0302524, 0.979543)
+bones/16/rotation = Quaternion(0.246325, 0.00169983, 0.00498818, 0.969173)
+bones/17/rotation = Quaternion(0.247101, 0.000226755, 0.0340646, 0.968391)
+bones/19/rotation = Quaternion(0.701018, -0.399647, 0.439096, 0.395033)
+bones/20/rotation = Quaternion(0.209676, -0.15503, -0.275079, 0.925383)
+bones/21/rotation = Quaternion(0.0443257, 0.245979, -0.729545, 0.636627)
+bones/22/rotation = Quaternion(0.119169, 0.105133, -0.182391, 0.970299)
+bones/23/rotation = Quaternion(0.204278, -0.204188, -0.110537, 0.950978)
+bones/24/rotation = Quaternion(-0.00744152, 0.0150083, 0.0891069, 0.995881)
+bones/25/rotation = Quaternion(-0.144079, 0.00658923, 0.168517, 0.97509)
+bones/26/position = Vector3(-0.00527116, 0.0283919, 3.03261e-05)
+bones/27/rotation = Quaternion(0.0406878, -0.00253952, 0.0630493, 0.997177)
+bones/28/rotation = Quaternion(0.10025, -0.0117114, -0.0344447, 0.994297)
+bones/29/rotation = Quaternion(0.286675, 0.010621, 0.105383, 0.952155)
+bones/31/rotation = Quaternion(0.142355, 0.155622, 0.969663, -0.123571)
+bones/32/rotation = Quaternion(-0.262621, -0.122264, -0.00539876, 0.957106)
+bones/33/rotation = Quaternion(0.481006, -0.14598, 0.00411825, 0.864469)
+bones/34/rotation = Quaternion(0.266463, -0.0591006, 0.0171634, 0.961878)
+bones/36/rotation = Quaternion(-0.197261, 0.126894, 0.958049, 0.164707)
+bones/37/rotation = Quaternion(-0.344745, 0.0193722, -0.00223053, 0.938494)
+bones/38/rotation = Quaternion(0.588823, 0.132304, 0.0393575, 0.796388)
+bones/39/rotation = Quaternion(0.227264, 0.0718024, 0.00593361, 0.971165)
+
+[node name="ChestBoneAttachment" parent="Player/HitBox" index="0"]
+transform = Transform3D(-0.623423, 0.255261, 0.66984, 0.0504715, 0.901154, -0.296435, -0.71505, -0.158944, -0.604931, 0.00906441, 0.484007, 0.0121236)
+
+[node name="HeadBoneAttachment" parent="Player/HitBox" index="1"]
+transform = Transform3D(-0.937306, 0.118556, 0.0995081, 0.0983974, 0.927854, -0.178622, -0.11948, -0.165929, -0.927735, 0.0937056, 0.708838, -0.0516037)
+
+[node name="NeckBoneAttachment" parent="Player/HitBox" index="2"]
+transform = Transform3D(-0.690571, 0.244604, 0.604798, 0.0677908, 0.902835, -0.287737, -0.648858, -0.166004, -0.673741, 0.0484382, 0.623009, -0.0123934)
+
+[node name="LeftUpperArmBoneAttachment" parent="Player/HitBox" index="3"]
+transform = Transform3D(-0.861663, -0.0747979, 0.392993, -0.0713608, -0.889541, -0.325768, 0.393631, -0.324997, 0.801207, -0.0506157, 0.53668, -0.155209)
+
+[node name="LeftLowerArmBoneAttachment" parent="Player/HitBox" index="4"]
+transform = Transform3D(0.455722, 0.83236, 0.0446686, -0.183125, 0.0503098, 0.930824, 0.813193, -0.455134, 0.184583, -0.0743359, 0.254586, -0.258273)
+
+[node name="RightUpperArmBoneAttachment" parent="Player/HitBox" index="5"]
+transform = Transform3D(-0.146539, 0.339636, -0.875028, -0.233558, -0.870966, -0.298946, -0.909108, 0.169013, 0.217847, 0.166692, 0.536598, 0.118281)
+
+[node name="RightLowerArmBoneAttachment" parent="Player/HitBox" index="6"]
+transform = Transform3D(0.0497463, 0.102121, -0.943185, 0.946328, -0.0720469, 0.0421112, -0.0670033, -0.941744, -0.105499, 0.274567, 0.25996, 0.171963)
+
+[node name="LeftUpperLegBoneAttachment" parent="Player/HitBox" index="7"]
+transform = Transform3D(0.783304, 0.121492, 0.523617, -0.169072, -0.822761, 0.443824, 0.510245, -0.459135, -0.65677, -0.0504998, 0.0932299, -0.0660881)
+
+[node name="RightUpperLegBoneAttachment" parent="Player/HitBox" index="8"]
+transform = Transform3D(0.15285, 0.423418, 0.836573, 0.169302, -0.846147, 0.397331, 0.922213, 0.0851593, -0.211599, 0.048467, 0.0882251, 0.0660302)
+
+[node name="LeftLowerLegBoneAttachment" parent="Player/HitBox" index="9"]
+transform = Transform3D(0.890418, -0.0994132, 0.315868, -0.10321, -0.944356, -0.00627343, 0.314648, -0.0284365, -0.895929, 0.00783483, -0.30182, -0.286542)
+
+[node name="RightLowerLegBoneAttachment" parent="Player/HitBox" index="10"]
+transform = Transform3D(0.116173, -0.220037, 0.916836, 0.170181, -0.903704, -0.238449, 0.927386, 0.193399, -0.0710946, 0.25176, -0.318031, 0.106917)
+
+[node name="RightFootBoneAttachment" parent="Player/HitBox" index="11"]
+transform = Transform3D(-0.0870424, 0.813457, 0.48292, 0.00543786, -0.484522, 0.817135, 0.94599, 0.0776332, 0.0397378, 0.147739, -0.745253, 0.198346)
+
+[node name="LeftFootBoneAttachment" parent="Player/HitBox" index="12"]
+transform = Transform3D(0.946665, 0.0775119, 0.017832, 0.0254807, -0.497319, 0.809027, 0.0753446, -0.805708, -0.497652, -0.0391711, -0.748343, -0.299988)
+
 [node name="CSGBox3D" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.43478, 0)
 use_collision = true
