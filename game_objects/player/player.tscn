@@ -1,9 +1,11 @@
-[gd_scene load_steps=52 format=3 uid="uid://d08aatgxmymbf"]
+[gd_scene load_steps=105 format=3 uid="uid://d08aatgxmymbf"]
 
 [ext_resource type="Script" path="res://game_objects/player/player.gd" id="1_1w47b"]
 [ext_resource type="PackedScene" uid="uid://bd4nqd8nk7cnm" path="res://game_objects/player/player_default_mesh_animated.blend" id="3_iclhi"]
 [ext_resource type="Script" path="res://game_objects/player/HitBox.gd" id="4_f3bol"]
 [ext_resource type="PackedScene" uid="uid://bcwkugn6v3oy7" path="res://addons/godot_state_charts/utilities/state_chart_debugger.tscn" id="7_k4gmo"]
+[ext_resource type="Animation" uid="uid://bc55lt3elep02" path="res://game_objects/player/Rifle Idle loop.res" id="11_keff1"]
+[ext_resource type="Animation" uid="uid://ibawhwbst1v0" path="res://game_objects/player/T Pose.res" id="12_iygyh"]
 [ext_resource type="Script" path="res://game_objects/health_component.gd" id="12_mgyrw"]
 [ext_resource type="Script" path="res://game_objects/health_location.gd" id="13_e6mpe"]
 [ext_resource type="PackedScene" uid="uid://gt018qo38blj" path="res://ui/player_hud.tscn" id="14_uksyk"]
@@ -77,7 +79,191 @@ location = 2
 current_health = 100.0
 max_health = 100.0
 
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fkj6w"]
+_data = {
+"Rifle Idle loop": ExtResource("11_keff1"),
+"T Pose": ExtResource("12_iygyh")
+}
+
+[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_bx7kf"]
+
+[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_y6xk2"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_njfr2"]
+animation = &"T Pose"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_voxpi"]
+animation = &"T Pose"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_hj6ly"]
+animation = &"T Pose"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ko7yc"]
+animation = &"T Pose"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_jdsc0"]
+animation = &"T Pose"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_cou2u"]
+animation = &"T Pose"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_sgc30"]
+animation = &"T Pose"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_c0401"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_dr0x2"]
+animation = &"Rifle Idle loop"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ien2b"]
+animation = &"T Pose"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_dxyrv"]
+animation = &"T Pose"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_h2dp3"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_lsaf4"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_leg3u"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_7bln5"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_7tcg1"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_sl811"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_yafi3"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ggr8q"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_1xun4"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_pju5t"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_doeu4"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_h2l7k"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_8ni71"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_dgxju"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_lgrc4"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ky8h7"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ln4fl"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_enxmg"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_diog8"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_vef7r"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_2m2li"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_apdu5"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_wce0i"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_apuxl"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ukug8"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_p76y5"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_epit4"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_fadw1"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_vf2wb"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_reqkj"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_e5s2x"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_tnx6k"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_oan22"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_itbvi"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_7c5ir"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_wim4l"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_u6egv"]
+advance_mode = 2
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_wjwub"]
+states/Crawling/node = SubResource("AnimationNodeBlendSpace2D_bx7kf")
+states/Crawling/position = Vector2(591, 470)
+states/CrouchWalking/node = SubResource("AnimationNodeBlendSpace2D_y6xk2")
+states/CrouchWalking/position = Vector2(635, 249)
+states/Crouching/node = SubResource("AnimationNodeAnimation_njfr2")
+states/Crouching/position = Vector2(461, 249)
+states/CrouchingToProne/node = SubResource("AnimationNodeAnimation_voxpi")
+states/CrouchingToProne/position = Vector2(427, 358)
+states/CrouchingToStanding/node = SubResource("AnimationNodeAnimation_hj6ly")
+states/CrouchingToStanding/position = Vector2(673, 162)
+states/End/position = Vector2(1039, 235)
+states/Jumping/node = SubResource("AnimationNodeAnimation_ko7yc")
+states/Jumping/position = Vector2(202, -131)
+states/Prone/node = SubResource("AnimationNodeAnimation_jdsc0")
+states/Prone/position = Vector2(202, 488)
+states/ProneToCrouching/node = SubResource("AnimationNodeAnimation_cou2u")
+states/ProneToCrouching/position = Vector2(610, 358)
+states/ProneToStanding/node = SubResource("AnimationNodeAnimation_sgc30")
+states/ProneToStanding/position = Vector2(218, 368)
+states/Sprinting/node = SubResource("AnimationNodeBlendSpace2D_c0401")
+states/Sprinting/position = Vector2(461, -47)
+states/Standing/node = SubResource("AnimationNodeAnimation_dr0x2")
+states/Standing/position = Vector2(124, 92)
+states/StandingToCrouching/node = SubResource("AnimationNodeAnimation_ien2b")
+states/StandingToCrouching/position = Vector2(472, 162)
+states/StandingToProne/node = SubResource("AnimationNodeAnimation_dxyrv")
+states/StandingToProne/position = Vector2(60, 368)
+states/Start/position = Vector2(-93, 22)
+states/Walking/node = SubResource("AnimationNodeBlendSpace2D_h2dp3")
+states/Walking/position = Vector2(349, 54)
+transitions = ["Start", "Standing", SubResource("AnimationNodeStateMachineTransition_lsaf4"), "Standing", "Walking", SubResource("AnimationNodeStateMachineTransition_leg3u"), "Standing", "StandingToCrouching", SubResource("AnimationNodeStateMachineTransition_7bln5"), "StandingToCrouching", "Crouching", SubResource("AnimationNodeStateMachineTransition_7tcg1"), "Crouching", "CrouchingToStanding", SubResource("AnimationNodeStateMachineTransition_sl811"), "CrouchingToStanding", "Standing", SubResource("AnimationNodeStateMachineTransition_yafi3"), "Standing", "StandingToProne", SubResource("AnimationNodeStateMachineTransition_ggr8q"), "StandingToProne", "Prone", SubResource("AnimationNodeStateMachineTransition_1xun4"), "Standing", "Jumping", SubResource("AnimationNodeStateMachineTransition_pju5t"), "Walking", "Standing", SubResource("AnimationNodeStateMachineTransition_doeu4"), "Walking", "Sprinting", SubResource("AnimationNodeStateMachineTransition_h2l7k"), "Walking", "StandingToCrouching", SubResource("AnimationNodeStateMachineTransition_8ni71"), "Walking", "StandingToProne", SubResource("AnimationNodeStateMachineTransition_dgxju"), "Walking", "Jumping", SubResource("AnimationNodeStateMachineTransition_lgrc4"), "Sprinting", "Standing", SubResource("AnimationNodeStateMachineTransition_ky8h7"), "Sprinting", "Walking", SubResource("AnimationNodeStateMachineTransition_ln4fl"), "Sprinting", "StandingToCrouching", SubResource("AnimationNodeStateMachineTransition_enxmg"), "Sprinting", "StandingToProne", SubResource("AnimationNodeStateMachineTransition_diog8"), "Sprinting", "Jumping", SubResource("AnimationNodeStateMachineTransition_vef7r"), "Crouching", "CrouchWalking", SubResource("AnimationNodeStateMachineTransition_2m2li"), "Crouching", "CrouchingToProne", SubResource("AnimationNodeStateMachineTransition_apdu5"), "CrouchWalking", "Crouching", SubResource("AnimationNodeStateMachineTransition_wce0i"), "CrouchWalking", "CrouchingToStanding", SubResource("AnimationNodeStateMachineTransition_apuxl"), "CrouchWalking", "CrouchingToProne", SubResource("AnimationNodeStateMachineTransition_ukug8"), "CrouchingToProne", "Prone", SubResource("AnimationNodeStateMachineTransition_p76y5"), "Prone", "ProneToStanding", SubResource("AnimationNodeStateMachineTransition_epit4"), "Prone", "ProneToCrouching", SubResource("AnimationNodeStateMachineTransition_fadw1"), "Prone", "Crawling", SubResource("AnimationNodeStateMachineTransition_vf2wb"), "ProneToStanding", "Standing", SubResource("AnimationNodeStateMachineTransition_reqkj"), "ProneToCrouching", "Crouching", SubResource("AnimationNodeStateMachineTransition_e5s2x"), "Crawling", "Prone", SubResource("AnimationNodeStateMachineTransition_tnx6k"), "Crawling", "ProneToStanding", SubResource("AnimationNodeStateMachineTransition_oan22"), "Crawling", "ProneToCrouching", SubResource("AnimationNodeStateMachineTransition_itbvi"), "Jumping", "Standing", SubResource("AnimationNodeStateMachineTransition_7c5ir"), "Jumping", "Walking", SubResource("AnimationNodeStateMachineTransition_wim4l"), "Jumping", "Sprinting", SubResource("AnimationNodeStateMachineTransition_u6egv")]
+graph_offset = Vector2(-146, -164)
 
 [sub_resource type="Resource" id="Resource_gu127"]
 script = ExtResource("17_jqole")
@@ -207,37 +393,44 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="Skeleton3D" parent="player_default_mesh_animated/Armature" index="0"]
 transform = Transform3D(-0.0290556, 0.999578, -4.36929e-08, -0.999578, -0.0290556, 4.49814e-08, 4.36929e-08, 4.49814e-08, 1, 0, 0, 0)
-bones/0/position = Vector3(0, 0.001, -1.071)
-bones/0/rotation = Quaternion(0.707107, 0, 0, -0.707107)
+bones/0/rotation = Quaternion(0.5, -0.5, 0.5, -0.5)
 bones/0/scale = Vector3(1, 1, 1)
-bones/1/rotation = Quaternion(0.0190939, 4.61826e-07, -3.96983e-05, 0.999818)
-bones/4/rotation = Quaternion(-0.019094, -1.67748e-15, -8.34627e-10, 0.999818)
+bones/1/rotation = Quaternion(0.019094, 1.50081e-15, 8.34624e-10, 0.999818)
+bones/4/rotation = Quaternion(-0.019094, -1.67692e-15, -8.34626e-10, 0.999818)
 bones/7/scale = Vector3(1, 1, 1)
+bones/8/rotation = Quaternion(-0.136494, 0.00345962, -0.0251014, 0.990317)
 bones/8/scale = Vector3(1, 1, 1)
 bones/9/rotation = Quaternion(-0.0278787, -0.00100367, 0.0359664, 0.998964)
+bones/10/rotation = Quaternion(-0.0211993, 0.0562837, -0.0285431, 0.997782)
 bones/10/scale = Vector3(1, 1, 1)
-bones/13/rotation = Quaternion(-0.0420534, 1.8876e-08, 9.24282e-08, 0.999115)
+bones/11/rotation = Quaternion(7.47143e-07, -5.57616e-07, 0.219945, 0.975512)
+bones/13/rotation = Quaternion(-0.0420534, 1.8876e-08, 9.24283e-08, 0.999115)
 bones/14/rotation = Quaternion(-1.234e-08, 2.06754e-07, 6.07979e-08, 1)
 bones/15/rotation = Quaternion(0.126224, 0.00302111, 0.023737, 0.991713)
 bones/15/scale = Vector3(1, 1, 1)
+bones/16/rotation = Quaternion(-0.0951744, 1.06012e-07, 3.44699e-07, 0.995461)
+bones/17/rotation = Quaternion(-0.10048, -1.18821e-07, -5.53913e-07, 0.994939)
+bones/19/rotation = Quaternion(0.583924, -0.400617, 0.579261, 0.403727)
 bones/19/scale = Vector3(1, 1, 1)
-bones/20/rotation = Quaternion(-0.135924, -0.00485258, 0.0353466, 0.990077)
+bones/20/rotation = Quaternion(-0.135925, -0.00485258, 0.0353466, 0.990077)
+bones/21/rotation = Quaternion(-0.0278246, 0.000881194, -0.0316449, 0.999111)
 bones/21/scale = Vector3(1, 1, 1)
+bones/22/rotation = Quaternion(-0.0139786, 0.0680727, 0.0167552, 0.997442)
 bones/23/rotation = Quaternion(-1.26046e-06, -8.96073e-08, -0.211852, 0.977302)
+bones/24/rotation = Quaternion(0.0132827, 2.19986e-07, 3.30328e-07, 0.999912)
 bones/25/rotation = Quaternion(-0.000246055, 1.15251e-07, 1.66903e-07, 1)
 bones/27/rotation = Quaternion(-0.0366808, -0.00104999, 0.0285909, 0.998917)
 bones/27/scale = Vector3(1, 1, 1)
 bones/28/rotation = Quaternion(0.428211, -9.24955e-08, -2.71818e-07, 0.903679)
 bones/29/rotation = Quaternion(-0.571552, -2.15646e-08, 9.27843e-08, 0.820566)
 bones/29/scale = Vector3(1, 1, 1)
-bones/31/rotation = Quaternion(-0.000160929, -0.00777213, 0.999702, -0.0231347)
+bones/31/rotation = Quaternion(-0.000124169, -0.00534056, 0.999717, -0.0231776)
 bones/31/scale = Vector3(1, 1, 1)
-bones/32/rotation = Quaternion(-0.0152955, 0.000688031, -0.0388538, 0.999128)
-bones/33/rotation = Quaternion(0.507669, -0.11004, 0.0616162, 0.852271)
+bones/32/rotation = Quaternion(-0.00430912, 0.00016594, -0.0388519, 0.999236)
+bones/33/rotation = Quaternion(0.496184, -0.109118, 0.0630279, 0.859024)
 bones/34/rotation = Quaternion(0.264029, -0.0595468, 0.0163339, 0.962536)
-bones/36/rotation = Quaternion(0.000214076, -0.0136833, 0.999637, 0.0232168)
-bones/37/rotation = Quaternion(-0.003521, -0.000656917, 0.0388574, 0.999238)
-bones/38/rotation = Quaternion(0.506256, 0.110048, -0.060285, 0.853206)
+bones/36/rotation = Quaternion(1.0237e-05, -0.00043916, 0.999731, 0.0231792)
+bones/37/rotation = Quaternion(0.000451391, 1.72665e-05, 0.0388559, 0.999245)
 bones/39/rotation = Quaternion(0.26043, 0.0565026, -0.0152688, 0.963717)
 bones/39/scale = Vector3(1, 1, 1)
 
@@ -274,7 +467,7 @@ target_node = NodePath("../../../../Waist/Chest/head_anchor/Head/Camera3d/HeadTa
 [node name="HitBox" type="Node3D" parent="."]
 
 [node name="ChestBoneAttachment" type="BoneAttachment3D" parent="HitBox"]
-transform = Transform3D(-0.949598, -0.0011293, -0.0275822, -7.53963e-05, 0.949307, -0.036272, 0.0276051, -0.0362545, -0.948907, -0.000426303, 0.508986, -0.0139984)
+transform = Transform3D(0.0276029, -0.0362567, -0.948907, 4.31113e-08, 0.949307, -0.036272, 0.949599, 0.00105386, 0.0275827, 0.073727, 0.552016, -0.0023121)
 bone_name = "mixamorig_Spine2"
 bone_idx = 3
 use_external_skeleton = true
@@ -306,7 +499,7 @@ transform = Transform3D(1, -4.52103e-08, -5.45687e-09, 4.5133e-08, 0.968004, 0.2
 shape = SubResource("BoxShape3D_1hbgf")
 
 [node name="HeadBoneAttachment" type="BoneAttachment3D" parent="HitBox"]
-transform = Transform3D(-0.949598, -7.53654e-05, -0.0276052, -7.53979e-05, 0.949999, 2.21766e-08, 0.0276051, 2.2129e-06, -0.949599, -0.0014985, 0.755492, -0.0502078)
+transform = Transform3D(0.0276029, 2.331e-09, -0.949599, 4.15258e-08, 0.95, 3.53905e-09, 0.949599, -4.16111e-08, 0.0276029, 0.037517, 0.798521, -0.00125956)
 bone_name = "mixamorig_Head"
 bone_idx = 5
 use_external_skeleton = true
@@ -328,7 +521,7 @@ transform = Transform3D(1, 4.23516e-21, -1.77636e-14, -2.32934e-21, 1, 5.32907e-
 shape = SubResource("SphereShape3D_cca6w")
 
 [node name="NeckBoneAttachment" type="BoneAttachment3D" parent="HitBox"]
-transform = Transform3D(-0.949598, -7.53654e-05, -0.0276052, -7.53979e-05, 0.949999, 2.21766e-08, 0.0276051, 2.2129e-06, -0.949599, -0.000600498, 0.655416, -0.0195906)
+transform = Transform3D(0.0276029, 2.331e-09, -0.949599, 4.15258e-08, 0.95, 3.53905e-09, 0.949599, -4.16111e-08, 0.0276029, 0.0681344, 0.698446, -0.00214954)
 bone_name = "mixamorig_Neck"
 bone_idx = 4
 use_external_skeleton = true
@@ -345,7 +538,7 @@ transform = Transform3D(-0.349006, -1.46429e-08, -6.94734e-08, -4.55655e-09, 0.3
 shape = SubResource("CapsuleShape3D_1ox20")
 
 [node name="LeftUpperArmBoneAttachment" type="BoneAttachment3D" parent="HitBox"]
-transform = Transform3D(0.0526557, -0.944858, 0.0834835, 0.0533323, -0.0805307, -0.945076, 0.947039, 0.0570695, 0.0485801, -0.184823, 0.585366, -0.01544)
+transform = Transform3D(0.947039, 0.0570674, 0.0485825, 0.0533304, -0.0804556, -0.945083, -0.0526576, 0.944865, -0.0834084, 0.0722847, 0.628411, 0.182079)
 bone_name = "mixamorig_LeftArm"
 bone_idx = 8
 use_external_skeleton = true
@@ -364,7 +557,7 @@ transform = Transform3D(-0.347565, -0.00319472, -0.0315199, -0.00367885, 0.34894
 shape = SubResource("CapsuleShape3D_3jrx1")
 
 [node name="LeftLowerArmBoneAttachment" type="BoneAttachment3D" parent="HitBox"]
-transform = Transform3D(-0.0154293, -0.949382, 0.0305825, 0.047403, -0.031318, -0.948299, 0.948691, -0.0138758, 0.0478809, -0.484459, 0.559828, 0.00265797)
+transform = Transform3D(0.948691, -0.013878, 0.0478832, 0.0474065, -0.0312427, -0.948302, 0.015428, 0.949385, -0.0305071, 0.0903821, 0.602896, 0.481717)
 bone_name = "mixamorig_LeftForeArm"
 bone_idx = 9
 use_external_skeleton = true
@@ -386,7 +579,7 @@ shape = SubResource("CapsuleShape3D_y1jax")
 transform = Transform3D(1, -3.21597e-09, -2.32831e-09, -2.94531e-08, 1, -3.72529e-08, -8.3819e-09, 0, 1, -0.0281311, 0.375863, -0.0124965)
 
 [node name="RightUpperArmBoneAttachment" type="BoneAttachment3D" parent="HitBox"]
-transform = Transform3D(0.0283517, 0.946014, -0.0821738, -0.0602173, -0.0802537, -0.944686, -0.947666, 0.033402, 0.0575696, 0.183633, 0.585396, -0.0237415)
+transform = Transform3D(-0.947666, 0.0334044, 0.0575716, -0.0602218, -0.0803288, -0.94468, -0.0283493, -0.946008, 0.082249, 0.0639842, 0.628411, -0.186378)
 bone_name = "mixamorig_RightArm"
 bone_idx = 20
 use_external_skeleton = true
@@ -405,7 +598,7 @@ transform = Transform3D(-0.347565, -0.00319472, -0.0315199, -0.00367885, 0.34894
 shape = SubResource("CapsuleShape3D_3jrx1")
 
 [node name="RightLowerArmBoneAttachment" type="BoneAttachment3D" parent="HitBox"]
-transform = Transform3D(-0.0315714, 0.949019, -0.0294012, -0.0550181, -0.0311965, -0.947892, -0.94788, -0.0297985, 0.0559981, 0.484107, 0.559905, -0.0131323)
+transform = Transform3D(-0.94788, -0.0297962, 0.0560003, -0.0550179, -0.031272, -0.94789, 0.0315734, -0.949018, 0.0294766, 0.0745941, 0.602897, -0.48685)
 bone_name = "mixamorig_RightForeArm"
 bone_idx = 21
 use_external_skeleton = true
@@ -427,7 +620,7 @@ shape = SubResource("CapsuleShape3D_y1jax")
 transform = Transform3D(1, -3.53321e-08, 2.04891e-08, 2.26501e-07, 1, 3.72529e-09, -1.07102e-08, 0, 1, 0.00287616, 0.388184, -0.0130171)
 
 [node name="LeftUpperLegBoneAttachment" type="BoneAttachment3D" parent="HitBox"]
-transform = Transform3D(0.948601, -0.0434979, -0.0276355, -0.0439405, -0.948868, -0.0147698, -0.0269262, 0.0160262, -0.949483, -0.0826287, 0.113121, -0.00063806)
+transform = Transform3D(-0.0271024, 0.0114137, -0.949545, -0.0440237, -0.948925, -0.0101497, -0.948593, 0.043713, 0.0276006, 0.0870879, 0.15615, 0.0799097)
 bone_name = "mixamorig_LeftUpLeg"
 bone_idx = 31
 use_external_skeleton = true
@@ -445,7 +638,7 @@ transform = Transform3D(-0.347565, -0.00319472, -0.0315199, -0.00367885, 0.34894
 shape = SubResource("CapsuleShape3D_drd3f")
 
 [node name="RightUpperLegBoneAttachment" type="BoneAttachment3D" parent="HitBox"]
-transform = Transform3D(0.948547, 0.0448376, -0.0273956, 0.0440903, -0.94862, -0.0259982, -0.0285829, 0.024687, -0.949249, 0.0824485, 0.113121, -0.00556122)
+transform = Transform3D(-0.027612, -0.000445904, -0.949599, 0.0440287, -0.948979, -0.00083463, -0.948579, -0.0440343, 0.027603, 0.0821647, 0.15615, -0.0851675)
 bone_name = "mixamorig_RightUpLeg"
 bone_idx = 36
 use_external_skeleton = true
@@ -463,7 +656,7 @@ transform = Transform3D(-0.347565, -0.00319472, -0.0315199, -0.00367885, 0.34894
 shape = SubResource("CapsuleShape3D_drd3f")
 
 [node name="LeftLowerLegBoneAttachment" type="BoneAttachment3D" parent="HitBox"]
-transform = Transform3D(0.949119, 0.0311291, -0.026518, 0.0298849, -0.948517, -0.0438262, -0.0279126, 0.0429515, -0.948618, -0.103514, -0.34248, 0.00705696)
+transform = Transform3D(-0.0279098, 0.0174639, -0.949429, 0.0297893, -0.949356, -0.0183382, -0.949123, -0.0303101, 0.0273433, 0.0925682, -0.299478, 0.100899)
 bone_name = "mixamorig_LeftLeg"
 bone_idx = 32
 use_external_skeleton = true
@@ -481,7 +674,7 @@ transform = Transform3D(-0.347565, -0.00319472, -0.0315199, -0.00367884, 0.34894
 shape = SubResource("CapsuleShape3D_4mh2i")
 
 [node name="RightLowerLegBoneAttachment" type="BoneAttachment3D" parent="HitBox"]
-transform = Transform3D(0.949135, -0.0287603, -0.0285866, -0.0297399, -0.948971, -0.0326942, -0.0275658, 0.0335593, -0.949007, 0.103976, -0.342335, 0.00629161)
+transform = Transform3D(-0.0275638, 0.000841693, -0.9496, -0.0297955, -0.949533, 2.32359e-05, -0.949134, 0.0297837, 0.0275766, 0.0819506, -0.299478, -0.106309)
 bone_name = "mixamorig_RightLeg"
 bone_idx = 37
 use_external_skeleton = true
@@ -499,7 +692,7 @@ transform = Transform3D(-0.347565, -0.00319472, -0.0315199, -0.00367884, 0.34894
 shape = SubResource("CapsuleShape3D_4mh2i")
 
 [node name="RightFootBoneAttachment" type="BoneAttachment3D" parent="HitBox"]
-transform = Transform3D(0.926114, 0.165271, 0.132287, -0.0287857, -0.489824, 0.813476, 0.209727, -0.797031, -0.4725, 0.0903798, -0.790956, 0.0221566)
+transform = Transform3D(0.209481, -0.797078, -0.47253, -0.0288652, -0.489832, 0.813469, -0.926168, -0.165017, -0.13223, 0.0823485, -0.748365, -0.0922293)
 bone_name = "mixamorig_RightFoot"
 bone_idx = 38
 use_external_skeleton = true
@@ -517,7 +710,7 @@ transform = Transform3D(-0.347565, -0.00319492, -0.0315199, 0.000957216, 0.34601
 shape = SubResource("CapsuleShape3D_s0fo0")
 
 [node name="LeftFootBoneAttachment" type="BoneAttachment3D" parent="HitBox"]
-transform = Transform3D(0.912085, -0.213467, -0.158213, 0.0243276, -0.496204, 0.809746, -0.26459, -0.781481, -0.470935, -0.0887954, -0.79097, 0.0273659)
+transform = Transform3D(-0.264397, -0.781529, -0.470964, 0.0242589, -0.496184, 0.809761, -0.912144, 0.21334, 0.158051, 0.100826, -0.748365, 0.086567)
 bone_name = "mixamorig_LeftFoot"
 bone_idx = 33
 use_external_skeleton = true
@@ -563,7 +756,16 @@ initial_node_to_watch = NodePath("../../StateChart")
 [node name="AmmoComponent" parent="." instance=ExtResource("17_2e4c3")]
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
+root_node = NodePath("../player_default_mesh_animated")
+libraries = {
+"": SubResource("AnimationLibrary_fkj6w")
+}
 tree_root = SubResource("AnimationNodeStateMachine_wjwub")
+anim_player = NodePath("../player_default_mesh_animated/AnimationPlayer")
+parameters/Crawling/blend_position = Vector2(0, 0)
+parameters/CrouchWalking/blend_position = Vector2(0, 0)
+parameters/Sprinting/blend_position = Vector2(0, 0)
+parameters/Walking/blend_position = Vector2(0, 0)
 
 [node name="StateChart" type="Node" parent="."]
 unique_name_in_owner = true
@@ -934,6 +1136,227 @@ initial_state = NodePath("Standing")
 [node name="Standing" type="Node" parent="StateChart/Root/Animation Control"]
 script = ExtResource("20_wlai8")
 animation_tree = NodePath("../../../../AnimationTree")
+
+[node name="ToWalking" type="Node" parent="StateChart/Root/Animation Control/Standing"]
+script = ExtResource("22_n3f1l")
+to = NodePath("../../Walking")
+event = &"Walk"
+
+[node name="ToCrouching" type="Node" parent="StateChart/Root/Animation Control/Standing"]
+script = ExtResource("22_n3f1l")
+to = NodePath("../../StandingToCrouching")
+event = &"Crouch"
+
+[node name="ToProne" type="Node" parent="StateChart/Root/Animation Control/Standing"]
+script = ExtResource("22_n3f1l")
+to = NodePath("../../StandingToProne")
+event = &"Prone"
+
+[node name="ToJumping" type="Node" parent="StateChart/Root/Animation Control/Standing"]
+script = ExtResource("22_n3f1l")
+to = NodePath("../../Jumping")
+event = &"Jump"
+
+[node name="Walking" type="Node" parent="StateChart/Root/Animation Control"]
+script = ExtResource("20_wlai8")
+animation_tree = NodePath("../../../../AnimationTree")
+
+[node name="ToStanding" type="Node" parent="StateChart/Root/Animation Control/Walking"]
+script = ExtResource("22_n3f1l")
+to = NodePath("../../Standing")
+event = &"Stop"
+
+[node name="ToSprinting" type="Node" parent="StateChart/Root/Animation Control/Walking"]
+script = ExtResource("22_n3f1l")
+to = NodePath("../../Sprinting")
+event = &"Sprint"
+
+[node name="ToCrouching" type="Node" parent="StateChart/Root/Animation Control/Walking"]
+script = ExtResource("22_n3f1l")
+to = NodePath("../../StandingToCrouching")
+event = &"Crouch"
+
+[node name="ToProne" type="Node" parent="StateChart/Root/Animation Control/Walking"]
+script = ExtResource("22_n3f1l")
+to = NodePath("../../StandingToProne")
+event = &"Prone"
+
+[node name="ToJumping" type="Node" parent="StateChart/Root/Animation Control/Walking"]
+script = ExtResource("22_n3f1l")
+to = NodePath("../../Jumping")
+event = &"Jump"
+
+[node name="Sprinting" type="Node" parent="StateChart/Root/Animation Control"]
+script = ExtResource("20_wlai8")
+animation_tree = NodePath("../../../../AnimationTree")
+
+[node name="ToStanding" type="Node" parent="StateChart/Root/Animation Control/Sprinting"]
+script = ExtResource("22_n3f1l")
+to = NodePath("../../Standing")
+event = &"Stop"
+
+[node name="ToWalking" type="Node" parent="StateChart/Root/Animation Control/Sprinting"]
+script = ExtResource("22_n3f1l")
+to = NodePath("../../Walking")
+event = &"Walk"
+
+[node name="ToCrouching" type="Node" parent="StateChart/Root/Animation Control/Sprinting"]
+script = ExtResource("22_n3f1l")
+to = NodePath("../../StandingToCrouching")
+event = &"Crouch"
+
+[node name="ToProne" type="Node" parent="StateChart/Root/Animation Control/Sprinting"]
+script = ExtResource("22_n3f1l")
+to = NodePath("../../StandingToProne")
+event = &"Prone"
+
+[node name="ToJumping" type="Node" parent="StateChart/Root/Animation Control/Sprinting"]
+script = ExtResource("22_n3f1l")
+to = NodePath("../../Jumping")
+event = &"Jump"
+
+[node name="StandingToCrouching" type="Node" parent="StateChart/Root/Animation Control"]
+script = ExtResource("20_wlai8")
+animation_tree = NodePath("../../../../AnimationTree")
+
+[node name="ToCrouching" type="Node" parent="StateChart/Root/Animation Control/StandingToCrouching"]
+script = ExtResource("22_n3f1l")
+to = NodePath("../../Crouching")
+delay_seconds = 0.25
+
+[node name="Crouching" type="Node" parent="StateChart/Root/Animation Control"]
+script = ExtResource("20_wlai8")
+animation_tree = NodePath("../../../../AnimationTree")
+
+[node name="ToStanding" type="Node" parent="StateChart/Root/Animation Control/Crouching"]
+script = ExtResource("22_n3f1l")
+to = NodePath("../../CrouchingToStanding")
+event = &"Stand"
+
+[node name="ToCrouchWalking" type="Node" parent="StateChart/Root/Animation Control/Crouching"]
+script = ExtResource("22_n3f1l")
+to = NodePath("../../CrouchWalking")
+event = &"CrouchWalk"
+
+[node name="ToProne" type="Node" parent="StateChart/Root/Animation Control/Crouching"]
+script = ExtResource("22_n3f1l")
+to = NodePath("../../CrouchingToProne")
+event = &"Prone"
+
+[node name="CrouchingToStanding" type="Node" parent="StateChart/Root/Animation Control"]
+script = ExtResource("20_wlai8")
+animation_tree = NodePath("../../../../AnimationTree")
+
+[node name="ToStanding" type="Node" parent="StateChart/Root/Animation Control/CrouchingToStanding"]
+script = ExtResource("22_n3f1l")
+to = NodePath("../../Standing")
+delay_seconds = 0.25
+
+[node name="CrouchWalking" type="Node" parent="StateChart/Root/Animation Control"]
+script = ExtResource("20_wlai8")
+animation_tree = NodePath("../../../../AnimationTree")
+
+[node name="ToCrouching" type="Node" parent="StateChart/Root/Animation Control/CrouchWalking"]
+script = ExtResource("22_n3f1l")
+to = NodePath("../../Crouching")
+event = &"Stop"
+
+[node name="ToStanding" type="Node" parent="StateChart/Root/Animation Control/CrouchWalking"]
+script = ExtResource("22_n3f1l")
+to = NodePath("../../CrouchingToStanding")
+event = &"Stand"
+
+[node name="ToProne" type="Node" parent="StateChart/Root/Animation Control/CrouchWalking"]
+script = ExtResource("22_n3f1l")
+to = NodePath("../../CrouchingToProne")
+event = &"Prone"
+
+[node name="StandingToProne" type="Node" parent="StateChart/Root/Animation Control"]
+script = ExtResource("20_wlai8")
+animation_tree = NodePath("../../../../AnimationTree")
+
+[node name="ToProne" type="Node" parent="StateChart/Root/Animation Control/StandingToProne"]
+script = ExtResource("22_n3f1l")
+to = NodePath("../../Prone")
+delay_seconds = 0.5
+
+[node name="CrouchingToProne" type="Node" parent="StateChart/Root/Animation Control"]
+script = ExtResource("20_wlai8")
+animation_tree = NodePath("../../../../AnimationTree")
+
+[node name="ToProne" type="Node" parent="StateChart/Root/Animation Control/CrouchingToProne"]
+script = ExtResource("22_n3f1l")
+to = NodePath("../../Prone")
+delay_seconds = 0.25
+
+[node name="Prone" type="Node" parent="StateChart/Root/Animation Control"]
+script = ExtResource("20_wlai8")
+animation_tree = NodePath("../../../../AnimationTree")
+
+[node name="ToStanding" type="Node" parent="StateChart/Root/Animation Control/Prone"]
+script = ExtResource("22_n3f1l")
+to = NodePath("../../ProneToStanding")
+event = &"Stand"
+
+[node name="ToCrouching" type="Node" parent="StateChart/Root/Animation Control/Prone"]
+script = ExtResource("22_n3f1l")
+to = NodePath("../../ProneToCrouching")
+event = &"Crouch"
+
+[node name="ToCrawling" type="Node" parent="StateChart/Root/Animation Control/Prone"]
+script = ExtResource("22_n3f1l")
+to = NodePath("../../Crawling")
+event = &"Crawl"
+
+[node name="ProneToStanding" type="Node" parent="StateChart/Root/Animation Control"]
+script = ExtResource("20_wlai8")
+animation_tree = NodePath("../../../../AnimationTree")
+
+[node name="ToStanding" type="Node" parent="StateChart/Root/Animation Control/ProneToStanding"]
+script = ExtResource("22_n3f1l")
+to = NodePath("../../Standing")
+delay_seconds = 0.5
+
+[node name="ProneToCrouching" type="Node" parent="StateChart/Root/Animation Control"]
+script = ExtResource("20_wlai8")
+animation_tree = NodePath("../../../../AnimationTree")
+
+[node name="ToCrouching" type="Node" parent="StateChart/Root/Animation Control/ProneToCrouching"]
+script = ExtResource("22_n3f1l")
+to = NodePath("../../Crouching")
+delay_seconds = 0.5
+
+[node name="Crawling" type="Node" parent="StateChart/Root/Animation Control"]
+script = ExtResource("20_wlai8")
+animation_tree = NodePath("../../../../AnimationTree")
+
+[node name="ToProne" type="Node" parent="StateChart/Root/Animation Control/Crawling"]
+script = ExtResource("22_n3f1l")
+to = NodePath("../../Prone")
+event = &"Stop"
+
+[node name="ToStanding" type="Node" parent="StateChart/Root/Animation Control/Crawling"]
+script = ExtResource("22_n3f1l")
+to = NodePath("../../ProneToStanding")
+event = &"Stand"
+
+[node name="ToCrouching" type="Node" parent="StateChart/Root/Animation Control/Crawling"]
+script = ExtResource("22_n3f1l")
+to = NodePath("../../ProneToCrouching")
+event = &"Crouch"
+
+[node name="Resume" type="Node" parent="StateChart/Root/Animation Control"]
+script = ExtResource("16_udw3d")
+default_state = NodePath("../Standing")
+
+[node name="Jumping" type="Node" parent="StateChart/Root/Animation Control"]
+script = ExtResource("20_wlai8")
+animation_tree = NodePath("../../../../AnimationTree")
+
+[node name="ToResume" type="Node" parent="StateChart/Root/Animation Control/Jumping"]
+script = ExtResource("22_n3f1l")
+to = NodePath("../../Resume")
+event = &"LegsDone"
 
 [connection signal="state_entered" from="StateChart/Root/Legs/Standing" to="." method="_on_standing_state_entered"]
 [connection signal="state_exited" from="StateChart/Root/Legs/Standing" to="." method="_on_standing_state_exited"]
