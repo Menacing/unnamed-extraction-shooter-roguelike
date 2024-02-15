@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dr48wela8mtxd"]
+[gd_scene load_steps=9 format=3 uid="uid://dr48wela8mtxd"]
 
 [ext_resource type="Script" path="res://game_objects/items/weapons/easi_early_service_rifles/easi_early_service_rifle.gd" id="1_xmoyr"]
 [ext_resource type="PackedScene" uid="uid://du06cmxlbacls" path="res://game_objects/bullet/hic_bullet.tscn" id="2_5qbyx"]
@@ -8,8 +8,6 @@
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_a6wgc"]
 size = Vector3(0.88, 0.22, 0.056)
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_1gjre"]
 
 [sub_resource type="Animation" id="Animation_048m7"]
 resource_name = "fire"
@@ -62,25 +60,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.338339, 0)
 [node name="scope_mount" parent="gun/Node_15" index="1"]
 visible = false
 
-[node name="MuzzleFlash" type="Node3D" parent="gun"]
-visible = false
-
-[node name="Sprite3D" type="Sprite3D" parent="gun/MuzzleFlash"]
-alpha_cut = 2
-texture = SubResource("CompressedTexture2D_1gjre")
-
-[node name="Sprite3D2" type="Sprite3D" parent="gun/MuzzleFlash"]
-transform = Transform3D(-4.37114e-08, -3.00649e-19, 1, 0, 1, 9.50574e-16, -1, 0, -4.37114e-08, 0, 0, 0)
-alpha_cut = 2
-texture = SubResource("CompressedTexture2D_1gjre")
-
-[node name="OmniLight3D" type="OmniLight3D" parent="gun/MuzzleFlash"]
-light_color = Color(0.988235, 0.54902, 0.188235, 1)
-
 [node name="Muzzle" type="Node3D" parent="gun"]
-
-[node name="RayCast3D" type="RayCast3D" parent="gun"]
-target_position = Vector3(0, -1000, 0)
+transform = Transform3D(1, 0, 2.84217e-14, 0, 1, 0, -2.84217e-14, 0, 1, -0.629664, 0.00352678, 2.75234e-08)
 
 [node name="Right_Hand" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 7.10543e-15, 0, 1, 0, -7.10543e-15, 0, 1, 0.025, 0.0792384, 0.281)
@@ -90,6 +71,11 @@ transform = Transform3D(-1, 8.74228e-08, 7.10543e-15, -8.74228e-08, -1, 0, 7.105
 
 [node name="HipFire" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.168, 0.377238, 0.468)
+
+[node name="Label3D" type="Label3D" parent="HipFire"]
+visible = false
+billboard = 1
+text = "HF"
 
 [node name="ADS" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.219423, 0.430836)

@@ -13,7 +13,8 @@ var equipped_gun:Gun:
 		if _equipped_gun:
 			_equipped_gun._on_unequipped(self)
 		_equipped_gun = value
-		_equipped_gun._on_equipped(self)
+		if _equipped_gun:
+			_equipped_gun._on_equipped(self)
 		
 var shoulder_gun:Gun
 var gun_slot_1:Gun 
@@ -26,16 +27,17 @@ var gun_slot_2:Gun
 @onready var use_ray = $Waist/Chest/head_anchor/Head/Camera3d/UsePointer
 var pov_rotation_node:Node3D
 
-@onready var shoulder_anchor:Node3D = $player_default_mesh/shoulder_anchor
+@onready var shoulder_anchor:Node3D = $HitBox/ChestBoneAttachment/shoulder_anchor
 @onready var drop_location:Node3D = $drop_location
 @onready var armor_anchor:Node3D = $HitBox/ChestBoneAttachment/armor_anchor
 @onready var backpack_anchor:Node3D = $HitBox/ChestBoneAttachment/backpack_anchor
 @onready var center_mass:Node3D = $center_mass
-@onready var ik_right_hand:SkeletonIK3D = $player_default_mesh/metarig/Skeleton3D/SkeletonIK3D_Hand_Right
-@onready var ik_right_hand_fingers:SkeletonIK3D = $player_default_mesh/metarig/Skeleton3D/SkeletonIK3D_Hand_Right_Fingers
-@onready var ik_left_hand:SkeletonIK3D = $player_default_mesh/metarig/Skeleton3D/SkeletonIK3D_Hand_Left
-@onready var ik_left_hand_fingers:SkeletonIK3D = $player_default_mesh/metarig/Skeleton3D/SkeletonIK3D_Hand_Left_Fingers
-@onready var ik_head:SkeletonIK3D = $player_default_mesh/metarig/Skeleton3D/SkeletonIK3D_Head
+@onready var ik_right_hand:SkeletonIK3D = $player_default_mesh_animated/Armature/Skeleton3D/SkeletonIK3D_Hand_Right
+@onready var ik_right_hand_fingers:SkeletonIK3D = $player_default_mesh_animated/Armature/Skeleton3D/SkeletonIK3D_Hand_Right_Fingers
+@onready var ik_left_hand:SkeletonIK3D = $player_default_mesh_animated/Armature/Skeleton3D/SkeletonIK3D_Hand_Left_Fingers
+@onready var ik_left_hand_fingers:SkeletonIK3D = $player_default_mesh_animated/Armature/Skeleton3D/SkeletonIK3D_Hand_Left
+@onready var ik_head:SkeletonIK3D = $player_default_mesh_animated/Armature/Skeleton3D/SkeletonIK3D_Head
+@onready var animation_tree:AnimationTree = $AnimationTree
 var los_check_locations:Array[Node3D] = []
 
 @export_category("Movement")
@@ -134,7 +136,7 @@ var legs_destroyed: bool = false
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
-@onready var player_mat: BaseMaterial3D = $player_default_mesh/metarig/Skeleton3D/Cube.get_active_material(0)
+@onready var player_mat: BaseMaterial3D = $player_default_mesh_animated/Armature/Skeleton3D/Head.get_active_material(0)
 
 @onready var ammo_component:AmmoComponent = $AmmoComponent
 
@@ -564,6 +566,8 @@ func _on_walking_state_physics_processing(delta):
 		state_chart.send_event("Sprint")
 		return
 	else:
+		animation_tree["parameters/Walking/blend_position"] = input_direction
+		
 		move(direction * current_speed.get_modified_value(), delta)
 #endregion
 
@@ -606,6 +610,7 @@ func _on_sprinting_state_physics_processing(delta):
 		state_chart.send_event("Walk")
 		return
 	else:
+		animation_tree["parameters/Sprinting/blend_position"] = input_direction
 		move(direction * current_speed.get_modified_value(), delta)
 #endregion
 	
