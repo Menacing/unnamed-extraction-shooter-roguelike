@@ -37,6 +37,7 @@ var pov_rotation_node:Node3D
 @onready var ik_left_hand:SkeletonIK3D = $player_default_mesh_animated/Armature/Skeleton3D/SkeletonIK3D_Hand_Left_Fingers
 @onready var ik_left_hand_fingers:SkeletonIK3D = $player_default_mesh_animated/Armature/Skeleton3D/SkeletonIK3D_Hand_Left
 @onready var ik_head:SkeletonIK3D = $player_default_mesh_animated/Armature/Skeleton3D/SkeletonIK3D_Head
+@onready var animation_tree:AnimationTree = $AnimationTree
 var los_check_locations:Array[Node3D] = []
 
 @export_category("Movement")
@@ -565,6 +566,8 @@ func _on_walking_state_physics_processing(delta):
 		state_chart.send_event("Sprint")
 		return
 	else:
+		animation_tree["parameters/Walking/blend_position"] = input_direction
+		
 		move(direction * current_speed.get_modified_value(), delta)
 #endregion
 
