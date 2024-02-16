@@ -753,6 +753,9 @@ func _on_crawling_state_physics_processing(delta):
 		state_chart.send_event("Stop")
 		return
 	else:
+		
+		animation_tree["parameters/Crawling/blend_position"] = input_direction
+		
 		move(direction * current_speed.get_modified_value(), delta)
 #endregion
 	
