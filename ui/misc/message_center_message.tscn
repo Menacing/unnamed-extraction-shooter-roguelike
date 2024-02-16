@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://c0oh64kxe2wq1"]
+
+[ext_resource type="Material" uid="uid://c0ipdgk1m22gh" path="res://ui/misc/ui_static_mat.tres" id="1_knmtg"]
+[ext_resource type="Script" path="res://ui/misc/message_center_message.gd" id="2_rksmc"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6r2li"]
+content_margin_left = 5.0
+content_margin_top = 5.0
+content_margin_right = 5.0
+content_margin_bottom = 5.0
+bg_color = Color(0, 0, 0, 1)
+
+[node name="CompassLabel" type="Label"]
+material = ExtResource("1_knmtg")
+custom_minimum_size = Vector2(50, 0)
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_6r2li")
+text = "The above code calls the function enter_alert_mode on "
+vertical_alignment = 1
+autowrap_mode = 2
+uppercase = true
+script = ExtResource("2_rksmc")

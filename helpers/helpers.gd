@@ -73,6 +73,7 @@ func get_all_collision_object_3d_recursive(node: Node) -> Array[RID]:
 			list.append_array(child_cols)
 	return list
 	
+## Converts dumb stupid Godot degrees into good actual real 360 degrees
 func gddeg_to_compass_deg(unnormal_deg:int) -> int:
 	var normal_deg:int = 0 
 	if unnormal_deg < 0:

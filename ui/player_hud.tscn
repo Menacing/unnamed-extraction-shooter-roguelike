@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://gt018qo38blj"]
+[gd_scene load_steps=7 format=3 uid="uid://gt018qo38blj"]
 
 [ext_resource type="PackedScene" uid="uid://bb7ue7ms53vhu" path="res://ui/health/life_bar.tscn" id="4_qme8g"]
 [ext_resource type="PackedScene" uid="uid://vb7f8fygilde" path="res://ui/misc/interaction_helpers.tscn" id="5_3ew52"]
 [ext_resource type="PackedScene" uid="uid://b62h82bx7vban" path="res://ui/weapon_info_hud.tscn" id="6_efrey"]
 [ext_resource type="PackedScene" uid="uid://dhlk3rc74daq2" path="res://ui/misc/compass.tscn" id="6_h13ew"]
+[ext_resource type="Script" path="res://ui/MessageCenter.gd" id="6_swcht"]
 [ext_resource type="PackedScene" uid="uid://3bnbwe1cyhrq" path="res://ui/health/HitIndicatorParent.tscn" id="7_4osqb"]
 
 [node name="PlayerHUD" type="CanvasLayer"]
@@ -19,5 +20,18 @@
 [node name="menu" type="Node" parent="."]
 
 [node name="weapon_info_hud" parent="." instance=ExtResource("6_efrey")]
+
+[node name="MessageCenter" type="MarginContainer" parent="."]
+custom_minimum_size = Vector2(400, 400)
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("6_swcht")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MessageCenter"]
+layout_mode = 2
 
 [editable path="interaction_helpers"]
