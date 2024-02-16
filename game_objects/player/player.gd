@@ -678,6 +678,8 @@ func _on_crouch_walking_state_physics_processing(delta):
 		state_chart.send_event("Stop")
 		return
 	else:
+		animation_tree["parameters/CrouchWalking/blend_position"] = input_direction
+		
 		move(direction * current_speed.get_modified_value(), delta)
 #endregion
 
