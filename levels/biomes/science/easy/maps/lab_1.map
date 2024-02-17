@@ -6,7 +6,7 @@
 "classname" "worldspawn"
 "_tb_textures" "textures/asphalt;textures/brick;textures/concrete;textures/fabric;textures/glass;textures/ground;textures/marble;textures/metal;textures/plants;textures/plaster;textures/plastic;textures/roof;textures/special;textures/tile;textures/wood"
 "_tb_mod" "levels"
-"_tb_def" "external:C:/TrenchBroom/2023.1/games/UESRL/uesrl_fgd_entities.fgd"
+"_tb_def" "external:levels/trenchbroom_game_definitions/UESRL/uesrl_fgd_entities.fgd"
 // brush 0
 {
 ( -116 -684 -120 ) ( -116 -683 -120 ) ( -116 -684 -119 ) wood/wood_16 [ 0 -1 0 0 ] [ 0 0 -1 0 ] 0 1 1
@@ -8872,13 +8872,26 @@
 }
 // entity 77
 {
+"classname" "area_extract"
+// brush 0
+{
+( 2160 -736 24 ) ( 2160 -496 -120 ) ( 2160 -496 24 ) __TB_empty [ 0 -1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( 2352 -736 24 ) ( 2160 -736 -120 ) ( 2160 -736 24 ) __TB_empty [ 1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( 2352 -496 -120 ) ( 2160 -736 -120 ) ( 2352 -736 -120 ) __TB_empty [ -1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( 2352 -496 24 ) ( 2160 -736 24 ) ( 2160 -496 24 ) __TB_empty [ 1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( 2352 -496 24 ) ( 2160 -496 -120 ) ( 2352 -496 -120 ) __TB_empty [ -1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( 2352 -496 24 ) ( 2352 -736 -120 ) ( 2352 -736 24 ) __TB_empty [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+}
+}
+// entity 78
+{
 "classname" "func_group"
 "_tb_type" "_tb_layer"
 "_tb_name" "upstairs_bathroom"
 "_tb_id" "1"
 "_tb_layer_sort_index" "0"
 }
-// entity 78
+// entity 79
 {
 "classname" "func_group"
 "_tb_type" "_tb_layer"
@@ -8886,7 +8899,7 @@
 "_tb_id" "2"
 "_tb_layer_sort_index" "1"
 }
-// entity 79
+// entity 80
 {
 "classname" "func_group"
 "_tb_type" "_tb_layer"
@@ -8894,7 +8907,7 @@
 "_tb_id" "20"
 "_tb_layer_sort_index" "2"
 }
-// entity 80
+// entity 81
 {
 "classname" "func_group"
 "_tb_type" "_tb_layer"

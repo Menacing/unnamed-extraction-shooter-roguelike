@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://c0kankrisctgh"]
 
 [ext_resource type="Script" path="res://ui/menu/credits/credits.gd" id="1_omrqp"]
-[ext_resource type="Texture2D" uid="uid://brv47wwsghq7w" path="res://ui/menu/credits/logo_large_monochrome_dark.png" id="2_pqc7l"]
-[ext_resource type="Texture2D" uid="uid://okcnwjev3npu" path="res://ui/menu/credits/blender_logo_no_socket_white.png" id="3_uy3j4"]
+[ext_resource type="Texture2D" uid="uid://dd1xkg6y54ix4" path="res://ui/menu/credits/logo_large_monochrome_dark.png" id="2_pqc7l"]
+[ext_resource type="Texture2D" uid="uid://bxueardvy2a4f" path="res://ui/menu/credits/blender_logo_no_socket_white.png" id="3_uy3j4"]
 
 [node name="Credits" type="ColorRect"]
 anchors_preset = 15
@@ -215,6 +215,14 @@ layout_mode = 2
 tooltip_text = "https://screamingbrainstudios.itch.io/tiny-texture-pack"
 mouse_filter = 1
 text = "tiny texture pack 1 - Screaming Brain Studios"
+horizontal_alignment = 1
+uppercase = true
+
+[node name="mixabo_label" type="Label" parent="MarginContainer/VBoxContainer2/ScrollContainer/VBoxContainer/assets_section"]
+layout_mode = 2
+tooltip_text = "https://screamingbrainstudios.itch.io/tiny-texture-pack"
+mouse_filter = 1
+text = "Animations and Rigging	- Mixamo.com"
 horizontal_alignment = 1
 uppercase = true
 

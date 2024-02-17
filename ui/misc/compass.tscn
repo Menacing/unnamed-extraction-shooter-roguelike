@@ -11,7 +11,7 @@ bg_color = Color(0, 0, 0, 1)
 [node name="Compass" type="MarginContainer"]
 anchors_preset = 10
 anchor_right = 1.0
-offset_bottom = 57.0
+offset_bottom = 101.0
 grow_horizontal = 2
 theme = ExtResource("1_nxxj1")
 
@@ -19,27 +19,35 @@ theme = ExtResource("1_nxxj1")
 layout_mode = 2
 alignment = 1
 
-[node name="Panel" type="Panel" parent="VBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="Panel" type="Panel" parent="VBoxContainer/MarginContainer"]
 clip_contents = true
-custom_minimum_size = Vector2(500, 25)
+custom_minimum_size = Vector2(500, 40)
 layout_mode = 2
 size_flags_horizontal = 4
 script = ExtResource("4_agrwu")
 
-[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer/Panel"]
+[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer/MarginContainer/Panel"]
 custom_minimum_size = Vector2(0, 25)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_bottom = 15.0
 grow_horizontal = 2
 grow_vertical = 2
-scroll_horizontal = 100
+scroll_horizontal = 500
 horizontal_scroll_mode = 3
 vertical_scroll_mode = 3
 
-[node name="CompassBackground" type="NinePatchRect" parent="VBoxContainer/Panel/ScrollContainer"]
-custom_minimum_size = Vector2(1500, 25)
+[node name="CompassBackground" type="NinePatchRect" parent="VBoxContainer/MarginContainer/Panel/ScrollContainer"]
+custom_minimum_size = Vector2(2000, 40)
 layout_mode = 2
 region_rect = Rect2(36, 68, 8, 8)
 patch_margin_left = 1
@@ -48,67 +56,111 @@ patch_margin_right = 1
 patch_margin_bottom = 1
 axis_stretch_horizontal = 1
 
-[node name="South2" type="Label" parent="VBoxContainer/Panel/ScrollContainer/CompassBackground"]
+[node name="South2" type="Label" parent="VBoxContainer/MarginContainer/Panel/ScrollContainer/CompassBackground"]
 material = ExtResource("4_3fdlo")
 layout_mode = 0
 offset_left = 242.0
-offset_top = 2.0
+offset_top = 9.0
 offset_right = 258.0
-offset_bottom = 23.0
+offset_bottom = 30.0
 theme_override_font_sizes/font_size = 16
 text = "S"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="West" type="Label" parent="VBoxContainer/Panel/ScrollContainer/CompassBackground"]
+[node name="West" type="Label" parent="VBoxContainer/MarginContainer/Panel/ScrollContainer/CompassBackground"]
 material = ExtResource("4_3fdlo")
 layout_mode = 0
 offset_left = 492.0
-offset_top = 2.0
+offset_top = 9.0
 offset_right = 508.0
-offset_bottom = 23.0
+offset_bottom = 30.0
 theme_override_font_sizes/font_size = 16
 text = "W"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="North" type="Label" parent="VBoxContainer/Panel/ScrollContainer/CompassBackground"]
+[node name="North" type="Label" parent="VBoxContainer/MarginContainer/Panel/ScrollContainer/CompassBackground"]
 material = ExtResource("4_3fdlo")
 layout_mode = 0
 offset_left = 742.0
-offset_top = 2.0
+offset_top = 9.0
 offset_right = 758.0
-offset_bottom = 23.0
+offset_bottom = 30.0
 theme_override_font_sizes/font_size = 16
 text = "N"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="East" type="Label" parent="VBoxContainer/Panel/ScrollContainer/CompassBackground"]
+[node name="East" type="Label" parent="VBoxContainer/MarginContainer/Panel/ScrollContainer/CompassBackground"]
 material = ExtResource("4_3fdlo")
 layout_mode = 0
 offset_left = 992.0
-offset_top = 2.0
+offset_top = 9.0
 offset_right = 1008.0
-offset_bottom = 23.0
+offset_bottom = 30.0
 theme_override_font_sizes/font_size = 16
 text = "E"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="South" type="Label" parent="VBoxContainer/Panel/ScrollContainer/CompassBackground"]
+[node name="South" type="Label" parent="VBoxContainer/MarginContainer/Panel/ScrollContainer/CompassBackground"]
 material = ExtResource("4_3fdlo")
 layout_mode = 0
 offset_left = 1242.0
-offset_top = 2.0
+offset_top = 9.0
 offset_right = 1258.0
-offset_bottom = 23.0
+offset_bottom = 30.0
 theme_override_font_sizes/font_size = 16
 text = "S"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="CompassLabel" type="Label" parent="VBoxContainer"]
+[node name="West2" type="Label" parent="VBoxContainer/MarginContainer/Panel/ScrollContainer/CompassBackground"]
+material = ExtResource("4_3fdlo")
+layout_mode = 0
+offset_left = 1492.0
+offset_top = 9.0
+offset_right = 1508.0
+offset_bottom = 30.0
+theme_override_font_sizes/font_size = 16
+text = "W"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="North2" type="Label" parent="VBoxContainer/MarginContainer/Panel/ScrollContainer/CompassBackground"]
+material = ExtResource("4_3fdlo")
+layout_mode = 0
+offset_left = 1742.0
+offset_top = 9.0
+offset_right = 1758.0
+offset_bottom = 30.0
+theme_override_font_sizes/font_size = 16
+text = "N"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="East2" type="Label" parent="VBoxContainer/MarginContainer/Panel/ScrollContainer/CompassBackground"]
+material = ExtResource("4_3fdlo")
+layout_mode = 0
+offset_left = 1992.0
+offset_top = 9.0
+offset_right = 2008.0
+offset_bottom = 30.0
+theme_override_font_sizes/font_size = 16
+text = "E"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="CompassLabel" type="Label" parent="VBoxContainer/MarginContainer2"]
 material = ExtResource("4_3fdlo")
 custom_minimum_size = Vector2(50, 0)
 layout_mode = 2

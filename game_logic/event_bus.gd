@@ -47,3 +47,6 @@ signal compass_player_pulse(player_position:Vector3, player_rotation:Vector3)
 
 #UI Events
 signal pause()
+signal create_message(message_name:String, message_text:String, message_timeout:int)
+signal update_message(message_name:String, message_text:String)
+signal remove_message(message_name)
