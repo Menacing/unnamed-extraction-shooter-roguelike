@@ -4281,7 +4281,7 @@ ammo_type = ExtResource("49_tomqv")
 reload_time_Sec = 2.5
 reload_thresholds = Array[float]([1.0])
 
-[node name="Lab1" type="WorldEnvironment"]
+[node name="Lab1" type="WorldEnvironment" groups=["level"]]
 environment = ExtResource("1_3scuf")
 camera_attributes = ExtResource("2_ecxrf")
 
@@ -8491,4 +8491,4 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.47141, 0.652274, -6.62589)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.47141, 0.652274, -6.48799)
 
 [node name="Player" parent="." instance=ExtResource("42_ygbs3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.43732, 1.36154, -3.65812)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.829404, 1.43061, -3.86364)

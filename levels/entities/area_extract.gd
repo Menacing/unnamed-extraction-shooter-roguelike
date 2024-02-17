@@ -45,5 +45,5 @@ func _on_body_exit(body:Node3D):
 
 func _on_extract_timer_timeout():
 	EventBus.remove_message.emit(str(get_instance_id()))		
-	
+	MenuManager.load_menu(MenuManager.MENU_LEVEL.EXTRACTED)
 	pass
