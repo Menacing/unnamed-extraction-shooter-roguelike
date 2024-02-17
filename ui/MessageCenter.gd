@@ -4,7 +4,7 @@ extends MarginContainer
 @onready var message_box:Control = $VBoxContainer
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	EventBus.create_message.connecct(_on_create_message)
+	EventBus.create_message.connect(_on_create_message)
 	EventBus.remove_message.connect(_on_remove_message)
 	EventBus.update_message.connect(_on_update_message)
 	pass # Replace with function body.
