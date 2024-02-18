@@ -12,7 +12,7 @@ collision_mask = 5
 mass = 6.0
 script = ExtResource("1_1vwom")
 backpack_size = 3
-item_information_path = "res://game_objects/items/backpacks/large/large_backpack_1_inventory_info.tres"
+item_type_id = "large_backpack_1"
 world_collider_path = NodePath("CollisionShape3D")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]

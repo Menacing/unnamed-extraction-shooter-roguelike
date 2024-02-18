@@ -10,7 +10,7 @@ size = Vector3(0.378402, 0.4538, 0.305015)
 collision_layer = 7
 collision_mask = 5
 script = ExtResource("1_er0ts")
-item_information_path = "res://game_objects/items/armor/light/light_armor_1_inventory_info.tres"
+item_type_id = "light_armor_1"
 world_collider_path = NodePath("CollisionShape3D")
 
 [node name="light_armor_1" parent="." instance=ExtResource("1_7lj6r")]

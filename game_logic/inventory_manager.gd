@@ -244,3 +244,6 @@ func set_inventory_size(inventory_id:int, size:Vector2i) -> void:
 	inventory._current_height = size.y
 	inventory._current_width = size.x
 	EventBus.inventory_size_changed.emit(inventory_id, size)
+
+func spawn_from_item3d(item3d:Item3D):
+	_item_access.spawn_from_item3d(item3d)

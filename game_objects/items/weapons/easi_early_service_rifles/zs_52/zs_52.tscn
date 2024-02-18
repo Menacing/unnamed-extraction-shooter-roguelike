@@ -38,7 +38,7 @@ collision_mask = 5
 script = ExtResource("1_xmoyr")
 _bullet_scene = ExtResource("2_5qbyx")
 _gun_stats = ExtResource("3_5vh7j")
-item_information_path = "res://game_objects/items/weapons/easi_early_service_rifles/zs_52/zs_52_inventory_info.tres"
+item_type_id = "pm-52"
 world_collider_path = NodePath("CollisionShape3D")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]

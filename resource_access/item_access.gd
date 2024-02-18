@@ -1,6 +1,45 @@
 extends Object
 class_name ItemAccess
 
+var _item_info_mapping:Dictionary = {}
+var _path = "res://game_objects/items/"
+
+func _init():
+	load_item_info_from_path(_item_info_mapping, _path)
+	if _item_info_mapping.size() == 0:
+		push_error("NO ITEM INFORMATION FOUND")
+
+	
+static func load_item_info_from_path(item_info_dictionary:Dictionary, path:String):
+	var dir = DirAccess.open(path)
+	if dir:
+		dir.list_dir_begin()
+		var file_name = dir.get_next()
+		while file_name != "":
+			if dir.current_is_dir():
+				load_item_info_from_path(item_info_dictionary, path + "/" + file_name)
+			else:
+				if file_name.ends_with(".tres"):
+					var res = load(path + "/" + file_name) 
+					if res is ItemInformation:
+						print("Adding ItemInfo: " + file_name)
+						if !res.item_type_id:
+							push_error(file_name + " does not have item_type_id set!")
+						if item_info_dictionary.has(res.item_type_id):
+							push_error("item_type_id collision on " + res.item_type_id + " in " + file_name)
+						else:
+							item_info_dictionary[res.item_type_id] = res
+			file_name = dir.get_next()
+	
+func spawn_from_item3d(item3d:Item3D):
+	if item3d:
+		var item_info:ItemInformation = _item_info_mapping[item3d.item_type_id]
+		if item_info == null:
+			push_error("No ItemInformation found for item_type_id %" % item3d.item_type_id)
+		var item_instance:ItemInstance = ItemInstance.new(item_info)
+		item3d.item_instance_id = item_instance.get_instance_id()
+		item_instance.id_3d = item3d.get_instance_id()
+		item_instance.spawn_item()
 
 static func get_item(item_id:int) -> ItemInstance:
 	var item:Object = instance_from_id(item_id)
