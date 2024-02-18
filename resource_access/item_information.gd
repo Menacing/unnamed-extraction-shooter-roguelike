@@ -19,3 +19,5 @@ class_name ItemInformation
 @export var column_span:int = 1
 @export var row_span:int = 1
 @export_multiline var tooltip_text:String
+@export_multiline var flavor_text:String
+

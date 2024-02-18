@@ -1,5 +1,5 @@
 extends Gun
-class_name EasiEarlyServiceRifle
+class_name HICRifle
 @warning_ignore("unsafe_method_access")
 @onready var gun_mat: BaseMaterial3D = $gun/Node_15/gun/barrel/Cube.get_active_material(0)
 
