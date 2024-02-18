@@ -44,7 +44,7 @@
 [ext_resource type="Script" path="res://levels/entities/area_enemy_spawn.gd" id="41_ya8c8"]
 [ext_resource type="Script" path="res://levels/entities/area_loot_spawn.gd" id="42_swg40"]
 [ext_resource type="PackedScene" uid="uid://d08aatgxmymbf" path="res://game_objects/player/player.tscn" id="42_ygbs3"]
-[ext_resource type="PackedScene" uid="uid://dr48wela8mtxd" path="res://game_objects/items/weapons/easi_early_service_rifles/zs_52/zs_52.tscn" id="43_me08l"]
+[ext_resource type="PackedScene" uid="uid://dr48wela8mtxd" path="res://game_objects/items/weapons/hic_rifles/pm_52/pm_52.tscn" id="43_me08l"]
 [ext_resource type="Script" path="res://levels/entities/door_hinge.gd" id="44_h17jd"]
 [ext_resource type="Script" path="res://levels/entities/geo_ballistic_door.gd" id="45_eat3n"]
 [ext_resource type="Script" path="res://addons/qodot/game_definitions/fgd/point_classes/light.gd" id="45_i10a3"]
@@ -7994,8 +7994,6 @@ properties = {
 "min_spawned": 4,
 "tier": 0
 }
-biome_index = 0
-tier_index = 0
 min_spawned = 4
 max_spawned = 6
 

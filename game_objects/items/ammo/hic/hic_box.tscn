@@ -10,7 +10,7 @@ size = Vector3(0.120941, 0.119818, 0.0797119)
 collision_layer = 5
 collision_mask = 5
 script = ExtResource("1_agi1f")
-item_information_path = "res://game_objects/items/ammo/hic/hic_box_fmj_inventory_info.tres"
+item_type_id = "hic_box"
 world_collider_path = NodePath("CollisionShape3D")
 
 [node name="hic_box2" parent="." instance=ExtResource("2_dqvwv")]

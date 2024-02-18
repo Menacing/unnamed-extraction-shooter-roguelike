@@ -1,11 +1,9 @@
 extends Resource
 class_name ItemInformation
 
-
-
 @export var item_control_scene:PackedScene
 @export var item_3d_scene:PackedScene
-@export var item_type_id:int
+@export var item_type_id:String
 @export var show_name:bool = false
 @export var display_name:String
 @export var item_type:GameplayEnums.ItemType
@@ -21,3 +19,5 @@ class_name ItemInformation
 @export var column_span:int = 1
 @export var row_span:int = 1
 @export_multiline var tooltip_text:String
+@export_multiline var flavor_text:String
+

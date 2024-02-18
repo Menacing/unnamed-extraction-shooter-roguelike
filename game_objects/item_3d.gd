@@ -7,16 +7,9 @@ func get_item_instance() -> ItemInstance:
 		spawn_item()
 	return InventoryManager.get_item(item_instance_id)
 			
-@export var item_information_path:String
-func get_item_information() -> ItemInformation:
-	if item_information_path:
-		var item_info:ItemInformation = load(item_information_path)
-		return item_info
-	else:
-		return null
-		
 var internal_inventory_id:int
-
+## string id of the item. Must match the id in the corresponding ItemInformation resources
+@export var item_type_id:String
 @export var world_collider_path:NodePath
 var _world_collider:CollisionShape3D
 var world_collider:CollisionShape3D:
@@ -28,7 +21,6 @@ var world_collider:CollisionShape3D:
 			return _world_collider
 @onready var item_highlight_m:ShaderMaterial = load("res://themes/item_highlighter_m.tres")
 @export var start_highlighted:bool = true
-@export_multiline var tooltip_text:String = "This is a placeholder"
 
 func _ready() -> void:
 	assert(world_collider_path != null)
@@ -74,12 +66,9 @@ func set_stacks(amount:int) -> void:
 	get_item_instance().stacks = amount
 	
 func spawn_item() -> void:
-	var item_info:ItemInformation = get_item_information()
-	if item_info:
-		var item_instance := ItemInstance.new(item_info)
-		item_instance_id = item_instance.get_instance_id()
-		item_instance.id_3d = self.get_instance_id()
-		item_instance.spawn_item()
+	pass
+	#TODO Move this to ItemAccess
+	InventoryManager.spawn_from_item3d(self)
 
 func _on_item_picked_up(result:InventoryInsertResult) -> void:
 	if result.inventory_id == internal_inventory_id:

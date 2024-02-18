@@ -48,7 +48,7 @@ func get_height() -> int:
 	else:
 		return _item_info.column_span
 	
-func get_item_type_id() -> int:
+func get_item_type_id() -> String:
 	return _item_info.item_type_id
 
 func get_max_allowed_stacks() -> int:
@@ -75,7 +75,7 @@ func get_context_menu_items() -> Array[ItemContextItem]:
 func get_item_tooltip_text() -> String:
 	return _item_info.tooltip_text
 
-#after you call this you must add the instanced scenes to the scene tree
+## after you call this you must add the instanced scenes to the scene tree
 func spawn_item() -> void:
 	if _item_info.has_stacks:
 		var stack:int = randi_range(1, _item_info.max_stacks)
