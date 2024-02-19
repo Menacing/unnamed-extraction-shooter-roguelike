@@ -165,6 +165,7 @@ func shapecast_step_move(cb3d:CharacterBody3D, delta:float, step_slice_height:fl
 	#If not collision just move and slide
 	if !default_motion_collides:
 		cb3d.move_and_slide()
+		return
 	#else begin step loop
 	var has_headroom:bool = true
 	if step_slice_height <= 0 or max_step_height <= 0:
@@ -184,6 +185,7 @@ func shapecast_step_move(cb3d:CharacterBody3D, delta:float, step_slice_height:fl
 		var direction_test_motion_params := PhysicsTestMotionParameters3D.new()
 		direction_test_motion_params.from = cb3d.global_transform
 		direction_test_motion_params.motion = desired_dir
+		direction_test_motion_params.max_collisions = 10
 		#if we hit something, only move as far as allowed and move in direction from there
 		if headroom_collides:
 			has_headroom = false
@@ -196,7 +198,7 @@ func shapecast_step_move(cb3d:CharacterBody3D, delta:float, step_slice_height:fl
 		#shapecast in direction
 		var direction_motion_collides = PhysicsServer3D.body_test_motion(cb3d.get_rid(), direction_test_motion_params, direction_test_motion_result)
 		
-		#if no collision
+		#if no collision move
 		if !direction_motion_collides:
 			#move to target pos
 			#first move up
@@ -207,7 +209,51 @@ func shapecast_step_move(cb3d:CharacterBody3D, delta:float, step_slice_height:fl
 				#then move in direction
 				#does just moving and sliding now just work since we moved them up?
 				cb3d.move_and_slide()
+				return
 		else:
+			#Just increment this before doing the rest of the tests because we're just going to break if we find a solution at this height
 			test_height += step_slice_height
-			#do next step
+			#Do slide move, then test down for a different floor or we'll climb walls
+			var direction_movement_normal = direction_test_motion_result.get_collision_normal()
+			var direction_movement_remainder = direction_test_motion_result.get_remainder()
+			var direction_movement_location = direction_test_motion_result.get_collision_point()
+			var direction_movement_travel = direction_test_motion_result.get_travel()
+			var direction_slide_test_motion_result := PhysicsTestMotionResult3D.new()
+			var direction_slide_test_motion_params := PhysicsTestMotionParameters3D.new()
+			direction_slide_test_motion_params.from = direction_test_motion_params.from
+			direction_slide_test_motion_params.from.origin += direction_movement_travel
+			var slide_movement = direction_movement_remainder.slide(direction_movement_normal)
+			direction_slide_test_motion_params.motion = slide_movement
+			
+			var direction_slide_collides = PhysicsServer3D.body_test_motion(cb3d.get_rid(), direction_slide_test_motion_params, direction_slide_test_motion_result)
+			
+			#if we hit something while sliding, we can't move at this height
+			#else check down for a different height from where we started
+			if !direction_slide_collides:
+				var direction_slide_down_test_motion_result := PhysicsTestMotionResult3D.new()
+				var direction_slide_down_test_motion_params := PhysicsTestMotionParameters3D.new()
+				direction_slide_down_test_motion_params.from = direction_slide_test_motion_params.from
+				direction_slide_down_test_motion_params.from.origin += direction_slide_test_motion_params.motion
+				var vert_back_to_start_height:float = cb3d.global_transform.origin.y-direction_slide_down_test_motion_params.from.origin.y
+				direction_slide_down_test_motion_params.motion = Vector3(0.0,vert_back_to_start_height,0.0)
+				
+				var direction_slide_down_collides = PhysicsServer3D.body_test_motion(cb3d.get_rid(), direction_slide_down_test_motion_params, direction_slide_down_test_motion_result)
+				
+				#if down collides at a different height than where we started, do this move
+				if direction_slide_down_collides:
+					var down_collision_height = direction_slide_down_test_motion_result.get_collision_point().y
+					var starting_height = cb3d.global_transform.origin.y
+					if !is_equal_approx(down_collision_height, starting_height):
+						#first move up
+						var v_col = cb3d.move_and_collide(actual_vertical_travel)
+						if v_col:
+							push_error("something happened, we shouldn't be hitting something after testing")
+						else:
+							#then move in direction
+							#does just moving and sliding now just work since we moved them up?
+							cb3d.move_and_slide()
+							return
+				#else do nothign so we don't climb walls
+	#if we never find a step, just move and slide so we don't stick to walls
+	cb3d.move_and_slide()
 	pass
