@@ -482,11 +482,13 @@ func should_prone() -> bool:
 func move(move_velocity:Vector3, delta:float):
 	if not is_on_floor():
 		velocity.y -= gravity * delta
+		move_and_slide()
 	else:
 		velocity.x = move_toward(velocity.x, move_velocity.x, accel)
 		velocity.z = move_toward(velocity.z, move_velocity.z, accel)
+		Helpers.shapecast_step_move(self, delta, 0.1, 0.45)
 
-	move_and_slide()
+	
 
 #region Standing
 func _on_standing_state_entered():

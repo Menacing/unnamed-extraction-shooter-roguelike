@@ -151,3 +151,63 @@ func set_material_overlay(meshes:Array[MeshInstance3D],mat:Material) -> void:
 func apply_material_overlay_to_children(target:Node, mat:Material) -> void:
 	var meshes:Array[MeshInstance3D] = Helpers.get_all_mesh_nodes(target)
 	set_material_overlay(meshes,mat)
+
+func shapecast_step_move(cb3d:CharacterBody3D, delta:float, step_slice_height:float, max_step_height:float):
+	#Shapecast in direction
+	var desired_dir:Vector3 = cb3d.velocity * delta
+	if is_zero_approx(desired_dir.length()):
+		return
+	var default_direction_test_motion_result := PhysicsTestMotionResult3D.new()
+	var default_direction_test_motion_params := PhysicsTestMotionParameters3D.new()
+	default_direction_test_motion_params.from = cb3d.global_transform
+	default_direction_test_motion_params.motion = desired_dir
+	var default_motion_collides = PhysicsServer3D.body_test_motion(cb3d.get_rid(), default_direction_test_motion_params, default_direction_test_motion_result)
+	#If not collision just move and slide
+	if !default_motion_collides:
+		cb3d.move_and_slide()
+	#else begin step loop
+	var has_headroom:bool = true
+	if step_slice_height <= 0 or max_step_height <= 0:
+		push_error("step slice height and max step height must be positive")
+		return
+	var test_height = step_slice_height
+	#while shapecast up doesn't collide and we haven't gone past the step limit
+	while(has_headroom and test_height < max_step_height):
+		var headroom_test_motion_result := PhysicsTestMotionResult3D.new()
+		var headroom_test_motion_params := PhysicsTestMotionParameters3D.new()
+		headroom_test_motion_params.from = cb3d.global_transform
+		headroom_test_motion_params.motion =  Vector3(0,test_height,0)
+		#shapecast up
+		var headroom_collides = PhysicsServer3D.body_test_motion(cb3d.get_rid(), headroom_test_motion_params, headroom_test_motion_result)
+		var actual_vertical_travel:Vector3
+		var direction_test_motion_result := PhysicsTestMotionResult3D.new()
+		var direction_test_motion_params := PhysicsTestMotionParameters3D.new()
+		direction_test_motion_params.from = cb3d.global_transform
+		direction_test_motion_params.motion = desired_dir
+		#if we hit something, only move as far as allowed and move in direction from there
+		if headroom_collides:
+			has_headroom = false
+			actual_vertical_travel = direction_test_motion_result.get_travel()
+		else:
+			actual_vertical_travel = headroom_test_motion_params.motion
+			
+		direction_test_motion_params.from.origin += actual_vertical_travel
+		
+		#shapecast in direction
+		var direction_motion_collides = PhysicsServer3D.body_test_motion(cb3d.get_rid(), direction_test_motion_params, direction_test_motion_result)
+		
+		#if no collision
+		if !direction_motion_collides:
+			#move to target pos
+			#first move up
+			var v_col = cb3d.move_and_collide(actual_vertical_travel)
+			if v_col:
+				push_error("something happened, we shouldn't be hitting something after testing")
+			else:
+				#then move in direction
+				#does just moving and sliding now just work since we moved them up?
+				cb3d.move_and_slide()
+		else:
+			test_height += step_slice_height
+			#do next step
+	pass
