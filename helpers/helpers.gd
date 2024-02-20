@@ -202,15 +202,8 @@ func shapecast_step_move(cb3d:CharacterBody3D, delta:float, step_slice_height:fl
 		if !direction_motion_collides:
 			#move to target pos
 			#first move up
-			var v_col = cb3d.move_and_collide(actual_vertical_travel)
-			if v_col:
-				push_error("something happened, we shouldn't be hitting something after testing")
-			else:
-				#then move in direction
-				#does just moving and sliding now just work since we moved them up?
-				print("step up")
-				cb3d.move_and_slide()
-				return
+			scaled_move_and_slide_vertically(cb3d, actual_vertical_travel.y,delta)
+			return
 		else:
 			#Just increment this before doing the rest of the tests because we're just going to break if we find a solution at this height
 			test_height += step_slice_height
@@ -250,17 +243,27 @@ func shapecast_step_move(cb3d:CharacterBody3D, delta:float, step_slice_height:fl
 					var max_slope = cb3d.floor_max_angle
 					
 					if !is_equal_approx(direction_slide_down_travel.y, -actual_vertical_travel.y) and normal_to_up < max_slope:
-						#first move up
-						var v_col = cb3d.move_and_collide(actual_vertical_travel)
-						if v_col:
-							push_error("something happened, we shouldn't be hitting something after testing")
-						else:
-							#then move in direction
-							#does just moving and sliding now just work since we moved them up?
-							print("slide and step up")
-							cb3d.move_and_slide()
-							return
+						scaled_move_and_slide_vertically(cb3d, actual_vertical_travel.y,delta)
+						return
 				#else do nothign so we don't climb walls
 	#if we never find a step, just move and slide so we don't stick to walls
 	cb3d.move_and_slide()
 	pass
+
+func scaled_move_and_slide_vertically(cb3d:CharacterBody3D, vertical_travel:float, delta:float):
+	var character_velocity:Vector3 = cb3d.velocity
+	var vert_velocity:float = vertical_travel / delta
+
+	var desired_magnitude = character_velocity.length() - abs(vert_velocity)
+	var actual_vertical_travel:Vector3 = Vector3(0,vertical_travel,0)
+	var v_col = cb3d.move_and_collide(actual_vertical_travel)
+	if v_col:
+		push_error("something happened, we shouldn't be hitting something after testing")
+	else:
+		#then move in direction
+		#does just moving and sliding now just work since we moved them up?
+		if desired_magnitude > 0:
+			var character_velocity_direction = character_velocity.normalized()
+			var scaled_velocity = character_velocity_direction * desired_magnitude
+			cb3d.velocity = scaled_velocity
+			cb3d.move_and_slide()
