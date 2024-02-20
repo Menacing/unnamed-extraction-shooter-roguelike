@@ -497,7 +497,7 @@ func _on_standing_state_entered():
 	current_bob_amount_max_degrees_y.base_value = STANDING_BOB_ROTATION_Y
 	current_bob_amount_x.base_value = STANDING_BOB_TRANSLATION_X
 	current_bob_amount_y.base_value = STANDING_BOB_TRANSLATION_Y
-	world_collider.get_shape().set_height(STANDING_HEIGHT)
+	#world_collider.get_shape().set_height(STANDING_HEIGHT)
 	
 	recoil_factor.add_modifier(StatModifier.new("standing", StatModifier.Operation.MUL, -0.1))
 	

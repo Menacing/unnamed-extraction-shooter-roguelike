@@ -208,6 +208,7 @@ func shapecast_step_move(cb3d:CharacterBody3D, delta:float, step_slice_height:fl
 			else:
 				#then move in direction
 				#does just moving and sliding now just work since we moved them up?
+				print("step up")
 				cb3d.move_and_slide()
 				return
 		else:
@@ -234,16 +235,21 @@ func shapecast_step_move(cb3d:CharacterBody3D, delta:float, step_slice_height:fl
 				var direction_slide_down_test_motion_params := PhysicsTestMotionParameters3D.new()
 				direction_slide_down_test_motion_params.from = direction_slide_test_motion_params.from
 				direction_slide_down_test_motion_params.from.origin += direction_slide_test_motion_params.motion
-				var vert_back_to_start_height:float = cb3d.global_transform.origin.y-direction_slide_down_test_motion_params.from.origin.y
-				direction_slide_down_test_motion_params.motion = Vector3(0.0,vert_back_to_start_height,0.0)
+				direction_slide_down_test_motion_params.motion = -actual_vertical_travel
+				direction_slide_down_test_motion_params.margin = 0.0
 				
 				var direction_slide_down_collides = PhysicsServer3D.body_test_motion(cb3d.get_rid(), direction_slide_down_test_motion_params, direction_slide_down_test_motion_result)
 				
 				#if down collides at a different height than where we started, do this move
 				if direction_slide_down_collides:
-					var down_collision_height = direction_slide_down_test_motion_result.get_collision_point().y
-					var starting_height = cb3d.global_transform.origin.y
-					if !is_equal_approx(down_collision_height, starting_height):
+					var direction_slide_down_normal = direction_slide_down_test_motion_result.get_collision_normal()
+					var direction_slide_down_remainder = direction_slide_down_test_motion_result.get_remainder()
+					var direction_slide_down_location = direction_slide_down_test_motion_result.get_collision_point()
+					var direction_slide_down_travel = direction_slide_down_test_motion_result.get_travel()
+					var normal_to_up = direction_slide_down_normal.angle_to(Vector3.UP)
+					var max_slope = cb3d.floor_max_angle
+					
+					if !is_equal_approx(direction_slide_down_travel.y, -actual_vertical_travel.y) and normal_to_up < max_slope:
 						#first move up
 						var v_col = cb3d.move_and_collide(actual_vertical_travel)
 						if v_col:
@@ -251,6 +257,7 @@ func shapecast_step_move(cb3d:CharacterBody3D, delta:float, step_slice_height:fl
 						else:
 							#then move in direction
 							#does just moving and sliding now just work since we moved them up?
+							print("slide and step up")
 							cb3d.move_and_slide()
 							return
 				#else do nothign so we don't climb walls
