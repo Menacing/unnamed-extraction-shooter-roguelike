@@ -25,6 +25,8 @@ var gun_slot_2:Gun
 @onready var head = $Waist/Chest/head_anchor/Head as Node3D
 @onready var head_anchor = $Waist/Chest/head_anchor as Node3D
 @onready var use_ray = $Waist/Chest/head_anchor/Head/Camera3d/UsePointer
+@onready var step_check:ShapeCast3D = $ShapeCast3D
+
 var pov_rotation_node:Node3D
 
 @onready var shoulder_anchor:Node3D = $HitBox/ChestBoneAttachment/shoulder_anchor
@@ -479,14 +481,40 @@ func should_prone() -> bool:
 		toggle_prone_f = !toggle_prone_f
 	return toggle_prone_f
 
-func move(move_velocity:Vector3, delta:float):
+func move(move_global_velocity:Vector3, delta:float, going_forward:bool):
 	if not is_on_floor():
 		velocity.y -= gravity * delta
-		move_and_slide()
 	else:
-		velocity.x = move_toward(velocity.x, move_velocity.x, accel)
-		velocity.z = move_toward(velocity.z, move_velocity.z, accel)
-		Helpers.shapecast_step_move(self, delta, 0.1, 0.45, 0.15)
+		velocity.x = move_toward(velocity.x, move_global_velocity.x, accel)
+		velocity.z = move_toward(velocity.z, move_global_velocity.z, accel)
+
+	move_and_slide()
+	
+	##If touching a wall, going forward, and step check is clear, translate velocity to up
+	#var touching_wall = is_on_wall()
+	#var step_clear = !step_check.is_colliding()
+	#var vx = move_toward(velocity.x, move_global_velocity.x, accel)
+	#var vz = move_toward(velocity.z, move_global_velocity.z, accel)
+	#var target_vector = Vector3(vx, 0.0, vz)
+	#if touching_wall and going_forward and step_clear:
+		#var target_speed = target_vector.length()
+		#var target_normal = target_vector.normalized()
+		#var adjusted_velocity = Vector3(target_vector.x, target_speed, target_vector.z)
+		#velocity = adjusted_velocity
+		#floor_block_on_wall = false
+		#move_and_slide()
+		#pass
+	##else if not on the floor fall
+	#elif not is_on_floor():
+		#velocity.y -= gravity * delta
+		#move_and_slide()
+	##else move towards move velocity
+	#else:
+		#velocity.x = vx
+		#velocity.z = vz
+		#floor_block_on_wall = true
+		#move_and_slide()
+		##Helpers.shapecast_step_move(self, delta, 0.1, 0.45, 0.15)
 
 	
 
@@ -524,12 +552,12 @@ func _on_standing_state_physics_processing(delta):
 		state_chart.send_event("Walk")
 		return
 	else:
-		move(direction, delta)
+		move(direction, delta, input_direction.y < 0)
 
 func _on_standing_transitions_physics_processing(delta):
 	var input_direction = Input.get_vector("moveLeft", "moveRight", "moveUp", "moveDown")
 	var direction:Vector3 = (transform.basis * Vector3(input_direction.x, 0, input_direction.y)).normalized()
-	move(direction, delta)
+	move(direction, delta, input_direction.y < 0)
 #endregion
 
 #region Walking
@@ -570,7 +598,7 @@ func _on_walking_state_physics_processing(delta):
 	else:
 		animation_tree["parameters/Walking/blend_position"] = input_direction
 		
-		move(direction * current_speed.get_modified_value(), delta)
+		move(direction * current_speed.get_modified_value(), delta, input_direction.y < 0)
 #endregion
 
 #region Sprinting
@@ -613,7 +641,7 @@ func _on_sprinting_state_physics_processing(delta):
 		return
 	else:
 		animation_tree["parameters/Sprinting/blend_position"] = input_direction
-		move(direction * current_speed.get_modified_value(), delta)
+		move(direction * current_speed.get_modified_value(), delta, input_direction.y < 0)
 #endregion
 	
 #region Crouching
@@ -660,7 +688,7 @@ func _on_crouching_state_physics_processing(delta):
 		state_chart.send_event("CrouchWalk")
 		return
 	else:
-		move(direction, delta)
+		move(direction, delta, input_direction.y < 0)
 		
 func _on_crouch_walking_state_physics_processing(delta):
 	if !should_crouch():
@@ -682,7 +710,7 @@ func _on_crouch_walking_state_physics_processing(delta):
 	else:
 		animation_tree["parameters/CrouchWalking/blend_position"] = input_direction
 		
-		move(direction * current_speed.get_modified_value(), delta)
+		move(direction * current_speed.get_modified_value(), delta, input_direction.y < 0)
 #endregion
 
 #region Prone
@@ -713,7 +741,7 @@ func _on_prone_state_physics_processing(delta):
 		state_chart.send_event("Crawl")
 		return
 	else:
-		move(direction, delta)
+		move(direction, delta, input_direction.y < 0)
 		
 func _on_prone_transitions_entered():
 	state_chart.send_event("ArmsBusy")
@@ -758,7 +786,7 @@ func _on_crawling_state_physics_processing(delta):
 		
 		animation_tree["parameters/Crawling/blend_position"] = input_direction
 		
-		move(direction * current_speed.get_modified_value(), delta)
+		move(direction * current_speed.get_modified_value(), delta, input_direction.y < 0)
 #endregion
 	
 #region Jumping
