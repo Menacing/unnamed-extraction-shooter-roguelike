@@ -486,7 +486,7 @@ func move(move_velocity:Vector3, delta:float):
 	else:
 		velocity.x = move_toward(velocity.x, move_velocity.x, accel)
 		velocity.z = move_toward(velocity.z, move_velocity.z, accel)
-		Helpers.shapecast_step_move(self, delta, 0.1, 0.45)
+		Helpers.shapecast_step_move(self, delta, 0.1, 0.45, 0.15)
 
 	
 
