@@ -285,3 +285,147 @@ func scaled_move_and_slide_vertically(cb3d:CharacterBody3D, vertical_distance:Ve
 			#then move in direction
 			#does just moving and sliding now just work since we moved them up?
 			cb3d.move_and_slide()
+
+
+## Returns true if multi frame step, otherwise returns false
+## max step height and min horizontal travel must be positive
+func move_slide_and_step(cb3d:CharacterBody3D, delta:float, max_step_height:float, min_horizontal_travel:float, currently_stepping:bool) -> bool:
+	var cb3d_global_position = cb3d.global_position
+	var original_velocity:Vector3 = cb3d.velocity
+	
+	if max_step_height < 0 or min_horizontal_travel < 0:
+		push_error("max step height or min horizontal travel is negative!")
+		return false
+		
+	#if not on ground and not stepping
+	if !cb3d.is_on_floor() and !currently_stepping:
+		#fall
+		cb3d.move_and_slide()
+		return false
+	elif is_zero_approx(cb3d.velocity.length()):
+		cb3d.move_and_slide()
+		return false
+	else:
+		var up_motion:Vector3
+		var horizontal_motion:Vector3
+		var down_motion:Vector3
+		
+		#Test Up Step Height
+		var headroom_test_motion_result := PhysicsTestMotionResult3D.new()
+		var headroom_test_motion_params := PhysicsTestMotionParameters3D.new()
+		headroom_test_motion_params.from = cb3d.global_transform
+		headroom_test_motion_params.motion = Vector3(0,max_step_height,0)
+		var headroom_test_collides = PhysicsServer3D.body_test_motion(cb3d,headroom_test_motion_params, headroom_test_motion_result)
+		var vertical_travel:float
+		
+		#Set vertical_travel to result travel
+		if headroom_test_collides:
+			vertical_travel = headroom_test_motion_result.get_travel().length()
+		else:
+			vertical_travel = max_step_height
+		up_motion = Vector3(0,vertical_travel,0)
+		
+		#From result Test in velocity direction with minimum step as margin
+		var starting_vertical_position:Vector3 = cb3d_global_position + up_motion
+		var direction_test_motion_result := PhysicsTestMotionResult3D.new()
+		var direction_test_motion_params := PhysicsTestMotionParameters3D.new()
+		direction_test_motion_params.from = cb3d.global_transform
+		direction_test_motion_params.from.origin += up_motion
+		direction_test_motion_params.motion = cb3d.velocity * delta
+		direction_test_motion_params.motion.y = 0
+		direction_test_motion_params.margin = min_horizontal_travel
+		var direction_test_collides = PhysicsServer3D.body_test_motion(cb3d, direction_test_motion_params, direction_test_motion_result)
+		
+		var direction_test_motion_no_margin_result := PhysicsTestMotionResult3D.new()
+		direction_test_motion_params.margin = 0.0001
+		var direction_test_collides_no_margin = PhysicsServer3D.body_test_motion(cb3d, direction_test_motion_params, direction_test_motion_no_margin_result)
+		
+		
+		var final_vertical_position:Vector3
+		#If we hit something, do a slide
+		if direction_test_collides:
+			var direction_slide_test_motion_result := PhysicsTestMotionResult3D.new()
+			var direction_slide_test_motion_params := PhysicsTestMotionParameters3D.new()
+			direction_slide_test_motion_params.from = direction_test_motion_params.from
+			direction_slide_test_motion_params.from.origin += direction_test_motion_result.get_travel()
+			var slide_movement = direction_test_motion_result.get_remainder().slide(direction_test_motion_result.get_collision_normal())
+			direction_slide_test_motion_params.motion = slide_movement
+			direction_slide_test_motion_params.motion.y = 0
+			
+			
+			var direction_slide_collides = PhysicsServer3D.body_test_motion(cb3d.get_rid(), direction_slide_test_motion_params, direction_slide_test_motion_result)
+			if direction_slide_collides:
+				final_vertical_position = direction_test_motion_params.from.origin + direction_test_motion_result.get_travel() + direction_slide_test_motion_result.get_travel()
+			else:
+				final_vertical_position = direction_test_motion_params.from.origin + direction_test_motion_result.get_travel() + slide_movement
+		else:
+			final_vertical_position = direction_test_motion_params.from.origin + direction_test_motion_params.motion
+		
+		horizontal_motion = final_vertical_position - starting_vertical_position
+		
+		#From result position, cast down
+		var down_test_motion_result := PhysicsTestMotionResult3D.new()
+		var down_test_motion_params := PhysicsTestMotionParameters3D.new()
+		down_test_motion_params.from = cb3d.global_transform
+		down_test_motion_params.from.origin = final_vertical_position
+		down_test_motion_params.motion = Vector3(0,-vertical_travel,0)
+		var down_test_collides = PhysicsServer3D.body_test_motion(cb3d, down_test_motion_params, down_test_motion_result)
+		
+		var final_target_position:Vector3
+		if down_test_collides:
+			final_target_position = down_test_motion_params.from.origin + down_test_motion_result.get_travel()
+		else:
+			final_target_position = down_test_motion_params.from.origin + down_test_motion_params.motion
+		
+		down_motion = final_target_position - down_test_motion_params.from.origin
+		
+		#if vertical difference > what we can cover in one frame, we’re in a multi frame step
+		var vertical_difference = final_target_position.y - cb3d.global_transform.origin.y
+		var max_travel = cb3d.velocity.length() * delta
+		var original_max_slides = cb3d.max_slides
+		cb3d.max_slides = 1
+		
+		if abs(vertical_difference) > max_travel:
+			#We can't just set the position FOR SOME REASON
+			#So move and slide
+			cb3d.velocity = Vector3(0,sign(vertical_difference) * cb3d.velocity.length(),0)
+			#cb3d.velocity = Vector3.ZERO
+			var vert_move_and_slide_collides = cb3d.move_and_slide()
+			if vert_move_and_slide_collides:
+				push_error("something happened, we shouldn't be hitting something after testing")
+				
+			cb3d.velocity = original_velocity
+			cb3d.max_slides = original_max_slides
+			#stepping = true
+			return true
+			pass
+		else:
+			#move up
+			var up_velocity = up_motion/delta
+			cb3d.velocity = up_velocity
+			var up_move_and_slide_result = cb3d.move_and_slide()
+			if up_move_and_slide_result:
+				push_error("something happened, we shouldn't be hitting something after testing")
+			#move over
+			var horizontal_velocity = horizontal_motion/delta
+			cb3d.velocity = horizontal_velocity
+			var horizontal_move_and_slide_result = cb3d.move_and_slide()
+			if horizontal_move_and_slide_result:
+				push_error("something happened, we shouldn't be hitting something after testing")
+			#move down
+			var down_velocity = down_motion/delta
+			cb3d.velocity = down_velocity
+			var down_move_and_slide_result = cb3d.move_and_slide()
+			if down_move_and_slide_result:
+				push_error("something happened, we shouldn't be hitting something after testing")
+				
+
+			cb3d.velocity = original_velocity
+			cb3d.max_slides = original_max_slides
+			#stepping = false
+			
+			return false
+			pass
+	return false
+	pass
+

@@ -481,14 +481,18 @@ func should_prone() -> bool:
 		toggle_prone_f = !toggle_prone_f
 	return toggle_prone_f
 
+
+var MAX_STEP_HEIGHT:float = 0.45
+var MIN_STEP_WIDTH:float = 0.15
+var currently_stepping:bool = false
 func move(move_global_velocity:Vector3, delta:float, going_forward:bool):
-	if not is_on_floor():
+	if not is_on_floor() and !currently_stepping:
 		velocity.y -= gravity * delta
 	else:
 		velocity.x = move_toward(velocity.x, move_global_velocity.x, accel)
 		velocity.z = move_toward(velocity.z, move_global_velocity.z, accel)
 
-	move_and_slide()
+	currently_stepping = Helpers.move_slide_and_step(self, delta, MAX_STEP_HEIGHT, MIN_STEP_WIDTH, currently_stepping)
 	
 	##If touching a wall, going forward, and step check is clear, translate velocity to up
 	#var touching_wall = is_on_wall()
