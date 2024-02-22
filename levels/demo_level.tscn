@@ -50,70 +50,6 @@ collision_layer = 3
 collision_mask = 3
 size = Vector3(176.204, 0.998, 185.17)
 
-[node name="CsgPolygon3d" type="CSGPolygon3D" parent="NavigationRegion3D"]
-transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -9.06623, 0.0922719, 0.0135)
-use_collision = true
-polygon = PackedVector2Array(0, 0, 0, 1, 0, 1, 1, 0)
-material = SubResource("StandardMaterial3D_2gtf0")
-
-[node name="CsgPolygon3d6" type="CSGPolygon3D" parent="NavigationRegion3D"]
-transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -9.06623, 0.0922719, 3.10218)
-use_collision = true
-polygon = PackedVector2Array(0, 0, 0, 1.2, 1, 0)
-material = SubResource("StandardMaterial3D_2gtf0")
-
-[node name="CsgPolygon3d7" type="CSGPolygon3D" parent="NavigationRegion3D"]
-transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -9.06623, 0.0922719, 6.19085)
-use_collision = true
-polygon = PackedVector2Array(0, 0, 0, 1.4, 1, 0)
-material = SubResource("StandardMaterial3D_2gtf0")
-
-[node name="CsgPolygon3d8" type="CSGPolygon3D" parent="NavigationRegion3D"]
-transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -9.06623, 0.0922719, 9.29459)
-use_collision = true
-polygon = PackedVector2Array(0, 0, 0, 1.6, 1, 0)
-material = SubResource("StandardMaterial3D_2gtf0")
-
-[node name="CsgPolygon3d9" type="CSGPolygon3D" parent="NavigationRegion3D"]
-transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -9.06623, 0.0922719, 12.3479)
-use_collision = true
-polygon = PackedVector2Array(0, 0, 0, 1.8, 1, 0)
-material = SubResource("StandardMaterial3D_2gtf0")
-
-[node name="CsgPolygon3d2" type="CSGPolygon3D" parent="NavigationRegion3D"]
-transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -9.06623, 0.0922719, -3.05178)
-use_collision = true
-polygon = PackedVector2Array(0, 0, 0, 0.8, 1, 0)
-material = SubResource("StandardMaterial3D_2gtf0")
-
-[node name="CsgPolygon3d3" type="CSGPolygon3D" parent="NavigationRegion3D"]
-transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -9.06623, 0.0922719, -6.11429)
-use_collision = true
-polygon = PackedVector2Array(0, 0, 0, 0.6, 1, 0)
-material = SubResource("StandardMaterial3D_2gtf0")
-
-[node name="CsgPolygon3d4" type="CSGPolygon3D" parent="NavigationRegion3D"]
-transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -9.06623, 0.0922719, -9.09111)
-use_collision = true
-polygon = PackedVector2Array(0, 0, 0, 0.4, 1, 0)
-material = SubResource("StandardMaterial3D_2gtf0")
-
-[node name="CsgPolygon3d5" type="CSGPolygon3D" parent="NavigationRegion3D"]
-transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -9.06623, 0.0922719, -12.1162)
-use_collision = true
-polygon = PackedVector2Array(0, 0, 0, 0.2, 1, 0)
-material = SubResource("StandardMaterial3D_2gtf0")
-
-[node name="CSGBox3D" type="CSGBox3D" parent="NavigationRegion3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.1236, 2.58714, -18.2645)
-use_collision = true
-size = Vector3(13.2472, 5, 1)
-
-[node name="CSGBox3D2" type="CSGBox3D" parent="NavigationRegion3D"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 13.2383, 2.58714, -16.175)
-use_collision = true
-size = Vector3(13.2472, 5, 1)
-
 [node name="LowStair" type="Node3D" parent="NavigationRegion3D"]
 
 [node name="CSGBox3D3" type="CSGBox3D" parent="NavigationRegion3D/LowStair"]
@@ -369,6 +305,219 @@ size = Vector3(2, 0.4, 0.1)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.27426, 0)
 use_collision = true
 size = Vector3(1, 0.39, 1)
+
+[node name="HighStepBox19" type="CSGBox3D" parent="NavigationRegion3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.10259, 0.27426, -10.8355)
+use_collision = true
+size = Vector3(1, 0.39, 0.00656128)
+
+[node name="SlopeTests" type="Node3D" parent="NavigationRegion3D"]
+
+[node name="CsgPolygon3d" type="CSGPolygon3D" parent="NavigationRegion3D/SlopeTests"]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -9.06623, 0.0922719, 0.0135)
+use_collision = true
+polygon = PackedVector2Array(0, 0, 0, 1, 0, 1, 1, 0)
+material = SubResource("StandardMaterial3D_2gtf0")
+
+[node name="Label3D" type="Label3D" parent="NavigationRegion3D/SlopeTests/CsgPolygon3d"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.21882, -0.542538)
+billboard = 1
+text = "45 deg"
+
+[node name="CsgPolygon3d6" type="CSGPolygon3D" parent="NavigationRegion3D/SlopeTests"]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -9.06623, 0.0922719, 3.10218)
+use_collision = true
+polygon = PackedVector2Array(0, 0, 0, 1.2, 1, 0)
+material = SubResource("StandardMaterial3D_2gtf0")
+
+[node name="Label3D" type="Label3D" parent="NavigationRegion3D/SlopeTests/CsgPolygon3d6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4733, -0.500613)
+billboard = 1
+text = "50 deg"
+
+[node name="CsgPolygon3d7" type="CSGPolygon3D" parent="NavigationRegion3D/SlopeTests"]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -9.06623, 0.0922719, 6.19085)
+use_collision = true
+polygon = PackedVector2Array(0, 0, 0, 1.4, 1, 0)
+material = SubResource("StandardMaterial3D_2gtf0")
+
+[node name="Label3D" type="Label3D" parent="NavigationRegion3D/SlopeTests/CsgPolygon3d7"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.57411, -0.515593)
+billboard = 1
+text = "54 deg"
+
+[node name="CsgPolygon3d8" type="CSGPolygon3D" parent="NavigationRegion3D/SlopeTests"]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -9.06623, 0.0922719, 9.29459)
+use_collision = true
+polygon = PackedVector2Array(0, 0, 0, 1.6, 1, 0)
+material = SubResource("StandardMaterial3D_2gtf0")
+
+[node name="Label3D" type="Label3D" parent="NavigationRegion3D/SlopeTests/CsgPolygon3d8"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.9353, -0.42788)
+billboard = 1
+text = "57 deg"
+
+[node name="CsgPolygon3d9" type="CSGPolygon3D" parent="NavigationRegion3D/SlopeTests"]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -9.06623, 0.0922719, 12.3479)
+use_collision = true
+polygon = PackedVector2Array(0, 0, 0, 1.8, 1, 0)
+material = SubResource("StandardMaterial3D_2gtf0")
+
+[node name="Label3D" type="Label3D" parent="NavigationRegion3D/SlopeTests/CsgPolygon3d9"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.9353, -0.42788)
+billboard = 1
+text = "60 deg"
+
+[node name="CsgPolygon3d2" type="CSGPolygon3D" parent="NavigationRegion3D/SlopeTests"]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -9.06623, 0.0922719, -3.05178)
+use_collision = true
+polygon = PackedVector2Array(0, 0, 0, 0.8, 1, 0)
+material = SubResource("StandardMaterial3D_2gtf0")
+
+[node name="Label3D" type="Label3D" parent="NavigationRegion3D/SlopeTests/CsgPolygon3d2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.01836, -0.546885)
+billboard = 1
+text = "39 deg"
+
+[node name="CsgPolygon3d3" type="CSGPolygon3D" parent="NavigationRegion3D/SlopeTests"]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -9.06623, 0.0922719, -6.11429)
+use_collision = true
+polygon = PackedVector2Array(0, 0, 0, 0.6, 1, 0)
+material = SubResource("StandardMaterial3D_2gtf0")
+
+[node name="Label3D" type="Label3D" parent="NavigationRegion3D/SlopeTests/CsgPolygon3d3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.793317, -0.490841)
+billboard = 1
+text = "31 deg"
+
+[node name="CsgPolygon3d4" type="CSGPolygon3D" parent="NavigationRegion3D/SlopeTests"]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -9.06623, 0.0922719, -9.09111)
+use_collision = true
+polygon = PackedVector2Array(0, 0, 0, 0.4, 1, 0)
+material = SubResource("StandardMaterial3D_2gtf0")
+
+[node name="Label3D" type="Label3D" parent="NavigationRegion3D/SlopeTests/CsgPolygon3d4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.571736, -0.488168)
+billboard = 1
+text = "22 deg"
+
+[node name="CsgPolygon3d5" type="CSGPolygon3D" parent="NavigationRegion3D/SlopeTests"]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -9.06623, 0.0922719, -12.1162)
+use_collision = true
+polygon = PackedVector2Array(0, 0, 0, 0.2, 1, 0)
+material = SubResource("StandardMaterial3D_2gtf0")
+
+[node name="Label3D" type="Label3D" parent="NavigationRegion3D/SlopeTests/CsgPolygon3d5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.473335, -0.49981)
+billboard = 1
+text = "11
+ deg"
+
+[node name="WallTests" type="Node3D" parent="NavigationRegion3D"]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="NavigationRegion3D/WallTests"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.1236, 2.58714, -18.2645)
+use_collision = true
+size = Vector3(13.2472, 5, 1)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="NavigationRegion3D/WallTests"]
+transform = Transform3D(0.849727, 0, -0.527223, 0, 1, 0, 0.527223, 0, 0.849727, 2.34024, 2.58714, -16.5468)
+use_collision = true
+size = Vector3(6.73102, 5, 1)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="NavigationRegion3D/WallTests"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 13.2383, 2.58714, -16.175)
+use_collision = true
+size = Vector3(13.2472, 5, 1)
+
+[node name="ThinnerObstaclesTest" type="Node3D" parent="NavigationRegion3D"]
+
+[node name="HighStepBox2" type="CSGBox3D" parent="NavigationRegion3D/ThinnerObstaclesTest"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.27426, -5.86697)
+use_collision = true
+size = Vector3(1, 0.39, 1)
+
+[node name="HighStepBox3" type="CSGBox3D" parent="NavigationRegion3D/ThinnerObstaclesTest"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.27426, -7.4718)
+use_collision = true
+size = Vector3(1, 0.39, 0.378906)
+
+[node name="HighStepBox4" type="CSGBox3D" parent="NavigationRegion3D/ThinnerObstaclesTest"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.27426, -8.68205)
+use_collision = true
+size = Vector3(1, 0.39, 0.150269)
+
+[node name="HighStepBox5" type="CSGBox3D" parent="NavigationRegion3D/ThinnerObstaclesTest"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.27426, -9.61306)
+use_collision = true
+size = Vector3(1, 0.39, 0.0492554)
+
+[node name="HighStepBox6" type="CSGBox3D" parent="NavigationRegion3D/ThinnerObstaclesTest"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.073787, 0.27426, -10.6113)
+use_collision = true
+size = Vector3(1, 0.39, 0.00656128)
+
+[node name="PseudoGrateTest" type="Node3D" parent="NavigationRegion3D"]
+
+[node name="HighStepBox7" type="CSGBox3D" parent="NavigationRegion3D/PseudoGrateTest"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.10259, 0.27426, -10.6113)
+use_collision = true
+size = Vector3(1, 0.39, 0.00656128)
+
+[node name="HighStepBox8" type="CSGBox3D" parent="NavigationRegion3D/PseudoGrateTest"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.10259, 0.27426, -10.5483)
+use_collision = true
+size = Vector3(1, 0.39, 0.00656128)
+
+[node name="HighStepBox9" type="CSGBox3D" parent="NavigationRegion3D/PseudoGrateTest"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.10259, 0.27426, -10.4642)
+use_collision = true
+size = Vector3(1, 0.39, 0.00656128)
+
+[node name="HighStepBox10" type="CSGBox3D" parent="NavigationRegion3D/PseudoGrateTest"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.10259, 0.27426, -10.3452)
+use_collision = true
+size = Vector3(1, 0.39, 0.00656128)
+
+[node name="HighStepBox11" type="CSGBox3D" parent="NavigationRegion3D/PseudoGrateTest"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.10259, 0.27426, -10.2401)
+use_collision = true
+size = Vector3(1, 0.39, 0.00656128)
+
+[node name="HighStepBox12" type="CSGBox3D" parent="NavigationRegion3D/PseudoGrateTest"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.10259, 0.27426, -10.114)
+use_collision = true
+size = Vector3(1, 0.39, 0.00656128)
+
+[node name="HighStepBox13" type="CSGBox3D" parent="NavigationRegion3D/PseudoGrateTest"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.10259, 0.27426, -10.0019)
+use_collision = true
+size = Vector3(1, 0.39, 0.00656128)
+
+[node name="HighStepBox14" type="CSGBox3D" parent="NavigationRegion3D/PseudoGrateTest"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.10259, 0.27426, -9.89688)
+use_collision = true
+size = Vector3(1, 0.39, 0.00656128)
+
+[node name="HighStepBox15" type="CSGBox3D" parent="NavigationRegion3D/PseudoGrateTest"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.10259, 0.27426, -10.6463)
+use_collision = true
+size = Vector3(1, 0.39, 0.00656128)
+
+[node name="HighStepBox16" type="CSGBox3D" parent="NavigationRegion3D/PseudoGrateTest"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.10259, 0.27426, -10.6954)
+use_collision = true
+size = Vector3(1, 0.39, 0.00656128)
+
+[node name="HighStepBox17" type="CSGBox3D" parent="NavigationRegion3D/PseudoGrateTest"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.10259, 0.27426, -10.7514)
+use_collision = true
+size = Vector3(1, 0.39, 0.00656128)
+
+[node name="HighStepBox18" type="CSGBox3D" parent="NavigationRegion3D/PseudoGrateTest"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.10259, 0.27426, -10.8355)
+use_collision = true
+size = Vector3(1, 0.39, 0.00656128)
 
 [node name="DirectionalLight3d" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.966349, 0.250904, -0.0567091, 0.182362, -0.512743, 0.838951, 0.181419, -0.821061, -0.541244, -0.00693703, 59.5145, -109.348)

@@ -1,5 +1,7 @@
 extends Node3D
 
+@export_node_path("CharacterBody3D") var parent_body_path
+
 @export_node_path("CollisionShape3D") var separation_ray_path_front
 @export_node_path("CollisionShape3D") var separation_ray_path_front_right
 @export_node_path("CollisionShape3D") var separation_ray_path_right
@@ -8,6 +10,7 @@ extends Node3D
 @export_node_path("CollisionShape3D") var separation_ray_path_back_left
 @export_node_path("CollisionShape3D") var separation_ray_path_left
 @export_node_path("CollisionShape3D") var separation_ray_path_front_left
+
 @export_node_path("ShapeCast3D") var shapecast_path_front
 @export_node_path("ShapeCast3D") var shapecast_path_front_right
 @export_node_path("ShapeCast3D") var shapecast_path_right
@@ -18,6 +21,9 @@ extends Node3D
 @export_node_path("ShapeCast3D") var shapecast_path_front_left
 
 @export_node_path("ShapeCast3D") var headroom_shapecast_path
+
+@onready var parent_body_node:CharacterBody3D = get_node(parent_body_path)
+
 @onready var separation_ray_front:CollisionShape3D = get_node(separation_ray_path_front)
 @onready var separation_ray_front_right:CollisionShape3D = get_node(separation_ray_path_front_right)
 @onready var separation_ray_right:CollisionShape3D = get_node(separation_ray_path_right)
@@ -26,7 +32,9 @@ extends Node3D
 @onready var separation_ray_back_left:CollisionShape3D = get_node(separation_ray_path_back_left)
 @onready var separation_ray_left:CollisionShape3D = get_node(separation_ray_path_left)
 @onready var separation_ray_front_left:CollisionShape3D = get_node(separation_ray_path_front_left)
+
 @onready var headroom_ray:ShapeCast3D = get_node(headroom_shapecast_path)
+
 @onready var shapecast_front:ShapeCast3D = get_node(shapecast_path_front)
 @onready var shapecast_front_right:ShapeCast3D = get_node(shapecast_path_front_right)
 @onready var shapecast_right:ShapeCast3D = get_node(shapecast_path_right)
@@ -35,6 +43,18 @@ extends Node3D
 @onready var shapecast_back_left:ShapeCast3D = get_node(shapecast_path_back_left)
 @onready var shapecast_left:ShapeCast3D = get_node(shapecast_path_left)
 @onready var shapecast_front_left:ShapeCast3D = get_node(shapecast_path_front_left)
+
+func _ready():
+	shapecast_front.add_exception(parent_body_node)
+	shapecast_front_right.add_exception(parent_body_node)
+	shapecast_right.add_exception(parent_body_node)
+	shapecast_back_right.add_exception(parent_body_node)
+	shapecast_back.add_exception(parent_body_node)
+	shapecast_back_left.add_exception(parent_body_node)
+	shapecast_left.add_exception(parent_body_node)
+	shapecast_front_left.add_exception(parent_body_node)
+	headroom_ray.add_exception(parent_body_node)
+	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
 	var headroom_ray_is_colliding = headroom_ray.is_colliding()
