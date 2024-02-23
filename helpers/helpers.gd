@@ -289,9 +289,12 @@ func scaled_move_and_slide_vertically(cb3d:CharacterBody3D, vertical_distance:Ve
 
 ## Returns true if multi frame step, otherwise returns false
 ## max step height and min horizontal travel must be positive
-func move_slide_and_step(cb3d:CharacterBody3D, delta:float, max_step_height:float, min_horizontal_travel:float, currently_stepping:bool) -> bool:
+func move_slide_and_step(cb3d:CharacterBody3D,step_shapecast:ShapeCast3D, delta:float, max_step_height:float, min_horizontal_travel:float, currently_stepping:bool) -> bool:
 	var cb3d_global_position = cb3d.global_position
 	var original_velocity:Vector3 = cb3d.velocity
+	var shapecast_original_transform:Transform3D = step_shapecast.global_transform
+	var shapecast_original_target:Vector3 = step_shapecast.target_position
+	var shapecast_original_margin:float = step_shapecast.margin
 	
 	if max_step_height < 0 or min_horizontal_travel < 0:
 		push_error("max step height or min horizontal travel is negative!")
@@ -311,73 +314,84 @@ func move_slide_and_step(cb3d:CharacterBody3D, delta:float, max_step_height:floa
 		var down_motion:Vector3
 		
 		#Test Up Step Height
-		var headroom_test_motion_result := PhysicsTestMotionResult3D.new()
-		var headroom_test_motion_params := PhysicsTestMotionParameters3D.new()
-		headroom_test_motion_params.from = cb3d.global_transform
-		headroom_test_motion_params.motion = Vector3(0,max_step_height,0)
-		var headroom_test_collides = PhysicsServer3D.body_test_motion(cb3d,headroom_test_motion_params, headroom_test_motion_result)
+		step_shapecast.global_transform = cb3d.global_transform
+		step_shapecast.target_position = Vector3(0,max_step_height,0)
+		step_shapecast.force_update_transform()
+		step_shapecast.force_shapecast_update()
+		var headroom_test_collides = step_shapecast.is_colliding()
 		var vertical_travel:float
 		
 		#Set vertical_travel to result travel
 		if headroom_test_collides:
-			vertical_travel = headroom_test_motion_result.get_travel().length()
+			vertical_travel = step_shapecast.get_closest_collision_safe_fraction() * step_shapecast.target_position.length()
 		else:
 			vertical_travel = max_step_height
 		up_motion = Vector3(0,vertical_travel,0)
 		
 		#From result Test in velocity direction with minimum step as margin
 		var starting_vertical_position:Vector3 = cb3d_global_position + up_motion
-		var direction_test_motion_result := PhysicsTestMotionResult3D.new()
-		var direction_test_motion_params := PhysicsTestMotionParameters3D.new()
-		direction_test_motion_params.from = cb3d.global_transform
-		direction_test_motion_params.from.origin += up_motion
-		direction_test_motion_params.motion = cb3d.velocity * delta
-		direction_test_motion_params.motion.y = 0
-		direction_test_motion_params.margin = min_horizontal_travel
-		var direction_test_collides = PhysicsServer3D.body_test_motion(cb3d, direction_test_motion_params, direction_test_motion_result)
+
+		step_shapecast.global_transform = cb3d.global_transform
+		step_shapecast.global_transform.origin += up_motion
+		step_shapecast.target_position = cb3d.velocity * delta
+		step_shapecast.target_position.y = 0
+		step_shapecast.margin = min_horizontal_travel
+		step_shapecast.force_update_transform()
+		step_shapecast.force_shapecast_update()
+		var direction_test_collides = step_shapecast.is_colliding()
 		
-		var direction_test_motion_no_margin_result := PhysicsTestMotionResult3D.new()
-		direction_test_motion_params.margin = 0.0001
-		var direction_test_collides_no_margin = PhysicsServer3D.body_test_motion(cb3d, direction_test_motion_params, direction_test_motion_no_margin_result)
-		
-		
+
+		#var direction_test_motion_no_margin_farther_result := PhysicsTestMotionResult3D.new()
+		#var direction_test_motion_no_margin_farther_params = direction_test_motion_params
+		#direction_test_motion_no_margin_farther_params.margin = 0.0001
+		#direction_test_motion_no_margin_farther_params.motion += direction_test_motion_no_margin_farther_params.motion.normalized() * min_horizontal_travel
+		##var direction_test_collides_no_margin_farther = PhysicsServer3D.body_test_motion(cb3d, direction_test_motion_no_margin_farther_params, direction_test_motion_no_margin_farther_result)
+		#direction_test_collides = PhysicsServer3D.body_test_motion(cb3d, direction_test_motion_no_margin_farther_params, direction_test_motion_no_margin_farther_result)
+		#
 		var final_vertical_position:Vector3
 		#If we hit something, do a slide
 		if direction_test_collides:
-			var direction_slide_test_motion_result := PhysicsTestMotionResult3D.new()
-			var direction_slide_test_motion_params := PhysicsTestMotionParameters3D.new()
-			direction_slide_test_motion_params.from = direction_test_motion_params.from
-			direction_slide_test_motion_params.from.origin += direction_test_motion_result.get_travel()
-			var slide_movement = direction_test_motion_result.get_remainder().slide(direction_test_motion_result.get_collision_normal())
-			direction_slide_test_motion_params.motion = slide_movement
-			direction_slide_test_motion_params.motion.y = 0
+			var direction_test_motion_result_travel:Vector3 = step_shapecast.get_closest_collision_safe_fraction() * step_shapecast.target_position
 			
+			step_shapecast.global_transform.origin += direction_test_motion_result_travel
+			var direction_remainder:Vector3 = ((1.0 - step_shapecast.get_closest_collision_safe_fraction())* step_shapecast.target_position)
+			var slide_movement = direction_remainder.slide(step_shapecast.get_collision_normal(0))
+			step_shapecast.target_position = slide_movement
+			step_shapecast.target_position.y = 0
+			step_shapecast.force_update_transform()
+			step_shapecast.force_shapecast_update()
 			
-			var direction_slide_collides = PhysicsServer3D.body_test_motion(cb3d.get_rid(), direction_slide_test_motion_params, direction_slide_test_motion_result)
+			var direction_slide_collides = step_shapecast.is_colliding()
 			if direction_slide_collides:
-				final_vertical_position = direction_test_motion_params.from.origin + direction_test_motion_result.get_travel() + direction_slide_test_motion_result.get_travel()
+				var direction_slide_test_motion_result_travel:Vector3 = step_shapecast.get_closest_collision_safe_fraction() * step_shapecast.target_position
+				final_vertical_position = step_shapecast.global_transform.origin + direction_test_motion_result_travel + direction_slide_test_motion_result_travel
 			else:
-				final_vertical_position = direction_test_motion_params.from.origin + direction_test_motion_result.get_travel() + slide_movement
+				final_vertical_position = step_shapecast.global_transform.origin + direction_test_motion_result_travel + slide_movement
 		else:
-			final_vertical_position = direction_test_motion_params.from.origin + direction_test_motion_params.motion
+			final_vertical_position = step_shapecast.global_transform.origin + step_shapecast.target_position
 		
 		horizontal_motion = final_vertical_position - starting_vertical_position
 		
 		#From result position, cast down
-		var down_test_motion_result := PhysicsTestMotionResult3D.new()
-		var down_test_motion_params := PhysicsTestMotionParameters3D.new()
-		down_test_motion_params.from = cb3d.global_transform
-		down_test_motion_params.from.origin = final_vertical_position
-		down_test_motion_params.motion = Vector3(0,-vertical_travel,0)
-		var down_test_collides = PhysicsServer3D.body_test_motion(cb3d, down_test_motion_params, down_test_motion_result)
+		
+		step_shapecast.global_transform = cb3d.global_transform
+		step_shapecast.global_transform.origin = final_vertical_position
+		step_shapecast.target_position = Vector3(0,-vertical_travel,0)
+		step_shapecast.margin = shapecast_original_margin
+		step_shapecast.force_update_transform()
+		step_shapecast.force_shapecast_update()
+		
+		var down_test_collides = step_shapecast.is_colliding()
 		
 		var final_target_position:Vector3
 		if down_test_collides:
-			final_target_position = down_test_motion_params.from.origin + down_test_motion_result.get_travel()
+			var down_test_motion_result_travel:Vector3 = step_shapecast.get_closest_collision_safe_fraction() * step_shapecast.target_position
+			
+			final_target_position = step_shapecast.global_transform.origin + down_test_motion_result_travel
 		else:
-			final_target_position = down_test_motion_params.from.origin + down_test_motion_params.motion
+			final_target_position = step_shapecast.global_transform.origin + step_shapecast.target_position
 		
-		down_motion = final_target_position - down_test_motion_params.from.origin
+		down_motion = final_target_position - step_shapecast.global_transform.origin
 		
 		#if vertical difference > what we can cover in one frame, we’re in a multi frame step
 		var vertical_difference = final_target_position.y - cb3d.global_transform.origin.y

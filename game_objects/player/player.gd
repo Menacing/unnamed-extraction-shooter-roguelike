@@ -25,7 +25,7 @@ var gun_slot_2:Gun
 @onready var head = $Waist/Chest/head_anchor/Head as Node3D
 @onready var head_anchor = $Waist/Chest/head_anchor as Node3D
 @onready var use_ray = $Waist/Chest/head_anchor/Head/Camera3d/UsePointer
-@onready var step_check:ShapeCast3D = $ShapeCast3D
+@onready var step_checker:ShapeCast3D = $StepCheckerShapecast3D
 
 var pov_rotation_node:Node3D
 
@@ -491,8 +491,9 @@ func move(move_global_velocity:Vector3, delta:float, going_forward:bool):
 	else:
 		velocity.x = move_toward(velocity.x, move_global_velocity.x, accel)
 		velocity.z = move_toward(velocity.z, move_global_velocity.z, accel)
-
-	currently_stepping = Helpers.move_slide_and_step(self, delta, MAX_STEP_HEIGHT, MIN_STEP_WIDTH, currently_stepping)
+	
+	#move_and_slide()
+	currently_stepping = Helpers.move_slide_and_step(self, step_checker, delta, MAX_STEP_HEIGHT, MIN_STEP_WIDTH, currently_stepping)
 	
 	##If touching a wall, going forward, and step check is clear, translate velocity to up
 	#var touching_wall = is_on_wall()
