@@ -2,6 +2,8 @@ extends AnimatableBody3D
 class_name SteppingCharacterBody3D
 
 enum MotionMode { MOTION_MODE_GROUNDED, MOTION_MODE_FLOATING }
+const FLOOR_ANGLE_THRESHOLD = 0.01
+const CMP_EPSILON = 0.00001
 
 ##Max angle 
 @export var floor_max_angle:float = 0.785398
@@ -11,11 +13,21 @@ enum MotionMode { MOTION_MODE_GROUNDED, MOTION_MODE_FLOATING }
 @export var velocity:Vector3 = Vector3(0,0,0)
 @export var up_direction:Vector3 = Vector3(0,1,0)
 @export var motion_mode:MotionMode = MotionMode.MOTION_MODE_GROUNDED
+@export var safe_margin:float = 0.001
+@export var wall_min_slide_angle:float = 0.261799
 
 var _collision_results:Array[KinematicCollision3D] = []
 var _floor_normal:Vector3
 var _wall_normal:Vector3
 var _ceiling_normal:Vector3
+var _collision_state:CollisionState
+var _platform_rid:RID
+var _platform_object_id:int
+var _platform_velocity:Vector3
+var _platform_angular_velocity:Vector3
+var _platform_layer:int
+var _platform_ceiling_velocity:Vector3
+var _last_motion:Vector3
 
 func apply_floor_snap():
 	#if (collision_state.floor) {
@@ -164,6 +176,8 @@ func _move_step_and_slide_grounded(delta:float, was_on_floor:bool):
 	var motion:Vector3 = velocity * delta;
 	var motion_slide_up:Vector3 = motion.slide(up_direction);
 	var prev_floor_normal:Vector3 = _floor_normal;
+	
+	var current_frame_moves:Array[Vector3] = []
 
 	#platform_rid = RID();
 	#platform_object_id = ObjectID();
@@ -184,26 +198,21 @@ func _move_step_and_slide_grounded(delta:float, was_on_floor:bool):
 	var first_slide:bool = true;
 	var vel_dir_facing_up:bool = velocity.dot(up_direction) > 0;
 	var total_travel:Vector3
+	var current_frame_transform:Transform3D = global_transform
 
 	for iteration in range(max_slides):
-		pass
-		#PhysicsServer3D::MotionParameters parameters(get_global_transform(), motion, margin);
-		#parameters.max_collisions = 6; // There can be 4 collisions between 2 walls + 2 more for the floor.
-		#parameters.recovery_as_collision = true; // Also report collisions generated only from recovery.
+		#There can be 4 collisions between 2 walls + 2 more for the floor.
+		#Also report collisions generated only from recovery.
+		var result:KinematicCollision3D = KinematicCollision3D.new()
+		var collided = test_move(current_frame_transform, motion, result, safe_margin, true, 6)
+
+		if (collided):
+			_collision_results.append(result);
 #
-		#PhysicsServer3D::MotionResult result;
-		#move_and_collide(parameters, result, false, !sliding_enabled);
-		#var collision_info:KinematicCollision3D = move_and_collide()
+			var previous_state:CollisionState = _collision_state;
 #
-		#last_motion = result.travel;
-#
-		#if (collided) {
-			#motion_results.push_back(result);
-#
-			#CollisionState previous_state = collision_state;
-#
-			#CollisionState result_state;
-			#_set_collision_direction(result, result_state);
+			var result_state:CollisionState
+			_set_collision_direction(result, result_state, CollisionState.new(true,true,true));
 #
 			#// If we hit a ceiling platform, we set the vertical velocity to at least the platform one.
 			#if (collision_state.ceiling && platform_ceiling_velocity != Vector3() && platform_ceiling_velocity.dot(up_direction) < 0) {
@@ -424,59 +433,141 @@ func _move_step_and_slide_grounded(delta:float, was_on_floor:bool):
 	#}
 	pass
 
-func _move_step_and_slide_floating(delta:float):
-		#Vector3 motion = velocity * p_delta;
-#
-	#platform_rid = RID();
-	#platform_object_id = ObjectID();
-	#floor_normal = Vector3();
-	#platform_velocity = Vector3();
-	#platform_angular_velocity = Vector3();
-#
-	#bool first_slide = true;
-	#for (int iteration = 0; iteration < max_slides; ++iteration) {
-		#PhysicsServer3D::MotionParameters parameters(get_global_transform(), motion, margin);
-		#parameters.recovery_as_collision = true; // Also report collisions generated only from recovery.
-#
-		#PhysicsServer3D::MotionResult result;
-		#bool collided = move_and_collide(parameters, result, false, false);
-#
-		#last_motion = result.travel;
-#
-		#if (collided) {
-			#motion_results.push_back(result);
-#
-			#CollisionState result_state;
-			#_set_collision_direction(result, result_state);
-#
-			#if (result.remainder.is_zero_approx()) {
-				#motion = Vector3();
-				#break;
-			#}
-#
-			#if (wall_min_slide_angle != 0 && Math::acos(wall_normal.dot(-velocity.normalized())) < wall_min_slide_angle + FLOOR_ANGLE_THRESHOLD) {
-				#motion = Vector3();
-				#if (result.travel.length() < margin + CMP_EPSILON) {
-					#Transform3D gt = get_global_transform();
-					#gt.origin -= result.travel;
-					#set_global_transform(gt);
-				#}
-			#} else if (first_slide) {
-				#Vector3 motion_slide_norm = result.remainder.slide(wall_normal).normalized();
-				#motion = motion_slide_norm * (motion.length() - result.travel.length());
-			#} else {
-				#motion = result.remainder.slide(wall_normal);
-			#}
-#
-			#if (motion.dot(velocity) <= 0.0) {
-				#motion = Vector3();
-			#}
-		#}
-#
-		#if (!collided || motion.is_zero_approx()) {
-			#break;
-		#}
-#
-		#first_slide = false;
-	#}
-	pass
+func _move_step_and_slide_floating(p_delta: float) -> void:
+	var motion: Vector3 = velocity * p_delta
+
+	_platform_rid = RID()
+	_platform_object_id = 0
+	_floor_normal = Vector3()
+	_platform_velocity = Vector3()
+	_platform_angular_velocity = Vector3()
+
+	var first_slide: bool = true
+	for iteration in range(max_slides):
+		# Also report collisions generated only from recovery.
+		var result:KinematicCollision3D = KinematicCollision3D.new()
+		var collided: bool = test_move(global_transform, motion, result, safe_margin, true)
+
+		_last_motion = result.travel
+
+		if collided:
+			_collision_results.push_back(result)
+
+			var result_state = {} # Placeholder for your specific collision state handling
+			_set_collision_direction(result, result_state, CollisionState.new(true,true,true))
+
+			if result.remainder.is_equal_approx(Vector3.ZERO):
+				motion = Vector3.ZERO
+				break
+
+			if wall_min_slide_angle != 0 and acos(_wall_normal.dot(-velocity.normalized())) < wall_min_slide_angle + FLOOR_ANGLE_THRESHOLD:
+				motion = Vector3.ZERO
+				if result.travel.length() < safe_margin + CMP_EPSILON:
+					var gt: Transform3D = get_global_transform()
+					gt.origin -= result.travel
+					set_global_transform(gt)
+			elif first_slide:
+				var motion_slide_norm: Vector3 = result.remainder.slide(_wall_normal).normalized()
+				motion = motion_slide_norm * (motion.length() - result.travel.length())
+			else:
+				motion = result.remainder.slide(_wall_normal)
+
+			if motion.dot(velocity) <= 0.0:
+				motion = Vector3.ZERO
+
+		if not collided or motion.is_equal_approx(Vector3.ZERO):
+			break
+
+		first_slide = false
+
+
+func _set_collision_direction(p_result:KinematicCollision3D, r_state:CollisionState, p_apply_state:CollisionState):
+	r_state.state = 0
+
+	var wall_depth: float = -1.0
+	var floor_depth: float = -1.0
+
+	var was_on_wall: bool = _collision_state.wall
+	var prev_wall_normal: Vector3 = _wall_normal
+	var wall_collision_count: int = 0
+	var combined_wall_normal: Vector3 = Vector3.ZERO
+	var tmp_wall_col: Vector3 = Vector3.ZERO # Avoid duplicate on average calculation.
+
+	for i in range(p_result.collision_count - 1, -1, -1):
+		var collision = p_result.collisions[i]
+
+		if motion_mode == MotionMode.MOTION_MODE_GROUNDED:
+			# Check if any collision is floor.
+			var floor_angle = collision.get_angle(up_direction)
+			if floor_angle <= floor_max_angle + FLOOR_ANGLE_THRESHOLD:
+				r_state.floor = true
+				if p_apply_state.floor and collision.depth > floor_depth:
+					_collision_state.floor = true
+					_floor_normal = collision.normal
+					floor_depth = collision.depth
+					_set_platform_data(collision)
+				continue
+
+			# Check if any collision is ceiling.
+			var ceiling_angle = collision.get_angle(-up_direction)
+			if ceiling_angle <= floor_max_angle + FLOOR_ANGLE_THRESHOLD:
+				r_state.ceiling = true
+				if p_apply_state.ceiling:
+					_platform_ceiling_velocity = collision.collider_velocity
+					_ceiling_normal = collision.normal
+					_collision_state.ceiling = true
+				continue
+
+		# Collision is wall by default.
+		r_state.wall = true
+
+		if p_apply_state.wall and collision.depth > wall_depth:
+			_collision_state.wall = true
+			wall_depth = collision.depth
+			_wall_normal = collision.normal
+
+			# Don't apply wall velocity when the collider is a CharacterBody3D.
+			if collision.collider_id is CharacterBody3D:
+				_set_platform_data(collision)
+
+		# Collect normal for calculating average.
+		if not collision.normal.is_equal_approx(tmp_wall_col):
+			tmp_wall_col = collision.normal
+			combined_wall_normal += collision.normal
+			wall_collision_count += 1
+
+	if r_state.wall:
+		if wall_collision_count > 1 and not r_state.floor:
+			# Check if wall normals cancel out to floor support.
+			if not r_state.floor and motion_mode == MotionMode.MOTION_MODE_GROUNDED:
+				combined_wall_normal = combined_wall_normal.normalized()
+				var floor_angle = acos(combined_wall_normal.dot(up_direction))
+				if floor_angle <= floor_max_angle + FLOOR_ANGLE_THRESHOLD:
+					r_state.floor = true
+					r_state.wall = false
+					if p_apply_state.floor:
+						_collision_state.floor = true
+						_floor_normal = combined_wall_normal
+					if p_apply_state.wall:
+						_collision_state.wall = was_on_wall
+						_wall_normal = prev_wall_normal
+					return
+
+func _set_platform_data(p_collision):
+	_platform_rid = p_collision.collider
+	_platform_object_id = p_collision.collider_id
+	_platform_velocity = p_collision.collider_velocity
+	_platform_angular_velocity = p_collision.collider_angular_velocity
+	_platform_layer = PhysicsServer3D.body_get_collision_layer(_platform_rid)
+
+
+class CollisionState:
+	var state:int = 0
+	var floor:bool = false
+	var wall:bool = false
+	var ceiling:bool = false
+	
+	func _init(_floor:bool, _wall:bool, _ceiling:bool) -> void:
+		floor = _floor
+		wall = _wall
+		ceiling = _ceiling
