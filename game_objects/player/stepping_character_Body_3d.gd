@@ -2,10 +2,12 @@ extends AnimatableBody3D
 class_name SteppingCharacterBody3D
 
 enum MotionMode { MOTION_MODE_GROUNDED, MOTION_MODE_FLOATING }
+enum PlatformOnLeave { PLATFORM_ON_LEAVE_ADD_VELOCITY, PLATFORM_ON_LEAVE_ADD_UPWARD_VELOCITY, PLATFORM_ON_LEAVE_DO_NOTHING }
 const FLOOR_ANGLE_THRESHOLD = 0.01
 const CMP_EPSILON = 0.00001
 
 ##Max angle 
+@export var floor_block_on_wall:bool = true
 @export var floor_max_angle:float = 0.785398
 @export var floor_snap_length:float = 0.1
 @export var floor_stop_on_slope:bool = true
@@ -14,7 +16,9 @@ const CMP_EPSILON = 0.00001
 @export var up_direction:Vector3 = Vector3(0,1,0)
 @export var motion_mode:MotionMode = MotionMode.MOTION_MODE_GROUNDED
 @export var safe_margin:float = 0.001
+@export var slide_on_ceiling:bool = true
 @export var wall_min_slide_angle:float = 0.261799
+@export var platform_on_leave:PlatformOnLeave = PlatformOnLeave.PLATFORM_ON_LEAVE_ADD_VELOCITY
 
 var _collision_results:Array[KinematicCollision3D] = []
 var _floor_normal:Vector3
@@ -26,46 +30,14 @@ var _platform_object_id:int
 var _platform_velocity:Vector3
 var _platform_angular_velocity:Vector3
 var _platform_layer:int
+var _platform_floor_layers:int = 4294967295
 var _platform_ceiling_velocity:Vector3
+var _platform_wall_layers:int = 0
 var _last_motion:Vector3
+var _previous_position:Vector3
+var _real_velocity:Vector3
 
-func apply_floor_snap():
-	#if (collision_state.floor) {
-		#return;
-	#}
-#
-	#// Snap by at least collision margin to keep floor state consistent.
-	#real_t length = MAX(floor_snap_length, margin);
-#
-	#PhysicsServer3D::MotionParameters parameters(get_global_transform(), -up_direction * length, margin);
-	#parameters.max_collisions = 4;
-	#parameters.recovery_as_collision = true; // Also report collisions generated only from recovery.
-	#parameters.collide_separation_ray = true;
-#
-	#PhysicsServer3D::MotionResult result;
-	#if (move_and_collide(parameters, result, true, false)) {
-		#CollisionState result_state;
-		#// Apply direction for floor only.
-		#_set_collision_direction(result, result_state, CollisionState(true, false, false));
-#
-		#if (result_state.floor) {
-			#if (floor_stop_on_slope) {
-				#// move and collide may stray the object a bit because of pre un-stucking,
-				#// so only ensure that motion happens on floor direction in this case.
-				#if (result.travel.length() > margin) {
-					#result.travel = up_direction * up_direction.dot(result.travel);
-				#} else {
-					#result.travel = Vector3();
-				#}
-			#}
-#
-			#parameters.from.origin += result.travel;
-			#set_global_transform(parameters.from);
-		#}
-	#}
-#}
-	pass
-	
+
 func is_on_floor() -> bool:
 	return false
 	
@@ -88,89 +60,77 @@ func get_floor_normal() -> Vector3:
 	return _floor_normal
 
 func move_step_and_slide(delta:float) -> bool:
-	
-	#for (int i = 0; i < 3; i++) {
-		#if (locked_axis & (1 << i)) {
-			#velocity[i] = 0.0;
-		#}
-	#}
-#
-	#Transform3D gt = get_global_transform();
-	#previous_position = gt.origin;
-#
-	#Vector3 current_platform_velocity = platform_velocity;
-#
-	#if ((collision_state.floor || collision_state.wall) && platform_rid.is_valid()) {
-		#bool excluded = false;
-		#if (collision_state.floor) {
-			#excluded = (platform_floor_layers & platform_layer) == 0;
-		#} else if (collision_state.wall) {
-			#excluded = (platform_wall_layers & platform_layer) == 0;
-		#}
-		#if (!excluded) {
-			#//this approach makes sure there is less delay between the actual body velocity and the one we saved
-			#PhysicsDirectBodyState3D *bs = PhysicsServer3D::get_singleton()->body_get_direct_state(platform_rid);
-			#if (bs) {
-				#Vector3 local_position = gt.origin - bs->get_transform().origin;
-				#current_platform_velocity = bs->get_velocity_at_local_position(local_position);
-			#} else {
-				#// Body is removed or destroyed, invalidate floor.
-				#current_platform_velocity = Vector3();
-				#platform_rid = RID();
-			#}
-		#} else {
-			#current_platform_velocity = Vector3();
-		#}
-	#}
-#
-	#motion_results.clear();
-#
-	#var was_on_floor:bool = collision_state.floor
-	var was_on_floor:bool
-	
-	#collision_state.state = 0;
-#
-	#last_motion = Vector3();
-#
-	#if (!current_platform_velocity.is_zero_approx()) {
-		#PhysicsServer3D::MotionParameters parameters(get_global_transform(), current_platform_velocity * delta, margin);
-		#parameters.recovery_as_collision = true; // Also report collisions generated only from recovery.
-#
-		#parameters.exclude_bodies.insert(platform_rid);
-		#if (platform_object_id.is_valid()) {
-			#parameters.exclude_objects.insert(platform_object_id);
-		#}
-#
-		#PhysicsServer3D::MotionResult floor_result;
-		#if (move_and_collide(parameters, floor_result, false, false)) {
-			#motion_results.push_back(floor_result);
-#
-			#CollisionState result_state;
-			#_set_collision_direction(floor_result, result_state);
-		#}
-	#}
-#
-	if (motion_mode == MotionMode.MOTION_MODE_GROUNDED):
+
+	if axis_lock_linear_x:
+		velocity.x = 0.0
+	if axis_lock_linear_y:
+		velocity.y = 0.0
+	if axis_lock_linear_z:
+		velocity.z = 0.0
+
+	var gt = get_global_transform()
+	_previous_position = gt.origin
+
+	var current_platform_velocity = _platform_velocity
+
+	if (_collision_state.floor or _collision_state.wall) and _platform_rid.is_valid():
+		var excluded = false
+		if _collision_state.floor:
+			excluded = (_platform_floor_layers & _platform_layer) == 0
+		elif _collision_state.wall:
+			excluded = (_platform_wall_layers & _platform_layer) == 0
+
+		if not excluded:
+			# This approach makes sure there is less delay between the actual body velocity and the one we saved
+			var bs = PhysicsServer3D.body_get_direct_state(_platform_rid)
+			if bs:
+				var local_position = gt.origin - bs.get_transform().origin
+				current_platform_velocity = bs.get_velocity_at_local_position(local_position)
+			else:
+				# Body is removed or destroyed, invalidate floor.
+				current_platform_velocity = Vector3()
+				_platform_rid = RID()
+		else:
+			current_platform_velocity = Vector3()
+
+	_collision_results.clear()
+
+	var was_on_floor = _collision_state.floor
+	_collision_state.state = 0
+
+	_last_motion = Vector3()
+
+	if not current_platform_velocity.is_equal_approx(Vector3.ZERO):
+		# Also report collisions generated only from recovery.
+		var platform_node = instance_from_id(_platform_object_id)
+		if platform_node:
+			add_collision_exception_with(platform_node)
+
+		var floor_result = KinematicCollision3D.new()
+		if test_move(global_transform, current_platform_velocity * delta, floor_result, safe_margin, true):
+			_collision_results.push_back(floor_result)
+
+			#Initialize your collision state structure
+			var result_state:CollisionState = CollisionState.new(false,false,false) 
+			_set_collision_direction(floor_result, result_state, CollisionState.new(true,true,true))
+
+	if motion_mode == MotionMode.MOTION_MODE_GROUNDED:
 		_move_step_and_slide_grounded(delta, was_on_floor)
 	else:
 		_move_step_and_slide_floating(delta)
 
-#
-	#// Compute real velocity.
-	#real_velocity = get_position_delta() / delta;
-#
-	#if (platform_on_leave != PLATFORM_ON_LEAVE_DO_NOTHING) {
-		#// Add last platform velocity when just left a moving platform.
-		#if (!collision_state.floor && !collision_state.wall) {
-			#if (platform_on_leave == PLATFORM_ON_LEAVE_ADD_UPWARD_VELOCITY && current_platform_velocity.dot(up_direction) < 0) {
-				#current_platform_velocity = current_platform_velocity.slide(up_direction);
-			#}
-			#velocity += current_platform_velocity;
-		#}
-	#}
-	
-	return _collision_results.size() > 0 
-	pass
+	# Compute real velocity.
+	_real_velocity = (global_position - _previous_position) / delta
+
+	if platform_on_leave != PlatformOnLeave.PLATFORM_ON_LEAVE_DO_NOTHING:
+		# Add last platform velocity when just left a moving platform.
+		if not _collision_state.floor and not _collision_state.wall:
+			if platform_on_leave == PlatformOnLeave.PLATFORM_ON_LEAVE_ADD_UPWARD_VELOCITY and current_platform_velocity.dot(up_direction) < 0:
+				current_platform_velocity = current_platform_velocity.slide(up_direction)
+			velocity += current_platform_velocity
+
+	return len(_collision_results) > 0
+
 
 func _move_step_and_slide_grounded(delta:float, was_on_floor:bool):
 	var motion:Vector3 = velocity * delta;
@@ -179,11 +139,11 @@ func _move_step_and_slide_grounded(delta:float, was_on_floor:bool):
 	
 	var current_frame_moves:Array[Vector3] = []
 
-	#platform_rid = RID();
-	#platform_object_id = ObjectID();
-	#platform_velocity = Vector3();
-	#platform_angular_velocity = Vector3();
-	#platform_ceiling_velocity = Vector3();
+	_platform_rid = RID()
+	_platform_object_id = 0
+	_platform_velocity = Vector3()
+	_platform_angular_velocity = Vector3()
+	_platform_ceiling_velocity = Vector3()
 	_floor_normal = Vector3()
 	_wall_normal = Vector3()
 	_ceiling_normal = Vector3()
@@ -213,76 +173,72 @@ func _move_step_and_slide_grounded(delta:float, was_on_floor:bool):
 #
 			var result_state:CollisionState
 			_set_collision_direction(result, result_state, CollisionState.new(true,true,true));
+
+			# If we hit a ceiling platform, we set the vertical velocity to at least the platform one.
+			if _collision_state.ceiling and _platform_ceiling_velocity != Vector3.ZERO and _platform_ceiling_velocity.dot(up_direction) < 0:
+				# If ceiling sliding is on, only apply when the ceiling is flat or when the motion is upward.
+				if not slide_on_ceiling or motion.dot(up_direction) < 0 or (_ceiling_normal + up_direction).length() < 0.01:
+					apply_ceiling_velocity = true
+					var ceiling_vertical_velocity: Vector3 = up_direction * up_direction.dot(_platform_ceiling_velocity)
+					var motion_vertical_velocity: Vector3 = up_direction * up_direction.dot(velocity)
+					if motion_vertical_velocity.dot(up_direction) > 0 or ceiling_vertical_velocity.length_squared() > motion_vertical_velocity.length_squared():
+						velocity = ceiling_vertical_velocity + velocity.slide(up_direction)
+
+			if _collision_state.floor and floor_stop_on_slope and (velocity.normalized() + up_direction).length() < 0.01:
+				var gt: Transform3D = get_global_transform()
+				if result.travel.length() <= safe_margin + CMP_EPSILON:
+					gt.origin -= result.travel
+				set_global_transform(gt)
+				velocity = Vector3.ZERO
+				motion = Vector3.ZERO
+				_last_motion = Vector3.ZERO
+				break
+
+			if result.remainder.is_equal_approx(Vector3.ZERO):
+				motion = Vector3.ZERO
+				break
+
+			#Apply regular sliding by default.
+			var apply_default_sliding: bool = true
+
+			#Wall collision checks.
+			if (result_state.wall && (motion_slide_up.dot(_wall_normal) <= 0)):
+				#Move on floor only checks.
+				if (floor_block_on_wall):
+					#Needs horizontal motion from current motion instead of motion_slide_up
+					#to properly test the angle and avoid standing on slopes
+					var horizontal_motion:Vector3 = motion.slide(up_direction)
+					var horizontal_normal:Vector3 = _wall_normal.slide(up_direction).normalized()
+					var motion_angle:float = abs(acos(-horizontal_normal.dot(horizontal_motion.normalized())))
 #
-			#// If we hit a ceiling platform, we set the vertical velocity to at least the platform one.
-			#if (collision_state.ceiling && platform_ceiling_velocity != Vector3() && platform_ceiling_velocity.dot(up_direction) < 0) {
-				#// If ceiling sliding is on, only apply when the ceiling is flat or when the motion is upward.
-				#if (!slide_on_ceiling || motion.dot(up_direction) < 0 || (ceiling_normal + up_direction).length() < 0.01) {
-					#apply_ceiling_velocity = true;
-					#Vector3 ceiling_vertical_velocity = up_direction * up_direction.dot(platform_ceiling_velocity);
-					#Vector3 motion_vertical_velocity = up_direction * up_direction.dot(velocity);
-					#if (motion_vertical_velocity.dot(up_direction) > 0 || ceiling_vertical_velocity.length_squared() > motion_vertical_velocity.length_squared()) {
-						#velocity = ceiling_vertical_velocity + velocity.slide(up_direction);
-					#}
-				#}
-			#}
-#
-			#if (collision_state.floor && floor_stop_on_slope && (velocity.normalized() + up_direction).length() < 0.01) {
-				#Transform3D gt = get_global_transform();
-				#if (result.travel.length() <= margin + CMP_EPSILON) {
-					#gt.origin -= result.travel;
-				#}
-				#set_global_transform(gt);
-				#velocity = Vector3();
-				#motion = Vector3();
-				#last_motion = Vector3();
-				#break;
-			#}
-#
-			#if (result.remainder.is_zero_approx()) {
-				#motion = Vector3();
-				#break;
-			#}
-#
-			#// Apply regular sliding by default.
-			#bool apply_default_sliding = true;
-#
-			#// Wall collision checks.
-			#if (result_state.wall && (motion_slide_up.dot(wall_normal) <= 0)) {
-				#// Move on floor only checks.
-				#if (floor_block_on_wall) {
-					#// Needs horizontal motion from current motion instead of motion_slide_up
-					#// to properly test the angle and avoid standing on slopes
-					#Vector3 horizontal_motion = motion.slide(up_direction);
-					#Vector3 horizontal_normal = wall_normal.slide(up_direction).normalized();
-					#real_t motion_angle = Math::abs(Math::acos(-horizontal_normal.dot(horizontal_motion.normalized())));
-#
-					#// Avoid to move forward on a wall if floor_block_on_wall is true.
-					#// Applies only when the motion angle is under 90 degrees,
-					#// in order to avoid blocking lateral motion along a wall.
-					#if (motion_angle < .5 * Math_PI) {
-						#apply_default_sliding = false;
-						#if (p_was_on_floor && !vel_dir_facing_up) {
-							#// Cancel the motion.
-							#Transform3D gt = get_global_transform();
-							#real_t travel_total = result.travel.length();
-							#real_t cancel_dist_max = MIN(0.1, margin * 20);
-							#if (travel_total <= margin + CMP_EPSILON) {
-								#gt.origin -= result.travel;
-								#result.travel = Vector3(); // Cancel for constant speed computation.
-							#} else if (travel_total < cancel_dist_max) { // If the movement is large the body can be prevented from reaching the walls.
-								#gt.origin -= result.travel.slide(up_direction);
-								#// Keep remaining motion in sync with amount canceled.
-								#motion = motion.slide(up_direction);
-								#result.travel = Vector3();
-							#} else {
-								#// Travel is too high to be safely canceled, we take it into account.
-								#result.travel = result.travel.slide(up_direction);
-								#motion = motion.normalized() * result.travel.length();
-							#}
-							#set_global_transform(gt);
-							#// Determines if you are on the ground, and limits the possibility of climbing on the walls because of the approximations.
-							#_snap_on_floor(true, false);
+					#Avoid to move forward on a wall if floor_block_on_wall is true.
+					#Applies only when the motion angle is under 90 degrees,
+					#in order to avoid blocking lateral motion along a wall.
+					if (motion_angle < .5 * PI):
+						apply_default_sliding = false
+						if (was_on_floor && !vel_dir_facing_up):
+							#Cancel the motion.
+							var gt:Transform3D = global_transform
+							var travel_total:float = result.travel.length()
+							var cancel_dist_max:float = min(0.1, safe_margin * 20)
+							if (travel_total <= safe_margin + CMP_EPSILON):
+								gt.origin -= result.travel
+								#Cancel for constant speed computation.
+								result.travel = Vector3()
+							#If the movement is large the body can be prevented from reaching the walls.
+							elif (travel_total < cancel_dist_max):
+								gt.origin -= result.travel.slide(up_direction)
+								#Keep remaining motion in sync with amount canceled.
+								motion = motion.slide(up_direction)
+								result.travel = Vector3()
+							else:
+								#Travel is too high to be safely canceled, we take it into account.
+								result.travel = result.travel.slide(up_direction)
+								motion = motion.normalized() * result.travel.length()
+							
+							set_global_transform(gt);
+							#Determines if you are on the ground, and limits the possibility of climbing on the walls because of the approximations.
+							_snap_on_floor(true, false);
 						#} else {
 							#// If the movement is not canceled we only keep the remaining.
 							#motion = result.remainder;
@@ -490,8 +446,8 @@ func _set_collision_direction(p_result:KinematicCollision3D, r_state:CollisionSt
 	var was_on_wall: bool = _collision_state.wall
 	var prev_wall_normal: Vector3 = _wall_normal
 	var wall_collision_count: int = 0
-	var combined_wall_normal: Vector3 = Vector3.ZERO
-	var tmp_wall_col: Vector3 = Vector3.ZERO # Avoid duplicate on average calculation.
+	var combined_wall_normal: Vector3 = Vector3()
+	var tmp_wall_col: Vector3 = Vector3() # Avoid duplicate on average calculation.
 
 	for i in range(p_result.collision_count - 1, -1, -1):
 		var collision = p_result.collisions[i]
@@ -526,8 +482,8 @@ func _set_collision_direction(p_result:KinematicCollision3D, r_state:CollisionSt
 			wall_depth = collision.depth
 			_wall_normal = collision.normal
 
-			# Don't apply wall velocity when the collider is a CharacterBody3D.
-			if collision.collider_id is CharacterBody3D:
+			# Don't apply wall velocity when the collider is not a CharacterBody3D.
+			if not instance_from_id(collision.collider_id) is CharacterBody3D:
 				_set_platform_data(collision)
 
 		# Collect normal for calculating average.
@@ -539,26 +495,56 @@ func _set_collision_direction(p_result:KinematicCollision3D, r_state:CollisionSt
 	if r_state.wall:
 		if wall_collision_count > 1 and not r_state.floor:
 			# Check if wall normals cancel out to floor support.
-			if not r_state.floor and motion_mode == MotionMode.MOTION_MODE_GROUNDED:
-				combined_wall_normal = combined_wall_normal.normalized()
-				var floor_angle = acos(combined_wall_normal.dot(up_direction))
-				if floor_angle <= floor_max_angle + FLOOR_ANGLE_THRESHOLD:
-					r_state.floor = true
-					r_state.wall = false
-					if p_apply_state.floor:
-						_collision_state.floor = true
-						_floor_normal = combined_wall_normal
-					if p_apply_state.wall:
-						_collision_state.wall = was_on_wall
-						_wall_normal = prev_wall_normal
-					return
+			combined_wall_normal = combined_wall_normal.normalized()
+			var floor_angle = acos(combined_wall_normal.dot(up_direction))
+			if floor_angle <= floor_max_angle + FLOOR_ANGLE_THRESHOLD:
+				r_state.floor = true
+				r_state.wall = false
+				if p_apply_state.floor:
+					_collision_state.floor = true
+					_floor_normal = combined_wall_normal
+				if p_apply_state.wall:
+					_collision_state.wall = was_on_wall
+					_wall_normal = prev_wall_normal
 
-func _set_platform_data(p_collision):
-	_platform_rid = p_collision.collider
-	_platform_object_id = p_collision.collider_id
-	_platform_velocity = p_collision.collider_velocity
+
+
+func _set_platform_data(p_collision:KinematicCollision3D):
+	_platform_rid = p_collision.get_collider_rid()
+	_platform_object_id = p_collision.get_collider_id()
+	_platform_velocity = p_collision.get_collider_velocity()
 	_platform_angular_velocity = p_collision.collider_angular_velocity
 	_platform_layer = PhysicsServer3D.body_get_collision_layer(_platform_rid)
+
+func _snap_on_floor(p_was_on_floor: bool, p_vel_dir_facing_up: bool) -> void:
+	if _collision_state.floor or not p_was_on_floor or p_vel_dir_facing_up:
+		return
+
+	apply_floor_snap()
+
+func apply_floor_snap():
+	if _collision_state.floor:
+		return
+
+	# Snap by at least collision margin to keep floor state consistent.
+	var length: float = max(floor_snap_length, safe_margin)
+
+	var result = KinematicCollision3D.new()
+	if test_move(global_transform, -up_direction * length, result, safe_margin, true, 4):
+		var result_state = {} # Initialize your collision state structure appropriately
+		# Apply direction for floor only. Adjust this method call to match your GDScript implementation.
+		_set_collision_direction(result, result_state, CollisionState.new(true, true, true))
+
+		if result_state.floor:
+			if floor_stop_on_slope:
+				# Move and collide may stray the object a bit because of pre un-stucking,
+				# so only ensure that motion happens on floor direction in this case.
+				if result.travel.length() > safe_margin:
+					result.travel = up_direction * up_direction.dot(result.travel)
+				else:
+					result.travel = Vector3.ZERO
+
+			global_position += result.travel
 
 
 class CollisionState:
