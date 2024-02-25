@@ -8,6 +8,7 @@ const CMP_EPSILON = 0.00001
 
 ##Max angle 
 @export var floor_block_on_wall:bool = true
+@export var floor_constant_speed:bool = false
 @export var floor_max_angle:float = 0.785398
 @export var floor_snap_length:float = 0.1
 @export var floor_stop_on_slope:bool = true
@@ -239,155 +240,129 @@ func _move_step_and_slide_grounded(delta:float, was_on_floor:bool):
 							set_global_transform(gt);
 							#Determines if you are on the ground, and limits the possibility of climbing on the walls because of the approximations.
 							_snap_on_floor(true, false);
-						#} else {
-							#// If the movement is not canceled we only keep the remaining.
-							#motion = result.remainder;
-						#}
+						else:
+							#If the movement is not canceled we only keep the remaining.
+							motion = result.remainder
+
+						#Apply slide on forward in order to allow only lateral motion on next step.
+						var forward:Vector3 = _wall_normal.slide(up_direction).normalized()
+						motion = motion.slide(forward)
+
+						#Scales the horizontal velocity according to the wall slope.
+						if (vel_dir_facing_up):
+							var slide_motion:Vector3 = velocity.slide(result.collisions[0].normal)
+							#Keeps the vertical motion from velocity and add the horizontal motion of the projection.
+							velocity = up_direction * up_direction.dot(velocity) + slide_motion.slide(up_direction)
+						else:
+							velocity = velocity.slide(forward)
+
+						#Allow only lateral motion along previous floor when already on floor.
+						#Fixes slowing down when moving in diagonal against an inclined wall.
+						if (was_on_floor && !vel_dir_facing_up && (motion.dot(up_direction) > 0.0)):
+							#Slide along the corner between the wall and previous floor.
+							var floor_side:Vector3 = prev_floor_normal.cross(_wall_normal)
+							if (floor_side != Vector3()):
+								motion = floor_side * motion.dot(floor_side)
+
+						#Stop all motion when a second wall is hit (unless sliding down or jumping),
+						#in order to avoid jittering in corner cases.
+						var stop_all_motion:bool = previous_state.wall && !vel_dir_facing_up
+
+						#Allow sliding when the body falls.
+						if (!_collision_state.floor && motion.dot(up_direction) < 0):
+							var slide_motion:Vector3 = motion.slide(_wall_normal)
+							#Test again to allow sliding only if the result goes downwards.
+							#Fixes jittering issues at the bottom of inclined walls.
+							if (slide_motion.dot(up_direction) < 0):
+								stop_all_motion = false
+								motion = slide_motion
+
+						if (stop_all_motion):
+							motion = Vector3()
+							velocity = Vector3()
+
+				#Stop horizontal motion when under wall slide threshold.
+				if (was_on_floor && (wall_min_slide_angle > 0.0) && result_state.wall):
+					var horizontal_normal:Vector3 = _wall_normal.slide(up_direction).normalized()
+					var motion_angle:float = abs(acos(-horizontal_normal.dot(motion_slide_up.normalized())))
+					if (motion_angle < wall_min_slide_angle):
+						motion = up_direction * motion.dot(up_direction)
+						velocity = up_direction * velocity.dot(up_direction)
 #
-						#// Apply slide on forward in order to allow only lateral motion on next step.
-						#Vector3 forward = wall_normal.slide(up_direction).normalized();
-						#motion = motion.slide(forward);
+						apply_default_sliding = false
+
+			if apply_default_sliding:
+				#Regular sliding, the last part of the test handle the case when you don't want to slide on the ceiling.
+				if (sliding_enabled or not _collision_state.floor) and (not _collision_state.ceiling or slide_on_ceiling or not vel_dir_facing_up) and not apply_ceiling_velocity:
+					var collision = result.collisions[0]
+
+					var slide_motion = result.remainder.slide(collision.normal)
+					if _collision_state.floor and not _collision_state.wall and not motion_slide_up.is_equal_approx(Vector3.ZERO):
+						# Slide using the intersection between the motion plane and the floor plane,
+						# in order to keep the direction intact.
+						var motion_length = slide_motion.length()
+						slide_motion = up_direction.cross(result.remainder).cross(_floor_normal)
+
+						# Keep the length from default slide to change speed in slopes by default,
+						# when constant speed is not enabled.
+						slide_motion = slide_motion.normalized() * motion_length
+
+					if slide_motion.dot(velocity) > 0.0:
+						motion = slide_motion
+					else:
+						motion = Vector3.ZERO
+
+					if slide_on_ceiling and result_state.ceiling:
+						# Apply slide only in the direction of the input motion, otherwise just stop to avoid jittering when moving against a wall.
+						if vel_dir_facing_up:
+							velocity = velocity.slide(collision.normal)
+						else:
+							# Avoid acceleration in slope when falling.
+							velocity = up_direction * up_direction.dot(velocity)
+				else:
+					motion = result.remainder
+					if result_state.ceiling and not slide_on_ceiling and vel_dir_facing_up:
+						velocity = velocity.slide(up_direction)
+						motion = motion.slide(up_direction)
+
+			total_travel += result.travel
+
+			#Apply Constant Speed.
+			if (was_on_floor && floor_constant_speed && can_apply_constant_speed && _collision_state.floor && !motion.is_zero_approx()):
+				var travel_slide_up:Vector3 = total_travel.slide(up_direction)
+				motion = motion.normalized() * max(0, (motion_slide_up.length() - travel_slide_up.length()));
+
+		#When you move forward in a downward slope you don’t collide because you will be in the air.
+		#This test ensures that constant speed is applied, only if the player is still on the ground after the snap is applied.
+		elif (floor_constant_speed && first_slide && _on_floor_if_snapped(was_on_floor, vel_dir_facing_up)):
+			can_apply_constant_speed = false
+			sliding_enabled = true
+			var gt:Transform3D = global_transform
+			gt.origin = gt.origin - result.travel
+			set_global_transform(gt);
 #
-						#// Scales the horizontal velocity according to the wall slope.
-						#if (vel_dir_facing_up) {
-							#Vector3 slide_motion = velocity.slide(result.collisions[0].normal);
-							#// Keeps the vertical motion from velocity and add the horizontal motion of the projection.
-							#velocity = up_direction * up_direction.dot(velocity) + slide_motion.slide(up_direction);
-						#} else {
-							#velocity = velocity.slide(forward);
-						#}
+			#Slide using the intersection between the motion plane and the floor plane,
+			#in order to keep the direction intact.
+			var motion_slide_norm:Vector3 = up_direction.cross(motion).cross(prev_floor_normal)
+			motion_slide_norm = motion_slide_norm.normalized()
 #
-						#// Allow only lateral motion along previous floor when already on floor.
-						#// Fixes slowing down when moving in diagonal against an inclined wall.
-						#if (p_was_on_floor && !vel_dir_facing_up && (motion.dot(up_direction) > 0.0)) {
-							#// Slide along the corner between the wall and previous floor.
-							#Vector3 floor_side = prev_floor_normal.cross(wall_normal);
-							#if (floor_side != Vector3()) {
-								#motion = floor_side * motion.dot(floor_side);
-							#}
-						#}
-#
-						#// Stop all motion when a second wall is hit (unless sliding down or jumping),
-						#// in order to avoid jittering in corner cases.
-						#bool stop_all_motion = previous_state.wall && !vel_dir_facing_up;
-#
-						#// Allow sliding when the body falls.
-						#if (!collision_state.floor && motion.dot(up_direction) < 0) {
-							#Vector3 slide_motion = motion.slide(wall_normal);
-							#// Test again to allow sliding only if the result goes downwards.
-							#// Fixes jittering issues at the bottom of inclined walls.
-							#if (slide_motion.dot(up_direction) < 0) {
-								#stop_all_motion = false;
-								#motion = slide_motion;
-							#}
-						#}
-#
-						#if (stop_all_motion) {
-							#motion = Vector3();
-							#velocity = Vector3();
-						#}
-					#}
-				#}
-#
-				#// Stop horizontal motion when under wall slide threshold.
-				#if (p_was_on_floor && (wall_min_slide_angle > 0.0) && result_state.wall) {
-					#Vector3 horizontal_normal = wall_normal.slide(up_direction).normalized();
-					#real_t motion_angle = Math::abs(Math::acos(-horizontal_normal.dot(motion_slide_up.normalized())));
-					#if (motion_angle < wall_min_slide_angle) {
-						#motion = up_direction * motion.dot(up_direction);
-						#velocity = up_direction * velocity.dot(up_direction);
-#
-						#apply_default_sliding = false;
-					#}
-				#}
-			#}
-#
-			#if (apply_default_sliding) {
-				#// Regular sliding, the last part of the test handle the case when you don't want to slide on the ceiling.
-				#if ((sliding_enabled || !collision_state.floor) && (!collision_state.ceiling || slide_on_ceiling || !vel_dir_facing_up) && !apply_ceiling_velocity) {
-					#const PhysicsServer3D::MotionCollision &collision = result.collisions[0];
-#
-					#Vector3 slide_motion = result.remainder.slide(collision.normal);
-					#if (collision_state.floor && !collision_state.wall && !motion_slide_up.is_zero_approx()) {
-						#// Slide using the intersection between the motion plane and the floor plane,
-						#// in order to keep the direction intact.
-						#real_t motion_length = slide_motion.length();
-						#slide_motion = up_direction.cross(result.remainder).cross(floor_normal);
-#
-						#// Keep the length from default slide to change speed in slopes by default,
-						#// when constant speed is not enabled.
-						#slide_motion.normalize();
-						#slide_motion *= motion_length;
-					#}
-#
-					#if (slide_motion.dot(velocity) > 0.0) {
-						#motion = slide_motion;
-					#} else {
-						#motion = Vector3();
-					#}
-#
-					#if (slide_on_ceiling && result_state.ceiling) {
-						#// Apply slide only in the direction of the input motion, otherwise just stop to avoid jittering when moving against a wall.
-						#if (vel_dir_facing_up) {
-							#velocity = velocity.slide(collision.normal);
-						#} else {
-							#// Avoid acceleration in slope when falling.
-							#velocity = up_direction * up_direction.dot(velocity);
-						#}
-					#}
-				#}
-				#// No sliding on first attempt to keep floor motion stable when possible.
-				#else {
-					#motion = result.remainder;
-					#if (result_state.ceiling && !slide_on_ceiling && vel_dir_facing_up) {
-						#velocity = velocity.slide(up_direction);
-						#motion = motion.slide(up_direction);
-					#}
-				#}
-			#}
-#
-			#total_travel += result.travel;
-#
-			#// Apply Constant Speed.
-			#if (p_was_on_floor && floor_constant_speed && can_apply_constant_speed && collision_state.floor && !motion.is_zero_approx()) {
-				#Vector3 travel_slide_up = total_travel.slide(up_direction);
-				#motion = motion.normalized() * MAX(0, (motion_slide_up.length() - travel_slide_up.length()));
-			#}
-		#}
-		#// When you move forward in a downward slope you don’t collide because you will be in the air.
-		#// This test ensures that constant speed is applied, only if the player is still on the ground after the snap is applied.
-		#else if (floor_constant_speed && first_slide && _on_floor_if_snapped(p_was_on_floor, vel_dir_facing_up)) {
-			#can_apply_constant_speed = false;
-			#sliding_enabled = true;
-			#Transform3D gt = get_global_transform();
-			#gt.origin = gt.origin - result.travel;
-			#set_global_transform(gt);
-#
-			#// Slide using the intersection between the motion plane and the floor plane,
-			#// in order to keep the direction intact.
-			#Vector3 motion_slide_norm = up_direction.cross(motion).cross(prev_floor_normal);
-			#motion_slide_norm.normalize();
-#
-			#motion = motion_slide_norm * (motion_slide_up.length());
-			#collided = true;
-		#}
-#
-		#if (!collided || motion.is_zero_approx()) {
-			#break;
-		#}
-#
-		#can_apply_constant_speed = !can_apply_constant_speed && !sliding_enabled;
-		#sliding_enabled = true;
-		#first_slide = false;
-	#}
-#
-	#_snap_on_floor(p_was_on_floor, vel_dir_facing_up);
-#
-	#// Reset the gravity accumulation when touching the ground.
-	#if (collision_state.floor && !vel_dir_facing_up) {
-		#velocity = velocity.slide(up_direction);
-	#}
-	pass
+			motion = motion_slide_norm * (motion_slide_up.length())
+			collided = true
+
+		if (!collided || motion.is_zero_approx()):
+			break
+
+		can_apply_constant_speed = !can_apply_constant_speed && !sliding_enabled
+		sliding_enabled = true
+		first_slide = false
+
+	_snap_on_floor(was_on_floor, vel_dir_facing_up)
+
+	#Reset the gravity accumulation when touching the ground.
+	if (_collision_state.floor && !vel_dir_facing_up):
+		velocity = velocity.slide(up_direction)
+
+
 
 func _move_step_and_slide_floating(p_delta: float) -> void:
 	var motion: Vector3 = velocity * p_delta
@@ -507,6 +482,23 @@ func _set_collision_direction(p_result:KinematicCollision3D, r_state:CollisionSt
 					_collision_state.wall = was_on_wall
 					_wall_normal = prev_wall_normal
 
+func _on_floor_if_snapped(p_was_on_floor: bool, p_vel_dir_facing_up: bool) -> bool:
+	if up_direction == Vector3.ZERO or _collision_state.floor or not p_was_on_floor or p_vel_dir_facing_up:
+		return false
+
+	# Snap by at least collision margin to keep floor state consistent.
+	var length: float = max(floor_snap_length, safe_margin)
+
+	# Also report collisions generated only from recovery.
+	var result = KinematicCollision3D.new()
+	if test_move(global_transform, -up_direction * length, result,safe_margin,true, 4):
+		var result_state = {} # Adjust this based on how you manage collision states in GDScript
+		# Don't apply direction for any type. You need to adapt this part to your GDScript context.
+		_set_collision_direction(result, result_state, CollisionState.new(false,false,false))
+
+		return result_state.floor
+
+	return false
 
 
 func _set_platform_data(p_collision:KinematicCollision3D):
@@ -531,7 +523,7 @@ func apply_floor_snap():
 
 	var result = KinematicCollision3D.new()
 	if test_move(global_transform, -up_direction * length, result, safe_margin, true, 4):
-		var result_state = {} # Initialize your collision state structure appropriately
+		var result_state = CollisionState.new(false,false,false) # Initialize your collision state structure appropriately
 		# Apply direction for floor only. Adjust this method call to match your GDScript implementation.
 		_set_collision_direction(result, result_state, CollisionState.new(true, true, true))
 
@@ -553,7 +545,7 @@ class CollisionState:
 	var wall:bool = false
 	var ceiling:bool = false
 	
-	func _init(_floor:bool, _wall:bool, _ceiling:bool) -> void:
+	func _init(_floor:bool = false, _wall:bool = false, _ceiling:bool = false) -> void:
 		floor = _floor
 		wall = _wall
 		ceiling = _ceiling
