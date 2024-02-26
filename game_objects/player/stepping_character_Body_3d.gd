@@ -200,7 +200,7 @@ func _move_step_and_slide_grounded(delta:float, was_on_floor:bool):
 
 			#Apply regular sliding by default.
 			var apply_default_sliding: bool = true
-
+			var result_travel:Vector3 = Vector3()
 			#Wall collision checks.
 			if (result_state.wall && (motion_slide_up.dot(_wall_normal) <= 0)):
 				#Move on floor only checks.
@@ -219,29 +219,29 @@ func _move_step_and_slide_grounded(delta:float, was_on_floor:bool):
 						if (was_on_floor && !vel_dir_facing_up):
 							#Cancel the motion.
 							var gt:Transform3D = global_transform
-							var travel_total:float = result.travel.length()
+							var travel_total:float = result.get_travel().length()
 							var cancel_dist_max:float = min(0.1, safe_margin * 20)
 							if (travel_total <= safe_margin + CMP_EPSILON):
-								gt.origin -= result.travel
+								gt.origin -= result.get_travel()
 								#Cancel for constant speed computation.
-								result.travel = Vector3()
+								result_travel = Vector3()
 							#If the movement is large the body can be prevented from reaching the walls.
 							elif (travel_total < cancel_dist_max):
-								gt.origin -= result.travel.slide(up_direction)
+								gt.origin -= result.get_travel().slide(up_direction)
 								#Keep remaining motion in sync with amount canceled.
 								motion = motion.slide(up_direction)
-								result.travel = Vector3()
+								result_travel = Vector3()
 							else:
 								#Travel is too high to be safely canceled, we take it into account.
-								result.travel = result.travel.slide(up_direction)
-								motion = motion.normalized() * result.travel.length()
+								result_travel = result.get_travel().slide(up_direction)
+								motion = motion.normalized() * result.get_travel().length()
 							
 							set_global_transform(gt);
 							#Determines if you are on the ground, and limits the possibility of climbing on the walls because of the approximations.
 							_snap_on_floor(true, false);
 						else:
 							#If the movement is not canceled we only keep the remaining.
-							motion = result.remainder
+							motion = result.get_remainder()
 
 						#Apply slide on forward in order to allow only lateral motion on next step.
 						var forward:Vector3 = _wall_normal.slide(up_direction).normalized()
@@ -249,7 +249,7 @@ func _move_step_and_slide_grounded(delta:float, was_on_floor:bool):
 
 						#Scales the horizontal velocity according to the wall slope.
 						if (vel_dir_facing_up):
-							var slide_motion:Vector3 = velocity.slide(result.collisions[0].normal)
+							var slide_motion:Vector3 = velocity.slide(result.get_normal())
 							#Keeps the vertical motion from velocity and add the horizontal motion of the projection.
 							velocity = up_direction * up_direction.dot(velocity) + slide_motion.slide(up_direction)
 						else:
@@ -293,14 +293,14 @@ func _move_step_and_slide_grounded(delta:float, was_on_floor:bool):
 			if apply_default_sliding:
 				#Regular sliding, the last part of the test handle the case when you don't want to slide on the ceiling.
 				if (sliding_enabled or not _collision_state.floor) and (not _collision_state.ceiling or slide_on_ceiling or not vel_dir_facing_up) and not apply_ceiling_velocity:
-					var collision = result.collisions[0]
-
-					var slide_motion = result.remainder.slide(collision.normal)
+					#var collision = result.collisions[0]
+					var collision_normal:Vector3 = result.get_normal()
+					var slide_motion = result.get_remainder().slide(collision_normal)
 					if _collision_state.floor and not _collision_state.wall and not motion_slide_up.is_equal_approx(Vector3.ZERO):
 						# Slide using the intersection between the motion plane and the floor plane,
 						# in order to keep the direction intact.
 						var motion_length = slide_motion.length()
-						slide_motion = up_direction.cross(result.remainder).cross(_floor_normal)
+						slide_motion = up_direction.cross(result.get_remainder()).cross(_floor_normal)
 
 						# Keep the length from default slide to change speed in slopes by default,
 						# when constant speed is not enabled.
@@ -314,7 +314,7 @@ func _move_step_and_slide_grounded(delta:float, was_on_floor:bool):
 					if slide_on_ceiling and result_state.ceiling:
 						# Apply slide only in the direction of the input motion, otherwise just stop to avoid jittering when moving against a wall.
 						if vel_dir_facing_up:
-							velocity = velocity.slide(collision.normal)
+							velocity = velocity.slide(collision_normal)
 						else:
 							# Avoid acceleration in slope when falling.
 							velocity = up_direction * up_direction.dot(velocity)
@@ -324,7 +324,7 @@ func _move_step_and_slide_grounded(delta:float, was_on_floor:bool):
 						velocity = velocity.slide(up_direction)
 						motion = motion.slide(up_direction)
 
-			total_travel += result.get_travel()
+			total_travel += result_travel
 
 			#Apply Constant Speed.
 			if (was_on_floor && floor_constant_speed && can_apply_constant_speed && _collision_state.floor && !motion.is_zero_approx()):
@@ -337,7 +337,7 @@ func _move_step_and_slide_grounded(delta:float, was_on_floor:bool):
 			can_apply_constant_speed = false
 			sliding_enabled = true
 			var gt:Transform3D = global_transform
-			gt.origin = gt.origin - result.travel
+			gt.origin = gt.origin - result.get_travel()
 			set_global_transform(gt);
 #
 			#Slide using the intersection between the motion plane and the floor plane,

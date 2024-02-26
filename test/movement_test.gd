@@ -9,5 +9,6 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
+	step_shape.velocity = Vector3(0,0,-5)
 	step_shape.move_step_and_slide(delta)
 	pass
