@@ -40,22 +40,22 @@ var _real_velocity:Vector3
 
 
 func is_on_floor() -> bool:
-	return false
+	return _collision_state.floor
 	
 func is_on_floor_only() -> bool:
-	return false and !is_on_wall() and !is_on_ceiling()
+	return _collision_state.floor and !is_on_wall() and !is_on_ceiling()
 	
 func is_on_wall() -> bool:
-	return false
+	return _collision_state.wall
 	
 func is_on_wall_only() -> bool:
-	return false and !is_on_floor() and !is_on_ceiling()
+	return _collision_state.wall and !is_on_floor() and !is_on_ceiling()
 	
 func is_on_ceiling() -> bool:
-	return false
+	return _collision_state.ceiling
 
 func is_on_ceiling_only() -> bool:
-	return false and !is_on_floor() and !is_on_wall()
+	return _collision_state.ceiling and !is_on_floor() and !is_on_wall()
 
 func get_floor_normal() -> Vector3:
 	return _floor_normal
@@ -164,15 +164,28 @@ func _move_step_and_slide_grounded(delta:float, was_on_floor:bool):
 	for iteration in range(max_slides):
 		#There can be 4 collisions between 2 walls + 2 more for the floor.
 		#Also report collisions generated only from recovery.
-		var result:KinematicCollision3D = move_and_collide(motion, false, safe_margin, true, 6)
+		var collision_result:KinematicCollision3D = move_and_collide(motion, false, safe_margin, true, 6)
 
-		if (result):
-			_collision_results.append(result);
+		if (collision_result):
+			var collision_result_collider = collision_result.get_collider()
+			var collision_result_collider_id = collision_result.get_collider_id()
+			var collision_result_collider_rid = collision_result.get_collider_rid()
+			var collision_result_collider_shape = collision_result.get_collider_shape()
+			var collision_result_collider_velocity = collision_result.get_collider_velocity()
+			var collision_result_collision_count = collision_result.get_collision_count()
+			var collision_result_depth = collision_result.get_depth()
+			var collision_result_local_shape = collision_result.get_local_shape()
+			var collision_result_normal = collision_result.get_normal()
+			var collision_result_position = collision_result.get_position()
+			var collision_result_remainder = collision_result.get_remainder()
+			var collision_result_travel = collision_result.get_travel()
+			
+			_collision_results.append(collision_result);
 #
 			var previous_state:CollisionState = _collision_state;
 #
 			var result_state:CollisionState = CollisionState.new()
-			_set_collision_direction(result, result_state, CollisionState.new(true,true,true));
+			_set_collision_direction(collision_result, result_state, CollisionState.new(true,true,true));
 
 			# If we hit a ceiling platform, we set the vertical velocity to at least the platform one.
 			if _collision_state.ceiling and _platform_ceiling_velocity != Vector3.ZERO and _platform_ceiling_velocity.dot(up_direction) < 0:
@@ -186,15 +199,15 @@ func _move_step_and_slide_grounded(delta:float, was_on_floor:bool):
 
 			if _collision_state.floor and floor_stop_on_slope and (velocity.normalized() + up_direction).length() < 0.01:
 				var gt: Transform3D = get_global_transform()
-				if result.travel.length() <= safe_margin + CMP_EPSILON:
-					gt.origin -= result.travel
+				if collision_result_travel.length() <= safe_margin + CMP_EPSILON:
+					gt.origin -= collision_result_travel
 				set_global_transform(gt)
 				velocity = Vector3.ZERO
 				motion = Vector3.ZERO
 				_last_motion = Vector3.ZERO
 				break
 
-			if result.get_remainder().is_equal_approx(Vector3.ZERO):
+			if collision_result_remainder.is_equal_approx(Vector3.ZERO):
 				motion = Vector3.ZERO
 				break
 
@@ -219,29 +232,29 @@ func _move_step_and_slide_grounded(delta:float, was_on_floor:bool):
 						if (was_on_floor && !vel_dir_facing_up):
 							#Cancel the motion.
 							var gt:Transform3D = global_transform
-							var travel_total:float = result.get_travel().length()
+							var travel_total:float = collision_result_travel.length()
 							var cancel_dist_max:float = min(0.1, safe_margin * 20)
 							if (travel_total <= safe_margin + CMP_EPSILON):
-								gt.origin -= result.get_travel()
+								gt.origin -= collision_result_travel
 								#Cancel for constant speed computation.
 								result_travel = Vector3()
 							#If the movement is large the body can be prevented from reaching the walls.
 							elif (travel_total < cancel_dist_max):
-								gt.origin -= result.get_travel().slide(up_direction)
+								gt.origin -= collision_result_travel.slide(up_direction)
 								#Keep remaining motion in sync with amount canceled.
 								motion = motion.slide(up_direction)
 								result_travel = Vector3()
 							else:
 								#Travel is too high to be safely canceled, we take it into account.
-								result_travel = result.get_travel().slide(up_direction)
-								motion = motion.normalized() * result.get_travel().length()
+								result_travel = collision_result_travel.slide(up_direction)
+								motion = motion.normalized() * collision_result_travel.length()
 							
 							set_global_transform(gt);
 							#Determines if you are on the ground, and limits the possibility of climbing on the walls because of the approximations.
 							_snap_on_floor(true, false);
 						else:
 							#If the movement is not canceled we only keep the remaining.
-							motion = result.get_remainder()
+							motion = collision_result_remainder
 
 						#Apply slide on forward in order to allow only lateral motion on next step.
 						var forward:Vector3 = _wall_normal.slide(up_direction).normalized()
@@ -249,7 +262,7 @@ func _move_step_and_slide_grounded(delta:float, was_on_floor:bool):
 
 						#Scales the horizontal velocity according to the wall slope.
 						if (vel_dir_facing_up):
-							var slide_motion:Vector3 = velocity.slide(result.get_normal())
+							var slide_motion:Vector3 = velocity.slide(collision_result_normal)
 							#Keeps the vertical motion from velocity and add the horizontal motion of the projection.
 							velocity = up_direction * up_direction.dot(velocity) + slide_motion.slide(up_direction)
 						else:
@@ -294,13 +307,13 @@ func _move_step_and_slide_grounded(delta:float, was_on_floor:bool):
 				#Regular sliding, the last part of the test handle the case when you don't want to slide on the ceiling.
 				if (sliding_enabled or not _collision_state.floor) and (not _collision_state.ceiling or slide_on_ceiling or not vel_dir_facing_up) and not apply_ceiling_velocity:
 					#var collision = result.collisions[0]
-					var collision_normal:Vector3 = result.get_normal()
-					var slide_motion = result.get_remainder().slide(collision_normal)
+					var collision_normal:Vector3 = collision_result_normal
+					var slide_motion = collision_result_remainder.slide(collision_normal)
 					if _collision_state.floor and not _collision_state.wall and not motion_slide_up.is_equal_approx(Vector3.ZERO):
 						# Slide using the intersection between the motion plane and the floor plane,
 						# in order to keep the direction intact.
 						var motion_length = slide_motion.length()
-						slide_motion = up_direction.cross(result.get_remainder()).cross(_floor_normal)
+						slide_motion = up_direction.cross(collision_result_remainder.cross(_floor_normal))
 
 						# Keep the length from default slide to change speed in slopes by default,
 						# when constant speed is not enabled.
@@ -319,7 +332,7 @@ func _move_step_and_slide_grounded(delta:float, was_on_floor:bool):
 							# Avoid acceleration in slope when falling.
 							velocity = up_direction * up_direction.dot(velocity)
 				else:
-					motion = result.get_remainder()
+					motion = collision_result_remainder
 					if result_state.ceiling and not slide_on_ceiling and vel_dir_facing_up:
 						velocity = velocity.slide(up_direction)
 						motion = motion.slide(up_direction)
@@ -337,7 +350,8 @@ func _move_step_and_slide_grounded(delta:float, was_on_floor:bool):
 			can_apply_constant_speed = false
 			sliding_enabled = true
 			var gt:Transform3D = global_transform
-			gt.origin = gt.origin - result.get_travel()
+			
+			#gt.origin = gt.origin - result.get_travel
 			set_global_transform(gt);
 #
 			#Slide using the intersection between the motion plane and the floor plane,
@@ -346,9 +360,9 @@ func _move_step_and_slide_grounded(delta:float, was_on_floor:bool):
 			motion_slide_norm = motion_slide_norm.normalized()
 #
 			motion = motion_slide_norm * (motion_slide_up.length())
-			result = KinematicCollision3D.new()
+			collision_result = KinematicCollision3D.new()
 
-		if (!result || motion.is_zero_approx()):
+		if (!collision_result || motion.is_zero_approx()):
 			break
 
 		can_apply_constant_speed = !can_apply_constant_speed && !sliding_enabled
@@ -377,7 +391,7 @@ func _move_step_and_slide_floating(p_delta: float) -> void:
 		# Also report collisions generated only from recovery.
 		var result:KinematicCollision3D = move_and_collide(motion, false, safe_margin, true)
 
-		_last_motion = result.travel
+		_last_motion = result.get_travel()
 
 		if result:
 			_collision_results.push_back(result)
@@ -391,13 +405,13 @@ func _move_step_and_slide_floating(p_delta: float) -> void:
 
 			if wall_min_slide_angle != 0 and acos(_wall_normal.dot(-velocity.normalized())) < wall_min_slide_angle + FLOOR_ANGLE_THRESHOLD:
 				motion = Vector3.ZERO
-				if result.travel.length() < safe_margin + CMP_EPSILON:
+				if result.get_travel().length() < safe_margin + CMP_EPSILON:
 					var gt: Transform3D = get_global_transform()
-					gt.origin -= result.travel
+					gt.origin -= result.get_travel()
 					set_global_transform(gt)
 			elif first_slide:
 				var motion_slide_norm: Vector3 = result.remainder.slide(_wall_normal).normalized()
-				motion = motion_slide_norm * (motion.length() - result.travel.length())
+				motion = motion_slide_norm * (motion.length() - result.get_travel().length())
 			else:
 				motion = result.remainder.slide(_wall_normal)
 
@@ -429,7 +443,7 @@ func _set_collision_direction(p_result:KinematicCollision3D, r_state:CollisionSt
 
 		if motion_mode == MotionMode.MOTION_MODE_GROUNDED:
 			# Check if any collision is floor.
-			var floor_angle = get_angle(collision_normal, up_direction)
+			var floor_angle = p_result.get_angle(i, up_direction)
 			if floor_angle <= floor_max_angle + FLOOR_ANGLE_THRESHOLD:
 				r_state.floor = true
 				if p_apply_state.floor and collision_depth > floor_depth:
@@ -440,7 +454,7 @@ func _set_collision_direction(p_result:KinematicCollision3D, r_state:CollisionSt
 				continue
 
 			# Check if any collision is ceiling.
-			var ceiling_angle = get_angle(collision_normal, -up_direction)
+			var ceiling_angle = p_result.get_angle(i, -up_direction)
 			if ceiling_angle <= floor_max_angle + FLOOR_ANGLE_THRESHOLD:
 				r_state.ceiling = true
 				if p_apply_state.ceiling:
@@ -532,15 +546,15 @@ func apply_floor_snap():
 			if floor_stop_on_slope:
 				# Move and collide may stray the object a bit because of pre un-stucking,
 				# so only ensure that motion happens on floor direction in this case.
-				if result.travel.length() > safe_margin:
-					result.travel = up_direction * up_direction.dot(result.travel)
+				if result.get_travel().length() > safe_margin:
+					result.travel = up_direction * up_direction.dot(result.get_travel())
 				else:
 					result.travel = Vector3.ZERO
 
-			global_position += result.travel
+			global_position += result.get_travel()
 
-func get_angle(collision_normal:Vector3, up_direction:Vector3) -> float:
-	return acos(collision_normal.dot(up_direction))
+#func get_angle(collision_normal:Vector3, up_direction:Vector3) -> float:
+	#return acos(collision_normal.dot(up_direction))
 
 class CollisionState:
 	var state:int = 0
