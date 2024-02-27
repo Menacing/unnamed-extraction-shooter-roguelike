@@ -20,6 +20,8 @@ const CMP_EPSILON = 0.00001
 @export var slide_on_ceiling:bool = true
 @export var wall_min_slide_angle:float = 0.261799
 @export var platform_on_leave:PlatformOnLeave = PlatformOnLeave.PLATFORM_ON_LEAVE_ADD_VELOCITY
+@export var max_step_height = .45
+@export var min_step_width = .125
 
 var _collision_results:Array[KinematicCollision3D] = []
 var _floor_normal:Vector3
@@ -185,7 +187,54 @@ func _move_step_and_slide_grounded(delta:float, was_on_floor:bool):
 			var previous_state:CollisionState = _collision_state;
 #
 			var result_state:CollisionState = CollisionState.new()
-			_set_collision_direction(collision_result, result_state, CollisionState.new(true,true,true));
+			_set_collision_direction(collision_result, result_state, CollisionState.new(true,true,true))
+			
+			#On the first slide, check if we're on a step
+			if first_slide and _collision_state.wall and !_collision_state.ceiling:
+				#Test up step height
+				var step_up_test_result = KinematicCollision3D.new()
+				var step_up_motion = up_direction * max_step_height
+				var step_up_test_collided = test_move(global_transform, step_up_motion, step_up_test_result, safe_margin)
+				
+				var actual_step_up_height:Vector3
+				#if collision only test horizontal from travel distance
+				if step_up_test_collided:
+					actual_step_up_height = step_up_test_result.get_travel()
+				#else test from step height
+				else:
+					actual_step_up_height = step_up_motion
+				
+				#test over minimum step width
+				var step_over_test_result = KinematicCollision3D.new()
+				var step_over_motion = collision_result_remainder.normalized() * min_step_width
+				var step_over_source_position = global_transform
+				step_over_source_position.origin += actual_step_up_height
+				var step_over_test_collided = test_move(step_over_source_position, step_over_motion, step_over_test_result, safe_margin)
+				
+				#if collision check if wall, if wall, don't move
+				if step_over_test_collided:
+					var hit_wall = false
+					for i in range(step_over_test_result.get_collision_count()):
+						var hit_floor = false
+						var floor_angle = step_over_test_result.get_angle(i, up_direction)
+						if floor_angle <= floor_max_angle + FLOOR_ANGLE_THRESHOLD:
+							hit_floor = true
+						var hit_ceiling = false
+						var ceiling_angle = step_over_test_result.get_angle(i, -up_direction)
+						if ceiling_angle <= floor_max_angle + FLOOR_ANGLE_THRESHOLD:
+							hit_ceiling = true
+						if not hit_ceiling and not hit_floor:
+							hit_wall = true
+					
+					if !hit_wall:
+						global_transform.origin += actual_step_up_height + step_over_motion
+						break
+					pass
+				#else move to target position and break
+				else:
+					global_transform.origin += actual_step_up_height + step_over_motion
+					break
+				pass
 
 			# If we hit a ceiling platform, we set the vertical velocity to at least the platform one.
 			if _collision_state.ceiling and _platform_ceiling_velocity != Vector3.ZERO and _platform_ceiling_velocity.dot(up_direction) < 0:
