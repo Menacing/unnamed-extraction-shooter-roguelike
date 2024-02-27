@@ -313,7 +313,7 @@ func _move_step_and_slide_grounded(delta:float, was_on_floor:bool):
 						# Slide using the intersection between the motion plane and the floor plane,
 						# in order to keep the direction intact.
 						var motion_length = slide_motion.length()
-						slide_motion = up_direction.cross(collision_result_remainder.cross(_floor_normal))
+						slide_motion = up_direction.cross(collision_result_remainder).cross(_floor_normal)
 
 						# Keep the length from default slide to change speed in slopes by default,
 						# when constant speed is not enabled.
@@ -435,15 +435,17 @@ func _set_collision_direction(p_result:KinematicCollision3D, r_state:CollisionSt
 	var wall_collision_count: int = 0
 	var combined_wall_normal: Vector3 = Vector3()
 	var tmp_wall_col: Vector3 = Vector3() # Avoid duplicate on average calculation.
+	var p_result_collusion_count = p_result.get_collision_count()
 
 	for i in range(p_result.get_collision_count() - 1, -1, -1):
 		
 		var collision_normal = p_result.get_normal(i)
 		var collision_depth = p_result.get_depth()
 
+		var floor_angle = p_result.get_angle(i, up_direction)
+		var ceiling_angle = p_result.get_angle(i, -up_direction)
 		if motion_mode == MotionMode.MOTION_MODE_GROUNDED:
 			# Check if any collision is floor.
-			var floor_angle = p_result.get_angle(i, up_direction)
 			if floor_angle <= floor_max_angle + FLOOR_ANGLE_THRESHOLD:
 				r_state.floor = true
 				if p_apply_state.floor and collision_depth > floor_depth:
@@ -454,7 +456,6 @@ func _set_collision_direction(p_result:KinematicCollision3D, r_state:CollisionSt
 				continue
 
 			# Check if any collision is ceiling.
-			var ceiling_angle = p_result.get_angle(i, -up_direction)
 			if ceiling_angle <= floor_max_angle + FLOOR_ANGLE_THRESHOLD:
 				r_state.ceiling = true
 				if p_apply_state.ceiling:
@@ -553,8 +554,6 @@ func apply_floor_snap():
 
 			global_position += result.get_travel()
 
-#func get_angle(collision_normal:Vector3, up_direction:Vector3) -> float:
-	#return acos(collision_normal.dot(up_direction))
 
 class CollisionState:
 	var state:int = 0

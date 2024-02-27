@@ -15,13 +15,13 @@ use_collision = true
 size = Vector3(12.5101, 0.48877, 16.4471)
 
 [node name="CSGPolygon3D" type="CSGPolygon3D" parent="."]
-transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, -1.30066, 0, -2)
+transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, -1.30066, -0.0307548, -2)
 use_collision = true
 polygon = PackedVector2Array(0, 0, 0, 1, 1, 0)
 depth = 2.64
 
 [node name="StaticBody3D" type="AnimatableBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.632057, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.563883, 0, 0)
 script = ExtResource("2_sqnjv")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
@@ -49,7 +49,7 @@ projection = 1
 size = 7.31605
 
 [node name="CharacterBody3D" type="CharacterBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.495681, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.760802, 0, 0)
 
 [node name="Label3D2" type="Label3D" parent="CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.12774, 1.67921, 0)
