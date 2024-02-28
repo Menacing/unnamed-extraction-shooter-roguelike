@@ -232,7 +232,7 @@ func _move_step_and_slide_grounded(delta:float, was_on_floor:bool):
 					pass
 				#else move to target position and break
 				else:
-					global_transform.origin += actual_step_up_height + step_over_motion
+					global_transform.origin += actual_step_up_height + collision_result_remainder
 					break
 				pass
 

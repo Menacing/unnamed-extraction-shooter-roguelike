@@ -1,13 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://joq0rnkt3uxe"]
+[gd_scene load_steps=4 format=3 uid="uid://bed57c1ujsb08"]
 
-[ext_resource type="Script" path="res://test/movement/movement_test.gd" id="1_j82k7"]
-[ext_resource type="Script" path="res://game_objects/player/stepping_character_Body_3d.gd" id="2_62usy"]
+[ext_resource type="Script" path="res://test/movement/movement_test.gd" id="1_y0lwu"]
+[ext_resource type="Script" path="res://game_objects/player/stepping_character_Body_3d.gd" id="2_w5mf5"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_r3lrf"]
 height = 1.38368
 
 [node name="MovementTest" type="Node3D"]
-script = ExtResource("1_j82k7")
+script = ExtResource("1_y0lwu")
 
 [node name="Floor" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.67169, -0.255615, -0.0244751)
@@ -17,12 +17,12 @@ size = Vector3(12.5101, 0.48877, 16.4471)
 [node name="CSGPolygon3D" type="CSGPolygon3D" parent="."]
 transform = Transform3D(-4.37112e-08, 0, 1, 0, 1, 0, -1, 0, -4.37112e-08, 1.24626, -0.0307548, -1.42273)
 use_collision = true
-polygon = PackedVector2Array(0, 0, 0, 0.5, 1, 0)
+polygon = PackedVector2Array(0, 0, 0, 0.4, 0.1, 0.4, 0.1, 1.4, 1, 0)
 depth = 2.64
 
 [node name="StaticBody3D" type="AnimatableBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.563883, 0, 0)
-script = ExtResource("2_62usy")
+script = ExtResource("2_w5mf5")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.697135, 0)
