@@ -190,7 +190,7 @@ func _move_step_and_slide_grounded(delta:float, was_on_floor:bool):
 			_set_collision_direction(collision_result, result_state, CollisionState.new(true,true,true))
 			
 			#On the first slide, check if we're on a step
-			if first_slide and _collision_state.wall and !_collision_state.ceiling:
+			if first_slide and _collision_state.wall and !_collision_state.ceiling and !is_zero_approx(collision_result_remainder.length()):
 				#Test up step height
 				var step_up_test_result = KinematicCollision3D.new()
 				var step_up_motion = up_direction * max_step_height
