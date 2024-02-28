@@ -187,7 +187,7 @@ func _move_step_and_slide_grounded(delta:float, was_on_floor:bool):
 			
 			_collision_results.append(collision_result);
 #
-			var previous_state:CollisionState = _collision_state;
+			var previous_state:CollisionState = _collision_state.copy();
 #
 			var result_state:CollisionState = CollisionState.new()
 			_set_collision_direction(collision_result, result_state, CollisionState.new(true,true,true))
@@ -450,7 +450,7 @@ func _move_step_and_slide_floating(p_delta: float) -> void:
 		if result:
 			_collision_results.push_back(result)
 
-			var result_state = {} # Placeholder for your specific collision state handling
+			var result_state = CollisionState.new() # Placeholder for your specific collision state handling
 			_set_collision_direction(result, result_state, CollisionState.new(true,true,true))
 
 			if result.remainder.is_equal_approx(Vector3.ZERO):
@@ -560,7 +560,7 @@ func _on_floor_if_snapped(p_was_on_floor: bool, p_vel_dir_facing_up: bool) -> bo
 	# Also report collisions generated only from recovery.
 	var result = KinematicCollision3D.new()
 	if test_move(global_transform, -up_direction * length, result,safe_margin,true, 4):
-		var result_state = {} # Adjust this based on how you manage collision states in GDScript
+		var result_state = CollisionState.new() # Adjust this based on how you manage collision states in GDScript
 		# Don't apply direction for any type. You need to adapt this part to your GDScript context.
 		_set_collision_direction(result, result_state, CollisionState.new(false,false,false))
 
@@ -622,3 +622,6 @@ class CollisionState:
 		floor = false
 		wall = false
 		ceiling = false
+		
+	func copy():
+		return CollisionState.new(floor, wall, ceiling)
