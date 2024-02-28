@@ -123,7 +123,8 @@ func move_step_and_slide(delta:float) -> bool:
 		_move_step_and_slide_floating(delta)
 
 	# Compute real velocity.
-	_real_velocity = (global_position - _previous_position) / delta
+	var position_difference = get_global_transform().origin - _previous_position
+	_real_velocity = (position_difference) / delta
 
 	if platform_on_leave != PlatformOnLeave.PLATFORM_ON_LEAVE_DO_NOTHING:
 		# Add last platform velocity when just left a moving platform.
@@ -133,7 +134,6 @@ func move_step_and_slide(delta:float) -> bool:
 			velocity += current_platform_velocity
 
 	return len(_collision_results) > 0
-
 
 func _move_step_and_slide_grounded(delta:float, was_on_floor:bool):
 	var motion:Vector3 = velocity * delta;
@@ -162,6 +162,9 @@ func _move_step_and_slide_grounded(delta:float, was_on_floor:bool):
 	var vel_dir_facing_up:bool = velocity.dot(up_direction) > 0;
 	var total_travel:Vector3
 	var current_frame_transform:Transform3D = global_transform
+	
+	if motion.length()>0:
+		pass
 
 	for iteration in range(max_slides):
 		#There can be 4 collisions between 2 walls + 2 more for the floor.
@@ -424,8 +427,6 @@ func _move_step_and_slide_grounded(delta:float, was_on_floor:bool):
 	if (_collision_state.floor && !vel_dir_facing_up):
 		velocity = velocity.slide(up_direction)
 
-
-
 func _move_step_and_slide_floating(p_delta: float) -> void:
 	var motion: Vector3 = velocity * p_delta
 
@@ -471,7 +472,6 @@ func _move_step_and_slide_floating(p_delta: float) -> void:
 			break
 
 		first_slide = false
-
 
 func _set_collision_direction(p_result:KinematicCollision3D, r_state:CollisionState, p_apply_state:CollisionState):
 	r_state.state = 0
@@ -563,7 +563,6 @@ func _on_floor_if_snapped(p_was_on_floor: bool, p_vel_dir_facing_up: bool) -> bo
 		return result_state.floor
 
 	return false
-
 
 func _set_platform_data(p_collision:KinematicCollision3D, index:int):
 	_platform_rid = p_collision.get_collider_rid(index)

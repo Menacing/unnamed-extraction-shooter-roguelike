@@ -1,4 +1,4 @@
-extends CharacterBody3D
+extends SteppingCharacterBody3D
 class_name Player
 
 @onready var state_chart :StateChart = %StateChart
@@ -482,46 +482,14 @@ func should_prone() -> bool:
 	return toggle_prone_f
 
 
-var MAX_STEP_HEIGHT:float = 0.45
-var MIN_STEP_WIDTH:float = 0.15
-var currently_stepping:bool = false
 func move(move_global_velocity:Vector3, delta:float, going_forward:bool):
-	if not is_on_floor() and !currently_stepping:
+	if not is_on_floor():
 		velocity.y -= gravity * delta
 	else:
 		velocity.x = move_toward(velocity.x, move_global_velocity.x, accel)
 		velocity.z = move_toward(velocity.z, move_global_velocity.z, accel)
 	
-	#move_and_slide()
-	currently_stepping = Helpers.move_slide_and_step(self, step_checker, delta, MAX_STEP_HEIGHT, MIN_STEP_WIDTH, currently_stepping)
-	
-	##If touching a wall, going forward, and step check is clear, translate velocity to up
-	#var touching_wall = is_on_wall()
-	#var step_clear = !step_check.is_colliding()
-	#var vx = move_toward(velocity.x, move_global_velocity.x, accel)
-	#var vz = move_toward(velocity.z, move_global_velocity.z, accel)
-	#var target_vector = Vector3(vx, 0.0, vz)
-	#if touching_wall and going_forward and step_clear:
-		#var target_speed = target_vector.length()
-		#var target_normal = target_vector.normalized()
-		#var adjusted_velocity = Vector3(target_vector.x, target_speed, target_vector.z)
-		#velocity = adjusted_velocity
-		#floor_block_on_wall = false
-		#move_and_slide()
-		#pass
-	##else if not on the floor fall
-	#elif not is_on_floor():
-		#velocity.y -= gravity * delta
-		#move_and_slide()
-	##else move towards move velocity
-	#else:
-		#velocity.x = vx
-		#velocity.z = vz
-		#floor_block_on_wall = true
-		#move_and_slide()
-		##Helpers.shapecast_step_move(self, delta, 0.1, 0.45, 0.15)
-
-	
+	move_step_and_slide(delta)
 
 #region Standing
 func _on_standing_state_entered():
@@ -813,7 +781,7 @@ func _on_jumping_state_exited():
 func _on_jumping_state_physics_processing(delta):
 	if not is_on_floor():
 		velocity.y -= gravity * delta
-		move_and_slide()
+		move_step_and_slide(delta)
 	else:
 		state_chart.send_event("LegsDone")
 		return
