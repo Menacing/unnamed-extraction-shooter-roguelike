@@ -99,7 +99,7 @@ func move_step_and_slide(delta:float) -> bool:
 	_collision_results.clear()
 
 	var was_on_floor = _collision_state.floor
-	_collision_state.state = 0
+	_collision_state.reset()
 
 	_last_motion = Vector3()
 
@@ -228,6 +228,8 @@ func _move_step_and_slide_grounded(delta:float, was_on_floor:bool):
 							hit_ceiling = true
 						if not hit_ceiling and not hit_floor:
 							hit_wall = true
+					var step_result = CollisionState.new()
+					_set_collision_direction(step_over_test_result, step_result, CollisionState.new(true,true,true))
 					
 					if !hit_wall:
 						global_transform.origin += actual_step_up_height + step_over_motion
@@ -235,6 +237,8 @@ func _move_step_and_slide_grounded(delta:float, was_on_floor:bool):
 					pass
 				#else move to target position and break
 				else:
+					var step_result = CollisionState.new()
+					_set_collision_direction(step_up_test_result, step_result, CollisionState.new(true,true,true))
 					global_transform.origin += actual_step_up_height + collision_result_remainder
 					break
 				pass
@@ -474,7 +478,7 @@ func _move_step_and_slide_floating(p_delta: float) -> void:
 		first_slide = false
 
 func _set_collision_direction(p_result:KinematicCollision3D, r_state:CollisionState, p_apply_state:CollisionState):
-	r_state.state = 0
+	r_state.reset()
 
 	var wall_depth: float = -1.0
 	var floor_depth: float = -1.0
@@ -604,7 +608,6 @@ func apply_floor_snap():
 
 
 class CollisionState:
-	var state:int = 0
 	var floor:bool = false
 	var wall:bool = false
 	var ceiling:bool = false
@@ -613,3 +616,8 @@ class CollisionState:
 		floor = _floor
 		wall = _wall
 		ceiling = _ceiling
+	
+	func reset():
+		floor = false
+		wall = false
+		ceiling = false
