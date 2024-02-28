@@ -590,21 +590,22 @@ func apply_floor_snap():
 	var length: float = max(floor_snap_length, safe_margin)
 
 	var result = KinematicCollision3D.new()
+	var result_travel = Vector3()
 	if test_move(global_transform, -up_direction * length, result, safe_margin, true, 4):
 		var result_state = CollisionState.new(false,false,false) # Initialize your collision state structure appropriately
 		# Apply direction for floor only. Adjust this method call to match your GDScript implementation.
 		_set_collision_direction(result, result_state, CollisionState.new(true, true, true))
-
+		result_travel = result.get_travel()
 		if result_state.floor:
 			if floor_stop_on_slope:
 				# Move and collide may stray the object a bit because of pre un-stucking,
 				# so only ensure that motion happens on floor direction in this case.
-				if result.get_travel().length() > safe_margin:
-					result.travel = up_direction * up_direction.dot(result.get_travel())
+				if result_travel.length() > safe_margin:
+					result_travel = up_direction * up_direction.dot(result_travel)
 				else:
-					result.travel = Vector3.ZERO
+					result_travel = Vector3.ZERO
 
-			global_position += result.get_travel()
+			global_position += result_travel
 
 
 class CollisionState:

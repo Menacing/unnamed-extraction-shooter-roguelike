@@ -22,6 +22,7 @@ depth = 2.64
 
 [node name="StaticBody3D" type="AnimatableBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.563883, 0, 0)
+sync_to_physics = false
 script = ExtResource("2_6gqtu")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
@@ -50,6 +51,7 @@ size = 7.31605
 
 [node name="CharacterBody3D" type="CharacterBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.760802, 0, 0)
+visible = false
 
 [node name="Label3D2" type="Label3D" parent="CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.12774, 1.67921, 0)
