@@ -17,7 +17,7 @@ size = Vector3(12.5101, 0.48877, 16.4471)
 [node name="CSGPolygon3D" type="CSGPolygon3D" parent="."]
 transform = Transform3D(-4.37112e-08, 0, 1, 0, 1, 0, -1, 0, -4.37112e-08, 1.24626, -0.0307548, -1.42273)
 use_collision = true
-polygon = PackedVector2Array(0, 0, 0, 0.5, 1, 0)
+polygon = PackedVector2Array(0, 0, 0, 2, 1, 2, 1, 0)
 depth = 2.64
 
 [node name="StaticBody3D" type="AnimatableBody3D" parent="."]

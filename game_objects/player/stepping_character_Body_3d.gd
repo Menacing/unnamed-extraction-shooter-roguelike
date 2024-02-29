@@ -192,8 +192,8 @@ func _move_step_and_slide_grounded(delta:float, was_on_floor:bool):
 			var result_state:CollisionState = CollisionState.new()
 			_set_collision_direction(collision_result, result_state, CollisionState.new(true,true,true))
 			
-			#On the first slide, check if we're on a step
-			if first_slide and _collision_state.wall and !_collision_state.ceiling and !is_zero_approx(collision_result_remainder.length()):
+			#Check if we're on a step
+			if _collision_state.wall and !_collision_state.ceiling and !is_zero_approx(collision_result_remainder.length()):
 				#Test up step height
 				var step_up_test_result = KinematicCollision3D.new()
 				var step_up_motion = up_direction * max_step_height
@@ -209,31 +209,13 @@ func _move_step_and_slide_grounded(delta:float, was_on_floor:bool):
 				
 				#test we have space to step up
 				var space_to_step = _is_space_for_step(collision_result, actual_step_up_height)
-	
-				#test remainder of movement at step_up_height
-				var step_over_test_result = KinematicCollision3D.new()
-				var step_over_motion = collision_result_remainder
-				var step_over_source_position = global_transform
-				step_over_source_position.origin += actual_step_up_height
-				var step_over_test_collided = test_move(step_over_source_position, step_over_motion, step_over_test_result, safe_margin)
-				
-				#if collision check if wall, if wall, don't move
-				if step_over_test_collided:
-					var hit_wall = _kinematic_collision_3d_hit_wall(step_over_test_result)
-					var step_result = CollisionState.new()
-					_set_collision_direction(step_over_test_result, step_result, CollisionState.new(true,true,true))
-					
-					if !hit_wall:
-						global_transform.origin += actual_step_up_height + step_over_motion
-						break
-					pass
-				#else move to target position and break
-				else:
-					var step_result = CollisionState.new()
-					_set_collision_direction(step_up_test_result, step_result, CollisionState.new(true,true,true))
-					global_transform.origin += actual_step_up_height + collision_result_remainder
-					break
-				pass
+				if space_to_step:
+					_perform_step_over(actual_step_up_height, collision_result_remainder)
+					can_apply_constant_speed = !can_apply_constant_speed && !sliding_enabled
+					sliding_enabled = true
+					first_slide = false
+					continue
+
 
 			# If we hit a ceiling platform, we set the vertical velocity to at least the platform one.
 			if _collision_state.ceiling and _platform_ceiling_velocity != Vector3.ZERO and _platform_ceiling_velocity.dot(up_direction) < 0:
@@ -599,34 +581,141 @@ func apply_floor_snap():
 
 			global_position += result_travel
 
-##Check if there's space at a given step up height for 
+##Check if there's space at a given step up height for the remaining travel
+const _step_space_min_slide_travel = 0.001
+
 func _is_space_for_step(step_collision:KinematicCollision3D, test_height:Vector3) -> bool:
-	#Calculate test distance
-	var test_distance = max(min_step_width, step_collision.get_remainder().length())
+	for i in range(step_collision.get_collision_count()):
+		if _is_space_for_step_single(step_collision.get_remainder(), step_collision.get_normal(i), test_height):
+			return true
 	
-	#Cast reverse of the wall normal the test distance
+	return false
+
+func _is_space_for_step_single(step_collision_remainder:Vector3, step_collision_normal:Vector3 , test_height:Vector3) -> bool:
+	#Calculate test distance
+	var test_distance = max(min_step_width, step_collision_remainder.length())
+	var total_travel:Vector3 = Vector3()
 	var step_space_test_result = KinematicCollision3D.new()
-	var step_space_motion = -step_collision.get_normal() * test_distance
+	
+	#Cast reverse of the wall normal the test distance horizontally
+	var flattened_reverse_normal = -Vector3(step_collision_normal.x, 0 ,step_collision_normal.z)
+	if is_zero_approx(flattened_reverse_normal.length()):
+		return false
+	
+	var step_space_motion = flattened_reverse_normal.normalized() * test_distance
+	
 	var step_space_source_position = global_transform
 	step_space_source_position.origin += test_height
 	var step_space_test_collided = test_move(step_space_source_position, step_space_motion, step_space_test_result, safe_margin)
 	
 	if step_space_test_collided:
-		var space_check_hit_wall = _kinematic_collision_3d_hit_wall(step_space_test_result)
-		if space_check_hit_wall:
-			#slide remainder and test again
-			var slide_test_result = KinematicCollision3D.new()
-			var slide_motion = step_space_test_result.get_remainder().slide(step_space_test_result.get_normal())
-			var slide_source_position = step_space_source_position
-			slide_source_position.origin += step_space_test_result.get_travel()
-			var slide_test_collided = test_move(slide_source_position, slide_motion, slide_test_result, safe_margin)
-			if slide_test_collided:
-				return false
-			else:
+		#if we hit something, slide remainder
+		var number_collisions = step_space_test_result.get_collision_count()
+		var step_space_travel = step_space_test_result.get_travel()
+		total_travel += step_space_travel
+		var step_space_remainder = step_space_test_result.get_remainder()
+		var step_space_normal = step_space_test_result.get_normal()
+		var slide_test_result = KinematicCollision3D.new()
+		var slide_motion = step_space_remainder.slide(step_space_normal)
+		
+		if slide_motion.length() < _step_space_min_slide_travel:
+			return false
+		
+		var slide_source_position = global_transform
+		slide_source_position.origin += step_space_travel
+		var slide_test_collided = test_move(slide_source_position, slide_motion, slide_test_result, safe_margin)
+		
+		#if we hit something else, we don't have space
+		if slide_test_collided:
+			return false
+		else:
+			#cast down
+			total_travel += slide_motion
+			var down_test_result = KinematicCollision3D.new()
+			var down_motion = -test_height
+			var down_source_position = slide_source_position
+			down_source_position.origin += slide_motion
+			var down_test_collided = test_move(down_source_position, down_motion, down_test_result, safe_margin)
+			
+			if down_test_collided:
+				#on step, there's room
 				return true
+			else:
+				#on wall
+				return false
+	#If we didn't hit anything, there's room
+	else:
+		return true
+
+## perform step up move at given height
+## returns true if went full distance, false otherwise
+func _perform_step_over(step_up_height:Vector3, motion:Vector3) -> bool:
+	#test remainder of movement at step_up_height
+	var step_over_test_result = KinematicCollision3D.new()
+	var step_over_motion = motion
+	var step_over_source_position = global_transform
+	step_over_source_position.origin += step_up_height
+	var step_over_test_collided = test_move(step_over_source_position, step_over_motion, step_over_test_result, safe_margin)
+	
+	#if collision check if wall, if wall, slide
+	if step_over_test_collided:
+		var total_travel_distance = step_over_test_result.get_travel()
+
+		#slide remainder and test again
+		var slide_test_result = KinematicCollision3D.new()
+		var slide_motion = step_over_test_result.get_remainder().slide(step_over_test_result.get_normal())
+		var slide_source_position = step_over_source_position
+		slide_source_position.origin += step_over_test_result.get_travel()
+		var slide_test_collided = test_move(slide_source_position, slide_motion, slide_test_result, safe_margin)
+		
+		#if slide hit something, set total travel distance to slide test origin plus travel
+		var step_result = CollisionState.new()
+		var slide_travel:Vector3 = Vector3()
+		if slide_test_collided:
+			total_travel_distance += slide_test_result.get_travel()
+			slide_travel = slide_test_result.get_travel()
+			_set_collision_direction(slide_test_result, step_result, CollisionState.new(true,true,true))
+			
+		#else set total travel distance to slide test origin plus motion
+		else:
+			total_travel_distance += slide_motion
+			slide_travel = slide_motion
+			_set_collision_direction(step_over_test_result, step_result, CollisionState.new(true,true,true))
+
+		var down_test_result = KinematicCollision3D.new()
+		var down_motion = -step_up_height
+		var down_source_position = slide_source_position
+		down_source_position.origin += slide_travel
+		var down_test_collided = test_move(down_source_position, down_motion, down_test_result, safe_margin)
+		
+		var down_travel = Vector3()
+		if down_test_collided:
+			down_travel = down_test_result.get_travel()
+		else:
+			down_travel = down_motion
+
+		global_transform.origin += step_up_height + total_travel_distance + down_travel
+		
+		if total_travel_distance.length() < motion.length():
+			return false
 		else:
 			return true
+		
+	#else move to target position and break
 	else:
+		var down_test_result = KinematicCollision3D.new()
+		var down_motion = -step_up_height
+		var down_source_position = step_over_source_position
+		down_source_position.origin += motion
+		var down_test_collided = test_move(down_source_position, down_motion, down_test_result, safe_margin)
+		
+		var down_travel = Vector3()
+		if down_test_collided:
+			down_travel = down_test_result.get_travel()
+		else:
+			down_travel = down_motion
+		
+		global_transform.origin += step_up_height + motion + down_travel
 		return true
 
 
