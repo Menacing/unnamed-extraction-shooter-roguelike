@@ -22,6 +22,7 @@ depth = 2.64
 
 [node name="StaticBody3D" type="AnimatableBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.563883, 0, 0)
+sync_to_physics = false
 script = ExtResource("2_w5mf5")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]

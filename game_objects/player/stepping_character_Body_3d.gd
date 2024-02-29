@@ -5,7 +5,7 @@ enum MotionMode { MOTION_MODE_GROUNDED, MOTION_MODE_FLOATING }
 enum PlatformOnLeave { PLATFORM_ON_LEAVE_ADD_VELOCITY, PLATFORM_ON_LEAVE_ADD_UPWARD_VELOCITY, PLATFORM_ON_LEAVE_DO_NOTHING }
 const FLOOR_ANGLE_THRESHOLD = 0.01
 const CMP_EPSILON = 0.00001
-
+const SQRT_2 = 1.41421356238
 ##Max angle 
 @export var floor_block_on_wall:bool = true
 @export var floor_constant_speed:bool = false
@@ -207,27 +207,19 @@ func _move_step_and_slide_grounded(delta:float, was_on_floor:bool):
 				else:
 					actual_step_up_height = step_up_motion
 				
-				#test over minimum step width
+				#test we have space to step up
+				var space_to_step = _is_space_for_step(collision_result, actual_step_up_height)
+	
+				#test remainder of movement at step_up_height
 				var step_over_test_result = KinematicCollision3D.new()
-				var step_over_motion = collision_result_remainder.normalized() * min_step_width
+				var step_over_motion = collision_result_remainder
 				var step_over_source_position = global_transform
 				step_over_source_position.origin += actual_step_up_height
 				var step_over_test_collided = test_move(step_over_source_position, step_over_motion, step_over_test_result, safe_margin)
 				
 				#if collision check if wall, if wall, don't move
 				if step_over_test_collided:
-					var hit_wall = false
-					for i in range(step_over_test_result.get_collision_count()):
-						var hit_floor = false
-						var floor_angle = step_over_test_result.get_angle(i, up_direction)
-						if floor_angle <= floor_max_angle + FLOOR_ANGLE_THRESHOLD:
-							hit_floor = true
-						var hit_ceiling = false
-						var ceiling_angle = step_over_test_result.get_angle(i, -up_direction)
-						if ceiling_angle <= floor_max_angle + FLOOR_ANGLE_THRESHOLD:
-							hit_ceiling = true
-						if not hit_ceiling and not hit_floor:
-							hit_wall = true
+					var hit_wall = _kinematic_collision_3d_hit_wall(step_over_test_result)
 					var step_result = CollisionState.new()
 					_set_collision_direction(step_over_test_result, step_result, CollisionState.new(true,true,true))
 					
@@ -607,6 +599,51 @@ func apply_floor_snap():
 
 			global_position += result_travel
 
+##Check if there's space at a given step up height for 
+func _is_space_for_step(step_collision:KinematicCollision3D, test_height:Vector3) -> bool:
+	#Calculate test distance
+	var test_distance = max(min_step_width, step_collision.get_remainder().length())
+	
+	#Cast reverse of the wall normal the test distance
+	var step_space_test_result = KinematicCollision3D.new()
+	var step_space_motion = -step_collision.get_normal() * test_distance
+	var step_space_source_position = global_transform
+	step_space_source_position.origin += test_height
+	var step_space_test_collided = test_move(step_space_source_position, step_space_motion, step_space_test_result, safe_margin)
+	
+	if step_space_test_collided:
+		var space_check_hit_wall = _kinematic_collision_3d_hit_wall(step_space_test_result)
+		if space_check_hit_wall:
+			#slide remainder and test again
+			var slide_test_result = KinematicCollision3D.new()
+			var slide_motion = step_space_test_result.get_remainder().slide(step_space_test_result.get_normal())
+			var slide_source_position = step_space_source_position
+			slide_source_position.origin += step_space_test_result.get_travel()
+			var slide_test_collided = test_move(slide_source_position, slide_motion, slide_test_result, safe_margin)
+			if slide_test_collided:
+				return false
+			else:
+				return true
+		else:
+			return true
+	else:
+		return true
+
+
+func _kinematic_collision_3d_hit_wall(collision_result:KinematicCollision3D) -> bool:
+	var hit_wall = false
+	for i in range(collision_result.get_collision_count()):
+		var hit_floor = false
+		var floor_angle = collision_result.get_angle(i, up_direction)
+		if floor_angle <= floor_max_angle + FLOOR_ANGLE_THRESHOLD:
+			hit_floor = true
+		var hit_ceiling = false
+		var ceiling_angle = collision_result.get_angle(i, -up_direction)
+		if ceiling_angle <= floor_max_angle + FLOOR_ANGLE_THRESHOLD:
+			hit_ceiling = true
+		if not hit_ceiling and not hit_floor:
+			hit_wall = true
+	return hit_wall
 
 class CollisionState:
 	var floor:bool = false
