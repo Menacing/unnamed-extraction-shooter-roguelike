@@ -1,4 +1,4 @@
-extends CharacterBody3D
+extends SteppingCharacterBody3D
 class_name Player
 
 @onready var state_chart :StateChart = %StateChart
@@ -25,6 +25,8 @@ var gun_slot_2:Gun
 @onready var head = $Waist/Chest/head_anchor/Head as Node3D
 @onready var head_anchor = $Waist/Chest/head_anchor as Node3D
 @onready var use_ray = $Waist/Chest/head_anchor/Head/Camera3d/UsePointer
+@onready var step_checker:ShapeCast3D = $StepCheckerShapecast3D
+
 var pov_rotation_node:Node3D
 
 @onready var shoulder_anchor:Node3D = $HitBox/ChestBoneAttachment/shoulder_anchor
@@ -455,6 +457,10 @@ func make_opaque():
 	else:
 		pass
 		
+func calculate_fall_damage(vertical_velocity:float) -> float:
+	var calc_damage = (200.0/6.0*abs(vertical_velocity)) - 300.0
+	return max(0.0, calc_damage)
+		
 #region Movement Code
 func should_sprint() -> bool:
 	if GameSettings.toggle_sprint:
@@ -479,14 +485,16 @@ func should_prone() -> bool:
 		toggle_prone_f = !toggle_prone_f
 	return toggle_prone_f
 
-func move(move_velocity:Vector3, delta:float):
-	if not is_on_floor():
-		velocity.y -= gravity * delta
-	else:
-		velocity.x = move_toward(velocity.x, move_velocity.x, accel)
-		velocity.z = move_toward(velocity.z, move_velocity.z, accel)
 
-	move_and_slide()
+func move(move_global_velocity:Vector3, delta:float, going_forward:bool):
+	if not is_on_floor():
+		state_chart.send_event("Fell")
+		return
+	else:
+		velocity.x = move_toward(velocity.x, move_global_velocity.x, accel)
+		velocity.z = move_toward(velocity.z, move_global_velocity.z, accel)
+	
+	move_step_and_slide(delta)
 
 #region Standing
 func _on_standing_state_entered():
@@ -495,7 +503,7 @@ func _on_standing_state_entered():
 	current_bob_amount_max_degrees_y.base_value = STANDING_BOB_ROTATION_Y
 	current_bob_amount_x.base_value = STANDING_BOB_TRANSLATION_X
 	current_bob_amount_y.base_value = STANDING_BOB_TRANSLATION_Y
-	world_collider.get_shape().set_height(STANDING_HEIGHT)
+	#world_collider.get_shape().set_height(STANDING_HEIGHT)
 	
 	recoil_factor.add_modifier(StatModifier.new("standing", StatModifier.Operation.MUL, -0.1))
 	
@@ -522,12 +530,12 @@ func _on_standing_state_physics_processing(delta):
 		state_chart.send_event("Walk")
 		return
 	else:
-		move(direction, delta)
+		move(direction, delta, input_direction.y < 0)
 
 func _on_standing_transitions_physics_processing(delta):
 	var input_direction = Input.get_vector("moveLeft", "moveRight", "moveUp", "moveDown")
 	var direction:Vector3 = (transform.basis * Vector3(input_direction.x, 0, input_direction.y)).normalized()
-	move(direction, delta)
+	move(direction, delta, input_direction.y < 0)
 #endregion
 
 #region Walking
@@ -568,7 +576,7 @@ func _on_walking_state_physics_processing(delta):
 	else:
 		animation_tree["parameters/Walking/blend_position"] = input_direction
 		
-		move(direction * current_speed.get_modified_value(), delta)
+		move(direction * current_speed.get_modified_value(), delta, input_direction.y < 0)
 #endregion
 
 #region Sprinting
@@ -611,7 +619,7 @@ func _on_sprinting_state_physics_processing(delta):
 		return
 	else:
 		animation_tree["parameters/Sprinting/blend_position"] = input_direction
-		move(direction * current_speed.get_modified_value(), delta)
+		move(direction * current_speed.get_modified_value(), delta, input_direction.y < 0)
 #endregion
 	
 #region Crouching
@@ -658,7 +666,7 @@ func _on_crouching_state_physics_processing(delta):
 		state_chart.send_event("CrouchWalk")
 		return
 	else:
-		move(direction, delta)
+		move(direction, delta, input_direction.y < 0)
 		
 func _on_crouch_walking_state_physics_processing(delta):
 	if !should_crouch():
@@ -680,7 +688,7 @@ func _on_crouch_walking_state_physics_processing(delta):
 	else:
 		animation_tree["parameters/CrouchWalking/blend_position"] = input_direction
 		
-		move(direction * current_speed.get_modified_value(), delta)
+		move(direction * current_speed.get_modified_value(), delta, input_direction.y < 0)
 #endregion
 
 #region Prone
@@ -711,7 +719,7 @@ func _on_prone_state_physics_processing(delta):
 		state_chart.send_event("Crawl")
 		return
 	else:
-		move(direction, delta)
+		move(direction, delta, input_direction.y < 0)
 		
 func _on_prone_transitions_entered():
 	state_chart.send_event("ArmsBusy")
@@ -756,32 +764,51 @@ func _on_crawling_state_physics_processing(delta):
 		
 		animation_tree["parameters/Crawling/blend_position"] = input_direction
 		
-		move(direction * current_speed.get_modified_value(), delta)
+		move(direction * current_speed.get_modified_value(), delta, input_direction.y < 0)
 #endregion
 	
 #region Jumping
 func _on_jumping_state_entered():
 	velocity.y = JUMP_VELOCITY
+	
+func _on_jumping_state_exited():
+	pass
+	
+func _on_jumping_state_physics_processing(delta):
+		velocity.y -= gravity * delta
+		move_step_and_slide(delta)
+		return
+
+var falling_velocity:float = 0.0
+func _on_falling_state_entered() -> void:
 	current_bob_amount_max_degrees_x.base_value = JUMPING_BOB_ROTATION_X
 	current_bob_amount_max_degrees_y.base_value = JUMPING_BOB_ROTATION_Y
 	current_bob_amount_x.base_value = JUMPING_BOB_TRANSLATION_X
 	current_bob_amount_y.base_value = JUMPING_BOB_TRANSLATION_Y
-	current_bob_freq.add_modifier(StatModifier.new("jumping", StatModifier.Operation.MUL, -0.7))		
 	state_chart.send_event("ArmsBusy")
 	state_chart.send_event("StopLean")
-	
-	
-func _on_jumping_state_exited():
-	current_bob_freq.remove_modifier_by_name("jumping")
+	current_bob_freq.add_modifier(StatModifier.new("falling", StatModifier.Operation.MUL, -0.7))		
+	pass # Replace with function body.
+
+func _on_falling_state_exited() -> void:
+	current_bob_freq.remove_modifier_by_name("falling")
 	state_chart.send_event("ArmsDone")
 	
-func _on_jumping_state_physics_processing(delta):
+	var fall_damage = calculate_fall_damage(falling_velocity)
+	if fall_damage > 0:
+		EventBus.location_hit.emit(get_instance_id(), HealthLocation.HEALTH_LOCATION.LEGS, fall_damage)
+	falling_velocity = 0.0
+	pass # Replace with function body.
+
+func _on_falling_state_physics_processing(delta: float) -> void:
 	if not is_on_floor():
 		velocity.y -= gravity * delta
-		move_and_slide()
+		falling_velocity = velocity.y
+		move_step_and_slide(delta)
 	else:
-		state_chart.send_event("LegsDone")
+		state_chart.send_event("Landed")
 		return
+
 #endregion
 #endregion
 
@@ -1041,8 +1068,6 @@ func _on_right_state_physics_processing(delta):
 		return
 	waist.basis = Quaternion(waist.basis).slerp(Quaternion(right_lean_basis),0.5)
 #endregion
-
-
 
 
 
