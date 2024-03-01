@@ -457,6 +457,10 @@ func make_opaque():
 	else:
 		pass
 		
+func calculate_fall_damage(vertical_velocity:float) -> float:
+	var calc_damage = (200.0/6.0*abs(vertical_velocity)) - 300.0
+	return max(0.0, calc_damage)
+		
 #region Movement Code
 func should_sprint() -> bool:
 	if GameSettings.toggle_sprint:
@@ -484,7 +488,8 @@ func should_prone() -> bool:
 
 func move(move_global_velocity:Vector3, delta:float, going_forward:bool):
 	if not is_on_floor():
-		velocity.y -= gravity * delta
+		state_chart.send_event("Fell")
+		return
 	else:
 		velocity.x = move_toward(velocity.x, move_global_velocity.x, accel)
 		velocity.z = move_toward(velocity.z, move_global_velocity.z, accel)
@@ -765,26 +770,45 @@ func _on_crawling_state_physics_processing(delta):
 #region Jumping
 func _on_jumping_state_entered():
 	velocity.y = JUMP_VELOCITY
+	
+func _on_jumping_state_exited():
+	pass
+	
+func _on_jumping_state_physics_processing(delta):
+		velocity.y -= gravity * delta
+		move_step_and_slide(delta)
+		return
+
+var falling_velocity:float = 0.0
+func _on_falling_state_entered() -> void:
 	current_bob_amount_max_degrees_x.base_value = JUMPING_BOB_ROTATION_X
 	current_bob_amount_max_degrees_y.base_value = JUMPING_BOB_ROTATION_Y
 	current_bob_amount_x.base_value = JUMPING_BOB_TRANSLATION_X
 	current_bob_amount_y.base_value = JUMPING_BOB_TRANSLATION_Y
-	current_bob_freq.add_modifier(StatModifier.new("jumping", StatModifier.Operation.MUL, -0.7))		
 	state_chart.send_event("ArmsBusy")
 	state_chart.send_event("StopLean")
-	
-	
-func _on_jumping_state_exited():
-	current_bob_freq.remove_modifier_by_name("jumping")
+	current_bob_freq.add_modifier(StatModifier.new("falling", StatModifier.Operation.MUL, -0.7))		
+	pass # Replace with function body.
+
+func _on_falling_state_exited() -> void:
+	current_bob_freq.remove_modifier_by_name("falling")
 	state_chart.send_event("ArmsDone")
 	
-func _on_jumping_state_physics_processing(delta):
+	var fall_damage = calculate_fall_damage(falling_velocity)
+	if fall_damage > 0:
+		EventBus.location_hit.emit(get_instance_id(), HealthLocation.HEALTH_LOCATION.LEGS, fall_damage)
+	falling_velocity = 0.0
+	pass # Replace with function body.
+
+func _on_falling_state_physics_processing(delta: float) -> void:
 	if not is_on_floor():
 		velocity.y -= gravity * delta
+		falling_velocity = velocity.y
 		move_step_and_slide(delta)
 	else:
-		state_chart.send_event("LegsDone")
+		state_chart.send_event("Landed")
 		return
+
 #endregion
 #endregion
 
@@ -1044,8 +1068,6 @@ func _on_right_state_physics_processing(delta):
 		return
 	waist.basis = Quaternion(waist.basis).slerp(Quaternion(right_lean_basis),0.5)
 #endregion
-
-
 
 
 
