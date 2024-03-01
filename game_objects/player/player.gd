@@ -24,7 +24,7 @@ var gun_slot_2:Gun
 @onready var cam = $Waist/Chest/head_anchor/Head/Camera3d as Camera3D
 @onready var head = $Waist/Chest/head_anchor/Head as Node3D
 @onready var head_anchor = $Waist/Chest/head_anchor as Node3D
-@onready var use_ray = $Waist/Chest/head_anchor/Head/Camera3d/UsePointer
+@onready var use_shape:ShapeCast3D = $Waist/Chest/head_anchor/Head/Camera3d/UseShape
 @onready var step_checker:ShapeCast3D = $StepCheckerShapecast3D
 
 var pov_rotation_node:Node3D
@@ -310,12 +310,10 @@ func _physics_process(delta):
 	
 	#if not in inventory, handle real time inputs
 	if !toggle_inv_f:
-
-
 		
 		#handle use hint
-		if use_ray.is_colliding():
-				var col = use_ray.get_collider()
+		if use_shape.is_colliding():
+				var col = use_shape.get_collider(0)
 				if col:
 					if col is Item3D:
 						EventBus.pickup_helper_visibility.emit(true)
@@ -347,8 +345,8 @@ func _input(event):
 				EventBus.fire_mode_changed.emit(fire_mode)
 				current_fire_mode = fire_mode
 		elif event.is_action_pressed("use"):
-			if use_ray.is_colliding():
-				var col = use_ray.get_collider()
+			if use_shape.is_colliding():
+				var col = use_shape.get_collider(0)
 				if col is Item3D:
 					EventBus.pickup_item.emit(col.get_item_instance(), player_inventory_id)
 				elif col.has_method("use"):
