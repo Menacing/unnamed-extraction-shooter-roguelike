@@ -179,7 +179,7 @@ func _on_item_picked_up(result:InventoryInsertResult):
 		var item_instance:ItemInstance = InventoryManager.get_item(result.item_instance_id)
 		var item_3d:Item3D = instance_from_id(item_instance.id_3d)
 		Helpers.force_parent(item_3d,self)
-		item_3d.picked_up()
+		item_3d.picked_up(get_instance_id())
 		if result.location.location == InventoryLocationResult.LocationType.SLOT:
 			match result.location.slot_name:
 				"GunSlot1":

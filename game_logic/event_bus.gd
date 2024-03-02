@@ -32,6 +32,7 @@ signal health_changed(actor_id:int, location:HealthLocation.HEALTH_LOCATION, \
 	current_health:float, max_health:float)
 signal location_hit(actor_id:int, location:HealthLocation.HEALTH_LOCATION, \
 	damage:float)
+signal healed(actor_id:int, healed:float)
 signal location_healed(actor_id:int, location:HealthLocation.HEALTH_LOCATION, \
 	healed:float)
 signal location_destroyed(actor_id:int, location:HealthLocation.HEALTH_LOCATION)

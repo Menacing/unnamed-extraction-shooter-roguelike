@@ -1,6 +1,7 @@
 extends RigidBody3D
 class_name Item3D
 
+var _actor_id:int = 0
 var item_instance_id:int
 func get_item_instance() -> ItemInstance:
 	if item_instance_id == 0:
@@ -37,25 +38,22 @@ func _ready() -> void:
 			EventBus.item_picked_up.connect(_on_item_picked_up)
 			EventBus.item_removed_from_slot.connect(_on_item_removed_from_slot)
 
-
-	
-
-
 func dropped() -> void:
 	world_collider.disabled = false
 	self.freeze = false
 	self.visible = true
 	Helpers.apply_material_overlay_to_children(self,item_highlight_m)
-	
 	self.apply_torque_impulse(Vector3.FORWARD)
+	_actor_id = 0
 	
 
-func picked_up() -> void:
+func picked_up(actor_id:int = 0) -> void:
 	self.transform = Transform3D.IDENTITY
 #	self.gravity_scale = 0
 	world_collider.disabled = true
 	self.freeze = true
 	Helpers.apply_material_overlay_to_children(self,null)
+	_actor_id = actor_id
 
 	
 func destroy() -> void:

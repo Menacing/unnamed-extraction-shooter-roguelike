@@ -17,6 +17,7 @@ var stacks:int:
 	set(value):
 		_stacks = value
 		EventBus.item_stack_count_changed.emit(self)
+		
 var _durability:int = 1
 var durability:int:
 	get:
