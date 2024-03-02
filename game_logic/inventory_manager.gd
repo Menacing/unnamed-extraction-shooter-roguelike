@@ -12,7 +12,6 @@ func _ready() -> void:
 	EventBus.add_inventory.connect(add_inventory)
 	EventBus.item_durability_changed.connect(_destroy_depleted_durability)
 
-
 func _on_pickup_item(item_inst:ItemInstance, target_inventory_id:int) -> void:
 	#Are we dealing with a stack or not
 	var inventory:Inventory = _inventory_access.get_inventory(target_inventory_id)

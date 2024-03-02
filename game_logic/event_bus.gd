@@ -19,6 +19,7 @@ signal remove_inventory_from_HUD(inventory_control:InventoryControlBase, new_par
 signal inventory_size_changed(inventory_id:int, size:Vector2i)
 signal context_menu_opened()
 signal context_menu_closed()
+signal context_menus_use(item_inst:ItemInstance, cursor_pos:Vector2)
 signal context_menus_drop_item(item_inst:ItemInstance, cursor_pos:Vector2)
 signal context_menus_split_stack(item_inst:ItemInstance, cursor_pos:Vector2)
 signal context_menus_open_item_detail(item_inst:ItemInstance, cursor_pos:Vector2)
@@ -31,6 +32,7 @@ signal health_changed(actor_id:int, location:HealthLocation.HEALTH_LOCATION, \
 	current_health:float, max_health:float)
 signal location_hit(actor_id:int, location:HealthLocation.HEALTH_LOCATION, \
 	damage:float)
+signal healed(actor_id:int, healed:float)
 signal location_healed(actor_id:int, location:HealthLocation.HEALTH_LOCATION, \
 	healed:float)
 signal location_destroyed(actor_id:int, location:HealthLocation.HEALTH_LOCATION)

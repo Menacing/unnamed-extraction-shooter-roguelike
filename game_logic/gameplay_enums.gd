@@ -12,5 +12,6 @@ enum ItemType {
 	MUZZLE,
 	FOREGRIP,
 	LASER,
-	AMMO
+	AMMO,
+	CONSUMABLE
 }

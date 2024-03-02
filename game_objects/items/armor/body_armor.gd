@@ -20,8 +20,8 @@ var ballistic_mask_bitmask = 2
 var existing_layer_bitmask
 var existing_mask_bitmask
 
-func picked_up():
-	super()
+func picked_up(actor_id:int = 0):
+	super(actor_id)
 	self.transform = Transform3D.IDENTITY
 	existing_layer_bitmask = self.collision_layer
 	existing_mask_bitmask = self.collision_mask
