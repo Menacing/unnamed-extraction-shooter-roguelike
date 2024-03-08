@@ -1,10 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://cm8qyueikhkpf"]
+[gd_scene load_steps=12 format=3 uid="uid://cm8qyueikhkpf"]
 
 [ext_resource type="PackedScene" uid="uid://ddsqkhwkuipda" path="res://ui/inventory/player_inventory.tscn" id="1_lt07x"]
 [ext_resource type="Script" path="res://ui/inventory/player_inventories.gd" id="1_tuubu"]
 [ext_resource type="Script" path="res://ui/inventory/spacer_container.gd" id="2_hlryk"]
 [ext_resource type="Script" path="res://resource_access/equipment_slot_type.gd" id="3_rg8a8"]
 [ext_resource type="Script" path="res://resource_access/Inventory.gd" id="4_m6wl0"]
+[ext_resource type="PackedScene" uid="uid://cts4vsll0guse" path="res://ui/inventory/ammo.tscn" id="6_devm8"]
 
 [sub_resource type="Resource" id="Resource_c2lqt"]
 script = ExtResource("3_rg8a8")
@@ -60,8 +61,15 @@ script = ExtResource("2_hlryk")
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="PlayerInventory" parent="MarginContainer/HBoxContainer/PlayerInventoryContainer" instance=ExtResource("1_lt07x")]
+[node name="TabContainer" type="TabContainer" parent="MarginContainer/HBoxContainer/PlayerInventoryContainer"]
+layout_mode = 2
+
+[node name="EQUIPMENT" parent="MarginContainer/HBoxContainer/PlayerInventoryContainer/TabContainer" instance=ExtResource("1_lt07x")]
 layout_mode = 2
 _inventory = SubResource("Resource_8vum5")
 
-[editable path="MarginContainer/HBoxContainer/PlayerInventoryContainer/PlayerInventory"]
+[node name="AMMO" parent="MarginContainer/HBoxContainer/PlayerInventoryContainer/TabContainer" instance=ExtResource("6_devm8")]
+visible = false
+layout_mode = 2
+
+[editable path="MarginContainer/HBoxContainer/PlayerInventoryContainer/TabContainer/EQUIPMENT"]

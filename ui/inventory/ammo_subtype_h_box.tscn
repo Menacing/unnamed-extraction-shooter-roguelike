@@ -1,0 +1,27 @@
+[gd_scene load_steps=2 format=3 uid="uid://c1mv1ns73laqr"]
+
+[ext_resource type="Script" path="res://ui/inventory/ammo_subtype_h_box.gd" id="1_76tdc"]
+
+[node name="SubtypeHBox" type="HBoxContainer"]
+alignment = 2
+script = ExtResource("1_76tdc")
+
+[node name="SubtypeNameLabel" type="Label" parent="."]
+layout_mode = 2
+text = "Armor Piercing:"
+uppercase = true
+
+[node name="SubtypeAmountLabel" type="Label" parent="."]
+layout_mode = 2
+text = "156"
+
+[node name="VSeparator" type="VSeparator" parent="."]
+layout_mode = 2
+
+[node name="Drop20Button" type="Button" parent="."]
+layout_mode = 2
+text = "DROP 20"
+
+[node name="DropAllButton" type="Button" parent="."]
+layout_mode = 2
+text = "DROP ALL"

@@ -17,7 +17,7 @@ func _ready():
 
 
 
-#add ammo of a certain amount. Return the remainder over max
+##add ammo of a certain amount. Return the remainder over max
 func add_ammo(ammo_type:AmmoType, ammo_subtype:AmmoSubtype, amount:int) -> int:
 	var max = _ammo_map[ammo_type.name][ammo_subtype.name].current_max
 	var current = _ammo_map[ammo_type.name][ammo_subtype.name].current_amount
@@ -32,7 +32,7 @@ func add_ammo(ammo_type:AmmoType, ammo_subtype:AmmoSubtype, amount:int) -> int:
 		return new - max
 
 
-#Ask for an amount of ammo. May not return the full amount if there isn't enough
+##Ask for an amount of ammo. May not return the full amount if there isn't enough
 func request_ammo(ammo_type:AmmoType, ammo_subtype:AmmoSubtype, amount:int) -> int:
 	
 	var current = _ammo_map[ammo_type.name][ammo_subtype.name].current_amount

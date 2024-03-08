@@ -25,7 +25,6 @@ var gun_slot_2:Gun
 @onready var head = $Waist/Chest/head_anchor/Head as Node3D
 @onready var head_anchor = $Waist/Chest/head_anchor as Node3D
 @onready var use_shape:ShapeCast3D = $Waist/Chest/head_anchor/Head/Camera3d/UseShape
-@onready var step_checker:ShapeCast3D = $StepCheckerShapecast3D
 
 var pov_rotation_node:Node3D
 
