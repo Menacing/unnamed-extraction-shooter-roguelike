@@ -4,6 +4,7 @@ class_name AmmoComponent
 var _ammo_map:Dictionary = {}
 var _active_ammo_type:AmmoType
 var _active_ammo_subtype:AmmoSubtype
+var _actor_id:int
 
 func _ready():
 	var ammo_types = AmmoLoader.get_ammo_types()
@@ -14,6 +15,7 @@ func _ready():
 			aci.current_max = st.maximum_capacity
 			_ammo_map[at.name][st.name] = aci
 	EventBus.reserve_ammo_count_changed.emit(0)
+	_actor_id = get_parent().get_instance_id()
 
 
 

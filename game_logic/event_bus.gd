@@ -46,6 +46,8 @@ signal reserve_ammo_count_changed(new_count:int)
 signal ammo_type_changed(new_type:String, new_subtype:String)
 signal fire_mode_changed(new_firemode:String)
 signal compass_player_pulse(player_position:Vector3, player_rotation:Vector3)
+signal drop_ammo(actor_id:int, type:String, subtype:String, amount:int)
+signal drop_all_ammo(actor_id:int, type:String, subtype:String)
 
 #UI Events
 signal pause()

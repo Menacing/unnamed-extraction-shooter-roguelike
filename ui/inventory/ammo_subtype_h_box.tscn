@@ -13,7 +13,7 @@ uppercase = true
 
 [node name="SubtypeAmountLabel" type="Label" parent="."]
 layout_mode = 2
-text = "156"
+text = "0"
 
 [node name="VSeparator" type="VSeparator" parent="."]
 layout_mode = 2
@@ -25,3 +25,6 @@ text = "DROP 20"
 [node name="DropAllButton" type="Button" parent="."]
 layout_mode = 2
 text = "DROP ALL"
+
+[connection signal="pressed" from="Drop20Button" to="." method="_on_drop_20_button_pressed"]
+[connection signal="pressed" from="DropAllButton" to="." method="_on_drop_all_button_pressed"]

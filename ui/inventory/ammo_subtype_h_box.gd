@@ -1,6 +1,7 @@
 extends HBoxContainer
 class_name AmmoSubtyoeHBoxControl
 
+@export var ammo_type:AmmoType
 @export var ammo_subtype:AmmoSubtype
 
 @onready var subtype_name_label:Label = $SubtypeNameLabel
@@ -10,4 +11,12 @@ class_name AmmoSubtyoeHBoxControl
 func _ready() -> void:
 	subtype_name_label.text = ammo_subtype.name
 	
+	pass # Replace with function body.
+
+
+func _on_drop_20_button_pressed() -> void:
+	pass # Replace with function body.
+
+
+func _on_drop_all_button_pressed() -> void:
 	pass # Replace with function body.
