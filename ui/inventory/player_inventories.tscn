@@ -67,6 +67,8 @@ layout_mode = 2
 [node name="EQUIPMENT" parent="MarginContainer/HBoxContainer/PlayerInventoryContainer/TabContainer" instance=ExtResource("1_lt07x")]
 layout_mode = 2
 _inventory = SubResource("Resource_8vum5")
+_inventory_grid_path = NodePath("PanelContainer/InventoryBase/PanelContainer/InventoryGrid")
+_inventory_container_path = NodePath("../..")
 
 [node name="AMMO" parent="MarginContainer/HBoxContainer/PlayerInventoryContainer/TabContainer" instance=ExtResource("6_devm8")]
 visible = false

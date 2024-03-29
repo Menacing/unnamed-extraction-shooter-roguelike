@@ -3,6 +3,8 @@ class_name InventoryControlBase
 
 @export var _inventory:Inventory
 @export var _inventory_grid_path:NodePath
+@export var _inventory_container_path:NodePath
+var _inventory_container:Control
 
 func get_inventory_grid() -> InventoryGridContainer:
 	if _inventory_grid_path:
@@ -22,6 +24,7 @@ func _ready():
 	EventBus.close_all_inventories.connect(_on_close_all_inventories)
 	EventBus.item_removed_from_inventory.connect(_on_item_removed_from_inventory)
 	EventBus.item_picked_up.connect(_on_item_picked_up)
+	_inventory_container = get_node(_inventory_container_path)
 
 func _on_item_picked_up(result:InventoryInsertResult):
 	if result.inventory_id == _inventory.get_instance_id() and result.picked_up:
@@ -39,14 +42,23 @@ func _on_item_picked_up(result:InventoryInsertResult):
 
 func _on_open_inventory(in_inventory_id:int):
 	if in_inventory_id == self.inventory_id:
-		visible = true
+		if _inventory_container:
+			_inventory_container.visible = true
+		else:
+			visible = true
 		
 func _on_close_inventory(in_inventory_id:int):
 	if in_inventory_id == self.inventory_id:
-		visible = false
+		if _inventory_container:
+			_inventory_container.visible = false
+		else:
+			visible = false
 
 func _on_close_all_inventories():
-	visible = false
+	if _inventory_container:
+		_inventory_container.visible = false
+	else:
+		visible = false
 
 func _on_item_removed_from_inventory(item_inst:ItemInstance, in_inventory_id:int):
 	if in_inventory_id == _inventory.get_instance_id():
