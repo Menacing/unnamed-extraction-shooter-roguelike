@@ -246,3 +246,6 @@ func set_inventory_size(inventory_id:int, size:Vector2i) -> void:
 
 func spawn_from_item3d(item3d:Item3D):
 	_item_access.spawn_from_item3d(item3d)
+	
+func spawn_from_item_type_id(item_type_id:String) -> ItemInstance:
+	return _item_access.spawn_from_item_type_id(item_type_id)

@@ -40,6 +40,14 @@ func spawn_from_item3d(item3d:Item3D):
 		item3d.item_instance_id = item_instance.get_instance_id()
 		item_instance.id_3d = item3d.get_instance_id()
 		item_instance.spawn_item()
+		
+func spawn_from_item_type_id(item_type_id) -> ItemInstance:
+	var item_info:ItemInformation = _item_info_mapping[item_type_id]
+	if item_info == null:
+		push_error("No ItemInformation found for item_type_id %" % item_type_id)
+	var item_instance:ItemInstance = ItemInstance.new(item_info)
+	item_instance.spawn_item()
+	return item_instance
 
 static func get_item(item_id:int) -> ItemInstance:
 	var item:Object = instance_from_id(item_id)

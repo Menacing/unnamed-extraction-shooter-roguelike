@@ -4,6 +4,7 @@ var ammo_type_control_scene:PackedScene = load("res://ui/inventory/ammo_type_vbo
 var spacer_control_scene:PackedScene = load("res://ui/inventory/amm_h_separator.tscn")
 
 @onready var vbox:VBoxContainer = $ScrollContainer/VBoxContainer
+@export var _actor_node:Node3D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

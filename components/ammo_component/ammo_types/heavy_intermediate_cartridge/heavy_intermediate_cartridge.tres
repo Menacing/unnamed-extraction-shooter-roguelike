@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="AmmoType" load_steps=5 format=3 uid="uid://3nqgvhg4lre8"]
+
+[ext_resource type="Script" path="res://components/ammo_component/ammo_type.gd" id="1_xbqql"]
+[ext_resource type="Resource" uid="uid://cct85d3u48yuj" path="res://components/ammo_component/ammo_types/heavy_intermediate_cartridge/ammo_subtypes/full_metal_jacket.tres" id="2_056if"]
+[ext_resource type="Resource" uid="uid://e74bf0ee7eck" path="res://components/ammo_component/ammo_types/heavy_intermediate_cartridge/ammo_subtypes/armor_piercing.tres" id="3_0w2mg"]
+[ext_resource type="Resource" uid="uid://ddqopa64822e6" path="res://components/ammo_component/ammo_types/heavy_intermediate_cartridge/ammo_subtypes/hollow_point.tres" id="4_4pviq"]
+
+[resource]
+script = ExtResource("1_xbqql")
+name = "Heavy Intermediate Cartdridge"
+sub_types = Array[Resource("res://components/ammo_component/ammo_subtype.gd")]([ExtResource("2_056if"), ExtResource("3_0w2mg"), ExtResource("4_4pviq")])
