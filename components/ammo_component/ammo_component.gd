@@ -61,5 +61,5 @@ func _is_active_ammo(ammo_type:AmmoType, ammo_subtype:AmmoSubtype) -> bool:
 		
 func _signal_change(ammo_type:AmmoType, ammo_subtype:AmmoSubtype, new_amount:int):
 	if _is_active_ammo(ammo_type, ammo_subtype):
-		EventBus.reserve_ammo_count_changed.emit(new_amount)
-
+		EventBus.active_reserve_ammo_count_changed.emit(new_amount)
+	EventBus.reserve_ammo_count_changed.emit(ammo_type, ammo_subtype, new_amount)

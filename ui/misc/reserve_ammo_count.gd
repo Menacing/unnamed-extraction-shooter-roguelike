@@ -8,7 +8,7 @@ extends Control
 
 func _ready():
 	pass
-	EventBus.reserve_ammo_count_changed.connect(_on_reserve_ammo_count_changed)
+	EventBus.active_reserve_ammo_count_changed.connect(_on_reserve_ammo_count_changed)
 
 func _on_reserve_ammo_count_changed(new_count:int):
 	reserve_ammo_count.text = str(new_count)

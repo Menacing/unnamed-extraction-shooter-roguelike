@@ -12,7 +12,8 @@ func _ready() -> void:
 	ammo_type_name_label.text = ammo_type.name
 	for subtype:AmmoSubtype in ammo_type.sub_types:
 		var subtype_control:AmmoSubtyoeHBoxControl = subtype_scene.instantiate()
-		subtype_control.ammo_subtype = subtype
+		subtype_control._ammo_type = ammo_type
+		subtype_control._ammo_subtype = subtype
 		add_child(subtype_control)
 	
 	pass # Replace with function body.
