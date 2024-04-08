@@ -12,6 +12,7 @@ func _ready() -> void:
 	for at:AmmoType in ammo_types:
 		var ammo_type_control:AmmoTypeVBoxContainer = ammo_type_control_scene.instantiate()
 		ammo_type_control.ammo_type = at
+		ammo_type_control._actor_node = _actor_node
 		var spacer_control = spacer_control_scene.instantiate()
 		vbox.add_child(ammo_type_control)
 		vbox.add_child(spacer_control)

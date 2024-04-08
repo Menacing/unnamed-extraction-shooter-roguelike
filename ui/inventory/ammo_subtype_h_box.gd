@@ -3,13 +3,16 @@ class_name AmmoSubtypeHBoxControl
 
 @export var _ammo_type:AmmoType
 @export var _ammo_subtype:AmmoSubtype
-@export var _actor_id:int
+@export var _actor_node:Node3D
+var _actor_id:int
 
 @onready var subtype_name_label:Label = $SubtypeNameLabel
 @onready var subtype_amount_label:Label = $SubtypeAmountLabel
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	if _actor_node:
+		_actor_id = _actor_node.get_instance_id()
 	subtype_name_label.text = _ammo_subtype.name
 	EventBus.reserve_ammo_count_changed.connect(_on_reserve_ammo_count_changed)
 	pass # Replace with function body.

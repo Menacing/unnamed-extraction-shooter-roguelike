@@ -19,7 +19,7 @@ func _ready() -> void:
 		var subtype_control:AmmoSubtypeHBoxControl = subtype_scene.instantiate()
 		subtype_control._ammo_type = ammo_type
 		subtype_control._ammo_subtype = subtype
-		subtype_control._actor_id = _actor_id
+		subtype_control._actor_node = _actor_node
 		add_child(subtype_control)
 		
 	pass # Replace with function body.

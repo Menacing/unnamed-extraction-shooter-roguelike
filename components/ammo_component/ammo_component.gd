@@ -41,15 +41,29 @@ func _on_drop_ammo(actor_id:int, type:String, subtype:String, amount:int):
 	if actor_id == _actor_id and drop_location:
 		var ammo_amount = request_ammo(type, subtype, amount)
 		var aci:AmmoCountInfo = _ammo_map[type][subtype]
-		var item_instance:ItemInstance = InventoryManager.spawn_from_item_type_id(aci.subtype_item_id)
-		var max_stacks = item_instance.get_max_allowed_stacks()
+		var item_information:ItemInformation = InventoryManager.get_item_information(aci.subtype_item_id)
+		var max_stacks = item_information.max_stacks
 		
+		while ammo_amount > 0:
+			var item_instance:ItemInstance = InventoryManager.spawn_from_item_type_id(aci.subtype_item_id)
+			
+			if ammo_amount > max_stacks:
+				item_instance.stacks = max_stacks
+				ammo_amount -= max_stacks
+			else:
+				item_instance.stacks = ammo_amount
+				ammo_amount = 0
+			
+			var item_3d:Item3D = instance_from_id(item_instance.id_3d)
+			Helpers.force_parent(item_3d,get_parent().get_parent())
+			item_3d.dropped()
+			item_3d.global_position = drop_location.global_position
 	pass
 	
 func _on_drop_all_ammo(actor_id:int, type:String, subtype:String):
-	if drop_location:
-		pass
-	pass
+	if actor_id == _actor_id and drop_location:
+		var all_ammo_amount = _ammo_map[type][subtype].current_amount
+		_on_drop_ammo(actor_id, type, subtype, all_ammo_amount)
 
 ##Ask for an amount of ammo. May not return the full amount if there isn't enough
 func request_ammo(ammo_type:String, ammo_subtype:String, amount:int) -> int:
