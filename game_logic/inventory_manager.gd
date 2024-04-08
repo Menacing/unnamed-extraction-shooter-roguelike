@@ -216,6 +216,9 @@ func destroy_item(item_instance_id:int) -> void:
 func get_item(item_instance_id:int) -> ItemInstance:
 	return ItemAccess.get_item(item_instance_id)
 
+func get_item_information(item_type_id:String) -> ItemInformation:
+	return _item_access.get_item_information(item_type_id)
+
 func set_inventory_size(inventory_id:int, size:Vector2i) -> void:
 	var inventory:Inventory = _inventory_access.get_inventory(inventory_id)
 	var current_width:int = inventory.get_width()
@@ -246,3 +249,6 @@ func set_inventory_size(inventory_id:int, size:Vector2i) -> void:
 
 func spawn_from_item3d(item3d:Item3D):
 	_item_access.spawn_from_item3d(item3d)
+	
+func spawn_from_item_type_id(item_type_id:String) -> ItemInstance:
+	return _item_access.spawn_from_item_type_id(item_type_id)

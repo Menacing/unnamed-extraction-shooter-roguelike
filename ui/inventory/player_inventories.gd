@@ -1,6 +1,6 @@
 extends CanvasLayer
 
-@onready var player_inventory_id = $MarginContainer/HBoxContainer/PlayerInventoryContainer/PlayerInventory.inventory_id
+@onready var player_inventory_id = $MarginContainer/HBoxContainer/PlayerInventoryContainer/TabContainer/EQUIPMENT.inventory_id
 @onready var world_inventories_container:Container = $MarginContainer/HBoxContainer/WorldInventoryContainer
 
 func _ready():

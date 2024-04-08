@@ -25,7 +25,6 @@ var gun_slot_2:Gun
 @onready var head = $Waist/Chest/head_anchor/Head as Node3D
 @onready var head_anchor = $Waist/Chest/head_anchor as Node3D
 @onready var use_shape:ShapeCast3D = $Waist/Chest/head_anchor/Head/Camera3d/UseShape
-@onready var step_checker:ShapeCast3D = $StepCheckerShapecast3D
 
 var pov_rotation_node:Node3D
 
@@ -207,7 +206,7 @@ func _on_item_picked_up(result:InventoryInsertResult):
 		
 		if item_instance.get_item_type() == GameplayEnums.ItemType.AMMO:
 			var ammo_information:AmmoInformation = item_instance._item_info
-			var remainder = ammo_component.add_ammo(ammo_information.ammo_type, ammo_information.ammo_subtype, item_instance.stacks)
+			var remainder = ammo_component.add_ammo(ammo_information.ammo_type.name, ammo_information.ammo_subtype.name, item_instance.stacks)
 			item_instance.stacks = remainder
 			
 
@@ -250,7 +249,7 @@ func move_gun_to_hands(gun:Gun):
 		start_arms_ik(gun.get_right_hand_node(), gun.get_right_fingers_node(), gun.get_left_hand_node(), gun.get_left_fingers_node())
 		
 		var gun_stats = gun.get_gun_stats()
-		ammo_component.set_active_ammo(gun_stats.ammo_type, gun_stats.ammo_type.sub_types[0])
+		ammo_component.set_active_ammo(gun_stats.ammo_type.name, gun_stats.ammo_type.sub_types[0].name)
 
 func move_gun_to_shoulder(gun:Gun):
 	shoulder_gun = gun
