@@ -1,0 +1,30 @@
+[gd_resource type="Resource" script_class="AmmoInformation" load_steps=7 format=3 uid="uid://dl5gkd026ppyh"]
+
+[ext_resource type="Resource" uid="uid://ddqopa64822e6" path="res://components/ammo_component/ammo_types/heavy_intermediate_cartridge/ammo_subtypes/hollow_point.tres" id="1_q6j0i"]
+[ext_resource type="Resource" uid="uid://3nqgvhg4lre8" path="res://components/ammo_component/ammo_types/heavy_intermediate_cartridge/heavy_intermediate_cartridge.tres" id="2_uj4bs"]
+[ext_resource type="Texture2D" uid="uid://dgkdf1d2p6yu4" path="res://game_objects/items/ammo/hic/hic_box_fmj_icon.png" id="3_pjbxs"]
+[ext_resource type="PackedScene" uid="uid://c8y8q8sw14nbw" path="res://game_objects/items/ammo/hic/hic_box_hp.tscn" id="4_n5d1k"]
+[ext_resource type="PackedScene" uid="uid://cn3ywqty7xvvr" path="res://ui/inventory/item_control.tscn" id="5_bdm2h"]
+[ext_resource type="Script" path="res://game_objects/items/ammo/ammo_information.gd" id="6_k7au1"]
+
+[resource]
+script = ExtResource("6_k7au1")
+ammo_type = ExtResource("2_uj4bs")
+ammo_subtype = ExtResource("1_q6j0i")
+item_control_scene = ExtResource("5_bdm2h")
+item_3d_scene = ExtResource("4_n5d1k")
+item_type_id = "hic_box_hp"
+show_name = false
+display_name = ""
+item_type = 11
+icon = ExtResource("3_pjbxs")
+icon_r = ExtResource("3_pjbxs")
+context_menu_items = Array[Resource("res://ui/inventory/item_context_item.gd")]([])
+max_stacks = 20
+has_stacks = true
+max_durability = 1
+has_durability = false
+column_span = 1
+row_span = 1
+tooltip_text = "Plastic"
+flavor_text = ""
