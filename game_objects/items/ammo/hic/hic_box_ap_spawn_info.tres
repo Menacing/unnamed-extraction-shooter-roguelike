@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="LootSpawnInformation" load_steps=3 format=3 uid="uid://dfi5jdd3s8pcy"]
+
+[ext_resource type="Resource" uid="uid://dj0v5gb1ecfvy" path="res://game_objects/items/ammo/hic/hic_box_ap_inventory_info.tres" id="1_b0tbt"]
+[ext_resource type="Script" path="res://game_objects/items/loot_spawn_information.gd" id="2_pwaot"]
+
+[resource]
+script = ExtResource("2_pwaot")
+item_information = ExtResource("1_b0tbt")
+test_radius = 0.1
+min_stack = 20
+max_stack = 20
