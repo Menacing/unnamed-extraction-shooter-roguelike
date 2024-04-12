@@ -140,6 +140,7 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 @onready var player_mat: BaseMaterial3D = $player_default_mesh_animated/Armature/Skeleton3D/Head.get_active_material(0)
 
 @onready var ammo_component:AmmoComponent = $AmmoComponent
+@onready var ammo_subtype_selector:AmmoSubtypeSelector = $PlayerHUD/AmmoSubtypeSelector
 
 func _ready():
 	if gun_scene1:
@@ -362,6 +363,8 @@ func _input(event):
 				var old_gun = equipped_gun
 				move_gun_to_hands(shoulder_gun)
 				move_gun_to_shoulder(old_gun)
+		elif event.is_action_pressed("change_ammo_subtype"):
+			ammo_subtype_selector.visible = true
 		
 func toggle_inventory():
 	toggle_inv_f = !toggle_inv_f

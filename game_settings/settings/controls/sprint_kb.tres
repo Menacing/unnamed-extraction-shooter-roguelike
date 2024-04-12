@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://game_settings/templates/input.gd" id="1_igwxf"]
 
-[sub_resource type="InputEventKey" id="InputEventKey_ggsc0"]
+[sub_resource type="InputEventKey" id="InputEventKey_4r0yc"]
 physical_keycode = 4194325
 
 [sub_resource type="InputEventKey" id="InputEventKey_b4lkt"]
@@ -15,7 +15,7 @@ action = "sprint"
 event_index = 0
 type = 1
 default_as_event = SubResource("InputEventKey_b4lkt")
-current_as_event = SubResource("InputEventKey_ggsc0")
+current_as_event = SubResource("InputEventKey_4r0yc")
 current = [1, 4194325]
 default = [1, 4194325]
 name = "sprint_kb"

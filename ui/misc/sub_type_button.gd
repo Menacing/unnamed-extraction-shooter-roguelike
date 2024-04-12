@@ -1,7 +1,10 @@
 extends Button
+class_name AmmoSubTypeButton
 
 @export var _ammo_type:AmmoType
-@export var _ammo_subtype:AmmoSubtype
+@export var _ammo_subtype:AmmoSubtype:
+	set(value):
+		self.text = value.name
 
 
 

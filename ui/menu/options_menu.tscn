@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=3 uid="uid://b37h35qgnmcvk"]
+[gd_scene load_steps=50 format=3 uid="uid://b37h35qgnmcvk"]
 
 [ext_resource type="Script" path="res://ui/menu/options_menu.gd" id="1_0sxhr"]
 [ext_resource type="PackedScene" uid="uid://dm1av7skxvp1j" path="res://game_settings/components/input_btn/input_btn.tscn" id="1_lvxjt"]
@@ -29,6 +29,7 @@
 [ext_resource type="Resource" uid="uid://dy0kda78ilfc3" path="res://game_settings/settings/controls/reload_kb.tres" id="21_aj0rp"]
 [ext_resource type="Resource" uid="uid://btolgwqrtu428" path="res://game_settings/settings/controls/fire_mode_kb.tres" id="22_o2ywx"]
 [ext_resource type="Resource" uid="uid://m1eyi6srk0i8" path="res://game_settings/settings/controls/ads_kb.tres" id="23_nh01t"]
+[ext_resource type="Resource" uid="uid://d3fg30bpil7eu" path="res://game_settings/settings/controls/ammo_subtype_change_kb.tres" id="23_y5nc2"]
 [ext_resource type="Script" path="res://ui/menu/fov_update_label.gd" id="24_rgung"]
 [ext_resource type="Resource" uid="uid://bt5juesj8aglk" path="res://game_settings/settings/controls/ads_look_factor.tres" id="25_51kpp"]
 [ext_resource type="Resource" uid="uid://blgl21g0rau2q" path="res://game_settings/settings/controls/toggle_ads.tres" id="26_pdu01"]
@@ -490,6 +491,26 @@ ICW = NodePath("../../../../../../../../../../../InputConfirmWindow")
 setting = ExtResource("22_o2ywx")
 
 [node name="Btn" parent="main_container/vert_container/option_tab_container/Controls/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/fire_mode/HBoxContainer/InputBtn" index="0"]
+custom_minimum_size = Vector2(80, 0)
+
+[node name="ammo_subtype" type="HBoxContainer" parent="main_container/vert_container/option_tab_container/Controls/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="main_container/vert_container/option_tab_container/Controls/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/ammo_subtype"]
+layout_mode = 2
+text = "Change Ammo Subtype
+"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="main_container/vert_container/option_tab_container/Controls/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/ammo_subtype"]
+layout_mode = 2
+size_flags_horizontal = 10
+
+[node name="InputBtn" parent="main_container/vert_container/option_tab_container/Controls/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/ammo_subtype/HBoxContainer" node_paths=PackedStringArray("ICW") groups=["controls_settings"] instance=ExtResource("1_lvxjt")]
+layout_mode = 2
+ICW = NodePath("../../../../../../../../../../../InputConfirmWindow")
+setting = ExtResource("23_y5nc2")
+
+[node name="Btn" parent="main_container/vert_container/option_tab_container/Controls/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/ammo_subtype/HBoxContainer/InputBtn" index="0"]
 custom_minimum_size = Vector2(80, 0)
 
 [node name="ads" type="HBoxContainer" parent="main_container/vert_container/option_tab_container/Controls/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer"]
@@ -1042,6 +1063,7 @@ group = "audio_settings"
 [editable path="main_container/vert_container/option_tab_container/Controls/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/fire/HBoxContainer/InputBtn"]
 [editable path="main_container/vert_container/option_tab_container/Controls/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/reload/HBoxContainer/InputBtn"]
 [editable path="main_container/vert_container/option_tab_container/Controls/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/fire_mode/HBoxContainer/InputBtn"]
+[editable path="main_container/vert_container/option_tab_container/Controls/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/ammo_subtype/HBoxContainer/InputBtn"]
 [editable path="main_container/vert_container/option_tab_container/Controls/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/ads/HBoxContainer/InputBtn"]
 [editable path="main_container/vert_container/option_tab_container/Controls/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/ads_factor/HBoxContainer/Slider"]
 [editable path="main_container/vert_container/option_tab_container/Controls/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/ads_toggle/HBoxContainer/Checkbox"]

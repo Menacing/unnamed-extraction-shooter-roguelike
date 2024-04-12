@@ -1,8 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://ccbup45n42jp6"]
+[gd_scene load_steps=3 format=3 uid="uid://ccbup45n42jp6"]
 
 [ext_resource type="Script" path="res://ui/misc/ammo_subtype_selector.gd" id="1_qp7wm"]
 [ext_resource type="Script" path="res://addons/radial_menu/RadialMenu.gd" id="1_srwm1"]
-[ext_resource type="PackedScene" uid="uid://six7htqj4j2w" path="res://ui/misc/sub_type_button.tscn" id="3_wwy05"]
 
 [node name="AmmoSubtypeSelector" type="CenterContainer"]
 anchors_preset = 15
@@ -21,6 +20,3 @@ script = ExtResource("1_srwm1")
 snap = true
 width_min = 0.25
 color_bg = Color(0, 0, 0, 1)
-
-[node name="SubTypeButton" parent="RadialMenu" instance=ExtResource("3_wwy05")]
-layout_mode = 2

@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://game_settings/templates/input.gd" id="1_po61f"]
 
-[sub_resource type="InputEventKey" id="InputEventKey_8yhw5"]
+[sub_resource type="InputEventKey" id="InputEventKey_vfh5j"]
 physical_keycode = 81
 
 [sub_resource type="InputEventKey" id="InputEventKey_gqhc7"]
@@ -15,7 +15,7 @@ action = "leanLeft"
 event_index = 0
 type = 1
 default_as_event = SubResource("InputEventKey_gqhc7")
-current_as_event = SubResource("InputEventKey_8yhw5")
+current_as_event = SubResource("InputEventKey_vfh5j")
 current = [1, 81]
 default = [1, 81]
 name = "lean_left_kb"
