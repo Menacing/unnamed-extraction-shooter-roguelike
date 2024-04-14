@@ -9,9 +9,11 @@ signal reloaded
 @export var ads_lean_factor:float = 1.0
 @export var _gun_stats:GunStats
 @onready var current_magazine_size: int = _gun_stats.magazine_size
+@export var current_ammo_subtype:AmmoSubtype
 
 func _ready():
 	super()
+	current_ammo_subtype = _gun_stats.ammo_type.sub_types[0]
 
 var current_fire_mode:String
 
@@ -83,3 +85,16 @@ func copy_gun_model() -> Node3D:
 
 func get_gun_stats() -> GunStats:
 	return _gun_stats
+
+func get_ammo_type() -> AmmoType:
+	return _gun_stats.ammo_type
+
+func get_unselected_ammo_subtypes() -> Array[AmmoSubtype]:
+	var all_subtypes:Array[AmmoSubtype] = _gun_stats.ammo_type.sub_types
+	var less_selected:Array[AmmoSubtype] = []
+	
+	for ast:AmmoSubtype in all_subtypes:
+		if ast.name != current_ammo_subtype.name:
+			less_selected.append(ast)
+	
+	return less_selected

@@ -364,7 +364,8 @@ func _input(event):
 				move_gun_to_hands(shoulder_gun)
 				move_gun_to_shoulder(old_gun)
 		elif event.is_action_pressed("change_ammo_subtype"):
-			ammo_subtype_selector.visible = true
+			if equipped_gun:
+				ammo_subtype_selector.start_selection(equipped_gun.get_ammo_type(), equipped_gun.current_ammo_subtype, equipped_gun.get_unselected_ammo_subtypes())
 		
 func toggle_inventory():
 	toggle_inv_f = !toggle_inv_f
