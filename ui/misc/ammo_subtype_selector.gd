@@ -1,9 +1,12 @@
+@tool
 extends CenterContainer
 class_name AmmoSubtypeSelector
 
 var subtype_button_scene:PackedScene = preload("res://ui/misc/sub_type_button.tscn")
 
 @onready var ammo_menu = $VBoxContainer
+@onready var selection_timer:Timer = $Timer
+@onready var progress_bar:TextureProgressBar = $VBoxContainer/MarginContainer/TextureProgressBar
 
 func start_selection(ammo_type:AmmoType, current_subtype:AmmoSubtype, other_subtypes:Array[AmmoSubtype]):
 	self.visible = true
@@ -19,3 +22,7 @@ func start_selection(ammo_type:AmmoType, current_subtype:AmmoSubtype, other_subt
 		button._ammo_type = ammo_type
 		button._ammo_subtype = ost
 		ammo_menu.add_child(center_button)
+
+func _process(delta):
+	progress_bar.value = 1.0 - (selection_timer.time_left / selection_timer.wait_time)
+	

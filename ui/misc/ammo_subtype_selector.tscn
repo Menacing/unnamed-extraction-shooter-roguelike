@@ -1,6 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://ccbup45n42jp6"]
+[gd_scene load_steps=6 format=3 uid="uid://ccbup45n42jp6"]
 
 [ext_resource type="Script" path="res://ui/misc/ammo_subtype_selector.gd" id="1_qp7wm"]
+[ext_resource type="PackedScene" uid="uid://six7htqj4j2w" path="res://ui/misc/sub_type_button.tscn" id="2_f7v3v"]
+[ext_resource type="Material" uid="uid://c0ipdgk1m22gh" path="res://ui/misc/ui_static_mat.tres" id="3_6smf4"]
+[ext_resource type="Texture2D" uid="uid://dnwjqswetecya" path="res://ui/icons/black_32x32.png" id="4_45md5"]
+[ext_resource type="Texture2D" uid="uid://c7mqojhjkgdj1" path="res://ui/icons/White/crosshair_11.png" id="5_3sodm"]
 
 [node name="AmmoSubtypeSelector" type="CenterContainer"]
 anchors_preset = 15
@@ -12,3 +16,39 @@ script = ExtResource("1_qp7wm")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 2
+
+[node name="SubTypeButton2" parent="VBoxContainer" instance=ExtResource("2_f7v3v")]
+layout_mode = 2
+
+[node name="SubTypeButton" parent="VBoxContainer" instance=ExtResource("2_f7v3v")]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="VBoxContainer/MarginContainer"]
+material = ExtResource("3_6smf4")
+layout_mode = 2
+max_value = 1.0
+step = 0.01
+nine_patch_stretch = true
+texture_progress = ExtResource("4_45md5")
+tint_progress = Color(0, 0, 0, 1)
+
+[node name="SubTypeButton3" parent="VBoxContainer/MarginContainer" instance=ExtResource("2_f7v3v")]
+layout_mode = 2
+
+[node name="NinePatchRect" type="NinePatchRect" parent="VBoxContainer/MarginContainer"]
+layout_mode = 2
+texture = ExtResource("5_3sodm")
+draw_center = false
+region_rect = Rect2(5, 5, 22, 22)
+patch_margin_left = 2
+patch_margin_top = 2
+patch_margin_right = 2
+patch_margin_bottom = 2
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
