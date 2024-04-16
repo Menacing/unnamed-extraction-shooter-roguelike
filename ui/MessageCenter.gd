@@ -16,11 +16,11 @@ func _on_create_message(message_name:String, message_text:String, message_timeou
 	if message_timeout > 0.0:
 		#TODO Wire up an auto removal
 		message_box.add_child(message_control)
-		message_control.start_message(message_text, message_timeout)
+		message_control.start_message(message_text.to_upper(), message_timeout)
 		pass
 	else:
 		message_box.add_child(message_control)
-		message_control.update_message(message_text)
+		message_control.update_message(message_text.to_upper())
 	pass
 	
 func _on_remove_message(message_name):
@@ -32,7 +32,7 @@ func _on_remove_message(message_name):
 func _on_update_message(message_name:String, message_text:String):
 	var message: MessageCenterMessage = message_box.get_node(message_name)
 	if message:
-		message.update_message(message_text)
+		message.update_message(message_text.to_upper())
 	pass
 	
 

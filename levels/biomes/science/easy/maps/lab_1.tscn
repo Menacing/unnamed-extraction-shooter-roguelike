@@ -8471,11 +8471,15 @@ mesh = SubResource("ArrayMesh_bd7hh")
 
 [node name="zs_52" parent="." instance=ExtResource("43_me08l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.322563, 0.4, -6.2126)
+ads_lean_factor = null
 _gun_stats = SubResource("Resource_mqk38")
+start_highlighted = null
 
 [node name="zs_53" parent="." instance=ExtResource("43_me08l")]
 transform = Transform3D(0.95019, -0.311672, 0, 0.311672, 0.95019, 0, 0, 0, 1, -1.58547, 0.992718, -5.89614)
+ads_lean_factor = null
 _gun_stats = SubResource("Resource_iwpqv")
+start_highlighted = null
 
 [node name="red_dot" parent="." instance=ExtResource("46_ex0jf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.190895, 0.400001, -6.98891)

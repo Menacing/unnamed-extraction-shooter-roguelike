@@ -376,7 +376,7 @@ func _input(event):
 				move_gun_to_hands(shoulder_gun)
 				move_gun_to_shoulder(old_gun)
 		elif event.is_action_pressed("change_ammo_subtype"):
-			if equipped_gun:
+			if equipped_gun and !equipped_gun.reloading:
 				ammo_subtype_selector.start_selection(equipped_gun.get_ammo_type(), equipped_gun.current_ammo_subtype, equipped_gun.get_unselected_ammo_subtypes())
 		
 func toggle_inventory():
@@ -440,6 +440,7 @@ func _on_ammo_type_changed(new_type:String, new_subtype:String):
 	#trigger reload animation
 	reload()
 	ammo_subtype_selector.end_selection()
+	
 
 	
 func start_arms_ik(right_arm_loc:Node3D, right_fingers_loc:Node3D, left_arm_loc:Node3D, left_fingers_loc:Node3D):

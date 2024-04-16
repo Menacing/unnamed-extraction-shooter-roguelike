@@ -16,6 +16,7 @@ func _ready():
 	current_ammo_subtype = _gun_stats.ammo_type.sub_types[0]
 
 var current_fire_mode:String
+var reloading: bool = false
 
 func get_right_hand_node() -> Node3D:
 	return self.get_node("Right_Hand")

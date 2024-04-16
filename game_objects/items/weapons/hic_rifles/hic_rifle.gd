@@ -5,7 +5,6 @@ class_name HICRifle
 
 var current_fire_mode_i = 0
 
-var reloading: bool = false
 var _new_bullets:int = 0
 var rng: RandomNumberGenerator
 @onready var fire_timer:Timer = $FireTimer
