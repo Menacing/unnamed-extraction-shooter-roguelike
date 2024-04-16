@@ -27,6 +27,8 @@ GameplayEnums="*res://game_logic/gameplay_enums.gd"
 AmmoLoader="*res://components/ammo_component/ammo_loader.gd"
 EnemySpawnManager="*res://game_logic/enemy_spawn_manager.gd"
 LootSpawnManager="*res://game_logic/loot_spawn_manager.gd"
+BeehaveGlobalMetrics="*res://addons/beehave/metrics/beehave_global_metrics.gd"
+BeehaveGlobalDebugger="*res://addons/beehave/debug/global_debugger.gd"
 
 [debug]
 
@@ -45,7 +47,7 @@ project/assembly_name="Unnamed-extraction-shooter-roguelike"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/ggs/plugin.cfg", "res://addons/godot_state_charts/plugin.cfg", "res://addons/qodot/plugin.cfg", "res://addons/gdUnit4/plugin.cfg")
+enabled=PackedStringArray("res://addons/beehave/plugin.cfg", "res://addons/gdUnit4/plugin.cfg", "res://addons/ggs/plugin.cfg", "res://addons/godot_state_charts/plugin.cfg", "res://addons/qodot/plugin.cfg")
 
 [gui]
 
