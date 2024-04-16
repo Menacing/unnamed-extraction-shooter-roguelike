@@ -162,6 +162,13 @@ mouse_filter = 1
 text = "QODOT"
 horizontal_alignment = 1
 
+[node name="beehave_label" type="Label" parent="MarginContainer/VBoxContainer2/ScrollContainer/VBoxContainer/addons_section"]
+layout_mode = 2
+tooltip_text = "https://github.com/bitbrain/beehave"
+mouse_filter = 1
+text = "BEEHAVE"
+horizontal_alignment = 1
+
 [node name="assets_section_header" type="HBoxContainer" parent="MarginContainer/VBoxContainer2/ScrollContainer/VBoxContainer"]
 layout_mode = 2
 
