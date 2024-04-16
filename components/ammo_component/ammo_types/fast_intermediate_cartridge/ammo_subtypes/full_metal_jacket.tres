@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="AmmoSubtype" load_steps=3 format=3 uid="uid://cv0v8s66c5nn4"]
+
+[ext_resource type="PackedScene" uid="uid://du06cmxlbacls" path="res://game_objects/bullet/hic_fmj_bullet.tscn" id="1_h0h0t"]
+[ext_resource type="Script" path="res://components/ammo_component/ammo_subtype.gd" id="2_fxt5t"]
+
+[resource]
+script = ExtResource("2_fxt5t")
+name = "Full Metal Jacket"
+abbreviation = "FMJ"
+maximum_capacity = 200
+item_type_id = "hic_box_fmj"
+bullet_scene = ExtResource("1_h0h0t")
