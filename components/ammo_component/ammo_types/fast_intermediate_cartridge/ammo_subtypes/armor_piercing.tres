@@ -1,6 +1,5 @@
-[gd_resource type="Resource" script_class="AmmoSubtype" load_steps=3 format=3 uid="uid://vcs5he7yn7nc"]
+[gd_resource type="Resource" script_class="AmmoSubtype" load_steps=2 format=3 uid="uid://vcs5he7yn7nc"]
 
-[ext_resource type="PackedScene" uid="uid://do2vi7w18tapi" path="res://game_objects/bullet/hic_ap_bullet.tscn" id="1_q1ixn"]
 [ext_resource type="Script" path="res://components/ammo_component/ammo_subtype.gd" id="2_qt6m2"]
 
 [resource]
@@ -8,5 +7,4 @@ script = ExtResource("2_qt6m2")
 name = "Armor Piercing"
 abbreviation = "AP"
 maximum_capacity = 200
-item_type_id = "hic_box_ap"
-bullet_scene = ExtResource("1_q1ixn")
+item_type_id = "fic_box_ap"
