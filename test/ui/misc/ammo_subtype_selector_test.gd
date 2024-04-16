@@ -8,7 +8,7 @@ func _ready():
 	pass # Replace with function body.
 
 
-func _gui_input(event):
+func _unhandled_input(event):
 	if event.is_action_pressed("change_ammo_subtype"):
 		ammo_subtype_selector.start_selection(gun.get_ammo_type(), gun.current_ammo_subtype, gun.get_unselected_ammo_subtypes())
 
