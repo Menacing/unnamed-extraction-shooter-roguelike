@@ -115,6 +115,9 @@ func force_parent(child:Node, parent:Node) -> void:
 	else:
 		child.set_owner(parent)
 
+func queue_free_children(node: Node) -> void:
+	for child in node.get_children():
+		child.queue_free()
 
 func get_aabb_of_node(node:Node) -> AABB:
 	var aabb:AABB = AABB()

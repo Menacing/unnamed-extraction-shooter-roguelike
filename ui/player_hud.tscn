@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://gt018qo38blj"]
+[gd_scene load_steps=7 format=3 uid="uid://gt018qo38blj"]
 
 [ext_resource type="PackedScene" uid="uid://bb7ue7ms53vhu" path="res://ui/health/life_bar.tscn" id="4_qme8g"]
 [ext_resource type="PackedScene" uid="uid://vb7f8fygilde" path="res://ui/misc/interaction_helpers.tscn" id="5_3ew52"]
@@ -6,7 +6,6 @@
 [ext_resource type="PackedScene" uid="uid://b62h82bx7vban" path="res://ui/weapon_info_hud.tscn" id="6_efrey"]
 [ext_resource type="PackedScene" uid="uid://dhlk3rc74daq2" path="res://ui/misc/compass.tscn" id="6_h13ew"]
 [ext_resource type="PackedScene" uid="uid://3bnbwe1cyhrq" path="res://ui/health/HitIndicatorParent.tscn" id="7_4osqb"]
-[ext_resource type="PackedScene" uid="uid://ccbup45n42jp6" path="res://ui/misc/ammo_subtype_selector.tscn" id="7_oghr4"]
 
 [node name="PlayerHUD" type="CanvasLayer"]
 
@@ -23,8 +22,5 @@
 [node name="weapon_info_hud" parent="." instance=ExtResource("6_efrey")]
 
 [node name="MessageCenter" parent="." instance=ExtResource("6_55h30")]
-
-[node name="AmmoSubtypeSelector" parent="." instance=ExtResource("7_oghr4")]
-visible = false
 
 [editable path="interaction_helpers"]

@@ -1,5 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://b62h82bx7vban"]
+[gd_scene load_steps=5 format=3 uid="uid://b62h82bx7vban"]
 
+[ext_resource type="PackedScene" uid="uid://ccbup45n42jp6" path="res://ui/misc/ammo_subtype_selector.tscn" id="1_8wyye"]
 [ext_resource type="PackedScene" uid="uid://cnfhk8lyswyee" path="res://ui/misc/fire_mode.tscn" id="1_geiol"]
 [ext_resource type="PackedScene" uid="uid://cum57ykeo3b7q" path="res://ui/misc/ammo_count.tscn" id="2_n6ljv"]
 [ext_resource type="PackedScene" uid="uid://dcmky3ljjd1pt" path="res://ui/misc/reserve_ammo_count.tscn" id="3_8ib6g"]
@@ -21,18 +22,24 @@ theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 2
 
-[node name="FireMode" parent="HBoxContainer" instance=ExtResource("1_geiol")]
+[node name="AmmoSubtypeSelector" parent="VBoxContainer" instance=ExtResource("1_8wyye")]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="FireMode" parent="VBoxContainer/HBoxContainer" instance=ExtResource("1_geiol")]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
 
-[node name="AmmoCount" parent="HBoxContainer" instance=ExtResource("2_n6ljv")]
+[node name="AmmoCount" parent="VBoxContainer/HBoxContainer" instance=ExtResource("2_n6ljv")]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
 
-[node name="ReserveAmmoCount" parent="HBoxContainer" instance=ExtResource("3_8ib6g")]
+[node name="ReserveAmmoCount" parent="VBoxContainer/HBoxContainer" instance=ExtResource("3_8ib6g")]
 layout_mode = 2

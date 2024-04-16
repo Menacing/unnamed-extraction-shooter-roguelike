@@ -140,7 +140,7 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 @onready var player_mat: BaseMaterial3D = $player_default_mesh_animated/Armature/Skeleton3D/Head.get_active_material(0)
 
 @onready var ammo_component:AmmoComponent = $AmmoComponent
-@onready var ammo_subtype_selector:AmmoSubtypeSelector = $PlayerHUD/AmmoSubtypeSelector
+@onready var ammo_subtype_selector:AmmoSubtypeSelector = $PlayerHUD/weapon_info_hud/VBoxContainer/AmmoSubtypeSelector
 
 func _ready():
 	if gun_scene1:
@@ -162,6 +162,7 @@ func _ready():
 		EventBus.open_inventory.emit(player_inventory_id)
 	else:
 		EventBus.close_all_inventories.emit()
+	EventBus.ammo_type_changed.connect(_on_ammo_type_changed)
 	
 	los_check_locations.append($HitBox/HeadBoneAttachment/eyes)
 	los_check_locations.append($HitBox/RightFootBoneAttachment)
@@ -400,6 +401,10 @@ func reload():
 	var available_ammo = ammo_component.request_ammo(ammo_component._active_ammo_type, ammo_component._active_ammo_subtype, needed_ammo)
 	equipped_gun.reloadGun(available_ammo)
 
+func unload():
+	var current_ammo = equipped_gun.current_magazine_size
+	ammo_component.add_ammo(ammo_component._active_ammo_type, ammo_component._active_ammo_subtype, current_ammo)
+	equipped_gun.current_magazine_size = 0
 
 func _on_gun_fired(recoil:Vector2):
 	EventBus.magazine_ammo_count_changed.emit(equipped_gun.current_magazine_size)
@@ -416,6 +421,16 @@ func scale_recoil(recoil:Vector2) -> Vector2:
 func _on_gun_reloaded():
 	EventBus.magazine_ammo_count_changed.emit(equipped_gun.current_magazine_size)	
 		
+func _on_ammo_type_changed(new_type:String, new_subtype:String):
+	#unload mag
+	unload()
+	#change ammo component ammo type
+	ammo_component.set_active_ammo(new_type, new_subtype)
+	#trigger reload animation
+	reload()
+	ammo_subtype_selector.end_selection()
+
+	
 func start_arms_ik(right_arm_loc:Node3D, right_fingers_loc:Node3D, left_arm_loc:Node3D, left_fingers_loc:Node3D):
 	if right_arm_loc:
 		ik_right_hand.target_node = right_arm_loc.get_path()

@@ -26,7 +26,11 @@ func start_selection(ammo_type:AmmoType, current_subtype:AmmoSubtype, other_subt
 			
 		current_list_item.select()
 		
-	
+func end_selection():
+	_selecting = false
+	self.visible = false
+	Helpers.queue_free_children(ammo_menu)
+
 func _input(event):
 	if _selecting and event.is_action_pressed("change_ammo_subtype"):
 		var current_item:AmmoSubTypeListItem = ammo_menu.get_child(selected_index)
