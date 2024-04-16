@@ -140,6 +140,7 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 @onready var player_mat: BaseMaterial3D = $player_default_mesh_animated/Armature/Skeleton3D/Head.get_active_material(0)
 
 @onready var ammo_component:AmmoComponent = $AmmoComponent
+@onready var ammo_subtype_selector:AmmoSubtypeSelector = $PlayerHUD/weapon_info_hud/VBoxContainer/AmmoSubtypeSelector
 
 func _ready():
 	if gun_scene1:
@@ -161,6 +162,7 @@ func _ready():
 		EventBus.open_inventory.emit(player_inventory_id)
 	else:
 		EventBus.close_all_inventories.emit()
+	EventBus.ammo_type_changed.connect(_on_ammo_type_changed)
 	
 	los_check_locations.append($HitBox/HeadBoneAttachment/eyes)
 	los_check_locations.append($HitBox/RightFootBoneAttachment)
@@ -176,6 +178,9 @@ func _ready():
 func _on_item_picked_up(result:InventoryInsertResult):
 	if result.inventory_id == player_inventory_id:
 		var item_instance:ItemInstance = InventoryManager.get_item(result.item_instance_id)
+		
+		send_item_pickup_message(item_instance)
+		
 		var item_3d:Item3D = instance_from_id(item_instance.id_3d)
 		Helpers.force_parent(item_3d,self)
 		item_3d.picked_up(get_instance_id())
@@ -209,6 +214,14 @@ func _on_item_picked_up(result:InventoryInsertResult):
 			var remainder = ammo_component.add_ammo(ammo_information.ammo_type.name, ammo_information.ammo_subtype.name, item_instance.stacks)
 			item_instance.stacks = remainder
 			
+
+func send_item_pickup_message(item_instance:ItemInstance):
+	var message_text:String = "Picked up " + item_instance.get_display_name()
+	
+	if item_instance.get_has_stacks():
+		message_text += " " + str(item_instance.stacks)
+		
+	EventBus.create_message.emit("pickup_"+str(item_instance.get_instance_id()), message_text, 2.0)
 
 func _on_item_removed_from_slot(item_inst:ItemInstance, inventory_id:int, slot_name:String):
 	if inventory_id == player_inventory_id:
@@ -362,6 +375,9 @@ func _input(event):
 				var old_gun = equipped_gun
 				move_gun_to_hands(shoulder_gun)
 				move_gun_to_shoulder(old_gun)
+		elif event.is_action_pressed("change_ammo_subtype"):
+			if equipped_gun and !equipped_gun.reloading:
+				ammo_subtype_selector.start_selection(equipped_gun.get_ammo_type(), equipped_gun.current_ammo_subtype, equipped_gun.get_unselected_ammo_subtypes())
 		
 func toggle_inventory():
 	toggle_inv_f = !toggle_inv_f
@@ -396,6 +412,10 @@ func reload():
 	var available_ammo = ammo_component.request_ammo(ammo_component._active_ammo_type, ammo_component._active_ammo_subtype, needed_ammo)
 	equipped_gun.reloadGun(available_ammo)
 
+func unload():
+	var current_ammo = equipped_gun.current_magazine_size
+	ammo_component.add_ammo(ammo_component._active_ammo_type, ammo_component._active_ammo_subtype, current_ammo)
+	equipped_gun.current_magazine_size = 0
 
 func _on_gun_fired(recoil:Vector2):
 	EventBus.magazine_ammo_count_changed.emit(equipped_gun.current_magazine_size)
@@ -412,6 +432,19 @@ func scale_recoil(recoil:Vector2) -> Vector2:
 func _on_gun_reloaded():
 	EventBus.magazine_ammo_count_changed.emit(equipped_gun.current_magazine_size)	
 		
+func _on_ammo_type_changed(new_type:String, new_subtype:String):
+	#unload mag
+	unload()
+	#change ammo component ammo type
+	ammo_component.set_active_ammo(new_type, new_subtype)
+	#trigger reload animation
+	reload()
+	#change bullet scene
+	equipped_gun._bullet_scene = AmmoLoader.get_ammo_subtype(new_type, new_subtype).bullet_scene
+	ammo_subtype_selector.end_selection()
+	
+
+	
 func start_arms_ik(right_arm_loc:Node3D, right_fingers_loc:Node3D, left_arm_loc:Node3D, left_fingers_loc:Node3D):
 	if right_arm_loc:
 		ik_right_hand.target_node = right_arm_loc.get_path()

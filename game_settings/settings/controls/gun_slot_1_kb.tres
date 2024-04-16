@@ -2,10 +2,8 @@
 
 [ext_resource type="Script" path="res://game_settings/templates/input.gd" id="1_oacic"]
 
-[sub_resource type="InputEventKey" id="InputEventKey_ub1vg"]
-device = -1
+[sub_resource type="InputEventKey" id="InputEventKey_fgunh"]
 physical_keycode = 49
-unicode = 49
 
 [sub_resource type="InputEventKey" id="InputEventKey_reipb"]
 device = -1
@@ -19,7 +17,7 @@ action = "equipGunSlot1"
 event_index = 0
 type = 1
 default_as_event = SubResource("InputEventKey_reipb")
-current_as_event = SubResource("InputEventKey_ub1vg")
+current_as_event = SubResource("InputEventKey_fgunh")
 current = [1, 49]
 default = [1, 49]
 name = "gun_slot_1_kb"

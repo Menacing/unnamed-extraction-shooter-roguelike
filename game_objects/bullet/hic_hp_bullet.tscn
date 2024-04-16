@@ -1,0 +1,66 @@
+[gd_scene load_steps=12 format=3 uid="uid://byux4c0iklc84"]
+
+[ext_resource type="Script" path="res://game_objects/bullet/bullet_proj_ray.gd" id="1_r0vwg"]
+[ext_resource type="Shader" path="res://game_objects/bullet/tracer_particle.gdshader" id="2_0plb8"]
+[ext_resource type="Shader" path="res://game_objects/bullet/tracer.gdshader" id="3_20a56"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_a2qmd"]
+radius = 0.01
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_stsvx"]
+albedo_color = Color(0.0980392, 0.65098, 0, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_mrjd8"]
+material = SubResource("StandardMaterial3D_stsvx")
+radius = 0.008
+height = 0.016
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_sr6c2"]
+shader = ExtResource("2_0plb8")
+shader_parameter/height = 0.01
+
+[sub_resource type="Gradient" id="Gradient_vh87s"]
+interpolation_mode = 2
+colors = PackedColorArray(1, 0.109804, 0.129412, 1, 1, 0.129412, 0.129412, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_mgfhj"]
+gradient = SubResource("Gradient_vh87s")
+use_hdr = true
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bhr6y"]
+render_priority = 0
+shader = ExtResource("3_20a56")
+shader_parameter/tex = SubResource("GradientTexture2D_mgfhj")
+
+[sub_resource type="QuadMesh" id="QuadMesh_a8vkh"]
+material = SubResource("ShaderMaterial_bhr6y")
+
+[node name="hic_hp_bullet" type="CharacterBody3D"]
+collision_layer = 2147483648
+collision_mask = 2
+motion_mode = 1
+script = ExtResource("1_r0vwg")
+initial_damage = 50.0
+pen_rating = 1
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_a2qmd")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_mrjd8")
+
+[node name="Tracer" type="GPUParticles3D" parent="."]
+amount = 2
+lifetime = 2.0
+speed_scale = 30.0
+process_material = SubResource("ShaderMaterial_sr6c2")
+draw_pass_1 = SubResource("QuadMesh_a8vkh")
+
+[node name="DespawnTimer" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+
+[connection signal="timeout" from="DespawnTimer" to="." method="_on_despawn_timer_timeout"]

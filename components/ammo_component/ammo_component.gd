@@ -16,7 +16,7 @@ func _ready():
 			aci.current_max = st.maximum_capacity
 			aci.subtype_item_id = st.item_type_id
 			_ammo_map[at.name][st.name] = aci
-	EventBus.reserve_ammo_count_changed.emit(0)
+	EventBus.active_reserve_ammo_count_changed.emit(0)
 	_actor_id = get_parent().get_instance_id()
 	EventBus.drop_ammo.connect(_on_drop_ammo)
 	EventBus.drop_all_ammo.connect(_on_drop_all_ammo)
