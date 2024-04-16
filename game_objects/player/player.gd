@@ -178,6 +178,9 @@ func _ready():
 func _on_item_picked_up(result:InventoryInsertResult):
 	if result.inventory_id == player_inventory_id:
 		var item_instance:ItemInstance = InventoryManager.get_item(result.item_instance_id)
+		
+		send_item_pickup_message(item_instance)
+		
 		var item_3d:Item3D = instance_from_id(item_instance.id_3d)
 		Helpers.force_parent(item_3d,self)
 		item_3d.picked_up(get_instance_id())
@@ -211,6 +214,14 @@ func _on_item_picked_up(result:InventoryInsertResult):
 			var remainder = ammo_component.add_ammo(ammo_information.ammo_type.name, ammo_information.ammo_subtype.name, item_instance.stacks)
 			item_instance.stacks = remainder
 			
+
+func send_item_pickup_message(item_instance:ItemInstance):
+	var message_text:String = "Picked up " + item_instance.get_display_name()
+	
+	if item_instance.get_has_stacks():
+		message_text += " " + str(item_instance.stacks)
+		
+	EventBus.create_message.emit("pickup_"+str(item_instance.get_instance_id()), message_text, 2.0)
 
 func _on_item_removed_from_slot(item_inst:ItemInstance, inventory_id:int, slot_name:String):
 	if inventory_id == player_inventory_id:

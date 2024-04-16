@@ -52,6 +52,6 @@ signal drop_all_ammo(actor_id:int, type:String, subtype:String)
 
 #UI Events
 signal pause()
-signal create_message(message_name:String, message_text:String, message_timeout:int)
+signal create_message(message_name:String, message_text:String, message_timeout:float)
 signal update_message(message_name:String, message_text:String)
-signal remove_message(message_name)
+signal remove_message(message_name:String)

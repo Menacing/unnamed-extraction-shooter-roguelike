@@ -10,14 +10,16 @@ content_margin_right = 5.0
 content_margin_bottom = 5.0
 bg_color = Color(0, 0, 0, 1)
 
-[node name="CompassLabel" type="Label"]
+[node name="CompassLabel" type="RichTextLabel"]
 material = ExtResource("1_knmtg")
-custom_minimum_size = Vector2(50, 0)
-size_flags_vertical = 1
-theme_override_font_sizes/font_size = 20
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 25.0
+grow_horizontal = 2
+size_flags_vertical = 2
 theme_override_styles/normal = SubResource("StyleBoxFlat_6r2li")
+bbcode_enabled = true
 text = "The above code calls the function enter_alert_mode on "
-vertical_alignment = 1
+fit_content = true
 autowrap_mode = 2
-uppercase = true
 script = ExtResource("2_rksmc")

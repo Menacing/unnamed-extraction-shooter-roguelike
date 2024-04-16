@@ -10,11 +10,13 @@ func _ready() -> void:
 	pass # Replace with function body.
 
 
-func _on_create_message(message_name:String, message_text:String, message_timeout:int):
+func _on_create_message(message_name:String, message_text:String, message_timeout:float):
 	var message_control:MessageCenterMessage = message_scene.instantiate()
 	message_control.name = message_name
-	if message_timeout>=1:
+	if message_timeout > 0.0:
 		#TODO Wire up an auto removal
+		message_box.add_child(message_control)
+		message_control.start_message(message_text, message_timeout)
 		pass
 	else:
 		message_box.add_child(message_control)
@@ -22,7 +24,7 @@ func _on_create_message(message_name:String, message_text:String, message_timeou
 	pass
 	
 func _on_remove_message(message_name):
-	var message = message_box.get_node(message_name)
+	var message = message_box.get_node("./" + message_name)
 	if message:
 		message.queue_free()
 	pass
