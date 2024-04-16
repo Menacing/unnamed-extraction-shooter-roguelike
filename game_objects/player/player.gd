@@ -439,6 +439,8 @@ func _on_ammo_type_changed(new_type:String, new_subtype:String):
 	ammo_component.set_active_ammo(new_type, new_subtype)
 	#trigger reload animation
 	reload()
+	#change bullet scene
+	equipped_gun._bullet_scene = AmmoLoader.get_ammo_subtype(new_type, new_subtype).bullet_scene
 	ammo_subtype_selector.end_selection()
 	
 
