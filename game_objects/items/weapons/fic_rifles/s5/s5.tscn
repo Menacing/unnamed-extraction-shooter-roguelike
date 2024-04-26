@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://cprpop5lkmyhe"]
+[gd_scene load_steps=10 format=3 uid="uid://cprpop5lkmyhe"]
 
-[ext_resource type="Script" path="res://game_objects/items/weapons/hic_rifles/hic_rifle.gd" id="1_nsg7n"]
+[ext_resource type="Script" path="res://game_objects/items/weapons/fic_rifles/fic_rifle.gd" id="1_rora5"]
 [ext_resource type="PackedScene" uid="uid://b6bxw2s2j2pix" path="res://game_objects/bullet/fic_fmj_bullet.tscn" id="2_pysoi"]
 [ext_resource type="Resource" uid="uid://crt7yeietv5y7" path="res://game_objects/items/weapons/fic_rifles/fic_rifle_gun_stats.tres" id="3_x74o3"]
+[ext_resource type="Resource" uid="uid://cv0v8s66c5nn4" path="res://components/ammo_component/ammo_types/fast_intermediate_cartridge/ammo_subtypes/full_metal_jacket.tres" id="4_3mr2u"]
 [ext_resource type="PackedScene" uid="uid://d1y3lghk4h5l3" path="res://game_objects/items/weapons/fic_rifles/s5/s5.blend" id="4_v8p8c"]
 [ext_resource type="Texture2D" uid="uid://dkcxx06s6kdp6" path="res://game_objects/items/weapons/hic_rifles/pm_52/PixelMuzzelFlash.png" id="5_wks76"]
 
@@ -35,10 +36,14 @@ _data = {
 disable_mode = 1
 collision_layer = 5
 collision_mask = 5
-script = ExtResource("1_nsg7n")
+script = ExtResource("1_rora5")
+gun_material_np = NodePath("s5/barrel")
+gun_model_np = NodePath("s5")
+on_scope_hide_nps = Array[NodePath]([NodePath("s5/front_sight"), NodePath("s5/rear_sight")])
+muzzle_np = NodePath("s5/Muzzle")
 _bullet_scene = ExtResource("2_pysoi")
-ads_lean_factor = null
 _gun_stats = ExtResource("3_x74o3")
+current_ammo_subtype = ExtResource("4_3mr2u")
 item_type_id = "s5"
 world_collider_path = NodePath("CollisionShape3D")
 
@@ -57,6 +62,7 @@ transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 
 
 [node name="Muzzle" type="Node3D" parent="s5"]
 transform = Transform3D(-2.62269e-08, 0, 0.6, 0, 0.6, 0, -0.6, 0, -2.62269e-08, -7.60565e-10, 0, 0.4783)
+visible = false
 
 [node name="FlashSpriteV3D" type="Sprite3D" parent="s5/Muzzle"]
 transform = Transform3D(-8.74226e-09, 0, 0.2, 0, 0.2, 0, -0.2, 0, -8.74226e-09, -0.482, 0, 0)
@@ -94,7 +100,7 @@ transform = Transform3D(1, 0, 7.10543e-15, 0, 1, 0, -7.10543e-15, 0, 1, 0.025, 0
 transform = Transform3D(-1, 8.74228e-08, 7.10543e-15, -8.74228e-08, -1, 0, 7.10543e-15, -6.21177e-22, 1, -0.0017045, 0.0792384, -0.0446781)
 
 [node name="HipFire" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.168, 0.377238, 0.468)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.171, 0.14, 0.218)
 
 [node name="Label3D" type="Label3D" parent="HipFire"]
 visible = false
@@ -114,6 +120,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.179712, 0.137292, -0.076894
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2, 0.767238, -0.088)
 
 [node name="scope_anchor" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0457259, 0.0517627)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.02233, 0.0517627)
 
 [editable path="s5"]
