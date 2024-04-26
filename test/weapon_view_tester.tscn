@@ -61,66 +61,66 @@ _gun_stats = SubResource("Resource_6fq1q")
 [node name="Player" parent="." instance=ExtResource("1_aa7yj")]
 
 [node name="Skeleton3D" parent="Player/player_default_mesh_animated/Armature" index="0"]
-bones/0/position = Vector3(-0.0961646, -0.0051466, -1.05023)
-bones/0/rotation = Quaternion(0.710828, -0.235515, 0.18906, -0.635226)
-bones/1/rotation = Quaternion(0.0704596, 0.00431348, 0.00651202, 0.997484)
-bones/2/rotation = Quaternion(0.0434357, 0.00914287, 0.00331149, 0.999009)
-bones/3/rotation = Quaternion(0.0730578, 0.00793026, 0.00100423, 0.997296)
-bones/4/rotation = Quaternion(0.00379782, 0.0494749, -0.00149168, 0.998767)
-bones/5/rotation = Quaternion(-0.00874232, 0.319422, -0.0447981, 0.946513)
-bones/7/rotation = Quaternion(0.735391, 0.331367, -0.408872, 0.426872)
-bones/8/rotation = Quaternion(0.377814, -0.22806, 0.0819961, 0.893601)
-bones/9/rotation = Quaternion(0.523264, -0.546269, 0.481143, 0.443043)
-bones/10/rotation = Quaternion(0.000111112, -0.178044, 0.0619327, 0.982072)
-bones/19/rotation = Quaternion(0.705881, -0.372782, 0.425723, 0.426058)
-bones/20/rotation = Quaternion(0.256629, -0.173973, -0.225638, 0.92356)
-bones/21/rotation = Quaternion(0.0225548, 0.216397, -0.754471, 0.619223)
-bones/22/rotation = Quaternion(0.079909, 0.136452, -0.177858, 0.971268)
-bones/31/rotation = Quaternion(0.141858, 0.156104, 0.969368, -0.12583)
-bones/32/rotation = Quaternion(-0.250112, -0.124544, -0.00656331, 0.960151)
-bones/33/rotation = Quaternion(0.476824, -0.147377, 0.00167626, 0.866554)
-bones/36/rotation = Quaternion(-0.197267, 0.128026, 0.957574, 0.166578)
-bones/37/rotation = Quaternion(-0.332981, 0.021355, -0.00164089, 0.94269)
-bones/38/rotation = Quaternion(0.585351, 0.134776, 0.0424586, 0.798371)
+bones/0/position = Vector3(-0.0963371, -0.0053686, -1.04993)
+bones/0/rotation = Quaternion(0.711253, -0.235641, 0.188903, -0.634751)
+bones/1/rotation = Quaternion(0.0711922, 0.00440478, 0.00643377, 0.997432)
+bones/2/rotation = Quaternion(0.043797, 0.00921076, 0.00356268, 0.998992)
+bones/3/rotation = Quaternion(0.073479, 0.00796699, 0.000880164, 0.997265)
+bones/4/rotation = Quaternion(0.00368114, 0.0495908, -0.00160819, 0.998762)
+bones/5/rotation = Quaternion(-0.00932302, 0.318825, -0.0449511, 0.946701)
+bones/7/rotation = Quaternion(0.735686, 0.331091, -0.408584, 0.426854)
+bones/8/rotation = Quaternion(0.376889, -0.229358, 0.0825777, 0.893605)
+bones/9/rotation = Quaternion(0.523644, -0.54616, 0.48116, 0.44271)
+bones/10/rotation = Quaternion(-0.000740691, -0.177887, 0.0617187, 0.982113)
+bones/19/rotation = Quaternion(0.705631, -0.373426, 0.426253, 0.425377)
+bones/20/rotation = Quaternion(0.255055, -0.173141, -0.227227, 0.923763)
+bones/21/rotation = Quaternion(0.023312, 0.216983, -0.754494, 0.618962)
+bones/22/rotation = Quaternion(0.0795719, 0.136088, -0.177358, 0.971438)
+bones/31/rotation = Quaternion(0.141845, 0.156086, 0.969347, -0.126027)
+bones/32/rotation = Quaternion(-0.251063, -0.124373, -0.00647459, 0.959926)
+bones/33/rotation = Quaternion(0.477126, -0.147416, 0.00158528, 0.866381)
+bones/36/rotation = Quaternion(-0.197218, 0.127941, 0.957559, 0.166783)
+bones/37/rotation = Quaternion(-0.333809, 0.0212023, -0.00167855, 0.942401)
+bones/38/rotation = Quaternion(0.585623, 0.134764, 0.0424671, 0.798174)
 
 [node name="ChestBoneAttachment" parent="Player/HitBox" index="0"]
-transform = Transform3D(-0.599699, 0.214646, 0.704833, 0.0527175, 0.918964, -0.235002, -0.734903, -0.109235, -0.592018, 0.012457, 0.488107, 0.0980047)
+transform = Transform3D(-0.599983, 0.215864, 0.704218, 0.0528457, 0.918561, -0.236543, -0.734662, -0.110218, -0.592136, 0.0122589, 0.487802, 0.0981898)
 
 [node name="HeadBoneAttachment" parent="Player/HitBox" index="1"]
-transform = Transform3D(-0.934651, 0.135196, 0.103195, 0.117486, 0.929994, -0.154297, -0.12298, -0.139042, -0.931688, 0.0891662, 0.718893, 0.0476165)
+transform = Transform3D(-0.934571, 0.135391, 0.103668, 0.117579, 0.929944, -0.154532, -0.123503, -0.139192, -0.931597, 0.0892273, 0.718447, 0.0475361)
 
 [node name="NeckBoneAttachment" parent="Player/HitBox" index="2"]
-transform = Transform3D(-0.666984, 0.217869, 0.640442, 0.0732936, 0.917362, -0.235742, -0.672503, -0.116101, -0.660878, 0.0455659, 0.629856, 0.0811553)
+transform = Transform3D(-0.667411, 0.218776, 0.639687, 0.0734045, 0.917019, -0.237039, -0.672067, -0.117102, -0.661145, 0.0455557, 0.629489, 0.0811889)
 
 [node name="LeftUpperArmBoneAttachment" parent="Player/HitBox" index="3"]
-transform = Transform3D(-0.851763, -0.100002, 0.408657, -0.035294, -0.902535, -0.294423, 0.419231, -0.279159, 0.805491, -0.0445013, 0.551746, -0.0723324)
+transform = Transform3D(-0.851457, -0.0996228, 0.409386, -0.0362856, -0.902295, -0.295039, 0.419768, -0.280071, 0.804895, -0.0446046, 0.551282, -0.0721788)
 
 [node name="LeftLowerArmBoneAttachment" parent="Player/HitBox" index="4"]
-transform = Transform3D(0.469061, 0.825795, 0.0233125, -0.157466, 0.0630546, 0.934734, 0.810978, -0.465388, 0.168012, -0.0762143, 0.265532, -0.16086)
+transform = Transform3D(0.469563, 0.82555, 0.0218816, -0.157489, 0.0648055, 0.934611, 0.810684, -0.465584, 0.168889, -0.0761972, 0.265144, -0.160996)
 
 [node name="RightUpperArmBoneAttachment" parent="Player/HitBox" index="5"]
-transform = Transform3D(-0.115032, 0.323222, -0.885887, -0.223592, -0.876352, -0.29071, -0.916119, 0.173302, 0.182188, 0.170072, 0.542117, 0.203569)
+transform = Transform3D(-0.114964, 0.324575, -0.885401, -0.222834, -0.876046, -0.292212, -0.916312, 0.17232, 0.182148, 0.169838, 0.541734, 0.203862)
 
 [node name="RightLowerArmBoneAttachment" parent="Player/HitBox" index="6"]
-transform = Transform3D(-0.00459017, 0.110839, -0.943501, 0.949985, -0.00206927, -0.0048647, -0.00262287, -0.94351, -0.110827, 0.272735, 0.263769, 0.258613)
+transform = Transform3D(-0.00414878, 0.110496, -0.943543, 0.94999, -0.000833716, -0.00427451, -0.00132551, -0.943552, -0.110491, 0.27293, 0.263483, 0.258594)
 
 [node name="LeftUpperLegBoneAttachment" parent="Player/HitBox" index="7"]
-transform = Transform3D(0.780774, 0.107508, 0.53041, -0.178741, -0.827596, 0.430854, 0.510827, -0.453901, -0.659947, -0.0456957, 0.0965807, 0.0188654)
+transform = Transform3D(0.780941, 0.108124, 0.530038, -0.178672, -0.827035, 0.43196, 0.510595, -0.454777, -0.659523, -0.0458442, 0.096311, 0.0189928)
 
 [node name="RightUpperLegBoneAttachment" parent="Player/HitBox" index="8"]
-transform = Transform3D(0.154163, 0.414677, 0.840701, 0.179497, -0.849286, 0.385997, 0.920064, 0.0962068, -0.216169, 0.0532504, 0.09157, 0.150999)
+transform = Transform3D(0.153901, 0.415594, 0.840296, 0.179346, -0.848868, 0.386986, 0.920137, 0.0959435, -0.215975, 0.0531019, 0.0913005, 0.151126)
 
 [node name="LeftLowerLegBoneAttachment" parent="Player/HitBox" index="9"]
-transform = Transform3D(0.890423, -0.101353, 0.315238, -0.109851, -0.943602, 0.00690462, 0.312378, -0.0429235, -0.896146, 0.0059243, -0.300791, -0.199076)
+transform = Transform3D(0.890409, -0.101664, 0.315178, -0.109952, -0.943595, 0.00625823, 0.312384, -0.042344, -0.896172, 0.00607192, -0.300791, -0.199369)
 
 [node name="RightLowerLegBoneAttachment" parent="Player/HitBox" index="10"]
-transform = Transform3D(0.113911, -0.206845, 0.920185, 0.178918, -0.905302, -0.225648, 0.926021, 0.200359, -0.0695951, 0.252347, -0.316193, 0.19719)
+transform = Transform3D(0.113925, -0.207461, 0.920044, 0.178854, -0.905164, -0.226253, 0.926032, 0.200347, -0.0694901, 0.252639, -0.316262, 0.197191)
 
 [node name="RightFootBoneAttachment" parent="Player/HitBox" index="11"]
-transform = Transform3D(-0.0895854, 0.816483, 0.477316, 0.00490074, -0.479045, 0.820361, 0.945755, 0.0798229, 0.0409628, 0.154562, -0.74417, 0.291909)
+transform = Transform3D(-0.0896013, 0.816486, 0.477307, 0.0048967, -0.479038, 0.820365, 0.945754, 0.079835, 0.0409736, 0.154562, -0.744174, 0.291904)
 
 [node name="LeftFootBoneAttachment" parent="Player/HitBox" index="12"]
-transform = Transform3D(0.94671, 0.0773561, 0.0159977, 0.0265737, -0.49306, 0.811594, 0.0743891, -0.808336, -0.493516, -0.041999, -0.746958, -0.219372)
+transform = Transform3D(0.946711, 0.0773476, 0.0159802, 0.0265816, -0.493033, 0.811611, 0.0743738, -0.808354, -0.49349, -0.0419981, -0.746955, -0.219391)
 
 [node name="EQUIPMENT" parent="Player/PlayerInventories/MarginContainer/HBoxContainer/PlayerInventoryContainer/TabContainer" index="1"]
 _inventory = SubResource("Resource_abjvd")
