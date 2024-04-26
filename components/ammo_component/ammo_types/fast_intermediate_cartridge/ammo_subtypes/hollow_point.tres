@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="AmmoSubtype" load_steps=2 format=3 uid="uid://d3346f3lutske"]
+
+[ext_resource type="Script" path="res://components/ammo_component/ammo_subtype.gd" id="2_i07jw"]
+
+[resource]
+script = ExtResource("2_i07jw")
+name = "Hollow Point"
+abbreviation = "HP"
+maximum_capacity = 200
+item_type_id = "fic_box_hp"

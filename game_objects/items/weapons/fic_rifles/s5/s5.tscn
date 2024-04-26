@@ -1,0 +1,125 @@
+[gd_scene load_steps=10 format=3 uid="uid://cprpop5lkmyhe"]
+
+[ext_resource type="Script" path="res://game_objects/items/weapons/fic_rifles/fic_rifle.gd" id="1_rora5"]
+[ext_resource type="PackedScene" uid="uid://b6bxw2s2j2pix" path="res://game_objects/bullet/fic_fmj_bullet.tscn" id="2_pysoi"]
+[ext_resource type="Resource" uid="uid://crt7yeietv5y7" path="res://game_objects/items/weapons/fic_rifles/fic_rifle_gun_stats.tres" id="3_x74o3"]
+[ext_resource type="Resource" uid="uid://cv0v8s66c5nn4" path="res://components/ammo_component/ammo_types/fast_intermediate_cartridge/ammo_subtypes/full_metal_jacket.tres" id="4_3mr2u"]
+[ext_resource type="PackedScene" uid="uid://d1y3lghk4h5l3" path="res://game_objects/items/weapons/fic_rifles/s5/s5.blend" id="4_v8p8c"]
+[ext_resource type="Texture2D" uid="uid://dkcxx06s6kdp6" path="res://game_objects/items/weapons/hic_rifles/pm_52/PixelMuzzelFlash.png" id="5_wks76"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_a6wgc"]
+size = Vector3(0.852813, 0.283394, 0.071228)
+
+[sub_resource type="Animation" id="Animation_048m7"]
+resource_name = "fire"
+length = 0.1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_clf16"]
+_data = {
+"fire": SubResource("Animation_048m7")
+}
+
+[node name="S5" type="RigidBody3D"]
+disable_mode = 1
+collision_layer = 5
+collision_mask = 5
+script = ExtResource("1_rora5")
+gun_material_np = NodePath("s5/barrel")
+gun_model_np = NodePath("s5")
+on_scope_hide_nps = Array[NodePath]([NodePath("s5/front_sight"), NodePath("s5/rear_sight")])
+muzzle_np = NodePath("s5/Muzzle")
+_bullet_scene = ExtResource("2_pysoi")
+_gun_stats = ExtResource("3_x74o3")
+current_ammo_subtype = ExtResource("4_3mr2u")
+item_type_id = "s5"
+world_collider_path = NodePath("CollisionShape3D")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -0.00137329, -0.064, -0.054)
+shape = SubResource("BoxShape3D_a6wgc")
+
+[node name="ReloadTimer" type="Timer" parent="."]
+wait_time = 2.5
+
+[node name="FireTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="s5" parent="." instance=ExtResource("4_v8p8c")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 0)
+
+[node name="Muzzle" type="Node3D" parent="s5"]
+transform = Transform3D(-2.62269e-08, 0, 0.6, 0, 0.6, 0, -0.6, 0, -2.62269e-08, -7.60565e-10, 0, 0.4783)
+visible = false
+
+[node name="FlashSpriteV3D" type="Sprite3D" parent="s5/Muzzle"]
+transform = Transform3D(-8.74226e-09, 0, 0.2, 0, 0.2, 0, -0.2, 0, -8.74226e-09, -0.482, 0, 0)
+cast_shadow = 0
+axis = 1
+alpha_cut = 2
+texture_filter = 0
+texture = ExtResource("5_wks76")
+
+[node name="FlashSpriteH3D" type="Sprite3D" parent="s5/Muzzle"]
+transform = Transform3D(3.82137e-16, -8.74226e-09, 0.2, -0.2, -8.74228e-09, 0, 8.74228e-09, -0.2, -8.74226e-09, -0.482, 0, 0)
+cast_shadow = 0
+axis = 1
+alpha_cut = 2
+texture_filter = 0
+texture = ExtResource("5_wks76")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="s5/Muzzle"]
+transform = Transform3D(-7.28522e-08, 0, 1.66667, 0, 1.66667, 0, -1.66667, 0, -7.28522e-08, -0.189991, 0, -2.18123e-08)
+light_color = Color(0.917647, 0.784314, 0.611765, 1)
+shadow_enabled = true
+distance_fade_enabled = true
+
+[node name="MuzzleFlashAnimationPlayer" type="AnimationPlayer" parent="s5/Muzzle"]
+unique_name_in_owner = true
+root_node = NodePath("")
+libraries = {
+"": SubResource("AnimationLibrary_clf16")
+}
+
+[node name="Right_Hand" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 7.10543e-15, 0, 1, 0, -7.10543e-15, 0, 1, 0.025, 0.0792384, 0.281)
+
+[node name="Right_Fingers" type="Node3D" parent="."]
+transform = Transform3D(-1, 8.74228e-08, 7.10543e-15, -8.74228e-08, -1, 0, 7.10543e-15, -6.21177e-22, 1, -0.0017045, 0.0792384, -0.0446781)
+
+[node name="HipFire" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.171, 0.14, 0.218)
+
+[node name="Label3D" type="Label3D" parent="HipFire"]
+visible = false
+billboard = 1
+text = "HF"
+
+[node name="ADS" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0702731, 0.271476)
+
+[node name="Left_Hand" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0283023, 0.137292, -0.0768944)
+
+[node name="Left_Fingers" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.179712, 0.137292, -0.0768944)
+
+[node name="ADS_Head" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2, 0.767238, -0.088)
+
+[node name="scope_anchor" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.02233, 0.0517627)
+
+[editable path="s5"]
