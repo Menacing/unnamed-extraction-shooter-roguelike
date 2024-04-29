@@ -21,6 +21,8 @@ var reload_time:ModifiableStatFloat = ModifiableStatFloat.new(1.0)
 
 @onready var scope_anchor = $scope_anchor
 @export var muzzle_np:NodePath
+
+
 var scope:Scope
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -148,6 +150,9 @@ func _on_item_picked_up(result:InventoryInsertResult):
 					var mag:Magazine = item_3d as Magazine
 					for mod in mag.magazine_size_modifiers:
 						_magazine_size.add_modifier(mod)
+					if item_instance.get_item_type_id() == "extended_magazine":
+						$s5/magazine.visible = false
+						$s5/extended_magazine.visible = true
 		elif result.location.location == InventoryLocationResult.LocationType.GRID:
 			item_3d.visible = false
 			
@@ -183,3 +188,8 @@ func _on_item_removed_from_slot(item_inst:ItemInstance, inventory_id:int, slot_n
 				var mag:Magazine = item_3d as Magazine
 				for mod in mag.magazine_size_modifiers:
 					_magazine_size.remove_modifier(mod)
+				
+				if item_inst.get_item_type_id() == "extended_magazine":
+					$s5/magazine.visible = true
+					$s5/extended_magazine.visible = false
+				
