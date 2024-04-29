@@ -61,7 +61,7 @@ func _close_self():
 
 func map_gun_stats(gun:Gun):
 	var gun_stats:GunStats = gun.get_gun_stats()
-	mag_size_label.text = str(gun_stats.magazine_size)
+	mag_size_label.text = str(gun.get_max_magazine_size())
 	rpm_label.text = str(gun_stats.rpm)
 	vertical_recoil_label.text = str(round(gun_stats.base_recoil.y*1000)) + "±" + str(round(gun_stats.recoil_variability.y*1000))
 	horizontal_recoil_label.text = str(round(gun_stats.base_recoil.x*1000)) + "±" + str(round(gun_stats.recoil_variability.x*1000))
