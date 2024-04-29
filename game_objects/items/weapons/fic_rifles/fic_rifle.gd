@@ -10,7 +10,7 @@ var _new_bullets:int = 0
 var rng: RandomNumberGenerator
 @onready var fire_timer:Timer = $FireTimer
 @onready var reload_timer:Timer = $ReloadTimer
-var reload_time:ModifiableStat = ModifiableStat.new(1.0)
+var reload_time:ModifiableStatFloat = ModifiableStatFloat.new(1.0)
 @onready var muzzle_flash_animation_player:AnimationPlayer = %MuzzleFlashAnimationPlayer
 
 @export var gun_model_np:NodePath

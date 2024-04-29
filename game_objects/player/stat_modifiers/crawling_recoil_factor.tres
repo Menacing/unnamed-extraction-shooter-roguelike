@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="StatModifier" load_steps=2 format=3 uid="uid://27ax8gu5idx"]
+
+[ext_resource type="Script" path="res://game_logic/stat_modifier.gd" id="1_y1qrq"]
+
+[resource]
+script = ExtResource("1_y1qrq")
+name = "crawling"
+operation = 1
+value = -0.5

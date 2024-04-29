@@ -65,7 +65,6 @@ func set_stacks(amount:int) -> void:
 	
 func spawn_item() -> void:
 	pass
-	#TODO Move this to ItemAccess
 	InventoryManager.spawn_from_item3d(self)
 
 func _on_item_picked_up(result:InventoryInsertResult) -> void:

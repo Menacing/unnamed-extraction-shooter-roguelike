@@ -1,5 +1,5 @@
 extends Resource
-class_name ModifiableStat
+class_name ModifiableStatFloat
 
 var _additive_modifiers = {}
 var _multiplicitive_modifiers = {}

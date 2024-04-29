@@ -8,7 +8,7 @@ signal reloaded
 @export var _bullet_scene : PackedScene
 @export var ads_lean_factor:float = 1.0
 @export var _gun_stats:GunStats
-@onready var current_magazine_size: int = _gun_stats.magazine_size
+
 @export var current_ammo_subtype:AmmoSubtype
 
 func _ready():
@@ -69,17 +69,23 @@ func make_transparent() -> void:
 func make_opaque() -> void:
 	pass
 
+@onready var _ads_acceleration: ModifiableStatFloat = ModifiableStatFloat.new(_gun_stats.ads_accel)
 func get_ADS_acceleration() -> float:
-	return _gun_stats.ads_accel
-	
+	return _ads_acceleration.get_modified_value()
+
+@onready var _turn_speed: ModifiableStatFloat = ModifiableStatFloat.new(_gun_stats.turn_speed)
 func get_turn_speed() -> float:
-	return _gun_stats.turn_speed
+	return _turn_speed.get_modified_value()
 	
+@onready var _ads_fov: ModifiableStatFloat = ModifiableStatFloat.new(_gun_stats.ads_fov)
 func get_ADS_FOV() -> float:
-	return _gun_stats.ads_fov
+	return _ads_fov.get_modified_value()
 	
+@onready var _magazine_size: ModifiableStatInt = ModifiableStatInt.new(_gun_stats.magazine_size)
 func get_max_magazine_size() -> int:
-	return _gun_stats.magazine_size
+	return _magazine_size.get_modified_value()
+
+@onready var current_magazine_size: int = get_max_magazine_size()
 
 func copy_gun_model() -> Node3D:
 	return Node3D.new()

@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="StatModifier" load_steps=2 format=3 uid="uid://1yevusmj7arj"]
+
+[ext_resource type="Script" path="res://game_logic/stat_modifier.gd" id="1_lp5uu"]
+
+[resource]
+script = ExtResource("1_lp5uu")
+name = "ADS"
+operation = 1
+value = -0.4
