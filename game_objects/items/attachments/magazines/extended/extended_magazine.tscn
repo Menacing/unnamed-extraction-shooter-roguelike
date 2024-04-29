@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://d0o2yjbp3avaa"]
+
+[ext_resource type="Script" path="res://game_objects/item_3d.gd" id="1_j5cod"]
+[ext_resource type="PackedScene" uid="uid://bm75s87n7h12u" path="res://game_objects/items/attachments/magazines/extended/extended_magazine.blend" id="2_ahmcv"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ph7ph"]
+size = Vector3(0.0214996, 0.245056, 0.115063)
+
+[node name="ExtendedMagazine" type="RigidBody3D"]
+collision_layer = 5
+collision_mask = 5
+script = ExtResource("1_j5cod")
+item_type_id = "extended_magazine"
+world_collider_path = NodePath("CollisionShape3D")
+
+[node name="extended_magazine" parent="." instance=ExtResource("2_ahmcv")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000160214, -0.0149841, 0.0120144)
+shape = SubResource("BoxShape3D_ph7ph")

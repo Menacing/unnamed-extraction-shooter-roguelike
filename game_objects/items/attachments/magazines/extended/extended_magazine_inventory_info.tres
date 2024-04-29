@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="ItemInformation" load_steps=4 format=3 uid="uid://yj4rydxs1mju"]
+
+[ext_resource type="Resource" uid="uid://o6tesi76nbth" path="res://ui/inventory/drop_item_context_item.tres" id="1_2bpe8"]
+[ext_resource type="PackedScene" uid="uid://cn3ywqty7xvvr" path="res://ui/inventory/item_control.tscn" id="4_5t3ws"]
+[ext_resource type="Script" path="res://resource_access/item_information.gd" id="5_2hel8"]
+
+[resource]
+script = ExtResource("5_2hel8")
+item_control_scene = ExtResource("4_5t3ws")
+item_type_id = "extended_magazine"
+show_name = false
+display_name = "Ext. Mag"
+item_type = 6
+context_menu_items = Array[Resource("res://ui/inventory/item_context_item.gd")]([ExtResource("1_2bpe8")])
+max_stacks = 1
+has_stacks = false
+max_durability = 1
+has_durability = false
+column_span = 1
+row_span = 2
+tooltip_text = ""
+flavor_text = ""
