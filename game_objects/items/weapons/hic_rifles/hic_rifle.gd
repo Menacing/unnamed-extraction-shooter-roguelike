@@ -136,6 +136,9 @@ func _on_item_picked_up(result:InventoryInsertResult):
 					var mag:Magazine = item_3d as Magazine
 					for mod in mag.magazine_size_modifiers:
 						_magazine_size.add_modifier(mod)
+					if item_instance.get_item_type_id() == "extended_magazine":
+						$gun/Node_15/gun/mag/cube_003.visible = false
+						$gun/Node_15/gun/mag/extended_magazine.visible = true
 		elif result.location.location == InventoryLocationResult.LocationType.GRID:
 			item_3d.visible = false
 			
@@ -163,3 +166,6 @@ func _on_item_removed_from_slot(item_inst:ItemInstance, inventory_id:int, slot_n
 				var mag:Magazine = item_3d as Magazine
 				for mod in mag.magazine_size_modifiers:
 					_magazine_size.remove_modifier(mod)
+				if item_inst.get_item_type_id() == "extended_magazine":
+					$gun/Node_15/gun/mag/cube_003.visible = false
+					$gun/Node_15/gun/mag/extended_magazine.visible = true
