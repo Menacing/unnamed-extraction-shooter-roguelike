@@ -9,7 +9,7 @@ var _new_bullets:int = 0
 var rng: RandomNumberGenerator
 @onready var fire_timer:Timer = $FireTimer
 @onready var reload_timer:Timer = $ReloadTimer
-var reload_time:ModifiableStat = ModifiableStat.new(1.0)
+var reload_time:ModifiableStatFloat = ModifiableStatFloat.new(1.0)
 @onready var muzzle_flash_animation_player:AnimationPlayer = %MuzzleFlashAnimationPlayer
 
 @onready var gun_model_node = $gun/Node_15
@@ -60,7 +60,7 @@ func reloadGun(new_bullets:int):
 func reloaded_callback():
 	
 	current_magazine_size = current_magazine_size + _new_bullets
-	assert(current_magazine_size <= _gun_stats.magazine_size)
+	assert(current_magazine_size <= get_max_magazine_size())
 	_new_bullets = 0
 	reload_timer.stop()
 	reloading = false
@@ -132,6 +132,13 @@ func _on_item_picked_up(result:InventoryInsertResult):
 					scope_mount_model.visible = true
 					move_attachment_to_anchor(item_3d, scope_anchor)
 					pass
+				"MagsSlot":
+					var mag:Magazine = item_3d as Magazine
+					for mod in mag.magazine_size_modifiers:
+						_magazine_size.add_modifier(mod)
+					if item_instance.get_item_type_id() == "extended_magazine":
+						$gun/Node_15/gun/mag/cube_003.visible = false
+						$gun/Node_15/gun/mag/extended_magazine.visible = true
 		elif result.location.location == InventoryLocationResult.LocationType.GRID:
 			item_3d.visible = false
 			
@@ -155,3 +162,10 @@ func _on_item_removed_from_slot(item_inst:ItemInstance, inventory_id:int, slot_n
 				scope = null
 				scope_mount_model.visible = false
 				pass
+			"MagsSlot":
+				var mag:Magazine = item_3d as Magazine
+				for mod in mag.magazine_size_modifiers:
+					_magazine_size.remove_modifier(mod)
+				if item_inst.get_item_type_id() == "extended_magazine":
+					$gun/Node_15/gun/mag/cube_003.visible = false
+					$gun/Node_15/gun/mag/extended_magazine.visible = true

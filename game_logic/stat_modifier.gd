@@ -9,8 +9,3 @@ enum Operation {
 @export var name:String
 @export var operation:Operation
 @export var value:float
-
-func _init(iname:String, ioperation:Operation, ivalue:float):
-	name = iname
-	operation = ioperation
-	value = ivalue

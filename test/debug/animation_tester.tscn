@@ -97,11 +97,15 @@ autostart = true
 
 [node name="AK47-Projectile" parent="." instance=ExtResource("3_jl4nq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
+ads_lean_factor = 1.0
 _gun_stats = SubResource("Resource_rlsbf")
+start_highlighted = true
 
 [node name="AK47-Projectile2" parent="." instance=ExtResource("3_jl4nq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
+ads_lean_factor = 1.0
 _gun_stats = SubResource("Resource_8yqet")
+start_highlighted = true
 
 [node name="Player" parent="." instance=ExtResource("2_8jxdu")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2505, 0, 0)

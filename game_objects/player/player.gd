@@ -89,12 +89,12 @@ var los_check_locations:Array[Node3D] = []
 @export var JUMPING_BOB_ROTATION_X = 7.0
 @export var JUMPING_BOB_ROTATION_Y = 20.0
 @export var accel = 1.0
-var current_speed:ModifiableStat = ModifiableStat.new(0.0)
-var current_bob_amount_x : ModifiableStat = ModifiableStat.new(0.01)
-var current_bob_amount_y : ModifiableStat = ModifiableStat.new(0.01)
-var current_bob_freq : ModifiableStat = ModifiableStat.new(0.0025)
-var current_bob_amount_max_degrees_x : ModifiableStat = ModifiableStat.new(15.0)
-var current_bob_amount_max_degrees_y : ModifiableStat = ModifiableStat.new(15.0)
+var current_speed:ModifiableStatFloat = ModifiableStatFloat.new(0.0)
+var current_bob_amount_x : ModifiableStatFloat = ModifiableStatFloat.new(0.01)
+var current_bob_amount_y : ModifiableStatFloat = ModifiableStatFloat.new(0.01)
+var current_bob_freq : ModifiableStatFloat = ModifiableStatFloat.new(0.0025)
+var current_bob_amount_max_degrees_x : ModifiableStatFloat = ModifiableStatFloat.new(15.0)
+var current_bob_amount_max_degrees_y : ModifiableStatFloat = ModifiableStatFloat.new(15.0)
 var LEAN_AMOUNT = PI/6
 @export_category("")
 
@@ -424,7 +424,7 @@ func _on_gun_fired(recoil:Vector2):
 	h_rot_acc += scaled_recoil.y
 
 
-var recoil_factor:ModifiableStat = ModifiableStat.new(1.0)
+var recoil_factor:ModifiableStatFloat = ModifiableStatFloat.new(1.0)
 
 func scale_recoil(recoil:Vector2) -> Vector2:
 	return recoil * recoil_factor.get_modified_value()
@@ -527,6 +527,7 @@ func move(move_global_velocity:Vector3, delta:float, going_forward:bool):
 	move_step_and_slide(delta)
 
 #region Standing
+@export var standing_recoil_factor:StatModifier
 func _on_standing_state_entered():
 	current_speed.base_value = 0.0
 	current_bob_amount_max_degrees_x.base_value = STANDING_BOB_ROTATION_X
@@ -535,10 +536,10 @@ func _on_standing_state_entered():
 	current_bob_amount_y.base_value = STANDING_BOB_TRANSLATION_Y
 	#world_collider.get_shape().set_height(STANDING_HEIGHT)
 	
-	recoil_factor.add_modifier(StatModifier.new("standing", StatModifier.Operation.MUL, -0.1))
+	recoil_factor.add_modifier(standing_recoil_factor)
 	
 func _on_standing_state_exited():
-	recoil_factor.remove_modifier_by_name("standing")
+	recoil_factor.remove_modifier(standing_recoil_factor)
 	
 func _on_standing_state_input(event):
 	if event.is_action_pressed("jump") and !legs_destroyed and is_on_floor():
@@ -569,16 +570,17 @@ func _on_standing_transitions_physics_processing(delta):
 #endregion
 
 #region Walking
+@export var walking_recoil_factor:StatModifier
 func _on_walking_state_entered():
 	current_speed.base_value = WALKING_SPEED
 	current_bob_amount_max_degrees_x.base_value = WALKING_BOB_ROTATION_X
 	current_bob_amount_max_degrees_y.base_value = WALKING_BOB_ROTATION_Y
 	current_bob_amount_x.base_value = WALKING_BOB_TRANSLATION_X
 	current_bob_amount_y.base_value = WALKING_BOB_TRANSLATION_Y
-	current_bob_freq.add_modifier(StatModifier.new("walking", StatModifier.Operation.ADD, 0.0075))
+	current_bob_freq.add_modifier(walking_recoil_factor)
 	
 func _on_walking_state_exited() -> void:
-	current_bob_freq.remove_modifier_by_name("walking")
+	current_bob_freq.remove_modifier(walking_recoil_factor)
 
 	
 func _on_walking_state_input(event):
@@ -614,19 +616,20 @@ func _on_sprinting_state_input(event):
 	if event.is_action_pressed("jump") and !legs_destroyed and is_on_floor():
 		state_chart.send_event("Jump")
 		return
-	
+
+@export var sprinting_recoil_factor:StatModifier
 func _on_sprinting_state_entered():
 	current_speed.base_value = RUN_SPEED
 	current_bob_amount_max_degrees_x.base_value = RUNNING_BOB_ROTATION_X
 	current_bob_amount_max_degrees_y.base_value = RUNNING_BOB_ROTATION_Y
 	current_bob_amount_x.base_value = RUNNING_BOB_TRANSLATION_X
 	current_bob_amount_y.base_value = RUNNING_BOB_TRANSLATION_Y
-	current_bob_freq.add_modifier(StatModifier.new("sprinting", StatModifier.Operation.ADD, 0.02))
+	current_bob_freq.add_modifier(sprinting_recoil_factor)
 	state_chart.send_event("ArmsBusy")
 	state_chart.send_event("StopLean")
 	
 func _on_sprinting_state_exited():
-	current_bob_freq.remove_modifier_by_name("sprinting")
+	current_bob_freq.remove_modifier(sprinting_recoil_factor)
 	state_chart.send_event("ArmsDone")
 	
 
@@ -653,6 +656,8 @@ func _on_sprinting_state_physics_processing(delta):
 #endregion
 	
 #region Crouching
+@export var crouching_recoil_factor:StatModifier
+@export var crouching_bob_freq:StatModifier
 func _on_crouching_state_entered():
 	current_speed.base_value = 0.0
 	current_bob_amount_max_degrees_x.base_value = CROUCHING_BOB_ROTATION_X
@@ -660,23 +665,24 @@ func _on_crouching_state_entered():
 	current_bob_amount_x.base_value = CROUCHING_BOB_TRANSLATION_X
 	current_bob_amount_y.base_value = CROUCHING_BOB_TRANSLATION_Y
 	world_collider.get_shape().set_height(CROUCHING_HEIGHT)
-	recoil_factor.add_modifier(StatModifier.new("crouching", StatModifier.Operation.MUL, -0.2))
-	current_bob_freq.add_modifier(StatModifier.new("crouching", StatModifier.Operation.MUL, -0.5))
+	recoil_factor.add_modifier(crouching_recoil_factor)
+	current_bob_freq.add_modifier(crouching_bob_freq)
 	
 func _on_crouching_state_exited():
-	recoil_factor.remove_modifier_by_name("crouching")
-	current_bob_freq.remove_modifier_by_name("crouching")
-	
+	recoil_factor.remove_modifier(crouching_recoil_factor)
+	current_bob_freq.remove_modifier(crouching_bob_freq)
+
+@export var crouch_walking_recoil_factor:StatModifier
 func _on_crouch_walking_state_entered():
 	current_speed.base_value = CROUCH_SPEED
 	current_bob_amount_max_degrees_x.base_value = STANDING_BOB_ROTATION_X
 	current_bob_amount_max_degrees_y.base_value = STANDING_BOB_ROTATION_Y
 	current_bob_amount_x.base_value = STANDING_BOB_TRANSLATION_X
 	current_bob_amount_y.base_value = STANDING_BOB_TRANSLATION_Y
-	recoil_factor.add_modifier(StatModifier.new("crouch_walking", StatModifier.Operation.MUL, -0.1))
+	recoil_factor.add_modifier(crouch_walking_recoil_factor)
 	
 func _on_crouch_walking_state_exited():
-	recoil_factor.remove_modifier_by_name("crouch_walking")
+	recoil_factor.remove_modifier(crouch_walking_recoil_factor)
 
 func _on_crouching_state_physics_processing(delta):
 	if !should_crouch():
@@ -722,6 +728,7 @@ func _on_crouch_walking_state_physics_processing(delta):
 #endregion
 
 #region Prone
+@export var prone_recoil_factor:StatModifier
 func _on_prone_state_entered():
 	current_speed.base_value = 0.0
 	current_bob_amount_max_degrees_x.base_value = PRONE_BOB_ROTATION_X
@@ -729,7 +736,7 @@ func _on_prone_state_entered():
 	current_bob_amount_x.base_value = PRONE_BOB_TRANSLATION_X
 	current_bob_amount_y.base_value = PRONE_BOB_TRANSLATION_Y
 	world_collider.get_shape().set_height(PRONE_HEIGHT)
-	recoil_factor.add_modifier(StatModifier.new("prone", StatModifier.Operation.MUL, -0.4))
+	recoil_factor.add_modifier(prone_recoil_factor)
 	
 func _on_prone_state_exited():
 	recoil_factor.remove_modifier_by_name("prone")
@@ -761,19 +768,20 @@ func _on_prone_transitions_exited():
 #endregion
 
 #region Crawling
+@export var crawling_recoil_factor:StatModifier
 func _on_crawling_state_entered():
 	current_speed.base_value = PRONE_SPEED
 	current_bob_amount_max_degrees_x.base_value = CRAWLING_BOB_ROTATION_X
 	current_bob_amount_max_degrees_y.base_value = CRAWLING_BOB_ROTATION_Y
 	current_bob_amount_x.base_value = CRAWLING_BOB_TRANSLATION_X
 	current_bob_amount_y.base_value = CRAWLING_BOB_TRANSLATION_Y
-	current_bob_freq.add_modifier(StatModifier.new("crawling", StatModifier.Operation.MUL, -0.5))	
+	current_bob_freq.add_modifier(crawling_recoil_factor)	
 	state_chart.send_event("ArmsBusy")
 	state_chart.send_event("StopLean")
 	
 	
 func _on_crawling_state_exited():
-	current_bob_freq.remove_modifier_by_name("crawling")
+	current_bob_freq.remove_modifier(crawling_recoil_factor)
 	state_chart.send_event("ArmsDone")
 	
 func _on_crawling_state_physics_processing(delta):
@@ -810,6 +818,7 @@ func _on_jumping_state_physics_processing(delta):
 		return
 
 var falling_velocity:float = 0.0
+@export var falling_bob_freq:StatModifier
 func _on_falling_state_entered() -> void:
 	current_bob_amount_max_degrees_x.base_value = JUMPING_BOB_ROTATION_X
 	current_bob_amount_max_degrees_y.base_value = JUMPING_BOB_ROTATION_Y
@@ -817,11 +826,11 @@ func _on_falling_state_entered() -> void:
 	current_bob_amount_y.base_value = JUMPING_BOB_TRANSLATION_Y
 	state_chart.send_event("ArmsBusy")
 	state_chart.send_event("StopLean")
-	current_bob_freq.add_modifier(StatModifier.new("falling", StatModifier.Operation.MUL, -0.7))		
+	current_bob_freq.add_modifier(falling_bob_freq)		
 	pass # Replace with function body.
 
 func _on_falling_state_exited() -> void:
-	current_bob_freq.remove_modifier_by_name("falling")
+	current_bob_freq.remove_modifier(falling_bob_freq)
 	state_chart.send_event("ArmsDone")
 	
 	var fall_damage = calculate_fall_damage(falling_velocity)
@@ -1013,15 +1022,22 @@ func _on_ads_state_physics_processing(delta):
 		if Input.is_action_just_pressed("reload"):
 			reload()
 
+@export var ads_recoil_factor:StatModifier
+@export var ads_bob_freq:StatModifier
+@export var ads_speed:StatModifier
+@export var ads_bob_max_x:StatModifier
+@export var ads_bob_max_y:StatModifier
+@export var ads_bob_x:StatModifier
+@export var ads_bob_y:StatModifier
 func _on_ads_state_entered():
-	recoil_factor.add_modifier(StatModifier.new("ADS", StatModifier.Operation.MUL, -0.2))
-	current_bob_freq.add_modifier(StatModifier.new("ADS", StatModifier.Operation.MUL, -0.2))
-	current_speed.add_modifier(StatModifier.new("ADS", StatModifier.Operation.MUL, -0.4))
+	recoil_factor.add_modifier(ads_recoil_factor)
+	current_bob_freq.add_modifier(ads_bob_freq)
+	current_speed.add_modifier(ads_speed)
 	
-	current_bob_amount_max_degrees_x.add_modifier(StatModifier.new("ADS", StatModifier.Operation.MUL, -0.4))
-	current_bob_amount_max_degrees_y.add_modifier(StatModifier.new("ADS", StatModifier.Operation.MUL, -0.4))
-	current_bob_amount_x.add_modifier(StatModifier.new("ADS", StatModifier.Operation.MUL, -0.4))
-	current_bob_amount_y.add_modifier(StatModifier.new("ADS", StatModifier.Operation.MUL, -0.4))
+	current_bob_amount_max_degrees_x.add_modifier(ads_bob_max_x)
+	current_bob_amount_max_degrees_y.add_modifier(ads_bob_max_y)
+	current_bob_amount_x.add_modifier(ads_bob_x)
+	current_bob_amount_y.add_modifier(ads_bob_y)
  
 func _on_ads_state_exited():
 	recoil_factor.remove_modifier_by_name("ADS")

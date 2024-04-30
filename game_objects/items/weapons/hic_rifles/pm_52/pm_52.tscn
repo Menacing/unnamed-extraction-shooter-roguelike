@@ -27,6 +27,7 @@ tracks/0/keys = {
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_clf16"]
+resource_local_to_scene = true
 _data = {
 "fire": SubResource("Animation_048m7")
 }
@@ -37,11 +38,9 @@ collision_layer = 5
 collision_mask = 5
 script = ExtResource("1_xmoyr")
 _bullet_scene = ExtResource("2_5qbyx")
-ads_lean_factor = null
 _gun_stats = ExtResource("3_5vh7j")
 item_type_id = "pm-52"
 world_collider_path = NodePath("CollisionShape3D")
-start_highlighted = null
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0.115114, 0.0719389)
@@ -58,6 +57,9 @@ transform = Transform3D(-2.62268e-08, 0, -0.6, 0, 0.6, 0, 0.6, 0, -2.62268e-08, 
 
 [node name="Node_15" parent="gun" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.338339, 0)
+
+[node name="extended_magazine" parent="gun/Node_15/gun/mag" index="1"]
+visible = false
 
 [node name="scope_mount" parent="gun/Node_15" index="1"]
 visible = false

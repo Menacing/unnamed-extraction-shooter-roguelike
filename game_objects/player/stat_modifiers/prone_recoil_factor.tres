@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="StatModifier" load_steps=2 format=3 uid="uid://y3lb1vxquhix"]
+
+[ext_resource type="Script" path="res://game_logic/stat_modifier.gd" id="1_ft46d"]
+
+[resource]
+script = ExtResource("1_ft46d")
+name = "crouching_walking"
+operation = 1
+value = -0.1

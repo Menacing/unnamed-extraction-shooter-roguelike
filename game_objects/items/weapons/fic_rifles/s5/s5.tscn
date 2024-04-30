@@ -10,10 +10,9 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_a6wgc"]
 size = Vector3(0.852813, 0.283394, 0.071228)
 
-[sub_resource type="Animation" id="Animation_048m7"]
+[sub_resource type="Animation" id="Animation_hu2i7"]
 resource_name = "fire"
 length = 0.1
-step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -27,9 +26,9 @@ tracks/0/keys = {
 "values": [true, false]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_clf16"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rga3e"]
 _data = {
-"fire": SubResource("Animation_048m7")
+"fire": SubResource("Animation_hu2i7")
 }
 
 [node name="S5" type="RigidBody3D"]
@@ -60,6 +59,9 @@ one_shot = true
 [node name="s5" parent="." instance=ExtResource("4_v8p8c")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 0)
 
+[node name="extended_magazine" parent="s5" index="8"]
+visible = false
+
 [node name="Muzzle" type="Node3D" parent="s5"]
 transform = Transform3D(-2.62269e-08, 0, 0.6, 0, 0.6, 0, -0.6, 0, -2.62269e-08, -7.60565e-10, 0, 0.4783)
 visible = false
@@ -88,9 +90,8 @@ distance_fade_enabled = true
 
 [node name="MuzzleFlashAnimationPlayer" type="AnimationPlayer" parent="s5/Muzzle"]
 unique_name_in_owner = true
-root_node = NodePath("")
 libraries = {
-"": SubResource("AnimationLibrary_clf16")
+"": SubResource("AnimationLibrary_rga3e")
 }
 
 [node name="Right_Hand" type="Node3D" parent="."]

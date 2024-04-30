@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="StatModifier" load_steps=2 format=3 uid="uid://byer51np14xkh"]
+
+[ext_resource type="Script" path="res://game_logic/stat_modifier.gd" id="1_jepgy"]
+
+[resource]
+script = ExtResource("1_jepgy")
+name = "sprinting"
+operation = 0
+value = 0.02
