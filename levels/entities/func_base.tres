@@ -1,14 +1,14 @@
-[gd_resource type="Resource" script_class="QodotFGDBaseClass" load_steps=4 format=3 uid="uid://7ku1upps1bda"]
+[gd_resource type="Resource" script_class="FuncGodotFGDBaseClass" load_steps=4 format=3 uid="uid://7ku1upps1bda"]
 
-[ext_resource type="Script" path="res://addons/qodot/src/resources/game-definitions/fgd/qodot_fgd_base_class.gd" id="1_c06lo"]
+[ext_resource type="Script" path="res://addons/func_godot/src/fgd/func_godot_fgd_base_class.gd" id="1_nert7"]
 [ext_resource type="Resource" uid="uid://puiwokbb5q7r" path="res://levels/entities/shadow_base.tres" id="1_xl1et"]
 [ext_resource type="Resource" uid="uid://cj5mwfh4ud4us" path="res://levels/entities/target.tres" id="2_sxm80"]
 
 [resource]
-script = ExtResource("1_c06lo")
+script = ExtResource("1_nert7")
 classname = "Func"
 description = ""
-qodot_internal = false
+func_godot_internal = false
 base_classes = Array[Resource]([ExtResource("1_xl1et"), ExtResource("2_sxm80")])
 class_properties = {
 "_phong": 0,
@@ -23,4 +23,4 @@ meta_properties = {
 "size": AABB(-8, -8, -8, 8, 8, 8)
 }
 node_class = ""
-transient_node = false
+name_property = ""

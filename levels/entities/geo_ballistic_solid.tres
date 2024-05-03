@@ -1,11 +1,12 @@
-[gd_resource type="Resource" script_class="QodotFGDSolidClass" load_steps=3 format=3 uid="uid://doitqv8ilkq7k"]
+[gd_resource type="Resource" script_class="FuncGodotFGDSolidClass" load_steps=3 format=3 uid="uid://doitqv8ilkq7k"]
 
-[ext_resource type="Script" path="res://addons/qodot/src/resources/game-definitions/fgd/qodot_fgd_solid_class.gd" id="1_gs1a4"]
+[ext_resource type="Script" path="res://addons/func_godot/src/fgd/func_godot_fgd_solid_class.gd" id="1_ukana"]
 [ext_resource type="Script" path="res://levels/entities/geo_ballistic_solid.gd" id="2_2vssw"]
 
 [resource]
-script = ExtResource("1_gs1a4")
+script = ExtResource("1_ukana")
 spawn_type = 2
+origin_type = 0
 build_visuals = true
 use_in_baked_light = true
 shadow_casting_setting = 1
@@ -19,7 +20,7 @@ collision_shape_margin = 0.04
 script_class = ExtResource("2_2vssw")
 classname = "geo_ballistic_solid"
 description = "Solid geometry with ballistic penetration"
-qodot_internal = false
+func_godot_internal = false
 base_classes = Array[Resource]([])
 class_properties = {
 "game_material_info": {
@@ -40,4 +41,4 @@ meta_properties = {
 "size": AABB(-8, -8, -8, 8, 8, 8)
 }
 node_class = "StaticBody3D"
-transient_node = false
+name_property = ""

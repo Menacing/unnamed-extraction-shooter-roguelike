@@ -1,12 +1,12 @@
-[gd_resource type="Resource" script_class="QodotFGDBaseClass" load_steps=2 format=3 uid="uid://cj5mwfh4ud4us"]
+[gd_resource type="Resource" script_class="FuncGodotFGDBaseClass" load_steps=2 format=3 uid="uid://cj5mwfh4ud4us"]
 
-[ext_resource type="Script" path="res://addons/qodot/src/resources/game-definitions/fgd/qodot_fgd_base_class.gd" id="1_rikul"]
+[ext_resource type="Script" path="res://addons/func_godot/src/fgd/func_godot_fgd_base_class.gd" id="1_cq3hc"]
 
 [resource]
-script = ExtResource("1_rikul")
+script = ExtResource("1_cq3hc")
 classname = "Target"
 description = ""
-qodot_internal = false
+func_godot_internal = false
 base_classes = Array[Resource]([])
 class_properties = {
 "message": "",
@@ -22,4 +22,4 @@ meta_properties = {
 "size": AABB(-8, -8, -8, 8, 8, 8)
 }
 node_class = ""
-transient_node = false
+name_property = ""

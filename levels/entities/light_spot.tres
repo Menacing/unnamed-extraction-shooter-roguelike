@@ -1,15 +1,13 @@
-[gd_resource type="Resource" script_class="QodotFGDPointClass" load_steps=3 format=3 uid="uid://cnboggtfi856d"]
+[gd_resource type="Resource" script_class="FuncGodotFGDPointClass" load_steps=2 format=3 uid="uid://cnboggtfi856d"]
 
-[ext_resource type="Script" path="res://addons/qodot/src/resources/game-definitions/fgd/qodot_fgd_point_class.gd" id="2_v714m"]
-[ext_resource type="Script" path="res://addons/qodot/game_definitions/fgd/point_classes/light.gd" id="3_iq2hv"]
+[ext_resource type="Script" path="res://addons/func_godot/src/fgd/func_godot_fgd_point_class.gd" id="1_5331i"]
 
 [resource]
-script = ExtResource("2_v714m")
-script_class = ExtResource("3_iq2hv")
+script = ExtResource("1_5331i")
 apply_rotation_on_map_build = true
 classname = "spotlight"
 description = "Invisible light source"
-qodot_internal = false
+func_godot_internal = false
 base_classes = Array[Resource]([])
 class_properties = {
 "_color": Color(1, 1, 1, 1),
@@ -35,7 +33,8 @@ class_property_descriptions = {
 "wait": "Fade distance multiplier"
 }
 meta_properties = {
+"color": Color(0.8, 0.8, 0.8, 1),
 "size": AABB(-8, -8, -8, 8, 8, 8)
 }
 node_class = "Node3D"
-transient_node = false
+name_property = ""
