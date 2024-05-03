@@ -1,9 +1,11 @@
-[gd_resource type="Resource" script_class="FuncGodotFGDPointClass" load_steps=2 format=3 uid="uid://cnboggtfi856d"]
+[gd_resource type="Resource" script_class="FuncGodotFGDPointClass" load_steps=3 format=3 uid="uid://cnboggtfi856d"]
 
 [ext_resource type="Script" path="res://addons/func_godot/src/fgd/func_godot_fgd_point_class.gd" id="1_5331i"]
+[ext_resource type="Script" path="res://levels/entities/light.gd" id="2_inaks"]
 
 [resource]
 script = ExtResource("1_5331i")
+script_class = ExtResource("2_inaks")
 apply_rotation_on_map_build = true
 classname = "spotlight"
 description = "Invisible light source"
