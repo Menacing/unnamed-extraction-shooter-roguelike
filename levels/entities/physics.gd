@@ -2,20 +2,20 @@
 class_name PhysicsEntity
 extends RigidBody3D
 
-@export var properties: Dictionary :
+@export var func_godot_properties: Dictionary :
 	get:
-		return properties
+		return func_godot_properties
 	set(new_properties):
-		if(properties != new_properties):
-			properties = new_properties
+		if(func_godot_properties != new_properties):
+			func_godot_properties = new_properties
 			update_properties()
 
 func update_properties():
-	if 'velocity' in properties:
-		linear_velocity = properties['velocity']
+	if 'velocity' in func_godot_properties:
+		linear_velocity = func_godot_properties['velocity']
 
-	if 'mass' in properties:
-		mass = properties.mass
+	if 'mass' in func_godot_properties:
+		mass = func_godot_properties.mass
 
 
 func use():

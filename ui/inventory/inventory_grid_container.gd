@@ -88,6 +88,7 @@ func _drop_data(at_position:Vector2, data):
 
 	
 func set_grid_container_size(number_cells:int) -> void:
+	assert(number_cells > 0)
 	#find number current cells
 	var current_cells:int = self.get_children().size()
 	#figure out if we need to get larger or smaller

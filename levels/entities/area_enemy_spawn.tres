@@ -34,7 +34,10 @@ class_properties = {
 "medium": 1
 }
 }
-class_property_descriptions = {}
+class_property_descriptions = {
+"biome": ["from which biome will enemies spawn?", 0],
+"tier": ["what difficulty pool", 0]
+}
 meta_properties = {
 "color": Color(0.8, 0.8, 0.8, 1),
 "size": AABB(-8, -8, -8, 8, 8, 8)

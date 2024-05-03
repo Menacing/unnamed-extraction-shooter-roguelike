@@ -2,13 +2,14 @@
 class_name AreaLootSpawn
 extends Area3D
 
-@export var properties: Dictionary :
+@export var func_godot_properties: Dictionary :
 	get:
-		return properties
+		return  func_godot_properties
 	set(new_properties):
-		if(properties != new_properties):
-			properties = new_properties
-			update_properties()
+		func_godot_properties = new_properties
+		if !Engine.is_editor_hint():
+			return
+		update_properties()
 
 @export var biome_index:int
 @export var tier_index:int
@@ -16,14 +17,15 @@ extends Area3D
 @export var max_spawned:int
 
 func update_properties():
-	if 'biome' in properties:
-		biome_index = int(properties['biome'])	
-	if 'tier' in properties:
-		tier_index = int(properties['tier'])
-	if 'min_spawned' in properties:
-		min_spawned = int(properties['min_spawned'])
-	if 'max_spawned' in properties:
-		max_spawned = int(properties['max_spawned'])
+	print("AreaLootSpawn func godot properties updated")
+	if 'biome' in func_godot_properties:
+		biome_index = int(func_godot_properties['biome'])	
+	if 'tier' in func_godot_properties:
+		tier_index = int(func_godot_properties['tier'])
+	if 'min_spawned' in func_godot_properties:
+		min_spawned = int(func_godot_properties['min_spawned'])
+	if 'max_spawned' in func_godot_properties:
+		max_spawned = int(func_godot_properties['max_spawned'])
 
 var model_shuffle_bag:Array[LootSpawnInformation] = []
 var current_shuffle_bag:Array[LootSpawnInformation] = []

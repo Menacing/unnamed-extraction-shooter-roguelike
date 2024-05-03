@@ -7,8 +7,8 @@ extends GeoBallisticMover
 
 func update_properties() -> void:
 	super()
-	if 'targetname' in properties:
-		_target_name = properties.targetname
+	if 'targetname' in func_godot_properties:
+		_target_name = func_godot_properties.targetname
 
 func _process(delta: float) -> void:
 	if Engine.is_editor_hint():

@@ -1,8 +1,7 @@
-[gd_resource type="Resource" script_class="FuncGodotFGDSolidClass" load_steps=4 format=3 uid="uid://bdggb6cw20jvc"]
+[gd_resource type="Resource" script_class="FuncGodotFGDSolidClass" load_steps=3 format=3 uid="uid://bdggb6cw20jvc"]
 
 [ext_resource type="Resource" uid="uid://doitqv8ilkq7k" path="res://levels/entities/geo_ballistic_solid.tres" id="1_1dwdt"]
 [ext_resource type="Script" path="res://addons/func_godot/src/fgd/func_godot_fgd_solid_class.gd" id="1_ltgx7"]
-[ext_resource type="Script" path="res://levels/entities/geo_ballistic_container.gd" id="3_mjjfs"]
 
 [resource]
 script = ExtResource("1_ltgx7")
@@ -18,7 +17,6 @@ collision_layer = 7
 collision_mask = 1
 collision_priority = 1.0
 collision_shape_margin = 0.04
-script_class = ExtResource("3_mjjfs")
 classname = "geo_ballistic_container"
 description = "Solid geometry with ballistic penetration"
 func_godot_internal = false

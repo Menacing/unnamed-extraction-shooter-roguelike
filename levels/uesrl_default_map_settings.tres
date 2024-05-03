@@ -1,13 +1,13 @@
 [gd_resource type="Resource" script_class="FuncGodotMapSettings" load_steps=4 format=3 uid="uid://c5kkgpu2s54ub"]
 
 [ext_resource type="Material" uid="uid://cvex6toty8yn7" path="res://addons/func_godot/textures/default_material.tres" id="1_pgkld"]
-[ext_resource type="Resource" uid="uid://crgpdahjaj" path="res://addons/func_godot/fgd/func_godot_fgd.tres" id="2_1fln8"]
+[ext_resource type="Resource" uid="uid://dr0etevtbyukb" path="res://levels/entities/uesrl_fgd_entities.tres" id="2_2rsxg"]
 [ext_resource type="Script" path="res://addons/func_godot/src/map/func_godot_map_settings.gd" id="3_htnlk"]
 
 [resource]
 script = ExtResource("3_htnlk")
 inverse_scale_factor = 40.0
-entity_fgd = ExtResource("2_1fln8")
+entity_fgd = ExtResource("2_2rsxg")
 entity_name_property = ""
 base_texture_dir = "res://levels/textures"
 texture_file_extensions = Array[String](["png", "jpg", "jpeg", "bmp", "tga", "webp"])

@@ -1,5 +1,6 @@
-[gd_resource type="Resource" script_class="FuncGodotFGDFile" load_steps=19 format=3 uid="uid://dr0etevtbyukb"]
+[gd_resource type="Resource" script_class="FuncGodotFGDFile" load_steps=20 format=3 uid="uid://dr0etevtbyukb"]
 
+[ext_resource type="Resource" uid="uid://crgpdahjaj" path="res://addons/func_godot/fgd/func_godot_fgd.tres" id="1_5dpfb"]
 [ext_resource type="Script" path="res://addons/func_godot/src/fgd/func_godot_fgd_file.gd" id="1_djihb"]
 [ext_resource type="Resource" uid="uid://7ku1upps1bda" path="res://levels/entities/func_base.tres" id="1_nvqrx"]
 [ext_resource type="Resource" uid="uid://cfautyv8pg54b" path="res://levels/entities/func_geo.tres" id="2_pfojj"]
@@ -24,5 +25,5 @@ script = ExtResource("1_djihb")
 export_file = false
 model_key_word_supported = true
 fgd_name = "uesrl_fgd_entities"
-base_fgd_files = Array[Resource]([])
+base_fgd_files = Array[Resource]([ExtResource("1_5dpfb")])
 entity_definitions = Array[Resource]([ExtResource("1_nvqrx"), ExtResource("2_pfojj"), ExtResource("3_k4xej"), ExtResource("4_7ra6j"), ExtResource("5_pn05p"), ExtResource("6_gj7jd"), ExtResource("7_bjhl7"), ExtResource("17_l5yim"), ExtResource("8_0v3ra"), ExtResource("9_57eth"), ExtResource("9_j1ugm"), ExtResource("10_8hdhp"), ExtResource("11_7n3by"), ExtResource("12_ccfyh"), ExtResource("14_4acly"), ExtResource("15_j616q"), ExtResource("16_6lfdf")])
