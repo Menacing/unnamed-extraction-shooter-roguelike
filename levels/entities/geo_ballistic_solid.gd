@@ -4,16 +4,9 @@ extends CollisionObject3D
 
 signal object_hit()
 
-@export var func_godot_properties: Dictionary :
-	get:
-		return func_godot_properties
-	set(new_properties):
-		func_godot_properties = new_properties
-		if !Engine.is_editor_hint():
-			return
-		update_properties()
+@export var func_godot_properties: Dictionary
 
-func update_properties():
+func _func_godot_apply_properties(entity_properties: Dictionary):
 	
 	if 'game_material_info' in func_godot_properties:
 		#determine gmi path
@@ -41,19 +34,19 @@ func update_properties():
 
 	if 'armor_rating' in func_godot_properties:
 		print("override armor_rating: " + func_godot_properties['armor_rating'])
-		_armor_rating = int( func_godot_properties['armor_rating'])
+		_armor_rating = int(func_godot_properties['armor_rating'])
 		
-	if 'bullet_hole_scene_path' in  func_godot_properties:
-		print("override bullet_hole_scene_path: " +  func_godot_properties['bullet_hole_scene_path'])
-		_bullet_hole_scene_path =  func_godot_properties['bullet_hole_scene_path']
+	if 'bullet_hole_scene_path' in func_godot_properties:
+		print("override bullet_hole_scene_path: " + func_godot_properties['bullet_hole_scene_path'])
+		_bullet_hole_scene_path = func_godot_properties['bullet_hole_scene_path']
 		
-	if 'impact_hit_scene_path' in  func_godot_properties:
-		print("override impact_hit_scene_path: " +  func_godot_properties['impact_hit_scene_path'])
-		_impact_hit_scene_path =  func_godot_properties['impact_hit_scene_path']
+	if 'impact_hit_scene_path' in func_godot_properties:
+		print("override impact_hit_scene_path: " + func_godot_properties['impact_hit_scene_path'])
+		_impact_hit_scene_path = func_godot_properties['impact_hit_scene_path']
 
-	if 'footstep_sound_path' in  func_godot_properties:
-		print("override footstep_sound_path: " +  func_godot_properties['footstep_sound_path'])
-		_footstep_sound_path =  func_godot_properties['footstep_sound_path']
+	if 'footstep_sound_path' in func_godot_properties:
+		print("override footstep_sound_path: " + func_godot_properties['footstep_sound_path'])
+		_footstep_sound_path = func_godot_properties['footstep_sound_path']
 
 @export_range(0.0, 1.0) var _pen_ratio = 1.0
 @export_range(0,10) var _armor_rating: int = 0

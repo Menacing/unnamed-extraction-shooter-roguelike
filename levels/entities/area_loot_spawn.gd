@@ -2,22 +2,14 @@
 class_name AreaLootSpawn
 extends Area3D
 
-@export var func_godot_properties: Dictionary :
-	get:
-		return  func_godot_properties
-	set(new_properties):
-		func_godot_properties = new_properties
-		if !Engine.is_editor_hint():
-			return
-		update_properties()
-
 @export var biome_index:int
 @export var tier_index:int
 @export var min_spawned:int
 @export var max_spawned:int
 
-func update_properties():
-	print("AreaLootSpawn func godot properties updated")
+@export var func_godot_properties: Dictionary
+
+func _func_godot_apply_properties(entity_properties: Dictionary):
 	if 'biome' in func_godot_properties:
 		biome_index = int(func_godot_properties['biome'])	
 	if 'tier' in func_godot_properties:
