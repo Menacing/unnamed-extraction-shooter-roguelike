@@ -1,22 +1,55 @@
-@BaseClass color(204 204 204) size(-8 -8 -8, 8 8 8) base(ShadowCast, Target) = Func[
-	_phong(integer) : "Smooth mesh output" : 0
-	_phong_angle(float) : "Mesh output smoothing angle." : "89"
+@BaseClass color(204 204 204) size(-8 -8 -8, 8 8 8) = Globalname
+[
+	globalname(string) : "Unique name in the Map Scene. When FuncGodot builds the map, this entity will be renamed to entity_ + globalname. This can be a useful alternative to targetname, especially when trying to reparent generated nodes." : ""
 ]
 
-@SolidClass color(204 204 204) base(Func) = func_geo : "Static geometry entity." [
+@BaseClass color(204 204 0) size(-8 -8 -8, 8 8 8) base(Globalname) = Light
+[
+	color(color255) : "The light's color." : "255 255 255"
+	energy(float) : "The light's strength multiplier. For OmniLight3D and SpotLight3D, changing this value will only change the light color's intensity, not the light's radius." : "1"
+	indirect_energy(float) : "The light's strength multiplier. For OmniLight3D and SpotLight3D, changing this value will only change the light color's intensity, not the light's radius." : "1"
+	shadow_bias(float) : "Used to adjust shadow appearance. Too small a value results in self-shadowing, while too large a value causes shadows to separate from casters. Adjust as needed." : "0.1"
+	shadows(choices) : "If true, the light will cast real-time shadows. This has a significant performance cost. Only enable shadow rendering when it makes a noticeable difference in the scene's appearance" = 
+	[
+		0 : "No"
+		1 : "Yes"
+	]
 ]
 
-@BaseClass color(204 204 204) size(-8 -8 -8, 8 8 8) = ShadowCast[
+@BaseClass color(204 204 204) size(-8 -8 -8, 8 8 8) base(Globalname) = Func
+[
+	_phong(choices) : "Set to 1 to give the brush entity smooth shading." = 
+	[
+		0 : "No"
+		1 : "Yes"
+	]
 ]
 
-@BaseClass color(204 204 204) size(-8 -8 -8, 8 8 8) = Target[
-	message(string) :  : ""
-	target(string) : "The target group this entity belongs to." : ""
-	targetname(string) : "The target group this entity targets upon being triggered." : ""
+@BaseClass color(204 204 204) size(-8 -8 -8, 8 8 8) = Targetname
+[
+	targetname(string) : "Adds this entity to a group with this targetname." : ""
 ]
 
-@SolidClass color(204 204 204) = geo_ballistic_solid : "Solid geometry with ballistic penetration" [
-	game_material_info(choices) : "List of GameMaterialInfo objects. Keep the order in sync with the GameMaterialInfoList or the linkage will break" = [
+@BaseClass color(204 204 204) size(-8 -8 -8, 8 8 8) = Target
+[
+	target(string) : "Entity group to call the use function on when this entity is triggered." : ""
+	targetfunc(string) : "Function to call on target entities. As is, the target function cannot accept arguments, so make sure it doesn't require specifying arguments." : ""
+]
+
+@BaseClass color(204 204 204) size(-8 -8 -8, 8 8 8) base(Target, Targetname, Globalname) = Trigger[]
+
+@BaseClass color(204 204 204) size(-8 -8 -8, 8 8 8) = mover_base
+[
+	rotation(string) : "" : "0 0 0"
+	scale(string) : "" : "1 1 1"
+	speed(float) : "" : "1"
+	translation(string) : "" : "0 0 0"
+]
+@SolidClass color(204 204 204) base(Func) = func_geo : "Static map geometry. Generates occluder instances." []
+@SolidClass color(204 204 204) base(func_geo) = geo_ballistic_solid : "Solid geometry with ballistic penetration" 
+[
+	game_material_info(choices) : "List of GameMaterialInfo objects. Keep the order in sync with the GameMaterialInfoList or the linkage will break" = 
+	[
 		0 : "brick"
 		1 : "metal"
 		2 : "stone"
@@ -26,101 +59,71 @@
 	game_material_info_path(string) : "godot path to the GameMaterialInfo file for this brush" : ""
 ]
 
-@SolidClass color(204 204 204) = area_enemy_spawn : "enemy spawn area" [
-	biome(choices) = [
+@PointClass base(Light) = omnilight : "OmniLight3D entity." 
+[
+	range(float) : "The light's radius in Quake Units. The entity script converts this to Godot Units in the LightOmni script." : "320"
+]
+
+@PointClass base(Light) = lightspot : "SpotLight3D entity." 
+[
+	angle(float) : "The spotlight's angle in degrees." : "45"
+	mangle(string) : "Orientation in degrees." : "0 0 0"
+	range(float) : "The maximal range that can be reached by the spotlight in Quake Units. The entity script converts this to Godot Units in the LightOmni script." : "320"
+]
+
+@SolidClass color(204 204 204) = area_enemy_spawn : "enemy spawn area" 
+[
+	biome(choices) : "default biome" : 0 = 
+	[
 		0 : "science"
 	]
-	max_spawned(integer) :  : 1
-	min_spawned(integer) :  : 1
-	tier(choices) = [
+	max_spawned(integer) : "" : 1
+	min_spawned(integer) : "" : 1
+	tier(choices) : "default tier" : 0 = 
+	[
 		0 : "easy"
 		2 : "hard"
 		1 : "medium"
 	]
 ]
 
-@SolidClass color(204 204 204) = area_loot_spawn : "Sloot spawn area" [
-	biome(choices) = [
+@SolidClass color(204 204 204) = area_loot_spawn : "loot spawn area" 
+[
+	biome(choices) : "default biome" : 0 = 
+	[
 		0 : "science"
 	]
-	max_spawned(integer) :  : 1
-	min_spawned(integer) :  : 1
-	tier(choices) = [
+	max_spawned(integer) : "" : 1
+	min_spawned(integer) : "" : 1
+	tier(choices) : "default tier" : 0 = 
+	[
 		0 : "easy"
 		2 : "hard"
 		1 : "medium"
 	]
 ]
 
-@SolidClass color(204 204 204) base(geo_ballistic_solid, mover) = geo_ballistic_mover : "Solid geometry with ballistic penetration that can move" [
-]
+@SolidClass color(204 204 204) = area_extract : "Extraction area" []
 
-@SolidClass color(204 204 204) base(geo_ballistic_mover, Target) = geo_ballistic_door : "Solid geometry with ballistic penetration that can move" [
-]
-
-@SolidClass = trigger : "Trigger Volume" [
-	target(string) :  : ""
-]
-
-@SolidClass = physics : "Physics Brush" [
-	mass(float) :  : "1"
-	velocity(string) :  : "0 0 0"
-]
-
-@SolidClass = mover : "Moving brush." [
-	rotation(string) :  : "0 0 0"
-	scale(string) :  : "1 1 1"
-	speed(float) :  : "1"
-	targetname(string) :  : ""
-	translation(string) :  : "0 0 0"
-]
-
-@PointClass color(204 204 204) size(-2 -2 -2, 2 2 2) base(Target) = door_hinge[
-]
-
-@PointClass size(-8 -8 -8, 8 8 8) = omnilight : "Invisible light source" [
-	_color(color255) : "Light color" : "255 255 255"
-	delay(choices) : "Attenuation" = [
-		1 : "Inverse distance falloff"
-		2 : "Inverse distance squared"
-		5 : "Inverse distance squared B"
-		0 : "Linear falloff (Default)"
-		4 : "Local minlight"
-		3 : "No falloff"
-	]
-	light(integer) : "Brightness" : 200
-	wait(integer) : "Fade distance multiplier" : 1
-]
-
-@PointClass size(-8 -8 -8, 8 8 8) = spotlight : "Invisible light source" [
-	_color(color255) : "Light color" : "255 255 255"
-	angle(float) : "Rotation Angle" : "0"
-	delay(choices) : "Attenuation" = [
-		1 : "Inverse distance falloff"
-		2 : "Inverse distance squared"
-		5 : "Inverse distance squared B"
-		0 : "Linear falloff (Default)"
-		4 : "Local minlight"
-		3 : "No falloff"
-	]
-	light(integer) : "Brightness" : 200
-	mangle(string) : "Spotlight angle" : "0 0 0"
-	wait(integer) : "Fade distance multiplier" : 1
-]
-
-@SolidClass color(204 204 204) base(geo_ballistic_solid) = geo_ballistic_container : "Solid geometry with ballistic penetration" [
-	biome(choices) = [
+@SolidClass color(204 204 204) base(geo_ballistic_solid) = geo_ballistic_container : "Solid geometry with ballistic penetration" 
+[
+	biome(choices) : "default biome" : 0 = 
+	[
 		0 : "science"
 	]
-	container_size(integer) :  : 28
-	max_spawned(integer) :  : 1
-	min_spawned(integer) :  : 1
-	tier(choices) = [
+	container_size(integer) : "" : 28
+	max_spawned(integer) : "" : 1
+	min_spawned(integer) : "" : 1
+	tier(choices) : "default tier" : 0 = 
+	[
 		0 : "easy"
 		2 : "hard"
 		1 : "medium"
 	]
 ]
 
-@SolidClass color(204 204 204) = area_extract : "Extraction area" [
-]
+@PointClass color(204 204 204) size(-2 -2 -2, 2 2 2) base(Target) = door_hinge : "door_hinge" []
+
+@SolidClass color(204 204 204) base(geo_ballistic_solid, mover_base) = geo_ballistic_mover : "Solid geometry with ballistic penetration that can move" []
+
+@SolidClass color(204 204 204) base(Target, geo_ballistic_mover) = geo_ballistic_door : "Solid geometry with ballistic penetration that can move" []
