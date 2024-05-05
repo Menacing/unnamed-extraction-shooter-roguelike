@@ -250,12 +250,6 @@ func _on_count_changed(new_count:int):
 func _on_durability_changed(new_durability:int, new_max_durability:int):
 	durability_label.text = str(new_durability) + "/" + str(new_max_durability)
 
-#func _make_custom_tooltip(for_text):
-	#var label = RichTextLabel.new()
-	#label.bbcode_enabled = true
-	##label.custom_minimum_size = Vector2(400,400)
-	#label.text = for_text
-	#return label
 	
 func _on_menu_close_requested():
 	EventBus.context_menu_closed.emit()
