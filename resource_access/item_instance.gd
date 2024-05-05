@@ -73,8 +73,8 @@ func get_texture() -> Texture:
 func get_context_menu_items() -> Array[ItemContextItem]:
 	return _item_info.context_menu_items
 	
-func get_item_tooltip_text() -> String:
-	return _item_info.tooltip_text
+func get_item_description_text() -> String:
+	return _item_info.description_text
 
 ## after you call this you must add the instanced scenes to the scene tree
 func spawn_item() -> void:

@@ -1,7 +1,8 @@
-[gd_resource type="Theme" load_steps=51 format=3 uid="uid://b3qbjy2fpoq6d"]
+[gd_resource type="Theme" load_steps=52 format=3 uid="uid://b3qbjy2fpoq6d"]
 
 [ext_resource type="FontFile" uid="uid://dxf83wj3w5b26" path="res://themes/VCR_OSD_MONO.ttf" id="1_phj2u"]
 [ext_resource type="Texture2D" uid="uid://bomjjjuo0hikn" path="res://themes/minimalistic/icons.svg" id="2"]
+[ext_resource type="StyleBox" uid="uid://5do6ev2m1058" path="res://themes/minimalistic/style_box_flat_black.tres" id="3_82ekc"]
 
 [sub_resource type="StyleBoxFlat" id="1"]
 bg_color = Color(0, 0, 0, 1)
@@ -396,6 +397,7 @@ HSlider/icons/tick = null
 HSlider/styles/grabber_area = SubResource("12")
 HSlider/styles/grabber_area_highlight = SubResource("13")
 HSlider/styles/slider = SubResource("14")
+Label/fonts/font = ExtResource("1_phj2u")
 LineEdit/colors/clear_button_color = Color(0.88, 0.88, 0.88, 1)
 LineEdit/colors/clear_button_color_pressed = Color(1, 1, 1, 1)
 LineEdit/colors/cursor_color = Color(0.94, 0.94, 0.94, 1)
@@ -409,7 +411,7 @@ LineEdit/icons/clear = null
 LineEdit/styles/focus = SubResource("27")
 LineEdit/styles/normal = SubResource("28")
 LineEdit/styles/read_only = SubResource("29")
-Panel/styles/panel = SubResource("1")
+Panel/styles/panel = ExtResource("3_82ekc")
 PopupMenu/colors/font_color = Color(0.88, 0.88, 0.88, 1)
 PopupMenu/colors/font_color_accel = Color(0.7, 0.7, 0.7, 0.8)
 PopupMenu/colors/font_color_disabled = Color(0.4, 0.4, 0.4, 0.8)
@@ -492,6 +494,15 @@ TextEdit/styles/completion = null
 TextEdit/styles/focus = SubResource("27")
 TextEdit/styles/normal = SubResource("34")
 TextEdit/styles/read_only = SubResource("29")
+TooltipLabel/colors/font_color = Color(0.875, 0.875, 0.875, 1)
+TooltipLabel/colors/font_outline_color = Color(0, 0, 0, 0)
+TooltipLabel/colors/font_shadow_color = Color(0, 0, 0, 0)
+TooltipLabel/constants/outline_size = 0
+TooltipLabel/constants/shadow_offset_x = 1
+TooltipLabel/constants/shadow_offset_y = 1
+TooltipLabel/font_sizes/font_size = 16
+TooltipLabel/fonts/font = ExtResource("1_phj2u")
+TooltipPanel/styles/panel = ExtResource("3_82ekc")
 Tree/colors/custom_button_font_highlight = Color(0.94, 0.94, 0.94, 1)
 Tree/colors/drop_position_color = Color(1, 0.3, 0.2, 1)
 Tree/colors/font_color = Color(0.69, 0.69, 0.69, 1)

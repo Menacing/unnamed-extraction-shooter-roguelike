@@ -1,7 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://cn3ywqty7xvvr"]
+[gd_scene load_steps=6 format=3 uid="uid://cn3ywqty7xvvr"]
 
 [ext_resource type="Script" path="res://ui/inventory/item_control.gd" id="1_gir5a"]
-[ext_resource type="Texture2D" uid="uid://vsv4wbmeog0q" path="res://icon.svg" id="2_1kmv5"]
 [ext_resource type="FontFile" uid="uid://dxf83wj3w5b26" path="res://themes/VCR_OSD_MONO.ttf" id="3_h8mhj"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_340fq"]
@@ -23,12 +22,12 @@ offset_right = 39.0
 offset_bottom = 32.0
 size_flags_horizontal = 0
 size_flags_vertical = 0
+tooltip_text = "Test Tooltip to test this thing"
 script = ExtResource("1_gir5a")
 
 [node name="ItemTexture" type="TextureRect" parent="."]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
-texture = ExtResource("2_1kmv5")
 expand_mode = 1
 
 [node name="Name" type="Label" parent="."]
