@@ -11,22 +11,22 @@ extends GeoBallisticSolid
 
 var moved:bool = false
 
-func update_properties() -> void:
-	super()
-	if 'translation' in properties:
-		offset_transform.origin = properties.translation
+func _func_godot_apply_properties(entity_properties: Dictionary):
+	super(entity_properties)
+	if 'translation' in func_godot_properties:
+		offset_transform.origin = func_godot_properties.translation
 
-	if 'rotation' in properties:
+	if 'rotation' in func_godot_properties:
 		offset_transform.basis = Basis()
-		offset_transform.basis = offset_transform.basis.rotated(Vector3.RIGHT, properties.rotation.x)
-		offset_transform.basis = offset_transform.basis.rotated(Vector3.UP, properties.rotation.y)
-		offset_transform.basis = offset_transform.basis.rotated(Vector3.FORWARD, properties.rotation.z)
+		offset_transform.basis = offset_transform.basis.rotated(Vector3.RIGHT, func_godot_properties.rotation.x)
+		offset_transform.basis = offset_transform.basis.rotated(Vector3.UP, func_godot_properties.rotation.y)
+		offset_transform.basis = offset_transform.basis.rotated(Vector3.FORWARD, func_godot_properties.rotation.z)
 
-	if 'scale' in properties:
-		offset_transform.basis = offset_transform.basis.scaled(properties.scale)
+	if 'scale' in func_godot_properties:
+		offset_transform.basis = offset_transform.basis.scaled(func_godot_properties.scale)
 
-	if 'speed' in properties:
-		speed = properties.speed
+	if 'speed' in func_godot_properties:
+		speed = func_godot_properties.speed
 
 func _process(delta: float) -> void:
 	if Engine.is_editor_hint():

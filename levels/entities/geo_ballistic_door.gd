@@ -5,10 +5,10 @@ extends GeoBallisticMover
 @export var _target_name:String
 @export var _hinge:Node3D
 
-func update_properties() -> void:
-	super()
-	if 'targetname' in properties:
-		_target_name = properties.targetname
+func _func_godot_apply_properties(entity_properties: Dictionary):
+	super(entity_properties)
+	if 'targetname' in func_godot_properties:
+		_target_name = func_godot_properties.targetname
 
 func _process(delta: float) -> void:
 	if Engine.is_editor_hint():

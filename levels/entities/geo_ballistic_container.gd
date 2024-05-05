@@ -12,18 +12,18 @@ var world_inventory_control:WorldInventory
 @export var container_size:int
 var inventory_id:int
 
-func update_properties():
-	super()
-	if 'container_size' in properties:
-		container_size = int(properties['container_size'])
-	if 'biome' in properties:
-		biome_index = int(properties['biome'])	
-	if 'tier' in properties:
-		tier_index = int(properties['tier'])
-	if 'min_spawned' in properties:
-		min_spawned = int(properties['min_spawned'])
-	if 'max_spawned' in properties:
-		max_spawned = int(properties['max_spawned'])
+func _func_godot_apply_properties(entity_properties: Dictionary):
+	super(entity_properties)
+	if 'container_size' in func_godot_properties:
+		container_size = int(func_godot_properties['container_size'])
+	if 'biome' in func_godot_properties:
+		biome_index = int(func_godot_properties['biome'])	
+	if 'tier' in func_godot_properties:
+		tier_index = int(func_godot_properties['tier'])
+	if 'min_spawned' in func_godot_properties:
+		min_spawned = int(func_godot_properties['min_spawned'])
+	if 'max_spawned' in func_godot_properties:
+		max_spawned = int(func_godot_properties['max_spawned'])
 
 var model_shuffle_bag:Array[LootSpawnInformation] = []
 var current_shuffle_bag:Array[LootSpawnInformation] = []

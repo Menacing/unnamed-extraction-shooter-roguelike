@@ -1,13 +1,13 @@
-[gd_resource type="Resource" script_class="QodotFGDSolidClass" load_steps=5 format=3 uid="uid://y4flxjg8kcuf"]
+[gd_resource type="Resource" script_class="FuncGodotFGDSolidClass" load_steps=4 format=3 uid="uid://bmdks77xyfr8v"]
 
-[ext_resource type="Resource" uid="uid://doitqv8ilkq7k" path="res://levels/entities/geo_ballistic_solid.tres" id="1_xi1ja"]
-[ext_resource type="Script" path="res://addons/qodot/src/resources/game-definitions/fgd/qodot_fgd_solid_class.gd" id="1_xvliw"]
-[ext_resource type="Resource" uid="uid://b3yn012fy6782" path="res://addons/qodot/game_definitions/fgd/solid_classes/mover_solid_class.tres" id="2_pvrfw"]
-[ext_resource type="Script" path="res://levels/entities/geo_ballistic_mover.gd" id="4_xw8y3"]
+[ext_resource type="Script" path="res://addons/func_godot/src/fgd/func_godot_fgd_solid_class.gd" id="1_f4efv"]
+[ext_resource type="Resource" uid="uid://cdudy0xeveg5e" path="res://levels/entities/geo_ballistic_solid.tres" id="1_xi1ja"]
+[ext_resource type="Resource" uid="uid://cod60cerxo1ob" path="res://levels/entities/base_entities/mover_base.tres" id="2_ytajp"]
 
 [resource]
-script = ExtResource("1_xvliw")
+script = ExtResource("1_f4efv")
 spawn_type = 2
+origin_type = 0
 build_visuals = true
 use_in_baked_light = true
 shadow_casting_setting = 1
@@ -18,11 +18,10 @@ collision_layer = 7
 collision_mask = 1
 collision_priority = 1.0
 collision_shape_margin = 0.04
-script_class = ExtResource("4_xw8y3")
 classname = "geo_ballistic_mover"
 description = "Solid geometry with ballistic penetration that can move"
-qodot_internal = false
-base_classes = Array[Resource]([ExtResource("1_xi1ja"), ExtResource("2_pvrfw")])
+func_godot_internal = false
+base_classes = Array[Resource]([ExtResource("1_xi1ja"), ExtResource("2_ytajp")])
 class_properties = {}
 class_property_descriptions = {}
 meta_properties = {
@@ -30,4 +29,4 @@ meta_properties = {
 "size": AABB(-8, -8, -8, 8, 8, 8)
 }
 node_class = "CharacterBody3D"
-transient_node = false
+name_property = ""

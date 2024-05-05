@@ -5,16 +5,9 @@ extends Area3D
 var extract_cooldown:float = 10.0
 var extract_message_template:String = "Extraction in %.3f"
 
-@export var properties: Dictionary :
-	get:
-		return properties
-	set(new_properties):
-		if(properties != new_properties):
-			properties = new_properties
-			update_properties()
+@export var func_godot_properties: Dictionary
 
-
-func update_properties():
+func _func_godot_apply_properties(entity_properties: Dictionary):
 	pass
 
 

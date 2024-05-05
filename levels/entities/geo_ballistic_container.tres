@@ -1,12 +1,13 @@
-[gd_resource type="Resource" script_class="QodotFGDSolidClass" load_steps=4 format=3 uid="uid://bdggb6cw20jvc"]
+[gd_resource type="Resource" script_class="FuncGodotFGDSolidClass" load_steps=4 format=3 uid="uid://c3rpiaqxmdvil"]
 
-[ext_resource type="Resource" uid="uid://doitqv8ilkq7k" path="res://levels/entities/geo_ballistic_solid.tres" id="1_1dwdt"]
-[ext_resource type="Script" path="res://addons/qodot/src/resources/game-definitions/fgd/qodot_fgd_solid_class.gd" id="1_8b4l1"]
-[ext_resource type="Script" path="res://levels/entities/geo_ballistic_container.gd" id="3_mjjfs"]
+[ext_resource type="Resource" uid="uid://cdudy0xeveg5e" path="res://levels/entities/geo_ballistic_solid.tres" id="1_1dwdt"]
+[ext_resource type="Script" path="res://addons/func_godot/src/fgd/func_godot_fgd_solid_class.gd" id="1_ltgx7"]
+[ext_resource type="Script" path="res://levels/entities/geo_ballistic_container.gd" id="2_svxin"]
 
 [resource]
-script = ExtResource("1_8b4l1")
+script = ExtResource("1_ltgx7")
 spawn_type = 2
+origin_type = 0
 build_visuals = true
 use_in_baked_light = true
 shadow_casting_setting = 1
@@ -17,10 +18,10 @@ collision_layer = 7
 collision_mask = 1
 collision_priority = 1.0
 collision_shape_margin = 0.04
-script_class = ExtResource("3_mjjfs")
+script_class = ExtResource("2_svxin")
 classname = "geo_ballistic_container"
 description = "Solid geometry with ballistic penetration"
-qodot_internal = false
+func_godot_internal = false
 base_classes = Array[Resource]([ExtResource("1_1dwdt")])
 class_properties = {
 "biome": {
@@ -35,10 +36,13 @@ class_properties = {
 "medium": 1
 }
 }
-class_property_descriptions = {}
+class_property_descriptions = {
+"biome": ["default biome", 0],
+"tier": ["default tier", 0]
+}
 meta_properties = {
 "color": Color(0.8, 0.8, 0.8, 1),
 "size": AABB(-8, -8, -8, 8, 8, 8)
 }
 node_class = "StaticBody3D"
-transient_node = false
+name_property = ""

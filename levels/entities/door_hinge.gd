@@ -1,15 +1,9 @@
 @tool
 extends Node3D
 
-@export var properties: Dictionary :
-	get:
-		return properties
-	set(new_properties):
-		if(properties != new_properties):
-			properties = new_properties
-			update_properties()
+@export var func_godot_properties: Dictionary
 
-func update_properties():
-	if 'target' in properties and properties.target != "":
-		self.name = properties.target
+func _func_godot_apply_properties(entity_properties: Dictionary):
+	if 'target' in func_godot_properties and func_godot_properties.target != "":
+		self.name = func_godot_properties.target
 		self.unique_name_in_owner = true
