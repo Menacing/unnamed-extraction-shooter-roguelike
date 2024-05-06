@@ -177,3 +177,11 @@ func los_changed(new_los:bool):
 
 func _on_reaction_timer_timeout():
 	reaction_timed_out = true
+
+var target_patrol_poi:Area3D
+
+func is_in_target_patrol_poi() -> bool:
+	var result = false
+	if target_patrol_poi:
+		result = target_patrol_poi.overlaps_body(self)
+	return result
