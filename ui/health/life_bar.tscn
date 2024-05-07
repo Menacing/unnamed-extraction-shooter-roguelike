@@ -61,6 +61,29 @@ size_flags_vertical = 4
 value = 100.0
 fill_mode = 1
 
+[node name="arm_text_container" type="PanelContainer" parent="VBoxContainer/arm_life_display"]
+layout_mode = 2
+
+[node name="arm_text_hbox_container" type="HBoxContainer" parent="VBoxContainer/arm_life_display/arm_text_container"]
+layout_mode = 2
+
+[node name="arm_health_label" type="Label" parent="VBoxContainer/arm_life_display/arm_text_container/arm_text_hbox_container"]
+layout_mode = 2
+text = "arm"
+uppercase = true
+
+[node name="current_health_label" type="Label" parent="VBoxContainer/arm_life_display/arm_text_container/arm_text_hbox_container"]
+layout_mode = 2
+text = "100"
+
+[node name="health_divider" type="Label" parent="VBoxContainer/arm_life_display/arm_text_container/arm_text_hbox_container"]
+layout_mode = 2
+text = "/"
+
+[node name="max_health_label" type="Label" parent="VBoxContainer/arm_life_display/arm_text_container/arm_text_hbox_container"]
+layout_mode = 2
+text = "100"
+
 [node name="main_life_display" type="HBoxContainer" parent="VBoxContainer"]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
@@ -94,6 +117,29 @@ size_flags_vertical = 4
 value = 100.0
 fill_mode = 1
 
+[node name="main_text_container" type="PanelContainer" parent="VBoxContainer/main_life_display"]
+layout_mode = 2
+
+[node name="main_text_hbox_container" type="HBoxContainer" parent="VBoxContainer/main_life_display/main_text_container"]
+layout_mode = 2
+
+[node name="main_health_label" type="Label" parent="VBoxContainer/main_life_display/main_text_container/main_text_hbox_container"]
+layout_mode = 2
+text = "main"
+uppercase = true
+
+[node name="current_health_label" type="Label" parent="VBoxContainer/main_life_display/main_text_container/main_text_hbox_container"]
+layout_mode = 2
+text = "100"
+
+[node name="health_divider" type="Label" parent="VBoxContainer/main_life_display/main_text_container/main_text_hbox_container"]
+layout_mode = 2
+text = "/"
+
+[node name="max_health_label" type="Label" parent="VBoxContainer/main_life_display/main_text_container/main_text_hbox_container"]
+layout_mode = 2
+text = "100"
+
 [node name="leg_life_display" type="HBoxContainer" parent="VBoxContainer"]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
@@ -126,3 +172,26 @@ layout_mode = 2
 size_flags_vertical = 4
 value = 100.0
 fill_mode = 1
+
+[node name="leg_text_container" type="PanelContainer" parent="VBoxContainer/leg_life_display"]
+layout_mode = 2
+
+[node name="main_text_hbox_container" type="HBoxContainer" parent="VBoxContainer/leg_life_display/leg_text_container"]
+layout_mode = 2
+
+[node name="leg_health_label" type="Label" parent="VBoxContainer/leg_life_display/leg_text_container/main_text_hbox_container"]
+layout_mode = 2
+text = "leg"
+uppercase = true
+
+[node name="current_health_label" type="Label" parent="VBoxContainer/leg_life_display/leg_text_container/main_text_hbox_container"]
+layout_mode = 2
+text = "100"
+
+[node name="health_divider" type="Label" parent="VBoxContainer/leg_life_display/leg_text_container/main_text_hbox_container"]
+layout_mode = 2
+text = "/"
+
+[node name="max_health_label" type="Label" parent="VBoxContainer/leg_life_display/leg_text_container/main_text_hbox_container"]
+layout_mode = 2
+text = "100"
