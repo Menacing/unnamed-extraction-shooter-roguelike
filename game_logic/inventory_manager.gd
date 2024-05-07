@@ -252,3 +252,28 @@ func spawn_from_item3d(item3d:Item3D):
 	
 func spawn_from_item_type_id(item_type_id:String) -> ItemInstance:
 	return _item_access.spawn_from_item_type_id(item_type_id)
+
+func number_item_type_in_inventory(inventory_id:int, item_type_id:String) -> int:
+	var count := 0
+	var inventory:Inventory = _inventory_access.get_inventory(inventory_id)
+	if item_type_id and inventory:
+
+		#check slots
+		for slot in inventory.equipment_slots:
+			if slot.item_instance_id != 0:
+				var item_inst = ItemAccess.get_item(slot.item_instance_id)
+				if item_inst.get_item_type_id() == item_type_id:
+					count += 1
+
+		#check grid
+		var checked_item_instance_ids:Array[int] = []
+		for w in inventory.grid_slots:
+			for h in inventory.grid_slots[w]:
+				var grid_value = inventory.grid_slots[w][h]
+				if grid_value and grid_value != 0:
+					var item_inst := ItemAccess.get_item(grid_value)
+					if item_inst.get_item_type_id() == item_type_id and !checked_item_instance_ids.has(grid_value):
+						count += 1
+						checked_item_instance_ids.append(grid_value)
+		
+	return count

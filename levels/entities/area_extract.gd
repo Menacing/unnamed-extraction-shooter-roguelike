@@ -26,9 +26,15 @@ func _physics_process(delta: float) -> void:
 
 func _on_body_entered(body: Node3D):
 	if body is Player:
-		extract_timer.start(extract_cooldown)
-		EventBus.create_message.emit(str(get_instance_id()), extract_message_template % extract_cooldown, -1)		
-		pass
+		
+		var number_fuel_cores = InventoryManager.number_item_type_in_inventory(body.player_inventory_id, "fuel_core")
+		
+		if number_fuel_cores > 0:
+			extract_timer.start(extract_cooldown)
+			EventBus.create_message.emit(str(get_instance_id()), extract_message_template % extract_cooldown, -1)		
+		else:
+			EventBus.create_message.emit(str(get_instance_id()), "No Fuel Core! Can't Extract", 5)					
+			pass
 
 func _on_body_exit(body:Node3D):
 	if body is Player:

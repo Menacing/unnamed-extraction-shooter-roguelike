@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="ItemInformation" load_steps=3 format=3 uid="uid://cn8v720gwl35e"]
+
+[ext_resource type="PackedScene" uid="uid://cn3ywqty7xvvr" path="res://ui/inventory/item_control.tscn" id="1_0pjew"]
+[ext_resource type="Script" path="res://resource_access/item_information.gd" id="1_dpvk6"]
+
+[resource]
+script = ExtResource("1_dpvk6")
+item_control_scene = ExtResource("1_0pjew")
+item_type_id = "fuel_core"
+show_name = true
+display_name = "Fuel Core"
+item_type = 2
+context_menu_items = Array[Resource("res://ui/inventory/item_context_item.gd")]([])
+max_stacks = 1
+has_stacks = false
+max_durability = 1
+has_durability = false
+column_span = 3
+row_span = 2
+description_text = "A standard Nano Nuclear Neutrino (N3) Fuel Core. The state of the art in portable power prior to the fall. Although far less efficient than a full  reactor, these cores still have energy densities far greater than their chemical predecessors."
+flavor_text = "Keep out of reach of children. Do not leave in direct sunlight. Do not expose to magnetic fields in excess of .8T"
