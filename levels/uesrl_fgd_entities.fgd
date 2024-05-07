@@ -127,3 +127,5 @@
 @SolidClass color(204 204 204) base(geo_ballistic_solid, mover_base) = geo_ballistic_mover : "Solid geometry with ballistic penetration that can move" []
 
 @SolidClass color(204 204 204) base(Target, geo_ballistic_mover) = geo_ballistic_door : "Solid geometry with ballistic penetration that can move" []
+
+@SolidClass color(204 204 204) = area_patrol_poi : "Area for enemies to patrol to" []

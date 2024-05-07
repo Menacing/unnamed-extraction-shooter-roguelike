@@ -6,7 +6,7 @@
 "classname" "worldspawn"
 "_tb_textures" "textures/asphalt;textures/brick;textures/concrete;textures/fabric;textures/glass;textures/ground;textures/marble;textures/metal;textures/plants;textures/plaster;textures/plastic;textures/roof;textures/special;textures/tile;textures/wood"
 "_tb_mod" "levels"
-"_tb_def" "external:levels/trenchbroom_game_definitions/UESRL/uesrl_fgd_entities.fgd"
+"_tb_def" "external:uesrl_fgd_entities.fgd"
 // brush 0
 {
 ( -116 -684 -120 ) ( -116 -683 -120 ) ( -116 -684 -119 ) wood/wood_16 [ 0 -1 0 0 ] [ 0 0 -1 0 ] 0 1 1
@@ -8885,13 +8885,65 @@
 }
 // entity 78
 {
+"classname" "area_patrol_poi"
+// brush 0
+{
+( -480 -224 -128 ) ( -480 -223 -128 ) ( -480 -224 -127 ) special/skip [ 0 -1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( -480 -208 -128 ) ( -480 -208 -127 ) ( -479 -208 -128 ) special/skip [ 1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( -480 -224 -128 ) ( -479 -224 -128 ) ( -480 -223 -128 ) special/skip [ -1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( -320 -80 0 ) ( -320 -79 0 ) ( -319 -80 0 ) special/skip [ 1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( -320 0 -112 ) ( -319 0 -112 ) ( -320 0 -111 ) special/skip [ -1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( -320 -80 -112 ) ( -320 -80 -111 ) ( -320 -79 -112 ) special/skip [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+}
+}
+// entity 79
+{
+"classname" "area_patrol_poi"
+// brush 0
+{
+( 192 -1120 -128 ) ( 192 -1119 -128 ) ( 192 -1120 -127 ) special/skip [ 0 -1 0 -64 ] [ 0 0 -1 0 ] 0 1 1
+( 192 -1120 -128 ) ( 192 -1120 -127 ) ( 193 -1120 -128 ) special/skip [ 1 0 0 -48 ] [ 0 0 -1 0 ] 0 1 1
+( 192 -1120 -128 ) ( 193 -1120 -128 ) ( 192 -1119 -128 ) special/skip [ -1 0 0 48 ] [ 0 -1 0 -64 ] 0 1 1
+( 448 -832 0 ) ( 448 -831 0 ) ( 449 -832 0 ) special/skip [ 1 0 0 -48 ] [ 0 -1 0 -64 ] 0 1 1
+( 448 -832 -112 ) ( 449 -832 -112 ) ( 448 -832 -111 ) special/skip [ -1 0 0 48 ] [ 0 0 -1 0 ] 0 1 1
+( 448 -832 -112 ) ( 448 -832 -111 ) ( 448 -831 -112 ) special/skip [ 0 1 0 64 ] [ 0 0 -1 0 ] 0 1 1
+}
+}
+// entity 80
+{
+"classname" "area_patrol_poi"
+// brush 0
+{
+( 1888 -736 -128 ) ( 1888 -735 -128 ) ( 1888 -736 -127 ) special/skip [ 0 -1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( 1888 -736 -128 ) ( 1888 -736 -127 ) ( 1889 -736 -128 ) special/skip [ 1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( 1888 -736 -128 ) ( 1889 -736 -128 ) ( 1888 -735 -128 ) special/skip [ -1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( 2048 -512 0 ) ( 2048 -511 0 ) ( 2049 -512 0 ) special/skip [ 1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( 2048 -512 -112 ) ( 2049 -512 -112 ) ( 2048 -512 -111 ) special/skip [ -1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( 2048 -512 -112 ) ( 2048 -512 -111 ) ( 2048 -511 -112 ) special/skip [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+}
+}
+// entity 81
+{
+"classname" "area_patrol_poi"
+// brush 0
+{
+( 320 -288 -128 ) ( 320 -287 -128 ) ( 320 -288 -127 ) special/skip [ 0 -1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( 320 -288 -128 ) ( 320 -288 -127 ) ( 321 -288 -128 ) special/skip [ 1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( 320 -288 -128 ) ( 321 -288 -128 ) ( 320 -287 -128 ) special/skip [ -1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( 544 -80 0 ) ( 544 -79 0 ) ( 545 -80 0 ) special/skip [ 1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( 544 -80 -112 ) ( 545 -80 -112 ) ( 544 -80 -111 ) special/skip [ -1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( 544 -80 -112 ) ( 544 -80 -111 ) ( 544 -79 -112 ) special/skip [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+}
+}
+// entity 82
+{
 "classname" "func_group"
 "_tb_type" "_tb_layer"
 "_tb_name" "upstairs_bathroom"
 "_tb_id" "1"
 "_tb_layer_sort_index" "0"
 }
-// entity 79
+// entity 83
 {
 "classname" "func_group"
 "_tb_type" "_tb_layer"
@@ -8899,7 +8951,7 @@
 "_tb_id" "2"
 "_tb_layer_sort_index" "1"
 }
-// entity 80
+// entity 84
 {
 "classname" "func_group"
 "_tb_type" "_tb_layer"
@@ -8907,7 +8959,7 @@
 "_tb_id" "20"
 "_tb_layer_sort_index" "2"
 }
-// entity 81
+// entity 85
 {
 "classname" "func_group"
 "_tb_type" "_tb_layer"
