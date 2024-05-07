@@ -1012,6 +1012,7 @@ size_flags_horizontal = 10
 
 [node name="OptionList" parent="main_container/vert_container/option_tab_container/Game Play/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer" groups=["gameplay_settings"] instance=ExtResource("20_1jn2v")]
 layout_mode = 2
+use_ids = true
 setting = ExtResource("47_gderx")
 
 [node name="Btn" parent="main_container/vert_container/option_tab_container/Game Play/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer/OptionList" index="0"]
@@ -1023,7 +1024,6 @@ popup/item_1/text = "Icons"
 popup/item_1/id = 1
 popup/item_2/text = "Numbers"
 popup/item_2/id = 2
-popup/item_2/disabled = true
 
 [node name="HBoxContainer" type="HBoxContainer" parent="main_container/vert_container/option_tab_container/Game Play/VBoxContainer"]
 layout_mode = 2

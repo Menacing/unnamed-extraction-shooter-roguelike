@@ -12,6 +12,13 @@ extends Control
 @onready var main_bar:ProgressBar = $VBoxContainer/main_life_display/main_bar_container/HBoxContainer/LifeBar
 @onready var leg_bar:ProgressBar = $VBoxContainer/leg_life_display/leg_bar_container/HBoxContainer/LifeBar
 
+@onready var arm_label_c:Label = $VBoxContainer/main_life_display/main_text_container/main_text_hbox_container/current_health_label
+@onready var arm_label_m:Label = $VBoxContainer/main_life_display/main_text_container/main_text_hbox_container/max_health_label
+@onready var main_label_c:Label = $VBoxContainer/main_life_display/main_text_container/main_text_hbox_container/current_health_label
+@onready var main_label_m:Label = $VBoxContainer/main_life_display/main_text_container/main_text_hbox_container/max_health_label
+@onready var leg_label_c:Label = $VBoxContainer/leg_life_display/leg_text_container/main_text_hbox_container/current_health_label
+@onready var leg_label_m:Label = $VBoxContainer/leg_life_display/leg_text_container/main_text_hbox_container/max_health_label
+
 var arm_c:float
 var arm_m:float
 var main_c:float
@@ -48,16 +55,22 @@ func update_display_values(arm_c:float, arm_m:float, main_c:float, \
 	arm_icon.max_value = arm_m
 	arm_bar.value = arm_c
 	arm_bar.max_value = arm_m
+	arm_label_c.text = str(roundi(arm_c))
+	arm_label_m.text = str(roundi(arm_m))
 	
 	main_icon.value = main_c
 	main_icon.max_value = main_m
 	main_bar.value = main_c
 	main_bar.max_value = main_m
+	main_label_c.text = str(roundi(main_c))
+	main_label_m.text = str(roundi(main_m))
 	
 	leg_icon.value = leg_c
 	leg_icon.max_value = leg_m
 	leg_bar.value = leg_c
 	leg_bar.max_value = leg_m
+	leg_label_c.text = str(roundi(leg_c))
+	leg_label_m.text = str(roundi(leg_m))
 
 func set_health_mode():
 	if GameSettings.selected_health_display == GameSettings.HEALTH_DISPLAY.BAR:
@@ -68,6 +81,14 @@ func set_health_mode():
 		arm_icon.visible = false
 		main_icon.visible = false
 		leg_icon.visible = false
+		
+		arm_label_c.visible = false
+		arm_label_m.visible = false
+		main_label_c.visible = false
+		main_label_m.visible = false
+		leg_label_c.visible = false
+		leg_label_m.visible = false
+		
 	if GameSettings.selected_health_display == GameSettings.HEALTH_DISPLAY.ICON:
 		arm_bar_c.visible = false
 		main_bar_c.visible = false
@@ -76,3 +97,26 @@ func set_health_mode():
 		arm_icon.visible = true
 		main_icon.visible = true
 		leg_icon.visible = true
+		
+		arm_label_c.visible = false
+		arm_label_m.visible = false
+		main_label_c.visible = false
+		main_label_m.visible = false
+		leg_label_c.visible = false
+		leg_label_m.visible = false
+		
+	if GameSettings.selected_health_display == GameSettings.HEALTH_DISPLAY.NUMBER:
+		arm_bar_c.visible = false
+		main_bar_c.visible = false
+		leg_bar_c.visible = false
+		
+		arm_icon.visible = false
+		main_icon.visible = false
+		leg_icon.visible = false
+		
+		arm_label_c.visible = true
+		arm_label_m.visible = true
+		main_label_c.visible = true
+		main_label_m.visible = true
+		leg_label_c.visible = true
+		leg_label_m.visible = true

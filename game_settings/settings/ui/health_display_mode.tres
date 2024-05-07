@@ -5,11 +5,11 @@
 [resource]
 resource_name = "health_display_mode"
 script = ExtResource("1_tlt8l")
-game_setting_name = ""
+game_setting_name = "selected_health_display"
 current = false
 default = false
 name = "health_display_mode"
 category = "ui"
 value_type = 2
-value_hint = 0
-value_hint_string = "0,3"
+value_hint = 2
+value_hint_string = "HEALTH_DISPLAY"
