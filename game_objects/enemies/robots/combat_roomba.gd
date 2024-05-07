@@ -185,3 +185,24 @@ func is_in_target_patrol_poi() -> bool:
 	if target_patrol_poi:
 		result = target_patrol_poi.overlaps_body(self)
 	return result
+
+func find_new_target_patrol_poi() -> bool:
+	var pois = get_tree().get_nodes_in_group("PatrolPOI")
+	pois.shuffle()
+	
+	for poi in pois:
+		#if POI is not an Area3D, skip
+		if not poi is Area3D:
+			break
+		#If we don't currently have a target, take the first one
+		if !target_patrol_poi:
+			target_patrol_poi = poi
+			return true
+		#If the current target is the poi, skip it
+		if poi == target_patrol_poi:
+			break
+		else:
+			target_patrol_poi = poi
+			return true
+		#else take the poi
+	return false
