@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://ciaqbr34myu5w"]
+[gd_scene load_steps=24 format=3 uid="uid://ciaqbr34myu5w"]
 
 [ext_resource type="Script" path="res://game_objects/enemies/robots/combat_roomba.gd" id="1_f1cah"]
 [ext_resource type="PackedScene" uid="uid://dr48wela8mtxd" path="res://game_objects/items/weapons/hic_rifles/pm_52/pm_52.tscn" id="2_q4rc2"]
@@ -9,6 +9,13 @@
 [ext_resource type="Script" path="res://game_objects/items/LootInformation.gd" id="7_bspv3"]
 [ext_resource type="PackedScene" uid="uid://douyxwjscs4ff" path="res://ui/inventory/world_inventory.tscn" id="7_gxy1y"]
 [ext_resource type="Script" path="res://resource_access/Inventory.gd" id="9_8s6q1"]
+[ext_resource type="Script" path="res://addons/beehave/nodes/beehave_tree.gd" id="10_paqy6"]
+[ext_resource type="Script" path="res://addons/beehave/nodes/composites/sequence.gd" id="11_8f25v"]
+[ext_resource type="Script" path="res://addons/beehave/nodes/composites/selector.gd" id="11_cnswi"]
+[ext_resource type="Script" path="res://addons/beehave/nodes/decorators/inverter.gd" id="12_gh6k6"]
+[ext_resource type="Script" path="res://game_objects/enemies/robots/has_patrol_target_condition.gd" id="12_iylba"]
+[ext_resource type="Script" path="res://game_objects/enemies/robots/find_new_patrol_action.gd" id="15_tq83x"]
+[ext_resource type="Script" path="res://game_objects/enemies/robots/move_to_patrol_target_action_leaf.gd" id="16_7g5hi"]
 
 [sub_resource type="Resource" id="Resource_w58g1"]
 script = ExtResource("7_bspv3")
@@ -123,6 +130,41 @@ wait_time = 2.0
 
 [node name="ReactionTimer" type="Timer" parent="."]
 one_shot = true
+
+[node name="BeehaveTree" type="Node" parent="." node_paths=PackedStringArray("blackboard", "actor")]
+script = ExtResource("10_paqy6")
+blackboard = NodePath("@Node@20118")
+actor = NodePath("..")
+
+[node name="ActionSelector" type="Node" parent="BeehaveTree"]
+script = ExtResource("11_cnswi")
+
+[node name="PatrolSelectorComposite" type="Node" parent="BeehaveTree/ActionSelector"]
+script = ExtResource("11_cnswi")
+
+[node name="SetPatrolTargetSequenceComposite" type="Node" parent="BeehaveTree/ActionSelector/PatrolSelectorComposite"]
+script = ExtResource("11_8f25v")
+
+[node name="NotHasPatrolTargetCondition" type="Node" parent="BeehaveTree/ActionSelector/PatrolSelectorComposite/SetPatrolTargetSequenceComposite"]
+script = ExtResource("12_gh6k6")
+
+[node name="HasPatrolTargetCondition" type="Node" parent="BeehaveTree/ActionSelector/PatrolSelectorComposite/SetPatrolTargetSequenceComposite/NotHasPatrolTargetCondition"]
+script = ExtResource("12_iylba")
+
+[node name="FindNewPatrolTargetAction" type="Node" parent="BeehaveTree/ActionSelector/PatrolSelectorComposite/SetPatrolTargetSequenceComposite"]
+script = ExtResource("15_tq83x")
+
+[node name="PatrolSequenceComposite" type="Node" parent="BeehaveTree/ActionSelector/PatrolSelectorComposite"]
+script = ExtResource("11_8f25v")
+
+[node name="HasPatrolTargetCondition" type="Node" parent="BeehaveTree/ActionSelector/PatrolSelectorComposite/PatrolSequenceComposite"]
+script = ExtResource("12_iylba")
+
+[node name="MoveToPatrolTargetActionLeaf" type="Node" parent="BeehaveTree/ActionSelector/PatrolSelectorComposite/PatrolSequenceComposite"]
+script = ExtResource("16_7g5hi")
+
+[node name="FindNewPatrolTargetAction" type="Node" parent="BeehaveTree/ActionSelector/PatrolSelectorComposite/PatrolSequenceComposite"]
+script = ExtResource("15_tq83x")
 
 [connection signal="timeout" from="FireTimer" to="." method="_on_fire_timer_timeout"]
 [connection signal="body_entered" from="DetectRadius" to="." method="_on_detect_radius_body_entered"]

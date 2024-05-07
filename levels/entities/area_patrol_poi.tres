@@ -1,0 +1,32 @@
+[gd_resource type="Resource" script_class="FuncGodotFGDSolidClass" load_steps=3 format=3 uid="uid://b6h1p7pbngrnt"]
+
+[ext_resource type="Script" path="res://addons/func_godot/src/fgd/func_godot_fgd_solid_class.gd" id="1_fqr2r"]
+[ext_resource type="Script" path="res://levels/entities/area_patrol_poi.gd" id="2_u7h8o"]
+
+[resource]
+script = ExtResource("1_fqr2r")
+spawn_type = 2
+origin_type = 0
+build_visuals = false
+use_in_baked_light = false
+shadow_casting_setting = 1
+build_occlusion = false
+render_layers = 0
+collision_shape_type = 1
+collision_layer = 1
+collision_mask = 1
+collision_priority = 1.0
+collision_shape_margin = 0.04
+script_class = ExtResource("2_u7h8o")
+classname = "area_patrol_poi"
+description = "Area for enemies to patrol to"
+func_godot_internal = false
+base_classes = Array[Resource]([])
+class_properties = {}
+class_property_descriptions = {}
+meta_properties = {
+"color": Color(0.8, 0.8, 0.8, 1),
+"size": AABB(-8, -8, -8, 8, 8, 8)
+}
+node_class = "Area3D"
+name_property = ""
