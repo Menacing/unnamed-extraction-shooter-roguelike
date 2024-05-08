@@ -31,8 +31,10 @@ func _ready():
 	randomize()
 	var number_to_spawn = randi_range(min_spawned,max_spawned)
 	var aabb = Helpers.get_aabb_of_node(self)
-	var x_size = aabb.size.x
-	var z_size = aabb.size.z
+	var x_begin = aabb.position.x
+	var x_end = aabb.end.x
+	var z_begin = aabb.position.z
+	var z_end = aabb.end.z
 	
 	var spawned_locations:Array[Vector3] = []
 	var spawned_test_radii:Array[float] = []
@@ -53,7 +55,7 @@ func _ready():
 		var remaining_tries = 5
 		while remaining_tries > 1:
 			#generate random location
-			var try_pos = Vector3(randf_range(-x_size,x_size),0,randf_range(-z_size,z_size))
+			var try_pos = Vector3(randf_range(x_begin,x_end),0,randf_range(z_begin,z_end))
 			var loc_free = true
 			for k in range(spawned_locations.size()):
 				#check if location overlaps existing location
