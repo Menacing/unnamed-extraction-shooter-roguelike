@@ -269,10 +269,9 @@ func number_item_type_in_inventory(inventory_id:int, item_type_id:String) -> int
 		var checked_item_instance_ids:Array[int] = []
 		for w in inventory.grid_slots:
 			for h in inventory.grid_slots[w]:
-				var grid_value = inventory.grid_slots[w][h]
-				if grid_value and grid_value != 0:
-					var item_inst := ItemAccess.get_item(grid_value)
-					if item_inst.get_item_type_id() == item_type_id and !checked_item_instance_ids.has(grid_value):
+				var grid_value:ItemInstance = inventory.grid_slots[w][h]
+				if grid_value :
+					if grid_value.get_item_type_id() == item_type_id and !checked_item_instance_ids.has(grid_value.get_instance_id()):
 						count += 1
 						checked_item_instance_ids.append(grid_value)
 		

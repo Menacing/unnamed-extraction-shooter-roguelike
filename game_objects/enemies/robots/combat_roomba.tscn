@@ -133,7 +133,7 @@ one_shot = true
 
 [node name="BeehaveTree" type="Node" parent="." node_paths=PackedStringArray("blackboard", "actor")]
 script = ExtResource("10_paqy6")
-blackboard = NodePath("@Node@20118")
+blackboard = NodePath("@Node@18195")
 actor = NodePath("..")
 
 [node name="ActionSelector" type="Node" parent="BeehaveTree"]

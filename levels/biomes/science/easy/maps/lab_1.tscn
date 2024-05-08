@@ -1,4 +1,4 @@
-[gd_scene load_steps=1012 format=3 uid="uid://bgog375hnhshb"]
+[gd_scene load_steps=1013 format=3 uid="uid://bgog375hnhshb"]
 
 [ext_resource type="Environment" uid="uid://s6q0fqlhuodl" path="res://test/debug/vibe_check_environment.tres" id="1_3scuf"]
 [ext_resource type="CameraAttributesPractical" uid="uid://jafbi2bjurvn" path="res://test/debug/vibe_check_camera.tres" id="2_ecxrf"]
@@ -57,6 +57,7 @@
 [ext_resource type="PackedScene" uid="uid://c8y8q8sw14nbw" path="res://game_objects/items/ammo/hic/hic_box_hp.tscn" id="57_kypxj"]
 [ext_resource type="PackedScene" uid="uid://cprpop5lkmyhe" path="res://game_objects/items/weapons/fic_rifles/s5/s5.tscn" id="58_oqs22"]
 [ext_resource type="Resource" uid="uid://bikewy7dlkv20" path="res://components/ammo_component/ammo_types/fast_intermediate_cartridge/fast_intermediate_cartridge.tres" id="59_470s7"]
+[ext_resource type="PackedScene" uid="uid://b7b1goghrkw51" path="res://game_objects/items/key/fuel_core/fuel_core.tscn" id="59_erbpg"]
 [ext_resource type="PackedScene" uid="uid://d0o2yjbp3avaa" path="res://game_objects/items/attachments/magazines/extended/extended_magazine.tscn" id="60_d0618"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_i4o4u"]
@@ -8452,3 +8453,6 @@ _gun_stats = SubResource("Resource_fmemb")
 
 [node name="ExtendedMagazine" parent="." instance=ExtResource("60_d0618")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0617189, 0.765417, -6.0524)
+
+[node name="FuelCore" parent="." instance=ExtResource("59_erbpg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.848, -2.02425, 48.487)
