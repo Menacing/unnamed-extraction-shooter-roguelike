@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://b7b1goghrkw51"]
+
+[ext_resource type="Script" path="res://game_objects/item_3d.gd" id="1_wmsin"]
+[ext_resource type="PackedScene" uid="uid://0gie1o85ak4x" path="res://game_objects/items/key/fuel_core/fuel_core.blend" id="2_qbk3e"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_5thak"]
+size = Vector3(1.00562, 0.543823, 2.24866)
+
+[node name="FuelCore" type="RigidBody3D"]
+collision_layer = 5
+collision_mask = 5
+mass = 20.0
+script = ExtResource("1_wmsin")
+item_type_id = "fuel_core"
+world_collider_path = NodePath("CollisionShape3D")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00939941, 0.00311279, 0.128723)
+shape = SubResource("BoxShape3D_5thak")
+
+[node name="fuel_core" parent="." instance=ExtResource("2_qbk3e")]
