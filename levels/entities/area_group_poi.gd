@@ -1,3 +1,4 @@
+@tool
 extends Area3D
 class_name AreaGroupPOI
 
@@ -7,7 +8,10 @@ class_name AreaGroupPOI
 
 func _func_godot_apply_properties(entity_properties: Dictionary):
 	if 'godot_group_names' in func_godot_properties:
-		godot_group_names = func_godot_properties['godot_group_names']
+		var names:String = func_godot_properties['godot_group_names']
+		var split_names := names.split(",",false)
+		for gn in split_names:
+			godot_group_names.append(gn)
 
 func _ready():
 	for group_name_s in godot_group_names:

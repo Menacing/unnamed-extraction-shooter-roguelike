@@ -1,5 +1,5 @@
-class_name AreaExtract
 extends Area3D
+class_name AreaExtract
 	
 @onready var extract_timer:Timer = Timer.new()
 var extract_cooldown:float = 10.0
@@ -7,8 +7,7 @@ var extract_message_template:String = "Extraction in %.3f"
 
 @export var func_godot_properties: Dictionary
 
-func _func_godot_apply_properties(entity_properties: Dictionary):
-	pass
+
 
 
 # Called when the node enters the scene tree for the first time.
