@@ -1,5 +1,5 @@
-class_name AreaExtract
 extends Area3D
+class_name AreaExtract
 	
 @onready var extract_timer:Timer = Timer.new()
 var extract_cooldown:float = 10.0
@@ -7,8 +7,7 @@ var extract_message_template:String = "Extraction in %.3f"
 
 @export var func_godot_properties: Dictionary
 
-func _func_godot_apply_properties(entity_properties: Dictionary):
-	pass
+
 
 
 # Called when the node enters the scene tree for the first time.
@@ -26,9 +25,15 @@ func _physics_process(delta: float) -> void:
 
 func _on_body_entered(body: Node3D):
 	if body is Player:
-		extract_timer.start(extract_cooldown)
-		EventBus.create_message.emit(str(get_instance_id()), extract_message_template % extract_cooldown, -1)		
-		pass
+		
+		var number_fuel_cores = InventoryManager.number_item_type_in_inventory(body.player_inventory_id, "fuel_core")
+		
+		if number_fuel_cores > 0:
+			extract_timer.start(extract_cooldown)
+			EventBus.create_message.emit(str(get_instance_id()), extract_message_template % extract_cooldown, -1)		
+		else:
+			EventBus.create_message.emit(str(get_instance_id()), "No Fuel Core! Can't Extract", 5)					
+			pass
 
 func _on_body_exit(body:Node3D):
 	if body is Player:
