@@ -9,6 +9,10 @@ script = ExtResource("1_odu8p")
 layout_mode = 2
 alignment = 1
 
+[node name="AmmoTypeDisplayIcon" type="TextureRect" parent="AmmoTypeHBox"]
+layout_mode = 2
+expand_mode = 3
+
 [node name="AmmoTypeLabel" type="Label" parent="AmmoTypeHBox"]
 layout_mode = 2
 text = "Fast Intermediate Cartridge"

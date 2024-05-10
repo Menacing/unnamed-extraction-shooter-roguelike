@@ -1,5 +1,6 @@
-[gd_resource type="Resource" script_class="AmmoType" load_steps=5 format=3 uid="uid://0jqwt4j7dykm"]
+[gd_resource type="Resource" script_class="AmmoType" load_steps=6 format=3 uid="uid://0jqwt4j7dykm"]
 
+[ext_resource type="Texture2D" uid="uid://bgsn10t8135gg" path="res://ui/icons/White/ammo_sniper01.png" id="1_6hmsi"]
 [ext_resource type="Script" path="res://components/ammo_component/ammo_type.gd" id="1_7jsus"]
 [ext_resource type="Resource" uid="uid://cct85d3u48yuj" path="res://components/ammo_component/ammo_types/heavy_intermediate_cartridge/ammo_subtypes/full_metal_jacket.tres" id="2_ifqri"]
 [ext_resource type="Resource" uid="uid://e74bf0ee7eck" path="res://components/ammo_component/ammo_types/heavy_intermediate_cartridge/ammo_subtypes/armor_piercing.tres" id="3_u1enf"]
@@ -8,4 +9,6 @@
 [resource]
 script = ExtResource("1_7jsus")
 name = "Old Rifle Cartdridge"
+abbreviation = ""
 sub_types = Array[Resource("res://components/ammo_component/ammo_subtype.gd")]([ExtResource("2_ifqri"), ExtResource("3_u1enf"), ExtResource("4_iu4wk")])
+display_icon = ExtResource("1_6hmsi")
