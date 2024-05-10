@@ -1,4 +1,4 @@
-extends Resource
+extends ModifiableStat
 class_name ModifiableStatFloat
 
 var _additive_modifiers = {}

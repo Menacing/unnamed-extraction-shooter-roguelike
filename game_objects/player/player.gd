@@ -163,6 +163,8 @@ func _ready():
 	else:
 		EventBus.close_all_inventories.emit()
 	EventBus.ammo_type_changed.connect(_on_ammo_type_changed)
+	EventBus.location_destroyed.connect(_on_location_destroyed)
+	EventBus.location_restored.connect(_on_location_restored)
 	
 	los_check_locations.append($HitBox/HeadBoneAttachment/eyes)
 	los_check_locations.append($HitBox/RightFootBoneAttachment)
@@ -443,7 +445,18 @@ func _on_ammo_type_changed(new_type:String, new_subtype:String):
 	equipped_gun._bullet_scene = AmmoLoader.get_ammo_subtype(new_type, new_subtype).bullet_scene
 	ammo_subtype_selector.end_selection()
 	
-
+var arm_destroyed_effect:GameplayEffect = load("res://game_objects/player/stat_modifiers/arm_destruction_effect.tres")
+func _on_location_destroyed(actor_id:int, location:HealthLocation.HEALTH_LOCATION):
+	if actor_id == self.get_instance_id():
+		if location == HealthLocation.HEALTH_LOCATION.ARMS:
+			for effect in arm_destroyed_effect.effect_lists:
+				effect.effect_target_node = self
+			EventBus.create_effect.emit(self.get_instance_id(), arm_destroyed_effect)
+			
+func _on_location_restored(actor_id:int, location:HealthLocation.HEALTH_LOCATION):
+	if actor_id == self.get_instance_id():
+		if location == HealthLocation.HEALTH_LOCATION.ARMS:
+			EventBus.remove_effect.emit(self.get_instance_id(), arm_destroyed_effect)
 	
 func start_arms_ik(right_arm_loc:Node3D, right_fingers_loc:Node3D, left_arm_loc:Node3D, left_fingers_loc:Node3D):
 	if right_arm_loc:
