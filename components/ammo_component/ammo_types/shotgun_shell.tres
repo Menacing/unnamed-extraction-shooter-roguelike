@@ -1,5 +1,6 @@
-[gd_resource type="Resource" script_class="AmmoType" load_steps=5 format=3 uid="uid://cdx84o8lt4yhx"]
+[gd_resource type="Resource" script_class="AmmoType" load_steps=6 format=3 uid="uid://cdx84o8lt4yhx"]
 
+[ext_resource type="Texture2D" uid="uid://bweymcnuc17d3" path="res://ui/icons/White/ammo_shotgun01.png" id="1_ubmto"]
 [ext_resource type="Script" path="res://components/ammo_component/ammo_type.gd" id="1_vu6hb"]
 [ext_resource type="Resource" uid="uid://cct85d3u48yuj" path="res://components/ammo_component/ammo_types/heavy_intermediate_cartridge/ammo_subtypes/full_metal_jacket.tres" id="2_wb8vk"]
 [ext_resource type="Resource" uid="uid://e74bf0ee7eck" path="res://components/ammo_component/ammo_types/heavy_intermediate_cartridge/ammo_subtypes/armor_piercing.tres" id="3_w8ak6"]
@@ -8,4 +9,6 @@
 [resource]
 script = ExtResource("1_vu6hb")
 name = "Shotgun Shell"
+abbreviation = ""
 sub_types = Array[Resource("res://components/ammo_component/ammo_subtype.gd")]([ExtResource("2_wb8vk"), ExtResource("3_w8ak6"), ExtResource("4_dg0ei")])
+display_icon = ExtResource("1_ubmto")
