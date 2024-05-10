@@ -1,0 +1,38 @@
+[gd_resource type="Resource" script_class="GameplayEffect" load_steps=11 format=3 uid="uid://bqi12uocaf8q3"]
+
+[ext_resource type="Texture2D" uid="uid://bykx6scq1bf72" path="res://themes/arm-icon.png" id="1_50t0e"]
+[ext_resource type="Script" path="res://game_logic/gameplay_effect.gd" id="1_n4pbv"]
+[ext_resource type="Script" path="res://game_logic/gameplay_effect_list_item.gd" id="2_8mpin"]
+[ext_resource type="Resource" uid="uid://cuprjn65khcop" path="res://game_objects/player/stat_modifiers/arm_destroyed_bob_max.tres" id="3_uwvfs"]
+[ext_resource type="Script" path="res://game_logic/gameplay_effect_list.gd" id="4_y4vm2"]
+
+[sub_resource type="Resource" id="Resource_ebhmk"]
+script = ExtResource("2_8mpin")
+modifiable_stat_name = "current_bob_amount_x"
+stat_modifiers = Array[Resource("res://game_logic/stat_modifier.gd")]([ExtResource("3_uwvfs")])
+
+[sub_resource type="Resource" id="Resource_f1nrk"]
+script = ExtResource("2_8mpin")
+modifiable_stat_name = "current_bob_amount_y"
+stat_modifiers = Array[Resource("res://game_logic/stat_modifier.gd")]([ExtResource("3_uwvfs")])
+
+[sub_resource type="Resource" id="Resource_5cpla"]
+script = ExtResource("2_8mpin")
+modifiable_stat_name = "current_bob_amount_max_degrees_x"
+stat_modifiers = Array[Resource("res://game_logic/stat_modifier.gd")]([ExtResource("3_uwvfs")])
+
+[sub_resource type="Resource" id="Resource_gfelv"]
+script = ExtResource("2_8mpin")
+modifiable_stat_name = "current_bob_amount_max_degrees_y"
+stat_modifiers = Array[Resource("res://game_logic/stat_modifier.gd")]([ExtResource("3_uwvfs")])
+
+[sub_resource type="Resource" id="Resource_0erpf"]
+script = ExtResource("4_y4vm2")
+effect_target_node = NodePath("")
+effects_list = Array[ExtResource("2_8mpin")]([SubResource("Resource_ebhmk"), SubResource("Resource_f1nrk"), SubResource("Resource_5cpla"), SubResource("Resource_gfelv")])
+
+[resource]
+script = ExtResource("1_n4pbv")
+display_icon = ExtResource("1_50t0e")
+effect_name = "arm_destroyed"
+effect_lists = Array[ExtResource("4_y4vm2")]([SubResource("Resource_0erpf")])

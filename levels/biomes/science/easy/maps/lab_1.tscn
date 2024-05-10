@@ -4246,6 +4246,7 @@ local_map_file = "res://levels/biomes/science/easy/maps/lab_1.map"
 map_settings = ExtResource("4_j3vvt")
 
 [node name="entity_0_worldspawn" type="Node3D" parent="NavigationRegion3D/FuncGodotMap"]
+visible = false
 
 [node name="entity_0_mesh_instance" type="MeshInstance3D" parent="NavigationRegion3D/FuncGodotMap/entity_0_worldspawn"]
 cast_shadow = 2
@@ -8530,6 +8531,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.47141, 0.652274, -6.48799)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.829404, 1.43061, -3.86364)
 
 [node name="RegelPod" parent="." instance=ExtResource("55_bmx5i")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.82794, 0.603108, -5.95361)
+
+[node name="RegelPod2" parent="." instance=ExtResource("55_bmx5i")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.82794, 0.603108, -5.95361)
+
+[node name="RegelPod3" parent="." instance=ExtResource("55_bmx5i")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.82794, 0.603108, -5.95361)
+
+[node name="RegelPod4" parent="." instance=ExtResource("55_bmx5i")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.82794, 0.603108, -5.95361)
 
 [node name="HicBoxAp" parent="." instance=ExtResource("56_84s3x")]
