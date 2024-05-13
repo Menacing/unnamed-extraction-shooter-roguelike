@@ -197,12 +197,13 @@ scroll_vertical = 1
 horizontal_scroll_mode = 0
 vertical_scroll_mode = 2
 
-[node name="Label" type="Label" parent="VBoxContainer/ScrollContainer"]
+[node name="DescriptionLabel" type="RichTextLabel" parent="VBoxContainer/ScrollContainer"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 400)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-theme_override_font_sizes/font_size = 12
+bbcode_enabled = true
 text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis ornare velit et rutrum ultricies. Sed diam magna, ultricies ut faucibus elementum, iaculis in nibh. Sed rhoncus risus mauris, fringilla feugiat sem molestie vel. Nullam in pellentesque sem, vel cursus sem. Nulla facilisi. Nam mi orci, ullamcorper a velit id, imperdiet finibus lacus. In ut risus ipsum.
 
 In eget nunc iaculis, ultrices quam vitae, tincidunt turpis. Phasellus eget arcu sit amet augue cursus ornare. Mauris in nunc a urna lobortis malesuada. Morbi quis lacus nisi. Proin cursus hendrerit ex, ut euismod massa. Pellentesque massa urna, lacinia pretium tincidunt et, gravida eget orci. Nulla facilisi. Sed ut congue tortor. Quisque sed imperdiet est, facilisis imperdiet erat. Vestibulum et ligula eu lorem pretium feugiat. Nullam eget mattis magna, pharetra iaculis eros. Nulla facilisi. Nullam in purus diam. Suspendisse potenti. Nam commodo eros ut mauris dignissim molestie.
@@ -215,8 +216,5 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis ornare velit et ru
 
 In eget nunc iaculis, ultrices quam vitae, tincidunt turpis. Phasellus eget arcu sit amet augue cursus ornare. Mauris in nunc a urna lobortis malesuada. Morbi quis lacus nisi. Proin cursus hendrerit ex, ut euismod massa. Pellentesque massa urna, lacinia pretium tincidunt et, gravida eget orci. Nulla facilisi. Sed ut congue tortor. Quisque sed imperdiet est, facilisis imperdiet erat. Vestibulum et ligula eu lorem pretium feugiat. Nullam eget mattis magna, pharetra iaculis eros. Nulla facilisi. Nullam in purus diam. Suspendisse potenti. Nam commodo eros ut mauris dignissim molestie.
 "
-autowrap_mode = 3
-clip_text = true
-uppercase = true
 
 [connection signal="pressed" from="VBoxContainer/TitleHBoxContainer/DoneButton" to="." method="_on_done_button_pressed"]

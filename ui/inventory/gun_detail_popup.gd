@@ -13,7 +13,7 @@ class_name GunDetailPopup
 @onready var slots_box:Control = $VBoxContainer/ModificationSlotVBoxContainer
 @onready var item_model_anchor:Node3D = $VBoxContainer/HBoxContainer/MarginContainer/SubViewportContainer/SubViewport/ItemModelAnchor
 @onready var viewport_camera:Camera3D = $VBoxContainer/HBoxContainer/MarginContainer/SubViewportContainer/SubViewport/Camera3D
-@onready var item_description_label:Label = $VBoxContainer/ScrollContainer/Label
+@onready var item_description_label:RichTextLabel = %DescriptionLabel
 
 var _weapon_modification_container:InventoryControlBase
 var weapon_modification_container:InventoryControlBase:
@@ -70,8 +70,15 @@ func map_gun_stats(gun:Gun):
 	turn_speed_label.text = str(gun_stats.turn_speed)
 
 func map_gun_description(gun:Gun):
-	item_description_label.text = gun.get_item_instance().get_item_tooltip_text()
-	
+	var item_inst = gun.get_item_instance()
+	var constructed_description_string:String = ""
+	constructed_description_string += item_inst.get_item_description_text().to_upper()
+	constructed_description_string += "\n\n"
+	constructed_description_string += "[i]"
+	constructed_description_string += item_inst.get_item_flavor_text().to_upper()
+	constructed_description_string += "[/i]"
+	item_description_label.text = constructed_description_string
+
 func map_item_name(gun:Gun):
 	item_name_label.text = gun.get_item_instance().get_display_name()
 	
