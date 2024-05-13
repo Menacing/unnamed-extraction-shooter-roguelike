@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://3bnbwe1cyhrq"]
+[gd_scene load_steps=3 format=3 uid="uid://3bnbwe1cyhrq"]
 
 [ext_resource type="Script" path="res://ui/health/HitIndicatorParent.gd" id="1_ah2rf"]
+[ext_resource type="PackedScene" uid="uid://gs87quvpcdn" path="res://ui/health/HitIndicator.tscn" id="2_4s7hd"]
 
 [node name="HitIndicatorParent" type="Control"]
 layout_mode = 3
@@ -11,3 +12,4 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("1_ah2rf")
+hit_indicator = ExtResource("2_4s7hd")

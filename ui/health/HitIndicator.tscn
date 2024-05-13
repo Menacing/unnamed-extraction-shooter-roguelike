@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://ui/health/HitIndicator.gd" id="1_7gpui"]
 [ext_resource type="Material" uid="uid://blqw4xmxy7pl0" path="res://ui/health/HitIndicatorFadeout.tres" id="2_o0sj2"]
-[ext_resource type="Texture2D" uid="uid://ok4gagvj38mb" path="res://ui/icons/White/arrow_1.png" id="3_do06f"]
+[ext_resource type="Texture2D" uid="uid://bvq2qgels66lx" path="res://ui/icons/White/arrow_1.png" id="3_do06f"]
 
 [node name="HitIndicator" type="Control"]
 layout_mode = 3
@@ -12,8 +12,10 @@ script = ExtResource("1_7gpui")
 [node name="TextureRect" type="TextureRect" parent="."]
 material = ExtResource("2_o0sj2")
 layout_mode = 0
-offset_right = 32.0
-offset_bottom = 32.0
+offset_right = 64.0
+offset_bottom = 64.0
+rotation = 3.14159
+pivot_offset = Vector2(32, 32)
 texture = ExtResource("3_do06f")
 
 [node name="LifeTimer" type="Timer" parent="."]
