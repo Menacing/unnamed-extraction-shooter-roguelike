@@ -12,6 +12,7 @@ var internal_inventory_id:int
 ## string id of the item. Must match the id in the corresponding ItemInformation resources
 @export var item_type_id:String
 @export var world_collider_path:NodePath
+@export var longest_side_size:float = 1.0
 var _world_collider:CollisionShape3D
 var world_collider:CollisionShape3D:
 	get:

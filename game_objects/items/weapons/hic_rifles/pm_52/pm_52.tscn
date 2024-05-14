@@ -32,15 +32,17 @@ _data = {
 "fire": SubResource("Animation_048m7")
 }
 
-[node name="PM52" type="RigidBody3D"]
+[node name="PM52" type="RigidBody3D" node_paths=PackedStringArray("gun_model_node")]
 disable_mode = 1
 collision_layer = 5
 collision_mask = 5
 script = ExtResource("1_xmoyr")
+gun_model_node = NodePath("gun/Node_15")
 _bullet_scene = ExtResource("2_5qbyx")
 _gun_stats = ExtResource("3_5vh7j")
 item_type_id = "pm-52"
 world_collider_path = NodePath("CollisionShape3D")
+longest_side_size = 0.9
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0.115114, 0.0719389)
