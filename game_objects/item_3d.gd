@@ -13,6 +13,7 @@ var internal_inventory_id:int
 @export var item_type_id:String
 @export var world_collider_path:NodePath
 @export var longest_side_size:float = 1.0
+@export var model_node:Node3D
 var _world_collider:CollisionShape3D
 var world_collider:CollisionShape3D:
 	get:
@@ -81,3 +82,6 @@ func _on_item_picked_up(result:InventoryInsertResult) -> void:
 			
 func _on_item_removed_from_slot(_item_inst:ItemInstance, _inventory_id:int, _slot_name:String) -> void:
 	pass
+
+func copy_model() -> Node3D:
+	return model_node.duplicate()

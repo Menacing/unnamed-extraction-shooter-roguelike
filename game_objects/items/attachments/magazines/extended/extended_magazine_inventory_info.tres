@@ -1,6 +1,7 @@
-[gd_resource type="Resource" script_class="ItemInformation" load_steps=6 format=3 uid="uid://yj4rydxs1mju"]
+[gd_resource type="Resource" script_class="ItemInformation" load_steps=7 format=3 uid="uid://yj4rydxs1mju"]
 
 [ext_resource type="Resource" uid="uid://o6tesi76nbth" path="res://ui/inventory/drop_item_context_item.tres" id="1_2bpe8"]
+[ext_resource type="PackedScene" uid="uid://son7demex4pt" path="res://ui/inventory/simple_detail_popup.tscn" id="2_3phe3"]
 [ext_resource type="Texture2D" uid="uid://bele1v7271p2h" path="res://game_objects/items/attachments/magazines/extended/extended_magazine_icon.png" id="2_nuvj6"]
 [ext_resource type="Texture2D" uid="uid://cpxjmt1tk1bru" path="res://game_objects/items/attachments/magazines/extended/extended_magazine_icon_r.png" id="3_4e1iv"]
 [ext_resource type="PackedScene" uid="uid://cn3ywqty7xvvr" path="res://ui/inventory/item_control.tscn" id="4_5t3ws"]
@@ -15,6 +16,7 @@ display_name = "Ext. Mag"
 item_type = 6
 icon = ExtResource("2_nuvj6")
 icon_r = ExtResource("3_4e1iv")
+detail_scene = ExtResource("2_3phe3")
 context_menu_items = Array[Resource("res://ui/inventory/item_context_item.gd")]([ExtResource("1_2bpe8")])
 max_stacks = 1
 has_stacks = false

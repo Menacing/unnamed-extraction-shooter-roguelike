@@ -7,13 +7,14 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_ph7ph"]
 size = Vector3(0.0214996, 0.245056, 0.115063)
 
-[node name="ExtendedMagazine" type="RigidBody3D"]
+[node name="ExtendedMagazine" type="RigidBody3D" node_paths=PackedStringArray("model_node")]
 collision_layer = 5
 collision_mask = 5
 script = ExtResource("1_bllv3")
 magazine_size_modifiers = Array[Resource("res://game_logic/stat_modifier.gd")]([ExtResource("2_l1qxh")])
 item_type_id = "extended_magazine"
 world_collider_path = NodePath("CollisionShape3D")
+model_node = NodePath("extended_magazine")
 
 [node name="extended_magazine" parent="." instance=ExtResource("2_ahmcv")]
 

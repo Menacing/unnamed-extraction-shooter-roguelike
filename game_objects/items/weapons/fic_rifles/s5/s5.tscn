@@ -31,7 +31,7 @@ _data = {
 "fire": SubResource("Animation_hu2i7")
 }
 
-[node name="S5" type="RigidBody3D"]
+[node name="S5" type="RigidBody3D" node_paths=PackedStringArray("model_node")]
 disable_mode = 1
 collision_layer = 5
 collision_mask = 5
@@ -45,6 +45,7 @@ _gun_stats = ExtResource("3_x74o3")
 current_ammo_subtype = ExtResource("4_3mr2u")
 item_type_id = "s5"
 world_collider_path = NodePath("CollisionShape3D")
+model_node = NodePath("s5")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -0.00137329, -0.064, -0.054)

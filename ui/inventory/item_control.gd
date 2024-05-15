@@ -2,7 +2,6 @@ extends MarginContainer
 class_name ItemControl
 
 var stack_splitter_popup_scene = preload("res://ui/inventory/stack_splitter.tscn")
-var item_detail_popup_scene = preload("res://ui/inventory/gun_detail_popup.tscn")
 
 var item_instance_id:int
 func get_item_instance() -> ItemInstance:
@@ -240,7 +239,7 @@ func _on_context_menus_split_stack(item_inst:ItemInstance, _cursor_pos:Vector2):
 		
 func _on_context_menus_open_item_detail(item_inst:ItemInstance, _cursor_pos:Vector2):
 	if item_inst and item_inst.get_instance_id() == item_instance_id:
-		var item_detail_popup:ItemDetailPopup = item_detail_popup_scene.instantiate()
+		var item_detail_popup:ItemDetailPopup = item_inst.get_detail_scene().instantiate()
 		item_detail_popup.item_instance_id = item_instance_id
 		var internal_inventory = item_inst.get_item_inventory()
 		if (internal_inventory):

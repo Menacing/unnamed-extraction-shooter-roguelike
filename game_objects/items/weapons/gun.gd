@@ -87,9 +87,6 @@ func get_max_magazine_size() -> int:
 
 @onready var current_magazine_size: int = get_max_magazine_size()
 
-func copy_gun_model() -> Node3D:
-	return Node3D.new()
-
 func get_gun_stats() -> GunStats:
 	return _gun_stats
 

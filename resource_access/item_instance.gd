@@ -118,3 +118,6 @@ func _spawn_item_control() -> ItemControl:
 
 func get_item_inventory() -> Inventory:
 	return _item_info.item_internal_inventory
+	
+func get_detail_scene() -> PackedScene:
+	return _item_info.detail_scene

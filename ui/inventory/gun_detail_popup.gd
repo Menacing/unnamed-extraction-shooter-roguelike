@@ -90,7 +90,7 @@ func setup_gun_model(gun:Gun):
 	for child in item_model_anchor.get_children():
 		child.queue_free()
 		
-	var model := gun.copy_gun_model()
+	var model = gun.copy_model()
 	
 	Helpers.apply_material_overlay_to_children(model, item_outline_material)
 	Helpers.force_parent(model, item_model_anchor)
