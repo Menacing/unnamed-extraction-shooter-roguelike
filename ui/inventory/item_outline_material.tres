@@ -1,0 +1,9 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://buea3slsi1k1c"]
+
+[ext_resource type="Shader" path="res://ui/inventory/item_outline_shader.gdshader" id="1_f2k38"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_f2k38")
+shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/outline_width = 1.0

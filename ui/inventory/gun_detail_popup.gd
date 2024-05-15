@@ -13,7 +13,9 @@ class_name GunDetailPopup
 @onready var slots_box:Control = $VBoxContainer/ModificationSlotVBoxContainer
 @onready var item_model_anchor:Node3D = $VBoxContainer/HBoxContainer/MarginContainer/SubViewportContainer/SubViewport/ItemModelAnchor
 @onready var viewport_camera:Camera3D = $VBoxContainer/HBoxContainer/MarginContainer/SubViewportContainer/SubViewport/Camera3D
-@onready var item_description_label:Label = $VBoxContainer/ScrollContainer/Label
+@onready var item_description_label:RichTextLabel = %DescriptionLabel
+
+@export var item_outline_material:Material = load("res://ui/inventory/item_outline_material.tres")
 
 var _weapon_modification_container:InventoryControlBase
 var weapon_modification_container:InventoryControlBase:
@@ -50,7 +52,7 @@ func set_internal_inventory(internal_inventory:Inventory):
 
 func _input(event:InputEvent):
 	if event.is_action_pressed("ui_cancel"):
-		accept_event()
+		#accept_event()
 		_close_self()
 
 func _on_done_button_pressed():
@@ -70,13 +72,29 @@ func map_gun_stats(gun:Gun):
 	turn_speed_label.text = str(gun_stats.turn_speed)
 
 func map_gun_description(gun:Gun):
-	item_description_label.text = gun.get_item_instance().get_item_tooltip_text()
-	
+	var item_inst = gun.get_item_instance()
+	var constructed_description_string:String = ""
+	constructed_description_string += item_inst.get_item_description_text().to_upper()
+	constructed_description_string += "\n\n"
+	constructed_description_string += "[i]"
+	constructed_description_string += item_inst.get_item_flavor_text().to_upper()
+	constructed_description_string += "[/i]"
+	item_description_label.text = constructed_description_string
+
 func map_item_name(gun:Gun):
 	item_name_label.text = gun.get_item_instance().get_display_name()
+	title = gun.get_item_instance().get_display_name()
 	
 func setup_gun_model(gun:Gun):
-	Helpers.force_parent(gun.copy_gun_model(), item_model_anchor)
+	#clear any existing children
+	for child in item_model_anchor.get_children():
+		child.queue_free()
+		
+	var model = gun.copy_model()
+	
+	Helpers.apply_material_overlay_to_children(model, item_outline_material)
+	Helpers.force_parent(model, item_model_anchor)
+	
 	adjust_camera_to_fit()
 	
 func setup_mod_slots(gun:Gun):
@@ -114,9 +132,7 @@ func adjust_camera_to_fit():
 	if item_model_anchor.get_child_count() == 0:
 		return
 
-	# Calculate the AABB (Axis-Aligned Bounding Box) of the entire model container.
-	var aabb:AABB = Helpers.get_aabb_of_node(item_model_anchor)
-	var largest_axis:float = aabb.get_longest_axis_size()
+	var largest_axis = gun_3d.longest_side_size
 	viewport_camera.size = largest_axis * 1.1
 	
 var armor_icon = preload("res://themes/ArmorSlotIcon-1.png.png")

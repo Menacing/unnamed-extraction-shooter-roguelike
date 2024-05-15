@@ -10,7 +10,7 @@ class_name ItemInformation
 @export var icon:Texture
 @export var icon_r:Texture
 @export var item_internal_inventory:Inventory
-@export var detail_scene:PackedScene
+@export var detail_scene:PackedScene = load("res://ui/inventory/simple_detail_popup.tscn")
 @export var context_menu_items:Array[ItemContextItem]
 @export var max_stacks:int = 1
 @export var has_stacks:bool = false

@@ -76,6 +76,9 @@ func get_context_menu_items() -> Array[ItemContextItem]:
 func get_item_description_text() -> String:
 	return _item_info.description_text
 
+func get_item_flavor_text() -> String:
+	return _item_info.flavor_text
+
 ## after you call this you must add the instanced scenes to the scene tree
 func spawn_item() -> void:
 	if _item_info.has_stacks:
@@ -115,3 +118,6 @@ func _spawn_item_control() -> ItemControl:
 
 func get_item_inventory() -> Inventory:
 	return _item_info.item_internal_inventory
+	
+func get_detail_scene() -> PackedScene:
+	return _item_info.detail_scene

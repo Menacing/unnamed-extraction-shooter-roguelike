@@ -12,7 +12,6 @@ var rng: RandomNumberGenerator
 var reload_time:ModifiableStatFloat = ModifiableStatFloat.new(1.0)
 @onready var muzzle_flash_animation_player:AnimationPlayer = %MuzzleFlashAnimationPlayer
 
-@onready var gun_model_node = $gun/Node_15
 @onready var scope_mount_model = $gun/Node_15/scope_mount
 @onready var scope_anchor = $scope_anchor
 var scope:Scope
@@ -116,9 +115,6 @@ func make_opaque():
 		is_transparent = false
 	else:
 		pass
-
-func copy_gun_model() -> Node3D:
-	return gun_model_node.duplicate()
 
 func _on_item_picked_up(result:InventoryInsertResult):
 	if result.inventory_id == internal_inventory_id:

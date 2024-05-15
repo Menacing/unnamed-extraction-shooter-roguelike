@@ -5,10 +5,10 @@ var inventory_id:int
 @export var container_size:int
 @export var min_spawned:int
 @export var max_spawned:int
-@export var spawn_info:Array[LootInformation]
+@export var loot_spawn_mapping:LootSpawnMapping
 
-var model_shuffle_bag:Array[LootInformation] = []
-var current_shuffle_bag:Array[LootInformation] = []
+var model_shuffle_bag:Array[LootSpawnInformation] = []
+var current_shuffle_bag:Array[LootSpawnInformation] = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -18,31 +18,38 @@ func _ready():
 	call_deferred("spawn_loot")
 	EventBus.item_picked_up.connect(_on_item_picked_up)
 
-
 func spawn_loot():
+	add_to_group("loot_container")
+	
+	randomize()
 	var number_to_spawn = randi_range(min_spawned,max_spawned)
+	var aabb = Helpers.get_aabb_of_node(self)
+	var x_size = aabb.size.x
+	var z_size = aabb.size.z
+	
+	var spawned_locations:Array[Vector3] = []
+	var spawned_test_radii:Array[float] = []
 	
 	#generate shufflebags
-	for i in range(spawn_info.size()):
-		var info = spawn_info[i]
-		for j in range(info.spawn_weight):
-			model_shuffle_bag.append(info.duplicate())
+	for i in range(loot_spawn_mapping.spawn_weights.size()):
+		var weight:LootSpawnWeight = loot_spawn_mapping.spawn_weights[i]
+		for j in range(weight.weight):
+			model_shuffle_bag.append(weight.loot.duplicate())
 	
 	current_shuffle_bag = model_shuffle_bag.duplicate(true)
 	current_shuffle_bag.shuffle()
-			
-	
 	if InventoryManager.inventory_exists(inventory_id):
 		for i in range(number_to_spawn):
-			var info:LootInformation = get_spawn_info()
-			var item_instance = ItemInstance.new(info.item_information)
+			var lsi:LootSpawnInformation = get_spawn_info()
+			var item_info:ItemInformation = lsi.item_information
+			var item_instance = ItemInstance.new(item_info)
 			item_instance.spawn_item()
-			if info.max_stack > 0:
-				var stack:int = randi_range(info.min_stack, info.max_stack)
+			if item_info.max_stacks > 0:
+				var stack:int = randi_range(lsi.min_stack, lsi.max_stack)
 				item_instance.stacks = stack
 			EventBus.pickup_item.emit(item_instance, inventory_id)
 
-func get_spawn_info() -> LootInformation:
+func get_spawn_info() -> LootSpawnInformation:
 	if current_shuffle_bag.is_empty():
 		current_shuffle_bag = model_shuffle_bag.duplicate(true)
 		current_shuffle_bag.shuffle()

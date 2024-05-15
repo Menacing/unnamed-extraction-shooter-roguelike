@@ -2,7 +2,6 @@ extends MarginContainer
 class_name ItemControl
 
 var stack_splitter_popup_scene = preload("res://ui/inventory/stack_splitter.tscn")
-var item_detail_popup_scene = preload("res://ui/inventory/gun_detail_popup.tscn")
 
 var item_instance_id:int
 func get_item_instance() -> ItemInstance:
@@ -182,6 +181,8 @@ func _input(event:InputEvent):
 						force_drag(create_drag_data_data(), _create_drag_control())
 					
 			accept_event()
+			
+
 
 func _gui_input(event:InputEvent):
 	if self.is_visible_in_tree(): 
@@ -199,7 +200,10 @@ func _gui_input(event:InputEvent):
 		elif event.is_action_pressed("quick_item_transfer"):
 			accept_event()
 			EventBus.item_control_quick_transfer.emit(self)
-			
+		elif event is InputEventMouseButton:
+			if event.double_click:
+				print_stack()
+				_on_context_menus_open_item_detail(get_item_instance(), Vector2())
 		
 func openContextMenu(pos:Vector2):
 	var menu = PopupMenu.new()
@@ -235,14 +239,14 @@ func _on_context_menus_split_stack(item_inst:ItemInstance, _cursor_pos:Vector2):
 		
 func _on_context_menus_open_item_detail(item_inst:ItemInstance, _cursor_pos:Vector2):
 	if item_inst and item_inst.get_instance_id() == item_instance_id:
-		var item_detail_popup:ItemDetailPopup = item_detail_popup_scene.instantiate()
+		var item_detail_popup:ItemDetailPopup = item_inst.get_detail_scene().instantiate()
 		item_detail_popup.item_instance_id = item_instance_id
 		var internal_inventory = item_inst.get_item_inventory()
 		if (internal_inventory):
 			item_detail_popup.set_internal_inventory(internal_inventory)
 		self.get_parent().add_child(item_detail_popup)
-		item_detail_popup.top_level = true
-		item_detail_popup.z_index = 2
+		#item_detail_popup.top_level = true
+		#item_detail_popup.z_index = 2
 
 func _on_count_changed(new_count:int):
 	count.text = str(new_count)
