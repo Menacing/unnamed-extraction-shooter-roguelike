@@ -52,7 +52,7 @@ func set_internal_inventory(internal_inventory:Inventory):
 
 func _input(event:InputEvent):
 	if event.is_action_pressed("ui_cancel"):
-		accept_event()
+		#accept_event()
 		_close_self()
 
 func _on_done_button_pressed():
@@ -83,6 +83,7 @@ func map_gun_description(gun:Gun):
 
 func map_item_name(gun:Gun):
 	item_name_label.text = gun.get_item_instance().get_display_name()
+	title = gun.get_item_instance().get_display_name()
 	
 func setup_gun_model(gun:Gun):
 	#clear any existing children

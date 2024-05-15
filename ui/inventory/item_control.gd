@@ -183,9 +183,7 @@ func _input(event:InputEvent):
 					
 			accept_event()
 			
-	elif event is InputEventMouseButton:
-		if event.double_click:
-			_on_context_menus_open_item_detail(get_item_instance(), Vector2())
+
 
 func _gui_input(event:InputEvent):
 	if self.is_visible_in_tree(): 
@@ -203,7 +201,10 @@ func _gui_input(event:InputEvent):
 		elif event.is_action_pressed("quick_item_transfer"):
 			accept_event()
 			EventBus.item_control_quick_transfer.emit(self)
-			
+		elif event is InputEventMouseButton:
+			if event.double_click:
+				print_stack()
+				_on_context_menus_open_item_detail(get_item_instance(), Vector2())
 		
 func openContextMenu(pos:Vector2):
 	var menu = PopupMenu.new()
@@ -245,8 +246,8 @@ func _on_context_menus_open_item_detail(item_inst:ItemInstance, _cursor_pos:Vect
 		if (internal_inventory):
 			item_detail_popup.set_internal_inventory(internal_inventory)
 		self.get_parent().add_child(item_detail_popup)
-		item_detail_popup.top_level = true
-		item_detail_popup.z_index = 2
+		#item_detail_popup.top_level = true
+		#item_detail_popup.z_index = 2
 
 func _on_count_changed(new_count:int):
 	count.text = str(new_count)
