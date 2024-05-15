@@ -15,7 +15,7 @@ class_name GunDetailPopup
 @onready var viewport_camera:Camera3D = $VBoxContainer/HBoxContainer/MarginContainer/SubViewportContainer/SubViewport/Camera3D
 @onready var item_description_label:RichTextLabel = %DescriptionLabel
 
-@onready var item_outline_material:Material = load("res://ui/inventory/item_outline_material.tres")
+@export var item_outline_material:Material = load("res://ui/inventory/item_outline_material.tres")
 
 var _weapon_modification_container:InventoryControlBase
 var weapon_modification_container:InventoryControlBase:

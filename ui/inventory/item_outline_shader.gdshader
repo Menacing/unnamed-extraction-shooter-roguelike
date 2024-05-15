@@ -1,69 +1,22 @@
 shader_type spatial;
-render_mode cull_front, depth_prepass_alpha, depth_draw_opaque, unshaded;
-
-uniform vec4 outline_color : source_color = vec4(0.0, 0.0, 0.0, 1.0);
-uniform float distance_falloff : hint_range(0, 5) = 1;
-uniform float smoothing_cutoff : hint_range(0, 1) = 0.1;
-uniform float smoothing_max : hint_range(0, 1) = 0.1;
+render_mode cull_front, unshaded, skip_vertex_transform;
+uniform vec4 albedo : source_color;
+uniform float outline_width = 1.0;
 
 void vertex() {
-	// remember to rotate the quad 180d around Y
+	mat4 matrix_m = MODEL_MATRIX;
+	mat4 matrix_vp = PROJECTION_MATRIX * VIEW_MATRIX;
 	
-	// uncomment to use full screen
-	//POSITION = vec4(VERTEX, 1.0) * vec4(-1.0, -1.0, 1.0, 1.0);
-}
+	vec4 clip_position = matrix_vp * (matrix_m * vec4(VERTEX, 1.0));
+	vec3 clip_normal = mat3(matrix_vp) * (mat3(matrix_m) * NORMAL);
 
-float abs_diff(float depth_a, float depth_b){
-	return abs(abs(depth_a)-abs(depth_b));
-}
-
-float linear_depth(in sampler2D depth_texture, in vec2 screen_uv, in mat4 inv_projection_matrix){
-	// get raw depth, this is not a linear value in godot 4.0 vulkan rendering
-	float raw_depth = texture(depth_texture, screen_uv)[0];
-    
-	vec3 normalized_device_coordinates = vec3(screen_uv * 2.0 - 1.0, raw_depth);
+	vec2 screen_size = VIEWPORT_SIZE;
+	vec2 offset = normalize(clip_normal.xy) / screen_size.xy * outline_width * clip_position.w * 2.0;
+	clip_position.xy += offset;
 	
-	//convert NDC to view space via the inverse projection matrix
-    vec4 view_space = inv_projection_matrix * vec4(normalized_device_coordinates, 1.0);	
-    
-	//linearize the depth
-	view_space.xyz /= view_space.w;	
-	
-	// camera view points in the negative Z direction, so all depths are negative
-	// we invert the sign here to get positive depth values
-	return -view_space.z;
+	VERTEX = (INV_PROJECTION_MATRIX * clip_position).xyz;
 }
 
 void fragment() {
-	// set color to outline color for whole screen
-	// non-outline fragments will be set to transparent
-	ALBEDO = outline_color.rgb;
-	
-	float d = linear_depth(DEPTH_TEXTURE, SCREEN_UV, INV_PROJECTION_MATRIX);
-	
-	// calculate the offset size of a single pixel
-	vec2 screen_size = vec2(textureSize(SCREEN_TEXTURE, 1));
-	
-	vec2 pixel_size = (distance_falloff / d) / vec2(screen_size.x, screen_size.y);
-
-	float du = linear_depth(DEPTH_TEXTURE, SCREEN_UV+vec2(0.0, pixel_size.y), INV_PROJECTION_MATRIX);
-	float dd = linear_depth(DEPTH_TEXTURE, SCREEN_UV+vec2(0.0, -pixel_size.y), INV_PROJECTION_MATRIX);
-	float dr = linear_depth(DEPTH_TEXTURE, SCREEN_UV+vec2(pixel_size.x, 0.0), INV_PROJECTION_MATRIX);
-	float dl = linear_depth(DEPTH_TEXTURE, SCREEN_UV+vec2(-pixel_size.x, 0.0), INV_PROJECTION_MATRIX);
-
-	// combine all the abs differences in depth of neighbors
-	ALPHA = 
-		abs_diff(d, du) +
-		abs_diff(d, dl) +
-		abs_diff(d, dd) +
-		abs_diff(d, dr) 
-	;
-	
-	ALPHA = smoothstep(smoothing_cutoff, max(smoothing_cutoff, smoothing_max), ALPHA);
-	
-	// apply the alpha from the outline color as well
-	ALPHA *= outline_color.a;
-	
-	// clamp the outline color to remove artifacts
-	ALPHA = clamp(ALPHA, 0.0, 1.0);
+	ALBEDO = albedo.rgb;
 }

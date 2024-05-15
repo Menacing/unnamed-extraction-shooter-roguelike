@@ -1,7 +1,7 @@
 [gd_scene load_steps=11 format=3 uid="uid://0hy4cl1x7qwx"]
 
 [ext_resource type="Script" path="res://ui/inventory/gun_detail_popup.gd" id="1_kgmg4"]
-[ext_resource type="PackedScene" uid="uid://pm3nps6dkjt8" path="res://game_objects/items/weapons/hic_rifles/pm_52/pm_52.blend" id="2_xufbg"]
+[ext_resource type="Material" uid="uid://buea3slsi1k1c" path="res://ui/inventory/item_outline_material.tres" id="2_msv72"]
 [ext_resource type="Shader" path="res://ui/inventory/item_detail_popup.gdshader" id="3_5b770"]
 [ext_resource type="Script" path="res://ui/inventory/inventory_control_base.gd" id="3_x8c03"]
 
@@ -11,6 +11,7 @@
 sky_material = SubResource("ProceduralSkyMaterial_vk3ro")
 
 [sub_resource type="Environment" id="Environment_114pw"]
+background_mode = 1
 sky = SubResource("Sky_2itlb")
 ambient_light_source = 2
 ambient_light_color = Color(1, 1, 1, 1)
@@ -43,6 +44,7 @@ offset_bottom = 350.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_kgmg4")
+item_outline_material = ExtResource("2_msv72")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 2
@@ -77,21 +79,17 @@ stretch = true
 [node name="SubViewport" type="SubViewport" parent="VBoxContainer/HBoxContainer/MarginContainer/SubViewportContainer"]
 world_3d = SubResource("World3D_u4sok")
 handle_input_locally = false
-size = Vector2i(492, 300)
+size = Vector2i(494, 300)
 render_target_clear_mode = 2
 render_target_update_mode = 4
 
 [node name="ItemModelAnchor" type="Node3D" parent="VBoxContainer/HBoxContainer/MarginContainer/SubViewportContainer/SubViewport"]
-
-[node name="pm_52" parent="VBoxContainer/HBoxContainer/MarginContainer/SubViewportContainer/SubViewport/ItemModelAnchor" instance=ExtResource("2_xufbg")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.368843, 0)
 
 [node name="Camera3D" type="Camera3D" parent="VBoxContainer/HBoxContainer/MarginContainer/SubViewportContainer/SubViewport"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10)
 projection = 1
 
 [node name="ColorRect" type="ColorRect" parent="VBoxContainer/HBoxContainer/MarginContainer"]
-visible = false
 material = SubResource("ShaderMaterial_g2wy8")
 layout_mode = 2
 
@@ -231,5 +229,3 @@ In eget nunc iaculis, ultrices quam vitae, tincidunt turpis. Phasellus eget arcu
 "
 
 [connection signal="pressed" from="VBoxContainer/TitleHBoxContainer/DoneButton" to="." method="_on_done_button_pressed"]
-
-[editable path="VBoxContainer/HBoxContainer/MarginContainer/SubViewportContainer/SubViewport/ItemModelAnchor/pm_52"]
