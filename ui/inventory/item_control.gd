@@ -182,6 +182,10 @@ func _input(event:InputEvent):
 						force_drag(create_drag_data_data(), _create_drag_control())
 					
 			accept_event()
+			
+	elif event is InputEventMouseButton:
+		if event.double_click:
+			_on_context_menus_open_item_detail(get_item_instance(), Vector2())
 
 func _gui_input(event:InputEvent):
 	if self.is_visible_in_tree(): 
