@@ -80,6 +80,7 @@ collision_mask = 5
 script = ExtResource("1_4e1c2")
 item_type_id = "red_dot"
 world_collider_path = NodePath("CollisionShape3D")
+longest_side_size = 0.1
 model_node = NodePath("red_dot_model")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]

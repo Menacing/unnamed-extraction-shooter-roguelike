@@ -14,6 +14,7 @@ script = ExtResource("1_1vwom")
 backpack_size = 3
 item_type_id = "large_backpack_1"
 world_collider_path = NodePath("CollisionShape3D")
+longest_side_size = 1.1
 model_node = NodePath("large_backpack_1")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]

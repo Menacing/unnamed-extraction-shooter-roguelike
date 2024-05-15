@@ -12,6 +12,7 @@ collision_mask = 5
 script = ExtResource("1_oxvb5")
 item_type_id = "polymer_pile_small"
 world_collider_path = NodePath("CollisionShape3D")
+longest_side_size = 0.4
 model_node = NodePath("polymer_pile")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]

@@ -14,6 +14,7 @@ script = ExtResource("1_bllv3")
 magazine_size_modifiers = Array[Resource("res://game_logic/stat_modifier.gd")]([ExtResource("2_l1qxh")])
 item_type_id = "extended_magazine"
 world_collider_path = NodePath("CollisionShape3D")
+longest_side_size = 0.3
 model_node = NodePath("extended_magazine")
 
 [node name="extended_magazine" parent="." instance=ExtResource("2_ahmcv")]

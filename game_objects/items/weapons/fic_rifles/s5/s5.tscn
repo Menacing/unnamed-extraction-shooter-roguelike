@@ -45,6 +45,7 @@ _gun_stats = ExtResource("3_x74o3")
 current_ammo_subtype = ExtResource("4_3mr2u")
 item_type_id = "s5"
 world_collider_path = NodePath("CollisionShape3D")
+longest_side_size = 0.9
 model_node = NodePath("s5")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]

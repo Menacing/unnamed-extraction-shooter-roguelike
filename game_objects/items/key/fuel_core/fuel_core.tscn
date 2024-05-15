@@ -13,6 +13,7 @@ mass = 20.0
 script = ExtResource("1_wmsin")
 item_type_id = "fuel_core"
 world_collider_path = NodePath("CollisionShape3D")
+longest_side_size = 1.2
 model_node = NodePath("fuel_core")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]

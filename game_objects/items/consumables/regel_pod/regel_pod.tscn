@@ -12,6 +12,7 @@ collision_mask = 5
 script = ExtResource("1_pfdoj")
 item_type_id = "regel_pod"
 world_collider_path = NodePath("CollisionShape3D")
+longest_side_size = 0.15
 model_node = NodePath("regel_pod")
 
 [node name="regel_pod" parent="." instance=ExtResource("1_w1sce")]
