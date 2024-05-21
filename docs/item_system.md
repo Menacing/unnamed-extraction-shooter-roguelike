@@ -5,7 +5,7 @@ an **Item3D**. The game should mostly interact with this system through the **Ev
 
 ## Class Diagram
 
-```Mermaid
+```mermaid
 graph TB
     Game-->InventoryManager;
     InventoryManager-->ItemAccess;
