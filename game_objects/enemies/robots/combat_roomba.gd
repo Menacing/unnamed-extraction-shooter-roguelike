@@ -131,6 +131,11 @@ func _on_hit(damage, pen_rating, col:CollisionInformation, hit_origin:Vector3) -
 	
 	return pen_ratio
 
+func has_attack_target() -> bool:
+	if player and can_react:
+		return true
+	else:
+		return false
 
 func _on_detect_radius_body_entered(body):
 	if body is Player:

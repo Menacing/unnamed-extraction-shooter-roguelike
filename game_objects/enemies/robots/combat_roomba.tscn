@@ -5,26 +5,18 @@
 [ext_resource type="PackedScene" uid="uid://o7vvmqxsny5t" path="res://game_objects/enemies/robots/combat-roomba.glb" id="3_wwy82"]
 [ext_resource type="PackedScene" uid="uid://5n7aup1d2u20" path="res://game_objects/effects/bullet_hit_sparks.tscn" id="3_x3mdn"]
 [ext_resource type="Script" path="res://game_objects/containers/world_container.gd" id="5_grn4r"]
-[ext_resource type="Resource" uid="uid://xufa6auvjw6t" path="res://game_objects/items/weapons/hic_rifles/pm_52/pm_52_inventory_info.tres" id="6_654bm"]
-[ext_resource type="Script" path="res://game_objects/items/LootInformation.gd" id="7_bspv3"]
 [ext_resource type="PackedScene" uid="uid://douyxwjscs4ff" path="res://ui/inventory/world_inventory.tscn" id="7_gxy1y"]
 [ext_resource type="Script" path="res://resource_access/Inventory.gd" id="9_8s6q1"]
+[ext_resource type="Script" path="res://addons/beehave/nodes/composites/selector_reactive.gd" id="10_a320u"]
 [ext_resource type="Script" path="res://addons/beehave/nodes/beehave_tree.gd" id="10_paqy6"]
 [ext_resource type="Script" path="res://addons/beehave/nodes/composites/sequence.gd" id="11_8f25v"]
 [ext_resource type="Script" path="res://addons/beehave/nodes/composites/selector.gd" id="11_cnswi"]
 [ext_resource type="Script" path="res://addons/beehave/nodes/decorators/inverter.gd" id="12_gh6k6"]
 [ext_resource type="Script" path="res://game_objects/enemies/robots/has_patrol_target_condition.gd" id="12_iylba"]
+[ext_resource type="Script" path="res://game_objects/enemies/robots/has_attack_target_condition_leaf.gd" id="12_kqsph"]
+[ext_resource type="Script" path="res://game_objects/enemies/robots/move_to_attack_target_action_leaf.gd" id="13_cm3vb"]
 [ext_resource type="Script" path="res://game_objects/enemies/robots/find_new_patrol_action.gd" id="15_tq83x"]
 [ext_resource type="Script" path="res://game_objects/enemies/robots/move_to_patrol_target_action_leaf.gd" id="16_7g5hi"]
-
-[sub_resource type="Resource" id="Resource_w58g1"]
-script = ExtResource("7_bspv3")
-name = "ak"
-spawn_weight = 1
-item_information = ExtResource("6_654bm")
-test_radius = 0.0
-min_stack = 0
-max_stack = 0
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_wvt7k"]
 size = Vector3(0.3, 2.1, 0.3)
@@ -77,7 +69,6 @@ bone_name = "Bone"
 script = ExtResource("5_grn4r")
 container_size = 21
 max_spawned = 1
-spawn_info = Array[ExtResource("7_bspv3")]([SubResource("Resource_w58g1")])
 
 [node name="Head" type="Node3D" parent="combat-roomba/Armature/Skeleton3D/Physical Bone Bone"]
 transform = Transform3D(-1, 0, 8.74228e-08, -8.74228e-08, 0, -1, 0, -1, 0, 0.0238471, 2.08478e-09, -1.87783)
@@ -133,11 +124,23 @@ one_shot = true
 
 [node name="BeehaveTree" type="Node" parent="." node_paths=PackedStringArray("blackboard", "actor")]
 script = ExtResource("10_paqy6")
-blackboard = NodePath("@Node@18173")
+blackboard = NodePath("@Node@18176")
 actor = NodePath("..")
 
 [node name="ActionSelector" type="Node" parent="BeehaveTree"]
 script = ExtResource("11_cnswi")
+
+[node name="AttackSelectorComposite" type="Node" parent="BeehaveTree/ActionSelector"]
+script = ExtResource("10_a320u")
+
+[node name="SequenceComposite" type="Node" parent="BeehaveTree/ActionSelector/AttackSelectorComposite"]
+script = ExtResource("11_8f25v")
+
+[node name="HasAttackTargetCondition" type="Node" parent="BeehaveTree/ActionSelector/AttackSelectorComposite/SequenceComposite"]
+script = ExtResource("12_kqsph")
+
+[node name="MoveToAttackTargetActionLeaf" type="Node" parent="BeehaveTree/ActionSelector/AttackSelectorComposite/SequenceComposite"]
+script = ExtResource("13_cm3vb")
 
 [node name="PatrolSelectorComposite" type="Node" parent="BeehaveTree/ActionSelector"]
 script = ExtResource("11_cnswi")
