@@ -10,10 +10,14 @@ graph TB
     Game-->InventoryManager;
     InventoryManager-->ItemAccess;
     InventoryManager-->InventoryAccess;
+    InventoryAccess-->Inventory;
     ItemAccess-->ItemInstance;
     ItemInstance-->ItemInformation;
-    ItemInstance-.->ItemControl;
-    ItemInstance-.->Item3D;
+    ItemInstance<-.->ItemControl;
+    ItemInstance<-.->Item3D;
+    ItemInstance-.->Inventory;
+    Item3D<-.->Game;
+    ItemControl-->ItemDetailPopup;
 ```
 
 ## Adding an Item
