@@ -4,6 +4,15 @@ class_name Enemy
 var fire_target:Node3D
 var move_target:Node3D
 @export var move_target_distance:float = 1.0
+@export var patrol_poi_group:String = "PatrolPOI"
+@export var nav_agent:NavigationAgent3D
+@export var weapon_rotation_speed:float = 2.0
+@export var body_rotation_speed:float = 1.0
+@export var move_speed:float = 3.0
+@export var head_node:Node3D
+@export var gun_node:Gun
+@export var vert_moa:float = 600
+@export var hor_moa:float = 600
 
 func has_fire_target() -> bool:
 	if fire_target:
@@ -18,4 +27,56 @@ func has_move_target() -> bool:
 		return false
 
 func is_near_move_target() -> bool:
+	if has_move_target():
+		var dis = Helpers.distance_between(self, move_target)
+		if dis <= move_target_distance:
+			return true
 	
+	return false
+
+func find_new_patrol_poi_move_target() -> bool:
+	var pois = get_tree().get_nodes_in_group(patrol_poi_group)
+	pois.shuffle()
+	
+	for poi in pois:
+		#if POI is not an Area3D, skip
+		if not poi is Area3D:
+			break
+		#If we don't currently have a target, take the first one
+		if !move_target:
+			move_target = poi
+			return true
+		#If the current target is the poi, skip it
+		if poi == move_target:
+			break
+		else:
+			move_target = poi
+			return true
+		#else take the poi
+	return false
+
+func set_new_path():
+	if move_target and nav_agent:
+		nav_agent.set_target_position(move_target.global_position)
+	
+func nav_agent_move():
+	if nav_agent.is_navigation_finished():
+		return
+	var current_location = global_transform.origin
+	var next_location = nav_agent.get_next_path_position()
+	var new_velocity = (next_location - current_location).normalized() * move_speed
+	
+	Helpers.slow_rotate_to_point_flat(self, next_location, body_rotation_speed, get_physics_process_delta_time())
+	
+	velocity = velocity.move_toward(new_velocity, .25)
+	move_and_slide()
+
+func slow_weapon_turn():
+	var delta = get_physics_process_delta_time()
+
+	Helpers.slow_rotate_to_point(head_node, fire_target.global_transform.origin, weapon_rotation_speed, delta)
+	Helpers.slow_rotate_to_point(gun_node, fire_target.global_transform.origin, weapon_rotation_speed, delta)
+
+func fire_weapon():
+	Helpers.random_angle_deviation_moa(gun_node,vert_moa,hor_moa)
+	gun_node.fireGun()

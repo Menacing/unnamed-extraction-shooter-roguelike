@@ -8,10 +8,9 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 var gun: Gun
 var hf_pos: Vector3
 @export var health:float = 100.0
-var run_speed = 3
 var accel = 3
 var turret_rotation:float = 2.0
-var body_rotation:float = 1.0
+
 var player:Player
 @onready var exclusions:Array[RID]
 var self_exclusions:Array[RID]
@@ -33,7 +32,6 @@ var reaction_timed_out:bool = false
 var can_react:bool:
 	get:
 		return last_los_check_result and reaction_timed_out
-@onready var nav_agent:NavigationAgent3D = $NavigationAgent3D
 @onready var repath_timer:Timer = $RepathTimer
 @onready var reaction_timer:Timer = $ReactionTimer
 @onready var skeleton:Skeleton3D = $"combat-roomba/Armature/Skeleton3D"
@@ -41,8 +39,7 @@ var can_react:bool:
 var alive = true
 var last_damage_normal:Vector3
 var last_damage:float
-@export var vert_moa:float = 600
-@export var hor_moa:float = 600
+
 
 
 # Called when the node enters the scene tree for the first time.
@@ -72,18 +69,8 @@ func _physics_process(delta):
 		if can_react:
 			Helpers.slow_rotate_to_point(head, player_aimpoint.global_transform.origin, turret_rotation, delta)
 			Helpers.slow_rotate_to_point(gun, player_aimpoint.global_transform.origin, turret_rotation, delta)
-			
-		
-		if nav_agent.is_navigation_finished():
-			return
-		var current_location = global_transform.origin
-		var next_location = nav_agent.get_next_path_position()
-		var new_velocity = (next_location - current_location).normalized() * run_speed
-		
-		Helpers.slow_rotate_to_point_flat(self, next_location, body_rotation, delta)
-		
-		velocity = velocity.move_toward(new_velocity, .25)
-		move_and_slide()
+
+
 
 
 func _on_fire_timer_timeout():
@@ -191,23 +178,4 @@ func is_in_target_patrol_poi() -> bool:
 		result = target_patrol_poi.overlaps_body(self)
 	return result
 
-func find_new_target_patrol_poi() -> bool:
-	var pois = get_tree().get_nodes_in_group("PatrolPOI")
-	pois.shuffle()
-	
-	for poi in pois:
-		#if POI is not an Area3D, skip
-		if not poi is Area3D:
-			break
-		#If we don't currently have a target, take the first one
-		if !target_patrol_poi:
-			target_patrol_poi = poi
-			return true
-		#If the current target is the poi, skip it
-		if poi == target_patrol_poi:
-			break
-		else:
-			target_patrol_poi = poi
-			return true
-		#else take the poi
-	return false
+

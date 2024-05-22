@@ -154,3 +154,8 @@ func set_material_overlay(meshes:Array[MeshInstance3D],mat:Material) -> void:
 func apply_material_overlay_to_children(target:Node, mat:Material) -> void:
 	var meshes:Array[MeshInstance3D] = Helpers.get_all_mesh_nodes(target)
 	set_material_overlay(meshes,mat)
+
+func distance_between(source:Node3D, target:Node3D) -> float:
+	var diff_vec:Vector3 = target.global_position - source.global_position
+	var distance = abs(diff_vec.length())
+	return distance

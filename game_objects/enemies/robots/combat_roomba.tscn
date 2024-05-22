@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://ciaqbr34myu5w"]
+[gd_scene load_steps=27 format=3 uid="uid://ciaqbr34myu5w"]
 
 [ext_resource type="Script" path="res://game_objects/enemies/robots/combat_roomba.gd" id="1_f1cah"]
 [ext_resource type="PackedScene" uid="uid://dr48wela8mtxd" path="res://game_objects/items/weapons/hic_rifles/pm_52/pm_52.tscn" id="2_q4rc2"]
@@ -11,12 +11,15 @@
 [ext_resource type="Script" path="res://addons/beehave/nodes/composites/sequence.gd" id="11_8f25v"]
 [ext_resource type="Script" path="res://addons/beehave/nodes/composites/selector.gd" id="11_cnswi"]
 [ext_resource type="Script" path="res://addons/beehave/nodes/decorators/inverter.gd" id="12_gh6k6"]
-[ext_resource type="Script" path="res://game_objects/enemies/robots/has_fire_target_condition_leaf.gd" id="12_yjt3r"]
-[ext_resource type="Script" path="res://addons/beehave/nodes/leaves/condition.gd" id="13_1apid"]
-[ext_resource type="Script" path="res://game_objects/enemies/robots/has_move_target_condition_leaf.gd" id="13_77km8"]
+[ext_resource type="Script" path="res://game_objects/enemies/common_beehave_nodes/has_fire_target_condition_leaf.gd" id="12_mpdg6"]
+[ext_resource type="Script" path="res://game_objects/enemies/common_beehave_nodes/has_move_target_condition_leaf.gd" id="13_s0vm5"]
+[ext_resource type="Script" path="res://game_objects/enemies/common_beehave_nodes/near_move_target_condition_leaf.gd" id="14_tigcg"]
 [ext_resource type="Script" path="res://addons/beehave/nodes/decorators/cooldown.gd" id="15_63yph"]
-[ext_resource type="Script" path="res://game_objects/enemies/robots/find_new_patrol_action.gd" id="15_tq83x"]
-[ext_resource type="Script" path="res://addons/beehave/nodes/leaves/action.gd" id="16_h8bs1"]
+[ext_resource type="Script" path="res://game_objects/enemies/common_beehave_nodes/find_new_patrol_action.gd" id="15_l2db4"]
+[ext_resource type="Script" path="res://game_objects/enemies/common_beehave_nodes/repath_action_leaf.gd" id="17_yk2by"]
+[ext_resource type="Script" path="res://game_objects/enemies/common_beehave_nodes/nav_agent_move_action_leaf.gd" id="18_8wue0"]
+[ext_resource type="Script" path="res://game_objects/enemies/common_beehave_nodes/slow_weapon_turn_action_leaf.gd" id="19_1ga33"]
+[ext_resource type="Script" path="res://game_objects/enemies/common_beehave_nodes/fire_action_leaf.gd" id="20_n78x4"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_wvt7k"]
 size = Vector3(0.3, 2.1, 0.3)
@@ -42,14 +45,23 @@ radius = 0.160629
 [sub_resource type="BoxShape3D" id="BoxShape3D_hycai"]
 size = Vector3(0.0996854, 0.507972, 0.102156)
 
-[node name="combat_roomba" type="CharacterBody3D"]
+[node name="combat_roomba" type="CharacterBody3D" node_paths=PackedStringArray("nav_agent")]
 transform = Transform3D(1.00409, 0, 0, 0, 1.00409, 0, 0, 0, 1.00409, 0, 0, 0)
 collision_layer = 3
 script = ExtResource("1_f1cah")
 gun_scene = ExtResource("2_q4rc2")
 hit_effect = ExtResource("3_x3mdn")
+health = null
 vert_moa = 60.0
 hor_moa = 60.0
+pen_ratio = null
+damage_multiplier = null
+move_target_distance = null
+patrol_poi_group = null
+nav_agent = NodePath("NavigationAgent3D")
+weapon_rotation_speed = null
+body_rotation_speed = null
+move_speed = null
 
 [node name="combat-roomba" parent="." instance=ExtResource("3_wwy82")]
 transform = Transform3D(0.35, 0, 0, 0, 0.35, 0, 0, 0, 0.35, 0, 0, 0)
@@ -124,7 +136,7 @@ one_shot = true
 
 [node name="BeehaveTree" type="Node" parent="." node_paths=PackedStringArray("blackboard", "actor")]
 script = ExtResource("10_paqy6")
-blackboard = NodePath("@Node@19043")
+blackboard = NodePath("@Node@38879")
 actor = NodePath("..")
 
 [node name="MainSequenceComposite" type="Node" parent="BeehaveTree"]
@@ -140,7 +152,7 @@ script = ExtResource("11_8f25v")
 script = ExtResource("12_gh6k6")
 
 [node name="HasFireTargetConditionLeaf" type="Node" parent="BeehaveTree/MainSequenceComposite/ActionSelector/PatrolSequenceComposite/NotHasFireTargetConditionLeaf"]
-script = ExtResource("12_yjt3r")
+script = ExtResource("12_mpdg6")
 
 [node name="NeedNewMoveTargetSelector" type="Node" parent="BeehaveTree/MainSequenceComposite/ActionSelector/PatrolSequenceComposite"]
 script = ExtResource("11_cnswi")
@@ -149,44 +161,45 @@ script = ExtResource("11_cnswi")
 script = ExtResource("12_gh6k6")
 
 [node name="HasMoveTarget" type="Node" parent="BeehaveTree/MainSequenceComposite/ActionSelector/PatrolSequenceComposite/NeedNewMoveTargetSelector/NotHasMoveTarget"]
-script = ExtResource("13_77km8")
+script = ExtResource("13_s0vm5")
 
 [node name="NearMoveTargetConditionLeaf" type="Node" parent="BeehaveTree/MainSequenceComposite/ActionSelector/PatrolSequenceComposite/NeedNewMoveTargetSelector"]
-script = ExtResource("13_1apid")
+script = ExtResource("14_tigcg")
 
 [node name="FindNewPatrolTargetAction" type="Node" parent="BeehaveTree/MainSequenceComposite/ActionSelector/PatrolSequenceComposite"]
-script = ExtResource("15_tq83x")
+script = ExtResource("15_l2db4")
 
 [node name="RepathCooldown" type="Node" parent="BeehaveTree/MainSequenceComposite"]
 script = ExtResource("15_63yph")
 wait_time = 2.0
 
 [node name="RepathActionLeaf" type="Node" parent="BeehaveTree/MainSequenceComposite/RepathCooldown"]
-script = ExtResource("16_h8bs1")
+script = ExtResource("17_yk2by")
 
 [node name="MoveSequenceComposite" type="Node" parent="BeehaveTree/MainSequenceComposite"]
 script = ExtResource("11_8f25v")
 
 [node name="HasMoveTargetConditionLeaf" type="Node" parent="BeehaveTree/MainSequenceComposite/MoveSequenceComposite"]
-script = ExtResource("13_1apid")
+script = ExtResource("13_s0vm5")
 
-[node name="SlowTurnActionLeaf" type="Node" parent="BeehaveTree/MainSequenceComposite/MoveSequenceComposite"]
-script = ExtResource("16_h8bs1")
+[node name="NavAgentMoveActionLeaf" type="Node" parent="BeehaveTree/MainSequenceComposite/MoveSequenceComposite"]
+script = ExtResource("18_8wue0")
 
-[node name="MoveActionLeaf" type="Node" parent="BeehaveTree/MainSequenceComposite/MoveSequenceComposite"]
-script = ExtResource("16_h8bs1")
-
-[node name="FireCooldown" type="Node" parent="BeehaveTree/MainSequenceComposite"]
-script = ExtResource("15_63yph")
-
-[node name="FireSequenceComposite" type="Node" parent="BeehaveTree/MainSequenceComposite/FireCooldown"]
+[node name="FireSequenceComposite" type="Node" parent="BeehaveTree/MainSequenceComposite"]
 script = ExtResource("11_8f25v")
 
-[node name="HasFireTargetConditionLeaf" type="Node" parent="BeehaveTree/MainSequenceComposite/FireCooldown/FireSequenceComposite"]
-script = ExtResource("13_1apid")
+[node name="HasFireTargetConditionLeaf" type="Node" parent="BeehaveTree/MainSequenceComposite/FireSequenceComposite"]
+script = ExtResource("12_mpdg6")
 
-[node name="FireActionLeaf" type="Node" parent="BeehaveTree/MainSequenceComposite/FireCooldown/FireSequenceComposite"]
-script = ExtResource("16_h8bs1")
+[node name="SlowWeaponTurnActionLeaf" type="Node" parent="BeehaveTree/MainSequenceComposite/FireSequenceComposite"]
+script = ExtResource("19_1ga33")
+
+[node name="FireCooldown" type="Node" parent="BeehaveTree/MainSequenceComposite/FireSequenceComposite"]
+script = ExtResource("15_63yph")
+wait_time = 0.5
+
+[node name="FireActionLeaf" type="Node" parent="BeehaveTree/MainSequenceComposite/FireSequenceComposite/FireCooldown"]
+script = ExtResource("20_n78x4")
 
 [connection signal="timeout" from="FireTimer" to="." method="_on_fire_timer_timeout"]
 [connection signal="body_entered" from="DetectRadius" to="." method="_on_detect_radius_body_entered"]
