@@ -1,14 +1,12 @@
 # unnamed-extraction-shooter-roguelike
-## Required External Tools
+## Required Tools
+* Godot 4.2.2
 * Blender 4.0 or later
 * Trenchbroom
-* .NET SDK 8.0 or later
 
 ## Developer Setup Instructions
 1) Install Blender 4.0 or later
-2) Install Godot 4.3 Mono
-
-    1) Make sure you have the .NET SDK 8 installed as well
+2) Install Godot 4.2.2
 3) Install Trenchbroom
     1) If Windows, install [Microsoft Visual C++ Redistributable for Visual Studio 2015, 2017 and 2019](https://aka.ms/vs/16/release/vc_redist.x64.exe)
 4) Change Trenchbroom game path
@@ -22,5 +20,6 @@
 8) Make sure all plugins are enabled
     1) Project->Project Settings
     2) Check all Enabled checkboxes
-9) Build the project
-    1) Hit Alt+B or click the tiny hammer in the top right
+  
+## Further reading
+Check out the [docs](/docs/README.md) folder for more general information about how things work
