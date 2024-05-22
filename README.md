@@ -19,3 +19,6 @@
 8) Make sure all plugins are enabled
     1) Project->Project Settings
     2) Check all Enabled checkboxes
+  
+## Further reading
+Check out the [docs](/docs/README.md) folder for more general information about how things work
