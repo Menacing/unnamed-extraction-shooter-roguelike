@@ -1,6 +1,6 @@
 # unnamed-extraction-shooter-roguelike
 ## Required Tools
-* Godot 4.2.2
+* [Godot 4.2.2](https://godotengine.org/download/archive/4.2.2-stable/)
 * Blender 4.0 or later
 * Trenchbroom
 
