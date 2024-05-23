@@ -1,4 +1,5 @@
 extends PhysicsBody3D
+class_name BulletProjRay
 
 @export var initial_speed = 700.0
 @export var initial_damage = 30.0
@@ -6,6 +7,7 @@ extends PhysicsBody3D
 @export var k: float = 0.001289
 @export var moa:float
 var shot_origin:Vector3
+var firer:Node3D
 
 var current_speed: float
 var current_damage: float

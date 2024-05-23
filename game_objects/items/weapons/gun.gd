@@ -4,6 +4,8 @@ class_name Gun
 signal fired
 signal reloaded
 
+var firer:Node3D
+
 @warning_ignore("unused_private_class_variable")
 @export var _bullet_scene : PackedScene
 @export var ads_lean_factor:float = 1.0

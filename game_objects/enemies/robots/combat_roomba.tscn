@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://ciaqbr34myu5w"]
+[gd_scene load_steps=35 format=3 uid="uid://ciaqbr34myu5w"]
 
 [ext_resource type="Script" path="res://game_objects/enemies/robots/combat_roomba.gd" id="1_f1cah"]
 [ext_resource type="PackedScene" uid="uid://dr48wela8mtxd" path="res://game_objects/items/weapons/hic_rifles/pm_52/pm_52.tscn" id="2_q4rc2"]
@@ -7,19 +7,27 @@
 [ext_resource type="Script" path="res://game_objects/containers/world_container.gd" id="5_grn4r"]
 [ext_resource type="PackedScene" uid="uid://douyxwjscs4ff" path="res://ui/inventory/world_inventory.tscn" id="7_gxy1y"]
 [ext_resource type="Script" path="res://resource_access/Inventory.gd" id="9_8s6q1"]
+[ext_resource type="Script" path="res://addons/beehave/nodes/composites/sequence_reactive.gd" id="10_k5jo1"]
 [ext_resource type="Script" path="res://addons/beehave/nodes/beehave_tree.gd" id="10_paqy6"]
 [ext_resource type="Script" path="res://addons/beehave/nodes/composites/sequence.gd" id="11_8f25v"]
 [ext_resource type="Script" path="res://addons/beehave/nodes/composites/selector.gd" id="11_cnswi"]
+[ext_resource type="Script" path="res://game_objects/enemies/common_beehave_nodes/has_target_player.gd" id="11_e1yra"]
+[ext_resource type="Script" path="res://game_objects/enemies/common_beehave_nodes/has_los_condition_leaf.gd" id="12_7jl8k"]
 [ext_resource type="Script" path="res://addons/beehave/nodes/decorators/inverter.gd" id="12_gh6k6"]
-[ext_resource type="Script" path="res://game_objects/enemies/common_beehave_nodes/has_fire_target_condition_leaf.gd" id="12_mpdg6"]
+[ext_resource type="Script" path="res://addons/beehave/nodes/composites/simple_parallel.gd" id="13_8qfdm"]
+[ext_resource type="Script" path="res://addons/beehave/nodes/leaves/action.gd" id="13_bh5f3"]
 [ext_resource type="Script" path="res://game_objects/enemies/common_beehave_nodes/has_move_target_condition_leaf.gd" id="13_s0vm5"]
-[ext_resource type="Script" path="res://game_objects/enemies/common_beehave_nodes/near_move_target_condition_leaf.gd" id="14_tigcg"]
+[ext_resource type="Script" path="res://addons/beehave/nodes/composites/selector_reactive.gd" id="14_j6piv"]
+[ext_resource type="Script" path="res://addons/beehave/nodes/composites/randomized_composite.gd" id="14_mua75"]
 [ext_resource type="Script" path="res://addons/beehave/nodes/decorators/cooldown.gd" id="15_63yph"]
 [ext_resource type="Script" path="res://game_objects/enemies/common_beehave_nodes/find_new_patrol_action.gd" id="15_l2db4"]
 [ext_resource type="Script" path="res://game_objects/enemies/common_beehave_nodes/repath_action_leaf.gd" id="17_yk2by"]
 [ext_resource type="Script" path="res://game_objects/enemies/common_beehave_nodes/nav_agent_move_action_leaf.gd" id="18_8wue0"]
 [ext_resource type="Script" path="res://game_objects/enemies/common_beehave_nodes/slow_weapon_turn_action_leaf.gd" id="19_1ga33"]
 [ext_resource type="Script" path="res://game_objects/enemies/common_beehave_nodes/fire_action_leaf.gd" id="20_n78x4"]
+[ext_resource type="Script" path="res://addons/beehave/nodes/decorators/delayer.gd" id="20_q3tps"]
+[ext_resource type="Script" path="res://addons/beehave/nodes/decorators/until_fail.gd" id="21_s25mv"]
+[ext_resource type="Script" path="res://addons/beehave/nodes/decorators/time_limiter.gd" id="22_ffqtv"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_wvt7k"]
 size = Vector3(0.3, 2.1, 0.3)
@@ -51,17 +59,9 @@ collision_layer = 3
 script = ExtResource("1_f1cah")
 gun_scene = ExtResource("2_q4rc2")
 hit_effect = ExtResource("3_x3mdn")
-health = null
+nav_agent = NodePath("NavigationAgent3D")
 vert_moa = 60.0
 hor_moa = 60.0
-pen_ratio = null
-damage_multiplier = null
-move_target_distance = null
-patrol_poi_group = null
-nav_agent = NodePath("NavigationAgent3D")
-weapon_rotation_speed = null
-body_rotation_speed = null
-move_speed = null
 
 [node name="combat-roomba" parent="." instance=ExtResource("3_wwy82")]
 transform = Transform3D(0.35, 0, 0, 0, 0.35, 0, 0, 0, 0.35, 0, 0, 0)
@@ -136,70 +136,128 @@ one_shot = true
 
 [node name="BeehaveTree" type="Node" parent="." node_paths=PackedStringArray("blackboard", "actor")]
 script = ExtResource("10_paqy6")
-blackboard = NodePath("@Node@38879")
+blackboard = NodePath("@Node@18181")
 actor = NodePath("..")
 
-[node name="MainSequenceComposite" type="Node" parent="BeehaveTree"]
-script = ExtResource("11_8f25v")
-
-[node name="ActionSelector" type="Node" parent="BeehaveTree/MainSequenceComposite"]
+[node name="ActionSelector" type="Node" parent="BeehaveTree"]
 script = ExtResource("11_cnswi")
 
-[node name="PatrolSequenceComposite" type="Node" parent="BeehaveTree/MainSequenceComposite/ActionSelector"]
-script = ExtResource("11_8f25v")
+[node name="AttackPlayerSequence" type="Node" parent="BeehaveTree/ActionSelector"]
+script = ExtResource("10_k5jo1")
 
-[node name="NotHasFireTargetConditionLeaf" type="Node" parent="BeehaveTree/MainSequenceComposite/ActionSelector/PatrolSequenceComposite"]
-script = ExtResource("12_gh6k6")
+[node name="HasTargetPlayerConditionLeaf" type="Node" parent="BeehaveTree/ActionSelector/AttackPlayerSequence"]
+script = ExtResource("11_e1yra")
 
-[node name="HasFireTargetConditionLeaf" type="Node" parent="BeehaveTree/MainSequenceComposite/ActionSelector/PatrolSequenceComposite/NotHasFireTargetConditionLeaf"]
-script = ExtResource("12_mpdg6")
+[node name="HasLOSConditionLeaf" type="Node" parent="BeehaveTree/ActionSelector/AttackPlayerSequence"]
+script = ExtResource("12_7jl8k")
 
-[node name="NeedNewMoveTargetSelector" type="Node" parent="BeehaveTree/MainSequenceComposite/ActionSelector/PatrolSequenceComposite"]
-script = ExtResource("11_cnswi")
+[node name="AttackPlayerParallel" type="Node" parent="BeehaveTree/ActionSelector/AttackPlayerSequence"]
+script = ExtResource("13_8qfdm")
 
-[node name="NotHasMoveTarget" type="Node" parent="BeehaveTree/MainSequenceComposite/ActionSelector/PatrolSequenceComposite/NeedNewMoveTargetSelector"]
-script = ExtResource("12_gh6k6")
+[node name="MoveToAttackSelector" type="Node" parent="BeehaveTree/ActionSelector/AttackPlayerSequence/AttackPlayerParallel"]
+script = ExtResource("14_j6piv")
 
-[node name="HasMoveTarget" type="Node" parent="BeehaveTree/MainSequenceComposite/ActionSelector/PatrolSequenceComposite/NeedNewMoveTargetSelector/NotHasMoveTarget"]
-script = ExtResource("13_s0vm5")
-
-[node name="NearMoveTargetConditionLeaf" type="Node" parent="BeehaveTree/MainSequenceComposite/ActionSelector/PatrolSequenceComposite/NeedNewMoveTargetSelector"]
-script = ExtResource("14_tigcg")
-
-[node name="FindNewPatrolTargetAction" type="Node" parent="BeehaveTree/MainSequenceComposite/ActionSelector/PatrolSequenceComposite"]
-script = ExtResource("15_l2db4")
-
-[node name="RepathCooldown" type="Node" parent="BeehaveTree/MainSequenceComposite"]
+[node name="RepathCooldown" type="Node" parent="BeehaveTree/ActionSelector/AttackPlayerSequence/AttackPlayerParallel/MoveToAttackSelector"]
 script = ExtResource("15_63yph")
 wait_time = 2.0
 
-[node name="RepathActionLeaf" type="Node" parent="BeehaveTree/MainSequenceComposite/RepathCooldown"]
+[node name="RepathActionLeaf" type="Node" parent="BeehaveTree/ActionSelector/AttackPlayerSequence/AttackPlayerParallel/MoveToAttackSelector/RepathCooldown"]
 script = ExtResource("17_yk2by")
 
-[node name="MoveSequenceComposite" type="Node" parent="BeehaveTree/MainSequenceComposite"]
-script = ExtResource("11_8f25v")
-
-[node name="HasMoveTargetConditionLeaf" type="Node" parent="BeehaveTree/MainSequenceComposite/MoveSequenceComposite"]
-script = ExtResource("13_s0vm5")
-
-[node name="NavAgentMoveActionLeaf" type="Node" parent="BeehaveTree/MainSequenceComposite/MoveSequenceComposite"]
+[node name="NavAgentMoveActionLeaf" type="Node" parent="BeehaveTree/ActionSelector/AttackPlayerSequence/AttackPlayerParallel/MoveToAttackSelector"]
 script = ExtResource("18_8wue0")
 
-[node name="FireSequenceComposite" type="Node" parent="BeehaveTree/MainSequenceComposite"]
-script = ExtResource("11_8f25v")
+[node name="ShootSequence" type="Node" parent="BeehaveTree/ActionSelector/AttackPlayerSequence/AttackPlayerParallel"]
+script = ExtResource("10_k5jo1")
 
-[node name="HasFireTargetConditionLeaf" type="Node" parent="BeehaveTree/MainSequenceComposite/FireSequenceComposite"]
-script = ExtResource("12_mpdg6")
-
-[node name="SlowWeaponTurnActionLeaf" type="Node" parent="BeehaveTree/MainSequenceComposite/FireSequenceComposite"]
+[node name="SlowWeaponTurnActionLeaf" type="Node" parent="BeehaveTree/ActionSelector/AttackPlayerSequence/AttackPlayerParallel/ShootSequence"]
 script = ExtResource("19_1ga33")
 
-[node name="FireCooldown" type="Node" parent="BeehaveTree/MainSequenceComposite/FireSequenceComposite"]
+[node name="FireCooldown" type="Node" parent="BeehaveTree/ActionSelector/AttackPlayerSequence/AttackPlayerParallel/ShootSequence"]
 script = ExtResource("15_63yph")
 wait_time = 0.5
 
-[node name="FireActionLeaf" type="Node" parent="BeehaveTree/MainSequenceComposite/FireSequenceComposite/FireCooldown"]
+[node name="FireActionLeaf" type="Node" parent="BeehaveTree/ActionSelector/AttackPlayerSequence/AttackPlayerParallel/ShootSequence/FireCooldown"]
 script = ExtResource("20_n78x4")
+
+[node name="ChaseSequenceComposite" type="Node" parent="BeehaveTree/ActionSelector"]
+script = ExtResource("11_8f25v")
+
+[node name="ChaseUntilFailDecorator" type="Node" parent="BeehaveTree/ActionSelector/ChaseSequenceComposite"]
+script = ExtResource("21_s25mv")
+
+[node name="ChaseTimeLimiter" type="Node" parent="BeehaveTree/ActionSelector/ChaseSequenceComposite/ChaseUntilFailDecorator"]
+script = ExtResource("22_ffqtv")
+wait_time = 5.0
+
+[node name="ChasePlayerSequence" type="Node" parent="BeehaveTree/ActionSelector/ChaseSequenceComposite/ChaseUntilFailDecorator/ChaseTimeLimiter"]
+script = ExtResource("10_k5jo1")
+
+[node name="HasTargetPlayerConditionLeaf" type="Node" parent="BeehaveTree/ActionSelector/ChaseSequenceComposite/ChaseUntilFailDecorator/ChaseTimeLimiter/ChasePlayerSequence"]
+script = ExtResource("11_e1yra")
+
+[node name="InverterDecorator" type="Node" parent="BeehaveTree/ActionSelector/ChaseSequenceComposite/ChaseUntilFailDecorator/ChaseTimeLimiter/ChasePlayerSequence"]
+script = ExtResource("12_gh6k6")
+
+[node name="HasLOSConditionLeaf" type="Node" parent="BeehaveTree/ActionSelector/ChaseSequenceComposite/ChaseUntilFailDecorator/ChaseTimeLimiter/ChasePlayerSequence/InverterDecorator"]
+script = ExtResource("12_7jl8k")
+
+[node name="AttackPlayerParallel" type="Node" parent="BeehaveTree/ActionSelector/ChaseSequenceComposite/ChaseUntilFailDecorator/ChaseTimeLimiter/ChasePlayerSequence"]
+script = ExtResource("13_8qfdm")
+
+[node name="MoveToAttackSelector" type="Node" parent="BeehaveTree/ActionSelector/ChaseSequenceComposite/ChaseUntilFailDecorator/ChaseTimeLimiter/ChasePlayerSequence/AttackPlayerParallel"]
+script = ExtResource("14_j6piv")
+
+[node name="RepathCooldown" type="Node" parent="BeehaveTree/ActionSelector/ChaseSequenceComposite/ChaseUntilFailDecorator/ChaseTimeLimiter/ChasePlayerSequence/AttackPlayerParallel/MoveToAttackSelector"]
+script = ExtResource("15_63yph")
+wait_time = 2.0
+
+[node name="RepathActionLeaf" type="Node" parent="BeehaveTree/ActionSelector/ChaseSequenceComposite/ChaseUntilFailDecorator/ChaseTimeLimiter/ChasePlayerSequence/AttackPlayerParallel/MoveToAttackSelector/RepathCooldown"]
+script = ExtResource("17_yk2by")
+
+[node name="NavAgentMoveActionLeaf" type="Node" parent="BeehaveTree/ActionSelector/ChaseSequenceComposite/ChaseUntilFailDecorator/ChaseTimeLimiter/ChasePlayerSequence/AttackPlayerParallel/MoveToAttackSelector"]
+script = ExtResource("18_8wue0")
+
+[node name="ShootSequence" type="Node" parent="BeehaveTree/ActionSelector/ChaseSequenceComposite/ChaseUntilFailDecorator/ChaseTimeLimiter/ChasePlayerSequence/AttackPlayerParallel"]
+script = ExtResource("10_k5jo1")
+
+[node name="SlowWeaponTurnActionLeaf" type="Node" parent="BeehaveTree/ActionSelector/ChaseSequenceComposite/ChaseUntilFailDecorator/ChaseTimeLimiter/ChasePlayerSequence/AttackPlayerParallel/ShootSequence"]
+script = ExtResource("19_1ga33")
+
+[node name="FireCooldown" type="Node" parent="BeehaveTree/ActionSelector/ChaseSequenceComposite/ChaseUntilFailDecorator/ChaseTimeLimiter/ChasePlayerSequence/AttackPlayerParallel/ShootSequence"]
+script = ExtResource("15_63yph")
+wait_time = 0.5
+
+[node name="FireActionLeaf" type="Node" parent="BeehaveTree/ActionSelector/ChaseSequenceComposite/ChaseUntilFailDecorator/ChaseTimeLimiter/ChasePlayerSequence/AttackPlayerParallel/ShootSequence/FireCooldown"]
+script = ExtResource("20_n78x4")
+
+[node name="ForgetPlayerActionLeaf" type="Node" parent="BeehaveTree/ActionSelector/ChaseSequenceComposite"]
+script = ExtResource("13_bh5f3")
+
+[node name="IdleRandomizeComposite" type="Node" parent="BeehaveTree/ActionSelector"]
+script = ExtResource("14_mua75")
+
+[node name="PatrolSequence" type="Node" parent="BeehaveTree/ActionSelector/IdleRandomizeComposite"]
+script = ExtResource("10_k5jo1")
+
+[node name="HasMoveTargetCondition" type="Node" parent="BeehaveTree/ActionSelector/IdleRandomizeComposite/PatrolSequence"]
+script = ExtResource("13_s0vm5")
+
+[node name="NavAgentMoveActionLeaf" type="Node" parent="BeehaveTree/ActionSelector/IdleRandomizeComposite/PatrolSequence"]
+script = ExtResource("18_8wue0")
+
+[node name="FindNewPatrolTargetAction" type="Node" parent="BeehaveTree/ActionSelector/IdleRandomizeComposite/PatrolSequence"]
+script = ExtResource("15_l2db4")
+
+[node name="LoiterSequence" type="Node" parent="BeehaveTree/ActionSelector/IdleRandomizeComposite"]
+script = ExtResource("10_k5jo1")
+
+[node name="DelayDecorator" type="Node" parent="BeehaveTree/ActionSelector/IdleRandomizeComposite/LoiterSequence"]
+script = ExtResource("20_q3tps")
+wait_time = 4.0
+
+[node name="ActionLeaf" type="Node" parent="BeehaveTree/ActionSelector/IdleRandomizeComposite/LoiterSequence/DelayDecorator"]
+script = ExtResource("13_bh5f3")
 
 [connection signal="timeout" from="FireTimer" to="." method="_on_fire_timer_timeout"]
 [connection signal="body_entered" from="DetectRadius" to="." method="_on_detect_radius_body_entered"]

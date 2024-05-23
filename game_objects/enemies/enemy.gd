@@ -13,6 +13,36 @@ var move_target:Node3D
 @export var gun_node:Gun
 @export var vert_moa:float = 600
 @export var hor_moa:float = 600
+@export var los_location_ratio:float = 0.6
+@export var detection_radius:Area3D
+@export var ballistic_detection_radius:Area3D
+var target_player:Player
+
+func _ready():
+	if detection_radius:
+		detection_radius.area_entered.connect(_on_body_entered_detection_radius)
+		detection_radius.area_exited.connect(_on_body_exited_detection_radius)
+	if ballistic_detection_radius:
+		ballistic_detection_radius.area_entered.connect(_on_body_entered_ballistic_detection_radius)
+		ballistic_detection_radius.area_exited.connect(_on_body_exited_ballistic_detection_radius)
+	pass
+	
+func _on_body_entered_detection_radius(body:Node3D):
+	if body is Player:
+		target_player = body
+	
+func _on_body_exited_detection_radius(body:Node3D):
+	if body is Player:
+		target_player = null
+	
+func _on_body_entered_ballistic_detection_radius(body:Node3D):
+	if body is BulletProjRay:
+		if body.firer and body.firer is Player:
+			target_player = body.firer
+	pass
+	
+func _on_body_exited_ballistic_detection_radius(body:Node3D):
+	pass
 
 func has_fire_target() -> bool:
 	if fire_target:
@@ -23,6 +53,22 @@ func has_fire_target() -> bool:
 func has_move_target() -> bool:
 	if fire_target:
 		return true
+	else:
+		return false
+
+func has_target_player() -> bool:
+	if target_player:
+		return true
+	else:
+		return false
+		
+func has_los_to_player() -> bool:
+	if target_player:
+		
+		var exclusions:Array[RID] = Helpers.get_all_collision_object_3d_recursive(self) + Helpers.get_all_collision_object_3d_recursive(target_player)
+		
+		var los_result = Helpers.los_to_point(head_node,target_player.los_check_locations,.6,exclusions)
+		return los_result
 	else:
 		return false
 

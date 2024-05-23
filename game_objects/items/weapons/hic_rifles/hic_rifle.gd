@@ -37,11 +37,12 @@ func fireGun():
 		
 		var shoot_origin = muzzle.global_transform.origin
 		
-		var bulletInst = _bullet_scene.instantiate()
+		var bulletInst:BulletProjRay = _bullet_scene.instantiate()
 		bulletInst.moa = _gun_stats.moa
 		bulletInst.set_as_top_level(true)		
 		get_parent().add_child(bulletInst)
 		bulletInst.global_transform.origin = shoot_origin
+		bulletInst.firer = firer
 		current_magazine_size -= 1
 		muzzle_flash_animation_player.play("fire")
 		fire_timer.start()
@@ -66,6 +67,7 @@ func reloaded_callback():
 	reloaded.emit()
 	
 func _on_equipped(player:Player):
+	firer = player
 	if reloading:
 		reload_timer.paused = false
 		print_debug("raw reload time left:" + str(reload_timer.time_left))
@@ -78,6 +80,7 @@ func _on_equipped(player:Player):
 
 	
 func _on_unequipped(player:Player):
+	firer = null
 	if reloading:
 		reload_timer.paused = true
 		print_debug("reload time left:" + str(reload_timer.time_left))
