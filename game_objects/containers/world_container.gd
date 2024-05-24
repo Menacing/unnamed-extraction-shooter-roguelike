@@ -15,7 +15,8 @@ func _ready():
 	world_inventory_control.container_size = container_size
 	inventory_id = world_inventory_control.inventory_id
 	randomize()
-	call_deferred("spawn_loot")
+	if loot_spawn_mapping:
+		call_deferred("spawn_loot")
 	EventBus.item_picked_up.connect(_on_item_picked_up)
 
 func spawn_loot():
