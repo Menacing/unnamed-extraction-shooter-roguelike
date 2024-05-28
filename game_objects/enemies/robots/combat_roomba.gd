@@ -144,13 +144,6 @@ func _on_detect_radius_body_exited(body):
 func _on_repath_timer_timeout():
 	set_new_path()
 
-func set_new_path():
-	if player:
-		if can_react:
-			set_movement_target(player_aimpoint.global_transform.origin)
-	else:
-		set_movement_target(self.global_transform.origin)
-
 func has_los_to_player() -> bool:
 	if player:
 		var los_result = Helpers.los_to_point(head,player.los_check_locations,.6,exclusions)

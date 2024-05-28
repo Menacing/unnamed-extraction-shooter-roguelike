@@ -51,7 +51,7 @@ func has_fire_target() -> bool:
 		return false
 
 func has_move_target() -> bool:
-	if fire_target:
+	if move_target:
 		return true
 	else:
 		return false
