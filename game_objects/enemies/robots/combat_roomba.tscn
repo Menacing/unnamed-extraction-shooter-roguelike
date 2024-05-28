@@ -136,7 +136,7 @@ one_shot = true
 
 [node name="BeehaveTree" type="Node" parent="." node_paths=PackedStringArray("blackboard", "actor")]
 script = ExtResource("10_paqy6")
-blackboard = NodePath("@Node@18181")
+blackboard = NodePath("@Node@20102")
 actor = NodePath("..")
 
 [node name="ActionSelector" type="Node" parent="BeehaveTree"]
@@ -182,6 +182,9 @@ script = ExtResource("20_n78x4")
 
 [node name="ChaseSequenceComposite" type="Node" parent="BeehaveTree/ActionSelector"]
 script = ExtResource("11_8f25v")
+
+[node name="HasTargetPlayerConditionLeaf" type="Node" parent="BeehaveTree/ActionSelector/ChaseSequenceComposite"]
+script = ExtResource("11_e1yra")
 
 [node name="HasTargetPlayerConditionLeaf" type="Node" parent="BeehaveTree/ActionSelector/ChaseSequenceComposite"]
 script = ExtResource("11_e1yra")
