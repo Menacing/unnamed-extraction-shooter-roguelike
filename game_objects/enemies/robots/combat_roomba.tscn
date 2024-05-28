@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://ciaqbr34myu5w"]
+[gd_scene load_steps=35 format=3 uid="uid://ciaqbr34myu5w"]
 
 [ext_resource type="Script" path="res://game_objects/enemies/robots/combat_roomba.gd" id="1_f1cah"]
 [ext_resource type="PackedScene" uid="uid://dr48wela8mtxd" path="res://game_objects/items/weapons/hic_rifles/pm_52/pm_52.tscn" id="2_q4rc2"]
@@ -27,6 +27,7 @@
 [ext_resource type="Script" path="res://addons/beehave/nodes/decorators/until_fail.gd" id="21_s25mv"]
 [ext_resource type="Script" path="res://addons/beehave/nodes/decorators/time_limiter.gd" id="22_ffqtv"]
 [ext_resource type="Script" path="res://addons/beehave/nodes/composites/selector_random.gd" id="26_fp8qo"]
+[ext_resource type="Script" path="res://addons/beehave/nodes/decorators/delayer.gd" id="28_srq0d"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_wvt7k"]
 size = Vector3(0.3, 2.1, 0.3)
@@ -136,7 +137,7 @@ one_shot = true
 
 [node name="BeehaveTree" type="Node" parent="." node_paths=PackedStringArray("blackboard", "actor")]
 script = ExtResource("10_paqy6")
-blackboard = NodePath("@Node@20102")
+blackboard = NodePath("@Node@21949")
 actor = NodePath("..")
 
 [node name="ActionSelector" type="Node" parent="BeehaveTree"]
@@ -182,9 +183,6 @@ script = ExtResource("20_n78x4")
 
 [node name="ChaseSequenceComposite" type="Node" parent="BeehaveTree/ActionSelector"]
 script = ExtResource("11_8f25v")
-
-[node name="HasTargetPlayerConditionLeaf" type="Node" parent="BeehaveTree/ActionSelector/ChaseSequenceComposite"]
-script = ExtResource("11_e1yra")
 
 [node name="HasTargetPlayerConditionLeaf" type="Node" parent="BeehaveTree/ActionSelector/ChaseSequenceComposite"]
 script = ExtResource("11_e1yra")
@@ -254,9 +252,20 @@ script = ExtResource("18_8wue0")
 
 [node name="CooldownDecorator" type="Node" parent="BeehaveTree/ActionSelector/IdleRandomizeComposite/PatrolSequence/SimpleParallelComposite"]
 script = ExtResource("15_63yph")
+wait_time = 2.0
 
 [node name="RepathActionLeaf" type="Node" parent="BeehaveTree/ActionSelector/IdleRandomizeComposite/PatrolSequence/SimpleParallelComposite/CooldownDecorator"]
 script = ExtResource("17_yk2by")
+
+[node name="LoiterSequence" type="Node" parent="BeehaveTree/ActionSelector/IdleRandomizeComposite"]
+script = ExtResource("11_8f25v")
+
+[node name="DelayDecorator" type="Node" parent="BeehaveTree/ActionSelector/IdleRandomizeComposite/LoiterSequence"]
+script = ExtResource("28_srq0d")
+wait_time = 5.0
+
+[node name="LoiterActionLeaf" type="Node" parent="BeehaveTree/ActionSelector/IdleRandomizeComposite/LoiterSequence/DelayDecorator"]
+script = ExtResource("13_bh5f3")
 
 [connection signal="timeout" from="FireTimer" to="." method="_on_fire_timer_timeout"]
 [connection signal="body_entered" from="DetectRadius" to="." method="_on_detect_radius_body_entered"]
