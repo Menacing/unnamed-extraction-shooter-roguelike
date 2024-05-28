@@ -44,6 +44,7 @@ var last_damage:float
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	super()
 	self_exclusions = Helpers.get_all_collision_object_3d_recursive(self)
 	exclusions = self_exclusions
 	if gun_scene: 

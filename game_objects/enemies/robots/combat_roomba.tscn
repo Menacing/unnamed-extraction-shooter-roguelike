@@ -127,6 +127,10 @@ shape = SubResource("BoxShape3D_hycai")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 path_height_offset = 0.2
+avoidance_enabled = true
+height = 2.0
+radius = 1.0
+neighbor_distance = 10.0
 debug_enabled = true
 
 [node name="RepathTimer" type="Timer" parent="."]

@@ -25,6 +25,9 @@ func _ready():
 	if ballistic_detection_radius:
 		ballistic_detection_radius.area_entered.connect(_on_body_entered_ballistic_detection_radius)
 		ballistic_detection_radius.area_exited.connect(_on_body_exited_ballistic_detection_radius)
+		
+	if nav_agent:
+		nav_agent.velocity_computed.connect(_on_velocity_computed)
 	pass
 	
 func _on_body_entered_detection_radius(body:Node3D):
@@ -43,6 +46,10 @@ func _on_body_entered_ballistic_detection_radius(body:Node3D):
 	
 func _on_body_exited_ballistic_detection_radius(body:Node3D):
 	pass
+	
+func _on_velocity_computed(safe_velocity: Vector3):
+	velocity = safe_velocity
+	move_and_slide()
 
 func has_fire_target() -> bool:
 	if fire_target:
@@ -110,12 +117,14 @@ func nav_agent_move():
 		return
 	var current_location = global_transform.origin
 	var next_location = nav_agent.get_next_path_position()
-	var new_velocity = (next_location - current_location).normalized() * move_speed
-	
+	var new_target_velocity = (next_location - current_location).normalized() * move_speed
+	var new_velocity = velocity.move_toward(new_target_velocity, .25)
 	Helpers.slow_rotate_to_point_flat(self, next_location, body_rotation_speed, get_physics_process_delta_time())
 	
-	velocity = velocity.move_toward(new_velocity, .25)
-	move_and_slide()
+	if nav_agent.avoidance_enabled:
+		nav_agent.set_velocity(new_velocity)
+	else:
+		_on_velocity_computed(new_velocity)
 
 func slow_weapon_turn():
 	var delta = get_physics_process_delta_time()

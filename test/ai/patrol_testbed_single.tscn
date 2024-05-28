@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://nf8hb3csi6id"]
 
-[ext_resource type="PackedScene" uid="uid://ciaqbr34myu5w" path="res://game_objects/enemies/robots/combat_roomba.tscn" id="1_ub2hh"]
+[ext_resource type="PackedScene" uid="uid://ciaqbr34myu5w" path="res://game_objects/enemies/robots/combat_roomba.tscn" id="1_268ua"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_s7n51"]
 vertices = PackedVector3Array(-138.267, 0.25, -131.64, -138.267, 0.25, 134.61, 133.733, 0.25, 134.61, 133.733, 0.25, -131.64)
@@ -12,7 +12,7 @@ albedo_color = Color(0, 0, 0, 1)
 [sub_resource type="BoxShape3D" id="BoxShape3D_4su0q"]
 size = Vector3(5, 5, 5)
 
-[node name="PatrolTestbed" type="Node3D"]
+[node name="PatrolTestbedSingle" type="Node3D"]
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
 navigation_mesh = SubResource("NavigationMesh_s7n51")
@@ -50,17 +50,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -29.3242, 0, 27.5649)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.47774, 0)
 shape = SubResource("BoxShape3D_4su0q")
 
-[node name="combat_roomba" parent="." instance=ExtResource("1_ub2hh")]
+[node name="combat_roomba" parent="." instance=ExtResource("1_268ua")]
 transform = Transform3D(1.00409, 0, 0, 0, 1.00409, 0, 0, 0, 1.00409, 3.02189, 0, 14.4445)
-
-[node name="combat_roomba2" parent="." instance=ExtResource("1_ub2hh")]
-transform = Transform3D(1.00409, 0, 0, 0, 1.00409, 0, 0, 0, 1.00409, -29.5185, 0, 14.4445)
-
-[node name="combat_roomba3" parent="." instance=ExtResource("1_ub2hh")]
-transform = Transform3D(1.00409, 0, 0, 0, 1.00409, 0, 0, 0, 1.00409, -17.7888, 0, 6.49859)
-
-[node name="combat_roomba4" parent="." instance=ExtResource("1_ub2hh")]
-transform = Transform3D(1.00409, 0, 0, 0, 1.00409, 0, 0, 0, 1.00409, -12.6807, 0, 37.1471)
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(-0.513556, 0.196842, -0.835173, 2.00552e-08, 0.973331, 0.229405, 0.858056, 0.117812, -0.49986, -43.7458, 9.81279, -8.22052)
