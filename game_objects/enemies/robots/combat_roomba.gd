@@ -57,6 +57,7 @@ func _ready():
 
 		gun.position = hf_pos
 		head.add_child(gun)
+		gun.firer = self
 
 
 
