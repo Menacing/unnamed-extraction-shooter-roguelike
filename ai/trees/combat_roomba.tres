@@ -1,0 +1,144 @@
+[gd_resource type="BehaviorTree" load_steps=48 format=3 uid="uid://c3o1pihtd3pqc"]
+
+[ext_resource type="Script" path="res://ai/tasks/find_new_patrol_target_task.gd" id="1_3lrnf"]
+[ext_resource type="Script" path="res://ai/tasks/has_target_player_condition.gd" id="1_41jai"]
+[ext_resource type="Script" path="res://ai/tasks/has_los_condition.gd" id="2_73y8u"]
+[ext_resource type="Script" path="res://ai/tasks/nav_agent_repath_task.gd" id="2_s2xkh"]
+[ext_resource type="Script" path="res://ai/tasks/slow_weapon_turn_task.gd" id="3_igssr"]
+[ext_resource type="Script" path="res://ai/tasks/nav_agent_move_task.gd" id="3_msook"]
+[ext_resource type="Script" path="res://ai/tasks/fire_weapon_task.gd" id="4_qi22x"]
+[ext_resource type="Script" path="res://ai/tasks/forget_player_task.gd" id="7_bsaep"]
+
+[sub_resource type="BlackboardPlan" id="BlackboardPlan_fx0mw"]
+
+[sub_resource type="BTCondition" id="BTCondition_834gd"]
+script = ExtResource("1_41jai")
+
+[sub_resource type="BTCondition" id="BTCondition_dn173"]
+script = ExtResource("2_73y8u")
+
+[sub_resource type="BTAction" id="BTAction_waxrm"]
+script = ExtResource("3_igssr")
+
+[sub_resource type="BTAction" id="BTAction_amwn2"]
+script = ExtResource("4_qi22x")
+
+[sub_resource type="BTCooldown" id="BTCooldown_2lnxi"]
+duration = 0.5
+children = [SubResource("BTAction_amwn2")]
+
+[sub_resource type="BTAlwaysSucceed" id="BTAlwaysSucceed_3cfnl"]
+custom_name = "Fire Weapon Cooldown"
+children = [SubResource("BTCooldown_2lnxi")]
+
+[sub_resource type="BTAction" id="BTAction_o87xc"]
+script = ExtResource("2_s2xkh")
+
+[sub_resource type="BTCooldown" id="BTCooldown_vwpsg"]
+duration = 2.0
+children = [SubResource("BTAction_o87xc")]
+
+[sub_resource type="BTAlwaysSucceed" id="BTAlwaysSucceed_7btg4"]
+children = [SubResource("BTCooldown_vwpsg")]
+
+[sub_resource type="BTAction" id="BTAction_x5gjo"]
+script = ExtResource("3_msook")
+
+[sub_resource type="BTDynamicSequence" id="BTDynamicSequence_tnoix"]
+children = [SubResource("BTAlwaysSucceed_7btg4"), SubResource("BTAction_x5gjo")]
+
+[sub_resource type="BTDynamicSequence" id="BTDynamicSequence_ij6fu"]
+custom_name = "AttackPlayerSequence"
+children = [SubResource("BTCondition_834gd"), SubResource("BTCondition_dn173"), SubResource("BTAction_waxrm"), SubResource("BTAlwaysSucceed_3cfnl"), SubResource("BTDynamicSequence_tnoix")]
+
+[sub_resource type="BTCondition" id="BTCondition_6gkx3"]
+script = ExtResource("1_41jai")
+
+[sub_resource type="BTAction" id="BTAction_fmey4"]
+script = ExtResource("3_igssr")
+
+[sub_resource type="BTAction" id="BTAction_opdww"]
+script = ExtResource("4_qi22x")
+
+[sub_resource type="BTCooldown" id="BTCooldown_t2xxm"]
+duration = 0.5
+children = [SubResource("BTAction_opdww")]
+
+[sub_resource type="BTAlwaysSucceed" id="BTAlwaysSucceed_b2afx"]
+custom_name = "Fire Weapon Cooldown"
+children = [SubResource("BTCooldown_t2xxm")]
+
+[sub_resource type="BTAction" id="BTAction_f84sd"]
+script = ExtResource("2_s2xkh")
+
+[sub_resource type="BTCooldown" id="BTCooldown_g0kea"]
+duration = 2.0
+children = [SubResource("BTAction_f84sd")]
+
+[sub_resource type="BTAlwaysSucceed" id="BTAlwaysSucceed_3caag"]
+children = [SubResource("BTCooldown_g0kea")]
+
+[sub_resource type="BTAction" id="BTAction_bk13g"]
+script = ExtResource("3_msook")
+
+[sub_resource type="BTDynamicSequence" id="BTDynamicSequence_6pwke"]
+children = [SubResource("BTAlwaysSucceed_3caag"), SubResource("BTAction_bk13g")]
+
+[sub_resource type="BTDynamicSequence" id="BTDynamicSequence_t1wxy"]
+custom_name = "ChasePlayerSequence"
+children = [SubResource("BTAction_fmey4"), SubResource("BTAlwaysSucceed_b2afx"), SubResource("BTDynamicSequence_6pwke")]
+
+[sub_resource type="BTTimeLimit" id="BTTimeLimit_ok11c"]
+children = [SubResource("BTDynamicSequence_t1wxy")]
+
+[sub_resource type="BTAlwaysSucceed" id="BTAlwaysSucceed_hv2cv"]
+children = [SubResource("BTTimeLimit_ok11c")]
+
+[sub_resource type="BTAction" id="BTAction_38e0v"]
+script = ExtResource("7_bsaep")
+
+[sub_resource type="BTSequence" id="BTSequence_gyw5r"]
+custom_name = "ChasePlayerSequence"
+children = [SubResource("BTCondition_6gkx3"), SubResource("BTAlwaysSucceed_hv2cv"), SubResource("BTAction_38e0v")]
+
+[sub_resource type="BTAction" id="BTAction_ujsds"]
+script = ExtResource("1_3lrnf")
+
+[sub_resource type="BTAction" id="BTAction_5fgex"]
+script = ExtResource("2_s2xkh")
+
+[sub_resource type="BTCooldown" id="BTCooldown_thlah"]
+duration = 2.0
+children = [SubResource("BTAction_5fgex")]
+
+[sub_resource type="BTAlwaysSucceed" id="BTAlwaysSucceed_7qpwi"]
+children = [SubResource("BTCooldown_thlah")]
+
+[sub_resource type="BTAction" id="BTAction_68nij"]
+script = ExtResource("3_msook")
+
+[sub_resource type="BTDynamicSequence" id="BTDynamicSequence_fhqqk"]
+children = [SubResource("BTAlwaysSucceed_7qpwi"), SubResource("BTAction_68nij")]
+
+[sub_resource type="BTSequence" id="BTSequence_xwsnh"]
+custom_name = "PatrolSequence"
+children = [SubResource("BTAction_ujsds"), SubResource("BTDynamicSequence_fhqqk")]
+
+[sub_resource type="BTWait" id="BTWait_mc006"]
+duration = 5.0
+
+[sub_resource type="BTSequence" id="BTSequence_0xca4"]
+custom_name = "LoiterSequence"
+children = [SubResource("BTWait_mc006")]
+
+[sub_resource type="BTRandomSelector" id="BTRandomSelector_bbub8"]
+custom_name = "IdleRandomSelector"
+children = [SubResource("BTSequence_xwsnh"), SubResource("BTSequence_0xca4")]
+
+[sub_resource type="BTSelector" id="BTSelector_doeo7"]
+custom_name = "ActionSelector"
+children = [SubResource("BTDynamicSequence_ij6fu"), SubResource("BTSequence_gyw5r"), SubResource("BTRandomSelector_bbub8")]
+
+[resource]
+blackboard_plan = SubResource("BlackboardPlan_fx0mw")
+root_task = SubResource("BTSelector_doeo7")
