@@ -39,7 +39,7 @@ shader_parameter/tex = SubResource("GradientTexture2D_10bv2")
 material = SubResource("ShaderMaterial_bhr6y")
 
 [node name="fic_bullet" type="CharacterBody3D"]
-collision_layer = 2147483648
+collision_layer = 2147483650
 collision_mask = 2
 motion_mode = 1
 script = ExtResource("1_30ocg")

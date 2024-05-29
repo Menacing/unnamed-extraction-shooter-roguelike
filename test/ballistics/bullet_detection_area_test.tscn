@@ -1,0 +1,61 @@
+[gd_scene load_steps=9 format=3 uid="uid://bycmllbuxp708"]
+
+[ext_resource type="PackedScene" uid="uid://d08aatgxmymbf" path="res://game_objects/player/player.tscn" id="2_jvswt"]
+[ext_resource type="PackedScene" uid="uid://cprpop5lkmyhe" path="res://game_objects/items/weapons/fic_rifles/s5/s5.tscn" id="3_cqpa2"]
+[ext_resource type="Resource" uid="uid://bikewy7dlkv20" path="res://components/ammo_component/ammo_types/fast_intermediate_cartridge/fast_intermediate_cartridge.tres" id="4_mc5ba"]
+[ext_resource type="Script" path="res://game_objects/items/weapons/gun_stats.gd" id="5_wavmb"]
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_s7n51"]
+vertices = PackedVector3Array(-138.267, 0.25, -131.64, -138.267, 0.25, 134.61, 133.733, 0.25, 134.61, 133.733, 0.25, -131.64)
+polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1n5u8"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Resource" id="Resource_hco6y"]
+resource_local_to_scene = true
+script = ExtResource("5_wavmb")
+magazine_size = 30
+rpm = 800
+base_recoil = Vector2(0, 0.017)
+recoil_variability = Vector2(0.02, 0.01)
+fire_modes = ["semi", "auto"]
+ads_accel = 10.0
+ads_fov = 50.0
+moa = 4.0
+turn_speed = 25.0
+ammo_type = ExtResource("4_mc5ba")
+reload_time_Sec = 2.5
+reload_thresholds = Array[float]([1.0])
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_uym2g"]
+size = Vector3(2.66992, 2.37024, 3.11621)
+
+[node name="PatrolTestbedSingle" type="Node3D"]
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+navigation_mesh = SubResource("NavigationMesh_s7n51")
+
+[node name="Floor" type="CSGBox3D" parent="NavigationRegion3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.25875, -0.251953, 1.46129)
+use_collision = true
+size = Vector3(273.017, 0.496094, 267.202)
+material = SubResource("StandardMaterial3D_1n5u8")
+
+[node name="Player" parent="." instance=ExtResource("2_jvswt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.09863, 0.947377, 17.181)
+
+[node name="S5" parent="." instance=ExtResource("3_cqpa2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.24082, 0.463018, 16.5592)
+_gun_stats = SubResource("Resource_hco6y")
+
+[node name="Area3D" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.7238, 0, 13.2747)
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.834961, 1.20027, -1.05811)
+shape = SubResource("BoxShape3D_uym2g")
+
+[connection signal="body_entered" from="Area3D" to="Area3D" method="_on_body_entered"]

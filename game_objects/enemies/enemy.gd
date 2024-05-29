@@ -21,13 +21,13 @@ var target_player:Player
 
 func _ready():
 	if detection_radius:
-		detection_radius.area_entered.connect(_on_body_entered_detection_radius)
-		detection_radius.area_exited.connect(_on_body_exited_detection_radius)
+		detection_radius.body_entered.connect(_on_body_entered_detection_radius)
+		detection_radius.body_exited.connect(_on_body_exited_detection_radius)
 	if ballistic_detection_radius:
-		ballistic_detection_radius.area_entered.connect(_on_body_entered_ballistic_detection_radius)
-		ballistic_detection_radius.area_exited.connect(_on_body_exited_ballistic_detection_radius)
+		ballistic_detection_radius.body_entered.connect(_on_body_entered_ballistic_detection_radius)
+		ballistic_detection_radius.body_exited.connect(_on_body_exited_ballistic_detection_radius)
 		
-	if nav_agent:
+	if nav_agent: 
 		nav_agent.velocity_computed.connect(_on_velocity_computed)
 	pass
 

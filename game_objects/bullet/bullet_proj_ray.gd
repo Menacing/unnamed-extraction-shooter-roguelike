@@ -26,6 +26,8 @@ func _ready():
 	current_damage = initial_damage
 	Helpers.random_angle_deviation_moa(self, moa,moa)
 	shot_origin = self.global_position
+	self.add_collision_exception_with(self)
+	collision_exclusions.append(self.get_rid())
 #	connect("body_entered", _on_body_entered)
 
 func _physics_process(delta):
@@ -37,6 +39,7 @@ func raycast_to_dest(source_global_pos:Vector3,destination_global_pos:Vector3) -
 	var space_state = self.get_world_3d().direct_space_state
 	if space_state:
 		var query = PhysicsRayQueryParameters3D.create(source_global_pos, destination_global_pos)
+		query.collide_with_areas = true
 		query.collision_mask = self.collision_mask
 		query.exclude = collision_exclusions
 		var result = space_state.intersect_ray(query)
@@ -81,6 +84,8 @@ func do_raycast_movement(delta:float):
 				current_damage = pow(new_speed/current_speed,2) * current_damage
 				current_speed = new_speed
 				target_destination = raycast_result.position + (-remaining_delta * current_speed * transform.basis.z)
+			elif collider is Area3D:
+				collider.body_entered.emit(self)
 			else:
 				startDespawn()
 			if collider is CollisionObject3D:
@@ -94,8 +99,8 @@ func do_raycast_movement(delta:float):
 			pass
 			
 	var col:KinematicCollision3D = move_and_collide(travel_vector,false,0.001,true)
-#	if col:
-#		print("something went wrong, col should always be null doing it this way")
+	if col:
+		print("something went wrong, col should always be null doing it this way")
 	var new_speed = (current_speed/ (1+k*delta*current_speed))
 	current_damage = pow(new_speed/current_speed,2) * current_damage
 	current_speed = new_speed
