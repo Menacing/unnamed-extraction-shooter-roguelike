@@ -66,14 +66,12 @@ func set_movement_target(movement_target : Vector3):
 	nav_agent.set_target_position(movement_target)
 
 func _physics_process(delta):
+	super(delta)
 	if alive:
 		last_los_check_result = has_los_to_player()
 		if can_react:
 			Helpers.slow_rotate_to_point(head, player_aimpoint.global_transform.origin, turret_rotation, delta)
 			Helpers.slow_rotate_to_point(gun, player_aimpoint.global_transform.origin, turret_rotation, delta)
-
-
-
 
 func _on_fire_timer_timeout():
 	if can_react and alive and gun:
@@ -165,12 +163,5 @@ func los_changed(new_los:bool):
 func _on_reaction_timer_timeout():
 	reaction_timed_out = true
 
-var target_patrol_poi:Area3D
-
-func is_in_target_patrol_poi() -> bool:
-	var result = false
-	if target_patrol_poi:
-		result = target_patrol_poi.overlaps_body(self)
-	return result
 
 

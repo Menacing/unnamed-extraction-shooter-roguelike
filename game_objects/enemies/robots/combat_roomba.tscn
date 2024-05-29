@@ -27,7 +27,7 @@
 [ext_resource type="Script" path="res://addons/beehave/nodes/decorators/until_fail.gd" id="21_s25mv"]
 [ext_resource type="Script" path="res://addons/beehave/nodes/decorators/time_limiter.gd" id="22_ffqtv"]
 [ext_resource type="Script" path="res://addons/beehave/nodes/composites/selector_random.gd" id="26_fp8qo"]
-[ext_resource type="Script" path="res://addons/beehave/nodes/decorators/delayer.gd" id="28_srq0d"]
+[ext_resource type="Script" path="res://game_objects/enemies/common_beehave_nodes/loiter_action.gd" id="29_nr63r"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_wvt7k"]
 size = Vector3(0.3, 2.1, 0.3)
@@ -141,7 +141,7 @@ one_shot = true
 
 [node name="BeehaveTree" type="Node" parent="." node_paths=PackedStringArray("blackboard", "actor")]
 script = ExtResource("10_paqy6")
-blackboard = NodePath("@Node@21949")
+blackboard = NodePath("@Node@18155")
 actor = NodePath("..")
 
 [node name="ActionSelector" type="Node" parent="BeehaveTree"]
@@ -264,12 +264,12 @@ script = ExtResource("17_yk2by")
 [node name="LoiterSequence" type="Node" parent="BeehaveTree/ActionSelector/IdleRandomizeComposite"]
 script = ExtResource("11_8f25v")
 
-[node name="DelayDecorator" type="Node" parent="BeehaveTree/ActionSelector/IdleRandomizeComposite/LoiterSequence"]
-script = ExtResource("28_srq0d")
+[node name="TimeLimiterDecorator" type="Node" parent="BeehaveTree/ActionSelector/IdleRandomizeComposite/LoiterSequence"]
+script = ExtResource("22_ffqtv")
 wait_time = 5.0
 
-[node name="LoiterActionLeaf" type="Node" parent="BeehaveTree/ActionSelector/IdleRandomizeComposite/LoiterSequence/DelayDecorator"]
-script = ExtResource("13_bh5f3")
+[node name="LoiterActionLeaf" type="Node" parent="BeehaveTree/ActionSelector/IdleRandomizeComposite/LoiterSequence/TimeLimiterDecorator"]
+script = ExtResource("29_nr63r")
 
 [connection signal="timeout" from="FireTimer" to="." method="_on_fire_timer_timeout"]
 [connection signal="body_entered" from="DetectRadius" to="." method="_on_detect_radius_body_entered"]

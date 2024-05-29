@@ -9,6 +9,7 @@ var move_target:Node3D
 @export var weapon_rotation_speed:float = 2.0
 @export var body_rotation_speed:float = 1.0
 @export var move_speed:float = 3.0
+@export var acceleration:float = .25
 @export var head_node:Node3D
 @export var gun_node:Gun
 @export var vert_moa:float = 600
@@ -29,6 +30,18 @@ func _ready():
 	if nav_agent:
 		nav_agent.velocity_computed.connect(_on_velocity_computed)
 	pass
+
+func _physics_process(delta):
+	if nav_agent.is_navigation_finished():
+		return
+
+	var next_path_position: Vector3 = nav_agent.get_next_path_position()
+	var target_velocity: Vector3 = global_position.direction_to(next_path_position) * move_speed
+	var new_velocity = velocity.move_toward(target_velocity, acceleration)
+	if nav_agent.avoidance_enabled:
+		nav_agent.set_velocity(new_velocity)
+	else:
+		_on_velocity_computed(new_velocity)
 	
 func _on_body_entered_detection_radius(body:Node3D):
 	if body is Player:
@@ -78,12 +91,15 @@ func has_los_to_player() -> bool:
 		return los_result
 	else:
 		return false
-
+	
 func is_near_move_target() -> bool:
 	if has_move_target():
-		var dis = Helpers.distance_between(self, move_target)
-		if dis <= move_target_distance:
-			return true
+		if move_target is Area3D:
+			return move_target.overlaps_body(self)
+		else:
+			var dis = Helpers.distance_between(self, move_target)
+			if dis <= move_target_distance:
+				return true
 	
 	return false
 
@@ -112,20 +128,6 @@ func set_new_path():
 	if move_target and nav_agent:
 		nav_agent.set_target_position(move_target.global_position)
 	
-func nav_agent_move():
-	if nav_agent.is_navigation_finished():
-		return
-	var current_location = global_transform.origin
-	var next_location = nav_agent.get_next_path_position()
-	var new_target_velocity = (next_location - current_location).normalized() * move_speed
-	var new_velocity = velocity.move_toward(new_target_velocity, .25)
-	Helpers.slow_rotate_to_point_flat(self, next_location, body_rotation_speed, get_physics_process_delta_time())
-	
-	if nav_agent.avoidance_enabled:
-		nav_agent.set_velocity(new_velocity)
-	else:
-		_on_velocity_computed(new_velocity)
-
 func slow_weapon_turn():
 	var delta = get_physics_process_delta_time()
 
