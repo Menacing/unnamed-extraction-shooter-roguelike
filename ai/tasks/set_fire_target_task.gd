@@ -1,19 +1,16 @@
 @tool
 extends BTAction
-## ForgetPlayerTask
+## SlowWeaponTurnTask
 
 
 # Display a customized name (requires @tool).
 func _generate_name():
-	return "Forget Player Task"
-
+	return "Set Fire Target Task"
 
 # Called each time this task is ticked (aka executed).
 func _tick(delta) -> Status:
 	if agent is Enemy:
-		agent.target_player = null
-		agent.fire_target = null
+		agent.set_fire_target()
 		return SUCCESS
 		
 	return FAILURE
-

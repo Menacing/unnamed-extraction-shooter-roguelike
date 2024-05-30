@@ -1,19 +1,16 @@
 @tool
-extends BTAction
-## ForgetPlayerTask
+extends BTCondition
+## NewTask
 
 
 # Display a customized name (requires @tool).
 func _generate_name():
-	return "Forget Player Task"
-
+	return "Has Fire Target"
 
 # Called each time this task is ticked (aka executed).
 func _tick(delta) -> Status:
 	if agent is Enemy:
-		agent.target_player = null
-		agent.fire_target = null
-		return SUCCESS
+		if agent.has_fire_target():
+			return SUCCESS
 		
 	return FAILURE
-

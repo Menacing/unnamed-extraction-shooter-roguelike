@@ -70,6 +70,10 @@ func has_fire_target() -> bool:
 	else:
 		return false
 
+func set_fire_target():
+	if target_player:
+		fire_target = target_player.center_mass
+
 func has_move_target() -> bool:
 	if move_target:
 		return true
@@ -129,10 +133,11 @@ func set_new_path():
 		nav_agent.set_target_position(move_target.global_position)
 	
 func slow_weapon_turn():
-	var delta = get_physics_process_delta_time()
+	if fire_target:
+		var delta = get_physics_process_delta_time()
 
-	Helpers.slow_rotate_to_point(head_node, fire_target.global_transform.origin, weapon_rotation_speed, delta)
-	Helpers.slow_rotate_to_point(gun_node, fire_target.global_transform.origin, weapon_rotation_speed, delta)
+		Helpers.slow_rotate_to_point(head_node, fire_target.global_transform.origin, weapon_rotation_speed, delta)
+		Helpers.slow_rotate_to_point(gun_node, fire_target.global_transform.origin, weapon_rotation_speed, delta)
 
 func fire_weapon():
 	Helpers.random_angle_deviation_moa(gun_node,vert_moa,hor_moa)

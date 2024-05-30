@@ -1,11 +1,13 @@
-[gd_resource type="BehaviorTree" load_steps=48 format=3 uid="uid://c3o1pihtd3pqc"]
+[gd_resource type="BehaviorTree" load_steps=53 format=3 uid="uid://c3o1pihtd3pqc"]
 
 [ext_resource type="Script" path="res://ai/tasks/find_new_patrol_target_task.gd" id="1_3lrnf"]
 [ext_resource type="Script" path="res://ai/tasks/has_target_player_condition.gd" id="1_41jai"]
 [ext_resource type="Script" path="res://ai/tasks/has_los_condition.gd" id="2_73y8u"]
 [ext_resource type="Script" path="res://ai/tasks/nav_agent_repath_task.gd" id="2_s2xkh"]
+[ext_resource type="Script" path="res://ai/tasks/has_fire_target_condition.gd" id="3_3orj1"]
 [ext_resource type="Script" path="res://ai/tasks/slow_weapon_turn_task.gd" id="3_igssr"]
 [ext_resource type="Script" path="res://ai/tasks/nav_agent_move_task.gd" id="3_msook"]
+[ext_resource type="Script" path="res://ai/tasks/set_fire_target_task.gd" id="4_ew3y5"]
 [ext_resource type="Script" path="res://ai/tasks/fire_weapon_task.gd" id="4_qi22x"]
 [ext_resource type="Script" path="res://ai/tasks/forget_player_task.gd" id="7_bsaep"]
 
@@ -16,6 +18,16 @@ script = ExtResource("1_41jai")
 
 [sub_resource type="BTCondition" id="BTCondition_dn173"]
 script = ExtResource("2_73y8u")
+
+[sub_resource type="BTCondition" id="BTCondition_enbqx"]
+script = ExtResource("3_3orj1")
+
+[sub_resource type="BTAction" id="BTAction_bou5m"]
+script = ExtResource("4_ew3y5")
+
+[sub_resource type="BTSelector" id="BTSelector_iiq57"]
+custom_name = "Select Fire Target Selector"
+children = [SubResource("BTCondition_enbqx"), SubResource("BTAction_bou5m")]
 
 [sub_resource type="BTAction" id="BTAction_waxrm"]
 script = ExtResource("3_igssr")
@@ -49,7 +61,7 @@ children = [SubResource("BTAlwaysSucceed_7btg4"), SubResource("BTAction_x5gjo")]
 
 [sub_resource type="BTDynamicSequence" id="BTDynamicSequence_ij6fu"]
 custom_name = "AttackPlayerSequence"
-children = [SubResource("BTCondition_834gd"), SubResource("BTCondition_dn173"), SubResource("BTAction_waxrm"), SubResource("BTAlwaysSucceed_3cfnl"), SubResource("BTDynamicSequence_tnoix")]
+children = [SubResource("BTCondition_834gd"), SubResource("BTCondition_dn173"), SubResource("BTSelector_iiq57"), SubResource("BTAction_waxrm"), SubResource("BTAlwaysSucceed_3cfnl"), SubResource("BTDynamicSequence_tnoix")]
 
 [sub_resource type="BTCondition" id="BTCondition_6gkx3"]
 script = ExtResource("1_41jai")
@@ -91,15 +103,15 @@ children = [SubResource("BTAction_fmey4"), SubResource("BTAlwaysSucceed_b2afx"),
 [sub_resource type="BTTimeLimit" id="BTTimeLimit_ok11c"]
 children = [SubResource("BTDynamicSequence_t1wxy")]
 
-[sub_resource type="BTAlwaysSucceed" id="BTAlwaysSucceed_hv2cv"]
+[sub_resource type="BTInvert" id="BTInvert_k8o4n"]
 children = [SubResource("BTTimeLimit_ok11c")]
 
 [sub_resource type="BTAction" id="BTAction_38e0v"]
 script = ExtResource("7_bsaep")
 
-[sub_resource type="BTSequence" id="BTSequence_gyw5r"]
+[sub_resource type="BTDynamicSequence" id="BTDynamicSequence_8yxad"]
 custom_name = "ChasePlayerSequence"
-children = [SubResource("BTCondition_6gkx3"), SubResource("BTAlwaysSucceed_hv2cv"), SubResource("BTAction_38e0v")]
+children = [SubResource("BTCondition_6gkx3"), SubResource("BTInvert_k8o4n"), SubResource("BTAction_38e0v")]
 
 [sub_resource type="BTAction" id="BTAction_ujsds"]
 script = ExtResource("1_3lrnf")
@@ -135,10 +147,10 @@ children = [SubResource("BTWait_mc006")]
 custom_name = "IdleRandomSelector"
 children = [SubResource("BTSequence_xwsnh"), SubResource("BTSequence_0xca4")]
 
-[sub_resource type="BTSelector" id="BTSelector_doeo7"]
+[sub_resource type="BTDynamicSelector" id="BTDynamicSelector_tf3vk"]
 custom_name = "ActionSelector"
-children = [SubResource("BTDynamicSequence_ij6fu"), SubResource("BTSequence_gyw5r"), SubResource("BTRandomSelector_bbub8")]
+children = [SubResource("BTDynamicSequence_ij6fu"), SubResource("BTDynamicSequence_8yxad"), SubResource("BTRandomSelector_bbub8")]
 
 [resource]
 blackboard_plan = SubResource("BlackboardPlan_fx0mw")
-root_task = SubResource("BTSelector_doeo7")
+root_task = SubResource("BTDynamicSelector_tf3vk")

@@ -14,26 +14,7 @@ var turret_rotation:float = 2.0
 var player:Player
 @onready var exclusions:Array[RID]
 var self_exclusions:Array[RID]
-var player_aimpoint:Node3D:
-	get:
-		if player:
-			return player.center_mass
-		else:
-			return null
-var _last_los_check_result:bool = false
-var last_los_check_result:bool:
-	get:
-		return _last_los_check_result
-	set(value):
-		if value != _last_los_check_result:
-			_last_los_check_result = value
-			los_changed(value)
-var reaction_timed_out:bool = false
-var can_react:bool:
-	get:
-		return last_los_check_result and reaction_timed_out
-@onready var repath_timer:Timer = $RepathTimer
-@onready var reaction_timer:Timer = $ReactionTimer
+
 @onready var skeleton:Skeleton3D = $"combat-roomba/Armature/Skeleton3D"
 @onready var physical_bone:PhysicalBone3D = $"combat-roomba/Armature/Skeleton3D/Physical Bone Bone"
 var alive = true
@@ -61,23 +42,12 @@ func _ready():
 		gun.firer = self
 		gun_node = gun
 
-
-
-func set_movement_target(movement_target : Vector3):
-	nav_agent.set_target_position(movement_target)
-
-func _physics_process(delta):
-	super(delta)
-	if alive:
-		last_los_check_result = has_los_to_player()
-		if can_react:
-			Helpers.slow_rotate_to_point(head, player_aimpoint.global_transform.origin, turret_rotation, delta)
-			Helpers.slow_rotate_to_point(gun, player_aimpoint.global_transform.origin, turret_rotation, delta)
-
-func _on_fire_timer_timeout():
-	if can_react and alive and gun:
-		Helpers.random_angle_deviation_moa(gun,vert_moa,hor_moa)
-		gun.fireGun()
+#func _physics_process(delta):
+	#super(delta)
+	#if alive:
+		#if player_aimpoint:
+			#Helpers.slow_rotate_to_point(head, player_aimpoint.global_transform.origin, turret_rotation, delta)
+			#Helpers.slow_rotate_to_point(gun, player_aimpoint.global_transform.origin, turret_rotation, delta)
 
 func _on_took_damage(damage:float):
 	health-=damage
@@ -118,51 +88,3 @@ func _on_hit(damage, pen_rating, col:CollisionInformation, hit_origin:Vector3) -
 		hit_inst.look_at(normal+position,Vector3.UP)
 	
 	return pen_ratio
-
-func has_attack_target() -> bool:
-	if player and can_react:
-		return true
-	else:
-		return false
-
-func _on_detect_radius_body_entered(body):
-	if body is Player:
-		player = body
-		var player_collider_rids = Helpers.get_all_collision_object_3d_recursive(player)
-		exclusions.append_array(player_collider_rids)
-		repath_timer.start()
-		set_new_path()
-
-
-func _on_detect_radius_body_exited(body):
-	if body is Player:
-		player = null
-		exclusions = self_exclusions
-		set_movement_target(self.global_transform.origin)
-		repath_timer.stop()
-
-
-func _on_repath_timer_timeout():
-	set_new_path()
-
-func has_los_to_player() -> bool:
-	if player:
-		var los_result = Helpers.los_to_point(head,player.los_check_locations,.6,exclusions)
-		return los_result
-	else:
-		return false
-		
-func los_changed(new_los:bool):
-	if new_los:
-		if reaction_timer.is_stopped():
-			reaction_timer.start()
-	else:
-		if reaction_timer.is_stopped():
-			reaction_timed_out = false
-
-
-func _on_reaction_timer_timeout():
-	reaction_timed_out = true
-
-
-
