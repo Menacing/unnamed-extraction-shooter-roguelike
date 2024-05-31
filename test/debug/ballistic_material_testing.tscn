@@ -1,14 +1,10 @@
-[gd_scene load_steps=35 format=3 uid="uid://bose3ay7o32xw"]
+[gd_scene load_steps=30 format=3 uid="uid://bose3ay7o32xw"]
 
 [ext_resource type="Script" path="res://levels/ballistic_testing.gd" id="1_gbeur"]
 [ext_resource type="PackedScene" uid="uid://dr48wela8mtxd" path="res://game_objects/items/weapons/hic_rifles/pm_52/pm_52.tscn" id="2_cebdm"]
 [ext_resource type="Resource" uid="uid://3nqgvhg4lre8" path="res://components/ammo_component/ammo_types/heavy_intermediate_cartridge/heavy_intermediate_cartridge.tres" id="3_8bfkd"]
 [ext_resource type="PackedScene" uid="uid://by4mxbof8gk0n" path="res://game_objects/bullet/test_bullet.tscn" id="3_qi338"]
 [ext_resource type="Script" path="res://game_objects/items/weapons/gun_stats.gd" id="4_opxar"]
-[ext_resource type="Script" path="res://addons/qodot/src/nodes/qodot_map.gd" id="7_qt56y"]
-[ext_resource type="Resource" uid="uid://dr0etevtbyukb" path="res://levels/entities/uesrl_fgd_entities.tres" id="8_3s7ds"]
-[ext_resource type="Material" uid="uid://c3acx86os52gf" path="res://levels/textures/func_godot_default.tres" id="8_30jwu"]
-[ext_resource type="Script" path="res://addons/qodot/src/nodes/qodot_entity.gd" id="9_x5xon"]
 [ext_resource type="Script" path="res://levels/entities/geo_ballistic_solid.gd" id="10_0hi85"]
 [ext_resource type="Texture2D" uid="uid://5owi221pdrdn" path="res://levels/textures/asphalt/asphalt_1.png" id="10_eoss8"]
 [ext_resource type="Texture2D" uid="uid://7qsivu8jpske" path="res://levels/textures/wood/wood_1.png" id="11_4xtol"]
@@ -17,7 +13,6 @@
 [ext_resource type="PackedScene" uid="uid://5n7aup1d2u20" path="res://game_objects/effects/bullet_hit_sparks.tscn" id="12_p6nk0"]
 [ext_resource type="AudioStream" uid="uid://chvv4165nfb61" path="res://game_objects/effects/sounds/steps/footstep_concrete_001.ogg" id="13_okg0b"]
 [ext_resource type="Texture2D" uid="uid://dqx54p0qqneon" path="res://levels/textures/metal/metal_1.png" id="13_t7kyq"]
-[ext_resource type="Resource" uid="uid://qumpyqn8mcmo" path="res://levels/game_material_info/uesrl_game_material_info_list.tres" id="14_tdacx"]
 [ext_resource type="PackedScene" uid="uid://b7x11nf8gbi6e" path="res://game_objects/effects/bullet_hit_stone.tscn" id="19_685x4"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_0dgg1"]
@@ -38,6 +33,8 @@ ads_fov = 50.0
 moa = 5.0
 turn_speed = 25.0
 ammo_type = ExtResource("3_8bfkd")
+reload_time_Sec = 0.0
+reload_thresholds = Array[float]([])
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hkji3"]
 albedo_texture = ExtResource("13_t7kyq")
@@ -164,41 +161,18 @@ autostart = true
 
 [node name="QodotMap" type="Node3D" parent="."]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.191383, -0.910634, 0.0021317)
-script = ExtResource("7_qt56y")
-map_file = "C:/Godot Projects/UESRL/unnamed-extraction-shooter-roguelike/levels/ballistic_test.map"
-inverse_scale_factor = 40.0
-entity_fgd = ExtResource("8_3s7ds")
-base_texture_dir = "res://levels/textures"
-texture_file_extensions = PackedStringArray("png", "jpg", "jpeg", "bmp")
-default_material = ExtResource("8_30jwu")
 
 [node name="entity_0_worldspawn" type="Node3D" parent="QodotMap"]
-script = ExtResource("9_x5xon")
-properties = {
-"_tb_def": "builtin:uesrl_fgd_entities.fgd",
-"_tb_mod": "levels",
-"_tb_textures": "textures/asphalt;textures/brick;textures/concrete;textures/fabric;textures/glass;textures/ground;textures/marble;textures/metal;textures/plants;textures/plaster;textures/plastic;textures/roof;textures/tile;textures/wood",
-"classname": "worldspawn",
-"mapversion": "220"
-}
 
 [node name="entity_1_geo_ballistic_solid" type="StaticBody3D" parent="QodotMap"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 2.4, 7.8)
 collision_layer = 3
 script = ExtResource("10_0hi85")
-properties = {
-"armor_rating": "10",
-"classname": "geo_ballistic_solid",
-"game_material_info": 0,
-"game_material_info_path": "res://levels/game_material_info/metal.tres",
-"pen_ratio": ".5"
-}
 _pen_ratio = 0.5
 _armor_rating = 10
 _bullet_hole_scene = ExtResource("11_yjd08")
 _impact_hit_scene = ExtResource("12_p6nk0")
 _footstep_sound = ExtResource("13_okg0b")
-game_material_info_list = ExtResource("14_tdacx")
 
 [node name="entity_1_mesh_instance" type="MeshInstance3D" parent="QodotMap/entity_1_geo_ballistic_solid"]
 mesh = SubResource("ArrayMesh_6k02i")
@@ -210,17 +184,11 @@ shape = SubResource("ConvexPolygonShape3D_dm1r2")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 2.4, 6.2)
 collision_layer = 3
 script = ExtResource("10_0hi85")
-properties = {
-"classname": "geo_ballistic_solid",
-"game_material_info": 0,
-"game_material_info_path": "res://levels/game_material_info/brick.tres"
-}
 _pen_ratio = 0.6
 _armor_rating = 6
 _bullet_hole_scene = ExtResource("11_yjd08")
 _impact_hit_scene = ExtResource("19_685x4")
 _footstep_sound = ExtResource("13_okg0b")
-game_material_info_list = ExtResource("14_tdacx")
 
 [node name="entity_2_mesh_instance" type="MeshInstance3D" parent="QodotMap/entity_2_geo_ballistic_solid"]
 mesh = SubResource("ArrayMesh_tc8r8")
@@ -232,17 +200,11 @@ shape = SubResource("ConvexPolygonShape3D_6sbyt")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.4, -0.4, 12.6)
 collision_layer = 3
 script = ExtResource("10_0hi85")
-properties = {
-"classname": "geo_ballistic_solid",
-"game_material_info": 0,
-"game_material_info_path": "res://levels/game_material_info/stone.tres"
-}
 _pen_ratio = 0.4
 _armor_rating = 8
 _bullet_hole_scene = ExtResource("11_yjd08")
 _impact_hit_scene = ExtResource("19_685x4")
 _footstep_sound = ExtResource("13_okg0b")
-game_material_info_list = ExtResource("14_tdacx")
 
 [node name="entity_3_mesh_instance" type="MeshInstance3D" parent="QodotMap/entity_3_geo_ballistic_solid"]
 mesh = SubResource("ArrayMesh_rerdg")
@@ -254,17 +216,11 @@ shape = SubResource("ConvexPolygonShape3D_dnh2d")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 2.4, 4.6)
 collision_layer = 3
 script = ExtResource("10_0hi85")
-properties = {
-"classname": "geo_ballistic_solid",
-"game_material_info": 1,
-"game_material_info_path": ""
-}
 _pen_ratio = 0.4
 _armor_rating = 8
 _bullet_hole_scene = ExtResource("11_yjd08")
 _impact_hit_scene = ExtResource("12_p6nk0")
 _footstep_sound = ExtResource("13_okg0b")
-game_material_info_list = ExtResource("14_tdacx")
 
 [node name="entity_4_mesh_instance" type="MeshInstance3D" parent="QodotMap/entity_4_geo_ballistic_solid"]
 mesh = SubResource("ArrayMesh_yxkvc")
