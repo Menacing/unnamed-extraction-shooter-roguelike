@@ -21,10 +21,17 @@ var gun_slot_1:Gun
 var gun_slot_2:Gun
 @onready var waist = $Waist
 @onready var chest = $Waist/Chest
-@onready var cam = $Waist/Chest/head_anchor/Head/Camera3d as Camera3D
-@onready var head = $Waist/Chest/head_anchor/Head as Node3D
-@onready var head_anchor = $Waist/Chest/head_anchor as Node3D
-@onready var use_shape:ShapeCast3D = $Waist/Chest/head_anchor/Head/Camera3d/UseShape
+@onready var cam = $Waist/Chest/head/Camera3d as Camera3D
+@onready var head = %head as Node3D
+@onready var head_anchor = %head_anchor as Node3D
+
+func set_head_anchor_position(pos:Vector3):
+	head_anchor.position = pos
+
+@onready var standing_head_anchor = %standing_head_anchor as Node3D
+@onready var crouching_head_anchor = %crouching_head_anchor as Node3D
+@onready var prone_head_anchor = %prone_head_anchor as Node3D
+@onready var use_shape:ShapeCast3D = $Waist/Chest/head/Camera3d/UseShape
 
 var pov_rotation_node:Node3D
 
@@ -104,7 +111,7 @@ var current_fire_mode: String:
 			return equipped_gun.current_fire_mode
 		else: 
 			return ""
-@onready var ads_normal_pos: Vector3 = head_anchor.position
+			
 var grip_pos: Node3D
 var handguard_pos: Node3D
 var fully_ads: bool:
@@ -505,6 +512,11 @@ func calculate_fall_damage(vertical_velocity:float) -> float:
 	return max(0.0, calc_damage)
 		
 #region Movement Code
+
+@onready var standing_collision_shape:CollisionShape3D = $StandingCollisionShape3D
+@onready var crouching_collision_shape:CollisionShape3D = $CrouchingCollisionShape3D
+@onready var prone_collision_shape:CollisionShape3D = $ProneCollisionShape3D
+
 func should_sprint() -> bool:
 	if GameSettings.toggle_sprint:
 		if Input.is_action_just_pressed("sprint"):
@@ -547,7 +559,12 @@ func _on_standing_state_entered():
 	current_bob_amount_max_degrees_y.base_value = STANDING_BOB_ROTATION_Y
 	current_bob_amount_x.base_value = STANDING_BOB_TRANSLATION_X
 	current_bob_amount_y.base_value = STANDING_BOB_TRANSLATION_Y
-	#world_collider.get_shape().set_height(STANDING_HEIGHT)
+	
+	standing_collision_shape.disabled = false
+	crouching_collision_shape.disabled = true
+	prone_collision_shape.disabled = true
+	
+	set_head_anchor_position(standing_head_anchor.position)
 	
 	recoil_factor.add_modifier(standing_recoil_factor)
 	
@@ -677,9 +694,14 @@ func _on_crouching_state_entered():
 	current_bob_amount_max_degrees_y.base_value = CROUCHING_BOB_ROTATION_Y
 	current_bob_amount_x.base_value = CROUCHING_BOB_TRANSLATION_X
 	current_bob_amount_y.base_value = CROUCHING_BOB_TRANSLATION_Y
-	world_collider.get_shape().set_height(CROUCHING_HEIGHT)
 	recoil_factor.add_modifier(crouching_recoil_factor)
 	current_bob_freq.add_modifier(crouching_bob_freq)
+	
+	standing_collision_shape.disabled = true
+	crouching_collision_shape.disabled = false
+	prone_collision_shape.disabled = true
+	
+	set_head_anchor_position(crouching_head_anchor.position)
 	
 func _on_crouching_state_exited():
 	recoil_factor.remove_modifier(crouching_recoil_factor)
@@ -748,8 +770,12 @@ func _on_prone_state_entered():
 	current_bob_amount_max_degrees_y.base_value = PRONE_BOB_ROTATION_Y
 	current_bob_amount_x.base_value = PRONE_BOB_TRANSLATION_X
 	current_bob_amount_y.base_value = PRONE_BOB_TRANSLATION_Y
-	world_collider.get_shape().set_height(PRONE_HEIGHT)
 	recoil_factor.add_modifier(prone_recoil_factor)
+	standing_collision_shape.disabled = true
+	crouching_collision_shape.disabled = true
+	prone_collision_shape.disabled = false
+	
+	set_head_anchor_position(prone_head_anchor.position)
 	
 func _on_prone_state_exited():
 	recoil_factor.remove_modifier_by_name("prone")
@@ -926,12 +952,17 @@ func align_trailers_to_head(delta:float):
 
 func align_gun_trailer_to_head(delta:float):
 	#calculate target positions
-	var ads_rotated_offset = (cam.position - equipped_gun.get_ads_anchor()) * head.basis.inverse()
-	var ads_g_pos = head.global_position + ads_rotated_offset
-	var hf_rotated_offset = (cam.position - equipped_gun.get_hip_fire_anchor()) * head.basis.inverse()
-	var hf_g_pos = head.global_position + hf_rotated_offset
+
+	var gun_ads_anchor = equipped_gun.get_ads_anchor()
+	var gun_hf_anchor = equipped_gun.get_hip_fire_anchor()
+	var gun_ads_head_anchor = equipped_gun.get_ads_head_anchor()
+	var hf_head_global_position = head_anchor.global_position
+	var hf_gun_global_position = head_anchor.global_position - (gun_hf_anchor * head.basis.inverse())
+	var ads_head_global_position = head_anchor.global_position - (gun_ads_head_anchor * head.basis.inverse())
+	var ads_gun_global_position = ads_head_global_position - (gun_ads_anchor * head.basis.inverse())
+
 	var ads_fov = equipped_gun.get_ADS_FOV()
-		
+	
 	#if fully ads, change transparency, else undo transparency
 	if GameSettings.both_eyes_open_ads:
 		if fully_ads:
@@ -942,9 +973,9 @@ func align_gun_trailer_to_head(delta:float):
 				make_opaque()
 	
 	#set gun position between hipfire position and ads position by ads_factor
-	equipped_gun.global_position = hf_g_pos.lerp(ads_g_pos, ads_fac)
+	equipped_gun.global_position = hf_gun_global_position.lerp(ads_gun_global_position, ads_fac)
 	#set head anchor position between normal and ads position by ads_factor
-	head_anchor.transform.origin = ads_normal_pos.lerp(equipped_gun.get_ads_head_anchor(), ads_fac)
+	head.global_position = hf_head_global_position.lerp(ads_head_global_position, ads_fac)
 	#set camera fov between default and ads fov by ads_factor
 	cam.fov = lerp(GameSettings.default_fov, ads_fov, ads_fac)
 

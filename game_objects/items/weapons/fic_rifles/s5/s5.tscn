@@ -103,7 +103,7 @@ transform = Transform3D(1, 0, 7.10543e-15, 0, 1, 0, -7.10543e-15, 0, 1, 0.025, 0
 transform = Transform3D(-1, 8.74228e-08, 7.10543e-15, -8.74228e-08, -1, 0, 7.10543e-15, -6.21177e-22, 1, -0.0017045, 0.0792384, -0.0446781)
 
 [node name="HipFire" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.171, 0.14, 0.218)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.171, 0.14, 0.398)
 
 [node name="Label3D" type="Label3D" parent="HipFire"]
 visible = false
@@ -111,7 +111,7 @@ billboard = 1
 text = "HF"
 
 [node name="ADS" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0702731, 0.271476)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.07, 0.451)
 
 [node name="Left_Hand" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0283023, 0.137292, -0.0768944)
@@ -120,7 +120,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0283023, 0.137292, -0.0768
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.179712, 0.137292, -0.0768944)
 
 [node name="ADS_Head" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2, 0.767238, -0.088)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.2, 0.1, 0)
 
 [node name="scope_anchor" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.02233, 0.0517627)
