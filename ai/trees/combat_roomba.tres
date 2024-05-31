@@ -1,4 +1,4 @@
-[gd_resource type="BehaviorTree" load_steps=53 format=3 uid="uid://c3o1pihtd3pqc"]
+[gd_resource type="BehaviorTree" load_steps=60 format=3 uid="uid://c3o1pihtd3pqc"]
 
 [ext_resource type="Script" path="res://ai/tasks/find_new_patrol_target_task.gd" id="1_3lrnf"]
 [ext_resource type="Script" path="res://ai/tasks/has_target_player_condition.gd" id="1_41jai"]
@@ -9,15 +9,46 @@
 [ext_resource type="Script" path="res://ai/tasks/nav_agent_move_task.gd" id="3_msook"]
 [ext_resource type="Script" path="res://ai/tasks/set_fire_target_task.gd" id="4_ew3y5"]
 [ext_resource type="Script" path="res://ai/tasks/fire_weapon_task.gd" id="4_qi22x"]
-[ext_resource type="Script" path="res://ai/tasks/forget_player_task.gd" id="7_bsaep"]
+[ext_resource type="Script" path="res://ai/tasks/set_move_target_to_player_task.gd" id="5_uaue7"]
 
 [sub_resource type="BlackboardPlan" id="BlackboardPlan_fx0mw"]
+var/seen_player/name = &"seen_player"
+var/seen_player/type = 1
+var/seen_player/value = false
+var/seen_player/hint = 0
+var/seen_player/hint_string = "Has the enemy seen the player?"
 
 [sub_resource type="BTCondition" id="BTCondition_834gd"]
 script = ExtResource("1_41jai")
 
 [sub_resource type="BTCondition" id="BTCondition_dn173"]
 script = ExtResource("2_73y8u")
+
+[sub_resource type="BBVariant" id="BBVariant_ae7pw"]
+type = 1
+saved_value = true
+resource_name = "true"
+
+[sub_resource type="BTCheckVar" id="BTCheckVar_a8imp"]
+variable = &"seen_player"
+value = SubResource("BBVariant_ae7pw")
+
+[sub_resource type="BTRandomWait" id="BTRandomWait_2t7p0"]
+
+[sub_resource type="BBVariant" id="BBVariant_r3dj3"]
+type = 1
+saved_value = true
+resource_name = "true"
+
+[sub_resource type="BTSetVar" id="BTSetVar_g78d7"]
+variable = &"seen_player"
+value = SubResource("BBVariant_r3dj3")
+
+[sub_resource type="BTSequence" id="BTSequence_fc8b1"]
+children = [SubResource("BTRandomWait_2t7p0"), SubResource("BTSetVar_g78d7")]
+
+[sub_resource type="BTSelector" id="BTSelector_et6s3"]
+children = [SubResource("BTCheckVar_a8imp"), SubResource("BTSequence_fc8b1")]
 
 [sub_resource type="BTCondition" id="BTCondition_enbqx"]
 script = ExtResource("3_3orj1")
@@ -29,6 +60,9 @@ script = ExtResource("4_ew3y5")
 custom_name = "Select Fire Target Selector"
 children = [SubResource("BTCondition_enbqx"), SubResource("BTAction_bou5m")]
 
+[sub_resource type="BTAction" id="BTAction_fkydl"]
+script = ExtResource("5_uaue7")
+
 [sub_resource type="BTAction" id="BTAction_waxrm"]
 script = ExtResource("3_igssr")
 
@@ -36,7 +70,8 @@ script = ExtResource("3_igssr")
 script = ExtResource("4_qi22x")
 
 [sub_resource type="BTCooldown" id="BTCooldown_2lnxi"]
-duration = 0.5
+duration = 1.0
+start_cooled = true
 children = [SubResource("BTAction_amwn2")]
 
 [sub_resource type="BTAlwaysSucceed" id="BTAlwaysSucceed_3cfnl"]
@@ -61,10 +96,19 @@ children = [SubResource("BTAlwaysSucceed_7btg4"), SubResource("BTAction_x5gjo")]
 
 [sub_resource type="BTDynamicSequence" id="BTDynamicSequence_ij6fu"]
 custom_name = "AttackPlayerSequence"
-children = [SubResource("BTCondition_834gd"), SubResource("BTCondition_dn173"), SubResource("BTSelector_iiq57"), SubResource("BTAction_waxrm"), SubResource("BTAlwaysSucceed_3cfnl"), SubResource("BTDynamicSequence_tnoix")]
+children = [SubResource("BTCondition_834gd"), SubResource("BTCondition_dn173"), SubResource("BTSelector_et6s3"), SubResource("BTSelector_iiq57"), SubResource("BTAction_fkydl"), SubResource("BTAction_waxrm"), SubResource("BTAlwaysSucceed_3cfnl"), SubResource("BTDynamicSequence_tnoix")]
 
 [sub_resource type="BTCondition" id="BTCondition_6gkx3"]
 script = ExtResource("1_41jai")
+
+[sub_resource type="BBVariant" id="BBVariant_mjf5f"]
+type = 1
+saved_value = true
+resource_name = "true"
+
+[sub_resource type="BTCheckVar" id="BTCheckVar_fwv55"]
+variable = &"seen_player"
+value = SubResource("BBVariant_mjf5f")
 
 [sub_resource type="BTAction" id="BTAction_fmey4"]
 script = ExtResource("3_igssr")
@@ -73,32 +117,20 @@ script = ExtResource("3_igssr")
 script = ExtResource("4_qi22x")
 
 [sub_resource type="BTCooldown" id="BTCooldown_t2xxm"]
-duration = 0.5
+duration = 1.0
+start_cooled = true
 children = [SubResource("BTAction_opdww")]
 
 [sub_resource type="BTAlwaysSucceed" id="BTAlwaysSucceed_b2afx"]
 custom_name = "Fire Weapon Cooldown"
 children = [SubResource("BTCooldown_t2xxm")]
 
-[sub_resource type="BTAction" id="BTAction_f84sd"]
-script = ExtResource("2_s2xkh")
-
-[sub_resource type="BTCooldown" id="BTCooldown_g0kea"]
-duration = 2.0
-children = [SubResource("BTAction_f84sd")]
-
-[sub_resource type="BTAlwaysSucceed" id="BTAlwaysSucceed_3caag"]
-children = [SubResource("BTCooldown_g0kea")]
-
 [sub_resource type="BTAction" id="BTAction_bk13g"]
 script = ExtResource("3_msook")
 
-[sub_resource type="BTDynamicSequence" id="BTDynamicSequence_6pwke"]
-children = [SubResource("BTAlwaysSucceed_3caag"), SubResource("BTAction_bk13g")]
-
 [sub_resource type="BTDynamicSequence" id="BTDynamicSequence_t1wxy"]
 custom_name = "ChasePlayerSequence"
-children = [SubResource("BTAction_fmey4"), SubResource("BTAlwaysSucceed_b2afx"), SubResource("BTDynamicSequence_6pwke")]
+children = [SubResource("BTAction_fmey4"), SubResource("BTAlwaysSucceed_b2afx"), SubResource("BTAction_bk13g")]
 
 [sub_resource type="BTTimeLimit" id="BTTimeLimit_ok11c"]
 children = [SubResource("BTDynamicSequence_t1wxy")]
@@ -106,12 +138,17 @@ children = [SubResource("BTDynamicSequence_t1wxy")]
 [sub_resource type="BTInvert" id="BTInvert_k8o4n"]
 children = [SubResource("BTTimeLimit_ok11c")]
 
-[sub_resource type="BTAction" id="BTAction_38e0v"]
-script = ExtResource("7_bsaep")
+[sub_resource type="BBVariant" id="BBVariant_keieu"]
+type = 1
+saved_value = false
+
+[sub_resource type="BTSetVar" id="BTSetVar_lgfdt"]
+variable = &"seen_player"
+value = SubResource("BBVariant_keieu")
 
 [sub_resource type="BTDynamicSequence" id="BTDynamicSequence_8yxad"]
 custom_name = "ChasePlayerSequence"
-children = [SubResource("BTCondition_6gkx3"), SubResource("BTInvert_k8o4n"), SubResource("BTAction_38e0v")]
+children = [SubResource("BTCondition_6gkx3"), SubResource("BTCheckVar_fwv55"), SubResource("BTInvert_k8o4n"), SubResource("BTSetVar_lgfdt")]
 
 [sub_resource type="BTAction" id="BTAction_ujsds"]
 script = ExtResource("1_3lrnf")
@@ -136,12 +173,13 @@ children = [SubResource("BTAlwaysSucceed_7qpwi"), SubResource("BTAction_68nij")]
 custom_name = "PatrolSequence"
 children = [SubResource("BTAction_ujsds"), SubResource("BTDynamicSequence_fhqqk")]
 
-[sub_resource type="BTWait" id="BTWait_mc006"]
-duration = 5.0
+[sub_resource type="BTRandomWait" id="BTRandomWait_bd64s"]
+min_duration = 3.0
+max_duration = 8.0
 
 [sub_resource type="BTSequence" id="BTSequence_0xca4"]
 custom_name = "LoiterSequence"
-children = [SubResource("BTWait_mc006")]
+children = [SubResource("BTRandomWait_bd64s")]
 
 [sub_resource type="BTRandomSelector" id="BTRandomSelector_bbub8"]
 custom_name = "IdleRandomSelector"

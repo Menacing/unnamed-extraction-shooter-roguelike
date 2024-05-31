@@ -99,8 +99,8 @@ func do_raycast_movement(delta:float):
 			pass
 			
 	var col:KinematicCollision3D = move_and_collide(travel_vector,false,0.001,true)
-	if col:
-		print("something went wrong, col should always be null doing it this way")
+	#if col:
+		#print("something went wrong, col should always be null doing it this way")
 	var new_speed = (current_speed/ (1+k*delta*current_speed))
 	current_damage = pow(new_speed/current_speed,2) * current_damage
 	current_speed = new_speed
