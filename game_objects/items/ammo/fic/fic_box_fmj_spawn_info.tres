@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="LootSpawnInformation" load_steps=3 format=3 uid="uid://bib8ie33yhndk"]
+
+[ext_resource type="Resource" uid="uid://cao3l7jt7txws" path="res://game_objects/items/ammo/fic/fic_box_fmj_inventory_info.tres" id="1_ufusn"]
+[ext_resource type="Script" path="res://game_objects/items/loot_spawn_information.gd" id="2_qbpye"]
+
+[resource]
+script = ExtResource("2_qbpye")
+item_information = ExtResource("1_ufusn")
+test_radius = 0.1
+min_stack = 20
+max_stack = 20

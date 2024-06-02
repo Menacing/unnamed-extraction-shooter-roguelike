@@ -1,0 +1,32 @@
+[gd_resource type="Resource" script_class="AmmoInformation" load_steps=8 format=3 uid="uid://cao3l7jt7txws"]
+
+[ext_resource type="Resource" uid="uid://cv0v8s66c5nn4" path="res://components/ammo_component/ammo_types/fast_intermediate_cartridge/ammo_subtypes/full_metal_jacket.tres" id="1_tw7vv"]
+[ext_resource type="Resource" uid="uid://bikewy7dlkv20" path="res://components/ammo_component/ammo_types/fast_intermediate_cartridge/fast_intermediate_cartridge.tres" id="2_j0w4h"]
+[ext_resource type="PackedScene" uid="uid://son7demex4pt" path="res://ui/inventory/simple_detail_popup.tscn" id="3_msvut"]
+[ext_resource type="Texture2D" uid="uid://uyrp0qvveaa2" path="res://game_objects/items/ammo/fic/fic_fmj_icon.png" id="4_0p4bb"]
+[ext_resource type="PackedScene" uid="uid://c17uhpgl0dvt4" path="res://game_objects/items/ammo/fic/fic_box_fmj.tscn" id="5_by4sg"]
+[ext_resource type="PackedScene" uid="uid://cn3ywqty7xvvr" path="res://ui/inventory/item_control.tscn" id="6_dbigp"]
+[ext_resource type="Script" path="res://game_objects/items/ammo/ammo_information.gd" id="7_pgfag"]
+
+[resource]
+script = ExtResource("7_pgfag")
+ammo_type = ExtResource("2_j0w4h")
+ammo_subtype = ExtResource("1_tw7vv")
+item_control_scene = ExtResource("6_dbigp")
+item_3d_scene = ExtResource("5_by4sg")
+item_type_id = "fic_box_fmj"
+show_name = false
+display_name = "Fast Intermediate Cartridge - Full Metal Jacket"
+item_type = 11
+icon = ExtResource("4_0p4bb")
+icon_r = ExtResource("4_0p4bb")
+detail_scene = ExtResource("3_msvut")
+context_menu_items = Array[Resource("res://ui/inventory/item_context_item.gd")]([])
+max_stacks = 20
+has_stacks = true
+max_durability = 1
+has_durability = false
+column_span = 1
+row_span = 1
+description_text = ""
+flavor_text = ""
