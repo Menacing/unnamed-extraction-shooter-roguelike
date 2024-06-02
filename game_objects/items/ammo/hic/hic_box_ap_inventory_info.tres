@@ -3,8 +3,8 @@
 [ext_resource type="Resource" uid="uid://e74bf0ee7eck" path="res://components/ammo_component/ammo_types/heavy_intermediate_cartridge/ammo_subtypes/armor_piercing.tres" id="1_5s5mq"]
 [ext_resource type="Resource" uid="uid://3nqgvhg4lre8" path="res://components/ammo_component/ammo_types/heavy_intermediate_cartridge/heavy_intermediate_cartridge.tres" id="2_161qn"]
 [ext_resource type="PackedScene" uid="uid://son7demex4pt" path="res://ui/inventory/simple_detail_popup.tscn" id="3_dlnfn"]
-[ext_resource type="Texture2D" uid="uid://dgkdf1d2p6yu4" path="res://game_objects/items/ammo/hic/hic_box_fmj_icon.png" id="3_fgyiy"]
 [ext_resource type="PackedScene" uid="uid://82pjqxlmcg2v" path="res://game_objects/items/ammo/hic/hic_box_ap.tscn" id="4_b4t56"]
+[ext_resource type="Texture2D" uid="uid://md2fvi5hcvif" path="res://game_objects/items/ammo/hic/hic_box_ap_icon.png" id="4_w0f3e"]
 [ext_resource type="PackedScene" uid="uid://cn3ywqty7xvvr" path="res://ui/inventory/item_control.tscn" id="5_2e8no"]
 [ext_resource type="Script" path="res://game_objects/items/ammo/ammo_information.gd" id="6_ox2j3"]
 
@@ -18,8 +18,8 @@ item_type_id = "hic_box_ap"
 show_name = false
 display_name = "Heavy Intermediate Cartridge - Armor Piercing"
 item_type = 11
-icon = ExtResource("3_fgyiy")
-icon_r = ExtResource("3_fgyiy")
+icon = ExtResource("4_w0f3e")
+icon_r = ExtResource("4_w0f3e")
 detail_scene = ExtResource("3_dlnfn")
 context_menu_items = Array[Resource("res://ui/inventory/item_context_item.gd")]([])
 max_stacks = 20

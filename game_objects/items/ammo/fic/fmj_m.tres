@@ -1,0 +1,10 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://be7ovfmdg4bw"]
+
+[ext_resource type="Texture2D" uid="uid://dwowqm8li6dvn" path="res://game_objects/items/ammo/fic/textures/fic_fmj_t.png" id="1_1chp2"]
+
+[resource]
+resource_name = "fmj_m"
+cull_mode = 2
+albedo_texture = ExtResource("1_1chp2")
+roughness = 0.5
+texture_filter = 2

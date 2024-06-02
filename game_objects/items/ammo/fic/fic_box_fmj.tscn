@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://c17uhpgl0dvt4"]
+
+[ext_resource type="Script" path="res://game_objects/item_3d.gd" id="1_isnth"]
+[ext_resource type="PackedScene" uid="uid://bmn1b1gbvgcn6" path="res://game_objects/items/ammo/fic/fic_box_fmj.blend" id="2_g7n4r"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_hxfpi"]
+size = Vector3(0.120941, 0.119818, 0.0797119)
+
+[node name="HicBox" type="RigidBody3D" node_paths=PackedStringArray("model_node")]
+collision_layer = 5
+collision_mask = 5
+script = ExtResource("1_isnth")
+item_type_id = "fic_box_fmj"
+world_collider_path = NodePath("CollisionShape3D")
+longest_side_size = 0.15
+model_node = NodePath("fic_box_fmj")
+
+[node name="fic_box_fmj" parent="." instance=ExtResource("2_g7n4r")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.0600941, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000259388, 0.0599775, 6.10324e-05)
+shape = SubResource("BoxShape3D_hxfpi")
