@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="LootSpawnMapping" load_steps=11 format=3 uid="uid://cpkios25eab1h"]
+[gd_resource type="Resource" script_class="LootSpawnMapping" load_steps=17 format=3 uid="uid://cpkios25eab1h"]
 
 [ext_resource type="Script" path="res://game_objects/items/loot_spawn_mapping.gd" id="1_4pmu7"]
 [ext_resource type="Resource" uid="uid://cfi8lq50axkxg" path="res://levels/biomes/science/easy/loot_spawns/science_easy_polymer_pile_spawn_weight.tres" id="2_1m4cd"]
@@ -8,17 +8,35 @@
 [ext_resource type="Resource" uid="uid://dfi5jdd3s8pcy" path="res://game_objects/items/ammo/hic/hic_box_ap_spawn_info.tres" id="6_b6bpt"]
 [ext_resource type="Script" path="res://game_objects/items/loot_spawn_weight.gd" id="7_rt6d1"]
 [ext_resource type="Resource" uid="uid://drvqntpkse6fl" path="res://game_objects/items/ammo/hic/hic_box_hp_spawn_info.tres" id="8_y25ft"]
+[ext_resource type="Resource" uid="uid://bib8ie33yhndk" path="res://game_objects/items/ammo/fic/fic_box_fmj_spawn_info.tres" id="9_jrie8"]
+[ext_resource type="Resource" uid="uid://bsiksvwmwxur5" path="res://game_objects/items/ammo/fic/fic_box_hp_spawn_info.tres" id="10_aehop"]
+[ext_resource type="Resource" uid="uid://b1qwbd67wm4xi" path="res://game_objects/items/ammo/fic/fic_box_ap_spawn_info.tres" id="11_0yr68"]
 
 [sub_resource type="Resource" id="Resource_gq11x"]
 script = ExtResource("7_rt6d1")
-weight = 10
+weight = 5
 loot = ExtResource("6_b6bpt")
 
 [sub_resource type="Resource" id="Resource_qt6ml"]
 script = ExtResource("7_rt6d1")
-weight = 10
+weight = 5
 loot = ExtResource("8_y25ft")
+
+[sub_resource type="Resource" id="Resource_gphd2"]
+script = ExtResource("7_rt6d1")
+weight = 5
+loot = ExtResource("9_jrie8")
+
+[sub_resource type="Resource" id="Resource_aby38"]
+script = ExtResource("7_rt6d1")
+weight = 2
+loot = ExtResource("10_aehop")
+
+[sub_resource type="Resource" id="Resource_jnmsc"]
+script = ExtResource("7_rt6d1")
+weight = 2
+loot = ExtResource("11_0yr68")
 
 [resource]
 script = ExtResource("1_4pmu7")
-spawn_weights = Array[ExtResource("7_rt6d1")]([ExtResource("4_dx76d"), ExtResource("2_1m4cd"), ExtResource("3_u0ejk"), ExtResource("5_7g4id"), SubResource("Resource_gq11x"), SubResource("Resource_qt6ml")])
+spawn_weights = Array[ExtResource("7_rt6d1")]([ExtResource("4_dx76d"), ExtResource("2_1m4cd"), ExtResource("3_u0ejk"), ExtResource("5_7g4id"), SubResource("Resource_gq11x"), SubResource("Resource_qt6ml"), SubResource("Resource_gphd2"), SubResource("Resource_aby38"), SubResource("Resource_jnmsc")])
