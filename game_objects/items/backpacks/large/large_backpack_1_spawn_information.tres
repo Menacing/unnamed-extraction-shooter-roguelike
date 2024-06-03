@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="LootSpawnInformation" load_steps=3 format=3 uid="uid://dq6fryorej07i"]
+
+[ext_resource type="Script" path="res://game_objects/items/loot_spawn_information.gd" id="1_dwv4q"]
+[ext_resource type="Resource" uid="uid://dv187kl8jcl01" path="res://game_objects/items/backpacks/large/large_backpack_1_inventory_info.tres" id="1_nv0pm"]
+
+[resource]
+script = ExtResource("1_dwv4q")
+item_information = ExtResource("1_nv0pm")
+test_radius = 1.1
+min_stack = 0
+max_stack = 0

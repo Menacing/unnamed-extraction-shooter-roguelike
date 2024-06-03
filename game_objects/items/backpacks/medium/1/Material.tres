@@ -1,0 +1,10 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://dxe5ptbyr1m7o"]
+
+[ext_resource type="Texture2D" uid="uid://brxg82gpq2ech" path="res://game_objects/items/backpacks/medium/1/textures/m_backpack_scaled_tex.png" id="1_sjnf2"]
+
+[resource]
+resource_name = "Material"
+cull_mode = 2
+albedo_texture = ExtResource("1_sjnf2")
+roughness = 0.5
+texture_filter = 2

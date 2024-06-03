@@ -233,7 +233,7 @@ func set_inventory_size(inventory_id:int, size:Vector2i) -> void:
 	for cw in range(current_width):
 		for ch in range(current_height):
 			#if old spot doesn't exist, trigger drop of item
-			var item_id:int =  old_dictionary[cw][ch]
+			var item_id =  old_dictionary[cw][ch]
 			if cw > size.x or ch > size.y and item_id:
 				remove_item(item_id, inventory_id)
 			elif item_id:

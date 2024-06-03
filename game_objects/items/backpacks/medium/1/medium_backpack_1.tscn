@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://dkq52ylhipkym"]
+
+[ext_resource type="Script" path="res://game_objects/items/backpacks/backpack.gd" id="1_nl73f"]
+[ext_resource type="PackedScene" uid="uid://v7gsnfhx1l15" path="res://game_objects/items/backpacks/medium/1/medium_backpack_1.blend" id="2_oviqw"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_lntsr"]
+size = Vector3(0.48546, 0.84506, 0.38905)
+
+[node name="medium_backpack" type="RigidBody3D" node_paths=PackedStringArray("model_node")]
+collision_layer = 5
+collision_mask = 5
+mass = 4.0
+script = ExtResource("1_nl73f")
+backpack_size = 2
+item_type_id = "medium_backpack_1"
+world_collider_path = NodePath("CollisionShape3D")
+longest_side_size = 0.5
+model_node = NodePath("medium_backpack_1")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00139695, 0.423553, 0.192747)
+visible = false
+shape = SubResource("BoxShape3D_lntsr")
+
+[node name="medium_backpack_1" parent="." instance=ExtResource("2_oviqw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.425206, 0.137631)

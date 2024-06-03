@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="LootSpawnInformation" load_steps=3 format=3 uid="uid://cva5p7x1si3qb"]
+
+[ext_resource type="Script" path="res://game_objects/items/loot_spawn_information.gd" id="1_hboh3"]
+[ext_resource type="Resource" uid="uid://25dmf2cpvdfq" path="res://game_objects/items/armor/light/light_armor_1_inventory_info.tres" id="1_mxtul"]
+
+[resource]
+script = ExtResource("1_hboh3")
+item_information = ExtResource("1_mxtul")
+test_radius = 0.5
+min_stack = 0
+max_stack = 0

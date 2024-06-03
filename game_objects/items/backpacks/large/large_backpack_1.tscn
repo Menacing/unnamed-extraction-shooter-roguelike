@@ -1,16 +1,16 @@
 [gd_scene load_steps=4 format=3 uid="uid://b6xejgxv7attc"]
 
-[ext_resource type="Script" path="res://game_objects/items/backpacks/backpack.gd" id="1_1vwom"]
-[ext_resource type="PackedScene" uid="uid://bi0xia4rstdus" path="res://game_objects/items/backpacks/large/large_backpack_1.glb" id="4_a60g8"]
+[ext_resource type="Script" path="res://game_objects/items/backpacks/backpack.gd" id="1_mleq4"]
+[ext_resource type="PackedScene" uid="uid://bi0xia4rstdus" path="res://game_objects/items/backpacks/large/large_backpack_1.glb" id="2_c16o3"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_lntsr"]
 size = Vector3(0.509955, 1.08099, 0.353562)
 
-[node name="large_backpack" type="RigidBody3D" node_paths=PackedStringArray("model_node")]
+[node name="large_backpack_1" type="RigidBody3D" node_paths=PackedStringArray("model_node")]
 collision_layer = 5
 collision_mask = 5
 mass = 6.0
-script = ExtResource("1_1vwom")
+script = ExtResource("1_mleq4")
 backpack_size = 3
 item_type_id = "large_backpack_1"
 world_collider_path = NodePath("CollisionShape3D")
@@ -21,4 +21,4 @@ model_node = NodePath("large_backpack_1")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.541518, 0.175003)
 shape = SubResource("BoxShape3D_lntsr")
 
-[node name="large_backpack_1" parent="." instance=ExtResource("4_a60g8")]
+[node name="large_backpack_1" parent="." instance=ExtResource("2_c16o3")]
