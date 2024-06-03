@@ -145,69 +145,55 @@ bones/7/rotation = Quaternion(0.753855, 0.314291, -0.412473, 0.403472)
 bones/8/rotation = Quaternion(0.346294, -0.253836, 0.113711, 0.895945)
 bones/9/rotation = Quaternion(0.515132, -0.531501, 0.496355, 0.453627)
 bones/10/rotation = Quaternion(-0.016684, -0.180944, 0.0483519, 0.982162)
-bones/11/rotation = Quaternion(0.0436634, -0.0294635, 0.153369, 0.986764)
-bones/12/rotation = Quaternion(0.0488257, -0.000220328, -0.119185, 0.991671)
-bones/13/rotation = Quaternion(-0.218619, -0.0420837, 0.181335, 0.95789)
-bones/15/rotation = Quaternion(0.299671, 0.0850329, 0.0599188, 0.948355)
-bones/16/rotation = Quaternion(0.152937, 0.00601103, 0.0169483, 0.988072)
-bones/17/rotation = Quaternion(0.148469, -0.00227734, 0.01785, 0.988753)
 bones/19/rotation = Quaternion(0.708773, -0.386193, 0.441558, 0.391818)
 bones/20/rotation = Quaternion(0.248497, -0.135059, -0.243111, 0.92785)
 bones/21/rotation = Quaternion(0.0309808, 0.221067, -0.756116, 0.61519)
 bones/22/rotation = Quaternion(0.108171, 0.107453, -0.167817, 0.973956)
-bones/23/rotation = Quaternion(-0.0236578, -0.101738, -0.124064, 0.986761)
-bones/24/rotation = Quaternion(0.00401807, 0.0111689, 0.192377, 0.981249)
-bones/25/rotation = Quaternion(-0.144459, -0.00142761, 0.222599, 0.964147)
-bones/27/rotation = Quaternion(0.00424552, 0.000577868, 0.0828087, 0.996556)
-bones/28/rotation = Quaternion(0.516135, 0.00177225, 0.0150531, 0.856373)
-bones/29/rotation = Quaternion(-0.312428, 0.00991786, 0.0434396, 0.948896)
 bones/31/rotation = Quaternion(0.141788, 0.156176, 0.969231, -0.126873)
 bones/32/rotation = Quaternion(-0.255437, -0.123511, -0.00607359, 0.958885)
 bones/33/rotation = Quaternion(0.478208, -0.147482, 0.00141263, 0.865774)
-bones/34/rotation = Quaternion(0.266463, -0.0591006, 0.0171634, 0.961878)
 bones/36/rotation = Quaternion(-0.196948, 0.12794, 0.957455, 0.167699)
 bones/37/rotation = Quaternion(-0.338051, 0.0205575, -0.00192785, 0.940901)
 bones/38/rotation = Quaternion(0.586781, 0.13464, 0.0423674, 0.797349)
-bones/39/rotation = Quaternion(0.227263, 0.0718024, 0.0059336, 0.971165)
 
 [node name="ChestBoneAttachment" parent="Player/HitBox" index="0"]
-transform = Transform3D(-0.62205, 0.249558, 0.673257, 0.0504388, 0.903761, -0.288396, -0.716247, -0.153093, -0.605023, 0.0131903, 0.485961, 0.0977954)
+transform = Transform3D(0.772652, 0.153451, 0.616005, -0.632606, 0.267263, 0.726898, -0.0530923, -0.951327, 0.303575, -0.103302, 0.0108872, -1.40641)
 
 [node name="HeadBoneAttachment" parent="Player/HitBox" index="1"]
-transform = Transform3D(-0.937838, 0.116254, 0.0971848, 0.0973849, 0.929246, -0.171807, -0.116086, -0.159645, -0.929267, 0.0966002, 0.711559, 0.0353682)
+transform = Transform3D(0.150829, 0.164421, 0.97479, -0.983231, 0.127203, 0.130679, -0.102509, -0.978154, 0.18085, -0.040168, 0.100559, -1.64388)
 
 [node name="NeckBoneAttachment" parent="Player/HitBox" index="2"]
-transform = Transform3D(-0.689023, 0.240188, 0.608323, 0.066053, 0.904655, -0.282375, -0.65068, -0.162506, -0.672835, 0.0516843, 0.625365, 0.0741809)
+transform = Transform3D(0.705711, 0.163642, 0.689342, -0.70508, 0.257692, 0.660649, -0.0695283, -0.952269, 0.297237, -0.0796325, 0.0521123, -1.55315)
 
 [node name="LeftUpperArmBoneAttachment" parent="Player/HitBox" index="3"]
-transform = Transform3D(-0.835626, -0.083349, 0.444165, -0.0497507, -0.911061, -0.264562, 0.449171, -0.255971, 0.79701, -0.04716, 0.537888, -0.0681048)
+transform = Transform3D(-0.447054, 0.271878, -0.852188, -0.892973, -0.0798688, 0.442968, 0.05237, 0.959012, 0.278485, 0.0731017, -0.0475385, -1.46107)
 
 [node name="LeftLowerArmBoneAttachment" parent="Player/HitBox" index="4"]
-transform = Transform3D(0.497657, 0.809062, 0.0160458, -0.171376, 0.086963, 0.930359, 0.790866, -0.490262, 0.191507, -0.0735919, 0.24897, -0.149279)
+transform = Transform3D(-0.847359, 0.491102, -0.201992, 0.499439, 0.866279, 0.0110239, 0.180396, -0.0915418, -0.979325, 0.15932, -0.0728667, -1.15695)
 
 [node name="RightUpperArmBoneAttachment" parent="Player/HitBox" index="5"]
-transform = Transform3D(-0.0713872, 0.271224, -0.907657, -0.218412, -0.89042, -0.248895, -0.921792, 0.189974, 0.129266, 0.169189, 0.535358, 0.202868)
+transform = Transform3D(0.97208, -0.208186, -0.108252, -0.0469188, 0.27957, -0.958978, 0.229909, 0.937283, 0.261997, -0.218629, 0.171813, -1.45841)
 
 [node name="RightLowerArmBoneAttachment" parent="Player/HitBox" index="6"]
-transform = Transform3D(0.0580118, 0.162025, -0.934282, 0.948201, -0.00304808, 0.0583475, 0.00695359, -0.936076, -0.161905, 0.255336, 0.252541, 0.263208)
+transform = Transform3D(-0.00908895, 0.979972, 0.19893, 0.0608246, 0.199111, -0.978088, -0.998107, 0.00320996, -0.0614161, -0.284754, 0.260611, -1.16071)
 
 [node name="LeftUpperLegBoneAttachment" parent="Player/HitBox" index="7"]
-transform = Transform3D(0.781867, 0.111463, 0.527978, -0.178041, -0.824175, 0.43765, 0.509397, -0.459143, -0.657421, -0.047034, 0.0949359, 0.0200107)
+transform = Transform3D(-0.559894, 0.479694, 0.675583, 0.807091, 0.131323, 0.575638, 0.187411, 0.867553, -0.460684, -0.0196165, -0.0501006, -0.994805)
 
 [node name="RightUpperLegBoneAttachment" parent="Player/HitBox" index="8"]
-transform = Transform3D(0.152798, 0.420711, 0.837947, 0.178281, -0.846548, 0.39252, 0.920528, 0.0941203, -0.215111, 0.0519328, 0.0899283, 0.152129)
+transform = Transform3D(-0.97324, -0.1119, 0.200709, 0.132618, 0.439789, 0.888256, -0.187666, 0.891103, -0.41318, -0.161656, 0.0499902, -0.989534)
 
 [node name="LeftLowerLegBoneAttachment" parent="Player/HitBox" index="9"]
-transform = Transform3D(0.890388, -0.102497, 0.314968, -0.109978, -0.943605, 0.00382983, 0.312435, -0.0400524, -0.896259, 0.00648496, -0.300793, -0.200447)
+transform = Transform3D(-0.355971, 0.0452769, 0.933399, 0.927299, -0.106621, 0.358816, 0.115766, 0.993268, -0.00403133, 0.210709, 0.0129542, -0.578248)
 
 [node name="RightLowerLegBoneAttachment" parent="Player/HitBox" index="10"]
-transform = Transform3D(0.11397, -0.21014, 0.919431, 0.178294, -0.90462, -0.228856, 0.926135, 0.200011, -0.0690866, 0.253926, -0.31652, 0.197318)
+transform = Transform3D(-0.977952, -0.204024, 0.0445716, 0.091592, -0.227224, 0.969526, -0.187679, 0.952231, 0.2409, -0.215383, 0.261144, -0.561693)
 
 [node name="RightFootBoneAttachment" parent="Player/HitBox" index="11"]
-transform = Transform3D(-0.0896688, 0.816466, 0.47733, 0.00489193, -0.479064, 0.82035, 0.945747, 0.0798896, 0.0410143, 0.154584, -0.744175, 0.291873)
+transform = Transform3D(-0.992361, -0.109031, -0.057753, -0.123274, 0.856631, 0.500986, -0.00515027, 0.504277, -0.863527, -0.311834, 0.153725, -0.11153)
 
 [node name="LeftFootBoneAttachment" parent="Player/HitBox" index="12"]
-transform = Transform3D(0.946717, 0.077286, 0.0159488, 0.0265805, -0.493077, 0.811584, 0.0743036, -0.808333, -0.493535, -0.0419793, -0.746961, -0.219386)
+transform = Transform3D(-0.107135, 0.848153, 0.518804, 0.993851, 0.106042, 0.0318742, -0.0279807, 0.519029, -0.854298, 0.232118, -0.0374597, -0.108597)
 
 [node name="EQUIPMENT" parent="Player/PlayerInventories/MarginContainer/HBoxContainer/PlayerInventoryContainer/TabContainer" index="1"]
 _inventory = SubResource("Resource_k0wdg")

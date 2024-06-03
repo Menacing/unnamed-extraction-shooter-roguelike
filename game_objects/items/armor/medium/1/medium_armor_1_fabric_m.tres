@@ -1,0 +1,10 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://dl2xvkjbqx21g"]
+
+[ext_resource type="Texture2D" uid="uid://bbwj4oepe0p4p" path="res://game_objects/items/armor/medium/1/textures/medium_armor_1_t.png" id="1_bt4ky"]
+
+[resource]
+resource_name = "medium_armor_1_fabric_m"
+cull_mode = 2
+albedo_texture = ExtResource("1_bt4ky")
+roughness = 0.5
+texture_filter = 2
