@@ -1,0 +1,30 @@
+[gd_resource type="Resource" script_class="ItemInformation" load_steps=8 format=3 uid="uid://csf4puq350ht0"]
+
+[ext_resource type="Resource" uid="uid://o6tesi76nbth" path="res://ui/inventory/drop_item_context_item.tres" id="1_aafih"]
+[ext_resource type="PackedScene" uid="uid://son7demex4pt" path="res://ui/inventory/simple_detail_popup.tscn" id="2_qssbt"]
+[ext_resource type="Texture2D" uid="uid://dco540xbm65em" path="res://game_objects/items/armor/medium/1/medium_armor_1_icon.png" id="3_i4xpp"]
+[ext_resource type="Texture2D" uid="uid://b4uiu2s884pul" path="res://game_objects/items/armor/medium/1/medium_armor_1_icon_r.png" id="4_4rnhq"]
+[ext_resource type="PackedScene" uid="uid://fetf2vb0h86g" path="res://game_objects/items/armor/medium/1/medium_armor_1.tscn" id="5_818w5"]
+[ext_resource type="PackedScene" uid="uid://cn3ywqty7xvvr" path="res://ui/inventory/item_control.tscn" id="6_yvdgn"]
+[ext_resource type="Script" path="res://resource_access/item_information.gd" id="7_nef6r"]
+
+[resource]
+script = ExtResource("7_nef6r")
+item_control_scene = ExtResource("6_yvdgn")
+item_3d_scene = ExtResource("5_818w5")
+item_type_id = "medium_armor_1"
+show_name = true
+display_name = "Medium Armor"
+item_type = 3
+icon = ExtResource("3_i4xpp")
+icon_r = ExtResource("4_4rnhq")
+detail_scene = ExtResource("2_qssbt")
+context_menu_items = Array[Resource("res://ui/inventory/item_context_item.gd")]([ExtResource("1_aafih")])
+max_stacks = 1
+has_stacks = false
+max_durability = 100
+has_durability = false
+column_span = 3
+row_span = 3
+description_text = "After years of fighting in the desert, WODC stripped its usual assortment of armor, webbing, and gear down to the essentials. A few high quality plates."
+flavor_text = "This could save your life!"
