@@ -5,6 +5,7 @@ class_name InventoryGridContainer
 @export var grid_cell:PackedScene
 @export var disallow_equipped_backpacks:bool = false
 @export var equipped_backpack_out_of_bounds:Vector2i = Vector2i(0,0)
+@export var disabled_cells_overlay:Control
 
 var cell_size:int:
 	get:
@@ -12,6 +13,16 @@ var cell_size:int:
 		
 func _ready():
 	pass
+
+func _notification(what):
+	if what == NOTIFICATION_DRAG_BEGIN and disabled_cells_overlay:
+		var drag_data:Dictionary = get_viewport().gui_get_drag_data()
+		if drag_data.has("is_equipped_backpack"):
+			var is_equipped_backpack:bool = drag_data["is_equipped_backpack"]
+			if is_equipped_backpack:
+				disabled_cells_overlay.visible = true
+	elif what == NOTIFICATION_DRAG_END and disabled_cells_overlay:
+		disabled_cells_overlay.visible = false
 
 func add_item_control(item_control:ItemControl, x:int, y:int):
 	var cell:Control = _get_grid_cell_control(x,y)
