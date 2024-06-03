@@ -283,8 +283,11 @@ func _create_drag_control() -> Control:
 func create_drag_data_data():
 	var data = {}
 	data["item_instance_id"] = item_instance_id
-	if get_item_instance().get_has_stacks():
-		data["number_to_drop"] = get_item_instance().stacks
+	var item_inst:ItemInstance = get_item_instance()
+	if item_inst.get_has_stacks():
+		data["number_to_drop"] = item_inst.stacks
+	if item_inst.get_item_type() == GameplayEnums.ItemType.BACKPACK and item_inst.is_equipped:
+		data["is_equipped_backpack"] = true
 	return data
 
 func _get_drag_data(_position):

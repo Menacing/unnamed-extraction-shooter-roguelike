@@ -70,6 +70,10 @@ _inventory = SubResource("Resource_8vum5")
 _inventory_grid_path = NodePath("PanelContainer/InventoryBase/PanelContainer/InventoryGrid")
 _inventory_container_path = NodePath("../..")
 
+[node name="InventoryGrid" parent="MarginContainer/HBoxContainer/PlayerInventoryContainer/TabContainer/EQUIPMENT/PanelContainer/InventoryBase/PanelContainer" index="0"]
+disallow_equipped_backpacks = true
+equipped_backpack_out_of_bounds = Vector2i(0, 2)
+
 [node name="AMMO" parent="MarginContainer/HBoxContainer/PlayerInventoryContainer/TabContainer" instance=ExtResource("6_devm8")]
 visible = false
 layout_mode = 2

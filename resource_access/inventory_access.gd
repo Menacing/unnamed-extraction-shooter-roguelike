@@ -69,6 +69,7 @@ func place_item_in_slot(item_inst:ItemInstance, inventory_id:int, slot_name:Stri
 			remove_item(item_inst,item_inst.current_inventory_id)
 			slot.item_instance_id = item_inst.get_instance_id()
 			item_inst.current_inventory_id = inventory_id
+			item_inst.is_equipped = true
 			return true
 	return false
 	
@@ -172,7 +173,8 @@ func can_place_stack_in_grid(item_inst:ItemInstance, inventory_id:int, grid_loca
 func place_item_in_grid(item_inst:ItemInstance, inventory_id:int, grid_location:Vector2i) -> bool:
 	#if we can place the item in the grid, set the cells
 	if can_place_item_in_grid(item_inst, inventory_id, grid_location):
-		remove_item(item_inst,item_inst.current_inventory_id)
+		var original_inventory_id = item_inst.current_inventory_id
+		remove_item(item_inst,original_inventory_id)
 		item_inst.current_inventory_id = inventory_id
 		var inventory := get_inventory(inventory_id)
 		var x:int = grid_location.x
@@ -261,6 +263,7 @@ func remove_item_from_grid(item:ItemInstance,  inventory_id:int) -> void:
 					inventory.grid_slots[x][y] = null
 	
 	item.current_inventory_id = 0
+	item.is_equipped = false
 
 func remove_item_from_slot(item:ItemInstance, inventory_id:int) -> void:
 	var inventory := get_inventory(inventory_id)
@@ -271,4 +274,5 @@ func remove_item_from_slot(item:ItemInstance, inventory_id:int) -> void:
 				EventBus.item_removed_from_slot.emit(item, inventory_id, slot.name)
 
 	item.current_inventory_id = 0
+	item.is_equipped = false
 

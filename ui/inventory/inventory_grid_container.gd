@@ -3,7 +3,8 @@ class_name InventoryGridContainer
 
 @export var parent_inventory_control_base:InventoryControlBase
 @export var grid_cell:PackedScene
-
+@export var disallow_equipped_backpacks:bool = false
+@export var equipped_backpack_out_of_bounds:Vector2i = Vector2i(0,0)
 
 var cell_size:int:
 	get:
@@ -54,8 +55,11 @@ func _can_drop_data(at_position:Vector2, data) -> bool:
 	if datad:
 		var item_instance_id:int = datad["item_instance_id"]
 		var number_to_drop:int = 0
+		var is_equipped_backpack = false
 		if datad.has("number_to_drop"):
 			number_to_drop = datad["number_to_drop"]
+		if datad.has("is_equipped_backpack"):
+			is_equipped_backpack = datad["is_equipped_backpack"]
 		var target_inventory_id:int = parent_inventory_control_base._inventory.get_instance_id()
 
 		var grid_pos:Vector2 = _get_grid_coordinates_from_local(at_position)
@@ -64,6 +68,12 @@ func _can_drop_data(at_position:Vector2, data) -> bool:
 			return InventoryManager.can_place_stack_in_grid(item_instance_id,target_inventory_id, grid_pos, number_to_drop)
 		#its not a stack
 		else:
+			#Don't allow players to drop equipped backpacks into their own inventory or we get weird behavior
+			if is_equipped_backpack and disallow_equipped_backpacks:
+				
+				var boundary_test_result = InventoryManager.item_at_position_goes_beyond_point(item_instance_id, grid_pos, equipped_backpack_out_of_bounds)
+				if boundary_test_result:
+					return false
 			return InventoryManager.can_place_item_in_grid(item_instance_id,target_inventory_id,grid_pos)
 	else:
 		return false
