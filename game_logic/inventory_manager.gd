@@ -147,6 +147,17 @@ func place_stack_in_slot(item_instance_id:int, target_inventory_id:int, slot_nam
 func can_place_item_in_grid(item_instance_id:int, target_inventory_id:int, grid_location:Vector2i) -> bool:
 	var item_inst := get_item(item_instance_id)	
 	return _inventory_access.can_place_item_in_grid(item_inst, target_inventory_id, grid_location)
+	
+func item_at_position_goes_beyond_point(item_instance_id:int, grid_location:Vector2i, threshold_point:Vector2i) -> bool:
+	var item_inst := get_item(item_instance_id)
+	#subtract 1 from each axis because we're converting size to coordinates
+	var item_size = Vector2i(item_inst.get_width()-1, item_inst.get_height()-1)
+	var far_bound = item_size + grid_location
+	if far_bound.y >= threshold_point.y and far_bound.x >= threshold_point.x:
+		return true
+	else:
+		return false
+	
 
 func can_place_stack_in_grid(item_instance_id:int, target_inventory_id:int, grid_location:Vector2i, _amount:int) -> bool:
 	var item_inst := get_item(item_instance_id)	
@@ -233,11 +244,13 @@ func set_inventory_size(inventory_id:int, size:Vector2i) -> void:
 	for cw in range(current_width):
 		for ch in range(current_height):
 			#if old spot doesn't exist, trigger drop of item
-			var item_id =  old_dictionary[cw][ch]
-			if cw > size.x or ch > size.y and item_id:
-				remove_item(item_id, inventory_id)
-			elif item_id:
-				new_dictionary[cw][ch] = item_id
+			var item_inst =  old_dictionary[cw][ch]
+			if cw > size.x or ch > size.y and item_inst:
+				var original_inventory_id = item_inst.current_inventory_id
+				remove_item(item_inst.get_instance_id(), inventory_id)
+				EventBus.drop_item.emit(item_inst, original_inventory_id)
+			elif item_inst:
+				new_dictionary[cw][ch] = item_inst
 	
 	#set new dictionary
 	inventory.grid_slots = new_dictionary

@@ -27,6 +27,7 @@ var durability:int:
 		EventBus.item_durability_changed.emit(self)
 var current_inventory_id:int
 var is_rotated:bool
+var is_equipped:bool
 
 func get_show_name() -> bool:
 	return _item_info.show_name
