@@ -22,7 +22,7 @@ graph TB
 
 ## Adding an Item
 1. Create Model/Mesh
-    1. See Future modeling guide for style and approach tips
+    1. See [this doc](./blender.md) for more information
 2. Create Inventory Icons
     1. See Future UI/UX guide for style and approach tips  
 3. Create new folder for item
