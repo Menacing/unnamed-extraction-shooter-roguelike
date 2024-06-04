@@ -1,5 +1,5 @@
 # Addon/Tool Manuals
-### [Beehave](https://bitbra.in/beehave/#/)
+### [LimboAI](https://limboai.readthedocs.io/en/latest/index.html)
 ### [Func Godot](https://func-godot.github.io/func_godot_docs/FuncGodot%20Manual/FuncGodot%20Manual.html)
 ### [GD Unit 4](https://mikeschulze.github.io/gdUnit4/)
 ### [Godot Game Settings (GGS)](https://github.com/PunchablePlushie/godot-game-settings/blob/main/docs/home.md)
