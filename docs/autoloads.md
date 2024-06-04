@@ -29,11 +29,5 @@ Singleton holds each biome's spawn mapping for use by spawn areas
 ### [LootSpawnManager](../game_logic/loot_spawn_manager.gd)
 Same, but for loot spawn areas
 
-### BeehaveGlobalMetrics
-Beehave addone required singleton
-
-### BeehaveGlobalDebugger
-Beehave addone required singleton
-
 ### [GameplayEffectManager](../game_logic/gameplay_effect_manager.gd)
 Singleton for registering new gameplay effects.
