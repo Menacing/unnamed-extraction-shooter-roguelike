@@ -2,7 +2,6 @@ extends SteppingCharacterBody3D
 class_name Player
 
 @onready var state_chart :StateChart = %StateChart
-@onready var world_collider:CollisionShape3D = $CollisionShape3d
 @export var gun_scene1: PackedScene
 @export var gun_scene2: PackedScene
 var _equipped_gun:Gun

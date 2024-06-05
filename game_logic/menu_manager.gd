@@ -52,6 +52,8 @@ func _deffered_load_menu(menuLevel:MENU_LEVEL):
 	#clear the current menu item/s
 	for location in container.get_children():
 		container.remove_child(location)
+		if location.has_method("menu_deactivated"):
+			location.menu_deactivated()
 	#add our selected menu
 	#replace the current menus instance with the new ones
 	current_menu = menus[menuLevel]
