@@ -2,7 +2,6 @@ extends SteppingCharacterBody3D
 class_name Player
 
 @onready var state_chart :StateChart = %StateChart
-@onready var world_collider:CollisionShape3D = $CollisionShape3d
 @export var gun_scene1: PackedScene
 @export var gun_scene2: PackedScene
 var _equipped_gun:Gun
@@ -40,6 +39,7 @@ var pov_rotation_node:Node3D
 @onready var armor_anchor:Node3D = $HitBox/ChestBoneAttachment/armor_anchor
 @onready var backpack_anchor:Node3D = $HitBox/ChestBoneAttachment/backpack_anchor
 @onready var center_mass:Node3D = $center_mass
+@onready var skeleton:Skeleton3D = $player_default_mesh_animated/Armature/Skeleton3D
 @onready var ik_right_hand:SkeletonIK3D = $player_default_mesh_animated/Armature/Skeleton3D/SkeletonIK3D_Hand_Right
 @onready var ik_right_hand_fingers:SkeletonIK3D = $player_default_mesh_animated/Armature/Skeleton3D/SkeletonIK3D_Hand_Right_Fingers
 @onready var ik_left_hand:SkeletonIK3D = $player_default_mesh_animated/Armature/Skeleton3D/SkeletonIK3D_Hand_Left_Fingers
@@ -459,6 +459,8 @@ func _on_location_destroyed(actor_id:int, location:HealthLocation.HEALTH_LOCATIO
 			for effect in arm_destroyed_effect.effect_lists:
 				effect.effect_target_node = self
 			EventBus.create_effect.emit(self.get_instance_id(), arm_destroyed_effect)
+		elif location == HealthLocation.HEALTH_LOCATION.MAIN:
+			die()
 			
 func _on_location_restored(actor_id:int, location:HealthLocation.HEALTH_LOCATION):
 	if actor_id == self.get_instance_id():
@@ -510,7 +512,39 @@ func make_opaque():
 func calculate_fall_damage(vertical_velocity:float) -> float:
 	var calc_damage = (200.0/6.0*abs(vertical_velocity)) - 300.0
 	return max(0.0, calc_damage)
-		
+
+var alive = true
+
+func die():
+	alive = false
+	animation_tree.active = false
+	stop_arms_ik()
+	ik_head.stop()
+	skeleton.animate_physical_bones = true
+	skeleton.physical_bones_start_simulation()
+	standing_collision_shape.disabled = true
+	crouching_collision_shape.disabled = true
+	prone_collision_shape.disabled = true
+	state_chart.process_mode = Node.PROCESS_MODE_DISABLED
+	var player_hud:CanvasLayer = $PlayerHUD
+	player_hud.visible = false
+	var death_cam:Camera3D = %DeathCamera3D
+	death_cam.current = true
+	var death_animation_player:AnimationPlayer = %DeathAnimationPlayer
+	death_animation_player.play("death_spiral")
+	MenuManager.load_menu(MenuManager.MENU_LEVEL.DIED)
+	#print("I am dead")
+	#alive = false
+	#skeleton.animate_physical_bones = true
+	#skeleton.physical_bones_start_simulation()
+	#var damage_vector = last_damage_normal.normalized() * 5
+	#PhysicsServer3D.body_set_state(physical_bone.get_rid(), PhysicsServer3D.BODY_STATE_LINEAR_VELOCITY, damage_vector)
+	#$CollisionShape3D.disabled = true
+	#$CollisionShape3D2.disabled = true
+	#$CollisionShape3D3.disabled = true
+	#$"combat-roomba/Armature/Skeleton3D/Physical Bone Bone/Head/SpotLight3D".visible = false
+	#var behavior_tree:BTPlayer = $BTPlayer
+	#behavior_tree.active = false
 #region Movement Code
 
 @onready var standing_collision_shape:CollisionShape3D = $StandingCollisionShape3D
