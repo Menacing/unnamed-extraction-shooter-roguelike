@@ -533,6 +533,7 @@ func die():
 	death_cam.current = true
 	var death_animation_player:AnimationPlayer = %DeathAnimationPlayer
 	death_animation_player.play("death_spiral")
+	MenuManager.load_menu(MenuManager.MENU_LEVEL.DIED)
 	#print("I am dead")
 	#alive = false
 	#skeleton.animate_physical_bones = true
