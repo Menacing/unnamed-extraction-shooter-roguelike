@@ -15,7 +15,7 @@ func _ready():
 	EventBus.context_menus_open_item_detail.connect(_on_context_menus_open_item_detail)
 	show_durability = get_item_instance().get_has_durability()
 	show_count = get_item_instance().get_has_stacks()
-	name_label.text = get_item_instance().get_display_name()
+	name_label.text = get_item_instance().get_display_short_name()
 	show_name = get_item_instance().get_show_name()
 	tooltip_text = get_item_instance().get_display_name()
 
@@ -76,14 +76,14 @@ var _count:Label
 var count:Label:
 	get:
 		if !_count:
-			_count = get_node("Count")
+			_count = get_node("%Count")
 		return _count
 
 var _name_label:Label
 var name_label:Label:
 	get:
 		if !_name_label:
-			_name_label = get_node("Name")
+			_name_label = get_node("%Name")
 		return _name_label
 		
 var _show_name:bool
@@ -106,7 +106,7 @@ var _durability_label:Label
 var durability_label:Label:
 	get:
 		if !_durability_label:
-			_durability_label = get_node("Durability")
+			_durability_label = get_node("%Durability")
 		return _durability_label
 		
 var _show_durability:bool

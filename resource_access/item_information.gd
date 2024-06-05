@@ -6,6 +6,7 @@ class_name ItemInformation
 @export var item_type_id:String
 @export var show_name:bool = false
 @export var display_name:String
+@export var display_short_name:String
 @export var item_type:GameplayEnums.ItemType
 @export var icon:Texture
 @export var icon_r:Texture
