@@ -45,6 +45,7 @@ model_node = NodePath("gun/Node_15")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0.115114, 0.0719389)
+visible = false
 shape = SubResource("BoxShape3D_a6wgc")
 
 [node name="ReloadTimer" type="Timer" parent="."]
