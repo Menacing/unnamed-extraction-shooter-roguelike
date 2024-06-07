@@ -5,7 +5,9 @@ class_name AttachmentDetailPopup
 @onready var item_model_anchor:Node3D = $VBoxContainer/HBoxContainer/MarginContainer/SubViewportContainer/SubViewport/ItemModelAnchor
 @onready var viewport_camera:Camera3D = $VBoxContainer/HBoxContainer/MarginContainer/SubViewportContainer/SubViewport/Camera3D
 @onready var item_description_label:RichTextLabel = %DescriptionLabel
-@onready var armor_rating_label:Label = $VBoxContainer/HBoxContainer/ArmorRatingSizeHBoxContainer/ValueLabel
+@onready var stat_box:Control = $VBoxContainer/HBoxContainer/StatsVBoxContainer
+
+@onready var gameplay_effect_display_scene:PackedScene = preload("res://ui/inventory/detail_scenes/gameplay_effect_modifier_display.tscn")
 
 @export var item_outline_material:Material = load("res://ui/inventory/item_outline_material.tres")
 
@@ -23,7 +25,7 @@ var item_3d:Item3D:
 		_item_3d = value
 		map_item_name(value)
 		map_item_description(value)
-		map_armor_rating(value)
+		map_gameplay_effects(value)
 		setup_item_model(value)
 
 # Called when the node enters the scene tree for the first time.
@@ -47,9 +49,15 @@ func _on_done_button_pressed():
 func _close_self():
 	self.queue_free()
 
-func map_armor_rating(armor:BodyArmor):
-	if armor:
-		armor_rating_label.text = str(armor.armor_rating)
+func map_gameplay_effects(item:Item3D):
+	if item is Attachment:
+		var attachment:Attachment = item as Attachment
+		for effect_list in attachment.attachment_effect.effect_lists:
+			for effect_list_item in effect_list.effects_list:
+				var gameplay_effect_display_scene_control:GameplayEffectListItemDisplay = gameplay_effect_display_scene.instantiate()
+				gameplay_effect_display_scene_control.gameplay_list_item = effect_list_item
+				stat_box.add_child(gameplay_effect_display_scene_control)
+	pass
 
 func map_item_description(item:Item3D):
 	var item_inst = item.get_item_instance()
