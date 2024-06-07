@@ -15,6 +15,7 @@ func _ready() -> void:
 		_actor_id = _actor_node.get_instance_id()
 	subtype_name_label.text = _ammo_subtype.name
 	EventBus.reserve_ammo_count_changed.connect(_on_reserve_ammo_count_changed)
+	tooltip_text = "Speed: %s Damage: %s Penetration: %s" % [_ammo_subtype.initial_speed, _ammo_subtype.initial_damage, _ammo_subtype.armor_penetration_rating]
 	pass # Replace with function body.
 
 
