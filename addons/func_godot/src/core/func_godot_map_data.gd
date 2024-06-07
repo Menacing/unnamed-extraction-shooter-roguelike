@@ -1,4 +1,5 @@
-class_name FuncGodotMapData extends RefCounted
+extends RefCounted
+class_name FuncGodotMapData 
 
 var entities: Array[FuncGodotMapData.FuncGodotEntity]
 var entity_geo: Array[FuncGodotMapData.FuncGodotEntityGeometry]

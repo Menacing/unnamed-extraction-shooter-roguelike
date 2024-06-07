@@ -1,6 +1,6 @@
 @icon("res://addons/func_godot/icons/icon_quake_file.svg")
-class_name QuakeWadFile
 extends Resource
+class_name QuakeWadFile
 
 @export var textures: Dictionary
 

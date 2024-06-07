@@ -1,6 +1,6 @@
 @icon("res://addons/func_godot/icons/icon_quake_file.svg")
-class_name QuakePaletteFile
 extends Resource
+class_name QuakePaletteFile
 
 @export var colors: PackedColorArray
 

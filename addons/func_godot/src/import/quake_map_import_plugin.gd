@@ -1,6 +1,6 @@
 @tool
-class_name QuakeMapImportPlugin
 extends EditorImportPlugin
+class_name QuakeMapImportPlugin
 
 # Quake super.map import plugin
 

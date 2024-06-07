@@ -3,8 +3,8 @@
 ## Local machine project wide settings. Can define global defaults for some FuncGodot properties.
 ## DO NOT CREATE A NEW RESOURCE! This resource works by saving a configuration file to your game's *user://* folder and pulling the properties from that config file rather than this resource.
 ## Use the premade `addons/func_godot/func_godot_local_config.tres` instead.
-class_name FuncGodotLocalConfig
 extends Resource
+class_name FuncGodotLocalConfig
 
 enum PROPERTY {
 	FGD_OUTPUT_FOLDER,

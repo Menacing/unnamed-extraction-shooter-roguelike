@@ -1,4 +1,5 @@
-class_name FuncGodotSurfaceGatherer extends RefCounted
+extends RefCounted
+class_name FuncGodotSurfaceGatherer 
 
 var map_data: FuncGodotMapData
 var split_type: SurfaceSplitType = SurfaceSplitType.NONE

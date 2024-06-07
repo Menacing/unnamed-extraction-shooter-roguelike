@@ -2,7 +2,8 @@
 @icon("res://addons/func_godot/icons/icon_slipgate3d.svg")
 ## A scene generator node that parses a Quake map file using a [FuncGodotFGDFile]. Uses a [FuncGodotMapSettings] resource to define map build settings.
 ## To use this node, select an instance of the node in the Godot editor and select "Quick Build", "Full Build", or "Unwrap UV2" from the toolbar. Alternatively, call [method manual_build] from code.
-class_name FuncGodotMap extends Node3D
+extends Node3D
+class_name FuncGodotMap 
 
 ## Force reinitialization of Qodot on map build
 const DEBUG := false

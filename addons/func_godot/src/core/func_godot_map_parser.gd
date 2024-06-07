@@ -1,4 +1,5 @@
-class_name FuncGodotMapParser extends RefCounted
+extends RefCounted
+class_name FuncGodotMapParser 
 
 var scope:= FuncGodotMapParser.ParseScope.FILE
 var comment: bool = false
