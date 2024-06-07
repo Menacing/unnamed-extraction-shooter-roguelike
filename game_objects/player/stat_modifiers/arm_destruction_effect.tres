@@ -28,7 +28,6 @@ stat_modifiers = Array[Resource("res://game_logic/stat_modifier.gd")]([ExtResour
 
 [sub_resource type="Resource" id="Resource_0erpf"]
 script = ExtResource("4_y4vm2")
-effect_target_node = NodePath("")
 effects_list = Array[ExtResource("2_8mpin")]([SubResource("Resource_ebhmk"), SubResource("Resource_f1nrk"), SubResource("Resource_5cpla"), SubResource("Resource_gfelv")])
 
 [resource]
@@ -36,3 +35,4 @@ script = ExtResource("1_n4pbv")
 display_icon = ExtResource("1_50t0e")
 effect_name = "arm_destroyed"
 effect_lists = Array[ExtResource("4_y4vm2")]([SubResource("Resource_0erpf")])
+visible = true

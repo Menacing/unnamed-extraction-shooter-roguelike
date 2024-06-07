@@ -44,7 +44,7 @@ func _on_update_message(message_name:String, message_text:String):
 	pass
 	
 func _on_create_effect(actor_id:int, gameplay_effect:GameplayEffect):
-	if actor_id == _actor_id:
+	if actor_id == _actor_id and gameplay_effect.visible:
 		var effect_control:GameplayEffectControl = effect_scene.instantiate()
 		effect_control.name = gameplay_effect.effect_name
 		effect_control.set_effect_icon(gameplay_effect.display_icon)

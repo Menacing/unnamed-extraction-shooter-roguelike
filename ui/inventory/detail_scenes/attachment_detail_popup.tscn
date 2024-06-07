@@ -1,0 +1,124 @@
+[gd_scene load_steps=9 format=3 uid="uid://davckdv3keyh5"]
+
+[ext_resource type="Script" path="res://ui/inventory/detail_scenes/attachment_detail_popup.gd" id="1_ylc4e"]
+[ext_resource type="Shader" path="res://ui/inventory/item_detail_popup.gdshader" id="2_5gehb"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_vk3ro"]
+
+[sub_resource type="Sky" id="Sky_2itlb"]
+sky_material = SubResource("ProceduralSkyMaterial_vk3ro")
+
+[sub_resource type="Environment" id="Environment_114pw"]
+background_mode = 1
+sky = SubResource("Sky_2itlb")
+ambient_light_source = 2
+ambient_light_color = Color(1, 1, 1, 1)
+reflected_light_source = 2
+
+[sub_resource type="World3D" id="World3D_u4sok"]
+environment = SubResource("Environment_114pw")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_g2wy8"]
+shader = ExtResource("2_5gehb")
+shader_parameter/crt_curve = 0.001
+shader_parameter/crt_scan_line_color = 0.347
+shader_parameter/aperture_grille_rate = 0.4
+shader_parameter/rf_switch_esque_blur = 1.0
+shader_parameter/white_noise_rate = 0.053
+
+[sub_resource type="Theme" id="Theme_s1mk1"]
+resource_local_to_scene = true
+
+[node name="attachment_detail_popup" type="Window"]
+initial_position = 2
+size = Vector2i(750, 600)
+exclusive = true
+always_on_top = true
+script = ExtResource("1_ylc4e")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TitleHBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+visible = false
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/TitleHBoxContainer"]
+layout_mode = 2
+text = "LONG PLACEHOLDER TEXT"
+
+[node name="DoneButton" type="Button" parent="VBoxContainer/TitleHBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 10
+text = "DONE
+"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 300)
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="VBoxContainer/HBoxContainer/MarginContainer"]
+layout_mode = 2
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="VBoxContainer/HBoxContainer/MarginContainer/SubViewportContainer"]
+world_3d = SubResource("World3D_u4sok")
+handle_input_locally = false
+size = Vector2i(546, 300)
+render_target_clear_mode = 2
+render_target_update_mode = 4
+
+[node name="ItemModelAnchor" type="Node3D" parent="VBoxContainer/HBoxContainer/MarginContainer/SubViewportContainer/SubViewport"]
+
+[node name="Camera3D" type="Camera3D" parent="VBoxContainer/HBoxContainer/MarginContainer/SubViewportContainer/SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10)
+projection = 1
+
+[node name="ColorRect" type="ColorRect" parent="VBoxContainer/HBoxContainer/MarginContainer"]
+material = SubResource("ShaderMaterial_g2wy8")
+layout_mode = 2
+
+[node name="StatsVBoxContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme = SubResource("Theme_s1mk1")
+scroll_vertical = 1
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 2
+
+[node name="DescriptionLabel" type="RichTextLabel" parent="VBoxContainer/ScrollContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 400)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+bbcode_enabled = true
+text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis ornare velit et rutrum ultricies. Sed diam magna, ultricies ut faucibus elementum, iaculis in nibh. Sed rhoncus risus mauris, fringilla feugiat sem molestie vel. Nullam in pellentesque sem, vel cursus sem. Nulla facilisi. Nam mi orci, ullamcorper a velit id, imperdiet finibus lacus. In ut risus ipsum.
+
+In eget nunc iaculis, ultrices quam vitae, tincidunt turpis. Phasellus eget arcu sit amet augue cursus ornare. Mauris in nunc a urna lobortis malesuada. Morbi quis lacus nisi. Proin cursus hendrerit ex, ut euismod massa. Pellentesque massa urna, lacinia pretium tincidunt et, gravida eget orci. Nulla facilisi. Sed ut congue tortor. Quisque sed imperdiet est, facilisis imperdiet erat. Vestibulum et ligula eu lorem pretium feugiat. Nullam eget mattis magna, pharetra iaculis eros. Nulla facilisi. Nullam in purus diam. Suspendisse potenti. Nam commodo eros ut mauris dignissim molestie.
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis ornare velit et rutrum ultricies. Sed diam magna, ultricies ut faucibus elementum, iaculis in nibh. Sed rhoncus risus mauris, fringilla feugiat sem molestie vel. Nullam in pellentesque sem, vel cursus sem. Nulla facilisi. Nam mi orci, ullamcorper a velit id, imperdiet finibus lacus. In ut risus ipsum.
+
+In eget nunc iaculis, ultrices quam vitae, tincidunt turpis. Phasellus eget arcu sit amet augue cursus ornare. Mauris in nunc a urna lobortis malesuada. Morbi quis lacus nisi. Proin cursus hendrerit ex, ut euismod massa. Pellentesque massa urna, lacinia pretium tincidunt et, gravida eget orci. Nulla facilisi. Sed ut congue tortor. Quisque sed imperdiet est, facilisis imperdiet erat. Vestibulum et ligula eu lorem pretium feugiat. Nullam eget mattis magna, pharetra iaculis eros. Nulla facilisi. Nullam in purus diam. Suspendisse potenti. Nam commodo eros ut mauris dignissim molestie.
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis ornare velit et rutrum ultricies. Sed diam magna, ultricies ut faucibus elementum, iaculis in nibh. Sed rhoncus risus mauris, fringilla feugiat sem molestie vel. Nullam in pellentesque sem, vel cursus sem. Nulla facilisi. Nam mi orci, ullamcorper a velit id, imperdiet finibus lacus. In ut risus ipsum.
+
+In eget nunc iaculis, ultrices quam vitae, tincidunt turpis. Phasellus eget arcu sit amet augue cursus ornare. Mauris in nunc a urna lobortis malesuada. Morbi quis lacus nisi. Proin cursus hendrerit ex, ut euismod massa. Pellentesque massa urna, lacinia pretium tincidunt et, gravida eget orci. Nulla facilisi. Sed ut congue tortor. Quisque sed imperdiet est, facilisis imperdiet erat. Vestibulum et ligula eu lorem pretium feugiat. Nullam eget mattis magna, pharetra iaculis eros. Nulla facilisi. Nullam in purus diam. Suspendisse potenti. Nam commodo eros ut mauris dignissim molestie.
+"
+
+[connection signal="close_requested" from="." to="." method="_close_self"]
+[connection signal="pressed" from="VBoxContainer/TitleHBoxContainer/DoneButton" to="." method="_on_done_button_pressed"]

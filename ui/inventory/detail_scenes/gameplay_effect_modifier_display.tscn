@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://k2qekqtq343t"]
+
+[node name="MagazineSizeHBoxContainer" type="HBoxContainer"]
+
+[node name="StatLabel" type="Label" parent="."]
+layout_mode = 2
+text = "Magazine Size"
+uppercase = true
+
+[node name="ValueLabel" type="Label" parent="."]
+layout_mode = 2
+size_flags_horizontal = 10
+text = "30"
