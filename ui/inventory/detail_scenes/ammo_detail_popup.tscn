@@ -1,9 +1,7 @@
-[gd_scene load_steps=11 format=3 uid="uid://0hy4cl1x7qwx"]
+[gd_scene load_steps=9 format=3 uid="uid://djpvx3f8rfem0"]
 
-[ext_resource type="Script" path="res://ui/inventory/detail_scenes/gun_detail_popup.gd" id="1_ethna"]
-[ext_resource type="Material" uid="uid://buea3slsi1k1c" path="res://ui/inventory/item_outline_material.tres" id="2_u2h1q"]
-[ext_resource type="Shader" path="res://ui/inventory/item_detail_popup.gdshader" id="3_b2uqi"]
-[ext_resource type="Script" path="res://ui/inventory/inventory_control_base.gd" id="4_be8sw"]
+[ext_resource type="Script" path="res://ui/inventory/detail_scenes/ammo_detail_popup.gd" id="1_kdg2y"]
+[ext_resource type="Shader" path="res://ui/inventory/item_detail_popup.gdshader" id="2_rjy5y"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_vk3ro"]
 
@@ -21,7 +19,7 @@ reflected_light_source = 2
 environment = SubResource("Environment_114pw")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_g2wy8"]
-shader = ExtResource("3_b2uqi")
+shader = ExtResource("2_rjy5y")
 shader_parameter/crt_curve = 0.001
 shader_parameter/crt_scan_line_color = 0.347
 shader_parameter/aperture_grille_rate = 0.4
@@ -31,13 +29,12 @@ shader_parameter/white_noise_rate = 0.053
 [sub_resource type="Theme" id="Theme_s1mk1"]
 resource_local_to_scene = true
 
-[node name="gun_detail_popup" type="Window"]
+[node name="ammo_detail_popup" type="Window"]
 initial_position = 2
 size = Vector2i(750, 600)
 exclusive = true
 always_on_top = true
-script = ExtResource("1_ethna")
-item_outline_material = ExtResource("2_u2h1q")
+script = ExtResource("1_kdg2y")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 anchors_preset = 15
@@ -77,7 +74,7 @@ stretch = true
 [node name="SubViewport" type="SubViewport" parent="VBoxContainer/HBoxContainer/MarginContainer/SubViewportContainer"]
 world_3d = SubResource("World3D_u4sok")
 handle_input_locally = false
-size = Vector2i(542, 300)
+size = Vector2i(546, 300)
 render_target_clear_mode = 2
 render_target_update_mode = 4
 
@@ -91,112 +88,48 @@ projection = 1
 material = SubResource("ShaderMaterial_g2wy8")
 layout_mode = 2
 
-[node name="StatsVBoxContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 
-[node name="MagazineSizeHBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/StatsVBoxContainer"]
+[node name="SpeedHBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="StatLabel" type="Label" parent="VBoxContainer/HBoxContainer/StatsVBoxContainer/MagazineSizeHBoxContainer"]
+[node name="StatLabel" type="Label" parent="VBoxContainer/HBoxContainer/VBoxContainer/SpeedHBoxContainer"]
 layout_mode = 2
-text = "Magazine Size"
+text = "Initial Speed"
 uppercase = true
 
-[node name="ValueLabel" type="Label" parent="VBoxContainer/HBoxContainer/StatsVBoxContainer/MagazineSizeHBoxContainer"]
+[node name="ValueLabel" type="Label" parent="VBoxContainer/HBoxContainer/VBoxContainer/SpeedHBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 10
-text = "30"
+text = "4"
 
-[node name="RPMHBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/StatsVBoxContainer"]
+[node name="DamageHBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="StatLabel" type="Label" parent="VBoxContainer/HBoxContainer/StatsVBoxContainer/RPMHBoxContainer"]
+[node name="StatLabel" type="Label" parent="VBoxContainer/HBoxContainer/VBoxContainer/DamageHBoxContainer"]
 layout_mode = 2
-text = "RPM"
+text = "Initial Damage"
 uppercase = true
 
-[node name="ValueLabel" type="Label" parent="VBoxContainer/HBoxContainer/StatsVBoxContainer/RPMHBoxContainer"]
+[node name="ValueLabel" type="Label" parent="VBoxContainer/HBoxContainer/VBoxContainer/DamageHBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 10
-text = "600"
+text = "4"
 
-[node name="VerticalRecoilHBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/StatsVBoxContainer"]
+[node name="PenetrationHBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="StatLabel" type="Label" parent="VBoxContainer/HBoxContainer/StatsVBoxContainer/VerticalRecoilHBoxContainer"]
+[node name="StatLabel" type="Label" parent="VBoxContainer/HBoxContainer/VBoxContainer/PenetrationHBoxContainer"]
 layout_mode = 2
-text = "Vertical Recoil"
+text = "Penetration Rating"
 uppercase = true
 
-[node name="ValueLabel" type="Label" parent="VBoxContainer/HBoxContainer/StatsVBoxContainer/VerticalRecoilHBoxContainer"]
+[node name="ValueLabel" type="Label" parent="VBoxContainer/HBoxContainer/VBoxContainer/PenetrationHBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 10
-text = "25±13"
-
-[node name="HorizontalHBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/StatsVBoxContainer"]
-layout_mode = 2
-
-[node name="StatLabel" type="Label" parent="VBoxContainer/HBoxContainer/StatsVBoxContainer/HorizontalHBoxContainer"]
-layout_mode = 2
-text = "Horizontal Recoil"
-uppercase = true
-
-[node name="ValueLabel" type="Label" parent="VBoxContainer/HBoxContainer/StatsVBoxContainer/HorizontalHBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 10
-text = "0±25"
-
-[node name="ADSSpeedHBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/StatsVBoxContainer"]
-layout_mode = 2
-
-[node name="StatLabel" type="Label" parent="VBoxContainer/HBoxContainer/StatsVBoxContainer/ADSSpeedHBoxContainer"]
-layout_mode = 2
-text = "ADS Speed"
-uppercase = true
-
-[node name="ValueLabel" type="Label" parent="VBoxContainer/HBoxContainer/StatsVBoxContainer/ADSSpeedHBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 10
-text = "10"
-
-[node name="MOAHBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/StatsVBoxContainer"]
-layout_mode = 2
-
-[node name="StatLabel" type="Label" parent="VBoxContainer/HBoxContainer/StatsVBoxContainer/MOAHBoxContainer"]
-layout_mode = 2
-text = "MOA"
-uppercase = true
-
-[node name="ValueLabel" type="Label" parent="VBoxContainer/HBoxContainer/StatsVBoxContainer/MOAHBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 10
-text = "5"
-
-[node name="TurnSpeedHBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/StatsVBoxContainer"]
-layout_mode = 2
-
-[node name="StatLabel" type="Label" parent="VBoxContainer/HBoxContainer/StatsVBoxContainer/TurnSpeedHBoxContainer"]
-layout_mode = 2
-text = "Turn Speed"
-uppercase = true
-
-[node name="ValueLabel" type="Label" parent="VBoxContainer/HBoxContainer/StatsVBoxContainer/TurnSpeedHBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 10
-text = "25"
-
-[node name="ModificationSlotVBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
-layout_mode = 2
-script = ExtResource("4_be8sw")
-
-[node name="FrontSpacer" type="Container" parent="VBoxContainer/ModificationSlotVBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="BackSpacer" type="Container" parent="VBoxContainer/ModificationSlotVBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
+text = "4"
 
 [node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer"]
 layout_mode = 2

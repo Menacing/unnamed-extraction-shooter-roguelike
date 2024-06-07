@@ -132,12 +132,14 @@ func _on_item_picked_up(result:InventoryInsertResult):
 					move_attachment_to_anchor(item_3d, scope_anchor)
 					pass
 				"MagsSlot":
-					var mag:Magazine = item_3d as Magazine
-					for mod in mag.magazine_size_modifiers:
-						_magazine_size.add_modifier(mod)
 					if item_instance.get_item_type_id() == "extended_magazine":
 						$gun/Node_15/gun/mag/cube_003.visible = false
 						$gun/Node_15/gun/mag/extended_magazine.visible = true
+			if item_3d is Attachment:
+				var attachment:Attachment = item_3d as Attachment
+				for effect in attachment.attachment_effect.effect_lists:
+					effect.effect_target_node = self
+				EventBus.create_effect.emit(firer.get_instance_id(), attachment.attachment_effect)
 		elif result.location.location == InventoryLocationResult.LocationType.GRID:
 			item_3d.visible = false
 			
@@ -162,9 +164,9 @@ func _on_item_removed_from_slot(item_inst:ItemInstance, inventory_id:int, slot_n
 				scope_mount_model.visible = false
 				pass
 			"MagsSlot":
-				var mag:Magazine = item_3d as Magazine
-				for mod in mag.magazine_size_modifiers:
-					_magazine_size.remove_modifier(mod)
 				if item_inst.get_item_type_id() == "extended_magazine":
 					$gun/Node_15/gun/mag/cube_003.visible = false
 					$gun/Node_15/gun/mag/extended_magazine.visible = true
+		if item_3d is Attachment:
+			var attachment:Attachment = item_3d as Attachment
+			EventBus.remove_effect.emit(firer.get_instance_id(), attachment.attachment_effect)

@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://d0o2yjbp3avaa"]
 
-[ext_resource type="Script" path="res://game_objects/items/attachments/magazines/magazine.gd" id="1_bllv3"]
+[ext_resource type="Script" path="res://game_objects/items/attachments/attachment.gd" id="1_yig31"]
 [ext_resource type="PackedScene" uid="uid://bm75s87n7h12u" path="res://game_objects/items/attachments/magazines/extended/extended_magazine.blend" id="2_ahmcv"]
-[ext_resource type="Resource" uid="uid://bl7268bp73up6" path="res://game_objects/items/attachments/magazines/extended/extended_magazine.tres" id="2_l1qxh"]
+[ext_resource type="Resource" uid="uid://dsvxj63mr811r" path="res://game_objects/items/attachments/magazines/extended/extended_magazine_effect.tres" id="2_vpf67"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ph7ph"]
 size = Vector3(0.0214996, 0.245056, 0.115063)
@@ -10,8 +10,8 @@ size = Vector3(0.0214996, 0.245056, 0.115063)
 [node name="ExtendedMagazine" type="RigidBody3D" node_paths=PackedStringArray("model_node")]
 collision_layer = 5
 collision_mask = 5
-script = ExtResource("1_bllv3")
-magazine_size_modifiers = Array[Resource("res://game_logic/stat_modifier.gd")]([ExtResource("2_l1qxh")])
+script = ExtResource("1_yig31")
+attachment_effect = ExtResource("2_vpf67")
 item_type_id = "extended_magazine"
 world_collider_path = NodePath("CollisionShape3D")
 longest_side_size = 0.3
