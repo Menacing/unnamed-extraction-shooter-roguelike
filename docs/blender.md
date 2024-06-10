@@ -28,6 +28,20 @@
         - Smaller pickups can go down to 32x32 or 32x64
       - Set generated type to UV or Color grid
       - Click Create Image and save
+    - Change material base color to use generated image texture
     - [unwrap using Pixel Unwrapper](https://github.com/noio/Pixel-Unwrapper?tab=readme-ov-file#unwrap-basic)
       - Make sure the texture pixels look square. If they don't its probably because you have an unapplied transform or something
 - Texturing
+  - There are a couple main approaches.
+  - Reference Images
+    - Pull reference images
+    - Map UVs to the images
+    - Downres the images using img2Pixel to match the rest of the game
+    - Be careful of copyright
+  - Reference Brushes
+    - cut small bits of a reference image to import as a brush
+    - Be sure to use img2Pixel to collapse the color space
+  - Just do texture painting
+    - The resolutions we're working at mean you can reasonably just hand paint your texture.
+  - *Be sure to save the image!*
+    - Blender doesn't save open images when you save the projeect, you have to save them manually
