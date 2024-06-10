@@ -13,6 +13,8 @@ var firer:Node3D
 
 @export var current_ammo_subtype:AmmoSubtype
 
+@onready var rng: RandomNumberGenerator = RandomNumberGenerator.new()
+
 func _ready():
 	super()
 	current_ammo_subtype = _gun_stats.ammo_type.sub_types[0]
@@ -88,6 +90,32 @@ func get_max_magazine_size() -> int:
 	return _magazine_size.get_modified_value()
 
 @onready var current_magazine_size: int = get_max_magazine_size()
+
+@onready var _base_recoil_x: ModifiableStatFloat = ModifiableStatFloat.new(_gun_stats.base_recoil.x)
+func get_base_recoil_x() -> float:
+	return _base_recoil_x.get_modified_value()
+	
+@onready var _base_recoil_y: ModifiableStatFloat = ModifiableStatFloat.new(_gun_stats.base_recoil.y)
+func get_base_recoil_y() -> float:
+	return _base_recoil_y.get_modified_value()
+	
+@onready var _variable_recoil_x: ModifiableStatFloat = ModifiableStatFloat.new(_gun_stats.recoil_variability.x)
+func get_variable_recoil_x() -> float:
+	return _variable_recoil_x.get_modified_value()
+	
+@onready var _variable_recoil_y: ModifiableStatFloat = ModifiableStatFloat.new(_gun_stats.recoil_variability.y)
+func get_variable_recoil_y() -> float:
+	return _variable_recoil_y.get_modified_value()
+
+func generate_recoil() -> Vector2:
+	var base_x = get_base_recoil_x()
+	var base_y = get_base_recoil_y()
+	var var_x = get_variable_recoil_x()
+	var var_y = get_variable_recoil_y()
+	
+	
+	return Vector2(get_base_recoil_x() + rng.randf_range(-get_variable_recoil_x(), get_variable_recoil_x()), \
+		get_base_recoil_y() + rng.randf_range(-get_variable_recoil_y(), get_variable_recoil_y()))
 
 func get_gun_stats() -> GunStats:
 	return _gun_stats
