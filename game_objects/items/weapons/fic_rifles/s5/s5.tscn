@@ -64,6 +64,9 @@ transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 
 [node name="extended_magazine" parent="s5" index="8"]
 visible = false
 
+[node name="stable_foregrip" parent="s5" index="9"]
+visible = false
+
 [node name="Muzzle" type="Node3D" parent="s5"]
 transform = Transform3D(-2.62269e-08, 0, 0.6, 0, 0.6, 0, -0.6, 0, -2.62269e-08, -7.60565e-10, 0, 0.4783)
 visible = false

@@ -6,7 +6,6 @@ class_name HICRifle
 var current_fire_mode_i = 0
 
 var _new_bullets:int = 0
-var rng: RandomNumberGenerator
 @onready var fire_timer:Timer = $FireTimer
 @onready var reload_timer:Timer = $ReloadTimer
 var reload_time:ModifiableStatFloat = ModifiableStatFloat.new(1.0)
@@ -14,12 +13,12 @@ var reload_time:ModifiableStatFloat = ModifiableStatFloat.new(1.0)
 
 @onready var scope_mount_model = $gun/Node_15/scope_mount
 @onready var scope_anchor = $scope_anchor
+
 var scope:Scope
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	super()
 	reload_timer.connect("timeout", reloaded_callback)
-	rng = RandomNumberGenerator.new()
 	fire_timer.wait_time = 60.0/_gun_stats.rpm
 	current_fire_mode = _gun_stats.fire_modes[current_fire_mode_i]
 	reload_time.base_value = _gun_stats.reload_time_Sec
@@ -85,10 +84,6 @@ func _on_unequipped(player:Player):
 		reload_timer.paused = true
 		print_debug("reload time left:" + str(reload_timer.time_left))
 		
-	
-func generate_recoil() -> Vector2:
-	return Vector2(_gun_stats.base_recoil.x + rng.randf_range(-_gun_stats.recoil_variability.x, _gun_stats.recoil_variability.x), \
-		_gun_stats.base_recoil.y + rng.randf_range(-_gun_stats.recoil_variability.y, _gun_stats.recoil_variability.y))
 
 func toggle_fire_mode() -> String:
 	var next_i = current_fire_mode_i + 1
@@ -135,6 +130,10 @@ func _on_item_picked_up(result:InventoryInsertResult):
 					if item_instance.get_item_type_id() == "extended_magazine":
 						$gun/Node_15/gun/mag/cube_003.visible = false
 						$gun/Node_15/gun/mag/extended_magazine.visible = true
+				"ForegripsSlot":
+					if item_instance.get_item_type_id() == "stable_foregrip":
+						$gun/Node_15/gun/handguard/default.visible = false
+						$gun/Node_15/gun/handguard/stable.visible = true
 			if item_3d is Attachment:
 				var attachment:Attachment = item_3d as Attachment
 				for effect in attachment.attachment_effect.effect_lists:
@@ -167,6 +166,10 @@ func _on_item_removed_from_slot(item_inst:ItemInstance, inventory_id:int, slot_n
 				if item_inst.get_item_type_id() == "extended_magazine":
 					$gun/Node_15/gun/mag/cube_003.visible = false
 					$gun/Node_15/gun/mag/extended_magazine.visible = true
+			"ForegripsSlot":
+				if item_inst.get_item_type_id() == "stable_foregrip":
+					$gun/Node_15/gun/handguard/default.visible = true
+					$gun/Node_15/gun/handguard/stable.visible = false
 		if item_3d is Attachment:
 			var attachment:Attachment = item_3d as Attachment
 			EventBus.remove_effect.emit(firer.get_instance_id(), attachment.attachment_effect)

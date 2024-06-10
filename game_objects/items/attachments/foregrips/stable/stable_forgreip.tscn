@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://2ggq36ut12jw"]
+
+[ext_resource type="Script" path="res://game_objects/items/attachments/attachment.gd" id="1_bosbp"]
+[ext_resource type="PackedScene" uid="uid://b62b1mrmc66mb" path="res://game_objects/items/attachments/foregrips/stable/stable_foregrip.blend" id="2_6nx72"]
+[ext_resource type="Resource" uid="uid://cr34s4lnuxje1" path="res://game_objects/items/attachments/foregrips/stable/stable_foregrip_effect.tres" id="2_jn0qe"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_aroc3"]
+height = 0.120388
+radius = 0.016576
+
+[node name="StableForgreip" type="RigidBody3D" node_paths=PackedStringArray("model_node")]
+collision_layer = 5
+collision_mask = 5
+script = ExtResource("1_bosbp")
+attachment_effect = ExtResource("2_jn0qe")
+item_type_id = "stable_foregrip"
+world_collider_path = NodePath("CollisionShape3D")
+longest_side_size = 0.2
+model_node = NodePath("stable_foregrip2")
+
+[node name="stable_foregrip2" parent="." instance=ExtResource("2_6nx72")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0602316, 0)
+shape = SubResource("CylinderShape3D_aroc3")
