@@ -60,9 +60,6 @@ transform = Transform3D(-2.62268e-08, 0, -0.6, 0, 0.6, 0, 0.6, 0, -2.62268e-08, 
 [node name="Node_15" parent="gun" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.338339, 0)
 
-[node name="stable" parent="gun/Node_15/gun/handguard" index="1"]
-visible = false
-
 [node name="extended_magazine" parent="gun/Node_15/gun/mag" index="1"]
 visible = false
 
