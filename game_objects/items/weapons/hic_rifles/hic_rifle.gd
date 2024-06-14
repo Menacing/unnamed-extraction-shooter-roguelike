@@ -53,7 +53,7 @@ func fireGun():
 func reloadGun(new_bullets:int):
 	reload_timer.start(reload_time.get_modified_value())
 	reloading = true
-	#$AnimationPlayer.play("reload")
+	$AnimationPlayer.play("reload")
 	_new_bullets = new_bullets
 	
 func reloaded_callback():
