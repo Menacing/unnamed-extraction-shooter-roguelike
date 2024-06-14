@@ -31,34 +31,6 @@ _data = {
 "fire": SubResource("Animation_hu2i7")
 }
 
-[sub_resource type="Animation" id="Animation_llqna"]
-resource_name = "reload"
-length = 2.5
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("s5/magazines:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.3, 1.3, 2.2, 2.5),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0, -0.0923603, 0), Vector3(0.664282, -0.0923603, -0.22053), Vector3(0, -0.0923603, 0), Vector3(0, 0, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("s5/magazines:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0.3, 1.3, 2.2),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0.660916, 0.727152, 0.966907), Vector3(0, 0, 0)]
-}
-
 [sub_resource type="Animation" id="Animation_yps8t"]
 length = 0.001
 tracks/0/type = "value"
@@ -84,6 +56,59 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector3(0, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("s5:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 3.14159, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_llqna"]
+resource_name = "reload"
+length = 2.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("s5/magazines:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.9, 1.1, 1.4, 1.7, 2.1, 2.3),
+"transitions": PackedFloat32Array(0.0647043, 1, 2.14355, 1, 1, 1, 1, 1, 6.72717, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, -0.10903, 0), Vector3(0.180492, -0.139945, 0.223694), Vector3(0.586997, -0.236852, -0.154478), Vector3(0.586997, -0.236852, -0.154478), Vector3(0.473901, -0.269267, 0.0641721), Vector3(0.304258, -0.21648, 0.124692), Vector3(0.0417096, -0.163259, 0.0739714), Vector3(0, -0.10903, 0), Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("s5/magazines:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.9, 1.4, 2.1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(-0.0547867, 0.735628, 0.480762), Vector3(0.744328, 0.739824, 0.915281), Vector3(0.744328, 0.739824, 0.915281), Vector3(0.434191, 0.431564, 0.533914), Vector3(0, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("s5:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1, 1.9, 2.2),
+"transitions": PackedFloat32Array(0.378929, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 3.14159, 0), Vector3(-0.343206, 3.02279, 0.340882), Vector3(-0.343206, 3.02279, 0.340882), Vector3(0, 3.14159, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_f650v"]
@@ -119,13 +144,13 @@ wait_time = 2.5
 one_shot = true
 
 [node name="s5" parent="." instance=ExtResource("4_v8p8c")]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 0)
+transform = Transform3D(-1, 0, 1.50996e-07, 0, 1, 0, -1.50996e-07, 0, -1, 0, 0, 0)
+
+[node name="magazines" parent="s5" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="extended_magazine" parent="s5/magazines" index="0"]
 visible = false
-
-[node name="magazine" parent="s5/magazines" index="1"]
-transform = Transform3D(1, 0, 7.10543e-15, 0, 1, 0, -7.10543e-15, 0, 1, 0, -0.0806784, 0)
 
 [node name="stable_foregrip" parent="s5" index="8"]
 visible = false
