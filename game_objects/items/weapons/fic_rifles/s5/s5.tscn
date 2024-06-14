@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://cprpop5lkmyhe"]
+[gd_scene load_steps=18 format=3 uid="uid://cprpop5lkmyhe"]
 
 [ext_resource type="Script" path="res://game_objects/items/weapons/fic_rifles/fic_rifle.gd" id="1_rora5"]
 [ext_resource type="PackedScene" uid="uid://b6bxw2s2j2pix" path="res://game_objects/bullet/fic_fmj_bullet.tscn" id="2_pysoi"]
@@ -9,6 +9,7 @@
 [ext_resource type="AudioStream" uid="uid://bc1wim1c1t021" path="res://game_objects/items/weapons/fic_rifles/fic_mag_out.ogg" id="7_hvlr1"]
 [ext_resource type="AudioStream" uid="uid://belfvaan2qeva" path="res://game_objects/items/weapons/fic_rifles/fic_mag_in.ogg" id="8_ib0ga"]
 [ext_resource type="AudioStream" uid="uid://c2wxubwa7ilv" path="res://game_objects/items/weapons/fic_rifles/fic_charging_handle.ogg" id="9_qj0jf"]
+[ext_resource type="AudioStream" uid="uid://howm8uexygj7" path="res://game_objects/items/weapons/fic_rifles/fic_shot_2.ogg" id="10_vdlnj"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_a6wgc"]
 size = Vector3(0.852813, 0.283394, 0.071228)
@@ -164,6 +165,13 @@ _data = {
 "reload": SubResource("Animation_llqna")
 }
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_has1p"]
+random_pitch = 1.05
+random_volume_offset_db = 0.5
+streams_count = 1
+stream_0/stream = ExtResource("10_vdlnj")
+stream_0/weight = 1.0
+
 [node name="S5" type="RigidBody3D" node_paths=PackedStringArray("mag_node")]
 disable_mode = 1
 collision_layer = 5
@@ -274,5 +282,10 @@ attenuation_model = 1
 
 [node name="ChargingHandleStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
 attenuation_model = 1
+
+[node name="ShotAudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = SubResource("AudioStreamRandomizer_has1p")
+volume_db = 6.0
+max_polyphony = 20
 
 [editable path="s5"]
