@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dr48wela8mtxd"]
+[gd_scene load_steps=12 format=3 uid="uid://dr48wela8mtxd"]
 
 [ext_resource type="Script" path="res://game_objects/items/weapons/hic_rifles/hic_rifle.gd" id="1_xmoyr"]
 [ext_resource type="PackedScene" uid="uid://du06cmxlbacls" path="res://game_objects/bullet/hic_fmj_bullet.tscn" id="2_5qbyx"]
@@ -32,13 +32,144 @@ _data = {
 "fire": SubResource("Animation_048m7")
 }
 
-[node name="PM52" type="RigidBody3D" node_paths=PackedStringArray("model_node")]
+[sub_resource type="Animation" id="Animation_yr6ub"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("gun/Node_15/gun/mag:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("gun/Node_15/gun/mag:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("gun:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, -1.5708, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_i2jpl"]
+resource_name = "reload"
+length = 2.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("gun/Node_15/gun/mag:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.9, 1.1, 1.3, 1.6),
+"transitions": PackedFloat32Array(1.07177, 1, 1, 1, 1, 1, 1, 1.07177),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(-0.061628, 0.00287006, 2.69384e-09), Vector3(-0.471579, 0.00287006, 0.700022), Vector3(0.197437, -0.170863, 1.60944), Vector3(0.197437, -0.170863, 1.60944), Vector3(-0.471579, 0.00287006, 0.700022), Vector3(-0.061628, 0.00287006, 2.69384e-09), Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("gun/Node_15/gun/mag:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.9, 1.1, 1.3, 1.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(-1.0081e-08, 1.17839e-09, -0.232722), Vector3(-0.512673, 0.640902, -0.232722), Vector3(-0.463847, 0.704759, -0.210558), Vector3(-0.463847, 0.704759, -0.210558), Vector3(-0.512673, 0.640902, -0.232722), Vector3(-1.0081e-08, 1.17839e-09, -0.232722), Vector3(0, 0, 0)]
+}
+tracks/2/type = "audio"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("MagOutStreamPlayer3D")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": null
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/2/use_blend = true
+tracks/3/type = "audio"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("MagInStreamPlayer3D")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": null
+}],
+"times": PackedFloat32Array(1.2)
+}
+tracks/3/use_blend = true
+tracks/4/type = "audio"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("ChargingHandleStreamPlayer3D")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": null
+}],
+"times": PackedFloat32Array(1.7)
+}
+tracks/4/use_blend = true
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("gun:rotation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.5, 1, 1.3, 1.6, 1.9, 2.3, 2.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, -1.5708, 0), Vector3(-1.87969e-08, -1.5708, -0.444518), Vector3(-1.87969e-08, -1.5708, -0.444518), Vector3(0, -1.5708, 0), Vector3(0, -1.5708, 0), Vector3(0.447014, -1.5708, -2.09542e-08), Vector3(0.447014, -1.5708, -2.09542e-08), Vector3(0, -1.5708, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_tmnss"]
+_data = {
+"RESET": SubResource("Animation_yr6ub"),
+"reload": SubResource("Animation_i2jpl")
+}
+
+[node name="PM52" type="RigidBody3D" node_paths=PackedStringArray("mag_node", "model_node")]
 disable_mode = 1
 collision_layer = 5
 collision_mask = 5
 script = ExtResource("1_xmoyr")
 _bullet_scene = ExtResource("2_5qbyx")
 _gun_stats = ExtResource("3_5vh7j")
+mag_node = NodePath("gun/Node_15/gun/mag")
 item_type_id = "pm-52"
 world_collider_path = NodePath("CollisionShape3D")
 model_node = NodePath("gun")
@@ -55,13 +186,16 @@ wait_time = 2.5
 one_shot = true
 
 [node name="gun" parent="." instance=ExtResource("6_78q42")]
-transform = Transform3D(-2.62268e-08, 0, -0.6, 0, 0.6, 0, 0.6, 0, -2.62268e-08, 0, 0.167238, 0)
+transform = Transform3D(-2.17199e-06, 0, -0.6, 0, 0.6, 0, 0.6, 0, -2.17199e-06, 0, 0.167238, 0)
 
 [node name="Node_15" parent="gun" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.338339, 0)
 
-[node name="stable" parent="gun/Node_15/gun/handguard" index="1"]
-visible = false
+[node name="mag" parent="gun/Node_15/gun" index="3"]
+transform = Transform3D(0.999999, 0, 0, 0, 0.999999, 0, 0, 0, 0.999999, 0, 0, 0)
+
+[node name="cube_003" parent="gun/Node_15/gun/mag" index="0"]
+transform = Transform3D(1, 0, 2.98023e-08, 7.45058e-09, 1, 1.11759e-08, -2.98023e-08, 2.6077e-08, 1, 0, 0, 0)
 
 [node name="extended_magazine" parent="gun/Node_15/gun/mag" index="1"]
 visible = false
@@ -138,5 +272,19 @@ unique_name_in_owner = true
 libraries = {
 "": SubResource("AnimationLibrary_clf16")
 }
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_tmnss")
+}
+
+[node name="MagInStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+attenuation_model = 1
+
+[node name="MagOutStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+attenuation_model = 1
+
+[node name="ChargingHandleStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+attenuation_model = 1
 
 [editable path="gun"]

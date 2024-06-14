@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cprpop5lkmyhe"]
+[gd_scene load_steps=16 format=3 uid="uid://cprpop5lkmyhe"]
 
 [ext_resource type="Script" path="res://game_objects/items/weapons/fic_rifles/fic_rifle.gd" id="1_rora5"]
 [ext_resource type="PackedScene" uid="uid://b6bxw2s2j2pix" path="res://game_objects/bullet/fic_fmj_bullet.tscn" id="2_pysoi"]
@@ -6,6 +6,9 @@
 [ext_resource type="Resource" uid="uid://cv0v8s66c5nn4" path="res://components/ammo_component/ammo_types/fast_intermediate_cartridge/ammo_subtypes/full_metal_jacket.tres" id="4_3mr2u"]
 [ext_resource type="PackedScene" uid="uid://d1y3lghk4h5l3" path="res://game_objects/items/weapons/fic_rifles/s5/s5.blend" id="4_v8p8c"]
 [ext_resource type="Texture2D" uid="uid://dkcxx06s6kdp6" path="res://game_objects/items/weapons/hic_rifles/pm_52/PixelMuzzelFlash.png" id="5_wks76"]
+[ext_resource type="AudioStream" uid="uid://bc1wim1c1t021" path="res://game_objects/items/weapons/fic_rifles/fic_mag_out.ogg" id="7_hvlr1"]
+[ext_resource type="AudioStream" uid="uid://belfvaan2qeva" path="res://game_objects/items/weapons/fic_rifles/fic_mag_in.ogg" id="8_ib0ga"]
+[ext_resource type="AudioStream" uid="uid://c2wxubwa7ilv" path="res://game_objects/items/weapons/fic_rifles/fic_charging_handle.ogg" id="9_qj0jf"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_a6wgc"]
 size = Vector3(0.852813, 0.283394, 0.071228)
@@ -31,7 +34,137 @@ _data = {
 "fire": SubResource("Animation_hu2i7")
 }
 
-[node name="S5" type="RigidBody3D" node_paths=PackedStringArray("model_node")]
+[sub_resource type="Animation" id="Animation_yps8t"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("s5/magazines:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("s5/magazines:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("s5:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 3.14159, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_llqna"]
+resource_name = "reload"
+length = 2.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("s5/magazines:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.9, 1.1, 1.2, 1.3, 1.6, 1.8),
+"transitions": PackedFloat32Array(0.0647043, 1, 2.14355, 1, 1, 1, 1, 1, 6.72717, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, -0.10903, 0), Vector3(0.180492, -0.139945, 0.223694), Vector3(0.586997, -0.236852, -0.154478), Vector3(0.586997, -0.236852, -0.154478), Vector3(0.473901, -0.269267, 0.0641721), Vector3(0.304258, -0.21648, 0.124692), Vector3(0.0417096, -0.163259, 0.0739714), Vector3(0, -0.10903, 0), Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("s5/magazines:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.9, 1.2, 1.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(-0.0547867, 0.735628, 0.480762), Vector3(0.744328, 0.739824, 0.915281), Vector3(0.744328, 0.739824, 0.915281), Vector3(0.434191, 0.431564, 0.533914), Vector3(0, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("s5:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1, 1.5, 2.2),
+"transitions": PackedFloat32Array(0.378929, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 3.14159, 0), Vector3(-0.343206, 3.02279, 0.340882), Vector3(-0.343206, 3.02279, 0.340882), Vector3(0, 3.14159, 0)]
+}
+tracks/3/type = "audio"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("MagOutStreamPlayer3D")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("7_hvlr1")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/3/use_blend = true
+tracks/4/type = "audio"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("MagInStreamPlayer3D")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("8_ib0ga")
+}],
+"times": PackedFloat32Array(1.6)
+}
+tracks/4/use_blend = true
+tracks/5/type = "audio"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("ChargingHandleStreamPlayer3D")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("9_qj0jf")
+}],
+"times": PackedFloat32Array(2)
+}
+tracks/5/use_blend = true
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_f650v"]
+_data = {
+"RESET": SubResource("Animation_yps8t"),
+"reload": SubResource("Animation_llqna")
+}
+
+[node name="S5" type="RigidBody3D" node_paths=PackedStringArray("mag_node")]
 disable_mode = 1
 collision_layer = 5
 collision_mask = 5
@@ -43,10 +176,10 @@ muzzle_np = NodePath("s5/Muzzle")
 _bullet_scene = ExtResource("2_pysoi")
 _gun_stats = ExtResource("3_x74o3")
 current_ammo_subtype = ExtResource("4_3mr2u")
+mag_node = NodePath("s5/magazines")
 item_type_id = "s5"
 world_collider_path = NodePath("CollisionShape3D")
 longest_side_size = 0.9
-model_node = NodePath("s5")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -0.00137329, -0.064, -0.054)
@@ -59,12 +192,12 @@ wait_time = 2.5
 one_shot = true
 
 [node name="s5" parent="." instance=ExtResource("4_v8p8c")]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 0)
+transform = Transform3D(-1, 0, 2.53518e-06, 0, 1, 0, -2.53518e-06, 0, -1, 0, 0, 0)
 
-[node name="extended_magazine" parent="s5" index="8"]
+[node name="extended_magazine" parent="s5/magazines" index="0"]
 visible = false
 
-[node name="stable_foregrip" parent="s5" index="9"]
+[node name="stable_foregrip" parent="s5" index="8"]
 visible = false
 
 [node name="Muzzle" type="Node3D" parent="s5"]
@@ -100,10 +233,10 @@ libraries = {
 }
 
 [node name="Right_Hand" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 7.10543e-15, 0, 1, 0, -7.10543e-15, 0, 1, 0.025, 0.0792384, 0.281)
+transform = Transform3D(1, 0, 7.10543e-15, 0, 1, 0, -7.10543e-15, 0, 1, 0.025, -0.123366, 0.144166)
 
 [node name="Right_Fingers" type="Node3D" parent="."]
-transform = Transform3D(-1, 8.74228e-08, 7.10543e-15, -8.74228e-08, -1, 0, 7.10543e-15, -6.21177e-22, 1, -0.0017045, 0.0792384, -0.0446781)
+transform = Transform3D(-1, 8.74228e-08, 7.10543e-15, -8.74228e-08, -1, 0, 7.10543e-15, -6.21177e-22, 1, -0.0017045, -0.13996, 0.0987945)
 
 [node name="HipFire" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.171, 0.14, 0.398)
@@ -117,15 +250,29 @@ text = "HF"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.07, 0.451)
 
 [node name="Left_Hand" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0283023, 0.137292, -0.0768944)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0283023, -0.021755, -0.126792)
 
 [node name="Left_Fingers" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.179712, 0.137292, -0.0768944)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0436592, -0.0102317, -0.0768944)
 
 [node name="ADS_Head" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.2, 0.1, 0)
 
 [node name="scope_anchor" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.02233, 0.0517627)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_f650v")
+}
+
+[node name="MagInStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+attenuation_model = 1
+
+[node name="MagOutStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+attenuation_model = 1
+
+[node name="ChargingHandleStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+attenuation_model = 1
 
 [editable path="s5"]

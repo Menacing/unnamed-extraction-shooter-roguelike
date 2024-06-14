@@ -62,7 +62,7 @@ func fireGun():
 func reloadGun(new_bullets:int):
 	reload_timer.start(reload_time.get_modified_value())
 	reloading = true
-	#$AnimationPlayer.play("reload")
+	$AnimationPlayer.play("reload")
 	_new_bullets = new_bullets
 	
 func reloaded_callback():
@@ -146,8 +146,8 @@ func _on_item_picked_up(result:InventoryInsertResult):
 					pass
 				"MagsSlot":
 					if item_instance.get_item_type_id() == "extended_magazine":
-						$s5/magazine.visible = false
-						$s5/extended_magazine.visible = true
+						$s5/magazines/magazine.visible = false
+						$s5/magazines/extended_magazine.visible = true
 				"ForegripsSlot":
 					if item_instance.get_item_type_id() == "stable_foregrip":
 						$s5/stable_foregrip.visible = true
@@ -189,8 +189,8 @@ func _on_item_removed_from_slot(item_inst:ItemInstance, inventory_id:int, slot_n
 				pass
 			"MagsSlot":
 				if item_inst.get_item_type_id() == "extended_magazine":
-					$s5/magazine.visible = true
-					$s5/extended_magazine.visible = false
+					$s5/magazines/magazine.visible = true
+					$s5/magazines/extended_magazine.visible = false
 			"ForegripsSlot":
 				if item_inst.get_item_type_id() == "stable_foregrip":
 					$s5/stable_foregrip.visible = false
