@@ -1,10 +1,14 @@
-[gd_scene load_steps=12 format=3 uid="uid://dr48wela8mtxd"]
+[gd_scene load_steps=17 format=3 uid="uid://dr48wela8mtxd"]
 
 [ext_resource type="Script" path="res://game_objects/items/weapons/hic_rifles/hic_rifle.gd" id="1_xmoyr"]
 [ext_resource type="PackedScene" uid="uid://du06cmxlbacls" path="res://game_objects/bullet/hic_fmj_bullet.tscn" id="2_5qbyx"]
 [ext_resource type="Resource" uid="uid://dls8psqyu06aw" path="res://game_objects/items/weapons/hic_rifles/hic_rifle_gun_stats.tres" id="3_5vh7j"]
+[ext_resource type="AudioStream" uid="uid://cvetwcylway6p" path="res://game_objects/items/weapons/hic_rifles/hic_mag_out.ogg" id="6_1us7e"]
 [ext_resource type="PackedScene" uid="uid://pm3nps6dkjt8" path="res://game_objects/items/weapons/hic_rifles/pm_52/pm_52.blend" id="6_78q42"]
 [ext_resource type="Texture2D" uid="uid://dkcxx06s6kdp6" path="res://game_objects/items/weapons/hic_rifles/pm_52/PixelMuzzelFlash.png" id="6_ok4lf"]
+[ext_resource type="AudioStream" uid="uid://dplusv72g11du" path="res://game_objects/items/weapons/hic_rifles/hic_shot_1.ogg" id="6_r1jqa"]
+[ext_resource type="AudioStream" uid="uid://61nbakc75l5g" path="res://game_objects/items/weapons/hic_rifles/hic_mag_in.ogg" id="7_vwawx"]
+[ext_resource type="AudioStream" uid="uid://c71dtcsweexj4" path="res://game_objects/items/weapons/hic_rifles/hic_charging_handle.ogg" id="8_njdhy"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_a6wgc"]
 size = Vector3(0.88, 0.22, 0.056)
@@ -108,7 +112,7 @@ tracks/2/keys = {
 "clips": [{
 "end_offset": 0.0,
 "start_offset": 0.0,
-"stream": null
+"stream": ExtResource("6_1us7e")
 }],
 "times": PackedFloat32Array(0)
 }
@@ -123,7 +127,7 @@ tracks/3/keys = {
 "clips": [{
 "end_offset": 0.0,
 "start_offset": 0.0,
-"stream": null
+"stream": ExtResource("7_vwawx")
 }],
 "times": PackedFloat32Array(1.2)
 }
@@ -138,7 +142,7 @@ tracks/4/keys = {
 "clips": [{
 "end_offset": 0.0,
 "start_offset": 0.0,
-"stream": null
+"stream": ExtResource("8_njdhy")
 }],
 "times": PackedFloat32Array(1.7)
 }
@@ -161,6 +165,13 @@ _data = {
 "RESET": SubResource("Animation_yr6ub"),
 "reload": SubResource("Animation_i2jpl")
 }
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_804ov"]
+random_pitch = 1.05
+random_volume_offset_db = 0.5
+streams_count = 1
+stream_0/stream = ExtResource("6_r1jqa")
+stream_0/weight = 1.0
 
 [node name="PM52" type="RigidBody3D" node_paths=PackedStringArray("mag_node", "model_node")]
 disable_mode = 1
@@ -190,6 +201,9 @@ transform = Transform3D(-2.17199e-06, 0, -0.6, 0, 0.6, 0, 0.6, 0, -2.17199e-06, 
 
 [node name="Node_15" parent="gun" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.338339, 0)
+
+[node name="stable" parent="gun/Node_15/gun/handguard" index="1"]
+visible = false
 
 [node name="mag" parent="gun/Node_15/gun" index="3"]
 transform = Transform3D(0.999999, 0, 0, 0, 0.999999, 0, 0, 0, 0.999999, 0, 0, 0)
@@ -286,5 +300,10 @@ attenuation_model = 1
 
 [node name="ChargingHandleStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
 attenuation_model = 1
+
+[node name="ShotAudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = SubResource("AudioStreamRandomizer_804ov")
+volume_db = 6.0
+max_polyphony = 20
 
 [editable path="gun"]

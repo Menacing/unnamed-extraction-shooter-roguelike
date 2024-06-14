@@ -44,6 +44,7 @@ func fireGun():
 		bulletInst.firer = firer
 		current_magazine_size -= 1
 		muzzle_flash_animation_player.play("fire")
+		$ShotAudioStreamPlayer3D.play()
 		fire_timer.start()
 		fired.emit(generate_recoil())
 	else:
