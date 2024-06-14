@@ -164,7 +164,7 @@ _data = {
 "reload": SubResource("Animation_llqna")
 }
 
-[node name="S5" type="RigidBody3D"]
+[node name="S5" type="RigidBody3D" node_paths=PackedStringArray("mag_node")]
 disable_mode = 1
 collision_layer = 5
 collision_mask = 5
@@ -176,6 +176,7 @@ muzzle_np = NodePath("s5/Muzzle")
 _bullet_scene = ExtResource("2_pysoi")
 _gun_stats = ExtResource("3_x74o3")
 current_ammo_subtype = ExtResource("4_3mr2u")
+mag_node = NodePath("s5/magazines")
 item_type_id = "s5"
 world_collider_path = NodePath("CollisionShape3D")
 longest_side_size = 0.9
@@ -191,10 +192,7 @@ wait_time = 2.5
 one_shot = true
 
 [node name="s5" parent="." instance=ExtResource("4_v8p8c")]
-transform = Transform3D(-1, 0, 1.50996e-07, 0, 1, 0, -1.50996e-07, 0, -1, 0, 0, 0)
-
-[node name="magazines" parent="s5" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+transform = Transform3D(-1, 0, 2.53518e-06, 0, 1, 0, -2.53518e-06, 0, -1, 0, 0, 0)
 
 [node name="extended_magazine" parent="s5/magazines" index="0"]
 visible = false
@@ -235,10 +233,10 @@ libraries = {
 }
 
 [node name="Right_Hand" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 7.10543e-15, 0, 1, 0, -7.10543e-15, 0, 1, 0.025, 0.0792384, 0.281)
+transform = Transform3D(1, 0, 7.10543e-15, 0, 1, 0, -7.10543e-15, 0, 1, 0.025, -0.123366, 0.144166)
 
 [node name="Right_Fingers" type="Node3D" parent="."]
-transform = Transform3D(-1, 8.74228e-08, 7.10543e-15, -8.74228e-08, -1, 0, 7.10543e-15, -6.21177e-22, 1, -0.0017045, 0.0792384, -0.0446781)
+transform = Transform3D(-1, 8.74228e-08, 7.10543e-15, -8.74228e-08, -1, 0, 7.10543e-15, -6.21177e-22, 1, -0.0017045, -0.13996, 0.0987945)
 
 [node name="HipFire" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.171, 0.14, 0.398)
@@ -252,10 +250,10 @@ text = "HF"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.07, 0.451)
 
 [node name="Left_Hand" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0283023, 0.137292, -0.0768944)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0283023, -0.021755, -0.126792)
 
 [node name="Left_Fingers" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.179712, 0.137292, -0.0768944)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0436592, -0.0102317, -0.0768944)
 
 [node name="ADS_Head" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.2, 0.1, 0)

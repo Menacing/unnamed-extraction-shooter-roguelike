@@ -49,6 +49,10 @@ func get_grip_node() -> Node3D:
 func get_handguard_node() -> Node3D:
 	return self.get_node("handguard")
 
+@export var mag_node:Node3D
+func get_mag_node() -> Node3D:
+	return mag_node
+
 func _on_equipped(player:Player):
 	pass
 	

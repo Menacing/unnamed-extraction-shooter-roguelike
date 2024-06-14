@@ -420,6 +420,7 @@ func reload():
 	var needed_ammo = equipped_gun.get_max_magazine_size() - equipped_gun.current_magazine_size
 	var available_ammo = ammo_component.request_ammo(ammo_component._active_ammo_type, ammo_component._active_ammo_subtype, needed_ammo)
 	equipped_gun.reloadGun(available_ammo)
+	ik_left_hand.target_node = equipped_gun.get_mag_node().get_path()
 
 func unload():
 	var current_ammo = equipped_gun.current_magazine_size
@@ -439,7 +440,8 @@ func scale_recoil(recoil:Vector2) -> Vector2:
 	return recoil * recoil_factor.get_modified_value()
 	
 func _on_gun_reloaded():
-	EventBus.magazine_ammo_count_changed.emit(equipped_gun.current_magazine_size)	
+	EventBus.magazine_ammo_count_changed.emit(equipped_gun.current_magazine_size)
+	ik_left_hand.target_node = equipped_gun.get_left_hand_node().get_path()
 		
 func _on_ammo_type_changed(new_type:String, new_subtype:String):
 	#unload mag
