@@ -13265,13 +13265,95 @@
 }
 // entity 141
 {
+"classname" "point"
+"origin" "514 -350 -118"
+"target" "first_floor_key_room_start"
+}
+// entity 142
+{
+"classname" "point_nav_link"
+"origin" "578 -350 -118"
+"endname" "first_floor_key_room_end"
+"startname" "first_floor_key_room_start"
+}
+// entity 143
+{
+"classname" "point"
+"origin" "658 -350 -118"
+"target" "first_floor_key_room_end"
+}
+// entity 144
+{
+"classname" "point"
+"origin" "222 -62 18"
+"target" "second_floor_second_start"
+"angle" "90"
+}
+// entity 145
+{
+"classname" "point_nav_link"
+"origin" "222 2 18"
+"endname" "second_floor_second_end"
+"startname" "second_floor_second_start"
+"angle" "90"
+}
+// entity 146
+{
+"classname" "point"
+"origin" "222 82 18"
+"target" "second_floor_second_end"
+"angle" "90"
+}
+// entity 147
+{
+"classname" "point"
+"origin" "110 38 18"
+"target" "second_floor_first_end"
+"angle" "180"
+}
+// entity 148
+{
+"classname" "point_nav_link"
+"origin" "190 38 18"
+"endname" "second_floor_first_end"
+"startname" "second_floor_first_start"
+"angle" "180"
+}
+// entity 149
+{
+"classname" "point"
+"origin" "254 38 18"
+"target" "second_floor_first_start"
+"angle" "180"
+}
+// entity 150
+{
+"classname" "point"
+"origin" "474 -470 -118"
+"target" "first_floor_storage_start"
+}
+// entity 151
+{
+"classname" "point_nav_link"
+"origin" "394 -470 -118"
+"endname" "first_floor_storage_end"
+"startname" "first_floor_storage_start"
+}
+// entity 152
+{
+"classname" "point"
+"origin" "330 -470 -118"
+"target" "first_floor_storage_end"
+}
+// entity 153
+{
 "classname" "func_group"
 "_tb_type" "_tb_layer"
 "_tb_name" "upstairs_bathroom"
 "_tb_id" "1"
 "_tb_layer_sort_index" "0"
 }
-// entity 142
+// entity 154
 {
 "classname" "func_group"
 "_tb_type" "_tb_layer"
@@ -13280,7 +13362,7 @@
 "_tb_layer_sort_index" "1"
 "_tb_layer_hidden" "1"
 }
-// entity 143
+// entity 155
 {
 "classname" "geo_ballistic_solid"
 "game_material_info" "4"
@@ -13295,7 +13377,7 @@
 ( 1080 -408 144 ) ( 1080 296 144 ) ( 1080 296 112 ) concrete/concrete_1 [ 0 1 0 40 ] [ 0 0 -1 0 ] 0 1 1
 }
 }
-// entity 144
+// entity 156
 {
 "classname" "geo_ballistic_solid"
 "game_material_info" "4"
@@ -13373,7 +13455,7 @@
 ( 800 -1056 8 ) ( 800 -1056 9 ) ( 800 -1055 8 ) tile/tile_17 [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
 }
 }
-// entity 145
+// entity 157
 {
 "classname" "func_group"
 "_tb_type" "_tb_layer"
@@ -13381,7 +13463,7 @@
 "_tb_id" "20"
 "_tb_layer_sort_index" "2"
 }
-// entity 146
+// entity 158
 {
 "classname" "func_group"
 "_tb_type" "_tb_layer"
