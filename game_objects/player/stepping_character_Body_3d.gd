@@ -210,11 +210,23 @@ func _move_step_and_slide_grounded(delta:float, was_on_floor:bool):
 				#test we have space to step up
 				var space_to_step = _is_space_for_step(collision_result, actual_step_up_height)
 				if space_to_step:
-					_perform_step_over(actual_step_up_height, collision_result_remainder)
+					var step_motion:Vector3 = _perform_step_over(actual_step_up_height, collision_result_remainder)
 					can_apply_constant_speed = !can_apply_constant_speed && !sliding_enabled
 					sliding_enabled = true
 					first_slide = false
-					continue
+					
+					var step_motion_length:float = step_motion.length()
+					var motion_length:float = motion.length()
+					var motion_difference:Vector3 
+					
+					if step_motion_length > motion_length:
+						motion_difference = Vector3.ZERO
+					else:
+						motion_difference = motion - step_motion
+					
+					motion = motion_difference
+					
+					break
 
 
 			# If we hit a ceiling platform, we set the vertical velocity to at least the platform one.
@@ -649,7 +661,7 @@ func _is_space_for_step_single(step_collision_remainder:Vector3, step_collision_
 
 ## perform step up move at given height
 ## returns true if went full distance, false otherwise
-func _perform_step_over(step_up_height:Vector3, motion:Vector3) -> bool:
+func _perform_step_over(step_up_height:Vector3, motion:Vector3) -> Vector3:
 	#test remainder of movement at step_up_height
 	var step_over_test_result = KinematicCollision3D.new()
 	var step_over_motion = motion
@@ -694,12 +706,10 @@ func _perform_step_over(step_up_height:Vector3, motion:Vector3) -> bool:
 		else:
 			down_travel = down_motion
 
-		global_transform.origin += step_up_height + total_travel_distance + down_travel
+		var total_travel_vector:Vector3 = step_up_height + total_travel_distance + down_travel
+		global_transform.origin += total_travel_vector
 		
-		if total_travel_distance.length() < motion.length():
-			return false
-		else:
-			return true
+		return total_travel_vector
 		
 	#else move to target position and break
 	else:
@@ -715,8 +725,9 @@ func _perform_step_over(step_up_height:Vector3, motion:Vector3) -> bool:
 		else:
 			down_travel = down_motion
 		
-		global_transform.origin += step_up_height + motion + down_travel
-		return true
+		var total_travel_vector:Vector3 = step_up_height + motion + down_travel
+		global_transform.origin += total_travel_vector
+		return total_travel_vector
 
 
 func _kinematic_collision_3d_hit_wall(collision_result:KinematicCollision3D) -> bool:
