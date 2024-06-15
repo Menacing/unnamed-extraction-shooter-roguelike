@@ -134,3 +134,11 @@
 [
 	godot_group_names(string) : "" : ""
 ]
+
+@PointClass color(204 204 204) size(-2 -2 -2, 2 2 2) base(Target) = point_nav_link : "point_nav_link" 
+[
+	startname(string) : "" : ""
+	endname(string) : "" : ""
+]
+
+@PointClass color(204 204 204) size(-2 -2 -2, 2 2 2) base(Target) = point : "point" []
