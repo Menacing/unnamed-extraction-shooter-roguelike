@@ -11,6 +11,7 @@ extends GeoBallisticSolid
 var world_inventory_control:WorldInventory
 @export var container_size:int
 var inventory_id:int
+@export var chance_active:float = 1.0
 
 func _func_godot_apply_properties(entity_properties: Dictionary):
 	super(entity_properties)
@@ -24,7 +25,9 @@ func _func_godot_apply_properties(entity_properties: Dictionary):
 		min_spawned = int(func_godot_properties['min_spawned'])
 	if 'max_spawned' in func_godot_properties:
 		max_spawned = int(func_godot_properties['max_spawned'])
-
+	if 'chance_active' in func_godot_properties:
+		chance_active = float(func_godot_properties['chance_active'])
+		
 var model_shuffle_bag:Array[LootSpawnInformation] = []
 var current_shuffle_bag:Array[LootSpawnInformation] = []
 
@@ -50,6 +53,10 @@ func spawn_loot():
 	var loot_spawn_mapping:LootSpawnMapping = LootSpawnManager.get_loot_spawn_mapping(biome_index,tier_index)
 	
 	randomize()
+	var active_roll:float = randf()
+	if active_roll > chance_active:
+		return
+	
 	var number_to_spawn = randi_range(min_spawned,max_spawned)
 	var aabb = Helpers.get_aabb_of_node(self)
 	var x_size = aabb.size.x

@@ -540,12 +540,15 @@ func _set_collision_direction(p_result:KinematicCollision3D, r_state:CollisionSt
 					_collision_state.wall = was_on_wall
 					_wall_normal = prev_wall_normal
 
+func _get_floor_snap_distance() -> float:
+	return max(floor_snap_length, safe_margin, max_step_height)
+
 func _on_floor_if_snapped(p_was_on_floor: bool, p_vel_dir_facing_up: bool) -> bool:
 	if up_direction == Vector3.ZERO or _collision_state.floor or not p_was_on_floor or p_vel_dir_facing_up:
 		return false
 
 	# Snap by at least collision margin to keep floor state consistent.
-	var length: float = max(floor_snap_length, safe_margin)
+	var length: float = _get_floor_snap_distance()
 
 	# Also report collisions generated only from recovery.
 	var result = KinematicCollision3D.new()
@@ -577,7 +580,7 @@ func apply_floor_snap():
 		return
 
 	# Snap by at least collision margin to keep floor state consistent.
-	var length: float = max(floor_snap_length, safe_margin)
+	var length: float = _get_floor_snap_distance()
 
 	var result = KinematicCollision3D.new()
 	var result_travel = Vector3()
