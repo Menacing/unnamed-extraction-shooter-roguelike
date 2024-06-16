@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="GameMaterialInfoList" load_steps=7 format=3 uid="uid://qumpyqn8mcmo"]
+[gd_resource type="Resource" script_class="GameMaterialInfoList" load_steps=8 format=3 uid="uid://qumpyqn8mcmo"]
 
 [ext_resource type="Script" path="res://levels/game_material_info/game_material_info_list.gd" id="1_3k5rk"]
 [ext_resource type="Resource" uid="uid://cw8ltee1c2mrt" path="res://levels/game_material_info/brick.tres" id="1_rxek5"]
@@ -6,7 +6,8 @@
 [ext_resource type="Resource" uid="uid://cpikaj4mlopen" path="res://levels/game_material_info/stone.tres" id="3_kqq1d"]
 [ext_resource type="Resource" uid="uid://ba2j8g1h1ru5y" path="res://levels/game_material_info/wood.tres" id="4_2bsid"]
 [ext_resource type="Resource" uid="uid://dq8tifqn526xt" path="res://levels/game_material_info/tile.tres" id="5_cj477"]
+[ext_resource type="Resource" uid="uid://b1ma6eddbyiwp" path="res://levels/game_material_info/glass.tres" id="6_wcjqq"]
 
 [resource]
 script = ExtResource("1_3k5rk")
-game_material_infos = Array[Resource("res://levels/game_material_info/game_material_info.gd")]([ExtResource("1_rxek5"), ExtResource("2_trwx4"), ExtResource("3_kqq1d"), ExtResource("4_2bsid"), ExtResource("5_cj477")])
+game_material_infos = Array[Resource("res://levels/game_material_info/game_material_info.gd")]([ExtResource("1_rxek5"), ExtResource("2_trwx4"), ExtResource("3_kqq1d"), ExtResource("4_2bsid"), ExtResource("5_cj477"), ExtResource("6_wcjqq")])

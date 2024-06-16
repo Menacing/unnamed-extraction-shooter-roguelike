@@ -12739,13 +12739,27 @@
 }
 // entity 149
 {
+"classname" "geo_ballistic_solid"
+"game_material_info" "5"
+// brush 0
+{
+( 616 -432 -96 ) ( 616 -431 -96 ) ( 616 -432 -95 ) glass/glass_2 [ 0 -1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( 616 -432 -96 ) ( 616 -432 -95 ) ( 617 -432 -96 ) glass/glass_2 [ 1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( 616 -432 -96 ) ( 617 -432 -96 ) ( 616 -431 -96 ) glass/glass_2 [ -1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( 752 -424 -24 ) ( 752 -423 -24 ) ( 753 -424 -24 ) glass/glass_2 [ 1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( 752 -424 -88 ) ( 753 -424 -88 ) ( 752 -424 -87 ) glass/glass_2 [ -1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( 752 -424 -88 ) ( 752 -424 -87 ) ( 752 -423 -88 ) glass/glass_2 [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+}
+}
+// entity 150
+{
 "classname" "func_group"
 "_tb_type" "_tb_layer"
 "_tb_name" "upstairs_bathroom"
 "_tb_id" "1"
 "_tb_layer_sort_index" "0"
 }
-// entity 150
+// entity 151
 {
 "classname" "func_group"
 "_tb_type" "_tb_layer"
@@ -12754,7 +12768,7 @@
 "_tb_layer_sort_index" "1"
 "_tb_layer_hidden" "1"
 }
-// entity 151
+// entity 152
 {
 "classname" "geo_ballistic_solid"
 "game_material_info" "4"
@@ -12769,7 +12783,7 @@
 ( 1080 -408 144 ) ( 1080 296 144 ) ( 1080 296 112 ) concrete/concrete_1 [ 0 1 0 40 ] [ 0 0 -1 0 ] 0 1 1
 }
 }
-// entity 152
+// entity 153
 {
 "classname" "geo_ballistic_solid"
 "game_material_info" "4"
@@ -12847,7 +12861,7 @@
 ( 800 -1056 8 ) ( 800 -1056 9 ) ( 800 -1055 8 ) tile/tile_17 [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
 }
 }
-// entity 153
+// entity 154
 {
 "classname" "geo_ballistic_solid"
 "game_material_info" "2"
@@ -12862,7 +12876,7 @@
 ( 2368 -16 136 ) ( 2368 -17 136 ) ( 2368 -16 137 ) concrete/concrete_3 [ -1.2246467991473532e-16 1 0 -88 ] [ 0 0 -1 8 ] 0 1 1
 }
 }
-// entity 154
+// entity 155
 {
 "classname" "geo_ballistic_solid"
 "game_material_info" "2"
@@ -12877,7 +12891,7 @@
 ( 2368 -1160 144 ) ( 2368 -1160 145 ) ( 2368 -1159 144 ) concrete/concrete_3 [ 0 1 0 40 ] [ 0 0 -1 8 ] 0 1 1
 }
 }
-// entity 155
+// entity 156
 {
 "classname" "geo_ballistic_solid"
 "game_material_info" "2"
@@ -13220,7 +13234,7 @@
 ( 2376 -736 128 ) ( 2376 -737 128 ) ( 2376 -736 129 ) concrete/concrete_3 [ 1.8369701987210297e-16 1 0 88 ] [ 0 0 -1 0 ] 0 1 1
 }
 }
-// entity 156
+// entity 157
 {
 "classname" "geo_ballistic_solid"
 "game_material_info" "2"
@@ -13460,7 +13474,7 @@
 ( 1320 -440 -120 ) ( 1320 -441 -120 ) ( 1320 -440 -119 ) concrete/concrete_3 [ 1.2246467991473532e-16 1 0 -16 ] [ 0 0 -1 0 ] 0 1 1
 }
 }
-// entity 157
+// entity 158
 {
 "classname" "func_group"
 "_tb_type" "_tb_layer"
@@ -13468,7 +13482,7 @@
 "_tb_id" "20"
 "_tb_layer_sort_index" "2"
 }
-// entity 158
+// entity 159
 {
 "classname" "func_group"
 "_tb_type" "_tb_layer"

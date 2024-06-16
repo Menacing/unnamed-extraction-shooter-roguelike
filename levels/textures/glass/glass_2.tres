@@ -1,0 +1,15 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://1pvs8v6iixwb"]
+
+[ext_resource type="Texture2D" uid="uid://bea1hpgykbgg8" path="res://levels/textures/glass/glass_2.png" id="2_0b1ha"]
+
+[resource]
+transparency = 1
+albedo_color = Color(1, 1, 1, 0.615686)
+albedo_texture = ExtResource("2_0b1ha")
+roughness = 0.0
+clearcoat_enabled = true
+clearcoat_roughness = 0.0
+refraction_scale = 0.1
+refraction_texture = ExtResource("2_0b1ha")
+refraction_texture_channel = 3
+texture_filter = 0
