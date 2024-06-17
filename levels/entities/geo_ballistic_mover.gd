@@ -14,7 +14,8 @@ var moved:bool = false
 func _func_godot_apply_properties(entity_properties: Dictionary):
 	super(entity_properties)
 	if 'translation' in func_godot_properties:
-		offset_transform.origin = func_godot_properties.translation
+		
+		offset_transform.origin = Helpers.convert_quake_vector_to_godot_vector(func_godot_properties.translation)
 
 	if 'rotation' in func_godot_properties:
 		offset_transform.basis = Basis()
