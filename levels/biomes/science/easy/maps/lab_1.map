@@ -7434,18 +7434,13 @@
 // entity 63
 {
 "classname" "omnilight"
-"origin" "128 8 120"
-"shadows" "1"
-}
-// entity 64
-{
-"classname" "omnilight"
 "origin" "480 -640 -8"
 "light" "150"
 "_color" "170 0 0"
 "shadows" "1"
+"color" "170 0 0"
 }
-// entity 65
+// entity 64
 {
 "classname" "geo_ballistic_container"
 "biome" "0"
@@ -7564,7 +7559,7 @@
 ( -44 -684 -116 ) ( -44 -684 -115 ) ( -44 -683 -116 ) wood/wood_16 [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
 }
 }
-// entity 66
+// entity 65
 {
 "classname" "area_extract"
 // brush 0
@@ -7577,7 +7572,7 @@
 ( 2352 -496 24 ) ( 2352 -736 -120 ) ( 2352 -736 24 ) __TB_empty [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
 }
 }
-// entity 67
+// entity 66
 {
 "classname" "area_patrol_poi"
 // brush 0
@@ -7590,7 +7585,7 @@
 ( -320 -80 -112 ) ( -320 -80 -111 ) ( -320 -79 -112 ) special/skip [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
 }
 }
-// entity 68
+// entity 67
 {
 "classname" "area_patrol_poi"
 // brush 0
@@ -7603,7 +7598,7 @@
 ( 448 -832 -112 ) ( 448 -832 -111 ) ( 448 -831 -112 ) special/skip [ 0 1 0 64 ] [ 0 0 -1 0 ] 0 1 1
 }
 }
-// entity 69
+// entity 68
 {
 "classname" "area_patrol_poi"
 // brush 0
@@ -7616,7 +7611,7 @@
 ( 2048 -512 -112 ) ( 2048 -512 -111 ) ( 2048 -511 -112 ) special/skip [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
 }
 }
-// entity 70
+// entity 69
 {
 "classname" "area_patrol_poi"
 // brush 0
@@ -7629,7 +7624,7 @@
 ( 544 -80 -112 ) ( 544 -80 -111 ) ( 544 -79 -112 ) special/skip [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
 }
 }
-// entity 71
+// entity 70
 {
 "classname" "area_group_poi"
 "godot_group_names" "fuel_core_spawn_location"
@@ -7643,7 +7638,7 @@
 ( -30 -444 -112 ) ( -30 -444 -111 ) ( -30 -443 -112 ) special/skip [ 0 1 0 12 ] [ 0 0 -1 0 ] 0 1 1
 }
 }
-// entity 72
+// entity 71
 {
 "classname" "area_group_poi"
 "godot_group_names" "fuel_core_spawn_location"
@@ -7657,7 +7652,7 @@
 ( 800 -224 -112 ) ( 800 -224 -111 ) ( 800 -223 -112 ) special/skip [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
 }
 }
-// entity 73
+// entity 72
 {
 "classname" "area_group_poi"
 "godot_group_names" "fuel_core_spawn_location"
@@ -7671,21 +7666,21 @@
 ( 288 -288 -112 ) ( 288 -288 -111 ) ( 288 -287 -112 ) special/skip [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
 }
 }
-// entity 74
+// entity 73
 {
 "classname" "area_group_poi"
 "godot_group_names" "fuel_core_spawn_location"
 // brush 0
 {
-( -128 -1008 -128 ) ( -128 -1007 -128 ) ( -128 -1008 -127 ) special/skip [ 0 -1 0 0 ] [ 0 0 -1 0 ] 0 1 1
-( -128 -1008 -128 ) ( -128 -1008 -127 ) ( -127 -1008 -128 ) special/skip [ 1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
-( -128 -1008 -128 ) ( -127 -1008 -128 ) ( -128 -1007 -128 ) special/skip [ -1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
-( -16 -896 -32 ) ( -16 -895 -32 ) ( -15 -896 -32 ) special/skip [ 1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
-( -16 -896 -112 ) ( -15 -896 -112 ) ( -16 -896 -111 ) special/skip [ -1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
-( -16 -896 -112 ) ( -16 -896 -111 ) ( -16 -895 -112 ) special/skip [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( -88 -952 -80 ) ( -88 -951 -80 ) ( -88 -952 -79 ) special/skip [ 0 -1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( -96 -936 -80 ) ( -96 -936 -79 ) ( -95 -936 -80 ) special/skip [ 1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( -96 -952 -80 ) ( -95 -952 -80 ) ( -96 -951 -80 ) special/skip [ -1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( 16 -840 -8 ) ( 16 -839 -8 ) ( 17 -840 -8 ) special/skip [ 1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( 16 -848 -64 ) ( 17 -848 -64 ) ( 16 -848 -63 ) special/skip [ -1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( 16 -840 -64 ) ( 16 -840 -63 ) ( 16 -839 -64 ) special/skip [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
 }
 }
-// entity 75
+// entity 74
 {
 "classname" "area_group_poi"
 "godot_group_names" "fuel_core_spawn_location"
@@ -7699,7 +7694,7 @@
 ( 752 -1184 -112 ) ( 752 -1184 -111 ) ( 752 -1183 -112 ) special/skip [ 0 1 0 -64 ] [ 0 0 -1 0 ] 0 1 1
 }
 }
-// entity 76
+// entity 75
 {
 "classname" "area_group_poi"
 "godot_group_names" "fuel_core_spawn_location"
@@ -7713,7 +7708,7 @@
 ( 928 -336 -112 ) ( 928 -336 -111 ) ( 928 -335 -112 ) special/skip [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
 }
 }
-// entity 77
+// entity 76
 {
 "classname" "area_group_poi"
 "godot_group_names" "fuel_core_spawn_location"
@@ -7727,7 +7722,7 @@
 ( 1520 -224 -80 ) ( 1520 -224 -79 ) ( 1520 -223 -80 ) special/skip [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
 }
 }
-// entity 78
+// entity 77
 {
 "classname" "area_group_poi"
 "godot_group_names" "fuel_core_spawn_location"
@@ -7741,7 +7736,7 @@
 ( 2368 -880 48 ) ( 2368 -880 49 ) ( 2368 -879 48 ) special/skip [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
 }
 }
-// entity 79
+// entity 78
 {
 "classname" "geo_ballistic_solid"
 "game_material_info" "1"
@@ -7836,7 +7831,7 @@
 ( 3680 -984 -120 ) ( 3680 -985 -120 ) ( 3680 -984 -119 ) metal/metal_6 [ 1.2246467991473532e-16 1 0 16 ] [ 0 0 -1 0 ] 0 1 1
 }
 }
-// entity 80
+// entity 79
 {
 "classname" "geo_ballistic_solid"
 "game_material_info" "4"
@@ -7850,7 +7845,7 @@
 ( 3992 -688 -120 ) ( 3992 16 -120 ) ( 3992 16 -152 ) concrete/concrete_1 [ 0 1 0 72 ] [ 0 0 -1 -8 ] 0 1 1
 }
 }
-// entity 81
+// entity 80
 {
 "classname" "geo_ballistic_solid"
 "game_material_info" "1"
@@ -7864,7 +7859,7 @@
 ( 3960 -376 -120 ) ( 3960 -376 -119 ) ( 3960 -375 -120 ) metal/metal_6 [ -1.1102230246251565e-16 -1 0 96 ] [ 0 0 -1.0000000000000002 0 ] 0 1 1
 }
 }
-// entity 82
+// entity 81
 {
 "classname" "geo_ballistic_solid"
 "game_material_info" "1"
@@ -7878,7 +7873,7 @@
 ( 3944 -472 -120 ) ( 3944 -473 -120 ) ( 3944 -472 -119 ) metal/metal_6 [ 1.2246467991473532e-16 1 0 16 ] [ 0 0 -1 0 ] 0 1 1
 }
 }
-// entity 83
+// entity 82
 {
 "classname" "geo_ballistic_solid"
 "game_material_info" "1"
@@ -7892,7 +7887,7 @@
 ( 2944 -680 -120 ) ( 2944 -680 -119 ) ( 2944 -679 -120 ) metal/metal_6 [ -1.1102230246251565e-16 -1 0 96 ] [ 0 0 -1.0000000000000002 0 ] 0 1 1
 }
 }
-// entity 84
+// entity 83
 {
 "classname" "geo_ballistic_solid"
 "game_material_info" "4"
@@ -7906,7 +7901,7 @@
 ( 3016 -488 -112 ) ( 3016 -488 -111 ) ( 3016 -487 -112 ) tile/tile_17 [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
 }
 }
-// entity 85
+// entity 84
 {
 "classname" "geo_ballistic_solid"
 "game_material_info" "4"
@@ -7920,7 +7915,7 @@
 ( 3016 -656 -112 ) ( 3016 -656 -111 ) ( 3016 -655 -112 ) tile/tile_17 [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
 }
 }
-// entity 86
+// entity 85
 {
 "classname" "geo_ballistic_solid"
 "game_material_info" "4"
@@ -7943,7 +7938,7 @@
 ( 3736 1328 8 ) ( 3736 -16 8 ) ( 3736 1328 24 ) metal/metal_6 [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
 }
 }
-// entity 87
+// entity 86
 {
 "classname" "geo_ballistic_solid"
 "game_material_info" "1"
@@ -7957,7 +7952,7 @@
 ( 3752 -176 24 ) ( 3752 -176 25 ) ( 3752 -175 24 ) metal/metal_6 [ -1.1102230246251565e-16 -1 0 96 ] [ 0 0 -1.0000000000000002 0 ] 0 1 1
 }
 }
-// entity 88
+// entity 87
 {
 "classname" "geo_ballistic_solid"
 "game_material_info" "1"
@@ -7971,7 +7966,7 @@
 ( 4152 0 24 ) ( 4152 -1 24 ) ( 4152 0 25 ) metal/metal_6 [ -1.1102230246251565e-16 -1 0 32 ] [ 0 0 -1.0000000000000002 0 ] 0 1 1
 }
 }
-// entity 89
+// entity 88
 {
 "classname" "geo_ballistic_solid"
 "game_material_info" "1"
@@ -7985,7 +7980,7 @@
 ( 4168 -448 272 ) ( 4168 -449 272 ) ( 4168 -448 273 ) metal/metal_6 [ -1.1102230246251565e-16 -1 0 -96 ] [ 0 0 -1.0000000000000002 0 ] 0 1 1
 }
 }
-// entity 90
+// entity 89
 {
 "classname" "geo_ballistic_solid"
 "game_material_info" "1"
@@ -7999,7 +7994,7 @@
 ( 5560 -664 24 ) ( 5560 -665 24 ) ( 5560 -664 25 ) metal/metal_6 [ -1.1102230246251565e-16 -1 0 32 ] [ 0 0 -1.0000000000000002 0 ] 0 1 1
 }
 }
-// entity 91
+// entity 90
 {
 "classname" "geo_ballistic_solid"
 "game_material_info" "1"
@@ -8013,7 +8008,7 @@
 ( 4376 -448 272 ) ( 4376 -449 272 ) ( 4376 -448 273 ) metal/metal_6 [ -1.1102230246251565e-16 -1 0 -96 ] [ 0 0 -1.0000000000000002 0 ] 0 1 1
 }
 }
-// entity 92
+// entity 91
 {
 "classname" "geo_ballistic_solid"
 "game_material_info" "1"
@@ -8027,7 +8022,7 @@
 ( 4992 192 272 ) ( 4992 192 273 ) ( 4992 193 272 ) metal/metal_6 [ -1.1102230246251565e-16 -1 0 -32 ] [ 0 0 -1.0000000000000002 0 ] 0 1 1
 }
 }
-// entity 93
+// entity 92
 {
 "classname" "geo_ballistic_solid"
 "game_material_info" "1"
@@ -8041,7 +8036,7 @@
 ( 4992 -16 272 ) ( 4992 -16 273 ) ( 4992 -15 272 ) metal/metal_6 [ -1.1102230246251565e-16 -1 0 -32 ] [ 0 0 -1.0000000000000002 0 ] 0 1 1
 }
 }
-// entity 94
+// entity 93
 {
 "classname" "geo_ballistic_solid"
 "game_material_info" "1"
@@ -8055,7 +8050,7 @@
 ( 4584 -464 272 ) ( 4584 -465 272 ) ( 4584 -464 273 ) metal/metal_6 [ -1.1102230246251565e-16 -1 0 -96 ] [ 0 0 -1.0000000000000002 0 ] 0 1 1
 }
 }
-// entity 95
+// entity 94
 {
 "classname" "geo_ballistic_solid"
 "game_material_info" "1"
@@ -8069,7 +8064,7 @@
 ( 4992 -464 272 ) ( 4992 -465 272 ) ( 4992 -464 273 ) metal/metal_6 [ -1.1102230246251565e-16 -1 0 -96 ] [ 0 0 -1.0000000000000002 0 ] 0 1 1
 }
 }
-// entity 96
+// entity 95
 {
 "classname" "geo_ballistic_solid"
 "game_material_info" "1"
@@ -8083,7 +8078,7 @@
 ( 5576 -464 272 ) ( 5576 -465 272 ) ( 5576 -464 273 ) metal/metal_6 [ -1.1102230246251565e-16 -1 0 -96 ] [ 0 0 -1.0000000000000002 0 ] 0 1 1
 }
 }
-// entity 97
+// entity 96
 {
 "classname" "geo_ballistic_solid"
 "game_material_info" "1"
@@ -8097,7 +8092,7 @@
 ( 4992 928 272 ) ( 4992 928 273 ) ( 4992 929 272 ) metal/metal_6 [ -1.1102230246251565e-16 -1 0 -32 ] [ 0 0 -1.0000000000000002 0 ] 0 1 1
 }
 }
-// entity 98
+// entity 97
 {
 "classname" "geo_ballistic_solid"
 "game_material_info" "1"
@@ -8111,7 +8106,7 @@
 ( 5560 192 272 ) ( 5560 192 273 ) ( 5560 193 272 ) metal/metal_6 [ -1.1102230246251565e-16 -1 0 -32 ] [ 0 0 -1.0000000000000002 0 ] 0 1 1
 }
 }
-// entity 99
+// entity 98
 {
 "classname" "geo_ballistic_solid"
 "game_material_info" "1"
@@ -8134,7 +8129,7 @@
 ( 5200 392 272 ) ( 5200 391 272 ) ( 5200 392 273 ) metal/metal_6 [ -1.1102230246251565e-16 -1 0 -96 ] [ 0 0 -1.0000000000000002 0 ] 0 1 1
 }
 }
-// entity 100
+// entity 99
 {
 "classname" "geo_ballistic_solid"
 "game_material_info" "1"
@@ -8148,7 +8143,7 @@
 ( 5576 928 272 ) ( 5576 928 273 ) ( 5576 929 272 ) metal/metal_6 [ -1.1102230246251565e-16 -1 0 -32 ] [ 0 0 -1.0000000000000002 0 ] 0 1 1
 }
 }
-// entity 101
+// entity 100
 {
 "classname" "geo_ballistic_solid"
 "game_material_info" "1"
@@ -8162,7 +8157,7 @@
 ( 4992 392 272 ) ( 4992 391 272 ) ( 4992 392 273 ) metal/metal_6 [ -1.1102230246251565e-16 -1 0 -96 ] [ 0 0 -1.0000000000000002 0 ] 0 1 1
 }
 }
-// entity 102
+// entity 101
 {
 "classname" "geo_ballistic_solid"
 "game_material_info" "1"
@@ -8176,7 +8171,7 @@
 ( 5184 1136 272 ) ( 5184 1136 273 ) ( 5184 1137 272 ) metal/metal_6 [ -1.1102230246251565e-16 -1 0 -32 ] [ 0 0 -1.0000000000000002 0 ] 0 1 1
 }
 }
-// entity 103
+// entity 102
 {
 "classname" "geo_ballistic_solid"
 "game_material_info" "1"
@@ -8190,7 +8185,7 @@
 ( 4624 -440 272 ) ( 4624 -441 272 ) ( 4624 -440 273 ) metal/metal_6 [ -1.1102230246251565e-16 -1 0 -96 ] [ 0 0 -1.0000000000000002 0 ] 0 1 1
 }
 }
-// entity 104
+// entity 103
 {
 "classname" "geo_ballistic_solid"
 "game_material_info" "1"
@@ -8204,7 +8199,7 @@
 ( 3736 0 24 ) ( 3736 -1 24 ) ( 3736 0 25 ) metal/metal_6 [ -1.1102230246251565e-16 -1 0 32 ] [ 0 0 -1.0000000000000002 0 ] 0 1 1
 }
 }
-// entity 105
+// entity 104
 {
 "classname" "geo_ballistic_solid"
 "game_material_info" "1"
@@ -8218,7 +8213,7 @@
 ( 3336 880 272 ) ( 3336 879 272 ) ( 3336 880 273 ) metal/metal_6 [ -1.1102230246251565e-16 -1 0 -96 ] [ 0 0 -1.0000000000000002 0 ] 0 1 1
 }
 }
-// entity 106
+// entity 105
 {
 "classname" "geo_ballistic_solid"
 "game_material_info" "4"
@@ -8232,7 +8227,7 @@
 ( 5200 1736 -120 ) ( 5200 2440 -120 ) ( 5200 2440 -152 ) concrete/concrete_1 [ 0 1 0 72 ] [ 0 0 -1 -8 ] 0 1 1
 }
 }
-// entity 107
+// entity 106
 {
 "classname" "geo_ballistic_solid"
 "game_material_info" "1"
@@ -8246,7 +8241,7 @@
 ( 3336 392 272 ) ( 3336 391 272 ) ( 3336 392 273 ) metal/metal_6 [ -1.1102230246251565e-16 -1 0 -96 ] [ 0 0 -1.0000000000000002 0 ] 0 1 1
 }
 }
-// entity 108
+// entity 107
 {
 "classname" "geo_ballistic_solid"
 "game_material_info" "1"
@@ -8260,7 +8255,7 @@
 ( 5184 2544 152 ) ( 5184 2688 24 ) ( 5184 2560 24 ) metal/metal_6 [ 0 -1.0000000000000002 0 -32 ] [ 0 0 -1.0000000000000002 0 ] 0 1 1
 }
 }
-// entity 109
+// entity 108
 {
 "classname" "geo_ballistic_solid"
 "game_material_info" "1"
@@ -8316,7 +8311,7 @@
 ( 3128 1293.8913829826372 78.15784449373416 ) ( 3128 1304.4475757239784 82.59990679776362 ) ( 3128 1273.6539449507493 65.59984544694501 ) metal/metal_6 [ -1.1102230246251565e-16 -1 0 -96 ] [ 0 0 -1.0000000000000002 0 ] 0 1 1
 }
 }
-// entity 110
+// entity 109
 {
 "classname" "geo_ballistic_solid"
 "game_material_info" "4"
@@ -8412,7 +8407,7 @@
 ( 3252.8044835070423 1411.7046898892518 8 ) ( 3253.746402720554 1405.3318077662848 8 ) ( 3257.974387743396 1427.2457143028998 24 ) ground/dirt_10 [ 0 -1.0000000000000002 0 -0.796875 ] [ 0 0 -1.0000000000000002 0 ] 0 1 1
 }
 }
-// entity 111
+// entity 110
 {
 "classname" "geo_ballistic_solid"
 "game_material_info" "4"
@@ -8624,7 +8619,7 @@
 ( 720 -744 16 ) ( 720 -744 -16 ) ( 720 -752 16 ) tile/tile_17 [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
 }
 }
-// entity 112
+// entity 111
 {
 "classname" "geo_ballistic_solid"
 "game_material_info" "1"
@@ -8638,7 +8633,7 @@
 ( 4168 -440 272 ) ( 4168 -441 272 ) ( 4168 -440 273 ) metal/metal_6 [ -1.1102230246251565e-16 -1 0 -96 ] [ 0 0 -1.0000000000000002 0 ] 0 1 1
 }
 }
-// entity 113
+// entity 112
 {
 "classname" "geo_ballistic_solid"
 "game_material_info" "4"
@@ -8652,7 +8647,7 @@
 ( -108 -628 -116 ) ( -108 -628 -115 ) ( -108 -627 -116 ) wood/wood_16 [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
 }
 }
-// entity 114
+// entity 113
 {
 "classname" "geo_ballistic_solid"
 "game_material_info" "2"
@@ -9115,7 +9110,7 @@
 ( 3087.621783870943 1624 8 ) ( 2982.191140541374 1624 -440 ) ( 2954.9558965994397 1104 8 ) ground/dirt_10 [ 0 1.0000000000000002 0 0 ] [ 0 0 -1.0000000000000002 0 ] 0 1 1
 }
 }
-// entity 115
+// entity 114
 {
 "classname" "geo_ballistic_solid"
 "game_material_info" "1"
@@ -9320,7 +9315,7 @@
 ( 2910.861357617818 1072 -168 ) ( 2939.567395213794 1024 -168 ) ( 2959.323135474457 1048 -144 ) ground/dirt_10 [ 1.0000000000000002 0 0 -89.49072 ] [ 0 1.0000000000000002 0 0 ] 0 1 1
 }
 }
-// entity 116
+// entity 115
 {
 "classname" "geo_ballistic_solid"
 "game_material_info" "1"
@@ -9350,7 +9345,7 @@
 ( 311.73033707876755 1057.6179775280818 -305.9775280898979 ) ( 297.4814814815942 1037.43209876544 -304.7901234568 ) ( 263.2072072072639 1072 -288 ) ground/rock_37 [ 1.0000000000000002 0 0 0 ] [ 0 -1.0000000000000002 0 0 ] 0 1 1
 }
 }
-// entity 117
+// entity 116
 {
 "classname" "geo_ballistic_solid"
 "game_material_info" "1"
@@ -9373,7 +9368,7 @@
 ( 5184 1344 24 ) ( 5184 1344 25 ) ( 5184 1345 24 ) metal/metal_1 [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
 }
 }
-// entity 118
+// entity 117
 {
 "classname" "geo_ballistic_solid"
 "game_material_info" "1"
@@ -9387,7 +9382,7 @@
 ( 5184 1344 272 ) ( 5184 1344 273 ) ( 5184 1345 272 ) metal/metal_6 [ -1.1102230246251565e-16 -1 0 -32 ] [ 0 0 -1.0000000000000002 0 ] 0 1 1
 }
 }
-// entity 119
+// entity 118
 {
 "classname" "geo_ballistic_solid"
 "game_material_info" "2"
@@ -9412,7 +9407,7 @@
 ( 3416 968 -144 ) ( 3416 1144 -144 ) ( 3416 1144 -304 ) ground/dirt_2 [ 0 0 -1.0000000000000002 0 ] [ 0 1.0000000000000002 0 0 ] 0 1 1
 }
 }
-// entity 120
+// entity 119
 {
 "classname" "geo_ballistic_solid"
 "game_material_info" "4"
@@ -9435,7 +9430,7 @@
 ( 2928 -704 -112 ) ( 2928 -704 -111 ) ( 2928 -703 -112 ) tile/tile_17 [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
 }
 }
-// entity 121
+// entity 120
 {
 "classname" "geo_ballistic_solid"
 "game_material_info" "2"
@@ -9460,7 +9455,7 @@
 ( -17.101298699899473 1032 -286.54545454477073 ) ( 12.497354497356639 1016 -197.33333333333294 ) ( 3.2952380952411318 1112 -240 ) ground/dirt_2 [ 0 0 1.0000000000000002 0 ] [ 0 -1.0000000000000002 0 0 ] 0 1 1
 }
 }
-// entity 122
+// entity 121
 {
 "classname" "geo_ballistic_solid"
 "game_material_info" "2"
@@ -10314,7 +10309,7 @@
 ( 574.2857142857144 525.9428571428571 20.114285714285785 ) ( 579.873015873016 485.71428571428555 22.34920634920643 ) ( 576.7550450170755 521.9919279726793 28.016144054641433 ) ground/rock_37 [ 0 1 0 0 ] [ -0.242535625036333 0 -0.970142500145332 0 ] 0 1 1
 }
 }
-// entity 123
+// entity 122
 {
 "classname" "geo_ballistic_solid"
 "game_material_info" "2"
@@ -10465,7 +10460,7 @@
 ( 3142.9057247268834 1048 -144 ) ( 3148.5421150142865 1061.395780020665 -157.3957800206649 ) ( 3130.1134179642536 1024 -168 ) ground/dirt_10 [ 0 -1.0000000000000002 0 0 ] [ 0 0 -1.0000000000000002 0 ] 0 1 1
 }
 }
-// entity 124
+// entity 123
 {
 "classname" "geo_ballistic_solid"
 "game_material_info" "2"
@@ -10539,7 +10534,7 @@
 ( 3160.600064652772 1158.3229461108415 8 ) ( 3161.80282814556 1159.1328825429741 8 ) ( 3125.1869004538585 1104 -40.88125027430858 ) ground/dirt_10 [ 1.0000000000000002 0 0 0.052490234 ] [ 0 0 1.0000000000000002 0 ] 0 1 1
 }
 }
-// entity 125
+// entity 124
 {
 "classname" "geo_ballistic_solid"
 "game_material_info" "2"
@@ -11303,7 +11298,7 @@
 ( 219.52018629725205 582.6886220084643 -223.59189245482182 ) ( 233.40751330011923 593.3990211260033 -221.07539838254849 ) ( 233.5722945728011 593.937954998504 -221.47490772188291 ) ground/dirt_6 [ 0 0 -1.0000000000000002 0.26852417 ] [ 1.0000000000000002 0 0 -0.7807617 ] 0 1 1
 }
 }
-// entity 126
+// entity 125
 {
 "classname" "geo_ballistic_solid"
 "game_material_info" "2"
@@ -11819,7 +11814,7 @@
 ( 482.2391757171319 543.2432653167118 -37.3869170446753 ) ( 482.05220923796287 537.1567954014881 -42.61703672201409 ) ( 482.2928366281774 537.802520379838 -36.598935585769944 ) ground/rock_37 [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
 }
 }
-// entity 127
+// entity 126
 {
 "classname" "geo_ballistic_solid"
 "game_material_info" "2"
@@ -12084,7 +12079,7 @@
 ( 474.4043290455462 417.7870223021841 -125.80782248209815 ) ( 472.84126154690466 416 -120 ) ( 474.14966644071137 419.9222402970529 -122.41368633664793 ) ground/rock_37 [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
 }
 }
-// entity 128
+// entity 127
 {
 "classname" "geo_ballistic_solid"
 "game_material_info" "2"
@@ -12145,7 +12140,7 @@
 ( 461.74524144563884 542.2229841307435 -41.33994944383557 ) ( 473.46796435210257 535.9866216243809 -40.58172316462304 ) ( 473.39211057671645 536.2195078401381 -38.15293614753359 ) ground/rock_37 [ -1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
 }
 }
-// entity 129
+// entity 128
 {
 "classname" "geo_ballistic_solid"
 "game_material_info" "2"
@@ -12159,33 +12154,33 @@
 ( 2912 1248 -152 ) ( 2912 1248 -151 ) ( 2912 1249 -152 ) ground/rock_12 [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
 }
 }
-// entity 130
+// entity 129
 {
 "classname" "point_nav_link"
 "origin" "178 -94 -118"
 "endname" "first_floor_under_stairs_hallway"
 "startname" "first_floor_under_stairs_lobby"
 }
-// entity 131
+// entity 130
 {
 "classname" "point"
 "origin" "114 -94 -118"
 "target" "first_floor_under_stairs_hallway"
 }
-// entity 132
+// entity 131
 {
 "classname" "point"
 "origin" "258 -94 -118"
 "target" "first_floor_under_stairs_lobby"
 }
-// entity 133
+// entity 132
 {
 "classname" "point"
 "origin" "222 -62 18"
 "target" "second_floor_second_start"
 "angle" "90"
 }
-// entity 134
+// entity 133
 {
 "classname" "point_nav_link"
 "origin" "222 2 18"
@@ -12193,21 +12188,21 @@
 "startname" "second_floor_second_start"
 "angle" "90"
 }
-// entity 135
+// entity 134
 {
 "classname" "point"
 "origin" "222 82 18"
 "target" "second_floor_second_end"
 "angle" "90"
 }
-// entity 136
+// entity 135
 {
 "classname" "point"
 "origin" "110 38 18"
 "target" "second_floor_first_end"
 "angle" "180"
 }
-// entity 137
+// entity 136
 {
 "classname" "point_nav_link"
 "origin" "190 38 18"
@@ -12215,33 +12210,33 @@
 "startname" "second_floor_first_start"
 "angle" "180"
 }
-// entity 138
+// entity 137
 {
 "classname" "point"
 "origin" "254 38 18"
 "target" "second_floor_first_start"
 "angle" "180"
 }
-// entity 139
+// entity 138
 {
 "classname" "point"
 "origin" "474 -470 -118"
 "target" "first_floor_storage_start"
 }
-// entity 140
+// entity 139
 {
 "classname" "point_nav_link"
 "origin" "394 -470 -118"
 "endname" "first_floor_storage_end"
 "startname" "first_floor_storage_start"
 }
-// entity 141
+// entity 140
 {
 "classname" "point"
 "origin" "330 -470 -118"
 "target" "first_floor_storage_end"
 }
-// entity 142
+// entity 141
 {
 "classname" "geo_ballistic_solid"
 "game_material_info" "1"
@@ -12472,7 +12467,7 @@
 ( 756 -416 -24 ) ( 756 -416 -20 ) ( 756 -288 -20 ) metal/metal_6 [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
 }
 }
-// entity 143
+// entity 142
 {
 "classname" "geo_ballistic_solid"
 "game_material_info" "5"
@@ -12486,7 +12481,7 @@
 ( 752 -424 -88 ) ( 752 -424 -87 ) ( 752 -423 -88 ) glass/glass_2 [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
 }
 }
-// entity 144
+// entity 143
 {
 "classname" "area_loot_spawn"
 "biome" "0"
@@ -12504,7 +12499,7 @@
 ( 440 80 56 ) ( 440 80 57 ) ( 440 81 56 ) special/skip [ 6.123233995736766e-17 1 0 272 ] [ 0 0 -1 40 ] 0 1 1
 }
 }
-// entity 145
+// entity 144
 {
 "classname" "geo_ballistic_door"
 "game_material_info" "1"
@@ -12530,19 +12525,19 @@
 ( 172 184 84 ) ( 172 184 85 ) ( 172 185 84 ) metal/metal_2 [ 6.123233995736766e-17 1 0 -4 ] [ 0 0 -1 0 ] 0 1 1
 }
 }
-// entity 146
+// entity 145
 {
 "classname" "door_hinge"
 "origin" "130 192 78"
 "target" "bathroom_stall_1_hinge"
 }
-// entity 147
+// entity 146
 {
 "classname" "door_hinge"
 "origin" "10 192 78"
 "target" "bathroom_stall_2_hinge"
 }
-// entity 148
+// entity 147
 {
 "classname" "geo_ballistic_door"
 "game_material_info" "1"
@@ -12568,13 +12563,13 @@
 ( 52 184 84 ) ( 52 184 85 ) ( 52 185 84 ) metal/metal_2 [ 6.123233995736766e-17 1 0 -4 ] [ 0 0 -1 0 ] 0 1 1
 }
 }
-// entity 149
+// entity 148
 {
 "classname" "door_hinge"
 "origin" "-118 192 78"
 "target" "bathroom_stall_3_hinge"
 }
-// entity 150
+// entity 149
 {
 "classname" "geo_ballistic_door"
 "game_material_info" "1"
@@ -12600,13 +12595,13 @@
 ( -76 184 84 ) ( -76 184 85 ) ( -76 185 84 ) metal/metal_2 [ 6.123233995736766e-17 1 0 -4 ] [ 0 0 -1 0 ] 0 1 1
 }
 }
-// entity 151
+// entity 150
 {
 "classname" "door_hinge"
 "origin" "-246 192 78"
 "target" "bathroom_stall_4_hinge"
 }
-// entity 152
+// entity 151
 {
 "classname" "geo_ballistic_door"
 "game_material_info" "1"
@@ -12632,13 +12627,13 @@
 ( -204 184 84 ) ( -204 184 85 ) ( -204 185 84 ) metal/metal_2 [ 6.123233995736766e-17 1 0 -4 ] [ 0 0 -1 0 ] 0 1 1
 }
 }
-// entity 153
+// entity 152
 {
 "classname" "door_hinge"
 "origin" "-302 -224 78"
 "target" "bathroom_stall_5_hinge"
 }
-// entity 154
+// entity 153
 {
 "classname" "geo_ballistic_door"
 "game_material_info" "1"
@@ -12664,13 +12659,13 @@
 ( -260 -232 84 ) ( -260 -232 85 ) ( -260 -231 84 ) metal/metal_2 [ 6.123233995736766e-17 1 0 28 ] [ 0 0 -1 0 ] 0 1 1
 }
 }
-// entity 155
+// entity 154
 {
 "classname" "door_hinge"
 "origin" "-182 -224 78"
 "target" "bathroom_stall_6_hinge"
 }
-// entity 156
+// entity 155
 {
 "classname" "geo_ballistic_door"
 "game_material_info" "1"
@@ -12696,13 +12691,13 @@
 ( -140 -232 84 ) ( -140 -232 85 ) ( -140 -231 84 ) metal/metal_2 [ 6.123233995736766e-17 1 0 28 ] [ 0 0 -1 0 ] 0 1 1
 }
 }
-// entity 157
+// entity 156
 {
 "classname" "door_hinge"
 "origin" "-54 -224 78"
 "target" "bathroom_stall_7_hinge"
 }
-// entity 158
+// entity 157
 {
 "classname" "geo_ballistic_door"
 "game_material_info" "1"
@@ -12728,13 +12723,13 @@
 ( -12 -232 84 ) ( -12 -232 85 ) ( -12 -231 84 ) metal/metal_2 [ 6.123233995736766e-17 1 0 28 ] [ 0 0 -1 0 ] 0 1 1
 }
 }
-// entity 159
+// entity 158
 {
 "classname" "door_hinge"
 "origin" "74 -224 78"
 "target" "bathroom_stall_8_hinge"
 }
-// entity 160
+// entity 159
 {
 "classname" "geo_ballistic_door"
 "game_material_info" "1"
@@ -12760,7 +12755,7 @@
 ( 116 -232 84 ) ( 116 -232 85 ) ( 116 -231 84 ) metal/metal_2 [ 6.123233995736766e-17 1 0 28 ] [ 0 0 -1 0 ] 0 1 1
 }
 }
-// entity 161
+// entity 160
 {
 "classname" "area_loot_spawn"
 "biome" "0"
@@ -12778,7 +12773,7 @@
 ( 140 156 56 ) ( 140 156 57 ) ( 140 157 56 ) special/skip [ 6.123233995736766e-17 1 0 196 ] [ 0 0 -1 40 ] 0 1 1
 }
 }
-// entity 162
+// entity 161
 {
 "classname" "area_loot_spawn"
 "biome" "0"
@@ -12796,7 +12791,7 @@
 ( 44 156 56 ) ( 44 156 57 ) ( 44 157 56 ) special/skip [ 6.123233995736766e-17 1 0 196 ] [ 0 0 -1 40 ] 0 1 1
 }
 }
-// entity 163
+// entity 162
 {
 "classname" "area_loot_spawn"
 "biome" "0"
@@ -12814,7 +12809,7 @@
 ( -116 156 56 ) ( -116 156 57 ) ( -116 157 56 ) special/skip [ 6.123233995736766e-17 1 0 196 ] [ 0 0 -1 40 ] 0 1 1
 }
 }
-// entity 164
+// entity 163
 {
 "classname" "area_loot_spawn"
 "biome" "0"
@@ -12832,7 +12827,7 @@
 ( -244 156 56 ) ( -244 156 57 ) ( -244 157 56 ) special/skip [ 6.123233995736766e-17 1 0 196 ] [ 0 0 -1 40 ] 0 1 1
 }
 }
-// entity 165
+// entity 164
 {
 "classname" "area_loot_spawn"
 "biome" "0"
@@ -12850,7 +12845,7 @@
 ( -212 -388 56 ) ( -212 -388 57 ) ( -212 -387 56 ) special/skip [ 6.123233995736766e-17 1 0 228 ] [ 0 0 -1 40 ] 0 1 1
 }
 }
-// entity 166
+// entity 165
 {
 "classname" "area_loot_spawn"
 "biome" "0"
@@ -12868,7 +12863,7 @@
 ( -84 -388 56 ) ( -84 -388 57 ) ( -84 -387 56 ) special/skip [ 6.123233995736766e-17 1 0 228 ] [ 0 0 -1 40 ] 0 1 1
 }
 }
-// entity 167
+// entity 166
 {
 "classname" "area_loot_spawn"
 "biome" "0"
@@ -12886,7 +12881,7 @@
 ( 44 -388 56 ) ( 44 -388 57 ) ( 44 -387 56 ) special/skip [ 6.123233995736766e-17 1 0 228 ] [ 0 0 -1 40 ] 0 1 1
 }
 }
-// entity 168
+// entity 167
 {
 "classname" "area_loot_spawn"
 "biome" "0"
@@ -12904,7 +12899,7 @@
 ( 172 -388 56 ) ( 172 -388 57 ) ( 172 -387 56 ) special/skip [ 6.123233995736766e-17 1 0 228 ] [ 0 0 -1 40 ] 0 1 1
 }
 }
-// entity 169
+// entity 168
 {
 "classname" "geo_ballistic_container"
 "chance_active" "0.25"
@@ -12930,7 +12925,7 @@
 ( 184 -32 16 ) ( 184 -32 17 ) ( 184 -31 16 ) plastic/plastic_1 [ -3.374459510989179e-32 -1.8369701987210297e-16 -1 -64 ] [ -2.4492935982947064e-16 -1 1.8369701987210297e-16 64 ] 90 1 1
 }
 }
-// entity 170
+// entity 169
 {
 "classname" "geo_ballistic_solid"
 "game_material_info" "3"
@@ -12953,7 +12948,7 @@
 ( 472 200 24 ) ( 472 200 25 ) ( 472 201 24 ) wood/wood_12 [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
 }
 }
-// entity 171
+// entity 170
 {
 "classname" "geo_ballistic_container"
 "biome" "0"
@@ -13072,7 +13067,7 @@
 ( 45.57359312880709 -474.8284271247461 -52 ) ( 45.57359312880709 -474.8284271247461 -51 ) ( 46.28069990999364 -474.12132034355955 -52 ) wood/wood_16 [ 0.7071067811865482 0.7071067811865467 0 -0.4710083 ] [ 0 0 -1 0 ] 0 1 1
 }
 }
-// entity 172
+// entity 171
 {
 "classname" "geo_ballistic_solid"
 "game_material_info" "4"
@@ -13086,7 +13081,7 @@
 ( 88 -432.4020202535533 -116 ) ( 88.70710678118655 -433.10912703473986 -116 ) ( 88 -432.4020202535533 -115 ) wood/wood_16 [ -0.7071067811865467 0.7071067811865482 0 91.9798 ] [ 0 0 -1 0 ] 0 1 1
 }
 }
-// entity 173
+// entity 172
 {
 "classname" "geo_ballistic_container"
 "biome" "0"
@@ -13205,7 +13200,7 @@
 ( 52 -688 -52 ) ( 52 -688 -51 ) ( 52 -687 -52 ) wood/wood_16 [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
 }
 }
-// entity 174
+// entity 173
 {
 "classname" "geo_ballistic_solid"
 "game_material_info" "4"
@@ -13219,7 +13214,7 @@
 ( 52 -628 -116 ) ( 52 -628 -115 ) ( 52 -627 -116 ) wood/wood_16 [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
 }
 }
-// entity 175
+// entity 174
 {
 "classname" "geo_ballistic_container"
 "biome" "0"
@@ -13338,7 +13333,7 @@
 ( 125.75128869403571 -672 -46.82308546376023 ) ( 125.25128869403571 -672 -45.957060059975795 ) ( 125.75128869403571 -671 -46.82308546376023 ) wood/wood_16 [ 0 1 0 -16 ] [ 0.5000000000000004 0 -0.8660254037844384 -51.42563 ] 0 1 1
 }
 }
-// entity 176
+// entity 175
 {
 "classname" "geo_ballistic_solid"
 "game_material_info" "4"
@@ -13352,7 +13347,7 @@
 ( 157.75128869403574 -612 -102.24871130596429 ) ( 157.25128869403574 -612 -101.38268590217984 ) ( 157.75128869403574 -611 -102.24871130596429 ) wood/wood_16 [ 0 1 0 -16 ] [ 0.5000000000000004 0 -0.8660254037844384 -51.42563 ] 0 1 1
 }
 }
-// entity 177
+// entity 176
 {
 "classname" "geo_ballistic_container"
 "biome" "0"
@@ -13471,7 +13466,7 @@
 ( 21.57359312880709 -650.8284271247461 20 ) ( 21.57359312880709 -650.8284271247461 21 ) ( 22.280699909993643 -650.1213203435595 20 ) wood/wood_16 [ 0.7071067811865482 0.7071067811865467 0 12.950348 ] [ 0 0 -1 72 ] 0 1 1
 }
 }
-// entity 178
+// entity 177
 {
 "classname" "geo_ballistic_solid"
 "game_material_info" "4"
@@ -13485,7 +13480,7 @@
 ( 64 -608.4020202535532 -44 ) ( 64.70710678118655 -609.1091270347399 -44 ) ( 64 -608.4020202535532 -43 ) wood/wood_16 [ -0.7071067811865467 0.7071067811865482 0 71.46002 ] [ 0 0 -1 72 ] 0 1 1
 }
 }
-// entity 179
+// entity 178
 {
 "classname" "func_group"
 "_tb_type" "_tb_group"
@@ -13493,7 +13488,7 @@
 "_tb_id" "22"
 "_tb_linked_group_id" "{05a5afa0-c2af-4d57-9467-6614756a1bdf}"
 }
-// entity 180
+// entity 179
 {
 "classname" "geo_ballistic_container"
 "chance_active" "0.25"
@@ -13520,7 +13515,7 @@
 ( 288 176 24 ) ( 288 176 56 ) ( 288 192 56 ) plastic/plastic_1 [ 0 6.123233995736766e-17 1 8 ] [ 0 1 -6.123233995736766e-17 -80 ] 270 1 1
 }
 }
-// entity 181
+// entity 180
 {
 "classname" "func_group"
 "_tb_type" "_tb_group"
@@ -13528,7 +13523,7 @@
 "_tb_id" "23"
 "_tb_linked_group_id" "{031f9d88-7f66-4875-a605-d0e4ae5c67c3}"
 }
-// entity 182
+// entity 181
 {
 "classname" "geo_ballistic_solid"
 "game_material_info" "1"
@@ -13588,7 +13583,7 @@
 ( 400.58845726811984 -194.3397459621557 18 ) ( 400.08845726811984 -195.2057713659401 18 ) ( 400.58845726811984 -194.3397459621557 19 ) metal/metal_2 [ 0.500000000000003 0.8660254037844373 8.881784197001252e-16 -1.9910736 ] [ 4.1633363423443474e-16 7.21111007393836e-16 -1 14 ] 270 1 1
 }
 }
-// entity 183
+// entity 182
 {
 "classname" "func_group"
 "_tb_type" "_tb_group"
@@ -13596,7 +13591,7 @@
 "_tb_id" "24"
 "_tb_linked_group_id" "{726b9d1a-ba7e-4423-ae34-a3344250532c}"
 }
-// entity 184
+// entity 183
 {
 "classname" "geo_ballistic_solid"
 "game_material_info" "1"
@@ -13656,7 +13651,7 @@
 ( 456.31662796342846 -180 30.689726416504215 ) ( 455.6095211822419 -180 31.39683319769074 ) ( 456.31662796342846 -179 30.689726416504215 ) metal/metal_2 [ 0.7071067811865491 0 -0.7071067811865459 -14.963684 ] [ 0 -1 0 -56 ] 0 1 1
 }
 }
-// entity 185
+// entity 184
 {
 "classname" "func_group"
 "_tb_type" "_tb_group"
@@ -13664,7 +13659,7 @@
 "_tb_id" "25"
 "_tb_linked_group_id" "{0c6856c1-4614-4c78-a35d-dd60e785e201}"
 }
-// entity 186
+// entity 185
 {
 "classname" "geo_ballistic_solid"
 "game_material_info" "1"
@@ -13715,7 +13710,7 @@
 ( 512 -88 20 ) ( 512 -88 21 ) ( 512 -87 20 ) metal/metal_2 [ 0 1 0 -60 ] [ 0 0 -1 0 ] 0 1 1
 }
 }
-// entity 187
+// entity 186
 {
 "classname" "func_group"
 "_tb_type" "_tb_group"
@@ -13723,7 +13718,7 @@
 "_tb_id" "26"
 "_tb_linked_group_id" "{23843068-cba6-4904-a097-d4ec05309abe}"
 }
-// entity 188
+// entity 187
 {
 "classname" "geo_ballistic_solid"
 "game_material_info" "1"
@@ -13783,7 +13778,7 @@
 ( 544 -190 18 ) ( 544 -191 18 ) ( 544 -190 19 ) metal/metal_2 [ 5.512767538072854e-15 1 0 -38 ] [ 0 0 -1 0 ] 0 1 1
 }
 }
-// entity 189
+// entity 188
 {
 "classname" "func_group"
 "_tb_type" "_tb_group"
@@ -13791,7 +13786,7 @@
 "_tb_id" "27"
 "_tb_linked_group_id" "{c29b93b7-593c-40ed-980d-ead6f4609283}"
 }
-// entity 190
+// entity 189
 {
 "classname" "geo_ballistic_solid"
 "game_material_info" "1"
@@ -13851,7 +13846,7 @@
 ( 559.1961524227066 -110.85640646055106 16 ) ( 558.6961524227066 -109.99038105676658 16 ) ( 559.1961524227066 -110.85640646055106 15 ) metal/metal_2 [ 5.359377197861131e-16 -9.28271360362162e-16 -1 -106 ] [ 0.4999999999999991 -0.8660254037844392 1.0718754395722282e-15 -9.602539 ] 90 1 1
 }
 }
-// entity 191
+// entity 190
 {
 "classname" "func_group"
 "_tb_type" "_tb_group"
@@ -13859,16 +13854,10 @@
 "_tb_id" "28"
 "_tb_linked_group_id" "{fbdf42da-6bc4-4b7d-bb45-5952db316a48}"
 }
-// entity 192
+// entity 191
 {
-"classname" "geo_ballistic_container"
-"biome" "0"
-"tier" "0"
-"container_size" "70"
+"classname" "geo_ballistic_solid"
 "game_material_info" "3"
-"max_spawned" "5"
-"min_spawned" "1"
-"chance_active" ".25"
 "_tb_group" "28"
 // brush 0
 {
@@ -13978,15 +13967,7 @@
 ( 308 -684 -52 ) ( 309 -684 -52 ) ( 308 -684 -51 ) wood/wood_16 [ -1 0 0 32 ] [ 0 0 -1 0 ] 0 1 1
 ( 308 -688 -52 ) ( 308 -688 -51 ) ( 308 -687 -52 ) wood/wood_16 [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
 }
-}
-// entity 193
-{
-"classname" "geo_ballistic_solid"
-"game_material_info" "4"
-"min_spawned" "1"
-"max_spawned" "5"
-"_tb_group" "28"
-// brush 0
+// brush 12
 {
 ( 300 -684 -120 ) ( 300 -683 -120 ) ( 300 -684 -119 ) wood/wood_16 [ 0 -1 0 0 ] [ 0 0 -1 0 ] 0 1 1
 ( 300 -684 -120 ) ( 300 -684 -119 ) ( 301 -684 -120 ) wood/wood_16 [ 1 0 0 -32 ] [ 0 0 -1 0 ] 0 1 1
@@ -13996,7 +13977,7 @@
 ( 308 -628 -116 ) ( 308 -628 -115 ) ( 308 -627 -116 ) wood/wood_16 [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
 }
 }
-// entity 194
+// entity 192
 {
 "classname" "geo_ballistic_solid"
 "game_material_info" "5"
@@ -14010,7 +13991,7 @@
 ( 808 -572 -96 ) ( 808 -572 -95 ) ( 808 -571 -96 ) glass/glass_2 [ 6.123233995736766e-17 1 0 36 ] [ 0 0 -1 0 ] 0 1 1
 }
 }
-// entity 195
+// entity 193
 {
 "classname" "area_loot_spawn"
 "biome" "0"
@@ -14028,7 +14009,7 @@
 ( 82 944 -258 ) ( 82 944 -257 ) ( 82 945 -258 ) special/skip [ 6.123233995736766e-17 1 0 -80 ] [ 0 0 -1 -274 ] 0 1 1
 }
 }
-// entity 196
+// entity 194
 {
 "classname" "area_loot_spawn"
 "biome" "0"
@@ -14046,7 +14027,7 @@
 ( 3178 936 -258 ) ( 3178 936 -257 ) ( 3178 937 -258 ) special/skip [ 6.123233995736766e-17 1 0 -72 ] [ 0 0 -1 -274 ] 0 1 1
 }
 }
-// entity 197
+// entity 195
 {
 "classname" "func_group"
 "_tb_type" "_tb_group"
@@ -14055,7 +14036,7 @@
 "_tb_linked_group_id" "{9be6dbfe-224d-4fa0-b330-7c6f9adead1c}"
 "_tb_transformation" "1 0 0 296 0 1 0 -264 0 0 1 -136 0 0 0 1"
 }
-// entity 198
+// entity 196
 {
 "classname" "geo_ballistic_solid"
 "game_material_info" "1"
@@ -14106,7 +14087,7 @@
 ( 808 -352 -116 ) ( 808 -352 -115 ) ( 808 -351 -116 ) metal/metal_2 [ 0 1 0 76 ] [ 0 0 -1 -8 ] 0 1 1
 }
 }
-// entity 199
+// entity 197
 {
 "classname" "func_group"
 "_tb_type" "_tb_group"
@@ -14115,7 +14096,7 @@
 "_tb_linked_group_id" "{809d6e1c-6f6c-489c-8a1a-9031fb7fbb0a}"
 "_tb_transformation" "1 0 0 192 0 1 0 -191.99999999999997 0 0 1 -136 0 0 0 1"
 }
-// entity 200
+// entity 198
 {
 "classname" "geo_ballistic_solid"
 "game_material_info" "1"
@@ -14175,7 +14156,7 @@
 ( 736 -382 -118 ) ( 736 -383 -118 ) ( 736 -382 -117 ) metal/metal_2 [ 5.512767538072854e-15 1 0 26 ] [ 0 0 -1 -8 ] 0 1 1
 }
 }
-// entity 201
+// entity 199
 {
 "classname" "area_loot_spawn"
 "biome" "0"
@@ -14193,7 +14174,7 @@
 ( 512 -224 56 ) ( 512 -224 57 ) ( 512 -223 56 ) special/skip [ 6.123233995736766e-17 1 0 64 ] [ 0 0 -1 40 ] 0 1 1
 }
 }
-// entity 202
+// entity 200
 {
 "classname" "area_loot_spawn"
 "biome" "0"
@@ -14211,7 +14192,7 @@
 ( 800 -480 -80 ) ( 800 -480 -79 ) ( 800 -479 -80 ) special/skip [ 6.123233995736766e-17 1 0 320 ] [ 0 0 -1 -96 ] 0 1 1
 }
 }
-// entity 203
+// entity 201
 {
 "classname" "func_group"
 "_tb_type" "_tb_group"
@@ -14219,7 +14200,7 @@
 "_tb_id" "31"
 "_tb_linked_group_id" "{2125f79e-fa91-44e0-9f10-3f9027fc6dcc}"
 }
-// entity 204
+// entity 202
 {
 "classname" "geo_ballistic_solid"
 "game_material_info" "1"
@@ -14405,7 +14386,7 @@
 ( 588 -218 -64 ) ( 588 -218 -63 ) ( 588 -217 -64 ) metal/metal_1 [ 0 1 0 0 ] [ 0 0 -1 54 ] 0 1 1
 }
 }
-// entity 205
+// entity 203
 {
 "classname" "area_loot_spawn"
 "biome" "0"
@@ -14424,7 +14405,7 @@
 ( 680 -328 -110 ) ( 680 -328 -109 ) ( 680 -327 -110 ) special/skip [ 6.123233995736766e-17 1 0 168 ] [ 0 0 -1 -126 ] 0 1 1
 }
 }
-// entity 206
+// entity 204
 {
 "classname" "area_loot_spawn"
 "biome" "0"
@@ -14443,7 +14424,7 @@
 ( 680 -328 -158 ) ( 680 -328 -157 ) ( 680 -327 -158 ) special/skip [ 6.123233995736766e-17 1 0 168 ] [ 0 0 -1 -174 ] 0 1 1
 }
 }
-// entity 207
+// entity 205
 {
 "classname" "area_loot_spawn"
 "biome" "0"
@@ -14462,7 +14443,7 @@
 ( 680 -328 -134 ) ( 680 -328 -133 ) ( 680 -327 -134 ) special/skip [ 6.123233995736766e-17 1 0 168 ] [ 0 0 -1 -150 ] 0 1 1
 }
 }
-// entity 208
+// entity 206
 {
 "classname" "area_loot_spawn"
 "biome" "0"
@@ -14481,7 +14462,7 @@
 ( 680 -328 -86 ) ( 680 -328 -85 ) ( 680 -327 -86 ) special/skip [ 6.123233995736766e-17 1 0 168 ] [ 0 0 -1 -102 ] 0 1 1
 }
 }
-// entity 209
+// entity 207
 {
 "classname" "func_group"
 "_tb_type" "_tb_group"
@@ -14489,7 +14470,7 @@
 "_tb_id" "32"
 "_tb_linked_group_id" "{70e42c7c-bc47-4779-a69d-4a08b4ca6686}"
 }
-// entity 210
+// entity 208
 {
 "classname" "point_nav_link"
 "origin" "578 -350 -118"
@@ -14497,7 +14478,7 @@
 "startname" "first_floor_key_room_start"
 "_tb_group" "32"
 }
-// entity 211
+// entity 209
 {
 "classname" "geo_ballistic_door"
 "game_material_info" "1"
@@ -14524,28 +14505,28 @@
 ( 584 -352 -48 ) ( 584 -352 -47 ) ( 584 -351 -48 ) metal/metal_2 [ 0 -1.0000000000000002 0 0 ] [ 0 0 -1.0000000000000002 0 ] 0 1 1
 }
 }
-// entity 212
+// entity 210
 {
 "classname" "door_hinge"
 "origin" "580 -320 -62"
 "target" "security_room_hinge"
 "_tb_group" "32"
 }
-// entity 213
+// entity 211
 {
 "classname" "point"
 "origin" "514 -350 -118"
 "target" "first_floor_key_room_start"
 "_tb_group" "32"
 }
-// entity 214
+// entity 212
 {
 "classname" "point"
 "origin" "658 -350 -118"
 "target" "first_floor_key_room_end"
 "_tb_group" "32"
 }
-// entity 215
+// entity 213
 {
 "classname" "func_group"
 "_tb_type" "_tb_group"
@@ -14554,7 +14535,7 @@
 "_tb_linked_group_id" "{ad96437c-8216-4c1a-881b-4b89f823e154}"
 "_tb_transformation" "-1.9600538592723536e-15 1 0 920.0000000000011 -1 -1.9600538592723536e-15 0 -474.00000000000074 0 0 1 0 0 0 0 1"
 }
-// entity 216
+// entity 214
 {
 "classname" "point_nav_link"
 "origin" "570 -1052 -118"
@@ -14563,7 +14544,7 @@
 "angle" "270"
 "_tb_group" "33"
 }
-// entity 217
+// entity 215
 {
 "classname" "geo_ballistic_door"
 "game_material_info" "1"
@@ -14590,7 +14571,7 @@
 ( 568 -1050 -48 ) ( 568 -1051 -48 ) ( 568 -1050 -47 ) metal/metal_2 [ -1.960053859272354e-15 -1.0000000000000002 0 -90 ] [ 0 0 -1.0000000000000002 0 ] 0 1 1
 }
 }
-// entity 218
+// entity 216
 {
 "classname" "door_hinge"
 "origin" "600 -1054 -62"
@@ -14598,7 +14579,7 @@
 "angle" "270"
 "_tb_group" "33"
 }
-// entity 219
+// entity 217
 {
 "classname" "point"
 "origin" "570 -988 -118"
@@ -14606,7 +14587,7 @@
 "angle" "270"
 "_tb_group" "33"
 }
-// entity 220
+// entity 218
 {
 "classname" "point"
 "origin" "570 -1132 -118"
@@ -14614,7 +14595,7 @@
 "angle" "270"
 "_tb_group" "33"
 }
-// entity 221
+// entity 219
 {
 "classname" "func_group"
 "_tb_type" "_tb_group"
@@ -14623,7 +14604,7 @@
 "_tb_linked_group_id" "{54917ffe-89d1-45ec-afc8-1a834c546e54}"
 "_tb_transformation" "1 2.021286199229721e-15 0 -63.99999999999932 -2.021286199229721e-15 1 0 -767.9999999999989 0 0 1 0 0 0 0 1"
 }
-// entity 222
+// entity 220
 {
 "classname" "point_nav_link"
 "origin" "514 -1118 -118"
@@ -14632,7 +14613,7 @@
 "angle" "0"
 "_tb_group" "34"
 }
-// entity 223
+// entity 221
 {
 "classname" "geo_ballistic_door"
 "game_material_info" "1"
@@ -14659,7 +14640,7 @@
 ( 520 -1120 -48 ) ( 520 -1120 -47 ) ( 520 -1119 -48 ) metal/metal_2 [ -2.0212861992297215e-15 -1.0000000000000002 0 0 ] [ 0 0 -1.0000000000000002 0 ] 0 1 1
 }
 }
-// entity 224
+// entity 222
 {
 "classname" "door_hinge"
 "origin" "516 -1088 -62"
@@ -14667,7 +14648,7 @@
 "angle" "0"
 "_tb_group" "34"
 }
-// entity 225
+// entity 223
 {
 "classname" "point"
 "origin" "450 -1118 -118"
@@ -14675,7 +14656,7 @@
 "angle" "0"
 "_tb_group" "34"
 }
-// entity 226
+// entity 224
 {
 "classname" "point"
 "origin" "594 -1118 -118"
@@ -14683,7 +14664,7 @@
 "angle" "0"
 "_tb_group" "34"
 }
-// entity 227
+// entity 225
 {
 "classname" "func_group"
 "_tb_type" "_tb_group"
@@ -14692,7 +14673,7 @@
 "_tb_linked_group_id" "{2125f79e-fa91-44e0-9f10-3f9027fc6dcc}"
 "_tb_transformation" "6.123233995736766e-17 -1 0 304 1 6.123233995736766e-17 0 -1952 0 0 1 0 0 0 0 1"
 }
-// entity 228
+// entity 226
 {
 "classname" "geo_ballistic_solid"
 "game_material_info" "1"
@@ -14878,7 +14859,7 @@
 ( 524 -1366 -66 ) ( 524 -1366 -65 ) ( 524 -1365 -66 ) metal/metal_1 [ 6.123233995736766e-17 1 0 32 ] [ 0 0 -1 54 ] 0 1 1
 }
 }
-// entity 229
+// entity 227
 {
 "classname" "area_loot_spawn"
 "biome" "0"
@@ -14897,7 +14878,7 @@
 ( 552 -1252 -110 ) ( 552 -1253 -110 ) ( 552 -1252 -109 ) special/skip [ 1.2246467991473532e-16 1 0 196 ] [ 0 0 -1 -126 ] 0 1 1
 }
 }
-// entity 230
+// entity 228
 {
 "classname" "area_loot_spawn"
 "biome" "0"
@@ -14916,7 +14897,7 @@
 ( 552 -1252 -158 ) ( 552 -1253 -158 ) ( 552 -1252 -157 ) special/skip [ 1.2246467991473532e-16 1 0 196 ] [ 0 0 -1 -174 ] 0 1 1
 }
 }
-// entity 231
+// entity 229
 {
 "classname" "area_loot_spawn"
 "biome" "0"
@@ -14935,7 +14916,7 @@
 ( 552 -1252 -134 ) ( 552 -1253 -134 ) ( 552 -1252 -133 ) special/skip [ 1.2246467991473532e-16 1 0 196 ] [ 0 0 -1 -150 ] 0 1 1
 }
 }
-// entity 232
+// entity 230
 {
 "classname" "area_loot_spawn"
 "biome" "0"
@@ -14954,7 +14935,7 @@
 ( 552 -1252 -86 ) ( 552 -1253 -86 ) ( 552 -1252 -85 ) special/skip [ 1.2246467991473532e-16 1 0 196 ] [ 0 0 -1 -102 ] 0 1 1
 }
 }
-// entity 233
+// entity 231
 {
 "classname" "func_group"
 "_tb_type" "_tb_group"
@@ -14963,7 +14944,7 @@
 "_tb_linked_group_id" "{2125f79e-fa91-44e0-9f10-3f9027fc6dcc}"
 "_tb_transformation" "6.123233995736766e-17 -1 0 304 1 6.123233995736766e-17 0 -1852 0 0 1 0 0 0 0 1"
 }
-// entity 234
+// entity 232
 {
 "classname" "geo_ballistic_solid"
 "game_material_info" "1"
@@ -15149,7 +15130,7 @@
 ( 524 -1266 -66 ) ( 524 -1266 -65 ) ( 524 -1265 -66 ) metal/metal_1 [ 6.123233995736766e-17 1 0 -68 ] [ 0 0 -1 54 ] 0 1 1
 }
 }
-// entity 235
+// entity 233
 {
 "classname" "area_loot_spawn"
 "biome" "0"
@@ -15168,7 +15149,7 @@
 ( 552 -1152 -110 ) ( 552 -1153 -110 ) ( 552 -1152 -109 ) special/skip [ 1.2246467991473532e-16 1 0 96 ] [ 0 0 -1 -126 ] 0 1 1
 }
 }
-// entity 236
+// entity 234
 {
 "classname" "area_loot_spawn"
 "biome" "0"
@@ -15187,7 +15168,7 @@
 ( 552 -1152 -158 ) ( 552 -1153 -158 ) ( 552 -1152 -157 ) special/skip [ 1.2246467991473532e-16 1 0 96 ] [ 0 0 -1 -174 ] 0 1 1
 }
 }
-// entity 237
+// entity 235
 {
 "classname" "area_loot_spawn"
 "biome" "0"
@@ -15206,7 +15187,7 @@
 ( 552 -1152 -134 ) ( 552 -1153 -134 ) ( 552 -1152 -133 ) special/skip [ 1.2246467991473532e-16 1 0 96 ] [ 0 0 -1 -150 ] 0 1 1
 }
 }
-// entity 238
+// entity 236
 {
 "classname" "area_loot_spawn"
 "biome" "0"
@@ -15225,7 +15206,7 @@
 ( 552 -1152 -86 ) ( 552 -1153 -86 ) ( 552 -1152 -85 ) special/skip [ 1.2246467991473532e-16 1 0 96 ] [ 0 0 -1 -102 ] 0 1 1
 }
 }
-// entity 239
+// entity 237
 {
 "classname" "func_group"
 "_tb_type" "_tb_group"
@@ -15234,7 +15215,7 @@
 "_tb_linked_group_id" "{2125f79e-fa91-44e0-9f10-3f9027fc6dcc}"
 "_tb_transformation" "-1.8369701987210297e-16 1 0 1014 -1 -1.8369701987210297e-16 0 -572 0 0 1 0 0 0 0 1"
 }
-// entity 240
+// entity 238
 {
 "classname" "geo_ballistic_solid"
 "game_material_info" "1"
@@ -15420,7 +15401,7 @@
 ( 796 -1160 -64 ) ( 796 -1161 -64 ) ( 796 -1160 -63 ) metal/metal_1 [ 1.8369701987210297e-16 1 0 60 ] [ 0 0 -1 54 ] 0 1 1
 }
 }
-// entity 241
+// entity 239
 {
 "classname" "area_loot_spawn"
 "biome" "0"
@@ -15439,7 +15420,7 @@
 ( 794 -1112 -94 ) ( 794 -1112 -93 ) ( 794 -1111 -94 ) special/skip [ 2.4492935982947064e-16 1 0 280 ] [ 0 0 -1 -126 ] 0 1 1
 }
 }
-// entity 242
+// entity 240
 {
 "classname" "area_loot_spawn"
 "biome" "0"
@@ -15458,7 +15439,7 @@
 ( 794 -1112 -142 ) ( 794 -1112 -141 ) ( 794 -1111 -142 ) special/skip [ 2.4492935982947064e-16 1 0 280 ] [ 0 0 -1 -174 ] 0 1 1
 }
 }
-// entity 243
+// entity 241
 {
 "classname" "area_loot_spawn"
 "biome" "0"
@@ -15477,7 +15458,7 @@
 ( 794 -1112 -118 ) ( 794 -1112 -117 ) ( 794 -1111 -118 ) special/skip [ 2.4492935982947064e-16 1 0 280 ] [ 0 0 -1 -150 ] 0 1 1
 }
 }
-// entity 244
+// entity 242
 {
 "classname" "area_loot_spawn"
 "biome" "0"
@@ -15496,7 +15477,7 @@
 ( 794 -1112 -70 ) ( 794 -1112 -69 ) ( 794 -1111 -70 ) special/skip [ 2.4492935982947064e-16 1 0 280 ] [ 0 0 -1 -102 ] 0 1 1
 }
 }
-// entity 245
+// entity 243
 {
 "classname" "func_group"
 "_tb_type" "_tb_group"
@@ -15505,7 +15486,7 @@
 "_tb_linked_group_id" "{2125f79e-fa91-44e0-9f10-3f9027fc6dcc}"
 "_tb_transformation" "-1.8369701987210297e-16 1 0 1014 -1 -1.8369701987210297e-16 0 -472 0 0 1 0 0 0 0 1"
 }
-// entity 246
+// entity 244
 {
 "classname" "geo_ballistic_solid"
 "game_material_info" "1"
@@ -15691,7 +15672,7 @@
 ( 796 -1060 -64 ) ( 796 -1061 -64 ) ( 796 -1060 -63 ) metal/metal_1 [ 1.8369701987210297e-16 1 0 88 ] [ 0 0 -1 54 ] 0 1 1
 }
 }
-// entity 247
+// entity 245
 {
 "classname" "area_loot_spawn"
 "biome" "0"
@@ -15710,7 +15691,7 @@
 ( 794 -1012 -94 ) ( 794 -1012 -93 ) ( 794 -1011 -94 ) special/skip [ 2.4492935982947064e-16 1 0 180 ] [ 0 0 -1 -126 ] 0 1 1
 }
 }
-// entity 248
+// entity 246
 {
 "classname" "area_loot_spawn"
 "biome" "0"
@@ -15729,7 +15710,7 @@
 ( 794 -1012 -142 ) ( 794 -1012 -141 ) ( 794 -1011 -142 ) special/skip [ 2.4492935982947064e-16 1 0 180 ] [ 0 0 -1 -174 ] 0 1 1
 }
 }
-// entity 249
+// entity 247
 {
 "classname" "area_loot_spawn"
 "biome" "0"
@@ -15748,7 +15729,7 @@
 ( 794 -1012 -118 ) ( 794 -1012 -117 ) ( 794 -1011 -118 ) special/skip [ 2.4492935982947064e-16 1 0 180 ] [ 0 0 -1 -150 ] 0 1 1
 }
 }
-// entity 250
+// entity 248
 {
 "classname" "area_loot_spawn"
 "biome" "0"
@@ -15767,7 +15748,7 @@
 ( 794 -1012 -70 ) ( 794 -1012 -69 ) ( 794 -1011 -70 ) special/skip [ 2.4492935982947064e-16 1 0 180 ] [ 0 0 -1 -102 ] 0 1 1
 }
 }
-// entity 251
+// entity 249
 {
 "classname" "func_group"
 "_tb_type" "_tb_group"
@@ -15776,7 +15757,7 @@
 "_tb_linked_group_id" "{2125f79e-fa91-44e0-9f10-3f9027fc6dcc}"
 "_tb_transformation" "1 2.4492935982947064e-16 0 114 -2.4492935982947064e-16 1 0 -1114 0 0 1 0 0 0 0 1"
 }
-// entity 252
+// entity 250
 {
 "classname" "geo_ballistic_solid"
 "game_material_info" "1"
@@ -15962,7 +15943,7 @@
 ( 702 -1332 -64 ) ( 702 -1332 -63 ) ( 702 -1331 -64 ) metal/metal_1 [ 2.4492935982947064e-16 1 0 90 ] [ 0 0 -1 54 ] 0 1 1
 }
 }
-// entity 253
+// entity 251
 {
 "classname" "area_loot_spawn"
 "biome" "0"
@@ -15981,7 +15962,7 @@
 ( 794 -1442 -110 ) ( 794 -1442 -109 ) ( 794 -1441 -110 ) special/skip [ 3.061616997868383e-16 1 0 258 ] [ 0 0 -1 -126 ] 0 1 1
 }
 }
-// entity 254
+// entity 252
 {
 "classname" "area_loot_spawn"
 "biome" "0"
@@ -16000,7 +15981,7 @@
 ( 794 -1442 -158 ) ( 794 -1442 -157 ) ( 794 -1441 -158 ) special/skip [ 3.061616997868383e-16 1 0 258 ] [ 0 0 -1 -174 ] 0 1 1
 }
 }
-// entity 255
+// entity 253
 {
 "classname" "area_loot_spawn"
 "biome" "0"
@@ -16019,7 +16000,7 @@
 ( 794 -1442 -134 ) ( 794 -1442 -133 ) ( 794 -1441 -134 ) special/skip [ 3.061616997868383e-16 1 0 258 ] [ 0 0 -1 -150 ] 0 1 1
 }
 }
-// entity 256
+// entity 254
 {
 "classname" "area_loot_spawn"
 "biome" "0"
@@ -16038,7 +16019,7 @@
 ( 794 -1442 -86 ) ( 794 -1442 -85 ) ( 794 -1441 -86 ) special/skip [ 3.061616997868383e-16 1 0 258 ] [ 0 0 -1 -102 ] 0 1 1
 }
 }
-// entity 257
+// entity 255
 {
 "classname" "func_group"
 "_tb_type" "_tb_group"
@@ -16047,7 +16028,7 @@
 "_tb_linked_group_id" "{2125f79e-fa91-44e0-9f10-3f9027fc6dcc}"
 "_tb_transformation" "1 2.4492935982947064e-16 0 14 -2.4492935982947064e-16 1 0 -1114 0 0 1 0 0 0 0 1"
 }
-// entity 258
+// entity 256
 {
 "classname" "geo_ballistic_solid"
 "game_material_info" "1"
@@ -16233,7 +16214,7 @@
 ( 602 -1332 -64 ) ( 602 -1332 -63 ) ( 602 -1331 -64 ) metal/metal_1 [ 2.4492935982947064e-16 1 0 90 ] [ 0 0 -1 54 ] 0 1 1
 }
 }
-// entity 259
+// entity 257
 {
 "classname" "area_loot_spawn"
 "biome" "0"
@@ -16252,7 +16233,7 @@
 ( 694 -1442 -110 ) ( 694 -1442 -109 ) ( 694 -1441 -110 ) special/skip [ 3.061616997868383e-16 1 0 258 ] [ 0 0 -1 -126 ] 0 1 1
 }
 }
-// entity 260
+// entity 258
 {
 "classname" "area_loot_spawn"
 "biome" "0"
@@ -16271,7 +16252,7 @@
 ( 694 -1442 -158 ) ( 694 -1442 -157 ) ( 694 -1441 -158 ) special/skip [ 3.061616997868383e-16 1 0 258 ] [ 0 0 -1 -174 ] 0 1 1
 }
 }
-// entity 261
+// entity 259
 {
 "classname" "area_loot_spawn"
 "biome" "0"
@@ -16290,7 +16271,7 @@
 ( 694 -1442 -134 ) ( 694 -1442 -133 ) ( 694 -1441 -134 ) special/skip [ 3.061616997868383e-16 1 0 258 ] [ 0 0 -1 -150 ] 0 1 1
 }
 }
-// entity 262
+// entity 260
 {
 "classname" "area_loot_spawn"
 "biome" "0"
@@ -16309,7 +16290,7 @@
 ( 694 -1442 -86 ) ( 694 -1442 -85 ) ( 694 -1441 -86 ) special/skip [ 3.061616997868383e-16 1 0 258 ] [ 0 0 -1 -102 ] 0 1 1
 }
 }
-// entity 263
+// entity 261
 {
 "classname" "func_group"
 "_tb_type" "_tb_group"
@@ -16318,7 +16299,7 @@
 "_tb_linked_group_id" "{c165ae75-6a34-4e8c-a2ca-02702236b09c}"
 "_tb_transformation" "1 0 0 224 0 1 0 -208.00000000000006 0 0 1 0 0 0 0 1"
 }
-// entity 264
+// entity 262
 {
 "classname" "point_nav_link"
 "origin" "802 -558 -118"
@@ -16328,7 +16309,7 @@
 "rotation" "0 120 0"
 "_tb_group" "41"
 }
-// entity 265
+// entity 263
 {
 "classname" "door_hinge"
 "origin" "804 -528 -62"
@@ -16337,7 +16318,7 @@
 "rotation" "0 120 0"
 "_tb_group" "41"
 }
-// entity 266
+// entity 264
 {
 "classname" "point"
 "origin" "738 -558 -118"
@@ -16346,7 +16327,7 @@
 "rotation" "0 120 0"
 "_tb_group" "41"
 }
-// entity 267
+// entity 265
 {
 "classname" "point"
 "origin" "882 -558 -118"
@@ -16355,7 +16336,7 @@
 "rotation" "0 120 0"
 "_tb_group" "41"
 }
-// entity 268
+// entity 266
 {
 "classname" "geo_ballistic_door"
 "game_material_info" "1"
@@ -16409,7 +16390,7 @@
 ( 806 -564 -120 ) ( 806 -564 -62 ) ( 806 -556 -120 ) metal/metal_5 [ 0 -1.0000000000000002 0 48 ] [ 0 0 -1.0000000000000002 0 ] 0 1 1
 }
 }
-// entity 269
+// entity 267
 {
 "classname" "geo_ballistic_door"
 "game_material_info" "5"
@@ -16426,7 +16407,7 @@
 ( 806 -556 -60 ) ( 806 -556 -59 ) ( 806 -555 -60 ) glass/glass_2 [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
 }
 }
-// entity 270
+// entity 268
 {
 "classname" "func_group"
 "_tb_type" "_tb_group"
@@ -16435,7 +16416,7 @@
 "_tb_linked_group_id" "{002d3eda-5eeb-42c5-8f61-03f8c56af154}"
 "_tb_transformation" "6.123233995736766e-17 -1 0 352.00000000000006 1 6.123233995736766e-17 0 -1328 0 0 1 0 0 0 0 1"
 }
-// entity 271
+// entity 269
 {
 "classname" "point_nav_link"
 "origin" "702 -750 -118"
@@ -16444,7 +16425,7 @@
 "angle" "90"
 "_tb_group" "42"
 }
-// entity 272
+// entity 270
 {
 "classname" "door_hinge"
 "origin" "672 -748 -62"
@@ -16452,7 +16433,7 @@
 "angle" "90"
 "_tb_group" "42"
 }
-// entity 273
+// entity 271
 {
 "classname" "point"
 "origin" "702 -814 -118"
@@ -16460,7 +16441,7 @@
 "angle" "90"
 "_tb_group" "42"
 }
-// entity 274
+// entity 272
 {
 "classname" "point"
 "origin" "702 -670 -118"
@@ -16468,7 +16449,7 @@
 "angle" "90"
 "_tb_group" "42"
 }
-// entity 275
+// entity 273
 {
 "classname" "geo_ballistic_door"
 "game_material_info" "1"
@@ -16522,7 +16503,7 @@
 ( 708 -750 -120 ) ( 708 -750 -62 ) ( 708 -746 -120 ) metal/metal_5 [ 6.123233995736766e-17 1 0 122 ] [ 0 0 -1 58 ] 0 1 1
 }
 }
-// entity 276
+// entity 274
 {
 "classname" "geo_ballistic_door"
 "game_material_info" "5"
@@ -16539,7 +16520,7 @@
 ( 708 -750 -62 ) ( 708 -750 -61 ) ( 708 -749 -62 ) glass/glass_2 [ 6.123233995736766e-17 1 0 16 ] [ 0 0 -1 0 ] 0 1 1
 }
 }
-// entity 277
+// entity 275
 {
 "classname" "geo_ballistic_solid"
 "game_material_info" "4"
@@ -16589,7 +16570,7 @@
 ( 188 -360 128 ) ( 188 16 128 ) ( 188 -360 16 ) tile/tile_4 [ 0 1 0 -64 ] [ 0 0 -1 0 ] 0 1 1
 }
 }
-// entity 278
+// entity 276
 {
 "classname" "geo_ballistic_solid"
 "game_material_info" "2"
@@ -16612,7 +16593,7 @@
 ( 476 204 44 ) ( 476 200 44 ) ( 476 200 172 ) plaster/plaster_7 [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
 }
 }
-// entity 279
+// entity 277
 {
 "classname" "geo_ballistic_solid"
 "game_material_info" "2"
@@ -16653,7 +16634,7 @@
 ( 472 0 128 ) ( 472 8 128 ) ( 472 0 16 ) plaster/plaster_7 [ 1.8369701987210297e-16 1 0 -88 ] [ 0 0 -1 32 ] 0 1 1
 }
 }
-// entity 280
+// entity 278
 {
 "classname" "geo_ballistic_solid"
 "game_material_info" "2"
@@ -16676,7 +16657,7 @@
 ( 476 216 48 ) ( 476 216 49 ) ( 476 217 48 ) plaster/plaster_7 [ 0 1 0 0 ] [ 0 0 -1 32 ] 0 1 1
 }
 }
-// entity 281
+// entity 279
 {
 "classname" "geo_ballistic_solid"
 "game_material_info" "3"
@@ -16753,7 +16734,7 @@
 ( -256 -223 128 ) ( -256 -223 120 ) ( -256 -224 128 ) marble/marble_19 [ 1.2246467991473532e-16 1 0 32 ] [ 0 0 -1 -8 ] 180 1 1
 }
 }
-// entity 282
+// entity 280
 {
 "classname" "geo_ballistic_solid"
 "game_material_info" "3"
@@ -16839,7 +16820,7 @@
 ( -200 192 128 ) ( -200 192 120 ) ( -200 191 128 ) marble/marble_19 [ 0 1 0 0 ] [ 0 0 -1 -8 ] 0 1 1
 }
 }
-// entity 283
+// entity 281
 {
 "classname" "geo_ballistic_solid"
 "game_material_info" "4"
@@ -16853,7 +16834,7 @@
 ( 192 -368 16 ) ( 192 336 16 ) ( 192 336 -16 ) tile/tile_1 [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
 }
 }
-// entity 284
+// entity 282
 {
 "classname" "geo_ballistic_solid"
 "game_material_info" "4"
@@ -16885,7 +16866,7 @@
 ( 200 4 20 ) ( 200 4 21 ) ( 200 5 20 ) plaster/plaster_23 [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
 }
 }
-// entity 285
+// entity 283
 {
 "classname" "geo_ballistic_solid"
 "game_material_info" "4"
@@ -16899,7 +16880,7 @@
 ( 480 8 20 ) ( 480 8 21 ) ( 480 9 20 ) plaster/plaster_23 [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
 }
 }
-// entity 286
+// entity 284
 {
 "classname" "func_group"
 "_tb_type" "_tb_group"
@@ -16907,7 +16888,7 @@
 "_tb_id" "43"
 "_tb_linked_group_id" "{c0cc709d-0390-4f0e-851e-4be37bdca670}"
 }
-// entity 287
+// entity 285
 {
 "classname" "geo_ballistic_container"
 "chance_active" "0.2"
@@ -17006,7 +16987,7 @@
 ( 840 -240 -66 ) ( 840 -240 -65 ) ( 840 -239 -66 ) metal/metal_4 [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
 }
 }
-// entity 288
+// entity 286
 {
 "classname" "func_group"
 "_tb_type" "_tb_group"
@@ -17015,7 +16996,7 @@
 "_tb_linked_group_id" "{b651df1d-9d1c-48b3-b6fa-2b3d7e932a3d}"
 "_tb_transformation" "1 0 0 20 0 1 0 0 0 0 1 0 0 0 0 1"
 }
-// entity 289
+// entity 287
 {
 "classname" "geo_ballistic_container"
 "chance_active" "0.2"
@@ -17114,7 +17095,7 @@
 ( 860 -240 -66 ) ( 860 -240 -65 ) ( 860 -239 -66 ) metal/metal_4 [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
 }
 }
-// entity 290
+// entity 288
 {
 "classname" "func_group"
 "_tb_type" "_tb_group"
@@ -17123,7 +17104,7 @@
 "_tb_linked_group_id" "{fb0b369c-cf0e-43ba-8c30-51e59e36603c}"
 "_tb_transformation" "1 0 0 40 0 1 0 0 0 0 1 0 0 0 0 1"
 }
-// entity 291
+// entity 289
 {
 "classname" "geo_ballistic_container"
 "chance_active" "0.2"
@@ -17222,7 +17203,7 @@
 ( 880 -240 -66 ) ( 880 -240 -65 ) ( 880 -239 -66 ) metal/metal_4 [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
 }
 }
-// entity 292
+// entity 290
 {
 "classname" "func_group"
 "_tb_type" "_tb_group"
@@ -17231,7 +17212,7 @@
 "_tb_linked_group_id" "{7ae6db8b-43b2-4392-99dc-b5188b3cbf96}"
 "_tb_transformation" "1 0 0 60 0 1 0 0 0 0 1 0 0 0 0 1"
 }
-// entity 293
+// entity 291
 {
 "classname" "geo_ballistic_container"
 "chance_active" "0.2"
@@ -17330,7 +17311,7 @@
 ( 900 -240 -66 ) ( 900 -240 -65 ) ( 900 -239 -66 ) metal/metal_4 [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
 }
 }
-// entity 294
+// entity 292
 {
 "classname" "func_group"
 "_tb_type" "_tb_group"
@@ -17339,7 +17320,7 @@
 "_tb_linked_group_id" "{426ef607-5ca5-41a1-afe6-b9826e380705}"
 "_tb_transformation" "1 0 0 476 0 1 0 4 0 0 1 0 0 0 0 1"
 }
-// entity 295
+// entity 293
 {
 "classname" "geo_ballistic_container"
 "chance_active" "0.2"
@@ -17438,7 +17419,7 @@
 ( 1316 -236 -66 ) ( 1316 -236 -65 ) ( 1316 -235 -66 ) metal/metal_4 [ 0 1 0 -4 ] [ 0 0 -1 0 ] 0 1 1
 }
 }
-// entity 296
+// entity 294
 {
 "classname" "func_group"
 "_tb_type" "_tb_group"
@@ -17447,7 +17428,7 @@
 "_tb_linked_group_id" "{76c1487f-c9bd-42cb-b59c-b43aab5467e2}"
 "_tb_transformation" "1 0 0 456 0 1 0 4 0 0 1 0 0 0 0 1"
 }
-// entity 297
+// entity 295
 {
 "classname" "geo_ballistic_container"
 "chance_active" "0.2"
@@ -17546,7 +17527,7 @@
 ( 1296 -236 -66 ) ( 1296 -236 -65 ) ( 1296 -235 -66 ) metal/metal_4 [ 0 1 0 -4 ] [ 0 0 -1 0 ] 0 1 1
 }
 }
-// entity 298
+// entity 296
 {
 "classname" "func_group"
 "_tb_type" "_tb_group"
@@ -17555,7 +17536,7 @@
 "_tb_linked_group_id" "{dbdbe312-f79d-441e-9b59-e9a5313816d1}"
 "_tb_transformation" "1 0 0 436 0 1 0 4 0 0 1 0 0 0 0 1"
 }
-// entity 299
+// entity 297
 {
 "classname" "geo_ballistic_container"
 "chance_active" "0.2"
@@ -17654,7 +17635,7 @@
 ( 1276 -236 -66 ) ( 1276 -236 -65 ) ( 1276 -235 -66 ) metal/metal_4 [ 0 1 0 -4 ] [ 0 0 -1 0 ] 0 1 1
 }
 }
-// entity 300
+// entity 298
 {
 "classname" "func_group"
 "_tb_type" "_tb_group"
@@ -17663,7 +17644,7 @@
 "_tb_linked_group_id" "{f05f9c50-8473-4aee-92f3-c34b9af9f2c1}"
 "_tb_transformation" "1 0 0 416 0 1 0 4 0 0 1 0 0 0 0 1"
 }
-// entity 301
+// entity 299
 {
 "classname" "geo_ballistic_container"
 "chance_active" "0.2"
@@ -17762,7 +17743,7 @@
 ( 1256 -236 -66 ) ( 1256 -236 -65 ) ( 1256 -235 -66 ) metal/metal_4 [ 0 1 0 -4 ] [ 0 0 -1 0 ] 0 1 1
 }
 }
-// entity 302
+// entity 300
 {
 "classname" "func_group"
 "_tb_type" "_tb_group"
@@ -17770,7 +17751,7 @@
 "_tb_id" "54"
 "_tb_linked_group_id" "{17a59aa4-4f9f-47d8-b7fa-fc1265a51d26}"
 }
-// entity 303
+// entity 301
 {
 "classname" "geo_ballistic_solid"
 "game_material_info" "1"
@@ -17802,7 +17783,7 @@
 ( 1298.7320508075688 -372 -27.80384757729331 ) ( 1298.7320508075688 -360 -27.80384757729331 ) ( 1304.7320508075688 -360 -38.19615242270652 ) metal/metal_2 [ 0 1 0 0 ] [ 0.5000000000000007 0 -0.8660254037844382 -5.4448853 ] 0 1 1
 }
 }
-// entity 304
+// entity 302
 {
 "classname" "func_group"
 "_tb_type" "_tb_group"
@@ -17811,7 +17792,7 @@
 "_tb_linked_group_id" "{a37a6fdb-9ede-40a0-9f94-3db39dd300da}"
 "_tb_transformation" "-1.8369701987210297e-16 1 0 1632.0000000000002 -1 -1.8369701987210297e-16 0 882 0 0 1 0 0 0 0 1"
 }
-// entity 305
+// entity 303
 {
 "classname" "geo_ballistic_solid"
 "game_material_info" "1"
@@ -17843,7 +17824,7 @@
 ( 1274 -416.26794919243116 -35 ) ( 1272 -416.73205080756884 -27.80384757729331 ) ( 1272 -413.26794919243116 -29.80384757729331 ) metal/metal_2 [ -3.8113089073376723e-16 -0.8660254037844384 0.5000000000000007 -110.9986 ] [ -9.184850993605162e-17 -0.5000000000000007 -0.8660254037844382 -76.444885 ] 296.5832 1 1
 }
 }
-// entity 306
+// entity 304
 {
 "classname" "func_group"
 "_tb_type" "_tb_group"
@@ -17852,7 +17833,7 @@
 "_tb_linked_group_id" "{88e49573-a7ce-405d-8d74-bd5322cbd36b}"
 "_tb_transformation" "1 0 0 748 0 1 0 -272.00000000000006 0 0 1 0 0 0 0 1"
 }
-// entity 307
+// entity 305
 {
 "classname" "point_nav_link"
 "origin" "1326 -622 -118"
@@ -17861,7 +17842,7 @@
 "angle" "0"
 "_tb_group" "56"
 }
-// entity 308
+// entity 306
 {
 "classname" "door_hinge"
 "origin" "1328 -592 -62"
@@ -17869,7 +17850,7 @@
 "angle" "0"
 "_tb_group" "56"
 }
-// entity 309
+// entity 307
 {
 "classname" "point"
 "origin" "1262 -622 -118"
@@ -17877,7 +17858,7 @@
 "angle" "0"
 "_tb_group" "56"
 }
-// entity 310
+// entity 308
 {
 "classname" "point"
 "origin" "1406 -622 -118"
@@ -17885,7 +17866,7 @@
 "angle" "0"
 "_tb_group" "56"
 }
-// entity 311
+// entity 309
 {
 "classname" "geo_ballistic_door"
 "game_material_info" "1"
@@ -17939,7 +17920,7 @@
 ( 1330 -628 -120 ) ( 1330 -628 -62 ) ( 1330 -620 -120 ) metal/metal_5 [ 0 -1.0000000000000002 0 -16 ] [ 0 0 -1.0000000000000002 0 ] 0 1 1
 }
 }
-// entity 312
+// entity 310
 {
 "classname" "geo_ballistic_door"
 "game_material_info" "5"
@@ -17956,7 +17937,749 @@
 ( 1330 -620 -60 ) ( 1330 -620 -59 ) ( 1330 -619 -60 ) glass/glass_2 [ 0 1 0 64 ] [ 0 0 -1 0 ] 0 1 1
 }
 }
+// entity 311
+{
+"classname" "omnilight"
+"origin" "184 272 -8"
+"light" "150"
+"_color" "170 0 0"
+"shadows" "1"
+"color" "170 0 0"
+}
+// entity 312
+{
+"classname" "func_group"
+"_tb_type" "_tb_group"
+"_tb_name" "long_picnic_table"
+"_tb_id" "57"
+"_tb_linked_group_id" "{7643ff52-ad21-4955-88b1-07541a3be19a}"
+}
 // entity 313
+{
+"classname" "geo_ballistic_solid"
+"game_material_info" "1"
+"_tb_group" "57"
+// brush 0
+{
+( -88 -848 -80 ) ( -88 -849 -80 ) ( -88 -848 -81 ) metal/metal_5 [ 0 -1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( 40 -920 -88 ) ( 41 -920 -88 ) ( 40 -920 -89 ) metal/metal_5 [ -1.0000000000000002 0 0 0 ] [ 0 0 -1.0000000000000002 0 ] 0 1 1
+( 40 -920 -88 ) ( 40 -921 -88 ) ( 41 -920 -88 ) metal/metal_5 [ 1.0000000000000002 0 0 0 ] [ 0 -1.0000000000000002 0 0 ] 0 1 1
+( 32 -848 -84 ) ( 33 -848 -84 ) ( 32 -849 -84 ) metal/metal_5 [ -1.0000000000000002 0 0 0 ] [ 0 -1.0000000000000002 0 0 ] 0 1 1
+( 32 -848 -80 ) ( 32 -848 -81 ) ( 33 -848 -80 ) metal/metal_5 [ 1.0000000000000002 0 0 0 ] [ 0 0 -1.0000000000000002 0 ] 0 1 1
+( 152 -920 -88 ) ( 152 -920 -89 ) ( 152 -921 -88 ) metal/metal_5 [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+}
+// brush 1
+{
+( -88 -928 -96 ) ( -88 -929 -96 ) ( -88 -928 -97 ) metal/metal_5 [ 0 -1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( 152 -952 -104 ) ( 153 -952 -104 ) ( 152 -952 -105 ) metal/metal_5 [ -1.0000000000000002 0 0 0 ] [ 0 0 -1.0000000000000002 0 ] 0 1 1
+( 152 -944 -104 ) ( 152 -945 -104 ) ( 153 -944 -104 ) metal/metal_5 [ 1.0000000000000002 0 0 0 ] [ 0 -1.0000000000000002 0 0 ] 0 1 1
+( 144 -928 -100 ) ( 145 -928 -100 ) ( 144 -929 -100 ) metal/metal_5 [ -1.0000000000000002 0 0 0 ] [ 0 -1.0000000000000002 0 0 ] 0 1 1
+( 144 -932 -96 ) ( 144 -932 -97 ) ( 145 -932 -96 ) metal/metal_5 [ 1.0000000000000002 0 0 0 ] [ 0 0 -1.0000000000000002 0 ] 0 1 1
+( 152 -944 -104 ) ( 152 -944 -105 ) ( 152 -945 -104 ) metal/metal_5 [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+}
+// brush 2
+{
+( -88 -880 -88 ) ( -88 -881 -88 ) ( -88 -880 -89 ) metal/metal_5 [ 0 -1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( -80 -888 -96 ) ( -79 -888 -96 ) ( -80 -888 -97 ) metal/metal_5 [ -1.0000000000000002 0 0 0 ] [ 0 0 -1.0000000000000002 0 ] 0 1 1
+( -80 -888 -116 ) ( -80 -889 -116 ) ( -79 -888 -116 ) metal/metal_5 [ 1.0000000000000002 0 0 0 ] [ 0 -1.0000000000000002 0 0 ] 0 1 1
+( -88 -880 -88 ) ( -87 -880 -88 ) ( -88 -881 -88 ) metal/metal_5 [ -1.0000000000000002 0 0 0 ] [ 0 -1.0000000000000002 0 0 ] 0 1 1
+( -88 -880 -88 ) ( -88 -880 -89 ) ( -87 -880 -88 ) metal/metal_5 [ 1.0000000000000002 0 0 0 ] [ 0 0 -1.0000000000000002 0 ] 0 1 1
+( -80 -888 -96 ) ( -80 -888 -97 ) ( -80 -889 -96 ) metal/metal_5 [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+}
+// brush 3
+{
+( -88 -936 -104 ) ( -88 -937 -104 ) ( -88 -936 -105 ) metal/metal_5 [ 0 -1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( -80 -944 -112 ) ( -79 -944 -112 ) ( -80 -944 -113 ) metal/metal_5 [ -1.0000000000000002 0 0 0 ] [ 0 0 -1.0000000000000002 0 ] 0 1 1
+( -80 -944 -116 ) ( -80 -945 -116 ) ( -79 -944 -116 ) metal/metal_5 [ 1.0000000000000002 0 0 0 ] [ 0 -1.0000000000000002 0 0 ] 0 1 1
+( -88 -936 -104 ) ( -87 -936 -104 ) ( -88 -937 -104 ) metal/metal_5 [ -1.0000000000000002 0 0 0 ] [ 0 -1.0000000000000002 0 0 ] 0 1 1
+( -88 -940 -104 ) ( -88 -940 -105 ) ( -87 -940 -104 ) metal/metal_5 [ 1.0000000000000002 0 0 0 ] [ 0 0 -1.0000000000000002 0 ] 0 1 1
+( -80 -944 -112 ) ( -80 -944 -113 ) ( -80 -945 -112 ) metal/metal_5 [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+}
+// brush 4
+{
+( 40 -820 -104 ) ( 40 -821 -104 ) ( 40 -820 -105 ) metal/metal_5 [ 0 -1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( 48 -828 -112 ) ( 49 -828 -112 ) ( 48 -828 -113 ) metal/metal_5 [ -1.0000000000000002 0 0 0 ] [ 0 0 -1.0000000000000002 0 ] 0 1 1
+( 48 -828 -116 ) ( 48 -829 -116 ) ( 49 -828 -116 ) metal/metal_5 [ 1.0000000000000002 0 0 0 ] [ 0 -1.0000000000000002 0 0 ] 0 1 1
+( 40 -820 -104 ) ( 41 -820 -104 ) ( 40 -821 -104 ) metal/metal_5 [ -1.0000000000000002 0 0 0 ] [ 0 -1.0000000000000002 0 0 ] 0 1 1
+( 40 -824 -104 ) ( 40 -824 -105 ) ( 41 -824 -104 ) metal/metal_5 [ 1.0000000000000002 0 0 0 ] [ 0 0 -1.0000000000000002 0 ] 0 1 1
+( 48 -828 -112 ) ( 48 -828 -113 ) ( 48 -829 -112 ) metal/metal_5 [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+}
+// brush 5
+{
+( 40 -880 -112 ) ( 40 -881 -112 ) ( 40 -880 -113 ) metal/metal_5 [ 0 -1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( 48 -944 -120 ) ( 49 -944 -120 ) ( 48 -944 -121 ) metal/metal_5 [ -1.0000000000000002 0 0 0 ] [ 0 0 -1.0000000000000002 0 ] 0 1 1
+( 48 -888 -120 ) ( 48 -889 -120 ) ( 49 -888 -120 ) metal/metal_5 [ 1.0000000000000002 0 0 0 ] [ 0 -1.0000000000000002 0 0 ] 0 1 1
+( 40 -880 -116 ) ( 41 -880 -116 ) ( 40 -881 -116 ) metal/metal_5 [ -1.0000000000000002 0 0 0 ] [ 0 -1.0000000000000002 0 0 ] 0 1 1
+( 40 -824 -112 ) ( 40 -824 -113 ) ( 41 -824 -112 ) metal/metal_5 [ 1.0000000000000002 0 0 0 ] [ 0 0 -1.0000000000000002 0 ] 0 1 1
+( 48 -888 -120 ) ( 48 -888 -121 ) ( 48 -889 -120 ) metal/metal_5 [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+}
+// brush 6
+{
+( 144 -880 -88 ) ( 144 -881 -88 ) ( 144 -880 -89 ) metal/metal_5 [ 0 -1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( 152 -888 -96 ) ( 153 -888 -96 ) ( 152 -888 -97 ) metal/metal_5 [ -1.0000000000000002 0 0 0 ] [ 0 0 -1.0000000000000002 0 ] 0 1 1
+( 152 -888 -116 ) ( 152 -889 -116 ) ( 153 -888 -116 ) metal/metal_5 [ 1.0000000000000002 0 0 0 ] [ 0 -1.0000000000000002 0 0 ] 0 1 1
+( 144 -880 -88 ) ( 145 -880 -88 ) ( 144 -881 -88 ) metal/metal_5 [ -1.0000000000000002 0 0 0 ] [ 0 -1.0000000000000002 0 0 ] 0 1 1
+( 144 -880 -88 ) ( 144 -880 -89 ) ( 145 -880 -88 ) metal/metal_5 [ 1.0000000000000002 0 0 0 ] [ 0 0 -1.0000000000000002 0 ] 0 1 1
+( 152 -888 -96 ) ( 152 -888 -97 ) ( 152 -889 -96 ) metal/metal_5 [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+}
+// brush 7
+{
+( 144 -936 -104 ) ( 144 -937 -104 ) ( 144 -936 -105 ) metal/metal_5 [ 0 -1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( 152 -944 -112 ) ( 153 -944 -112 ) ( 152 -944 -113 ) metal/metal_5 [ -1.0000000000000002 0 0 0 ] [ 0 0 -1.0000000000000002 0 ] 0 1 1
+( 152 -944 -116 ) ( 152 -945 -116 ) ( 153 -944 -116 ) metal/metal_5 [ 1.0000000000000002 0 0 0 ] [ 0 -1.0000000000000002 0 0 ] 0 1 1
+( 144 -936 -104 ) ( 145 -936 -104 ) ( 144 -937 -104 ) metal/metal_5 [ -1.0000000000000002 0 0 0 ] [ 0 -1.0000000000000002 0 0 ] 0 1 1
+( 144 -940 -104 ) ( 144 -940 -105 ) ( 145 -940 -104 ) metal/metal_5 [ 1.0000000000000002 0 0 0 ] [ 0 0 -1.0000000000000002 0 ] 0 1 1
+( 152 -944 -112 ) ( 152 -944 -113 ) ( 152 -945 -112 ) metal/metal_5 [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+}
+// brush 8
+{
+( 144 -880 -112 ) ( 144 -881 -112 ) ( 144 -880 -113 ) metal/metal_5 [ 0 -1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( 152 -944 -120 ) ( 153 -944 -120 ) ( 152 -944 -121 ) metal/metal_5 [ -1.0000000000000002 0 0 0 ] [ 0 0 -1.0000000000000002 0 ] 0 1 1
+( 152 -888 -120 ) ( 152 -889 -120 ) ( 153 -888 -120 ) metal/metal_5 [ 1.0000000000000002 0 0 0 ] [ 0 -1.0000000000000002 0 0 ] 0 1 1
+( 144 -880 -116 ) ( 145 -880 -116 ) ( 144 -881 -116 ) metal/metal_5 [ -1.0000000000000002 0 0 0 ] [ 0 -1.0000000000000002 0 0 ] 0 1 1
+( 144 -824 -112 ) ( 144 -824 -113 ) ( 145 -824 -112 ) metal/metal_5 [ 1.0000000000000002 0 0 0 ] [ 0 0 -1.0000000000000002 0 ] 0 1 1
+( 152 -888 -120 ) ( 152 -888 -121 ) ( 152 -889 -120 ) metal/metal_5 [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+}
+// brush 9
+{
+( -88 -820 -104 ) ( -88 -821 -104 ) ( -88 -820 -105 ) metal/metal_5 [ 0 -1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( -80 -828 -112 ) ( -79 -828 -112 ) ( -80 -828 -113 ) metal/metal_5 [ -1.0000000000000002 0 0 0 ] [ 0 0 -1.0000000000000002 0 ] 0 1 1
+( -80 -828 -116 ) ( -80 -829 -116 ) ( -79 -828 -116 ) metal/metal_5 [ 1.0000000000000002 0 0 0 ] [ 0 -1.0000000000000002 0 0 ] 0 1 1
+( -88 -820 -104 ) ( -87 -820 -104 ) ( -88 -821 -104 ) metal/metal_5 [ -1.0000000000000002 0 0 0 ] [ 0 -1.0000000000000002 0 0 ] 0 1 1
+( -88 -824 -104 ) ( -88 -824 -105 ) ( -87 -824 -104 ) metal/metal_5 [ 1.0000000000000002 0 0 0 ] [ 0 0 -1.0000000000000002 0 ] 0 1 1
+( -80 -828 -112 ) ( -80 -828 -113 ) ( -80 -829 -112 ) metal/metal_5 [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+}
+// brush 10
+{
+( 144 -820 -104 ) ( 144 -821 -104 ) ( 144 -820 -105 ) metal/metal_5 [ 0 -1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( 152 -828 -112 ) ( 153 -828 -112 ) ( 152 -828 -113 ) metal/metal_5 [ -1.0000000000000002 0 0 0 ] [ 0 0 -1.0000000000000002 0 ] 0 1 1
+( 152 -828 -116 ) ( 152 -829 -116 ) ( 153 -828 -116 ) metal/metal_5 [ 1.0000000000000002 0 0 0 ] [ 0 -1.0000000000000002 0 0 ] 0 1 1
+( 144 -820 -104 ) ( 145 -820 -104 ) ( 144 -821 -104 ) metal/metal_5 [ -1.0000000000000002 0 0 0 ] [ 0 -1.0000000000000002 0 0 ] 0 1 1
+( 144 -824 -104 ) ( 144 -824 -105 ) ( 145 -824 -104 ) metal/metal_5 [ 1.0000000000000002 0 0 0 ] [ 0 0 -1.0000000000000002 0 ] 0 1 1
+( 152 -828 -112 ) ( 152 -828 -113 ) ( 152 -829 -112 ) metal/metal_5 [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+}
+// brush 11
+{
+( -88 -812 -96 ) ( -88 -813 -96 ) ( -88 -812 -97 ) metal/metal_5 [ 0 -1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( 152 -836 -104 ) ( 153 -836 -104 ) ( 152 -836 -105 ) metal/metal_5 [ -1.0000000000000002 0 0 0 ] [ 0 0 -1.0000000000000002 0 ] 0 1 1
+( 152 -828 -104 ) ( 152 -829 -104 ) ( 153 -828 -104 ) metal/metal_5 [ 1.0000000000000002 0 0 0 ] [ 0 -1.0000000000000002 0 0 ] 0 1 1
+( 144 -812 -100 ) ( 145 -812 -100 ) ( 144 -813 -100 ) metal/metal_5 [ -1.0000000000000002 0 0 0 ] [ 0 -1.0000000000000002 0 0 ] 0 1 1
+( 144 -816 -96 ) ( 144 -816 -97 ) ( 145 -816 -96 ) metal/metal_5 [ 1.0000000000000002 0 0 0 ] [ 0 0 -1.0000000000000002 0 ] 0 1 1
+( 152 -828 -104 ) ( 152 -828 -105 ) ( 152 -829 -104 ) metal/metal_5 [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+}
+// brush 12
+{
+( -88 -880 -112 ) ( -88 -881 -112 ) ( -88 -880 -113 ) metal/metal_5 [ 0 -1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( -80 -944 -120 ) ( -79 -944 -120 ) ( -80 -944 -121 ) metal/metal_5 [ -1.0000000000000002 0 0 0 ] [ 0 0 -1.0000000000000002 0 ] 0 1 1
+( -80 -888 -120 ) ( -80 -889 -120 ) ( -79 -888 -120 ) metal/metal_5 [ 1.0000000000000002 0 0 0 ] [ 0 -1.0000000000000002 0 0 ] 0 1 1
+( -88 -880 -116 ) ( -87 -880 -116 ) ( -88 -881 -116 ) metal/metal_5 [ -1.0000000000000002 0 0 0 ] [ 0 -1.0000000000000002 0 0 ] 0 1 1
+( -88 -824 -112 ) ( -88 -824 -113 ) ( -87 -824 -112 ) metal/metal_5 [ 1.0000000000000002 0 0 0 ] [ 0 0 -1.0000000000000002 0 ] 0 1 1
+( -80 -888 -120 ) ( -80 -888 -121 ) ( -80 -889 -120 ) metal/metal_5 [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+}
+// brush 13
+{
+( 40 -880 -88 ) ( 40 -881 -88 ) ( 40 -880 -89 ) metal/metal_5 [ 0 -1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( 48 -888 -96 ) ( 49 -888 -96 ) ( 48 -888 -97 ) metal/metal_5 [ -1.0000000000000002 0 0 0 ] [ 0 0 -1.0000000000000002 0 ] 0 1 1
+( 48 -888 -116 ) ( 48 -889 -116 ) ( 49 -888 -116 ) metal/metal_5 [ 1.0000000000000002 0 0 0 ] [ 0 -1.0000000000000002 0 0 ] 0 1 1
+( 40 -880 -88 ) ( 41 -880 -88 ) ( 40 -881 -88 ) metal/metal_5 [ -1.0000000000000002 0 0 0 ] [ 0 -1.0000000000000002 0 0 ] 0 1 1
+( 40 -880 -88 ) ( 40 -880 -89 ) ( 41 -880 -88 ) metal/metal_5 [ 1.0000000000000002 0 0 0 ] [ 0 0 -1.0000000000000002 0 ] 0 1 1
+( 48 -888 -96 ) ( 48 -888 -97 ) ( 48 -889 -96 ) metal/metal_5 [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+}
+// brush 14
+{
+( 40 -936 -104 ) ( 40 -937 -104 ) ( 40 -936 -105 ) metal/metal_5 [ 0 -1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( 48 -944 -112 ) ( 49 -944 -112 ) ( 48 -944 -113 ) metal/metal_5 [ -1.0000000000000002 0 0 0 ] [ 0 0 -1.0000000000000002 0 ] 0 1 1
+( 48 -944 -116 ) ( 48 -945 -116 ) ( 49 -944 -116 ) metal/metal_5 [ 1.0000000000000002 0 0 0 ] [ 0 -1.0000000000000002 0 0 ] 0 1 1
+( 40 -936 -104 ) ( 41 -936 -104 ) ( 40 -937 -104 ) metal/metal_5 [ -1.0000000000000002 0 0 0 ] [ 0 -1.0000000000000002 0 0 ] 0 1 1
+( 40 -940 -104 ) ( 40 -940 -105 ) ( 41 -940 -104 ) metal/metal_5 [ 1.0000000000000002 0 0 0 ] [ 0 0 -1.0000000000000002 0 ] 0 1 1
+( 48 -944 -112 ) ( 48 -944 -113 ) ( 48 -945 -112 ) metal/metal_5 [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+}
+}
+// entity 314
+{
+"classname" "area_loot_spawn"
+"biome" "0"
+"tier" "0"
+"min_spawned" "1"
+"max_spawned" "5"
+"chance_active" "0.33"
+// brush 0
+{
+( 16 -880 -68 ) ( 16 -879 -68 ) ( 16 -880 -67 ) special/skip [ -6.123233995736766e-17 -1 0 -64 ] [ 0 0 -1 40 ] 0 1 1
+( 168 -920 -84 ) ( 167 -920 -84 ) ( 168 -920 -83 ) special/skip [ 1 -6.123233995736766e-17 0 -48 ] [ 0 0 -1 40 ] 0 1 1
+( 168 -992 -84 ) ( 168 -991 -84 ) ( 167 -992 -84 ) special/skip [ -6.123233995736766e-17 -1 0 -64 ] [ 1 -6.123233995736766e-17 0 -48 ] 90 1 1
+( 8 -880 -20 ) ( 7 -880 -20 ) ( 8 -879 -20 ) special/skip [ 6.123233995736766e-17 1 0 64 ] [ 1 -6.123233995736766e-17 0 -48 ] 270 1 1
+( 8 -848 -68 ) ( 8 -848 -67 ) ( 7 -848 -68 ) special/skip [ -1 6.123233995736766e-17 0 48 ] [ 0 0 -1 40 ] 0 1 1
+( 152 -992 -84 ) ( 152 -992 -83 ) ( 152 -991 -84 ) special/skip [ 6.123233995736766e-17 1 0 64 ] [ 0 0 -1 40 ] 0 1 1
+}
+}
+// entity 315
+{
+"classname" "omnilight"
+"origin" "-320 -464 -8"
+"light" "150"
+"_color" "170 0 0"
+"shadows" "1"
+"color" "170 0 0"
+}
+// entity 316
+{
+"classname" "area_enemy_spawn"
+"test" "value"
+"biome" "0"
+"tier" "0"
+"max_spawned" "2"
+"chance_active" "0.5"
+// brush 0
+{
+( 176 -1144 -152 ) ( 176 -1143 -152 ) ( 176 -1144 -151 ) special/skip [ 0 -1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( 160 -1128 -152 ) ( 160 -1128 -151 ) ( 161 -1128 -152 ) special/skip [ 1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( 160 -1144 -152 ) ( 161 -1144 -152 ) ( 160 -1143 -152 ) special/skip [ -1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( 464 -856 -40 ) ( 464 -855 -40 ) ( 465 -856 -40 ) special/skip [ 1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( 464 -864 -136 ) ( 465 -864 -136 ) ( 464 -864 -135 ) special/skip [ -1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( 464 -856 -136 ) ( 464 -856 -135 ) ( 464 -855 -136 ) special/skip [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+}
+}
+// entity 317
+{
+"classname" "func_group"
+"_tb_type" "_tb_group"
+"_tb_name" "ammo_crate"
+"_tb_id" "58"
+"_tb_linked_group_id" "{067cc6bf-adda-43b7-9c99-05eec9ab60a6}"
+}
+// entity 318
+{
+"classname" "geo_ballistic_container"
+"game_material_info" "3"
+"container_size" "14"
+"max_spawned" "5"
+"chance_active" "0.5"
+"_tb_group" "58"
+// brush 0
+{
+( -192 -448 -120 ) ( -192 -447 -120 ) ( -192 -448 -119 ) wood/wood_green_1 [ 0 -1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( -192 -512 -120 ) ( -192 -512 -119 ) ( -191 -512 -120 ) wood/wood_green_1 [ 1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( -192 -448 -120 ) ( -191 -448 -120 ) ( -192 -447 -120 ) wood/wood_green_1 [ -1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( -168 -440 -104 ) ( -168 -439 -104 ) ( -167 -440 -104 ) wood/wood_green_1 [ 1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( -168 -440 -112 ) ( -167 -440 -112 ) ( -168 -440 -111 ) wood/wood_green_1 [ -1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( -168 -440 -112 ) ( -168 -440 -111 ) ( -168 -439 -112 ) wood/wood_green_1 [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+}
+// brush 1
+{
+( -186 -502 -102 ) ( -192 -502 -104 ) ( -192 -498 -104 ) wood/wood_green_1 [ 0 -1.0000000000000002 0 0 ] [ 1.0000000000000002 0 0 40 ] 0 1 1
+( -174 -502 -102 ) ( -168 -502 -104 ) ( -192 -502 -104 ) wood/wood_green_1 [ 1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( -168 -502 -104 ) ( -168 -498 -104 ) ( -192 -498 -104 ) wood/wood_green_1 [ -1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( -186 -498 -102 ) ( -174 -498 -102 ) ( -174 -502 -102 ) wood/wood_green_1 [ 1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( -192 -498 -104 ) ( -168 -498 -104 ) ( -174 -498 -102 ) wood/wood_green_1 [ -1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( -174 -498 -102 ) ( -168 -498 -104 ) ( -168 -502 -104 ) wood/wood_green_1 [ 0 1.0000000000000002 0 0 ] [ -1.0000000000000002 0 0 -64 ] 0 1 1
+}
+// brush 2
+{
+( -194 -460 -110 ) ( -194 -464 -110 ) ( -194 -464 -114 ) wood/wood_green_1 [ 0 -1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( -194 -460 -114 ) ( -194 -464 -114 ) ( -192 -464 -118 ) wood/wood_green_1 [ 0 0 -1.0000000000000002 74.8 ] [ 0 -1.0000000000000002 0 0 ] 0 1 1
+( -194 -460 -110 ) ( -192 -460 -106 ) ( -192 -464 -106 ) wood/wood_green_1 [ 0 0 -1.0000000000000002 -42.799988 ] [ 0 -1.0000000000000002 0 0 ] 0 1 1
+( -194 -464 -110 ) ( -192 -464 -106 ) ( -192 -464 -118 ) wood/wood_green_1 [ 1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( -192 -460 -118 ) ( -192 -460 -106 ) ( -194 -460 -110 ) wood/wood_green_1 [ -1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( -192 -464 -106 ) ( -192 -460 -106 ) ( -192 -460 -118 ) wood/wood_green_1 [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+}
+// brush 3
+{
+( -186 -454 -102 ) ( -192 -454 -104 ) ( -192 -450 -104 ) wood/wood_green_1 [ 0 -1.0000000000000002 0 0 ] [ 1.0000000000000002 0 0 40 ] 0 1 1
+( -174 -454 -102 ) ( -168 -454 -104 ) ( -192 -454 -104 ) wood/wood_green_1 [ 1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( -168 -454 -104 ) ( -168 -450 -104 ) ( -192 -450 -104 ) wood/wood_green_1 [ -1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( -186 -450 -102 ) ( -174 -450 -102 ) ( -174 -454 -102 ) wood/wood_green_1 [ 1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( -192 -450 -104 ) ( -168 -450 -104 ) ( -174 -450 -102 ) wood/wood_green_1 [ -1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( -174 -450 -102 ) ( -168 -450 -104 ) ( -168 -454 -104 ) wood/wood_green_1 [ 0 1.0000000000000002 0 0 ] [ -1.0000000000000002 0 0 -64 ] 0 1 1
+}
+// brush 4
+{
+( -194 -488 -110 ) ( -194 -492 -110 ) ( -194 -492 -114 ) wood/wood_green_1 [ 0 -1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( -194 -488 -114 ) ( -194 -492 -114 ) ( -192 -492 -118 ) wood/wood_green_1 [ 0 0 -1.0000000000000002 74.8 ] [ 0 -1.0000000000000002 0 0 ] 0 1 1
+( -194 -488 -110 ) ( -192 -488 -106 ) ( -192 -492 -106 ) wood/wood_green_1 [ 0 0 -1.0000000000000002 -42.799988 ] [ 0 -1.0000000000000002 0 0 ] 0 1 1
+( -194 -492 -110 ) ( -192 -492 -106 ) ( -192 -492 -118 ) wood/wood_green_1 [ 1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( -192 -488 -118 ) ( -192 -488 -106 ) ( -194 -488 -110 ) wood/wood_green_1 [ -1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( -192 -492 -106 ) ( -192 -488 -106 ) ( -192 -488 -118 ) wood/wood_green_1 [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+}
+// brush 5
+{
+( -193 -501 -104 ) ( -193 -499 -109 ) ( -193 -499 -104 ) metal/metal_6 [ 0 -1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( -192 -501 -104 ) ( -193 -501 -109 ) ( -193 -501 -104 ) metal/metal_6 [ 1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( -192 -499 -109 ) ( -193 -501 -109 ) ( -192 -501 -109 ) metal/metal_6 [ -1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( -192 -499 -104 ) ( -193 -501 -104 ) ( -193 -499 -104 ) metal/metal_6 [ 1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( -192 -499 -104 ) ( -193 -499 -109 ) ( -192 -499 -109 ) metal/metal_6 [ -1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( -192 -499 -104 ) ( -192 -501 -109 ) ( -192 -501 -104 ) metal/metal_6 [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+}
+// brush 6
+{
+( -193 -453 -104 ) ( -193 -451 -109 ) ( -193 -451 -104 ) metal/metal_6 [ 0 -1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( -192 -453 -104 ) ( -193 -453 -109 ) ( -193 -453 -104 ) metal/metal_6 [ 1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( -192 -451 -109 ) ( -193 -453 -109 ) ( -192 -453 -109 ) metal/metal_6 [ -1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( -192 -451 -104 ) ( -193 -453 -104 ) ( -193 -451 -104 ) metal/metal_6 [ 1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( -192 -451 -104 ) ( -193 -451 -109 ) ( -192 -451 -109 ) metal/metal_6 [ -1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( -192 -451 -104 ) ( -192 -453 -109 ) ( -192 -453 -104 ) metal/metal_6 [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+}
+}
+// entity 319
+{
+"classname" "func_group"
+"_tb_type" "_tb_group"
+"_tb_name" "ammo_crate"
+"_tb_id" "59"
+"_tb_linked_group_id" "{b903a9aa-c9d3-455a-8d1a-0e786c150e42}"
+"_tb_transformation" "1 0 0 0 0 0.9659258262890688 -0.258819045102519 -89.2070397378855 0 0.258819045102519 0.9659258262890688 135.38155801317475 0 0 0 1"
+}
+// entity 320
+{
+"classname" "geo_ballistic_container"
+"game_material_info" "3"
+"container_size" "14"
+"max_spawned" "5"
+"chance_active" "0.5"
+"_tb_group" "59"
+// brush 0
+{
+( -192 -490.88352450308594 -96.480473347442 ) ( -192 -489.91759867679684 -96.22165430233949 ) ( -192 -491.1423435481885 -95.51454752115293 ) wood/wood_green_1 [ 0 -1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( -192 -552.7027773855864 -113.04489223400321 ) ( -192 -552.9615964306888 -112.07896640771418 ) ( -191 -552.7027773855864 -113.04489223400321 ) wood/wood_green_1 [ 1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( -168 -487.2972226144137 -78.95510776599676 ) ( -168 -486.33129678812463 -78.69628872089424 ) ( -167 -487.2972226144137 -78.95510776599676 ) wood/wood_green_1 [ 1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( -192 -490.88352450308594 -96.480473347442 ) ( -191 -490.88352450308594 -96.480473347442 ) ( -192 -489.91759867679684 -96.22165430233949 ) wood/wood_green_1 [ -1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( -168 -485.22667025359357 -86.68251437630931 ) ( -167 -485.22667025359357 -86.68251437630931 ) ( -168 -485.4854892986961 -85.71658855002022 ) wood/wood_green_1 [ -1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( -168 -485.22667025359357 -86.68251437630931 ) ( -168 -485.4854892986961 -85.71658855002022 ) ( -168 -484.2607444273045 -86.42369533120677 ) wood/wood_green_1 [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+}
+// brush 1
+{
+( -186 -547.702261934541 -93.07003690977479 ) ( -192 -547.184623844336 -95.00188856235295 ) ( -192 -543.3209205391797 -93.96661238194287 ) wood/wood_green_1 [ 0 -1.0000000000000002 0 0 ] [ 1.0000000000000002 0 0 40 ] 0 1 1
+( -174 -547.702261934541 -93.07003690977479 ) ( -168 -547.184623844336 -95.00188856235295 ) ( -192 -547.184623844336 -95.00188856235295 ) wood/wood_green_1 [ 1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( -186 -543.8385586293848 -92.03476072936473 ) ( -174 -543.8385586293848 -92.03476072936473 ) ( -174 -547.702261934541 -93.07003690977479 ) wood/wood_green_1 [ 1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( -168 -547.184623844336 -95.00188856235295 ) ( -168 -543.3209205391797 -93.96661238194287 ) ( -192 -543.3209205391797 -93.96661238194287 ) wood/wood_green_1 [ -1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( -192 -543.3209205391797 -93.96661238194287 ) ( -168 -543.3209205391797 -93.96661238194287 ) ( -174 -543.8385586293848 -92.03476072936473 ) wood/wood_green_1 [ -1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( -174 -543.8385586293848 -92.03476072936473 ) ( -168 -543.3209205391797 -93.96661238194287 ) ( -168 -547.184623844336 -95.00188856235295 ) wood/wood_green_1 [ 0 1.0000000000000002 0 0 ] [ -1.0000000000000002 0 0 -64 ] 0 1 1
+}
+// brush 2
+{
+( -194 -505.06282486957997 -89.92704362578155 ) ( -194 -508.92652817473623 -90.9623198061916 ) ( -194 -507.8912519943262 -94.8260231113479 ) wood/wood_green_1 [ 0 -1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( -194 -505.06282486957997 -89.92704362578155 ) ( -192 -506.0981010499901 -86.06334032062526 ) ( -192 -509.96180435514634 -87.09861650103534 ) wood/wood_green_1 [ 0 0 -1.0000000000000002 -42.799988 ] [ 0 -1.0000000000000002 0 0 ] 0 1 1
+( -194 -504.0275486891699 -93.79074693093781 ) ( -194 -507.8912519943262 -94.8260231113479 ) ( -192 -506.85597581391613 -98.68972641650416 ) wood/wood_green_1 [ 0 0 -1.0000000000000002 74.8 ] [ 0 -1.0000000000000002 0 0 ] 0 1 1
+( -194 -508.92652817473623 -90.9623198061916 ) ( -192 -509.96180435514634 -87.09861650103534 ) ( -192 -506.85597581391613 -98.68972641650416 ) wood/wood_green_1 [ 1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( -192 -502.99227250875987 -97.65445023609408 ) ( -192 -506.0981010499901 -86.06334032062526 ) ( -194 -505.06282486957997 -89.92704362578155 ) wood/wood_green_1 [ -1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( -192 -509.96180435514634 -87.09861650103534 ) ( -192 -506.0981010499901 -86.06334032062526 ) ( -192 -502.99227250875987 -97.65445023609408 ) wood/wood_green_1 [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+}
+// brush 3
+{
+( -186 -501.3378222726657 -80.64672274485389 ) ( -192 -500.82018418246065 -82.57857439743202 ) ( -192 -496.9564808773044 -81.54329821702194 ) wood/wood_green_1 [ 0 -1.0000000000000002 0 0 ] [ 1.0000000000000002 0 0 40 ] 0 1 1
+( -174 -501.3378222726657 -80.64672274485389 ) ( -168 -500.82018418246065 -82.57857439743202 ) ( -192 -500.82018418246065 -82.57857439743202 ) wood/wood_green_1 [ 1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( -186 -497.4741189675094 -79.61144656444378 ) ( -174 -497.4741189675094 -79.61144656444378 ) ( -174 -501.3378222726657 -80.64672274485389 ) wood/wood_green_1 [ 1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( -168 -500.82018418246065 -82.57857439743202 ) ( -168 -496.9564808773044 -81.54329821702194 ) ( -192 -496.9564808773044 -81.54329821702194 ) wood/wood_green_1 [ -1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( -192 -496.9564808773044 -81.54329821702194 ) ( -168 -496.9564808773044 -81.54329821702194 ) ( -174 -497.4741189675094 -79.61144656444378 ) wood/wood_green_1 [ -1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( -174 -497.4741189675094 -79.61144656444378 ) ( -168 -496.9564808773044 -81.54329821702194 ) ( -168 -500.82018418246065 -82.57857439743202 ) wood/wood_green_1 [ 0 1.0000000000000002 0 0 ] [ -1.0000000000000002 0 0 -64 ] 0 1 1
+}
+// brush 4
+{
+( -194 -532.108748005674 -97.17397688865208 ) ( -194 -535.9724513108301 -98.20925306906213 ) ( -194 -534.9371751304201 -102.07295637421842 ) wood/wood_green_1 [ 0 -1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( -194 -532.108748005674 -97.17397688865208 ) ( -192 -533.1440241860839 -93.31027358349579 ) ( -192 -537.0077274912403 -94.34554976390586 ) wood/wood_green_1 [ 0 0 -1.0000000000000002 -42.799988 ] [ 0 -1.0000000000000002 0 0 ] 0 1 1
+( -194 -531.0734718252638 -101.03768019380834 ) ( -194 -534.9371751304201 -102.07295637421842 ) ( -192 -533.90189895001 -105.93665967937469 ) wood/wood_green_1 [ 0 0 -1.0000000000000002 74.8 ] [ 0 -1.0000000000000002 0 0 ] 0 1 1
+( -192 -530.0381956448538 -104.9013834989646 ) ( -192 -533.1440241860839 -93.31027358349579 ) ( -194 -532.108748005674 -97.17397688865208 ) wood/wood_green_1 [ -1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( -194 -535.9724513108301 -98.20925306906213 ) ( -192 -537.0077274912403 -94.34554976390586 ) ( -192 -533.90189895001 -105.93665967937469 ) wood/wood_green_1 [ 1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( -192 -537.0077274912403 -94.34554976390586 ) ( -192 -533.1440241860839 -93.31027358349579 ) ( -192 -530.0381956448538 -104.9013834989646 ) wood/wood_green_1 [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+}
+// brush 5
+{
+( -193 -546.2186980180469 -94.7430695172504 ) ( -193 -542.9927511399562 -99.05506055849071 ) ( -193 -544.2868463654688 -94.22543142704538 ) metal/metal_6 [ 0 -1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( -192 -546.2186980180469 -94.7430695172504 ) ( -193 -544.9246027925343 -99.57269864869573 ) ( -193 -546.2186980180469 -94.7430695172504 ) metal/metal_6 [ 1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( -192 -544.2868463654688 -94.22543142704538 ) ( -193 -546.2186980180469 -94.7430695172504 ) ( -193 -544.2868463654688 -94.22543142704538 ) metal/metal_6 [ 1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( -192 -542.9927511399562 -99.05506055849071 ) ( -193 -544.9246027925343 -99.57269864869573 ) ( -192 -544.9246027925343 -99.57269864869573 ) metal/metal_6 [ -1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( -192 -544.2868463654688 -94.22543142704538 ) ( -193 -542.9927511399562 -99.05506055849071 ) ( -192 -542.9927511399562 -99.05506055849071 ) metal/metal_6 [ -1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( -192 -544.2868463654688 -94.22543142704538 ) ( -192 -544.9246027925343 -99.57269864869573 ) ( -192 -546.2186980180469 -94.7430695172504 ) metal/metal_6 [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+}
+// brush 6
+{
+( -193 -499.8542583561716 -82.31975535232951 ) ( -193 -496.6283114780809 -86.63174639356981 ) ( -193 -497.9224067035935 -81.80211726212445 ) metal/metal_6 [ 0 -1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( -192 -499.8542583561716 -82.31975535232951 ) ( -193 -498.560163130659 -87.14938448377484 ) ( -193 -499.8542583561716 -82.31975535232951 ) metal/metal_6 [ 1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( -192 -497.9224067035935 -81.80211726212445 ) ( -193 -499.8542583561716 -82.31975535232951 ) ( -193 -497.9224067035935 -81.80211726212445 ) metal/metal_6 [ 1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( -192 -496.6283114780809 -86.63174639356981 ) ( -193 -498.560163130659 -87.14938448377484 ) ( -192 -498.560163130659 -87.14938448377484 ) metal/metal_6 [ -1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( -192 -497.9224067035935 -81.80211726212445 ) ( -193 -496.6283114780809 -86.63174639356981 ) ( -192 -496.6283114780809 -86.63174639356981 ) metal/metal_6 [ -1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( -192 -497.9224067035935 -81.80211726212445 ) ( -192 -498.560163130659 -87.14938448377484 ) ( -192 -499.8542583561716 -82.31975535232951 ) metal/metal_6 [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+}
+}
+// entity 321
+{
+"classname" "geo_ballistic_solid"
+"game_material_info" "3"
+"container_size" "14"
+"max_spawned" "5"
+"chance_active" "0.5"
+// brush 0
+{
+( -223.02943725152306 -1157.6568542494924 -106 ) ( -220.20101012677685 -1160.4852813742386 -106 ) ( -220.20101012677685 -1160.4852813742386 -118 ) wood/wood_green_1 [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( -221.61522368914996 -1156.2426406871193 -110 ) ( -223.02943725152306 -1157.6568542494924 -106 ) ( -223.02943725152306 -1157.6568542494924 -118 ) wood/wood_green_1 [ 1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( -218.78679656440374 -1159.0710678118653 -114 ) ( -221.61522368914996 -1156.2426406871193 -114 ) ( -223.02943725152306 -1157.6568542494924 -118 ) wood/wood_green_1 [ 0 0 -1.0000000000000002 74.8 ] [ -1.0000000000000002 0 0 0 ] 0 1 1
+( -218.78679656440374 -1159.0710678118653 -110 ) ( -220.20101012677685 -1160.4852813742386 -106 ) ( -223.02943725152306 -1157.6568542494924 -106 ) wood/wood_green_1 [ 0 0 -1.0000000000000002 -42.799988 ] [ 0 -1.0000000000000002 0 0 ] 0 1 1
+( -218.78679656440374 -1159.0710678118653 -110 ) ( -221.61522368914996 -1156.2426406871193 -110 ) ( -221.61522368914996 -1156.2426406871193 -114 ) wood/wood_green_1 [ 1.0000000000000002 0 0 0 ] [ 0 0 -1.0000000000000002 0 ] 0 1 1
+( -220.20101012677685 -1160.4852813742386 -118 ) ( -220.20101012677685 -1160.4852813742386 -106 ) ( -218.78679656440374 -1159.0710678118653 -110 ) wood/wood_green_1 [ 0 -1.0000000000000002 0 0 ] [ 0 0 -1.0000000000000002 0 ] 0 1 1
+}
+// brush 1
+{
+( -228.68629150101538 -1177.4558441227157 -102 ) ( -232.9289321881347 -1181.698484809835 -104 ) ( -215.95836943965753 -1164.7279220613577 -104 ) wood/wood_green_1 [ 0 1.0000000000000002 0 0 ] [ 0 0 -1.0000000000000002 0 ] 0 1 1
+( -225.85786437626916 -1180.284271247462 -102 ) ( -230.10050506338848 -1184.5269119345812 -104 ) ( -232.9289321881347 -1181.698484809835 -104 ) wood/wood_green_1 [ 0 1.0000000000000002 0 0 ] [ -1.0000000000000002 0 0 -64 ] 0 1 1
+( -232.9289321881347 -1181.698484809835 -104 ) ( -230.10050506338848 -1184.5269119345812 -104 ) ( -213.12994231491132 -1167.556349186104 -104 ) wood/wood_green_1 [ -1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( -217.37258300203052 -1171.7989898732233 -102 ) ( -225.85786437626916 -1180.284271247462 -102 ) ( -228.68629150101538 -1177.4558441227157 -102 ) wood/wood_green_1 [ 1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( -220.20101012677674 -1168.970562748477 -102 ) ( -215.95836943965753 -1164.7279220613577 -104 ) ( -213.12994231491132 -1167.556349186104 -104 ) wood/wood_green_1 [ 0 -1.0000000000000002 0 0 ] [ 1.0000000000000002 0 0 40 ] 0 1 1
+( -213.12994231491132 -1167.556349186104 -104 ) ( -230.10050506338848 -1184.5269119345812 -104 ) ( -225.85786437626916 -1180.284271247462 -102 ) wood/wood_green_1 [ 0 -1.0000000000000002 0 0 ] [ 0 0 -1.0000000000000002 0 ] 0 1 1
+}
+// brush 2
+{
+( -215.25126265847086 -1165.4350288425444 -104 ) ( -214.54415587728442 -1164.7279220613577 -109 ) ( -214.54415587728442 -1164.7279220613577 -104 ) metal/metal_6 [ 0 1.0000000000000002 0 0 ] [ 0 0 -1.0000000000000002 0 ] 0 1 1
+( -213.83704909609776 -1166.8492424049175 -104 ) ( -215.25126265847086 -1165.4350288425444 -109 ) ( -215.25126265847086 -1165.4350288425444 -104 ) metal/metal_6 [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( -213.83704909609776 -1166.8492424049175 -109 ) ( -214.54415587728442 -1164.7279220613577 -109 ) ( -215.25126265847086 -1165.4350288425444 -109 ) metal/metal_6 [ -1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( -213.83704909609776 -1166.8492424049175 -104 ) ( -214.54415587728442 -1164.7279220613577 -104 ) ( -213.12994231491132 -1166.142135623731 -104 ) metal/metal_6 [ 1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( -213.83704909609776 -1166.8492424049175 -104 ) ( -213.12994231491132 -1166.142135623731 -109 ) ( -213.83704909609776 -1166.8492424049175 -109 ) metal/metal_6 [ -1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( -214.54415587728442 -1164.7279220613577 -104 ) ( -213.12994231491132 -1166.142135623731 -109 ) ( -213.12994231491132 -1166.142135623731 -104 ) metal/metal_6 [ 0 -1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+}
+// brush 3
+{
+( -240 -1174.6274169979697 -120 ) ( -262.62741699797334 -1152 -120 ) ( -240 -1174.6274169979715 -104 ) wood/wood_green_1 [ -1.0000000000000002 0 0 0 ] [ 0 0 -1.0000000000000002 0 ] 0 1 1
+( -240 -1174.6274169979697 -120 ) ( -240 -1152 -120 ) ( -262.62741699797334 -1152 -120 ) wood/wood_11 [ -1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( -240 -1174.6274169979715 -104 ) ( -262.62741699797397 -1152 -104 ) ( -240 -1152 -104 ) wood/wood_green_1 [ 1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( -262.62741699797397 -1152 -104 ) ( -262.62741699797334 -1152 -120 ) ( -240 -1152 -104 ) wood/wood_11 [ 1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( -240 -1174.6274169979715 -104 ) ( -240 -1152 -104 ) ( -240 -1174.6274169979697 -120 ) wood/wood_11 [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+}
+// brush 4
+{
+( -240 -1140.6862915010133 -120 ) ( -240 -1140.6862915010147 -110.18802153517106 ) ( -240 -1174.6274169979731 -120 ) wood/wood_11 [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( -240 -1174.6274169979731 -120 ) ( -240 -1174.6274169979747 -110.18802153517098 ) ( -223.02943725152335 -1191.597979746447 -120 ) wood/wood_green_1 [ -1.0000000000000002 0 0 0 ] [ 0 0 -1.0000000000000002 0 ] 0 1 1
+( -223.02943725152335 -1191.597979746447 -120 ) ( -223.00515477614493 -1191.5736972710686 -120 ) ( -240 -1174.6274169979731 -120 ) wood/wood_11 [ -1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( -240 -1140.6862915010147 -110.18802153517106 ) ( -223.00515477614505 -1157.6811367248683 -120 ) ( -240 -1174.6274169979747 -110.18802153517098 ) wood/wood_11 [ -1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( -223.02943725152335 -1191.597979746447 -120 ) ( -223.02943725152335 -1191.597979746447 -119.98598050630369 ) ( -223.00515477614493 -1191.5736972710686 -120 ) wood/wood_green_1 [ -1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( -240 -1140.6862915010133 -120 ) ( -223.00515477614505 -1157.6811367248683 -120 ) ( -240 -1140.6862915010147 -110.18802153517106 ) wood/wood_green_1 [ 0 -1.0000000000000002 0 0 ] [ 0 0 -1.0000000000000002 0 ] 0 1 1
+}
+// brush 5
+{
+( -240 -1174.6274169979747 -110.18802153517098 ) ( -240 -1144.8546882018366 -110.18802153517105 ) ( -240 -1174.6274169979758 -104 ) wood/wood_11 [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( -223.02943725152 -1191.5979797464533 -104 ) ( -223.02943725152335 -1191.597979746447 -119.98598050630369 ) ( -240 -1174.6274169979758 -104 ) wood/wood_green_1 [ -1.0000000000000002 0 0 0 ] [ 0 0 -1.0000000000000002 0 ] 0 1 1
+( -223.00515477614505 -1157.6811367248683 -120 ) ( -237.49896197950673 -1143.1873295215078 -111.63199650955639 ) ( -223.00515477614493 -1191.5736972710686 -120 ) wood/wood_11 [ -1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( -237.49896197950673 -1143.1873295215078 -111.63199650955639 ) ( -236.03018356642522 -1144.6561079345904 -104 ) ( -240 -1144.8546882018366 -110.18802153517105 ) wood/wood_11 [ -1.0000000000000002 0 0 0 ] [ 0 0 -1.0000000000000002 0 ] 0 1 1
+( -206.05887450304 -1174.6274169979733 -120 ) ( -223.00515477614505 -1157.6811367248683 -120 ) ( -223.00515477614493 -1191.5736972710686 -120 ) wood/wood_11 [ -1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( -240 -1174.6274169979758 -104 ) ( -240 -1146.6410161513777 -104 ) ( -223.02943725152 -1191.5979797464533 -104 ) wood/wood_green_1 [ 1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( -206.05887450304 -1174.6274169979733 -120 ) ( -223.00515477614493 -1191.5736972710686 -120 ) ( -206.05887450303968 -1174.6274169979758 -104 ) wood/wood_green_1 [ -1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( -206.05887450303968 -1174.6274169979758 -104 ) ( -236.03018356642522 -1144.6561079345904 -104 ) ( -206.05887450304 -1174.6274169979733 -120 ) wood/wood_green_1 [ 1.0000000000000002 0 0 0.6862793 ] [ 0 0 -1.0000000000000002 0 ] 0 1 1
+}
+// brush 6
+{
+( -240 -1137.8578643762687 -114 ) ( -240 -1137.8578643762698 -110.18802153517106 ) ( -240 -1140.686291501016 -118 ) wood/wood_11 [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( -238.58578643762658 -1139.2720779386434 -111.004518116099 ) ( -240 -1140.6862915010167 -110.18802153517106 ) ( -240 -1137.8578643762698 -110.18802153517106 ) wood/wood_11 [ -1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( -240 -1140.686291501016 -118 ) ( -238.58578643762627 -1139.2720779386427 -114 ) ( -240 -1137.8578643762687 -114 ) wood/wood_green_1 [ 0 0 -1.0000000000000002 0.80000305 ] [ 0 1.0000000000000002 0 0.8300781 ] 0 1 1
+( -240 -1140.686291501016 -118 ) ( -240 -1140.6862915010167 -110.18802153517106 ) ( -238.58578643762627 -1139.2720779386427 -114 ) wood/wood_green_1 [ -1.0000000000000002 0 0 0.6862793 ] [ 0 0 -1.0000000000000002 0 ] 0 1 1
+( -238.58578643762627 -1139.2720779386427 -114 ) ( -238.58578643762658 -1139.2720779386434 -111.004518116099 ) ( -240 -1137.8578643762687 -114 ) wood/wood_green_1 [ 0 -1.0000000000000002 0 -0.85791016 ] [ 0 0 -1.0000000000000002 0 ] 0 1 1
+}
+}
+// entity 322
+{
+"classname" "geo_ballistic_solid"
+"game_material_info" "3"
+"container_size" "14"
+"max_spawned" "5"
+"chance_active" "0.5"
+// brush 0
+{
+( -298 -1182 -102 ) ( -304 -1182 -104 ) ( -304 -1178 -104 ) wood/wood_green_1 [ 0 -1.0000000000000002 0 0 ] [ 1.0000000000000002 0 0 40 ] 0 1 1
+( -286 -1182 -102 ) ( -280 -1182 -104 ) ( -304 -1182 -104 ) wood/wood_green_1 [ 1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( -280 -1182 -104 ) ( -280 -1178 -104 ) ( -304 -1178 -104 ) wood/wood_green_1 [ -1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( -298 -1178 -102 ) ( -286 -1178 -102 ) ( -286 -1182 -102 ) wood/wood_green_1 [ 1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( -304 -1178 -104 ) ( -280 -1178 -104 ) ( -286 -1178 -102 ) wood/wood_green_1 [ -1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( -286 -1178 -102 ) ( -280 -1178 -104 ) ( -280 -1182 -104 ) wood/wood_green_1 [ 0 1.0000000000000002 0 0 ] [ -1.0000000000000002 0 0 -64 ] 0 1 1
+}
+// brush 1
+{
+( -306 -1140 -110 ) ( -306 -1144 -110 ) ( -306 -1144 -114 ) wood/wood_green_1 [ 0 -1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( -306 -1140 -114 ) ( -306 -1144 -114 ) ( -304 -1144 -118 ) wood/wood_green_1 [ 0 0 -1.0000000000000002 74.8 ] [ 0 -1.0000000000000002 0 0 ] 0 1 1
+( -306 -1140 -110 ) ( -304 -1140 -106 ) ( -304 -1144 -106 ) wood/wood_green_1 [ 0 0 -1.0000000000000002 -42.799988 ] [ 0 -1.0000000000000002 0 0 ] 0 1 1
+( -306 -1144 -110 ) ( -304 -1144 -106 ) ( -304 -1144 -118 ) wood/wood_green_1 [ 1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( -304 -1140 -118 ) ( -304 -1140 -106 ) ( -306 -1140 -110 ) wood/wood_green_1 [ -1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( -304 -1144 -106 ) ( -304 -1140 -106 ) ( -304 -1140 -118 ) wood/wood_green_1 [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+}
+// brush 2
+{
+( -306 -1168 -110 ) ( -306 -1172 -110 ) ( -306 -1172 -114 ) wood/wood_green_1 [ 0 -1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( -306 -1168 -114 ) ( -306 -1172 -114 ) ( -304 -1172 -118 ) wood/wood_green_1 [ 0 0 -1.0000000000000002 74.8 ] [ 0 -1.0000000000000002 0 0 ] 0 1 1
+( -306 -1168 -110 ) ( -304 -1168 -106 ) ( -304 -1172 -106 ) wood/wood_green_1 [ 0 0 -1.0000000000000002 -42.799988 ] [ 0 -1.0000000000000002 0 0 ] 0 1 1
+( -306 -1172 -110 ) ( -304 -1172 -106 ) ( -304 -1172 -118 ) wood/wood_green_1 [ 1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( -304 -1168 -118 ) ( -304 -1168 -106 ) ( -306 -1168 -110 ) wood/wood_green_1 [ -1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( -304 -1172 -106 ) ( -304 -1168 -106 ) ( -304 -1168 -118 ) wood/wood_green_1 [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+}
+// brush 3
+{
+( -305 -1181 -104 ) ( -305 -1179 -109 ) ( -305 -1179 -104 ) metal/metal_6 [ 0 -1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( -304 -1181 -104 ) ( -305 -1181 -109 ) ( -305 -1181 -104 ) metal/metal_6 [ 1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( -304 -1179 -109 ) ( -305 -1181 -109 ) ( -304 -1181 -109 ) metal/metal_6 [ -1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( -304 -1179 -104 ) ( -305 -1181 -104 ) ( -305 -1179 -104 ) metal/metal_6 [ 1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( -304 -1179 -104 ) ( -305 -1179 -109 ) ( -304 -1179 -109 ) metal/metal_6 [ -1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( -304 -1179 -104 ) ( -304 -1181 -109 ) ( -304 -1181 -104 ) metal/metal_6 [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+}
+// brush 4
+{
+( -305 -1133 -104 ) ( -305 -1131 -109 ) ( -305 -1131 -104 ) metal/metal_6 [ 0 -1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( -304 -1133 -104 ) ( -305 -1133 -109 ) ( -305 -1133 -104 ) metal/metal_6 [ 1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( -304 -1131 -109 ) ( -305 -1133 -109 ) ( -304 -1133 -109 ) metal/metal_6 [ -1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( -304 -1131 -104 ) ( -305 -1133 -104 ) ( -305 -1131 -104 ) metal/metal_6 [ 1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( -304 -1131 -104 ) ( -305 -1131 -109 ) ( -304 -1131 -109 ) metal/metal_6 [ -1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( -304 -1131 -104 ) ( -304 -1133 -109 ) ( -304 -1133 -104 ) metal/metal_6 [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+}
+// brush 5
+{
+( -304 -1192 -120 ) ( -304 -1152 -120 ) ( -304 -1192 -104 ) wood/wood_11 [ 0 -1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( -304 -1192 -104 ) ( -280 -1192 -104 ) ( -304 -1192 -120 ) wood/wood_green_1 [ 1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( -280 -1192 -120 ) ( -280 -1152 -120 ) ( -304 -1192 -120 ) wood/wood_11 [ -1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( -304 -1192 -104 ) ( -304 -1152 -104 ) ( -280 -1192 -104 ) wood/wood_green_1 [ 1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( -280 -1152 -120 ) ( -280 -1152 -104 ) ( -304 -1152 -120 ) wood/wood_11 [ 1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( -280 -1192 -104 ) ( -280 -1152 -104 ) ( -280 -1192 -120 ) wood/wood_green_1 [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+}
+}
+// entity 323
+{
+"classname" "geo_ballistic_solid"
+"game_material_info" "3"
+// brush 0
+{
+( -304 -1108 -116 ) ( -304 -1107 -116 ) ( -304 -1108 -115 ) wood/wood_16 [ 0 -1 0 -36 ] [ 0 0 -1 0 ] 0 1 1
+( -304 -1048 -116 ) ( -304 -1048 -115 ) ( -303 -1048 -116 ) wood/wood_16 [ 1 0 0 60 ] [ 0 0 -1 0 ] 0 1 1
+( -304 -1108 -116 ) ( -303 -1108 -116 ) ( -304 -1107 -116 ) wood/wood_16 [ -1 0 0 -60 ] [ 0 -1 0 -36 ] 0 1 1
+( -296 -1044 -52 ) ( -296 -1043 -52 ) ( -295 -1044 -52 ) wood/wood_16 [ 1 0 0 60 ] [ 0 -1 0 -36 ] 0 1 1
+( -296 -1040 -52 ) ( -295 -1040 -52 ) ( -296 -1040 -51 ) wood/wood_16 [ -1 0 0 -60 ] [ 0 0 -1 0 ] 0 1 1
+( -296 -1044 -52 ) ( -296 -1044 -51 ) ( -296 -1043 -52 ) wood/wood_16 [ 0 1 0 36 ] [ 0 0 -1 0 ] 0 1 1
+}
+// brush 1
+{
+( -304 -1048 -120 ) ( -304 -1047 -120 ) ( -304 -1048 -119 ) wood/wood_16 [ 0 -1 0 -36 ] [ 0 0 -1 0 ] 0 1 1
+( -240 -1048 -120 ) ( -240 -1048 -119 ) ( -239 -1048 -120 ) wood/wood_16 [ 1 0 0 60 ] [ 0 0 -1 0 ] 0 1 1
+( -240 -1048 -120 ) ( -239 -1048 -120 ) ( -240 -1047 -120 ) wood/wood_16 [ -1 0 0 -60 ] [ 0 -1 0 -36 ] 0 1 1
+( -236 -1040 -116 ) ( -236 -1039 -116 ) ( -235 -1040 -116 ) wood/wood_16 [ 1 0 0 60 ] [ 0 -1 0 -36 ] 0 1 1
+( -236 -1040 -116 ) ( -235 -1040 -116 ) ( -236 -1040 -115 ) wood/wood_16 [ -1 0 0 -60 ] [ 0 0 -1 0 ] 0 1 1
+( -232 -1040 -116 ) ( -232 -1040 -115 ) ( -232 -1039 -116 ) wood/wood_16 [ 0 1 0 36 ] [ 0 0 -1 0 ] 0 1 1
+}
+// brush 2
+{
+( -240 -1104 -120 ) ( -240 -1103 -120 ) ( -240 -1104 -119 ) wood/wood_16 [ 0 -1 0 -36 ] [ 0 0 -1 0 ] 0 1 1
+( -240 -1104 -120 ) ( -240 -1104 -119 ) ( -239 -1104 -120 ) wood/wood_16 [ 1 0 0 60 ] [ 0 0 -1 0 ] 0 1 1
+( -240 -1104 -120 ) ( -239 -1104 -120 ) ( -240 -1103 -120 ) wood/wood_16 [ -1 0 0 -60 ] [ 0 -1 0 -36 ] 0 1 1
+( -232 -1048 -116 ) ( -232 -1047 -116 ) ( -231 -1048 -116 ) wood/wood_16 [ 1 0 0 60 ] [ 0 -1 0 -36 ] 0 1 1
+( -232 -1048 -116 ) ( -231 -1048 -116 ) ( -232 -1048 -115 ) wood/wood_16 [ -1 0 0 -60 ] [ 0 0 -1 0 ] 0 1 1
+( -232 -1048 -116 ) ( -232 -1048 -115 ) ( -232 -1047 -116 ) wood/wood_16 [ 0 1 0 36 ] [ 0 0 -1 0 ] 0 1 1
+}
+// brush 3
+{
+( -240 -1104 -116 ) ( -240 -1112 -116 ) ( -240 -1104 -120 ) wood/wood_11 [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( -232 -1112 -120 ) ( -240 -1112 -120 ) ( -232 -1112 -116 ) wood/wood_16 [ 1 0 0 60 ] [ 0 0 -1 0 ] 0 1 1
+( -232 -1104 -120 ) ( -240 -1104 -120 ) ( -232 -1112 -120 ) wood/wood_11 [ -1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( -232 -1112 -116 ) ( -240 -1112 -116 ) ( -232 -1104 -116 ) wood/wood_16 [ 1 0 0 60 ] [ 0 -1 0 -36 ] 0 1 1
+( -232 -1104 -116 ) ( -240 -1104 -116 ) ( -232 -1104 -120 ) wood/wood_16 [ -1 0 0 -60 ] [ 0 0 -1 0 ] 0 1 1
+( -232 -1112 -116 ) ( -232 -1104 -116 ) ( -232 -1112 -120 ) wood/wood_16 [ 0 1 0 36 ] [ 0 0 -1 0 ] 0 1 1
+}
+// brush 4
+{
+( -304 -1048 -116 ) ( -304 -1080 -116 ) ( -304 -1048 -120 ) wood/wood_11 [ 0 -1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( -296 -1080 -120 ) ( -304 -1080 -120 ) ( -296 -1080 -116 ) wood/wood_11 [ -1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( -304 -1048 -120 ) ( -304 -1080 -120 ) ( -296 -1048 -120 ) wood/wood_11 [ -1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( -296 -1048 -116 ) ( -296 -1080 -116 ) ( -304 -1048 -116 ) wood/wood_16 [ 1 0 0 60 ] [ 0 -1 0 -36 ] 0 1 1
+( -304 -1048 -120 ) ( -296 -1048 -120 ) ( -304 -1048 -116 ) wood/wood_16 [ -1 0 0 -60 ] [ 0 0 -1 0 ] 0 1 1
+( -296 -1048 -120 ) ( -296 -1080 -120 ) ( -296 -1048 -116 ) wood/wood_16 [ 0 1 0 36 ] [ 0 0 -1 0 ] 0 1 1
+}
+// brush 5
+{
+( -240 -1104 -116 ) ( -240 -1104 -73.2376043070273 ) ( -240 -1112 -116 ) wood/wood_16 [ 0 -1 0 -36 ] [ 0 0 -1 0 ] 0 1 1
+( -232 -1104 -59.38119784647622 ) ( -232 -1112 -68.61880215351167 ) ( -240 -1104 -73.2376043070273 ) wood/wood_11 [ 0 -1.0000000000000002 0 0 ] [ 0 0 -1.0000000000000002 0 ] 0 1 1
+( -240 -1112 -116 ) ( -240 -1112 -82.47520861406275 ) ( -232 -1112 -116 ) wood/wood_16 [ 1 0 0 60 ] [ 0 0 -1 0 ] 0 1 1
+( -240 -1112 -116 ) ( -232 -1112 -116 ) ( -240 -1104 -116 ) wood/wood_16 [ -1 0 0 -60 ] [ 0 -1 0 -36 ] 0 1 1
+( -232 -1104 -116 ) ( -232 -1104 -59.38119784647622 ) ( -240 -1104 -116 ) wood/wood_16 [ -1 0 0 -60 ] [ 0 0 -1 0 ] 0 1 1
+( -232 -1112 -116 ) ( -232 -1112 -68.61880215351167 ) ( -232 -1104 -116 ) wood/wood_16 [ 0 1 0 36 ] [ 0 0 -1 0 ] 0 1 1
+}
+// brush 6
+{
+( -304 -1112 -52 ) ( -304 -1104 -52 ) ( -304 -1112 -48 ) wood/wood_16 [ 0 -1 0 -36 ] [ 0 0 -1 0 ] 0 1 1
+( -304 -1112 -48 ) ( -284.0957290262998 -1112 -48 ) ( -304 -1112 -52 ) wood/wood_16 [ 1 0 0 60 ] [ 0 0 -1 0 ] 0 1 1
+( -304 -1112 -52 ) ( -286.4051301030582 -1112 -52 ) ( -304 -1104 -52 ) wood/wood_16 [ -1 0 0 -60 ] [ 0 -1 0 -36 ] 0 1 1
+( -304 -1104 -48 ) ( -289.4290623596324 -1104 -48 ) ( -304 -1112 -48 ) wood/wood_16 [ 1 0 0 60 ] [ 0 -1 0 -36 ] 0 1 1
+( -304 -1104 -52 ) ( -291.73846343639076 -1104 -52 ) ( -304 -1104 -48 ) wood/wood_16 [ -1 0 0 -60 ] [ 0 0 -1 0 ] 0 1 1
+( -289.4290623596324 -1104 -48 ) ( -291.73846343639076 -1104 -52 ) ( -284.0957290262998 -1112 -48 ) wood/wood_11 [ 0 1.0000000000000002 0 0 ] [ 0 0 -1.0000000000000002 0 ] 0 1 1
+}
+// brush 7
+{
+( -289.4290623596324 -1104 -48 ) ( -289.237604307034 -1104.2871870788977 -48 ) ( -291.73846343639076 -1104 -52 ) wood/wood_11 [ 0 1.0000000000000002 0 0 ] [ 0 0 -1.0000000000000002 0 ] 0 1 1
+( -291.73846343639076 -1104 -52 ) ( -291.5470053837924 -1104.2871870788977 -52 ) ( -290.9726312259971 -1104 -52 ) wood/wood_16 [ -1 0 0 -60 ] [ 0 -1 0 -36 ] 0 1 1
+( -289.4290623596324 -1104 -48 ) ( -288.6632301492387 -1104 -48 ) ( -289.237604307034 -1104.2871870788977 -48 ) wood/wood_16 [ 1 0 0 60 ] [ 0 -1 0 -36 ] 0 1 1
+( -291.73846343639076 -1104 -52 ) ( -290.9726312259971 -1104 -52 ) ( -289.4290623596324 -1104 -48 ) wood/wood_16 [ -1 0 0 -60 ] [ 0 0 -1 0 ] 0 1 1
+( -290.9726312259971 -1104 -52 ) ( -291.5470053837924 -1104.2871870788977 -52 ) ( -288.6632301492387 -1104 -48 ) wood/wood_11 [ 1.0000000000000002 0 0 0 ] [ 0 0 -1.0000000000000002 0 ] 0 1 1
+}
+// brush 8
+{
+( -300 -1108 -64 ) ( -300 -1102 -64 ) ( -300 -1108 -52 ) wood/wood_16 [ 0 -1 0 -36 ] [ 0 0 -1 0 ] 0 1 1
+( -300 -1108 -52 ) ( -289.07179676972453 -1108 -52 ) ( -300 -1108 -64 ) wood/wood_16 [ 1 0 0 60 ] [ 0 0 -1 0 ] 0 1 1
+( -300 -1108 -64 ) ( -296 -1108 -64 ) ( -300 -1102 -64 ) wood/wood_11 [ 1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( -300 -1108 -52 ) ( -300 -1091.6076951545847 -52 ) ( -289.07179676972453 -1108 -52 ) wood/wood_16 [ 1 0 0 60 ] [ 0 -1 0 -36 ] 0 1 1
+( -296 -1108 -64 ) ( -289.07179676972453 -1108 -52 ) ( -300 -1102 -64 ) wood/wood_11 [ 0 1.0000000000000002 0 0 ] [ 0 0 -1.0000000000000002 0 ] 0 1 1
+}
+// brush 9
+{
+( -240 -1096 -64 ) ( -250.66666666667277 -1080 -64 ) ( -240 -1085.6076951545951 -52 ) wood/wood_11 [ 0 -1.0000000000000002 0 0 ] [ 0 0 -1.0000000000000002 0 ] 0 1 1
+( -240 -1080 -64 ) ( -250.66666666667277 -1080 -64 ) ( -240 -1096 -64 ) wood/wood_11 [ 1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( -240 -1080 -52 ) ( -240 -1085.6076951545951 -52 ) ( -243.73846343639732 -1080 -52 ) wood/wood_16 [ 1 0 0 60 ] [ 0 -1 0 -36 ] 0 1 1
+( -240 -1080 -52 ) ( -243.73846343639732 -1080 -52 ) ( -240 -1080 -64 ) wood/wood_11 [ -1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( -240 -1080 -64 ) ( -240 -1096 -64 ) ( -240 -1080 -52 ) wood/wood_11 [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+}
+// brush 10
+{
+( -300 -1080 -52 ) ( -300 -1091.6076951545847 -52 ) ( -300 -1080 -64 ) wood/wood_16 [ 0 -1 0 -36 ] [ 0 0 -1 0 ] 0 1 1
+( -300 -1091.6076951545847 -52 ) ( -291.5470053837924 -1104.2871870788977 -52 ) ( -300 -1102 -64 ) wood/wood_11 [ 0 1.0000000000000002 0 0 ] [ 0 0 -1.0000000000000002 0 ] 0 1 1
+( -300 -1102 -64 ) ( -298.47520861406804 -1104.2871870788977 -64 ) ( -300 -1080 -64 ) wood/wood_11 [ 1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( -243.73846343639732 -1080 -52 ) ( -243.5470053837962 -1080.2871870789015 -52 ) ( -300 -1080 -52 ) wood/wood_16 [ 1 0 0 60 ] [ 0 -1 0 -36 ] 0 1 1
+( -300 -1080 -64 ) ( -250.66666666667277 -1080 -64 ) ( -300 -1080 -52 ) wood/wood_11 [ -1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( -298.47520861406804 -1104.2871870788977 -64 ) ( -291.5470053837924 -1104.2871870788977 -52 ) ( -250.4752086140717 -1080.2871870789015 -64 ) wood/wood_11 [ 1.0000000000000002 0 0 0 ] [ 0 0 -1.0000000000000002 0 ] 0 1 1
+( -250.66666666667277 -1080 -64 ) ( -250.4752086140717 -1080.2871870789015 -64 ) ( -243.73846343639732 -1080 -52 ) wood/wood_11 [ 0 -1.0000000000000002 0 0 ] [ 0 0 -1.0000000000000002 0 ] 0 1 1
+}
+// brush 11
+{
+( -304 -1112 -64 ) ( -304 -1104 -64 ) ( -304 -1112 -52 ) wood/wood_11 [ 0 -1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( -304 -1112 -52 ) ( -296 -1112 -52 ) ( -304 -1112 -64 ) wood/wood_16 [ 1 0 0 60 ] [ 0 0 -1 0 ] 0 1 1
+( -296 -1112 -64 ) ( -296 -1108 -64 ) ( -304 -1112 -64 ) wood/wood_11 [ 1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( -304 -1104 -52 ) ( -296 -1104 -52 ) ( -304 -1112 -52 ) wood/wood_16 [ 1 0 0 60 ] [ 0 -1 0 -36 ] 0 1 1
+( -304 -1104 -64 ) ( -298.6666666666664 -1104 -64 ) ( -304 -1104 -52 ) wood/wood_16 [ -1 0 0 -60 ] [ 0 0 -1 0 ] 0 1 1
+( -298.6666666666664 -1104 -64 ) ( -296 -1108 -64 ) ( -296 -1104 -59.38119784648346 ) wood/wood_11 [ 0 1.0000000000000002 0 0 ] [ 0 0 -1.0000000000000002 0 ] 0 1 1
+( -296 -1104 -52 ) ( -296 -1104 -59.38119784648346 ) ( -296 -1112 -52 ) wood/wood_16 [ 0 1 0 36 ] [ 0 0 -1 0 ] 0 1 1
+}
+// brush 12
+{
+( -296 -1104 -59.38119784648346 ) ( -296 -1104.2871870788977 -59.71281292110208 ) ( -298.6666666666664 -1104 -64 ) wood/wood_11 [ 0 1.0000000000000002 0 0 ] [ 0 0 -1.0000000000000002 0 ] 0 1 1
+( -298.6666666666664 -1104 -64 ) ( -298.475208614068 -1104.2871870788977 -64 ) ( -297.9008344562727 -1104 -64 ) wood/wood_11 [ 1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( -298.6666666666664 -1104 -64 ) ( -297.9008344562727 -1104 -64 ) ( -296 -1104 -59.38119784648346 ) wood/wood_16 [ -1 0 0 -60 ] [ 0 0 -1 0 ] 0 1 1
+( -298.475208614068 -1104.2871870788977 -64 ) ( -296 -1104.2871870788977 -59.71281292110208 ) ( -297.9008344562727 -1104 -64 ) wood/wood_11 [ 1.0000000000000002 0 0 0 ] [ 0 0 -1.0000000000000002 0 ] 0 1 1
+( -296 -1104 -59.38119784648346 ) ( -296 -1104 -60.70765814495809 ) ( -296 -1104.2871870788977 -59.71281292110208 ) wood/wood_16 [ 0 1 0 36 ] [ 0 0 -1 0 ] 0 1 1
+}
+// brush 13
+{
+( -304 -1048 -52 ) ( -304 -1040 -52 ) ( -304 -1048 -48 ) wood/wood_16 [ 0 -1 0 -36 ] [ 0 0 -1 0 ] 0 1 1
+( -304 -1048 -48 ) ( -287.09401076758024 -1048 -48 ) ( -304 -1048 -52 ) wood/wood_16 [ 1 0 0 60 ] [ 0 0 -1 0 ] 0 1 1
+( -304 -1048 -52 ) ( -294.02221399785583 -1048 -52 ) ( -304 -1040 -52 ) wood/wood_16 [ -1 0 0 -60 ] [ 0 -1 0 -36 ] 0 1 1
+( -304 -1040 -48 ) ( -277.8564064605472 -1040 -48 ) ( -304 -1048 -48 ) wood/wood_16 [ 1 0 0 60 ] [ 0 -1 0 -36 ] 0 1 1
+( -304 -1040 -52 ) ( -284.78460969082283 -1040 -52 ) ( -304 -1040 -48 ) wood/wood_16 [ -1 0 0 -60 ] [ 0 0 -1 0 ] 0 1 1
+( -277.8564064605472 -1040 -48 ) ( -284.78460969082283 -1040 -52 ) ( -287.09401076758024 -1048 -48 ) wood/wood_11 [ 1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+}
+// brush 14
+{
+( -238.59658815565047 -1048 -52 ) ( -232 -1042.2871870789043 -52 ) ( -232 -1048 -48.191458052602016 ) wood/wood_11 [ -1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( -232 -1048 -52 ) ( -238.59658815565047 -1048 -52 ) ( -232 -1048 -48.191458052602016 ) wood/wood_16 [ 1 0 0 60 ] [ 0 0 -1 0 ] 0 1 1
+( -232 -1048 -52 ) ( -232 -1042.2871870789043 -52 ) ( -238.59658815565047 -1048 -52 ) wood/wood_16 [ -1 0 0 -60 ] [ 0 -1 0 -36 ] 0 1 1
+( -232 -1048 -52 ) ( -232 -1048 -48.191458052602016 ) ( -232 -1042.2871870789043 -52 ) wood/wood_16 [ 0 1 0 36 ] [ 0 0 -1 0 ] 0 1 1
+}
+// brush 15
+{
+( -240 -1040 -116 ) ( -240 -1040 -58.14359353945346 ) ( -240 -1048 -116 ) wood/wood_16 [ 0 -1 0 -36 ] [ 0 0 -1 0 ] 0 1 1
+( -232 -1042.2871870789043 -52 ) ( -238.5965881556505 -1048 -52 ) ( -232 -1040 -53.524791385936396 ) wood/wood_11 [ -1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( -240 -1048 -116 ) ( -240 -1048 -52.810260206119096 ) ( -232 -1048 -116 ) wood/wood_16 [ 1 0 0 60 ] [ 0 0 -1 0 ] 0 1 1
+( -240 -1048 -116 ) ( -232 -1048 -116 ) ( -240 -1040 -116 ) wood/wood_16 [ -1 0 0 -60 ] [ 0 -1 0 -36 ] 0 1 1
+( -232 -1048 -52 ) ( -238.5965881556505 -1048 -52 ) ( -232 -1042.2871870789043 -52 ) wood/wood_16 [ 1 0 0 60 ] [ 0 -1 0 -36 ] 0 1 1
+( -232 -1040 -116 ) ( -232 -1040 -53.524791385936396 ) ( -240 -1040 -116 ) wood/wood_16 [ -1 0 0 -60 ] [ 0 0 -1 0 ] 0 1 1
+( -232 -1048 -52 ) ( -232 -1042.2871870789043 -52 ) ( -232 -1048 -116 ) wood/wood_16 [ 0 1 0 36 ] [ 0 0 -1 0 ] 0 1 1
+}
+// brush 16
+{
+( -304 -1104 -52 ) ( -304 -1048 -52 ) ( -304 -1104 -48 ) wood/wood_16 [ 0 -1 0 -36 ] [ 0 0 -1 0 ] 0 1 1
+( -304 -1104 -48 ) ( -296.33161507461824 -1104 -48 ) ( -304 -1104 -52 ) wood/wood_16 [ 1 0 0 60 ] [ 0 0 -1 0 ] 0 1 1
+( -304 -1104 -52 ) ( -296 -1104 -52 ) ( -304 -1048 -52 ) wood/wood_16 [ -1 0 0 -60 ] [ 0 -1 0 -36 ] 0 1 1
+( -304 -1048 -48 ) ( -296.33161507461966 -1048 -48 ) ( -304 -1104 -48 ) wood/wood_16 [ 1 0 0 60 ] [ 0 -1 0 -36 ] 0 1 1
+( -296 -1048 -52 ) ( -296 -1048 -48.57437415779699 ) ( -304 -1048 -52 ) wood/wood_16 [ -1 0 0 -60 ] [ 0 0 -1 0 ] 0 1 1
+( -296 -1104 -48.57437415779451 ) ( -296.33161507461824 -1104 -48 ) ( -296 -1048 -48.57437415779699 ) wood/wood_11 [ 0 -1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( -296 -1104 -52 ) ( -296 -1104 -48.57437415779451 ) ( -296 -1048 -52 ) wood/wood_16 [ 0 1 0 36 ] [ 0 0 -1 0 ] 0 1 1
+}
+// brush 17
+{
+( -296 -1104 -48.57437415779451 ) ( -296 -1072 -48.57437415779592 ) ( -296.33161507461824 -1104 -48 ) wood/wood_11 [ 0 -1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( -296 -1104 -48 ) ( -296 -1104 -48.57437415779451 ) ( -296.33161507461824 -1104 -48 ) wood/wood_16 [ 1 0 0 60 ] [ 0 0 -1 0 ] 0 1 1
+( -296.33161507461824 -1104 -48 ) ( -296.33161507461904 -1071.6170838948026 -48 ) ( -296 -1104 -48 ) wood/wood_16 [ 1 0 0 60 ] [ 0 -1 0 -36 ] 0 1 1
+( -296 -1071.7128129211019 -48 ) ( -296.33161507461904 -1071.6170838948026 -48 ) ( -296 -1072 -48.57437415779592 ) wood/wood_11 [ 1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( -296 -1104 -48 ) ( -296 -1071.7128129211019 -48 ) ( -296 -1104 -48.57437415779451 ) wood/wood_16 [ 0 1 0 36 ] [ 0 0 -1 0 ] 0 1 1
+}
+// brush 18
+{
+( -296.33161507461966 -1048 -48 ) ( -296.33161507461944 -1056 -48 ) ( -296 -1048 -48.57437415779699 ) wood/wood_11 [ 0 -1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( -296 -1048 -48 ) ( -296 -1055.7128129211071 -48 ) ( -296.33161507461966 -1048 -48 ) wood/wood_16 [ 1 0 0 60 ] [ 0 -1 0 -36 ] 0 1 1
+( -296 -1048 -48 ) ( -296.33161507461966 -1048 -48 ) ( -296 -1048 -48.57437415779699 ) wood/wood_16 [ -1 0 0 -60 ] [ 0 0 -1 0 ] 0 1 1
+( -296.33161507461944 -1056 -48 ) ( -296 -1055.7128129211071 -48 ) ( -296 -1054.851251684412 -48.57437415779668 ) wood/wood_11 [ 1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( -296 -1048 -48.57437415779699 ) ( -296 -1054.851251684412 -48.57437415779668 ) ( -296 -1048 -48 ) wood/wood_16 [ 0 1 0 36 ] [ 0 0 -1 0 ] 0 1 1
+}
+// brush 19
+{
+( -300 -1080 -116 ) ( -300 -1044 -116 ) ( -300 -1080 -52 ) wood/wood_16 [ 0 -1 0 -36 ] [ 0 0 -1 0 ] 0 1 1
+( -300 -1080 -52 ) ( -294.0222139978602 -1080 -52 ) ( -300 -1080 -116 ) wood/wood_11 [ -1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( -300 -1080 -116 ) ( -257.0717967697226 -1080 -116 ) ( -300 -1044 -116 ) wood/wood_16 [ -1 0 0 -60 ] [ 0 -1 0 -36 ] 0 1 1
+( -300 -1044 -52 ) ( -294.0222139978611 -1044 -52 ) ( -300 -1080 -52 ) wood/wood_16 [ 1 0 0 60 ] [ 0 -1 0 -36 ] 0 1 1
+( -300 -1044 -116 ) ( -257.0717967697235 -1044 -116 ) ( -300 -1044 -52 ) wood/wood_16 [ -1 0 0 -60 ] [ 0 0 -1 0 ] 0 1 1
+( -294.0222139978611 -1044 -52 ) ( -257.0717967697235 -1044 -116 ) ( -294.0222139978602 -1080 -52 ) wood/wood_11 [ 0 -1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+}
+// brush 20
+{
+( -294.0222139978602 -1080 -52 ) ( -289.0717967697237 -1080 -60.57437415779643 ) ( -294.0222139978604 -1074.2837505614693 -52 ) wood/wood_11 [ 0 -1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( -294.0222139978602 -1080 -52 ) ( -274.22054508531505 -1080 -52 ) ( -289.0717967697237 -1080 -60.57437415779643 ) wood/wood_11 [ -1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( -294.0222139978602 -1080 -52 ) ( -294.0222139978604 -1074.2837505614693 -52 ) ( -274.22054508531505 -1080 -52 ) wood/wood_16 [ 1 0 0 60 ] [ 0 -1 0 -36 ] 0 1 1
+( -274.22054508531505 -1080 -52 ) ( -294.0222139978604 -1074.2837505614693 -52 ) ( -289.0717967697237 -1080 -60.57437415779643 ) wood/wood_11 [ 1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
+}
+// brush 21
+{
+( -257.0717967697235 -1044 -116 ) ( -279.01110699892826 -1044 -78 ) ( -257.0717967697226 -1080 -116 ) wood/wood_11 [ 0 -1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( -240 -1044 -55.47692687278636 ) ( -240 -1049.2153903091785 -52 ) ( -279.01110699892826 -1044 -78 ) wood/wood_11 [ -1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( -289.0717967697237 -1080 -60.57437415779643 ) ( -289.3205080756883 -1079.7128129211017 -60.143593539449 ) ( -274.22054508531505 -1080 -52 ) wood/wood_11 [ 1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( -257.0717967697226 -1080 -116 ) ( -289.0717967697237 -1080 -60.57437415779643 ) ( -240 -1080 -116 ) wood/wood_11 [ -1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( -240 -1044 -116 ) ( -257.0717967697235 -1044 -116 ) ( -240 -1080 -116 ) wood/wood_16 [ -1 0 0 -60 ] [ 0 -1 0 -36 ] 0 1 1
+( -274.22054508531505 -1080 -52 ) ( -275.2153903091732 -1079.7128129211017 -52 ) ( -240 -1080 -52 ) wood/wood_16 [ 1 0 0 60 ] [ 0 -1 0 -36 ] 0 1 1
+( -240 -1044 -116 ) ( -240 -1044 -55.47692687278636 ) ( -257.0717967697235 -1044 -116 ) wood/wood_16 [ -1 0 0 -60 ] [ 0 0 -1 0 ] 0 1 1
+( -240 -1080 -52 ) ( -240 -1049.2153903091785 -52 ) ( -240 -1080 -116 ) wood/wood_11 [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+}
+// brush 22
+{
+( -294.0222139978611 -1044 -52 ) ( -294.022213997861 -1048 -52 ) ( -292.8675134594807 -1044 -54 ) wood/wood_11 [ 0 -1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( -294.0222139978611 -1044 -52 ) ( -289.4034118443395 -1044 -52 ) ( -294.022213997861 -1048 -52 ) wood/wood_16 [ 1 0 0 60 ] [ 0 -1 0 -36 ] 0 1 1
+( -294.0222139978611 -1044 -52 ) ( -292.8675134594807 -1044 -54 ) ( -289.4034118443395 -1044 -52 ) wood/wood_16 [ -1 0 0 -60 ] [ 0 0 -1 0 ] 0 1 1
+( -289.4034118443395 -1044 -52 ) ( -292.8675134594807 -1044 -54 ) ( -294.022213997861 -1048 -52 ) wood/wood_11 [ 1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+}
+// brush 23
+{
+( -240 -1085.6076951545947 -52 ) ( -240 -1049.2153903091785 -52 ) ( -240 -1082.1435935394572 -48 ) wood/wood_16 [ 0 -1 0 -36 ] [ 0 0 -1 0 ] 0 1 1
+( -240 -1082.1435935394572 -48 ) ( -232 -1094.1435935394584 -48 ) ( -240 -1085.6076951545947 -52 ) wood/wood_11 [ 0 -1.0000000000000002 0 0 ] [ 0 0 -1.0000000000000002 0 ] 0 1 1
+( -232 -1048 -48.191458052602016 ) ( -232 -1048.287187078903 -48 ) ( -238.5965881556505 -1048 -52 ) wood/wood_11 [ -1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( -232 -1048 -52 ) ( -238.5965881556505 -1048 -52 ) ( -232 -1097.607695154593 -52 ) wood/wood_16 [ -1 0 0 -60 ] [ 0 -1 0 -36 ] 0 1 1
+( -240 -1082.1435935394572 -48 ) ( -240 -1055.2153903091773 -48 ) ( -232 -1094.1435935394584 -48 ) wood/wood_16 [ 1 0 0 60 ] [ 0 -1 0 -36 ] 0 1 1
+( -232 -1048 -52 ) ( -232 -1048 -48.191458052602016 ) ( -238.5965881556505 -1048 -52 ) wood/wood_16 [ -1 0 0 -60 ] [ 0 0 -1 0 ] 0 1 1
+( -232 -1094.1435935394584 -48 ) ( -232 -1048.287187078903 -48 ) ( -232 -1097.607695154593 -52 ) wood/wood_16 [ 0 1 0 36 ] [ 0 0 -1 0 ] 0 1 1
+}
+// brush 24
+{
+( -240 -1044 -116 ) ( -240 -1044 -55.47692687278636 ) ( -240 -1108 -116 ) wood/wood_11 [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( -240 -1085.607695154595 -52 ) ( -236 -1091.607695154594 -52 ) ( -240 -1108 -77.85640646054526 ) wood/wood_11 [ 0 -1.0000000000000002 0 0 ] [ 0 0 -1.0000000000000002 0 ] 0 1 1
+( -240 -1049.2153903091785 -52 ) ( -240 -1044 -55.47692687278636 ) ( -236 -1045.7512886940412 -52 ) wood/wood_11 [ -1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( -240 -1108 -77.85640646054526 ) ( -236 -1108 -70.9282032302697 ) ( -240 -1108 -116 ) wood/wood_16 [ 1 0 0 60 ] [ 0 0 -1 0 ] 0 1 1
+( -240 -1108 -116 ) ( -236 -1108 -116 ) ( -240 -1044 -116 ) wood/wood_16 [ -1 0 0 -60 ] [ 0 -1 0 -36 ] 0 1 1
+( -240 -1085.607695154595 -52 ) ( -240 -1049.2153903091785 -52 ) ( -236 -1091.607695154594 -52 ) wood/wood_16 [ 1 0 0 60 ] [ 0 -1 0 -36 ] 0 1 1
+( -236 -1044 -116 ) ( -236 -1044 -53.16752579602779 ) ( -240 -1044 -116 ) wood/wood_16 [ -1 0 0 -60 ] [ 0 0 -1 0 ] 0 1 1
+( -236 -1091.607695154594 -52 ) ( -236 -1045.7512886940412 -52 ) ( -236 -1108 -70.9282032302697 ) wood/wood_16 [ 0 1 0 36 ] [ 0 0 -1 0 ] 0 1 1
+}
+}
+// entity 324
+{
+"classname" "area_loot_spawn"
+"biome" "0"
+"tier" "0"
+"min_spawned" "1"
+"max_spawned" "2"
+"chance_active" "0.25"
+// brush 0
+{
+( -304 -1112 -104 ) ( -304 -1111 -104 ) ( -304 -1112 -103 ) special/skip [ -6.123233995736766e-17 -1 0 -64 ] [ 0 0 -1 40 ] 0 1 1
+( -152 -1152 -120 ) ( -153 -1152 -120 ) ( -152 -1152 -119 ) special/skip [ 1 -6.123233995736766e-17 0 -48 ] [ 0 0 -1 40 ] 0 1 1
+( -152 -1224 -120 ) ( -152 -1223 -120 ) ( -153 -1224 -120 ) special/skip [ -6.123233995736766e-17 -1 0 -64 ] [ 1 -6.123233995736766e-17 0 -48 ] 90 1 1
+( -312 -1112 -64 ) ( -313 -1112 -64 ) ( -312 -1111 -64 ) special/skip [ 6.123233995736766e-17 1 0 64 ] [ 1 -6.123233995736766e-17 0 -48 ] 270 1 1
+( -312 -1088 -104 ) ( -312 -1088 -103 ) ( -313 -1088 -104 ) special/skip [ -1 6.123233995736766e-17 0 48 ] [ 0 0 -1 40 ] 0 1 1
+( -240 -1224 -120 ) ( -240 -1224 -119 ) ( -240 -1223 -120 ) special/skip [ 6.123233995736766e-17 1 0 64 ] [ 0 0 -1 40 ] 0 1 1
+}
+}
+// entity 325
 {
 "classname" "func_group"
 "_tb_type" "_tb_layer"
@@ -17964,7 +18687,7 @@
 "_tb_id" "1"
 "_tb_layer_sort_index" "0"
 }
-// entity 314
+// entity 326
 {
 "classname" "func_group"
 "_tb_type" "_tb_layer"
@@ -17972,7 +18695,7 @@
 "_tb_id" "2"
 "_tb_layer_sort_index" "1"
 }
-// entity 315
+// entity 327
 {
 "classname" "geo_ballistic_solid"
 "game_material_info" "4"
@@ -17987,7 +18710,7 @@
 ( 1080 -408 144 ) ( 1080 296 144 ) ( 1080 296 112 ) concrete/concrete_1 [ 0 1 0 40 ] [ 0 0 -1 0 ] 0 1 1
 }
 }
-// entity 316
+// entity 328
 {
 "classname" "geo_ballistic_solid"
 "game_material_info" "4"
@@ -18074,7 +18797,7 @@
 ( 576 -964 8 ) ( 576 -260 8 ) ( 576 -260 -24 ) tile/tile_17 [ 0 1 0 32 ] [ 0 0 -1 -8 ] 0 1 1
 }
 }
-// entity 317
+// entity 329
 {
 "classname" "geo_ballistic_solid"
 "game_material_info" "2"
@@ -18089,7 +18812,7 @@
 ( 2368 -16 136 ) ( 2368 -17 136 ) ( 2368 -16 137 ) concrete/concrete_3 [ -1.2246467991473532e-16 1 0 -88 ] [ 0 0 -1 8 ] 0 1 1
 }
 }
-// entity 318
+// entity 330
 {
 "classname" "geo_ballistic_solid"
 "game_material_info" "2"
@@ -18104,7 +18827,7 @@
 ( 2368 -1160 144 ) ( 2368 -1160 145 ) ( 2368 -1159 144 ) concrete/concrete_3 [ 0 1 0 40 ] [ 0 0 -1 8 ] 0 1 1
 }
 }
-// entity 319
+// entity 331
 {
 "classname" "geo_ballistic_solid"
 "game_material_info" "2"
@@ -18447,7 +19170,7 @@
 ( 2376 -736 128 ) ( 2376 -737 128 ) ( 2376 -736 129 ) concrete/concrete_3 [ 1.8369701987210297e-16 1 0 88 ] [ 0 0 -1 0 ] 0 1 1
 }
 }
-// entity 320
+// entity 332
 {
 "classname" "geo_ballistic_solid"
 "game_material_info" "2"
@@ -18687,7 +19410,7 @@
 ( 1320 -440 -120 ) ( 1320 -441 -120 ) ( 1320 -440 -119 ) concrete/concrete_3 [ 1.2246467991473532e-16 1 0 -16 ] [ 0 0 -1 0 ] 0 1 1
 }
 }
-// entity 321
+// entity 333
 {
 "classname" "func_group"
 "_tb_type" "_tb_layer"
@@ -18695,7 +19418,7 @@
 "_tb_id" "20"
 "_tb_layer_sort_index" "2"
 }
-// entity 322
+// entity 334
 {
 "classname" "func_group"
 "_tb_type" "_tb_layer"
