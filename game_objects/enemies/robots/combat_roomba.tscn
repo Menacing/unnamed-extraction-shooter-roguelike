@@ -77,11 +77,11 @@ transform = Transform3D(-1, 0, 8.74228e-08, -8.74228e-08, 0, -1, 0, -1, 0, 0.023
 
 [node name="SpotLight3D" type="SpotLight3D" parent="combat-roomba/Armature/Skeleton3D/Physical Bone Bone/Head"]
 light_color = Color(1, 0, 0, 1)
-light_energy = 100.0
 shadow_enabled = true
 distance_fade_enabled = true
 distance_fade_begin = 50.0
 spot_range = 50.0
+spot_attenuation = 5.27803
 spot_angle = 5.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="combat-roomba/Armature/Skeleton3D/Physical Bone Bone"]
