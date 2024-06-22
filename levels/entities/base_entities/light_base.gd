@@ -8,4 +8,5 @@ static func _func_godot_apply_properties(node: Light3D, props: Dictionary) -> vo
 	node.shadow_bias = props["shadow_bias"] as float
 	node.shadow_enabled = props["shadows"] as bool
 	node.light_color = props["color"] as Color
-	node.light_bake_mode = Light3D.BAKE_DYNAMIC
+	node.light_bake_mode = Light3D.BAKE_STATIC
+	node.distance_fade_enabled = true
