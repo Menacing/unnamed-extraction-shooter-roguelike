@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="LootSpawnMapping" load_steps=25 format=3 uid="uid://cpkios25eab1h"]
+[gd_resource type="Resource" script_class="LootSpawnMapping" load_steps=33 format=3 uid="uid://cpkios25eab1h"]
 
 [ext_resource type="Script" path="res://game_objects/items/loot_spawn_mapping.gd" id="1_4pmu7"]
 [ext_resource type="Resource" uid="uid://cfi8lq50axkxg" path="res://levels/biomes/science/easy/loot_spawns/science_easy_polymer_pile_spawn_weight.tres" id="2_1m4cd"]
@@ -15,20 +15,24 @@
 [ext_resource type="Resource" uid="uid://bc6u7bqprvsou" path="res://game_objects/items/backpacks/medium/1/medium_backpack_1_spawn_information.tres" id="13_s7iyp"]
 [ext_resource type="Resource" uid="uid://cva5p7x1si3qb" path="res://game_objects/items/armor/light/light_armor_1_spawn_information.tres" id="14_60sop"]
 [ext_resource type="Resource" uid="uid://cw4gpu3100dol" path="res://game_objects/items/armor/medium/1/medium_armor_1_spawn_information.tres" id="15_g526o"]
+[ext_resource type="Resource" uid="uid://d0oj3n67ltwaw" path="res://game_objects/items/weapons/fic_rifles/s5/s5_spawn_info.tres" id="16_gu3rh"]
+[ext_resource type="Resource" uid="uid://ctfyx7ieq6je6" path="res://game_objects/items/attachments/foregrips/stable/stable_foregrip_spawn_information.tres" id="17_0y5qp"]
+[ext_resource type="Resource" uid="uid://brvwcdbsa2p6s" path="res://game_objects/items/attachments/magazines/extended/extended_magazine_spawn_information.tres" id="18_fr3wa"]
+[ext_resource type="Resource" uid="uid://cmpayxf6q1s53" path="res://game_objects/items/attachments/scopes/red_dot/red_dot_spawn_information.tres" id="19_fiudc"]
 
 [sub_resource type="Resource" id="Resource_gq11x"]
 script = ExtResource("7_rt6d1")
-weight = 5
+weight = 3
 loot = ExtResource("6_b6bpt")
 
 [sub_resource type="Resource" id="Resource_qt6ml"]
 script = ExtResource("7_rt6d1")
-weight = 5
+weight = 3
 loot = ExtResource("8_y25ft")
 
 [sub_resource type="Resource" id="Resource_gphd2"]
 script = ExtResource("7_rt6d1")
-weight = 5
+weight = 4
 loot = ExtResource("9_jrie8")
 
 [sub_resource type="Resource" id="Resource_aby38"]
@@ -61,6 +65,26 @@ script = ExtResource("7_rt6d1")
 weight = 1
 loot = ExtResource("15_g526o")
 
+[sub_resource type="Resource" id="Resource_vc6vt"]
+script = ExtResource("7_rt6d1")
+weight = 2
+loot = ExtResource("16_gu3rh")
+
+[sub_resource type="Resource" id="Resource_e3nok"]
+script = ExtResource("7_rt6d1")
+weight = 1
+loot = ExtResource("17_0y5qp")
+
+[sub_resource type="Resource" id="Resource_et86o"]
+script = ExtResource("7_rt6d1")
+weight = 1
+loot = ExtResource("18_fr3wa")
+
+[sub_resource type="Resource" id="Resource_hgwwb"]
+script = ExtResource("7_rt6d1")
+weight = 1
+loot = ExtResource("19_fiudc")
+
 [resource]
 script = ExtResource("1_4pmu7")
-spawn_weights = Array[ExtResource("7_rt6d1")]([ExtResource("4_dx76d"), ExtResource("2_1m4cd"), ExtResource("3_u0ejk"), ExtResource("5_7g4id"), SubResource("Resource_gq11x"), SubResource("Resource_qt6ml"), SubResource("Resource_gphd2"), SubResource("Resource_aby38"), SubResource("Resource_jnmsc"), SubResource("Resource_l1sec"), SubResource("Resource_wy3mp"), SubResource("Resource_rv0nd"), SubResource("Resource_qmq86")])
+spawn_weights = Array[ExtResource("7_rt6d1")]([ExtResource("4_dx76d"), ExtResource("2_1m4cd"), ExtResource("3_u0ejk"), ExtResource("5_7g4id"), SubResource("Resource_gq11x"), SubResource("Resource_qt6ml"), SubResource("Resource_gphd2"), SubResource("Resource_aby38"), SubResource("Resource_jnmsc"), SubResource("Resource_l1sec"), SubResource("Resource_wy3mp"), SubResource("Resource_rv0nd"), SubResource("Resource_qmq86"), SubResource("Resource_vc6vt"), SubResource("Resource_e3nok"), SubResource("Resource_et86o"), SubResource("Resource_hgwwb")])

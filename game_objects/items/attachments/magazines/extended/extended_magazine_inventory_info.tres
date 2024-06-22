@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="ItemInformation" load_steps=7 format=3 uid="uid://yj4rydxs1mju"]
+[gd_resource type="Resource" script_class="ItemInformation" load_steps=8 format=3 uid="uid://yj4rydxs1mju"]
 
 [ext_resource type="Resource" uid="uid://o6tesi76nbth" path="res://ui/inventory/drop_item_context_item.tres" id="1_2bpe8"]
 [ext_resource type="PackedScene" uid="uid://davckdv3keyh5" path="res://ui/inventory/detail_scenes/attachment_detail_popup.tscn" id="2_0yxqv"]
@@ -6,10 +6,12 @@
 [ext_resource type="Texture2D" uid="uid://cpxjmt1tk1bru" path="res://game_objects/items/attachments/magazines/extended/extended_magazine_icon_r.png" id="3_4e1iv"]
 [ext_resource type="PackedScene" uid="uid://cn3ywqty7xvvr" path="res://ui/inventory/item_control.tscn" id="4_5t3ws"]
 [ext_resource type="Script" path="res://resource_access/item_information.gd" id="5_2hel8"]
+[ext_resource type="PackedScene" uid="uid://d0o2yjbp3avaa" path="res://game_objects/items/attachments/magazines/extended/extended_magazine.tscn" id="5_eg0r1"]
 
 [resource]
 script = ExtResource("5_2hel8")
 item_control_scene = ExtResource("4_5t3ws")
+item_3d_scene = ExtResource("5_eg0r1")
 item_type_id = "extended_magazine"
 show_name = false
 display_name = "Extended Mag"
