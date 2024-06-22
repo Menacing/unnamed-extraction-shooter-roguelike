@@ -159,3 +159,24 @@ func distance_between(source:Node3D, target:Node3D) -> float:
 	var diff_vec:Vector3 = target.global_position - source.global_position
 	var distance = abs(diff_vec.length())
 	return distance
+
+static var _GODOT_TO_QUAKE_FACTOR:float = 0.0254
+func convert_quake_unit_to_godot_unit(qu:float) -> float:
+	return qu * _GODOT_TO_QUAKE_FACTOR
+	
+func convert_godot_unit_to_quake_unit(gu:float) -> float:
+	return gu / _GODOT_TO_QUAKE_FACTOR
+
+func convert_quake_vector_to_godot_vector(qv:Vector3) -> Vector3:
+	var gv:Vector3 = Vector3.ZERO
+	gv.x = convert_quake_unit_to_godot_unit(qv.x)
+	gv.y = convert_quake_unit_to_godot_unit(qv.y)
+	gv.z = convert_quake_unit_to_godot_unit(qv.z)
+	return gv
+	
+func convert_godot_vector_to_quake_vector(gv:Vector3) -> Vector3:
+	var qv:Vector3 = Vector3.ZERO
+	qv.x = convert_quake_unit_to_godot_unit(gv.x)
+	qv.y = convert_quake_unit_to_godot_unit(gv.y)
+	qv.z = convert_quake_unit_to_godot_unit(gv.z)
+	return qv

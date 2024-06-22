@@ -6,6 +6,7 @@ extends Area3D
 @export var tier_index:int
 @export var min_spawned:int
 @export var max_spawned:int
+@export var chance_active:float = 1.0
 
 @export var func_godot_properties: Dictionary
 
@@ -18,6 +19,8 @@ func _func_godot_apply_properties(entity_properties: Dictionary):
 		min_spawned = int(func_godot_properties['min_spawned'])
 	if 'max_spawned' in func_godot_properties:
 		max_spawned = int(func_godot_properties['max_spawned'])
+	if 'chance_active' in func_godot_properties:
+		chance_active = float(func_godot_properties['chance_active'])
 
 var model_shuffle_bag:Array[LootSpawnInformation] = []
 var current_shuffle_bag:Array[LootSpawnInformation] = []
@@ -29,6 +32,11 @@ func _ready():
 	var loot_spawn_mapping:LootSpawnMapping = LootSpawnManager.get_loot_spawn_mapping(biome_index,tier_index)
 	
 	randomize()
+	
+	var active_roll:float = randf()
+	if active_roll > chance_active:
+		return
+		
 	var number_to_spawn = randi_range(min_spawned,max_spawned)
 	var aabb = Helpers.get_aabb_of_node(self)
 	var x_begin = aabb.position.x

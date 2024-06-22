@@ -193,7 +193,7 @@ func _move_step_and_slide_grounded(delta:float, was_on_floor:bool):
 			_set_collision_direction(collision_result, result_state, CollisionState.new(true,true,true))
 			
 			#Check if we're on a step
-			if _collision_state.wall and !_collision_state.ceiling and !is_zero_approx(collision_result_remainder.length()):
+			if was_on_floor and _collision_state.wall and !_collision_state.ceiling and !is_zero_approx(collision_result_remainder.length()):
 				#Test up step height
 				var step_up_test_result = KinematicCollision3D.new()
 				var step_up_motion = up_direction * max_step_height
@@ -208,13 +208,29 @@ func _move_step_and_slide_grounded(delta:float, was_on_floor:bool):
 					actual_step_up_height = step_up_motion
 				
 				#test we have space to step up
-				var space_to_step = _is_space_for_step(collision_result, actual_step_up_height)
-				if space_to_step:
-					_perform_step_over(actual_step_up_height, collision_result_remainder)
-					can_apply_constant_speed = !can_apply_constant_speed && !sliding_enabled
-					sliding_enabled = true
-					first_slide = false
-					continue
+				var step_test_result:StepTestResult = _is_space_for_step(collision_result, actual_step_up_height)
+				if step_test_result.can_step:
+					
+					global_transform.origin += step_test_result.travel_vector
+					_collision_state = step_test_result.collision_state
+					return
+					
+					##Orignal way of doing it
+					#var step_motion:Vector3 = _perform_step_over(actual_step_up_height, collision_result_remainder)
+					#can_apply_constant_speed = !can_apply_constant_speed && !sliding_enabled
+					#sliding_enabled = true
+					#first_slide = false
+					#
+					#var step_motion_length:float = step_motion.length()
+					#var motion_length:float = motion.length()
+					#var motion_difference:Vector3 
+					#
+					#if step_motion_length > motion_length:
+						#motion_difference = Vector3.ZERO
+					#else:
+						#motion_difference = motion - step_motion
+					#motion = motion_difference
+					#break
 
 
 			# If we hit a ceiling platform, we set the vertical velocity to at least the platform one.
@@ -524,12 +540,15 @@ func _set_collision_direction(p_result:KinematicCollision3D, r_state:CollisionSt
 					_collision_state.wall = was_on_wall
 					_wall_normal = prev_wall_normal
 
+func _get_floor_snap_distance() -> float:
+	return max(floor_snap_length, safe_margin, max_step_height)
+
 func _on_floor_if_snapped(p_was_on_floor: bool, p_vel_dir_facing_up: bool) -> bool:
 	if up_direction == Vector3.ZERO or _collision_state.floor or not p_was_on_floor or p_vel_dir_facing_up:
 		return false
 
 	# Snap by at least collision margin to keep floor state consistent.
-	var length: float = max(floor_snap_length, safe_margin)
+	var length: float = _get_floor_snap_distance()
 
 	# Also report collisions generated only from recovery.
 	var result = KinematicCollision3D.new()
@@ -561,7 +580,7 @@ func apply_floor_snap():
 		return
 
 	# Snap by at least collision margin to keep floor state consistent.
-	var length: float = max(floor_snap_length, safe_margin)
+	var length: float = _get_floor_snap_distance()
 
 	var result = KinematicCollision3D.new()
 	var result_travel = Vector3()
@@ -584,14 +603,15 @@ func apply_floor_snap():
 ##Check if there's space at a given step up height for the remaining travel
 const _step_space_min_slide_travel = 0.001
 
-func _is_space_for_step(step_collision:KinematicCollision3D, test_height:Vector3) -> bool:
+func _is_space_for_step(step_collision:KinematicCollision3D, test_height:Vector3) -> StepTestResult:
 	for i in range(step_collision.get_collision_count()):
-		if _is_space_for_step_single(step_collision.get_remainder(), step_collision.get_normal(i), test_height):
-			return true
+		var step_test_result:StepTestResult = _is_space_for_step_single(step_collision.get_remainder(), step_collision.get_normal(i), test_height)
+		if step_test_result.can_step:
+			return step_test_result
 	
-	return false
+	return StepTestResult.new()
 
-func _is_space_for_step_single(step_collision_remainder:Vector3, step_collision_normal:Vector3 , test_height:Vector3) -> bool:
+func _is_space_for_step_single(step_collision_remainder:Vector3, step_collision_normal:Vector3 , test_height:Vector3) -> StepTestResult:
 	#Calculate test distance
 	var test_distance = max(min_step_width, step_collision_remainder.length())
 	var total_travel:Vector3 = Vector3()
@@ -600,13 +620,15 @@ func _is_space_for_step_single(step_collision_remainder:Vector3, step_collision_
 	#Cast reverse of the wall normal the test distance horizontally
 	var flattened_reverse_normal = -Vector3(step_collision_normal.x, 0 ,step_collision_normal.z)
 	if is_zero_approx(flattened_reverse_normal.length()):
-		return false
+		return StepTestResult.new()
 	
 	var step_space_motion = flattened_reverse_normal.normalized() * test_distance
 	
 	var step_space_source_position = global_transform
 	step_space_source_position.origin += test_height
 	var step_space_test_collided = test_move(step_space_source_position, step_space_motion, step_space_test_result, safe_margin)
+	
+	var down_source_position:Transform3D
 	
 	if step_space_test_collided:
 		#if we hit something, slide remainder
@@ -619,7 +641,7 @@ func _is_space_for_step_single(step_collision_remainder:Vector3, step_collision_
 		var slide_motion = step_space_remainder.slide(step_space_normal)
 		
 		if slide_motion.length() < _step_space_min_slide_travel:
-			return false
+			return StepTestResult.new()
 		
 		var slide_source_position = global_transform
 		slide_source_position.origin += step_space_travel
@@ -627,29 +649,39 @@ func _is_space_for_step_single(step_collision_remainder:Vector3, step_collision_
 		
 		#if we hit something else, we don't have space
 		if slide_test_collided:
-			return false
+			return StepTestResult.new()
 		else:
 			#cast down
 			total_travel += slide_motion
-			var down_test_result = KinematicCollision3D.new()
-			var down_motion = -test_height
-			var down_source_position = slide_source_position
-			down_source_position.origin += slide_motion
-			var down_test_collided = test_move(down_source_position, down_motion, down_test_result, safe_margin)
-			
-			if down_test_collided:
-				#on step, there's room
-				return true
-			else:
-				#on wall
-				return false
+			down_source_position = slide_source_position
+			down_source_position.origin += slide_test_result.get_travel()
+
 	#If we didn't hit anything, there's room
 	else:
-		return true
+		total_travel += test_height
+		total_travel += step_space_test_result.get_travel()
+		down_source_position = step_space_source_position 
+		down_source_position.origin += step_space_test_result.get_travel()
+
+	var down_test_result = KinematicCollision3D.new()
+	var down_motion = -test_height
+	var down_test_collided = test_move(down_source_position, down_motion, down_test_result, safe_margin)
+	
+	if down_test_collided:
+		#on step, there's room
+		var down_travel = down_test_result.get_travel()
+		total_travel += down_travel
+		var step_collision_state = CollisionState.new()
+		_set_collision_direction(down_test_result,step_collision_state, CollisionState.new(false,false,false))
+		
+		return StepTestResult.new(true, total_travel, step_collision_state)
+	else:
+		#on wall
+		return StepTestResult.new()
 
 ## perform step up move at given height
 ## returns true if went full distance, false otherwise
-func _perform_step_over(step_up_height:Vector3, motion:Vector3) -> bool:
+func _perform_step_over(step_up_height:Vector3, motion:Vector3) -> Vector3:
 	#test remainder of movement at step_up_height
 	var step_over_test_result = KinematicCollision3D.new()
 	var step_over_motion = motion
@@ -694,12 +726,10 @@ func _perform_step_over(step_up_height:Vector3, motion:Vector3) -> bool:
 		else:
 			down_travel = down_motion
 
-		global_transform.origin += step_up_height + total_travel_distance + down_travel
+		var total_travel_vector:Vector3 = step_up_height + total_travel_distance + down_travel
+		global_transform.origin += total_travel_vector
 		
-		if total_travel_distance.length() < motion.length():
-			return false
-		else:
-			return true
+		return total_travel_vector
 		
 	#else move to target position and break
 	else:
@@ -715,8 +745,9 @@ func _perform_step_over(step_up_height:Vector3, motion:Vector3) -> bool:
 		else:
 			down_travel = down_motion
 		
-		global_transform.origin += step_up_height + motion + down_travel
-		return true
+		var total_travel_vector:Vector3 = step_up_height + motion + down_travel
+		global_transform.origin += total_travel_vector
+		return total_travel_vector
 
 
 func _kinematic_collision_3d_hit_wall(collision_result:KinematicCollision3D) -> bool:
@@ -751,3 +782,13 @@ class CollisionState:
 		
 	func copy():
 		return CollisionState.new(floor, wall, ceiling)
+
+class StepTestResult:
+	var can_step:bool = false
+	var travel_vector:Vector3 = Vector3.ZERO
+	var collision_state:CollisionState = CollisionState.new()
+	
+	func _init(_cs:bool = false, _tv:Vector3 = Vector3.ZERO, _cols:CollisionState = CollisionState.new()):
+		can_step = _cs
+		travel_vector = _tv
+		collision_state = _cols

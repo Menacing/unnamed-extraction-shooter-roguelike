@@ -13,7 +13,7 @@ description = "OmniLight3D entity."
 func_godot_internal = false
 base_classes = Array[Resource]([ExtResource("1_yp8dp")])
 class_properties = {
-"range": 320.0
+"range": 4000.0
 }
 class_property_descriptions = {
 "range": "The light's radius in Quake Units. The entity script converts this to Godot Units in the LightOmni script."
