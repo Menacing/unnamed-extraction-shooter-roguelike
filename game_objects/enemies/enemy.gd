@@ -17,7 +17,23 @@ var move_target:Node3D
 @export var los_location_ratio:float = 0.6
 @export var detection_radius:Area3D
 @export var ballistic_detection_radius:Area3D
-var target_player:Player
+var _target_player:Player
+var target_player:Player:
+	set(value):
+		_target_player = value
+		player_exclusions = Helpers.get_all_collision_object_3d_recursive(value)
+	get:
+		return _target_player
+
+@onready var self_exclusions:Array[RID] = Helpers.get_all_collision_object_3d_recursive(self)
+var _player_exclusions:Array[RID]
+var player_exclusions:Array[RID]:
+	set(value):
+		_player_exclusions = value
+		exclusions = self_exclusions + value
+	get:
+		return _player_exclusions
+var exclusions:Array[RID]
 
 func _ready():
 	if detection_radius:
@@ -89,8 +105,6 @@ func has_target_player() -> bool:
 		
 func has_los_to_player() -> bool:
 	if target_player:
-		
-		var exclusions:Array[RID] = Helpers.get_all_collision_object_3d_recursive(self) + Helpers.get_all_collision_object_3d_recursive(target_player)
 		
 		var los_result = Helpers.los_to_point(head_node,target_player.los_check_locations,.6,exclusions)
 		return los_result

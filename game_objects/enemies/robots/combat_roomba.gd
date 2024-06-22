@@ -11,10 +11,6 @@ var hf_pos: Vector3
 var accel = 3
 var turret_rotation:float = 2.0
 
-var player:Player
-@onready var exclusions:Array[RID]
-var self_exclusions:Array[RID]
-
 @onready var skeleton:Skeleton3D = $"combat-roomba/Armature/Skeleton3D"
 @onready var physical_bone:PhysicalBone3D = $"combat-roomba/Armature/Skeleton3D/Physical Bone Bone"
 var alive = true
