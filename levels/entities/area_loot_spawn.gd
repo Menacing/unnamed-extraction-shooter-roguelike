@@ -75,6 +75,8 @@ func _ready():
 				scene.set_as_top_level(true)		
 				get_parent().add_child.call_deferred(scene)
 				scene.set_global_position.call_deferred(try_pos + self.global_position)
+				var random_rotation = Vector3(randf_range(0,360),randf_range(0,360),randf_range(0,360))
+				scene.set_rotation_degrees.call_deferred(random_rotation)
 				spawned_locations.append(try_pos)
 				remaining_tries = 0
 			else:
