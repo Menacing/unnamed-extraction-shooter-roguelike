@@ -268,14 +268,16 @@ libraries = {
 [node name="MovementIntroOutroAudioStreamPlayer" type="AudioStreamPlayer3D" parent="." node_paths=PackedStringArray("OutroStreamPlayer")]
 stream = ExtResource("14_gi6js")
 attenuation_model = 1
+volume_db = -16.0
 script = ExtResource("14_noua2")
-loop_start_time = 1.233
-loop_end_time = 1.967
+loop_start_time = 1.159
+loop_end_time = 1.869
 OutroStreamPlayer = NodePath("EndMovementAudioStreamPlayer3D")
 
 [node name="EndMovementAudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="MovementIntroOutroAudioStreamPlayer"]
 stream = ExtResource("15_dk7kt")
 attenuation_model = 1
+volume_db = -16.0
 
 [editable path="combat-roomba"]
 [editable path="combat-roomba/Armature/Skeleton3D/Physical Bone Bone/WorldInventory"]
