@@ -17,6 +17,7 @@ var move_target:Node3D
 @export var los_location_ratio:float = 0.6
 @export var detection_radius:Area3D
 @export var ballistic_detection_radius:Area3D
+@export var movement_audio_player:AudioStreamPlayer3D
 var _target_player:Player
 var target_player:Player:
 	set(value):
@@ -79,6 +80,17 @@ func _on_body_exited_ballistic_detection_radius(body:Node3D):
 	
 func _on_velocity_computed(safe_velocity: Vector3):
 	velocity = safe_velocity
+	if movement_audio_player:
+		var velocity_near_zero:bool = is_zero_approx(velocity.length_squared())
+		var movement_audio_playing:bool = movement_audio_player.playing
+		if !velocity_near_zero and !movement_audio_playing:
+			movement_audio_player.play()
+			pass
+		elif velocity_near_zero and movement_audio_playing:
+			if movement_audio_player is IntroOutroAudioStreamPlayer:
+				movement_audio_player.request_stop()
+			else:
+				movement_audio_player.stop()
 	move_and_slide()
 
 func has_fire_target() -> bool:
