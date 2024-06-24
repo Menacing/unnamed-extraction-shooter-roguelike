@@ -1,8 +1,8 @@
 name: "godot-ci export"
 on: 
   workflow_dispatch:
-  label:
-    types: [created, edited]
+#  label:
+#    types: [created, edited]
 
 env:
   GODOT_VERSION: 4.2.2
