@@ -28,6 +28,7 @@ func _func_godot_apply_properties(entity_properties: Dictionary):
 		fg_reverb_bus_name = func_godot_properties['fg_reverb_bus_name']
 		reverb_bus_enabled = true
 		reverb_bus_name = fg_reverb_bus_name
+		reverb_bus_amount = 1.0
 	if 'is_proximate' in func_godot_properties:
 		is_proximate = bool(func_godot_properties['is_proximate'])
 
