@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://bng46h4lvwt3b"]
+
+[ext_resource type="AudioStream" uid="uid://dplusv72g11du" path="res://game_objects/items/weapons/hic_rifles/hic_shot_1.ogg" id="1_avv72"]
+
+[node name="BusTestbed" type="Node3D"]
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("1_avv72")
+bus = &"RvSmall"
