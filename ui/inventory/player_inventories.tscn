@@ -75,15 +75,6 @@ disallow_equipped_backpacks = true
 equipped_backpack_out_of_bounds = Vector2i(0, 2)
 disabled_cells_overlay = NodePath("../DisabledCellsOverlay")
 
-[node name="DisabledCellsOverlay" parent="MarginContainer/HBoxContainer/PlayerInventoryContainer/TabContainer/EQUIPMENT/PanelContainer/InventoryBase/PanelContainer" index="1"]
-mouse_filter = 2
-
-[node name="ColorRect2" parent="MarginContainer/HBoxContainer/PlayerInventoryContainer/TabContainer/EQUIPMENT/PanelContainer/InventoryBase/PanelContainer/DisabledCellsOverlay" index="0"]
-mouse_filter = 2
-
-[node name="ColorRect" parent="MarginContainer/HBoxContainer/PlayerInventoryContainer/TabContainer/EQUIPMENT/PanelContainer/InventoryBase/PanelContainer/DisabledCellsOverlay" index="1"]
-mouse_filter = 2
-
 [node name="AMMO" parent="MarginContainer/HBoxContainer/PlayerInventoryContainer/TabContainer" instance=ExtResource("6_devm8")]
 visible = false
 layout_mode = 2

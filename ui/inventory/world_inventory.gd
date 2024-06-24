@@ -38,7 +38,7 @@ func _on_open_inventory(inventory_id:int):
 func _on_close_inventory(inventory_id:int):
 	super(inventory_id)
 	if inventory_id == self.inventory_id:
-		EventBus.remove_inventory_from_HUD.emit(self)
+		EventBus.remove_inventory_from_HUD.emit(self, original_parent)
 
 func _on_close_all_inventories():
 	super()

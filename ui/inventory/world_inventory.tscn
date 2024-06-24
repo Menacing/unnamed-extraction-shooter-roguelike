@@ -19,6 +19,8 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource("1_auvkm")
 _inventory = SubResource("Resource_pul18")
+_inventory_grid_path = NodePath("PanelContainer/InventoryBase/WorldInventoryGrid")
+_inventory_container_path = NodePath(".")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 2

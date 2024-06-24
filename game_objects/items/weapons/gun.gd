@@ -42,12 +42,6 @@ func get_ads_head_anchor() -> Vector3:
 	
 func get_hip_fire_anchor() -> Vector3:
 	return self.get_node("HipFire").position
-	
-func get_grip_node() -> Node3D:
-	return self.get_node("grip")
-	
-func get_handguard_node() -> Node3D:
-	return self.get_node("handguard")
 
 @export var mag_node:Node3D
 func get_mag_node() -> Node3D:
@@ -58,6 +52,16 @@ func _on_equipped(player:Player):
 	
 func _on_unequipped(player:Player):
 	pass
+	
+func dropped() -> void:
+	super()
+	firer = null
+
+func picked_up(actor_id:int = 0) -> void:
+	super()
+	var actor_object = instance_from_id(actor_id)
+	if actor_object is Node3D:
+		firer = actor_object
 
 func canFire() -> bool:
 	return false

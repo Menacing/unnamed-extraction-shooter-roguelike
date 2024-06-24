@@ -27,7 +27,7 @@ var grid_slots := {}
 
 static func get_slot_by_name(inventory:Inventory, slot_name:String) ->EquipmentSlotType:
 	for slot in inventory.equipment_slots:
-		printt("test:", slot.get_instance_id(), slot.name)
+		#printt("test:", slot.get_instance_id(), slot.name)
 		if slot.name == slot_name:
 			return slot
 	

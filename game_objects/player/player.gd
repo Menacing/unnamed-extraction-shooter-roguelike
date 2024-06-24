@@ -112,8 +112,6 @@ var current_fire_mode: String:
 		else: 
 			return ""
 			
-var grip_pos: Node3D
-var handguard_pos: Node3D
 var fully_ads: bool:
 	get:
 		if ads_fac == 1.0:
@@ -259,8 +257,6 @@ func move_gun_to_hands(gun:Gun):
 	equipped_gun = gun
 	if gun:	
 		gun.transform = Transform3D.IDENTITY
-		grip_pos = gun.get_grip_node()
-		handguard_pos = gun.get_handguard_node()
 		gun.fired.connect(_on_gun_fired)
 		gun.reloaded.connect(_on_gun_reloaded)
 		current_fire_mode = gun.current_fire_mode
@@ -1014,6 +1010,7 @@ func align_gun_trailer_to_head(delta:float):
 	#set head anchor position between normal and ads position by ads_factor
 	head.global_position = hf_head_global_position.lerp(ads_head_global_position, ads_fac)
 	#set camera fov between default and ads fov by ads_factor
+	#print("default fov: %s ads_fov %s ads_fac %s" % [GameSettings.default_fov, ads_fov, ads_fac])
 	cam.fov = lerp(GameSettings.default_fov, ads_fov, ads_fac)
 
 	var gun_turn_factor = 1.0 / equipped_gun.get_turn_speed()

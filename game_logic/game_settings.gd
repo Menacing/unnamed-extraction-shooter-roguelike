@@ -16,4 +16,4 @@ enum HEALTH_DISPLAY {
 	NUMBER
 }
 var selected_health_display:HEALTH_DISPLAY = HEALTH_DISPLAY.BAR
-var default_fov:float
+var default_fov:float = 75.0
