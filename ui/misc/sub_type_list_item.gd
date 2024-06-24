@@ -3,6 +3,7 @@ class_name AmmoSubTypeListItem
 
 @export var _ammo_type:AmmoType
 @export var _ammo_subtype:AmmoSubtype
+@export var current_amount:int
 
 @onready var progress_bar:TextureProgressBar = $SelectionProgressBar
 @onready var selection_timer:Timer = $SelectionTimer
@@ -10,7 +11,7 @@ class_name AmmoSubTypeListItem
 @onready var selection_button:Button = $Button
 
 func _ready():
-	selection_button.text = _ammo_subtype.name
+	selection_button.text = _ammo_subtype.name + ": " + str(current_amount)
 
 func select():
 	selection_texture.visible = true

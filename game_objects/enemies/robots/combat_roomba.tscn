@@ -208,8 +208,6 @@ shape = SubResource("BoxShape3D_wvt7k")
 [node name="WorldInventory" parent="combat-roomba/Armature/Skeleton3D/Physical Bone Bone" instance=ExtResource("7_gxy1y")]
 visible = false
 _inventory = SubResource("Resource_1qy4a")
-_inventory_grid_path = NodePath("PanelContainer/InventoryBase/WorldInventoryGrid")
-_inventory_container_path = NodePath(".")
 
 [node name="DetectRadius" type="Area3D" parent="."]
 collision_layer = 0

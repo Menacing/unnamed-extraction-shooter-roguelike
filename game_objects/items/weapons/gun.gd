@@ -131,6 +131,9 @@ func get_gun_stats() -> GunStats:
 func get_ammo_type() -> AmmoType:
 	return _gun_stats.ammo_type
 
+func get_ammo_subtypes() -> Array[AmmoSubtype]:
+	return _gun_stats.ammo_type.sub_types
+
 func get_unselected_ammo_subtypes() -> Array[AmmoSubtype]:
 	var all_subtypes:Array[AmmoSubtype] = _gun_stats.ammo_type.sub_types
 	var less_selected:Array[AmmoSubtype] = []
