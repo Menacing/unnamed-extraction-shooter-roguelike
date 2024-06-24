@@ -1,0 +1,9 @@
+[gd_resource type="AudioStreamRandomizer" load_steps=2 format=3 uid="uid://hd40mi2hpmcb"]
+
+[ext_resource type="AudioStream" uid="uid://dhdpcpxcnx4rx" path="res://game_objects/enemies/robots/audio/target_lost.ogg" id="1_6wy3m"]
+
+[resource]
+random_pitch = 1.05
+streams_count = 1
+stream_0/stream = ExtResource("1_6wy3m")
+stream_0/weight = 1.0

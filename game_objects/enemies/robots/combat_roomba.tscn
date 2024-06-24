@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://ciaqbr34myu5w"]
+[gd_scene load_steps=31 format=3 uid="uid://ciaqbr34myu5w"]
 
 [ext_resource type="Script" path="res://game_objects/enemies/robots/combat_roomba.gd" id="1_f1cah"]
 [ext_resource type="PackedScene" uid="uid://dr48wela8mtxd" path="res://game_objects/items/weapons/hic_rifles/pm_52/pm_52.tscn" id="2_q4rc2"]
@@ -9,6 +9,10 @@
 [ext_resource type="PackedScene" uid="uid://douyxwjscs4ff" path="res://ui/inventory/world_inventory.tscn" id="7_gxy1y"]
 [ext_resource type="Script" path="res://resource_access/Inventory.gd" id="9_8s6q1"]
 [ext_resource type="BehaviorTree" uid="uid://c3o1pihtd3pqc" path="res://ai/trees/combat_roomba.tres" id="9_huqy6"]
+[ext_resource type="AudioStream" uid="uid://wef8dj3iyrtm" path="res://game_objects/enemies/robots/audio/enemy_spotted_audio_stream_randomizer.tres" id="10_iwbga"]
+[ext_resource type="AudioStream" uid="uid://hd40mi2hpmcb" path="res://game_objects/enemies/robots/audio/enemy_lost_audio_stream_randomizer.tres" id="11_ll5t6"]
+[ext_resource type="AudioStream" uid="uid://qjx8mxhhx0a5" path="res://game_objects/enemies/robots/audio/idle_audio_stream_randomizer.tres" id="12_o55mw"]
+[ext_resource type="AudioStream" uid="uid://dpy6rknda42mj" path="res://game_objects/enemies/robots/audio/patrol_started_audio_stream_randomizer.tres" id="13_8dkak"]
 [ext_resource type="Script" path="res://helpers/intro_outro_audio_stream_player.gd" id="14_noua2"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_wvt7k"]
@@ -40,11 +44,6 @@ size = Vector3(0.0996854, 0.507972, 0.102156)
 
 [sub_resource type="BlackboardPlan" id="BlackboardPlan_774i1"]
 
-[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_28ljl"]
-random_pitch = 1.05
-streams_count = 1
-stream_0/weight = 1.0
-
 [sub_resource type="Animation" id="Animation_8wc2m"]
 resource_name = "idle"
 length = 3.7
@@ -58,7 +57,7 @@ tracks/0/keys = {
 "clips": [{
 "end_offset": 0.0,
 "start_offset": 0.0,
-"stream": SubResource("AudioStreamRandomizer_28ljl")
+"stream": ExtResource("12_o55mw")
 }],
 "times": PackedFloat32Array(0)
 }
@@ -83,8 +82,12 @@ tracks/0/keys = {
 "end_offset": 0.0,
 "start_offset": 0.0,
 "stream": SubResource("AudioStreamRandomizer_4g2ko")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("13_8dkak")
 }],
-"times": PackedFloat32Array(0)
+"times": PackedFloat32Array(0, 0.0001)
 }
 tracks/0/use_blend = true
 
@@ -107,8 +110,12 @@ tracks/0/keys = {
 "end_offset": 0.0,
 "start_offset": 0.0,
 "stream": SubResource("AudioStreamRandomizer_83d5t")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("11_ll5t6")
 }],
-"times": PackedFloat32Array(0)
+"times": PackedFloat32Array(0, 0.0001)
 }
 tracks/0/use_blend = true
 
@@ -130,7 +137,7 @@ tracks/0/keys = {
 "clips": [{
 "end_offset": 0.0,
 "start_offset": 0.0,
-"stream": null
+"stream": ExtResource("10_iwbga")
 }, {
 "end_offset": 0.0,
 "start_offset": 0.0,
@@ -239,9 +246,11 @@ behavior_tree = ExtResource("9_huqy6")
 blackboard_plan = SubResource("BlackboardPlan_774i1")
 
 [node name="TargetSpottedAudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("10_iwbga")
 attenuation_model = 1
 
 [node name="TargetLostAudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("11_ll5t6")
 attenuation_model = 1
 
 [node name="PatrolStartedAudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]

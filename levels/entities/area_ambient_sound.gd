@@ -7,6 +7,7 @@ class_name AreaAmbientSound
 @export var volume_db:float = 0.0
 @export var transition_duration:float = 3.0
 @export var fg_reverb_bus_name:String
+@export var is_proximate:bool = true
 
 static var current_ambience:AreaAmbientSound = null
 
@@ -27,13 +28,21 @@ func _func_godot_apply_properties(entity_properties: Dictionary):
 		fg_reverb_bus_name = func_godot_properties['fg_reverb_bus_name']
 		reverb_bus_enabled = true
 		reverb_bus_name = fg_reverb_bus_name
+	if 'is_proximate' in func_godot_properties:
+		is_proximate = bool(func_godot_properties['is_proximate'])
 
 func _ready() -> void:
 	body_entered.connect(_on_body_entered)
+	if is_proximate:
+		body_exited.connect(_on_body_exited)
 
 func _on_body_entered(body:Node3D) -> void:
 	if body is Player and audio_stream != null:
 		play()
+		
+func _on_body_exited(body:Node3D) -> void:
+	if body is Player and is_proximate:
+		stop()
 
 func play() -> void:
 	if audio_stream == null or current_ambience == self:
@@ -56,6 +65,8 @@ func _create_player() -> void:
 	player = AudioStreamPlayer.new()
 	player.name = "AmbiencePlayer"
 	player.volume_db = min_volume
+	if reverb_bus_enabled:
+		player.bus = audio_bus_name
 	var root = get_tree().root
 	root.add_child(player)
 	player.set_owner(root)
