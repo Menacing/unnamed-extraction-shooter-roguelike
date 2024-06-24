@@ -2,34 +2,20 @@ extends Object
 class_name ItemAccess
 
 var _item_info_mapping:Dictionary = {}
-var _path = "res://game_objects/items/"
+var resource_group:ResourceGroup = load("res://game_objects/items/item_information_resource_group.tres")
 
 func _init():
-	load_item_info_from_path(_item_info_mapping, _path)
+	# declare a type safe array
+	var item_infos:Array[ItemInformation] = []
+	# fills the array with the resources from the resource group
+	resource_group.load_all_into(item_infos)
+	map_item_info_array(item_infos)
 	if _item_info_mapping.size() == 0:
 		push_error("NO ITEM INFORMATION FOUND")
 
-	
-static func load_item_info_from_path(item_info_dictionary:Dictionary, path:String):
-	var dir = DirAccess.open(path)
-	if dir:
-		dir.list_dir_begin()
-		var file_name = dir.get_next()
-		while file_name != "":
-			if dir.current_is_dir():
-				load_item_info_from_path(item_info_dictionary, path + "/" + file_name)
-			else:
-				if file_name.ends_with(".tres"):
-					var res = load(path + "/" + file_name) 
-					if res is ItemInformation:
-						print("Adding ItemInfo: " + file_name)
-						if !res.item_type_id:
-							push_error(file_name + " does not have item_type_id set!")
-						if item_info_dictionary.has(res.item_type_id):
-							push_error("item_type_id collision on " + res.item_type_id + " in " + file_name)
-						else:
-							item_info_dictionary[res.item_type_id] = res
-			file_name = dir.get_next()
+func map_item_info_array(iia:Array[ItemInformation]):
+	for info:ItemInformation in iia:
+		_item_info_mapping[info.item_type_id] = info
 	
 func spawn_from_item3d(item3d:Item3D):
 	if item3d:

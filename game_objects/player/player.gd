@@ -184,6 +184,7 @@ func _ready():
 	
 	pov_rotation_node = chest
 
+
 func _on_item_picked_up(result:InventoryInsertResult):
 	if result.inventory_id == player_inventory_id:
 		var item_instance:ItemInstance = InventoryManager.get_item(result.item_instance_id)
