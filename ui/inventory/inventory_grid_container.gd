@@ -26,9 +26,9 @@ func _notification(what):
 
 func add_item_control(item_control:ItemControl, x:int, y:int):
 	var cell:Control = _get_grid_cell_control(x,y)
-	assert(cell != null)
-	Helpers.force_parent(item_control, cell)
-	item_control.position = Vector2(0,0)
+	if cell:
+		Helpers.force_parent(item_control, cell)
+		item_control.position = Vector2(0,0)
 	
 func _get_grid_size(item:Control) -> Dictionary:
 	var results = {}

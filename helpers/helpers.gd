@@ -130,7 +130,7 @@ func get_aabb_of_node(node:Node) -> AABB:
 	for child in node.get_children():
 		aabb = aabb.merge(get_aabb_of_node(child))
 		
-	print_debug("returning aabb for node:" + node.name + " with aabb " + str(aabb))
+	#print_verbose("returning aabb for node:" + node.name + " with aabb " + str(aabb))
 	return aabb
 
 func get_all_mesh_nodes(node:Node) -> Array[MeshInstance3D]:
