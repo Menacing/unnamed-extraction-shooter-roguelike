@@ -26,11 +26,13 @@ func spawn_guaranteed_items():
 				var spawn_pos:Vector3
 				if poi is Area3D:
 					var aabb = Helpers.get_aabb_of_node(poi)
-					var x_size = aabb.size.x
-					var z_size = aabb.size.z
+					var x_begin = aabb.position.x
+					var x_end = aabb.end.x
+					var z_begin = aabb.position.z
+					var z_end = aabb.end.z
 
 					#generate random location
-					spawn_pos = poi.global_position + Vector3(randf_range(-x_size,x_size),0,randf_range(-z_size,z_size))
+					spawn_pos = poi.global_position + Vector3(randf_range(x_begin,x_end),0,randf_range(z_begin,z_end))
 
 				elif poi is Node3D:
 					spawn_pos = poi.global_position
