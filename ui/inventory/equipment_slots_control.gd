@@ -3,7 +3,7 @@ class_name EquipmentSlotControl
 
 @export var parent_inventory_control_base:InventoryControlBase
 @onready var slot_icon_texture_rect:TextureRect = $MarginContainer/TextureRect
-var slot_icon:Texture2D
+@export var slot_icon:Texture2D
 
 func _ready():
 	slot_icon_texture_rect.texture = slot_icon

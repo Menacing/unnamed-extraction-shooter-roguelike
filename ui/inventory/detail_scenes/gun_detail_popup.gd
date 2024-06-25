@@ -135,16 +135,16 @@ func adjust_camera_to_fit():
 	var largest_axis = gun_3d.longest_side_size
 	viewport_camera.size = largest_axis * 1.1
 	
-var armor_icon = preload("res://themes/ArmorSlotIcon-1.png.png")
-var backpack_icon = preload("res://themes/BackpackSlotIcon-1.png.png")
-var foregrip_icon = preload("res://themes/Foregrip Icon-1.png.png")
-var grip_icon = preload("res://themes/Grip Icon-1.png.png")
-var gun_icon = preload("res://themes/GunSlotIcon-1.png.png")
-var laser_icon = preload("res://themes/Laser Icon-1.png.png")
-var mag_icon = preload("res://themes/Magazine Icon-1.png.png")
-var muzzle_icon = preload("res://themes/Muzzle Icon-1.png.png")
-var scope_icon = preload("res://themes/Scope Icon-1.png.png")
-var stock_icon = preload("res://themes/Stock Icon-1.png.png")
+var armor_icon = preload("res://themes/ArmorSlotIcon-1.png")
+var backpack_icon = preload("res://themes/BackpackSlotIcon-1.png")
+var foregrip_icon = preload("res://themes/Foregrip Icon-1.png")
+var grip_icon = preload("res://themes/Grip Icon-1.png")
+var gun_icon = preload("res://themes/GunSlotIcon-1.png")
+var laser_icon = preload("res://themes/Laser Icon-1.png")
+var mag_icon = preload("res://themes/Magazine Icon-1.png")
+var muzzle_icon = preload("res://themes/Muzzle Icon-1.png")
+var scope_icon = preload("res://themes/Scope Icon-1.png")
+var stock_icon = preload("res://themes/Stock Icon-1.png")
 var oops_icon = preload("res://themes/LegIcon.png")
 
 func _get_slot_icon(item_types:Array[GameplayEnums.ItemType]) -> Texture2D:

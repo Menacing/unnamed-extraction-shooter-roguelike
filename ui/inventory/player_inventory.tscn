@@ -4,11 +4,11 @@
 [ext_resource type="Script" path="res://resource_access/Inventory.gd" id="2_5ekbt"]
 [ext_resource type="Script" path="res://resource_access/equipment_slot_type.gd" id="2_j8487"]
 [ext_resource type="Script" path="res://ui/inventory/equipment_slots_control.gd" id="4_h1h63"]
-[ext_resource type="Texture2D" uid="uid://cm6yy3kv2uhwl" path="res://themes/BackpackSlotIcon-1.png.png" id="5_5opwg"]
+[ext_resource type="Texture2D" uid="uid://cm6yy3kv2uhwl" path="res://themes/BackpackSlotIcon-1.png" id="5_5uiam"]
 [ext_resource type="PackedScene" uid="uid://bshm12rhfjlbc" path="res://ui/inventory/backpack_cell.tscn" id="5_h0nvq"]
 [ext_resource type="Script" path="res://ui/inventory/inventory_grid_container.gd" id="5_lwrwb"]
-[ext_resource type="Texture2D" uid="uid://dtqxp180upxtr" path="res://themes/ArmorSlotIcon-1.png.png" id="6_248g1"]
-[ext_resource type="Texture2D" uid="uid://cv7g1bo5f2sdw" path="res://themes/GunSlotIcon-1.png.png" id="7_q8r57"]
+[ext_resource type="Texture2D" uid="uid://dtqxp180upxtr" path="res://themes/ArmorSlotIcon-1.png" id="6_wntu6"]
+[ext_resource type="Texture2D" uid="uid://cv7g1bo5f2sdw" path="res://themes/GunSlotIcon-1.png" id="7_qwrsw"]
 
 [sub_resource type="Resource" id="Resource_c2lqt"]
 script = ExtResource("2_j8487")
@@ -66,6 +66,7 @@ layout_mode = 2
 size_flags_horizontal = 8
 script = ExtResource("4_h1h63")
 parent_inventory_control_base = NodePath("../../../..")
+slot_icon = ExtResource("5_5uiam")
 
 [node name="MarginContainer" type="MarginContainer" parent="PanelContainer/InventoryBase/EquipmentSlots/BackpackSlot"]
 layout_mode = 1
@@ -81,7 +82,7 @@ theme_override_constants/margin_bottom = 40
 
 [node name="TextureRect" type="TextureRect" parent="PanelContainer/InventoryBase/EquipmentSlots/BackpackSlot/MarginContainer"]
 layout_mode = 2
-texture = ExtResource("5_5opwg")
+texture = ExtResource("5_5uiam")
 expand_mode = 2
 
 [node name="ArmorSlot" type="Panel" parent="PanelContainer/InventoryBase/EquipmentSlots" node_paths=PackedStringArray("parent_inventory_control_base") groups=["droppable_inventory_controls"]]
@@ -91,6 +92,7 @@ layout_mode = 2
 size_flags_horizontal = 8
 script = ExtResource("4_h1h63")
 parent_inventory_control_base = NodePath("../../../..")
+slot_icon = ExtResource("6_wntu6")
 
 [node name="MarginContainer" type="MarginContainer" parent="PanelContainer/InventoryBase/EquipmentSlots/ArmorSlot"]
 layout_mode = 1
@@ -106,7 +108,7 @@ theme_override_constants/margin_bottom = 40
 
 [node name="TextureRect" type="TextureRect" parent="PanelContainer/InventoryBase/EquipmentSlots/ArmorSlot/MarginContainer"]
 layout_mode = 2
-texture = ExtResource("6_248g1")
+texture = ExtResource("6_wntu6")
 expand_mode = 2
 
 [node name="GunSlot1" type="Panel" parent="PanelContainer/InventoryBase/EquipmentSlots" node_paths=PackedStringArray("parent_inventory_control_base") groups=["droppable_inventory_controls"]]
@@ -115,6 +117,7 @@ custom_minimum_size = Vector2(256, 128)
 layout_mode = 2
 script = ExtResource("4_h1h63")
 parent_inventory_control_base = NodePath("../../../..")
+slot_icon = ExtResource("7_qwrsw")
 
 [node name="MarginContainer" type="MarginContainer" parent="PanelContainer/InventoryBase/EquipmentSlots/GunSlot1"]
 layout_mode = 1
@@ -130,7 +133,7 @@ theme_override_constants/margin_bottom = 25
 
 [node name="TextureRect" type="TextureRect" parent="PanelContainer/InventoryBase/EquipmentSlots/GunSlot1/MarginContainer"]
 layout_mode = 2
-texture = ExtResource("7_q8r57")
+texture = ExtResource("7_qwrsw")
 expand_mode = 3
 stretch_mode = 4
 
@@ -140,6 +143,7 @@ custom_minimum_size = Vector2(256, 128)
 layout_mode = 2
 script = ExtResource("4_h1h63")
 parent_inventory_control_base = NodePath("../../../..")
+slot_icon = ExtResource("7_qwrsw")
 
 [node name="MarginContainer" type="MarginContainer" parent="PanelContainer/InventoryBase/EquipmentSlots/GunSlot2"]
 layout_mode = 1
@@ -155,7 +159,7 @@ theme_override_constants/margin_bottom = 25
 
 [node name="TextureRect" type="TextureRect" parent="PanelContainer/InventoryBase/EquipmentSlots/GunSlot2/MarginContainer"]
 layout_mode = 2
-texture = ExtResource("7_q8r57")
+texture = ExtResource("7_qwrsw")
 expand_mode = 3
 stretch_mode = 4
 
