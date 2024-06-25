@@ -47,18 +47,24 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="TitleHBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
-visible = false
 layout_mode = 2
 
-[node name="Label" type="Label" parent="VBoxContainer/TitleHBoxContainer"]
+[node name="WeaponNameLabel" type="Label" parent="VBoxContainer/TitleHBoxContainer"]
 layout_mode = 2
-text = "LONG PLACEHOLDER TEXT"
+size_flags_horizontal = 3
+text = "WEAPON NAME"
 
-[node name="DoneButton" type="Button" parent="VBoxContainer/TitleHBoxContainer"]
+[node name="WeaponCategoryLabel" type="Label" parent="VBoxContainer/TitleHBoxContainer"]
 layout_mode = 2
-size_flags_horizontal = 10
-text = "DONE
-"
+size_flags_horizontal = 3
+text = "WEAPON CATEGORY"
+uppercase = true
+
+[node name="AmmoTypeLabel" type="Label" parent="VBoxContainer/TitleHBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Heavy Intermediate Cartridge"
+uppercase = true
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
 custom_minimum_size = Vector2(0, 300)
@@ -227,4 +233,3 @@ In eget nunc iaculis, ultrices quam vitae, tincidunt turpis. Phasellus eget arcu
 "
 
 [connection signal="close_requested" from="." to="." method="_close_self"]
-[connection signal="pressed" from="VBoxContainer/TitleHBoxContainer/DoneButton" to="." method="_on_done_button_pressed"]

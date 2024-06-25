@@ -1,5 +1,6 @@
 extends Resource
 class_name GunStats
+@export var weapon_category_name:String
 @export var magazine_size: int
 @export var rpm: int
 @export var base_recoil: Vector2 

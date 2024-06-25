@@ -1,7 +1,6 @@
 extends ItemDetailPopup
 class_name GunDetailPopup
 
-@onready var item_name_label:Label = $VBoxContainer/TitleHBoxContainer/Label
 @onready var mag_size_label:Label = $VBoxContainer/HBoxContainer/StatsVBoxContainer/MagazineSizeHBoxContainer/ValueLabel
 @onready var rpm_label:Label = $VBoxContainer/HBoxContainer/StatsVBoxContainer/RPMHBoxContainer/ValueLabel
 @onready var vertical_recoil_label:Label = $VBoxContainer/HBoxContainer/StatsVBoxContainer/VerticalRecoilHBoxContainer/ValueLabel
@@ -14,6 +13,10 @@ class_name GunDetailPopup
 @onready var item_model_anchor:Node3D = $VBoxContainer/HBoxContainer/MarginContainer/SubViewportContainer/SubViewport/ItemModelAnchor
 @onready var viewport_camera:Camera3D = $VBoxContainer/HBoxContainer/MarginContainer/SubViewportContainer/SubViewport/Camera3D
 @onready var item_description_label:RichTextLabel = %DescriptionLabel
+@onready var weapon_name_label:Label = $VBoxContainer/TitleHBoxContainer/WeaponNameLabel
+@onready var weapon_category_label:Label = $VBoxContainer/TitleHBoxContainer/WeaponCategoryLabel
+@onready var ammo_type_label:Label = $VBoxContainer/TitleHBoxContainer/AmmoTypeLabel
+
 
 @export var item_outline_material:Material = load("res://ui/inventory/item_outline_material.tres")
 
@@ -34,6 +37,8 @@ var gun_3d:Gun:
 		map_item_name(value)
 		map_gun_stats(value)
 		map_gun_description(value)
+		map_weapon_category(value)
+		map_ammo_type(value)
 		setup_gun_model(value)
 		setup_mod_slots(value)
 
@@ -82,9 +87,15 @@ func map_gun_description(gun:Gun):
 	item_description_label.text = constructed_description_string
 
 func map_item_name(gun:Gun):
-	item_name_label.text = gun.get_item_instance().get_display_name()
+	weapon_name_label.text = gun.get_item_instance().get_display_name()
 	title = gun.get_item_instance().get_display_name()
 	
+func map_weapon_category(gun:Gun):
+	weapon_category_label.text = gun.get_weapon_category()
+	
+func map_ammo_type(gun:Gun):
+	ammo_type_label.text = gun.get_ammo_type().name
+
 func setup_gun_model(gun:Gun):
 	#clear any existing children
 	for child in item_model_anchor.get_children():
