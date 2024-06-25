@@ -504,24 +504,24 @@ func stop_arms_ik():
 	ik_left_hand.stop()
 	ik_left_hand_fingers.stop()
 	
-var is_transparent: bool = false
-func make_transparent():
-	if !is_transparent:
-		player_mat.distance_fade_mode = BaseMaterial3D.DISTANCE_FADE_PIXEL_DITHER
-		#Pixel dither looks better, but this is another way of doing it
-		#gun_mat.blend_mode = gun_mat.BLEND_MODE_ADD
-		is_transparent = true
-		pass
-	else:
-		pass
-
-func make_opaque():
-	if is_transparent:
-		player_mat.distance_fade_mode = BaseMaterial3D.DISTANCE_FADE_DISABLED		
-		#gun_mat.blend_mode = gun_mat.BLEND_MODE_MIX
-		is_transparent = false
-	else:
-		pass
+#var is_transparent: bool = false
+#func make_transparent():
+	#if !is_transparent:
+		#player_mat.distance_fade_mode = BaseMaterial3D.DISTANCE_FADE_PIXEL_DITHER
+		##Pixel dither looks better, but this is another way of doing it
+		##gun_mat.blend_mode = gun_mat.BLEND_MODE_ADD
+		#is_transparent = true
+		#pass
+	#else:
+		#pass
+#
+#func make_opaque():
+	#if is_transparent:
+		#player_mat.distance_fade_mode = BaseMaterial3D.DISTANCE_FADE_DISABLED		
+		##gun_mat.blend_mode = gun_mat.BLEND_MODE_MIX
+		#is_transparent = false
+	#else:
+		#pass
 		
 func calculate_fall_damage(vertical_velocity:float) -> float:
 	var calc_damage = (200.0/6.0*abs(vertical_velocity)) - 300.0
@@ -1015,10 +1015,10 @@ func align_gun_trailer_to_head(delta:float):
 	if GameSettings.both_eyes_open_ads:
 		if fully_ads:
 				equipped_gun.make_transparent()
-				make_transparent()
+				#make_transparent()
 		else:
 				equipped_gun.make_opaque()
-				make_opaque()
+				#make_opaque()
 	
 	#set gun position between hipfire position and ads position by ads_factor
 	equipped_gun.global_position = hf_gun_global_position.lerp(ads_gun_global_position, ads_fac)
