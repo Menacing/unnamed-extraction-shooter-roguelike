@@ -220,6 +220,9 @@ visible = false
 [node name="Muzzle" type="Node3D" parent="gun"]
 transform = Transform3D(1, 0, 2.84217e-14, 0, 1, 0, -2.84217e-14, 0, 1, -0.629664, 0.00352678, 2.75234e-08)
 
+[node name="scope_anchor" type="Node3D" parent="gun"]
+transform = Transform3D(-6.0333e-06, 0, 1.66667, 0, 1.66667, 0, -1.66667, 0, -6.0333e-06, 0.280392, 0.079555, -1.01501e-06)
+
 [node name="Right_Hand" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 7.10543e-15, 0, 1, 0, -7.10543e-15, 0, 1, 0.025, 0.0792384, 0.281)
 
@@ -252,9 +255,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.179712, 0.137292, -0.076894
 
 [node name="ADS_Head" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.2, 0.1, 0)
-
-[node name="scope_anchor" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.214971, 0.168235)
 
 [node name="MuzzleFlash" type="Node3D" parent="."]
 visible = false
