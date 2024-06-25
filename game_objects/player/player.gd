@@ -1085,7 +1085,7 @@ func _on_ready_state_physics_processing(delta):
 			if Input.is_action_just_pressed("shoot"):
 				shoot()
 		
-		if Input.is_action_just_pressed("reload"):
+		if Input.is_action_just_pressed("reload") and !toggle_inv_f:
 			reload()
 
 func _on_ready_state_input(event):
@@ -1112,7 +1112,7 @@ func _on_ads_state_physics_processing(delta):
 			if Input.is_action_just_pressed("shoot"):
 				shoot()
 		
-		if Input.is_action_just_pressed("reload"):
+		if Input.is_action_just_pressed("reload") and !toggle_inv_f:
 			reload()
 
 @export var ads_recoil_factor:StatModifier
@@ -1153,7 +1153,7 @@ func _on_arms_busy_state_physics_processing(delta):
 		ads_fac -= delta / get_ads_acceleration()
 		align_gun_trailer_to_head(delta)
 		
-		if Input.is_action_just_pressed("reload"):
+		if Input.is_action_just_pressed("reload") and !toggle_inv_f:
 			reload()
 	
 	
