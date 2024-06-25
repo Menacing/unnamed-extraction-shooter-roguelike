@@ -172,7 +172,7 @@ streams_count = 1
 stream_0/stream = ExtResource("10_vdlnj")
 stream_0/weight = 1.0
 
-[node name="S5" type="RigidBody3D" node_paths=PackedStringArray("mag_node")]
+[node name="S5" type="RigidBody3D" node_paths=PackedStringArray("mag_node", "model_node")]
 disable_mode = 1
 collision_layer = 5
 collision_mask = 5
@@ -188,6 +188,7 @@ mag_node = NodePath("s5/magazines")
 item_type_id = "s5"
 world_collider_path = NodePath("CollisionShape3D")
 longest_side_size = 0.9
+model_node = NodePath("s5")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -0.00137329, -0.064, -0.054)

@@ -143,3 +143,6 @@ func get_unselected_ammo_subtypes() -> Array[AmmoSubtype]:
 			less_selected.append(ast)
 	
 	return less_selected
+
+func get_weapon_category() -> String:
+	return _gun_stats.weapon_category_name
