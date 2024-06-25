@@ -8,21 +8,21 @@ var subtype_list_item_scene:PackedScene = preload("res://ui/misc/sub_type_list_i
 var _selecting:bool = false
 var selected_index:int = 0
 
-func start_selection(ammo_type:AmmoType, current_subtype:AmmoSubtype, other_subtypes:Array[AmmoSubtype]):
+func start_selection(request:AmmoSubtypeSelectionRequest):
 	if !_selecting:
 		_selecting = true
 		self.visible = true
 		
-		var current_list_item:AmmoSubTypeListItem = subtype_list_item_scene.instantiate()
-		current_list_item._ammo_type = ammo_type
-		current_list_item._ammo_subtype = current_subtype
-		ammo_menu.add_child(current_list_item)
+		var current_list_item:AmmoSubTypeListItem = null
 		
-		for ost:AmmoSubtype in other_subtypes:
+		for assri:AmmoSubtypeSelectionRequestItem in request.subtypes:
 			var list_item:AmmoSubTypeListItem = subtype_list_item_scene.instantiate()
-			list_item._ammo_type = ammo_type
-			list_item._ammo_subtype = ost
+			list_item._ammo_type = request.type
+			list_item._ammo_subtype = assri.subtype
+			list_item.current_amount = assri.current_amount
 			ammo_menu.add_child(list_item)
+			if current_list_item == null:
+				current_list_item = list_item
 			
 		current_list_item.select()
 		
@@ -42,3 +42,11 @@ func _input(event):
 		next_item.select()
 		accept_event()
 		
+
+class AmmoSubtypeSelectionRequestItem:
+	var subtype:AmmoSubtype
+	var current_amount:int
+	
+class AmmoSubtypeSelectionRequest:
+	var type:AmmoType
+	var subtypes:Array[AmmoSubtypeSelectionRequestItem]

@@ -21,7 +21,9 @@ func _ready():
 	EventBus.drop_ammo.connect(_on_drop_ammo)
 	EventBus.drop_all_ammo.connect(_on_drop_all_ammo)
 
-
+##get the current amount of an ammo subtype
+func get_ammo_subtype_count(ammo_type:String, ammo_subtype:String) -> int:
+	return _ammo_map[ammo_type][ammo_subtype].current_amount
 
 ##add ammo of a certain amount. Return the remainder over max
 func add_ammo(ammo_type:String, ammo_subtype:String, amount:int) -> int:

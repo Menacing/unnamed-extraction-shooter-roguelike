@@ -383,7 +383,22 @@ func _input(event):
 				move_gun_to_shoulder(old_gun)
 		elif event.is_action_pressed("change_ammo_subtype"):
 			if equipped_gun and !equipped_gun.reloading:
-				ammo_subtype_selector.start_selection(equipped_gun.get_ammo_type(), equipped_gun.current_ammo_subtype, equipped_gun.get_unselected_ammo_subtypes())
+				var selector_request:AmmoSubtypeSelector.AmmoSubtypeSelectionRequest = AmmoSubtypeSelector.AmmoSubtypeSelectionRequest.new()
+				selector_request.type = equipped_gun.get_ammo_type()
+				selector_request.subtypes = []
+				
+				var current_request_item:AmmoSubtypeSelector.AmmoSubtypeSelectionRequestItem = AmmoSubtypeSelector.AmmoSubtypeSelectionRequestItem.new()
+				current_request_item.subtype = equipped_gun.current_ammo_subtype
+				current_request_item.current_amount = ammo_component.get_ammo_subtype_count(selector_request.type.name, current_request_item.subtype.name)
+				selector_request.subtypes.append(current_request_item)
+				
+				for ast:AmmoSubtype in equipped_gun.get_unselected_ammo_subtypes():
+					var request_item:AmmoSubtypeSelector.AmmoSubtypeSelectionRequestItem = AmmoSubtypeSelector.AmmoSubtypeSelectionRequestItem.new()
+					request_item.subtype = ast
+					request_item.current_amount = ammo_component.get_ammo_subtype_count(selector_request.type.name, request_item.subtype.name)
+					selector_request.subtypes.append(request_item)
+				
+				ammo_subtype_selector.start_selection(selector_request) 
 		
 func toggle_inventory():
 	toggle_inv_f = !toggle_inv_f
@@ -489,24 +504,24 @@ func stop_arms_ik():
 	ik_left_hand.stop()
 	ik_left_hand_fingers.stop()
 	
-var is_transparent: bool = false
-func make_transparent():
-	if !is_transparent:
-		player_mat.distance_fade_mode = BaseMaterial3D.DISTANCE_FADE_PIXEL_DITHER
-		#Pixel dither looks better, but this is another way of doing it
-		#gun_mat.blend_mode = gun_mat.BLEND_MODE_ADD
-		is_transparent = true
-		pass
-	else:
-		pass
-
-func make_opaque():
-	if is_transparent:
-		player_mat.distance_fade_mode = BaseMaterial3D.DISTANCE_FADE_DISABLED		
-		#gun_mat.blend_mode = gun_mat.BLEND_MODE_MIX
-		is_transparent = false
-	else:
-		pass
+#var is_transparent: bool = false
+#func make_transparent():
+	#if !is_transparent:
+		#player_mat.distance_fade_mode = BaseMaterial3D.DISTANCE_FADE_PIXEL_DITHER
+		##Pixel dither looks better, but this is another way of doing it
+		##gun_mat.blend_mode = gun_mat.BLEND_MODE_ADD
+		#is_transparent = true
+		#pass
+	#else:
+		#pass
+#
+#func make_opaque():
+	#if is_transparent:
+		#player_mat.distance_fade_mode = BaseMaterial3D.DISTANCE_FADE_DISABLED		
+		##gun_mat.blend_mode = gun_mat.BLEND_MODE_MIX
+		#is_transparent = false
+	#else:
+		#pass
 		
 func calculate_fall_damage(vertical_velocity:float) -> float:
 	var calc_damage = (200.0/6.0*abs(vertical_velocity)) - 300.0
@@ -1000,10 +1015,10 @@ func align_gun_trailer_to_head(delta:float):
 	if GameSettings.both_eyes_open_ads:
 		if fully_ads:
 				equipped_gun.make_transparent()
-				make_transparent()
+				#make_transparent()
 		else:
 				equipped_gun.make_opaque()
-				make_opaque()
+				#make_opaque()
 	
 	#set gun position between hipfire position and ads position by ads_factor
 	equipped_gun.global_position = hf_gun_global_position.lerp(ads_gun_global_position, ads_fac)

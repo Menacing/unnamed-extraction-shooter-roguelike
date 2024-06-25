@@ -163,6 +163,7 @@ func _on_item_picked_up(result:InventoryInsertResult):
 func move_attachment_to_anchor(attachment:Node3D, anchor:Node3D):
 	if attachment:
 		Helpers.force_parent(attachment, anchor)
+		attachment.top_level = false
 		attachment.transform = Transform3D.IDENTITY
 		attachment.visible = true
 

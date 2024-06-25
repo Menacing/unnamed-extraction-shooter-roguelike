@@ -8,11 +8,12 @@
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_7gpui")
+icon_margin = 64
 
 [node name="TextureRect" type="TextureRect" parent="."]
 material = ExtResource("2_o0sj2")
 layout_mode = 0
-offset_right = 64.0
+offset_right = 128.0
 offset_bottom = 64.0
 rotation = 3.14159
 pivot_offset = Vector2(32, 32)
