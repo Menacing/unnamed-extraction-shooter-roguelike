@@ -241,6 +241,9 @@ libraries = {
 "": SubResource("AnimationLibrary_rga3e")
 }
 
+[node name="scope_anchor" type="Node3D" parent="s5"]
+transform = Transform3D(-1, 0, -2.53518e-06, 0, 1, 0, 2.53518e-06, 0, -1, -1.31228e-07, 0.02233, -0.0517627)
+
 [node name="Right_Hand" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 7.10543e-15, 0, 1, 0, -7.10543e-15, 0, 1, 0.025, -0.123366, 0.144166)
 
@@ -266,9 +269,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0436592, -0.0102317, -0.076
 
 [node name="ADS_Head" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.2, 0.1, 0)
-
-[node name="scope_anchor" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.02233, 0.0517627)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

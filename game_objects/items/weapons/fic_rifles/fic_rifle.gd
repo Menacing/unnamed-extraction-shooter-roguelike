@@ -18,7 +18,7 @@ var reload_time:ModifiableStatFloat = ModifiableStatFloat.new(1.0)
 @export var on_scope_show_nps:Array[NodePath]
 @export var on_scope_hide_nps:Array[NodePath]
 
-@onready var scope_anchor = $scope_anchor
+@onready var scope_anchor = $s5/scope_anchor
 @export var muzzle_np:NodePath
 
 
