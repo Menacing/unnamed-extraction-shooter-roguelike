@@ -24,6 +24,8 @@ var world_collider:CollisionShape3D:
 			return _world_collider
 @onready var item_highlight_m:ShaderMaterial = load("res://themes/item_highlighter_m.tres")
 @export var start_highlighted:bool = true
+@export var meshes_to_fade_on_pickup:Array[MeshInstance3D] = []
+var _prox_fade_mats:Array[StandardMaterial3D] = []
 
 func _ready() -> void:
 	assert(world_collider_path != null)
@@ -39,6 +41,21 @@ func _ready() -> void:
 			internal_inventory_id = item_internal_inventory.get_instance_id()
 			EventBus.item_picked_up.connect(_on_item_picked_up)
 			EventBus.item_removed_from_slot.connect(_on_item_removed_from_slot)
+			
+
+	var _base_materials:Array[StandardMaterial3D] = []
+
+	for mesh_inst:MeshInstance3D in meshes_to_fade_on_pickup:
+		var number_surfaces = mesh_inst.mesh.get_surface_count()
+		for i in range(number_surfaces):
+			_base_materials.append(mesh_inst.mesh.surface_get_material(i))
+	for mat:BaseMaterial3D in _base_materials:
+		var new_mat:BaseMaterial3D = mat.duplicate()
+		new_mat.distance_fade_mode = BaseMaterial3D.DISTANCE_FADE_PIXEL_DITHER
+		new_mat.distance_fade_min_distance = 0.0
+		new_mat.distance_fade_max_distance = 2.0
+		_prox_fade_mats.append(new_mat)
+
 
 func dropped() -> void:
 	world_collider.disabled = false
@@ -47,7 +64,10 @@ func dropped() -> void:
 	Helpers.apply_material_overlay_to_children(self,item_highlight_m)
 	self.apply_torque_impulse(Vector3.FORWARD)
 	_actor_id = 0
-	
+	for mesh_inst:MeshInstance3D in meshes_to_fade_on_pickup:
+		var number_surfaces:int = mesh_inst.mesh.get_surface_count()
+		for i in range(number_surfaces):
+			mesh_inst.set_surface_override_material(i,null)
 
 func picked_up(actor_id:int = 0) -> void:
 	self.transform = Transform3D.IDENTITY
@@ -56,7 +76,12 @@ func picked_up(actor_id:int = 0) -> void:
 	self.freeze = true
 	Helpers.apply_material_overlay_to_children(self,null)
 	_actor_id = actor_id
-
+	if _actor_id != 0:
+		var mat_index:int = 0
+		for mesh_inst:MeshInstance3D in meshes_to_fade_on_pickup:
+			var number_surfaces:int = mesh_inst.mesh.get_surface_count()
+			for i in range(number_surfaces):
+				mesh_inst.set_surface_override_material(i, _prox_fade_mats[mat_index])
 	
 func destroy() -> void:
 	#Events.item_destroyed.emit(self)

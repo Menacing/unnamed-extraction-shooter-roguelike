@@ -29,6 +29,7 @@ func picked_up(actor_id:int = 0):
 	self.collision_mask = ballistic_mask_bitmask
 	self.freeze = true
 
+
 func dropped():
 	super()
 	self.collision_layer = existing_layer_bitmask
