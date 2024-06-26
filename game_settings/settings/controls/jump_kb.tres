@@ -2,24 +2,22 @@
 
 [ext_resource type="Script" path="res://game_settings/templates/input.gd" id="1_5gvqp"]
 
-[sub_resource type="InputEventMouseButton" id="InputEventMouseButton_6pua2"]
-device = -1
-button_index = 1
+[sub_resource type="InputEventKey" id="InputEventKey_wsm5t"]
+physical_keycode = 32
 
-[sub_resource type="InputEventMouseButton" id="InputEventMouseButton_pf3yr"]
-device = -1
-button_index = 1
+[sub_resource type="InputEventKey" id="InputEventKey_elen5"]
+physical_keycode = 32
 
 [resource]
 resource_name = "jump_kb"
 script = ExtResource("1_5gvqp")
-action = "shoot"
+action = "jump"
 event_index = 0
-type = 2
-default_as_event = SubResource("InputEventMouseButton_pf3yr")
-current_as_event = SubResource("InputEventMouseButton_6pua2")
-current = [2, 1]
-default = [2, 1]
+type = 1
+default_as_event = SubResource("InputEventKey_elen5")
+current_as_event = SubResource("InputEventKey_wsm5t")
+current = [1, 32]
+default = [1, 32]
 name = "jump_kb"
 category = "controls"
 value_type = 28

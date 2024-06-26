@@ -448,6 +448,7 @@ size_flags_horizontal = 10
 [node name="InputBtn" parent="main_container/vert_container/option_tab_container/Controls/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/fire/HBoxContainer" node_paths=PackedStringArray("ICW") groups=["controls_settings"] instance=ExtResource("1_lvxjt")]
 layout_mode = 2
 ICW = NodePath("../../../../../../../../../../../InputConfirmWindow")
+accept_mouse = true
 setting = ExtResource("20_7x4lg")
 
 [node name="Btn" parent="main_container/vert_container/option_tab_container/Controls/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/fire/HBoxContainer/InputBtn" index="0"]
@@ -528,6 +529,7 @@ size_flags_horizontal = 10
 [node name="InputBtn" parent="main_container/vert_container/option_tab_container/Controls/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/ads/HBoxContainer" node_paths=PackedStringArray("ICW") groups=["controls_settings"] instance=ExtResource("1_lvxjt")]
 layout_mode = 2
 ICW = NodePath("../../../../../../../../../../../InputConfirmWindow")
+accept_mouse = true
 setting = ExtResource("23_nh01t")
 
 [node name="Btn" parent="main_container/vert_container/option_tab_container/Controls/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/ads/HBoxContainer/InputBtn" index="0"]
