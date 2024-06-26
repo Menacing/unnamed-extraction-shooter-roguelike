@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://game_settings/templates/input.gd" id="1_xykci"]
 
-[sub_resource type="InputEventKey" id="InputEventKey_3pbo7"]
+[sub_resource type="InputEventKey" id="InputEventKey_8sr4j"]
 physical_keycode = 65
 
 [sub_resource type="InputEventKey" id="InputEventKey_gogs3"]
@@ -15,7 +15,7 @@ action = "moveLeft"
 event_index = 0
 type = 1
 default_as_event = SubResource("InputEventKey_gogs3")
-current_as_event = SubResource("InputEventKey_3pbo7")
+current_as_event = SubResource("InputEventKey_8sr4j")
 current = [1, 65]
 default = [1, 65]
 name = "move_left_kb"
