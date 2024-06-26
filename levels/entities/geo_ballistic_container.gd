@@ -46,6 +46,7 @@ func _ready():
 	call_deferred("spawn_loot")
 	EventBus.item_picked_up.connect(_on_item_picked_up)
 	Helpers.apply_material_overlay_to_children(self, item_highlight_m)
+	
 
 func spawn_loot():
 	add_to_group("loot_container")
@@ -112,5 +113,3 @@ func _on_item_picked_up(result:InventoryInsertResult):
 		Helpers.force_parent(item_3d,self)
 		item_3d.picked_up()
 		item_3d.visible = false
-
-

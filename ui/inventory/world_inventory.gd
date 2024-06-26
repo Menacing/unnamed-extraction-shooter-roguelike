@@ -16,11 +16,13 @@ var container_size:int:
 		wig.container_size = value
 		wig.set_grid_container_size(value)
 		
-@onready var original_parent:Node = self.get_parent()
+@onready var original_parent:Node3D = self.get_parent()
+var player:Player
 
 func _ready():
 	super()
 	container_size = _inventory.initial_height * _inventory.initial_width
+	EventBus.drop_item.connect(_on_drop_item)
 
 func _on_item_picked_up(result:InventoryInsertResult):
 	if result.inventory_id == _inventory.get_instance_id() and result.picked_up:
@@ -44,3 +46,10 @@ func _on_close_all_inventories():
 	super()
 	EventBus.remove_inventory_from_HUD.emit(self, original_parent)
 	
+func _on_drop_item(item_inst:ItemInstance, _inventory_id:int):
+	if _inventory_id == self.inventory_id:
+		var item_3d:Item3D = instance_from_id(item_inst.id_3d)
+		Helpers.force_parent(item_3d,get_parent())
+		item_3d.dropped()
+		var aabb = Helpers.get_aabb_of_node(self)
+		item_3d.global_position = player.drop_location.global_position

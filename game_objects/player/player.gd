@@ -958,11 +958,11 @@ var h_rot_acc:float:
 		_h_rot_acc = clampf(_h_rot_acc, -deg_to_rad(85), deg_to_rad(85))
 func sway_transform_mouse(event: InputEventMouse):
 	if (fully_ads):
-		v_rot_acc += -event.relative.x * GameSettings.h_mouse_sens/1000.0 * GameSettings.ads_look_factor
-		h_rot_acc += -event.relative.y * GameSettings.v_mouse_sens/1000.0 * GameSettings.ads_look_factor
+		v_rot_acc += -event.relative.x * GameSettings.h_mouse_sens/2000.0 * GameSettings.ads_look_factor
+		h_rot_acc += -event.relative.y * GameSettings.v_mouse_sens/2000.0 * GameSettings.ads_look_factor
 	else:
-		v_rot_acc += -event.relative.x * GameSettings.h_mouse_sens/1000.0
-		h_rot_acc += -event.relative.y * GameSettings.v_mouse_sens/1000.0
+		v_rot_acc += -event.relative.x * GameSettings.h_mouse_sens/2000.0
+		h_rot_acc += -event.relative.y * GameSettings.v_mouse_sens/2000.0
 
 func point_camera_at_target():
 	head.transform.basis = Basis() # reset rotation

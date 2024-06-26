@@ -1,8 +1,9 @@
-[gd_resource type="Resource" script_class="AmmoInformation" load_steps=8 format=3 uid="uid://dj0v5gb1ecfvy"]
+[gd_resource type="Resource" script_class="AmmoInformation" load_steps=9 format=3 uid="uid://dj0v5gb1ecfvy"]
 
 [ext_resource type="Resource" uid="uid://e74bf0ee7eck" path="res://components/ammo_component/ammo_types/heavy_intermediate_cartridge/ammo_subtypes/armor_piercing.tres" id="1_5s5mq"]
 [ext_resource type="Resource" uid="uid://3nqgvhg4lre8" path="res://components/ammo_component/ammo_types/heavy_intermediate_cartridge/heavy_intermediate_cartridge.tres" id="2_161qn"]
 [ext_resource type="PackedScene" uid="uid://djpvx3f8rfem0" path="res://ui/inventory/detail_scenes/ammo_detail_popup.tscn" id="3_xf8do"]
+[ext_resource type="Resource" uid="uid://o6tesi76nbth" path="res://ui/inventory/drop_item_context_item.tres" id="3_yvb51"]
 [ext_resource type="PackedScene" uid="uid://82pjqxlmcg2v" path="res://game_objects/items/ammo/hic/hic_box_ap.tscn" id="4_b4t56"]
 [ext_resource type="Texture2D" uid="uid://md2fvi5hcvif" path="res://game_objects/items/ammo/hic/hic_box_ap_icon.png" id="4_w0f3e"]
 [ext_resource type="PackedScene" uid="uid://cn3ywqty7xvvr" path="res://ui/inventory/item_control.tscn" id="5_2e8no"]
@@ -22,7 +23,7 @@ item_type = 11
 icon = ExtResource("4_w0f3e")
 icon_r = ExtResource("4_w0f3e")
 detail_scene = ExtResource("3_xf8do")
-context_menu_items = Array[Resource("res://ui/inventory/item_context_item.gd")]([])
+context_menu_items = Array[Resource("res://ui/inventory/item_context_item.gd")]([ExtResource("3_yvb51")])
 max_stacks = 20
 has_stacks = true
 max_durability = 1
