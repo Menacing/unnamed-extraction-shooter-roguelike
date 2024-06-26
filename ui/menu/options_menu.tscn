@@ -1064,6 +1064,8 @@ group = "audio_settings"
 [node name="InputConfirmWindow" parent="." instance=ExtResource("4_5ngqd")]
 
 [connection signal="pressed" from="main_container/vert_container/HBoxContainer/back_button" to="." method="_on_back_button_pressed"]
+[connection signal="tab_clicked" from="main_container/vert_container/option_tab_container" to="." method="_on_option_tab_container_tab_clicked"]
+[connection signal="tab_hovered" from="main_container/vert_container/option_tab_container" to="." method="_on_option_tab_container_tab_hovered"]
 [connection signal="value_changed" from="main_container/vert_container/option_tab_container/Display/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/fov_slider/HBoxContainer/Slider/Slider" to="main_container/vert_container/option_tab_container/Display/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/fov_slider/HBoxContainer/fov_display" method="_on_slider_value_changed"]
 
 [editable path="main_container/vert_container/option_tab_container/Controls/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/move_forward/HBoxContainer/InputBtn"]

@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://c7c0v8av0fu0h"]
+[gd_scene load_steps=3 format=3 uid="uid://c7c0v8av0fu0h"]
 
 [ext_resource type="Script" path="res://ui/menu/main_menu.gd" id="1_u16n5"]
+[ext_resource type="AudioStream" uid="uid://45upmuv34vpe" path="res://game_objects/effects/sounds/menu/menu_music_inavision_futuristic.ogg" id="2_fwvh6"]
 
 [node name="MainMenu" type="ColorRect"]
 anchors_preset = 15
@@ -28,14 +29,14 @@ layout_mode = 2
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/MarginContainer"]
 layout_mode = 2
 
-[node name="start_demo_button" type="Button" parent="CenterContainer/MarginContainer/VBoxContainer"]
+[node name="start_demo_button" type="Button" parent="CenterContainer/MarginContainer/VBoxContainer" groups=["ui_button_sound"]]
 custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 32
 text = "Start Demo"
 
-[node name="credits_button" type="Button" parent="CenterContainer/MarginContainer/VBoxContainer"]
+[node name="credits_button" type="Button" parent="CenterContainer/MarginContainer/VBoxContainer" groups=["ui_button_sound"]]
 custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -43,7 +44,7 @@ theme_override_font_sizes/font_size = 32
 text = "Credits
 "
 
-[node name="options_button" type="Button" parent="CenterContainer/MarginContainer/VBoxContainer"]
+[node name="options_button" type="Button" parent="CenterContainer/MarginContainer/VBoxContainer" groups=["ui_button_sound"]]
 custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -51,12 +52,17 @@ theme_override_font_sizes/font_size = 32
 text = "Options
 "
 
-[node name="quit_game_button" type="Button" parent="CenterContainer/MarginContainer/VBoxContainer"]
+[node name="quit_game_button" type="Button" parent="CenterContainer/MarginContainer/VBoxContainer" groups=["ui_button_sound"]]
 custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 32
 text = "Quit Game"
+
+[node name="MenuMusicAudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_fwvh6")
+autoplay = true
+bus = &"Menu"
 
 [connection signal="pressed" from="CenterContainer/MarginContainer/VBoxContainer/start_demo_button" to="." method="_on_start_demo_button_pressed"]
 [connection signal="pressed" from="CenterContainer/MarginContainer/VBoxContainer/credits_button" to="." method="_on_credits_button_pressed"]

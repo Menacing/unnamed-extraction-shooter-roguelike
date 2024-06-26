@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://bo6x6p6ooowcx"]
+[gd_scene load_steps=6 format=3 uid="uid://bo6x6p6ooowcx"]
 
 [ext_resource type="Script" path="res://ui/menu/pause.gd" id="1_1nbik"]
 [ext_resource type="Material" uid="uid://c7ue21fd8ydgm" path="res://ui/menu/vhs_pause_material.tres" id="1_piv1o"]
+[ext_resource type="AudioStream" uid="uid://45upmuv34vpe" path="res://game_objects/effects/sounds/menu/menu_music_inavision_futuristic.ogg" id="3_yg4d8"]
 
 [sub_resource type="InputEventAction" id="InputEventAction_1sy1t"]
 action = &"ui_cancel"
@@ -48,7 +49,7 @@ horizontal_alignment = 1
 [node name="HSeparator" type="HSeparator" parent="CenterContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="resume_button" type="Button" parent="CenterContainer/MarginContainer/VBoxContainer"]
+[node name="resume_button" type="Button" parent="CenterContainer/MarginContainer/VBoxContainer" groups=["ui_button_sound"]]
 unique_name_in_owner = true
 layout_mode = 2
 shortcut = SubResource("Shortcut_o2ej0")
@@ -56,12 +57,18 @@ shortcut_feedback = false
 shortcut_in_tooltip = false
 text = "Resume"
 
-[node name="options_button" type="Button" parent="CenterContainer/MarginContainer/VBoxContainer"]
+[node name="options_button" type="Button" parent="CenterContainer/MarginContainer/VBoxContainer" groups=["ui_button_sound"]]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Options"
 
-[node name="quit_game_button" type="Button" parent="CenterContainer/MarginContainer/VBoxContainer"]
+[node name="quit_game_button" type="Button" parent="CenterContainer/MarginContainer/VBoxContainer" groups=["ui_button_sound"]]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Quit Game"
+
+[node name="MenuMusicAudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+process_mode = 2
+stream = ExtResource("3_yg4d8")
+autoplay = true
+bus = &"Menu"
