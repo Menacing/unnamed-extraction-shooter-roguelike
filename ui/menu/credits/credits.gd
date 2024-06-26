@@ -1,5 +1,7 @@
 extends ColorRect
 
+@export var menu_music_stream:AudioStream
+
 func _ready():
 	%godot_logo.tooltip_text = Engine.get_license_text()
 

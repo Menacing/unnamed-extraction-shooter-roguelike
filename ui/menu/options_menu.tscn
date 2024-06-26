@@ -1,7 +1,8 @@
-[gd_scene load_steps=51 format=3 uid="uid://b37h35qgnmcvk"]
+[gd_scene load_steps=52 format=3 uid="uid://b37h35qgnmcvk"]
 
 [ext_resource type="Script" path="res://ui/menu/options_menu.gd" id="1_0sxhr"]
 [ext_resource type="PackedScene" uid="uid://dm1av7skxvp1j" path="res://game_settings/components/input_btn/input_btn.tscn" id="1_lvxjt"]
+[ext_resource type="AudioStream" uid="uid://45upmuv34vpe" path="res://game_objects/effects/sounds/menu/menu_music_inavision_futuristic.ogg" id="2_oi4b4"]
 [ext_resource type="Resource" uid="uid://baqd80g3a22sm" path="res://game_settings/settings/controls/move_left_kb.tres" id="3_5ykfs"]
 [ext_resource type="PackedScene" uid="uid://b1btmq8y3gexs" path="res://game_settings/components/_misc_components/input_confirm_window/input_confirm_window.tscn" id="4_5ngqd"]
 [ext_resource type="PackedScene" uid="uid://bhkyf3l4ee800" path="res://game_settings/components/checkbox/checkbox.tscn" id="4_l86j1"]
@@ -59,6 +60,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0.568627)
 script = ExtResource("1_0sxhr")
+menu_music_stream = ExtResource("2_oi4b4")
 
 [node name="main_container" type="CenterContainer" parent="."]
 layout_mode = 1

@@ -4,6 +4,8 @@ extends ColorRect
 @onready var quit_button:Button = %quit_game_button
 @onready var options_button:Button = %options_button
 
+@export var menu_music_stream:AudioStream
+
 var original_mouse_mode:Input.MouseMode
 
 # Called when the node enters the scene tree for the first time.
