@@ -25,10 +25,13 @@ var current_menu_level:MENU_LEVEL = MENU_LEVEL.NONE
 var previous_menu_level:MENU_LEVEL = MENU_LEVEL.NONE
 var menu_layer:int = 15
 var menu_material = load("res://ui/menu/vhs_pause_material.tres")
+@onready var menu_music_player:AudioStreamPlayer = AudioStreamPlayer.new()
 
 func _ready():
 	var root = get_tree().root
 	current_scene = root.get_child(root.get_child_count() - 1)
+	menu_music_player.name = "MenuMusicPlayer"
+	self.add_child(menu_music_player)
 
 func load_menu(menuLevel:MENU_LEVEL):
 	previous_menu_level = current_menu_level
@@ -40,6 +43,7 @@ func _deffered_load_menu(menuLevel:MENU_LEVEL):
 		if container:
 			container.visible = false
 		current_menu = null
+		menu_music_player.stop()
 		return
 
 	if not container:
@@ -64,3 +68,13 @@ func _deffered_load_menu(menuLevel:MENU_LEVEL):
 	container.visible = true
 	if current_menu.has_method("menu_activated"):
 		current_menu.menu_activated()
+	if "menu_music_stream" in current_menu:
+		var menu_music_stream = current_menu.menu_music_stream as AudioStream
+		if menu_music_stream:
+			if menu_music_player.stream != menu_music_stream:
+				menu_music_player.stream = menu_music_stream
+				menu_music_player.play()
+			elif !menu_music_player.playing:
+				menu_music_player.play()
+	else:
+		menu_music_player.stop()

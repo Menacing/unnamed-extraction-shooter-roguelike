@@ -1,12 +1,17 @@
-[gd_scene load_steps=2 format=3 uid="uid://esw7j7or7gpd"]
+[gd_scene load_steps=4 format=3 uid="uid://esw7j7or7gpd"]
 
 [ext_resource type="Script" path="res://addons/ggs/classes/global/ggs.gd" id="1_6v3cu"]
+[ext_resource type="AudioStream" uid="uid://83mryjqs6oc4" path="res://game_objects/effects/sounds/menu/menu_hover_vkp_switch_04.ogg" id="2_26ss6"]
+[ext_resource type="AudioStream" uid="uid://bk77v2nat0tbg" path="res://game_objects/effects/sounds/menu/menu_select_vkp_switch_08.ogg" id="3_olc3c"]
 
 [node name="GGS" type="Node"]
 script = ExtResource("1_6v3cu")
 
 [node name="MouseOverSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_26ss6")
 
 [node name="FocusSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_26ss6")
 
 [node name="InteractSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_olc3c")

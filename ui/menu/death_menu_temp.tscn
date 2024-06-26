@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://kti4xnpocrj7"]
+[gd_scene load_steps=3 format=3 uid="uid://kti4xnpocrj7"]
 
 [ext_resource type="Script" path="res://ui/menu/death_menu_temp.gd" id="1_3wong"]
+[ext_resource type="AudioStream" uid="uid://45upmuv34vpe" path="res://game_objects/effects/sounds/menu/menu_music_inavision_futuristic.ogg" id="2_5vhjl"]
 
 [node name="DeathMenu" type="ColorRect"]
 modulate = Color(1, 1, 1, 0)
@@ -47,7 +48,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 uppercase = true
 
-[node name="restart_demo_button" type="Button" parent="CenterContainer/MarginContainer/VBoxContainer"]
+[node name="restart_demo_button" type="Button" parent="CenterContainer/MarginContainer/VBoxContainer" groups=["ui_button_sound"]]
 visible = false
 custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
@@ -55,13 +56,18 @@ size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 32
 text = "Restart Demo"
 
-[node name="quit_game_button" type="Button" parent="CenterContainer/MarginContainer/VBoxContainer"]
+[node name="quit_game_button" type="Button" parent="CenterContainer/MarginContainer/VBoxContainer" groups=["ui_button_sound"]]
 visible = false
 custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 32
 text = "Quit Game"
+
+[node name="MenuMusicAudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_5vhjl")
+autoplay = true
+bus = &"Menu"
 
 [connection signal="pressed" from="CenterContainer/MarginContainer/VBoxContainer/restart_demo_button" to="." method="_on_start_demo_button_pressed"]
 [connection signal="pressed" from="CenterContainer/MarginContainer/VBoxContainer/quit_game_button" to="." method="_on_quit_game_button_pressed"]

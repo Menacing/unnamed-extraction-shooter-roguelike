@@ -1,5 +1,6 @@
 extends ColorRect
 
+@export var menu_music_stream:AudioStream
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -19,7 +20,7 @@ func _on_credits_button_pressed():
 
 func _on_quit_game_button_pressed():
 	get_tree().quit()
-	
 
 func _on_options_button_pressed():
 	MenuManager.load_menu(MenuManager.MENU_LEVEL.OPTIONS)
+	
