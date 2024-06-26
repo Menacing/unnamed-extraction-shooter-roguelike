@@ -5,6 +5,7 @@ var toggle_sprint = false
 var toggle_crouch = false
 var toggle_lean = false
 var toggle_ads = false
+var disable_use_helper_when_ads = true
 
 var h_mouse_sens:float = 5.0
 var v_mouse_sens:float = 5.0

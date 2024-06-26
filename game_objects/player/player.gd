@@ -330,7 +330,8 @@ func _physics_process(delta):
 	if !toggle_inv_f:
 		
 		#handle use hint
-		if use_shape.is_colliding():
+		#Enable when coliding and not disabled or disabled and not ads
+		if use_shape.is_colliding() and (!GameSettings.disable_use_helper_when_ads or (GameSettings.disable_use_helper_when_ads and !fully_ads)):
 				var col = use_shape.get_collider(0)
 				if col:
 					if col is Item3D:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=3 uid="uid://b37h35qgnmcvk"]
+[gd_scene load_steps=51 format=3 uid="uid://b37h35qgnmcvk"]
 
 [ext_resource type="Script" path="res://ui/menu/options_menu.gd" id="1_0sxhr"]
 [ext_resource type="PackedScene" uid="uid://dm1av7skxvp1j" path="res://game_settings/components/input_btn/input_btn.tscn" id="1_lvxjt"]
@@ -49,6 +49,7 @@
 [ext_resource type="Resource" uid="uid://ch14ihudxx671" path="res://game_settings/settings/display/window_size.tres" id="44_m1hmf"]
 [ext_resource type="Resource" uid="uid://5ncapys43e0n" path="res://game_settings/settings/display/default_fov.tres" id="45_vd41r"]
 [ext_resource type="Resource" uid="uid://o8o6hnt6k74j" path="res://game_settings/settings/ui/health_display_mode.tres" id="47_gderx"]
+[ext_resource type="Resource" uid="uid://c0a7pj887fuve" path="res://game_settings/settings/ui/disable_use_helper_when_ads.tres" id="49_nt1ud"]
 
 [node name="options_menu" type="ColorRect"]
 anchors_preset = 15
@@ -93,8 +94,10 @@ uppercase = true
 [node name="option_tab_container" type="TabContainer" parent="main_container/vert_container"]
 custom_minimum_size = Vector2(500, 600)
 layout_mode = 2
+current_tab = 3
 
 [node name="Controls" type="MarginContainer" parent="main_container/vert_container/option_tab_container"]
+visible = false
 layout_mode = 2
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="main_container/vert_container/option_tab_container/Controls"]
@@ -979,7 +982,6 @@ text = "Reset to Default"
 group = "display_settings"
 
 [node name="Game Play" type="MarginContainer" parent="main_container/vert_container/option_tab_container"]
-visible = false
 layout_mode = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="main_container/vert_container/option_tab_container/Game Play"]
@@ -1026,6 +1028,23 @@ popup/item_1/text = "Icons"
 popup/item_1/id = 1
 popup/item_2/text = "Numbers"
 popup/item_2/id = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="main_container/vert_container/option_tab_container/Game Play/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="main_container/vert_container/option_tab_container/Game Play/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+text = "Disable Use Helper When ADS"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="main_container/vert_container/option_tab_container/Game Play/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 10
+
+[node name="Checkbox" parent="main_container/vert_container/option_tab_container/Game Play/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer2/HBoxContainer" groups=["display_settings"] instance=ExtResource("4_l86j1")]
+layout_mode = 2
+setting = ExtResource("49_nt1ud")
+apply_on_change = true
 
 [node name="HBoxContainer" type="HBoxContainer" parent="main_container/vert_container/option_tab_container/Game Play/VBoxContainer"]
 layout_mode = 2
@@ -1084,3 +1103,4 @@ group = "audio_settings"
 [editable path="main_container/vert_container/option_tab_container/Display/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/resolution/OptionList"]
 [editable path="main_container/vert_container/option_tab_container/Display/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/fov_slider/HBoxContainer/Slider"]
 [editable path="main_container/vert_container/option_tab_container/Game Play/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer/OptionList"]
+[editable path="main_container/vert_container/option_tab_container/Game Play/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer2/HBoxContainer/Checkbox"]
