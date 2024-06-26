@@ -147,6 +147,8 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 @onready var ammo_component:AmmoComponent = $AmmoComponent
 @onready var ammo_subtype_selector:AmmoSubtypeSelector = $PlayerHUD/weapon_info_hud/VBoxContainer/AmmoSubtypeSelector
 
+@onready var footstep_component:FootstepComponent = $FootstepComponent
+
 func _ready():
 	if gun_scene1:
 		equipped_gun = gun_scene1.instantiate()
@@ -657,6 +659,7 @@ func _on_walking_state_entered():
 	current_bob_amount_x.base_value = WALKING_BOB_TRANSLATION_X
 	current_bob_amount_y.base_value = WALKING_BOB_TRANSLATION_Y
 	current_bob_freq.add_modifier(walking_recoil_factor)
+	
 	
 func _on_walking_state_exited() -> void:
 	current_bob_freq.remove_modifier(walking_recoil_factor)

@@ -6,7 +6,15 @@
 script = ExtResource("1_k4wki")
 
 [node name="FootstepAudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.902889, 0)
+volume_db = 4.0
 
 [node name="FoostepTimer" type="Timer" parent="."]
-one_shot = true
+process_callback = 0
+wait_time = 0.2
+autostart = true
+
+[node name="RayCast3D" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0646541, 0)
+target_position = Vector3(0, -0.2, 0)
+
+[connection signal="timeout" from="FoostepTimer" to="." method="_on_foostep_timer_timeout"]
