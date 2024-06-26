@@ -711,6 +711,9 @@ func _on_sprinting_state_entered():
 	state_chart.send_event("StopLean")
 	
 func _on_sprinting_state_exited():
+	#Issue 350: Forcing toggle sprint off when you stop sprinting
+	#otherwise it will stay on unless you tap sprint key WHILE moving
+	toggle_sprint_f = false
 	current_bob_freq.remove_modifier(sprinting_recoil_factor)
 	state_chart.send_event("ArmsDone")
 	
