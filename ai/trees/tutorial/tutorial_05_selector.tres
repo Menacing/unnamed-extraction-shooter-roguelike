@@ -1,10 +1,10 @@
 [gd_resource type="BehaviorTree" load_steps=26 format=3 uid="uid://bf4r652fv5kwi"]
 
-[ext_resource type="Script" path="res://demo/ai/tasks/get_first_in_group.gd" id="1_3ed74"]
-[ext_resource type="Script" path="res://demo/ai/tasks/select_random_nearby_pos.gd" id="1_rvh1c"]
-[ext_resource type="Script" path="res://demo/ai/tasks/in_range.gd" id="2_jfsyt"]
-[ext_resource type="Script" path="res://demo/ai/tasks/pursue.gd" id="2_nnswb"]
-[ext_resource type="Script" path="res://demo/ai/tasks/arrive_pos.gd" id="2_t62a0"]
+[ext_resource type="Script" path="res://ai/tasks/examples/get_first_in_group.gd" id="1_3ed74"]
+[ext_resource type="Script" path="res://ai/tasks/examples/select_random_nearby_pos.gd" id="1_rvh1c"]
+[ext_resource type="Script" path="res://ai/tasks/examples/in_range.gd" id="2_jfsyt"]
+[ext_resource type="Script" path="res://ai/tasks/examples/pursue.gd" id="2_nnswb"]
+[ext_resource type="Script" path="res://ai/tasks/examples/arrive_pos.gd" id="2_t62a0"]
 
 [sub_resource type="BlackboardPlan" id="BlackboardPlan_ewfwq"]
 var/speed/name = &"speed"
