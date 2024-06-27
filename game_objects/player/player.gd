@@ -927,14 +927,32 @@ func _on_falling_state_exited() -> void:
 	current_bob_freq.remove_modifier(falling_bob_freq)
 	state_chart.send_event("ArmsDone")
 	
-	var fall_damage = calculate_fall_damage(falling_velocity)
+	var fall_damage = calculate_fall_damage(_real_velocity.y)
 	if fall_damage > 0:
 		EventBus.location_hit.emit(get_instance_id(), HealthLocation.HEALTH_LOCATION.LEGS, fall_damage)
 	falling_velocity = 0.0
 	pass # Replace with function body.
 
 func _on_falling_state_physics_processing(delta: float) -> void:
+	#var input_direction = Input.get_vector("moveLeft", "moveRight", "moveUp", "moveDown")
+	#var direction:Vector3 = (transform.basis * Vector3(input_direction.x, 0, input_direction.y)).normalized()
+	#if is_equal_approx(input_direction.length(), 0.0):
+		#state_chart.send_event("Stop")
+		#return
+	#elif should_sprint():
+		#state_chart.send_event("Sprint")
+		#return
+	#else:
+		#animation_tree["parameters/Walking/blend_position"] = input_direction
+		#
+		#move(direction * current_speed.get_modified_value(), delta, input_direction.y < 0)
+	
 	if not is_on_floor():
+		var input_direction = Input.get_vector("moveLeft", "moveRight", "moveUp", "moveDown")
+		var direction:Vector3 = (transform.basis * Vector3(input_direction.x, 0, input_direction.y)).normalized()
+		var move_global_velocity = direction * current_speed.get_modified_value()
+		velocity.x = move_toward(velocity.x, move_global_velocity.x, accel)
+		velocity.z = move_toward(velocity.z, move_global_velocity.z, accel)
 		velocity.y -= gravity * delta
 		falling_velocity = velocity.y
 		move_step_and_slide(delta)
