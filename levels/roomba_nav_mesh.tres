@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="NavigationMeshListItem" load_steps=3 format=3 uid="uid://hw8blc564g2i"]
+
+[ext_resource type="Script" path="res://levels/navigation_mesh_list_item.gd" id="1_w10cx"]
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_kvvuo"]
+agent_height = 1.0
+agent_radius = 0.25
+
+[resource]
+script = ExtResource("1_w10cx")
+name = "combat_roomba"
+mesh = SubResource("NavigationMesh_kvvuo")

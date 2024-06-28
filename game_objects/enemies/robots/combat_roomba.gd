@@ -24,6 +24,7 @@ func _ready():
 	super()
 	self_exclusions = Helpers.get_all_collision_object_3d_recursive(self)
 	exclusions = self_exclusions
+	
 	if gun_scene: 
 		gun = gun_scene.instantiate()
 		gun.start_highlighted = false

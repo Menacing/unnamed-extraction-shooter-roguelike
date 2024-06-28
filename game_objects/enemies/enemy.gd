@@ -18,6 +18,7 @@ var move_target:Node3D
 @export var detection_radius:Area3D
 @export var ballistic_detection_radius:Area3D
 @export var movement_audio_player:AudioStreamPlayer3D
+@export var nav_mesh_list_item:NavigationMeshListItem
 var _target_player:Player
 var target_player:Player:
 	set(value):
@@ -44,8 +45,9 @@ func _ready():
 		ballistic_detection_radius.body_entered.connect(_on_body_entered_ballistic_detection_radius)
 		ballistic_detection_radius.body_exited.connect(_on_body_exited_ballistic_detection_radius)
 		
-	if nav_agent: 
+	if nav_agent and nav_mesh_list_item and nav_mesh_list_item.map_rid: 
 		nav_agent.velocity_computed.connect(_on_velocity_computed)
+		nav_agent.set_navigation_map(nav_mesh_list_item.map_rid)
 	pass
 
 func _physics_process(delta):
@@ -85,7 +87,6 @@ func _on_velocity_computed(safe_velocity: Vector3):
 		var movement_audio_playing:bool = movement_audio_player.playing
 		if !velocity_near_zero and !movement_audio_playing:
 			movement_audio_player.play()
-			pass
 		elif velocity_near_zero and movement_audio_playing:
 			if movement_audio_player is IntroOutroAudioStreamPlayer:
 				movement_audio_player.request_stop()

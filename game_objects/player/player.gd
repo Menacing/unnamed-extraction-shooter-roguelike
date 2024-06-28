@@ -933,21 +933,18 @@ func _on_falling_state_exited() -> void:
 	falling_velocity = 0.0
 	pass # Replace with function body.
 
+var _stuck_timer:float = 0.0
+var _stuck_threshold = 5.0
 func _on_falling_state_physics_processing(delta: float) -> void:
-	#var input_direction = Input.get_vector("moveLeft", "moveRight", "moveUp", "moveDown")
-	#var direction:Vector3 = (transform.basis * Vector3(input_direction.x, 0, input_direction.y)).normalized()
-	#if is_equal_approx(input_direction.length(), 0.0):
-		#state_chart.send_event("Stop")
-		#return
-	#elif should_sprint():
-		#state_chart.send_event("Sprint")
-		#return
-	#else:
-		#animation_tree["parameters/Walking/blend_position"] = input_direction
-		#
-		#move(direction * current_speed.get_modified_value(), delta, input_direction.y < 0)
 	
-	if not is_on_floor():
+	if is_zero_approx(_real_velocity.y):
+		_stuck_timer += delta
+	else:
+		_stuck_timer = 0.0
+		
+	if _stuck_timer >= _stuck_threshold:
+		state_chart.send_event("Stuck")
+	elif not is_on_floor():
 		var input_direction = Input.get_vector("moveLeft", "moveRight", "moveUp", "moveDown")
 		var direction:Vector3 = (transform.basis * Vector3(input_direction.x, 0, input_direction.y)).normalized()
 		var move_global_velocity = direction * current_speed.get_modified_value()
@@ -959,6 +956,30 @@ func _on_falling_state_physics_processing(delta: float) -> void:
 	else:
 		state_chart.send_event("Landed")
 		return
+
+func _on_stuck_state_entered():
+	var unstuck_keybind:String = InputMap.action_get_events("unstuck")[0].as_text()
+	var unstuck_message:String = "You appear to be stuck. Press %s to get unstuck" % unstuck_keybind
+	EventBus.create_message.emit("unstuck_message", unstuck_message, -1)
+
+func _on_stuck_state_exited():
+	EventBus.remove_message.emit("unstuck_message")
+
+@export_category("Navigation")
+@export var nav_root:MultiAgentNavigationRoot
+func _on_stuck_state_input(event):
+	var input := event as InputEvent
+	if input.is_action_pressed("unstuck"):
+		#find nearby area on humanoid nav map
+		var nmli = nav_root.get_navigation_mesh_list_item("humanoid")
+		var global_pos := self.global_position
+		var unstuck_point := NavigationServer3D.map_get_closest_point(nmli.map_rid, self.global_position)
+		unstuck_point.y += 1.5
+		#set position there
+		self.global_position = unstuck_point
+		#fall
+		_stuck_timer = 0.0
+		state_chart.send_event("Fell")
 
 #endregion
 #endregion
@@ -1139,7 +1160,7 @@ func _on_ads_state_physics_processing(delta):
 		
 		if Input.is_action_just_pressed("reload") and !toggle_inv_f:
 			reload()
-
+@export_category("ADS")
 @export var ads_recoil_factor:StatModifier
 @export var ads_bob_freq:StatModifier
 @export var ads_speed:StatModifier
@@ -1232,6 +1253,9 @@ func _on_right_state_physics_processing(delta):
 		return
 	waist.basis = Quaternion(waist.basis).slerp(Quaternion(right_lean_basis),0.5)
 #endregion
+
+
+
 
 
 
