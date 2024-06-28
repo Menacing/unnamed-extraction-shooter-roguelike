@@ -14,6 +14,7 @@ damping = 0.25
 resource_name = "Reverb"
 
 [resource]
+bus/0/volume_db = -0.130497
 bus/1/name = &"RvSmall"
 bus/1/solo = false
 bus/1/mute = false
@@ -38,3 +39,9 @@ bus/3/volume_db = 0.0
 bus/3/send = &"Master"
 bus/3/effect/0/effect = SubResource("AudioEffectReverb_atyyp")
 bus/3/effect/0/enabled = true
+bus/4/name = &"Menu"
+bus/4/solo = false
+bus/4/mute = false
+bus/4/bypass_fx = false
+bus/4/volume_db = 0.0
+bus/4/send = &"Master"
