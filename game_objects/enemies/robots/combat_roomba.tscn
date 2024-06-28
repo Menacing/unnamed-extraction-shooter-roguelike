@@ -237,7 +237,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000492002, 0.578961, 0.000
 shape = SubResource("BoxShape3D_hycai")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
-path_height_offset = 2.0
 avoidance_enabled = true
 height = 2.0
 radius = 1.0

@@ -31,6 +31,7 @@ func _ready():
 		NavigationServer3D.region_set_map(navigation_region_rid, navigation_map_rid)
 		# Set navigation mesh for each region.
 		NavigationServer3D.region_set_navigation_mesh(navigation_region_rid, mesh_item.mesh)
+		EventBus.navigation_mesh_list_item_baked.emit(mesh_item)
 
 func get_navigation_mesh_list_item(mesh_name:String) -> NavigationMeshListItem:
 	for item in navigation_mesh_list_items:
