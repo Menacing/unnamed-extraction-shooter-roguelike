@@ -5,6 +5,9 @@ class_name MultiAgentNavigationRoot
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	call_deferred("_setup")
+	
+func _setup():
 	# Create the source geometry resource that will hold the parsed geometry data.
 	var source_geometry_data: NavigationMeshSourceGeometryData3D = NavigationMeshSourceGeometryData3D.new()
 	
