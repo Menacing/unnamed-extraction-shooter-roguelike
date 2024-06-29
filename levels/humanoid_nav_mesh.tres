@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="NavigationMeshListItem" load_steps=3 format=3 uid="uid://bkm06qpqovt7f"]
+
+[ext_resource type="Script" path="res://levels/navigation_mesh_list_item.gd" id="1_f4c5b"]
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_xhu2b"]
+agent_height = 1.9
+
+[resource]
+script = ExtResource("1_f4c5b")
+name = "humanoid"
+mesh = SubResource("NavigationMesh_xhu2b")

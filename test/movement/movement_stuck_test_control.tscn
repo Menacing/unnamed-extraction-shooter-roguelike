@@ -1,0 +1,77 @@
+[gd_scene load_steps=5 format=3 uid="uid://j414hqg8eu24"]
+
+[ext_resource type="Script" path="res://test/movement/movement_stuck_test_control.gd" id="1_qhwdk"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_od1ve"]
+albedo_color = Color(0.737255, 0.337255, 0, 1)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_r3lrf"]
+height = 1.38368
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ica0k"]
+albedo_color = Color(0, 0.635294, 0.698039, 1)
+
+[node name="MovementTest" type="Node3D"]
+script = ExtResource("1_qhwdk")
+
+[node name="Floor" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.67169, -0.255615, -0.0244751)
+use_collision = true
+size = Vector3(12.5101, 0.48877, 16.4471)
+material = SubResource("StandardMaterial3D_od1ve")
+
+[node name="CharacterBody3D" type="CharacterBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.6696, 0, 1.65078)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.697135, 0)
+shape = SubResource("CylinderShape3D_r3lrf")
+
+[node name="Label3D" type="Label3D" parent="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.87673, 0.229092)
+billboard = 1
+text = "Stepper"
+
+[node name="IsOnFloorLabel" type="Label3D" parent="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.194146, 1.69567, 0)
+billboard = 1
+text = "Is On Floor: "
+
+[node name="IsOnWallLabel" type="Label3D" parent="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.248507, 1.51461, 0)
+billboard = 1
+text = "Is On Wall: "
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.705956, 0)
+height = 1.38368
+material = SubResource("StandardMaterial3D_ica0k")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 1.61164, 2.2074, 2.27984)
+projection = 1
+size = 7.31605
+
+[node name="Camera3D2" type="Camera3D" parent="."]
+transform = Transform3D(-4.37114e-08, -1, -4.37114e-08, 0, -4.37114e-08, 1, -1, 4.37114e-08, 1.91069e-15, -2.43682, 4.24816, 0.133001)
+projection = 1
+current = true
+size = 3.75463
+
+[node name="StairWallNode" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.79695, 0, 0)
+
+[node name="Wall" type="CSGBox3D" parent="StairWallNode"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.614655, 0.902283, 2.64209)
+use_collision = true
+size = Vector3(6.74681, 2.80457, 1)
+
+[node name="Wall2" type="CSGBox3D" parent="StairWallNode"]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 0.112285, 0.894576, 0)
+use_collision = true
+size = Vector3(9.21432, 2.80457, 1)
+
+[node name="Wall3" type="CSGBox3D" parent="StairWallNode"]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, -1.79685, 0.902283, -1.99043)
+use_collision = true
+size = Vector3(9.21432, 2.80457, 1)

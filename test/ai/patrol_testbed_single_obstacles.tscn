@@ -1,0 +1,52 @@
+[gd_scene load_steps=5 format=3 uid="uid://cjvnbsca7m8u5"]
+
+[ext_resource type="PackedScene" uid="uid://ciaqbr34myu5w" path="res://game_objects/enemies/robots/combat_roomba.tscn" id="1_4pb7s"]
+[ext_resource type="Script" path="res://levels/multi_agent_navigation_root.gd" id="1_vdgf1"]
+[ext_resource type="Resource" uid="uid://hw8blc564g2i" path="res://levels/roomba_nav_mesh.tres" id="2_yiary"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4su0q"]
+size = Vector3(5, 5, 5)
+
+[node name="PatrolTestbedSingle" type="Node3D"]
+
+[node name="MultiAgentNavigationRoot" type="Node3D" parent="."]
+script = ExtResource("1_vdgf1")
+navigation_mesh_list_items = Array[Resource("res://levels/navigation_mesh_list_item.gd")]([ExtResource("2_yiary")])
+
+[node name="Floor" type="CSGBox3D" parent="MultiAgentNavigationRoot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.25875, -0.251953, 1.46129)
+use_collision = true
+size = Vector3(273.017, 0.496094, 267.202)
+
+[node name="POI1" type="Area3D" parent="MultiAgentNavigationRoot" groups=["PatrolPOI"]]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MultiAgentNavigationRoot/POI1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.47774, 0)
+shape = SubResource("BoxShape3D_4su0q")
+
+[node name="POI2" type="Area3D" parent="MultiAgentNavigationRoot" groups=["PatrolPOI"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 27.5649)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MultiAgentNavigationRoot/POI2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.47774, 0)
+shape = SubResource("BoxShape3D_4su0q")
+
+[node name="POI3" type="Area3D" parent="MultiAgentNavigationRoot" groups=["PatrolPOI"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.6715, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MultiAgentNavigationRoot/POI3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.47774, 0)
+shape = SubResource("BoxShape3D_4su0q")
+
+[node name="POI4" type="Area3D" parent="MultiAgentNavigationRoot" groups=["PatrolPOI"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.977, 0, 12.8789)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MultiAgentNavigationRoot/POI4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.47774, 0)
+shape = SubResource("BoxShape3D_4su0q")
+
+[node name="combat_roomba" parent="MultiAgentNavigationRoot" instance=ExtResource("1_4pb7s")]
+transform = Transform3D(1.00409, 0, 0, 0, 1.00409, 0, 0, 0, 1.00409, 3.02189, 0, 14.4445)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(-0.513556, 0.196842, -0.835173, 2.00552e-08, 0.973331, 0.229405, 0.858056, 0.117812, -0.49986, -34.4048, 9.81279, 1.32487)

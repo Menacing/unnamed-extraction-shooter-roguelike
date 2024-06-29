@@ -18,6 +18,7 @@ var move_target:Node3D
 @export var detection_radius:Area3D
 @export var ballistic_detection_radius:Area3D
 @export var movement_audio_player:AudioStreamPlayer3D
+@export var nav_mesh_list_item:NavigationMeshListItem
 var _target_player:Player
 var target_player:Player:
 	set(value):
@@ -46,12 +47,21 @@ func _ready():
 		
 	if nav_agent: 
 		nav_agent.velocity_computed.connect(_on_velocity_computed)
+		EventBus.navigation_mesh_list_item_baked.connect(_on_navigation_mesh_list_item_baked)
 	pass
 
 func _physics_process(delta):
 	if nav_agent.is_navigation_finished():
 		return
 
+	var full_path = nav_agent.get_current_navigation_path()
+	var final_destination = nav_agent.get_final_position()
+	var agent_navigation_map_rid = nav_agent.get_navigation_map()
+	var nav_mesh_list_item_map_rid = nav_mesh_list_item.map_rid
+	var current_target_pos = nav_agent.target_position
+	var manual_path
+	if move_target:
+		manual_path = NavigationServer3D.map_get_path(nav_mesh_list_item.map_rid, self.global_position,  move_target.global_position, true)
 	var next_path_position: Vector3 = nav_agent.get_next_path_position()
 	var target_velocity: Vector3 = global_position.direction_to(next_path_position) * move_speed
 	var new_velocity = velocity.move_toward(target_velocity, acceleration)
@@ -85,7 +95,6 @@ func _on_velocity_computed(safe_velocity: Vector3):
 		var movement_audio_playing:bool = movement_audio_player.playing
 		if !velocity_near_zero and !movement_audio_playing:
 			movement_audio_player.play()
-			pass
 		elif velocity_near_zero and movement_audio_playing:
 			if movement_audio_player is IntroOutroAudioStreamPlayer:
 				movement_audio_player.request_stop()
@@ -157,7 +166,8 @@ func find_new_patrol_poi_move_target() -> bool:
 
 func set_new_path():
 	if move_target and nav_agent:
-		nav_agent.set_target_position(move_target.global_position)
+		var move_target_global_position := move_target.global_position
+		nav_agent.set_target_position(move_target_global_position)
 	
 func slow_weapon_turn():
 	if fire_target:
@@ -169,3 +179,7 @@ func slow_weapon_turn():
 func fire_weapon():
 	Helpers.random_angle_deviation_moa(gun_node,vert_moa,hor_moa)
 	gun_node.fireGun()
+
+func _on_navigation_mesh_list_item_baked(nmli:NavigationMeshListItem):
+	if nav_mesh_list_item and nav_mesh_list_item.name == nmli.name:
+		nav_agent.set_navigation_map(nmli.map_rid)

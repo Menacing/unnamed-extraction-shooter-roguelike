@@ -1,9 +1,10 @@
-[gd_scene load_steps=31 format=3 uid="uid://ciaqbr34myu5w"]
+[gd_scene load_steps=32 format=3 uid="uid://ciaqbr34myu5w"]
 
 [ext_resource type="Script" path="res://game_objects/enemies/robots/combat_roomba.gd" id="1_f1cah"]
 [ext_resource type="PackedScene" uid="uid://dr48wela8mtxd" path="res://game_objects/items/weapons/hic_rifles/pm_52/pm_52.tscn" id="2_q4rc2"]
 [ext_resource type="PackedScene" uid="uid://o7vvmqxsny5t" path="res://game_objects/enemies/robots/combat-roomba.glb" id="3_wwy82"]
 [ext_resource type="PackedScene" uid="uid://5n7aup1d2u20" path="res://game_objects/effects/bullet_hit_sparks.tscn" id="3_x3mdn"]
+[ext_resource type="Resource" uid="uid://hw8blc564g2i" path="res://levels/roomba_nav_mesh.tres" id="4_k7kme"]
 [ext_resource type="Script" path="res://game_objects/containers/world_container.gd" id="5_grn4r"]
 [ext_resource type="Resource" uid="uid://bod4q15y8cr6g" path="res://game_objects/enemies/robots/combat_roomba_loot_spawn_information.tres" id="6_iu150"]
 [ext_resource type="PackedScene" uid="uid://douyxwjscs4ff" path="res://ui/inventory/world_inventory.tscn" id="7_gxy1y"]
@@ -168,6 +169,7 @@ hor_moa = 60.0
 detection_radius = NodePath("DetectRadius")
 ballistic_detection_radius = NodePath("BulletDetectRadius")
 movement_audio_player = NodePath("MovementIntroOutroAudioStreamPlayer")
+nav_mesh_list_item = ExtResource("4_k7kme")
 
 [node name="combat-roomba" parent="." instance=ExtResource("3_wwy82")]
 transform = Transform3D(0.35, 0, 0, 0, 0.35, 0, 0, 0, 0.35, 0, 0, 0)
@@ -235,11 +237,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000492002, 0.578961, 0.000
 shape = SubResource("BoxShape3D_hycai")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
-path_height_offset = 2.0
 avoidance_enabled = true
 height = 2.0
 radius = 1.0
 neighbor_distance = 10.0
+debug_enabled = true
 
 [node name="BTPlayer" type="BTPlayer" parent="."]
 behavior_tree = ExtResource("9_huqy6")

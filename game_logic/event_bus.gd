@@ -57,3 +57,6 @@ signal update_message(message_name:String, message_text:String)
 signal remove_message(message_name:String)
 signal create_effect(actor_id:int, gameplay_effect:GameplayEffect)
 signal remove_effect(actor_id:int, gameplay_effect:GameplayEffect)
+
+#Navigation Events
+signal navigation_mesh_list_item_baked(nmli:NavigationMeshListItem)
