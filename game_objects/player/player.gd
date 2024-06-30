@@ -18,52 +18,57 @@ var equipped_gun:Gun:
 var shoulder_gun:Gun
 var gun_slot_1:Gun 
 var gun_slot_2:Gun
-@onready var waist = $Waist
-@onready var chest = $Waist/Chest
-@onready var cam = $Waist/Chest/head/Camera3d as Camera3D
-@onready var head = %head as Node3D
-@onready var head_anchor = %head_anchor as Node3D
+@onready var waist = %Waist
+@onready var chest = %Chest
+@onready var cam = %Camera3D as Camera3D
+@onready var head = %Head as Node3D
+@onready var head_anchor = %HeadAnchor as Node3D
 
 func set_head_anchor_position(pos:Vector3):
 	head_anchor.position = pos
 
-@onready var standing_head_anchor = %standing_head_anchor as Node3D
-@onready var crouching_head_anchor = %crouching_head_anchor as Node3D
-@onready var prone_head_anchor = %prone_head_anchor as Node3D
-@onready var use_shape:ShapeCast3D = $Waist/Chest/head/Camera3d/UseShape
+@onready var standing_head_anchor = %StandingHeadAnchor as Node3D
+@onready var crouching_head_anchor = %CrouchingHeadAnchor as Node3D
+@onready var prone_head_anchor = %ProneHeadAnchor as Node3D
+@onready var use_shape:ShapeCast3D = %UseShape
 
 var pov_rotation_node:Node3D
 
-@onready var shoulder_anchor:Node3D = $HitBox/ChestBoneAttachment/shoulder_anchor
-@onready var drop_location:Node3D = $drop_location
-@onready var armor_anchor:Node3D = $HitBox/ChestBoneAttachment/armor_anchor
-@onready var backpack_anchor:Node3D = $HitBox/ChestBoneAttachment/backpack_anchor
-@onready var center_mass:Node3D = $center_mass
-@onready var skeleton:Skeleton3D = $player_default_mesh_animated/Armature/Skeleton3D
-@onready var ik_right_hand:SkeletonIK3D = $player_default_mesh_animated/Armature/Skeleton3D/SkeletonIK3D_Hand_Right
-@onready var ik_right_hand_fingers:SkeletonIK3D = $player_default_mesh_animated/Armature/Skeleton3D/SkeletonIK3D_Hand_Right_Fingers
-@onready var ik_left_hand:SkeletonIK3D = $player_default_mesh_animated/Armature/Skeleton3D/SkeletonIK3D_Hand_Left_Fingers
-@onready var ik_left_hand_fingers:SkeletonIK3D = $player_default_mesh_animated/Armature/Skeleton3D/SkeletonIK3D_Hand_Left
-@onready var ik_head:SkeletonIK3D = $player_default_mesh_animated/Armature/Skeleton3D/SkeletonIK3D_Head
-@onready var animation_tree:AnimationTree = $AnimationTree
+@onready var shoulder_anchor:Node3D = %HitBox/ChestBoneAttachment/shoulder_anchor
+@onready var drop_location:Node3D = %DropLocation
+@onready var armor_anchor:Node3D = %HitBox/ChestBoneAttachment/armor_anchor
+@onready var backpack_anchor:Node3D = %HitBox/ChestBoneAttachment/backpack_anchor
+@onready var center_mass:Node3D = %CenterMass
+@onready var skeleton:Skeleton3D = %PlayerDefaultMeshAnimated/Armature/Skeleton3D
+@onready var player_mesh_root:Node3D = %PlayerDefaultMeshAnimated
+@onready var ik_right_hand:SkeletonIK3D = %PlayerDefaultMeshAnimated/Armature/Skeleton3D/SkeletonIK3D_Hand_Right
+@onready var ik_right_hand_fingers:SkeletonIK3D = %PlayerDefaultMeshAnimated/Armature/Skeleton3D/SkeletonIK3D_Hand_Right_Fingers
+@onready var ik_left_hand:SkeletonIK3D = %PlayerDefaultMeshAnimated/Armature/Skeleton3D/SkeletonIK3D_Hand_Left_Fingers
+@onready var ik_left_hand_fingers:SkeletonIK3D = %PlayerDefaultMeshAnimated/Armature/Skeleton3D/SkeletonIK3D_Hand_Left
+@onready var ik_head:SkeletonIK3D = %PlayerDefaultMeshAnimated/Armature/Skeleton3D/SkeletonIK3D_Head
+@onready var animation_tree:AnimationTree = $AnimationTree2
 var los_check_locations:Array[Node3D] = []
 
 @export_category("Movement")
 @export_category("Standing")
-@export var STANDING_HEIGHT = 2.0
+@export var STANDING_HEIGHT = 1.8
+@onready var _standing_mesh_root_height:float = player_mesh_root.position.y
+@export var TO_STANDING_TIME = 0.25
 @export var STANDING_BOB_TRANSLATION_X = 0.005
 @export var STANDING_BOB_TRANSLATION_Y = 0.01
 @export var STANDING_BOB_ROTATION_X = .75
 @export var STANDING_BOB_ROTATION_Y = 1.5
 @export_category("Walking")
-@export var WALKING_SPEED = 5.0
+@export var WALKING_SPEED = 4.0
 @export var WALKING_BOB_TRANSLATION_X = 0.001
 @export var WALKING_BOB_TRANSLATION_Y = 0.02
 @export var WALKING_BOB_ROTATION_X = 1.0
 @export var WALKING_BOB_ROTATION_Y = 3.0
 @export_category("Crouching")
 @export var CROUCH_SPEED = 1.5
-@export var CROUCHING_HEIGHT = 1.0
+@export var CROUCHING_HEIGHT = 1.3
+@onready var _crouching_mesh_root_height = _standing_mesh_root_height + ((STANDING_HEIGHT - CROUCHING_HEIGHT)/2)
+@export var TO_CROUCHING_TIME = 0.25
 @export var CROUCHING_BOB_TRANSLATION_X = 0.0025
 @export var CROUCHING_BOB_TRANSLATION_Y = 0.005
 @export var CROUCHING_BOB_ROTATION_X = .5
@@ -75,6 +80,8 @@ var los_check_locations:Array[Node3D] = []
 @export_category("Prone")
 @export var PRONE_SPEED = 2.0
 @export var PRONE_HEIGHT = 0.5
+@onready var _prone_mesh_root_height = _standing_mesh_root_height + ((STANDING_HEIGHT - PRONE_HEIGHT)/2)
+@export var TO_PRONE_TIME = 0.25
 @export var PRONE_BOB_TRANSLATION_X = 0.0
 @export var PRONE_BOB_TRANSLATION_Y = 0.0
 @export var PRONE_BOB_ROTATION_X = 0.0
@@ -84,7 +91,7 @@ var los_check_locations:Array[Node3D] = []
 @export var CRAWLING_BOB_ROTATION_X = 5.0
 @export var CRAWLING_BOB_ROTATION_Y = 10.0
 @export_category("Running")
-@export var RUN_SPEED = 10.0
+@export var RUN_SPEED = 8.0
 @export var RUNNING_BOB_TRANSLATION_X = 0.1
 @export var RUNNING_BOB_TRANSLATION_Y = 0.2
 @export var RUNNING_BOB_ROTATION_X = 7.0
@@ -142,7 +149,7 @@ var legs_destroyed: bool = false
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
-@onready var player_mat: BaseMaterial3D = $player_default_mesh_animated/Armature/Skeleton3D/Head.get_active_material(0)
+@onready var player_mat: BaseMaterial3D = %PlayerDefaultMeshAnimated/Armature/Skeleton3D/Head.get_active_material(0)
 
 @onready var ammo_component:AmmoComponent = $AmmoComponent
 @onready var ammo_subtype_selector:AmmoSubtypeSelector = $PlayerHUD/weapon_info_hud/VBoxContainer/AmmoSubtypeSelector
@@ -173,12 +180,12 @@ func _ready():
 	EventBus.location_destroyed.connect(_on_location_destroyed)
 	EventBus.location_restored.connect(_on_location_restored)
 	
-	los_check_locations.append($HitBox/HeadBoneAttachment/eyes)
-	los_check_locations.append($HitBox/RightFootBoneAttachment)
-	los_check_locations.append($HitBox/LeftFootBoneAttachment)
-	los_check_locations.append($center_mass)
-	los_check_locations.append($HitBox/RightLowerArmBoneAttachment/r_hand)
-	los_check_locations.append($HitBox/LeftLowerArmBoneAttachment/l_hand)
+	los_check_locations.append(%HitBox/HeadBoneAttachment/eyes)
+	los_check_locations.append(%HitBox/RightFootBoneAttachment)
+	los_check_locations.append(%HitBox/LeftFootBoneAttachment)
+	los_check_locations.append(%CenterMass)
+	los_check_locations.append(%HitBox/RightLowerArmBoneAttachment/r_hand)
+	los_check_locations.append(%HitBox/LeftLowerArmBoneAttachment/l_hand)
 	
 	ik_head.start()
 	
@@ -539,9 +546,7 @@ func die():
 	ik_head.stop()
 	skeleton.animate_physical_bones = true
 	skeleton.physical_bones_start_simulation()
-	standing_collision_shape.disabled = true
-	crouching_collision_shape.disabled = true
-	prone_collision_shape.disabled = true
+	collision_shape.disabled = true
 	state_chart.process_mode = Node.PROCESS_MODE_DISABLED
 	var player_hud:CanvasLayer = $PlayerHUD
 	player_hud.visible = false
@@ -562,11 +567,21 @@ func die():
 	#$"combat-roomba/Armature/Skeleton3D/Physical Bone Bone/Head/SpotLight3D".visible = false
 	#var behavior_tree:BTPlayer = $BTPlayer
 	#behavior_tree.active = false
+	
 #region Movement Code
 
-@onready var standing_collision_shape:CollisionShape3D = $StandingCollisionShape3D
-@onready var crouching_collision_shape:CollisionShape3D = $CrouchingCollisionShape3D
-@onready var prone_collision_shape:CollisionShape3D = $ProneCollisionShape3D
+@onready var collision_shape:CollisionShape3D = $CollisionShape3D
+@onready var collision_shape_shape:CapsuleShape3D = $CollisionShape3D.shape
+var collision_shape_tween:Tween
+
+func set_collision_shape_tween(collider_height:float,mesh_height:float, time:float, ease_type:Tween.EaseType, transition_type:Tween.TransitionType):
+	if collision_shape_tween:
+		collision_shape_tween.kill()
+	collision_shape_tween = create_tween()
+	collision_shape_tween.parallel().tween_property(collision_shape_shape, "height", collider_height, time)
+	collision_shape_tween.parallel().tween_property(player_mesh_root, "position:y", mesh_height, time)
+	collision_shape_tween.set_ease(ease_type)
+	collision_shape_tween.set_trans(transition_type)
 
 func should_sprint() -> bool:
 	if GameSettings.toggle_sprint:
@@ -611,13 +626,12 @@ func _on_standing_state_entered():
 	current_bob_amount_x.base_value = STANDING_BOB_TRANSLATION_X
 	current_bob_amount_y.base_value = STANDING_BOB_TRANSLATION_Y
 	
-	standing_collision_shape.disabled = false
-	crouching_collision_shape.disabled = true
-	prone_collision_shape.disabled = true
-	
 	set_head_anchor_position(standing_head_anchor.position)
 	
 	recoil_factor.add_modifier(standing_recoil_factor)
+	
+	if collision_shape_shape.height != STANDING_HEIGHT:
+		set_collision_shape_tween(STANDING_HEIGHT, _standing_mesh_root_height, TO_STANDING_TIME, Tween.EASE_IN, Tween.TRANS_QUART)
 	
 func _on_standing_state_exited():
 	recoil_factor.remove_modifier(standing_recoil_factor)
@@ -644,10 +658,6 @@ func _on_standing_state_physics_processing(delta):
 	else:
 		move(direction, delta, input_direction.y < 0)
 
-func _on_standing_transitions_physics_processing(delta):
-	var input_direction = Input.get_vector("moveLeft", "moveRight", "moveUp", "moveDown")
-	var direction:Vector3 = (transform.basis * Vector3(input_direction.x, 0, input_direction.y)).normalized()
-	move(direction, delta, input_direction.y < 0)
 #endregion
 
 #region Walking
@@ -743,6 +753,8 @@ func _on_sprinting_state_physics_processing(delta):
 #region Crouching
 @export var crouching_recoil_factor:StatModifier
 @export var crouching_bob_freq:StatModifier
+
+
 func _on_crouching_state_entered():
 	current_speed.base_value = 0.0
 	current_bob_amount_max_degrees_x.base_value = CROUCHING_BOB_ROTATION_X
@@ -752,11 +764,10 @@ func _on_crouching_state_entered():
 	recoil_factor.add_modifier(crouching_recoil_factor)
 	current_bob_freq.add_modifier(crouching_bob_freq)
 	
-	standing_collision_shape.disabled = true
-	crouching_collision_shape.disabled = false
-	prone_collision_shape.disabled = true
-	
 	set_head_anchor_position(crouching_head_anchor.position)
+	
+	if collision_shape_shape.height != CROUCHING_HEIGHT:
+		set_collision_shape_tween(CROUCHING_HEIGHT, _crouching_mesh_root_height,TO_CROUCHING_TIME, Tween.EASE_IN, Tween.TRANS_QUART)
 	
 func _on_crouching_state_exited():
 	recoil_factor.remove_modifier(crouching_recoil_factor)
@@ -826,11 +837,11 @@ func _on_prone_state_entered():
 	current_bob_amount_x.base_value = PRONE_BOB_TRANSLATION_X
 	current_bob_amount_y.base_value = PRONE_BOB_TRANSLATION_Y
 	recoil_factor.add_modifier(prone_recoil_factor)
-	standing_collision_shape.disabled = true
-	crouching_collision_shape.disabled = true
-	prone_collision_shape.disabled = false
 	
 	set_head_anchor_position(prone_head_anchor.position)
+	
+	if collision_shape_shape.height != PRONE_HEIGHT:
+		set_collision_shape_tween(PRONE_HEIGHT, _prone_mesh_root_height,TO_PRONE_TIME, Tween.EASE_IN, Tween.TRANS_QUART)
 	
 func _on_prone_state_exited():
 	recoil_factor.remove_modifier_by_name("prone")
@@ -852,13 +863,7 @@ func _on_prone_state_physics_processing(delta):
 	else:
 		move(direction, delta, input_direction.y < 0)
 		
-func _on_prone_transitions_entered():
-	state_chart.send_event("ArmsBusy")
-	state_chart.send_event("StopLean")
-	
 
-func _on_prone_transitions_exited():
-	state_chart.send_event("ArmsDone")
 #endregion
 
 #region Crawling
@@ -1253,6 +1258,8 @@ func _on_right_state_physics_processing(delta):
 		return
 	waist.basis = Quaternion(waist.basis).slerp(Quaternion(right_lean_basis),0.5)
 #endregion
+
+
 
 
 
