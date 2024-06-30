@@ -50,20 +50,21 @@ var los_check_locations:Array[Node3D] = []
 
 @export_category("Movement")
 @export_category("Standing")
-@export var STANDING_HEIGHT = 2.0
+@export var STANDING_HEIGHT = 1.8
 @export var STANDING_BOB_TRANSLATION_X = 0.005
 @export var STANDING_BOB_TRANSLATION_Y = 0.01
 @export var STANDING_BOB_ROTATION_X = .75
 @export var STANDING_BOB_ROTATION_Y = 1.5
 @export_category("Walking")
-@export var WALKING_SPEED = 5.0
+@export var WALKING_SPEED = 4.0
 @export var WALKING_BOB_TRANSLATION_X = 0.001
 @export var WALKING_BOB_TRANSLATION_Y = 0.02
 @export var WALKING_BOB_ROTATION_X = 1.0
 @export var WALKING_BOB_ROTATION_Y = 3.0
 @export_category("Crouching")
 @export var CROUCH_SPEED = 1.5
-@export var CROUCHING_HEIGHT = 1.0
+@export var CROUCHING_HEIGHT = 1.3
+@export var TO_CROUCHING_TIME = 0.25
 @export var CROUCHING_BOB_TRANSLATION_X = 0.0025
 @export var CROUCHING_BOB_TRANSLATION_Y = 0.005
 @export var CROUCHING_BOB_ROTATION_X = .5
@@ -75,6 +76,7 @@ var los_check_locations:Array[Node3D] = []
 @export_category("Prone")
 @export var PRONE_SPEED = 2.0
 @export var PRONE_HEIGHT = 0.5
+@export var TO_PRONE_TIME = 0.5
 @export var PRONE_BOB_TRANSLATION_X = 0.0
 @export var PRONE_BOB_TRANSLATION_Y = 0.0
 @export var PRONE_BOB_ROTATION_X = 0.0
@@ -84,7 +86,7 @@ var los_check_locations:Array[Node3D] = []
 @export var CRAWLING_BOB_ROTATION_X = 5.0
 @export var CRAWLING_BOB_ROTATION_Y = 10.0
 @export_category("Running")
-@export var RUN_SPEED = 10.0
+@export var RUN_SPEED = 8.0
 @export var RUNNING_BOB_TRANSLATION_X = 0.1
 @export var RUNNING_BOB_TRANSLATION_Y = 0.2
 @export var RUNNING_BOB_ROTATION_X = 7.0
@@ -539,9 +541,7 @@ func die():
 	ik_head.stop()
 	skeleton.animate_physical_bones = true
 	skeleton.physical_bones_start_simulation()
-	standing_collision_shape.disabled = true
-	crouching_collision_shape.disabled = true
-	prone_collision_shape.disabled = true
+	collision_shape.disabled = true
 	state_chart.process_mode = Node.PROCESS_MODE_DISABLED
 	var player_hud:CanvasLayer = $PlayerHUD
 	player_hud.visible = false
@@ -562,11 +562,20 @@ func die():
 	#$"combat-roomba/Armature/Skeleton3D/Physical Bone Bone/Head/SpotLight3D".visible = false
 	#var behavior_tree:BTPlayer = $BTPlayer
 	#behavior_tree.active = false
+	
 #region Movement Code
 
-@onready var standing_collision_shape:CollisionShape3D = $StandingCollisionShape3D
-@onready var crouching_collision_shape:CollisionShape3D = $CrouchingCollisionShape3D
-@onready var prone_collision_shape:CollisionShape3D = $ProneCollisionShape3D
+@onready var collision_shape:CollisionShape3D = $CollisionShape3D
+@onready var collision_shape_shape:CapsuleShape3D = $CollisionShape3D.shape
+var collision_shape_tween:Tween
+
+func set_collision_shape_tween(height:float, time:float, ease_type:Tween.EaseType, transition_type:Tween.TransitionType):
+	if collision_shape_tween:
+		collision_shape_tween.kill()
+	collision_shape_tween = create_tween()
+	collision_shape_tween.tween_property(collision_shape_shape, "height", height, time)
+	collision_shape_tween.set_ease(ease_type)
+	collision_shape_tween.set_trans(transition_type)
 
 func should_sprint() -> bool:
 	if GameSettings.toggle_sprint:
@@ -610,10 +619,6 @@ func _on_standing_state_entered():
 	current_bob_amount_max_degrees_y.base_value = STANDING_BOB_ROTATION_Y
 	current_bob_amount_x.base_value = STANDING_BOB_TRANSLATION_X
 	current_bob_amount_y.base_value = STANDING_BOB_TRANSLATION_Y
-	
-	standing_collision_shape.disabled = false
-	crouching_collision_shape.disabled = true
-	prone_collision_shape.disabled = true
 	
 	set_head_anchor_position(standing_head_anchor.position)
 	
@@ -752,9 +757,7 @@ func _on_crouching_state_entered():
 	recoil_factor.add_modifier(crouching_recoil_factor)
 	current_bob_freq.add_modifier(crouching_bob_freq)
 	
-	standing_collision_shape.disabled = true
-	crouching_collision_shape.disabled = false
-	prone_collision_shape.disabled = true
+	set_collision_shape_tween(CROUCHING_HEIGHT, TO_CROUCHING_TIME, Tween.EASE_IN, Tween.TRANS_QUART)
 	
 	set_head_anchor_position(crouching_head_anchor.position)
 	
@@ -826,9 +829,6 @@ func _on_prone_state_entered():
 	current_bob_amount_x.base_value = PRONE_BOB_TRANSLATION_X
 	current_bob_amount_y.base_value = PRONE_BOB_TRANSLATION_Y
 	recoil_factor.add_modifier(prone_recoil_factor)
-	standing_collision_shape.disabled = true
-	crouching_collision_shape.disabled = true
-	prone_collision_shape.disabled = false
 	
 	set_head_anchor_position(prone_head_anchor.position)
 	

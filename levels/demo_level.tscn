@@ -1,11 +1,9 @@
-[gd_scene load_steps=88 format=3 uid="uid://ctahsvj88g1om"]
+[gd_scene load_steps=81 format=3 uid="uid://ctahsvj88g1om"]
 
 [ext_resource type="PackedScene" uid="uid://d08aatgxmymbf" path="res://game_objects/player/player.tscn" id="1_eisjc"]
 [ext_resource type="Script" path="res://levels/multi_agent_navigation_root.gd" id="2_cimua"]
 [ext_resource type="Resource" uid="uid://hw8blc564g2i" path="res://levels/roomba_nav_mesh.tres" id="2_mvgx8"]
 [ext_resource type="Resource" uid="uid://bkm06qpqovt7f" path="res://levels/humanoid_nav_mesh.tres" id="3_pa7d4"]
-[ext_resource type="Script" path="res://resource_access/equipment_slot_type.gd" id="3_vvv2n"]
-[ext_resource type="Script" path="res://resource_access/Inventory.gd" id="4_20x81"]
 [ext_resource type="PackedScene" uid="uid://trlm60n2q0k4" path="res://game_objects/items/attachments/scopes/red_dot/red_dot.tscn" id="8_2b85p"]
 [ext_resource type="PackedScene" uid="uid://cprpop5lkmyhe" path="res://game_objects/items/weapons/fic_rifles/s5/s5.tscn" id="9_7oj7m"]
 [ext_resource type="Script" path="res://levels/entities/geo_ballistic_solid.gd" id="9_q4meu"]
@@ -299,33 +297,6 @@ points = PackedVector3Array(0.183334, 0.1, 0.15, 0.183334, -0.35, 0.15, 0.233334
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_2cpg3"]
 points = PackedVector3Array(-0.166666, 0.1, 0.15, -0.166666, -0.35, 0.15, -0.116666, -0.35, 0.15, -0.116666, 0.1, 0.15, -0.166666, 0.1, 0.2, -0.166666, -0.35, 0.2, -0.116666, -0.35, 0.2, -0.116666, 0.1, 0.2)
-
-[sub_resource type="Resource" id="Resource_c2lqt"]
-script = ExtResource("3_vvv2n")
-name = "BackpackSlot"
-allowed_types = Array[int]([1])
-
-[sub_resource type="Resource" id="Resource_5xhft"]
-script = ExtResource("3_vvv2n")
-name = "ArmorSlot"
-allowed_types = Array[int]([3])
-
-[sub_resource type="Resource" id="Resource_3yuyw"]
-script = ExtResource("3_vvv2n")
-name = "GunSlot1"
-allowed_types = Array[int]([0])
-
-[sub_resource type="Resource" id="Resource_k0qab"]
-script = ExtResource("3_vvv2n")
-name = "GunSlot2"
-allowed_types = Array[int]([0])
-
-[sub_resource type="Resource" id="Resource_div2p"]
-resource_local_to_scene = true
-script = ExtResource("4_20x81")
-initial_height = 2
-initial_width = 7
-equipment_slots = Array[ExtResource("3_vvv2n")]([SubResource("Resource_c2lqt"), SubResource("Resource_5xhft"), SubResource("Resource_3yuyw"), SubResource("Resource_k0qab")])
 
 [sub_resource type="Resource" id="Resource_r5vvs"]
 resource_local_to_scene = true
@@ -1232,184 +1203,6 @@ shape = SubResource("ConvexPolygonShape3D_s8533")
 [node name="entity_182_brush_5_collision_shape" type="CollisionShape3D" parent="MultiAgentNavigationRoot/entity_182_geo_ballistic_solid3"]
 shape = SubResource("ConvexPolygonShape3D_2cpg3")
 
-[node name="Player" parent="MultiAgentNavigationRoot" node_paths=PackedStringArray("nav_root") instance=ExtResource("1_eisjc")]
-transform = Transform3D(-0.911152, 0, -0.412071, 0, 1, 0, 0.412071, 0, -0.911152, 1.27671, 1.02794, 10.2473)
-nav_root = NodePath("..")
-
-[node name="Skeleton3D" parent="MultiAgentNavigationRoot/Player/player_default_mesh_animated/Armature" index="0"]
-bones/0/position = Vector3(-0.0953539, -0.00409688, -1.05178)
-bones/0/rotation = Quaternion(0.708544, -0.234852, 0.189917, -0.637763)
-bones/1/rotation = Quaternion(0.0668683, 0.00403741, 0.00656452, 0.997732)
-bones/2/rotation = Quaternion(0.0430425, 0.00941186, 0.00296844, 0.999025)
-bones/3/rotation = Quaternion(0.0722972, 0.00822598, 0.0011439, 0.997349)
-bones/4/rotation = Quaternion(0.00375002, 0.048795, -0.000798812, 0.998801)
-bones/5/rotation = Quaternion(-0.0033163, 0.321011, -0.0480779, 0.945848)
-bones/7/rotation = Quaternion(0.735486, 0.331623, -0.411256, 0.424211)
-bones/8/rotation = Quaternion(0.37993, -0.223897, 0.0823667, 0.893722)
-bones/9/rotation = Quaternion(0.52059, -0.545273, 0.482692, 0.445727)
-bones/10/rotation = Quaternion(0.00251231, -0.17923, 0.0614848, 0.981881)
-bones/11/rotation = Quaternion(0.0436634, -0.0294635, 0.153369, 0.986764)
-bones/12/rotation = Quaternion(0.0488257, -0.000220328, -0.119185, 0.991671)
-bones/13/rotation = Quaternion(-0.218619, -0.0420837, 0.181335, 0.95789)
-bones/15/rotation = Quaternion(0.299671, 0.0850329, 0.0599188, 0.948355)
-bones/16/rotation = Quaternion(0.152937, 0.00601103, 0.0169483, 0.988072)
-bones/17/rotation = Quaternion(0.148469, -0.00227734, 0.01785, 0.988753)
-bones/19/rotation = Quaternion(0.706737, -0.372023, 0.424179, 0.426842)
-bones/20/rotation = Quaternion(0.265073, -0.17458, -0.220483, 0.922304)
-bones/21/rotation = Quaternion(0.0210217, 0.215273, -0.754443, 0.619703)
-bones/22/rotation = Quaternion(0.0846675, 0.134424, -0.180051, 0.970744)
-bones/23/rotation = Quaternion(-0.0236578, -0.101738, -0.124064, 0.986761)
-bones/24/rotation = Quaternion(0.00401807, 0.0111689, 0.192377, 0.981249)
-bones/25/rotation = Quaternion(-0.144459, -0.00142761, 0.222599, 0.964147)
-bones/27/rotation = Quaternion(0.00424552, 0.000577868, 0.0828087, 0.996556)
-bones/28/rotation = Quaternion(0.516135, 0.00177225, 0.0150531, 0.856373)
-bones/29/rotation = Quaternion(-0.312428, 0.00991786, 0.0434396, 0.948896)
-bones/31/rotation = Quaternion(0.141913, 0.156317, 0.969458, -0.124811)
-bones/32/rotation = Quaternion(-0.244905, -0.12546, -0.00704939, 0.96137)
-bones/33/rotation = Quaternion(0.475117, -0.147134, 0.00222776, 0.867531)
-bones/34/rotation = Quaternion(0.266463, -0.0591006, 0.0171634, 0.961878)
-bones/36/rotation = Quaternion(-0.197515, 0.128617, 0.957639, 0.165449)
-bones/37/rotation = Quaternion(-0.328586, 0.0222181, -0.00145784, 0.944211)
-bones/38/rotation = Quaternion(0.583867, 0.134816, 0.0423635, 0.799456)
-bones/39/rotation = Quaternion(0.227263, 0.0718024, 0.0059336, 0.971165)
-
-[node name="Physical Bone mixamorig_Hips" parent="MultiAgentNavigationRoot/Player/player_default_mesh_animated/Armature/Skeleton3D" index="6"]
-transform = Transform3D(-0.817527, -0.570717, 0.0765541, 0.574934, -0.816081, 0.0561628, 0.0304435, 0.0899194, 0.995545, -0.10111, -0.00931787, -1.10034)
-joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000183076, -0.00258432, 0.0496752)
-body_offset = Transform3D(-0.999913, -6.85453e-05, -2.66358e-06, -8.63522e-06, 0.0275416, -0.999683, -5.32269e-05, -0.999516, -0.0275409, -0.000183105, 0.0497307, -0.00121498)
-
-[node name="Physical Bone mixamorig_Spine1" parent="MultiAgentNavigationRoot/Player/player_default_mesh_animated/Armature/Skeleton3D" index="7"]
-transform = Transform3D(0.797912, 0.602095, -0.0241859, -0.600216, 0.790567, -0.12077, -0.0536193, 0.110881, 0.992571, -0.106162, 0.000832081, -1.33946)
-joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.69277e-05, 0.00326069, 0.0661658)
-body_offset = Transform3D(0.999882, 0.00522792, 0.0025561, 0.00262427, -0.00726455, -1.00015, -0.0052464, 0.999865, -0.00726175, -0.00014925, 0.0661998, -0.00277996)
-
-[node name="Physical Bone mixamorig_Spine2" parent="MultiAgentNavigationRoot/Player/player_default_mesh_animated/Armature/Skeleton3D" index="8"]
-transform = Transform3D(0.785042, 0.606614, -0.124828, -0.616954, 0.748247, -0.243674, -0.0544016, 0.268343, 0.961972, -0.0948696, 0.0278916, -1.48171)
-joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000253074, 0.00186978, 0.0744316)
-body_offset = Transform3D(0.999886, 0.00981328, -0.00381918, -0.00359167, -0.0238756, -0.999885, -0.00991619, 0.999598, -0.0237572, 1.28746e-05, 0.0744686, -9.82285e-05)
-
-[node name="Physical Bone mixamorig_Neck" parent="MultiAgentNavigationRoot/Player/player_default_mesh_animated/Armature/Skeleton3D" index="9"]
-transform = Transform3D(-0.719736, -0.612152, -0.327293, 0.690306, -0.58161, -0.430248, 0.0730433, -0.53583, 0.841426, -0.0671806, 0.0704427, -1.60224)
-joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000122611, 0.00257442, 0.053153)
-body_offset = Transform3D(-0.999844, -0.00850755, -0.0108009, 0.00756456, 0.312857, -0.94997, 0.0114889, -0.949822, -0.312523, 0.000718594, 0.0496874, 0.0190554)
-
-[node name="Physical Bone mixamorig_Head" parent="MultiAgentNavigationRoot/Player/player_default_mesh_animated/Armature/Skeleton3D" index="10"]
-transform = Transform3D(-0.157273, -0.891006, -0.425894, 0.981128, -0.0916969, -0.170352, 0.112809, -0.444726, 0.888753, -0.00413799, 0.112196, -1.74266)
-joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0010874, 0.00481382, 0.103772)
-body_offset = Transform3D(-0.999978, 0.00621048, -0.0089183, 0.0102382, 0.291196, -0.956794, -0.0033704, -0.956686, -0.291123, -0.000191808, 0.0978973, 0.034812)
-
-[node name="Physical Bone mixamorig_LeftShoulder" parent="MultiAgentNavigationRoot/Player/player_default_mesh_animated/Armature/Skeleton3D" index="11"]
-transform = Transform3D(-0.163168, -0.567254, -0.807158, -0.903244, -0.24321, 0.353515, -0.396981, 0.786902, -0.472937, 0.019022, -0.0225928, -1.50241)
-joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000908697, -0.0023199, 0.0707125)
-body_offset = Transform3D(0.99978, 0.0201958, -0.0094946, -0.0088076, -0.0400103, -0.999224, -0.0207128, 0.999066, -0.040095, -0.000190258, 0.0705729, 0.00517178)
-
-[node name="Physical Bone mixamorig_LeftArm" parent="MultiAgentNavigationRoot/Player/player_default_mesh_animated/Armature/Skeleton3D" index="12"]
-transform = Transform3D(-0.429507, -0.855418, -0.289322, -0.901832, 0.422973, 0.0881148, 0.0469546, 0.298869, -0.95338, 0.120841, -0.0608807, -1.31858)
-joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00400892, -0.00342622, 0.164533)
-body_offset = Transform3D(0.999756, -0.0197159, 0.00902361, 0.0088398, -0.00731671, -1.00013, 0.0197716, 0.999764, -0.00731535, 0.00245571, 0.164565, 0.00470829)
-
-[node name="Physical Bone mixamorig_LeftForeArm" parent="MultiAgentNavigationRoot/Player/player_default_mesh_animated/Armature/Skeleton3D" index="13"]
-transform = Transform3D(-0.859736, -0.187141, -0.475234, 0.482273, 0.00904126, -0.875993, 0.168217, -0.982526, 0.0824693, 0.23363, 0.0482264, -1.17901)
-joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00475552, 0.00674037, 0.138916)
-body_offset = Transform3D(0.999885, 0.00384066, 0.0156408, 0.0157359, -0.0202804, -0.999677, -0.00354636, 1.00002, -0.0203463, 0.00255632, 0.139082, -0.00393093)
-
-[node name="Physical Bone mixamorig_LeftHand" parent="MultiAgentNavigationRoot/Player/player_default_mesh_animated/Armature/Skeleton3D" index="14"]
-transform = Transform3D(-0.122598, -0.364824, -0.922995, 0.161927, 0.910162, -0.381284, 0.979406, -0.196232, -0.0525317, 0.334761, 0.185642, -1.18872)
-joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00103047, 0.000938918, 0.0360437)
-body_offset = Transform3D(-0.00632733, 0.836096, 0.548571, 0.00200383, 0.548567, -0.836123, -1.00022, -0.0041058, -0.0051124, -0.0205641, 0.029624, -0.000842571)
-
-[node name="Physical Bone mixamorig_RightShoulder" parent="MultiAgentNavigationRoot/Player/player_default_mesh_animated/Armature/Skeleton3D" index="15"]
-transform = Transform3D(0.0361274, 0.18189, 0.982633, 0.778866, -0.621189, 0.0863731, 0.626316, 0.762385, -0.164188, -0.256598, 0.0418172, -1.4762)
-joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000164589, -0.0444193, 0.127079)
-body_offset = Transform3D(0.598214, 0.153665, 0.786486, 0.800256, -0.168126, -0.575698, 0.0440142, 0.973813, -0.223598, -0.0930214, 0.0658226, 0.0716779)
-
-[node name="Physical Bone mixamorig_RightArm" parent="MultiAgentNavigationRoot/Player/player_default_mesh_animated/Armature/Skeleton3D" index="16"]
-transform = Transform3D(0.97023, -0.142231, 0.195701, -0.073156, -0.943484, -0.323036, 0.230657, 0.299162, -0.926086, -0.251481, 0.220763, -1.31324)
-joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000380469, -0.00638032, 0.16349)
-body_offset = Transform3D(0.999719, 0.0214832, -0.00155228, -0.0013728, -0.003561, -1.00014, -0.0214593, 0.999708, -0.00363492, 1.04904e-05, 0.16349, 0.0069809)
-
-[node name="Physical Bone mixamorig_RightForeArm" parent="MultiAgentNavigationRoot/Player/player_default_mesh_animated/Armature/Skeleton3D" index="17"]
-transform = Transform3D(-0.00676422, 0.163937, -0.986434, 0.00799021, -0.986409, -0.163992, -1.00011, -0.00899831, 0.0053634, -0.143967, 0.295276, -1.16704)
-joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00656478, -0.00498144, 0.137688)
-body_offset = Transform3D(1.00003, 0.00975143, -0.0127122, -0.0128711, 0.016369, -0.99977, -0.00953436, 0.999797, 0.016495, -0.00476611, 0.137822, 0.00277185)
-
-[node name="Physical Bone mixamorig_RightHand" parent="MultiAgentNavigationRoot/Player/player_default_mesh_animated/Armature/Skeleton3D" index="18"]
-transform = Transform3D(-0.0579058, 0.800451, -0.596565, -0.971133, -0.183626, -0.152101, -0.23136, 0.570683, 0.788149, 0.0173216, 0.324293, -1.19813)
-joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000166205, 0.000405981, 0.0343792)
-body_offset = Transform3D(-0.00656664, -0.846196, -0.533127, 0.00406697, 0.532928, -0.846155, 0.99996, -0.00778353, -0.000150204, 0.0186709, 0.0288744, 0.000174522)
-
-[node name="Physical Bone mixamorig_LeftUpLeg" parent="MultiAgentNavigationRoot/Player/player_default_mesh_animated/Armature/Skeleton3D" index="19"]
-transform = Transform3D(-0.559729, 0.67574, -0.479562, 0.806777, 0.576413, -0.129434, 0.188986, -0.459467, -0.868047, 0.0957928, -0.0186489, -0.787092)
-joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000152481, 0.00257035, 0.240952)
-body_offset = Transform3D(0.999947, -0.00218379, 0.00178505, 0.00181098, -0.0104399, -1.00007, 0.00217624, 0.999936, -0.0102645, -0.000576973, 0.240994, -9.72748e-05)
-
-[node name="Physical Bone mixamorig_LeftLeg" parent="MultiAgentNavigationRoot/Player/player_default_mesh_animated/Armature/Skeleton3D" index="20"]
-transform = Transform3D(-0.355465, 0.933507, -0.0477112, 0.927414, 0.358589, 0.106823, 0.116848, -0.00626981, -0.99348, 0.222304, -0.0127575, -0.343729)
-joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000309901, -0.00280513, 0.23612)
-body_offset = Transform3D(1.00005, -0.000383094, 0.00153895, 0.00159786, 0.00344933, -1.00034, 0.000375919, 1.00002, 0.00344659, -0.000674367, 0.236209, 0.00199127)
-
-[node name="Physical Bone mixamorig_LeftFoot" parent="MultiAgentNavigationRoot/Player/player_default_mesh_animated/Armature/Skeleton3D" index="21"]
-transform = Transform3D(-0.106878, 0.51755, -0.848987, 0.993999, 0.0321831, -0.105503, -0.0272732, -0.855346, -0.517913, 0.317065, -0.0277591, -0.057946)
-joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000792496, -0.000971856, 0.0993583)
-body_offset = Transform3D(1.0001, 0.000407279, 0.000725538, 0.00073266, -0.00149632, -1.00007, -0.000403002, 1.00025, -0.00128946, -0.000864267, 0.0993633, 0.00110054)
-
-[node name="Physical Bone mixamorig_RightUpLeg" parent="MultiAgentNavigationRoot/Player/player_default_mesh_animated/Armature/Skeleton3D" index="22"]
-transform = Transform3D(-0.97306, 0.201326, 0.113527, 0.13276, 0.888971, -0.438541, -0.189243, -0.411685, -0.891811, -0.188556, 0.155458, -0.776157)
-joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000535119, 0.00247721, 0.241139)
-body_offset = Transform3D(1.00014, 0.0021477, -0.000685729, -0.000746742, -0.00907531, -1.00023, -0.00212875, 1.0001, -0.00892416, 0.000695229, 0.241216, -0.000326633)
-
-[node name="Physical Bone mixamorig_RightLeg" parent="MultiAgentNavigationRoot/Player/player_default_mesh_animated/Armature/Skeleton3D" index="23"]
-transform = Transform3D(-0.97787, 0.0445104, 0.204935, 0.0911579, 0.970367, 0.224216, -0.188909, 0.237969, -0.953079, -0.264357, 0.207781, -0.336765)
-joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000868494, -0.00224973, 0.236201)
-body_offset = Transform3D(1.00011, 0.000376403, -0.000199169, -0.00028491, 0.00264835, -1.00031, -0.000398993, 1.00011, 0.00253925, 0.000916481, 0.23628, 0.00164986)
-
-[node name="Physical Bone mixamorig_RightFoot" parent="MultiAgentNavigationRoot/Player/player_default_mesh_animated/Armature/Skeleton3D" index="24"]
-transform = Transform3D(-0.992449, -0.0570002, 0.109274, -0.123114, 0.497811, -0.858495, -0.00549845, -0.865573, -0.50116, -0.323503, 0.240139, -0.0614606)
-joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000588711, -0.000385507, 0.100581)
-body_offset = Transform3D(1.00007, -0.000248238, -0.000120878, -0.000121027, -0.0038581, -1.00005, 0.000289008, 1.00013, -0.0036638, 0.000600815, 0.100585, 0.000754237)
-
-[node name="ChestBoneAttachment" parent="MultiAgentNavigationRoot/Player/HitBox" index="0"]
-transform = Transform3D(-0.600128, 0.212823, 0.70502, 0.0525824, 0.919528, -0.232817, -0.734562, -0.108051, -0.592658, 0.0138755, 0.489649, 0.0968246)
-
-[node name="HeadBoneAttachment" parent="MultiAgentNavigationRoot/Player/HitBox" index="1"]
-transform = Transform3D(-0.935422, 0.132855, 0.0991715, 0.114633, 0.928851, -0.163077, -0.11977, -0.148608, -0.930629, 0.0902328, 0.720647, 0.0468626)
-
-[node name="NeckBoneAttachment" parent="MultiAgentNavigationRoot/Player/HitBox" index="2"]
-transform = Transform3D(-0.666256, 0.216866, 0.641539, 0.073896, 0.917878, -0.233537, -0.673159, -0.113882, -0.660597, 0.0467029, 0.631486, 0.0801573)
-
-[node name="LeftUpperArmBoneAttachment" parent="MultiAgentNavigationRoot/Player/HitBox" index="3"]
-transform = Transform3D(-0.851545, -0.101423, 0.408761, -0.030638, -0.90468, -0.288297, 0.42004, -0.271602, 0.807651, -0.0439765, 0.553066, -0.0729046)
-
-[node name="LeftLowerArmBoneAttachment" parent="MultiAgentNavigationRoot/Player/HitBox" index="4"]
-transform = Transform3D(0.469688, 0.825203, 0.0305541, -0.158839, 0.0557901, 0.934964, 0.810348, -0.467363, 0.165557, -0.0761404, 0.266171, -0.159035)
-
-[node name="RightUpperArmBoneAttachment" parent="MultiAgentNavigationRoot/Player/HitBox" index="5"]
-transform = Transform3D(-0.112479, 0.309816, -0.89099, -0.226064, -0.880007, -0.277458, -0.91583, 0.179172, 0.177916, 0.171703, 0.543734, 0.201983)
-
-[node name="RightLowerArmBoneAttachment" parent="MultiAgentNavigationRoot/Player/HitBox" index="6"]
-transform = Transform3D(0.00508362, 0.116864, -0.942771, 0.949957, -0.00799159, 0.00413187, -0.00742271, -0.942751, -0.116902, 0.270108, 0.264225, 0.258892)
-
-[node name="LeftUpperLegBoneAttachment" parent="MultiAgentNavigationRoot/Player/HitBox" index="7"]
-transform = Transform3D(0.779907, 0.104275, 0.532327, -0.179135, -0.830469, 0.425125, 0.512011, -0.449386, -0.662116, -0.045033, 0.0979924, 0.0182972)
-
-[node name="RightUpperLegBoneAttachment" parent="MultiAgentNavigationRoot/Player/HitBox" index="8"]
-transform = Transform3D(0.155619, 0.409957, 0.842745, 0.180191, -0.851433, 0.38091, 0.919683, 0.097451, -0.217231, 0.0539193, 0.0929811, 0.150426)
-
-[node name="LeftLowerLegBoneAttachment" parent="MultiAgentNavigationRoot/Player/HitBox" index="9"]
-transform = Transform3D(0.890522, -0.0994718, 0.315556, -0.109235, -0.943637, 0.0108107, 0.312311, -0.046418, -0.895995, 0.00503492, -0.300759, -0.197476)
-
-[node name="RightLowerLegBoneAttachment" parent="MultiAgentNavigationRoot/Player/HitBox" index="10"]
-transform = Transform3D(0.113798, -0.203399, 0.920967, 0.179172, -0.906091, -0.222253, 0.925986, 0.200319, -0.0701766, 0.25075, -0.315813, 0.197214)
-
-[node name="RightFootBoneAttachment" parent="MultiAgentNavigationRoot/Player/HitBox" index="11"]
-transform = Transform3D(-0.0895077, 0.816505, 0.477293, 0.00490982, -0.479018, 0.820377, 0.945763, 0.0797618, 0.040913, 0.154594, -0.744163, 0.291914)
-
-[node name="LeftFootBoneAttachment" parent="MultiAgentNavigationRoot/Player/HitBox" index="12"]
-transform = Transform3D(0.946705, 0.077415, 0.0160414, 0.0265617, -0.493001, 0.81163, 0.0744641, -0.808367, -0.493456, -0.0419989, -0.746942, -0.219424)
-
-[node name="EQUIPMENT" parent="MultiAgentNavigationRoot/Player/PlayerInventories/MarginContainer/HBoxContainer/PlayerInventoryContainer/TabContainer" index="1"]
-_inventory = SubResource("Resource_div2p")
-
 [node name="red_dot" parent="MultiAgentNavigationRoot" instance=ExtResource("8_2b85p")]
 transform = Transform3D(0.846085, 0.142345, -0.513691, -0.165908, 0.986141, 0, 0.506572, 0.0852256, 0.857975, 0.0414739, 0.58301, 0.16491)
 
@@ -1417,10 +1210,5 @@ transform = Transform3D(0.846085, 0.142345, -0.513691, -0.165908, 0.986141, 0, 0
 transform = Transform3D(0.28034, 0.0823512, -0.956362, -0.224502, -0.963056, -0.148736, -0.933278, 0.256402, -0.251495, 0.524934, 0.92531, -0.402487)
 _gun_stats = SubResource("Resource_r5vvs")
 
-[editable path="MultiAgentNavigationRoot/Player"]
-[editable path="MultiAgentNavigationRoot/Player/player_default_mesh_animated"]
-[editable path="MultiAgentNavigationRoot/Player/PlayerHUD"]
-[editable path="MultiAgentNavigationRoot/Player/PlayerHUD/interaction_helpers"]
-[editable path="MultiAgentNavigationRoot/Player/PlayerHUD/weapon_info_hud"]
-[editable path="MultiAgentNavigationRoot/Player/PlayerInventories"]
-[editable path="MultiAgentNavigationRoot/Player/PlayerInventories/MarginContainer/HBoxContainer/PlayerInventoryContainer/TabContainer/EQUIPMENT"]
+[node name="Player" parent="." instance=ExtResource("1_eisjc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.48035, 1.04626, -2.63506)
