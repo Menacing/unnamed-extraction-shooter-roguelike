@@ -51,6 +51,7 @@ var los_check_locations:Array[Node3D] = []
 @export_category("Movement")
 @export_category("Standing")
 @export var STANDING_HEIGHT = 1.8
+@export var TO_STANDING_TIME = 0.25
 @export var STANDING_BOB_TRANSLATION_X = 0.005
 @export var STANDING_BOB_TRANSLATION_Y = 0.01
 @export var STANDING_BOB_ROTATION_X = .75
@@ -76,7 +77,7 @@ var los_check_locations:Array[Node3D] = []
 @export_category("Prone")
 @export var PRONE_SPEED = 2.0
 @export var PRONE_HEIGHT = 0.5
-@export var TO_PRONE_TIME = 0.5
+@export var TO_PRONE_TIME = 0.25
 @export var PRONE_BOB_TRANSLATION_X = 0.0
 @export var PRONE_BOB_TRANSLATION_Y = 0.0
 @export var PRONE_BOB_ROTATION_X = 0.0
@@ -624,6 +625,9 @@ func _on_standing_state_entered():
 	
 	recoil_factor.add_modifier(standing_recoil_factor)
 	
+	if collision_shape_shape.height != STANDING_HEIGHT:
+		set_collision_shape_tween(STANDING_HEIGHT, TO_STANDING_TIME, Tween.EASE_IN, Tween.TRANS_QUART)
+	
 func _on_standing_state_exited():
 	recoil_factor.remove_modifier(standing_recoil_factor)
 	
@@ -649,10 +653,6 @@ func _on_standing_state_physics_processing(delta):
 	else:
 		move(direction, delta, input_direction.y < 0)
 
-func _on_standing_transitions_physics_processing(delta):
-	var input_direction = Input.get_vector("moveLeft", "moveRight", "moveUp", "moveDown")
-	var direction:Vector3 = (transform.basis * Vector3(input_direction.x, 0, input_direction.y)).normalized()
-	move(direction, delta, input_direction.y < 0)
 #endregion
 
 #region Walking
@@ -748,6 +748,8 @@ func _on_sprinting_state_physics_processing(delta):
 #region Crouching
 @export var crouching_recoil_factor:StatModifier
 @export var crouching_bob_freq:StatModifier
+
+
 func _on_crouching_state_entered():
 	current_speed.base_value = 0.0
 	current_bob_amount_max_degrees_x.base_value = CROUCHING_BOB_ROTATION_X
@@ -757,9 +759,10 @@ func _on_crouching_state_entered():
 	recoil_factor.add_modifier(crouching_recoil_factor)
 	current_bob_freq.add_modifier(crouching_bob_freq)
 	
-	set_collision_shape_tween(CROUCHING_HEIGHT, TO_CROUCHING_TIME, Tween.EASE_IN, Tween.TRANS_QUART)
-	
 	set_head_anchor_position(crouching_head_anchor.position)
+	
+	if collision_shape_shape.height != CROUCHING_HEIGHT:
+		set_collision_shape_tween(CROUCHING_HEIGHT, TO_CROUCHING_TIME, Tween.EASE_IN, Tween.TRANS_QUART)
 	
 func _on_crouching_state_exited():
 	recoil_factor.remove_modifier(crouching_recoil_factor)
@@ -832,6 +835,9 @@ func _on_prone_state_entered():
 	
 	set_head_anchor_position(prone_head_anchor.position)
 	
+	if collision_shape_shape.height != PRONE_HEIGHT:
+		set_collision_shape_tween(PRONE_HEIGHT, TO_PRONE_TIME, Tween.EASE_IN, Tween.TRANS_QUART)
+	
 func _on_prone_state_exited():
 	recoil_factor.remove_modifier_by_name("prone")
 
@@ -852,13 +858,7 @@ func _on_prone_state_physics_processing(delta):
 	else:
 		move(direction, delta, input_direction.y < 0)
 		
-func _on_prone_transitions_entered():
-	state_chart.send_event("ArmsBusy")
-	state_chart.send_event("StopLean")
-	
 
-func _on_prone_transitions_exited():
-	state_chart.send_event("ArmsDone")
 #endregion
 
 #region Crawling
@@ -1253,6 +1253,8 @@ func _on_right_state_physics_processing(delta):
 		return
 	waist.basis = Quaternion(waist.basis).slerp(Quaternion(right_lean_basis),0.5)
 #endregion
+
+
 
 
 
