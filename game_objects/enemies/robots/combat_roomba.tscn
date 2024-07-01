@@ -250,16 +250,20 @@ blackboard_plan = SubResource("BlackboardPlan_774i1")
 [node name="TargetSpottedAudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("10_iwbga")
 attenuation_model = 1
+bus = &"SFX"
 
 [node name="TargetLostAudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("11_ll5t6")
 attenuation_model = 1
+bus = &"SFX"
 
 [node name="PatrolStartedAudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
 attenuation_model = 1
+bus = &"SFX"
 
 [node name="IdleAudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
 attenuation_model = 1
+bus = &"SFX"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -273,10 +277,12 @@ script = ExtResource("14_noua2")
 loop_start_time = 1.159
 loop_end_time = 1.869
 OutroStreamPlayer = NodePath("EndMovementAudioStreamPlayer3D")
+bus = &"SFX"
 
 [node name="EndMovementAudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="MovementIntroOutroAudioStreamPlayer"]
 attenuation_model = 1
 volume_db = -16.0
+bus = &"SFX"
 
 [editable path="combat-roomba"]
 [editable path="combat-roomba/Armature/Skeleton3D/Physical Bone Bone/WorldInventory"]

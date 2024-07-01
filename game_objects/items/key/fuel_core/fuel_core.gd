@@ -4,6 +4,8 @@ extends Item3D
 
 func _ready() -> void:
 	super()
+	#Setting instantiated audio stream player to SFX bus
+	audio_player.set_bus("SFX")
 	audio_player.play()
 
 func dropped() -> void:

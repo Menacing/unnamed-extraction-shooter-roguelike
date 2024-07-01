@@ -7,6 +7,7 @@ script = ExtResource("1_k4wki")
 
 [node name="FootstepAudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
 volume_db = 8.0
+bus = &"SFX"
 
 [node name="FoostepTimer" type="Timer" parent="."]
 process_callback = 0
