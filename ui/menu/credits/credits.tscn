@@ -331,4 +331,5 @@ layout_mode = 2
 [node name="godot_" type="Label" parent="MarginContainer/VBoxContainer2/ScrollContainer/VBoxContainer/third_party_licenses_section"]
 layout_mode = 2
 
+[connection signal="mouse_entered" from="MarginContainer/VBoxContainer2/HBoxContainer/back_button" to="." method="_on_back_button_mouse_entered"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer2/HBoxContainer/back_button" to="." method="_on_back_button_pressed"]

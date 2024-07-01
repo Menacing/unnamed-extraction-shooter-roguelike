@@ -11,6 +11,9 @@ class_name FootstepComponent
 @export var velocity_haver:Node3D
 
 func _ready():
+	#Setting audio_player to sfx bus
+	audio_player.set_bus("SFX")
+	
 	var rids_to_exclude:Array[RID] = Helpers.get_all_collision_object_3d_recursive(velocity_haver)
 	for rid:RID in rids_to_exclude:
 		ray_cast.add_exception_rid(rid)

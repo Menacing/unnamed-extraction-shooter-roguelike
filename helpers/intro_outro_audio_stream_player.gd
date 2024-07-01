@@ -12,6 +12,8 @@ var _stop_requested := false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	#Setting instantiated audio stream player to SFX bus
+	OutroStreamPlayer.set_bus("SFX")
 	self.finished.connect(_on_finished)
 	pass # Replace with function body.
 

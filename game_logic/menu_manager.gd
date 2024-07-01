@@ -31,7 +31,7 @@ func _ready():
 	var root = get_tree().root
 	current_scene = root.get_child(root.get_child_count() - 1)
 	menu_music_player.name = "MenuMusicPlayer"
-	menu_music_player.set_bus("Menu")
+	menu_music_player.set_bus("Music")
 	self.add_child(menu_music_player)
 
 func load_menu(menuLevel:MENU_LEVEL):

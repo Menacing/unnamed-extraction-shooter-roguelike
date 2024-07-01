@@ -54,7 +54,7 @@ text = "Quit Game"
 [node name="MenuMusicAudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_d6xup")
 autoplay = true
-bus = &"Menu"
+bus = &"Music"
 
 [connection signal="pressed" from="CenterContainer/MarginContainer/VBoxContainer/restart_demo_button" to="." method="_on_start_demo_button_pressed"]
 [connection signal="pressed" from="CenterContainer/MarginContainer/VBoxContainer/quit_game_button" to="." method="_on_quit_game_button_pressed"]

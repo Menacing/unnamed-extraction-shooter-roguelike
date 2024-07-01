@@ -10,7 +10,7 @@ func _enter_tree() -> void:
 	# Create an audio player
 	var player = AudioStreamPlayer.new()
 	player.set_process_mode(PROCESS_MODE_ALWAYS)
-	player.set_bus("Menu")
+	player.set_bus("SFX")
 	add_child(player)
 
 	# Create a polyphonic stream so we can play sounds directly from it
@@ -30,7 +30,6 @@ func _on_node_added(node:Node) -> void:
 		# and play a sound
 		node.mouse_entered.connect(_play_hover)
 		node.pressed.connect(_play_pressed)
-
 
 func _play_hover() -> void:
 	playback.play_stream(preload('res://game_objects/effects/sounds/menu/menu_hover_vkp_switch_04.ogg'), 0, 0, randf_range(0.9, 1.1))

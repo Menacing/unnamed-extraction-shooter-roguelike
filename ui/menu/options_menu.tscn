@@ -1,4 +1,4 @@
-[gd_scene load_steps=53 format=3 uid="uid://b37h35qgnmcvk"]
+[gd_scene load_steps=55 format=3 uid="uid://b37h35qgnmcvk"]
 
 [ext_resource type="Script" path="res://ui/menu/options_menu.gd" id="1_0sxhr"]
 [ext_resource type="PackedScene" uid="uid://dm1av7skxvp1j" path="res://game_settings/components/input_btn/input_btn.tscn" id="1_lvxjt"]
@@ -49,7 +49,9 @@
 [ext_resource type="Resource" uid="uid://b75wan81yfnei" path="res://game_settings/settings/audio/menu_mute.tres" id="43_bkb4y"]
 [ext_resource type="Resource" uid="uid://beoxhsngsckj0" path="res://game_settings/settings/audio/menu_volume.tres" id="44_dcgr2"]
 [ext_resource type="Resource" uid="uid://ch14ihudxx671" path="res://game_settings/settings/display/window_size.tres" id="44_m1hmf"]
+[ext_resource type="Resource" uid="uid://dcqwin8gsahef" path="res://game_settings/settings/audio/sfx_mute.tres" id="45_dtc2p"]
 [ext_resource type="Resource" uid="uid://5ncapys43e0n" path="res://game_settings/settings/display/default_fov.tres" id="45_vd41r"]
+[ext_resource type="Resource" uid="uid://mojb0hbk5nuv" path="res://game_settings/settings/audio/sfx_volume.tres" id="46_0twxo"]
 [ext_resource type="Resource" uid="uid://o8o6hnt6k74j" path="res://game_settings/settings/ui/health_display_mode.tres" id="47_gderx"]
 [ext_resource type="Resource" uid="uid://c0a7pj887fuve" path="res://game_settings/settings/ui/disable_use_helper_when_ads.tres" id="49_nt1ud"]
 
@@ -866,7 +868,7 @@ size_flags_vertical = 3
 
 [node name="Label" type="Label" parent="main_container/vert_container/option_tab_container/Audio/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/MenuVolumeHBoxContainer"]
 layout_mode = 2
-text = "Menu"
+text = "Music"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="main_container/vert_container/option_tab_container/Audio/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/MenuVolumeHBoxContainer"]
 layout_mode = 2
@@ -884,6 +886,32 @@ layout_mode = 2
 setting = ExtResource("44_dcgr2")
 
 [node name="Slider" parent="main_container/vert_container/option_tab_container/Audio/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/MenuVolumeHBoxContainer/HBoxContainer/Slider" index="0"]
+custom_minimum_size = Vector2(200, 0)
+
+[node name="SFXVolumeHBoxContainer" type="HBoxContainer" parent="main_container/vert_container/option_tab_container/Audio/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="main_container/vert_container/option_tab_container/Audio/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/SFXVolumeHBoxContainer"]
+layout_mode = 2
+text = "SFX"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="main_container/vert_container/option_tab_container/Audio/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/SFXVolumeHBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 10
+
+[node name="Switch" parent="main_container/vert_container/option_tab_container/Audio/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/SFXVolumeHBoxContainer/HBoxContainer" groups=["audio_settings"] instance=ExtResource("13_7wq5f")]
+layout_mode = 2
+setting = ExtResource("45_dtc2p")
+
+[node name="Btn" parent="main_container/vert_container/option_tab_container/Audio/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/SFXVolumeHBoxContainer/HBoxContainer/Switch" index="0"]
+text = "Mute"
+
+[node name="Slider" parent="main_container/vert_container/option_tab_container/Audio/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/SFXVolumeHBoxContainer/HBoxContainer" groups=["audio_settings"] instance=ExtResource("10_aqhiy")]
+layout_mode = 2
+setting = ExtResource("46_0twxo")
+
+[node name="Slider" parent="main_container/vert_container/option_tab_container/Audio/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/SFXVolumeHBoxContainer/HBoxContainer/Slider" index="0"]
 custom_minimum_size = Vector2(200, 0)
 
 [node name="HBoxContainer" type="HBoxContainer" parent="main_container/vert_container/option_tab_container/Audio/VBoxContainer"]
@@ -1091,6 +1119,7 @@ group = "audio_settings"
 
 [node name="InputConfirmWindow" parent="." instance=ExtResource("4_5ngqd")]
 
+[connection signal="mouse_entered" from="main_container/vert_container/HBoxContainer/back_button" to="." method="_on_back_button_mouse_entered"]
 [connection signal="pressed" from="main_container/vert_container/HBoxContainer/back_button" to="." method="_on_back_button_pressed"]
 [connection signal="tab_clicked" from="main_container/vert_container/option_tab_container" to="." method="_on_option_tab_container_tab_clicked"]
 [connection signal="tab_hovered" from="main_container/vert_container/option_tab_container" to="." method="_on_option_tab_container_tab_hovered"]
@@ -1132,6 +1161,8 @@ group = "audio_settings"
 [editable path="main_container/vert_container/option_tab_container/Audio/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/MasterVolumeHBoxContainer/HBoxContainer/Slider"]
 [editable path="main_container/vert_container/option_tab_container/Audio/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/MenuVolumeHBoxContainer/HBoxContainer/Switch"]
 [editable path="main_container/vert_container/option_tab_container/Audio/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/MenuVolumeHBoxContainer/HBoxContainer/Slider"]
+[editable path="main_container/vert_container/option_tab_container/Audio/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/SFXVolumeHBoxContainer/HBoxContainer/Switch"]
+[editable path="main_container/vert_container/option_tab_container/Audio/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/SFXVolumeHBoxContainer/HBoxContainer/Slider"]
 [editable path="main_container/vert_container/option_tab_container/Display/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/resolution/OptionList"]
 [editable path="main_container/vert_container/option_tab_container/Display/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/fov_slider/HBoxContainer/Slider"]
 [editable path="main_container/vert_container/option_tab_container/Game Play/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer/OptionList"]

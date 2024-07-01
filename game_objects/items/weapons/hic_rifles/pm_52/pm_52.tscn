@@ -294,16 +294,20 @@ libraries = {
 
 [node name="MagInStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
 attenuation_model = 1
+bus = &"SFX"
 
 [node name="MagOutStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
 attenuation_model = 1
+bus = &"SFX"
 
 [node name="ChargingHandleStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
 attenuation_model = 1
+bus = &"SFX"
 
 [node name="ShotAudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
 stream = SubResource("AudioStreamRandomizer_804ov")
 volume_db = 6.0
 max_polyphony = 20
+bus = &"SFX"
 
 [editable path="gun"]
