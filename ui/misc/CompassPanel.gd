@@ -18,7 +18,7 @@ var player_compass_rotation:int:
 		var new_h_s = degree_to_hscroll(value,pixels_per_360)
 		compass_bar.set_h_scroll(new_h_s)
 		
-var extracts:Array
+var extracts:Array[AreaExtract] = []
 var obj_markers:Array[Control]
 
 # Called when the node enters the scene tree for the first time.
@@ -26,7 +26,10 @@ func _ready():
 	EventBus.compass_player_pulse.connect(_on_compass_player_pulse)
 	compass_bar.scroll_horizontal = pixels_per_360
 	var extract_nodes = get_tree().get_nodes_in_group("Extract")
-	extracts = extract_nodes
+	for node in extract_nodes:
+		var textract := node as AreaExtract
+		if textract and !textract.disabled:
+			extracts.append(textract)
 	var obj_marker_scene = load("res://ui/misc/ObjectiveMarker.tscn")
 	for i in extracts.size():
 		var obj_marker = obj_marker_scene.instantiate()

@@ -8,7 +8,6 @@ class_name PointNavigationLink
 @export var _end_name:String
 
 func _func_godot_apply_properties(entity_properties: Dictionary):
-	print(entity_properties)
 	if 'startname' in entity_properties:
 		_start_name = entity_properties.startname
 	if 'endname' in entity_properties:
