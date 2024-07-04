@@ -186,6 +186,13 @@ mouse_filter = 1
 text = "GODOT RESOURCE GROUPS"
 horizontal_alignment = 1
 
+[node name="godot_safe_resource_loader_label" type="Label" parent="MarginContainer/VBoxContainer2/ScrollContainer/VBoxContainer/addons_section"]
+layout_mode = 2
+tooltip_text = "https://github.com/derkork/godot-safe-resource-loader/"
+mouse_filter = 1
+text = "GODOT SAFE RESOURCE LOADER"
+horizontal_alignment = 1
+
 [node name="assets_section_header" type="HBoxContainer" parent="MarginContainer/VBoxContainer2/ScrollContainer/VBoxContainer"]
 layout_mode = 2
 
