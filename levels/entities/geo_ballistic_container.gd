@@ -43,13 +43,13 @@ func _ready():
 	#setup inventory linkages
 	world_inventory_control.container_size = container_size
 	inventory_id = world_inventory_control.inventory_id
-	call_deferred("spawn_loot")
 	EventBus.item_picked_up.connect(_on_item_picked_up)
 	Helpers.apply_material_overlay_to_children(self, item_highlight_m)
+	EventBus.populate_level.connect(_on_populate_level)
 	
 
-func spawn_loot():
-	add_to_group("loot_container")
+func _on_populate_level():
+	add_to_group("loot_container", true)
 	
 	var loot_spawn_mapping:LootSpawnMapping = LootSpawnManager.get_loot_spawn_mapping(biome_index,tier_index)
 	

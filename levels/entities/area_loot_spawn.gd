@@ -27,8 +27,11 @@ var current_shuffle_bag:Array[LootSpawnInformation] = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	add_to_group("loot_spawn_area")
+	add_to_group("loot_spawn_area",true)
+	if not Engine.is_editor_hint():
+		EventBus.populate_level.connect(_on_populate_level)
 	
+func _on_populate_level():
 	var loot_spawn_mapping:LootSpawnMapping = LootSpawnManager.get_loot_spawn_mapping(biome_index,tier_index)
 	
 	randomize()
