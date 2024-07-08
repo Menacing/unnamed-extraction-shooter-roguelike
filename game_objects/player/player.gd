@@ -179,6 +179,7 @@ func _ready():
 	EventBus.ammo_type_changed.connect(_on_ammo_type_changed)
 	EventBus.location_destroyed.connect(_on_location_destroyed)
 	EventBus.location_restored.connect(_on_location_restored)
+	SaveManager.game_saving.connect(_on_game_saving)
 	
 	los_check_locations.append(%HitBox/HeadBoneAttachment/eyes)
 	los_check_locations.append(%HitBox/RightFootBoneAttachment)
@@ -409,7 +410,11 @@ func _input(event):
 					selector_request.subtypes.append(request_item)
 				
 				ammo_subtype_selector.start_selection(selector_request) 
-		
+		elif event.is_action_pressed("quick_save"):
+			SaveManager.quick_save()
+		elif event.is_action_pressed("quick_load"):
+			SaveManager.quick_load()
+
 func toggle_inventory():
 	toggle_inv_f = !toggle_inv_f
 	
@@ -476,6 +481,21 @@ func _on_ammo_type_changed(new_type:String, new_subtype:String):
 	equipped_gun._bullet_scene = AmmoLoader.get_ammo_subtype(new_type, new_subtype).bullet_scene
 	ammo_subtype_selector.end_selection()
 	
+func _on_game_saving(save_file:SaveFile):
+	if save_file:
+		var player_information:PlayerSaveData = PlayerSaveData.new()
+		player_information.global_transform = self.global_transform
+		#player_information.path_to_parent = self.get_parent().get_path()
+		player_information.scene_path = self.scene_file_path
+		save_file.save_data.append(player_information)
+
+func _on_game_before_loading():
+	self.queue_free()
+	
+func _on_load_game(save_data:SaveData):
+	if save_data is PlayerSaveData:
+		self.global_transform = save_data.global_transform
+	
 var arm_destroyed_effect:GameplayEffect = load("res://game_objects/player/stat_modifiers/arm_destruction_effect.tres")
 func _on_location_destroyed(actor_id:int, location:HealthLocation.HEALTH_LOCATION):
 	if actor_id == self.get_instance_id():
@@ -513,25 +533,6 @@ func stop_arms_ik():
 	ik_right_hand_fingers.stop()
 	ik_left_hand.stop()
 	ik_left_hand_fingers.stop()
-	
-#var is_transparent: bool = false
-#func make_transparent():
-	#if !is_transparent:
-		#player_mat.distance_fade_mode = BaseMaterial3D.DISTANCE_FADE_PIXEL_DITHER
-		##Pixel dither looks better, but this is another way of doing it
-		##gun_mat.blend_mode = gun_mat.BLEND_MODE_ADD
-		#is_transparent = true
-		#pass
-	#else:
-		#pass
-#
-#func make_opaque():
-	#if is_transparent:
-		#player_mat.distance_fade_mode = BaseMaterial3D.DISTANCE_FADE_DISABLED		
-		##gun_mat.blend_mode = gun_mat.BLEND_MODE_MIX
-		#is_transparent = false
-	#else:
-		#pass
 		
 func calculate_fall_damage(vertical_velocity:float) -> float:
 	var calc_damage = (200.0/6.0*abs(vertical_velocity)) - 300.0
@@ -555,18 +556,6 @@ func die():
 	var death_animation_player:AnimationPlayer = %DeathAnimationPlayer
 	death_animation_player.play("death_spiral")
 	MenuManager.load_menu(MenuManager.MENU_LEVEL.DIED)
-	#print("I am dead")
-	#alive = false
-	#skeleton.animate_physical_bones = true
-	#skeleton.physical_bones_start_simulation()
-	#var damage_vector = last_damage_normal.normalized() * 5
-	#PhysicsServer3D.body_set_state(physical_bone.get_rid(), PhysicsServer3D.BODY_STATE_LINEAR_VELOCITY, damage_vector)
-	#$CollisionShape3D.disabled = true
-	#$CollisionShape3D2.disabled = true
-	#$CollisionShape3D3.disabled = true
-	#$"combat-roomba/Armature/Skeleton3D/Physical Bone Bone/Head/SpotLight3D".visible = false
-	#var behavior_tree:BTPlayer = $BTPlayer
-	#behavior_tree.active = false
 	
 #region Movement Code
 

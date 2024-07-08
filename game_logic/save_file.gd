@@ -1,14 +1,11 @@
 extends Resource
-class_name SavedGame
+class_name SaveFile
 
+@export var game_version:String
 @export var level_scene_path:String
 
 #things to save
-
-#player information
-#player transform
-#player health
-#player inventory
+@export var save_data:Array[SaveData] = []
 
 #all inventories
 
