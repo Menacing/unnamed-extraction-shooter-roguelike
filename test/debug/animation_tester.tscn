@@ -37,6 +37,7 @@ resource_local_to_scene = true
 script = ExtResource("5_nptoh")
 initial_height = 2
 initial_width = 7
+grid_slots = {}
 equipment_slots = Array[ExtResource("4_wtskt")]([SubResource("Resource_c2lqt"), SubResource("Resource_5xhft"), SubResource("Resource_3yuyw"), SubResource("Resource_k0qab")])
 
 [sub_resource type="Resource" id="Resource_rlsbf"]
@@ -98,6 +99,7 @@ resource_local_to_scene = true
 script = ExtResource("5_nptoh")
 initial_height = 2
 initial_width = 7
+grid_slots = {}
 equipment_slots = Array[ExtResource("4_wtskt")]([SubResource("Resource_32krh"), SubResource("Resource_ipac7"), SubResource("Resource_7i5l5"), SubResource("Resource_ei6ls")])
 
 [node name="animation_tester" type="Node3D"]

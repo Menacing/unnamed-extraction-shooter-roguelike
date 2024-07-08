@@ -37,7 +37,7 @@ func load_game(file_path:String):
 	game_before_loading.emit()
 	
 	#restore all dynamic game elements
-	for item:SaveData in saved_game.save_data:
+	for item:WorldEntitySaveData in saved_game.save_data:
 		# load the scene of the saved item and create a new instance
 		var scene := load(item.scene_path) as PackedScene
 		var restored_node = scene.instantiate()

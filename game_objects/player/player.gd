@@ -492,7 +492,7 @@ func _on_game_saving(save_file:SaveFile):
 func _on_game_before_loading():
 	self.queue_free()
 	
-func _on_load_game(save_data:SaveData):
+func _on_load_game(save_data:WorldEntitySaveData):
 	if save_data is PlayerSaveData:
 		self.global_transform = save_data.global_transform
 	

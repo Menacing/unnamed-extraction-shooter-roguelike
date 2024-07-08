@@ -1,4 +1,4 @@
-extends SaveData
+extends WorldEntitySaveData
 class_name PlayerSaveData
 
 #player information

@@ -1,4 +1,4 @@
-extends Object
+extends Resource
 class_name ItemInstance
 
 func _init(item_info:ItemInformation) -> void:
@@ -6,11 +6,11 @@ func _init(item_info:ItemInformation) -> void:
 	if _item_info.item_internal_inventory:
 		_item_info.item_internal_inventory.setup()
 		
-
-var id_3d:int
-var id_2d:int
-var _item_info:ItemInformation
-var _stacks: int
+@export var item_instance_id:int
+@export var id_3d:int
+@export var id_2d:int
+@export var _item_info:ItemInformation
+@export var _stacks: int
 var stacks:int:
 	get:
 		return _stacks
@@ -18,16 +18,16 @@ var stacks:int:
 		_stacks = value
 		EventBus.item_stack_count_changed.emit(self)
 		
-var _durability:int = 1
+@export var _durability:int = 1
 var durability:int:
 	get:
 		return _durability
 	set(value):
 		_durability = value
 		EventBus.item_durability_changed.emit(self)
-var current_inventory_id:int
-var is_rotated:bool
-var is_equipped:bool
+@export var current_inventory_id:int
+@export var is_rotated:bool
+@export var is_equipped:bool
 
 func get_show_name() -> bool:
 	return _item_info.show_name

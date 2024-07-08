@@ -11,6 +11,7 @@ func _ready() -> void:
 	EventBus.pickup_item.connect(_on_pickup_item)
 	EventBus.add_inventory.connect(add_inventory)
 	EventBus.item_durability_changed.connect(_destroy_depleted_durability)
+	SaveManager.game_saving.connect(_on_game_saving)
 
 func _on_pickup_item(item_inst:ItemInstance, target_inventory_id:int) -> void:
 	#Are we dealing with a stack or not
@@ -289,3 +290,7 @@ func number_item_type_in_inventory(inventory_id:int, item_type_id:String) -> int
 						checked_item_instance_ids.append(grid_value)
 		
 	return count
+
+func _on_game_saving(save_file:SaveFile):
+	for inv_id in _inventory_access.inventories:
+		save_file.inventories.append(_inventory_access.inventories[inv_id])

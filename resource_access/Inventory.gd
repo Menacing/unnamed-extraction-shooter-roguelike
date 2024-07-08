@@ -22,7 +22,7 @@ var _current_width:int
 
 		
 		
-var grid_slots := {}
+@export var grid_slots := {}
 @export var equipment_slots:Array[EquipmentSlotType] = []
 
 static func get_slot_by_name(inventory:Inventory, slot_name:String) ->EquipmentSlotType:

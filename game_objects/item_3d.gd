@@ -3,6 +3,7 @@ class_name Item3D
 
 var _actor_id:int = 0
 var item_instance_id:int
+var item_3d_id:int
 func get_item_instance() -> ItemInstance:
 	if item_instance_id == 0:
 		spawn_item()
@@ -55,7 +56,6 @@ func _ready() -> void:
 		new_mat.distance_fade_min_distance = 0.0
 		new_mat.distance_fade_max_distance = 2.0
 		_prox_fade_mats.append(new_mat)
-	SaveManager.game_saving.connect(_on_game_saving)
 
 func dropped() -> void:
 	world_collider.disabled = false
@@ -111,18 +111,4 @@ func _on_item_removed_from_slot(_item_inst:ItemInstance, _inventory_id:int, _slo
 func copy_model() -> Node3D:
 	return model_node.duplicate()
 
-func _on_game_saving(save_file:SaveFile):
-	if save_file:
-		var item_information:SaveData = SaveData.new()
-		item_information.global_transform = self.global_transform
-		#player_information.path_to_parent = self.get_parent().get_path()
-		if self.scene_file_path:
-			item_information.scene_path = self.scene_file_path
-		else:
-			print(name+" doesn't have a scene set")
-			print(self.get_path())
-		save_file.save_data.append(item_information)
 
-func _on_load_game(save_data:SaveData):
-	if save_data:
-		self.global_transform = save_data.global_transform
