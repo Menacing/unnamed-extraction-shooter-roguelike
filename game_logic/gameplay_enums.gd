@@ -15,3 +15,8 @@ enum ItemType {
 	AMMO,
 	CONSUMABLE
 }
+
+enum StackRandomMethod {
+	RANDOM,
+	NORMAL
+}
