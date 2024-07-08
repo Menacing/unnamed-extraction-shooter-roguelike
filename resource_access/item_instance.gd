@@ -86,7 +86,6 @@ func get_item_flavor_text() -> String:
 ## after you call this you must add the instanced scenes to the scene tree
 func spawn_item() -> void:
 	if _item_info.has_stacks:
-		print('HAS STACKS')
 		#Default to fun!
 		var stack:int = _item_info.max_stacks
 		if _item_info.stack_random_method == GameplayEnums.StackRandomMethod.RANDOM:

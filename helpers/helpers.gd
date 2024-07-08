@@ -185,7 +185,7 @@ func convert_godot_vector_to_quake_vector(gv:Vector3) -> Vector3:
 func get_normalized_random_stack_count(min_value: int, mean: int, max_value: int, random_number_generator: RandomNumberGenerator = RandomNumberGenerator.new()) -> int:
 	var sigma = (max_value - mean) / 2.0
 	var random_normal_value = random_number_generator.randfn(mean, sigma)
-	print('Normalized!!! {pulled_value}'.format({'pulled_value': str(random_normal_value)}) )
+	print_debug('Normalized!!! {pulled_value}'.format({'pulled_value': str(random_normal_value)}) )
 		
 	if random_normal_value < min_value:
 		return min_value
