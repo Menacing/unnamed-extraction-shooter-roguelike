@@ -1,9 +1,9 @@
-[gd_scene load_steps=81 format=3 uid="uid://ctahsvj88g1om"]
+[gd_scene load_steps=83 format=3 uid="uid://ctahsvj88g1om"]
 
 [ext_resource type="PackedScene" uid="uid://d08aatgxmymbf" path="res://game_objects/player/player.tscn" id="1_eisjc"]
 [ext_resource type="Script" path="res://levels/multi_agent_navigation_root.gd" id="2_cimua"]
-[ext_resource type="Resource" uid="uid://hw8blc564g2i" path="res://levels/roomba_nav_mesh.tres" id="2_mvgx8"]
-[ext_resource type="Resource" uid="uid://bkm06qpqovt7f" path="res://levels/humanoid_nav_mesh.tres" id="3_pa7d4"]
+[ext_resource type="Resource" path="res://levels/roomba_nav_mesh.tres" id="2_mvgx8"]
+[ext_resource type="Resource" path="res://levels/humanoid_nav_mesh.tres" id="3_pa7d4"]
 [ext_resource type="PackedScene" uid="uid://trlm60n2q0k4" path="res://game_objects/items/attachments/scopes/red_dot/red_dot.tscn" id="8_2b85p"]
 [ext_resource type="PackedScene" uid="uid://cprpop5lkmyhe" path="res://game_objects/items/weapons/fic_rifles/s5/s5.tscn" id="9_7oj7m"]
 [ext_resource type="Script" path="res://levels/entities/geo_ballistic_solid.gd" id="9_q4meu"]
@@ -15,6 +15,8 @@
 [ext_resource type="Material" uid="uid://tid6vrqw40j3" path="res://levels/textures/metal/metal_2.tres" id="13_muntg"]
 [ext_resource type="Material" uid="uid://cjqyc6t2lsv8d" path="res://levels/textures/metal/metal_5.tres" id="14_3ru35"]
 [ext_resource type="Material" uid="uid://cnqi48f8iiy13" path="res://levels/textures/metal/metal_6.tres" id="15_b757u"]
+[ext_resource type="PackedScene" uid="uid://82pjqxlmcg2v" path="res://game_objects/items/ammo/hic/hic_box_ap.tscn" id="15_lbv4t"]
+[ext_resource type="PackedScene" uid="uid://c17uhpgl0dvt4" path="res://game_objects/items/ammo/fic/fic_box_fmj.tscn" id="16_3j2uw"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_6g5uc"]
 
@@ -1209,6 +1211,27 @@ transform = Transform3D(0.846085, 0.142345, -0.513691, -0.165908, 0.986141, 0, 0
 [node name="S5" parent="MultiAgentNavigationRoot" instance=ExtResource("9_7oj7m")]
 transform = Transform3D(0.28034, 0.0823512, -0.956362, -0.224502, -0.963056, -0.148736, -0.933278, 0.256402, -0.251495, 0.524934, 0.92531, -0.402487)
 _gun_stats = SubResource("Resource_r5vvs")
+
+[node name="HicBoxAp" parent="MultiAgentNavigationRoot" instance=ExtResource("15_lbv4t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.70498, 0.227854, -0.46793)
+
+[node name="HicBoxAp2" parent="MultiAgentNavigationRoot" instance=ExtResource("15_lbv4t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.05126, 0.162076, -0.53644)
+
+[node name="FicBoxFmj4" parent="MultiAgentNavigationRoot" node_paths=PackedStringArray("model_node") instance=ExtResource("16_3j2uw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.84607, 0.34175, -2.72305)
+model_node = NodePath("../FicBoxFmj/fic_box_fmj")
+
+[node name="FicBoxFmj3" parent="MultiAgentNavigationRoot" node_paths=PackedStringArray("model_node") instance=ExtResource("16_3j2uw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.42712, 0.296506, -2.64761)
+model_node = NodePath("../FicBoxFmj/fic_box_fmj")
+
+[node name="FicBoxFmj2" parent="MultiAgentNavigationRoot" node_paths=PackedStringArray("model_node") instance=ExtResource("16_3j2uw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.99314, 0.425356, -3.05)
+model_node = NodePath("../FicBoxFmj/fic_box_fmj")
+
+[node name="FicBoxFmj" parent="MultiAgentNavigationRoot" instance=ExtResource("16_3j2uw")]
+transform = Transform3D(1, 0, 0, 0, -0.491436, -0.870914, 0, 0.870914, -0.491436, 7.17928, 0.542317, -3.66029)
 
 [node name="Player" parent="." instance=ExtResource("1_eisjc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.48035, 1.04626, -2.63506)
