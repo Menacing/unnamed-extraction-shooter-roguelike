@@ -7,8 +7,8 @@ var item_control_id:int:
 	get:
 		return item_control_id
 	set(value):
-		ItemAccess.add_item_control(self)
 		item_control_id = value
+		ItemAccess.add_item_control(self)
 
 var item_instance_id:int
 func get_item_instance() -> ItemInstance:

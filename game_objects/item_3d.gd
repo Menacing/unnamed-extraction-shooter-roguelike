@@ -3,7 +3,13 @@ class_name Item3D
 
 var _actor_id:int = 0
 var item_instance_id:int
-var item_3d_id:int
+var item_3d_id:int:
+	get:
+		return item_3d_id
+	set(value):
+		item_3d_id = value
+		ItemAccess.add_item_3d(self)
+		
 func get_item_instance() -> ItemInstance:
 	if item_instance_id == 0:
 		spawn_item()
@@ -37,7 +43,6 @@ func _ready() -> void:
 	
 	if item_3d_id == 0:
 		item_3d_id = Helpers.generate_new_id()
-	ItemAccess.add_item_3d(self)
 	
 	var item_instance := get_item_instance()
 	if item_instance:

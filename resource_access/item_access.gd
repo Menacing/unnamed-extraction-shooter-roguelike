@@ -130,7 +130,8 @@ func destroy_item(item:ItemInstance) -> void:
 			item_controls.erase(item.id_2d)
 			item_2d.queue_free()
 		item_instances.erase(item.item_instance_id)
-		item.free()
+		#Might need to revisit this if this causes an issue down the road but theoretically there shouldn't be any more references?
+		#item.free()
 
 func clone_instance(original: ItemInstance) -> ItemInstance:
 	var new_instance := ItemInstance.new(original._item_info)
