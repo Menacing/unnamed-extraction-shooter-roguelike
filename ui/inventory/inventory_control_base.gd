@@ -14,7 +14,7 @@ func get_inventory_grid() -> InventoryGridContainer:
 
 var inventory_id:int :
 	get:
-		return _inventory.get_instance_id()
+		return _inventory.inventory_id
 
 func _ready():
 	_inventory.setup()
@@ -27,9 +27,9 @@ func _ready():
 	_inventory_container = get_node(_inventory_container_path)
 
 func _on_item_picked_up(result:InventoryInsertResult):
-	if result.inventory_id == _inventory.get_instance_id() and result.picked_up:
+	if result.inventory_id == _inventory.inventory_id and result.picked_up:
 		var item_instance:ItemInstance = InventoryManager.get_item(result.item_instance_id)
-		var item_control:ItemControl = instance_from_id(item_instance.id_2d)
+		var item_control:ItemControl = ItemAccess.get_item_control(item_instance.id_2d)
 		var location = result.location
 		if location.location == InventoryLocationResult.LocationType.SLOT:
 			var slot_type:EquipmentSlotType = Inventory.get_slot_by_name(_inventory, location.slot_name)
@@ -61,8 +61,8 @@ func _on_close_all_inventories():
 		visible = false
 
 func _on_item_removed_from_inventory(item_inst:ItemInstance, in_inventory_id:int):
-	if in_inventory_id == _inventory.get_instance_id():
-		var item_control:ItemControl = instance_from_id(item_inst.id_2d)
+	if in_inventory_id == _inventory.inventory_id:
+		var item_control:ItemControl = ItemAccess.get_item_control(item_inst.id_2d)
 		if item_control:
 			var parent = item_control.get_parent()
 			if parent:

@@ -46,7 +46,7 @@ func _ready():
 					loc_free = false
 			#if clear, spawn scene
 			if loc_free:
-				var item_3d:Item3D = instance_from_id(item_instance.id_3d)
+				var item_3d:Item3D = ItemAccess.get_item_3d(item_instance.id_3d)
 				
 				#scene.set_as_top_level(true)
 				get_parent().add_child.call_deferred(item_3d)

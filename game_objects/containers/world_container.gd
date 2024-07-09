@@ -72,7 +72,7 @@ func on_inv_closed(player:Player):
 func _on_item_picked_up(result:InventoryInsertResult):
 	if result.inventory_id == inventory_id:
 		var item_instance:ItemInstance = InventoryManager.get_item(result.item_instance_id)
-		var item_3d:Item3D = instance_from_id(item_instance.id_3d)
+		var item_3d:Item3D = ItemAccess.get_item_3d(item_instance.id_3d)
 		Helpers.force_parent(item_3d,self)
 		item_3d.picked_up()
 		item_3d.visible = false

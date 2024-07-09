@@ -1,8 +1,11 @@
-extends Object
-class_name ItemAccess
+extends Node
 
 var _item_info_mapping:Dictionary = {}
 var resource_group:ResourceGroup = load("res://game_objects/items/item_information_resource_group.tres")
+
+var item_instances:Dictionary = {}
+var item_3ds:Dictionary = {}
+var item_controls:Dictionary = {}
 
 func _init():
 	# declare a type safe array
@@ -23,8 +26,8 @@ func spawn_from_item3d(item3d:Item3D):
 		if item_info == null:
 			push_error("No ItemInformation found for item_type_id %" % item3d.item_type_id)
 		var item_instance:ItemInstance = ItemInstance.new(item_info)
-		item3d.item_instance_id = item_instance.get_instance_id()
-		item_instance.id_3d = item3d.get_instance_id()
+		item3d.item_instance_id = item_instance.item_instance_id
+		item_instance.id_3d = item3d.item_3d_id
 		item_instance.spawn_item()
 		
 func spawn_from_item_type_id(item_type_id:String) -> ItemInstance:
@@ -32,6 +35,7 @@ func spawn_from_item_type_id(item_type_id:String) -> ItemInstance:
 	if item_info == null:
 		push_error("No ItemInformation found for item_type_id %" % item_type_id)
 	var item_instance:ItemInstance = ItemInstance.new(item_info)
+	item_instance.item_instance_id = Helpers.generate_new_id()
 	item_instance.spawn_item()
 	return item_instance
 
@@ -39,13 +43,54 @@ func get_item_information(item_type_id:String) -> ItemInformation:
 	var item_info:ItemInformation = _item_info_mapping[item_type_id]
 	return item_info
 
-static func get_item(item_id:int) -> ItemInstance:
-	var item:Object = instance_from_id(item_id)
-	if item is ItemInstance:
-		return item
+func add_item_instance(inst:ItemInstance) -> bool:
+	if item_instances.has(inst.item_instance_id):
+		print("item instance already exists")
+		return false
+	elif inst.item_instance_id == 0:
+		print("item instance does not have id set")
+		return false
+	item_instances[inst.item_instance_id] = inst
+	return true
+
+func get_item_instance(item_instance_id:int) -> ItemInstance:
+	if item_instances[item_instance_id] is ItemInstance:
+		return item_instances[item_instance_id]
 	else:
 		return null
-		
+
+func add_item_3d(item3d:Item3D) -> bool:
+	if item_3ds.has(item3d.item_3d_id):
+		print("item3d already exists")
+		return false
+	elif item3d.item_3d_id == 0:
+		print("item3d does not have id set")
+		return false
+	item_3ds[item3d.item_3d_id] = item3d
+	return true
+	
+func get_item_3d(item_3d_id:int) -> Item3D:
+	if item_3ds[item_3d_id] is Item3D:
+		return item_3ds[item_3d_id]
+	else:
+		return null
+
+func add_item_control(item_control:ItemControl) -> bool:
+	if item_controls.has(item_control.item_control_id):
+		print("item control already exists")
+		return false
+	elif item_control.item_control_id == 0:
+		print("item control does not have id set")
+		return false
+	item_controls[item_control.item_control_id] = item_control
+	return true
+	
+func get_item_control(item_control_id:int) -> ItemControl:
+	if item_controls[item_control_id] is ItemControl:
+		return item_controls[item_control_id]
+	else:
+		return null 
+
 static func combine_stacks(source:ItemInstance, destination:ItemInstance, amount:int) -> int:
 	var remainder:int = 0
 	if source:
@@ -74,27 +119,34 @@ static func can_combine_stacks(source:ItemInstance, destination:ItemInstance) ->
 		else:
 			return false
 
-static func destroy_item(item:ItemInstance) -> void:
+func destroy_item(item:ItemInstance) -> void:
 	if item:
 		if item.id_3d:
-			var item_3d:Node = instance_from_id(item.id_3d)
+			var item_3d:Item3D = item_3ds[item.id_3d]
+			item_3ds.erase(item.id_3d)
 			item_3d.queue_free()
 		if item.id_2d:
-			var item_2d:Node = instance_from_id(item.id_2d)
+			var item_2d:ItemControl = item_controls[item.id_2d]
+			item_controls.erase(item.id_2d)
 			item_2d.queue_free()
+		item_instances.erase(item.item_instance_id)
 		item.free()
 
-static func clone_instance(original: ItemInstance) -> ItemInstance:
+func clone_instance(original: ItemInstance) -> ItemInstance:
 	var new_instance := ItemInstance.new(original._item_info)
 
 	# Copy properties
 	if original.id_3d != 0:
-		new_instance.id_3d = Helpers.duplicate_node_by_id(original.id_3d).get_instance_id()
-		#TODO: Tie the 3d representation to the item instance
+		var dupe_3d:Item3D = Helpers.duplicate_node_by_id(original.id_3d)
+		dupe_3d.item_3d_id = Helpers.generate_new_id()
+		dupe_3d.item_instance_id = new_instance.item_instance_id
+		new_instance.id_3d = dupe_3d.item_3d_id
+		
 	if original.id_2d != 0:
 		var new_item_control:ItemControl = Helpers.duplicate_node_by_id(original.id_2d)
-		new_item_control.item_instance_id = new_instance.get_instance_id()
-		new_instance.id_2d = new_item_control.get_instance_id()
+		new_item_control.item_instance_id = new_instance.item_instance_id
+		new_item_control.item_control_id = Helpers.generate_new_id()
+		new_instance.id_2d = new_item_control.item_control_id
 
 	# If ItemInformation class also needs to be deep-copied, you'd have to make 
 	# a similar function for that and replace the line below.

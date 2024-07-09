@@ -199,7 +199,7 @@ func _on_item_picked_up(result:InventoryInsertResult):
 		
 		send_item_pickup_message(item_instance)
 		
-		var item_3d:Item3D = instance_from_id(item_instance.id_3d)
+		var item_3d:Item3D = ItemAccess.get_item_3d(item_instance.id_3d)
 		Helpers.force_parent(item_3d,self)
 		item_3d.picked_up(get_instance_id())
 		if result.location.location == InventoryLocationResult.LocationType.SLOT:
@@ -239,11 +239,11 @@ func send_item_pickup_message(item_instance:ItemInstance):
 	if item_instance.get_has_stacks():
 		message_text += " " + str(item_instance.stacks)
 		
-	EventBus.create_message.emit("pickup_"+str(item_instance.get_instance_id()), message_text, 2.0)
+	EventBus.create_message.emit("pickup_"+str(item_instance.item_instance_id), message_text, 2.0)
 
 func _on_item_removed_from_slot(item_inst:ItemInstance, inventory_id:int, slot_name:String):
 	if inventory_id == player_inventory_id:
-		var item_3d:Item3D = instance_from_id(item_inst.id_3d)
+		var item_3d:Item3D = ItemAccess.get_item_3d(item_inst.id_3d)
 		if item_3d is Gun:
 			if item_3d == equipped_gun:
 				stop_arms_ik()
@@ -315,7 +315,7 @@ func drop_equipped_gun():
 
 func _on_drop_item(item_inst:ItemInstance, inventory_id:int):
 	if inventory_id == player_inventory_id:
-		var item_3d:Item3D = instance_from_id(item_inst.id_3d)
+		var item_3d:Item3D = ItemAccess.get_item_3d(item_inst.id_3d)
 		Helpers.force_parent(item_3d,get_parent())
 		item_3d.dropped()
 		item_3d.global_position = drop_location.global_position

@@ -1,11 +1,18 @@
 extends Resource
 class_name ItemInstance
 
-func _init(item_info:ItemInformation) -> void:
+func _init(item_info:ItemInformation, _item_instance_id = 0) -> void:
 	_item_info = item_info.duplicate(true)
 	if _item_info.item_internal_inventory:
 		_item_info.item_internal_inventory.setup()
-		
+	
+	if _item_instance_id != 0:
+		item_instance_id = _item_instance_id
+	else:
+		item_instance_id = Helpers.generate_new_id()
+	
+	ItemAccess.add_item_instance(self)
+	
 @export var item_instance_id:int
 @export var id_3d:int
 @export var id_2d:int
@@ -95,14 +102,14 @@ func spawn_item() -> void:
 		_spawn_item_3d()
 
 func get_item_3d() -> Item3D:
-	var item_3d:Item3D = instance_from_id(id_3d)
+	var item_3d:Item3D = ItemAccess.get_item_3d(id_3d)
 	if item_3d:
 		return item_3d
 	else:
 		return _spawn_item_3d()
 	
 func get_item_control() -> ItemControl:
-	var item_control:ItemControl = instance_from_id(id_2d)
+	var item_control:ItemControl = ItemAccess.get_item_control(id_2d)
 	if item_control:
 		return item_control
 	else:
@@ -110,14 +117,16 @@ func get_item_control() -> ItemControl:
 
 func _spawn_item_3d() -> Item3D:
 	var item_3d:Item3D = _item_info.item_3d_scene.instantiate()
-	self.id_3d = item_3d.get_instance_id()
-	item_3d.item_instance_id = self.get_instance_id()
+	item_3d.item_3d_id = Helpers.generate_new_id()
+	self.id_3d = item_3d.item_3d_id
+	item_3d.item_instance_id = item_instance_id
 	return item_3d
 
 func _spawn_item_control() -> ItemControl:
 	var item_control:ItemControl = _item_info.item_control_scene.instantiate()
-	self.id_2d = item_control.get_instance_id()
-	item_control.item_instance_id = self.get_instance_id()
+	item_control.item_control_id = Helpers.generate_new_id()
+	self.id_2d = item_control.item_control_id
+	item_control.item_instance_id = item_instance_id
 	return item_control
 
 func get_item_inventory() -> Inventory:

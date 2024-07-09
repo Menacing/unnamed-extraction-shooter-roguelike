@@ -35,11 +35,15 @@ func _ready() -> void:
 	else:
 		Helpers.apply_material_overlay_to_children(self,null)
 	
+	if item_3d_id == 0:
+		item_3d_id = Helpers.generate_new_id()
+	ItemAccess.add_item_3d(self)
+	
 	var item_instance := get_item_instance()
 	if item_instance:
 		var item_internal_inventory := item_instance.get_item_inventory()
 		if item_internal_inventory:
-			internal_inventory_id = item_internal_inventory.get_instance_id()
+			internal_inventory_id = item_internal_inventory.inventory_id
 			EventBus.item_picked_up.connect(_on_item_picked_up)
 			EventBus.item_removed_from_slot.connect(_on_item_removed_from_slot)
 			
@@ -97,7 +101,7 @@ func spawn_item() -> void:
 func _on_item_picked_up(result:InventoryInsertResult) -> void:
 	if result.inventory_id == internal_inventory_id:
 		var item_instance:ItemInstance = InventoryManager.get_item(result.item_instance_id)
-		var item_3d:Item3D = instance_from_id(item_instance.id_3d)
+		var item_3d:Item3D = ItemAccess.get_item_3d(item_instance.id_3d)
 		Helpers.force_parent(item_3d,self)
 		item_3d.picked_up()
 		if result.location.location == InventoryLocationResult.LocationType.SLOT:

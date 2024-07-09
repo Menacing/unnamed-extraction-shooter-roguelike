@@ -181,3 +181,7 @@ func convert_godot_vector_to_quake_vector(gv:Vector3) -> Vector3:
 	qv.y = convert_quake_unit_to_godot_unit(gv.y)
 	qv.z = convert_quake_unit_to_godot_unit(gv.z)
 	return qv
+
+##Hope there aren't collisions!
+func generate_new_id() -> int:
+	return randi()

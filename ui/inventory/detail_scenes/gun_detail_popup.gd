@@ -44,9 +44,9 @@ var gun_3d:Gun:
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	var item_instance:ItemInstance = instance_from_id(item_instance_id)
+	var item_instance:ItemInstance = ItemAccess.get_item_instance(item_instance_id)
 	if item_instance:
-		var item_3d = instance_from_id(item_instance.id_3d)
+		var item_3d = ItemAccess.get_item_3d(item_instance.id_3d)
 		if item_3d and item_3d is Gun:
 			gun_3d = item_3d
 		
@@ -130,7 +130,7 @@ func setup_mod_slots(gun:Gun):
 		
 		#if the slot has an item, put the item control in the slot
 		if slot.item_instance_id != 0:
-			var item_instance:ItemInstance = instance_from_id(slot.item_instance_id)
+			var item_instance:ItemInstance = ItemAccess.get_item_instance(slot.item_instance_id)
 			if item_instance:
 				var item_control:ItemControl = item_instance.get_item_control()
 				if item_control:

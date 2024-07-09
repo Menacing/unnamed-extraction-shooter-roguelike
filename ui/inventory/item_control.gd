@@ -3,11 +3,22 @@ class_name ItemControl
 
 var stack_splitter_popup_scene = preload("res://ui/inventory/stack_splitter.tscn")
 
+var item_control_id:int:
+	get:
+		return item_control_id
+	set(value):
+		ItemAccess.add_item_control(self)
+		item_control_id = value
+
 var item_instance_id:int
 func get_item_instance() -> ItemInstance:
 	return InventoryManager.get_item(item_instance_id)
 
 func _ready():
+	
+	if item_control_id == 0:
+		item_control_id = Helpers.generate_new_id()
+	
 	EventBus.item_picked_up.connect(_on_item_picked_up)
 	EventBus.item_stack_count_changed.connect(_on_item_stack_count_changed)
 	EventBus.context_menus_drop_item.connect(_on_context_menus_drop_item)
@@ -22,7 +33,7 @@ func _ready():
 	var item_inventory = get_item_instance().get_item_inventory()
 	if item_inventory:
 		_has_inventory = true
-		_item_inventory_id = item_inventory.get_instance_id()
+		_item_inventory_id = item_inventory.inventory_id
 	
 	update_dimensions()
 
@@ -32,11 +43,11 @@ func _on_item_picked_up(result:InventoryInsertResult):
 		update_dimensions()
 
 func _on_item_stack_count_changed(item_inst:ItemInstance):
-	if !is_queued_for_deletion() and item_instance_id == item_inst.get_instance_id():
+	if !is_queued_for_deletion() and item_instance_id == item_inst.item_instance_id:
 		stacks = item_inst.stacks
 		
 func _on_item_durability_count_changed(item_inst:ItemInstance):
-	if !is_queued_for_deletion() and item_instance_id == item_inst.get_instance_id():
+	if !is_queued_for_deletion() and item_instance_id == item_inst.item_instance_id:
 		durability = item_inst.durability
 
 func update_dimensions():
@@ -224,13 +235,13 @@ func _on_context_menu_pressed(id:int):
 	EventBus.emit_signal(item.signal_name, get_item_instance(), get_global_mouse_position())
 
 func _on_context_menus_drop_item(item_inst:ItemInstance, _cursor_pos:Vector2):
-	if item_inst and item_inst.get_instance_id() == item_instance_id:
+	if item_inst and item_inst.item_instance_id == item_instance_id:
 		var original_inventory_id = item_inst.current_inventory_id
 		InventoryManager.remove_item(item_instance_id, original_inventory_id)
 		EventBus.drop_item.emit(item_inst, original_inventory_id)
 
 func _on_context_menus_split_stack(item_inst:ItemInstance, _cursor_pos:Vector2):
-	if item_inst and item_inst.get_instance_id() == item_instance_id:
+	if item_inst and item_inst.item_instance_id == item_instance_id:
 		var stack_splitter_popup:StackSplitter = stack_splitter_popup_scene.instantiate()
 		stack_splitter_popup.item_instance_id = item_instance_id
 		self.get_parent().add_child(stack_splitter_popup)
@@ -238,7 +249,7 @@ func _on_context_menus_split_stack(item_inst:ItemInstance, _cursor_pos:Vector2):
 		stack_splitter_popup.position = _cursor_pos 
 		
 func _on_context_menus_open_item_detail(item_inst:ItemInstance, _cursor_pos:Vector2):
-	if item_inst and item_inst.get_instance_id() == item_instance_id:
+	if item_inst and item_inst.item_instance_id == item_instance_id:
 		var item_detail_popup:ItemDetailPopup = item_inst.get_detail_scene().instantiate()
 		item_detail_popup.item_instance_id = item_instance_id
 		var internal_inventory = item_inst.get_item_inventory()

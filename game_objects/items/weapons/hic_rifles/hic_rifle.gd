@@ -119,7 +119,7 @@ func _on_item_picked_up(result:InventoryInsertResult):
 	if result.inventory_id == internal_inventory_id:
 		super(result)
 		var item_instance:ItemInstance = InventoryManager.get_item(result.item_instance_id)
-		var item_3d:Item3D = instance_from_id(item_instance.id_3d)
+		var item_3d:Item3D = ItemAccess.get_item_3d(item_instance.id_3d)
 		if result.location.location == InventoryLocationResult.LocationType.SLOT:
 			match result.location.slot_name:
 				"OpticsSlot":
@@ -158,7 +158,7 @@ func get_ads_anchor() -> Vector3:
 	
 func _on_item_removed_from_slot(item_inst:ItemInstance, inventory_id:int, slot_name:String):
 	if inventory_id == internal_inventory_id:
-		var item_3d:Item3D = instance_from_id(item_inst.id_3d)
+		var item_3d:Item3D = ItemAccess.get_item_3d(item_inst.id_3d)
 		match slot_name:
 			"OpticsSlot":
 				scope = null

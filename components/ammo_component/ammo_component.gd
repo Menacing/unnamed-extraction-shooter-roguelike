@@ -56,7 +56,7 @@ func _on_drop_ammo(actor_id:int, type:String, subtype:String, amount:int):
 				item_instance.stacks = ammo_amount
 				ammo_amount = 0
 			
-			var item_3d:Item3D = instance_from_id(item_instance.id_3d)
+			var item_3d:Item3D = ItemAccess.get_item_3d(item_instance.id_3d)
 			Helpers.force_parent(item_3d,get_parent().get_parent())
 			item_3d.dropped()
 			item_3d.global_position = drop_location.global_position
