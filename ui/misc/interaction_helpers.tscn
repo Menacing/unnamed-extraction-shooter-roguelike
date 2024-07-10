@@ -1,7 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://vb7f8fygilde"]
+[gd_scene load_steps=4 format=3 uid="uid://vb7f8fygilde"]
 
 [ext_resource type="Script" path="res://ui/misc/interaction_helpers.gd" id="1_5ctho"]
 [ext_resource type="Texture2D" uid="uid://d36mb0mqtrp68" path="res://ui/icons/White/skill_07_outline.png" id="2_v774h"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mrqew"]
+bg_color = Color(0, 0, 0, 1)
 
 [node name="interaction_helpers" type="Control"]
 layout_mode = 3
@@ -12,34 +15,46 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_5ctho")
 
-[node name="use_helper" type="TextureRect" parent="."]
-visible = false
+[node name="CenterContainer" type="CenterContainer" parent="."]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="CenterContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="pickup_helper" type="TextureRect" parent="CenterContainer/VBoxContainer/HBoxContainer2/CenterContainer"]
+visible = false
+layout_mode = 2
 texture = ExtResource("2_v774h")
 
-[node name="pickup_helper" type="TextureRect" parent="."]
-visible = false
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="use_helper" type="TextureRect" parent="CenterContainer/VBoxContainer/HBoxContainer2/CenterContainer"]
+layout_mode = 2
 texture = ExtResource("2_v774h")
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="CenterContainer/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="details_helper" type="Label" parent="CenterContainer/VBoxContainer/HBoxContainer3/CenterContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_styles/normal = SubResource("StyleBoxFlat_mrqew")
+text = "DISPLAY TEXT HERE"
+horizontal_alignment = 1
