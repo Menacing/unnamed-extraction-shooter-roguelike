@@ -344,15 +344,19 @@ func _physics_process(delta):
 				var col = use_shape.get_collider(0)
 				if col:
 					if col is Item3D:
-						EventBus.pickup_helper_visibility.emit(true)
+						#Sometimes item instance is null when you pick object up
+						var display_text = ''
+						if col.get_item_instance():
+							display_text = col.get_item_instance().get_display_short_name()
+						EventBus.pickup_helper_visibility.emit(true, display_text)
 					elif col.has_method("use"):
 						EventBus.use_helper_visibility.emit(true)
 				else:
 					EventBus.use_helper_visibility.emit(false)
-					EventBus.pickup_helper_visibility.emit(false)
+					EventBus.pickup_helper_visibility.emit(false, '')
 		else:
 			EventBus.use_helper_visibility.emit(false)
-			EventBus.pickup_helper_visibility.emit(false)
+			EventBus.pickup_helper_visibility.emit(false, '')
 
 func _unhandled_input(event):
 	if event.is_action_pressed("ui_cancel"):
