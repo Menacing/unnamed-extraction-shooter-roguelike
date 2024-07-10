@@ -36,6 +36,8 @@ func load_game(file_path:String):
 	# clear the stage
 	game_before_loading.emit()
 	
+	#restore item instances
+	ItemAccess._on_load_game(saved_game)
 	#restore inventories
 	InventoryManager._on_load_game(saved_game)
 	

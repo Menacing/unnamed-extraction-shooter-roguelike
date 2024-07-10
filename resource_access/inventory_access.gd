@@ -130,8 +130,8 @@ func can_place_item_in_grid(item_inst:ItemInstance, inventory_id:int, grid_locat
 		#check if there's an item alredy there
 		for i in range(x, x + w):
 			for j in range(y, y + h):
-				var grid_val:ItemInstance = inventory.grid_slots[i][j]
-				if grid_val:
+				var item_inst_id = inventory.grid_slots[i][j]
+				if item_inst_id and item_inst_id != 0 :
 					return false
 		#if nothing is found, the space is clear
 		return true
@@ -158,10 +158,11 @@ func can_place_stack_in_grid(item_inst:ItemInstance, inventory_id:int, grid_loca
 		#check if there's an item alredy there
 		for i in range(x, x + w):
 			for j in range(y, y + h):
-				var grid_val:ItemInstance = inventory.grid_slots[i][j]
-				if grid_val != null:
+				var item_inst_id = inventory.grid_slots[i][j]
+				if item_inst_id != null:
 					#if something is there, check if we can combine stacks
-					if !ItemAccess.can_combine_stacks(item_inst,grid_val):
+					var grid_item_inst:ItemInstance = ItemAccess.get_item_instance(item_inst_id)
+					if !ItemAccess.can_combine_stacks(item_inst,grid_item_inst):
 						return false
 
 		#if nothing is found, the space is clear
@@ -182,7 +183,7 @@ func place_item_in_grid(item_inst:ItemInstance, inventory_id:int, grid_location:
 		var h:int = item_inst.get_height()
 		for i in range(x, x + w):
 			for j in range(y, y + h):
-				inventory.grid_slots[i][j] = item_inst
+				inventory.grid_slots[i][j] = item_inst.item_instance_id
 		return true
 	else:
 		return false
@@ -201,12 +202,13 @@ func place_stack_in_grid(item_inst:ItemInstance, inventory_id:int, grid_location
 		var destination_inst:ItemInstance
 		for i in range(x, x + w):
 			for j in range(y, y + h):
-				var grid_val:ItemInstance = inventory.grid_slots[i][j]
-				if grid_val != null:
+				var item_inst_id = inventory.grid_slots[i][j]
+				if item_inst_id != null:
 					section_empty = false
 					#if we can combine, grab the destination
-					if !destination_inst and ItemAccess.can_combine_stacks(item_inst,grid_val):
-						destination_inst = grid_val
+					var grid_item_inst:ItemInstance = ItemAccess.get_item_instance(item_inst_id)
+					if !destination_inst and ItemAccess.can_combine_stacks(item_inst,grid_item_inst):
+						destination_inst = grid_item_inst
 						
 		#if array empty
 		if section_empty:
@@ -233,7 +235,7 @@ func place_stack_in_grid(item_inst:ItemInstance, inventory_id:int, grid_location
 				item_inst.stacks -= amount
 			for i in range(x, x + w):
 				for j in range(y, y + h):
-					inventory.grid_slots[i][j] = inventory_val
+					inventory.grid_slots[i][j] = inventory_val.item_instance_id
 			return return_val
 		else:
 			var remainder:int = ItemAccess.combine_stacks(item_inst, destination_inst, amount)
@@ -257,8 +259,8 @@ func remove_item_from_grid(item:ItemInstance,  inventory_id:int) -> void:
 	if inventory:
 		for x in range (0, inventory.get_width()):
 			for y in range(0,inventory.get_height()):
-				var cell:ItemInstance = inventory.grid_slots[x][y]
-				if cell is ItemInstance and cell.item_instance_id == item.item_instance_id:
+				var item_inst_id = inventory.grid_slots[x][y]
+				if item_inst_id == item.item_instance_id:
 					inventory.grid_slots[x][y] = null
 	
 	item.current_inventory_id = 0
@@ -282,14 +284,15 @@ static func _report_inventory_contents(inv:Inventory) -> Dictionary:
 		#iterate grid
 		for x in range (0, inv.get_width()):
 			for y in range(0,inv.get_height()):
-				var cell:ItemInstance = inv.grid_slots[x][y]
-				if !result.has(cell.item_instance_id):
-					var iir := InventoryInsertResult.new(cell, inv.inventory_id, InventoryLocationResult.new())
+				var item_inst_id = inv.grid_slots[x][y]
+				var item_inst = ItemAccess.get_item_instance(item_inst_id)
+				if item_inst and !result.has(item_inst_id):
+					var iir := InventoryInsertResult.new(item_inst, inv.inventory_id, InventoryLocationResult.new())
 					iir.location.location = InventoryLocationResult.LocationType.GRID
 					iir.location.grid_x = x
 					iir.location.grid_y = y
 					iir.picked_up = true
-					result[cell.item_instance_id] = iir
+					result[item_inst_id] = iir
 					
 		#iterate slots
 		for slot in inv.equipment_slots:

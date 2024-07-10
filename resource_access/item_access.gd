@@ -16,6 +16,10 @@ func _init():
 	if _item_info_mapping.size() == 0:
 		push_error("NO ITEM INFORMATION FOUND")
 
+func _ready():
+	SaveManager.game_saving.connect(_on_game_saving)
+	SaveManager.game_before_loading.connect(_on_game_before_loading)
+
 func map_item_info_array(iia:Array[ItemInformation]):
 	for info:ItemInformation in iia:
 		_item_info_mapping[info.item_type_id] = info
@@ -54,7 +58,7 @@ func add_item_instance(inst:ItemInstance) -> bool:
 	return true
 
 func get_item_instance(item_instance_id:int) -> ItemInstance:
-	if item_instances[item_instance_id] is ItemInstance:
+	if item_instances.has(item_instance_id):
 		return item_instances[item_instance_id]
 	else:
 		return null
@@ -70,7 +74,7 @@ func add_item_3d(item3d:Item3D) -> bool:
 	return true
 	
 func get_item_3d(item_3d_id:int) -> Item3D:
-	if item_3ds[item_3d_id] is Item3D:
+	if item_3ds.has(item_3d_id):
 		return item_3ds[item_3d_id]
 	else:
 		return null
@@ -86,7 +90,7 @@ func add_item_control(item_control:ItemControl) -> bool:
 	return true
 	
 func get_item_control(item_control_id:int) -> ItemControl:
-	if item_controls[item_control_id] is ItemControl:
+	if item_controls.has(item_control_id):
 		return item_controls[item_control_id]
 	else:
 		return null 
@@ -159,3 +163,18 @@ func clone_instance(original: ItemInstance) -> ItemInstance:
 	new_instance.is_rotated = original.is_rotated
 
 	return new_instance
+	
+func _on_game_saving(save_file:SaveFile):
+	for key in item_instances:
+		save_file.item_instances.append[item_instances[key]]
+	pass
+
+func _on_game_before_loading():
+	item_instances = {}
+	item_3ds = {}
+	item_controls = {}
+	
+func _on_load_game(save_file:SaveFile):
+	for item_inst:ItemInstance in save_file.item_instances:
+		item_instances[item_inst.item_instance_id] = item_inst
+
