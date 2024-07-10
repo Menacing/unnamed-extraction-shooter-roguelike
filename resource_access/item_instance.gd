@@ -108,10 +108,13 @@ func spawn_item() -> void:
 
 		stacks = stack
 		
-	if _item_info.item_control_scene and id_2d == 0:
-		_spawn_item_control()
-	if _item_info.item_3d_scene and id_3d == 0:
-		_spawn_item_3d()
+	if _item_info.item_control_scene:
+		if id_2d == 0 or ItemAccess.get_item_control(id_2d) == null:
+			_spawn_item_control()
+		
+	if _item_info.item_3d_scene:
+		if id_3d == 0 or ItemAccess.get_item_3d(id_3d) == null:
+			_spawn_item_3d()
 
 func get_item_3d() -> Item3D:
 	var item_3d:Item3D = ItemAccess.get_item_3d(id_3d)
@@ -129,15 +132,21 @@ func get_item_control() -> ItemControl:
 
 func _spawn_item_3d() -> Item3D:
 	var item_3d:Item3D = _item_info.item_3d_scene.instantiate()
-	item_3d.item_3d_id = Helpers.generate_new_id()
-	self.id_3d = item_3d.item_3d_id
+	if self.id_3d != 0:
+		item_3d.item_3d_id = self.id_3d
+	else:
+		item_3d.item_3d_id = Helpers.generate_new_id()
+		self.id_3d = item_3d.item_3d_id
 	item_3d.item_instance_id = item_instance_id
 	return item_3d
 
 func _spawn_item_control() -> ItemControl:
 	var item_control:ItemControl = _item_info.item_control_scene.instantiate()
-	item_control.item_control_id = Helpers.generate_new_id()
-	self.id_2d = item_control.item_control_id
+	if self.id_2d != 0:
+		item_control.item_control_id = self.id_2d
+	else:
+		item_control.item_control_id = Helpers.generate_new_id()
+		self.id_2d = item_control.item_control_id
 	item_control.item_instance_id = item_instance_id
 	return item_control
 

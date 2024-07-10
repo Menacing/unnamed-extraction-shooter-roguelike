@@ -275,3 +275,30 @@ func remove_item_from_slot(item:ItemInstance, inventory_id:int) -> void:
 	item.current_inventory_id = 0
 	item.is_equipped = false
 
+##Returns a dictionary of key: item_instance_id value: InventoryInsertResult
+static func _report_inventory_contents(inv:Inventory) -> Dictionary:
+	var result = {}
+	if inv:
+		#iterate grid
+		for x in range (0, inv.get_width()):
+			for y in range(0,inv.get_height()):
+				var cell:ItemInstance = inv.grid_slots[x][y]
+				if !result.has(cell.item_instance_id):
+					var iir := InventoryInsertResult.new(cell, inv.inventory_id, InventoryLocationResult.new())
+					iir.location.location = InventoryLocationResult.LocationType.GRID
+					iir.location.grid_x = x
+					iir.location.grid_y = y
+					iir.picked_up = true
+					result[cell.item_instance_id] = iir
+					
+		#iterate slots
+		for slot in inv.equipment_slots:
+			if slot.item_instance_id != 0:
+				var item_inst:ItemInstance = ItemAccess.get_item_instance(slot.item_instance_id)
+				var pickup_result:InventoryInsertResult = InventoryInsertResult.new(item_inst,inv.inventory_id, InventoryLocationResult.new())
+				pickup_result.location.location = InventoryLocationResult.LocationType.SLOT
+				pickup_result.location.slot_name = slot.name
+				pickup_result.picked_up = true
+	return result
+	
+

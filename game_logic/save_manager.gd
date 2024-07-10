@@ -39,32 +39,19 @@ func load_game(file_path:String):
 	#restore inventories
 	InventoryManager._on_load_game(saved_game)
 	
-	#restore all dynamic game elements
+	#restore all root game elements
 	for item:SaveData in saved_game.save_data:
 		# load the scene of the saved item and create a new instance
 		var scene := load(item.scene_path) as PackedScene
 		var restored_node = scene.instantiate()
-		#if item.path_to_parent:
-			##TODO: if the node needs to be someplace specific in the node tree, put it there I guess
-			#pass
 		
 		LevelManager.add_node_to_level(restored_node)
 		if restored_node.has_method("_on_load_game"):
 			restored_node._on_load_game(item)
 		
-	#for item in saved_game.saved_data:
-		### skip over data we don't use anymore
-		##if item is UnusedData:
-			##continue
-		#
-		## load the scene of the saved item and create a new instance
-		#var scene := load(item.scene_path) as PackedScene
-		#var restored_node = scene.instantiate()
-		## add it to the world root
-		#_world_root.add_child(restored_node)
-		## and run any custom load logic
-		#if restored_node.has_method("on_load_game"):
-			#restored_node.on_load_game(item)
+	#restore items in inventories
+	InventoryManager._restore_inventories()
+	
 
 func quick_load():
 	load_game("user://quicksave.tres")
