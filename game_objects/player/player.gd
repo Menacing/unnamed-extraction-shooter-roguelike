@@ -488,6 +488,16 @@ func _on_game_saving(save_file:SaveFile):
 		player_information.global_transform = self.global_transform
 		#player_information.path_to_parent = self.get_parent().get_path()
 		player_information.scene_path = self.scene_file_path
+		#save health
+		for health_loc:HealthLocation in $HealthComponent.health_locs:
+			player_information.additional_data[health_loc.location] = health_loc.current_health
+
+		#save ammo
+		player_information.additional_data["ammo_map"] = ammo_component._ammo_map
+		player_information.additional_data["active_ammo_type"] = ammo_component._active_ammo_type
+		player_information.additional_data["active_ammo_subtype"] = ammo_component._active_ammo_subtype
+		
+		
 		save_file.save_data.append(player_information)
 
 func _on_game_before_loading():
@@ -496,6 +506,15 @@ func _on_game_before_loading():
 func _on_load_game(save_data:SaveData):
 	if save_data:
 		self.global_transform = save_data.global_transform
+		
+		#load health
+		for health_loc:HealthLocation in $HealthComponent.health_locs:
+			health_loc.current_health = save_data.additional_data[health_loc.location]
+			
+		#load ammo
+		ammo_component._ammo_map = save_data.additional_data["ammo_map"]
+		ammo_component._active_ammo_type = save_data.additional_data["active_ammo_type"] 
+		ammo_component._active_ammo_subtype = save_data.additional_data["active_ammo_subtype"]
 	
 var arm_destroyed_effect:GameplayEffect = load("res://game_objects/player/stat_modifiers/arm_destruction_effect.tres")
 func _on_location_destroyed(actor_id:int, location:HealthLocation.HEALTH_LOCATION):

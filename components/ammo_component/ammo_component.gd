@@ -8,15 +8,20 @@ var _actor_id:int
 @export var drop_location:Node3D
 
 func _ready():
-	var ammo_types = AmmoLoader.get_ammo_types()
-	for at in ammo_types:
-		_ammo_map[at.name] = {}
-		for st in at.sub_types:
-			var aci = AmmoCountInfo.new()
-			aci.current_max = st.maximum_capacity
-			aci.subtype_item_id = st.item_type_id
-			_ammo_map[at.name][st.name] = aci
-	EventBus.active_reserve_ammo_count_changed.emit(0)
+	var ammo_map_size = _ammo_map.keys().size()
+	if  ammo_map_size == 0:
+		var ammo_types = AmmoLoader.get_ammo_types()
+		for at in ammo_types:
+			_ammo_map[at.name] = {}
+			for st in at.sub_types:
+				var aci = AmmoCountInfo.new()
+				aci.current_max = st.maximum_capacity
+				aci.subtype_item_id = st.item_type_id
+				_ammo_map[at.name][st.name] = aci
+		EventBus.active_reserve_ammo_count_changed.emit(0)
+	else:
+		EventBus.active_reserve_ammo_count_changed.emit(_ammo_map[_active_ammo_type][_active_ammo_subtype].current_amount)
+		
 	_actor_id = get_parent().get_instance_id()
 	EventBus.drop_ammo.connect(_on_drop_ammo)
 	EventBus.drop_all_ammo.connect(_on_drop_all_ammo)

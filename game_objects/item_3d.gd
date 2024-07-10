@@ -33,6 +33,7 @@ var world_collider:CollisionShape3D:
 @export var start_highlighted:bool = true
 @export var meshes_to_fade_on_pickup:Array[MeshInstance3D] = []
 var _prox_fade_mats:Array[StandardMaterial3D] = []
+var is_picked_up:bool = false
 
 func _ready() -> void:
 	assert(world_collider_path != null)
@@ -65,6 +66,8 @@ func _ready() -> void:
 		new_mat.distance_fade_min_distance = 0.0
 		new_mat.distance_fade_max_distance = 2.0
 		_prox_fade_mats.append(new_mat)
+	SaveManager.game_saving.connect(_on_game_saving)
+	SaveManager.game_before_loading.connect(_on_game_before_loading)
 
 func dropped() -> void:
 	world_collider.disabled = false
@@ -77,6 +80,7 @@ func dropped() -> void:
 		var number_surfaces:int = mesh_inst.mesh.get_surface_count()
 		for i in range(number_surfaces):
 			mesh_inst.set_surface_override_material(i,null)
+	is_picked_up = false
 
 func picked_up(actor_id:int = 0) -> void:
 	self.transform = Transform3D.IDENTITY
@@ -91,6 +95,7 @@ func picked_up(actor_id:int = 0) -> void:
 			var number_surfaces:int = mesh_inst.mesh.get_surface_count()
 			for i in range(number_surfaces):
 				mesh_inst.set_surface_override_material(i, _prox_fade_mats[mat_index])
+	is_picked_up = true
 	
 func destroy() -> void:
 	#Events.item_destroyed.emit(self)
@@ -120,4 +125,22 @@ func _on_item_removed_from_slot(_item_inst:ItemInstance, _inventory_id:int, _slo
 func copy_model() -> Node3D:
 	return model_node.duplicate()
 
+func _on_game_saving(save_file:SaveFile):
+	#only save the data if not picked up
+	if save_file and !is_picked_up:
+		var item_data:SaveData = SaveData.new()
+		item_data.global_transform = self.global_transform
+		#player_information.path_to_parent = self.get_parent().get_path()
+		item_data.scene_path = self.scene_file_path
+		item_data.additional_data["item_instance_id"] = item_instance_id
+		item_data.additional_data["item_3d_id"] = item_3d_id
+		save_file.save_data.append(item_data)
 
+func _on_game_before_loading():
+	self.queue_free()
+	
+func _on_load_game(save_data:SaveData):
+	if save_data:
+		self.global_transform = save_data.global_transform
+		item_instance_id = save_data.additional_data["item_instance_id"]
+		item_3d_id = save_data.additional_data["item_3d_id"]
