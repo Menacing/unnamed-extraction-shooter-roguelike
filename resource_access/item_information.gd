@@ -21,4 +21,6 @@ class_name ItemInformation
 @export var row_span:int = 1
 @export_multiline var description_text:String
 @export_multiline var flavor_text:String
-
+@export var min_pickup_stacks:int = 1
+@export var mean_pickup_stacks:int = 1
+@export var stack_random_method:GameplayEnums.StackRandomMethod = GameplayEnums.StackRandomMethod.RANDOM

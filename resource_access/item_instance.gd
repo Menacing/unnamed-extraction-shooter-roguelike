@@ -93,7 +93,19 @@ func get_item_flavor_text() -> String:
 ## after you call this you must add the instanced scenes to the scene tree
 func spawn_item() -> void:
 	if _item_info.has_stacks:
-		var stack:int = randi_range(1, _item_info.max_stacks)
+		#Default to fun!
+		var stack:int = _item_info.max_stacks
+		if _item_info.stack_random_method == GameplayEnums.StackRandomMethod.RANDOM:
+			stack = randi_range(_item_info.min_pickup_stacks, _item_info.max_stacks)
+		elif _item_info.stack_random_method == GameplayEnums.StackRandomMethod.NORMAL:
+			stack = Helpers.get_normalized_random_stack_count(_item_info.min_pickup_stacks,
+															  _item_info.mean_pickup_stacks,
+															  _item_info.max_stacks)
+		else:
+			#Someone set an item up with a non specified random method, printing a missable
+			#error and keeping the max default for more fun!
+			printerr("{unhandled_enum_int} is an invalid integer for the GameplayEnums.StackRandomMethod enum. Defaulting to max stacks.".format({"unhandled_enum_int": _item_info.stack_random_method}))
+
 		stacks = stack
 		
 	if _item_info.item_control_scene and id_2d == 0:
