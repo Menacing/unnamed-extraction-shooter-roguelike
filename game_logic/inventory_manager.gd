@@ -73,12 +73,12 @@ func _on_pickup_item(item_inst:ItemInstance, target_inventory_id:int) -> void:
 	pass
 
 func place_item_in_inventory(item_instance_id:int, target_inventory_id:int) -> void:
-	var item_inst = ItemAccess.get_item(item_instance_id)
+	var item_inst = ItemAccess.get_item_instance(item_instance_id)
 	_on_pickup_item(item_inst, target_inventory_id)
 
 func can_place_item_in_inventory(item_instance_id:int, target_inventory_id:int) -> bool:
 	#Are we dealing with a stack or not
-	var item_inst:ItemInstance = ItemAccess.get_item(item_instance_id)
+	var item_inst:ItemInstance = ItemAccess.get_item_instance(item_instance_id)
 	var inventory:Inventory = InventoryAccess.get_inventory(target_inventory_id)
 	if inventory == null:
 		return false
@@ -269,7 +269,7 @@ func number_item_type_in_inventory(inventory_id:int, item_type_id:String) -> int
 		#check slots
 		for slot in inventory.equipment_slots:
 			if slot.item_instance_id != 0:
-				var item_inst = ItemAccess.get_item(slot.item_instance_id)
+				var item_inst = ItemAccess.get_item_instance(slot.item_instance_id)
 				if item_inst.get_item_type_id() == item_type_id:
 					count += 1
 

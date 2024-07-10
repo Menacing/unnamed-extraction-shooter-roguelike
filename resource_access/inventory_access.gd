@@ -54,7 +54,7 @@ func can_place_stack_in_slot(item_inst:ItemInstance, inventory_id:int, slot_name
 					return true
 			#check if we can combine stacks
 			else:
-				var destination_item:ItemInstance = ItemAccess.get_item(slot.item_instance_id)
+				var destination_item:ItemInstance = ItemAccess.get_item_instance(slot.item_instance_id)
 				return ItemAccess.can_combine_stacks(item_inst,destination_item)
 		return false
 	else:
@@ -100,7 +100,7 @@ func place_stack_in_slot(item_inst:ItemInstance, inventory_id:int, slot_name:Str
 					return false
 			#else we have to combine stacks
 			else:
-				var destination_item:ItemInstance = ItemAccess.get_item(slot.item_instance_id)
+				var destination_item:ItemInstance = ItemAccess.get_item_instance(slot.item_instance_id)
 				var remainder:int = ItemAccess.combine_stacks(item_inst, destination_item, amount)
 				
 				if remainder == 0:

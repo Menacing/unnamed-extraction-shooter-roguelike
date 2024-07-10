@@ -4,6 +4,7 @@ extends Item3D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	super()
 	EventBus.context_menus_use.connect(_on_context_menus_use)
 
 
