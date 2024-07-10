@@ -40,7 +40,7 @@ signal location_restored(actor_id:int, location:HealthLocation.HEALTH_LOCATION)
 
 #Misc Events
 signal use_helper_visibility(show:bool)
-signal pickup_helper_visibility(show:bool)
+signal pickup_helper_visibility(show:bool, display_text:String)
 signal magazine_ammo_count_changed(new_count:int)
 signal active_reserve_ammo_count_changed(new_count:int)
 signal reserve_ammo_count_changed(ammo_type:String, ammo_subtype:String, new_amount:int)
