@@ -51,7 +51,8 @@ func _ready():
 	if nav_agent: 
 		nav_agent.velocity_computed.connect(_on_velocity_computed)
 		EventBus.navigation_mesh_list_item_baked.connect(_on_navigation_mesh_list_item_baked)
-	pass
+	SaveManager.game_saving.connect(_on_game_saving)
+	SaveManager.game_before_loading.connect(_on_game_before_loading)
 
 func _physics_process(delta):
 	if nav_agent.is_navigation_finished():
@@ -186,3 +187,18 @@ func fire_weapon():
 func _on_navigation_mesh_list_item_baked(nmli:NavigationMeshListItem):
 	if nav_mesh_list_item and nav_mesh_list_item.name == nmli.name:
 		nav_agent.set_navigation_map(nmli.map_rid)
+
+func _on_game_saving(save_file:SaveFile):
+	if save_file:
+		var enemy_information:SaveData = SaveData.new()
+		enemy_information.global_transform = self.global_transform
+		#player_information.path_to_parent = self.get_parent().get_path()
+		enemy_information.scene_path = self.scene_file_path
+		save_file.save_data.append(enemy_information)
+
+func _on_game_before_loading():
+	self.queue_free()
+	
+func _on_load_game(save_data:SaveData):
+	if save_data:
+		self.global_transform = save_data.global_transform

@@ -36,14 +36,17 @@ func load_game(file_path:String):
 	# clear the stage
 	game_before_loading.emit()
 	
+	#restore inventories
+	InventoryManager._on_load_game(saved_game)
+	
 	#restore all dynamic game elements
-	for item:WorldEntitySaveData in saved_game.save_data:
+	for item:SaveData in saved_game.save_data:
 		# load the scene of the saved item and create a new instance
 		var scene := load(item.scene_path) as PackedScene
 		var restored_node = scene.instantiate()
-		if item.path_to_parent:
-			#TODO: if the node needs to be someplace specific in the node tree, put it there I guess
-			pass
+		#if item.path_to_parent:
+			##TODO: if the node needs to be someplace specific in the node tree, put it there I guess
+			#pass
 		
 		LevelManager.add_node_to_level(restored_node)
 		if restored_node.has_method("_on_load_game"):

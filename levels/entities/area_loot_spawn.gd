@@ -76,7 +76,7 @@ func _on_populate_level():
 			if loc_free:
 				var scene = item_info.item_3d_scene.instantiate()
 				scene.set_as_top_level(true)		
-				get_parent().add_child.call_deferred(scene)
+				LevelManager.add_node_to_level.call_deferred(scene)
 				scene.set_global_position.call_deferred(try_pos + self.global_position)
 				var random_rotation = Vector3(randf_range(0,360),randf_range(0,360),randf_range(0,360))
 				scene.set_rotation_degrees.call_deferred(random_rotation)

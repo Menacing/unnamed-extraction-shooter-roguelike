@@ -28,7 +28,10 @@ var current_shuffle_bag:Array[EnemySpawnInformation] = []
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	add_to_group("enemy_spawn_area")
-	
+	if not Engine.is_editor_hint():
+		EventBus.populate_level.connect(_on_populate_level)
+		
+func _on_populate_level():
 	var enemy_spawn_mapping:EnemySpawnMapping = EnemySpawnManager.get_enemy_spawn_mapping(biome_index,tier_index)
 	
 	randomize()
@@ -71,7 +74,7 @@ func _ready():
 			if loc_free:
 				var scene = info.scene.instantiate()
 				scene.set_as_top_level(true)		
-				get_parent().add_child.call_deferred(scene)
+				LevelManager.add_node_to_level.call_deferred(scene)
 				scene.set_global_position.call_deferred(try_pos + self.global_position)
 				spawned_locations.append(try_pos)
 				remaining_tries = 0

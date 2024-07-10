@@ -180,6 +180,7 @@ func _ready():
 	EventBus.location_destroyed.connect(_on_location_destroyed)
 	EventBus.location_restored.connect(_on_location_restored)
 	SaveManager.game_saving.connect(_on_game_saving)
+	SaveManager.game_before_loading.connect(_on_game_before_loading)
 	
 	los_check_locations.append(%HitBox/HeadBoneAttachment/eyes)
 	los_check_locations.append(%HitBox/RightFootBoneAttachment)
@@ -483,7 +484,7 @@ func _on_ammo_type_changed(new_type:String, new_subtype:String):
 	
 func _on_game_saving(save_file:SaveFile):
 	if save_file:
-		var player_information:PlayerSaveData = PlayerSaveData.new()
+		var player_information:SaveData = SaveData.new()
 		player_information.global_transform = self.global_transform
 		#player_information.path_to_parent = self.get_parent().get_path()
 		player_information.scene_path = self.scene_file_path
@@ -492,8 +493,8 @@ func _on_game_saving(save_file:SaveFile):
 func _on_game_before_loading():
 	self.queue_free()
 	
-func _on_load_game(save_data:WorldEntitySaveData):
-	if save_data is PlayerSaveData:
+func _on_load_game(save_data:SaveData):
+	if save_data:
 		self.global_transform = save_data.global_transform
 	
 var arm_destroyed_effect:GameplayEffect = load("res://game_objects/player/stat_modifiers/arm_destruction_effect.tres")
