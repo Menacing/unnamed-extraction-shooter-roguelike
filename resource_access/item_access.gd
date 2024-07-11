@@ -166,7 +166,18 @@ func clone_instance(original: ItemInstance) -> ItemInstance:
 	
 func _on_game_saving(save_file:SaveFile):
 	for key in item_instances:
-		save_file.item_instances.append[item_instances[key]]
+		var item_inst:ItemInstance = item_instances[key]
+		var iisd := ItemInstanceSaveData.new()
+		iisd.item_instance_id = item_inst.item_instance_id
+		iisd.id_3d = item_inst.id_3d
+		iisd.id_2d = item_inst.id_2d
+		iisd.stacks = item_inst.stacks
+		iisd.durability = item_inst.durability
+		iisd.current_inventory_id = item_inst.current_inventory_id
+		iisd.is_rotated = item_inst.is_rotated
+		iisd.is_equipped = item_inst.is_equipped
+		iisd.item_type_id = item_inst.get_item_type_id()
+		save_file.item_instances.append(iisd)
 	pass
 
 func _on_game_before_loading():
@@ -175,6 +186,16 @@ func _on_game_before_loading():
 	item_controls = {}
 	
 func _on_load_game(save_file:SaveFile):
-	for item_inst:ItemInstance in save_file.item_instances:
+	for iisd:ItemInstanceSaveData in save_file.item_instances:
+		var item_info:ItemInformation = get_item_information(iisd.item_type_id)
+		var item_inst := ItemInstance.new(item_info, iisd.item_instance_id)
+		item_inst.id_3d = iisd.id_3d
+		item_inst.id_2d = iisd.id_2d
+		item_inst.stacks = iisd.stacks
+		item_inst.durability = iisd.durability
+		item_inst.current_inventory_id = iisd.current_inventory_id
+		item_inst.is_rotated = iisd.is_rotated
+		item_inst.is_equipped = iisd.is_equipped
+
 		item_instances[item_inst.item_instance_id] = item_inst
 

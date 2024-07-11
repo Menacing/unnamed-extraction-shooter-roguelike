@@ -7,10 +7,9 @@ class_name GuaranteedItemSpawnComponent
 @export var max_number_spawned:int = 1
 
 func _ready():
-	#Call deferred because we can't be sure when ready will be called in relation to the points of interest we want to grab
-	call_deferred("spawn_guaranteed_items")
-
-func spawn_guaranteed_items():
+	EventBus.populate_level.connect(_on_populate_level)
+		
+func _on_populate_level():
 	#only run if we have item info, a group name, and a min greater than 0
 	if guaranteed_item_information and spawn_group_name and min_number_spawned >= 0 and max_number_spawned >= min_number_spawned:
 		#get number to spawn and nodes in spawn group. Shuffle nodes

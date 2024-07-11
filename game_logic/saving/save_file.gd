@@ -8,7 +8,7 @@ class_name SaveFile
 @export var save_data:Array[SaveData] = []
 
 #all item instances
-@export var item_instances:Array[ItemInstance] = []
+@export var item_instances:Array[ItemInstanceSaveData] = []
 #all inventories
 @export var inventories:Array[Inventory] = []
 

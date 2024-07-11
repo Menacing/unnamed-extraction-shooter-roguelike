@@ -285,14 +285,15 @@ static func _report_inventory_contents(inv:Inventory) -> Dictionary:
 		for x in range (0, inv.get_width()):
 			for y in range(0,inv.get_height()):
 				var item_inst_id = inv.grid_slots[x][y]
-				var item_inst = ItemAccess.get_item_instance(item_inst_id)
-				if item_inst and !result.has(item_inst_id):
-					var iir := InventoryInsertResult.new(item_inst, inv.inventory_id, InventoryLocationResult.new())
-					iir.location.location = InventoryLocationResult.LocationType.GRID
-					iir.location.grid_x = x
-					iir.location.grid_y = y
-					iir.picked_up = true
-					result[item_inst_id] = iir
+				if item_inst_id:
+					var item_inst = ItemAccess.get_item_instance(item_inst_id)
+					if item_inst and !result.has(item_inst_id):
+						var iir := InventoryInsertResult.new(item_inst, inv.inventory_id, InventoryLocationResult.new())
+						iir.location.location = InventoryLocationResult.LocationType.GRID
+						iir.location.grid_x = x
+						iir.location.grid_y = y
+						iir.picked_up = true
+						result[item_inst_id] = iir
 					
 		#iterate slots
 		for slot in inv.equipment_slots:
