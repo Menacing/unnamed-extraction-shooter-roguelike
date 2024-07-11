@@ -96,6 +96,9 @@ func duplicate_node_by_id(node_id: int) -> Node:
 	if node_id != 0:
 		original_node = instance_from_id(node_id)
 	
+	return duplicate_node(original_node)
+
+func duplicate_node(original_node:Node) -> Node:
 	# If the node doesn't exist, return null
 	if original_node == null:
 		return null

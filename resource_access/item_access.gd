@@ -141,14 +141,16 @@ func clone_instance(original: ItemInstance) -> ItemInstance:
 	var new_instance := ItemInstance.new(original._item_info)
 
 	# Copy properties
-	if original.id_3d != 0:
-		var dupe_3d:Item3D = Helpers.duplicate_node_by_id(original.id_3d)
+	if original.id_3d != 0 and item_3ds.has(original.id_3d):
+		var original_item3d:Item3D = item_3ds[original.id_3d]
+		var dupe_3d:Item3D = Helpers.duplicate_node(original_item3d)
 		dupe_3d.item_3d_id = Helpers.generate_new_id()
 		dupe_3d.item_instance_id = new_instance.item_instance_id
 		new_instance.id_3d = dupe_3d.item_3d_id
 		
-	if original.id_2d != 0:
-		var new_item_control:ItemControl = Helpers.duplicate_node_by_id(original.id_2d)
+	if original.id_2d != 0 and item_controls.has(original.id_2d):
+		var original_item_control:ItemControl = item_controls[original.id_2d]
+		var new_item_control:ItemControl = Helpers.duplicate_node(original_item_control)
 		new_item_control.item_instance_id = new_instance.item_instance_id
 		new_item_control.item_control_id = Helpers.generate_new_id()
 		new_instance.id_2d = new_item_control.item_control_id
