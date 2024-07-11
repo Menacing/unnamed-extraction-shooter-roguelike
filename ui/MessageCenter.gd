@@ -23,11 +23,11 @@ func _on_create_message(message_name:String, message_text:String, message_timeou
 	message_control.name = message_name
 	if message_timeout > 0.0:
 		#TODO Wire up an auto removal
-		message_box.add_child(message_control)
+		Helpers.force_parent(message_control, message_box)
 		message_control.start_message(message_text.to_upper(), message_timeout)
 		pass
 	else:
-		message_box.add_child(message_control)
+		Helpers.force_parent(message_control, message_box)
 		message_control.update_message(message_text.to_upper())
 	pass
 	

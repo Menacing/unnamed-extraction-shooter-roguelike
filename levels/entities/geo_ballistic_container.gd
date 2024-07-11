@@ -54,9 +54,9 @@ func _on_populate_level():
 	var loot_spawn_mapping:LootSpawnMapping = LootSpawnManager.get_loot_spawn_mapping(biome_index,tier_index)
 	
 	randomize()
-	var active_roll:float = randf()
-	if active_roll > chance_active:
-		return
+	#var active_roll:float = randf()
+	#if active_roll > chance_active:
+		#return
 	
 	var number_to_spawn = randi_range(min_spawned,max_spawned)
 	var aabb = Helpers.get_aabb_of_node(self)

@@ -52,7 +52,7 @@ func load_game(file_path:String):
 			restored_node._on_load_game(item)
 		
 	#restore items in inventories
-	InventoryManager._restore_inventories()
+	InventoryManager._restore_inventories.call_deferred()
 	
 
 func quick_load():
