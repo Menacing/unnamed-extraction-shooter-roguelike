@@ -10,6 +10,8 @@ allowed_types = Array[int]([0])
 
 [resource]
 script = ExtResource("1_k4kty")
+inventory_id = 0
 initial_height = 3
 initial_width = 3
+grid_slots = {}
 equipment_slots = Array[ExtResource("1_a4js4")]([SubResource("Resource_wovin")])

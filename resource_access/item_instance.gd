@@ -17,7 +17,7 @@ func _init(item_info:ItemInformation, _item_instance_id = 0) -> void:
 @export var id_3d:int
 @export var id_2d:int
 @export var _item_info:ItemInformation
-@export var _stacks: int
+@export var _stacks: int = 1
 var stacks:int:
 	get:
 		return _stacks
