@@ -1,6 +1,5 @@
 extends Node
 
-
 func _ready() -> void:
 	EventBus.pickup_item.connect(_on_pickup_item)
 	EventBus.add_inventory.connect(add_inventory)
