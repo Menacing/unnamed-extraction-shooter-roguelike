@@ -517,9 +517,10 @@ func _on_load_game(save_data:SaveData):
 		self.global_transform = save_data.global_transform
 		
 		#load health
-		for health_loc:HealthLocation in health_component.health_locs:
-			health_loc.current_health = save_data.additional_data[health_loc.location]
-			
+		if save_data.additional_data["health_info"]:
+			health_component.health_locs = save_data.additional_data["health_info"]
+			health_component.main_loc = health_component.health_locs[HealthLocation.HEALTH_LOCATION.MAIN]
+		
 		#load ammo
 		ammo_component._ammo_map = save_data.additional_data["ammo_map"]
 		ammo_component._active_ammo_type = save_data.additional_data["active_ammo_type"] 

@@ -61,6 +61,15 @@ func test_values_save_and_load_correctly() -> void:
 	assert_float(loaded_player.health_component.main_loc.current_health).is_not_equal(player.health_component.main_loc.current_health)
 	assert_int(loaded_player.ammo_component._ammo_map["Fast Intermediate Cartdridge"]["Full Metal Jacket"].current_amount).is_not_equal(player.ammo_component._ammo_map["Fast Intermediate Cartdridge"]["Full Metal Jacket"].current_amount)
 
+	#load the save data into the player
+	loaded_player._on_load_game(loaded_game.save_data[0])
+	
+	#things should be the same again
+	assert_object(loaded_player.global_transform).is_equal(player.global_transform)
+	assert_float(loaded_player.health_component.main_loc.current_health).is_equal(player.health_component.main_loc.current_health)
+	assert_int(loaded_player.ammo_component._ammo_map["Fast Intermediate Cartdridge"]["Full Metal Jacket"].current_amount).is_equal(player.ammo_component._ammo_map["Fast Intermediate Cartdridge"]["Full Metal Jacket"].current_amount)
+
+
 func after():
 	if player:
 		player.queue_free()
