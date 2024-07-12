@@ -53,6 +53,8 @@ func load_game(file_path:String):
 		
 	#restore items in inventories
 	InventoryManager._restore_inventories.call_deferred()
+	await InventoryManager.inventories_restored
+	print("finished loading!")
 	
 
 func quick_load():

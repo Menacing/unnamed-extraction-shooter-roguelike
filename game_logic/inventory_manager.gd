@@ -298,6 +298,7 @@ func _on_load_game(save_file:SaveFile):
 		InventoryAccess.inventories[inv.inventory_id] = inv
 
 ##only call during game save loading
+signal inventories_restored
 func _restore_inventories():
 	for inv_id in InventoryAccess.inventories.keys():
 		var inv:Inventory = InventoryAccess.inventories[inv_id]
@@ -305,5 +306,6 @@ func _restore_inventories():
 		for key in items_in_inv.keys():
 			var iir:InventoryInsertResult = items_in_inv[key]
 			var item_inst:ItemInstance = ItemAccess.get_item_instance(iir.item_instance_id)
-			item_inst.spawn_item()
+			item_inst.spawn_item(false)
 			EventBus.item_picked_up.emit(iir)
+	inventories_restored.emit()

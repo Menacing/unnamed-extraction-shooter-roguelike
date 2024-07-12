@@ -199,5 +199,5 @@ func _on_load_game(save_file:SaveFile):
 		item_inst.is_rotated = iisd.is_rotated
 		item_inst.is_equipped = iisd.is_equipped
 
-		item_instances[item_inst.item_instance_id] = item_inst
+		item_inst.spawn_item(false)
 
