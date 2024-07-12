@@ -9,21 +9,25 @@
 [sub_resource type="Resource" id="Resource_ebhmk"]
 script = ExtResource("2_8mpin")
 modifiable_stat_name = "current_bob_amount_x"
+modifiable_stat_display_name = ""
 stat_modifiers = Array[Resource("res://game_logic/stat_modifier.gd")]([ExtResource("3_uwvfs")])
 
 [sub_resource type="Resource" id="Resource_f1nrk"]
 script = ExtResource("2_8mpin")
 modifiable_stat_name = "current_bob_amount_y"
+modifiable_stat_display_name = ""
 stat_modifiers = Array[Resource("res://game_logic/stat_modifier.gd")]([ExtResource("3_uwvfs")])
 
 [sub_resource type="Resource" id="Resource_5cpla"]
 script = ExtResource("2_8mpin")
 modifiable_stat_name = "current_bob_amount_max_degrees_x"
+modifiable_stat_display_name = ""
 stat_modifiers = Array[Resource("res://game_logic/stat_modifier.gd")]([ExtResource("3_uwvfs")])
 
 [sub_resource type="Resource" id="Resource_gfelv"]
 script = ExtResource("2_8mpin")
 modifiable_stat_name = "current_bob_amount_max_degrees_y"
+modifiable_stat_display_name = ""
 stat_modifiers = Array[Resource("res://game_logic/stat_modifier.gd")]([ExtResource("3_uwvfs")])
 
 [sub_resource type="Resource" id="Resource_0erpf"]

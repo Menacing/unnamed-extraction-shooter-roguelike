@@ -156,6 +156,8 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 @onready var footstep_component:FootstepComponent = $FootstepComponent
 
+@onready var health_component:HealthComponent = $HealthComponent
+
 func _ready():
 	if gun_scene1:
 		equipped_gun = gun_scene1.instantiate()
@@ -492,9 +494,12 @@ func _on_game_saving(save_file:SaveFile):
 		player_information.global_transform = self.global_transform
 		#player_information.path_to_parent = self.get_parent().get_path()
 		player_information.scene_path = self.scene_file_path
+		
 		#save health
-		for health_loc:HealthLocation in $HealthComponent.health_locs:
-			player_information.additional_data[health_loc.location] = health_loc.current_health
+		player_information.additional_data["health_info"] = health_component.health_locs
+		#for key in health_component.health_locs:
+			#var health_loc:HealthLocation = health_component.health_locs[key]
+			#player_information.additional_data[health_loc.location] = health_loc.current_health
 
 		#save ammo
 		player_information.additional_data["ammo_map"] = ammo_component._ammo_map
@@ -512,7 +517,7 @@ func _on_load_game(save_data:SaveData):
 		self.global_transform = save_data.global_transform
 		
 		#load health
-		for health_loc:HealthLocation in $HealthComponent.health_locs:
+		for health_loc:HealthLocation in health_component.health_locs:
 			health_loc.current_health = save_data.additional_data[health_loc.location]
 			
 		#load ammo
