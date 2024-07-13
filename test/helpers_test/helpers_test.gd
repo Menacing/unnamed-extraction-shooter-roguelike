@@ -7,6 +7,12 @@ extends GdUnitTestSuite
 # TestSuite generated from
 const __source = 'res://helpers/helpers.gd'
 
+func test_normalize_deg() -> void:
+	assert_int(Helpers.gddeg_to_compass_deg(0)).is_equal(0)
+	assert_int(Helpers.gddeg_to_compass_deg(-90)).is_equal(90)
+	assert_int(Helpers.gddeg_to_compass_deg(180)).is_equal(180)
+	assert_int(Helpers.gddeg_to_compass_deg(-180)).is_equal(180)
+	assert_int(Helpers.gddeg_to_compass_deg(90)).is_equal(270)
 
 func test_duplicate_deep_workaround_dictionary() -> void:
 	#arrange

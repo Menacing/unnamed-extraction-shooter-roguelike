@@ -495,6 +495,8 @@ func _on_game_saving(save_file:SaveFile):
 		#player_information.path_to_parent = self.get_parent().get_path()
 		player_information.scene_path = self.scene_file_path
 		
+		player_information.additional_data["player_inventory_id"] = player_inventory_id
+		
 		#save health
 		player_information.additional_data["health_info"] = health_component.health_locs
 		#for key in health_component.health_locs:
@@ -515,6 +517,8 @@ func _on_game_before_loading():
 func _on_load_game(save_data:SaveData):
 	if save_data:
 		self.global_transform = save_data.global_transform
+		
+		player_inventory_id = save_data.additional_data["player_inventory_id"]
 		
 		#load health
 		if save_data.additional_data["health_info"]:

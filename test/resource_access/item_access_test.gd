@@ -102,3 +102,7 @@ func test_clone_instance() -> void:
 	assert_bool(dupe.id_2d != 0).is_true()
 	assert_bool(item1.stacks == dupe.stacks).is_true()
 	assert_bool(item1.get_height() == dupe.get_height()).is_true()
+
+func after():
+	InventoryManager._on_game_before_loading()
+	ItemAccess._on_game_before_loading()

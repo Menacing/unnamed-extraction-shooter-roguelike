@@ -2,7 +2,7 @@ extends Node
 
 signal game_saving(save_file:SaveFile)
 signal game_before_loading
-
+signal game_loaded
 
 func quick_save():
 	save_game("quicksave")
@@ -55,7 +55,7 @@ func load_game(file_path:String):
 	InventoryManager._restore_inventories.call_deferred()
 	await InventoryManager.inventories_restored
 	print("finished loading!")
-	
+	game_loaded.emit()
 
 func quick_load():
 	load_game("user://quicksave.tres")
