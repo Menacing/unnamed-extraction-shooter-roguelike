@@ -286,12 +286,16 @@ func number_item_type_in_inventory(inventory_id:int, item_type_id:String) -> int
 		
 	return count
 
+##Clears all inventories being tracked.
+func _clear_inventories():
+	InventoryAccess.inventories = {}
+	
 func _on_game_saving(save_file:SaveFile):
 	for inv_id in InventoryAccess.inventories:
 		save_file.inventories.append(InventoryAccess.inventories[inv_id])
 
 func _on_game_before_loading():
-	InventoryAccess.inventories = {}
+	_clear_inventories()
 	
 func _on_load_game(save_file:SaveFile):
 	for inv:Inventory in save_file.inventories:

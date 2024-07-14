@@ -1,8 +1,7 @@
-[gd_scene load_steps=15 format=3 uid="uid://ddsqkhwkuipda"]
+[gd_scene load_steps=9 format=3 uid="uid://ddsqkhwkuipda"]
 
 [ext_resource type="Script" path="res://ui/inventory/player_inventory.gd" id="1_3codq"]
-[ext_resource type="Script" path="res://resource_access/Inventory.gd" id="2_5ekbt"]
-[ext_resource type="Script" path="res://resource_access/equipment_slot_type.gd" id="2_j8487"]
+[ext_resource type="Resource" uid="uid://6agjiomvw0bb" path="res://game_objects/player/player_model_inventory.tres" id="2_kdvu5"]
 [ext_resource type="Script" path="res://ui/inventory/equipment_slots_control.gd" id="4_h1h63"]
 [ext_resource type="Texture2D" uid="uid://cm6yy3kv2uhwl" path="res://themes/BackpackSlotIcon-1.png" id="5_5uiam"]
 [ext_resource type="PackedScene" uid="uid://bshm12rhfjlbc" path="res://ui/inventory/backpack_cell.tscn" id="5_h0nvq"]
@@ -10,42 +9,15 @@
 [ext_resource type="Texture2D" uid="uid://dtqxp180upxtr" path="res://themes/ArmorSlotIcon-1.png" id="6_wntu6"]
 [ext_resource type="Texture2D" uid="uid://cv7g1bo5f2sdw" path="res://themes/GunSlotIcon-1.png" id="7_qwrsw"]
 
-[sub_resource type="Resource" id="Resource_c2lqt"]
-script = ExtResource("2_j8487")
-name = "BackpackSlot"
-allowed_types = Array[int]([1])
-
-[sub_resource type="Resource" id="Resource_5xhft"]
-script = ExtResource("2_j8487")
-name = "ArmorSlot"
-allowed_types = Array[int]([3])
-
-[sub_resource type="Resource" id="Resource_3yuyw"]
-script = ExtResource("2_j8487")
-name = "GunSlot1"
-allowed_types = Array[int]([0])
-
-[sub_resource type="Resource" id="Resource_k0qab"]
-script = ExtResource("2_j8487")
-name = "GunSlot2"
-allowed_types = Array[int]([0])
-
-[sub_resource type="Resource" id="Resource_qic1g"]
-resource_local_to_scene = true
-script = ExtResource("2_5ekbt")
-inventory_id = 0
-initial_height = 2
-initial_width = 7
-grid_slots = {}
-equipment_slots = Array[ExtResource("2_j8487")]([SubResource("Resource_c2lqt"), SubResource("Resource_5xhft"), SubResource("Resource_3yuyw"), SubResource("Resource_k0qab")])
-
 [node name="PlayerInventory" type="MarginContainer"]
 offset_right = 510.0
 offset_bottom = 598.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource("1_3codq")
-_inventory = SubResource("Resource_qic1g")
+_model_inventory = ExtResource("2_kdvu5")
+_inventory_grid_path = NodePath("PanelContainer/InventoryBase/PanelContainer/InventoryGrid")
+_inventory_container_path = NodePath(".")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 2

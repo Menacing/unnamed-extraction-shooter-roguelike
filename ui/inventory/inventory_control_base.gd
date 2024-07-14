@@ -1,7 +1,9 @@
 extends Control
 class_name InventoryControlBase
 
-@export var _inventory:Inventory
+
+@export var _model_inventory:Inventory
+var _inventory:Inventory
 @export var _inventory_grid_path:NodePath
 @export var _inventory_container_path:NodePath
 var _inventory_container:Control
@@ -16,13 +18,14 @@ var inventory_id:int :
 	get:
 		return inventory_id
 	set(value):
-		var inv = InventoryAccess.get_inventory(value)
+		var inv:Inventory = InventoryAccess.get_inventory(value)
 		if inv:
+			if !inv._is_setup:
+				inv.setup()
 			_inventory = inv
 			inventory_id = inv.inventory_id
 
 func _ready():
-	EventBus.add_inventory.emit(_inventory)
 	EventBus.open_inventory.connect(_on_open_inventory)
 	EventBus.close_inventory.connect(_on_close_inventory)
 	EventBus.close_all_inventories.connect(_on_close_all_inventories)
@@ -31,8 +34,11 @@ func _ready():
 	EventBus.populate_level.connect(_on_populate_level)
 	_inventory_container = get_node(_inventory_container_path)
 	
+	
 func _on_populate_level():
+	_inventory = _model_inventory.duplicate(true)
 	_inventory.setup()
+	inventory_id = _inventory.inventory_id
 
 func _on_item_picked_up(result:InventoryInsertResult):
 	if result.inventory_id == _inventory.inventory_id and result.picked_up:

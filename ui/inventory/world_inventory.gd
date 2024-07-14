@@ -21,8 +21,11 @@ var player:Player
 
 func _ready():
 	super()
-	container_size = _inventory.initial_height * _inventory.initial_width
 	EventBus.drop_item.connect(_on_drop_item)
+	
+func _on_populate_level():
+	super()
+	container_size = _inventory.initial_height * _inventory.initial_width
 
 func _on_item_picked_up(result:InventoryInsertResult):
 	if result.inventory_id == _inventory.inventory_id and result.picked_up:
