@@ -51,8 +51,8 @@ func _ready():
 	if nav_agent: 
 		nav_agent.velocity_computed.connect(_on_velocity_computed)
 		EventBus.navigation_mesh_list_item_baked.connect(_on_navigation_mesh_list_item_baked)
-	SaveManager.game_saving.connect(_on_game_saving)
-	SaveManager.game_before_loading.connect(_on_game_before_loading)
+	EventBus.game_saving.connect(_on_game_saving)
+	EventBus.before_game_loading.connect(_on_game_before_loading)
 
 func _physics_process(delta):
 	if nav_agent.is_navigation_finished():

@@ -6,7 +6,7 @@ var player_scene:PackedScene = preload("res://game_objects/player/player.tscn")
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	EventBus.populate_level.connect(_on_populate_level)
-	SaveManager.game_saving.connect(_on_game_saving)
+	EventBus.game_saving.connect(_on_game_saving)
 
 func _on_game_saving(save_file:SaveFile):
 	if save_file:

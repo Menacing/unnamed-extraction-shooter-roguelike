@@ -17,8 +17,8 @@ func _init():
 		push_error("NO ITEM INFORMATION FOUND")
 
 func _ready():
-	SaveManager.game_saving.connect(_on_game_saving)
-	SaveManager.game_before_loading.connect(_on_game_before_loading)
+	EventBus.game_saving.connect(_on_game_saving)
+	EventBus.before_game_loading.connect(_on_game_before_loading)
 
 func map_item_info_array(iia:Array[ItemInformation]):
 	for info:ItemInformation in iia:

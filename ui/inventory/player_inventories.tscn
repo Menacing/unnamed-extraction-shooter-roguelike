@@ -30,8 +30,10 @@ allowed_types = Array[int]([0])
 [sub_resource type="Resource" id="Resource_8vum5"]
 resource_local_to_scene = true
 script = ExtResource("4_m6wl0")
+inventory_id = 0
 initial_height = 2
 initial_width = 7
+grid_slots = {}
 equipment_slots = Array[ExtResource("3_rg8a8")]([SubResource("Resource_c2lqt"), SubResource("Resource_5xhft"), SubResource("Resource_3yuyw"), SubResource("Resource_k0qab")])
 
 [node name="PlayerInventories" type="CanvasLayer"]

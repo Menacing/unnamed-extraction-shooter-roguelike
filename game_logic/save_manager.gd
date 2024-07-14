@@ -1,8 +1,6 @@
 extends Node
 
-signal game_saving(save_file:SaveFile)
-signal game_before_loading
-signal game_loaded
+
 
 func quick_save():
 	save_game("quicksave")
@@ -11,13 +9,13 @@ func save_game(file_name:String):
 	
 	var new_save_file = SaveFile.new()
 	new_save_file.game_version = ProjectSettings.get_setting("application/config/version")
-	game_saving.emit(new_save_file)
+	EventBus.game_saving.emit(new_save_file)
 	
 	
 	ResourceSaver.save(new_save_file, "user://"+file_name+".tres")
 	
 	EventBus.create_message.emit("quick_save_message", "Game Saved", 5.0)
-
+	EventBus.game_saved.emit()
 
 func load_game(file_path:String):
 	## fix any paths that may be broken after a game update
@@ -34,7 +32,7 @@ func load_game(file_path:String):
 	await LevelManager.load_level_async(saved_game.level_scene_path)
 	
 	# clear the stage
-	game_before_loading.emit()
+	EventBus.before_game_loading.emit()
 	
 	#restore item instances
 	ItemAccess._on_load_game(saved_game)
@@ -55,7 +53,7 @@ func load_game(file_path:String):
 	InventoryManager._restore_inventories.call_deferred()
 	await InventoryManager.inventories_restored
 	print("finished loading!")
-	game_loaded.emit()
+	EventBus.game_loaded.emit()
 
 func quick_load():
 	load_game("user://quicksave.tres")

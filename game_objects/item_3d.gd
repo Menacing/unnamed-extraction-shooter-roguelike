@@ -66,8 +66,8 @@ func _ready() -> void:
 		new_mat.distance_fade_min_distance = 0.0
 		new_mat.distance_fade_max_distance = 2.0
 		_prox_fade_mats.append(new_mat)
-	SaveManager.game_saving.connect(_on_game_saving)
-	SaveManager.game_before_loading.connect(_on_game_before_loading)
+	EventBus.game_saving.connect(_on_game_saving)
+	EventBus.before_game_loading.connect(_on_game_before_loading)
 
 func dropped() -> void:
 	world_collider.disabled = false

@@ -4,8 +4,8 @@ func _ready() -> void:
 	EventBus.pickup_item.connect(_on_pickup_item)
 	EventBus.add_inventory.connect(add_inventory)
 	EventBus.item_durability_changed.connect(_destroy_depleted_durability)
-	SaveManager.game_saving.connect(_on_game_saving)
-	SaveManager.game_before_loading.connect(_on_game_before_loading)
+	EventBus.game_saving.connect(_on_game_saving)
+	EventBus.before_game_loading.connect(_on_game_before_loading)
 
 func _on_pickup_item(item_inst:ItemInstance, target_inventory_id:int) -> void:
 	#Are we dealing with a stack or not

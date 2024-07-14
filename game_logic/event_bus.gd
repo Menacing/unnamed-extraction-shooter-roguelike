@@ -1,5 +1,7 @@
 extends Node
 
+
+
 #Inventory Events
 signal add_inventory(inventory:Inventory)
 signal pickup_item(item_inst:ItemInstance, target_inventory_id:int)
@@ -49,7 +51,18 @@ signal fire_mode_changed(new_firemode:String)
 signal compass_player_pulse(player_position:Vector3, player_rotation:Vector3)
 signal drop_ammo(actor_id:int, type:String, subtype:String, amount:int)
 signal drop_all_ammo(actor_id:int, type:String, subtype:String)
+
+
+#save/load lifecycle
+signal before_populate_level
 signal populate_level
+signal level_populated
+signal game_saving(save_file:SaveFile)
+signal game_saved
+signal before_game_loading
+signal game_loading
+signal game_loaded
+signal level_loaded
 
 #UI Events
 signal pause()

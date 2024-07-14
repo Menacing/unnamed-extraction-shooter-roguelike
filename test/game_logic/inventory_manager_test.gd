@@ -14,8 +14,11 @@ var test_level_path:String = "res://levels/biomes/science/easy/maps/lab_1.tscn"
 @onready var item_info:ItemInformation = load("res://game_objects/items/materials/polymer_pile/polymer_pile_inventory_info.tres")
 @onready var item_inst:ItemInstance = ItemInstance.new(item_info)
 func before():
+	InventoryManager._on_game_before_loading()
+	ItemAccess._on_game_before_loading()
 	player = player_scene.instantiate()
 	self.add_child(player)
+	EventBus.populate_level.emit()
 	test_inv = InventoryAccess.get_inventory(player.player_inventory_id)
 	item_inst.spawn_item()
 	InventoryManager._on_pickup_item(item_inst, test_inv.inventory_id)

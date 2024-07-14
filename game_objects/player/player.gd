@@ -181,8 +181,8 @@ func _ready():
 	EventBus.ammo_type_changed.connect(_on_ammo_type_changed)
 	EventBus.location_destroyed.connect(_on_location_destroyed)
 	EventBus.location_restored.connect(_on_location_restored)
-	SaveManager.game_saving.connect(_on_game_saving)
-	SaveManager.game_before_loading.connect(_on_game_before_loading)
+	EventBus.game_saving.connect(_on_game_saving)
+	EventBus.before_game_loading.connect(_on_game_before_loading)
 	
 	los_check_locations.append(%HitBox/HeadBoneAttachment/eyes)
 	los_check_locations.append(%HitBox/RightFootBoneAttachment)
@@ -519,6 +519,7 @@ func _on_load_game(save_data:SaveData):
 		self.global_transform = save_data.global_transform
 		
 		player_inventory_id = save_data.additional_data["player_inventory_id"]
+		$PlayerInventories.player_inventory_control.inventory_id = player_inventory_id
 		
 		#load health
 		if save_data.additional_data["health_info"]:

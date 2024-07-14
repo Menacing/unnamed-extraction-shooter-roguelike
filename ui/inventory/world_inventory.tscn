@@ -8,8 +8,10 @@
 [sub_resource type="Resource" id="Resource_pul18"]
 resource_local_to_scene = true
 script = ExtResource("2_rm51w")
+inventory_id = 0
 initial_height = 7
 initial_width = 7
+grid_slots = {}
 equipment_slots = Array[Resource("res://resource_access/equipment_slot_type.gd")]([])
 
 [node name="WorldInventory" type="MarginContainer"]

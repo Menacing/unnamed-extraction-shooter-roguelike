@@ -14,17 +14,25 @@ func get_inventory_grid() -> InventoryGridContainer:
 
 var inventory_id:int :
 	get:
-		return _inventory.inventory_id
+		return inventory_id
+	set(value):
+		var inv = InventoryAccess.get_inventory(value)
+		if inv:
+			_inventory = inv
+			inventory_id = inv.inventory_id
 
 func _ready():
-	_inventory.setup()
 	EventBus.add_inventory.emit(_inventory)
 	EventBus.open_inventory.connect(_on_open_inventory)
 	EventBus.close_inventory.connect(_on_close_inventory)
 	EventBus.close_all_inventories.connect(_on_close_all_inventories)
 	EventBus.item_removed_from_inventory.connect(_on_item_removed_from_inventory)
 	EventBus.item_picked_up.connect(_on_item_picked_up)
+	EventBus.populate_level.connect(_on_populate_level)
 	_inventory_container = get_node(_inventory_container_path)
+	
+func _on_populate_level():
+	_inventory.setup()
 
 func _on_item_picked_up(result:InventoryInsertResult):
 	if result.inventory_id == _inventory.inventory_id and result.picked_up:

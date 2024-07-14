@@ -1,8 +1,7 @@
 extends Node
 
 var current_level:Node
-signal level_populated
-signal level_loaded
+
 
 func load_level_async(path:String, populate_level:bool = false):
 	if path:
@@ -27,17 +26,17 @@ func load_level_async(path:String, populate_level:bool = false):
 		
 		if populate_level:
 			call_deferred("emit_populate_level")
-			await level_populated
+			await EventBus.level_populated
 		
 		get_tree().paused = false
 		# connect the signal to get notified when the exit is reached
-		level_loaded.emit()
+		EventBus.level_loaded.emit()
 	else:
 		print("Can't load level with no path")
 
 func emit_populate_level():
 	EventBus.populate_level.emit()
-	level_populated.emit()
+	EventBus.level_populated.emit()
 
 func add_node_to_level(node:Node):
 	current_level.add_child(node)

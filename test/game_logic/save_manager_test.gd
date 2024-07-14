@@ -35,7 +35,7 @@ func test_save_game() -> void:
 	
 	#load game
 	SaveManager.load_game(test_save_filename)
-	await SaveManager.game_loaded
+	await EventBus.game_loaded
 	
 	assert_int(ItemAccess.item_3ds.size()).is_equal(num_item_3ds)
 	assert_int(ItemAccess.item_controls.size()).is_equal(num_item_controls)
