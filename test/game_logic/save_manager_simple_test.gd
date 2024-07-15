@@ -1,5 +1,5 @@
 # GdUnit generated TestSuite
-class_name SaveManagerTest
+class_name SaveManagerSimpleTest
 extends GdUnitTestSuite
 @warning_ignore('unused_parameter')
 @warning_ignore('return_value_discarded')
@@ -11,9 +11,9 @@ func before_test():
 	InventoryManager._clear_inventories()
 	ItemAccess._clear_items()
 	LevelManager.clear_level()
-	await LevelManager.load_level_async("res://levels/biomes/science/easy/maps/lab_1.tscn", true)
+	await LevelManager.load_level_async("res://test/game_logic/test_level.tscn", true)
 
-func test_full_save_game() -> void:
+func test_save_game() -> void:
 	var num_item_3ds:int = ItemAccess.item_3ds.size()
 	var num_item_instances:int = ItemAccess.item_instances.size()
 	var num_item_controls:int = ItemAccess.item_controls.size()

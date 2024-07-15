@@ -3,9 +3,9 @@ extends CanvasLayer
 @export var player:Player
 @onready var player_inventory_id:int:
 	get:
-		return $MarginContainer/HBoxContainer/PlayerInventoryContainer/TabContainer/EQUIPMENT.inventory_id
+		return player_inventory_control.inventory_id
 	set(value):
-		$MarginContainer/HBoxContainer/PlayerInventoryContainer/TabContainer/EQUIPMENT.inventory_id = value
+		player_inventory_control.inventory_id = value
 @onready var world_inventories_container:Container = $MarginContainer/HBoxContainer/WorldInventoryContainer
 @onready var player_inventory_control:InventoryControlBase = $MarginContainer/HBoxContainer/PlayerInventoryContainer/TabContainer/EQUIPMENT
 

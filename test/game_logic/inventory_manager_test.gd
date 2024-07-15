@@ -20,6 +20,7 @@ func before_test():
 	player = player_scene.instantiate()
 	self.add_child(player)
 	EventBus.populate_level.emit()
+	EventBus.players_spawned.emit()
 	test_inv = InventoryAccess.get_inventory(player.player_inventory_id)
 	item_inst = ItemInstance.new(item_info)
 	item_inst.spawn_item()
@@ -77,4 +78,7 @@ func test__on_game_saving() -> void:
 	assert_int(new_item_control.item_instance_id).is_equal(start_item_instance_id)
 	assert_int(new_item_control.item_control_id).is_equal(start_item_control_id)
 	
-	
+func after_test():
+	InventoryManager._clear_inventories()
+	ItemAccess._clear_items()
+	LevelManager.clear_level()

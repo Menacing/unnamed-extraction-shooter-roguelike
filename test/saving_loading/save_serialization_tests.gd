@@ -8,10 +8,10 @@ func test_values_save_and_load_correctly() -> void:
 	var test_save_filename:String = "user://test_values_save_and_load_correctly.tres"
 	
 	#save data test
-	var test_save_data:SaveData = SaveData.new()
+	var test_save_data:TopLevelEntitySaveData = TopLevelEntitySaveData.new()
 	test_save_data.global_transform = Transform3D(Vector3.LEFT,Vector3.DOWN, Vector3.FORWARD, Vector3(2,4,8))
 	test_save_data.scene_path = "SAVE_DATA_SCENE_PATH"
-	new_save_file.save_data.append(test_save_data)
+	new_save_file.top_level_entity_save_data.append(test_save_data)
 	
 	ResourceSaver.save(new_save_file,test_save_filename )
 	

@@ -30,11 +30,11 @@ func _ready():
 	EventBus.close_all_inventories.connect(_on_close_all_inventories)
 	EventBus.item_removed_from_inventory.connect(_on_item_removed_from_inventory)
 	EventBus.item_picked_up.connect(_on_item_picked_up)
-	EventBus.populate_level.connect(_on_populate_level)
+	EventBus.before_populate_level.connect(_on_before_populate_level)
 	_inventory_container = get_node(_inventory_container_path)
 	
 	
-func _on_populate_level():
+func _on_before_populate_level():
 	setup_inventory_from_model()
 	
 func setup_inventory_from_model():

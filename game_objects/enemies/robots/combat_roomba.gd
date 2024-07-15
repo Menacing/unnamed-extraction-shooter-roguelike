@@ -90,17 +90,17 @@ func _on_hit(damage, pen_rating, col:CollisionInformation, hit_origin:Vector3) -
 
 func _on_game_saving(save_file:SaveFile):
 	if save_file:
-		var enemy_information:SaveData = SaveData.new()
+		var enemy_information:TopLevelEntitySaveData = TopLevelEntitySaveData.new()
 		enemy_information.global_transform = self.global_transform
 		#player_information.path_to_parent = self.get_parent().get_path()
 		enemy_information.scene_path = self.scene_file_path
 		enemy_information.additional_data["health"] = health
-		save_file.save_data.append(enemy_information)
+		save_file.top_level_entity_save_data.append(enemy_information)
 
 func _on_game_before_loading():
 	self.queue_free()
 	
-func _on_load_game(save_data:SaveData):
+func _on_load_game(save_data:TopLevelEntitySaveData):
 	if save_data:
 		self.global_transform = save_data.global_transform
 		self.health = save_data.additional_data["health"]

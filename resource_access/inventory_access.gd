@@ -303,6 +303,7 @@ static func _report_inventory_contents(inv:Inventory) -> Dictionary:
 				pickup_result.location.location = InventoryLocationResult.LocationType.SLOT
 				pickup_result.location.slot_name = slot.name
 				pickup_result.picked_up = true
+				result[slot.item_instance_id] = pickup_result
 	return result
 	
 

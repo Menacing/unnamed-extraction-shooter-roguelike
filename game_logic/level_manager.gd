@@ -2,6 +2,10 @@ extends Node
 
 var current_level:Node
 
+func clear_level():
+	for child in get_children():
+		remove_child(child)
+		child.queue_free()
 
 func load_level_async(path:String, populate_level:bool = false):
 	if path:
@@ -35,6 +39,7 @@ func load_level_async(path:String, populate_level:bool = false):
 		print("Can't load level with no path")
 
 func emit_populate_level():
+	EventBus.before_populate_level.emit()
 	EventBus.populate_level.emit()
 	EventBus.level_populated.emit()
 

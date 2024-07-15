@@ -46,16 +46,16 @@ func test_values_save_and_load_correctly() -> void:
 	#check the file looks okay
 	assert_str(loaded_game.game_version).is_equal(new_save_file.game_version)
 	assert_str(loaded_game.level_scene_path).is_equal(new_save_file.level_scene_path)
-	assert_bool(loaded_game.save_data.size() == new_save_file.save_data.size())
-	assert_object(loaded_game.save_data[0].global_transform).is_equal(new_save_file.save_data[0].global_transform)
+	assert_bool(loaded_game.top_level_entity_save_data.size() == new_save_file.top_level_entity_save_data.size())
+	assert_object(loaded_game.top_level_entity_save_data[0].global_transform).is_equal(new_save_file.top_level_entity_save_data[0].global_transform)
 	
-	var health_information = loaded_game.save_data[0].additional_data["health_info"]
+	var health_information = loaded_game.top_level_entity_save_data[0].additional_data["health_info"]
 	assert_object(health_information).is_not_null()
 	
 	assert_float(health_information[HealthLocation.HEALTH_LOCATION.LEGS].current_health).is_equal_approx(51, 0.1)
 	assert_float(health_information[HealthLocation.HEALTH_LOCATION.ARMS].current_health).is_equal_approx(23, 0.1)
 	assert_float(health_information[HealthLocation.HEALTH_LOCATION.MAIN].current_health).is_equal_approx(98, 0.1)
-	assert_int(loaded_game.save_data[0].additional_data["ammo_map"]["Fast Intermediate Cartdridge"]["Full Metal Jacket"].current_amount).is_equal(45)
+	assert_int(loaded_game.top_level_entity_save_data[0].additional_data["ammo_map"]["Fast Intermediate Cartdridge"]["Full Metal Jacket"].current_amount).is_equal(45)
 
 	#check we don't have weird cross talk before loading the save into the player
 	assert_object(loaded_player.global_transform).is_not_equal(player.global_transform)
@@ -63,7 +63,7 @@ func test_values_save_and_load_correctly() -> void:
 	assert_int(loaded_player.ammo_component._ammo_map["Fast Intermediate Cartdridge"]["Full Metal Jacket"].current_amount).is_not_equal(player.ammo_component._ammo_map["Fast Intermediate Cartdridge"]["Full Metal Jacket"].current_amount)
 
 	#load the save data into the player
-	loaded_player._on_load_game(loaded_game.save_data[0])
+	loaded_player._on_load_game(loaded_game.top_level_entity_save_data[0])
 	
 	#things should be the same again
 	assert_object(loaded_player.global_transform).is_equal(player.global_transform)
@@ -78,18 +78,19 @@ func test_inventory_saving_and_loading() -> void:
 	
 	#act
 	EventBus.populate_level.emit()
+	EventBus.players_spawned.emit()
 	var populated_player_inventory_id:int = player.player_inventory_id
 	player._on_game_saving(new_save_file)
 	
 	#assert
 	assert_int(populated_player_inventory_id).is_not_equal(initial_player_inventory_id)
-	var player_save_data:SaveData = new_save_file.save_data[0]
+	var player_save_data:TopLevelEntitySaveData = new_save_file.top_level_entity_save_data[0]
 	var saved_player_inventory_id = player_save_data.additional_data["player_inventory_id"]
 	assert_int(saved_player_inventory_id).is_equal(populated_player_inventory_id)
 	
 	#loading
 	#arrange
-	var loaded_player_data:SaveData = player_save_data
+	var loaded_player_data:TopLevelEntitySaveData = player_save_data
 	var initial_loaded_player_inventory_id:int = loaded_player.player_inventory_id
 	var loaded_inventory:Inventory = test_inventory.duplicate(true)
 	loaded_inventory.setup()
@@ -119,6 +120,50 @@ func test_inventory_saving_and_loading() -> void:
 	var first_cell = inv_grid.get_child(0)
 	assert_object(first_cell).is_not_null()
 	assert_int(first_cell.get_child_count()).is_equal(1)
+
+func test_grid_and_slots_save_and_load() -> void:
+	#arrange
+	var new_save_file = SaveFile.new()
+	var initial_player_inventory_id:int = player.player_inventory_id
+	EventBus.populate_level.emit()
+	EventBus.players_spawned.emit()
+	var setup_player_inventory_id:int = player.player_inventory_id
+	var player_inventory:Inventory = InventoryAccess.get_inventory(player.player_inventory_id)
+	var item_id_1 = randi()
+	var item_id_2 = randi()
+	
+	#act
+	player_inventory.grid_slots[0][0] = item_id_1
+	player_inventory.equipment_slots[0].item_instance_id = item_id_2
+	player._on_game_saving(new_save_file)
+	InventoryManager._on_game_saving(new_save_file)
+	ResourceSaver.save(new_save_file,test_save_filename )
+	
+	var loaded_save_file:SaveFile = SafeResourceLoader.load(test_save_filename) as SaveFile
+	
+	var saved_inventory:Inventory
+	var loaded_inventory:Inventory
+	
+	assert_int(setup_player_inventory_id).is_not_equal(initial_player_inventory_id)
+	assert_int(setup_player_inventory_id).is_not_equal(0)
+	
+	for inv:Inventory in new_save_file.inventories:
+		if inv.inventory_id == setup_player_inventory_id:
+			saved_inventory = inv
+			
+	for inv:Inventory in loaded_save_file.inventories:
+		if inv.inventory_id == setup_player_inventory_id:
+			loaded_inventory = inv
+	
+	assert_int(new_save_file.top_level_entity_save_data[0].additional_data["player_inventory_id"]).is_equal(setup_player_inventory_id)
+	assert_object(saved_inventory).is_not_null()
+
+	assert_int(saved_inventory.grid_slots[0][0]).is_equal(item_id_1)
+	assert_int(saved_inventory.equipment_slots[0].item_instance_id).is_equal(item_id_2)
+	
+	assert_object(loaded_inventory).is_not_null()
+	assert_int(loaded_inventory.grid_slots[0][0]).is_equal(item_id_1)
+	assert_int(loaded_inventory.equipment_slots[0].item_instance_id).is_equal(item_id_2)
 
 func after_test():
 	if player:

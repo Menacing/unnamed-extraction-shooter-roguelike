@@ -23,7 +23,7 @@ func _ready():
 	super()
 	EventBus.drop_item.connect(_on_drop_item)
 	
-func _on_populate_level():
+func _on_before_populate_level():
 	super()
 	container_size = _inventory.initial_height * _inventory.initial_width
 

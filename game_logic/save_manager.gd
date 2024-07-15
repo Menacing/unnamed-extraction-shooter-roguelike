@@ -41,7 +41,7 @@ func load_game(file_path:String) -> SaveFile:
 	InventoryManager._on_load_game(saved_game)
 	
 	#restore all root game elements
-	for item:SaveData in saved_game.save_data:
+	for item:TopLevelEntitySaveData in saved_game.top_level_entity_save_data:
 		# load the scene of the saved item and create a new instance
 		var scene := load(item.scene_path) as PackedScene
 		var restored_node = scene.instantiate()
@@ -49,7 +49,15 @@ func load_game(file_path:String) -> SaveFile:
 		LevelManager.add_node_to_level(restored_node)
 		if restored_node.has_method("_on_load_game"):
 			restored_node._on_load_game(item)
+	
+	#restore all level elements
+	for item:LevelEntitySaveData in saved_game.level_entity_save_data:
+		#get the node
+		var node_to_restore:Node = get_node(item.node_path)
 		
+		if node_to_restore.has_method("_on_load_game"):
+			node_to_restore._on_load_game(item)
+	
 	#restore items in inventories
 	InventoryManager._restore_inventories.call_deferred()
 	await InventoryManager.inventories_restored

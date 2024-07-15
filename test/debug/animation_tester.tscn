@@ -1,45 +1,14 @@
-[gd_scene load_steps=22 format=3 uid="uid://cucj5boko1qpn"]
+[gd_scene load_steps=10 format=3 uid="uid://cucj5boko1qpn"]
 
 [ext_resource type="Script" path="res://test/debug/animation_tester.gd" id="1_q42px"]
 [ext_resource type="PackedScene" uid="uid://d08aatgxmymbf" path="res://game_objects/player/player.tscn" id="2_8jxdu"]
 [ext_resource type="PackedScene" uid="uid://dr48wela8mtxd" path="res://game_objects/items/weapons/hic_rifles/pm_52/pm_52.tscn" id="3_jl4nq"]
 [ext_resource type="PackedScene" uid="uid://ddsqkhwkuipda" path="res://ui/inventory/player_inventory.tscn" id="3_w3nvw"]
-[ext_resource type="Script" path="res://resource_access/equipment_slot_type.gd" id="4_wtskt"]
-[ext_resource type="Script" path="res://resource_access/Inventory.gd" id="5_nptoh"]
 [ext_resource type="Resource" uid="uid://3nqgvhg4lre8" path="res://components/ammo_component/ammo_types/heavy_intermediate_cartridge/heavy_intermediate_cartridge.tres" id="7_acq5m"]
 [ext_resource type="Script" path="res://game_objects/items/weapons/gun_stats.gd" id="8_tkvb8"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8i0q8"]
 albedo_color = Color(0.370508, 0.612208, 0, 1)
-
-[sub_resource type="Resource" id="Resource_c2lqt"]
-script = ExtResource("4_wtskt")
-name = "BackpackSlot"
-allowed_types = Array[int]([1])
-
-[sub_resource type="Resource" id="Resource_5xhft"]
-script = ExtResource("4_wtskt")
-name = "ArmorSlot"
-allowed_types = Array[int]([3])
-
-[sub_resource type="Resource" id="Resource_3yuyw"]
-script = ExtResource("4_wtskt")
-name = "GunSlot1"
-allowed_types = Array[int]([0])
-
-[sub_resource type="Resource" id="Resource_k0qab"]
-script = ExtResource("4_wtskt")
-name = "GunSlot2"
-allowed_types = Array[int]([0])
-
-[sub_resource type="Resource" id="Resource_1jxct"]
-resource_local_to_scene = true
-script = ExtResource("5_nptoh")
-inventory_id = 0
-initial_height = 2
-initial_width = 7
-grid_slots = {}
-equipment_slots = Array[ExtResource("4_wtskt")]([SubResource("Resource_c2lqt"), SubResource("Resource_5xhft"), SubResource("Resource_3yuyw"), SubResource("Resource_k0qab")])
 
 [sub_resource type="Resource" id="Resource_rlsbf"]
 resource_local_to_scene = true
@@ -75,35 +44,6 @@ ammo_type = ExtResource("7_acq5m")
 reload_time_Sec = 2.5
 reload_thresholds = Array[float]([1.0])
 
-[sub_resource type="Resource" id="Resource_32krh"]
-script = ExtResource("4_wtskt")
-name = "BackpackSlot"
-allowed_types = Array[int]([1])
-
-[sub_resource type="Resource" id="Resource_ipac7"]
-script = ExtResource("4_wtskt")
-name = "ArmorSlot"
-allowed_types = Array[int]([3])
-
-[sub_resource type="Resource" id="Resource_7i5l5"]
-script = ExtResource("4_wtskt")
-name = "GunSlot1"
-allowed_types = Array[int]([0])
-
-[sub_resource type="Resource" id="Resource_ei6ls"]
-script = ExtResource("4_wtskt")
-name = "GunSlot2"
-allowed_types = Array[int]([0])
-
-[sub_resource type="Resource" id="Resource_k0wdg"]
-resource_local_to_scene = true
-script = ExtResource("5_nptoh")
-inventory_id = 0
-initial_height = 2
-initial_width = 7
-grid_slots = {}
-equipment_slots = Array[ExtResource("4_wtskt")]([SubResource("Resource_32krh"), SubResource("Resource_ipac7"), SubResource("Resource_7i5l5"), SubResource("Resource_ei6ls")])
-
 [node name="animation_tester" type="Node3D"]
 script = ExtResource("1_q42px")
 
@@ -126,7 +66,6 @@ size = 4.5446
 
 [node name="PlayerInventory" parent="Camera3D/PlayerHUD" instance=ExtResource("3_w3nvw")]
 visible = false
-_inventory = SubResource("Resource_1jxct")
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.5
@@ -251,12 +190,11 @@ body_offset = Transform3D(0.935964, 0.182588, -0.301575, -0.302713, -0.0225293, 
 
 [node name="Physical Bone mixamorig_RightUpLeg" parent="Player/CollisionShape3D/PlayerDefaultMeshAnimated/Armature/Skeleton3D" index="22"]
 transform = Transform3D(-0.310161, -0.800234, 0.513598, -0.923971, 0.125956, -0.361711, 0.224676, -0.586636, -0.778359, -0.26803, 0.0966777, -0.700581)
-joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0529073, 0.0776329, 0.294346)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0529073, 0.0776328, 0.294346)
 
 [node name="Physical Bone mixamorig_RightLeg" parent="Player/CollisionShape3D/PlayerDefaultMeshAnimated/Armature/Skeleton3D" index="23"]
 transform = Transform3D(-0.0881453, -0.996254, 0.00695622, -0.894546, 0.0822033, 0.439738, -0.438588, 0.0325826, -0.8984, -0.375611, 0.0488879, -0.395699)
 joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.133767, -0.147583, 0.243879)
-body_offset = Transform3D(0.0858767, 0.975935, 0.201249, -0.190391, 0.214374, -0.958311, -0.97812, 0.0439672, 0.204155, 0.106438, 0.239882, -0.174141)
 
 [node name="Physical Bone mixamorig_RightFoot" parent="Player/CollisionShape3D/PlayerDefaultMeshAnimated/Armature/Skeleton3D" index="24"]
 transform = Transform3D(-0.00384714, -0.4726, 0.881322, -1.00013, -0.000555423, -0.00463996, 0.00264822, -0.881413, -0.472704, -0.485554, -0.0593184, -0.0701718)
@@ -300,9 +238,6 @@ transform = Transform3D(-0.992341, -0.108852, -0.0584281, -0.123456, 0.856109, 0
 
 [node name="LeftFootBoneAttachment" parent="Player/CollisionShape3D/HitBox" index="12"]
 transform = Transform3D(-0.107188, 0.847504, 0.519853, 0.99383, 0.106316, 0.0315918, -0.0284943, 0.520032, -0.853671, 0.231198, -0.0369835, -0.108368)
-
-[node name="EQUIPMENT" parent="Player/PlayerInventories/MarginContainer/HBoxContainer/PlayerInventoryContainer/TabContainer" index="1"]
-_inventory = SubResource("Resource_k0wdg")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 

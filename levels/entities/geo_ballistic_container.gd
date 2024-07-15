@@ -42,14 +42,25 @@ func _ready():
 	
 	#setup inventory linkages
 	world_inventory_control.container_size = container_size
-	inventory_id = world_inventory_control.inventory_id
 	EventBus.item_picked_up.connect(_on_item_picked_up)
 	Helpers.apply_material_overlay_to_children(self, item_highlight_m)
 	EventBus.populate_level.connect(_on_populate_level)
-	
+	EventBus.game_saving.connect(_on_game_saving)
+
+func _on_game_saving(save_file:SaveFile):
+	var save_data:LevelEntitySaveData = LevelEntitySaveData.new()
+	save_data.node_path = self.get_path()
+	save_data.additional_data["inventory_id"] = inventory_id
+	save_file.level_entity_save_data.append(save_data)
+	pass
+
+func _on_load_game(save_data:LevelEntitySaveData):
+	inventory_id = save_data.additional_data["inventory_id"]
+	world_inventory_control.inventory_id = inventory_id
 
 func _on_populate_level():
 	add_to_group("loot_container", true)
+	inventory_id = world_inventory_control.inventory_id
 	
 	var loot_spawn_mapping:LootSpawnMapping = LootSpawnManager.get_loot_spawn_mapping(biome_index,tier_index)
 	

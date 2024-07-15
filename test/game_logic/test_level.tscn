@@ -1,4 +1,4 @@
-[gd_scene load_steps=84 format=3 uid="uid://dscnryf56fjlu"]
+[gd_scene load_steps=89 format=3 uid="uid://dscnryf56fjlu"]
 
 [ext_resource type="Script" path="res://levels/multi_agent_navigation_root.gd" id="1_byd04"]
 [ext_resource type="Script" path="res://levels/level.gd" id="1_u7jiy"]
@@ -17,7 +17,9 @@
 [ext_resource type="Script" path="res://game_objects/items/weapons/gun_stats.gd" id="14_2osd1"]
 [ext_resource type="PackedScene" uid="uid://82pjqxlmcg2v" path="res://game_objects/items/ammo/hic/hic_box_ap.tscn" id="15_lmsku"]
 [ext_resource type="PackedScene" uid="uid://c17uhpgl0dvt4" path="res://game_objects/items/ammo/fic/fic_box_fmj.tscn" id="16_bu2t6"]
-[ext_resource type="PackedScene" uid="uid://d08aatgxmymbf" path="res://game_objects/player/player.tscn" id="17_3smmv"]
+[ext_resource type="Script" path="res://levels/entities/area_extract.gd" id="18_k60im"]
+[ext_resource type="PackedScene" uid="uid://dr48wela8mtxd" path="res://game_objects/items/weapons/hic_rifles/pm_52/pm_52.tscn" id="19_77ce0"]
+[ext_resource type="Resource" uid="uid://3nqgvhg4lre8" path="res://components/ammo_component/ammo_types/heavy_intermediate_cartridge/heavy_intermediate_cartridge.tres" id="20_f3w6i"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_6g5uc"]
 
@@ -315,6 +317,29 @@ ads_fov = 50.0
 moa = 4.0
 turn_speed = 25.0
 ammo_type = ExtResource("13_6y1ui")
+reload_time_Sec = 2.5
+reload_thresholds = Array[float]([1.0])
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_pjtrx"]
+points = PackedVector3Array(-3, 1.8, -2.4, -3, -1.8, -2.4, 3, -1.8, -2.4, 3, 1.8, -2.4, -3, 1.8, 2.4, -3, -1.8, 2.4, 3, -1.8, 2.4, 3, 1.8, 2.4)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_ij8pr"]
+points = PackedVector3Array(-3.2, 1.2, -2.2, -3.2, -1.2, -2.2, 3.2, -1.2, -2.2, 3.2, 1.2, -2.2, -3.2, 1.2, 2.2, -3.2, -1.2, 2.2, 3.2, -1.2, 2.2, 3.2, 1.2, 2.2)
+
+[sub_resource type="Resource" id="Resource_7mnht"]
+resource_local_to_scene = true
+script = ExtResource("14_2osd1")
+weapon_category_name = "HIC Rifle"
+magazine_size = 30
+rpm = 600
+base_recoil = Vector2(0, 0.025)
+recoil_variability = Vector2(0.025, 0.013)
+fire_modes = ["semi", "auto"]
+ads_accel = 10.0
+ads_fov = 50.0
+moa = 5.0
+turn_speed = 25.0
+ammo_type = ExtResource("20_f3w6i")
 reload_time_Sec = 2.5
 reload_thresholds = Array[float]([1.0])
 
@@ -1233,5 +1258,36 @@ model_node = NodePath("../FicBoxFmj/fic_box_fmj")
 [node name="FicBoxFmj" parent="MultiAgentNavigationRoot" instance=ExtResource("16_bu2t6")]
 transform = Transform3D(1, 0, 0, 0, -0.491436, -0.870914, 0, 0.870914, -0.491436, 7.17928, 0.542317, -3.66029)
 
-[node name="Player" parent="." instance=ExtResource("17_3smmv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.48035, 1.04626, -2.63506)
+[node name="bathroom_extract" type="Area3D" parent="." groups=["Extract"]]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26.8904, 1.8625, -6.853)
+script = ExtResource("18_k60im")
+func_godot_properties = {
+"classname": "area_extract",
+"target": "bathroom_extract",
+"targetfunc": "",
+"targetname": "hanger_extract"
+}
+targetname = "hanger_extract"
+
+[node name="entity_438_brush_0_collision_shape" type="CollisionShape3D" parent="bathroom_extract"]
+shape = SubResource("ConvexPolygonShape3D_pjtrx")
+
+[node name="hanger_extract" type="Area3D" parent="." groups=["Extract"]]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.4, 1.6, -2.78311)
+script = ExtResource("18_k60im")
+func_godot_properties = {
+"classname": "area_extract",
+"target": "hanger_extract",
+"targetfunc": "",
+"targetname": "bathroom_extract"
+}
+targetname = "bathroom_extract"
+
+[node name="entity_908_brush_0_collision_shape" type="CollisionShape3D" parent="hanger_extract"]
+shape = SubResource("ConvexPolygonShape3D_ij8pr")
+
+[node name="PM52" parent="." instance=ExtResource("19_77ce0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.38851, 0.0788295, -7.5009)
+_gun_stats = SubResource("Resource_7mnht")

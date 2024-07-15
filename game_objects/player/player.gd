@@ -494,7 +494,7 @@ func _on_ammo_type_changed(new_type:String, new_subtype:String):
 	
 func _on_game_saving(save_file:SaveFile):
 	if save_file:
-		var player_information:SaveData = SaveData.new()
+		var player_information:TopLevelEntitySaveData = TopLevelEntitySaveData.new()
 		player_information.global_transform = self.global_transform
 		#player_information.path_to_parent = self.get_parent().get_path()
 		player_information.scene_path = self.scene_file_path
@@ -513,17 +513,16 @@ func _on_game_saving(save_file:SaveFile):
 		player_information.additional_data["active_ammo_subtype"] = ammo_component._active_ammo_subtype
 		
 		
-		save_file.save_data.append(player_information)
+		save_file.top_level_entity_save_data.append(player_information)
 
 func _on_game_before_loading():
 	self.queue_free()
 	
-func _on_load_game(save_data:SaveData):
+func _on_load_game(save_data:TopLevelEntitySaveData):
 	if save_data:
 		self.global_transform = save_data.global_transform
 		
 		player_inventory_id = save_data.additional_data["player_inventory_id"]
-		$PlayerInventories.player_inventory_control.inventory_id = player_inventory_id
 		
 		#load health
 		if save_data.additional_data["health_info"]:
