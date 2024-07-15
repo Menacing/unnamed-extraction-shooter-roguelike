@@ -19,6 +19,6 @@ func test_values_save_and_load_correctly() -> void:
 	
 	assert_str(loaded_game.game_version).is_equal(new_save_file.game_version)
 	assert_str(loaded_game.level_scene_path).is_equal(new_save_file.level_scene_path)
-	assert_bool(loaded_game.save_data.size() == new_save_file.save_data.size())
-	assert_object(loaded_game.save_data[0].global_transform).is_equal(new_save_file.save_data[0].global_transform)
+	assert_bool(loaded_game.top_level_entity_save_data.size() == new_save_file.top_level_entity_save_data.size())
+	assert_object(loaded_game.top_level_entity_save_data[0].global_transform).is_equal(new_save_file.top_level_entity_save_data[0].global_transform)
 

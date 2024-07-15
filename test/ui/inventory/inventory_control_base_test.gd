@@ -24,6 +24,7 @@ func test__on_populate_level() -> void:
 	
 	#act
 	EventBus.populate_level.emit()
+	EventBus.players_spawned.emit()
 	item_inst.spawn_item()
 	var inventory_control_inventory:Inventory = InventoryAccess.get_inventory(inventory_control.inventory_id)
 	InventoryManager._on_pickup_item(item_inst, inventory_control.inventory_id)

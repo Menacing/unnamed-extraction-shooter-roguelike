@@ -19,6 +19,7 @@ func _ready() -> void:
 	EventBus.remove_effect.connect(_on_remove_effect)
 
 func _on_create_message(message_name:String, message_text:String, message_timeout:float):
+	var is_queued_for_deletion = self.is_queued_for_deletion()
 	var message_control:MessageCenterMessage = message_scene.instantiate()
 	message_control.name = message_name
 	if message_timeout > 0.0:
