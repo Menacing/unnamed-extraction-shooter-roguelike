@@ -1,7 +1,6 @@
 extends Control
 class_name InventoryControlBase
 
-
 @export var _model_inventory:Inventory
 var _inventory:Inventory
 @export var _inventory_grid_path:NodePath
@@ -36,6 +35,9 @@ func _ready():
 	
 	
 func _on_populate_level():
+	setup_inventory_from_model()
+	
+func setup_inventory_from_model():
 	_inventory = _model_inventory.duplicate(true)
 	_inventory.setup()
 	inventory_id = _inventory.inventory_id

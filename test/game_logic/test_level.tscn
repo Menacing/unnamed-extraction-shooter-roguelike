@@ -1,22 +1,23 @@
-[gd_scene load_steps=83 format=3 uid="uid://ctahsvj88g1om"]
+[gd_scene load_steps=84 format=3 uid="uid://dscnryf56fjlu"]
 
-[ext_resource type="PackedScene" uid="uid://d08aatgxmymbf" path="res://game_objects/player/player.tscn" id="1_eisjc"]
-[ext_resource type="Script" path="res://levels/multi_agent_navigation_root.gd" id="2_cimua"]
-[ext_resource type="Resource" uid="uid://hw8blc564g2i" path="res://levels/roomba_nav_mesh.tres" id="2_mvgx8"]
-[ext_resource type="Resource" uid="uid://bkm06qpqovt7f" path="res://levels/humanoid_nav_mesh.tres" id="3_pa7d4"]
-[ext_resource type="PackedScene" uid="uid://trlm60n2q0k4" path="res://game_objects/items/attachments/scopes/red_dot/red_dot.tscn" id="8_2b85p"]
-[ext_resource type="PackedScene" uid="uid://cprpop5lkmyhe" path="res://game_objects/items/weapons/fic_rifles/s5/s5.tscn" id="9_7oj7m"]
-[ext_resource type="Script" path="res://levels/entities/geo_ballistic_solid.gd" id="9_q4meu"]
-[ext_resource type="PackedScene" uid="uid://dbduds4bsaaby" path="res://game_objects/bullet/bullet_hole.tscn" id="10_hbfhv"]
-[ext_resource type="Resource" uid="uid://bikewy7dlkv20" path="res://components/ammo_component/ammo_types/fast_intermediate_cartridge/fast_intermediate_cartridge.tres" id="10_q80ko"]
-[ext_resource type="Script" path="res://game_objects/items/weapons/gun_stats.gd" id="11_hh747"]
-[ext_resource type="PackedScene" uid="uid://5n7aup1d2u20" path="res://game_objects/effects/bullet_hit_sparks.tscn" id="11_ux6j8"]
-[ext_resource type="AudioStream" uid="uid://chvv4165nfb61" path="res://game_objects/effects/sounds/steps/footstep_concrete_001.ogg" id="12_gwmm8"]
-[ext_resource type="Material" uid="uid://tid6vrqw40j3" path="res://levels/textures/metal/metal_2.tres" id="13_muntg"]
-[ext_resource type="Material" uid="uid://cjqyc6t2lsv8d" path="res://levels/textures/metal/metal_5.tres" id="14_3ru35"]
-[ext_resource type="Material" uid="uid://cnqi48f8iiy13" path="res://levels/textures/metal/metal_6.tres" id="15_b757u"]
-[ext_resource type="PackedScene" uid="uid://82pjqxlmcg2v" path="res://game_objects/items/ammo/hic/hic_box_ap.tscn" id="15_lbv4t"]
-[ext_resource type="PackedScene" uid="uid://c17uhpgl0dvt4" path="res://game_objects/items/ammo/fic/fic_box_fmj.tscn" id="16_3j2uw"]
+[ext_resource type="Script" path="res://levels/multi_agent_navigation_root.gd" id="1_byd04"]
+[ext_resource type="Script" path="res://levels/level.gd" id="1_u7jiy"]
+[ext_resource type="Resource" uid="uid://hw8blc564g2i" path="res://levels/roomba_nav_mesh.tres" id="2_h8m1e"]
+[ext_resource type="Resource" uid="uid://bkm06qpqovt7f" path="res://levels/humanoid_nav_mesh.tres" id="3_pg0hk"]
+[ext_resource type="Script" path="res://levels/entities/geo_ballistic_solid.gd" id="4_nqjvf"]
+[ext_resource type="PackedScene" uid="uid://dbduds4bsaaby" path="res://game_objects/bullet/bullet_hole.tscn" id="5_n6spi"]
+[ext_resource type="PackedScene" uid="uid://5n7aup1d2u20" path="res://game_objects/effects/bullet_hit_sparks.tscn" id="6_xa1yv"]
+[ext_resource type="AudioStream" uid="uid://chvv4165nfb61" path="res://game_objects/effects/sounds/steps/footstep_concrete_001.ogg" id="7_lpope"]
+[ext_resource type="Material" uid="uid://tid6vrqw40j3" path="res://levels/textures/metal/metal_2.tres" id="8_qpff1"]
+[ext_resource type="Material" uid="uid://cjqyc6t2lsv8d" path="res://levels/textures/metal/metal_5.tres" id="9_3bsxv"]
+[ext_resource type="Material" uid="uid://cnqi48f8iiy13" path="res://levels/textures/metal/metal_6.tres" id="10_jjh2j"]
+[ext_resource type="PackedScene" uid="uid://trlm60n2q0k4" path="res://game_objects/items/attachments/scopes/red_dot/red_dot.tscn" id="11_1bd5n"]
+[ext_resource type="PackedScene" uid="uid://cprpop5lkmyhe" path="res://game_objects/items/weapons/fic_rifles/s5/s5.tscn" id="12_xisad"]
+[ext_resource type="Resource" uid="uid://bikewy7dlkv20" path="res://components/ammo_component/ammo_types/fast_intermediate_cartridge/fast_intermediate_cartridge.tres" id="13_6y1ui"]
+[ext_resource type="Script" path="res://game_objects/items/weapons/gun_stats.gd" id="14_2osd1"]
+[ext_resource type="PackedScene" uid="uid://82pjqxlmcg2v" path="res://game_objects/items/ammo/hic/hic_box_ap.tscn" id="15_lmsku"]
+[ext_resource type="PackedScene" uid="uid://c17uhpgl0dvt4" path="res://game_objects/items/ammo/fic/fic_box_fmj.tscn" id="16_bu2t6"]
+[ext_resource type="PackedScene" uid="uid://d08aatgxmymbf" path="res://game_objects/player/player.tscn" id="17_3smmv"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_6g5uc"]
 
@@ -49,7 +50,7 @@ _surfaces = [{
 "format": 34359742487,
 "index_count": 216,
 "index_data": PackedByteArray(0, 0, 1, 0, 2, 0, 0, 0, 2, 0, 3, 0, 4, 0, 5, 0, 6, 0, 4, 0, 6, 0, 7, 0, 8, 0, 9, 0, 10, 0, 8, 0, 10, 0, 11, 0, 12, 0, 13, 0, 14, 0, 12, 0, 14, 0, 15, 0, 16, 0, 17, 0, 18, 0, 16, 0, 18, 0, 19, 0, 20, 0, 21, 0, 22, 0, 20, 0, 22, 0, 23, 0, 24, 0, 25, 0, 26, 0, 24, 0, 26, 0, 27, 0, 28, 0, 29, 0, 30, 0, 28, 0, 30, 0, 31, 0, 32, 0, 33, 0, 34, 0, 32, 0, 34, 0, 35, 0, 36, 0, 37, 0, 38, 0, 36, 0, 38, 0, 39, 0, 40, 0, 41, 0, 42, 0, 40, 0, 42, 0, 43, 0, 44, 0, 45, 0, 46, 0, 44, 0, 46, 0, 47, 0, 48, 0, 49, 0, 50, 0, 48, 0, 50, 0, 51, 0, 52, 0, 53, 0, 54, 0, 52, 0, 54, 0, 55, 0, 56, 0, 57, 0, 58, 0, 56, 0, 58, 0, 59, 0, 60, 0, 61, 0, 62, 0, 60, 0, 62, 0, 63, 0, 64, 0, 65, 0, 66, 0, 64, 0, 66, 0, 67, 0, 68, 0, 69, 0, 70, 0, 68, 0, 70, 0, 71, 0, 72, 0, 73, 0, 74, 0, 72, 0, 74, 0, 75, 0, 76, 0, 77, 0, 78, 0, 76, 0, 78, 0, 79, 0, 80, 0, 81, 0, 82, 0, 80, 0, 82, 0, 83, 0, 84, 0, 85, 0, 86, 0, 84, 0, 86, 0, 87, 0, 88, 0, 89, 0, 90, 0, 88, 0, 90, 0, 91, 0, 92, 0, 93, 0, 94, 0, 92, 0, 94, 0, 95, 0, 96, 0, 97, 0, 98, 0, 96, 0, 98, 0, 99, 0, 100, 0, 101, 0, 102, 0, 100, 0, 102, 0, 103, 0, 104, 0, 105, 0, 106, 0, 104, 0, 106, 0, 107, 0, 108, 0, 109, 0, 110, 0, 108, 0, 110, 0, 111, 0, 112, 0, 113, 0, 114, 0, 112, 0, 114, 0, 115, 0, 116, 0, 117, 0, 118, 0, 116, 0, 118, 0, 119, 0, 120, 0, 121, 0, 122, 0, 120, 0, 122, 0, 123, 0, 124, 0, 125, 0, 126, 0, 124, 0, 126, 0, 127, 0, 128, 0, 129, 0, 130, 0, 128, 0, 130, 0, 131, 0, 132, 0, 133, 0, 134, 0, 132, 0, 134, 0, 135, 0, 136, 0, 137, 0, 138, 0, 136, 0, 138, 0, 139, 0, 140, 0, 141, 0, 142, 0, 140, 0, 142, 0, 143, 0),
-"material": ExtResource("13_muntg"),
+"material": ExtResource("8_qpff1"),
 "name": "metal/metal_2",
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
@@ -82,7 +83,7 @@ _surfaces = [{
 "format": 34359742487,
 "index_count": 180,
 "index_data": PackedByteArray(0, 0, 1, 0, 2, 0, 0, 0, 2, 0, 3, 0, 4, 0, 5, 0, 6, 0, 4, 0, 6, 0, 7, 0, 8, 0, 9, 0, 10, 0, 8, 0, 10, 0, 11, 0, 12, 0, 13, 0, 14, 0, 12, 0, 14, 0, 15, 0, 16, 0, 17, 0, 18, 0, 16, 0, 18, 0, 19, 0, 20, 0, 21, 0, 22, 0, 20, 0, 22, 0, 23, 0, 24, 0, 25, 0, 26, 0, 24, 0, 26, 0, 27, 0, 28, 0, 29, 0, 30, 0, 28, 0, 30, 0, 31, 0, 32, 0, 33, 0, 34, 0, 32, 0, 34, 0, 35, 0, 36, 0, 37, 0, 38, 0, 36, 0, 38, 0, 39, 0, 40, 0, 41, 0, 42, 0, 40, 0, 42, 0, 43, 0, 44, 0, 45, 0, 46, 0, 44, 0, 46, 0, 47, 0, 48, 0, 49, 0, 50, 0, 48, 0, 50, 0, 51, 0, 52, 0, 53, 0, 54, 0, 52, 0, 54, 0, 55, 0, 56, 0, 57, 0, 58, 0, 56, 0, 58, 0, 59, 0, 60, 0, 61, 0, 62, 0, 60, 0, 62, 0, 63, 0, 64, 0, 65, 0, 66, 0, 64, 0, 66, 0, 67, 0, 68, 0, 69, 0, 70, 0, 68, 0, 70, 0, 71, 0, 72, 0, 73, 0, 74, 0, 72, 0, 74, 0, 75, 0, 76, 0, 77, 0, 78, 0, 76, 0, 78, 0, 79, 0, 80, 0, 81, 0, 82, 0, 80, 0, 82, 0, 83, 0, 84, 0, 85, 0, 86, 0, 84, 0, 86, 0, 87, 0, 88, 0, 89, 0, 90, 0, 88, 0, 90, 0, 91, 0, 92, 0, 93, 0, 94, 0, 92, 0, 94, 0, 95, 0, 96, 0, 97, 0, 98, 0, 96, 0, 98, 0, 99, 0, 100, 0, 101, 0, 102, 0, 100, 0, 102, 0, 103, 0, 104, 0, 105, 0, 106, 0, 104, 0, 106, 0, 107, 0, 108, 0, 109, 0, 110, 0, 108, 0, 110, 0, 111, 0, 112, 0, 113, 0, 114, 0, 112, 0, 114, 0, 115, 0, 116, 0, 117, 0, 118, 0, 116, 0, 118, 0, 119, 0),
-"material": ExtResource("13_muntg"),
+"material": ExtResource("8_qpff1"),
 "name": "metal/metal_2",
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
@@ -112,7 +113,7 @@ _surfaces = [{
 "format": 34359742487,
 "index_count": 216,
 "index_data": PackedByteArray(0, 0, 1, 0, 2, 0, 0, 0, 2, 0, 3, 0, 4, 0, 5, 0, 6, 0, 4, 0, 6, 0, 7, 0, 8, 0, 9, 0, 10, 0, 8, 0, 10, 0, 11, 0, 12, 0, 13, 0, 14, 0, 12, 0, 14, 0, 15, 0, 16, 0, 17, 0, 18, 0, 16, 0, 18, 0, 19, 0, 20, 0, 21, 0, 22, 0, 20, 0, 22, 0, 23, 0, 24, 0, 25, 0, 26, 0, 24, 0, 26, 0, 27, 0, 28, 0, 29, 0, 30, 0, 28, 0, 30, 0, 31, 0, 32, 0, 33, 0, 34, 0, 32, 0, 34, 0, 35, 0, 36, 0, 37, 0, 38, 0, 36, 0, 38, 0, 39, 0, 40, 0, 41, 0, 42, 0, 40, 0, 42, 0, 43, 0, 44, 0, 45, 0, 46, 0, 44, 0, 46, 0, 47, 0, 48, 0, 49, 0, 50, 0, 48, 0, 50, 0, 51, 0, 52, 0, 53, 0, 54, 0, 52, 0, 54, 0, 55, 0, 56, 0, 57, 0, 58, 0, 56, 0, 58, 0, 59, 0, 60, 0, 61, 0, 62, 0, 60, 0, 62, 0, 63, 0, 64, 0, 65, 0, 66, 0, 64, 0, 66, 0, 67, 0, 68, 0, 69, 0, 70, 0, 68, 0, 70, 0, 71, 0, 72, 0, 73, 0, 74, 0, 72, 0, 74, 0, 75, 0, 76, 0, 77, 0, 78, 0, 76, 0, 78, 0, 79, 0, 80, 0, 81, 0, 82, 0, 80, 0, 82, 0, 83, 0, 84, 0, 85, 0, 86, 0, 84, 0, 86, 0, 87, 0, 88, 0, 89, 0, 90, 0, 88, 0, 90, 0, 91, 0, 92, 0, 93, 0, 94, 0, 92, 0, 94, 0, 95, 0, 96, 0, 97, 0, 98, 0, 96, 0, 98, 0, 99, 0, 100, 0, 101, 0, 102, 0, 100, 0, 102, 0, 103, 0, 104, 0, 105, 0, 106, 0, 104, 0, 106, 0, 107, 0, 108, 0, 109, 0, 110, 0, 108, 0, 110, 0, 111, 0, 112, 0, 113, 0, 114, 0, 112, 0, 114, 0, 115, 0, 116, 0, 117, 0, 118, 0, 116, 0, 118, 0, 119, 0, 120, 0, 121, 0, 122, 0, 120, 0, 122, 0, 123, 0, 124, 0, 125, 0, 126, 0, 124, 0, 126, 0, 127, 0, 128, 0, 129, 0, 130, 0, 128, 0, 130, 0, 131, 0, 132, 0, 133, 0, 134, 0, 132, 0, 134, 0, 135, 0, 136, 0, 137, 0, 138, 0, 136, 0, 138, 0, 139, 0, 140, 0, 141, 0, 142, 0, 140, 0, 142, 0, 143, 0),
-"material": ExtResource("13_muntg"),
+"material": ExtResource("8_qpff1"),
 "name": "metal/metal_2",
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
@@ -145,7 +146,7 @@ _surfaces = [{
 "format": 34359742487,
 "index_count": 30,
 "index_data": PackedByteArray(0, 0, 1, 0, 2, 0, 0, 0, 2, 0, 3, 0, 4, 0, 5, 0, 6, 0, 4, 0, 6, 0, 7, 0, 8, 0, 9, 0, 10, 0, 8, 0, 10, 0, 11, 0, 12, 0, 13, 0, 14, 0, 12, 0, 14, 0, 15, 0, 16, 0, 17, 0, 18, 0, 16, 0, 18, 0, 19, 0),
-"material": ExtResource("14_3ru35"),
+"material": ExtResource("9_3bsxv"),
 "name": "metal/metal_5",
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
@@ -157,7 +158,7 @@ _surfaces = [{
 "format": 34359742487,
 "index_count": 942,
 "index_data": PackedByteArray(0, 0, 1, 0, 2, 0, 0, 0, 2, 0, 3, 0, 4, 0, 5, 0, 6, 0, 4, 0, 6, 0, 7, 0, 8, 0, 9, 0, 10, 0, 8, 0, 10, 0, 11, 0, 12, 0, 13, 0, 14, 0, 12, 0, 14, 0, 15, 0, 16, 0, 17, 0, 18, 0, 16, 0, 18, 0, 19, 0, 20, 0, 21, 0, 22, 0, 20, 0, 22, 0, 23, 0, 24, 0, 25, 0, 26, 0, 24, 0, 26, 0, 27, 0, 28, 0, 29, 0, 30, 0, 28, 0, 30, 0, 31, 0, 32, 0, 33, 0, 34, 0, 32, 0, 34, 0, 35, 0, 36, 0, 37, 0, 38, 0, 36, 0, 38, 0, 39, 0, 40, 0, 41, 0, 42, 0, 40, 0, 42, 0, 43, 0, 44, 0, 45, 0, 46, 0, 44, 0, 46, 0, 47, 0, 48, 0, 49, 0, 50, 0, 48, 0, 50, 0, 51, 0, 52, 0, 53, 0, 54, 0, 52, 0, 54, 0, 55, 0, 56, 0, 57, 0, 58, 0, 56, 0, 58, 0, 59, 0, 60, 0, 61, 0, 62, 0, 60, 0, 62, 0, 63, 0, 64, 0, 65, 0, 66, 0, 64, 0, 66, 0, 67, 0, 68, 0, 69, 0, 70, 0, 68, 0, 70, 0, 71, 0, 72, 0, 73, 0, 74, 0, 72, 0, 74, 0, 75, 0, 76, 0, 77, 0, 78, 0, 76, 0, 78, 0, 79, 0, 80, 0, 81, 0, 82, 0, 80, 0, 82, 0, 83, 0, 84, 0, 85, 0, 86, 0, 84, 0, 86, 0, 87, 0, 88, 0, 89, 0, 90, 0, 88, 0, 90, 0, 91, 0, 92, 0, 93, 0, 94, 0, 92, 0, 94, 0, 95, 0, 96, 0, 97, 0, 98, 0, 96, 0, 98, 0, 99, 0, 100, 0, 101, 0, 102, 0, 100, 0, 102, 0, 103, 0, 104, 0, 105, 0, 106, 0, 104, 0, 106, 0, 107, 0, 108, 0, 109, 0, 110, 0, 108, 0, 110, 0, 111, 0, 112, 0, 113, 0, 114, 0, 112, 0, 114, 0, 115, 0, 116, 0, 117, 0, 118, 0, 116, 0, 118, 0, 119, 0, 120, 0, 121, 0, 122, 0, 120, 0, 122, 0, 123, 0, 124, 0, 125, 0, 126, 0, 124, 0, 126, 0, 127, 0, 128, 0, 129, 0, 130, 0, 128, 0, 130, 0, 131, 0, 132, 0, 133, 0, 134, 0, 132, 0, 134, 0, 135, 0, 136, 0, 137, 0, 138, 0, 136, 0, 138, 0, 139, 0, 140, 0, 141, 0, 142, 0, 140, 0, 142, 0, 143, 0, 144, 0, 145, 0, 146, 0, 144, 0, 146, 0, 147, 0, 148, 0, 149, 0, 150, 0, 148, 0, 150, 0, 151, 0, 152, 0, 153, 0, 154, 0, 152, 0, 154, 0, 155, 0, 156, 0, 157, 0, 158, 0, 156, 0, 158, 0, 159, 0, 156, 0, 159, 0, 160, 0, 161, 0, 162, 0, 163, 0, 161, 0, 163, 0, 164, 0, 161, 0, 164, 0, 165, 0, 166, 0, 167, 0, 168, 0, 166, 0, 168, 0, 169, 0, 170, 0, 171, 0, 172, 0, 170, 0, 172, 0, 173, 0, 174, 0, 175, 0, 176, 0, 174, 0, 176, 0, 177, 0, 178, 0, 179, 0, 180, 0, 178, 0, 180, 0, 181, 0, 182, 0, 183, 0, 184, 0, 182, 0, 184, 0, 185, 0, 186, 0, 187, 0, 188, 0, 186, 0, 188, 0, 189, 0, 186, 0, 189, 0, 190, 0, 191, 0, 192, 0, 193, 0, 191, 0, 193, 0, 194, 0, 191, 0, 194, 0, 195, 0, 196, 0, 197, 0, 198, 0, 196, 0, 198, 0, 199, 0, 200, 0, 201, 0, 202, 0, 200, 0, 202, 0, 203, 0, 204, 0, 205, 0, 206, 0, 204, 0, 206, 0, 207, 0, 208, 0, 209, 0, 210, 0, 208, 0, 210, 0, 211, 0, 212, 0, 213, 0, 214, 0, 212, 0, 214, 0, 215, 0, 216, 0, 217, 0, 218, 0, 216, 0, 218, 0, 219, 0, 220, 0, 221, 0, 222, 0, 220, 0, 222, 0, 223, 0, 224, 0, 225, 0, 226, 0, 224, 0, 226, 0, 227, 0, 228, 0, 229, 0, 230, 0, 228, 0, 230, 0, 231, 0, 232, 0, 233, 0, 234, 0, 232, 0, 234, 0, 235, 0, 236, 0, 237, 0, 238, 0, 236, 0, 238, 0, 239, 0, 240, 0, 241, 0, 242, 0, 240, 0, 242, 0, 243, 0, 244, 0, 245, 0, 246, 0, 244, 0, 246, 0, 247, 0, 248, 0, 249, 0, 250, 0, 248, 0, 250, 0, 251, 0, 252, 0, 253, 0, 254, 0, 252, 0, 254, 0, 255, 0, 0, 1, 1, 1, 2, 1, 0, 1, 2, 1, 3, 1, 4, 1, 5, 1, 6, 1, 4, 1, 6, 1, 7, 1, 8, 1, 9, 1, 10, 1, 8, 1, 10, 1, 11, 1, 12, 1, 13, 1, 14, 1, 12, 1, 14, 1, 15, 1, 16, 1, 17, 1, 18, 1, 16, 1, 18, 1, 19, 1, 20, 1, 21, 1, 22, 1, 20, 1, 22, 1, 23, 1, 24, 1, 25, 1, 26, 1, 24, 1, 26, 1, 27, 1, 28, 1, 29, 1, 30, 1, 28, 1, 30, 1, 31, 1, 32, 1, 33, 1, 34, 1, 32, 1, 34, 1, 35, 1, 36, 1, 37, 1, 38, 1, 36, 1, 38, 1, 39, 1, 40, 1, 41, 1, 42, 1, 40, 1, 42, 1, 43, 1, 44, 1, 45, 1, 46, 1, 44, 1, 46, 1, 47, 1, 48, 1, 49, 1, 50, 1, 48, 1, 50, 1, 51, 1, 52, 1, 53, 1, 54, 1, 52, 1, 54, 1, 55, 1, 56, 1, 57, 1, 58, 1, 56, 1, 58, 1, 59, 1, 60, 1, 61, 1, 62, 1, 60, 1, 62, 1, 63, 1, 64, 1, 65, 1, 66, 1, 64, 1, 66, 1, 67, 1, 68, 1, 69, 1, 70, 1, 68, 1, 70, 1, 71, 1, 68, 1, 71, 1, 72, 1, 73, 1, 74, 1, 75, 1, 73, 1, 75, 1, 76, 1, 77, 1, 78, 1, 79, 1, 77, 1, 79, 1, 80, 1, 81, 1, 82, 1, 83, 1, 81, 1, 83, 1, 84, 1, 85, 1, 86, 1, 87, 1, 85, 1, 87, 1, 88, 1, 89, 1, 90, 1, 91, 1, 89, 1, 91, 1, 92, 1, 93, 1, 94, 1, 95, 1, 93, 1, 95, 1, 96, 1, 93, 1, 96, 1, 97, 1, 98, 1, 99, 1, 100, 1, 98, 1, 100, 1, 101, 1, 102, 1, 103, 1, 104, 1, 102, 1, 104, 1, 105, 1, 106, 1, 107, 1, 108, 1, 106, 1, 108, 1, 109, 1, 106, 1, 109, 1, 110, 1, 111, 1, 112, 1, 113, 1, 111, 1, 113, 1, 114, 1, 115, 1, 116, 1, 117, 1, 115, 1, 117, 1, 118, 1, 115, 1, 118, 1, 119, 1, 120, 1, 121, 1, 122, 1, 123, 1, 124, 1, 125, 1, 123, 1, 125, 1, 126, 1, 123, 1, 126, 1, 127, 1, 128, 1, 129, 1, 130, 1, 128, 1, 130, 1, 131, 1, 128, 1, 131, 1, 132, 1, 133, 1, 134, 1, 135, 1, 133, 1, 135, 1, 136, 1, 137, 1, 138, 1, 139, 1, 137, 1, 139, 1, 140, 1, 141, 1, 142, 1, 143, 1, 141, 1, 143, 1, 144, 1, 145, 1, 146, 1, 147, 1, 145, 1, 147, 1, 148, 1, 149, 1, 150, 1, 151, 1, 149, 1, 151, 1, 152, 1, 153, 1, 154, 1, 155, 1, 153, 1, 155, 1, 156, 1, 153, 1, 156, 1, 157, 1, 158, 1, 159, 1, 160, 1, 158, 1, 160, 1, 161, 1, 162, 1, 163, 1, 164, 1, 162, 1, 164, 1, 165, 1, 166, 1, 167, 1, 168, 1, 166, 1, 168, 1, 169, 1, 170, 1, 171, 1, 172, 1, 170, 1, 172, 1, 173, 1, 170, 1, 173, 1, 174, 1, 175, 1, 176, 1, 177, 1, 175, 1, 177, 1, 178, 1, 175, 1, 178, 1, 179, 1, 180, 1, 181, 1, 182, 1, 183, 1, 184, 1, 185, 1, 183, 1, 185, 1, 186, 1, 183, 1, 186, 1, 187, 1, 188, 1, 189, 1, 190, 1, 188, 1, 190, 1, 191, 1, 192, 1, 193, 1, 194, 1, 192, 1, 194, 1, 195, 1, 196, 1, 197, 1, 198, 1, 196, 1, 198, 1, 199, 1, 196, 1, 199, 1, 200, 1, 201, 1, 202, 1, 203, 1, 201, 1, 203, 1, 204, 1, 201, 1, 204, 1, 205, 1, 206, 1, 207, 1, 208, 1, 206, 1, 208, 1, 209, 1, 210, 1, 211, 1, 212, 1, 210, 1, 212, 1, 213, 1, 214, 1, 215, 1, 216, 1, 214, 1, 216, 1, 217, 1, 218, 1, 219, 1, 220, 1, 218, 1, 220, 1, 221, 1, 222, 1, 223, 1, 224, 1, 222, 1, 224, 1, 225, 1, 226, 1, 227, 1, 228, 1, 226, 1, 228, 1, 229, 1, 226, 1, 229, 1, 230, 1, 231, 1, 232, 1, 233, 1, 231, 1, 233, 1, 234, 1, 231, 1, 234, 1, 235, 1, 236, 1, 237, 1, 238, 1, 236, 1, 238, 1, 239, 1, 240, 1, 241, 1, 242, 1, 240, 1, 242, 1, 243, 1, 244, 1, 245, 1, 246, 1, 244, 1, 246, 1, 247, 1, 248, 1, 249, 1, 250, 1, 248, 1, 250, 1, 251, 1, 248, 1, 251, 1, 252, 1, 253, 1, 254, 1, 255, 1, 253, 1, 255, 1, 0, 2, 253, 1, 0, 2, 1, 2, 2, 2, 3, 2, 4, 2, 2, 2, 4, 2, 5, 2, 6, 2, 7, 2, 8, 2, 6, 2, 8, 2, 9, 2, 10, 2, 11, 2, 12, 2, 10, 2, 12, 2, 13, 2, 14, 2, 15, 2, 16, 2, 17, 2, 18, 2, 19, 2, 17, 2, 19, 2, 20, 2, 21, 2, 22, 2, 23, 2, 21, 2, 23, 2, 24, 2, 25, 2, 26, 2, 27, 2, 25, 2, 27, 2, 28, 2, 29, 2, 30, 2, 31, 2, 29, 2, 31, 2, 32, 2, 33, 2, 34, 2, 35, 2, 33, 2, 35, 2, 36, 2, 37, 2, 38, 2, 39, 2, 37, 2, 39, 2, 40, 2, 41, 2, 42, 2, 43, 2, 41, 2, 43, 2, 44, 2, 45, 2, 46, 2, 47, 2, 45, 2, 47, 2, 48, 2, 49, 2, 50, 2, 51, 2, 49, 2, 51, 2, 52, 2, 53, 2, 54, 2, 55, 2, 53, 2, 55, 2, 56, 2, 57, 2, 58, 2, 59, 2, 57, 2, 59, 2, 60, 2, 61, 2, 62, 2, 63, 2, 61, 2, 63, 2, 64, 2, 65, 2, 66, 2, 67, 2, 65, 2, 67, 2, 68, 2, 69, 2, 70, 2, 71, 2, 69, 2, 71, 2, 72, 2, 69, 2, 72, 2, 73, 2, 69, 2, 73, 2, 74, 2, 75, 2, 76, 2, 77, 2, 75, 2, 77, 2, 78, 2, 79, 2, 80, 2, 81, 2, 79, 2, 81, 2, 82, 2, 83, 2, 84, 2, 85, 2, 83, 2, 85, 2, 86, 2, 87, 2, 88, 2, 89, 2, 87, 2, 89, 2, 90, 2, 91, 2, 92, 2, 93, 2, 94, 2, 95, 2, 96, 2, 94, 2, 96, 2, 97, 2),
-"material": ExtResource("15_b757u"),
+"material": ExtResource("10_jjh2j"),
 "name": "metal/metal_6",
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
@@ -244,7 +245,7 @@ _surfaces = [{
 "format": 34359742487,
 "index_count": 180,
 "index_data": PackedByteArray(0, 0, 1, 0, 2, 0, 0, 0, 2, 0, 3, 0, 4, 0, 5, 0, 6, 0, 4, 0, 6, 0, 7, 0, 8, 0, 9, 0, 10, 0, 8, 0, 10, 0, 11, 0, 12, 0, 13, 0, 14, 0, 12, 0, 14, 0, 15, 0, 16, 0, 17, 0, 18, 0, 16, 0, 18, 0, 19, 0, 20, 0, 21, 0, 22, 0, 20, 0, 22, 0, 23, 0, 24, 0, 25, 0, 26, 0, 24, 0, 26, 0, 27, 0, 28, 0, 29, 0, 30, 0, 28, 0, 30, 0, 31, 0, 32, 0, 33, 0, 34, 0, 32, 0, 34, 0, 35, 0, 36, 0, 37, 0, 38, 0, 36, 0, 38, 0, 39, 0, 40, 0, 41, 0, 42, 0, 40, 0, 42, 0, 43, 0, 44, 0, 45, 0, 46, 0, 44, 0, 46, 0, 47, 0, 48, 0, 49, 0, 50, 0, 48, 0, 50, 0, 51, 0, 52, 0, 53, 0, 54, 0, 52, 0, 54, 0, 55, 0, 56, 0, 57, 0, 58, 0, 56, 0, 58, 0, 59, 0, 60, 0, 61, 0, 62, 0, 60, 0, 62, 0, 63, 0, 64, 0, 65, 0, 66, 0, 64, 0, 66, 0, 67, 0, 68, 0, 69, 0, 70, 0, 68, 0, 70, 0, 71, 0, 72, 0, 73, 0, 74, 0, 72, 0, 74, 0, 75, 0, 76, 0, 77, 0, 78, 0, 76, 0, 78, 0, 79, 0, 80, 0, 81, 0, 82, 0, 80, 0, 82, 0, 83, 0, 84, 0, 85, 0, 86, 0, 84, 0, 86, 0, 87, 0, 88, 0, 89, 0, 90, 0, 88, 0, 90, 0, 91, 0, 92, 0, 93, 0, 94, 0, 92, 0, 94, 0, 95, 0, 96, 0, 97, 0, 98, 0, 96, 0, 98, 0, 99, 0, 100, 0, 101, 0, 102, 0, 100, 0, 102, 0, 103, 0, 104, 0, 105, 0, 106, 0, 104, 0, 106, 0, 107, 0, 108, 0, 109, 0, 110, 0, 108, 0, 110, 0, 111, 0, 112, 0, 113, 0, 114, 0, 112, 0, 114, 0, 115, 0, 116, 0, 117, 0, 118, 0, 116, 0, 118, 0, 119, 0),
-"material": ExtResource("13_muntg"),
+"material": ExtResource("8_qpff1"),
 "name": "metal/metal_2",
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
@@ -274,7 +275,7 @@ _surfaces = [{
 "format": 34359742487,
 "index_count": 216,
 "index_data": PackedByteArray(0, 0, 1, 0, 2, 0, 0, 0, 2, 0, 3, 0, 4, 0, 5, 0, 6, 0, 4, 0, 6, 0, 7, 0, 8, 0, 9, 0, 10, 0, 8, 0, 10, 0, 11, 0, 12, 0, 13, 0, 14, 0, 12, 0, 14, 0, 15, 0, 16, 0, 17, 0, 18, 0, 16, 0, 18, 0, 19, 0, 20, 0, 21, 0, 22, 0, 20, 0, 22, 0, 23, 0, 24, 0, 25, 0, 26, 0, 24, 0, 26, 0, 27, 0, 28, 0, 29, 0, 30, 0, 28, 0, 30, 0, 31, 0, 32, 0, 33, 0, 34, 0, 32, 0, 34, 0, 35, 0, 36, 0, 37, 0, 38, 0, 36, 0, 38, 0, 39, 0, 40, 0, 41, 0, 42, 0, 40, 0, 42, 0, 43, 0, 44, 0, 45, 0, 46, 0, 44, 0, 46, 0, 47, 0, 48, 0, 49, 0, 50, 0, 48, 0, 50, 0, 51, 0, 52, 0, 53, 0, 54, 0, 52, 0, 54, 0, 55, 0, 56, 0, 57, 0, 58, 0, 56, 0, 58, 0, 59, 0, 60, 0, 61, 0, 62, 0, 60, 0, 62, 0, 63, 0, 64, 0, 65, 0, 66, 0, 64, 0, 66, 0, 67, 0, 68, 0, 69, 0, 70, 0, 68, 0, 70, 0, 71, 0, 72, 0, 73, 0, 74, 0, 72, 0, 74, 0, 75, 0, 76, 0, 77, 0, 78, 0, 76, 0, 78, 0, 79, 0, 80, 0, 81, 0, 82, 0, 80, 0, 82, 0, 83, 0, 84, 0, 85, 0, 86, 0, 84, 0, 86, 0, 87, 0, 88, 0, 89, 0, 90, 0, 88, 0, 90, 0, 91, 0, 92, 0, 93, 0, 94, 0, 92, 0, 94, 0, 95, 0, 96, 0, 97, 0, 98, 0, 96, 0, 98, 0, 99, 0, 100, 0, 101, 0, 102, 0, 100, 0, 102, 0, 103, 0, 104, 0, 105, 0, 106, 0, 104, 0, 106, 0, 107, 0, 108, 0, 109, 0, 110, 0, 108, 0, 110, 0, 111, 0, 112, 0, 113, 0, 114, 0, 112, 0, 114, 0, 115, 0, 116, 0, 117, 0, 118, 0, 116, 0, 118, 0, 119, 0, 120, 0, 121, 0, 122, 0, 120, 0, 122, 0, 123, 0, 124, 0, 125, 0, 126, 0, 124, 0, 126, 0, 127, 0, 128, 0, 129, 0, 130, 0, 128, 0, 130, 0, 131, 0, 132, 0, 133, 0, 134, 0, 132, 0, 134, 0, 135, 0, 136, 0, 137, 0, 138, 0, 136, 0, 138, 0, 139, 0, 140, 0, 141, 0, 142, 0, 140, 0, 142, 0, 143, 0),
-"material": ExtResource("13_muntg"),
+"material": ExtResource("8_qpff1"),
 "name": "metal/metal_2",
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
@@ -302,7 +303,7 @@ points = PackedVector3Array(-0.166666, 0.1, 0.15, -0.166666, -0.35, 0.15, -0.116
 
 [sub_resource type="Resource" id="Resource_r5vvs"]
 resource_local_to_scene = true
-script = ExtResource("11_hh747")
+script = ExtResource("14_2osd1")
 weapon_category_name = ""
 magazine_size = 30
 rpm = 800
@@ -313,25 +314,24 @@ ads_accel = 10.0
 ads_fov = 50.0
 moa = 4.0
 turn_speed = 25.0
-ammo_type = ExtResource("10_q80ko")
+ammo_type = ExtResource("13_6y1ui")
 reload_time_Sec = 2.5
 reload_thresholds = Array[float]([1.0])
 
-[node name="Node3d" type="Node3D"]
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+[node name="WorldEnvironment" type="WorldEnvironment"]
 environment = SubResource("Environment_l5pxq")
+script = ExtResource("1_u7jiy")
 
 [node name="DirectionalLight3d" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.966349, 0.250904, -0.0567091, 0.182362, -0.512743, 0.838951, 0.181419, -0.821061, -0.541244, -0.00693703, 59.5145, -109.348)
+transform = Transform3D(0.966349, 0.250904, -0.056709, 0.182362, -0.512743, 0.838951, 0.181419, -0.821061, -0.541244, -0.00693703, 59.5145, -109.348)
 light_energy = 1.232
 light_indirect_energy = 0.884
 light_volumetric_fog_energy = 0.768
 shadow_enabled = true
 
 [node name="MultiAgentNavigationRoot" type="Node3D" parent="."]
-script = ExtResource("2_cimua")
-navigation_mesh_list_items = Array[Resource("res://levels/navigation_mesh_list_item.gd")]([ExtResource("2_mvgx8"), ExtResource("3_pa7d4")])
+script = ExtResource("1_byd04")
+navigation_mesh_list_items = Array[Resource("res://levels/navigation_mesh_list_item.gd")]([ExtResource("2_h8m1e"), ExtResource("3_pg0hk")])
 
 [node name="Floor" type="CSGBox3D" parent="MultiAgentNavigationRoot"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.42017, 0)
@@ -927,7 +927,7 @@ size = Vector3(1, 0.39, 0.00656128)
 [node name="entity_182_geo_ballistic_solid" type="StaticBody3D" parent="MultiAgentNavigationRoot"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.50643, 0.410878, 2.11946)
 collision_layer = 3
-script = ExtResource("9_q4meu")
+script = ExtResource("4_nqjvf")
 func_godot_properties = {
 "_phong": false,
 "_tb_group": "30",
@@ -938,9 +938,9 @@ func_godot_properties = {
 }
 _pen_ratio = 0.4
 _armor_rating = 8
-_bullet_hole_scene = ExtResource("10_hbfhv")
-_impact_hit_scene = ExtResource("11_ux6j8")
-_footstep_sound = ExtResource("12_gwmm8")
+_bullet_hole_scene = ExtResource("5_n6spi")
+_impact_hit_scene = ExtResource("6_xa1yv")
+_footstep_sound = ExtResource("7_lpope")
 
 [node name="entity_182_mesh_instance" type="MeshInstance3D" parent="MultiAgentNavigationRoot/entity_182_geo_ballistic_solid"]
 mesh = SubResource("ArrayMesh_vkyxa")
@@ -966,7 +966,7 @@ shape = SubResource("ConvexPolygonShape3D_emg7s")
 [node name="entity_181_geo_ballistic_solid" type="StaticBody3D" parent="MultiAgentNavigationRoot"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.52835, 0.604226, -2.76415)
 collision_layer = 3
-script = ExtResource("9_q4meu")
+script = ExtResource("4_nqjvf")
 func_godot_properties = {
 "_phong": false,
 "_tb_group": "29",
@@ -977,9 +977,9 @@ func_godot_properties = {
 }
 _pen_ratio = 0.4
 _armor_rating = 8
-_bullet_hole_scene = ExtResource("10_hbfhv")
-_impact_hit_scene = ExtResource("11_ux6j8")
-_footstep_sound = ExtResource("12_gwmm8")
+_bullet_hole_scene = ExtResource("5_n6spi")
+_impact_hit_scene = ExtResource("6_xa1yv")
+_footstep_sound = ExtResource("7_lpope")
 
 [node name="entity_181_mesh_instance" type="MeshInstance3D" parent="MultiAgentNavigationRoot/entity_181_geo_ballistic_solid"]
 mesh = SubResource("ArrayMesh_qnlpr")
@@ -1002,7 +1002,7 @@ shape = SubResource("ConvexPolygonShape3D_cm4fq")
 [node name="entity_182_geo_ballistic_solid2" type="StaticBody3D" parent="MultiAgentNavigationRoot"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.74501, 0.464226, -3.96415)
 collision_layer = 3
-script = ExtResource("9_q4meu")
+script = ExtResource("4_nqjvf")
 func_godot_properties = {
 "_phong": false,
 "_tb_group": "30",
@@ -1013,9 +1013,9 @@ func_godot_properties = {
 }
 _pen_ratio = 0.4
 _armor_rating = 8
-_bullet_hole_scene = ExtResource("10_hbfhv")
-_impact_hit_scene = ExtResource("11_ux6j8")
-_footstep_sound = ExtResource("12_gwmm8")
+_bullet_hole_scene = ExtResource("5_n6spi")
+_impact_hit_scene = ExtResource("6_xa1yv")
+_footstep_sound = ExtResource("7_lpope")
 
 [node name="entity_182_mesh_instance" type="MeshInstance3D" parent="MultiAgentNavigationRoot/entity_182_geo_ballistic_solid2"]
 mesh = SubResource("ArrayMesh_i8gn1")
@@ -1041,7 +1041,7 @@ shape = SubResource("ConvexPolygonShape3D_f2mfs")
 [node name="entity_134_geo_ballistic_solid" type="StaticBody3D" parent="MultiAgentNavigationRoot"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.7302, 1.69798, 9.19444)
 collision_layer = 3
-script = ExtResource("9_q4meu")
+script = ExtResource("4_nqjvf")
 func_godot_properties = {
 "_phong": false,
 "classname": "geo_ballistic_solid",
@@ -1051,9 +1051,9 @@ func_godot_properties = {
 }
 _pen_ratio = 0.4
 _armor_rating = 8
-_bullet_hole_scene = ExtResource("10_hbfhv")
-_impact_hit_scene = ExtResource("11_ux6j8")
-_footstep_sound = ExtResource("12_gwmm8")
+_bullet_hole_scene = ExtResource("5_n6spi")
+_impact_hit_scene = ExtResource("6_xa1yv")
+_footstep_sound = ExtResource("7_lpope")
 
 [node name="entity_134_mesh_instance" type="MeshInstance3D" parent="MultiAgentNavigationRoot/entity_134_geo_ballistic_solid"]
 mesh = SubResource("ArrayMesh_2c4ak")
@@ -1133,7 +1133,7 @@ shape = SubResource("ConvexPolygonShape3D_1v81q")
 [node name="entity_181_geo_ballistic_solid2" type="StaticBody3D" parent="MultiAgentNavigationRoot"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.90644, 0.560337, 11.3706)
 collision_layer = 3
-script = ExtResource("9_q4meu")
+script = ExtResource("4_nqjvf")
 func_godot_properties = {
 "_phong": false,
 "_tb_group": "29",
@@ -1144,9 +1144,9 @@ func_godot_properties = {
 }
 _pen_ratio = 0.4
 _armor_rating = 8
-_bullet_hole_scene = ExtResource("10_hbfhv")
-_impact_hit_scene = ExtResource("11_ux6j8")
-_footstep_sound = ExtResource("12_gwmm8")
+_bullet_hole_scene = ExtResource("5_n6spi")
+_impact_hit_scene = ExtResource("6_xa1yv")
+_footstep_sound = ExtResource("7_lpope")
 
 [node name="entity_181_mesh_instance" type="MeshInstance3D" parent="MultiAgentNavigationRoot/entity_181_geo_ballistic_solid2"]
 mesh = SubResource("ArrayMesh_il4vs")
@@ -1169,7 +1169,7 @@ shape = SubResource("ConvexPolygonShape3D_bs54w")
 [node name="entity_182_geo_ballistic_solid3" type="StaticBody3D" parent="MultiAgentNavigationRoot"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.10255, 0.420337, 10.1706)
 collision_layer = 3
-script = ExtResource("9_q4meu")
+script = ExtResource("4_nqjvf")
 func_godot_properties = {
 "_phong": false,
 "_tb_group": "30",
@@ -1180,9 +1180,9 @@ func_godot_properties = {
 }
 _pen_ratio = 0.4
 _armor_rating = 8
-_bullet_hole_scene = ExtResource("10_hbfhv")
-_impact_hit_scene = ExtResource("11_ux6j8")
-_footstep_sound = ExtResource("12_gwmm8")
+_bullet_hole_scene = ExtResource("5_n6spi")
+_impact_hit_scene = ExtResource("6_xa1yv")
+_footstep_sound = ExtResource("7_lpope")
 
 [node name="entity_182_mesh_instance" type="MeshInstance3D" parent="MultiAgentNavigationRoot/entity_182_geo_ballistic_solid3"]
 mesh = SubResource("ArrayMesh_m4dra")
@@ -1205,33 +1205,33 @@ shape = SubResource("ConvexPolygonShape3D_s8533")
 [node name="entity_182_brush_5_collision_shape" type="CollisionShape3D" parent="MultiAgentNavigationRoot/entity_182_geo_ballistic_solid3"]
 shape = SubResource("ConvexPolygonShape3D_2cpg3")
 
-[node name="red_dot" parent="MultiAgentNavigationRoot" instance=ExtResource("8_2b85p")]
+[node name="red_dot" parent="MultiAgentNavigationRoot" instance=ExtResource("11_1bd5n")]
 transform = Transform3D(0.846085, 0.142345, -0.513691, -0.165908, 0.986141, 0, 0.506572, 0.0852256, 0.857975, 0.0414739, 0.58301, 0.16491)
 
-[node name="S5" parent="MultiAgentNavigationRoot" instance=ExtResource("9_7oj7m")]
+[node name="S5" parent="MultiAgentNavigationRoot" instance=ExtResource("12_xisad")]
 transform = Transform3D(0.28034, 0.0823512, -0.956362, -0.224502, -0.963056, -0.148736, -0.933278, 0.256402, -0.251495, 0.524934, 0.92531, -0.402487)
 _gun_stats = SubResource("Resource_r5vvs")
 
-[node name="HicBoxAp" parent="MultiAgentNavigationRoot" instance=ExtResource("15_lbv4t")]
+[node name="HicBoxAp" parent="MultiAgentNavigationRoot" instance=ExtResource("15_lmsku")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.70498, 0.227854, -0.46793)
 
-[node name="HicBoxAp2" parent="MultiAgentNavigationRoot" instance=ExtResource("15_lbv4t")]
+[node name="HicBoxAp2" parent="MultiAgentNavigationRoot" instance=ExtResource("15_lmsku")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.05126, 0.162076, -0.53644)
 
-[node name="FicBoxFmj4" parent="MultiAgentNavigationRoot" node_paths=PackedStringArray("model_node") instance=ExtResource("16_3j2uw")]
+[node name="FicBoxFmj4" parent="MultiAgentNavigationRoot" node_paths=PackedStringArray("model_node") instance=ExtResource("16_bu2t6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.84607, 0.34175, -2.72305)
 model_node = NodePath("../FicBoxFmj/fic_box_fmj")
 
-[node name="FicBoxFmj3" parent="MultiAgentNavigationRoot" node_paths=PackedStringArray("model_node") instance=ExtResource("16_3j2uw")]
+[node name="FicBoxFmj3" parent="MultiAgentNavigationRoot" node_paths=PackedStringArray("model_node") instance=ExtResource("16_bu2t6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.42712, 0.296506, -2.64761)
 model_node = NodePath("../FicBoxFmj/fic_box_fmj")
 
-[node name="FicBoxFmj2" parent="MultiAgentNavigationRoot" node_paths=PackedStringArray("model_node") instance=ExtResource("16_3j2uw")]
+[node name="FicBoxFmj2" parent="MultiAgentNavigationRoot" node_paths=PackedStringArray("model_node") instance=ExtResource("16_bu2t6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.99314, 0.425356, -3.05)
 model_node = NodePath("../FicBoxFmj/fic_box_fmj")
 
-[node name="FicBoxFmj" parent="MultiAgentNavigationRoot" instance=ExtResource("16_3j2uw")]
+[node name="FicBoxFmj" parent="MultiAgentNavigationRoot" instance=ExtResource("16_bu2t6")]
 transform = Transform3D(1, 0, 0, 0, -0.491436, -0.870914, 0, 0.870914, -0.491436, 7.17928, 0.542317, -3.66029)
 
-[node name="Player" parent="." instance=ExtResource("1_eisjc")]
+[node name="Player" parent="." instance=ExtResource("17_3smmv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.48035, 1.04626, -2.63506)

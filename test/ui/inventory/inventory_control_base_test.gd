@@ -13,6 +13,8 @@ var test_inventory:Inventory = load("res://test/resource_access/test_inventory.t
 
 func before_test():
 	InventoryManager._clear_inventories()
+	ItemAccess._clear_items()
+	test_inventory._is_setup = false
 
 func test__on_populate_level() -> void:
 	#arrange
@@ -96,3 +98,5 @@ func test_restored_inventories_picks_up_items() -> void:
 	
 func after_test():
 	InventoryManager._clear_inventories()
+	ItemAccess._clear_items()
+	test_inventory._is_setup = false

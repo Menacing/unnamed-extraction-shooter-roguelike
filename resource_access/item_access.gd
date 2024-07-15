@@ -183,6 +183,9 @@ func _on_game_saving(save_file:SaveFile):
 	pass
 
 func _on_game_before_loading():
+	_clear_items()
+	
+func _clear_items():
 	item_instances = {}
 	item_3ds = {}
 	item_controls = {}

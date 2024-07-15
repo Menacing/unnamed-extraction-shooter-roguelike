@@ -5,19 +5,20 @@ extends Node
 func quick_save():
 	save_game("quicksave")
 
-func save_game(file_name:String):
+func save_game(file_name:String) -> SaveFile:
 	
 	var new_save_file = SaveFile.new()
 	new_save_file.game_version = ProjectSettings.get_setting("application/config/version")
 	EventBus.game_saving.emit(new_save_file)
 	
-	
 	ResourceSaver.save(new_save_file, "user://"+file_name+".tres")
 	
 	EventBus.create_message.emit("quick_save_message", "Game Saved", 5.0)
 	EventBus.game_saved.emit()
+	
+	return new_save_file
 
-func load_game(file_path:String):
+func load_game(file_path:String) -> SaveFile:
 	## fix any paths that may be broken after a game update
 	#var fixed_path = PathFixer.fix_paths("user://savegame.tres")
 	#print("Loading from ", fixed_path )
@@ -54,6 +55,8 @@ func load_game(file_path:String):
 	await InventoryManager.inventories_restored
 	print("finished loading!")
 	EventBus.game_loaded.emit()
+	
+	return saved_game
 
 func quick_load():
 	load_game("user://quicksave.tres")

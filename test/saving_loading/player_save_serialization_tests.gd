@@ -4,10 +4,11 @@ var player_scene:PackedScene = load("res://game_objects/player/player.tscn")
 var player:Player
 var loaded_player:Player
 var test_save_filename:String = "user://test_player_values_save_and_load_correctly.tres"
+var test_inventory:Inventory = load("res://test/resource_access/test_inventory.tres")
+var item_info:ItemInformation = load("res://game_objects/items/materials/polymer_pile/polymer_pile_inventory_info.tres")
 
-
-
-func before():
+func before_test():
+	InventoryManager._clear_inventories()
 	player = player_scene.instantiate()
 	self.add_child(player)
 	loaded_player = player_scene.instantiate()
@@ -69,7 +70,59 @@ func test_values_save_and_load_correctly() -> void:
 	assert_float(loaded_player.health_component.main_loc.current_health).is_equal(player.health_component.main_loc.current_health)
 	assert_int(loaded_player.ammo_component._ammo_map["Fast Intermediate Cartdridge"]["Full Metal Jacket"].current_amount).is_equal(player.ammo_component._ammo_map["Fast Intermediate Cartdridge"]["Full Metal Jacket"].current_amount)
 
+func test_inventory_saving_and_loading() -> void:
+	#saving
+	#arrange
+	var new_save_file = SaveFile.new()
+	var initial_player_inventory_id:int = player.player_inventory_id
+	
+	#act
+	EventBus.populate_level.emit()
+	var populated_player_inventory_id:int = player.player_inventory_id
+	player._on_game_saving(new_save_file)
+	
+	#assert
+	assert_int(populated_player_inventory_id).is_not_equal(initial_player_inventory_id)
+	var player_save_data:SaveData = new_save_file.save_data[0]
+	var saved_player_inventory_id = player_save_data.additional_data["player_inventory_id"]
+	assert_int(saved_player_inventory_id).is_equal(populated_player_inventory_id)
+	
+	#loading
+	#arrange
+	var loaded_player_data:SaveData = player_save_data
+	var initial_loaded_player_inventory_id:int = loaded_player.player_inventory_id
+	var loaded_inventory:Inventory = test_inventory.duplicate(true)
+	loaded_inventory.setup()
+	var item_instance:ItemInstance = ItemInstance.new(item_info)
+	var test_item_instance_id:int = item_instance.item_instance_id
+	loaded_inventory.grid_slots[0][0] = test_item_instance_id
+	loaded_player_data.additional_data["player_inventory_id"] = loaded_inventory.inventory_id
+	
+	#act
+	item_instance.spawn_item()
+	loaded_player._on_load_game(loaded_player_data)
+	InventoryManager._restore_inventories.call_deferred()
+	await InventoryManager.inventories_restored
+	#assert
+	assert_int(test_item_instance_id).is_not_equal(0)
+	assert_int(loaded_player.player_inventory_id).is_equal(loaded_inventory.inventory_id)
+	assert_int(loaded_player.player_inventory_id).is_not_equal(initial_loaded_player_inventory_id)
+	
+	var loaded_player_inventory:Inventory = InventoryAccess.get_inventory(loaded_player.player_inventory_id)
+	var loaded_player_inventory_control:InventoryControlBase = loaded_player.get_node("PlayerInventories/MarginContainer/HBoxContainer/PlayerInventoryContainer/TabContainer/EQUIPMENT")
+	assert_object(loaded_player_inventory).is_not_null()
+	#inventory should have a polymer pile at 0,0
+	assert_int(loaded_player_inventory.grid_slots[0][0]).is_equal(item_instance.item_instance_id)
+	#control should have a control under the first panel
+	var inv_grid = loaded_player_inventory_control.get_inventory_grid()
+	assert_object(inv_grid).is_not_null()
+	var first_cell = inv_grid.get_child(0)
+	assert_object(first_cell).is_not_null()
+	assert_int(first_cell.get_child_count()).is_equal(1)
 
-func after():
+func after_test():
 	if player:
 		player.queue_free()
+	if loaded_player:
+		loaded_player.queue_free()
+	InventoryManager._clear_inventories()

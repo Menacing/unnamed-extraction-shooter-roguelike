@@ -57,6 +57,8 @@ signal drop_all_ammo(actor_id:int, type:String, subtype:String)
 signal before_populate_level
 signal populate_level
 signal level_populated
+signal player_spawning
+signal players_spawned
 signal game_saving(save_file:SaveFile)
 signal game_saved
 signal before_game_loading

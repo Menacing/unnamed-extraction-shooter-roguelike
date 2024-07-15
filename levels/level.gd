@@ -28,6 +28,9 @@ func setup_player_spawn():
 	var node_name:String = "%"+selected_extract.targetname
 	var linked_extract:AreaExtract = get_node(node_name)
 	#spawn player there
+	EventBus.player_spawning.emit()
 	var player:Player = player_scene.instantiate()
 	player.global_position = linked_extract.global_position
 	add_child(player)
+	
+	EventBus.players_spawned.emit()

@@ -299,6 +299,7 @@ func _on_game_before_loading():
 	
 func _on_load_game(save_file:SaveFile):
 	for inv:Inventory in save_file.inventories:
+		inv._is_setup = true
 		InventoryAccess.inventories[inv.inventory_id] = inv
 
 ##only call during game save loading

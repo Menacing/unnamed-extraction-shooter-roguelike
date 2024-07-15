@@ -1,4 +1,5 @@
 extends InventoryControlBase
+class_name PlayerInventoryControl
 
 func get_inventory_grid() -> InventoryGridContainer:
 	return $PanelContainer/InventoryBase/PanelContainer/InventoryGrid
@@ -8,7 +9,11 @@ func _ready():
 	super()
 	EventBus.inventory_size_changed.connect(_on_inventory_size_changed)
 	EventBus.item_removed_from_slot.connect(_on_item_removed_from_slot)
-	
+	EventBus.players_spawned.connect(_on_player_spawned)
+
+
+func _on_player_spawned():
+	setup_inventory_from_model()
 		
 func _on_item_removed_from_slot(item_inst:ItemInstance, inventory_id:int, slot_name:String):
 	if inventory_id == _inventory.inventory_id:

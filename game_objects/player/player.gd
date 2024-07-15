@@ -145,7 +145,11 @@ var toggle_crouch_f: bool = false
 var toggle_prone_f: bool = false
 var toggle_inv_f: bool = false
 var legs_destroyed: bool = false
-@onready var player_inventory_id = $PlayerInventories.player_inventory_id
+var player_inventory_id:
+	get: 
+		return $PlayerInventories.player_inventory_id
+	set(value):
+		$PlayerInventories.player_inventory_id = value
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
@@ -162,7 +166,7 @@ func _ready():
 	if gun_scene1:
 		equipped_gun = gun_scene1.instantiate()
 		#TODO: Pull these from the packed scene instead of being hardcoded
-		#pick_up_gun(equipped_gun)
+		#pick_up_gun(equipped_gun)item_inst
 	if gun_scene2:
 		shoulder_gun = gun_scene2.instantiate()
 		#TODO: Pull these from the packed scene instead of being hardcoded
