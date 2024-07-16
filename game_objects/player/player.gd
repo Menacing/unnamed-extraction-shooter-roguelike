@@ -496,6 +496,8 @@ func _on_game_saving(save_file:SaveFile):
 	if save_file:
 		var player_information:TopLevelEntitySaveData = TopLevelEntitySaveData.new()
 		player_information.global_transform = self.global_transform
+		player_information.additional_data["v_rot_acc"] = v_rot_acc
+		player_information.additional_data["h_rot_acc"] = h_rot_acc
 		#player_information.path_to_parent = self.get_parent().get_path()
 		player_information.scene_path = self.scene_file_path
 		
@@ -521,6 +523,8 @@ func _on_game_before_loading():
 func _on_load_game(save_data:TopLevelEntitySaveData):
 	if save_data:
 		self.global_transform = save_data.global_transform
+		v_rot_acc = save_data.additional_data["v_rot_acc"]
+		h_rot_acc = save_data.additional_data["h_rot_acc"]
 		
 		player_inventory_id = save_data.additional_data["player_inventory_id"]
 		

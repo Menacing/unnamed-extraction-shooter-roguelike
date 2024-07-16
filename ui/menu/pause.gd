@@ -4,6 +4,8 @@ extends ColorRect
 @onready var quit_button:Button = %quit_game_button
 @onready var options_button:Button = %options_button
 
+@onready var save_dialog_scene:PackedScene = load("res://ui/menu/save_dialog.tscn")
+
 @export var menu_music_stream:AudioStream
 
 var original_mouse_mode:Input.MouseMode
@@ -23,7 +25,6 @@ func _ready():
 func _process(_delta):
 	pass
 
-
 func unpause():
 	get_tree().paused = false
 	Input.mouse_mode = original_mouse_mode
@@ -42,3 +43,12 @@ func _on_visibility_changed():
 	else:
 		unpause()
 	pass
+
+
+func _on_save_button_pressed():
+	var save_dialog = save_dialog_scene.instantiate()
+	get_parent().add_child(save_dialog)
+	save_dialog.top_level = true
+
+func _on_load_button_pressed():
+	pass # Replace with function body.

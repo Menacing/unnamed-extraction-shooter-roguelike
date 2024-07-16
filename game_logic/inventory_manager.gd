@@ -239,13 +239,14 @@ func set_inventory_size(inventory_id:int, size:Vector2i) -> void:
 	for cw in range(current_width):
 		for ch in range(current_height):
 			#if old spot doesn't exist, trigger drop of item
-			var item_inst =  old_dictionary[cw][ch]
-			if cw > size.x or ch > size.y and item_inst:
+			var item_inst_id = old_dictionary[cw][ch]
+			if cw > size.x or ch > size.y and item_inst_id:
+				var item_inst:ItemInstance = ItemAccess.get_item_instance(item_inst_id)
 				var original_inventory_id = item_inst.current_inventory_id
 				remove_item(item_inst.item_instance_id, inventory_id)
 				EventBus.drop_item.emit(item_inst, original_inventory_id)
-			elif item_inst:
-				new_dictionary[cw][ch] = item_inst
+			elif item_inst_id:
+				new_dictionary[cw][ch] = item_inst_id
 	
 	#set new dictionary
 	inventory.grid_slots = new_dictionary
