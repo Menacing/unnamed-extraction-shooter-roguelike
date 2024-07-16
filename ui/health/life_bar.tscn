@@ -1,8 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://bb7ue7ms53vhu"]
+[gd_scene load_steps=10 format=3 uid="uid://bb7ue7ms53vhu"]
 
 [ext_resource type="Script" path="res://ui/health/life_bar.gd" id="1_abp2l"]
+[ext_resource type="Texture2D" uid="uid://c0lmj0h81tvt3" path="res://ui/icons/Black/icon_08.png" id="2_6j8ei"]
 [ext_resource type="Texture2D" uid="uid://77kuogct7mab" path="res://themes/arm-icon-bg.png" id="2_m27pa"]
 [ext_resource type="Texture2D" uid="uid://bykx6scq1bf72" path="res://themes/arm-icon.png" id="3_1pf7v"]
+[ext_resource type="Texture2D" uid="uid://dkntkp6xwyko6" path="res://ui/icons/White/icon_08.png" id="3_cthvx"]
 [ext_resource type="Texture2D" uid="uid://b2rsqvox7l27v" path="res://themes/torso-icon-bg.png" id="4_neibg"]
 [ext_resource type="Texture2D" uid="uid://csyxjrsgb8ug3" path="res://themes/TorsoIcon.png" id="5_5rxpg"]
 [ext_resource type="Texture2D" uid="uid://dn20mhl0kep1r" path="res://themes/leg-icon-bg.png" id="6_gi2bq"]
@@ -27,6 +29,62 @@ script = ExtResource("1_abp2l")
 custom_minimum_size = Vector2(400, 150)
 layout_mode = 2
 alignment = 2
+
+[node name="armor_display" type="HBoxContainer" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+size_flags_vertical = 8
+
+[node name="armor_tex_bar" type="TextureProgressBar" parent="VBoxContainer/armor_display"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+value = 100.0
+fill_mode = 3
+nine_patch_stretch = true
+texture_under = ExtResource("2_6j8ei")
+texture_progress = ExtResource("3_cthvx")
+
+[node name="armor_bar_container" type="CenterContainer" parent="VBoxContainer/armor_display"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/armor_display/armor_bar_container"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/armor_display/armor_bar_container/HBoxContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+texture = ExtResource("3_cthvx")
+stretch_mode = 5
+
+[node name="LifeBar" type="ProgressBar" parent="VBoxContainer/armor_display/armor_bar_container/HBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_vertical = 4
+value = 100.0
+fill_mode = 1
+
+[node name="armor_text_container" type="PanelContainer" parent="VBoxContainer/armor_display"]
+layout_mode = 2
+
+[node name="armor_text_hbox_container" type="HBoxContainer" parent="VBoxContainer/armor_display/armor_text_container"]
+layout_mode = 2
+
+[node name="armor_health_label" type="Label" parent="VBoxContainer/armor_display/armor_text_container/armor_text_hbox_container"]
+layout_mode = 2
+text = "armor"
+uppercase = true
+
+[node name="current_health_label" type="Label" parent="VBoxContainer/armor_display/armor_text_container/armor_text_hbox_container"]
+layout_mode = 2
+text = "100"
+
+[node name="health_divider" type="Label" parent="VBoxContainer/armor_display/armor_text_container/armor_text_hbox_container"]
+layout_mode = 2
+text = "/"
+
+[node name="max_health_label" type="Label" parent="VBoxContainer/armor_display/armor_text_container/armor_text_hbox_container"]
+layout_mode = 2
+text = "100"
 
 [node name="arm_life_display" type="HBoxContainer" parent="VBoxContainer"]
 custom_minimum_size = Vector2(0, 50)

@@ -29,7 +29,6 @@ signal item_control_quick_transfer(item_control:ItemControl)
 
 #Health Events
 signal took_damage(damage:float, hit_origin:Vector3)
-signal player_health_pulse(health:Array[HealthLocation])
 signal health_changed(actor_id:int, location:HealthLocation.HEALTH_LOCATION, \
 	current_health:float, max_health:float)
 signal location_hit(actor_id:int, location:HealthLocation.HEALTH_LOCATION, \
