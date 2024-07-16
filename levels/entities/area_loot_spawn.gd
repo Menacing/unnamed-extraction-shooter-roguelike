@@ -27,8 +27,11 @@ var current_shuffle_bag:Array[LootSpawnInformation] = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	add_to_group("loot_spawn_area")
+	add_to_group("loot_spawn_area",true)
+	if not Engine.is_editor_hint():
+		EventBus.populate_level.connect(_on_populate_level)
 	
+func _on_populate_level():
 	var loot_spawn_mapping:LootSpawnMapping = LootSpawnManager.get_loot_spawn_mapping(biome_index,tier_index)
 	
 	randomize()
@@ -73,7 +76,7 @@ func _ready():
 			if loc_free:
 				var scene = item_info.item_3d_scene.instantiate()
 				scene.set_as_top_level(true)		
-				get_parent().add_child.call_deferred(scene)
+				LevelManager.add_node_to_level.call_deferred(scene)
 				scene.set_global_position.call_deferred(try_pos + self.global_position)
 				var random_rotation = Vector3(randf_range(0,360),randf_range(0,360),randf_range(0,360))
 				scene.set_rotation_degrees.call_deferred(random_rotation)

@@ -10,7 +10,7 @@ func _ready():
 
 func _can_drop_data(_at_position, data) -> bool:
 	var item_instance_id:int = data["item_instance_id"]
-	var target_inventory_id = parent_inventory_control_base._inventory.get_instance_id()
+	var target_inventory_id = parent_inventory_control_base._inventory.inventory_id
 	var number_to_drop:int = 0
 	if data.has("number_to_drop"):
 		number_to_drop = data["number_to_drop"]
@@ -25,7 +25,7 @@ func _can_drop_data(_at_position, data) -> bool:
 func _drop_data(_at_position, data):
 	print(data)	
 	var item_instance_id:int = data["item_instance_id"]
-	var target_inventory_id = parent_inventory_control_base._inventory.get_instance_id()
+	var target_inventory_id = parent_inventory_control_base._inventory.inventory_id
 	var number_to_drop:int = 0
 	if data.has("number_to_drop"):
 		number_to_drop = data["number_to_drop"]

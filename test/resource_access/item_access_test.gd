@@ -10,11 +10,10 @@ const __source = 'res://resource_access/item_access.gd'
 
 func test_combine_stacks_fully_combined() -> void:
 	#arrange
-	var _itemAccess = ItemAccess.new()
+	var _itemAccess = ItemAccess
 	var item_info:ItemInformation = ItemInformation.new()
 	item_info.row_span = 1
 	item_info.column_span = 2
-	item_info.item_type_id = 1
 	item_info.max_stacks = 5
 	item_info.has_stacks = true
 	var item1:ItemInstance = ItemInstance.new(item_info)
@@ -32,11 +31,10 @@ func test_combine_stacks_fully_combined() -> void:
 
 func test_combine_stacks_too_much_amount() -> void:
 	#arrange
-	var _itemAccess = ItemAccess.new()
+	var _itemAccess = ItemAccess
 	var item_info:ItemInformation = ItemInformation.new()
 	item_info.row_span = 1
 	item_info.column_span = 2
-	item_info.item_type_id = 1
 	item_info.max_stacks = 5
 	item_info.has_stacks = true
 	var item1:ItemInstance = ItemInstance.new(item_info)
@@ -56,11 +54,10 @@ func test_combine_stacks_too_much_amount() -> void:
 
 func test_combine_stacks_too_much_destination() -> void:
 	#arrange
-	var _itemAccess = ItemAccess.new()
+	var _itemAccess = ItemAccess
 	var item_info:ItemInformation = ItemInformation.new()
 	item_info.row_span = 1
 	item_info.column_span = 2
-	item_info.item_type_id = 1
 	item_info.max_stacks = 5
 	item_info.has_stacks = true
 	var item1:ItemInstance = ItemInstance.new(item_info)
@@ -81,11 +78,10 @@ func test_combine_stacks_too_much_destination() -> void:
 
 func test_clone_instance() -> void:
 	#arrange
-	var _itemAccess = ItemAccess.new()
+	var _itemAccess = ItemAccess
 	var item_info:ItemInformation = ItemInformation.new()
 	item_info.row_span = 1
 	item_info.column_span = 2
-	item_info.item_type_id = 1
 	item_info.max_stacks = 5
 	item_info.has_stacks = true
 	var item1:ItemInstance = ItemInstance.new(item_info)
@@ -93,15 +89,20 @@ func test_clone_instance() -> void:
 	
 	item1.stacks = 5
 	var node1 = ItemControl.new()
-	item1.id_2d = node1.get_instance_id()
+	node1.item_control_id = Helpers.generate_new_id()
+	item1.id_2d = node1.item_control_id
 	
 	#act
 	var dupe:ItemInstance = _itemAccess.clone_instance(item1)
 	
 	#assert
 	assert_bool(dupe != null).is_true()
-	assert_bool(item1.get_instance_id() != dupe.get_instance_id()).is_true()
+	assert_bool(item1.item_instance_id != dupe.item_instance_id).is_true()
 	assert_bool(item1.id_2d != dupe.id_2d).is_true()
 	assert_bool(dupe.id_2d != 0).is_true()
 	assert_bool(item1.stacks == dupe.stacks).is_true()
 	assert_bool(item1.get_height() == dupe.get_height()).is_true()
+
+func after():
+	InventoryManager._on_game_before_loading()
+	ItemAccess._on_game_before_loading()

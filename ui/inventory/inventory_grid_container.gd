@@ -71,7 +71,7 @@ func _can_drop_data(at_position:Vector2, data) -> bool:
 			number_to_drop = datad["number_to_drop"]
 		if datad.has("is_equipped_backpack"):
 			is_equipped_backpack = datad["is_equipped_backpack"]
-		var target_inventory_id:int = parent_inventory_control_base._inventory.get_instance_id()
+		var target_inventory_id:int = parent_inventory_control_base._inventory.inventory_id
 
 		var grid_pos:Vector2 = _get_grid_coordinates_from_local(at_position)
 		#its a stack
@@ -95,7 +95,7 @@ func _drop_data(at_position:Vector2, data):
 	var number_to_drop:int = 0
 	if data.has("number_to_drop"):
 		number_to_drop = data["number_to_drop"]
-	var target_inventory_id = parent_inventory_control_base._inventory.get_instance_id()
+	var target_inventory_id = parent_inventory_control_base._inventory.inventory_id
 
 	var grid_pos = _get_grid_coordinates_from_local(at_position)
 	#its a stack

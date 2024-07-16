@@ -1,6 +1,6 @@
-extends Object
+extends Resource
 class_name AmmoCountInfo
 
-var current_amount:int = 0
-var current_max:int = 0
-var subtype_item_id:String
+@export var current_amount:int = 0
+@export var current_max:int = 0
+@export var subtype_item_id:String

@@ -1,16 +1,23 @@
-extends Object
+extends Resource
 class_name ItemInstance
 
-func _init(item_info:ItemInformation) -> void:
+func _init(item_info:ItemInformation, _item_instance_id = 0) -> void:
 	_item_info = item_info.duplicate(true)
 	if _item_info.item_internal_inventory:
 		_item_info.item_internal_inventory.setup()
-		
-
-var id_3d:int
-var id_2d:int
-var _item_info:ItemInformation
-var _stacks: int
+	
+	if _item_instance_id != 0:
+		item_instance_id = _item_instance_id
+	else:
+		item_instance_id = Helpers.generate_new_id()
+	
+	ItemAccess.add_item_instance(self)
+	
+@export var item_instance_id:int
+@export var id_3d:int
+@export var id_2d:int
+@export var _item_info:ItemInformation
+@export var _stacks: int = 1
 var stacks:int:
 	get:
 		return _stacks
@@ -18,16 +25,16 @@ var stacks:int:
 		_stacks = value
 		EventBus.item_stack_count_changed.emit(self)
 		
-var _durability:int = 1
+@export var _durability:int = 1
 var durability:int:
 	get:
 		return _durability
 	set(value):
 		_durability = value
 		EventBus.item_durability_changed.emit(self)
-var current_inventory_id:int
-var is_rotated:bool
-var is_equipped:bool
+@export var current_inventory_id:int
+@export var is_rotated:bool
+@export var is_equipped:bool
 
 func get_show_name() -> bool:
 	return _item_info.show_name
@@ -84,8 +91,8 @@ func get_item_flavor_text() -> String:
 	return _item_info.flavor_text
 
 ## after you call this you must add the instanced scenes to the scene tree
-func spawn_item() -> void:
-	if _item_info.has_stacks:
+func spawn_item(gen_stacks = true) -> void:
+	if _item_info.has_stacks and gen_stacks:
 		#Default to fun!
 		var stack:int = _item_info.max_stacks
 		if _item_info.stack_random_method == GameplayEnums.StackRandomMethod.RANDOM:
@@ -101,20 +108,23 @@ func spawn_item() -> void:
 
 		stacks = stack
 		
-	if _item_info.item_control_scene and id_2d == 0:
-		_spawn_item_control()
-	if _item_info.item_3d_scene and id_3d == 0:
-		_spawn_item_3d()
+	if _item_info.item_control_scene:
+		if id_2d == 0 or ItemAccess.get_item_control(id_2d) == null:
+			_spawn_item_control()
+		
+	if _item_info.item_3d_scene:
+		if id_3d == 0 or ItemAccess.get_item_3d(id_3d) == null:
+			_spawn_item_3d()
 
 func get_item_3d() -> Item3D:
-	var item_3d:Item3D = instance_from_id(id_3d)
+	var item_3d:Item3D = ItemAccess.get_item_3d(id_3d)
 	if item_3d:
 		return item_3d
 	else:
 		return _spawn_item_3d()
 	
 func get_item_control() -> ItemControl:
-	var item_control:ItemControl = instance_from_id(id_2d)
+	var item_control:ItemControl = ItemAccess.get_item_control(id_2d)
 	if item_control:
 		return item_control
 	else:
@@ -122,14 +132,22 @@ func get_item_control() -> ItemControl:
 
 func _spawn_item_3d() -> Item3D:
 	var item_3d:Item3D = _item_info.item_3d_scene.instantiate()
-	self.id_3d = item_3d.get_instance_id()
-	item_3d.item_instance_id = self.get_instance_id()
+	if self.id_3d != 0:
+		item_3d.item_3d_id = self.id_3d
+	else:
+		item_3d.item_3d_id = Helpers.generate_new_id()
+		self.id_3d = item_3d.item_3d_id
+	item_3d.item_instance_id = item_instance_id
 	return item_3d
 
 func _spawn_item_control() -> ItemControl:
 	var item_control:ItemControl = _item_info.item_control_scene.instantiate()
-	self.id_2d = item_control.get_instance_id()
-	item_control.item_instance_id = self.get_instance_id()
+	if self.id_2d != 0:
+		item_control.item_control_id = self.id_2d
+	else:
+		item_control.item_control_id = Helpers.generate_new_id()
+		self.id_2d = item_control.item_control_id
+	item_control.item_instance_id = item_instance_id
 	return item_control
 
 func get_item_inventory() -> Inventory:

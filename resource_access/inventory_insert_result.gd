@@ -2,7 +2,7 @@ extends Object
 class_name InventoryInsertResult
 
 func _init(item:ItemInstance, _inventory_id:int, _location:InventoryLocationResult) -> void:
-	item_instance_id = item.get_instance_id()
+	item_instance_id = item.item_instance_id
 	inventory_id = _inventory_id
 	location = _location
 

@@ -96,6 +96,9 @@ func duplicate_node_by_id(node_id: int) -> Node:
 	if node_id != 0:
 		original_node = instance_from_id(node_id)
 	
+	return duplicate_node(original_node)
+
+func duplicate_node(original_node:Node) -> Node:
 	# If the node doesn't exist, return null
 	if original_node == null:
 		return null
@@ -106,6 +109,30 @@ func duplicate_node_by_id(node_id: int) -> Node:
 	# Return the duplicated node
 	return duplicated_node
 
+func duplicate_deep_workaround_array(resource_array:Array):
+	var dup = []
+	for i: int in resource_array.size():
+		var val = resource_array[i]
+		if val and val is Resource:
+			dup.append(val.duplicate(true))
+		else:
+			dup.append(val)
+	return dup
+
+func duplicate_deep_workaround_dictionary(resource_dictionary:Dictionary):
+	var dup = {}
+	for key in resource_dictionary:
+		var val = resource_dictionary[key]
+		if val is Array:
+			dup[key] = duplicate_deep_workaround_array(val)
+		elif val is Dictionary:
+			dup[key] = duplicate_deep_workaround_dictionary(val)
+		elif val is Resource:
+			dup[key] = val.duplicate(true)
+		else:
+			dup[key] = val
+	return dup
+	
 func force_parent(child:Node, parent:Node) -> void:
 	if child.get_parent():
 		child.get_parent().remove_child(child)
@@ -182,6 +209,10 @@ func convert_godot_vector_to_quake_vector(gv:Vector3) -> Vector3:
 	qv.z = convert_quake_unit_to_godot_unit(gv.z)
 	return qv
 
+##Hope there aren't collisions!
+func generate_new_id() -> int:
+	return randi()
+	
 func get_normalized_random_stack_count(min_value: int,
 									   mean: int, 
 									   max_value: int, 

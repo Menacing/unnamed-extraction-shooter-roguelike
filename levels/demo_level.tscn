@@ -2,8 +2,8 @@
 
 [ext_resource type="PackedScene" uid="uid://d08aatgxmymbf" path="res://game_objects/player/player.tscn" id="1_eisjc"]
 [ext_resource type="Script" path="res://levels/multi_agent_navigation_root.gd" id="2_cimua"]
-[ext_resource type="Resource" path="res://levels/roomba_nav_mesh.tres" id="2_mvgx8"]
-[ext_resource type="Resource" path="res://levels/humanoid_nav_mesh.tres" id="3_pa7d4"]
+[ext_resource type="Resource" uid="uid://hw8blc564g2i" path="res://levels/roomba_nav_mesh.tres" id="2_mvgx8"]
+[ext_resource type="Resource" uid="uid://bkm06qpqovt7f" path="res://levels/humanoid_nav_mesh.tres" id="3_pa7d4"]
 [ext_resource type="PackedScene" uid="uid://trlm60n2q0k4" path="res://game_objects/items/attachments/scopes/red_dot/red_dot.tscn" id="8_2b85p"]
 [ext_resource type="PackedScene" uid="uid://cprpop5lkmyhe" path="res://game_objects/items/weapons/fic_rifles/s5/s5.tscn" id="9_7oj7m"]
 [ext_resource type="Script" path="res://levels/entities/geo_ballistic_solid.gd" id="9_q4meu"]

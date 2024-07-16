@@ -1,16 +1,17 @@
 extends Node
 class_name HealthComponent
 
-@export var health_locs:Array[HealthLocation]
+##Key: HealthLocation.HEALTH_LOCATION, Value: HealthLocation
+@export var health_locs:Dictionary = {}
 
 @onready var parent_id:int = get_parent().get_instance_id()
 
 var main_loc:HealthLocation
 
 func _ready():
-	for i in range(health_locs.size()):
-		if health_locs[i].location == HealthLocation.HEALTH_LOCATION.MAIN:
-			main_loc = health_locs[i]
+	health_locs = Helpers.duplicate_deep_workaround_dictionary(health_locs)
+	if health_locs.has(HealthLocation.HEALTH_LOCATION.MAIN):
+		main_loc = health_locs[HealthLocation.HEALTH_LOCATION.MAIN]
 			
 	EventBus.location_hit.connect(_on_location_hit)
 	EventBus.healed.connect(_on_healed)
@@ -21,28 +22,27 @@ func _process(delta):
 
 func _on_location_hit(actor_id:int, location:HealthLocation.HEALTH_LOCATION, \
 	damage:float):
-	if actor_id == parent_id:
-		for i in range(health_locs.size()):
-			var loc = health_locs[i]
-			if loc.location == location:
-				var overflow = false
-				var overflow_damage = damage
-				if is_zero_approx(loc.current_health):
+	if actor_id == parent_id and health_locs.has(location):
+		var loc = health_locs[location]
+		if loc.location == location:
+			var overflow = false
+			var overflow_damage = damage
+			if is_zero_approx(loc.current_health):
+				overflow = true
+			else:
+				loc.current_health -= damage
+				if loc.current_health <= 0:
+					EventBus.location_destroyed.emit(parent_id, loc.location)
 					overflow = true
-				else:
-					loc.current_health -= damage
-					if loc.current_health <= 0:
-						EventBus.location_destroyed.emit(parent_id, loc.location)
-						overflow = true
-						overflow_damage = -loc.current_health
-						
-				#handle damage overflow
-				if loc.location != main_loc.location and overflow:
-					loc.current_health = 0
-					main_loc.current_health -= overflow_damage
-					if main_loc.current_health <= 0:
-						EventBus.location_destroyed.emit(parent_id, main_loc.location)
-						main_loc.current_health = 0
+					overflow_damage = -loc.current_health
+					
+			#handle damage overflow
+			if loc.location != main_loc.location and overflow:
+				loc.current_health = 0
+				main_loc.current_health -= overflow_damage
+				if main_loc.current_health <= 0:
+					EventBus.location_destroyed.emit(parent_id, main_loc.location)
+					main_loc.current_health = 0
 
 func _on_healed(actor_id:int, healed:float):
 	if actor_id == parent_id:
@@ -52,7 +52,7 @@ func _on_healed(actor_id:int, healed:float):
 			remainder = _apply_heal(main_loc, healed)
 		if remainder > 0:
 			#if we have overheal, heal the other locations
-			for i in range(health_locs.size()):
+			for i in health_locs:
 				var loc = health_locs[i]
 				remainder = _apply_heal(loc, remainder)
 				if remainder <= 0:

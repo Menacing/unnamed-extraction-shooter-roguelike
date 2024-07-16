@@ -42,21 +42,32 @@ func _ready():
 	
 	#setup inventory linkages
 	world_inventory_control.container_size = container_size
-	inventory_id = world_inventory_control.inventory_id
-	call_deferred("spawn_loot")
 	EventBus.item_picked_up.connect(_on_item_picked_up)
 	Helpers.apply_material_overlay_to_children(self, item_highlight_m)
-	
+	EventBus.populate_level.connect(_on_populate_level)
+	EventBus.game_saving.connect(_on_game_saving)
 
-func spawn_loot():
-	add_to_group("loot_container")
+func _on_game_saving(save_file:SaveFile):
+	var save_data:LevelEntitySaveData = LevelEntitySaveData.new()
+	save_data.node_path = self.get_path()
+	save_data.additional_data["inventory_id"] = inventory_id
+	save_file.level_entity_save_data.append(save_data)
+	pass
+
+func _on_load_game(save_data:LevelEntitySaveData):
+	inventory_id = save_data.additional_data["inventory_id"]
+	world_inventory_control.inventory_id = inventory_id
+
+func _on_populate_level():
+	add_to_group("loot_container", true)
+	inventory_id = world_inventory_control.inventory_id
 	
 	var loot_spawn_mapping:LootSpawnMapping = LootSpawnManager.get_loot_spawn_mapping(biome_index,tier_index)
 	
 	randomize()
-	var active_roll:float = randf()
-	if active_roll > chance_active:
-		return
+	#var active_roll:float = randf()
+	#if active_roll > chance_active:
+		#return
 	
 	var number_to_spawn = randi_range(min_spawned,max_spawned)
 	var aabb = Helpers.get_aabb_of_node(self)
@@ -109,7 +120,7 @@ func on_inv_closed(player:Player):
 func _on_item_picked_up(result:InventoryInsertResult):
 	if result.inventory_id == inventory_id:
 		var item_instance:ItemInstance = InventoryManager.get_item(result.item_instance_id)
-		var item_3d:Item3D = instance_from_id(item_instance.id_3d)
+		var item_3d:Item3D = ItemAccess.get_item_3d(item_instance.id_3d)
 		Helpers.force_parent(item_3d,self)
 		item_3d.picked_up()
 		item_3d.visible = false

@@ -2,6 +2,8 @@
 extends Resource
 class_name Inventory
 
+@export var inventory_id:int
+
 @export var initial_height:int:
 	get:
 		return initial_height
@@ -10,7 +12,6 @@ class_name Inventory
 		initial_height = value
 var _current_height:int
 
-		
 
 @export var initial_width:int:
 	get:
@@ -22,12 +23,11 @@ var _current_width:int
 
 		
 		
-var grid_slots := {}
+@export var grid_slots := {}
 @export var equipment_slots:Array[EquipmentSlotType] = []
 
 static func get_slot_by_name(inventory:Inventory, slot_name:String) ->EquipmentSlotType:
 	for slot in inventory.equipment_slots:
-		#printt("test:", slot.get_instance_id(), slot.name)
 		if slot.name == slot_name:
 			return slot
 	
@@ -51,6 +51,8 @@ func setup(resetup := false) -> void:
 			for slot in equipment_slots:
 				slots_copy.append(slot.duplicate(true))
 			equipment_slots = slots_copy
+		if inventory_id == 0:
+			inventory_id = Helpers.generate_new_id()
 		_is_setup = true
 		EventBus.add_inventory.emit(self)
 			

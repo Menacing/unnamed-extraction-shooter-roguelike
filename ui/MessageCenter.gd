@@ -19,15 +19,16 @@ func _ready() -> void:
 	EventBus.remove_effect.connect(_on_remove_effect)
 
 func _on_create_message(message_name:String, message_text:String, message_timeout:float):
+	var is_queued_for_deletion = self.is_queued_for_deletion()
 	var message_control:MessageCenterMessage = message_scene.instantiate()
 	message_control.name = message_name
 	if message_timeout > 0.0:
 		#TODO Wire up an auto removal
-		message_box.add_child(message_control)
+		Helpers.force_parent(message_control, message_box)
 		message_control.start_message(message_text.to_upper(), message_timeout)
 		pass
 	else:
-		message_box.add_child(message_control)
+		Helpers.force_parent(message_control, message_box)
 		message_control.update_message(message_text.to_upper())
 	pass
 	

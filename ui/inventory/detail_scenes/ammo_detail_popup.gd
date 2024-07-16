@@ -30,9 +30,9 @@ var item_3d:Item3D:
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	var item_instance:ItemInstance = instance_from_id(item_instance_id)
+	var item_instance:ItemInstance = ItemAccess.get_item_instance(item_instance_id)
 	if item_instance:
-		item_3d = instance_from_id(item_instance.id_3d) as Item3D
+		item_3d = ItemAccess.get_item_3d(item_instance.id_3d) as Item3D
 
 
 func set_internal_inventory(internal_inventory:Inventory):

@@ -145,7 +145,11 @@ var toggle_crouch_f: bool = false
 var toggle_prone_f: bool = false
 var toggle_inv_f: bool = false
 var legs_destroyed: bool = false
-@onready var player_inventory_id = $PlayerInventories.player_inventory_id
+var player_inventory_id:
+	get: 
+		return $PlayerInventories.player_inventory_id
+	set(value):
+		$PlayerInventories.player_inventory_id = value
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
@@ -156,11 +160,13 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 @onready var footstep_component:FootstepComponent = $FootstepComponent
 
+@onready var health_component:HealthComponent = $HealthComponent
+
 func _ready():
 	if gun_scene1:
 		equipped_gun = gun_scene1.instantiate()
 		#TODO: Pull these from the packed scene instead of being hardcoded
-		#pick_up_gun(equipped_gun)
+		#pick_up_gun(equipped_gun)item_inst
 	if gun_scene2:
 		shoulder_gun = gun_scene2.instantiate()
 		#TODO: Pull these from the packed scene instead of being hardcoded
@@ -179,6 +185,8 @@ func _ready():
 	EventBus.ammo_type_changed.connect(_on_ammo_type_changed)
 	EventBus.location_destroyed.connect(_on_location_destroyed)
 	EventBus.location_restored.connect(_on_location_restored)
+	EventBus.game_saving.connect(_on_game_saving)
+	EventBus.before_game_loading.connect(_on_game_before_loading)
 	
 	los_check_locations.append(%HitBox/HeadBoneAttachment/eyes)
 	los_check_locations.append(%HitBox/RightFootBoneAttachment)
@@ -198,7 +206,7 @@ func _on_item_picked_up(result:InventoryInsertResult):
 		
 		send_item_pickup_message(item_instance)
 		
-		var item_3d:Item3D = instance_from_id(item_instance.id_3d)
+		var item_3d:Item3D = ItemAccess.get_item_3d(item_instance.id_3d)
 		Helpers.force_parent(item_3d,self)
 		item_3d.picked_up(get_instance_id())
 		if result.location.location == InventoryLocationResult.LocationType.SLOT:
@@ -238,11 +246,11 @@ func send_item_pickup_message(item_instance:ItemInstance):
 	if item_instance.get_has_stacks():
 		message_text += " " + str(item_instance.stacks)
 		
-	EventBus.create_message.emit("pickup_"+str(item_instance.get_instance_id()), message_text, 2.0)
+	EventBus.create_message.emit("pickup_"+str(item_instance.item_instance_id), message_text, 2.0)
 
 func _on_item_removed_from_slot(item_inst:ItemInstance, inventory_id:int, slot_name:String):
 	if inventory_id == player_inventory_id:
-		var item_3d:Item3D = instance_from_id(item_inst.id_3d)
+		var item_3d:Item3D = ItemAccess.get_item_3d(item_inst.id_3d)
 		if item_3d is Gun:
 			if item_3d == equipped_gun:
 				stop_arms_ik()
@@ -314,7 +322,7 @@ func drop_equipped_gun():
 
 func _on_drop_item(item_inst:ItemInstance, inventory_id:int):
 	if inventory_id == player_inventory_id:
-		var item_3d:Item3D = instance_from_id(item_inst.id_3d)
+		var item_3d:Item3D = ItemAccess.get_item_3d(item_inst.id_3d)
 		Helpers.force_parent(item_3d,get_parent())
 		item_3d.dropped()
 		item_3d.global_position = drop_location.global_position
@@ -413,7 +421,11 @@ func _input(event):
 					selector_request.subtypes.append(request_item)
 				
 				ammo_subtype_selector.start_selection(selector_request) 
-		
+		elif event.is_action_pressed("quick_save"):
+			SaveManager.quick_save()
+		elif event.is_action_pressed("quick_load"):
+			SaveManager.quick_load()
+
 func toggle_inventory():
 	toggle_inv_f = !toggle_inv_f
 	
@@ -480,6 +492,52 @@ func _on_ammo_type_changed(new_type:String, new_subtype:String):
 	equipped_gun._bullet_scene = AmmoLoader.get_ammo_subtype(new_type, new_subtype).bullet_scene
 	ammo_subtype_selector.end_selection()
 	
+func _on_game_saving(save_file:SaveFile):
+	if save_file:
+		var player_information:TopLevelEntitySaveData = TopLevelEntitySaveData.new()
+		player_information.global_transform = self.global_transform
+		player_information.additional_data["v_rot_acc"] = v_rot_acc
+		player_information.additional_data["h_rot_acc"] = h_rot_acc
+		#player_information.path_to_parent = self.get_parent().get_path()
+		player_information.scene_path = self.scene_file_path
+		
+		player_information.additional_data["player_inventory_id"] = player_inventory_id
+		
+		#save health
+		player_information.additional_data["health_info"] = health_component.health_locs
+		#for key in health_component.health_locs:
+			#var health_loc:HealthLocation = health_component.health_locs[key]
+			#player_information.additional_data[health_loc.location] = health_loc.current_health
+
+		#save ammo
+		player_information.additional_data["ammo_map"] = ammo_component._ammo_map
+		player_information.additional_data["active_ammo_type"] = ammo_component._active_ammo_type
+		player_information.additional_data["active_ammo_subtype"] = ammo_component._active_ammo_subtype
+		
+		
+		save_file.top_level_entity_save_data.append(player_information)
+
+func _on_game_before_loading():
+	self.queue_free()
+	
+func _on_load_game(save_data:TopLevelEntitySaveData):
+	if save_data:
+		self.global_transform = save_data.global_transform
+		v_rot_acc = save_data.additional_data["v_rot_acc"]
+		h_rot_acc = save_data.additional_data["h_rot_acc"]
+		
+		player_inventory_id = save_data.additional_data["player_inventory_id"]
+		
+		#load health
+		if save_data.additional_data["health_info"]:
+			health_component.health_locs = save_data.additional_data["health_info"]
+			health_component.main_loc = health_component.health_locs[HealthLocation.HEALTH_LOCATION.MAIN]
+		
+		#load ammo
+		ammo_component._ammo_map = save_data.additional_data["ammo_map"]
+		ammo_component._active_ammo_type = save_data.additional_data["active_ammo_type"] 
+		ammo_component._active_ammo_subtype = save_data.additional_data["active_ammo_subtype"]
+	
 var arm_destroyed_effect:GameplayEffect = load("res://game_objects/player/stat_modifiers/arm_destruction_effect.tres")
 func _on_location_destroyed(actor_id:int, location:HealthLocation.HEALTH_LOCATION):
 	if actor_id == self.get_instance_id():
@@ -517,25 +575,6 @@ func stop_arms_ik():
 	ik_right_hand_fingers.stop()
 	ik_left_hand.stop()
 	ik_left_hand_fingers.stop()
-	
-#var is_transparent: bool = false
-#func make_transparent():
-	#if !is_transparent:
-		#player_mat.distance_fade_mode = BaseMaterial3D.DISTANCE_FADE_PIXEL_DITHER
-		##Pixel dither looks better, but this is another way of doing it
-		##gun_mat.blend_mode = gun_mat.BLEND_MODE_ADD
-		#is_transparent = true
-		#pass
-	#else:
-		#pass
-#
-#func make_opaque():
-	#if is_transparent:
-		#player_mat.distance_fade_mode = BaseMaterial3D.DISTANCE_FADE_DISABLED		
-		##gun_mat.blend_mode = gun_mat.BLEND_MODE_MIX
-		#is_transparent = false
-	#else:
-		#pass
 		
 func calculate_fall_damage(vertical_velocity:float) -> float:
 	var calc_damage = (200.0/6.0*abs(vertical_velocity)) - 300.0
@@ -559,18 +598,6 @@ func die():
 	var death_animation_player:AnimationPlayer = %DeathAnimationPlayer
 	death_animation_player.play("death_spiral")
 	MenuManager.load_menu(MenuManager.MENU_LEVEL.DIED)
-	#print("I am dead")
-	#alive = false
-	#skeleton.animate_physical_bones = true
-	#skeleton.physical_bones_start_simulation()
-	#var damage_vector = last_damage_normal.normalized() * 5
-	#PhysicsServer3D.body_set_state(physical_bone.get_rid(), PhysicsServer3D.BODY_STATE_LINEAR_VELOCITY, damage_vector)
-	#$CollisionShape3D.disabled = true
-	#$CollisionShape3D2.disabled = true
-	#$CollisionShape3D3.disabled = true
-	#$"combat-roomba/Armature/Skeleton3D/Physical Bone Bone/Head/SpotLight3D".visible = false
-	#var behavior_tree:BTPlayer = $BTPlayer
-	#behavior_tree.active = false
 	
 #region Movement Code
 

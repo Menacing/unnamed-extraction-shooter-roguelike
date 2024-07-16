@@ -1,10 +1,9 @@
-extends Object
-class_name InventoryAccess
+extends Node
 
 var inventories:Dictionary = {}
 
 func add_inventory(inventory:Inventory) -> void:
-	inventories[inventory.get_instance_id()] = inventory
+	inventories[inventory.inventory_id] = inventory
 	
 func get_inventory(inventory_id:int) -> Inventory:
 	if inventory_id != 0:
@@ -55,7 +54,7 @@ func can_place_stack_in_slot(item_inst:ItemInstance, inventory_id:int, slot_name
 					return true
 			#check if we can combine stacks
 			else:
-				var destination_item:ItemInstance = ItemAccess.get_item(slot.item_instance_id)
+				var destination_item:ItemInstance = ItemAccess.get_item_instance(slot.item_instance_id)
 				return ItemAccess.can_combine_stacks(item_inst,destination_item)
 		return false
 	else:
@@ -67,7 +66,7 @@ func place_item_in_slot(item_inst:ItemInstance, inventory_id:int, slot_name:Stri
 		var slot:EquipmentSlotType = Inventory.get_slot_by_name(inventory,slot_name)
 		if slot:
 			remove_item(item_inst,item_inst.current_inventory_id)
-			slot.item_instance_id = item_inst.get_instance_id()
+			slot.item_instance_id = item_inst.item_instance_id
 			item_inst.current_inventory_id = inventory_id
 			item_inst.is_equipped = true
 			return true
@@ -83,13 +82,13 @@ func place_stack_in_slot(item_inst:ItemInstance, inventory_id:int, slot_name:Str
 				#if slot empty and we're moving everything in source stack, just move the instance
 				if amount >= item_inst.stacks:
 					remove_item(item_inst,item_inst.current_inventory_id)
-					slot.item_instance_id = item_inst.get_instance_id()
+					slot.item_instance_id = item_inst.item_instance_id
 					item_inst.current_inventory_id = inventory_id
 					return true
 				#else we're moving only some to a new instance
 				else:
 					var new_inst:ItemInstance = ItemAccess.clone_instance(item_inst)
-					slot.item_instance_id = new_inst.get_instance_id()
+					slot.item_instance_id = new_inst.item_instance_id
 					new_inst.current_inventory_id = inventory_id
 					var new_instance_insert_result:InventoryInsertResult = InventoryInsertResult.new(new_inst,inventory_id, InventoryLocationResult.new())
 					new_instance_insert_result.picked_up = true
@@ -101,7 +100,7 @@ func place_stack_in_slot(item_inst:ItemInstance, inventory_id:int, slot_name:Str
 					return false
 			#else we have to combine stacks
 			else:
-				var destination_item:ItemInstance = ItemAccess.get_item(slot.item_instance_id)
+				var destination_item:ItemInstance = ItemAccess.get_item_instance(slot.item_instance_id)
 				var remainder:int = ItemAccess.combine_stacks(item_inst, destination_item, amount)
 				
 				if remainder == 0:
@@ -131,8 +130,8 @@ func can_place_item_in_grid(item_inst:ItemInstance, inventory_id:int, grid_locat
 		#check if there's an item alredy there
 		for i in range(x, x + w):
 			for j in range(y, y + h):
-				var grid_val:ItemInstance = inventory.grid_slots[i][j]
-				if grid_val:
+				var item_inst_id = inventory.grid_slots[i][j]
+				if item_inst_id and item_inst_id != 0 :
 					return false
 		#if nothing is found, the space is clear
 		return true
@@ -159,10 +158,11 @@ func can_place_stack_in_grid(item_inst:ItemInstance, inventory_id:int, grid_loca
 		#check if there's an item alredy there
 		for i in range(x, x + w):
 			for j in range(y, y + h):
-				var grid_val:ItemInstance = inventory.grid_slots[i][j]
-				if grid_val != null:
+				var item_inst_id = inventory.grid_slots[i][j]
+				if item_inst_id != null:
 					#if something is there, check if we can combine stacks
-					if !ItemAccess.can_combine_stacks(item_inst,grid_val):
+					var grid_item_inst:ItemInstance = ItemAccess.get_item_instance(item_inst_id)
+					if !ItemAccess.can_combine_stacks(item_inst,grid_item_inst):
 						return false
 
 		#if nothing is found, the space is clear
@@ -183,7 +183,7 @@ func place_item_in_grid(item_inst:ItemInstance, inventory_id:int, grid_location:
 		var h:int = item_inst.get_height()
 		for i in range(x, x + w):
 			for j in range(y, y + h):
-				inventory.grid_slots[i][j] = item_inst
+				inventory.grid_slots[i][j] = item_inst.item_instance_id
 		return true
 	else:
 		return false
@@ -202,12 +202,13 @@ func place_stack_in_grid(item_inst:ItemInstance, inventory_id:int, grid_location
 		var destination_inst:ItemInstance
 		for i in range(x, x + w):
 			for j in range(y, y + h):
-				var grid_val:ItemInstance = inventory.grid_slots[i][j]
-				if grid_val != null:
+				var item_inst_id = inventory.grid_slots[i][j]
+				if item_inst_id != null:
 					section_empty = false
 					#if we can combine, grab the destination
-					if !destination_inst and ItemAccess.can_combine_stacks(item_inst,grid_val):
-						destination_inst = grid_val
+					var grid_item_inst:ItemInstance = ItemAccess.get_item_instance(item_inst_id)
+					if !destination_inst and ItemAccess.can_combine_stacks(item_inst,grid_item_inst):
+						destination_inst = grid_item_inst
 						
 		#if array empty
 		if section_empty:
@@ -234,7 +235,7 @@ func place_stack_in_grid(item_inst:ItemInstance, inventory_id:int, grid_location
 				item_inst.stacks -= amount
 			for i in range(x, x + w):
 				for j in range(y, y + h):
-					inventory.grid_slots[i][j] = inventory_val
+					inventory.grid_slots[i][j] = inventory_val.item_instance_id
 			return return_val
 		else:
 			var remainder:int = ItemAccess.combine_stacks(item_inst, destination_inst, amount)
@@ -258,8 +259,8 @@ func remove_item_from_grid(item:ItemInstance,  inventory_id:int) -> void:
 	if inventory:
 		for x in range (0, inventory.get_width()):
 			for y in range(0,inventory.get_height()):
-				var cell:ItemInstance = inventory.grid_slots[x][y]
-				if cell is ItemInstance and cell.get_instance_id() == item.get_instance_id():
+				var item_inst_id = inventory.grid_slots[x][y]
+				if item_inst_id == item.item_instance_id:
 					inventory.grid_slots[x][y] = null
 	
 	item.current_inventory_id = 0
@@ -269,10 +270,40 @@ func remove_item_from_slot(item:ItemInstance, inventory_id:int) -> void:
 	var inventory := get_inventory(inventory_id)
 	if inventory:
 		for slot in inventory.equipment_slots:
-			if slot.item_instance_id == item.get_instance_id():
+			if slot.item_instance_id == item.item_instance_id:
 				slot.item_instance_id = 0
 				EventBus.item_removed_from_slot.emit(item, inventory_id, slot.name)
 
 	item.current_inventory_id = 0
 	item.is_equipped = false
+
+##Returns a dictionary of key: item_instance_id value: InventoryInsertResult
+static func _report_inventory_contents(inv:Inventory) -> Dictionary:
+	var result = {}
+	if inv:
+		#iterate grid
+		for x in range (0, inv.get_width()):
+			for y in range(0,inv.get_height()):
+				var item_inst_id = inv.grid_slots[x][y]
+				if item_inst_id:
+					var item_inst = ItemAccess.get_item_instance(item_inst_id)
+					if item_inst and !result.has(item_inst_id):
+						var iir := InventoryInsertResult.new(item_inst, inv.inventory_id, InventoryLocationResult.new())
+						iir.location.location = InventoryLocationResult.LocationType.GRID
+						iir.location.grid_x = x
+						iir.location.grid_y = y
+						iir.picked_up = true
+						result[item_inst_id] = iir
+					
+		#iterate slots
+		for slot in inv.equipment_slots:
+			if slot.item_instance_id != 0:
+				var item_inst:ItemInstance = ItemAccess.get_item_instance(slot.item_instance_id)
+				var pickup_result:InventoryInsertResult = InventoryInsertResult.new(item_inst,inv.inventory_id, InventoryLocationResult.new())
+				pickup_result.location.location = InventoryLocationResult.LocationType.SLOT
+				pickup_result.location.slot_name = slot.name
+				pickup_result.picked_up = true
+				result[slot.item_instance_id] = pickup_result
+	return result
+	
 

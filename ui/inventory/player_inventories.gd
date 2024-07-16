@@ -1,8 +1,13 @@
 extends CanvasLayer
 
 @export var player:Player
-@onready var player_inventory_id = $MarginContainer/HBoxContainer/PlayerInventoryContainer/TabContainer/EQUIPMENT.inventory_id
+@onready var player_inventory_id:int:
+	get:
+		return player_inventory_control.inventory_id
+	set(value):
+		player_inventory_control.inventory_id = value
 @onready var world_inventories_container:Container = $MarginContainer/HBoxContainer/WorldInventoryContainer
+@onready var player_inventory_control:InventoryControlBase = $MarginContainer/HBoxContainer/PlayerInventoryContainer/TabContainer/EQUIPMENT
 
 func _ready():
 	EventBus.add_inventory_to_HUD.connect(_on_add_inventory_to_HUD)

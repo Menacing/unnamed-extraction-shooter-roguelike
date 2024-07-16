@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="ggsInputSetting" load_steps=4 format=3 uid="uid://cgx5uig0yh3lb"]
+
+[ext_resource type="Script" path="res://game_settings/templates/input.gd" id="1_7ogxu"]
+
+[sub_resource type="InputEventKey" id="InputEventKey_68i6u"]
+physical_keycode = 4194336
+
+[sub_resource type="InputEventKey" id="InputEventKey_qimjm"]
+device = -1
+physical_keycode = 4194336
+
+[resource]
+resource_name = "quick_save"
+script = ExtResource("1_7ogxu")
+action = "quick_save"
+event_index = 0
+type = 1
+default_as_event = SubResource("InputEventKey_qimjm")
+current_as_event = SubResource("InputEventKey_68i6u")
+current = [1, 4194336]
+default = [1, 4194336]
+name = "quick_save"
+category = "controls"
+value_type = 28
+value_hint = 0
+value_hint_string = ""

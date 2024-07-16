@@ -3,6 +3,13 @@ class_name Item3D
 
 var _actor_id:int = 0
 var item_instance_id:int
+var item_3d_id:int:
+	get:
+		return item_3d_id
+	set(value):
+		item_3d_id = value
+		ItemAccess.add_item_3d(self)
+		
 func get_item_instance() -> ItemInstance:
 	if item_instance_id == 0:
 		spawn_item()
@@ -26,6 +33,7 @@ var world_collider:CollisionShape3D:
 @export var start_highlighted:bool = true
 @export var meshes_to_fade_on_pickup:Array[MeshInstance3D] = []
 var _prox_fade_mats:Array[StandardMaterial3D] = []
+var is_picked_up:bool = false
 
 func _ready() -> void:
 	assert(world_collider_path != null)
@@ -34,11 +42,14 @@ func _ready() -> void:
 	else:
 		Helpers.apply_material_overlay_to_children(self,null)
 	
+	if item_3d_id == 0:
+		item_3d_id = Helpers.generate_new_id()
+	
 	var item_instance := get_item_instance()
 	if item_instance:
 		var item_internal_inventory := item_instance.get_item_inventory()
 		if item_internal_inventory:
-			internal_inventory_id = item_internal_inventory.get_instance_id()
+			internal_inventory_id = item_internal_inventory.inventory_id
 			EventBus.item_picked_up.connect(_on_item_picked_up)
 			EventBus.item_removed_from_slot.connect(_on_item_removed_from_slot)
 			
@@ -55,7 +66,8 @@ func _ready() -> void:
 		new_mat.distance_fade_min_distance = 0.0
 		new_mat.distance_fade_max_distance = 2.0
 		_prox_fade_mats.append(new_mat)
-
+	EventBus.game_saving.connect(_on_game_saving)
+	EventBus.before_game_loading.connect(_on_game_before_loading)
 
 func dropped() -> void:
 	world_collider.disabled = false
@@ -68,6 +80,7 @@ func dropped() -> void:
 		var number_surfaces:int = mesh_inst.mesh.get_surface_count()
 		for i in range(number_surfaces):
 			mesh_inst.set_surface_override_material(i,null)
+	is_picked_up = false
 
 func picked_up(actor_id:int = 0) -> void:
 	self.transform = Transform3D.IDENTITY
@@ -82,6 +95,7 @@ func picked_up(actor_id:int = 0) -> void:
 			var number_surfaces:int = mesh_inst.mesh.get_surface_count()
 			for i in range(number_surfaces):
 				mesh_inst.set_surface_override_material(i, _prox_fade_mats[mat_index])
+	is_picked_up = true
 	
 func destroy() -> void:
 	#Events.item_destroyed.emit(self)
@@ -97,7 +111,7 @@ func spawn_item() -> void:
 func _on_item_picked_up(result:InventoryInsertResult) -> void:
 	if result.inventory_id == internal_inventory_id:
 		var item_instance:ItemInstance = InventoryManager.get_item(result.item_instance_id)
-		var item_3d:Item3D = instance_from_id(item_instance.id_3d)
+		var item_3d:Item3D = ItemAccess.get_item_3d(item_instance.id_3d)
 		Helpers.force_parent(item_3d,self)
 		item_3d.picked_up()
 		if result.location.location == InventoryLocationResult.LocationType.SLOT:
@@ -110,3 +124,23 @@ func _on_item_removed_from_slot(_item_inst:ItemInstance, _inventory_id:int, _slo
 
 func copy_model() -> Node3D:
 	return model_node.duplicate()
+
+func _on_game_saving(save_file:SaveFile):
+	#only save the data if not picked up
+	if save_file and !is_picked_up:
+		var item_data:TopLevelEntitySaveData = TopLevelEntitySaveData.new()
+		item_data.global_transform = self.global_transform
+		#player_information.path_to_parent = self.get_parent().get_path()
+		item_data.scene_path = self.scene_file_path
+		item_data.additional_data["item_instance_id"] = item_instance_id
+		item_data.additional_data["item_3d_id"] = item_3d_id
+		save_file.top_level_entity_save_data.append(item_data)
+
+func _on_game_before_loading():
+	self.queue_free()
+	
+func _on_load_game(save_data:TopLevelEntitySaveData):
+	if save_data:
+		self.global_transform = save_data.global_transform
+		item_instance_id = save_data.additional_data["item_instance_id"]
+		item_3d_id = save_data.additional_data["item_3d_id"]

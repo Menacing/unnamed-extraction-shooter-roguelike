@@ -21,13 +21,16 @@ var player:Player
 
 func _ready():
 	super()
-	container_size = _inventory.initial_height * _inventory.initial_width
 	EventBus.drop_item.connect(_on_drop_item)
+	
+func _on_before_populate_level():
+	super()
+	container_size = _inventory.initial_height * _inventory.initial_width
 
 func _on_item_picked_up(result:InventoryInsertResult):
-	if result.inventory_id == _inventory.get_instance_id() and result.picked_up:
+	if result.inventory_id == _inventory.inventory_id and result.picked_up:
 		var item_instance:ItemInstance = InventoryManager.get_item(result.item_instance_id)
-		var item_control:ItemControl = instance_from_id(item_instance.id_2d)
+		var item_control:ItemControl = ItemAccess.get_item_control(item_instance.id_2d)
 		var location = result.location
 		if location.location == InventoryLocationResult.LocationType.GRID:
 			wig.add_item_control(item_control, location.grid_x, location.grid_y)
@@ -48,7 +51,7 @@ func _on_close_all_inventories():
 	
 func _on_drop_item(item_inst:ItemInstance, _inventory_id:int):
 	if _inventory_id == self.inventory_id:
-		var item_3d:Item3D = instance_from_id(item_inst.id_3d)
+		var item_3d:Item3D = ItemAccess.get_item_3d(item_inst.id_3d)
 		Helpers.force_parent(item_3d,get_parent())
 		item_3d.dropped()
 		var aabb = Helpers.get_aabb_of_node(self)
