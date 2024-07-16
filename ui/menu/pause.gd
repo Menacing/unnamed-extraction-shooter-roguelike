@@ -51,4 +51,18 @@ func _on_save_button_pressed():
 	save_dialog.top_level = true
 
 func _on_load_button_pressed():
+	var load_dialog = FileDialog.new()
+	load_dialog.access = FileDialog.ACCESS_USERDATA
+	load_dialog.file_mode = FileDialog.FILE_MODE_OPEN_FILE
+	load_dialog.set_filters(PackedStringArray(["*.tres ; Save Files"]))
+	load_dialog.file_selected.connect(_on_load_dialog_file_selected)
+	load_dialog.initial_position = Window.WINDOW_INITIAL_POSITION_CENTER_MAIN_WINDOW_SCREEN
+	load_dialog.min_size = Vector2i(400,500)
+	self.add_child(load_dialog)
+	load_dialog.show()
 	pass # Replace with function body.
+
+func _on_load_dialog_file_selected(path:String):
+	SaveManager.load_game(path)
+	unpause()
+	pass

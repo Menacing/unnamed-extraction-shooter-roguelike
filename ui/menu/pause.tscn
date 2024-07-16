@@ -56,7 +56,7 @@ layout_mode = 2
 shortcut = SubResource("Shortcut_o2ej0")
 shortcut_feedback = false
 shortcut_in_tooltip = false
-text = "Resume"
+text = "RESUME"
 
 [node name="save_button" type="Button" parent="CenterContainer/MarginContainer/VBoxContainer" groups=["ui_button_sound"]]
 unique_name_in_owner = true
@@ -64,7 +64,7 @@ layout_mode = 2
 shortcut = SubResource("Shortcut_o2ej0")
 shortcut_feedback = false
 shortcut_in_tooltip = false
-text = "Save Game"
+text = "SAVE GAME"
 
 [node name="load_button" type="Button" parent="CenterContainer/MarginContainer/VBoxContainer" groups=["ui_button_sound"]]
 unique_name_in_owner = true
@@ -72,17 +72,17 @@ layout_mode = 2
 shortcut = SubResource("Shortcut_o2ej0")
 shortcut_feedback = false
 shortcut_in_tooltip = false
-text = "Load Game"
+text = "LOAD GAME"
 
 [node name="options_button" type="Button" parent="CenterContainer/MarginContainer/VBoxContainer" groups=["ui_button_sound"]]
 unique_name_in_owner = true
 layout_mode = 2
-text = "Options"
+text = "OPTIONS"
 
 [node name="quit_game_button" type="Button" parent="CenterContainer/MarginContainer/VBoxContainer" groups=["ui_button_sound"]]
 unique_name_in_owner = true
 layout_mode = 2
-text = "Quit Game"
+text = "QUIT GAME"
 
 [connection signal="pressed" from="CenterContainer/MarginContainer/VBoxContainer/save_button" to="." method="_on_save_button_pressed"]
 [connection signal="pressed" from="CenterContainer/MarginContainer/VBoxContainer/load_button" to="." method="_on_load_button_pressed"]
