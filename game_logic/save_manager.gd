@@ -59,8 +59,8 @@ func load_game(file_path:String) -> SaveFile:
 			node_to_restore._on_load_game(item)
 	
 	#restore items in inventories
-	InventoryManager._restore_inventories.call_deferred()
-	await InventoryManager.inventories_restored
+	await get_tree().process_frame
+	InventoryManager._restore_inventories()
 	print("finished loading!")
 	EventBus.game_loaded.emit()
 	
