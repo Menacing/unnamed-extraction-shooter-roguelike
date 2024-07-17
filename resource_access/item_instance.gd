@@ -11,6 +11,9 @@ func _init(item_info:ItemInformation, _item_instance_id = 0) -> void:
 	else:
 		item_instance_id = Helpers.generate_new_id()
 	
+	if item_info.has_durability:
+		durability = item_info.max_durability
+	
 	ItemAccess.add_item_instance(self)
 	
 @export var item_instance_id:int

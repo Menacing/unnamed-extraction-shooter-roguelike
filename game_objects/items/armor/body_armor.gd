@@ -22,13 +22,13 @@ var existing_mask_bitmask
 
 func picked_up(actor_id:int = 0):
 	super(actor_id)
+	world_collider.disabled = false
 	self.transform = Transform3D.IDENTITY
 	existing_layer_bitmask = self.collision_layer
 	existing_mask_bitmask = self.collision_mask
 	self.collision_layer = ballistic_layer_bitmask
 	self.collision_mask = ballistic_mask_bitmask
 	self.freeze = true
-
 
 func dropped():
 	super()

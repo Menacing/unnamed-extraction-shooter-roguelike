@@ -1,13 +1,32 @@
-[gd_scene load_steps=24 format=3 uid="uid://cbt2em6utvs3s"]
+[gd_scene load_steps=27 format=3 uid="uid://cbt2em6utvs3s"]
 
 [ext_resource type="Script" path="res://levels/ballistic_testing.gd" id="1_ky07f"]
 [ext_resource type="PackedScene" uid="uid://dr48wela8mtxd" path="res://game_objects/items/weapons/hic_rifles/pm_52/pm_52.tscn" id="1_wchf8"]
 [ext_resource type="Script" path="res://levels/entities/geo_ballistic_solid.gd" id="2_e6w36"]
+[ext_resource type="Resource" uid="uid://3nqgvhg4lre8" path="res://components/ammo_component/ammo_types/heavy_intermediate_cartridge/heavy_intermediate_cartridge.tres" id="3_q54we"]
+[ext_resource type="Script" path="res://game_objects/items/weapons/gun_stats.gd" id="4_s8lf1"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_0dgg1"]
 font_size = 60
 
 [sub_resource type="Environment" id="Environment_8p7aq"]
+
+[sub_resource type="Resource" id="Resource_fhysb"]
+resource_local_to_scene = true
+script = ExtResource("4_s8lf1")
+weapon_category_name = "HIC Rifle"
+magazine_size = 30
+rpm = 600
+base_recoil = Vector2(0, 0.025)
+recoil_variability = Vector2(0.025, 0.013)
+fire_modes = ["semi", "auto"]
+ads_accel = 10.0
+ads_fov = 50.0
+moa = 5.0
+turn_speed = 25.0
+ammo_type = ExtResource("3_q54we")
+reload_time_Sec = 2.5
+reload_thresholds = Array[float]([1.0])
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_hiwqs"]
 
@@ -89,13 +108,11 @@ size = 5.0
 [node name="AK47-Projectile" parent="." instance=ExtResource("1_wchf8")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.171724, 0.000634313, -2.05242)
 gravity_scale = 0.0
-magazine = 30
+_gun_stats = SubResource("Resource_fhysb")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
 collision_layer = 3
 script = ExtResource("2_e6w36")
-pen_ratio = 1.0
-armor_rating = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4)
@@ -110,8 +127,6 @@ skeleton = NodePath("../..")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.780004)
 collision_layer = 3
 script = ExtResource("2_e6w36")
-pen_ratio = 1.0
-armor_rating = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4)
@@ -126,8 +141,6 @@ skeleton = NodePath("../..")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.550652)
 collision_layer = 3
 script = ExtResource("2_e6w36")
-pen_ratio = 1.0
-armor_rating = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D3"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4.61815)
@@ -142,8 +155,6 @@ skeleton = NodePath("../..")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.295923)
 collision_layer = 3
 script = ExtResource("2_e6w36")
-pen_ratio = 1.0
-armor_rating = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D4"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -5.11256)
@@ -158,8 +169,6 @@ skeleton = NodePath("../..")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.407014)
 collision_layer = 3
 script = ExtResource("2_e6w36")
-pen_ratio = 1.0
-armor_rating = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D5"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -5.11256)
@@ -174,8 +183,6 @@ skeleton = NodePath("../..")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.176087)
 collision_layer = 3
 script = ExtResource("2_e6w36")
-pen_ratio = 1.0
-armor_rating = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D6"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -5.40021)
@@ -190,8 +197,6 @@ skeleton = NodePath("../..")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.221488)
 collision_layer = 3
 script = ExtResource("2_e6w36")
-pen_ratio = 1.0
-armor_rating = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D7"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -5.40546)
@@ -206,8 +211,6 @@ skeleton = NodePath("../..")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.25781)
 collision_layer = 3
 script = ExtResource("2_e6w36")
-pen_ratio = 1.0
-armor_rating = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D8"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -5.40546)
@@ -223,8 +226,6 @@ transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 
 visible = false
 collision_layer = 3
 script = ExtResource("2_e6w36")
-pen_ratio = 1.0
-armor_rating = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D9"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -90.387, 0.133)
