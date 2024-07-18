@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="LootSpawnInformation" load_steps=3 format=3 uid="uid://bfsrjdaqy45vm"]
+
+[ext_resource type="Script" path="res://game_objects/items/loot_spawn_information.gd" id="1_aoube"]
+[ext_resource type="Resource" uid="uid://3a15imh4nlqg" path="res://game_objects/items/materials/medium_polymer/medium_polymer_inventory_info.tres" id="1_rlx4b"]
+
+[resource]
+script = ExtResource("1_aoube")
+item_information = ExtResource("1_rlx4b")
+test_radius = 0.1
+min_stack = 1
+max_stack = 10
