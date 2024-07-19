@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://kr1m7js58ybu"]
+
+[ext_resource type="Script" path="res://game_objects/item_3d.gd" id="1_t08j1"]
+[ext_resource type="PackedScene" uid="uid://1lnugd3ddnn0" path="res://game_objects/items/materials/polymer_spool/polymer_spool.blend" id="2_4ivav"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0afpg"]
+size = Vector3(0.408936, 0.124942, 0.405945)
+
+[node name="polymer_spool" type="RigidBody3D"]
+collision_layer = 5
+collision_mask = 5
+script = ExtResource("1_t08j1")
+item_type_id = "polymer_spool_medium"
+world_collider_path = NodePath("CollisionShape3D")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00012207, -0.00168729, 0.00289917)
+shape = SubResource("BoxShape3D_0afpg")
+
+[node name="polymer_spool" parent="." instance=ExtResource("2_4ivav")]
