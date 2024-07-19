@@ -7,6 +7,10 @@ class_name HealthComponent
 @onready var parent_id:int = get_parent().get_instance_id()
 
 var main_loc:HealthLocation
+var armor_item_instance_id:int = 0
+
+signal health_changed(health_location:HealthLocation)
+signal armor_item_instance_id_set(aiii:int)
 
 func _ready():
 	health_locs = Helpers.duplicate_deep_workaround_dictionary(health_locs)
@@ -15,10 +19,11 @@ func _ready():
 			
 	EventBus.location_hit.connect(_on_location_hit)
 	EventBus.healed.connect(_on_healed)
+	
 	pass
 
-func _process(delta):
-	EventBus.player_health_pulse.emit(health_locs)
+func _on_armor_item_instance_id_set(aiii:int):
+	armor_item_instance_id = aiii
 
 func _on_location_hit(actor_id:int, location:HealthLocation.HEALTH_LOCATION, \
 	damage:float):
@@ -35,14 +40,17 @@ func _on_location_hit(actor_id:int, location:HealthLocation.HEALTH_LOCATION, \
 					EventBus.location_destroyed.emit(parent_id, loc.location)
 					overflow = true
 					overflow_damage = -loc.current_health
-					
+				else:
+					health_changed.emit(loc)
 			#handle damage overflow
 			if loc.location != main_loc.location and overflow:
 				loc.current_health = 0
+				health_changed.emit(loc)
 				main_loc.current_health -= overflow_damage
 				if main_loc.current_health <= 0:
 					EventBus.location_destroyed.emit(parent_id, main_loc.location)
 					main_loc.current_health = 0
+					health_changed.emit(main_loc)
 
 func _on_healed(actor_id:int, healed:float):
 	if actor_id == parent_id:
@@ -66,6 +74,8 @@ func _apply_heal(loc:HealthLocation, amount:float) -> float:
 	var remainder = loc.current_health - loc.max_health
 	if remainder > 0:
 		loc.current_health = loc.max_health
+		health_changed.emit(loc)
 		return remainder
 	else:
+		health_changed.emit(loc)		
 		return 0

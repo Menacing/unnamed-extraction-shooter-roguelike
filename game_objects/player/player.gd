@@ -230,6 +230,7 @@ func _on_item_picked_up(result:InventoryInsertResult):
 						elif backpack.backpack_size == Backpack.Size.LARGE:
 							InventoryManager.set_inventory_size(player_inventory_id, Vector2i(7,8))
 				"ArmorSlot":
+					health_component.armor_item_instance_id_set.emit(item_instance.item_instance_id)
 					move_armor_to_anchor(item_3d)
 		elif result.location.location == InventoryLocationResult.LocationType.GRID:
 			item_3d.visible = false
@@ -261,7 +262,9 @@ func _on_item_removed_from_slot(item_inst:ItemInstance, inventory_id:int, slot_n
 				gun_slot_2 = null	
 			if item_3d == shoulder_gun:
 				shoulder_gun = null
-
+		if item_3d is BodyArmor:
+			if item_3d.item_instance_id == health_component.armor_item_instance_id:
+				health_component.armor_item_instance_id_set.emit(0)
 
 func move_gun_to_player_model(gun:Gun):
 	gun.show()	

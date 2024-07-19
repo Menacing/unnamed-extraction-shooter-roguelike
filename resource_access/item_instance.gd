@@ -11,6 +11,9 @@ func _init(item_info:ItemInformation, _item_instance_id = 0) -> void:
 	else:
 		item_instance_id = Helpers.generate_new_id()
 	
+	if item_info.has_durability:
+		durability = item_info.max_durability
+	
 	ItemAccess.add_item_instance(self)
 	
 @export var item_instance_id:int
@@ -30,7 +33,10 @@ var durability:int:
 	get:
 		return _durability
 	set(value):
-		_durability = value
+		if value < 0:
+			_durability = 0
+		else:
+			_durability = value
 		EventBus.item_durability_changed.emit(self)
 @export var current_inventory_id:int
 @export var is_rotated:bool

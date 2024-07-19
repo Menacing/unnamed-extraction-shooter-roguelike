@@ -1,8 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://bb7ue7ms53vhu"]
+[gd_scene load_steps=10 format=3 uid="uid://bb7ue7ms53vhu"]
 
 [ext_resource type="Script" path="res://ui/health/life_bar.gd" id="1_abp2l"]
+[ext_resource type="Texture2D" uid="uid://c0lmj0h81tvt3" path="res://ui/icons/Black/icon_08.png" id="2_6j8ei"]
 [ext_resource type="Texture2D" uid="uid://77kuogct7mab" path="res://themes/arm-icon-bg.png" id="2_m27pa"]
 [ext_resource type="Texture2D" uid="uid://bykx6scq1bf72" path="res://themes/arm-icon.png" id="3_1pf7v"]
+[ext_resource type="Texture2D" uid="uid://dkntkp6xwyko6" path="res://ui/icons/White/icon_08.png" id="3_cthvx"]
 [ext_resource type="Texture2D" uid="uid://b2rsqvox7l27v" path="res://themes/torso-icon-bg.png" id="4_neibg"]
 [ext_resource type="Texture2D" uid="uid://csyxjrsgb8ug3" path="res://themes/TorsoIcon.png" id="5_5rxpg"]
 [ext_resource type="Texture2D" uid="uid://dn20mhl0kep1r" path="res://themes/leg-icon-bg.png" id="6_gi2bq"]
@@ -28,12 +30,77 @@ custom_minimum_size = Vector2(400, 150)
 layout_mode = 2
 alignment = 2
 
+[node name="armor_display" type="HBoxContainer" parent="VBoxContainer"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+size_flags_vertical = 8
+
+[node name="armor_tex_bar" type="TextureProgressBar" parent="VBoxContainer/armor_display"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+value = 100.0
+fill_mode = 3
+nine_patch_stretch = true
+texture_under = ExtResource("2_6j8ei")
+texture_progress = ExtResource("3_cthvx")
+
+[node name="armor_bar_container" type="CenterContainer" parent="VBoxContainer/armor_display"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/armor_display/armor_bar_container"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/armor_display/armor_bar_container/HBoxContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+texture = ExtResource("3_cthvx")
+stretch_mode = 5
+
+[node name="ArmorLifeBar" type="ProgressBar" parent="VBoxContainer/armor_display/armor_bar_container/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_vertical = 4
+value = 100.0
+fill_mode = 1
+
+[node name="armor_text_container" type="PanelContainer" parent="VBoxContainer/armor_display"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="armor_text_hbox_container" type="HBoxContainer" parent="VBoxContainer/armor_display/armor_text_container"]
+layout_mode = 2
+
+[node name="armor_health_label" type="Label" parent="VBoxContainer/armor_display/armor_text_container/armor_text_hbox_container"]
+layout_mode = 2
+text = "armor"
+uppercase = true
+
+[node name="armor_current_health_label" type="Label" parent="VBoxContainer/armor_display/armor_text_container/armor_text_hbox_container"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "100"
+
+[node name="health_divider" type="Label" parent="VBoxContainer/armor_display/armor_text_container/armor_text_hbox_container"]
+layout_mode = 2
+text = "/"
+
+[node name="armor_max_health_label" type="Label" parent="VBoxContainer/armor_display/armor_text_container/armor_text_hbox_container"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "100"
+
 [node name="arm_life_display" type="HBoxContainer" parent="VBoxContainer"]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 size_flags_vertical = 8
 
 [node name="arm_tex_bar" type="TextureProgressBar" parent="VBoxContainer/arm_life_display"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 value = 100.0
@@ -43,6 +110,7 @@ texture_under = ExtResource("2_m27pa")
 texture_progress = ExtResource("3_1pf7v")
 
 [node name="arm_bar_container" type="CenterContainer" parent="VBoxContainer/arm_life_display"]
+unique_name_in_owner = true
 layout_mode = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/arm_life_display/arm_bar_container"]
@@ -54,7 +122,8 @@ layout_mode = 2
 texture = ExtResource("3_1pf7v")
 stretch_mode = 5
 
-[node name="LifeBar" type="ProgressBar" parent="VBoxContainer/arm_life_display/arm_bar_container/HBoxContainer"]
+[node name="ArmLifeBar" type="ProgressBar" parent="VBoxContainer/arm_life_display/arm_bar_container/HBoxContainer"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_vertical = 4
@@ -62,6 +131,7 @@ value = 100.0
 fill_mode = 1
 
 [node name="arm_text_container" type="PanelContainer" parent="VBoxContainer/arm_life_display"]
+unique_name_in_owner = true
 layout_mode = 2
 
 [node name="arm_text_hbox_container" type="HBoxContainer" parent="VBoxContainer/arm_life_display/arm_text_container"]
@@ -72,7 +142,8 @@ layout_mode = 2
 text = "arm"
 uppercase = true
 
-[node name="current_health_label" type="Label" parent="VBoxContainer/arm_life_display/arm_text_container/arm_text_hbox_container"]
+[node name="arm_current_health_label" type="Label" parent="VBoxContainer/arm_life_display/arm_text_container/arm_text_hbox_container"]
+unique_name_in_owner = true
 layout_mode = 2
 text = "100"
 
@@ -80,7 +151,8 @@ text = "100"
 layout_mode = 2
 text = "/"
 
-[node name="max_health_label" type="Label" parent="VBoxContainer/arm_life_display/arm_text_container/arm_text_hbox_container"]
+[node name="arm_max_health_label" type="Label" parent="VBoxContainer/arm_life_display/arm_text_container/arm_text_hbox_container"]
+unique_name_in_owner = true
 layout_mode = 2
 text = "100"
 
@@ -90,6 +162,7 @@ layout_mode = 2
 size_flags_vertical = 8
 
 [node name="main_tex_bar" type="TextureProgressBar" parent="VBoxContainer/main_life_display"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 value = 100.0
@@ -99,6 +172,7 @@ texture_under = ExtResource("4_neibg")
 texture_progress = ExtResource("5_5rxpg")
 
 [node name="main_bar_container" type="CenterContainer" parent="VBoxContainer/main_life_display"]
+unique_name_in_owner = true
 layout_mode = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/main_life_display/main_bar_container"]
@@ -110,7 +184,8 @@ layout_mode = 2
 texture = ExtResource("5_5rxpg")
 stretch_mode = 5
 
-[node name="LifeBar" type="ProgressBar" parent="VBoxContainer/main_life_display/main_bar_container/HBoxContainer"]
+[node name="MainLifeBar" type="ProgressBar" parent="VBoxContainer/main_life_display/main_bar_container/HBoxContainer"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_vertical = 4
@@ -118,6 +193,7 @@ value = 100.0
 fill_mode = 1
 
 [node name="main_text_container" type="PanelContainer" parent="VBoxContainer/main_life_display"]
+unique_name_in_owner = true
 layout_mode = 2
 
 [node name="main_text_hbox_container" type="HBoxContainer" parent="VBoxContainer/main_life_display/main_text_container"]
@@ -128,7 +204,8 @@ layout_mode = 2
 text = "main"
 uppercase = true
 
-[node name="current_health_label" type="Label" parent="VBoxContainer/main_life_display/main_text_container/main_text_hbox_container"]
+[node name="main_current_health_label" type="Label" parent="VBoxContainer/main_life_display/main_text_container/main_text_hbox_container"]
+unique_name_in_owner = true
 layout_mode = 2
 text = "100"
 
@@ -136,7 +213,8 @@ text = "100"
 layout_mode = 2
 text = "/"
 
-[node name="max_health_label" type="Label" parent="VBoxContainer/main_life_display/main_text_container/main_text_hbox_container"]
+[node name="main_max_health_label" type="Label" parent="VBoxContainer/main_life_display/main_text_container/main_text_hbox_container"]
+unique_name_in_owner = true
 layout_mode = 2
 text = "100"
 
@@ -146,6 +224,7 @@ layout_mode = 2
 size_flags_vertical = 8
 
 [node name="leg_tex_bar" type="TextureProgressBar" parent="VBoxContainer/leg_life_display"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 value = 100.0
@@ -155,6 +234,7 @@ texture_under = ExtResource("6_gi2bq")
 texture_progress = ExtResource("7_saqn5")
 
 [node name="leg_bar_container" type="CenterContainer" parent="VBoxContainer/leg_life_display"]
+unique_name_in_owner = true
 layout_mode = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/leg_life_display/leg_bar_container"]
@@ -166,7 +246,8 @@ layout_mode = 2
 texture = ExtResource("7_saqn5")
 stretch_mode = 5
 
-[node name="LifeBar" type="ProgressBar" parent="VBoxContainer/leg_life_display/leg_bar_container/HBoxContainer"]
+[node name="LegLifeBar" type="ProgressBar" parent="VBoxContainer/leg_life_display/leg_bar_container/HBoxContainer"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_vertical = 4
@@ -174,6 +255,7 @@ value = 100.0
 fill_mode = 1
 
 [node name="leg_text_container" type="PanelContainer" parent="VBoxContainer/leg_life_display"]
+unique_name_in_owner = true
 layout_mode = 2
 
 [node name="main_text_hbox_container" type="HBoxContainer" parent="VBoxContainer/leg_life_display/leg_text_container"]
@@ -184,7 +266,8 @@ layout_mode = 2
 text = "leg"
 uppercase = true
 
-[node name="current_health_label" type="Label" parent="VBoxContainer/leg_life_display/leg_text_container/main_text_hbox_container"]
+[node name="leg_current_health_label" type="Label" parent="VBoxContainer/leg_life_display/leg_text_container/main_text_hbox_container"]
+unique_name_in_owner = true
 layout_mode = 2
 text = "100"
 
@@ -192,6 +275,7 @@ text = "100"
 layout_mode = 2
 text = "/"
 
-[node name="max_health_label" type="Label" parent="VBoxContainer/leg_life_display/leg_text_container/main_text_hbox_container"]
+[node name="leg_max_health_label" type="Label" parent="VBoxContainer/leg_life_display/leg_text_container/main_text_hbox_container"]
+unique_name_in_owner = true
 layout_mode = 2
 text = "100"
