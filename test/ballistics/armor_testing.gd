@@ -15,7 +15,7 @@ var fired_gun:bool = false
 func _ready():
 	EventBus.players_spawned.emit()
 	
-	var armor_3d:Item3D = $light_armor_1
+	var armor_3d:Item3D = $medium_armor_1
 	armor_3d.spawn_item()
 	
 	EventBus.pickup_item.emit(armor_3d.get_item_instance(), player.player_inventory_id)

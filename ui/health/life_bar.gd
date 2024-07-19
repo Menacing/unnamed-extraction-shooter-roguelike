@@ -150,7 +150,7 @@ func _on_item_durability_changed(item_instance:ItemInstance):
 		armor_icon.value = dur
 		armor_icon.max_value = max_dur
 		armor_bar.value = dur
-		armor_bar.max_value = dur
+		armor_bar.max_value = max_dur
 		armor_label_c.text = str(roundi(dur))
 		armor_label_m.text = str(roundi(max_dur))
 		set_health_mode()

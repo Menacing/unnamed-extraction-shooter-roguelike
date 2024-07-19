@@ -33,7 +33,10 @@ var durability:int:
 	get:
 		return _durability
 	set(value):
-		_durability = value
+		if value < 0:
+			_durability = 0
+		else:
+			_durability = value
 		EventBus.item_durability_changed.emit(self)
 @export var current_inventory_id:int
 @export var is_rotated:bool
