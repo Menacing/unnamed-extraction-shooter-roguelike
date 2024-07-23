@@ -1,5 +1,6 @@
-[gd_scene load_steps=254 format=3 uid="uid://d2txigapsdl18"]
+[gd_scene load_steps=258 format=3 uid="uid://d2txigapsdl18"]
 
+[ext_resource type="Texture2D" uid="uid://c8mjos0qt48uc" path="res://levels/starfield_1.jpg" id="1_7gw48"]
 [ext_resource type="Script" path="res://levels/level.gd" id="1_d1tug"]
 [ext_resource type="CameraAttributesPractical" uid="uid://jafbi2bjurvn" path="res://test/debug/vibe_check_camera.tres" id="2_7vsv1"]
 [ext_resource type="Script" path="res://levels/multi_agent_navigation_root.gd" id="4_kt7fv"]
@@ -15,14 +16,22 @@
 [ext_resource type="Material" uid="uid://ba78wvi824fxe" path="res://levels/textures/glass/glass_1.tres" id="14_n4wit"]
 [ext_resource type="Material" uid="uid://c1aeita7ocbri" path="res://levels/textures/metal/metal_16.tres" id="15_g16lw"]
 [ext_resource type="Texture2D" uid="uid://p1thikvx4xin" path="res://levels/planet_spritesheet.png" id="15_pe85c"]
+[ext_resource type="Texture2D" uid="uid://bw1p7ro8a1e2v" path="res://game_objects/effects/assets/star_09.png" id="16_h461d"]
+[ext_resource type="Texture2D" uid="uid://t48h6umwxi6p" path="res://game_objects/effects/assets/circle_03.png" id="17_nf8im"]
+[ext_resource type="PackedScene" uid="uid://d08aatgxmymbf" path="res://game_objects/player/player.tscn" id="19_hnnt0"]
 
 [sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_2m1x4"]
+rayleigh_coefficient = 0.0
+mie_coefficient = 0.0
+turbidity = 0.0
+night_sky = ExtResource("1_7gw48")
 
 [sub_resource type="Sky" id="Sky_x518j"]
 sky_material = SubResource("PhysicalSkyMaterial_2m1x4")
 
 [sub_resource type="Environment" id="Environment_sspln"]
 background_mode = 2
+background_energy_multiplier = 0.5
 sky = SubResource("Sky_x518j")
 ambient_light_source = 3
 ambient_light_color = Color(1, 1, 1, 1)
@@ -1169,6 +1178,14 @@ environment = SubResource("Environment_sspln")
 camera_attributes = ExtResource("2_7vsv1")
 script = ExtResource("1_d1tug")
 
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.201078, 0.00512902, 0.979562, 0, 0.999986, -0.00523596, -0.979575, -0.00105284, -0.201075, 0, 0, 0)
+light_energy = 2.0
+light_volumetric_fog_energy = 0.0
+light_angular_distance = 0.5
+shadow_enabled = true
+sky_mode = 1
+
 [node name="MultiAgentNavigationRoot" type="Node3D" parent="."]
 script = ExtResource("4_kt7fv")
 
@@ -1991,11 +2008,30 @@ visible = false
 radius = 100.0
 material = SubResource("StandardMaterial3D_yuft6")
 
-[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="."]
+[node name="EarthAnimatedSprite3D" type="AnimatedSprite3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.587, 50, 0)
 pixel_size = 0.6
 axis = 1
 texture_filter = 0
 sprite_frames = SubResource("SpriteFrames_gxp67")
-frame_progress = 0.912587
+frame_progress = 0.97347
 speed_scale = 0.5
+
+[node name="SunSprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 149.933, 41.608, 0)
+gi_mode = 0
+modulate = Color(0.994789, 1, 0.915413, 1)
+pixel_size = 0.07
+billboard = 1
+texture_filter = 0
+texture = ExtResource("16_h461d")
+
+[node name="AtmosphereSprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.587, 51, 0)
+modulate = Color(0.526121, 0.924633, 0.983817, 1)
+pixel_size = 0.42
+axis = 1
+texture = ExtResource("17_nf8im")
+
+[node name="Player" parent="." instance=ExtResource("19_hnnt0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.6263, 1.12293, -0.307104)
