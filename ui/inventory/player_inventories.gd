@@ -10,17 +10,17 @@ extends CanvasLayer
 @onready var player_inventory_control:InventoryControlBase = $MarginContainer/HBoxContainer/PlayerInventoryContainer/TabContainer/EQUIPMENT
 
 func _ready():
-	EventBus.add_inventory_to_HUD.connect(_on_add_inventory_to_HUD)
-	EventBus.remove_inventory_from_HUD.connect(_on_remove_inventory_from_HUD)
+	EventBus.add_control_to_HUD.connect(_on_add_control_to_HUD)
+	EventBus.remove_control_from_HUD.connect(_on_remove_control_from_HUD)
 	EventBus.item_control_quick_transfer.connect(_on_item_control_quick_transfer)
 	
-func _on_add_inventory_to_HUD(inventory_control:InventoryControlBase):
-	Helpers.force_parent(inventory_control,world_inventories_container)
-	if inventory_control is WorldInventory:
-		inventory_control.player = player
+func _on_add_control_to_HUD(control:Control):
+	Helpers.force_parent(control,world_inventories_container)
+	if control is WorldInventory:
+		control.player = player
 	
-func _on_remove_inventory_from_HUD(inventory_control:InventoryControlBase, new_parent:Node):
-	Helpers.force_parent(inventory_control,new_parent)
+func _on_remove_control_from_HUD(control:Control, new_parent:Node):
+	Helpers.force_parent(control,new_parent)
 
 func _on_item_control_quick_transfer(item_control:ItemControl):
 	var item_instance:ItemInstance = InventoryManager.get_item(item_control.item_instance_id)

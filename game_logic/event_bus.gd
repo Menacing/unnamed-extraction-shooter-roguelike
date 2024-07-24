@@ -16,8 +16,8 @@ signal close_all_inventories()
 signal open_inventory(inventory_id:int)
 
 #Inventory Control Events
-signal add_inventory_to_HUD(inventory_control:InventoryControlBase)
-signal remove_inventory_from_HUD(inventory_control:InventoryControlBase, new_parent:Node)
+signal add_control_to_HUD(control:Control)
+signal remove_control_from_HUD(control:Control, new_parent:Node)
 signal inventory_size_changed(inventory_id:int, size:Vector2i)
 signal context_menu_opened()
 signal context_menu_closed()
