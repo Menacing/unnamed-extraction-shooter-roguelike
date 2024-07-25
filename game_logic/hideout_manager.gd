@@ -11,6 +11,19 @@ var crafting_materials:Array[CraftingMaterialEntry] = []
 
 func _ready():
 	crafting_materials_resource_group.load_all_into(_crafting_material_definitions)
+	for mat_def:CraftingMaterialDefinition in _crafting_material_definitions:
+		var mat_entry := CraftingMaterialEntry.new()
+		mat_entry.material_definition = mat_def
+		mat_entry.amount = 0
+		crafting_materials.append(mat_entry)
+	crafting_materials.sort_custom(CraftingMaterialEntry._sort)
+	EventBus.game_saving.connect(_on_game_saving)
+	
+func _on_game_saving(save_file:SaveFile):
+	#TODO Figure out how to save state of the Hideout
+	pass
+
+
 
 func show_hideout_menu():
 	EventBus.add_control_to_HUD.emit(hideout_menu)
