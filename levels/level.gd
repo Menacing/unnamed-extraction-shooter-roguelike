@@ -3,10 +3,16 @@ class_name Level
 
 var player_scene:PackedScene = preload("res://game_objects/player/player.tscn")
 
+@export var is_hideout:bool = false
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	EventBus.populate_level.connect(_on_populate_level)
 	EventBus.game_saving.connect(_on_game_saving)
+	if is_hideout:
+		HideoutManager.in_hideout = true
+	else:
+		HideoutManager.in_hideout = false
 
 func _on_game_saving(save_file:SaveFile):
 	if save_file:

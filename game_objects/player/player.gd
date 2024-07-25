@@ -434,8 +434,12 @@ func toggle_inventory():
 	
 	if toggle_inv_f:
 		open_inventory()
+		if HideoutManager.in_hideout:
+			HideoutManager.show_hideout_menu()
 	else:
 		close_inventory()
+		if HideoutManager.in_hideout:
+			HideoutManager.hide_hideout_menu()
 		
 func open_inventory():
 	toggle_inv_f = true
