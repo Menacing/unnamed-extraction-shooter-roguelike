@@ -1,4 +1,4 @@
-[gd_scene load_steps=257 format=3 uid="uid://d2txigapsdl18"]
+[gd_scene load_steps=258 format=3 uid="uid://d2txigapsdl18"]
 
 [ext_resource type="Script" path="res://levels/level.gd" id="1_d1tug"]
 [ext_resource type="CameraAttributesPractical" uid="uid://jafbi2bjurvn" path="res://test/debug/vibe_check_camera.tres" id="2_7vsv1"]
@@ -17,7 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://p1thikvx4xin" path="res://levels/planet_spritesheet.png" id="15_pe85c"]
 [ext_resource type="Texture2D" uid="uid://bw1p7ro8a1e2v" path="res://game_objects/effects/assets/star_09.png" id="16_h461d"]
 [ext_resource type="Texture2D" uid="uid://t48h6umwxi6p" path="res://game_objects/effects/assets/circle_03.png" id="17_nf8im"]
-[ext_resource type="PackedScene" uid="uid://d08aatgxmymbf" path="res://game_objects/player/player.tscn" id="19_hnnt0"]
+[ext_resource type="Script" path="res://levels/entities/area_player_spawn.gd" id="19_dv7fq"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_miqso"]
 sky_top_color = Color(0, 0, 0, 1)
@@ -1179,6 +1179,9 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_lmxcw"]
+size = Vector3(4.91016, 3.78424, 11.2449)
+
 [node name="Hideout" type="WorldEnvironment"]
 environment = SubResource("Environment_sspln")
 camera_attributes = ExtResource("2_7vsv1")
@@ -2039,5 +2042,10 @@ pixel_size = 0.42
 axis = 1
 texture = ExtResource("17_nf8im")
 
-[node name="Player" parent="." instance=ExtResource("19_hnnt0")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.6263, 1.12293, -0.307104)
+[node name="AreaPlayerSpawn" type="Area3D" parent="." groups=["PlayerSpawn"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.13177, 1.04306, 0)
+script = ExtResource("19_dv7fq")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="AreaPlayerSpawn"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.95508, 1.39212, -0.709106)
+shape = SubResource("BoxShape3D_lmxcw")
