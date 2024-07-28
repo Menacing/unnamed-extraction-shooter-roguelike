@@ -21,6 +21,7 @@
     2) Also set Trenchbroom Game Config Folder to that
     3) Click Export
 9) Open res://levels/trenchbroom_game_config.tres and export
+10) In TrenchBroom, open Preferences -> Games Tab -> Go to UESRL -> Set the game path to the "levels" folder in your local copy of the git repo
   
 ## Further reading
 Check out the [docs](/docs/README.md) folder for more general information about how things work

@@ -1,4 +1,4 @@
-[gd_scene load_steps=560 format=3 uid="uid://d2txigapsdl18"]
+[gd_scene load_steps=561 format=3 uid="uid://d2txigapsdl18"]
 
 [ext_resource type="Script" path="res://levels/level.gd" id="1_d1tug"]
 [ext_resource type="CameraAttributesPractical" uid="uid://jafbi2bjurvn" path="res://test/debug/vibe_check_camera.tres" id="2_7vsv1"]
@@ -37,6 +37,7 @@
 [ext_resource type="Material" uid="uid://cgsiw2shhpade" path="res://levels/textures/lights/light_2.tres" id="29_kupjp"]
 [ext_resource type="Material" uid="uid://dy0gaat0j57pc" path="res://levels/textures/lights/light_6.tres" id="30_wjl1e"]
 [ext_resource type="Material" uid="uid://cq65buc4e04me" path="res://levels/textures/lights/light_4.tres" id="31_rlg81"]
+[ext_resource type="PackedScene" uid="uid://c4y0iwlv3i13p" path="res://game_objects/props/stash/stash.tscn" id="38_1ckb4"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_miqso"]
 sky_top_color = Color(0, 0, 0, 1)
@@ -6331,3 +6332,6 @@ script = ExtResource("19_dv7fq")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="AreaPlayerSpawn"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.95508, 1.39212, -0.709106)
 shape = SubResource("BoxShape3D_lmxcw")
+
+[node name="Stash" parent="." instance=ExtResource("38_1ckb4")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -1.13535, 0.2, -3.23975)
