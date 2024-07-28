@@ -18,6 +18,7 @@ func _ready():
 		crafting_materials.append(mat_entry)
 	crafting_materials.sort_custom(CraftingMaterialEntry._sort)
 	EventBus.game_saving.connect(_on_game_saving)
+	self.add_child(hideout_menu)
 	
 func _on_game_saving(save_file:SaveFile):
 	#TODO Figure out how to save state of the Hideout

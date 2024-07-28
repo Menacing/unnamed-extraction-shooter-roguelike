@@ -13,7 +13,7 @@ initial_width = 7
 grid_slots = {}
 equipment_slots = Array[Resource("res://resource_access/equipment_slot_type.gd")]([])
 
-[node name="HideoutMenu" type="TabContainer" node_paths=PackedStringArray("tab_bar")]
+[node name="HideoutMenu" type="TabContainer" node_paths=PackedStringArray("tab_bar", "stash_inventory_control")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -21,6 +21,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_gn5or")
 tab_bar = NodePath(".")
+stash_inventory_control = NodePath("STASH")
 
 [node name="STASH" parent="." node_paths=PackedStringArray("hideout_menu") instance=ExtResource("1_csmx2")]
 layout_mode = 2

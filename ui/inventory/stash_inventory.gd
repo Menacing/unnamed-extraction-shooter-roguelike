@@ -1,20 +1,13 @@
 extends InventoryControlBase
 class_name StashInventory
 
-var _wig:WorldInventoryGrid
-@onready var wig:WorldInventoryGrid:
-	get:
-		if _wig:
-			return _wig
-		else:
-			_wig = %WorldInventoryGrid
-			return _wig
+var sig:StashInventoryGrid
 var container_size:int:
 	get:
-		return wig.container_size
+		return sig.container_size
 	set(value):
-		wig.container_size = value
-		wig.set_grid_container_size(value)
+		sig.container_size = value
+		sig.set_grid_container_size(value)
 		
 @onready var original_parent:Node = self.get_parent()
 var player:Player
@@ -24,6 +17,8 @@ var player:Player
 func _ready():
 	super()
 	EventBus.drop_item.connect(_on_drop_item)
+	sig = get_node(_inventory_grid_path)
+	
 	
 func _on_before_populate_level():
 	super()
@@ -35,7 +30,7 @@ func _on_item_picked_up(result:InventoryInsertResult):
 		var item_control:ItemControl = ItemAccess.get_item_control(item_instance.id_2d)
 		var location = result.location
 		if location.location == InventoryLocationResult.LocationType.GRID:
-			wig.add_item_control(item_control, location.grid_x, location.grid_y)
+			sig.add_item_control(item_control, location.grid_x, location.grid_y)
 
 func _on_open_inventory(inventory_id:int):
 	super(inventory_id)
