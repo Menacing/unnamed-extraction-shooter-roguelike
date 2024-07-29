@@ -35,7 +35,6 @@ func _on_game_saving(save_file:SaveFile):
 func _on_load_game(save_data:LevelEntitySaveData):
 	stash_inventory.inventory_id = save_data.additional_data["inventory_id"]
 
-
 func use(player:Player):
 	if stash_inventory.visible:
 		player.close_inventory()

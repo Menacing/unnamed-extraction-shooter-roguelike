@@ -24,9 +24,12 @@ func _on_game_saving(save_file:SaveFile):
 	#TODO Figure out how to save state of the Hideout
 	pass
 
+func _on_load_game(save_data:LevelEntitySaveData):
+	pass
 
 
 func show_hideout_menu():
+	hideout_menu.visible = true
 	EventBus.add_control_to_HUD.emit(hideout_menu)
 	
 func hide_hideout_menu():

@@ -4,7 +4,9 @@
 {
 "mapversion" "220"
 "classname" "worldspawn"
-"_tb_textures" "textures;textures\asphalt;textures\brick;textures\concrete;textures\door;textures\fabric;textures\glass;textures\grate;textures\ground;textures\leather;textures\lights;textures\marble;textures\metal;textures\paint;textures\panel;textures\plants;textures\plaster;textures\plastic;textures\rock;textures\roof;textures\special;textures\tile;textures\window;textures\wood"
+"_tb_textures" "textures;textures/asphalt;textures/brick;textures/concrete;textures/door;textures/fabric;textures/glass;textures/grate;textures/ground;textures/leather;textures/lights;textures/marble;textures/metal;textures/paint;textures/panel;textures/plants;textures/plaster;textures/plastic;textures/rock;textures/roof;textures/special;textures/tile;textures/window;textures/wood;textures\asphalt;textures\brick;textures\concrete;textures\door;textures\fabric;textures\glass;textures\grate;textures\ground;textures\leather;textures\lights;textures\marble;textures\metal;textures\paint;textures\panel;textures\plants;textures\plaster;textures\plastic;textures\rock;textures\roof;textures\special;textures\tile;textures\window;textures\wood"
+"_tb_mod" "levels"
+"_tb_def" "builtin:uesrl_fgd_entities.fgd"
 }
 // entity 1
 {
@@ -4447,5 +4449,22 @@
 ( -161.41421356237322 -342 228 ) ( -162.12132034355977 -342 228.70710678118655 ) ( -162.12132034355977 -342 227.29289321881345 ) lights/light_2 [ 1.0000000000000002 0 0 0 ] [ 0 0 -1.0000000000000002 0 ] 0 1 1
 ( -158.5857864376269 -402 228 ) ( -158.5857864376269 -401 228 ) ( -159.29289321881356 -402 227.29289321881345 ) lights/light_2 [ 0 -1.0000000000000002 0 -80 ] [ -1.0000000000000002 0 0 0 ] 0 1 1
 ( -158.5857864376269 -402 228 ) ( -159.29289321881356 -402 228.70710678118655 ) ( -158.5857864376269 -401 228 ) lights/light_2 [ -1.0000000000000002 0 0 0 ] [ 0 -1.0000000000000002 0 -80 ] 0 1 1
+}
+}
+// entity 139
+{
+"classname" "area_ambient_sound"
+"fg_reverb_bus_name" "RvMedium"
+"audio_stream_path" "res://levels/ambient_sounds/underground_lab_ambience_003.ogg"
+"volume_db" "-20"
+"_tb_textures" "textures;textures/asphalt;textures\asphalt;textures\brick;textures\concrete;textures\door;textures\fabric;textures\glass;textures\grate;textures\ground;textures\leather;textures\lights;textures\marble;textures\metal;textures\paint;textures\panel;textures\plants;textures\plaster;textures\plastic;textures\rock;textures\roof;textures\special;textures\tile;textures\window;textures\wood"
+// brush 0
+{
+( -304 -432 0 ) ( -304 -431 0 ) ( -304 -432 1 ) special/skip [ 0 -1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( -272 -448 0 ) ( -272 -448 1 ) ( -271 -448 0 ) special/skip [ 1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( -272 -432 0 ) ( -271 -432 0 ) ( -272 -431 0 ) special/skip [ -1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( 288 768 272 ) ( 288 769 272 ) ( 289 768 272 ) special/skip [ 1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( 288 768 16 ) ( 289 768 16 ) ( 288 768 17 ) special/skip [ -1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( 304 768 16 ) ( 304 768 17 ) ( 304 769 16 ) special/skip [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
 }
 }

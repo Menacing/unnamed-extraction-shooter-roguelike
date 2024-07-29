@@ -35,6 +35,7 @@ func _on_item_picked_up(result:InventoryInsertResult):
 func _on_open_inventory(inventory_id:int):
 	super(inventory_id)
 	if inventory_id == self.inventory_id:
+		hideout_menu.visible = true
 		EventBus.add_control_to_HUD.emit(hideout_menu)
 		hideout_menu.show_stash_tab()
 		
