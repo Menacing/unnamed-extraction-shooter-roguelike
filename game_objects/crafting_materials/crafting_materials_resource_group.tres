@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ResourceGroup" load_steps=2 format=3 uid="uid://cjlvodaxuy86f"]
+
+[ext_resource type="Script" path="res://addons/godot_resource_groups/resource_group.gd" id="1_ht872"]
+
+[resource]
+script = ExtResource("1_ht872")
+base_folder = "res://game_objects/crafting_materials"
+includes = Array[String](["*.tres"])
+excludes = Array[String]([])
+paths = Array[String](["res://game_objects/crafting_materials/bio-gel.tres", "res://game_objects/crafting_materials/composite_fiber.tres", "res://game_objects/crafting_materials/crafting_materials_resource_group.tres", "res://game_objects/crafting_materials/crysalite.tres", "res://game_objects/crafting_materials/living_steel.tres", "res://game_objects/crafting_materials/polymer.tres", "res://game_objects/crafting_materials/quantum_foam.tres", "res://game_objects/crafting_materials/scrap_metal.tres", "res://game_objects/crafting_materials/silicate.tres", "res://game_objects/crafting_materials/synth_resin.tres"])

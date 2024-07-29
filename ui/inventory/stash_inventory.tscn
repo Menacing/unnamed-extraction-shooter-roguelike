@@ -1,0 +1,34 @@
+[gd_scene load_steps=5 format=3 uid="uid://jixiqnpe13py"]
+
+[ext_resource type="Script" path="res://ui/inventory/stash_inventory.gd" id="1_m082v"]
+[ext_resource type="Resource" uid="uid://cgc688gwx4bgx" path="res://ui/inventory/stash_small_model_inventory.tres" id="2_83v4s"]
+[ext_resource type="Script" path="res://ui/inventory/stash_inventory_grid.gd" id="3_b3c2g"]
+[ext_resource type="PackedScene" uid="uid://bshm12rhfjlbc" path="res://ui/inventory/backpack_cell.tscn" id="4_2qi88"]
+
+[node name="StashInventory" type="MarginContainer"]
+offset_right = 593.5
+offset_bottom = 561.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_m082v")
+_model_inventory = ExtResource("2_83v4s")
+_inventory_grid_path = NodePath("PanelContainer/InventoryBase/StashInventoryGrid")
+_inventory_container_path = NodePath(".")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 2
+
+[node name="InventoryBase" type="CenterContainer" parent="PanelContainer" groups=["inventory_controls"]]
+layout_mode = 2
+
+[node name="StashInventoryGrid" type="GridContainer" parent="PanelContainer/InventoryBase" node_paths=PackedStringArray("parent_inventory_control_base") groups=["inventory_controls"]]
+unique_name_in_owner = true
+modulate = Color(0.686275, 0.686275, 0.686275, 1)
+layout_mode = 2
+theme_override_constants/h_separation = 0
+theme_override_constants/v_separation = 0
+columns = 7
+script = ExtResource("3_b3c2g")
+container_size = 70
+parent_inventory_control_base = NodePath("../../..")
+grid_cell = ExtResource("4_2qi88")

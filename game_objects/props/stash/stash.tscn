@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://c4y0iwlv3i13p"]
+
+[ext_resource type="Script" path="res://levels/entities/stash_container.gd" id="1_55k0o"]
+[ext_resource type="PackedScene" uid="uid://cudd1ug1n5ge8" path="res://game_objects/props/stash/small_stash.blend" id="1_ns5tt"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ijpyw"]
+size = Vector3(0.998047, 0.708862, 1.98669)
+
+[node name="Stash" type="StaticBody3D"]
+collision_layer = 7
+collision_mask = 7
+script = ExtResource("1_55k0o")
+container_size = 70
+
+[node name="small_stash2" parent="." instance=ExtResource("1_ns5tt")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+
+[node name="SmallStashCollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000976562, 0.348286, -0.00323486)
+shape = SubResource("BoxShape3D_ijpyw")
