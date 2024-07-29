@@ -32,6 +32,7 @@ var world_collider:CollisionShape3D:
 @onready var item_highlight_m:ShaderMaterial = load("res://themes/item_highlighter_m.tres")
 @export var start_highlighted:bool = true
 @export var meshes_to_fade_on_pickup:Array[MeshInstance3D] = []
+@export var foley_player:AudioStreamPlayer3D
 var _prox_fade_mats:Array[StandardMaterial3D] = []
 var is_picked_up:bool = false
 
@@ -80,6 +81,11 @@ func dropped() -> void:
 		var number_surfaces:int = mesh_inst.mesh.get_surface_count()
 		for i in range(number_surfaces):
 			mesh_inst.set_surface_override_material(i,null)
+			
+	if foley_player:
+		foley_player.stream = get_item_instance().get_drop_sound()
+		foley_player.play()
+	
 	is_picked_up = false
 
 func picked_up(actor_id:int = 0) -> void:
@@ -95,6 +101,11 @@ func picked_up(actor_id:int = 0) -> void:
 			var number_surfaces:int = mesh_inst.mesh.get_surface_count()
 			for i in range(number_surfaces):
 				mesh_inst.set_surface_override_material(i, _prox_fade_mats[mat_index])
+				
+	if foley_player:
+		foley_player.stream = get_item_instance().get_pickup_sound()
+		foley_player.play()
+	
 	is_picked_up = true
 	
 func destroy() -> void:
