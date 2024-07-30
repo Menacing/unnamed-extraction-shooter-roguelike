@@ -13,7 +13,11 @@ var item_3d_id:int:
 func get_item_instance() -> ItemInstance:
 	if item_instance_id == 0:
 		spawn_item()
-	return InventoryManager.get_item(item_instance_id)
+	var item_inst:ItemInstance = InventoryManager.get_item(item_instance_id)
+	if item_inst:
+		return item_inst
+	else:
+		return null 
 			
 var internal_inventory_id:int
 ## string id of the item. Must match the id in the corresponding ItemInformation resources
@@ -109,8 +113,10 @@ func picked_up(actor_id:int = 0) -> void:
 	is_picked_up = true
 	
 func destroy() -> void:
-	#Events.item_destroyed.emit(self)
-	self.call_deferred("queue_free")
+	if foley_player and foley_player.playing:
+		foley_player.finished.connect(destroy)
+	else:
+		self.queue_free()
 
 func set_stacks(amount:int) -> void:
 	get_item_instance().stacks = amount
