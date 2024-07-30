@@ -24,3 +24,5 @@ class_name ItemInformation
 @export var min_pickup_stacks:int = 1
 @export var mean_pickup_stacks:int = 1
 @export var stack_random_method:GameplayEnums.StackRandomMethod = GameplayEnums.StackRandomMethod.RANDOM
+@export var pickup_sound:AudioStream = load("res://game_objects/effects/sounds/foley/generic_pickup_1.ogg")
+@export var drop_sound:AudioStream = load("res://game_objects/effects/sounds/foley/generic_pickup_2.ogg")

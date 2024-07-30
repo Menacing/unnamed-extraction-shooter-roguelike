@@ -1,14 +1,16 @@
-[gd_resource type="Resource" script_class="ItemInformation" load_steps=11 format=3 uid="uid://se4uj7i6ud3y"]
+[gd_resource type="Resource" script_class="ItemInformation" load_steps=13 format=3 uid="uid://se4uj7i6ud3y"]
 
 [ext_resource type="Resource" uid="uid://o6tesi76nbth" path="res://ui/inventory/drop_item_context_item.tres" id="1_ny6ox"]
 [ext_resource type="Script" path="res://ui/inventory/item_context_item.gd" id="2_xupde"]
 [ext_resource type="PackedScene" uid="uid://0hy4cl1x7qwx" path="res://ui/inventory/detail_scenes/gun_detail_popup.tscn" id="3_np3eu"]
+[ext_resource type="AudioStream" uid="uid://bc1wim1c1t021" path="res://game_objects/items/weapons/fic_rifles/fic_mag_out.ogg" id="4_gim5i"]
 [ext_resource type="Texture2D" uid="uid://d14qjudcylhe0" path="res://game_objects/items/weapons/fic_rifles/s5/s5_icon.png" id="4_vyqt0"]
 [ext_resource type="Resource" uid="uid://dxq125myj32c7" path="res://game_objects/items/weapons/fic_rifles/fic_rifles_inventory.tres" id="5_jgwc5"]
 [ext_resource type="Texture2D" uid="uid://dvhwavsgo6hxq" path="res://game_objects/items/weapons/fic_rifles/s5/s5_icon_r.png" id="5_slab2"]
 [ext_resource type="PackedScene" uid="uid://cprpop5lkmyhe" path="res://game_objects/items/weapons/fic_rifles/s5/s5.tscn" id="6_oedub"]
 [ext_resource type="PackedScene" uid="uid://cn3ywqty7xvvr" path="res://ui/inventory/item_control.tscn" id="7_w8mby"]
 [ext_resource type="Script" path="res://resource_access/item_information.gd" id="9_ghylw"]
+[ext_resource type="AudioStream" uid="uid://c2wxubwa7ilv" path="res://game_objects/items/weapons/fic_rifles/fic_charging_handle.ogg" id="10_2qnvk"]
 
 [sub_resource type="Resource" id="Resource_6llv8"]
 script = ExtResource("2_xupde")
@@ -40,3 +42,5 @@ flavor_text = "The truth is any good modern rifle is good enough. The determinin
 min_pickup_stacks = 1
 mean_pickup_stacks = 1
 stack_random_method = 0
+pickup_sound = ExtResource("10_2qnvk")
+drop_sound = ExtResource("4_gim5i")

@@ -13,7 +13,11 @@ var item_3d_id:int:
 func get_item_instance() -> ItemInstance:
 	if item_instance_id == 0:
 		spawn_item()
-	return InventoryManager.get_item(item_instance_id)
+	var item_inst:ItemInstance = InventoryManager.get_item(item_instance_id)
+	if item_inst:
+		return item_inst
+	else:
+		return null 
 			
 var internal_inventory_id:int
 ## string id of the item. Must match the id in the corresponding ItemInformation resources
@@ -32,6 +36,7 @@ var world_collider:CollisionShape3D:
 @onready var item_highlight_m:ShaderMaterial = load("res://themes/item_highlighter_m.tres")
 @export var start_highlighted:bool = true
 @export var meshes_to_fade_on_pickup:Array[MeshInstance3D] = []
+@export var foley_player:AudioStreamPlayer3D
 var _prox_fade_mats:Array[StandardMaterial3D] = []
 var is_picked_up:bool = false
 
@@ -80,6 +85,11 @@ func dropped() -> void:
 		var number_surfaces:int = mesh_inst.mesh.get_surface_count()
 		for i in range(number_surfaces):
 			mesh_inst.set_surface_override_material(i,null)
+			
+	if foley_player:
+		foley_player.stream = get_item_instance().get_drop_sound()
+		foley_player.play()
+	
 	is_picked_up = false
 
 func picked_up(actor_id:int = 0) -> void:
@@ -95,11 +105,18 @@ func picked_up(actor_id:int = 0) -> void:
 			var number_surfaces:int = mesh_inst.mesh.get_surface_count()
 			for i in range(number_surfaces):
 				mesh_inst.set_surface_override_material(i, _prox_fade_mats[mat_index])
+				
+	if foley_player:
+		foley_player.stream = get_item_instance().get_pickup_sound()
+		foley_player.play()
+	
 	is_picked_up = true
 	
 func destroy() -> void:
-	#Events.item_destroyed.emit(self)
-	self.call_deferred("queue_free")
+	if foley_player and foley_player.playing:
+		foley_player.finished.connect(destroy)
+	else:
+		self.queue_free()
 
 func set_stacks(amount:int) -> void:
 	get_item_instance().stacks = amount

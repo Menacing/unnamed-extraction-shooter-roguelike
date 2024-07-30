@@ -161,3 +161,9 @@ func get_item_inventory() -> Inventory:
 	
 func get_detail_scene() -> PackedScene:
 	return _item_info.detail_scene
+	
+func get_pickup_sound() -> AudioStream:
+	return _item_info.pickup_sound
+	
+func get_drop_sound() -> AudioStream:
+	return _item_info.drop_sound

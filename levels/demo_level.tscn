@@ -1,5 +1,6 @@
-[gd_scene load_steps=83 format=3 uid="uid://ctahsvj88g1om"]
+[gd_scene load_steps=102 format=3 uid="uid://ctahsvj88g1om"]
 
+[ext_resource type="Script" path="res://levels/demo_level.gd" id="1_8448e"]
 [ext_resource type="PackedScene" uid="uid://d08aatgxmymbf" path="res://game_objects/player/player.tscn" id="1_eisjc"]
 [ext_resource type="Script" path="res://levels/multi_agent_navigation_root.gd" id="2_cimua"]
 [ext_resource type="Resource" uid="uid://hw8blc564g2i" path="res://levels/roomba_nav_mesh.tres" id="2_mvgx8"]
@@ -17,6 +18,22 @@
 [ext_resource type="Material" uid="uid://cnqi48f8iiy13" path="res://levels/textures/metal/metal_6.tres" id="15_b757u"]
 [ext_resource type="PackedScene" uid="uid://82pjqxlmcg2v" path="res://game_objects/items/ammo/hic/hic_box_ap.tscn" id="15_lbv4t"]
 [ext_resource type="PackedScene" uid="uid://c17uhpgl0dvt4" path="res://game_objects/items/ammo/fic/fic_box_fmj.tscn" id="16_3j2uw"]
+[ext_resource type="PackedScene" uid="uid://b6xejgxv7attc" path="res://game_objects/items/backpacks/large/large_backpack_1.tscn" id="18_7cjgh"]
+[ext_resource type="PackedScene" uid="uid://dkq52ylhipkym" path="res://game_objects/items/backpacks/medium/1/medium_backpack_1.tscn" id="19_hry6u"]
+[ext_resource type="PackedScene" uid="uid://byxda6yp3siwd" path="res://game_objects/items/ammo/fic/fic_box_ap.tscn" id="20_6qx0q"]
+[ext_resource type="PackedScene" uid="uid://c4d3mbvlwijgv" path="res://game_objects/items/ammo/fic/fic_box_hp.tscn" id="21_ckpue"]
+[ext_resource type="PackedScene" uid="uid://bbsjagcj1p70g" path="res://game_objects/items/ammo/hic/hic_box_fmj.tscn" id="22_80o60"]
+[ext_resource type="PackedScene" uid="uid://c8y8q8sw14nbw" path="res://game_objects/items/ammo/hic/hic_box_hp.tscn" id="23_xk7fk"]
+[ext_resource type="PackedScene" uid="uid://c2mgc1vc3603e" path="res://game_objects/items/armor/light/light_armor_1.tscn" id="24_bw0sj"]
+[ext_resource type="PackedScene" uid="uid://fetf2vb0h86g" path="res://game_objects/items/armor/medium/1/medium_armor_1.tscn" id="25_43i1p"]
+[ext_resource type="PackedScene" uid="uid://2ggq36ut12jw" path="res://game_objects/items/attachments/foregrips/stable/stable_forgreip.tscn" id="26_vh55a"]
+[ext_resource type="PackedScene" uid="uid://d0o2yjbp3avaa" path="res://game_objects/items/attachments/magazines/extended/extended_magazine.tscn" id="27_phudk"]
+[ext_resource type="PackedScene" uid="uid://cwhv3r1tw0orw" path="res://game_objects/items/consumables/regel_pod/regel_pod.tscn" id="28_2kj4q"]
+[ext_resource type="PackedScene" uid="uid://b7b1goghrkw51" path="res://game_objects/items/key/fuel_core/fuel_core.tscn" id="29_6ciiy"]
+[ext_resource type="PackedScene" uid="uid://dsu2lajkgpbva" path="res://game_objects/items/materials/polymer_pile/polymer_pile.tscn" id="30_yv3x5"]
+[ext_resource type="PackedScene" uid="uid://c1ldryy4boogo" path="res://game_objects/items/materials/polymer_spool/polymer_spool.tscn" id="31_tiks5"]
+[ext_resource type="PackedScene" uid="uid://dr48wela8mtxd" path="res://game_objects/items/weapons/hic_rifles/pm_52/pm_52.tscn" id="32_aypor"]
+[ext_resource type="Resource" uid="uid://3nqgvhg4lre8" path="res://components/ammo_component/ammo_types/heavy_intermediate_cartridge/heavy_intermediate_cartridge.tres" id="33_058oc"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_6g5uc"]
 
@@ -317,7 +334,42 @@ ammo_type = ExtResource("10_q80ko")
 reload_time_Sec = 2.5
 reload_thresholds = Array[float]([1.0])
 
+[sub_resource type="Resource" id="Resource_pdgdb"]
+resource_local_to_scene = true
+script = ExtResource("11_hh747")
+weapon_category_name = "FIC Rifle"
+magazine_size = 30
+rpm = 800
+base_recoil = Vector2(0, 0.017)
+recoil_variability = Vector2(0.02, 0.01)
+fire_modes = ["semi", "auto"]
+ads_accel = 10.0
+ads_fov = 50.0
+moa = 4.0
+turn_speed = 25.0
+ammo_type = ExtResource("10_q80ko")
+reload_time_Sec = 2.5
+reload_thresholds = Array[float]([1.0])
+
+[sub_resource type="Resource" id="Resource_7xdau"]
+resource_local_to_scene = true
+script = ExtResource("11_hh747")
+weapon_category_name = "HIC Rifle"
+magazine_size = 30
+rpm = 600
+base_recoil = Vector2(0, 0.025)
+recoil_variability = Vector2(0.025, 0.013)
+fire_modes = ["semi", "auto"]
+ads_accel = 10.0
+ads_fov = 50.0
+moa = 5.0
+turn_speed = 25.0
+ammo_type = ExtResource("33_058oc")
+reload_time_Sec = 2.5
+reload_thresholds = Array[float]([1.0])
+
 [node name="Node3d" type="Node3D"]
+script = ExtResource("1_8448e")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_l5pxq")
@@ -1235,3 +1287,62 @@ transform = Transform3D(1, 0, 0, 0, -0.491436, -0.870914, 0, 0.870914, -0.491436
 
 [node name="Player" parent="." instance=ExtResource("1_eisjc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.48035, 1.04626, -2.63506)
+
+[node name="large_backpack_1" parent="." instance=ExtResource("18_7cjgh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.2422, 0.0788298, -5.31462)
+
+[node name="medium_backpack" parent="." instance=ExtResource("19_hry6u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.49394, 0.0788302, -5.33228)
+
+[node name="HicBox" parent="." instance=ExtResource("16_3j2uw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.91712, 0.07883, -5.10533)
+
+[node name="HicBox2" parent="." instance=ExtResource("20_6qx0q")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.17244, 0.0788298, -5.08134)
+
+[node name="HicBox3" parent="." instance=ExtResource("21_ckpue")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.41921, 0.07883, -5.09262)
+
+[node name="HicBoxAp" parent="." instance=ExtResource("15_lbv4t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.19979, 0.07883, -4.88231)
+
+[node name="HicBox4" parent="." instance=ExtResource("22_80o60")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.90908, 0.07883, -4.90387)
+
+[node name="HicBoxHp" parent="." instance=ExtResource("23_xk7fk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.40665, 0.07883, -4.88717)
+
+[node name="light_armor_1" parent="." instance=ExtResource("24_bw0sj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.86408, 0.482753, -5.14554)
+
+[node name="medium_armor_1" parent="." instance=ExtResource("25_43i1p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.3904, 0.599723, -5.16897)
+
+[node name="StableForgreip" parent="." instance=ExtResource("26_vh55a")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.77795, 0.0788298, -4.7217)
+
+[node name="ExtendedMagazine" parent="." instance=ExtResource("27_phudk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.00208, 0.266904, -4.70709)
+
+[node name="red_dot" parent="." instance=ExtResource("8_2b85p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.38579, 0.07883, -4.74457)
+
+[node name="RegelPod" parent="." instance=ExtResource("28_2kj4q")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.85054, 0.07883, -4.75342)
+
+[node name="FuelCore" parent="." instance=ExtResource("29_6ciiy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.26449, 0.315086, -5.11227)
+
+[node name="polymer_pile" parent="." instance=ExtResource("30_yv3x5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.41267, 0.0788298, -5.35211)
+
+[node name="PolymerSpool" parent="." instance=ExtResource("31_tiks5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.36543, 0.243834, -4.88059)
+
+[node name="S5" parent="." instance=ExtResource("9_7oj7m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.1374, 0.237284, -5.26319)
+_gun_stats = SubResource("Resource_pdgdb")
+
+[node name="PM52" parent="." instance=ExtResource("32_aypor")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.7313, 0.0788302, -5.3492)
+_gun_stats = SubResource("Resource_7xdau")

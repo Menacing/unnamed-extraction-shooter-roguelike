@@ -39,7 +39,6 @@ func spawn_from_item_type_id(item_type_id:String) -> ItemInstance:
 	if item_info == null:
 		push_error("No ItemInformation found for item_type_id %" % item_type_id)
 	var item_instance:ItemInstance = ItemInstance.new(item_info)
-	item_instance.item_instance_id = Helpers.generate_new_id()
 	item_instance.spawn_item()
 	return item_instance
 
@@ -128,7 +127,7 @@ func destroy_item(item:ItemInstance) -> void:
 		if item.id_3d:
 			var item_3d:Item3D = item_3ds[item.id_3d]
 			item_3ds.erase(item.id_3d)
-			item_3d.queue_free()
+			item_3d.destroy()
 		if item.id_2d:
 			var item_2d:ItemControl = item_controls[item.id_2d]
 			item_controls.erase(item.id_2d)
