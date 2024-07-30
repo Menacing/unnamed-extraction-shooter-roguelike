@@ -6,7 +6,7 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_mupep"]
 size = Vector3(0.378402, 0.4538, 0.305015)
 
-[node name="medium_armor_1" type="RigidBody3D" node_paths=PackedStringArray("model_node", "meshes_to_fade_on_pickup")]
+[node name="medium_armor_1" type="RigidBody3D" node_paths=PackedStringArray("model_node", "meshes_to_fade_on_pickup", "foley_player")]
 collision_layer = 7
 collision_mask = 5
 script = ExtResource("1_uid1b")
@@ -15,6 +15,7 @@ world_collider_path = NodePath("CollisionShape3D")
 longest_side_size = 0.5
 model_node = NodePath("medium_armor_1")
 meshes_to_fade_on_pickup = [NodePath("medium_armor_1/Cube")]
+foley_player = NodePath("FoleyAudioStreamPlayer3D")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0230582, 0.0499593)
@@ -23,5 +24,7 @@ shape = SubResource("BoxShape3D_mupep")
 
 [node name="medium_armor_1" parent="." instance=ExtResource("2_e4bhg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.221338, 0.104325)
+
+[node name="FoleyAudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
 
 [editable path="medium_armor_1"]
