@@ -1,10 +1,12 @@
-[gd_resource type="Resource" script_class="ItemInformation" load_steps=6 format=3 uid="uid://cn8v720gwl35e"]
+[gd_resource type="Resource" script_class="ItemInformation" load_steps=8 format=3 uid="uid://cn8v720gwl35e"]
 
 [ext_resource type="PackedScene" uid="uid://cn3ywqty7xvvr" path="res://ui/inventory/item_control.tscn" id="1_0pjew"]
 [ext_resource type="PackedScene" uid="uid://b7b1goghrkw51" path="res://game_objects/items/key/fuel_core/fuel_core.tscn" id="1_bbt30"]
 [ext_resource type="Texture2D" uid="uid://5yl74rombvn8" path="res://game_objects/items/key/fuel_core/fuel_core_icon.png" id="1_d4wbc"]
 [ext_resource type="Script" path="res://resource_access/item_information.gd" id="1_dpvk6"]
+[ext_resource type="AudioStream" uid="uid://bxvq1m37pr6q8" path="res://game_objects/effects/sounds/foley/heavy_2.ogg" id="1_go7ik"]
 [ext_resource type="Texture2D" uid="uid://va8ww10nccvv" path="res://game_objects/items/key/fuel_core/fuel_core_icon_r.png" id="2_dhuss"]
+[ext_resource type="AudioStream" uid="uid://dx85q5h6h0og4" path="res://game_objects/effects/sounds/foley/heavy_1.ogg" id="6_ehllv"]
 
 [resource]
 script = ExtResource("1_dpvk6")
@@ -13,6 +15,7 @@ item_3d_scene = ExtResource("1_bbt30")
 item_type_id = "fuel_core"
 show_name = true
 display_name = "Fuel Core"
+display_short_name = ""
 item_type = 2
 icon = ExtResource("1_d4wbc")
 icon_r = ExtResource("2_dhuss")
@@ -25,3 +28,8 @@ column_span = 4
 row_span = 2
 description_text = "A standard Nano Nuclear Neutrino (N3) Fuel Core. The state of the art in portable power prior to the fall. Although far less efficient than a full  reactor, these cores still have energy densities far greater than their chemical predecessors."
 flavor_text = "Keep out of reach of children. Do not leave in direct sunlight. Do not expose to magnetic fields in excess of .8T"
+min_pickup_stacks = 1
+mean_pickup_stacks = 1
+stack_random_method = 0
+pickup_sound = ExtResource("6_ehllv")
+drop_sound = ExtResource("1_go7ik")

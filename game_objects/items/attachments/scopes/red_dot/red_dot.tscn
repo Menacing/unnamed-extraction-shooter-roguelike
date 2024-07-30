@@ -74,7 +74,7 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_ciye3")
 
-[node name="red_dot" type="RigidBody3D" node_paths=PackedStringArray("model_node")]
+[node name="red_dot" type="RigidBody3D" node_paths=PackedStringArray("model_node", "foley_player")]
 collision_layer = 5
 collision_mask = 5
 script = ExtResource("1_4e1c2")
@@ -82,6 +82,7 @@ item_type_id = "red_dot"
 world_collider_path = NodePath("CollisionShape3D")
 longest_side_size = 0.1
 model_node = NodePath("red_dot_model")
+foley_player = NodePath("FoleyAudioStreamPlayer3D")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000335693, 0.0196533, 0.00038147)
@@ -95,5 +96,7 @@ mesh = SubResource("ArrayMesh_eqk4g")
 
 [node name="eye_position" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0276878, 0)
+
+[node name="FoleyAudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
 
 [editable path="red_dot_model"]

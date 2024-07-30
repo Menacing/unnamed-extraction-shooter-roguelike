@@ -172,7 +172,7 @@ streams_count = 1
 stream_0/stream = ExtResource("10_vdlnj")
 stream_0/weight = 1.0
 
-[node name="S5" type="RigidBody3D" node_paths=PackedStringArray("mag_node", "model_node")]
+[node name="S5" type="RigidBody3D" node_paths=PackedStringArray("mag_node", "model_node", "foley_player")]
 disable_mode = 1
 collision_layer = 5
 collision_mask = 5
@@ -189,6 +189,7 @@ item_type_id = "s5"
 world_collider_path = NodePath("CollisionShape3D")
 longest_side_size = 0.9
 model_node = NodePath("s5")
+foley_player = NodePath("FoleyAudioStreamPlayer3D")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -0.00137329, -0.064, -0.054)
@@ -292,5 +293,7 @@ stream = SubResource("AudioStreamRandomizer_has1p")
 volume_db = 6.0
 max_polyphony = 20
 bus = &"SFX"
+
+[node name="FoleyAudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
 
 [editable path="s5"]
