@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="AmmoSubtype" load_steps=2 format=3 uid="uid://d3mmo5kstfdwe"]
+
+[ext_resource type="Script" path="res://components/ammo_component/ammo_subtype.gd" id="2_pslky"]
+
+[resource]
+script = ExtResource("2_pslky")
+name = "Armor Piercing"
+abbreviation = "AP"
+maximum_capacity = 300
+item_type_id = "lpc_box_ap"
+initial_damage = 15.0
+armor_penetration_rating = 6.0
+initial_speed = 700.0

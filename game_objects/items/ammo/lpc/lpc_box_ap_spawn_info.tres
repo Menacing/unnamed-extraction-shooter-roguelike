@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="LootSpawnInformation" load_steps=3 format=3 uid="uid://61pumdix6ci8"]
+
+[ext_resource type="Resource" uid="uid://btfl5njrpd278" path="res://game_objects/items/ammo/lpc/lpc_box_ap_inventory_info.tres" id="1_5dtp6"]
+[ext_resource type="Script" path="res://game_objects/items/loot_spawn_information.gd" id="2_mlrqm"]
+
+[resource]
+script = ExtResource("2_mlrqm")
+item_information = ExtResource("1_5dtp6")
+test_radius = 0.2
+min_stack = 25
+max_stack = 50

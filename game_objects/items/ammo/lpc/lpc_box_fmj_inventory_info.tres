@@ -1,0 +1,37 @@
+[gd_resource type="Resource" script_class="AmmoInformation" load_steps=9 format=3 uid="uid://bg0wr4wt3fyul"]
+
+[ext_resource type="Resource" uid="uid://cviikbecdwok0" path="res://components/ammo_component/ammo_types/light_pistol_cartridge/ammo_subtypes/full_metal_jacket.tres" id="1_dx0qo"]
+[ext_resource type="Resource" uid="uid://dcejbnpeogafm" path="res://components/ammo_component/ammo_types/light_pistol_cartridge/light_pistol_cartridge.tres" id="2_0lqg5"]
+[ext_resource type="Resource" uid="uid://o6tesi76nbth" path="res://ui/inventory/drop_item_context_item.tres" id="3_6v65b"]
+[ext_resource type="PackedScene" uid="uid://djpvx3f8rfem0" path="res://ui/inventory/detail_scenes/ammo_detail_popup.tscn" id="4_omvfl"]
+[ext_resource type="Texture2D" uid="uid://u1ilp8m6napv" path="res://game_objects/items/ammo/lpc/lpc_fmj_icon.png" id="5_1sq8a"]
+[ext_resource type="PackedScene" uid="uid://c58b7dwqutp75" path="res://game_objects/items/ammo/lpc/lpc_box_fmj.tscn" id="5_ew77c"]
+[ext_resource type="PackedScene" uid="uid://cn3ywqty7xvvr" path="res://ui/inventory/item_control.tscn" id="7_15vti"]
+[ext_resource type="Script" path="res://game_objects/items/ammo/ammo_information.gd" id="8_5vmxi"]
+
+[resource]
+script = ExtResource("8_5vmxi")
+ammo_type = ExtResource("2_0lqg5")
+ammo_subtype = ExtResource("1_dx0qo")
+item_control_scene = ExtResource("7_15vti")
+item_3d_scene = ExtResource("5_ew77c")
+item_type_id = "lpc_box_fmj"
+show_name = false
+display_name = "Light Pistol Cartridge - Full Metal Jacket"
+display_short_name = "LPC FMJ"
+item_type = 11
+icon = ExtResource("5_1sq8a")
+icon_r = ExtResource("5_1sq8a")
+detail_scene = ExtResource("4_omvfl")
+context_menu_items = Array[Resource("res://ui/inventory/item_context_item.gd")]([ExtResource("3_6v65b")])
+max_stacks = 50
+has_stacks = true
+max_durability = 1
+has_durability = false
+column_span = 1
+row_span = 1
+description_text = ""
+flavor_text = ""
+min_pickup_stacks = 1
+mean_pickup_stacks = 10
+stack_random_method = 1

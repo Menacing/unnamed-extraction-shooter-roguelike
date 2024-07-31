@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="AmmoSubtype" load_steps=2 format=3 uid="uid://cu356qtmcj2lq"]
+
+[ext_resource type="Script" path="res://components/ammo_component/ammo_subtype.gd" id="2_fuyrj"]
+
+[resource]
+script = ExtResource("2_fuyrj")
+name = "Hollow Point"
+abbreviation = "HP"
+maximum_capacity = 300
+item_type_id = "lpc_box_hp"
+initial_damage = 50.0
+armor_penetration_rating = 1.0
+initial_speed = 700.0
