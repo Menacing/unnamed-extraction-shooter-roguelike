@@ -1,0 +1,71 @@
+[gd_scene load_steps=8 format=3 uid="uid://c58b7dwqutp75"]
+
+[ext_resource type="Script" path="res://game_objects/item_3d.gd" id="1_pd57v"]
+[ext_resource type="PackedScene" uid="uid://bs06usv1pq43" path="res://game_objects/items/ammo/lpc/lpc_box.blend" id="2_se3rc"]
+[ext_resource type="Texture2D" uid="uid://dxs7duxbowjvn" path="res://game_objects/items/ammo/lpc/textures/lpc_fmj_t.png" id="3_gntb0"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jayuc"]
+resource_name = "fmj_m"
+transparency = 4
+cull_mode = 2
+albedo_texture = ExtResource("3_gntb0")
+roughness = 0.5
+texture_filter = 2
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_sdx64"]
+_surfaces = [{
+"aabb": AABB(-0.1, -0.03, -0.05, 0.20001, 0.06001, 0.1),
+"format": 34896613377,
+"index_count": 36,
+"index_data": PackedByteArray(0, 0, 6, 0, 4, 0, 0, 0, 2, 0, 6, 0, 3, 0, 6, 0, 2, 0, 3, 0, 7, 0, 6, 0, 7, 0, 4, 0, 6, 0, 7, 0, 5, 0, 4, 0, 5, 0, 3, 0, 1, 0, 5, 0, 7, 0, 3, 0, 1, 0, 2, 0, 0, 0, 1, 0, 3, 0, 2, 0, 5, 0, 0, 0, 4, 0, 5, 0, 1, 0, 0, 0),
+"name": "fmj_m",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 8,
+"vertex_data": PackedByteArray(251, 255, 244, 255, 0, 0, 0, 0, 251, 255, 0, 0, 0, 0, 0, 0, 251, 255, 244, 255, 255, 255, 0, 0, 251, 255, 0, 0, 255, 255, 0, 0, 0, 0, 244, 255, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 244, 255, 255, 255, 0, 0, 0, 0, 0, 0, 255, 255, 0, 0)
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_uyl3l"]
+resource_name = "lpc_box_Cube"
+_surfaces = [{
+"aabb": AABB(-0.1, -0.03, -0.05, 0.20001, 0.06001, 0.1),
+"attribute_data": PackedByteArray(104, 128, 122, 185, 254, 255, 240, 127, 199, 195, 2, 220, 90, 128, 240, 127, 104, 128, 224, 219, 199, 195, 204, 255, 152, 128, 19, 220, 255, 255, 187, 185, 82, 128, 2, 220, 39, 128, 85, 185, 152, 128, 173, 185, 82, 128, 204, 255, 85, 128, 52, 220, 196, 255, 122, 185, 9, 128, 240, 127, 85, 128, 255, 255, 183, 255, 35, 128, 196, 255, 224, 219, 201, 195, 52, 220, 245, 255, 19, 220, 9, 128, 187, 185, 201, 195, 255, 255, 132, 255, 136, 185, 245, 255, 173, 185),
+"format": 34896613399,
+"index_count": 36,
+"index_data": PackedByteArray(1, 0, 20, 0, 14, 0, 1, 0, 7, 0, 20, 0, 10, 0, 19, 0, 6, 0, 10, 0, 23, 0, 19, 0, 21, 0, 12, 0, 18, 0, 21, 0, 15, 0, 12, 0, 16, 0, 9, 0, 3, 0, 16, 0, 22, 0, 9, 0, 5, 0, 8, 0, 2, 0, 5, 0, 11, 0, 8, 0, 17, 0, 0, 0, 13, 0, 17, 0, 4, 0, 0, 0),
+"material": SubResource("StandardMaterial3D_jayuc"),
+"name": "fmj_m",
+"primitive": 3,
+"uv_scale": Vector4(1.99783, 1.99537, 0, 0),
+"vertex_count": 24,
+"vertex_data": PackedByteArray(251, 255, 244, 255, 0, 0, 255, 255, 251, 255, 244, 255, 0, 0, 255, 191, 251, 255, 244, 255, 0, 0, 255, 191, 251, 255, 0, 0, 0, 0, 242, 255, 251, 255, 0, 0, 0, 0, 255, 255, 251, 255, 0, 0, 0, 0, 255, 191, 251, 255, 244, 255, 255, 255, 255, 255, 251, 255, 244, 255, 255, 255, 255, 191, 251, 255, 244, 255, 255, 255, 255, 191, 251, 255, 0, 0, 255, 255, 242, 255, 251, 255, 0, 0, 255, 255, 255, 255, 251, 255, 0, 0, 255, 255, 255, 191, 0, 0, 244, 255, 0, 0, 255, 191, 0, 0, 244, 255, 0, 0, 255, 255, 0, 0, 244, 255, 0, 0, 255, 191, 0, 0, 0, 0, 0, 0, 255, 191, 0, 0, 0, 0, 0, 0, 242, 255, 0, 0, 0, 0, 0, 0, 255, 255, 0, 0, 244, 255, 255, 255, 255, 191, 0, 0, 244, 255, 255, 255, 255, 255, 0, 0, 244, 255, 255, 255, 255, 191, 0, 0, 0, 0, 255, 255, 255, 191, 0, 0, 0, 0, 255, 255, 242, 255, 0, 0, 0, 0, 255, 255, 255, 255, 255, 127, 255, 255, 255, 255, 255, 127, 255, 127, 0, 0, 241, 127, 6, 64, 255, 127, 255, 255, 255, 127, 0, 0, 255, 127, 255, 127, 255, 255, 255, 127, 255, 127, 0, 0, 241, 127, 6, 64, 255, 127, 255, 127, 255, 127, 0, 0, 255, 127, 255, 255, 255, 127, 255, 255, 255, 255, 255, 127, 255, 127, 255, 255, 241, 127, 6, 64, 255, 127, 255, 255, 255, 127, 255, 255, 255, 127, 255, 127, 255, 255, 255, 127, 255, 127, 255, 255, 241, 127, 6, 64, 255, 127, 255, 127)
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_sdx64")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_fluor"]
+size = Vector3(0.200562, 0.0610657, 0.100464)
+
+[node name="LpcBoxFmj" type="RigidBody3D" node_paths=PackedStringArray("model_node", "foley_player")]
+collision_layer = 5
+collision_mask = 5
+script = ExtResource("1_pd57v")
+item_type_id = "lpc_box_fmj"
+world_collider_path = NodePath("CollisionShape3D")
+longest_side_size = 0.25
+model_node = NodePath("lpc_box/Cube")
+foley_player = NodePath("FoleyAudioStreamPlayer3D")
+
+[node name="lpc_box" parent="." instance=ExtResource("2_se3rc")]
+
+[node name="Cube" parent="lpc_box" index="0"]
+mesh = SubResource("ArrayMesh_uyl3l")
+
+[node name="FoleyAudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000427246, 0.000198364, 0.000549316)
+shape = SubResource("BoxShape3D_fluor")
+
+[editable path="lpc_box"]

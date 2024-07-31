@@ -1,0 +1,34 @@
+[gd_resource type="Resource" script_class="AmmoInformation" load_steps=8 format=3 uid="uid://btfl5njrpd278"]
+
+[ext_resource type="Resource" uid="uid://d3mmo5kstfdwe" path="res://components/ammo_component/ammo_types/light_pistol_cartridge/ammo_subtypes/armor_piercing.tres" id="1_fn2ra"]
+[ext_resource type="Resource" uid="uid://dcejbnpeogafm" path="res://components/ammo_component/ammo_types/light_pistol_cartridge/light_pistol_cartridge.tres" id="2_6ue1l"]
+[ext_resource type="Resource" uid="uid://o6tesi76nbth" path="res://ui/inventory/drop_item_context_item.tres" id="3_8eo5f"]
+[ext_resource type="PackedScene" uid="uid://djpvx3f8rfem0" path="res://ui/inventory/detail_scenes/ammo_detail_popup.tscn" id="4_4btu1"]
+[ext_resource type="PackedScene" uid="uid://dyymfnrwyu0re" path="res://game_objects/items/ammo/lpc/lpc_box_ap.tscn" id="5_chfh0"]
+[ext_resource type="PackedScene" uid="uid://cn3ywqty7xvvr" path="res://ui/inventory/item_control.tscn" id="6_jn4yj"]
+[ext_resource type="Script" path="res://game_objects/items/ammo/ammo_information.gd" id="7_kga62"]
+
+[resource]
+script = ExtResource("7_kga62")
+ammo_type = ExtResource("2_6ue1l")
+ammo_subtype = ExtResource("1_fn2ra")
+item_control_scene = ExtResource("6_jn4yj")
+item_3d_scene = ExtResource("5_chfh0")
+item_type_id = "lpc_box_ap"
+show_name = false
+display_name = "Light Pistol Cartridge - Armor Piercing"
+display_short_name = "LPC AP"
+item_type = 11
+detail_scene = ExtResource("4_4btu1")
+context_menu_items = Array[Resource("res://ui/inventory/item_context_item.gd")]([ExtResource("3_8eo5f")])
+max_stacks = 50
+has_stacks = true
+max_durability = 1
+has_durability = false
+column_span = 1
+row_span = 1
+description_text = ""
+flavor_text = ""
+min_pickup_stacks = 1
+mean_pickup_stacks = 10
+stack_random_method = 1
