@@ -1,4 +1,4 @@
-[gd_scene load_steps=102 format=3 uid="uid://ctahsvj88g1om"]
+[gd_scene load_steps=105 format=3 uid="uid://ctahsvj88g1om"]
 
 [ext_resource type="Script" path="res://levels/demo_level.gd" id="1_8448e"]
 [ext_resource type="PackedScene" uid="uid://d08aatgxmymbf" path="res://game_objects/player/player.tscn" id="1_eisjc"]
@@ -34,6 +34,9 @@
 [ext_resource type="PackedScene" uid="uid://c1ldryy4boogo" path="res://game_objects/items/materials/polymer_spool/polymer_spool.tscn" id="31_tiks5"]
 [ext_resource type="PackedScene" uid="uid://dr48wela8mtxd" path="res://game_objects/items/weapons/hic_rifles/pm_52/pm_52.tscn" id="32_aypor"]
 [ext_resource type="Resource" uid="uid://3nqgvhg4lre8" path="res://components/ammo_component/ammo_types/heavy_intermediate_cartridge/heavy_intermediate_cartridge.tres" id="33_058oc"]
+[ext_resource type="PackedScene" uid="uid://dyymfnrwyu0re" path="res://game_objects/items/ammo/lpc/lpc_box_ap.tscn" id="35_btk64"]
+[ext_resource type="PackedScene" uid="uid://c58b7dwqutp75" path="res://game_objects/items/ammo/lpc/lpc_box_fmj.tscn" id="36_xl7vn"]
+[ext_resource type="PackedScene" uid="uid://btg5dmqcu3ni3" path="res://game_objects/items/ammo/lpc/lpc_box_hp.tscn" id="37_1gb6g"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_6g5uc"]
 
@@ -1346,3 +1349,12 @@ _gun_stats = SubResource("Resource_pdgdb")
 [node name="PM52" parent="." instance=ExtResource("32_aypor")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.7313, 0.0788302, -5.3492)
 _gun_stats = SubResource("Resource_7xdau")
+
+[node name="LpcBoxHP" parent="." instance=ExtResource("35_btk64")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.18096, 0.137877, -5.32793)
+
+[node name="LpcBoxFmj" parent="." instance=ExtResource("36_xl7vn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.91033, 0.163342, -5.32878)
+
+[node name="LpcBoxHP2" parent="." instance=ExtResource("37_1gb6g")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.45802, 0.167906, -5.31897)
