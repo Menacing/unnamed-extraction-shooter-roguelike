@@ -47,7 +47,13 @@ func _func_godot_apply_properties(entity_properties: Dictionary):
 	if 'footstep_sound_path' in func_godot_properties:
 		print("override footstep_sound_path: " + func_godot_properties['footstep_sound_path'])
 		_footstep_sound_path = func_godot_properties['footstep_sound_path']
+		
+	if 'transparent' in func_godot_properties:
+		_transparent = func_godot_properties['transparent']
+		
+	set_collision_layer_value(4,!_transparent)
 
+@export var _transparent := false
 @export_range(0.0, 1.0) var _pen_ratio = 1.0
 @export_range(0,10) var _armor_rating: int = 0
 @export_node_path("Node3D") var _bullet_hole_scene_path
