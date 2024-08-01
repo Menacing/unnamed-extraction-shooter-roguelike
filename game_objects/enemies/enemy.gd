@@ -131,7 +131,7 @@ func has_target_player() -> bool:
 func has_los_to_player() -> bool:
 	if target_player:
 		
-		var los_result = Helpers.los_to_point(head_node,target_player.los_check_locations,.6,exclusions)
+		var los_result = Helpers.los_to_point(head_node,target_player.los_check_locations,.6,exclusions,true)
 		return los_result
 	else:
 		return false

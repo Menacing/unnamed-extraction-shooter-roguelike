@@ -40,7 +40,7 @@ func moa_to_rad(moa:float) -> float:
 	return moa * 0.00029
 
 #Only call during _physics_process
-func los_to_point(target:Node3D, sources:Array[Node3D], threshold:float, exclusions:Array[RID] = []) -> bool:
+func los_to_point(target:Node3D, sources:Array[Node3D], threshold:float, exclusions:Array[RID] = [], concealment_layer:bool = false) -> bool:
 	var num_sources:int = sources.size()
 	var num_los:float = 0.0
 	var space_state:PhysicsDirectSpaceState3D = target.get_world_3d().direct_space_state
@@ -51,6 +51,8 @@ func los_to_point(target:Node3D, sources:Array[Node3D], threshold:float, exclusi
 				target_global_pos)
 			if exclusions.size() > 0:
 				query.exclude = exclusions
+			if concealment_layer:
+				query.collision_mask = 0b00000000_00000000_00000000_00001000
 			var result:Dictionary = space_state.intersect_ray(query)
 			if result.is_empty():
 				num_los += 1.0
