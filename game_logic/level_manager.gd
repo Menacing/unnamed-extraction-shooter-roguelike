@@ -1,6 +1,18 @@
 extends Node
 
+var level_infos:Array[LevelInformation] = []
+var current_shuffle_bag:Array[LevelInformation] = []
+var resource_group:ResourceGroup = load("res://levels/biomes/map_information_resource_group.tres")
+
 var current_level:Node
+
+func _ready():
+	# declare a type safe array
+
+	# fills the array with the resources from the resource group
+	resource_group.load_all_into(level_infos)
+	if level_infos.size() == 0:
+		push_error("NO LEVEL INFORMATION FOUND")
 
 func clear_level():
 	for child in get_children():
@@ -45,3 +57,15 @@ func emit_populate_level():
 
 func add_node_to_level(node:Node):
 	current_level.add_child(node)
+
+func get_level_informations(number:int) -> Array[LevelInformation]:
+	var return_array:Array[LevelInformation] = []
+	if number <= 0:
+		return return_array
+	for i in number:
+		if current_shuffle_bag.size() == 0:
+			current_shuffle_bag = level_infos.duplicate(true)
+			current_shuffle_bag.shuffle()
+		return_array.append(current_shuffle_bag.pop_back())
+	
+	return return_array

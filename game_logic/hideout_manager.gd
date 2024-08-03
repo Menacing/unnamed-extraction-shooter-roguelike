@@ -1,6 +1,6 @@
 extends Node
 
-@export var _hideout_menu_scene:PackedScene = load("res://ui/hideout_menu.tscn")
+@export var _hideout_menu_scene:PackedScene = load("res://ui/hideout/hideout_menu.tscn")
 
 @onready var hideout_menu:HideoutMenu = _hideout_menu_scene.instantiate()
 

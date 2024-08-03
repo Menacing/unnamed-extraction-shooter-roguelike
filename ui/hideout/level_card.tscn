@@ -17,39 +17,44 @@ layout_mode = 2
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/PanelContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="CenterContainer/PanelContainer/VBoxContainer"]
+[node name="TitleLabel" type="Label" parent="CenterContainer/PanelContainer/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 25
-text = "INSTITUTE"
+text = "placeholder"
 uppercase = true
 
-[node name="TextureRect" type="TextureRect" parent="CenterContainer/PanelContainer/VBoxContainer"]
+[node name="PreviewTextureRect" type="TextureRect" parent="CenterContainer/PanelContainer/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 texture = ExtResource("1_4bqrk")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/PanelContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="CenterContainer/PanelContainer/VBoxContainer/HBoxContainer"]
+[node name="BiomeLabel" type="Label" parent="CenterContainer/PanelContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 0
-text = "EASI"
+text = "placeholder"
 uppercase = true
 
-[node name="Label2" type="Label" parent="CenterContainer/PanelContainer/VBoxContainer/HBoxContainer"]
+[node name="SizeLabel" type="Label" parent="CenterContainer/PanelContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
 layout_direction = 3
 layout_mode = 2
 size_flags_horizontal = 10
-text = "SMALL"
+text = "placeholder"
 uppercase = true
 
 [node name="HSeparator" type="HSeparator" parent="CenterContainer/PanelContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="Label2" type="Label" parent="CenterContainer/PanelContainer/VBoxContainer"]
+[node name="DescriptionLabel" type="Label" parent="CenterContainer/PanelContainer/VBoxContainer"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
-text = "A chemical weapons plant and research facility. Destroyed by orbital laser and untouched since The Filter "
+text = "blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah "
 autowrap_mode = 2
 uppercase = true

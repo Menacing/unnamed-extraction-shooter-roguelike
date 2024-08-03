@@ -1,5 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://b6qibk2bpsyd7"]
+[gd_scene load_steps=3 format=3 uid="uid://b6qibk2bpsyd7"]
 
+[ext_resource type="Script" path="res://ui/hideout/map_selection_menu.gd" id="1_i65wc"]
 [ext_resource type="PackedScene" uid="uid://bj6g0500uiwnr" path="res://ui/hideout/level_card.tscn" id="1_pg2p0"]
 
 [node name="MapSelectionMenu" type="MarginContainer"]
@@ -8,6 +9,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_i65wc")
+level_card_scene = ExtResource("1_pg2p0")
 
 [node name="Panel" type="PanelContainer" parent="."]
 layout_mode = 2
@@ -15,17 +18,18 @@ layout_mode = 2
 [node name="ScrollContainer" type="ScrollContainer" parent="Panel"]
 layout_mode = 2
 
-[node name="VBoxContainer" type="FlowContainer" parent="Panel/ScrollContainer"]
+[node name="LevelCardContainer" type="FlowContainer" parent="Panel/ScrollContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
 alignment = 1
 
-[node name="LevelCard" parent="Panel/ScrollContainer/VBoxContainer" instance=ExtResource("1_pg2p0")]
+[node name="LevelCard" parent="Panel/ScrollContainer/LevelCardContainer" instance=ExtResource("1_pg2p0")]
 layout_mode = 2
 
-[node name="LevelCard2" parent="Panel/ScrollContainer/VBoxContainer" instance=ExtResource("1_pg2p0")]
+[node name="LevelCard2" parent="Panel/ScrollContainer/LevelCardContainer" instance=ExtResource("1_pg2p0")]
 layout_mode = 2
 
-[node name="LevelCard3" parent="Panel/ScrollContainer/VBoxContainer" instance=ExtResource("1_pg2p0")]
+[node name="LevelCard3" parent="Panel/ScrollContainer/LevelCardContainer" instance=ExtResource("1_pg2p0")]
 layout_mode = 2
