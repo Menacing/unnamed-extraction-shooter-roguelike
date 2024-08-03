@@ -1,0 +1,55 @@
+[gd_scene load_steps=3 format=3 uid="uid://bj6g0500uiwnr"]
+
+[ext_resource type="Texture2D" uid="uid://d3aq5m0cwhyka" path="res://levels/biomes/easi/maps/institute/institute_preview.png" id="1_4bqrk"]
+[ext_resource type="Script" path="res://ui/hideout/level_card.gd" id="1_4mi8x"]
+
+[node name="LevelCard" type="MarginContainer"]
+offset_right = 256.0
+offset_bottom = 400.0
+script = ExtResource("1_4mi8x")
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="CenterContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/PanelContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CenterContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 25
+text = "INSTITUTE"
+uppercase = true
+
+[node name="TextureRect" type="TextureRect" parent="CenterContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+texture = ExtResource("1_4bqrk")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CenterContainer/PanelContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "EASI"
+uppercase = true
+
+[node name="Label2" type="Label" parent="CenterContainer/PanelContainer/VBoxContainer/HBoxContainer"]
+layout_direction = 3
+layout_mode = 2
+size_flags_horizontal = 10
+text = "SMALL"
+uppercase = true
+
+[node name="HSeparator" type="HSeparator" parent="CenterContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="CenterContainer/PanelContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+text = "A chemical weapons plant and research facility. Destroyed by orbital laser and untouched since The Filter "
+autowrap_mode = 2
+uppercase = true

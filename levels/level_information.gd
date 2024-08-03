@@ -8,5 +8,5 @@ enum Size {Small, Medium, Large}
 @export var display_name:String
 @export var biome:Biome
 @export var size:Size
-@export var preview_image:ImageTexture
+@export var preview_image:Texture
 @export var description:String
