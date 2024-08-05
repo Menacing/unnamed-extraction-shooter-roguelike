@@ -1,0 +1,114 @@
+[gd_resource type="Resource" script_class="LootSpawnMapping" load_steps=41 format=3 uid="uid://cpkios25eab1h"]
+
+[ext_resource type="Script" path="res://game_objects/items/loot_spawn_mapping.gd" id="1_4pmu7"]
+[ext_resource type="Resource" uid="uid://cfi8lq50axkxg" path="res://levels/biomes/easi/0/loot_spawns/science_easy_polymer_pile_spawn_weight.tres" id="2_1m4cd"]
+[ext_resource type="Resource" uid="uid://df8lvowpq8vte" path="res://levels/biomes/easi/0/loot_spawns/science_easy_zs_52_spawn_weight.tres" id="3_u0ejk"]
+[ext_resource type="Resource" uid="uid://21g3836qkavm" path="res://levels/biomes/easi/0/loot_spawns/science_easy_hic_ammo_spawn_weight.tres" id="4_dx76d"]
+[ext_resource type="Resource" uid="uid://rhps88wdtf6u" path="res://levels/biomes/easi/0/loot_spawns/science_easy_regel_pod_spawn_weight.tres" id="5_7g4id"]
+[ext_resource type="Resource" uid="uid://dfi5jdd3s8pcy" path="res://game_objects/items/ammo/hic/hic_box_ap_spawn_info.tres" id="6_b6bpt"]
+[ext_resource type="Script" path="res://game_objects/items/loot_spawn_weight.gd" id="7_rt6d1"]
+[ext_resource type="Resource" uid="uid://drvqntpkse6fl" path="res://game_objects/items/ammo/hic/hic_box_hp_spawn_info.tres" id="8_y25ft"]
+[ext_resource type="Resource" uid="uid://bib8ie33yhndk" path="res://game_objects/items/ammo/fic/fic_box_fmj_spawn_info.tres" id="9_jrie8"]
+[ext_resource type="Resource" uid="uid://bsiksvwmwxur5" path="res://game_objects/items/ammo/fic/fic_box_hp_spawn_info.tres" id="10_aehop"]
+[ext_resource type="Resource" uid="uid://b1qwbd67wm4xi" path="res://game_objects/items/ammo/fic/fic_box_ap_spawn_info.tres" id="11_0yr68"]
+[ext_resource type="Resource" uid="uid://dq6fryorej07i" path="res://game_objects/items/backpacks/large/large_backpack_1_spawn_information.tres" id="12_8esjc"]
+[ext_resource type="Resource" uid="uid://bc6u7bqprvsou" path="res://game_objects/items/backpacks/medium/1/medium_backpack_1_spawn_information.tres" id="13_s7iyp"]
+[ext_resource type="Resource" uid="uid://cva5p7x1si3qb" path="res://game_objects/items/armor/light/light_armor_1_spawn_information.tres" id="14_60sop"]
+[ext_resource type="Resource" uid="uid://cw4gpu3100dol" path="res://game_objects/items/armor/medium/1/medium_armor_1_spawn_information.tres" id="15_g526o"]
+[ext_resource type="Resource" uid="uid://d0oj3n67ltwaw" path="res://game_objects/items/weapons/fic_rifles/s5/s5_spawn_info.tres" id="16_gu3rh"]
+[ext_resource type="Resource" uid="uid://ctfyx7ieq6je6" path="res://game_objects/items/attachments/foregrips/stable/stable_foregrip_spawn_information.tres" id="17_0y5qp"]
+[ext_resource type="Resource" uid="uid://brvwcdbsa2p6s" path="res://game_objects/items/attachments/magazines/extended/extended_magazine_spawn_information.tres" id="18_fr3wa"]
+[ext_resource type="Resource" uid="uid://cmpayxf6q1s53" path="res://game_objects/items/attachments/scopes/red_dot/red_dot_spawn_information.tres" id="19_fiudc"]
+[ext_resource type="Resource" uid="uid://bfsrjdaqy45vm" path="res://game_objects/items/materials/polymer_spool/polymer_spool_spawn_info.tres" id="20_4dnse"]
+[ext_resource type="Resource" uid="uid://61pumdix6ci8" path="res://game_objects/items/ammo/lpc/lpc_box_ap_spawn_info.tres" id="21_5g2qe"]
+[ext_resource type="Resource" uid="uid://dwvicwfkslbey" path="res://game_objects/items/ammo/lpc/lpc_box_hp_spawn_info.tres" id="22_cwb2d"]
+[ext_resource type="Resource" uid="uid://yqp4c6kfw6lj" path="res://game_objects/items/ammo/lpc/lpc_box_fmj_spawn_info.tres" id="23_d6wqh"]
+
+[sub_resource type="Resource" id="Resource_gq11x"]
+script = ExtResource("7_rt6d1")
+weight = 3
+loot = ExtResource("6_b6bpt")
+
+[sub_resource type="Resource" id="Resource_qt6ml"]
+script = ExtResource("7_rt6d1")
+weight = 3
+loot = ExtResource("8_y25ft")
+
+[sub_resource type="Resource" id="Resource_gphd2"]
+script = ExtResource("7_rt6d1")
+weight = 4
+loot = ExtResource("9_jrie8")
+
+[sub_resource type="Resource" id="Resource_aby38"]
+script = ExtResource("7_rt6d1")
+weight = 2
+loot = ExtResource("10_aehop")
+
+[sub_resource type="Resource" id="Resource_jnmsc"]
+script = ExtResource("7_rt6d1")
+weight = 2
+loot = ExtResource("11_0yr68")
+
+[sub_resource type="Resource" id="Resource_l1sec"]
+script = ExtResource("7_rt6d1")
+weight = 1
+loot = ExtResource("12_8esjc")
+
+[sub_resource type="Resource" id="Resource_wy3mp"]
+script = ExtResource("7_rt6d1")
+weight = 2
+loot = ExtResource("13_s7iyp")
+
+[sub_resource type="Resource" id="Resource_rv0nd"]
+script = ExtResource("7_rt6d1")
+weight = 2
+loot = ExtResource("14_60sop")
+
+[sub_resource type="Resource" id="Resource_qmq86"]
+script = ExtResource("7_rt6d1")
+weight = 1
+loot = ExtResource("15_g526o")
+
+[sub_resource type="Resource" id="Resource_vc6vt"]
+script = ExtResource("7_rt6d1")
+weight = 2
+loot = ExtResource("16_gu3rh")
+
+[sub_resource type="Resource" id="Resource_e3nok"]
+script = ExtResource("7_rt6d1")
+weight = 1
+loot = ExtResource("17_0y5qp")
+
+[sub_resource type="Resource" id="Resource_et86o"]
+script = ExtResource("7_rt6d1")
+weight = 1
+loot = ExtResource("18_fr3wa")
+
+[sub_resource type="Resource" id="Resource_hgwwb"]
+script = ExtResource("7_rt6d1")
+weight = 1
+loot = ExtResource("19_fiudc")
+
+[sub_resource type="Resource" id="Resource_1j8x0"]
+script = ExtResource("7_rt6d1")
+weight = 2
+loot = ExtResource("20_4dnse")
+
+[sub_resource type="Resource" id="Resource_3b8ry"]
+script = ExtResource("7_rt6d1")
+weight = 5
+loot = ExtResource("21_5g2qe")
+
+[sub_resource type="Resource" id="Resource_6u57d"]
+script = ExtResource("7_rt6d1")
+weight = 5
+loot = ExtResource("22_cwb2d")
+
+[sub_resource type="Resource" id="Resource_45ju0"]
+script = ExtResource("7_rt6d1")
+weight = 10
+loot = ExtResource("23_d6wqh")
+
+[resource]
+script = ExtResource("1_4pmu7")
+spawn_weights = Array[ExtResource("7_rt6d1")]([ExtResource("4_dx76d"), ExtResource("2_1m4cd"), ExtResource("3_u0ejk"), ExtResource("5_7g4id"), SubResource("Resource_gq11x"), SubResource("Resource_qt6ml"), SubResource("Resource_gphd2"), SubResource("Resource_aby38"), SubResource("Resource_jnmsc"), SubResource("Resource_l1sec"), SubResource("Resource_wy3mp"), SubResource("Resource_rv0nd"), SubResource("Resource_qmq86"), SubResource("Resource_vc6vt"), SubResource("Resource_e3nok"), SubResource("Resource_et86o"), SubResource("Resource_hgwwb"), SubResource("Resource_1j8x0"), SubResource("Resource_3b8ry"), SubResource("Resource_6u57d"), SubResource("Resource_45ju0")])

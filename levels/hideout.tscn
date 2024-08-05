@@ -6423,6 +6423,9 @@ shape = SubResource("ConvexPolygonShape3D_87iub")
 
 [node name="MapSelect" type="CSGSphere3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.3029, 1.23289, -1.85227)
+use_collision = true
+collision_layer = 5
+collision_mask = 5
 radius = 0.25
 material = SubResource("ShaderMaterial_oja5c")
 script = ExtResource("23_i80tc")
@@ -6463,4 +6466,3 @@ shape = SubResource("BoxShape3D_lmxcw")
 
 [node name="Stash" parent="." instance=ExtResource("38_1ckb4")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -1.13535, 0.2, -3.23975)
-_transparent = null

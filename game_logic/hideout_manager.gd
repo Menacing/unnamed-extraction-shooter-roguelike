@@ -1,6 +1,6 @@
 extends Node
 
-@export var _hideout_menu_scene:PackedScene = load("res://ui/hideout_menu.tscn")
+@export var _hideout_menu_scene:PackedScene = load("res://ui/hideout/hideout_menu.tscn")
 
 @onready var hideout_menu:HideoutMenu = _hideout_menu_scene.instantiate()
 
@@ -8,6 +8,8 @@ var crafting_materials_resource_group:ResourceGroup = load("res://game_objects/c
 var in_hideout:bool = false
 var _crafting_material_definitions:Array[CraftingMaterialDefinition]
 var crafting_materials:Array[CraftingMaterialEntry] = []
+
+var next_map:LevelInformation
 
 func _ready():
 	crafting_materials_resource_group.load_all_into(_crafting_material_definitions)
@@ -27,10 +29,13 @@ func _on_game_saving(save_file:SaveFile):
 func _on_load_game(save_data:LevelEntitySaveData):
 	pass
 
+func is_menu_visible() -> bool:
+	return hideout_menu.visible
 
 func show_hideout_menu():
 	hideout_menu.visible = true
 	EventBus.add_control_to_HUD.emit(hideout_menu)
 	
 func hide_hideout_menu():
+	hideout_menu.visible = false	
 	EventBus.remove_control_from_HUD.emit(hideout_menu)

@@ -1,5 +1,7 @@
 extends CSGSphere3D
+class_name MapSelectSphere
 
+var hideout_menu:HideoutMenu
 var tween: Tween
 @onready var _initial_rotation:float = self.rotation_degrees.y
 
@@ -9,6 +11,8 @@ func _ready():
 	
 	# Start the rotation loop
 	start_rotation_loop()
+	
+	hideout_menu = HideoutManager.hideout_menu
 
 func start_rotation_loop():
 	# Ensure the Tween is not currently running
@@ -33,3 +37,12 @@ func reset_rotation():
 func _on_tween_finished():
 	# Start the rotation loop again
 	start_rotation_loop()
+
+func use(player:Player):
+	if HideoutManager.is_menu_visible():
+		player.close_inventory()
+		HideoutManager.hide_hideout_menu()
+	else:
+		player.open_inventory()
+		HideoutManager.show_hideout_menu()
+		hideout_menu.show_map_select_tab()

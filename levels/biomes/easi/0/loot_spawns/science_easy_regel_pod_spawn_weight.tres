@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="LootSpawnWeight" load_steps=3 format=3 uid="uid://rhps88wdtf6u"]
+
+[ext_resource type="Resource" uid="uid://bdsctjpx2ewbs" path="res://game_objects/items/consumables/regel_pod/regel_pod_spawn_info.tres" id="1_53rmi"]
+[ext_resource type="Script" path="res://game_objects/items/loot_spawn_weight.gd" id="1_76hmg"]
+
+[resource]
+script = ExtResource("1_76hmg")
+weight = 2
+loot = ExtResource("1_53rmi")
