@@ -13,6 +13,7 @@ var crafting_materials:Array[CraftingMaterialEntry] = []
 var next_map:LevelInformation
 var selected_run_length:GameplayEnums.GameLength
 var current_map_number:int = 0
+var selected_difficulty:GameplayEnums.GameDifficulty
 
 func _ready():
 	crafting_materials_resource_group.load_all_into(_crafting_material_definitions)
