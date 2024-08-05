@@ -13,3 +13,5 @@ func show_stash_tab():
 
 func show_map_select_tab():
 	tab_bar.current_tab = map_select_tab_index
+
+

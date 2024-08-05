@@ -4,8 +4,6 @@ extends MarginContainer
 
 @onready var level_card_container:Control = %LevelCardContainer
 
-var selected_level:LevelInformation
-
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	EventBus.populate_level.connect(_on_populate_level)
@@ -28,7 +26,7 @@ func _on_populate_level():
 
 
 func _on_card_selected(card:LevelCard):
-	selected_level = card.level_information
+	HideoutManager.next_map = card.level_information
 	
 	for child in level_card_container.get_children():
 		if child == card:

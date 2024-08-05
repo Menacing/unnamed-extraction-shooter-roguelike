@@ -39,5 +39,10 @@ func _on_tween_finished():
 	start_rotation_loop()
 
 func use(player:Player):
-	player.open_inventory()
-	hideout_menu.show_map_select_tab()
+	if HideoutManager.is_menu_visible():
+		player.close_inventory()
+		HideoutManager.hide_hideout_menu()
+	else:
+		player.open_inventory()
+		HideoutManager.show_hideout_menu()
+		hideout_menu.show_map_select_tab()
