@@ -25,6 +25,7 @@ current_tab = 1
 script = ExtResource("1_gn5or")
 tab_bar = NodePath(".")
 stash_inventory_control = NodePath("STASH")
+map_select_tab_index = 1
 
 [node name="STASH" parent="." node_paths=PackedStringArray("hideout_menu") instance=ExtResource("1_csmx2")]
 visible = false

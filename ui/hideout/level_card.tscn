@@ -1,17 +1,25 @@
-[gd_scene load_steps=4 format=3 uid="uid://bj6g0500uiwnr"]
+[gd_scene load_steps=6 format=3 uid="uid://bj6g0500uiwnr"]
 
 [ext_resource type="Texture2D" uid="uid://d3aq5m0cwhyka" path="res://levels/biomes/easi/maps/institute/institute_preview.png" id="1_4bqrk"]
 [ext_resource type="Script" path="res://ui/hideout/level_card.gd" id="1_4mi8x"]
+[ext_resource type="AudioStream" uid="uid://83mryjqs6oc4" path="res://game_objects/effects/sounds/menu/menu_hover_vkp_switch_04.ogg" id="2_cpb12"]
 [ext_resource type="Texture2D" uid="uid://c7mqojhjkgdj1" path="res://ui/icons/White/crosshair_11.png" id="2_kxrci"]
+[ext_resource type="AudioStream" uid="uid://bk77v2nat0tbg" path="res://game_objects/effects/sounds/menu/menu_select_vkp_switch_08.ogg" id="3_ubkks"]
 
 [node name="LevelCard" type="MarginContainer"]
 offset_right = 256.0
 offset_bottom = 400.0
+mouse_filter = 0
 mouse_default_cursor_shape = 2
 script = ExtResource("1_4mi8x")
+mouse_over_sound = ExtResource("2_cpb12")
+click_sound = ExtResource("3_ubkks")
 
 [node name="SelectionTexture" type="NinePatchRect" parent="."]
+unique_name_in_owner = true
+visible = false
 layout_mode = 2
+mouse_filter = 1
 texture = ExtResource("2_kxrci")
 draw_center = false
 region_rect = Rect2(5, 5, 22, 22)
@@ -20,56 +28,78 @@ patch_margin_top = 13
 patch_margin_right = 13
 patch_margin_bottom = 13
 
-[node name="CenterContainer" type="CenterContainer" parent="."]
+[node name="MouseOverAudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+max_polyphony = 4
+
+[node name="ClickAudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+max_polyphony = 4
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/margin_left = 7
+theme_override_constants/margin_right = 7
+
+[node name="CenterContainer" type="CenterContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/CenterContainer"]
+layout_mode = 2
+mouse_filter = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/CenterContainer/PanelContainer"]
 layout_mode = 2
 
-[node name="PanelContainer" type="PanelContainer" parent="CenterContainer"]
-layout_mode = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/PanelContainer"]
-layout_mode = 2
-
-[node name="TitleLabel" type="Label" parent="CenterContainer/PanelContainer/VBoxContainer"]
+[node name="TitleLabel" type="Label" parent="MarginContainer/CenterContainer/PanelContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
+mouse_filter = 1
 theme_override_font_sizes/font_size = 25
 text = "placeholder"
 uppercase = true
 
-[node name="PreviewTextureRect" type="TextureRect" parent="CenterContainer/PanelContainer/VBoxContainer"]
+[node name="PreviewTextureRect" type="TextureRect" parent="MarginContainer/CenterContainer/PanelContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 texture = ExtResource("1_4bqrk")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/PanelContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/CenterContainer/PanelContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="BiomeLabel" type="Label" parent="CenterContainer/PanelContainer/VBoxContainer/HBoxContainer"]
+[node name="BiomeLabel" type="Label" parent="MarginContainer/CenterContainer/PanelContainer/VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 0
+mouse_filter = 1
 text = "placeholder"
 uppercase = true
 
-[node name="SizeLabel" type="Label" parent="CenterContainer/PanelContainer/VBoxContainer/HBoxContainer"]
+[node name="SizeLabel" type="Label" parent="MarginContainer/CenterContainer/PanelContainer/VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
 layout_direction = 3
 layout_mode = 2
 size_flags_horizontal = 10
+mouse_filter = 1
 text = "placeholder"
 uppercase = true
 
-[node name="HSeparator" type="HSeparator" parent="CenterContainer/PanelContainer/VBoxContainer"]
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/CenterContainer/PanelContainer/VBoxContainer"]
 layout_mode = 2
+mouse_filter = 1
 
-[node name="DescriptionLabel" type="Label" parent="CenterContainer/PanelContainer/VBoxContainer"]
+[node name="DescriptionLabel" type="Label" parent="MarginContainer/CenterContainer/PanelContainer/VBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
+mouse_filter = 1
 text = "blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah "
 autowrap_mode = 2
 uppercase = true
 
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
