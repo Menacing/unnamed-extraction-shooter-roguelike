@@ -1,0 +1,161 @@
+[gd_scene load_steps=2 format=3 uid="uid://bspove1tciqng"]
+
+[ext_resource type="Script" path="res://ui/menu/run_start_menu.gd" id="1_htnrb"]
+
+[node name="RunStartMenu" type="ColorRect"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color(0, 0, 0, 1)
+script = ExtResource("1_htnrb")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="CenterContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer2/CenterContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 45
+text = "BEGIN RUN"
+horizontal_alignment = 1
+uppercase = true
+
+[node name="back_button" type="Button" parent="MarginContainer/VBoxContainer2/CenterContainer" groups=["ui_button_sound"]]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+text = "BACK"
+
+[node name="CenterContainer2" type="CenterContainer" parent="MarginContainer/VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer2/CenterContainer2"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer2/CenterContainer2/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 35
+text = "game length"
+horizontal_alignment = 1
+uppercase = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer2/CenterContainer2/VBoxContainer"]
+layout_mode = 2
+
+[node name="ShortButton" type="Button" parent="MarginContainer/VBoxContainer2/CenterContainer2/VBoxContainer/HBoxContainer" groups=["ui_button_sound"]]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(125, 125)
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+toggle_mode = true
+action_mode = 0
+text = "SHORT"
+
+[node name="MediumLengthButton" type="Button" parent="MarginContainer/VBoxContainer2/CenterContainer2/VBoxContainer/HBoxContainer" groups=["ui_button_sound"]]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(125, 125)
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+toggle_mode = true
+action_mode = 0
+text = "MEDIUM"
+
+[node name="LongButton" type="Button" parent="MarginContainer/VBoxContainer2/CenterContainer2/VBoxContainer/HBoxContainer" groups=["ui_button_sound"]]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(125, 125)
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+toggle_mode = true
+action_mode = 0
+text = "LONG
+"
+
+[node name="Label2" type="Label" parent="MarginContainer/VBoxContainer2/CenterContainer2/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 35
+text = "DIFFICULTY"
+horizontal_alignment = 1
+uppercase = true
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/VBoxContainer2/CenterContainer2/VBoxContainer"]
+layout_mode = 2
+
+[node name="EasyButton" type="Button" parent="MarginContainer/VBoxContainer2/CenterContainer2/VBoxContainer/HBoxContainer2" groups=["ui_button_sound"]]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(125, 125)
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+toggle_mode = true
+action_mode = 0
+text = "EASY"
+
+[node name="MediumDifficultyButton" type="Button" parent="MarginContainer/VBoxContainer2/CenterContainer2/VBoxContainer/HBoxContainer2" groups=["ui_button_sound"]]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(125, 125)
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+toggle_mode = true
+action_mode = 0
+text = "MEDIUM"
+
+[node name="HardButton" type="Button" parent="MarginContainer/VBoxContainer2/CenterContainer2/VBoxContainer/HBoxContainer2" groups=["ui_button_sound"]]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(125, 125)
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+toggle_mode = true
+action_mode = 0
+text = "HARD
+"
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer2"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="StartButton" type="Button" parent="MarginContainer/VBoxContainer2/MarginContainer" groups=["ui_button_sound"]]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(75, 50)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+disabled = true
+text = "START"
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer2/CenterContainer/back_button" to="." method="_on_back_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer2/CenterContainer2/VBoxContainer/HBoxContainer/ShortButton" to="." method="_on_short_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer2/CenterContainer2/VBoxContainer/HBoxContainer/MediumLengthButton" to="." method="_on_medium_length_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer2/CenterContainer2/VBoxContainer/HBoxContainer/LongButton" to="." method="_on_long_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer2/CenterContainer2/VBoxContainer/HBoxContainer2/EasyButton" to="." method="_on_easy_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer2/CenterContainer2/VBoxContainer/HBoxContainer2/MediumDifficultyButton" to="." method="_on_medium_difficulty_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer2/CenterContainer2/VBoxContainer/HBoxContainer2/HardButton" to="." method="_on_hard_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer2/MarginContainer/StartButton" to="." method="_on_start_button_pressed"]

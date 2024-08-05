@@ -7,7 +7,8 @@ enum MENU_LEVEL {
 	OPTIONS,
 	CREDITS,
 	EXTRACTED,
-	DIED
+	DIED,
+	RUN_BEGIN
 }
 
 var menus = {
@@ -16,7 +17,8 @@ var menus = {
 	MENU_LEVEL.OPTIONS: preload("res://ui/menu/options_menu.tscn").instantiate(),
 	MENU_LEVEL.CREDITS: preload("res://ui/menu/credits/credits.tscn").instantiate(),
 	MENU_LEVEL.EXTRACTED: preload("res://ui/menu/extraction_menu_temp.tscn").instantiate(),
-	MENU_LEVEL.DIED: preload("res://ui/menu/death_menu_temp.tscn").instantiate()
+	MENU_LEVEL.DIED: preload("res://ui/menu/death_menu_temp.tscn").instantiate(),
+	MENU_LEVEL.RUN_BEGIN: preload("res://ui/menu/run_start_menu.tscn").instantiate()
 }
 
 var current_menu:Node = null

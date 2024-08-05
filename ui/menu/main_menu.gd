@@ -11,9 +11,8 @@ func _process(_delta):
 	pass
 
 func _on_start_demo_button_pressed():
-	await LevelManager.load_level_async("res://levels/hideout.tscn", true)
 	#get_tree().root.add_child(load("res://levels/biomes/science/easy/maps/lab_1.tscn").instantiate())
-	MenuManager.load_menu(MenuManager.MENU_LEVEL.NONE)
+	MenuManager.load_menu(MenuManager.MENU_LEVEL.RUN_BEGIN)
 	pass # Replace with function body.
 
 func _on_credits_button_pressed():
