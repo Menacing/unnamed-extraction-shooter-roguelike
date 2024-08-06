@@ -1,15 +1,18 @@
-[gd_resource type="Resource" script_class="ItemInformation" load_steps=8 format=3 uid="uid://bk7x5qi5hl1p8"]
+[gd_resource type="Resource" script_class="MaterialInformation" load_steps=9 format=3 uid="uid://bk7x5qi5hl1p8"]
 
 [ext_resource type="Resource" uid="uid://b7xbokgogvcm4" path="res://ui/inventory/split_stack_context_item.tres" id="1_2vlxm"]
 [ext_resource type="Resource" uid="uid://o6tesi76nbth" path="res://ui/inventory/drop_item_context_item.tres" id="1_efr8v"]
 [ext_resource type="PackedScene" uid="uid://dsu2lajkgpbva" path="res://game_objects/items/materials/polymer_pile/polymer_pile.tscn" id="2_u8rja"]
 [ext_resource type="PackedScene" uid="uid://cn3ywqty7xvvr" path="res://ui/inventory/item_control.tscn" id="3_5r67a"]
 [ext_resource type="Texture2D" uid="uid://cvn8wus4bjl2k" path="res://game_objects/items/materials/polymer_pile/polymer_pile_icon.png" id="3_df7ph"]
+[ext_resource type="Resource" uid="uid://c3nod8jldkobw" path="res://game_objects/crafting_materials/polymer.tres" id="3_eneey"]
 [ext_resource type="PackedScene" uid="uid://son7demex4pt" path="res://ui/inventory/detail_scenes/simple_detail_popup.tscn" id="3_ha2yn"]
-[ext_resource type="Script" path="res://resource_access/item_information.gd" id="3_n33q0"]
+[ext_resource type="Script" path="res://game_objects/items/materials/material_information.gd" id="3_jqbok"]
 
 [resource]
-script = ExtResource("3_n33q0")
+script = ExtResource("3_jqbok")
+crafting_material_definition = ExtResource("3_eneey")
+amount_per_stack = 1
 item_control_scene = ExtResource("3_5r67a")
 item_3d_scene = ExtResource("2_u8rja")
 item_type_id = "polymer_pile_small"

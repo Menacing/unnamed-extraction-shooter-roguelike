@@ -22,7 +22,9 @@ func _ready():
 		mat_entry.material_definition = mat_def
 		mat_entry.amount = 0
 		crafting_materials.append(mat_entry)
+
 	crafting_materials.sort_custom(CraftingMaterialEntry._sort)
+	
 	EventBus.game_saving.connect(_on_game_saving)
 	self.add_child(hideout_menu)
 	
@@ -57,3 +59,15 @@ func show_hideout_menu():
 func hide_hideout_menu():
 	hideout_menu.visible = false	
 	EventBus.remove_control_from_HUD.emit(hideout_menu)
+
+func add_crafting_material_item_instance(material:ItemInstance) -> int:
+	if material._item_info is MaterialInformation:
+		var mat_info:MaterialInformation = material._item_info
+		for cme:CraftingMaterialEntry in crafting_materials:
+			if cme.material_definition.name == mat_info.crafting_material_definition.name:
+				cme.amount += material.stacks * mat_info.amount_per_stack
+			
+	else:
+		printerr("NO MAPPING FOR ITEM %s" % material.get_item_type_id())
+	
+	return 0

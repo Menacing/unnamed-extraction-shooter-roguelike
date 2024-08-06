@@ -1,6 +1,10 @@
 extends InventoryControlBase
 class_name StashInventory
 
+@export var polymer_count_label:Label
+@export var scrap_metal_count_label:Label
+@export var bio_gel_count_label:Label
+
 var sig:StashInventoryGrid
 var container_size:int:
 	get:
@@ -19,6 +23,17 @@ func _ready():
 	EventBus.drop_item.connect(_on_drop_item)
 	sig = get_node(_inventory_grid_path)
 	
+	for cme:CraftingMaterialEntry in HideoutManager.crafting_materials:
+		if cme.material_definition.name == "Polymer":
+			cme.amount_changed.connect(_on_crafting_material_entry_amount_changed.bind(polymer_count_label))
+		if cme.material_definition.name == "Scrap Metal":
+			cme.amount_changed.connect(_on_crafting_material_entry_amount_changed.bind(scrap_metal_count_label))
+		if cme.material_definition.name == "Bio Gel":
+			cme.amount_changed.connect(_on_crafting_material_entry_amount_changed.bind(bio_gel_count_label))
+		pass
+	
+func _on_crafting_material_entry_amount_changed(new_amount:int, label:Label):
+	label.text = str(new_amount)
 	
 func _on_before_populate_level():
 	super()
@@ -31,6 +46,10 @@ func _on_item_picked_up(result:InventoryInsertResult):
 		var location = result.location
 		if location.location == InventoryLocationResult.LocationType.GRID:
 			sig.add_item_control(item_control, location.grid_x, location.grid_y)
+			
+		if item_instance.get_item_type() == GameplayEnums.ItemType.MATERIAL:
+			var remainder:int = HideoutManager.add_crafting_material_item_instance(item_instance)
+			item_instance.stacks = remainder
 
 func _on_open_inventory(inventory_id:int):
 	super(inventory_id)

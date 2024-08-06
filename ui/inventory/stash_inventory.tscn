@@ -1,27 +1,57 @@
-[gd_scene load_steps=5 format=3 uid="uid://jixiqnpe13py"]
+[gd_scene load_steps=8 format=3 uid="uid://jixiqnpe13py"]
 
 [ext_resource type="Script" path="res://ui/inventory/stash_inventory.gd" id="1_m082v"]
 [ext_resource type="Resource" uid="uid://cgc688gwx4bgx" path="res://ui/inventory/stash_small_model_inventory.tres" id="2_83v4s"]
+[ext_resource type="PackedScene" uid="uid://bjl33aiqan6mg" path="res://ui/hideout/stash_material_entry.tscn" id="3_1s1cf"]
 [ext_resource type="Script" path="res://ui/inventory/stash_inventory_grid.gd" id="3_b3c2g"]
 [ext_resource type="PackedScene" uid="uid://bshm12rhfjlbc" path="res://ui/inventory/backpack_cell.tscn" id="4_2qi88"]
+[ext_resource type="Texture2D" uid="uid://gmk08i5ntqy0" path="res://ui/icons/scrap_metal_icon.png" id="4_20ic5"]
+[ext_resource type="Texture2D" uid="uid://vit64c7d7ii5" path="res://ui/icons/bio_gel_icon.png" id="5_udwhv"]
 
-[node name="StashInventory" type="MarginContainer"]
+[node name="StashInventory" type="MarginContainer" node_paths=PackedStringArray("polymer_count_label", "scrap_metal_count_label", "bio_gel_count_label")]
 offset_right = 593.5
 offset_bottom = 561.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource("1_m082v")
+polymer_count_label = NodePath("VBoxContainer/HBoxContainer/PolymerCount/HBoxContainer/MarginContainer2/Label")
+scrap_metal_count_label = NodePath("VBoxContainer/HBoxContainer/ScrapMetalCount/HBoxContainer/MarginContainer2/Label")
+bio_gel_count_label = NodePath("VBoxContainer/HBoxContainer/BioGelCount/HBoxContainer/MarginContainer2/Label")
 _model_inventory = ExtResource("2_83v4s")
-_inventory_grid_path = NodePath("PanelContainer/InventoryBase/StashInventoryGrid")
+_inventory_grid_path = NodePath("VBoxContainer/PanelContainer/InventoryBase/StashInventoryGrid")
 _inventory_container_path = NodePath(".")
 
-[node name="PanelContainer" type="PanelContainer" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 2
 
-[node name="InventoryBase" type="CenterContainer" parent="PanelContainer" groups=["inventory_controls"]]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
 
-[node name="StashInventoryGrid" type="GridContainer" parent="PanelContainer/InventoryBase" node_paths=PackedStringArray("parent_inventory_control_base") groups=["inventory_controls"]]
+[node name="PolymerCount" parent="VBoxContainer/HBoxContainer" instance=ExtResource("3_1s1cf")]
+layout_mode = 2
+
+[node name="ScrapMetalCount" parent="VBoxContainer/HBoxContainer" instance=ExtResource("3_1s1cf")]
+layout_mode = 2
+
+[node name="TextureRect" parent="VBoxContainer/HBoxContainer/ScrapMetalCount/HBoxContainer/MarginContainer" index="0"]
+tooltip_text = "Scrap Metal"
+texture = ExtResource("4_20ic5")
+
+[node name="BioGelCount" parent="VBoxContainer/HBoxContainer" instance=ExtResource("3_1s1cf")]
+layout_mode = 2
+
+[node name="TextureRect" parent="VBoxContainer/HBoxContainer/BioGelCount/HBoxContainer/MarginContainer" index="0"]
+tooltip_text = "Bio Gel"
+texture = ExtResource("5_udwhv")
+
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="InventoryBase" type="CenterContainer" parent="VBoxContainer/PanelContainer" groups=["inventory_controls"]]
+layout_mode = 2
+
+[node name="StashInventoryGrid" type="GridContainer" parent="VBoxContainer/PanelContainer/InventoryBase" node_paths=PackedStringArray("parent_inventory_control_base") groups=["inventory_controls"]]
 unique_name_in_owner = true
 modulate = Color(0.686275, 0.686275, 0.686275, 1)
 layout_mode = 2
@@ -30,5 +60,9 @@ theme_override_constants/v_separation = 0
 columns = 7
 script = ExtResource("3_b3c2g")
 container_size = 70
-parent_inventory_control_base = NodePath("../../..")
+parent_inventory_control_base = NodePath("../../../..")
 grid_cell = ExtResource("4_2qi88")
+
+[editable path="VBoxContainer/HBoxContainer/PolymerCount"]
+[editable path="VBoxContainer/HBoxContainer/ScrapMetalCount"]
+[editable path="VBoxContainer/HBoxContainer/BioGelCount"]
