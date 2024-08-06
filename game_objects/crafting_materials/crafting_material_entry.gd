@@ -2,7 +2,14 @@ extends Resource
 class_name CraftingMaterialEntry
 
 @export var material_definition:CraftingMaterialDefinition
-@export var amount:int
+@export var amount:int:
+	get:
+		return amount
+	set(value):
+		amount = value
+		amount_changed.emit(amount)
+
+signal amount_changed(amount:int)
 
 ##func is called as many times as necessary, receiving two array elements as arguments. The function should return true if the first element should be moved behind the second one, otherwise it should return false.
 static func _sort(a:CraftingMaterialEntry, b:CraftingMaterialEntry):
