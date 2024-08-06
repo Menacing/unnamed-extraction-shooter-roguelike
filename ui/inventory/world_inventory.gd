@@ -47,7 +47,7 @@ func _on_close_inventory(inventory_id:int):
 
 func _on_close_all_inventories():
 	super()
-	EventBus.remove_inventory_from_HUD.emit(self, original_parent)
+	EventBus.remove_control_from_HUD.emit(self, original_parent)
 	
 func _on_drop_item(item_inst:ItemInstance, _inventory_id:int):
 	if _inventory_id == self.inventory_id:
