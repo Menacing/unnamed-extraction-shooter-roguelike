@@ -9,7 +9,7 @@ var _tier_index_mapping:Array[String] = ["easy","medium","hard"]
 	#biome type
 	"science" = {
 		#difficulty
-		"easy" = load("res://levels/biomes/science/easy/enemy_spawns/science_easy_enemy_spawn_mapping.tres")
+		"easy" = load("res://levels/biomes/easi/0/enemy_spawns/easi_easy_enemy_spawn_mapping.tres")
 	}
 	
 }
