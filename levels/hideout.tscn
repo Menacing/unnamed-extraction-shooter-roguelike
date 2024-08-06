@@ -1,4 +1,4 @@
-[gd_scene load_steps=564 format=3 uid="uid://d2txigapsdl18"]
+[gd_scene load_steps=566 format=3 uid="uid://d2txigapsdl18"]
 
 [ext_resource type="Script" path="res://levels/level.gd" id="1_d1tug"]
 [ext_resource type="CameraAttributesPractical" uid="uid://jafbi2bjurvn" path="res://test/debug/vibe_check_camera.tres" id="2_7vsv1"]
@@ -40,6 +40,7 @@
 [ext_resource type="Script" path="res://levels/entities/area_ambient_sound.gd" id="32_asabl"]
 [ext_resource type="AudioStream" uid="uid://3vp28og4aea" path="res://levels/ambient_sounds/underground_lab_ambience_003.ogg" id="33_oli46"]
 [ext_resource type="PackedScene" uid="uid://c4y0iwlv3i13p" path="res://game_objects/props/stash/stash.tscn" id="38_1ckb4"]
+[ext_resource type="Script" path="res://levels/launch_mission_area.gd" id="41_1c2xw"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_miqso"]
 sky_top_color = Color(0, 0, 0, 1)
@@ -3186,6 +3187,9 @@ animations = [{
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_lmxcw"]
 size = Vector3(4.91016, 3.78424, 11.2449)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_7eexi"]
+size = Vector3(1.63269, 1.27386, 2.85742)
 
 [node name="Hideout" type="WorldEnvironment"]
 environment = SubResource("Environment_sspln")
@@ -6466,3 +6470,13 @@ shape = SubResource("BoxShape3D_lmxcw")
 
 [node name="Stash" parent="." instance=ExtResource("38_1ckb4")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -1.13535, 0.2, -3.23975)
+
+[node name="Area3D" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.0709, 1.32471, 0)
+collision_layer = 5
+collision_mask = 5
+script = ExtResource("41_1c2xw")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.265564, -0.430023, 0.0078125)
+shape = SubResource("BoxShape3D_7eexi")

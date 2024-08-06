@@ -32,8 +32,11 @@ func load_level_async(path:String, populate_level:bool = false):
 		# kill everything below the world root
 		for child in get_children():
 			if not child.is_in_group("world_root_no_touch"):
-				remove_child(child)
-				child.queue_free()
+				if child is Level:
+					child.unload_level()
+				else:
+					remove_child(child)
+					child.queue_free()
 			
 		# instantiate the new level
 		# add to world root

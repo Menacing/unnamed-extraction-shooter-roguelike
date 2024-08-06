@@ -1,12 +1,11 @@
-[gd_resource type="Resource" script_class="LevelInformation" load_steps=4 format=3 uid="uid://dovsx3lt1og2r"]
+[gd_resource type="Resource" script_class="LevelInformation" load_steps=3 format=3 uid="uid://dovsx3lt1og2r"]
 
 [ext_resource type="Script" path="res://levels/level_information.gd" id="1_8r1a0"]
-[ext_resource type="PackedScene" uid="uid://bgog375hnhshb" path="res://levels/biomes/easi/maps/institute/institute.tscn" id="1_iu7ma"]
 [ext_resource type="Texture2D" uid="uid://d3aq5m0cwhyka" path="res://levels/biomes/easi/maps/institute/institute_preview.png" id="2_grpet"]
 
 [resource]
 script = ExtResource("1_8r1a0")
-level = ExtResource("1_iu7ma")
+level_path = "res://levels/biomes/easi/maps/institute/institute.tscn"
 display_name = "Institute"
 biome = 1
 size = 0

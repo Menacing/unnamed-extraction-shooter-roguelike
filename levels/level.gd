@@ -21,6 +21,11 @@ func _on_game_saving(save_file:SaveFile):
 func _on_populate_level():
 	setup_player_spawn()
 
+func unload_level():
+	EventBus.populate_level.disconnect(_on_populate_level)
+	EventBus.game_saving.disconnect(_on_game_saving)
+	self.queue_free()
+
 func setup_player_spawn():
 	if is_hideout:
 		#get player spawn
