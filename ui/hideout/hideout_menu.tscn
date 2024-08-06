@@ -14,7 +14,7 @@ initial_width = 7
 grid_slots = {}
 equipment_slots = Array[Resource("res://resource_access/equipment_slot_type.gd")]([])
 
-[node name="HideoutMenu" type="TabContainer" node_paths=PackedStringArray("tab_bar", "stash_inventory_control")]
+[node name="HideoutMenu" type="TabContainer" node_paths=PackedStringArray("tab_bar", "stash_inventory_control", "map_select_control")]
 visible = false
 anchors_preset = 15
 anchor_right = 1.0
@@ -26,6 +26,7 @@ script = ExtResource("1_gn5or")
 tab_bar = NodePath(".")
 stash_inventory_control = NodePath("STASH")
 map_select_tab_index = 1
+map_select_control = NodePath("NEXT MAP")
 
 [node name="STASH" parent="." node_paths=PackedStringArray("hideout_menu") instance=ExtResource("1_csmx2")]
 visible = false

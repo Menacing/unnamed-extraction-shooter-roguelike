@@ -4,7 +4,7 @@ class_name LevelInformation
 enum Biome {WODC, EASI, CENT, Neutral}
 enum Size {Small, Medium, Large}
 
-@export var level:PackedScene
+@export var level_path:String
 @export var display_name:String
 @export var biome:Biome
 @export var size:Size

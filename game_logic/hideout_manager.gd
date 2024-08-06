@@ -27,10 +27,24 @@ func _ready():
 	self.add_child(hideout_menu)
 	
 func _on_game_saving(save_file:SaveFile):
-	#TODO Figure out how to save state of the Hideout
+	var run_save_data:RunSaveData = RunSaveData.new()
+	hideout_menu.save_run_data(run_save_data)
+	run_save_data.selected_next_level = next_map
+	run_save_data.game_length = selected_run_length
+	run_save_data.current_map_number = current_map_number
+	run_save_data.difficulty = selected_difficulty
+	run_save_data.crafting_materials = crafting_materials
+	save_file.run_save_data = run_save_data
 	pass
 
 func _on_load_game(save_data:LevelEntitySaveData):
+	var run_save_data:RunSaveData = save_data.run_save_data
+	next_map = run_save_data.selected_next_level
+	selected_run_length = run_save_data.game_length
+	current_map_number = run_save_data.current_map_number
+	selected_difficulty = run_save_data.difficulty
+	crafting_materials = run_save_data.crafting_materials
+	hideout_menu.load_run_data(run_save_data)
 	pass
 
 func is_menu_visible() -> bool:
