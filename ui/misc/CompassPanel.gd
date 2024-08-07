@@ -25,10 +25,19 @@ var obj_markers:Array[Control]
 func _ready():
 	EventBus.compass_player_pulse.connect(_on_compass_player_pulse)
 	compass_bar.scroll_horizontal = pixels_per_360
+	EventBus.before_previous_level_freed.connect(_on_before_previous_level_freed)
+	EventBus.level_populated.connect(_on_level_populated)
+
+func _on_before_previous_level_freed():
+	extracts = []
+	obj_markers = []
+	pass
+	
+func _on_level_populated():
 	var extract_nodes = get_tree().get_nodes_in_group("Extract")
 	for node in extract_nodes:
 		var textract := node as AreaExtract
-		if textract and !textract.disabled:
+		if textract and !textract.disabled and !textract.is_queued_for_deletion():
 			extracts.append(textract)
 	var obj_marker_scene = load("res://ui/misc/ObjectiveMarker.tscn")
 	for i in extracts.size():
@@ -37,6 +46,8 @@ func _ready():
 		obj_label.text = str(i+1)
 		compass_background.add_child(obj_marker)
 		obj_markers.append(obj_marker)
+	pass
+
 
 func _on_compass_player_pulse(player_position:Vector3, player_rotation:Vector3):
 	player_pos = player_position

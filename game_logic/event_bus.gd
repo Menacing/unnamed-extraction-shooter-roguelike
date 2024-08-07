@@ -53,6 +53,8 @@ signal drop_all_ammo(actor_id:int, type:String, subtype:String)
 
 
 #save/load lifecycle
+signal before_level_loading
+signal before_previous_level_freed
 signal before_populate_level
 signal populate_level
 signal level_populated

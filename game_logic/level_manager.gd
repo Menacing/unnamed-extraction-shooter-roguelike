@@ -26,27 +26,33 @@ func load_level_async(path:String, populate_level:bool = false):
 		get_tree().paused = true
 		
 		# load the next level
+		EventBus.before_level_loading.emit()
 		var next_level:Level = load(path).instantiate()
 		#next_level.exit_reached.connect(_on_level_exit_reached)
 		
+		EventBus.before_previous_level_freed.emit()
 		# kill everything below the world root
+		if current_level:
+			current_level.queue_free()
 		for child in get_children():
 			if not child.is_in_group("world_root_no_touch"):
 				if child is Level:
 					child.unload_level()
 				else:
-					remove_child(child)
+					#remove_child(child)
 					child.queue_free()
 			
 		# instantiate the new level
 		# add to world root
 		add_child(next_level)
-		current_level = next_level
 		
 		if populate_level:
+			if current_level:
+				await current_level.tree_exited
 			call_deferred("emit_populate_level")
 			await EventBus.level_populated
 		
+		current_level = next_level
 		get_tree().paused = false
 		# connect the signal to get notified when the exit is reached
 		EventBus.level_loaded.emit()
