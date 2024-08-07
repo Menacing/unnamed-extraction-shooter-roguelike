@@ -71,3 +71,14 @@ func add_crafting_material_item_instance(material:ItemInstance) -> int:
 		printerr("NO MAPPING FOR ITEM %s" % material.get_item_type_id())
 	
 	return 0
+	
+func has_extracted_enough() -> bool:
+	match selected_run_length:
+		GameplayEnums.GameLength.SHORT:
+			return current_map_number >= 3
+		GameplayEnums.GameLength.MEDIUM:
+			return current_map_number >= 5
+		GameplayEnums.GameLength.LONG:
+			return current_map_number >= 7
+		_:
+			return false

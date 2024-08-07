@@ -50,8 +50,13 @@ func _on_body_exit(body:Node3D):
 		
 
 func _on_extract_timer_timeout():
-	EventBus.remove_message.emit(str(get_instance_id()))		
-	MenuManager.load_menu(MenuManager.MENU_LEVEL.EXTRACTED)
+	EventBus.remove_message.emit(str(get_instance_id()))
+	
+	HideoutManager.current_map_number += 1
+	if HideoutManager.has_extracted_enough():
+		MenuManager.load_menu(MenuManager.MENU_LEVEL.EXTRACTED)
+	else:
+		LevelManager.load_level_async("res://levels/hideout.tscn", true)
 	pass
 
 var disabled:bool = false
