@@ -32,7 +32,7 @@ func load_level_async(path:String, populate_level:bool = false):
 		
 		EventBus.before_previous_level_freed.emit()
 		# kill everything below the world root
-		if current_level:
+		if current_level != null:
 			current_level.queue_free()
 		for child in get_children():
 			if not child.is_in_group("world_root_no_touch"):
