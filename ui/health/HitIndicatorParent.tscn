@@ -1,7 +1,17 @@
-[gd_scene load_steps=3 format=3 uid="uid://3bnbwe1cyhrq"]
+[gd_scene load_steps=5 format=3 uid="uid://3bnbwe1cyhrq"]
 
 [ext_resource type="Script" path="res://ui/health/HitIndicatorParent.gd" id="1_ah2rf"]
 [ext_resource type="PackedScene" uid="uid://gs87quvpcdn" path="res://ui/health/HitIndicator.tscn" id="2_4s7hd"]
+[ext_resource type="Shader" path="res://ui/player_hit.gdshader" id="3_cul1n"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ee5ma"]
+shader = ExtResource("3_cul1n")
+shader_parameter/shake_power = 0.03
+shader_parameter/shake_block_size = 30.5
+shader_parameter/fade = 0.0
+shader_parameter/direction_r = Vector2(1, 0)
+shader_parameter/direction_g = Vector2(0.4, 1)
+shader_parameter/direction_b = Vector2(-0.7, -0.3)
 
 [node name="HitIndicatorParent" type="Control"]
 layout_mode = 3
@@ -13,3 +23,14 @@ grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("1_ah2rf")
 hit_indicator = ExtResource("2_4s7hd")
+
+[node name="HitColorRect" type="ColorRect" parent="."]
+unique_name_in_owner = true
+z_index = 50
+material = SubResource("ShaderMaterial_ee5ma")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2

@@ -1,7 +1,7 @@
 extends Node3D
 
 @onready var extract_timer:Timer = Timer.new()
-var extract_cooldown:float = 5.0
+var extract_cooldown:float = 3.0
 var extract_message_template:String = "Launching in %.3f"
 
 func _ready():
