@@ -32,13 +32,9 @@ func setup_player_spawn():
 		var player_spawns = get_tree().get_nodes_in_group("PlayerSpawn")
 		var player_spawn = player_spawns.pop_front()
 		
-		#spawn player there
-		EventBus.player_spawning.emit()
-		var player:Player = player_scene.instantiate()
-		player.global_position = player_spawn.global_position
-		add_child(player)
+		place_player(player_spawn.global_position)
 		
-		EventBus.players_spawned.emit()
+
 	else:
 		#get all extracts
 		var extracts:Array[Node] = get_tree().get_nodes_in_group("Extract")
@@ -51,10 +47,22 @@ func setup_player_spawn():
 		#get linked extract
 		var node_name:String = "%"+selected_extract.targetname
 		var linked_extract:AreaExtract = get_node(node_name)
-		#spawn player there
-		EventBus.player_spawning.emit()
-		var player:Player = player_scene.instantiate()
-		player.global_position = linked_extract.global_position
-		add_child(player)
+		place_player(linked_extract.global_position)
 		
 		EventBus.players_spawned.emit()
+
+func place_player(pos:Vector3):
+	EventBus.player_spawning.emit()
+	
+	#check for existing players
+	var players = get_tree().get_nodes_in_group("players")
+	var player:Player
+	if players.size() > 0:
+		player = players.pop_front()
+	else:
+		player = player_scene.instantiate() 
+
+	player.global_position = pos
+	Helpers.force_parent(player, self)
+	EventBus.players_spawned.emit()
+	
