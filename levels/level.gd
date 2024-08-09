@@ -64,5 +64,6 @@ func place_player(pos:Vector3):
 
 	player.global_position = pos
 	Helpers.force_parent(player, self)
+	print(str(player.get_groups()))
 	EventBus.players_spawned.emit()
 	

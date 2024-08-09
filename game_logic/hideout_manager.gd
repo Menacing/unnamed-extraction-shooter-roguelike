@@ -26,6 +26,7 @@ func _ready():
 	crafting_materials.sort_custom(CraftingMaterialEntry._sort)
 	
 	EventBus.game_saving.connect(_on_game_saving)
+	EventBus.level_loaded.connect(_on_level_loaded)
 	self.add_child(hideout_menu)
 	
 func _on_game_saving(save_file:SaveFile):
@@ -57,8 +58,8 @@ func show_hideout_menu():
 	EventBus.add_control_to_HUD.emit(hideout_menu)
 	
 func hide_hideout_menu():
-	hideout_menu.visible = false	
-	EventBus.remove_control_from_HUD.emit(hideout_menu)
+	hideout_menu.visible = false
+	EventBus.remove_control_from_HUD.emit(hideout_menu,self)
 
 func add_crafting_material_item_instance(material:ItemInstance) -> int:
 	if material._item_info is MaterialInformation:
@@ -82,3 +83,7 @@ func has_extracted_enough() -> bool:
 			return current_map_number >= 7
 		_:
 			return false
+
+func _on_level_loaded():
+	hideout_menu.visible = false
+	EventBus.remove_control_from_HUD.emit(hideout_menu,self)

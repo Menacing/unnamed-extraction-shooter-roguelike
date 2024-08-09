@@ -22,6 +22,7 @@ var player:Player
 func _ready():
 	super()
 	EventBus.drop_item.connect(_on_drop_item)
+	self.visible = false
 	
 func _on_before_populate_level():
 	super()
@@ -38,6 +39,7 @@ func _on_item_picked_up(result:InventoryInsertResult):
 func _on_open_inventory(inventory_id:int):
 	super(inventory_id)
 	if inventory_id == self.inventory_id:
+		self.visible = true
 		EventBus.add_control_to_HUD.emit(self)
 		
 func _on_close_inventory(inventory_id:int):

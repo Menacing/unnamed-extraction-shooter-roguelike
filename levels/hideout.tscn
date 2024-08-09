@@ -1,4 +1,4 @@
-[gd_scene load_steps=566 format=3 uid="uid://d2txigapsdl18"]
+[gd_scene load_steps=572 format=3 uid="uid://d2txigapsdl18"]
 
 [ext_resource type="Script" path="res://levels/level.gd" id="1_d1tug"]
 [ext_resource type="CameraAttributesPractical" uid="uid://jafbi2bjurvn" path="res://test/debug/vibe_check_camera.tres" id="2_7vsv1"]
@@ -41,6 +41,11 @@
 [ext_resource type="AudioStream" uid="uid://3vp28og4aea" path="res://levels/ambient_sounds/underground_lab_ambience_003.ogg" id="33_oli46"]
 [ext_resource type="PackedScene" uid="uid://c4y0iwlv3i13p" path="res://game_objects/props/stash/stash.tscn" id="38_1ckb4"]
 [ext_resource type="Script" path="res://levels/launch_mission_area.gd" id="41_1c2xw"]
+[ext_resource type="PackedScene" uid="uid://dsu2lajkgpbva" path="res://game_objects/items/materials/polymer_pile/polymer_pile.tscn" id="42_paled"]
+[ext_resource type="PackedScene" uid="uid://fetf2vb0h86g" path="res://game_objects/items/armor/medium/1/medium_armor_1.tscn" id="43_fmi21"]
+[ext_resource type="PackedScene" uid="uid://cprpop5lkmyhe" path="res://game_objects/items/weapons/fic_rifles/s5/s5.tscn" id="44_h7vf8"]
+[ext_resource type="Resource" uid="uid://bikewy7dlkv20" path="res://components/ammo_component/ammo_types/fast_intermediate_cartridge/fast_intermediate_cartridge.tres" id="45_d2tol"]
+[ext_resource type="Script" path="res://game_objects/items/weapons/gun_stats.gd" id="46_ku5gw"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_miqso"]
 sky_top_color = Color(0, 0, 0, 1)
@@ -3190,6 +3195,23 @@ size = Vector3(4.91016, 3.78424, 11.2449)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_7eexi"]
 size = Vector3(1.63269, 1.27386, 2.85742)
+
+[sub_resource type="Resource" id="Resource_vfqya"]
+resource_local_to_scene = true
+script = ExtResource("46_ku5gw")
+weapon_category_name = "FIC Rifle"
+magazine_size = 30
+rpm = 800
+base_recoil = Vector2(0, 0.017)
+recoil_variability = Vector2(0.02, 0.01)
+fire_modes = ["semi", "auto"]
+ads_accel = 10.0
+ads_fov = 50.0
+moa = 4.0
+turn_speed = 25.0
+ammo_type = ExtResource("45_d2tol")
+reload_time_Sec = 2.5
+reload_thresholds = Array[float]([1.0])
 
 [node name="Hideout" type="WorldEnvironment"]
 environment = SubResource("Environment_sspln")
@@ -6480,3 +6502,13 @@ script = ExtResource("41_1c2xw")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.265564, -0.430023, 0.0078125)
 shape = SubResource("BoxShape3D_7eexi")
+
+[node name="polymer_pile" parent="." instance=ExtResource("42_paled")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.2668, 0.2, -1.78181)
+
+[node name="medium_armor_1" parent="." instance=ExtResource("43_fmi21")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.13073, 0.640675, -1.60992)
+
+[node name="S5" parent="." instance=ExtResource("44_h7vf8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.75543, 0.591431, -1.44589)
+_gun_stats = SubResource("Resource_vfqya")

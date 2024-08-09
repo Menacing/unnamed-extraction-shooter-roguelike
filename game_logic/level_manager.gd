@@ -27,24 +27,29 @@ func load_level_async(path:String, populate_level:bool = false):
 		
 		# load the next level
 		EventBus.before_level_loading.emit()
+		# instantiate the new level
 		var next_level:Level = load(path).instantiate()
 		#next_level.exit_reached.connect(_on_level_exit_reached)
 		
 		EventBus.before_previous_level_freed.emit()
+		#pull players out of tree
+		for player in get_tree().get_nodes_in_group("players"):
+			Helpers.force_parent(player, self)
+			
 		# kill everything below the world root
 		if current_level != null:
 			current_level.queue_free()
 		for child in get_children():
-			if child.is_in_group("player"):
-				Helpers.force_parent(child, self)
-			elif not child.is_in_group("world_root_no_touch"):
+			if not child.is_in_group("world_root_no_touch") and not child.is_in_group("players"):
 				if child is Level:
 					child.unload_level()
 				else:
 					#remove_child(child)
 					child.queue_free()
 			
-		# instantiate the new level
+		#Add players to new level
+		for player in get_tree().get_nodes_in_group("players"):
+			Helpers.force_parent(player, next_level)
 		# add to world root
 		add_child(next_level)
 		
