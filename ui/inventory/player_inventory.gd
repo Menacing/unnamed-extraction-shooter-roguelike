@@ -12,6 +12,7 @@ func _ready():
 	EventBus.players_spawned.connect(_on_player_spawned)
 
 func _on_player_spawned():
+	
 	setup_inventory_from_model()
 		
 func _on_item_removed_from_slot(item_inst:ItemInstance, inventory_id:int, slot_name:String):
