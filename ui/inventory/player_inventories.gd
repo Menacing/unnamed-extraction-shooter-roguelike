@@ -28,6 +28,8 @@ func _on_item_control_quick_transfer(item_control:ItemControl):
 		if item_instance.current_inventory_id != player_inventory_id:
 			EventBus.pickup_item.emit(item_instance, player_inventory_id)
 		else:
-			var world_inventory_control:InventoryControlBase = world_inventories_container.get_child(0)
-			if world_inventory_control:
-				EventBus.pickup_item.emit(item_instance, world_inventory_control.inventory_id)
+			var side_control:Control = world_inventories_container.get_child(0)
+			if  side_control is InventoryControlBase:
+				EventBus.pickup_item.emit(item_instance, side_control.inventory_id)
+			elif side_control is HideoutMenu:
+				EventBus.pickup_item.emit(item_instance, side_control.stash_inventory_control.inventory_id)

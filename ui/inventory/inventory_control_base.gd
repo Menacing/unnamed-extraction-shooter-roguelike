@@ -38,9 +38,11 @@ func _on_before_populate_level():
 	setup_inventory_from_model()
 	
 func setup_inventory_from_model():
-	_inventory = _model_inventory.duplicate(true)
-	_inventory.setup()
-	inventory_id = _inventory.inventory_id
+	#check if the inventory is already set up otherwise we lose the inventory on changing maps
+	if _inventory == null:
+		_inventory = _model_inventory.duplicate(true)
+		_inventory.setup()
+		inventory_id = _inventory.inventory_id
 
 func _on_item_picked_up(result:InventoryInsertResult):
 	if result.inventory_id == _inventory.inventory_id and result.picked_up:
