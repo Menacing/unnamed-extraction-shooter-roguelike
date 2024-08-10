@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://cnum3ugscdofq"]
+
+[ext_resource type="Script" path="res://game_objects/item_3d.gd" id="1_k4twj"]
+[ext_resource type="PackedScene" uid="uid://dc2s2tps4xqpf" path="res://game_objects/items/materials/scrap_metal/scrap_metal.blend" id="2_bmkj0"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2se0r"]
+size = Vector3(0.363312, 0.188965, 0.316284)
+
+[node name="ScrapMetal" type="RigidBody3D" node_paths=PackedStringArray("model_node", "foley_player")]
+script = ExtResource("1_k4twj")
+item_type_id = "scrap_metal_small"
+world_collider_path = NodePath("CollisionShape3D")
+longest_side_size = 0.4
+model_node = NodePath("scrap_metal")
+foley_player = NodePath("FoleyAudioStreamPlayer3D")
+
+[node name="scrap_metal" parent="." instance=ExtResource("2_bmkj0")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0919037, 0.0922852, 0.0556206)
+shape = SubResource("BoxShape3D_2se0r")
+
+[node name="FoleyAudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
