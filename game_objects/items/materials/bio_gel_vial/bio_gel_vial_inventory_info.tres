@@ -1,0 +1,41 @@
+[gd_resource type="Resource" script_class="MaterialInformation" load_steps=11 format=3 uid="uid://c8v7lgcr1goac"]
+
+[ext_resource type="Resource" uid="uid://b7xbokgogvcm4" path="res://ui/inventory/split_stack_context_item.tres" id="1_8c2t7"]
+[ext_resource type="Resource" uid="uid://o6tesi76nbth" path="res://ui/inventory/drop_item_context_item.tres" id="2_ejfm8"]
+[ext_resource type="Resource" uid="uid://tnc0xmfk6ddc" path="res://game_objects/crafting_materials/bio-gel.tres" id="3_7osgd"]
+[ext_resource type="PackedScene" uid="uid://son7demex4pt" path="res://ui/inventory/detail_scenes/simple_detail_popup.tscn" id="4_284bg"]
+[ext_resource type="PackedScene" uid="uid://dpvoqq6pjm1ya" path="res://game_objects/items/materials/bio_gel_vial/bio_gel_vial.tscn" id="5_d3s62"]
+[ext_resource type="AudioStream" uid="uid://cclc1ndau5blf" path="res://game_objects/effects/sounds/foley/glass_2.ogg" id="5_epqbf"]
+[ext_resource type="Texture2D" uid="uid://bl2y6buy2d52p" path="res://game_objects/items/materials/bio_gel_vial/bio_gel_vial_icon.png" id="6_j8oy8"]
+[ext_resource type="PackedScene" uid="uid://cn3ywqty7xvvr" path="res://ui/inventory/item_control.tscn" id="7_2cnrn"]
+[ext_resource type="Script" path="res://game_objects/items/materials/material_information.gd" id="8_2ilgf"]
+[ext_resource type="AudioStream" uid="uid://v5vxo6vdn5hy" path="res://game_objects/effects/sounds/foley/glass_1.ogg" id="9_dhox8"]
+
+[resource]
+script = ExtResource("8_2ilgf")
+crafting_material_definition = ExtResource("3_7osgd")
+amount_per_stack = 1
+item_control_scene = ExtResource("7_2cnrn")
+item_3d_scene = ExtResource("5_d3s62")
+item_type_id = "bio_gel_vial"
+show_name = false
+display_name = "BioGel Vial"
+display_short_name = "Gel Vial"
+item_type = 2
+icon = ExtResource("6_j8oy8")
+icon_r = ExtResource("6_j8oy8")
+detail_scene = ExtResource("4_284bg")
+context_menu_items = Array[Resource("res://ui/inventory/item_context_item.gd")]([ExtResource("1_8c2t7"), ExtResource("2_ejfm8")])
+max_stacks = 10
+has_stacks = true
+max_durability = 1
+has_durability = false
+column_span = 1
+row_span = 1
+description_text = "Scrap plastic fortified with glass fiber ready to be used by a modern printer"
+flavor_text = "Polymer makes it possible"
+min_pickup_stacks = 1
+mean_pickup_stacks = 5
+stack_random_method = 1
+pickup_sound = ExtResource("9_dhox8")
+drop_sound = ExtResource("5_epqbf")

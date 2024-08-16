@@ -1,4 +1,4 @@
-[gd_scene load_steps=105 format=3 uid="uid://ctahsvj88g1om"]
+[gd_scene load_steps=106 format=3 uid="uid://ctahsvj88g1om"]
 
 [ext_resource type="Script" path="res://levels/demo_level.gd" id="1_8448e"]
 [ext_resource type="PackedScene" uid="uid://d08aatgxmymbf" path="res://game_objects/player/player.tscn" id="1_eisjc"]
@@ -37,6 +37,7 @@
 [ext_resource type="PackedScene" uid="uid://dyymfnrwyu0re" path="res://game_objects/items/ammo/lpc/lpc_box_ap.tscn" id="35_btk64"]
 [ext_resource type="PackedScene" uid="uid://c58b7dwqutp75" path="res://game_objects/items/ammo/lpc/lpc_box_fmj.tscn" id="36_xl7vn"]
 [ext_resource type="PackedScene" uid="uid://btg5dmqcu3ni3" path="res://game_objects/items/ammo/lpc/lpc_box_hp.tscn" id="37_1gb6g"]
+[ext_resource type="PackedScene" uid="uid://dpvoqq6pjm1ya" path="res://game_objects/items/materials/bio_gel_vial/bio_gel_vial.tscn" id="38_hq6i0"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_6g5uc"]
 
@@ -1358,3 +1359,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.91033, 0.163342, -5.32878)
 
 [node name="LpcBoxHP2" parent="." instance=ExtResource("37_1gb6g")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.45802, 0.167906, -5.31897)
+
+[node name="BioGelVial" parent="." instance=ExtResource("38_hq6i0")]
+transform = Transform3D(1, 0, 0, 0, 0.177806, 0.984066, 0, -0.984066, 0.177806, 8.81706, 0.370458, -4.458)
