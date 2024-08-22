@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://rsiuhbktl4h8"]
+
+[ext_resource type="Script" path="res://game_objects/item_3d.gd" id="1_f3etl"]
+[ext_resource type="PackedScene" uid="uid://dlifaccecwoe" path="res://game_objects/items/materials/polymer_bale/polymer_bale.blend" id="2_aeebe"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_bx5bi"]
+size = Vector3(1.01723, 0.509644, 0.80722)
+
+[node name="PolymerBale" type="RigidBody3D" node_paths=PackedStringArray("model_node", "foley_player")]
+collision_layer = 5
+collision_mask = 5
+script = ExtResource("1_f3etl")
+item_type_id = "polymer_bale_large"
+world_collider_path = NodePath("CollisionShape3D")
+model_node = NodePath("polymer_bale")
+foley_player = NodePath("FoleyAudioStreamPlayer3D")
+
+[node name="FoleyAudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+
+[node name="polymer_bale" parent="." instance=ExtResource("2_aeebe")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00162506, 0.250427, 0.00135803)
+shape = SubResource("BoxShape3D_bx5bi")
