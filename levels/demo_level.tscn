@@ -1,4 +1,4 @@
-[gd_scene load_steps=107 format=3 uid="uid://ctahsvj88g1om"]
+[gd_scene load_steps=108 format=3 uid="uid://ctahsvj88g1om"]
 
 [ext_resource type="Script" path="res://levels/demo_level.gd" id="1_8448e"]
 [ext_resource type="PackedScene" uid="uid://d08aatgxmymbf" path="res://game_objects/player/player.tscn" id="1_eisjc"]
@@ -39,6 +39,7 @@
 [ext_resource type="PackedScene" uid="uid://btg5dmqcu3ni3" path="res://game_objects/items/ammo/lpc/lpc_box_hp.tscn" id="37_1gb6g"]
 [ext_resource type="PackedScene" uid="uid://dpvoqq6pjm1ya" path="res://game_objects/items/materials/bio_gel_vial/bio_gel_vial.tscn" id="38_hq6i0"]
 [ext_resource type="PackedScene" uid="uid://rsiuhbktl4h8" path="res://game_objects/items/materials/polymer_bale/polymer_bale.tscn" id="39_4an7n"]
+[ext_resource type="PackedScene" uid="uid://mue3h2yq8han" path="res://game_objects/items/materials/scrap_metal_wheel/scrap_metal_wheel.tscn" id="40_0qi33"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_6g5uc"]
 
@@ -1366,3 +1367,6 @@ transform = Transform3D(1, 0, 0, 0, 0.177806, 0.984066, 0, -0.984066, 0.177806, 
 
 [node name="PolymerBale" parent="." instance=ExtResource("39_4an7n")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.5375, 0.0788302, -4.91273)
+
+[node name="ScrapMetalWheel" parent="." instance=ExtResource("40_0qi33")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 0.112062, -4)
