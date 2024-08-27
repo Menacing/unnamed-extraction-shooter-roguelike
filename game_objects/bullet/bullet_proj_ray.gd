@@ -1,34 +1,28 @@
-extends PhysicsBody3D
-class_name BulletProjRay
+extends Node3D
+class_name IterativeRaycastBullet
 
 @export var initial_speed = 700.0
 @export var initial_damage = 30.0
 @export var pen_rating: int = 5
 @export var k: float = 0.001289
 @export var moa:float
-var shot_origin:Vector3
+@onready var shot_origin:Vector3 = self.global_position
 var firer:Node3D
 
 var current_speed: float
 var current_damage: float
 var elapsed_time: float = 0.0
 
-@onready var col_shape:CollisionShape3D = $CollisionShape3D
-@onready var mesh_inst:MeshInstance3D = $MeshInstance3D
-@onready var bullet_radius:float = $CollisionShape3D.shape.radius
 var continue_process:bool = true
 @onready var despawn_timer:Timer = $DespawnTimer
+@onready var damage_component:DamageComponent = %DamageComponent
 var collision_exclusions:Array[RID] = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	current_speed = initial_speed
-	current_damage = initial_damage
+	damage_component.damage = initial_damage
 	Helpers.random_angle_deviation_moa(self, moa,moa)
-	shot_origin = self.global_position
-	self.add_collision_exception_with(self)
-	collision_exclusions.append(self.get_rid())
-#	connect("body_entered", _on_body_entered)
 
 func _physics_process(delta):
 	elapsed_time += delta
@@ -84,12 +78,13 @@ func do_raycast_movement(delta:float):
 				current_damage = pow(new_speed/current_speed,2) * current_damage
 				current_speed = new_speed
 				target_destination = raycast_result.position + (-remaining_delta * current_speed * transform.basis.z)
+			elif collider is HurtBoxComponent:
+				
 			elif collider is Area3D:
 				collider.body_entered.emit(self)
 			else:
 				startDespawn()
-			if collider is CollisionObject3D:
-				self.add_collision_exception_with(collider)
+				
 			collision_exclusions.append(raycast_result.rid)
 			
 			#set current position to collision location
@@ -98,9 +93,6 @@ func do_raycast_movement(delta:float):
 			remaining_distance = (target_destination - source_destination).length()
 			pass
 			
-	var col:KinematicCollision3D = move_and_collide(travel_vector,false,0.001,true)
-	#if col:
-		#print("something went wrong, col should always be null doing it this way")
 	var new_speed = (current_speed/ (1+k*delta*current_speed))
 	current_damage = pow(new_speed/current_speed,2) * current_damage
 	current_speed = new_speed
@@ -111,8 +103,6 @@ func do_raycast_movement(delta:float):
 
 func startDespawn():
 	continue_process = false
-	col_shape.disabled = true
-	mesh_inst.visible = false
 	despawn_timer.start()
 
 

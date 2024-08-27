@@ -1,13 +1,21 @@
 extends Node
 class_name HealthComponent
 
-##Key: HealthLocation.HEALTH_LOCATION, Value: HealthLocation
-@export var health_locs:Dictionary = {}
+enum HEALTH_LOCATION {
+	LEGS,
+	MAIN,
+	ARMS
+}
+
+@export var location:HEALTH_LOCATION
+@export var current_health:float
+@export var max_health:float
 
 @onready var parent_id:int = get_parent().get_instance_id()
 
-var main_loc:HealthLocation
-var armor_item_instance_id:int = 0
+@export var heal_overflow_locations:Array[HealthComponent]
+@export var damage_overflow_locations:Array[HealthComponent]
+
 
 signal health_changed(health_location:HealthLocation)
 signal armor_item_instance_id_set(aiii:int)

@@ -7,7 +7,9 @@ class_name PlayerHitBox
 
 @onready var parent_id:int = self.owner.get_instance_id()
 
-func _on_hit(damage, pen_rating, col:CollisionInformation, hit_origin:Vector3) -> float:
+signal hit(damage:float, pen_rating:int, col:CollisionInformation, hit_origin:Vector3, hit_box:PlayerHitBox)
+
+func _on_hit(damage:float, pen_rating:int, col:CollisionInformation, hit_origin:Vector3) -> float:
 	damage = damage * damage_multiplier
 	print("Took %s damage, pen rating %s at %s" % [damage, pen_rating, col.position])
 	EventBus.took_damage.emit(damage, hit_origin)
