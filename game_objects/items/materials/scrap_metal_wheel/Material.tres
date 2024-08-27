@@ -1,0 +1,12 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://du6ggttpjuj3o"]
+
+[ext_resource type="Texture2D" uid="uid://bdmfgpu5msmkl" path="res://game_objects/items/materials/scrap_metal_wheel/textures/wheel_t.png" id="1_n1fv7"]
+
+[resource]
+resource_name = "Material"
+transparency = 4
+cull_mode = 2
+albedo_texture = ExtResource("1_n1fv7")
+metallic = 1.0
+roughness = 0.666667
+texture_filter = 2
