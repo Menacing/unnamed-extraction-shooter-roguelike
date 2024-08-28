@@ -1,22 +1,51 @@
 extends Node
 class_name DamageComponent
 
-@export var pen_ratio:float = 1.0
+##Percentage of damage that remains after passing through object if penetrated
+@export var percent_penetrated:float = 1.0
 @export var damage_multiplier := 1.0
 @export var armor_rating := 0
-@export var health_component:HealthComponent
+##Percentage of damage that still applies even if attack doesn't penetrate
+@export var damage_transmission_percent:float = 0.0
+@export var location_type:HealthComponent.HEALTH_LOCATION
 
-signal hit_occured(damage_result:AttackResult)
+@export var armor_damage_component:DamageComponent
 
-func hit(damage_component:AttackComponent) -> AttackResult:
-	if damage_component and damage_component.armor_penetration_rating >= armor_rating:
-		var damage = damage_component.damage * damage_multiplier
-		if health_component:
-			health_component.apply_damage(damage)
-		var damage_result = AttackResult.new(pen_ratio)
-		hit_occured.emit(damage_result)
-		return damage_result
+signal hit_occured(attack_result:AttackResult)
+
+func hit(attack_component:AttackComponent) -> AttackResult:
+	if attack_component:
+		var damage_to_apply = attack_component.damage
+		# delgate hit to armor first
+		if armor_damage_component:
+			var armor_hit_result:AttackResult = armor_damage_component.hit(attack_component)
+			damage_to_apply = damage_to_apply * armor_hit_result.percent_penetrated
+		
+		#if penetrates armor, do damage and return penetration ratio
+		if  attack_component.armor_penetration_rating >= armor_rating:
+			var damage = damage_to_apply * damage_multiplier
+			var attack_result = AttackResult.new(percent_penetrated)
+			attack_result._map_from_attack_component(attack_component)
+			attack_result.damage = damage
+			hit_occured.emit(attack_result)
+			return attack_result
+		#else damage is stopped, return 0 pen percent
+		else:
+			var attack_result = AttackResult.new(0.0)
+			attack_result._map_from_attack_component(attack_component)
+			attack_result.damage = damage_to_apply * damage_multiplier * damage_transmission_percent
+			hit_occured.emit(attack_result)
+			return attack_result
 	else:
-		var damage_result = AttackResult.new(0.0)
-		hit_occured.emit(damage_result)
-		return damage_result
+		var attack_result = AttackResult.new(0.0)
+		hit_occured.emit(attack_result)
+		return attack_result
+
+func _on_armor_equipped(armor:BodyArmor):
+	var damage_component:DamageComponent = Helpers.get_component_of_type(armor, DamageComponent)
+	if damage_component and armor.armored_locations.has(location_type):
+		armor_damage_component = damage_component
+		
+func _on_armor_unequipped(armor:BodyArmor):
+	if armor.armored_locations.has(location_type):
+		armor_damage_component = null

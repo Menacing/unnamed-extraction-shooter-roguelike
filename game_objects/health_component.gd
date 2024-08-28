@@ -82,3 +82,8 @@ func _on_load_game(tlesd:TopLevelEntitySaveData):
 	current_health = tlesd.additional_data[name+"_current_health"]
 	is_destroyed = tlesd.additional_data[name+"_destroyed"]
 	max_health = tlesd.additional_data[name+"_max_health"]
+
+
+func _on_hit_occured(damage_result:AttackResult):
+	apply_damage(damage_result.damage)
+	pass # Replace with function body.

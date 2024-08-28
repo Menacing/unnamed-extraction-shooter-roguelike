@@ -233,3 +233,9 @@ func get_normalized_random_stack_count(min_value: int,
 func print_if_debug(x):
 	if OS.is_debug_build():
 		print_debug(x)
+		
+func get_component_of_type(parent:Node, type):
+	for child in parent.get_children():
+		if is_instance_of(child,type):
+			return child
+	return null

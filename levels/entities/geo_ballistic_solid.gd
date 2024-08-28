@@ -54,11 +54,18 @@ func _func_godot_apply_properties(entity_properties: Dictionary):
 	set_collision_layer_value(4,!_transparent)
 
 func _func_godot_build_complete():
-	var dc = damage_component_scene.instantiate()
+	var dc:DamageComponent = damage_component_scene.instantiate()
 	dc.pen_ratio = _pen_ratio
 	dc.armor_rating = _armor_rating
 	self.add_child(dc)
 	dc.owner = self.owner
+	
+	var dec:DamageEffectComponent = damage_effect_component_scene.instantiate()
+	dec.damage_effect_scene = preload("res://game_objects/effects/hit_effects/bullet_hit_wood.tscn")
+	self.add_child(dec)
+	dec.owner = self.owner
+	
+	dc.hit_occured.connect(dec.create_effect,Object.CONNECT_PERSIST)
 
 @export var _transparent := false
 @export_range(0.0, 1.0) var _pen_ratio = 1.0
@@ -74,15 +81,11 @@ func _func_godot_build_complete():
 @export var game_material_info_list:GameMaterialInfoList = preload('res://levels/game_material_info/uesrl_game_material_info_list.tres')
 
 var damage_component_scene:PackedScene = preload("res://components/damage_component/damage_component.tscn")
-
+var damage_effect_component_scene:PackedScene = preload("res://components/damage_effect_component/damage_effect_component.tscn")
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	if Engine.is_editor_hint():
 		return
-	if _bullet_hole_scene_path:
-		_bullet_hole_scene = load(_bullet_hole_scene_path)
-	if _impact_hit_scene_path:
-		_impact_hit_scene = load(_impact_hit_scene_path)
 	if _footstep_sound_path:
 		_footstep_sound = load(_footstep_sound_path)
 
@@ -92,30 +95,3 @@ func _process(delta):
 		return
 	pass
 
-func _on_hit(damage, pen_rating, col:CollisionInformation, hit_origin:Vector3) -> float:
-	var position = col.position
-	var normal = col.normal
-	var collider = col.collider
-#	print("Took %s damage, pen rating %s at %s" % [damage, pen_rating, position])
-	
-	if _bullet_hole_scene:
-		var bulletInst = _bullet_hole_scene.instantiate() as Node3D
-		add_child(bulletInst)
-		if normal == Vector3.UP or normal == Vector3.DOWN:
-			bulletInst.look_at_from_position(position, normal, Vector3.RIGHT)
-		else:
-			bulletInst.look_at_from_position(position, normal)
-	if _impact_hit_scene:
-		var hit_inst = _impact_hit_scene.instantiate() as Node3D
-		hit_inst.set_as_top_level(true)
-		get_parent().add_child(hit_inst)
-		if normal == Vector3.UP or normal == Vector3.DOWN:
-			hit_inst.look_at_from_position(position, normal, Vector3.RIGHT)
-		else:
-			hit_inst.look_at_from_position(position, normal)
-
-	object_hit.emit()
-	if pen_rating >= _armor_rating:
-		return _pen_ratio
-	else:
-		return 0.0

@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=3 uid="uid://gfj0vsvmo4ik"]
 
-[ext_resource type="Script" path="res://game_objects/bullet/bullet_proj_ray.gd" id="1_ef86h"]
+[ext_resource type="Script" path="res://game_objects/bullet/iterative_raycast_bullet.gd" id="1_ite5r"]
 [ext_resource type="Shader" path="res://game_objects/bullet/tracer_particle.gdshader" id="2_a36ed"]
 [ext_resource type="Shader" path="res://game_objects/bullet/tracer.gdshader" id="3_5crjh"]
 [ext_resource type="Script" path="res://components/attack_component/attack_component.gd" id="4_guqwi"]
@@ -29,7 +29,7 @@ shader_parameter/tex = SubResource("GradientTexture2D_10bv2")
 material = SubResource("ShaderMaterial_bhr6y")
 
 [node name="IterativeRaycastBullet" type="Node3D"]
-script = ExtResource("1_ef86h")
+script = ExtResource("1_ite5r")
 initial_speed = 950.0
 initial_damage = 15.0
 pen_rating = 9

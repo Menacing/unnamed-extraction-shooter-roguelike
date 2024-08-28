@@ -164,6 +164,9 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 @onready var arms_health_component:HealthComponent = %ArmsHealthComponent
 @onready var legs_health_component:HealthComponent = %LegsHealthComponent
 
+signal armor_equipped(armor:BodyArmor)
+signal armor_unequipped(armor:BodyArmor)
+
 func _ready():
 	if gun_scene1:
 		equipped_gun = gun_scene1.instantiate()
@@ -230,6 +233,7 @@ func _on_item_picked_up(result:InventoryInsertResult):
 						elif backpack.backpack_size == Backpack.Size.LARGE:
 							InventoryManager.set_inventory_size(player_inventory_id, Vector2i(7,8))
 				"ArmorSlot":
+					armor_equipped.emit(item_3d as BodyArmor)
 					move_armor_to_anchor(item_3d)
 		elif result.location.location == InventoryLocationResult.LocationType.GRID:
 			item_3d.visible = false
