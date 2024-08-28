@@ -5,6 +5,8 @@ class_name HurtBoxComponent
 @export var damage_multiplier = 1.0
 @export var health_location:HealthComponent
 
+
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
@@ -15,7 +17,9 @@ func _process(delta):
 	pass
 
 func hit(damage_component:DamageComponent) -> DamageResult:
-	
+	var damage = damage_component.damage * damage_multiplier
+	health_location.apply_damage(damage)
+	return DamageResult.new(pen_ratio)
 
 
 func _on_body_entered(body):

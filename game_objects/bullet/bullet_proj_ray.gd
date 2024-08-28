@@ -79,7 +79,19 @@ func do_raycast_movement(delta:float):
 				current_speed = new_speed
 				target_destination = raycast_result.position + (-remaining_delta * current_speed * transform.basis.z)
 			elif collider is HurtBoxComponent:
+				var damage_result:DamageResult = collider.hit(damage_component)
+				var pen_ratio = damage_result.percent_penetrated
 				
+				#handle speed and damage reduction
+				var new_speed = current_speed * pen_ratio
+				
+				#calculate new target and delta
+				var distance_went:float = (raycast_result.position - source_destination).length()
+				var time_took:float = distance_went * remaining_delta / (target_destination - source_destination).length()
+				remaining_delta -= time_took
+				current_damage = pow(new_speed/current_speed,2) * current_damage
+				current_speed = new_speed
+				target_destination = raycast_result.position + (-remaining_delta * current_speed * transform.basis.z)
 			elif collider is Area3D:
 				collider.body_entered.emit(self)
 			else:

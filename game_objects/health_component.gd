@@ -16,74 +16,62 @@ enum HEALTH_LOCATION {
 @export var heal_overflow_locations:Array[HealthComponent]
 @export var damage_overflow_locations:Array[HealthComponent]
 
+var is_destroyed:bool = false
 
-signal health_changed(health_location:HealthLocation)
-signal armor_item_instance_id_set(aiii:int)
+signal health_changed(health_component:HealthComponent)
+signal location_destroyed(health_component:HealthComponent)
+signal location_restored(health_component:HealthComponent)
 
 func _ready():
-	health_locs = Helpers.duplicate_deep_workaround_dictionary(health_locs)
-	if health_locs.has(HealthLocation.HEALTH_LOCATION.MAIN):
-		main_loc = health_locs[HealthLocation.HEALTH_LOCATION.MAIN]
-			
-	EventBus.location_hit.connect(_on_location_hit)
-	EventBus.healed.connect(_on_healed)
-	
+	#EventBus.healed.connect(_on_healed)
 	pass
 
-func _on_armor_item_instance_id_set(aiii:int):
-	armor_item_instance_id = aiii
+func destroy_location():
+	if !is_destroyed:
+		is_destroyed = true
+		location_destroyed.emit(self)
 
-func _on_location_hit(actor_id:int, location:HealthLocation.HEALTH_LOCATION, \
-	damage:float):
-	if actor_id == parent_id and health_locs.has(location):
-		var loc = health_locs[location]
-		if loc.location == location:
-			var overflow = false
-			var overflow_damage = damage
-			if is_zero_approx(loc.current_health):
-				overflow = true
-			else:
-				loc.current_health -= damage
-				if loc.current_health <= 0:
-					EventBus.location_destroyed.emit(parent_id, loc.location)
-					overflow = true
-					overflow_damage = -loc.current_health
-				else:
-					health_changed.emit(loc)
-			#handle damage overflow
-			if loc.location != main_loc.location and overflow:
-				loc.current_health = 0
-				health_changed.emit(loc)
-				main_loc.current_health -= overflow_damage
-				if main_loc.current_health <= 0:
-					EventBus.location_destroyed.emit(parent_id, main_loc.location)
-					main_loc.current_health = 0
-					health_changed.emit(main_loc)
+func restore_location():
+	if is_destroyed:
+		is_destroyed = false
+		location_restored.emit(self)
 
-func _on_healed(actor_id:int, healed:float):
-	if actor_id == parent_id:
-		var remainder = healed
-		#heal main first
-		if main_loc.current_health < main_loc.max_health:
-			remainder = _apply_heal(main_loc, healed)
-		if remainder > 0:
-			#if we have overheal, heal the other locations
-			for i in health_locs:
-				var loc = health_locs[i]
-				remainder = _apply_heal(loc, remainder)
-				if remainder <= 0:
-					return
+##Apply a given amount of damage, returning any overflow as the remainder
+func apply_damage(damage:float) -> float:
+	var overflow_damage:float = 0.0
+	current_health -= damage
+	if current_health < 0:
+		overflow_damage = -current_health
+		current_health = 0.0
+		destroy_location()
+		
+		if !is_zero_approx(overflow_damage):
+			for hc:HealthComponent in damage_overflow_locations:
+				overflow_damage = hc.apply_damage(overflow_damage)
+				if is_zero_approx(overflow_damage):
+					overflow_damage = 0.0
+					break
+	health_changed.emit(self)
+	return overflow_damage
+	pass
 
 ##Apply a given amount of healing, returning any overflow as the remainder
-func _apply_heal(loc:HealthLocation, amount:float) -> float:
-	if is_zero_approx(loc.current_health) and amount > 0:
-		EventBus.location_restored.emit(parent_id, loc.location)
-	loc.current_health += amount
-	var remainder = loc.current_health - loc.max_health
-	if remainder > 0:
-		loc.current_health = loc.max_health
-		health_changed.emit(loc)
-		return remainder
-	else:
-		health_changed.emit(loc)		
-		return 0
+func apply_healing(healing_amount:float) -> float:
+	var overflow_healing := 0.0
+	current_health += healing_amount
+	restore_location()
+	if current_health > max_health:
+		overflow_healing = current_health - max_health
+		current_health = max_health
+		
+		if !is_zero_approx(overflow_healing):
+			for hc:HealthComponent in heal_overflow_locations:
+				overflow_healing = hc.apply_healing(overflow_healing)
+				if is_zero_approx(overflow_healing):
+					overflow_healing = 0.0
+					break
+	health_changed.emit(self)
+	return overflow_healing
+
+
+

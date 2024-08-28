@@ -27,18 +27,6 @@ signal context_menus_split_stack(item_inst:ItemInstance, cursor_pos:Vector2)
 signal context_menus_open_item_detail(item_inst:ItemInstance, cursor_pos:Vector2)
 signal item_control_quick_transfer(item_control:ItemControl)
 
-#Health Events
-signal took_damage(damage:float, hit_origin:Vector3)
-signal health_changed(actor_id:int, location:HealthLocation.HEALTH_LOCATION, \
-	current_health:float, max_health:float)
-signal location_hit(actor_id:int, location:HealthLocation.HEALTH_LOCATION, \
-	damage:float)
-signal healed(actor_id:int, healed:float)
-signal location_healed(actor_id:int, location:HealthLocation.HEALTH_LOCATION, \
-	healed:float)
-signal location_destroyed(actor_id:int, location:HealthLocation.HEALTH_LOCATION)
-signal location_restored(actor_id:int, location:HealthLocation.HEALTH_LOCATION)
-
 #Misc Events
 signal use_helper_visibility(show:bool)
 signal pickup_helper_visibility(show:bool, display_text:String)
