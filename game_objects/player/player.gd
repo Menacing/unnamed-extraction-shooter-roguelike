@@ -160,7 +160,9 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 @onready var footstep_component:FootstepComponent = $FootstepComponent
 
-@onready var health_component:HealthComponent = $HealthComponent
+@onready var main_health_component:HealthComponent = %MainHealthComponent
+@onready var arms_health_component:HealthComponent = %ArmsHealthComponent
+@onready var legs_health_component:HealthComponent = %LegsHealthComponent
 
 func _ready():
 	if gun_scene1:
@@ -183,8 +185,6 @@ func _ready():
 	else:
 		EventBus.close_all_inventories.emit()
 	EventBus.ammo_type_changed.connect(_on_ammo_type_changed)
-	EventBus.location_destroyed.connect(_on_location_destroyed)
-	EventBus.location_restored.connect(_on_location_restored)
 	EventBus.game_saving.connect(_on_game_saving)
 	EventBus.before_game_loading.connect(_on_game_before_loading)
 	
@@ -230,7 +230,6 @@ func _on_item_picked_up(result:InventoryInsertResult):
 						elif backpack.backpack_size == Backpack.Size.LARGE:
 							InventoryManager.set_inventory_size(player_inventory_id, Vector2i(7,8))
 				"ArmorSlot":
-					health_component.armor_item_instance_id_set.emit(item_instance.item_instance_id)
 					move_armor_to_anchor(item_3d)
 		elif result.location.location == InventoryLocationResult.LocationType.GRID:
 			item_3d.visible = false
@@ -263,8 +262,7 @@ func _on_item_removed_from_slot(item_inst:ItemInstance, inventory_id:int, slot_n
 			if item_3d == shoulder_gun:
 				shoulder_gun = null
 		if item_3d is BodyArmor:
-			if item_3d.item_instance_id == health_component.armor_item_instance_id:
-				health_component.armor_item_instance_id_set.emit(0)
+			pass
 
 func move_gun_to_player_model(gun:Gun):
 	gun.show()	
@@ -511,11 +509,10 @@ func _on_game_saving(save_file:SaveFile):
 		player_information.additional_data["player_inventory_id"] = player_inventory_id
 		
 		#save health
-		player_information.additional_data["health_info"] = health_component.health_locs
-		#for key in health_component.health_locs:
-			#var health_loc:HealthLocation = health_component.health_locs[key]
-			#player_information.additional_data[health_loc.location] = health_loc.current_health
-
+		main_health_component._on_game_saving(player_information)
+		arms_health_component._on_game_saving(player_information)
+		legs_health_component._on_game_saving(player_information)
+		
 		#save ammo
 		player_information.additional_data["ammo_map"] = ammo_component._ammo_map
 		player_information.additional_data["active_ammo_type"] = ammo_component._active_ammo_type
@@ -536,9 +533,9 @@ func _on_load_game(save_data:TopLevelEntitySaveData):
 		player_inventory_id = save_data.additional_data["player_inventory_id"]
 		
 		#load health
-		if save_data.additional_data["health_info"]:
-			health_component.health_locs = save_data.additional_data["health_info"]
-			health_component.main_loc = health_component.health_locs[HealthLocation.HEALTH_LOCATION.MAIN]
+		main_health_component._on_load_game(save_data)
+		arms_health_component._on_load_game(save_data)
+		legs_health_component._on_load_game(save_data)
 		
 		#load ammo
 		ammo_component._ammo_map = save_data.additional_data["ammo_map"]
@@ -546,19 +543,16 @@ func _on_load_game(save_data:TopLevelEntitySaveData):
 		ammo_component._active_ammo_subtype = save_data.additional_data["active_ammo_subtype"]
 	
 var arm_destroyed_effect:GameplayEffect = load("res://game_objects/player/stat_modifiers/arm_destruction_effect.tres")
-func _on_location_destroyed(actor_id:int, location:HealthLocation.HEALTH_LOCATION):
-	if actor_id == self.get_instance_id():
-		if location == HealthLocation.HEALTH_LOCATION.ARMS:
-			for effect in arm_destroyed_effect.effect_lists:
-				effect.effect_target_node = self
-			EventBus.create_effect.emit(self.get_instance_id(), arm_destroyed_effect)
-		elif location == HealthLocation.HEALTH_LOCATION.MAIN:
-			die()
+func _on_arms_destroyed(hc:HealthComponent):
+	for effect in arm_destroyed_effect.effect_lists:
+		effect.effect_target_node = self
+	EventBus.create_effect.emit(self.get_instance_id(), arm_destroyed_effect)
 			
-func _on_location_restored(actor_id:int, location:HealthLocation.HEALTH_LOCATION):
-	if actor_id == self.get_instance_id():
-		if location == HealthLocation.HEALTH_LOCATION.ARMS:
-			EventBus.remove_effect.emit(self.get_instance_id(), arm_destroyed_effect)
+func _on_main_destroyed(hc:HealthComponent):
+	die()
+			
+func _on_arms_restored(hc:HealthComponent):
+	EventBus.remove_effect.emit(self.get_instance_id(), arm_destroyed_effect)
 	
 func start_arms_ik(right_arm_loc:Node3D, right_fingers_loc:Node3D, left_arm_loc:Node3D, left_fingers_loc:Node3D):
 	if right_arm_loc:
@@ -972,7 +966,7 @@ func _on_falling_state_exited() -> void:
 	
 	var fall_damage = calculate_fall_damage(_real_velocity.y)
 	if fall_damage > 0:
-		EventBus.location_hit.emit(get_instance_id(), HealthLocation.HEALTH_LOCATION.LEGS, fall_damage)
+		legs_health_component.apply_damage(fall_damage)
 	falling_velocity = 0.0
 	pass # Replace with function body.
 

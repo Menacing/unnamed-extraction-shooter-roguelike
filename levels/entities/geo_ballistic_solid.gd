@@ -53,6 +53,13 @@ func _func_godot_apply_properties(entity_properties: Dictionary):
 		
 	set_collision_layer_value(4,!_transparent)
 
+func _func_godot_build_complete():
+	var dc = damage_component_scene.instantiate()
+	dc.pen_ratio = _pen_ratio
+	dc.armor_rating = _armor_rating
+	self.add_child(dc)
+	dc.owner = self.owner
+
 @export var _transparent := false
 @export_range(0.0, 1.0) var _pen_ratio = 1.0
 @export_range(0,10) var _armor_rating: int = 0
@@ -66,6 +73,8 @@ func _func_godot_apply_properties(entity_properties: Dictionary):
 
 @export var game_material_info_list:GameMaterialInfoList = preload('res://levels/game_material_info/uesrl_game_material_info_list.tres')
 
+var damage_component_scene:PackedScene = preload("res://components/damage_component/damage_component.tscn")
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	if Engine.is_editor_hint():
@@ -76,7 +85,6 @@ func _ready():
 		_impact_hit_scene = load(_impact_hit_scene_path)
 	if _footstep_sound_path:
 		_footstep_sound = load(_footstep_sound_path)
-
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

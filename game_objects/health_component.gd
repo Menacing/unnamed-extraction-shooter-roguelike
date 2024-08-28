@@ -73,5 +73,12 @@ func apply_healing(healing_amount:float) -> float:
 	health_changed.emit(self)
 	return overflow_healing
 
+func _on_game_saving(tlesd:TopLevelEntitySaveData):
+	tlesd.additional_data[name+"_current_health"] = current_health
+	tlesd.additional_data[name+"_destroyed"] = is_destroyed
+	tlesd.additional_data[name+"_max_health"] = max_health
 
-
+func _on_load_game(tlesd:TopLevelEntitySaveData):
+	current_health = tlesd.additional_data[name+"_current_health"]
+	is_destroyed = tlesd.additional_data[name+"_destroyed"]
+	max_health = tlesd.additional_data[name+"_max_health"]
