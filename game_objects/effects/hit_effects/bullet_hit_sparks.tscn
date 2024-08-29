@@ -46,6 +46,7 @@ script = ExtResource("1_48rc3")
 one_shot_emitters = [NodePath("bullet_hit_sparks")]
 
 [node name="Bullet" type="Decal" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
 size = Vector3(0.157527, 0.16, 0.16)
 texture_albedo = ExtResource("1_tx1fs")
 texture_normal = ExtResource("2_xoxeq")

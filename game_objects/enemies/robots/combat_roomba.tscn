@@ -1,9 +1,10 @@
-[gd_scene load_steps=32 format=3 uid="uid://ciaqbr34myu5w"]
+[gd_scene load_steps=43 format=3 uid="uid://ciaqbr34myu5w"]
 
 [ext_resource type="Script" path="res://game_objects/enemies/robots/combat_roomba.gd" id="1_f1cah"]
 [ext_resource type="PackedScene" uid="uid://dr48wela8mtxd" path="res://game_objects/items/weapons/hic_rifles/pm_52/pm_52.tscn" id="2_q4rc2"]
+[ext_resource type="Texture2D" uid="uid://8hmr7wpxbldd" path="res://game_objects/effects/assets/star_06.png" id="3_kaynb"]
 [ext_resource type="PackedScene" uid="uid://o7vvmqxsny5t" path="res://game_objects/enemies/robots/combat-roomba.glb" id="3_wwy82"]
-[ext_resource type="PackedScene" uid="uid://5n7aup1d2u20" path="res://game_objects/effects/bullet_hit_sparks.tscn" id="3_x3mdn"]
+[ext_resource type="Script" path="res://game_objects/effects/particle_timeout.gd" id="4_fw40l"]
 [ext_resource type="Resource" uid="uid://hw8blc564g2i" path="res://levels/roomba_nav_mesh.tres" id="4_k7kme"]
 [ext_resource type="Script" path="res://game_objects/containers/world_container.gd" id="5_grn4r"]
 [ext_resource type="Resource" uid="uid://bod4q15y8cr6g" path="res://game_objects/enemies/robots/combat_roomba_loot_spawn_information.tres" id="6_iu150"]
@@ -15,15 +16,68 @@
 [ext_resource type="AudioStream" uid="uid://qjx8mxhhx0a5" path="res://game_objects/enemies/robots/audio/idle_audio_stream_randomizer.tres" id="12_o55mw"]
 [ext_resource type="AudioStream" uid="uid://dpy6rknda42mj" path="res://game_objects/enemies/robots/audio/patrol_started_audio_stream_randomizer.tres" id="13_8dkak"]
 [ext_resource type="Script" path="res://helpers/intro_outro_audio_stream_player.gd" id="14_noua2"]
+[ext_resource type="Script" path="res://game_objects/health_component.gd" id="17_rju44"]
+[ext_resource type="Script" path="res://components/damage_component/damage_component.gd" id="18_kd44g"]
+[ext_resource type="PackedScene" uid="uid://cliu3gfmcv7xd" path="res://components/damage_effect_component/damage_effect_component.tscn" id="19_k7rcm"]
+[ext_resource type="PackedScene" uid="uid://bo5i75565y5co" path="res://game_objects/effects/hit_effects/bullet_hit_sparks.tscn" id="20_3xthi"]
+
+[sub_resource type="Gradient" id="Gradient_6u5e8"]
+offsets = PackedFloat32Array(0, 0.477733, 0.898785, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 0, 1, 0.32549, 0, 0, 1, 0.32549, 0, 0, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_08ugy"]
+gradient = SubResource("Gradient_6u5e8")
+width = 258
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_om0fb"]
+lifetime_randomness = 0.5
+direction = Vector3(0, 0, -1)
+spread = 20.0
+initial_velocity_min = 5.0
+initial_velocity_max = 10.0
+damping_min = 5.0
+damping_max = 10.0
+scale_min = 0.8
+scale_max = 1.2
+color = Color(10, 10, 10, 1)
+color_ramp = SubResource("GradientTexture1D_08ugy")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bc66j"]
+transparency = 1
+blend_mode = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("3_kaynb")
+billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_ano0j"]
+material = SubResource("StandardMaterial3D_bc66j")
+size = Vector2(0.1, 0.1)
+
+[sub_resource type="PackedScene" id="PackedScene_adt25"]
+_bundled = {
+"conn_count": 1,
+"conns": PackedInt32Array(1073741826, 1073741825, 14, 13, 2, 0, 0),
+"editable_instances": [],
+"names": PackedStringArray("bullet_hit_sparks", "GPUParticles3D", "amount", "lifetime", "explosiveness", "randomness", "process_material", "draw_pass_1", "script", "Timer", "Timer", "wait_time", "autostart", "_on_timer_timeout", "timeout"),
+"node_count": 2,
+"node_paths": [NodePath("."), NodePath("."), NodePath("Timer")],
+"nodes": PackedInt32Array(-1, -1, 1, 0, -1, 7, 2, 0, 3, 1, 4, 2, 5, 3, 6, 4, 7, 5, 8, 6, 0, 1073741824, 0, 10, 9, -1, 2, 11, 7, 12, 8, 0),
+"variants": [16, 0.5, 1.0, 1.0, SubResource("ParticleProcessMaterial_om0fb"), SubResource("QuadMesh_ano0j"), ExtResource("4_fw40l"), 0.5, true],
+"version": 3
+}
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_wvt7k"]
 size = Vector3(0.3, 2.1, 0.3)
 
-[sub_resource type="Resource" id="Resource_1qy4a"]
+[sub_resource type="Resource" id="Resource_l8d3w"]
 resource_local_to_scene = true
 script = ExtResource("9_8s6q1")
 inventory_id = 0
-initial_height = 7
+initial_height = 10
 initial_width = 7
 grid_slots = {}
 equipment_slots = Array[Resource("res://resource_access/equipment_slot_type.gd")]([])
@@ -163,7 +217,7 @@ transform = Transform3D(1.00409, 0, 0, 0, 1.00409, 0, 0, 0, 1.00409, 0, 0, 0)
 collision_layer = 3
 script = ExtResource("1_f1cah")
 gun_scene = ExtResource("2_q4rc2")
-hit_effect = ExtResource("3_x3mdn")
+hit_effect = SubResource("PackedScene_adt25")
 nav_agent = NodePath("NavigationAgent3D")
 head_node = NodePath("combat-roomba/Armature/Skeleton3D/Physical Bone Bone/Head")
 vert_moa = 60.0
@@ -211,7 +265,7 @@ shape = SubResource("BoxShape3D_wvt7k")
 
 [node name="WorldInventory" parent="combat-roomba/Armature/Skeleton3D/Physical Bone Bone" instance=ExtResource("7_gxy1y")]
 visible = false
-_inventory = SubResource("Resource_1qy4a")
+_model_inventory = SubResource("Resource_l8d3w")
 
 [node name="DetectRadius" type="Area3D" parent="."]
 collision_layer = 0
@@ -284,6 +338,23 @@ OutroStreamPlayer = NodePath("EndMovementAudioStreamPlayer3D")
 attenuation_model = 1
 volume_db = -16.0
 bus = &"SFX"
+
+[node name="HealthComponent" type="Node" parent="."]
+script = ExtResource("17_rju44")
+location = 1
+current_health = 100.0
+max_health = 100.0
+
+[node name="DamageComponent" type="Node" parent="."]
+script = ExtResource("18_kd44g")
+location_type = 1
+
+[node name="DamageEffectComponent" parent="." instance=ExtResource("19_k7rcm")]
+damage_effect_scene = ExtResource("20_3xthi")
+
+[connection signal="location_destroyed" from="HealthComponent" to="." method="_on_health_component_location_destroyed"]
+[connection signal="hit_occured" from="DamageComponent" to="HealthComponent" method="_on_hit_occured"]
+[connection signal="hit_occured" from="DamageComponent" to="DamageEffectComponent" method="create_effect"]
 
 [editable path="combat-roomba"]
 [editable path="combat-roomba/Armature/Skeleton3D/Physical Bone Bone/WorldInventory"]
