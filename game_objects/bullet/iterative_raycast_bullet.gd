@@ -1,4 +1,4 @@
-extends Node3D
+extends RayCast3D
 class_name IterativeRaycastBullet
 
 @export var initial_speed = 700.0
@@ -16,7 +16,6 @@ var elapsed_time: float = 0.0
 var continue_process:bool = true
 @onready var despawn_timer:Timer = $DespawnTimer
 @onready var attack_component:AttackComponent = %AttackComponent
-var collision_exclusions:Array[RID] = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -29,16 +28,19 @@ func _physics_process(delta):
 	if continue_process:
 		do_raycast_movement(delta)
 
-func raycast_to_dest(source_global_pos:Vector3,destination_global_pos:Vector3) -> Dictionary:
-	var space_state = self.get_world_3d().direct_space_state
-	if space_state:
-		var query = PhysicsRayQueryParameters3D.create(source_global_pos, destination_global_pos)
-		query.collide_with_areas = true
-		query.collision_mask = self.collision_mask
-		query.exclude = collision_exclusions
-		var result = space_state.intersect_ray(query)
-		return result
-	return {}
+func raycast_to_dest(source_global_pos:Vector3,destination_global_pos:Vector3):
+	self.global_position = source_global_pos
+	self.target_position = self.to_local(destination_global_pos)
+	self.force_raycast_update()
+	#var space_state = self.get_world_3d().direct_space_state
+	#if space_state:
+		#var query = PhysicsRayQueryParameters3D.create(source_global_pos, destination_global_pos)
+		#query.collide_with_areas = true
+		#query.collision_mask = self.collision_mask
+		#query.exclude = collision_exclusions
+		#var result = space_state.intersect_ray(query)
+		#return result
+	#return {}
 
 func do_raycast_movement(delta:float):
 	#set up initial value and destination
@@ -53,42 +55,42 @@ func do_raycast_movement(delta:float):
 	#While we have distance to cover, loop
 	while remaining_distance > 0.0001:
 		#Raycast to target location
-		var raycast_result = raycast_to_dest(source_destination,target_destination)
+		raycast_to_dest(source_destination,target_destination)
 		#If we didn't hit anything, add the travel distance and break
-		if raycast_result.is_empty():
+		if !self.is_colliding():
 			travel_vector += (target_destination - source_destination)
 			remaining_distance = 0.0
 		#else, handle collision
 		else:
 			#Add traveled distance to collision location
-			travel_vector += (raycast_result.position - source_destination)
+			travel_vector += (self.get_collision_point() - source_destination)
 			#if collider has an onhit function, call it and handle result
-			var collider = raycast_result.collider
+			var collider = self.get_collider()
 			if collider:
 				var damage_component:DamageComponent = Helpers.get_component_of_type(collider, DamageComponent)
 				if damage_component:
-					attack_component.attack_normal = raycast_result.normal
-					attack_component.attack_position = raycast_result.position
+					attack_component.attack_normal = self.get_collision_normal()
+					attack_component.attack_position = self.get_collision_point()
 					var attack_result:AttackResult = damage_component.hit(attack_component)
 					
 					var new_speed = current_speed * attack_result.percent_penetrated
 				
 					#calculate new target and delta
-					var distance_went:float = (raycast_result.position - source_destination).length()
+					var distance_went:float = (self.get_collision_point() - source_destination).length()
 					var time_took:float = distance_went * remaining_delta / (target_destination - source_destination).length()
 					remaining_delta -= time_took
 					current_damage = pow(new_speed/current_speed,2) * current_damage
 					current_speed = new_speed
-					target_destination = raycast_result.position + (-remaining_delta * current_speed * transform.basis.z)
-			elif collider is Area3D:
-				collider.body_entered.emit(self)
+					target_destination = self.get_collision_point() + (-remaining_delta * current_speed * transform.basis.z)
+				elif collider is Area3D:
+					collider.body_entered.emit(self)
 			else:
 				startDespawn()
 				
-			collision_exclusions.append(raycast_result.rid)
+			self.add_exception_rid(self.get_collider_rid())
 			
 			#set current position to collision location
-			source_destination = raycast_result.position
+			source_destination = self.get_collision_point()
 			#set remaining distance to cover
 			remaining_distance = (target_destination - source_destination).length()
 			pass

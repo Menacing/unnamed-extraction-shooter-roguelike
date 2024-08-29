@@ -1,4 +1,4 @@
-[gd_scene load_steps=572 format=3 uid="uid://d2txigapsdl18"]
+[gd_scene load_steps=569 format=3 uid="uid://d2txigapsdl18"]
 
 [ext_resource type="Script" path="res://levels/level.gd" id="1_d1tug"]
 [ext_resource type="CameraAttributesPractical" uid="uid://jafbi2bjurvn" path="res://test/debug/vibe_check_camera.tres" id="2_7vsv1"]
@@ -8,11 +8,8 @@
 [ext_resource type="Material" uid="uid://mh0hph30qj4e" path="res://levels/textures/metal/metal_20.tres" id="6_6cixm"]
 [ext_resource type="Script" path="res://levels/entities/geo_ballistic_solid.gd" id="7_60aed"]
 [ext_resource type="Material" uid="uid://bqdfi7ewr0p0o" path="res://levels/textures/metal/metal_18.tres" id="7_g5quq"]
-[ext_resource type="PackedScene" uid="uid://dbduds4bsaaby" path="res://game_objects/bullet/bullet_hole.tscn" id="8_5rryl"]
-[ext_resource type="PackedScene" uid="uid://5n7aup1d2u20" path="res://game_objects/effects/bullet_hit_sparks.tscn" id="9_gqtxx"]
 [ext_resource type="AudioStream" uid="uid://chvv4165nfb61" path="res://game_objects/effects/sounds/steps/footstep_concrete_001.ogg" id="10_kxvgh"]
 [ext_resource type="Material" uid="uid://cb2psvlsyu6yk" path="res://levels/textures/lights/light_13.tres" id="11_4ygpn"]
-[ext_resource type="PackedScene" uid="uid://b7x11nf8gbi6e" path="res://game_objects/effects/bullet_hit_stone.tscn" id="12_ox2pp"]
 [ext_resource type="Material" uid="uid://bfg40ybkyktnp" path="res://levels/textures/metal/metal_39.tres" id="12_r32bi"]
 [ext_resource type="Material" uid="uid://lh44gucu42hs" path="res://levels/textures/metal/metal_40.tres" id="14_l0ixq"]
 [ext_resource type="Material" uid="uid://ba78wvi824fxe" path="res://levels/textures/glass/glass_1.tres" id="14_n4wit"]
@@ -3251,8 +3248,6 @@ func_godot_properties = {
 }
 _pen_ratio = 0.4
 _armor_rating = 8
-_bullet_hole_scene = ExtResource("8_5rryl")
-_impact_hit_scene = ExtResource("9_gqtxx")
 _footstep_sound = ExtResource("10_kxvgh")
 
 [node name="entity_1_mesh_instance" type="MeshInstance3D" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_1_geo_ballistic_solid"]
@@ -3289,8 +3284,6 @@ func_godot_properties = {
 }
 _pen_ratio = 0.4
 _armor_rating = 8
-_bullet_hole_scene = ExtResource("8_5rryl")
-_impact_hit_scene = ExtResource("9_gqtxx")
 _footstep_sound = ExtResource("10_kxvgh")
 
 [node name="entity_2_mesh_instance" type="MeshInstance3D" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_2_geo_ballistic_solid"]
@@ -3327,8 +3320,6 @@ func_godot_properties = {
 }
 _pen_ratio = 0.4
 _armor_rating = 8
-_bullet_hole_scene = ExtResource("8_5rryl")
-_impact_hit_scene = ExtResource("9_gqtxx")
 _footstep_sound = ExtResource("10_kxvgh")
 
 [node name="entity_3_mesh_instance" type="MeshInstance3D" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_3_geo_ballistic_solid"]
@@ -3363,8 +3354,6 @@ func_godot_properties = {
 }
 _pen_ratio = 0.6
 _armor_rating = 6
-_bullet_hole_scene = ExtResource("8_5rryl")
-_impact_hit_scene = ExtResource("12_ox2pp")
 _footstep_sound = ExtResource("10_kxvgh")
 
 [node name="entity_4_mesh_instance" type="MeshInstance3D" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_4_geo_ballistic_solid"]
@@ -3515,8 +3504,6 @@ func_godot_properties = {
 "transparent": true
 }
 _transparent = true
-_bullet_hole_scene = ExtResource("8_5rryl")
-_impact_hit_scene = ExtResource("12_ox2pp")
 _footstep_sound = ExtResource("10_kxvgh")
 
 [node name="entity_5_mesh_instance" type="MeshInstance3D" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_5_geo_ballistic_solid"]
@@ -3538,8 +3525,6 @@ func_godot_properties = {
 "transparent": true
 }
 _transparent = true
-_bullet_hole_scene = ExtResource("8_5rryl")
-_impact_hit_scene = ExtResource("12_ox2pp")
 _footstep_sound = ExtResource("10_kxvgh")
 
 [node name="entity_6_mesh_instance" type="MeshInstance3D" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_6_geo_ballistic_solid"]
@@ -3561,8 +3546,6 @@ func_godot_properties = {
 "transparent": true
 }
 _transparent = true
-_bullet_hole_scene = ExtResource("8_5rryl")
-_impact_hit_scene = ExtResource("12_ox2pp")
 _footstep_sound = ExtResource("10_kxvgh")
 
 [node name="entity_7_mesh_instance" type="MeshInstance3D" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_7_geo_ballistic_solid"]
@@ -3590,8 +3573,6 @@ func_godot_properties = {
 "transparent": true
 }
 _transparent = true
-_bullet_hole_scene = ExtResource("8_5rryl")
-_impact_hit_scene = ExtResource("12_ox2pp")
 _footstep_sound = ExtResource("10_kxvgh")
 
 [node name="entity_8_mesh_instance" type="MeshInstance3D" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_8_geo_ballistic_solid"]
@@ -3619,8 +3600,6 @@ func_godot_properties = {
 "transparent": true
 }
 _transparent = true
-_bullet_hole_scene = ExtResource("8_5rryl")
-_impact_hit_scene = ExtResource("12_ox2pp")
 _footstep_sound = ExtResource("10_kxvgh")
 
 [node name="entity_9_mesh_instance" type="MeshInstance3D" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_9_geo_ballistic_solid"]
@@ -3642,8 +3621,6 @@ func_godot_properties = {
 "transparent": true
 }
 _transparent = true
-_bullet_hole_scene = ExtResource("8_5rryl")
-_impact_hit_scene = ExtResource("12_ox2pp")
 _footstep_sound = ExtResource("10_kxvgh")
 
 [node name="entity_10_mesh_instance" type="MeshInstance3D" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_10_geo_ballistic_solid"]
@@ -3666,8 +3643,6 @@ func_godot_properties = {
 }
 _pen_ratio = 0.4
 _armor_rating = 8
-_bullet_hole_scene = ExtResource("8_5rryl")
-_impact_hit_scene = ExtResource("9_gqtxx")
 _footstep_sound = ExtResource("10_kxvgh")
 
 [node name="entity_11_mesh_instance" type="MeshInstance3D" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_11_geo_ballistic_solid"]
@@ -3762,8 +3737,6 @@ func_godot_properties = {
 }
 _pen_ratio = 0.4
 _armor_rating = 8
-_bullet_hole_scene = ExtResource("8_5rryl")
-_impact_hit_scene = ExtResource("9_gqtxx")
 _footstep_sound = ExtResource("10_kxvgh")
 
 [node name="entity_12_mesh_instance" type="MeshInstance3D" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_12_geo_ballistic_solid"]
@@ -3819,8 +3792,6 @@ func_godot_properties = {
 }
 _pen_ratio = 0.4
 _armor_rating = 8
-_bullet_hole_scene = ExtResource("8_5rryl")
-_impact_hit_scene = ExtResource("9_gqtxx")
 _footstep_sound = ExtResource("10_kxvgh")
 
 [node name="entity_13_mesh_instance" type="MeshInstance3D" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_13_geo_ballistic_solid"]
@@ -3963,8 +3934,6 @@ func_godot_properties = {
 }
 _pen_ratio = 0.4
 _armor_rating = 8
-_bullet_hole_scene = ExtResource("8_5rryl")
-_impact_hit_scene = ExtResource("9_gqtxx")
 _footstep_sound = ExtResource("10_kxvgh")
 
 [node name="entity_14_mesh_instance" type="MeshInstance3D" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_14_geo_ballistic_solid"]
@@ -4041,8 +4010,6 @@ func_godot_properties = {
 }
 _pen_ratio = 0.4
 _armor_rating = 8
-_bullet_hole_scene = ExtResource("8_5rryl")
-_impact_hit_scene = ExtResource("9_gqtxx")
 _footstep_sound = ExtResource("10_kxvgh")
 
 [node name="entity_15_mesh_instance" type="MeshInstance3D" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_15_geo_ballistic_solid"]
@@ -4092,8 +4059,6 @@ func_godot_properties = {
 }
 _pen_ratio = 0.4
 _armor_rating = 8
-_bullet_hole_scene = ExtResource("8_5rryl")
-_impact_hit_scene = ExtResource("9_gqtxx")
 _footstep_sound = ExtResource("10_kxvgh")
 
 [node name="entity_16_mesh_instance" type="MeshInstance3D" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_16_geo_ballistic_solid"]
@@ -4120,8 +4085,6 @@ func_godot_properties = {
 }
 _pen_ratio = 0.4
 _armor_rating = 8
-_bullet_hole_scene = ExtResource("8_5rryl")
-_impact_hit_scene = ExtResource("9_gqtxx")
 _footstep_sound = ExtResource("10_kxvgh")
 
 [node name="entity_17_mesh_instance" type="MeshInstance3D" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_17_geo_ballistic_solid"]
@@ -4160,8 +4123,6 @@ func_godot_properties = {
 }
 _pen_ratio = 0.4
 _armor_rating = 8
-_bullet_hole_scene = ExtResource("8_5rryl")
-_impact_hit_scene = ExtResource("9_gqtxx")
 _footstep_sound = ExtResource("10_kxvgh")
 
 [node name="entity_18_mesh_instance" type="MeshInstance3D" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_18_geo_ballistic_solid"]
@@ -4200,8 +4161,6 @@ func_godot_properties = {
 }
 _pen_ratio = 0.4
 _armor_rating = 8
-_bullet_hole_scene = ExtResource("8_5rryl")
-_impact_hit_scene = ExtResource("9_gqtxx")
 _footstep_sound = ExtResource("10_kxvgh")
 
 [node name="entity_19_mesh_instance" type="MeshInstance3D" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_19_geo_ballistic_solid"]
@@ -4237,8 +4196,6 @@ func_godot_properties = {
 }
 _pen_ratio = 0.4
 _armor_rating = 8
-_bullet_hole_scene = ExtResource("8_5rryl")
-_impact_hit_scene = ExtResource("9_gqtxx")
 _footstep_sound = ExtResource("10_kxvgh")
 
 [node name="entity_20_mesh_instance" type="MeshInstance3D" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_20_geo_ballistic_solid"]
@@ -4274,8 +4231,6 @@ func_godot_properties = {
 }
 _pen_ratio = 0.4
 _armor_rating = 8
-_bullet_hole_scene = ExtResource("8_5rryl")
-_impact_hit_scene = ExtResource("9_gqtxx")
 _footstep_sound = ExtResource("10_kxvgh")
 
 [node name="entity_21_mesh_instance" type="MeshInstance3D" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_21_geo_ballistic_solid"]
@@ -4302,8 +4257,6 @@ func_godot_properties = {
 }
 _pen_ratio = 0.4
 _armor_rating = 8
-_bullet_hole_scene = ExtResource("8_5rryl")
-_impact_hit_scene = ExtResource("9_gqtxx")
 _footstep_sound = ExtResource("10_kxvgh")
 
 [node name="entity_22_mesh_instance" type="MeshInstance3D" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_22_geo_ballistic_solid"]
@@ -4328,8 +4281,6 @@ func_godot_properties = {
 "globalname": "",
 "transparent": false
 }
-_bullet_hole_scene = ExtResource("8_5rryl")
-_impact_hit_scene = ExtResource("12_ox2pp")
 _footstep_sound = ExtResource("10_kxvgh")
 
 [node name="entity_23_mesh_instance" type="MeshInstance3D" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_23_geo_ballistic_solid"]
@@ -4356,8 +4307,6 @@ func_godot_properties = {
 }
 _pen_ratio = 0.4
 _armor_rating = 8
-_bullet_hole_scene = ExtResource("8_5rryl")
-_impact_hit_scene = ExtResource("9_gqtxx")
 _footstep_sound = ExtResource("10_kxvgh")
 
 [node name="entity_24_mesh_instance" type="MeshInstance3D" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_24_geo_ballistic_solid"]
@@ -4381,8 +4330,6 @@ func_godot_properties = {
 }
 _pen_ratio = 0.4
 _armor_rating = 8
-_bullet_hole_scene = ExtResource("8_5rryl")
-_impact_hit_scene = ExtResource("9_gqtxx")
 _footstep_sound = ExtResource("10_kxvgh")
 
 [node name="entity_25_mesh_instance" type="MeshInstance3D" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_25_geo_ballistic_solid"]
@@ -4420,8 +4367,6 @@ func_godot_properties = {
 }
 _pen_ratio = 0.4
 _armor_rating = 8
-_bullet_hole_scene = ExtResource("8_5rryl")
-_impact_hit_scene = ExtResource("9_gqtxx")
 _footstep_sound = ExtResource("10_kxvgh")
 
 [node name="entity_26_mesh_instance" type="MeshInstance3D" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_26_geo_ballistic_solid"]
@@ -4444,8 +4389,6 @@ func_godot_properties = {
 }
 _pen_ratio = 0.4
 _armor_rating = 8
-_bullet_hole_scene = ExtResource("8_5rryl")
-_impact_hit_scene = ExtResource("9_gqtxx")
 _footstep_sound = ExtResource("10_kxvgh")
 
 [node name="entity_27_mesh_instance" type="MeshInstance3D" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_27_geo_ballistic_solid"]
@@ -4469,8 +4412,6 @@ func_godot_properties = {
 }
 _pen_ratio = 0.4
 _armor_rating = 8
-_bullet_hole_scene = ExtResource("8_5rryl")
-_impact_hit_scene = ExtResource("9_gqtxx")
 _footstep_sound = ExtResource("10_kxvgh")
 
 [node name="entity_28_mesh_instance" type="MeshInstance3D" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_28_geo_ballistic_solid"]
@@ -4501,8 +4442,6 @@ func_godot_properties = {
 }
 _pen_ratio = 0.4
 _armor_rating = 8
-_bullet_hole_scene = ExtResource("8_5rryl")
-_impact_hit_scene = ExtResource("9_gqtxx")
 _footstep_sound = ExtResource("10_kxvgh")
 
 [node name="entity_29_mesh_instance" type="MeshInstance3D" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_29_geo_ballistic_solid"]
@@ -4526,8 +4465,6 @@ func_godot_properties = {
 }
 _pen_ratio = 0.4
 _armor_rating = 8
-_bullet_hole_scene = ExtResource("8_5rryl")
-_impact_hit_scene = ExtResource("9_gqtxx")
 _footstep_sound = ExtResource("10_kxvgh")
 
 [node name="entity_30_mesh_instance" type="MeshInstance3D" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_30_geo_ballistic_solid"]
@@ -4558,8 +4495,6 @@ func_godot_properties = {
 }
 _pen_ratio = 0.4
 _armor_rating = 8
-_bullet_hole_scene = ExtResource("8_5rryl")
-_impact_hit_scene = ExtResource("9_gqtxx")
 _footstep_sound = ExtResource("10_kxvgh")
 
 [node name="entity_31_mesh_instance" type="MeshInstance3D" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_31_geo_ballistic_solid"]
@@ -4583,8 +4518,6 @@ func_godot_properties = {
 }
 _pen_ratio = 0.4
 _armor_rating = 8
-_bullet_hole_scene = ExtResource("8_5rryl")
-_impact_hit_scene = ExtResource("9_gqtxx")
 _footstep_sound = ExtResource("10_kxvgh")
 
 [node name="entity_32_mesh_instance" type="MeshInstance3D" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_32_geo_ballistic_solid"]
@@ -4615,8 +4548,6 @@ func_godot_properties = {
 }
 _pen_ratio = 0.4
 _armor_rating = 8
-_bullet_hole_scene = ExtResource("8_5rryl")
-_impact_hit_scene = ExtResource("9_gqtxx")
 _footstep_sound = ExtResource("10_kxvgh")
 
 [node name="entity_33_mesh_instance" type="MeshInstance3D" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_33_geo_ballistic_solid"]
@@ -4640,8 +4571,6 @@ func_godot_properties = {
 }
 _pen_ratio = 0.4
 _armor_rating = 8
-_bullet_hole_scene = ExtResource("8_5rryl")
-_impact_hit_scene = ExtResource("9_gqtxx")
 _footstep_sound = ExtResource("10_kxvgh")
 
 [node name="entity_34_mesh_instance" type="MeshInstance3D" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_34_geo_ballistic_solid"]
@@ -4672,8 +4601,6 @@ func_godot_properties = {
 }
 _pen_ratio = 0.4
 _armor_rating = 8
-_bullet_hole_scene = ExtResource("8_5rryl")
-_impact_hit_scene = ExtResource("9_gqtxx")
 _footstep_sound = ExtResource("10_kxvgh")
 
 [node name="entity_35_mesh_instance" type="MeshInstance3D" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_35_geo_ballistic_solid"]
@@ -4696,8 +4623,6 @@ func_godot_properties = {
 }
 _pen_ratio = 0.4
 _armor_rating = 8
-_bullet_hole_scene = ExtResource("8_5rryl")
-_impact_hit_scene = ExtResource("9_gqtxx")
 _footstep_sound = ExtResource("10_kxvgh")
 
 [node name="entity_36_mesh_instance" type="MeshInstance3D" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_36_geo_ballistic_solid"]
@@ -4729,8 +4654,6 @@ func_godot_properties = {
 }
 _pen_ratio = 0.4
 _armor_rating = 8
-_bullet_hole_scene = ExtResource("8_5rryl")
-_impact_hit_scene = ExtResource("9_gqtxx")
 _footstep_sound = ExtResource("10_kxvgh")
 
 [node name="entity_37_mesh_instance" type="MeshInstance3D" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_37_geo_ballistic_solid"]
@@ -4761,8 +4684,6 @@ func_godot_properties = {
 "globalname": "",
 "transparent": false
 }
-_bullet_hole_scene = ExtResource("8_5rryl")
-_impact_hit_scene = ExtResource("12_ox2pp")
 _footstep_sound = ExtResource("10_kxvgh")
 
 [node name="entity_38_mesh_instance" type="MeshInstance3D" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_38_geo_ballistic_solid"]
@@ -4850,8 +4771,6 @@ func_godot_properties = {
 "globalname": "",
 "transparent": false
 }
-_bullet_hole_scene = ExtResource("8_5rryl")
-_impact_hit_scene = ExtResource("12_ox2pp")
 _footstep_sound = ExtResource("10_kxvgh")
 
 [node name="entity_39_mesh_instance" type="MeshInstance3D" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_39_geo_ballistic_solid"]
@@ -4875,8 +4794,6 @@ func_godot_properties = {
 }
 _pen_ratio = 0.4
 _armor_rating = 8
-_bullet_hole_scene = ExtResource("8_5rryl")
-_impact_hit_scene = ExtResource("9_gqtxx")
 _footstep_sound = ExtResource("10_kxvgh")
 
 [node name="entity_40_mesh_instance" type="MeshInstance3D" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_40_geo_ballistic_solid"]
@@ -4900,8 +4817,6 @@ func_godot_properties = {
 }
 _pen_ratio = 0.4
 _armor_rating = 8
-_bullet_hole_scene = ExtResource("8_5rryl")
-_impact_hit_scene = ExtResource("9_gqtxx")
 _footstep_sound = ExtResource("10_kxvgh")
 
 [node name="entity_41_mesh_instance" type="MeshInstance3D" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_41_geo_ballistic_solid"]
@@ -4932,8 +4847,6 @@ func_godot_properties = {
 }
 _pen_ratio = 0.4
 _armor_rating = 8
-_bullet_hole_scene = ExtResource("8_5rryl")
-_impact_hit_scene = ExtResource("9_gqtxx")
 _footstep_sound = ExtResource("10_kxvgh")
 
 [node name="entity_42_mesh_instance" type="MeshInstance3D" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_42_geo_ballistic_solid"]
@@ -4957,8 +4870,6 @@ func_godot_properties = {
 }
 _pen_ratio = 0.4
 _armor_rating = 8
-_bullet_hole_scene = ExtResource("8_5rryl")
-_impact_hit_scene = ExtResource("9_gqtxx")
 _footstep_sound = ExtResource("10_kxvgh")
 
 [node name="entity_43_mesh_instance" type="MeshInstance3D" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_43_geo_ballistic_solid"]
@@ -4989,8 +4900,6 @@ func_godot_properties = {
 }
 _pen_ratio = 0.4
 _armor_rating = 8
-_bullet_hole_scene = ExtResource("8_5rryl")
-_impact_hit_scene = ExtResource("9_gqtxx")
 _footstep_sound = ExtResource("10_kxvgh")
 
 [node name="entity_44_mesh_instance" type="MeshInstance3D" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_44_geo_ballistic_solid"]
@@ -5014,8 +4923,6 @@ func_godot_properties = {
 }
 _pen_ratio = 0.4
 _armor_rating = 8
-_bullet_hole_scene = ExtResource("8_5rryl")
-_impact_hit_scene = ExtResource("9_gqtxx")
 _footstep_sound = ExtResource("10_kxvgh")
 
 [node name="entity_45_mesh_instance" type="MeshInstance3D" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_45_geo_ballistic_solid"]
@@ -5046,8 +4953,6 @@ func_godot_properties = {
 }
 _pen_ratio = 0.4
 _armor_rating = 8
-_bullet_hole_scene = ExtResource("8_5rryl")
-_impact_hit_scene = ExtResource("9_gqtxx")
 _footstep_sound = ExtResource("10_kxvgh")
 
 [node name="entity_46_mesh_instance" type="MeshInstance3D" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_46_geo_ballistic_solid"]
@@ -5071,8 +4976,6 @@ func_godot_properties = {
 }
 _pen_ratio = 0.4
 _armor_rating = 8
-_bullet_hole_scene = ExtResource("8_5rryl")
-_impact_hit_scene = ExtResource("9_gqtxx")
 _footstep_sound = ExtResource("10_kxvgh")
 
 [node name="entity_47_mesh_instance" type="MeshInstance3D" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_47_geo_ballistic_solid"]
@@ -5103,8 +5006,6 @@ func_godot_properties = {
 }
 _pen_ratio = 0.4
 _armor_rating = 8
-_bullet_hole_scene = ExtResource("8_5rryl")
-_impact_hit_scene = ExtResource("9_gqtxx")
 _footstep_sound = ExtResource("10_kxvgh")
 
 [node name="entity_48_mesh_instance" type="MeshInstance3D" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_48_geo_ballistic_solid"]
@@ -5128,8 +5029,6 @@ func_godot_properties = {
 }
 _pen_ratio = 0.4
 _armor_rating = 8
-_bullet_hole_scene = ExtResource("8_5rryl")
-_impact_hit_scene = ExtResource("9_gqtxx")
 _footstep_sound = ExtResource("10_kxvgh")
 
 [node name="entity_49_mesh_instance" type="MeshInstance3D" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_49_geo_ballistic_solid"]
@@ -5160,8 +5059,6 @@ func_godot_properties = {
 }
 _pen_ratio = 0.4
 _armor_rating = 8
-_bullet_hole_scene = ExtResource("8_5rryl")
-_impact_hit_scene = ExtResource("9_gqtxx")
 _footstep_sound = ExtResource("10_kxvgh")
 
 [node name="entity_50_mesh_instance" type="MeshInstance3D" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_50_geo_ballistic_solid"]
@@ -5185,8 +5082,6 @@ func_godot_properties = {
 }
 _pen_ratio = 0.4
 _armor_rating = 8
-_bullet_hole_scene = ExtResource("8_5rryl")
-_impact_hit_scene = ExtResource("9_gqtxx")
 _footstep_sound = ExtResource("10_kxvgh")
 
 [node name="entity_51_mesh_instance" type="MeshInstance3D" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_51_geo_ballistic_solid"]
@@ -5217,8 +5112,6 @@ func_godot_properties = {
 }
 _pen_ratio = 0.4
 _armor_rating = 8
-_bullet_hole_scene = ExtResource("8_5rryl")
-_impact_hit_scene = ExtResource("9_gqtxx")
 _footstep_sound = ExtResource("10_kxvgh")
 
 [node name="entity_52_mesh_instance" type="MeshInstance3D" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_52_geo_ballistic_solid"]
@@ -5242,8 +5135,6 @@ func_godot_properties = {
 }
 _pen_ratio = 0.4
 _armor_rating = 8
-_bullet_hole_scene = ExtResource("8_5rryl")
-_impact_hit_scene = ExtResource("9_gqtxx")
 _footstep_sound = ExtResource("10_kxvgh")
 
 [node name="entity_53_mesh_instance" type="MeshInstance3D" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_53_geo_ballistic_solid"]
@@ -5274,8 +5165,6 @@ func_godot_properties = {
 }
 _pen_ratio = 0.4
 _armor_rating = 8
-_bullet_hole_scene = ExtResource("8_5rryl")
-_impact_hit_scene = ExtResource("9_gqtxx")
 _footstep_sound = ExtResource("10_kxvgh")
 
 [node name="entity_54_mesh_instance" type="MeshInstance3D" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_54_geo_ballistic_solid"]
@@ -5299,8 +5188,6 @@ func_godot_properties = {
 }
 _pen_ratio = 0.4
 _armor_rating = 8
-_bullet_hole_scene = ExtResource("8_5rryl")
-_impact_hit_scene = ExtResource("9_gqtxx")
 _footstep_sound = ExtResource("10_kxvgh")
 
 [node name="entity_55_mesh_instance" type="MeshInstance3D" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_55_geo_ballistic_solid"]
@@ -5331,8 +5218,6 @@ func_godot_properties = {
 }
 _pen_ratio = 0.4
 _armor_rating = 8
-_bullet_hole_scene = ExtResource("8_5rryl")
-_impact_hit_scene = ExtResource("9_gqtxx")
 _footstep_sound = ExtResource("10_kxvgh")
 
 [node name="entity_56_mesh_instance" type="MeshInstance3D" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_56_geo_ballistic_solid"]
@@ -5356,8 +5241,6 @@ func_godot_properties = {
 }
 _pen_ratio = 0.4
 _armor_rating = 8
-_bullet_hole_scene = ExtResource("8_5rryl")
-_impact_hit_scene = ExtResource("9_gqtxx")
 _footstep_sound = ExtResource("10_kxvgh")
 
 [node name="entity_57_mesh_instance" type="MeshInstance3D" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_57_geo_ballistic_solid"]
@@ -5388,8 +5271,6 @@ func_godot_properties = {
 }
 _pen_ratio = 0.4
 _armor_rating = 8
-_bullet_hole_scene = ExtResource("8_5rryl")
-_impact_hit_scene = ExtResource("9_gqtxx")
 _footstep_sound = ExtResource("10_kxvgh")
 
 [node name="entity_58_mesh_instance" type="MeshInstance3D" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_58_geo_ballistic_solid"]
@@ -5413,8 +5294,6 @@ func_godot_properties = {
 }
 _pen_ratio = 0.4
 _armor_rating = 8
-_bullet_hole_scene = ExtResource("8_5rryl")
-_impact_hit_scene = ExtResource("9_gqtxx")
 _footstep_sound = ExtResource("10_kxvgh")
 
 [node name="entity_59_mesh_instance" type="MeshInstance3D" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_59_geo_ballistic_solid"]
@@ -5445,8 +5324,6 @@ func_godot_properties = {
 }
 _pen_ratio = 0.4
 _armor_rating = 8
-_bullet_hole_scene = ExtResource("8_5rryl")
-_impact_hit_scene = ExtResource("9_gqtxx")
 _footstep_sound = ExtResource("10_kxvgh")
 
 [node name="entity_60_mesh_instance" type="MeshInstance3D" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_60_geo_ballistic_solid"]
@@ -5470,8 +5347,6 @@ func_godot_properties = {
 }
 _pen_ratio = 0.4
 _armor_rating = 8
-_bullet_hole_scene = ExtResource("8_5rryl")
-_impact_hit_scene = ExtResource("9_gqtxx")
 _footstep_sound = ExtResource("10_kxvgh")
 
 [node name="entity_61_mesh_instance" type="MeshInstance3D" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_61_geo_ballistic_solid"]
@@ -5502,8 +5377,6 @@ func_godot_properties = {
 }
 _pen_ratio = 0.4
 _armor_rating = 8
-_bullet_hole_scene = ExtResource("8_5rryl")
-_impact_hit_scene = ExtResource("9_gqtxx")
 _footstep_sound = ExtResource("10_kxvgh")
 
 [node name="entity_62_mesh_instance" type="MeshInstance3D" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_62_geo_ballistic_solid"]
@@ -5527,8 +5400,6 @@ func_godot_properties = {
 }
 _pen_ratio = 0.4
 _armor_rating = 8
-_bullet_hole_scene = ExtResource("8_5rryl")
-_impact_hit_scene = ExtResource("9_gqtxx")
 _footstep_sound = ExtResource("10_kxvgh")
 
 [node name="entity_63_mesh_instance" type="MeshInstance3D" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_63_geo_ballistic_solid"]
@@ -5559,8 +5430,6 @@ func_godot_properties = {
 }
 _pen_ratio = 0.4
 _armor_rating = 8
-_bullet_hole_scene = ExtResource("8_5rryl")
-_impact_hit_scene = ExtResource("9_gqtxx")
 _footstep_sound = ExtResource("10_kxvgh")
 
 [node name="entity_64_mesh_instance" type="MeshInstance3D" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_64_geo_ballistic_solid"]
@@ -5584,8 +5453,6 @@ func_godot_properties = {
 }
 _pen_ratio = 0.4
 _armor_rating = 8
-_bullet_hole_scene = ExtResource("8_5rryl")
-_impact_hit_scene = ExtResource("9_gqtxx")
 _footstep_sound = ExtResource("10_kxvgh")
 
 [node name="entity_65_mesh_instance" type="MeshInstance3D" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_65_geo_ballistic_solid"]
@@ -5616,8 +5483,6 @@ func_godot_properties = {
 }
 _pen_ratio = 0.4
 _armor_rating = 8
-_bullet_hole_scene = ExtResource("8_5rryl")
-_impact_hit_scene = ExtResource("9_gqtxx")
 _footstep_sound = ExtResource("10_kxvgh")
 
 [node name="entity_66_mesh_instance" type="MeshInstance3D" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_66_geo_ballistic_solid"]
@@ -5641,8 +5506,6 @@ func_godot_properties = {
 }
 _pen_ratio = 0.4
 _armor_rating = 8
-_bullet_hole_scene = ExtResource("8_5rryl")
-_impact_hit_scene = ExtResource("9_gqtxx")
 _footstep_sound = ExtResource("10_kxvgh")
 
 [node name="entity_67_mesh_instance" type="MeshInstance3D" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_67_geo_ballistic_solid"]
@@ -5673,8 +5536,6 @@ func_godot_properties = {
 }
 _pen_ratio = 0.4
 _armor_rating = 8
-_bullet_hole_scene = ExtResource("8_5rryl")
-_impact_hit_scene = ExtResource("9_gqtxx")
 _footstep_sound = ExtResource("10_kxvgh")
 
 [node name="entity_68_mesh_instance" type="MeshInstance3D" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_68_geo_ballistic_solid"]
@@ -5698,8 +5559,6 @@ func_godot_properties = {
 }
 _pen_ratio = 0.4
 _armor_rating = 8
-_bullet_hole_scene = ExtResource("8_5rryl")
-_impact_hit_scene = ExtResource("9_gqtxx")
 _footstep_sound = ExtResource("10_kxvgh")
 
 [node name="entity_69_mesh_instance" type="MeshInstance3D" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_69_geo_ballistic_solid"]
@@ -5730,8 +5589,6 @@ func_godot_properties = {
 }
 _pen_ratio = 0.4
 _armor_rating = 8
-_bullet_hole_scene = ExtResource("8_5rryl")
-_impact_hit_scene = ExtResource("9_gqtxx")
 _footstep_sound = ExtResource("10_kxvgh")
 
 [node name="entity_70_mesh_instance" type="MeshInstance3D" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_70_geo_ballistic_solid"]
@@ -5755,8 +5612,6 @@ func_godot_properties = {
 }
 _pen_ratio = 0.4
 _armor_rating = 8
-_bullet_hole_scene = ExtResource("8_5rryl")
-_impact_hit_scene = ExtResource("9_gqtxx")
 _footstep_sound = ExtResource("10_kxvgh")
 
 [node name="entity_71_mesh_instance" type="MeshInstance3D" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_71_geo_ballistic_solid"]
@@ -5787,8 +5642,6 @@ func_godot_properties = {
 }
 _pen_ratio = 0.4
 _armor_rating = 8
-_bullet_hole_scene = ExtResource("8_5rryl")
-_impact_hit_scene = ExtResource("9_gqtxx")
 _footstep_sound = ExtResource("10_kxvgh")
 
 [node name="entity_72_mesh_instance" type="MeshInstance3D" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_72_geo_ballistic_solid"]
@@ -5812,8 +5665,6 @@ func_godot_properties = {
 }
 _pen_ratio = 0.4
 _armor_rating = 8
-_bullet_hole_scene = ExtResource("8_5rryl")
-_impact_hit_scene = ExtResource("9_gqtxx")
 _footstep_sound = ExtResource("10_kxvgh")
 
 [node name="entity_73_mesh_instance" type="MeshInstance3D" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_73_geo_ballistic_solid"]
@@ -5844,8 +5695,6 @@ func_godot_properties = {
 }
 _pen_ratio = 0.4
 _armor_rating = 8
-_bullet_hole_scene = ExtResource("8_5rryl")
-_impact_hit_scene = ExtResource("9_gqtxx")
 _footstep_sound = ExtResource("10_kxvgh")
 
 [node name="entity_74_mesh_instance" type="MeshInstance3D" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_74_geo_ballistic_solid"]
@@ -5869,8 +5718,6 @@ func_godot_properties = {
 }
 _pen_ratio = 0.4
 _armor_rating = 8
-_bullet_hole_scene = ExtResource("8_5rryl")
-_impact_hit_scene = ExtResource("9_gqtxx")
 _footstep_sound = ExtResource("10_kxvgh")
 
 [node name="entity_75_mesh_instance" type="MeshInstance3D" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_75_geo_ballistic_solid"]
@@ -5901,8 +5748,6 @@ func_godot_properties = {
 }
 _pen_ratio = 0.4
 _armor_rating = 8
-_bullet_hole_scene = ExtResource("8_5rryl")
-_impact_hit_scene = ExtResource("9_gqtxx")
 _footstep_sound = ExtResource("10_kxvgh")
 
 [node name="entity_76_mesh_instance" type="MeshInstance3D" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_76_geo_ballistic_solid"]
@@ -5926,8 +5771,6 @@ func_godot_properties = {
 }
 _pen_ratio = 0.4
 _armor_rating = 8
-_bullet_hole_scene = ExtResource("8_5rryl")
-_impact_hit_scene = ExtResource("9_gqtxx")
 _footstep_sound = ExtResource("10_kxvgh")
 
 [node name="entity_77_mesh_instance" type="MeshInstance3D" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_77_geo_ballistic_solid"]
@@ -5958,8 +5801,6 @@ func_godot_properties = {
 }
 _pen_ratio = 0.4
 _armor_rating = 8
-_bullet_hole_scene = ExtResource("8_5rryl")
-_impact_hit_scene = ExtResource("9_gqtxx")
 _footstep_sound = ExtResource("10_kxvgh")
 
 [node name="entity_78_mesh_instance" type="MeshInstance3D" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_78_geo_ballistic_solid"]
@@ -5983,8 +5824,6 @@ func_godot_properties = {
 }
 _pen_ratio = 0.4
 _armor_rating = 8
-_bullet_hole_scene = ExtResource("8_5rryl")
-_impact_hit_scene = ExtResource("9_gqtxx")
 _footstep_sound = ExtResource("10_kxvgh")
 
 [node name="entity_79_mesh_instance" type="MeshInstance3D" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_79_geo_ballistic_solid"]
@@ -6015,8 +5854,6 @@ func_godot_properties = {
 }
 _pen_ratio = 0.4
 _armor_rating = 8
-_bullet_hole_scene = ExtResource("8_5rryl")
-_impact_hit_scene = ExtResource("9_gqtxx")
 _footstep_sound = ExtResource("10_kxvgh")
 
 [node name="entity_80_mesh_instance" type="MeshInstance3D" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_80_geo_ballistic_solid"]
@@ -6040,8 +5877,6 @@ func_godot_properties = {
 }
 _pen_ratio = 0.4
 _armor_rating = 8
-_bullet_hole_scene = ExtResource("8_5rryl")
-_impact_hit_scene = ExtResource("9_gqtxx")
 _footstep_sound = ExtResource("10_kxvgh")
 
 [node name="entity_81_mesh_instance" type="MeshInstance3D" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_81_geo_ballistic_solid"]
@@ -6072,8 +5907,6 @@ func_godot_properties = {
 }
 _pen_ratio = 0.4
 _armor_rating = 8
-_bullet_hole_scene = ExtResource("8_5rryl")
-_impact_hit_scene = ExtResource("9_gqtxx")
 _footstep_sound = ExtResource("10_kxvgh")
 
 [node name="entity_82_mesh_instance" type="MeshInstance3D" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_82_geo_ballistic_solid"]
@@ -6097,8 +5930,6 @@ func_godot_properties = {
 }
 _pen_ratio = 0.4
 _armor_rating = 8
-_bullet_hole_scene = ExtResource("8_5rryl")
-_impact_hit_scene = ExtResource("9_gqtxx")
 _footstep_sound = ExtResource("10_kxvgh")
 
 [node name="entity_83_mesh_instance" type="MeshInstance3D" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_83_geo_ballistic_solid"]
@@ -6129,8 +5960,6 @@ func_godot_properties = {
 }
 _pen_ratio = 0.4
 _armor_rating = 8
-_bullet_hole_scene = ExtResource("8_5rryl")
-_impact_hit_scene = ExtResource("9_gqtxx")
 _footstep_sound = ExtResource("10_kxvgh")
 
 [node name="entity_84_mesh_instance" type="MeshInstance3D" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_84_geo_ballistic_solid"]
@@ -6154,8 +5983,6 @@ func_godot_properties = {
 }
 _pen_ratio = 0.4
 _armor_rating = 8
-_bullet_hole_scene = ExtResource("8_5rryl")
-_impact_hit_scene = ExtResource("9_gqtxx")
 _footstep_sound = ExtResource("10_kxvgh")
 
 [node name="entity_85_mesh_instance" type="MeshInstance3D" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_85_geo_ballistic_solid"]
@@ -6186,8 +6013,6 @@ func_godot_properties = {
 }
 _pen_ratio = 0.4
 _armor_rating = 8
-_bullet_hole_scene = ExtResource("8_5rryl")
-_impact_hit_scene = ExtResource("9_gqtxx")
 _footstep_sound = ExtResource("10_kxvgh")
 
 [node name="entity_86_mesh_instance" type="MeshInstance3D" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_86_geo_ballistic_solid"]
@@ -6211,8 +6036,6 @@ func_godot_properties = {
 }
 _pen_ratio = 0.4
 _armor_rating = 8
-_bullet_hole_scene = ExtResource("8_5rryl")
-_impact_hit_scene = ExtResource("9_gqtxx")
 _footstep_sound = ExtResource("10_kxvgh")
 
 [node name="entity_87_mesh_instance" type="MeshInstance3D" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_87_geo_ballistic_solid"]
@@ -6243,8 +6066,6 @@ func_godot_properties = {
 }
 _pen_ratio = 0.4
 _armor_rating = 8
-_bullet_hole_scene = ExtResource("8_5rryl")
-_impact_hit_scene = ExtResource("9_gqtxx")
 _footstep_sound = ExtResource("10_kxvgh")
 
 [node name="entity_88_mesh_instance" type="MeshInstance3D" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_88_geo_ballistic_solid"]
@@ -6268,8 +6089,6 @@ func_godot_properties = {
 }
 _pen_ratio = 0.4
 _armor_rating = 8
-_bullet_hole_scene = ExtResource("8_5rryl")
-_impact_hit_scene = ExtResource("9_gqtxx")
 _footstep_sound = ExtResource("10_kxvgh")
 
 [node name="entity_89_mesh_instance" type="MeshInstance3D" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_89_geo_ballistic_solid"]
@@ -6300,8 +6119,6 @@ func_godot_properties = {
 }
 _pen_ratio = 0.4
 _armor_rating = 8
-_bullet_hole_scene = ExtResource("8_5rryl")
-_impact_hit_scene = ExtResource("9_gqtxx")
 _footstep_sound = ExtResource("10_kxvgh")
 
 [node name="entity_90_mesh_instance" type="MeshInstance3D" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_90_geo_ballistic_solid"]
@@ -6325,8 +6142,6 @@ func_godot_properties = {
 }
 _pen_ratio = 0.4
 _armor_rating = 8
-_bullet_hole_scene = ExtResource("8_5rryl")
-_impact_hit_scene = ExtResource("9_gqtxx")
 _footstep_sound = ExtResource("10_kxvgh")
 
 [node name="entity_91_mesh_instance" type="MeshInstance3D" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_91_geo_ballistic_solid"]
@@ -6357,8 +6172,6 @@ func_godot_properties = {
 }
 _pen_ratio = 0.4
 _armor_rating = 8
-_bullet_hole_scene = ExtResource("8_5rryl")
-_impact_hit_scene = ExtResource("9_gqtxx")
 _footstep_sound = ExtResource("10_kxvgh")
 
 [node name="entity_92_mesh_instance" type="MeshInstance3D" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_92_geo_ballistic_solid"]
@@ -6382,8 +6195,6 @@ func_godot_properties = {
 }
 _pen_ratio = 0.4
 _armor_rating = 8
-_bullet_hole_scene = ExtResource("8_5rryl")
-_impact_hit_scene = ExtResource("9_gqtxx")
 _footstep_sound = ExtResource("10_kxvgh")
 
 [node name="entity_93_mesh_instance" type="MeshInstance3D" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_93_geo_ballistic_solid"]
@@ -6414,8 +6225,6 @@ func_godot_properties = {
 }
 _pen_ratio = 0.4
 _armor_rating = 8
-_bullet_hole_scene = ExtResource("8_5rryl")
-_impact_hit_scene = ExtResource("9_gqtxx")
 _footstep_sound = ExtResource("10_kxvgh")
 
 [node name="entity_94_mesh_instance" type="MeshInstance3D" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_94_geo_ballistic_solid"]

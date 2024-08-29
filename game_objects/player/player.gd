@@ -1304,3 +1304,7 @@ func _on_right_state_physics_processing(delta):
 
 
 
+
+
+func _on_damage_component_hit_occured(attack_result: AttackResult) -> void:
+	pass # Replace with function body.

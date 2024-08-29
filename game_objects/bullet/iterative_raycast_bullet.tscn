@@ -28,7 +28,10 @@ shader_parameter/tex = SubResource("GradientTexture2D_10bv2")
 [sub_resource type="QuadMesh" id="QuadMesh_a8vkh"]
 material = SubResource("ShaderMaterial_bhr6y")
 
-[node name="IterativeRaycastBullet" type="Node3D" groups=["attack"]]
+[node name="IterativeRaycastBullet" type="RayCast3D" groups=["attack"]]
+target_position = Vector3(0, 0, -1)
+collision_mask = 2
+collide_with_areas = true
 script = ExtResource("1_ite5r")
 initial_speed = 950.0
 initial_damage = 15.0
