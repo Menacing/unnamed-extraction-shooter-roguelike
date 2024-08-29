@@ -49,3 +49,4 @@ func _on_armor_equipped(armor:BodyArmor):
 func _on_armor_unequipped(armor:BodyArmor):
 	if armor.armored_locations.has(location_type):
 		armor_damage_component = null
+

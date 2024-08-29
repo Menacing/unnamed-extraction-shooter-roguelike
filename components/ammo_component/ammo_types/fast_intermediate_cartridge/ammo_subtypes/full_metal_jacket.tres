@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="AmmoSubtype" load_steps=3 format=3 uid="uid://cv0v8s66c5nn4"]
 
-[ext_resource type="PackedScene" uid="uid://b6bxw2s2j2pix" path="res://game_objects/bullet/fic_fmj_bullet.tscn" id="1_kttpf"]
+[ext_resource type="PackedScene" uid="uid://gfj0vsvmo4ik" path="res://game_objects/bullet/iterative_raycast_bullet.tscn" id="1_nw71o"]
 [ext_resource type="Script" path="res://components/ammo_component/ammo_subtype.gd" id="2_fxt5t"]
 
 [resource]
@@ -9,7 +9,8 @@ name = "Full Metal Jacket"
 abbreviation = "FMJ"
 maximum_capacity = 200
 item_type_id = "fic_box_fmj"
-bullet_scene = ExtResource("1_kttpf")
+bullet_scene = ExtResource("1_nw71o")
 initial_damage = 20.0
 armor_penetration_rating = 6.0
 initial_speed = 950.0
+ballistic_coefficient_k = 0.002

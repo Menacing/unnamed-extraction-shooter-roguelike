@@ -1,0 +1,74 @@
+[gd_scene load_steps=9 format=3 uid="uid://ddu0qf6p8a1wx"]
+
+[ext_resource type="Texture2D" uid="uid://hx36albsqyt" path="res://game_objects/bullet/Assets/hole-difuse.png" id="1_jd2o1"]
+[ext_resource type="Texture2D" uid="uid://dgfwxp74xudg8" path="res://game_objects/bullet/Assets/hole-normal.png" id="2_6mk4f"]
+[ext_resource type="Shader" uid="uid://cflt50ihcyglf" path="res://game_objects/effects/pixel_blood.tres" id="2_uyxuy"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ctina"]
+spread = 5.0
+initial_velocity_min = 6.0
+initial_velocity_max = 10.0
+linear_accel_min = -10.0
+linear_accel_max = -5.0
+scale_min = 0.75
+scale_max = 1.25
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ofe3c"]
+render_priority = 0
+shader = ExtResource("2_uyxuy")
+shader_parameter/ColorParameter = Color(0.858824, 0, 0, 1)
+
+[sub_resource type="QuadMesh" id="QuadMesh_5yjsa"]
+material = SubResource("ShaderMaterial_ofe3c")
+size = Vector2(0.05, 0.05)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_d8qxl"]
+spread = 15.0
+initial_velocity_min = 4.0
+initial_velocity_max = 7.0
+linear_accel_min = -10.0
+linear_accel_max = -5.0
+scale_min = 0.5
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_6orws"]
+spread = 80.0
+initial_velocity_min = 0.5
+initial_velocity_max = 5.0
+linear_accel_min = -10.0
+linear_accel_max = -5.0
+scale_min = 0.25
+scale_max = 0.5
+
+[node name="BulletHitBlood" type="Node3D"]
+
+[node name="Bullet" type="Decal" parent="."]
+size = Vector3(0.157527, 0.16, 0.16)
+texture_albedo = ExtResource("1_jd2o1")
+texture_normal = ExtResource("2_6mk4f")
+
+[node name="pixel_blood_far" type="GPUParticles3D" parent="."]
+emitting = false
+amount = 20
+one_shot = true
+explosiveness = 1.0
+randomness = 0.2
+process_material = SubResource("ParticleProcessMaterial_ctina")
+draw_pass_1 = SubResource("QuadMesh_5yjsa")
+
+[node name="pixel_blood_medium" type="GPUParticles3D" parent="."]
+emitting = false
+amount = 30
+one_shot = true
+explosiveness = 1.0
+randomness = 0.2
+process_material = SubResource("ParticleProcessMaterial_d8qxl")
+draw_pass_1 = SubResource("QuadMesh_5yjsa")
+
+[node name="pixel_blood_close" type="GPUParticles3D" parent="."]
+emitting = false
+amount = 50
+one_shot = true
+explosiveness = 1.0
+randomness = 0.2
+process_material = SubResource("ParticleProcessMaterial_6orws")
+draw_pass_1 = SubResource("QuadMesh_5yjsa")

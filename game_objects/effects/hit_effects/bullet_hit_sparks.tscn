@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://bo5i75565y5co"]
+
+[ext_resource type="Texture2D" uid="uid://hx36albsqyt" path="res://game_objects/bullet/Assets/hole-difuse.png" id="1_tx1fs"]
+[ext_resource type="Texture2D" uid="uid://dgfwxp74xudg8" path="res://game_objects/bullet/Assets/hole-normal.png" id="2_xoxeq"]
+[ext_resource type="PackedScene" uid="uid://5n7aup1d2u20" path="res://game_objects/effects/bullet_hit_sparks.tscn" id="3_mklr8"]
+
+[node name="BulletHitSparks" type="Node3D"]
+
+[node name="Bullet" type="Decal" parent="."]
+size = Vector3(0.157527, 0.16, 0.16)
+texture_albedo = ExtResource("1_tx1fs")
+texture_normal = ExtResource("2_xoxeq")
+
+[node name="bullet_hit_sparks" parent="." instance=ExtResource("3_mklr8")]
+emitting = false
+one_shot = true
+script = null

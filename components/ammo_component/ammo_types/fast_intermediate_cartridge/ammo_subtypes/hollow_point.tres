@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="AmmoSubtype" load_steps=3 format=3 uid="uid://d3346f3lutske"]
 
-[ext_resource type="PackedScene" uid="uid://yw1tmrq3a3c8" path="res://game_objects/bullet/fic_hp_bullet.tscn" id="1_y58jx"]
+[ext_resource type="PackedScene" uid="uid://gfj0vsvmo4ik" path="res://game_objects/bullet/iterative_raycast_bullet.tscn" id="1_dwl3f"]
 [ext_resource type="Script" path="res://components/ammo_component/ammo_subtype.gd" id="2_i07jw"]
 
 [resource]
@@ -9,7 +9,8 @@ name = "Hollow Point"
 abbreviation = "HP"
 maximum_capacity = 200
 item_type_id = "fic_box_hp"
-bullet_scene = ExtResource("1_y58jx")
+bullet_scene = ExtResource("1_dwl3f")
 initial_damage = 40.0
 armor_penetration_rating = 1.0
 initial_speed = 950.0
+ballistic_coefficient_k = 0.002
