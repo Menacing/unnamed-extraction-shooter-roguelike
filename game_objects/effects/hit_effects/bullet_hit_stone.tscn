@@ -1,5 +1,6 @@
-[gd_scene load_steps=16 format=3 uid="uid://3ma183br8axn"]
+[gd_scene load_steps=17 format=3 uid="uid://3ma183br8axn"]
 
+[ext_resource type="Script" path="res://game_objects/effects/hit_effects/bullet_hit.gd" id="1_3vjnk"]
 [ext_resource type="Texture2D" uid="uid://dgfwxp74xudg8" path="res://game_objects/bullet/Assets/hole-normal.png" id="2_iu3ds"]
 [ext_resource type="Texture2D" uid="uid://hx36albsqyt" path="res://game_objects/bullet/Assets/hole-difuse.png" id="2_q7t5w"]
 [ext_resource type="Gradient" uid="uid://0lbj3mx7svta" path="res://game_objects/effects/hit_effects/bullet_hit_stone.tres" id="3_70vgn"]
@@ -80,7 +81,9 @@ particles_anim_loop = false
 material = SubResource("StandardMaterial3D_bc66j")
 size = Vector2(0.2, 0.2)
 
-[node name="BulletHitStone" type="Node3D"]
+[node name="BulletHitStone" type="Node3D" node_paths=PackedStringArray("one_shot_emitters")]
+script = ExtResource("1_3vjnk")
+one_shot_emitters = [NodePath("GPUParticles3D"), NodePath("bullet_hit_stone")]
 
 [node name="Bullet" type="Decal" parent="."]
 size = Vector3(0.157527, 0.16, 0.16)

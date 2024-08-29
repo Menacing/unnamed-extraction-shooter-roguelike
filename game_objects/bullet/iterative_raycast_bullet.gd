@@ -32,15 +32,6 @@ func raycast_to_dest(source_global_pos:Vector3,destination_global_pos:Vector3):
 	self.global_position = source_global_pos
 	self.target_position = self.to_local(destination_global_pos)
 	self.force_raycast_update()
-	#var space_state = self.get_world_3d().direct_space_state
-	#if space_state:
-		#var query = PhysicsRayQueryParameters3D.create(source_global_pos, destination_global_pos)
-		#query.collide_with_areas = true
-		#query.collision_mask = self.collision_mask
-		#query.exclude = collision_exclusions
-		#var result = space_state.intersect_ray(query)
-		#return result
-	#return {}
 
 func do_raycast_movement(delta:float):
 	#set up initial value and destination

@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://bn6v1rairpb6i"]
+[gd_scene load_steps=8 format=3 uid="uid://bn6v1rairpb6i"]
 
 [ext_resource type="Texture2D" uid="uid://dnmatld3b2loq" path="res://game_objects/effects/assets/trace_06.png" id="1_a3o58"]
+[ext_resource type="Script" path="res://game_objects/effects/hit_effects/bullet_hit.gd" id="1_um4te"]
 [ext_resource type="Texture2D" uid="uid://hx36albsqyt" path="res://game_objects/bullet/Assets/hole-difuse.png" id="2_3pufr"]
 [ext_resource type="Texture2D" uid="uid://dgfwxp74xudg8" path="res://game_objects/bullet/Assets/hole-normal.png" id="3_mm107"]
 
@@ -34,7 +35,9 @@ particles_anim_loop = false
 material = SubResource("StandardMaterial3D_bc66j")
 size = Vector2(0.8, 0.2)
 
-[node name="BulletHitWood" type="Node3D"]
+[node name="BulletHitWood" type="Node3D" node_paths=PackedStringArray("one_shot_emitters")]
+script = ExtResource("1_um4te")
+one_shot_emitters = [NodePath("bullet_hit_wood")]
 
 [node name="bullet_hit_wood" type="GPUParticles3D" parent="."]
 emitting = false

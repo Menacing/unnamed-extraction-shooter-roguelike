@@ -53,14 +53,16 @@ func _func_godot_apply_properties(entity_properties: Dictionary):
 		dc.armor_rating = _armor_rating
 		self.add_child(dc)
 		dc.owner = self.owner
+		damage_component = dc
 	
 	var dec:DamageEffectComponent = damage_effect_component_scene.instantiate() as DamageEffectComponent
 	if dec:
 		dec.damage_effect_scene = _hit_effect_scene
 		self.add_child(dec)
 		dec.owner = self.owner
-	if dc is DamageComponent and dec is DamageEffectComponent:
-		dc.hit_occured.connect(dec.create_effect,Object.CONNECT_PERSIST)
+		damage_effect_component = dec
+	#if dc is DamageComponent and dec is DamageEffectComponent:
+		#dc.hit_occured.connect(dec.create_effect,Object.CONNECT_PERSIST)
 
 @export var _transparent := false
 @export_range(0.0, 1.0) var _pen_ratio = 1.0
@@ -75,12 +77,17 @@ func _func_godot_apply_properties(entity_properties: Dictionary):
 
 var damage_component_scene:PackedScene = preload("res://components/damage_component/damage_component.tscn")
 var damage_effect_component_scene:PackedScene = preload("res://components/damage_effect_component/damage_effect_component.tscn")
+
+@export var damage_component:DamageComponent
+@export var damage_effect_component:DamageEffectComponent
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	if Engine.is_editor_hint():
 		return
 	if _footstep_sound_path:
 		_footstep_sound = load(_footstep_sound_path)
+	EventBus.level_loaded.connect(_on_level_loaded)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -88,3 +95,6 @@ func _process(delta):
 		return
 	pass
 
+func _on_level_loaded():
+	if damage_component and damage_effect_component:
+		damage_component.hit_occured.connect(damage_effect_component.create_effect)
