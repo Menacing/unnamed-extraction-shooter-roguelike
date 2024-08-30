@@ -36,9 +36,10 @@ func fireGun():
 		
 		var shoot_origin = muzzle.global_transform.origin
 		
-		var bulletInst:BulletProjRay = _bullet_scene.instantiate()
+		var bulletInst:IterativeRaycastBullet = _bullet_scene.instantiate()
 		bulletInst.moa = _gun_stats.moa
-		bulletInst.set_as_top_level(true)		
+		assign_bullet_stats(bulletInst, current_ammo_subtype)
+		bulletInst.set_as_top_level(true)
 		get_parent().add_child(bulletInst)
 		bulletInst.global_transform.origin = shoot_origin
 		bulletInst.firer = firer

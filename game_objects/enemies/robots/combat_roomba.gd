@@ -4,7 +4,6 @@ extends Enemy
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 @onready var head = $"combat-roomba/Armature/Skeleton3D/Physical Bone Bone/Head" as Node3D
 @export var gun_scene: PackedScene
-@export var hit_effect: PackedScene = load("res://game_objects/effects/bullet_hit_sparks.tscn")
 var gun: Gun
 var hf_pos: Vector3
 @export var health:float = 100.0
@@ -46,10 +45,10 @@ func _ready():
 			#Helpers.slow_rotate_to_point(head, player_aimpoint.global_transform.origin, turret_rotation, delta)
 			#Helpers.slow_rotate_to_point(gun, player_aimpoint.global_transform.origin, turret_rotation, delta)
 
-func _on_took_damage(damage:float):
-	health-=damage
-	if health < 0:
-		die()
+#func _on_took_damage(damage:float):
+	#health-=damage
+	#if health < 0:
+		#die()
 		
 func die():
 	print("I am dead")
@@ -64,29 +63,7 @@ func die():
 	$"combat-roomba/Armature/Skeleton3D/Physical Bone Bone/Head/SpotLight3D".visible = false
 	var behavior_tree:BTPlayer = $BTPlayer
 	behavior_tree.active = false
-#	var inv_node = inv.instantiate()
-#	inv_node.container_size = container_size
-#	Events.create_inventory.emit(inv_node,self.name)
-
-@export var pen_ratio:float = 1.0
-@export var damage_multiplier = 1.0
-
-func _on_hit(damage, pen_rating, col:CollisionInformation, hit_origin:Vector3) -> float:
-	damage = damage * damage_multiplier
-	print("Took %s damage, pen rating %s at %s" % [damage, pen_rating, col.position])
-	last_damage_normal = col.normal
-	last_damage = damage
-	_on_took_damage(damage)
-	var normal = col.normal
-	
-	if hit_effect:
-		var hit_inst = hit_effect.instantiate() as Node3D
-		hit_inst.set_as_top_level(true)
-		get_parent().add_child(hit_inst)
-		hit_inst.global_transform.origin = position
-		hit_inst.look_at(normal+position,Vector3.UP)
-	
-	return pen_ratio
+	$LootFiestaComponent.fiesta()
 
 func _on_game_saving(save_file:SaveFile):
 	if save_file:
@@ -106,3 +83,7 @@ func _on_load_game(save_data:TopLevelEntitySaveData):
 		self.health = save_data.additional_data["health"]
 		if health <= 0:
 			die()
+
+
+func _on_health_component_location_destroyed(health_component: HealthComponent) -> void:
+	die()

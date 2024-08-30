@@ -1,22 +1,12 @@
-[gd_scene load_steps=12 format=3 uid="uid://gfj0vsvmo4ik"]
+[gd_scene load_steps=10 format=3 uid="uid://gfj0vsvmo4ik"]
 
-[ext_resource type="Script" path="res://game_objects/bullet/bullet_proj_ray.gd" id="1_o56ga"]
-[ext_resource type="Shader" path="res://game_objects/bullet/tracer_particle.gdshader" id="2_fnr3d"]
-[ext_resource type="Shader" path="res://game_objects/bullet/tracer.gdshader" id="3_5pkrh"]
-
-[sub_resource type="SphereShape3D" id="SphereShape3D_a2qmd"]
-radius = 0.01
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_stsvx"]
-albedo_color = Color(0.0980392, 0.65098, 0, 1)
-
-[sub_resource type="SphereMesh" id="SphereMesh_mrjd8"]
-material = SubResource("StandardMaterial3D_stsvx")
-radius = 0.008
-height = 0.016
+[ext_resource type="Script" path="res://game_objects/bullet/iterative_raycast_bullet.gd" id="1_ite5r"]
+[ext_resource type="Shader" path="res://game_objects/bullet/tracer_particle.gdshader" id="2_a36ed"]
+[ext_resource type="Shader" path="res://game_objects/bullet/tracer.gdshader" id="3_5crjh"]
+[ext_resource type="Script" path="res://components/attack_component/attack_component.gd" id="4_guqwi"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_sr6c2"]
-shader = ExtResource("2_fnr3d")
+shader = ExtResource("2_a36ed")
 shader_parameter/height = 0.01
 
 [sub_resource type="Gradient" id="Gradient_vh87s"]
@@ -32,27 +22,21 @@ fill_to = Vector2(1, 1)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_bhr6y"]
 render_priority = 0
-shader = ExtResource("3_5pkrh")
+shader = ExtResource("3_5crjh")
 shader_parameter/tex = SubResource("GradientTexture2D_10bv2")
 
 [sub_resource type="QuadMesh" id="QuadMesh_a8vkh"]
 material = SubResource("ShaderMaterial_bhr6y")
 
-[node name="fic_bullet" type="CharacterBody3D"]
-collision_layer = 2147483648
+[node name="IterativeRaycastBullet" type="RayCast3D" groups=["attack"]]
+target_position = Vector3(0, 0, -1)
 collision_mask = 2
-motion_mode = 1
-script = ExtResource("1_o56ga")
+collide_with_areas = true
+script = ExtResource("1_ite5r")
 initial_speed = 950.0
 initial_damage = 15.0
 pen_rating = 9
 k = 0.00174
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-shape = SubResource("SphereShape3D_a2qmd")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-mesh = SubResource("SphereMesh_mrjd8")
 
 [node name="Tracer" type="GPUParticles3D" parent="."]
 amount = 2
@@ -64,5 +48,11 @@ draw_pass_1 = SubResource("QuadMesh_a8vkh")
 [node name="DespawnTimer" type="Timer" parent="."]
 wait_time = 0.1
 one_shot = true
+
+[node name="AttackComponent" type="Node3D" parent="."]
+unique_name_in_owner = true
+script = ExtResource("4_guqwi")
+damage = 15.0
+armor_penetration_rating = 9
 
 [connection signal="timeout" from="DespawnTimer" to="." method="_on_despawn_timer_timeout"]

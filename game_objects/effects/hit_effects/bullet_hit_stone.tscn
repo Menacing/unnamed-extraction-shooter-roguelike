@@ -1,0 +1,111 @@
+[gd_scene load_steps=17 format=3 uid="uid://3ma183br8axn"]
+
+[ext_resource type="Script" path="res://game_objects/effects/hit_effects/bullet_hit.gd" id="1_3vjnk"]
+[ext_resource type="Texture2D" uid="uid://dgfwxp74xudg8" path="res://game_objects/bullet/Assets/hole-normal.png" id="2_iu3ds"]
+[ext_resource type="Texture2D" uid="uid://hx36albsqyt" path="res://game_objects/bullet/Assets/hole-difuse.png" id="2_q7t5w"]
+[ext_resource type="Gradient" uid="uid://0lbj3mx7svta" path="res://game_objects/effects/hit_effects/bullet_hit_stone.tres" id="3_70vgn"]
+[ext_resource type="Texture2D" uid="uid://dncxt3jpdl316" path="res://game_objects/effects/assets/smoke_01.png" id="4_he5cs"]
+[ext_resource type="Texture2D" uid="uid://b6n5puc28wyd1" path="res://game_objects/effects/assets/smoke_07.png" id="5_l0mi6"]
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_8kf1k"]
+gradient = ExtResource("3_70vgn")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_jkyl8"]
+direction = Vector3(0, 0, -1)
+spread = 180.0
+initial_velocity_min = 0.1
+initial_velocity_max = 0.2
+gravity = Vector3(0, 1, 0)
+scale_min = 0.8
+scale_max = 1.2
+color_ramp = SubResource("GradientTexture1D_8kf1k")
+turbulence_enabled = true
+turbulence_noise_speed_random = 2.52
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wb6nm"]
+transparency = 1
+shading_mode = 2
+vertex_color_use_as_albedo = true
+albedo_color = Color(0.666667, 0.654902, 0.690196, 1)
+albedo_texture = ExtResource("4_he5cs")
+billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_xj7hb"]
+material = SubResource("StandardMaterial3D_wb6nm")
+size = Vector2(0.2, 0.2)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_oxmw0"]
+gradient = ExtResource("3_70vgn")
+
+[sub_resource type="Curve" id="Curve_t6le4"]
+max_value = 15.0
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 12.6818), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_4fvvw"]
+curve = SubResource("Curve_t6le4")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_om0fb"]
+lifetime_randomness = 0.5
+angle_max = 85.8
+direction = Vector3(0, 0, -1)
+spread = 20.0
+initial_velocity_min = 5.0
+initial_velocity_max = 10.0
+angular_velocity_min = -25.0
+angular_velocity_max = 25.0
+gravity = Vector3(0, 1, 0)
+damping_min = 15.0
+damping_max = 75.0
+scale_min = 0.8
+scale_max = 1.2
+scale_curve = SubResource("CurveTexture_4fvvw")
+color_ramp = SubResource("GradientTexture1D_oxmw0")
+turbulence_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bc66j"]
+transparency = 1
+shading_mode = 2
+vertex_color_use_as_albedo = true
+albedo_color = Color(0.666667, 0.654902, 0.690196, 1)
+albedo_texture = ExtResource("5_l0mi6")
+billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_ano0j"]
+material = SubResource("StandardMaterial3D_bc66j")
+size = Vector2(0.2, 0.2)
+
+[node name="BulletHitStone" type="Node3D" node_paths=PackedStringArray("one_shot_emitters")]
+script = ExtResource("1_3vjnk")
+one_shot_emitters = [NodePath("GPUParticles3D"), NodePath("bullet_hit_stone")]
+
+[node name="Bullet" type="Decal" parent="."]
+size = Vector3(0.157527, 0.16, 0.16)
+texture_albedo = ExtResource("2_q7t5w")
+texture_normal = ExtResource("2_iu3ds")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+emitting = false
+amount = 32
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+randomness = 1.0
+process_material = SubResource("ParticleProcessMaterial_jkyl8")
+draw_pass_1 = SubResource("QuadMesh_xj7hb")
+
+[node name="bullet_hit_stone" type="GPUParticles3D" parent="."]
+emitting = false
+amount = 32
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+randomness = 1.0
+process_material = SubResource("ParticleProcessMaterial_om0fb")
+draw_pass_1 = SubResource("QuadMesh_ano0j")

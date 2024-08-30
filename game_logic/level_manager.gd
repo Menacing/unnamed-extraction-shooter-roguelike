@@ -72,7 +72,8 @@ func emit_populate_level():
 	EventBus.level_populated.emit()
 
 func add_node_to_level(node:Node):
-	current_level.add_child(node)
+	if current_level and node:
+		current_level.add_child(node)
 
 func get_level_informations(number:int) -> Array[LevelInformation]:
 	var return_array:Array[LevelInformation] = []

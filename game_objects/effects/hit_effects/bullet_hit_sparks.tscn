@@ -1,7 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://5n7aup1d2u20"]
+[gd_scene load_steps=10 format=3 uid="uid://bo5i75565y5co"]
 
-[ext_resource type="Texture2D" uid="uid://8hmr7wpxbldd" path="res://game_objects/effects/assets/star_06.png" id="1_20swa"]
-[ext_resource type="Script" path="res://game_objects/effects/particle_timeout.gd" id="2_6q4ke"]
+[ext_resource type="Script" path="res://game_objects/effects/hit_effects/bullet_hit.gd" id="1_48rc3"]
+[ext_resource type="Texture2D" uid="uid://hx36albsqyt" path="res://game_objects/bullet/Assets/hole-difuse.png" id="1_tx1fs"]
+[ext_resource type="Texture2D" uid="uid://dgfwxp74xudg8" path="res://game_objects/bullet/Assets/hole-normal.png" id="2_xoxeq"]
+[ext_resource type="Texture2D" uid="uid://8hmr7wpxbldd" path="res://game_objects/effects/assets/star_06.png" id="3_pnflh"]
 
 [sub_resource type="Gradient" id="Gradient_6u5e8"]
 offsets = PackedFloat32Array(0, 0.477733, 0.898785, 1)
@@ -29,7 +31,7 @@ transparency = 1
 blend_mode = 1
 shading_mode = 0
 vertex_color_use_as_albedo = true
-albedo_texture = ExtResource("1_20swa")
+albedo_texture = ExtResource("3_pnflh")
 billboard_mode = 3
 particles_anim_h_frames = 1
 particles_anim_v_frames = 1
@@ -39,17 +41,22 @@ particles_anim_loop = false
 material = SubResource("StandardMaterial3D_bc66j")
 size = Vector2(0.1, 0.1)
 
-[node name="bullet_hit_sparks" type="GPUParticles3D"]
+[node name="BulletHitSparks" type="Node3D" node_paths=PackedStringArray("one_shot_emitters")]
+script = ExtResource("1_48rc3")
+one_shot_emitters = [NodePath("bullet_hit_sparks")]
+
+[node name="Bullet" type="Decal" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
+size = Vector3(0.157527, 0.16, 0.16)
+texture_albedo = ExtResource("1_tx1fs")
+texture_normal = ExtResource("2_xoxeq")
+
+[node name="bullet_hit_sparks" type="GPUParticles3D" parent="."]
+emitting = false
 amount = 16
 lifetime = 0.5
+one_shot = true
 explosiveness = 1.0
 randomness = 1.0
 process_material = SubResource("ParticleProcessMaterial_om0fb")
 draw_pass_1 = SubResource("QuadMesh_ano0j")
-script = ExtResource("2_6q4ke")
-
-[node name="Timer" type="Timer" parent="."]
-wait_time = 0.5
-autostart = true
-
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

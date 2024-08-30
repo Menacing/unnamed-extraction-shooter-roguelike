@@ -1,4 +1,4 @@
-[gd_scene load_steps=108 format=3 uid="uid://ctahsvj88g1om"]
+[gd_scene load_steps=109 format=3 uid="uid://ctahsvj88g1om"]
 
 [ext_resource type="Script" path="res://levels/demo_level.gd" id="1_8448e"]
 [ext_resource type="PackedScene" uid="uid://d08aatgxmymbf" path="res://game_objects/player/player.tscn" id="1_eisjc"]
@@ -8,17 +8,18 @@
 [ext_resource type="PackedScene" uid="uid://trlm60n2q0k4" path="res://game_objects/items/attachments/scopes/red_dot/red_dot.tscn" id="8_2b85p"]
 [ext_resource type="PackedScene" uid="uid://cprpop5lkmyhe" path="res://game_objects/items/weapons/fic_rifles/s5/s5.tscn" id="9_7oj7m"]
 [ext_resource type="Script" path="res://levels/entities/geo_ballistic_solid.gd" id="9_q4meu"]
-[ext_resource type="PackedScene" uid="uid://dbduds4bsaaby" path="res://game_objects/bullet/bullet_hole.tscn" id="10_hbfhv"]
 [ext_resource type="Resource" uid="uid://bikewy7dlkv20" path="res://components/ammo_component/ammo_types/fast_intermediate_cartridge/fast_intermediate_cartridge.tres" id="10_q80ko"]
 [ext_resource type="Script" path="res://game_objects/items/weapons/gun_stats.gd" id="11_hh747"]
-[ext_resource type="PackedScene" uid="uid://5n7aup1d2u20" path="res://game_objects/effects/bullet_hit_sparks.tscn" id="11_ux6j8"]
 [ext_resource type="AudioStream" uid="uid://chvv4165nfb61" path="res://game_objects/effects/sounds/steps/footstep_concrete_001.ogg" id="12_gwmm8"]
 [ext_resource type="Material" uid="uid://tid6vrqw40j3" path="res://levels/textures/metal/metal_2.tres" id="13_muntg"]
 [ext_resource type="Material" uid="uid://cjqyc6t2lsv8d" path="res://levels/textures/metal/metal_5.tres" id="14_3ru35"]
 [ext_resource type="Material" uid="uid://cnqi48f8iiy13" path="res://levels/textures/metal/metal_6.tres" id="15_b757u"]
 [ext_resource type="PackedScene" uid="uid://82pjqxlmcg2v" path="res://game_objects/items/ammo/hic/hic_box_ap.tscn" id="15_lbv4t"]
+[ext_resource type="Script" path="res://levels/fiesta_box.gd" id="16_0oadc"]
 [ext_resource type="PackedScene" uid="uid://c17uhpgl0dvt4" path="res://game_objects/items/ammo/fic/fic_box_fmj.tscn" id="16_3j2uw"]
+[ext_resource type="Script" path="res://components/loot_fiesta_component/loot_fiesta_component.gd" id="17_atdna"]
 [ext_resource type="PackedScene" uid="uid://b6xejgxv7attc" path="res://game_objects/items/backpacks/large/large_backpack_1.tscn" id="18_7cjgh"]
+[ext_resource type="Script" path="res://components/damage_component/damage_component.gd" id="18_dvips"]
 [ext_resource type="PackedScene" uid="uid://dkq52ylhipkym" path="res://game_objects/items/backpacks/medium/1/medium_backpack_1.tscn" id="19_hry6u"]
 [ext_resource type="PackedScene" uid="uid://byxda6yp3siwd" path="res://game_objects/items/ammo/fic/fic_box_ap.tscn" id="20_6qx0q"]
 [ext_resource type="PackedScene" uid="uid://c4d3mbvlwijgv" path="res://game_objects/items/ammo/fic/fic_box_hp.tscn" id="21_ckpue"]
@@ -996,8 +997,6 @@ func_godot_properties = {
 }
 _pen_ratio = 0.4
 _armor_rating = 8
-_bullet_hole_scene = ExtResource("10_hbfhv")
-_impact_hit_scene = ExtResource("11_ux6j8")
 _footstep_sound = ExtResource("12_gwmm8")
 
 [node name="entity_182_mesh_instance" type="MeshInstance3D" parent="MultiAgentNavigationRoot/entity_182_geo_ballistic_solid"]
@@ -1035,8 +1034,6 @@ func_godot_properties = {
 }
 _pen_ratio = 0.4
 _armor_rating = 8
-_bullet_hole_scene = ExtResource("10_hbfhv")
-_impact_hit_scene = ExtResource("11_ux6j8")
 _footstep_sound = ExtResource("12_gwmm8")
 
 [node name="entity_181_mesh_instance" type="MeshInstance3D" parent="MultiAgentNavigationRoot/entity_181_geo_ballistic_solid"]
@@ -1071,8 +1068,6 @@ func_godot_properties = {
 }
 _pen_ratio = 0.4
 _armor_rating = 8
-_bullet_hole_scene = ExtResource("10_hbfhv")
-_impact_hit_scene = ExtResource("11_ux6j8")
 _footstep_sound = ExtResource("12_gwmm8")
 
 [node name="entity_182_mesh_instance" type="MeshInstance3D" parent="MultiAgentNavigationRoot/entity_182_geo_ballistic_solid2"]
@@ -1109,8 +1104,6 @@ func_godot_properties = {
 }
 _pen_ratio = 0.4
 _armor_rating = 8
-_bullet_hole_scene = ExtResource("10_hbfhv")
-_impact_hit_scene = ExtResource("11_ux6j8")
 _footstep_sound = ExtResource("12_gwmm8")
 
 [node name="entity_134_mesh_instance" type="MeshInstance3D" parent="MultiAgentNavigationRoot/entity_134_geo_ballistic_solid"]
@@ -1202,8 +1195,6 @@ func_godot_properties = {
 }
 _pen_ratio = 0.4
 _armor_rating = 8
-_bullet_hole_scene = ExtResource("10_hbfhv")
-_impact_hit_scene = ExtResource("11_ux6j8")
 _footstep_sound = ExtResource("12_gwmm8")
 
 [node name="entity_181_mesh_instance" type="MeshInstance3D" parent="MultiAgentNavigationRoot/entity_181_geo_ballistic_solid2"]
@@ -1238,8 +1229,6 @@ func_godot_properties = {
 }
 _pen_ratio = 0.4
 _armor_rating = 8
-_bullet_hole_scene = ExtResource("10_hbfhv")
-_impact_hit_scene = ExtResource("11_ux6j8")
 _footstep_sound = ExtResource("12_gwmm8")
 
 [node name="entity_182_mesh_instance" type="MeshInstance3D" parent="MultiAgentNavigationRoot/entity_182_geo_ballistic_solid3"]
@@ -1290,6 +1279,21 @@ model_node = NodePath("../FicBoxFmj/fic_box_fmj")
 
 [node name="FicBoxFmj" parent="MultiAgentNavigationRoot" instance=ExtResource("16_3j2uw")]
 transform = Transform3D(1, 0, 0, 0, -0.491436, -0.870914, 0, 0.870914, -0.491436, 7.17928, 0.542317, -3.66029)
+
+[node name="FiestaBox" type="CSGBox3D" parent="MultiAgentNavigationRoot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.3896, 0.584802, 0)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+script = ExtResource("16_0oadc")
+
+[node name="LootFiestaComponent" type="Node3D" parent="MultiAgentNavigationRoot/FiestaBox"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.567333, 0)
+script = ExtResource("17_atdna")
+max_to_spawn = 10
+
+[node name="DamageComponent" type="Node" parent="MultiAgentNavigationRoot/FiestaBox"]
+script = ExtResource("18_dvips")
 
 [node name="Player" parent="." instance=ExtResource("1_eisjc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.48035, 1.04626, -2.63506)
@@ -1370,3 +1374,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.5375, 0.0788302, -4.91273)
 
 [node name="ScrapMetalWheel" parent="." instance=ExtResource("40_0qi33")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 0.112062, -4)
+
+[connection signal="hit_occured" from="MultiAgentNavigationRoot/FiestaBox/DamageComponent" to="MultiAgentNavigationRoot/FiestaBox" method="_on_damage_component_hit_occured"]

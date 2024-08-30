@@ -22,7 +22,7 @@ func _process(delta):
 		fired_gun = true
 
 
-func _on_csg_mesh_3d_object_hit():
+func _on_csg_mesh_3d_object_hit(attack_result:AttackResult):
 	hit_count += 1
 
 

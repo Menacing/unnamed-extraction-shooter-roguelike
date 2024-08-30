@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://c2mgc1vc3603e"]
+[gd_scene load_steps=5 format=3 uid="uid://c2mgc1vc3603e"]
 
 [ext_resource type="PackedScene" uid="uid://c4hnt2ygb1rjo" path="res://game_objects/items/armor/light/light_armor_1.glb" id="1_7lj6r"]
 [ext_resource type="Script" path="res://game_objects/items/armor/body_armor.gd" id="1_er0ts"]
+[ext_resource type="PackedScene" uid="uid://64ippi50nu6t" path="res://components/damage_component/damage_component.tscn" id="3_cmo47"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_mupep"]
 size = Vector3(0.378402, 0.4538, 0.305015)
@@ -10,7 +11,7 @@ size = Vector3(0.378402, 0.4538, 0.305015)
 collision_layer = 7
 collision_mask = 5
 script = ExtResource("1_er0ts")
-armor_rating = 4
+armored_locations = Array[int]([1])
 item_type_id = "light_armor_1"
 world_collider_path = NodePath("CollisionShape3D")
 longest_side_size = 0.5
@@ -26,5 +27,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0230582, 0.0499593)
 shape = SubResource("BoxShape3D_mupep")
 
 [node name="FoleyAudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+
+[node name="DamageComponent" parent="." instance=ExtResource("3_cmo47")]
+damage_multiplier = 0.5
+armor_rating = 4
+damage_transmission_percent = 2.0
+
+[connection signal="hit_occured" from="DamageComponent" to="." method="_on_damage_component_hit_occured"]
 
 [editable path="light_armor_1"]

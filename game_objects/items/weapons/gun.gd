@@ -17,7 +17,8 @@ var firer:Node3D
 
 func _ready():
 	super()
-	current_ammo_subtype = _gun_stats.ammo_type.sub_types[0]
+	if current_ammo_subtype == null:
+		current_ammo_subtype = _gun_stats.ammo_type.sub_types[0]
 
 var current_fire_mode:String
 var reloading: bool = false
@@ -146,3 +147,9 @@ func get_unselected_ammo_subtypes() -> Array[AmmoSubtype]:
 
 func get_weapon_category() -> String:
 	return _gun_stats.weapon_category_name
+	
+func assign_bullet_stats(bullet:IterativeRaycastBullet, subtype:AmmoSubtype):
+	bullet.current_damage = subtype.initial_damage
+	bullet.initial_speed = subtype.initial_speed
+	bullet.pen_rating = subtype.armor_penetration_rating
+	bullet.k = subtype.ballistic_coefficient_k
