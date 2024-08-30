@@ -4,7 +4,6 @@ extends Enemy
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 @onready var head = $"combat-roomba/Armature/Skeleton3D/Physical Bone Bone/Head" as Node3D
 @export var gun_scene: PackedScene
-@export var hit_effect: PackedScene = load("res://game_objects/effects/bullet_hit_sparks.tscn")
 var gun: Gun
 var hf_pos: Vector3
 @export var health:float = 100.0
