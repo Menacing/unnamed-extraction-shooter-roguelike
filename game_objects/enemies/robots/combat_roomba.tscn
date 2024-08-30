@@ -1,17 +1,16 @@
-[gd_scene load_steps=32 format=3 uid="uid://ciaqbr34myu5w"]
+[gd_scene load_steps=31 format=3 uid="uid://ciaqbr34myu5w"]
 
 [ext_resource type="Script" path="res://game_objects/enemies/robots/combat_roomba.gd" id="1_f1cah"]
 [ext_resource type="PackedScene" uid="uid://dr48wela8mtxd" path="res://game_objects/items/weapons/hic_rifles/pm_52/pm_52.tscn" id="2_q4rc2"]
 [ext_resource type="PackedScene" uid="uid://o7vvmqxsny5t" path="res://game_objects/enemies/robots/combat-roomba.glb" id="3_wwy82"]
 [ext_resource type="Resource" uid="uid://hw8blc564g2i" path="res://levels/roomba_nav_mesh.tres" id="4_k7kme"]
-[ext_resource type="Script" path="res://game_objects/containers/world_container.gd" id="5_grn4r"]
-[ext_resource type="Resource" uid="uid://bod4q15y8cr6g" path="res://game_objects/enemies/robots/combat_roomba_loot_spawn_information.tres" id="6_iu150"]
 [ext_resource type="BehaviorTree" uid="uid://c3o1pihtd3pqc" path="res://ai/trees/combat_roomba.tres" id="9_huqy6"]
 [ext_resource type="AudioStream" uid="uid://wef8dj3iyrtm" path="res://game_objects/enemies/robots/audio/enemy_spotted_audio_stream_randomizer.tres" id="10_iwbga"]
 [ext_resource type="AudioStream" uid="uid://hd40mi2hpmcb" path="res://game_objects/enemies/robots/audio/enemy_lost_audio_stream_randomizer.tres" id="11_ll5t6"]
 [ext_resource type="AudioStream" uid="uid://qjx8mxhhx0a5" path="res://game_objects/enemies/robots/audio/idle_audio_stream_randomizer.tres" id="12_o55mw"]
 [ext_resource type="AudioStream" uid="uid://dpy6rknda42mj" path="res://game_objects/enemies/robots/audio/patrol_started_audio_stream_randomizer.tres" id="13_8dkak"]
 [ext_resource type="Script" path="res://helpers/intro_outro_audio_stream_player.gd" id="14_noua2"]
+[ext_resource type="PackedScene" uid="uid://dvm24rm8f0isk" path="res://components/loot_fiesta_component/LootFiestaComponent.tscn" id="17_7ftd3"]
 [ext_resource type="Script" path="res://game_objects/health_component.gd" id="17_rju44"]
 [ext_resource type="Script" path="res://components/damage_component/damage_component.gd" id="18_kd44g"]
 [ext_resource type="PackedScene" uid="uid://cliu3gfmcv7xd" path="res://components/damage_effect_component/damage_effect_component.tscn" id="19_k7rcm"]
@@ -178,10 +177,6 @@ transform = Transform3D(1, -2.70006e-13, 0, 0, 0, -1, 1.77636e-13, 1, 0, 0, 0.22
 joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.222436)
 body_offset = Transform3D(1, -2.70006e-13, 0, 0, 0, -1, 1.77636e-13, 1, 0, 0, 0.222436, 0)
 bone_name = "Bone"
-script = ExtResource("5_grn4r")
-container_size = 21
-max_spawned = 1
-loot_spawn_mapping = ExtResource("6_iu150")
 
 [node name="Head" type="Node3D" parent="combat-roomba/Armature/Skeleton3D/Physical Bone Bone"]
 transform = Transform3D(-1, 0, 8.74228e-08, -8.74228e-08, 0, -1, 0, -1, 0, 0.0238471, 2.08478e-09, -1.87783)
@@ -283,6 +278,11 @@ location_type = 1
 
 [node name="DamageEffectComponent" parent="." instance=ExtResource("19_k7rcm")]
 damage_effect_scene = ExtResource("20_3xthi")
+
+[node name="LootFiestaComponent" parent="." instance=ExtResource("17_7ftd3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.790082, 0)
+distribution = 1
+max_to_spawn = 3
 
 [connection signal="location_destroyed" from="HealthComponent" to="." method="_on_health_component_location_destroyed"]
 [connection signal="hit_occured" from="DamageComponent" to="HealthComponent" method="_on_hit_occured"]

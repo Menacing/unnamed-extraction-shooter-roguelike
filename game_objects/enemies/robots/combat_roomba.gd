@@ -63,29 +63,7 @@ func die():
 	$"combat-roomba/Armature/Skeleton3D/Physical Bone Bone/Head/SpotLight3D".visible = false
 	var behavior_tree:BTPlayer = $BTPlayer
 	behavior_tree.active = false
-#	var inv_node = inv.instantiate()
-#	inv_node.container_size = container_size
-#	Events.create_inventory.emit(inv_node,self.name)
-
-#@export var pen_ratio:float = 1.0
-#@export var damage_multiplier = 1.0
-
-#func _on_hit(damage, pen_rating, col:CollisionInformation, hit_origin:Vector3) -> float:
-	#damage = damage * damage_multiplier
-	#print("Took %s damage, pen rating %s at %s" % [damage, pen_rating, col.position])
-	#last_damage_normal = col.normal
-	#last_damage = damage
-	#_on_took_damage(damage)
-	#var normal = col.normal
-	#
-	#if hit_effect:
-		#var hit_inst = hit_effect.instantiate() as Node3D
-		#hit_inst.set_as_top_level(true)
-		#get_parent().add_child(hit_inst)
-		#hit_inst.global_transform.origin = position
-		#hit_inst.look_at(normal+position,Vector3.UP)
-	#
-	#return pen_ratio
+	$LootFiestaComponent.fiesta()
 
 func _on_game_saving(save_file:SaveFile):
 	if save_file:
