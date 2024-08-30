@@ -1,4 +1,4 @@
-[gd_scene load_steps=133 format=3 uid="uid://d08aatgxmymbf"]
+[gd_scene load_steps=134 format=3 uid="uid://d08aatgxmymbf"]
 
 [ext_resource type="Script" path="res://game_objects/player/player.gd" id="1_1w47b"]
 [ext_resource type="Resource" uid="uid://emdbttovaqob" path="res://game_objects/player/stat_modifiers/standing_recoil_factor.tres" id="2_xdbpj"]
@@ -38,6 +38,7 @@
 [ext_resource type="PackedScene" uid="uid://64ippi50nu6t" path="res://components/damage_component/damage_component.tscn" id="22_kcj7d"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/transition.gd" id="22_n3f1l"]
 [ext_resource type="Curve" uid="uid://b5uvys01o23sl" path="res://game_objects/player/ez_curve.tres" id="31_oao1x"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/guard.gd" id="35_b6ral"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_33msn"]
 radius = 0.4
@@ -402,7 +403,7 @@ state = NodePath("../../../Legs/Jumping")
 
 [sub_resource type="Resource" id="Resource_npt1w"]
 script = ExtResource("18_swygp")
-guards = Array[Resource("res://addons/godot_state_charts/guard.gd")]([SubResource("Resource_gu127"), SubResource("Resource_05yvh"), SubResource("Resource_k0fw2"), SubResource("Resource_glpcb"), SubResource("Resource_7xaj5"), SubResource("Resource_1i338")])
+guards = Array[ExtResource("35_b6ral")]([SubResource("Resource_gu127"), SubResource("Resource_05yvh"), SubResource("Resource_k0fw2"), SubResource("Resource_glpcb"), SubResource("Resource_7xaj5"), SubResource("Resource_1i338")])
 
 [sub_resource type="Resource" id="Resource_jadr3"]
 script = ExtResource("19_wn5lv")
@@ -438,7 +439,7 @@ state = NodePath("../../../Legs/Jumping")
 
 [sub_resource type="Resource" id="Resource_n748b"]
 script = ExtResource("18_swygp")
-guards = Array[Resource("res://addons/godot_state_charts/guard.gd")]([SubResource("Resource_8rmb0"), SubResource("Resource_qhxb5"), SubResource("Resource_lvppm"), SubResource("Resource_57tnq"), SubResource("Resource_yli8t"), SubResource("Resource_efjlr"), SubResource("Resource_u1kdx")])
+guards = Array[ExtResource("35_b6ral")]([SubResource("Resource_8rmb0"), SubResource("Resource_qhxb5"), SubResource("Resource_lvppm"), SubResource("Resource_57tnq"), SubResource("Resource_yli8t"), SubResource("Resource_efjlr"), SubResource("Resource_u1kdx")])
 
 [sub_resource type="Resource" id="Resource_u7xi3"]
 script = ExtResource("19_wn5lv")
@@ -586,19 +587,19 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 [node name="Skeleton3D" parent="CollisionShape3D/PlayerDefaultMeshAnimated/Armature" index="0"]
 transform = Transform3D(-0.0290556, 0.999578, -4.36929e-08, -0.999578, -0.0290556, 4.49814e-08, 4.36929e-08, 4.49814e-08, 1, 0, 0, 0)
 animate_physical_bones = false
-bones/0/position = Vector3(-0.0974588, -0.00680455, -1.04806)
-bones/0/rotation = Quaternion(0.71383, -0.236419, 0.187955, -0.631843)
-bones/1/rotation = Quaternion(0.0761913, 0.00520446, 0.00582729, 0.997063)
-bones/2/rotation = Quaternion(0.0463694, 0.00991869, 0.00532064, 0.998861)
-bones/3/rotation = Quaternion(0.0787579, 0.00919185, -0.000808532, 0.996851)
-bones/4/rotation = Quaternion(0.00196966, 0.0500689, -0.00230692, 0.998741)
-bones/5/rotation = Quaternion(-0.0120169, 0.314038, -0.0490696, 0.948065)
-bones/7/rotation = Quaternion(0.738938, 0.328175, -0.407368, 0.424644)
+bones/0/position = Vector3(-0.0988873, -0.00862372, -1.04581)
+bones/0/rotation = Quaternion(0.716488, -0.237257, 0.186996, -0.628798)
+bones/1/rotation = Quaternion(0.0831874, 0.00703204, 0.00478023, 0.996498)
+bones/2/rotation = Quaternion(0.0511217, 0.0123803, 0.00837198, 0.998581)
+bones/3/rotation = Quaternion(0.0898428, 0.0130708, -0.00453083, 0.99586)
+bones/4/rotation = Quaternion(-0.000784002, 0.0501762, -0.00438155, 0.998731)
+bones/5/rotation = Quaternion(-0.018829, 0.305014, -0.0591082, 0.950325)
+bones/7/rotation = Quaternion(0.748174, 0.319493, -0.407566, 0.414789)
 bones/7/scale = Vector3(1, 1, 1)
-bones/8/rotation = Quaternion(0.368699, -0.23931, 0.0891115, 0.893785)
+bones/8/rotation = Quaternion(0.351019, -0.254696, 0.10648, 0.89475)
 bones/8/scale = Vector3(1, 1, 1)
-bones/9/rotation = Quaternion(0.524703, -0.543178, 0.483752, 0.4423)
-bones/10/rotation = Quaternion(-0.00784719, -0.178117, 0.0594309, 0.982182)
+bones/9/rotation = Quaternion(0.522031, -0.534369, 0.492622, 0.446382)
+bones/10/rotation = Quaternion(-0.0193135, -0.180705, 0.053807, 0.981874)
 bones/10/scale = Vector3(1, 1, 1)
 bones/11/rotation = Quaternion(0.0436634, -0.0294635, 0.153369, 0.986764)
 bones/12/rotation = Quaternion(0.0488257, -0.000220328, -0.119185, 0.991671)
@@ -607,11 +608,11 @@ bones/15/rotation = Quaternion(0.299671, 0.0850329, 0.0599188, 0.948355)
 bones/15/scale = Vector3(1, 1, 1)
 bones/16/rotation = Quaternion(0.152937, 0.00601103, 0.0169483, 0.988072)
 bones/17/rotation = Quaternion(0.148469, -0.00227734, 0.01785, 0.988753)
-bones/19/rotation = Quaternion(0.703651, -0.379875, 0.430674, 0.418437)
-bones/20/rotation = Quaternion(0.246214, -0.164164, -0.239278, 0.924757)
-bones/21/rotation = Quaternion(0.0282477, 0.220698, -0.754666, 0.61723)
+bones/19/rotation = Quaternion(0.700857, -0.393645, 0.437627, 0.402898)
+bones/20/rotation = Quaternion(0.242206, -0.141755, -0.255967, 0.925053)
+bones/21/rotation = Quaternion(0.0326256, 0.223401, -0.75538, 0.615166)
 bones/21/scale = Vector3(1, 1, 1)
-bones/22/rotation = Quaternion(0.080539, 0.130707, -0.173699, 0.972758)
+bones/22/rotation = Quaternion(0.0917721, 0.116554, -0.169251, 0.974345)
 bones/23/rotation = Quaternion(-0.0236578, -0.101738, -0.124064, 0.986761)
 bones/24/rotation = Quaternion(0.00401807, 0.0111689, 0.192377, 0.981249)
 bones/25/rotation = Quaternion(-0.144459, -0.00142761, 0.222599, 0.964147)
@@ -621,15 +622,15 @@ bones/28/rotation = Quaternion(0.516135, 0.00177225, 0.0150531, 0.856373)
 bones/28/scale = Vector3(1, 1, 1)
 bones/29/rotation = Quaternion(-0.312428, 0.00991786, 0.0434396, 0.948896)
 bones/29/scale = Vector3(1, 1, 1)
-bones/31/rotation = Quaternion(0.141762, 0.156079, 0.969211, -0.127174)
+bones/31/rotation = Quaternion(0.141706, 0.156181, 0.969117, -0.127822)
 bones/31/scale = Vector3(1, 1, 1)
-bones/32/rotation = Quaternion(-0.257003, -0.123304, -0.00592196, 0.958494)
-bones/33/rotation = Quaternion(0.47893, -0.147639, 0.00106887, 0.865348)
+bones/32/rotation = Quaternion(-0.263876, -0.122039, -0.00528508, 0.956791)
+bones/33/rotation = Quaternion(0.480975, -0.14787, 0.000529395, 0.864174)
 bones/34/rotation = Quaternion(0.266463, -0.0591006, 0.0171634, 0.961878)
 bones/35/rotation = Quaternion(2.84053e-08, 1.62516e-07, -5.7451e-08, 1)
-bones/36/rotation = Quaternion(-0.196896, 0.127558, 0.957455, 0.168049)
-bones/37/rotation = Quaternion(-0.33907, 0.0202773, -0.00192934, 0.940541)
-bones/38/rotation = Quaternion(0.587301, 0.134686, 0.0425099, 0.796951)
+bones/36/rotation = Quaternion(-0.196642, 0.127482, 0.957362, 0.168931)
+bones/37/rotation = Quaternion(-0.345489, 0.0192488, -0.00226756, 0.938223)
+bones/38/rotation = Quaternion(0.588824, 0.134596, 0.0425148, 0.795841)
 bones/39/rotation = Quaternion(0.227263, 0.0718024, 0.0059336, 0.971165)
 
 [node name="Head" parent="CollisionShape3D/PlayerDefaultMeshAnimated/Armature/Skeleton3D" index="0"]
@@ -666,9 +667,9 @@ magnet = Vector3(0, 6, 8)
 target_node = NodePath("../../../../Waist/Chest/Head/Camera3D/HeadTarget")
 
 [node name="Physical Bone mixamorig_Hips" type="PhysicalBone3D" parent="CollisionShape3D/PlayerDefaultMeshAnimated/Armature/Skeleton3D" index="6"]
-transform = Transform3D(-0.931575, 0.352237, 0.0894808, -0.332182, -0.925051, 0.18431, 0.147718, 0.141962, 0.978808, -0.0921285, -0.0197169, -1.03118)
-joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00313043, -0.017137, -0.0162906)
-body_offset = Transform3D(-0.574989, 0.815669, -0.0626358, -0.0304308, -0.0977989, -0.994759, -0.817594, -0.570143, 0.0810688, 0.0111578, -0.0179764, -0.0110093)
+transform = Transform3D(-0.979682, 0.372036, 0.0992235, -0.348927, -0.972509, 0.201271, 0.162807, 0.154432, 1.02843, -0.0927822, -0.0205598, -1.02915)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00297594, -0.0162793, -0.0154763)
+body_offset = Transform3D(-0.605252, 0.858696, -0.065907, -0.0320324, -0.102945, -1.0471, -0.860626, -0.600063, 0.0853232, 0.0111578, -0.0179764, -0.0110093)
 bone_name = "mixamorig_Hips"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CollisionShape3D/PlayerDefaultMeshAnimated/Armature/Skeleton3D/Physical Bone mixamorig_Hips"]
@@ -676,10 +677,10 @@ transform = Transform3D(1, 0, 0, -2.98023e-08, -3.72529e-09, 1, 0, -1, 0, 0, 0, 
 shape = SubResource("CapsuleShape3D_0rm3x")
 
 [node name="Physical Bone mixamorig_Spine1" type="PhysicalBone3D" parent="CollisionShape3D/PlayerDefaultMeshAnimated/Armature/Skeleton3D" index="7"]
-transform = Transform3D(0.962143, -0.260864, 0.0788392, 0.27152, 0.942014, -0.197137, -0.022859, 0.211035, 0.977354, -0.120702, -0.0254594, -1.27272)
+transform = Transform3D(1.01035, -0.281967, 0.0878147, 0.293856, 0.991032, -0.198837, -0.0294136, 0.215366, 1.02994, -0.122136, -0.0276027, -1.27049)
 joint_type = 1
-joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0189767, 0.014836, -0.00230165)
-body_offset = Transform3D(0.601292, -0.788791, 0.127551, 0.0856884, -0.0950264, -0.991928, 0.794399, 0.607251, 0.0104332, 0.000585523, -0.00249934, -0.0240602)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0180271, 0.014094, -0.00218684)
+body_offset = Transform3D(0.63295, -0.830293, 0.134239, 0.0901999, -0.100026, -1.04398, 0.836224, 0.63925, 0.0110021, 0.000585519, -0.00249928, -0.0240602)
 bone_name = "mixamorig_Spine1"
 joint_constraints/bias = 0.6
 joint_constraints/damping = 2.0
@@ -690,10 +691,10 @@ transform = Transform3D(1, 2.98023e-08, 1.78814e-07, 0, 0, 1, -5.58794e-09, -1, 
 shape = SubResource("CapsuleShape3D_nrgwj")
 
 [node name="Physical Bone mixamorig_Spine2" type="PhysicalBone3D" parent="CollisionShape3D/PlayerDefaultMeshAnimated/Armature/Skeleton3D" index="8"]
-transform = Transform3D(0.971794, -0.235912, -0.000505158, 0.207012, 0.853754, -0.477776, 0.113151, 0.464164, 0.878641, -0.134282, 0.0171207, -1.41429)
+transform = Transform3D(1.02029, -0.257633, 0.0258878, 0.240265, 0.902764, -0.485102, 0.0965272, 0.476105, 0.933831, -0.136637, 0.0133331, -1.41193)
 joint_type = 1
-joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0304704, -0.00916283, 0.00788222)
-body_offset = Transform3D(0.618585, -0.743886, 0.252995, 0.08483, -0.256864, -0.962863, 0.781151, 0.61697, -0.0957517, -0.0276588, 0.0026511, -0.017394)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0289476, -0.00870431, 0.0074893)
+body_offset = Transform3D(0.651129, -0.783039, 0.266297, 0.0892929, -0.270383, -1.01339, 0.822247, 0.649443, -0.100828, -0.0276588, 0.00265124, -0.017394)
 bone_name = "mixamorig_Spine2"
 joint_constraints/bias = 0.6
 joint_constraints/damping = 2.0
@@ -704,10 +705,10 @@ transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, 0, 0, 0)
 shape = SubResource("CapsuleShape3D_41kc3")
 
 [node name="Physical Bone mixamorig_Neck" type="PhysicalBone3D" parent="CollisionShape3D/PlayerDefaultMeshAnimated/Armature/Skeleton3D" index="9"]
-transform = Transform3D(-0.996394, 0.0718967, -0.0453298, -0.0151786, -0.675357, -0.73734, -0.0835932, -0.734079, 0.674149, -0.132143, 0.0973854, -1.51957)
+transform = Transform3D(-1.04998, 0.0730073, -0.0159165, -0.0383107, -0.718484, -0.76834, -0.0641536, -0.765822, 0.719329, -0.13782, 0.0913298, -1.51816)
 joint_type = 1
-joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0478791, 0.060991, 0.00712532)
-body_offset = Transform3D(-0.691453, 0.575083, 0.437264, -0.0773268, 0.543003, -0.836367, -0.718285, -0.612026, -0.330896, -0.0712967, -0.0308613, 0.00529498)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0454869, 0.0579446, 0.00676979)
+body_offset = Transform3D(-0.727838, 0.605289, 0.460337, -0.0813958, 0.571538, -0.8802, -0.756082, -0.644207, -0.348383, -0.0712967, -0.0308612, 0.00529498)
 bone_name = "mixamorig_Neck"
 joint_constraints/bias = 0.6
 joint_constraints/damping = 2.0
@@ -718,10 +719,10 @@ transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, 0, 0, 0)
 shape = SubResource("CapsuleShape3D_srco3")
 
 [node name="Physical Bone mixamorig_Head" type="PhysicalBone3D" parent="CollisionShape3D/PlayerDefaultMeshAnimated/Armature/Skeleton3D" index="10"]
-transform = Transform3D(-0.322993, -0.77362, -0.545297, 0.927836, -0.144863, -0.34394, 0.187128, -0.617017, 0.76459, -0.0218491, 0.217201, -1.63138)
+transform = Transform3D(-0.348935, -0.818007, -0.563153, 0.969213, -0.150325, -0.382179, 0.216571, -0.645213, 0.803013, -0.0316089, 0.211359, -1.63012)
 joint_type = 1
-joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.105441, 0.0422515, 0.0394946)
-body_offset = Transform3D(-0.980194, 0.089423, 0.177234, -0.117254, 0.460113, -0.880264, -0.160287, -0.88345, -0.440415, -0.114131, 0.00296175, 0.0378202)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.100177, 0.0401394, 0.0375243)
+body_offset = Transform3D(-1.03167, 0.0941246, 0.186634, -0.123412, 0.484285, -0.926429, -0.168704, -0.929861, -0.463605, -0.114131, 0.0029617, 0.0378202)
 bone_name = "mixamorig_Head"
 joint_constraints/bias = 0.6
 joint_constraints/damping = 2.0
@@ -732,10 +733,10 @@ transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, 0, 0, 0)
 shape = SubResource("CapsuleShape3D_oc6aw")
 
 [node name="Physical Bone mixamorig_LeftShoulder" type="PhysicalBone3D" parent="CollisionShape3D/PlayerDefaultMeshAnimated/Armature/Skeleton3D" index="11"]
-transform = Transform3D(0.930604, -0.101024, -0.351995, -0.270725, -0.837071, -0.475485, -0.246668, 0.537854, -0.806359, -0.0851331, 0.0657793, -1.41333)
+transform = Transform3D(0.970452, -0.0349342, -0.406246, -0.251665, -0.876482, -0.525811, -0.320814, 0.581887, -0.816406, -0.08357, 0.0613823, -1.41003)
 joint_type = 1
-joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0948577, -0.020221, 0.108109)
-body_offset = Transform3D(0.190453, 0.542395, 0.818303, 0.698892, 0.510508, -0.501081, -0.68952, 0.667361, -0.281956, -0.0955638, -0.00180119, 0.109383)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0901297, -0.0192249, 0.102714)
+body_offset = Transform3D(0.200461, 0.570904, 0.861346, 0.735617, 0.537378, -0.527376, -0.725752, 0.702372, -0.296631, -0.0955638, -0.00180122, 0.109383)
 bone_name = "mixamorig_LeftShoulder"
 joint_constraints/bias = 0.6
 joint_constraints/damping = 2.0
@@ -746,10 +747,10 @@ transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, 0, 0, 0)
 shape = SubResource("CapsuleShape3D_aaocy")
 
 [node name="Physical Bone mixamorig_LeftArm" type="PhysicalBone3D" parent="CollisionShape3D/PlayerDefaultMeshAnimated/Armature/Skeleton3D" index="12"]
-transform = Transform3D(0.0766524, -0.804853, 0.588731, -0.438024, -0.557496, -0.70534, 0.895767, -0.203744, -0.395236, -0.0730412, 0.249169, -1.52079)
+transform = Transform3D(0.116381, -0.840621, 0.622772, -0.475436, -0.600667, -0.721936, 0.931906, -0.201465, -0.446089, -0.0785677, 0.247878, -1.51732)
 joint_type = 1
-joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.190931, 0.0350052, 0.273148)
-body_offset = Transform3D(0.40119, 0.845666, 0.352116, 0.916044, -0.367397, -0.161251, -0.00703935, 0.387259, -0.922135, -0.202382, -0.117995, 0.239667)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.181408, 0.0332334, 0.259532)
+body_offset = Transform3D(0.422276, 0.890131, 0.37065, 0.964189, -0.386709, -0.169787, -0.00740931, 0.40762, -0.970476, -0.202382, -0.117995, 0.239667)
 bone_name = "mixamorig_LeftArm"
 joint_constraints/bias = 0.6
 joint_constraints/damping = 2.0
@@ -760,10 +761,10 @@ transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, 0, 0, 0)
 shape = SubResource("CapsuleShape3D_06d36")
 
 [node name="Physical Bone mixamorig_LeftForeArm" type="PhysicalBone3D" parent="CollisionShape3D/PlayerDefaultMeshAnimated/Armature/Skeleton3D" index="13"]
-transform = Transform3D(-0.998761, -0.0422595, -0.029181, -0.0319901, 0.0670851, 0.997326, -0.0401624, 0.997034, -0.0683364, 0.137369, -0.706593, -1.52397)
+transform = Transform3D(-1.04986, -0.0539027, -0.0540982, -0.0576577, 0.0705065, 1.04868, -0.050077, 1.04888, -0.0732732, 0.165508, -0.709759, -1.53234)
 joint_type = 3
-joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0576061, 0.403577, 0.606451)
-body_offset = Transform3D(0.826993, 0.24471, 0.506333, -0.511829, -0.0455686, 0.857988, 0.232968, -0.968712, 0.0875411, -0.358186, -0.531422, 0.351281)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0547321, 0.383471, 0.576181)
+body_offset = Transform3D(0.870449, 0.257527, 0.532946, -0.538724, -0.0479486, 0.903056, 0.24521, -1.01952, 0.0921493, -0.358186, -0.531422, 0.351281)
 bone_name = "mixamorig_LeftForeArm"
 joint_constraints/angular_limit_enabled = true
 joint_constraints/angular_limit_upper = 90.0
@@ -777,10 +778,10 @@ transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, 0, 0, 0)
 shape = SubResource("CapsuleShape3D_s8ho1")
 
 [node name="Physical Bone mixamorig_LeftHand" type="PhysicalBone3D" parent="CollisionShape3D/PlayerDefaultMeshAnimated/Armature/Skeleton3D" index="14"]
-transform = Transform3D(0.0496953, -0.862356, -0.504044, -0.316233, -0.492265, 0.8111, -0.94758, 0.119103, -0.297097, 0.121239, -0.91691, -1.28512)
+transform = Transform3D(0.0552382, -0.905722, -0.533525, -0.339821, -0.52096, 0.849209, -0.994738, 0.127675, -0.319732, 0.131421, -0.917777, -1.28561)
 joint_type = 1
-joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.430912, -0.675511, 0.76383)
-body_offset = Transform3D(-0.0358881, 0.402379, 0.914884, -0.174403, -0.903922, 0.390737, 0.984214, -0.145548, 0.102576, -0.442469, -0.984218, 0.24744)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.409433, -0.641786, 0.725715)
+body_offset = Transform3D(-0.0377697, 0.423519, 0.962932, -0.183547, -0.951425, 0.411259, 1.03582, -0.15315, 0.107987, -0.442469, -0.984218, 0.24744)
 bone_name = "mixamorig_LeftHand"
 joint_constraints/bias = 0.6
 joint_constraints/damping = 2.0
@@ -791,10 +792,10 @@ transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, 0, 0, 0)
 shape = SubResource("CapsuleShape3D_vfhod")
 
 [node name="Physical Bone mixamorig_RightShoulder" type="PhysicalBone3D" parent="CollisionShape3D/PlayerDefaultMeshAnimated/Armature/Skeleton3D" index="15"]
-transform = Transform3D(-0.571625, 0.274238, 0.773402, 0.413266, -0.718075, 0.56013, 0.708937, 0.639821, 0.29704, -0.300844, -0.0626063, -1.49274)
+transform = Transform3D(-0.580771, 0.296772, 0.826235, 0.48282, -0.719423, 0.597786, 0.733228, 0.708795, 0.260806, -0.307119, -0.0645871, -1.47959)
 joint_type = 1
-joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0590029, -0.0836988, 0.201971)
-body_offset = Transform3D(0.0339228, 0.189474, 0.981354, 0.953012, -0.302029, 0.0253698, 0.30125, 0.934391, -0.190868, -0.180345, 0.0258271, 0.134532)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0560686, -0.0795351, 0.191885)
+body_offset = Transform3D(0.0357058, 0.199423, 1.03295, 1.0031, -0.317968, 0.0267134, 0.317084, 0.983443, -0.200825, -0.180345, 0.0258271, 0.134532)
 bone_name = "mixamorig_RightShoulder"
 joint_constraints/bias = 0.6
 joint_constraints/damping = 2.0
@@ -805,10 +806,10 @@ transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, 0, 0, 0)
 shape = SubResource("CapsuleShape3D_gk36l")
 
 [node name="Physical Bone mixamorig_RightArm" type="PhysicalBone3D" parent="CollisionShape3D/PlayerDefaultMeshAnimated/Armature/Skeleton3D" index="16"]
-transform = Transform3D(0.953541, -0.0396636, 0.298653, -0.257091, -0.624059, 0.738002, 0.157107, -0.780395, -0.605293, -0.415769, -0.0397154, -1.37531)
+transform = Transform3D(0.989851, -0.0794462, 0.349166, -0.312238, -0.694001, 0.727257, 0.175316, -0.787455, -0.676175, -0.429074, -0.0263932, -1.36624)
 joint_type = 1
-joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.120771, -0.0738908, 0.26726)
-body_offset = Transform3D(0.975937, -0.187218, 0.111819, -0.1241, -0.898482, -0.421155, 0.179345, 0.397138, -0.900191, -0.161583, 0.0611559, 0.24827)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.114719, -0.0702065, 0.253925)
+body_offset = Transform3D(1.02729, -0.197082, 0.117737, -0.13063, -0.94575, -0.443312, 0.188782, 0.418029, -0.947441, -0.161583, 0.0611559, 0.24827)
 bone_name = "mixamorig_RightArm"
 joint_constraints/bias = 0.6
 joint_constraints/damping = 2.0
@@ -819,10 +820,10 @@ transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, 0, 0, 0)
 shape = SubResource("CapsuleShape3D_shiri")
 
 [node name="Physical Bone mixamorig_RightForeArm" type="PhysicalBone3D" parent="CollisionShape3D/PlayerDefaultMeshAnimated/Armature/Skeleton3D" index="17"]
-transform = Transform3D(-0.215771, -0.966818, -0.1371, 0.969808, -0.195662, -0.146282, 0.114604, -0.164498, 0.979758, -0.407849, -0.14045, -1.15365)
+transform = Transform3D(-0.178283, -1.02692, -0.147276, 1.03464, -0.165057, -0.101566, 0.0759913, -0.161961, 1.03732, -0.42374, -0.116857, -1.14242)
 joint_type = 3
-joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.362541, -0.196882, -0.0849866)
-body_offset = Transform3D(-0.0660446, 0.158302, -0.98524, -0.0223211, -0.987363, -0.157158, -0.997677, 0.0116065, 0.0687366, -0.0286215, -0.199658, 0.369826)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.344451, -0.187046, -0.0807422)
+body_offset = Transform3D(-0.069513, 0.166627, -1.03703, -0.0234933, -1.03929, -0.165415, -1.05007, 0.0122218, 0.0723507, -0.0286215, -0.199658, 0.369826)
 bone_name = "mixamorig_RightForeArm"
 joint_constraints/angular_limit_enabled = true
 joint_constraints/angular_limit_upper = 90.0
@@ -836,10 +837,10 @@ transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, 0, 0, 0)
 shape = SubResource("CapsuleShape3D_4hx1l")
 
 [node name="Physical Bone mixamorig_RightHand" type="PhysicalBone3D" parent="CollisionShape3D/PlayerDefaultMeshAnimated/Armature/Skeleton3D" index="18"]
-transform = Transform3D(-0.86738, -0.49237, 0.073023, 0.176258, -0.441042, -0.880175, 0.465516, -0.75048, 0.469236, -0.486862, -0.00139983, -1.13481)
+transform = Transform3D(-0.909548, -0.524278, 0.0767273, 0.189456, -0.464138, -0.925589, 0.494834, -0.785966, 0.495409, -0.482553, 0.00364039, -1.14108)
 joint_type = 1
-joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.37111, -0.355845, -0.257455)
-body_offset = Transform3D(-0.0703859, 0.748587, -0.659368, -0.970331, -0.2048, -0.128927, -0.231566, 0.630746, 0.740834, 0.0705022, -0.46617, 0.329243)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.352558, -0.338103, -0.24461)
+body_offset = Transform3D(-0.074086, 0.787919, -0.694066, -1.02134, -0.215587, -0.135719, -0.243739, 0.663882, 0.77967, 0.0705023, -0.46617, 0.329243)
 bone_name = "mixamorig_RightHand"
 joint_constraints/bias = 0.6
 joint_constraints/damping = 2.0
@@ -850,10 +851,10 @@ transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, 0, 0, 0)
 shape = SubResource("CapsuleShape3D_pho5s")
 
 [node name="Physical Bone mixamorig_LeftUpLeg" type="PhysicalBone3D" parent="CollisionShape3D/PlayerDefaultMeshAnimated/Armature/Skeleton3D" index="19"]
-transform = Transform3D(-0.761499, -0.0935226, -0.641449, 0.355971, 0.766627, -0.534444, 0.541702, -0.635322, -0.550573, 0.190394, 0.158933, -0.833599)
+transform = Transform3D(-0.797654, -0.102735, -0.679137, 0.377803, 0.80358, -0.565295, 0.573625, -0.672115, -0.572057, 0.191054, 0.159129, -0.834179)
 joint_type = 2
-joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00284206, -0.0366906, 0.335121)
-body_offset = Transform3D(0.816013, 0.551145, -0.174309, 0.155472, -0.499697, -0.852281, -0.556767, 0.668311, -0.493409, 0.0809556, 0.267725, 0.18829)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00270828, -0.034838, 0.3184)
+body_offset = Transform3D(0.858944, 0.580159, -0.183473, 0.163652, -0.525964, -0.897002, -0.586059, 0.703427, -0.519382, 0.0809556, 0.267725, 0.18829)
 bone_name = "mixamorig_LeftUpLeg"
 joint_constraints/swing_span = 45.0
 joint_constraints/twist_span = 45.0
@@ -866,10 +867,10 @@ transform = Transform3D(1, 0, -2.98023e-08, -2.98023e-08, 0, 1, 0, -1, 0, 0, 0, 
 shape = SubResource("CapsuleShape3D_ralf7")
 
 [node name="Physical Bone mixamorig_LeftLeg" type="PhysicalBone3D" parent="CollisionShape3D/PlayerDefaultMeshAnimated/Armature/Skeleton3D" index="20"]
-transform = Transform3D(-0.65101, 0.743306, -0.154609, 0.713077, 0.66855, 0.211631, 0.260625, 0.0275195, -0.965343, 0.488064, 0.186353, -0.339152)
+transform = Transform3D(-0.68615, 0.782555, -0.157602, 0.750043, 0.703148, 0.225947, 0.273252, 0.0349839, -1.01594, 0.489302, 0.186952, -0.337214)
 joint_type = 3
-joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00499803, -0.33045, 0.236926)
-body_offset = Transform3D(0.923024, 0.358622, 0.140121, 0.152529, -0.00638445, -0.988572, -0.353525, 0.933579, -0.0605881, 0.0899216, 0.232871, 0.321089)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00475556, -0.313962, 0.225145)
+body_offset = Transform3D(0.971498, 0.377456, 0.147484, 0.160539, -0.00671964, -1.0403, -0.372091, 0.982606, -0.0637684, 0.0899216, 0.232871, 0.321089)
 bone_name = "mixamorig_LeftLeg"
 joint_constraints/angular_limit_enabled = true
 joint_constraints/angular_limit_upper = 0.0
@@ -883,10 +884,10 @@ transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, 0, 0, 0)
 shape = SubResource("CapsuleShape3D_otq51")
 
 [node name="Physical Bone mixamorig_LeftFoot" type="PhysicalBone3D" parent="CollisionShape3D/PlayerDefaultMeshAnimated/Armature/Skeleton3D" index="21"]
-transform = Transform3D(-0.450881, 0.471339, -0.758114, 0.892305, 0.210442, -0.399756, -0.0288816, -0.856744, -0.515403, 0.600609, 0.1732, -0.0610232)
+transform = Transform3D(-0.47443, 0.496115, -0.798009, 0.939161, 0.221409, -0.420699, -0.0304273, -0.901599, -0.542427, 0.600618, 0.173188, -0.061016)
 joint_type = 1
-joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0204528, -0.177231, 0.388045)
-body_offset = Transform3D(0.935964, 0.182588, -0.301575, -0.302713, -0.0225294, -0.952921, -0.180754, 0.983164, 0.0342862, 0.168528, 0.359592, 0.157245)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0194341, -0.168365, 0.368676)
+body_offset = Transform3D(0.98506, 0.192149, -0.317441, -0.318592, -0.0237082, -1.00298, -0.190235, 1.03467, 0.0359701, 0.168528, 0.359592, 0.157245)
 bone_name = "mixamorig_LeftFoot"
 joint_constraints/bias = 0.6
 joint_constraints/damping = 2.0
@@ -897,10 +898,10 @@ transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, 0, 0, 0)
 shape = SubResource("CapsuleShape3D_r4ksf")
 
 [node name="Physical Bone mixamorig_RightUpLeg" type="PhysicalBone3D" parent="CollisionShape3D/PlayerDefaultMeshAnimated/Armature/Skeleton3D" index="22"]
-transform = Transform3D(-0.311997, -0.797349, 0.516962, -0.926831, 0.135127, -0.350922, 0.209869, -0.58852, -0.781067, -0.267785, 0.0945483, -0.704368)
+transform = Transform3D(-0.327298, -0.840261, 0.54302, -0.974141, 0.137488, -0.374405, 0.227943, -0.618944, -0.820356, -0.26783, 0.0958074, -0.702618)
 joint_type = 2
-joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0529073, 0.0776324, 0.294346)
-body_offset = Transform3D(0.139704, 0.904773, -0.402766, -0.179984, -0.376829, -0.908903, -0.973905, 0.199409, 0.110161, 0.0557044, 0.287264, -0.0994328)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0502613, 0.0737802, 0.279694)
+body_offset = Transform3D(0.147027, 0.952209, -0.423924, -0.189419, -0.396583, -0.956491, -1.02496, 0.209883, 0.115955, 0.0557044, 0.287264, -0.0994328)
 bone_name = "mixamorig_RightUpLeg"
 joint_constraints/swing_span = 45.0
 joint_constraints/twist_span = 45.0
@@ -913,10 +914,10 @@ transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, 0, 0, 0)
 shape = SubResource("CapsuleShape3D_urj3q")
 
 [node name="Physical Bone mixamorig_RightLeg" type="PhysicalBone3D" parent="CollisionShape3D/PlayerDefaultMeshAnimated/Armature/Skeleton3D" index="23"]
-transform = Transform3D(-0.0892667, -0.996146, 0.00806272, -0.89871, 0.0840091, 0.430815, -0.42976, 0.0312563, -0.902704, -0.376288, 0.0465657, -0.394811)
+transform = Transform3D(-0.0930659, -1.04848, 0.00838297, -0.943648, 0.0874243, 0.458169, -0.457057, 0.0329929, -0.947652, -0.376106, 0.0478527, -0.395374)
 joint_type = 3
-joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.133767, -0.147583, 0.243879)
-body_offset = Transform3D(0.0858767, 0.975935, 0.201249, -0.190391, 0.214374, -0.958311, -0.97812, 0.0439672, 0.204155, 0.106438, 0.239882, -0.174141)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.127088, -0.14024, 0.231748)
+body_offset = Transform3D(0.090381, 1.02713, 0.211835, -0.200377, 0.225616, -1.00845, -1.02942, 0.0462631, 0.214894, 0.106438, 0.239882, -0.174141)
 bone_name = "mixamorig_RightLeg"
 joint_constraints/angular_limit_enabled = true
 joint_constraints/angular_limit_upper = 0.0
@@ -930,10 +931,10 @@ transform = Transform3D(1, 0, 0, -7.45058e-09, 1.39698e-08, 1, -1.49012e-08, -1,
 shape = SubResource("CapsuleShape3D_i7dx7")
 
 [node name="Physical Bone mixamorig_RightFoot" type="PhysicalBone3D" parent="CollisionShape3D/PlayerDefaultMeshAnimated/Armature/Skeleton3D" index="24"]
-transform = Transform3D(-0.00413236, -0.471976, 0.881655, -1.00013, -0.00136285, -0.00539363, 0.00371316, -0.881746, -0.472075, -0.486306, -0.0588352, -0.0701948)
+transform = Transform3D(-0.00421407, -0.496748, 0.928039, -1.05262, -0.00135143, -0.00550313, 0.00378846, -0.928048, -0.496735, -0.486271, -0.0589434, -0.0702305)
 joint_type = 1
-joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.213411, -0.0461669, 0.172122)
-body_offset = Transform3D(0.127278, 0.473106, -0.87182, -0.854465, -0.394323, -0.338717, -0.503959, 0.787984, 0.354117, 0.199064, -0.142256, -0.132123)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.202771, -0.0438412, 0.163533)
+body_offset = Transform3D(0.133958, 0.497941, -0.917682, -0.899308, -0.414992, -0.356453, -0.530407, 0.829378, 0.372602, 0.199064, -0.142256, -0.132123)
 bone_name = "mixamorig_RightFoot"
 joint_constraints/bias = 0.6
 joint_constraints/damping = 2.0
@@ -948,7 +949,7 @@ unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.05, 0)
 
 [node name="ChestBoneAttachment" type="BoneAttachment3D" parent="CollisionShape3D/HitBox"]
-transform = Transform3D(-0.604204, 0.227148, 0.697023, 0.0525409, 0.914342, -0.252425, -0.731216, -0.121994, -0.594089, 0.0112428, 0.485842, 0.0991475)
+transform = Transform3D(-0.616677, 0.249432, 0.678228, 0.0517778, 0.904574, -0.285596, -0.720783, -0.148425, -0.600784, 0.0110274, 0.483358, 0.0995385)
 bone_name = "mixamorig_Spine2"
 bone_idx = 3
 use_external_skeleton = true
@@ -980,7 +981,7 @@ shape = SubResource("BoxShape3D_1hbgf")
 location_type = 1
 
 [node name="HeadBoneAttachment" type="BoneAttachment3D" parent="CollisionShape3D/HitBox"]
-transform = Transform3D(-0.93462, 0.134335, 0.104591, 0.115137, 0.928648, -0.163879, -0.125414, -0.148549, -0.929895, 0.0905564, 0.715073, 0.0454773)
+transform = Transform3D(-0.935951, 0.127825, 0.100777, 0.1066, 0.925836, -0.184293, -0.123011, -0.170259, -0.926488, 0.0948438, 0.70932, 0.0388697)
 bone_name = "mixamorig_Head"
 bone_idx = 5
 use_external_skeleton = true
@@ -1002,7 +1003,7 @@ damage_multiplier = 4.0
 location_type = 1
 
 [node name="NeckBoneAttachment" type="BoneAttachment3D" parent="CollisionShape3D/HitBox"]
-transform = Transform3D(-0.671887, 0.226822, 0.632155, 0.0734916, 0.913643, -0.249711, -0.667583, -0.127705, -0.663721, 0.0462802, 0.626878, 0.08033)
+transform = Transform3D(-0.683722, 0.242713, 0.613282, 0.072149, 0.90556, -0.277949, -0.655606, -0.153466, -0.670171, 0.0495021, 0.622888, 0.0766441)
 bone_name = "mixamorig_Neck"
 bone_idx = 4
 use_external_skeleton = true
@@ -1021,7 +1022,7 @@ damage_multiplier = 2.0
 location_type = 1
 
 [node name="LeftUpperArmBoneAttachment" type="BoneAttachment3D" parent="CollisionShape3D/HitBox"]
-transform = Transform3D(-0.847939, -0.0970043, 0.41724, -0.0418807, -0.902115, -0.294845, 0.426316, -0.281563, 0.800923, -0.0454992, 0.547067, -0.0711331)
+transform = Transform3D(-0.840299, -0.0898656, 0.433961, -0.0493373, -0.905511, -0.283049, 0.440413, -0.272901, 0.79628, -0.047031, 0.538477, -0.0690424)
 bone_name = "mixamorig_LeftArm"
 bone_idx = 8
 use_external_skeleton = true
@@ -1040,7 +1041,7 @@ damage_multiplier = 0.5
 location_type = 1
 
 [node name="LeftLowerArmBoneAttachment" type="BoneAttachment3D" parent="CollisionShape3D/HitBox"]
-transform = Transform3D(0.475356, 0.822395, 0.0142662, -0.160738, 0.0767215, 0.933154, 0.80666, -0.469341, 0.177537, -0.0762614, 0.260986, -0.160423)
+transform = Transform3D(0.488279, 0.814879, 0.007486, -0.17087, 0.0938444, 0.929783, 0.796798, -0.479235, 0.1948, -0.0755295, 0.25132, -0.155586)
 bone_name = "mixamorig_LeftForeArm"
 bone_idx = 9
 use_external_skeleton = true
@@ -1061,7 +1062,7 @@ shape = SubResource("CapsuleShape3D_y1jax")
 damage_multiplier = 0.25
 
 [node name="RightUpperArmBoneAttachment" type="BoneAttachment3D" parent="CollisionShape3D/HitBox"]
-transform = Transform3D(-0.111042, 0.326361, -0.885245, -0.219216, -0.875885, -0.295413, -0.917668, 0.169744, 0.177688, 0.168659, 0.539286, 0.205402)
+transform = Transform3D(-0.0930068, 0.305303, -0.894785, -0.217718, -0.881856, -0.278261, -0.920027, 0.177822, 0.156304, 0.168643, 0.535994, 0.205947)
 bone_name = "mixamorig_RightArm"
 bone_idx = 20
 use_external_skeleton = true
@@ -1079,7 +1080,7 @@ shape = SubResource("CapsuleShape3D_3jrx1")
 damage_multiplier = 0.5
 
 [node name="RightLowerArmBoneAttachment" type="BoneAttachment3D" parent="CollisionShape3D/HitBox"]
-transform = Transform3D(0.00520721, 0.113281, -0.943208, 0.949972, 0.00432951, 0.00576469, 0.00498592, -0.943212, -0.113254, 0.272318, 0.261086, 0.259317)
+transform = Transform3D(0.0331694, 0.134527, -0.939842, 0.949383, 0.00362386, 0.034025, 0.00840303, -0.94042, -0.134313, 0.265614, 0.255898, 0.262427)
 bone_name = "mixamorig_RightForeArm"
 bone_idx = 21
 use_external_skeleton = true
@@ -1100,7 +1101,7 @@ damage_multiplier = 0.25
 transform = Transform3D(1, -3.53321e-08, 2.04891e-08, 2.26501e-07, 1, 3.72529e-09, -1.07102e-08, 0, 1, 0.00287616, 0.388184, -0.0130171)
 
 [node name="LeftUpperLegBoneAttachment" type="BoneAttachment3D" parent="CollisionShape3D/HitBox"]
-transform = Transform3D(0.781989, 0.112064, 0.52767, -0.178107, -0.823525, 0.438845, 0.509187, -0.460162, -0.656871, -0.0468286, 0.094606, 0.0198402)
+transform = Transform3D(0.783134, 0.116963, 0.524901, -0.176496, -0.819996, 0.446044, 0.507987, -0.465216, -0.654235, -0.0481617, 0.0925462, 0.0209836)
 bone_name = "mixamorig_LeftUpLeg"
 bone_idx = 31
 use_external_skeleton = true
@@ -1118,7 +1119,7 @@ shape = SubResource("CapsuleShape3D_drd3f")
 damage_multiplier = 0.75
 
 [node name="RightUpperLegBoneAttachment" type="BoneAttachment3D" parent="CollisionShape3D/HitBox"]
-transform = Transform3D(0.152342, 0.421411, 0.837679, 0.178405, -0.846186, 0.393245, 0.920579, 0.0942509, -0.214833, 0.0521221, 0.0895979, 0.15197)
+transform = Transform3D(0.150888, 0.427653, 0.834773, 0.17647, -0.84335, 0.400149, 0.921191, 0.0915103, -0.213389, 0.0508061, 0.0875409, 0.153101)
 bone_name = "mixamorig_RightUpLeg"
 bone_idx = 36
 use_external_skeleton = true
@@ -1136,7 +1137,7 @@ shape = SubResource("CapsuleShape3D_drd3f")
 damage_multiplier = 0.75
 
 [node name="LeftLowerLegBoneAttachment" type="BoneAttachment3D" parent="CollisionShape3D/HitBox"]
-transform = Transform3D(0.890318, -0.103506, 0.314833, -0.110458, -0.943554, 0.00215692, 0.312462, -0.0386274, -0.896312, 0.00697908, -0.300811, -0.201107)
+transform = Transform3D(0.890158, -0.105344, 0.314677, -0.110339, -0.943563, -0.00374677, 0.31296, -0.0330379, -0.896362, 0.00799819, -0.301176, -0.202391)
 bone_name = "mixamorig_LeftLeg"
 bone_idx = 32
 use_external_skeleton = true
@@ -1154,7 +1155,7 @@ shape = SubResource("CapsuleShape3D_4mh2i")
 damage_multiplier = 0.25
 
 [node name="RightLowerLegBoneAttachment" type="BoneAttachment3D" parent="CollisionShape3D/HitBox"]
-transform = Transform3D(0.114036, -0.211384, 0.919137, 0.178479, -0.904266, -0.230108, 0.926091, 0.200302, -0.0688323, 0.254452, -0.316676, 0.197223)
+transform = Transform3D(0.114424, -0.217058, 0.917765, 0.177317, -0.903057, -0.235686, 0.926266, 0.199688, -0.0682558, 0.256133, -0.317372, 0.197037)
 bone_name = "mixamorig_RightLeg"
 bone_idx = 37
 use_external_skeleton = true
@@ -1172,7 +1173,7 @@ shape = SubResource("CapsuleShape3D_4mh2i")
 damage_multiplier = 0.25
 
 [node name="RightFootBoneAttachment" type="BoneAttachment3D" parent="CollisionShape3D/HitBox"]
-transform = Transform3D(-0.0897006, 0.816445, 0.47736, 0.00494022, -0.479091, 0.820334, 0.945744, 0.0799399, 0.0409914, 0.154521, -0.744164, 0.291914)
+transform = Transform3D(-0.0898953, 0.815286, 0.479299, 0.00469287, -0.481068, 0.819177, 0.945727, 0.0798839, 0.0414949, 0.153519, -0.744288, 0.291439)
 bone_name = "mixamorig_RightFoot"
 bone_idx = 38
 use_external_skeleton = true
@@ -1190,7 +1191,7 @@ shape = SubResource("CapsuleShape3D_s0fo0")
 damage_multiplier = 0.25
 
 [node name="LeftFootBoneAttachment" type="BoneAttachment3D" parent="CollisionShape3D/HitBox"]
-transform = Transform3D(0.946717, 0.077284, 0.015924, 0.0266015, -0.493086, 0.811578, 0.0742882, -0.808328, -0.493546, -0.041962, -0.746955, -0.219372)
+transform = Transform3D(0.946701, 0.077502, 0.0158663, 0.0268786, -0.494318, 0.810819, 0.0744032, -0.807553, -0.494794, -0.041812, -0.747325, -0.218012)
 bone_name = "mixamorig_LeftFoot"
 bone_idx = 33
 use_external_skeleton = true
@@ -1278,8 +1279,15 @@ metadata/_edit_use_anchors_ = true
 [node name="PlayerInventories" parent="." node_paths=PackedStringArray("player") instance=ExtResource("15_tshwi")]
 player = NodePath("..")
 
+[node name="TabContainer" parent="PlayerInventories/MarginContainer/HBoxContainer/PlayerInventoryContainer" index="0"]
+current_tab = 0
+
+[node name="EQUIPMENT" parent="PlayerInventories/MarginContainer/HBoxContainer/PlayerInventoryContainer/TabContainer" index="1"]
+metadata/_tab_index = 0
+
 [node name="AMMO" parent="PlayerInventories/MarginContainer/HBoxContainer/PlayerInventoryContainer/TabContainer" index="2" node_paths=PackedStringArray("_actor_node")]
 _actor_node = NodePath("../../../../../..")
+metadata/_tab_index = 1
 
 [node name="FootstepComponent" parent="." node_paths=PackedStringArray("velocity_haver") instance=ExtResource("16_akrkr")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.82914, 0)
@@ -1328,26 +1336,31 @@ script = ExtResource("21_cw2n6")
 script = ExtResource("22_n3f1l")
 to = NodePath("../../Walking")
 event = &"Walk"
+delay_in_seconds = "0.0"
 
 [node name="ToCrouching" type="Node" parent="StateChart/Root/Legs/Standing"]
 script = ExtResource("22_n3f1l")
 to = NodePath("../../Crouching")
 event = &"Crouch"
+delay_in_seconds = "0.0"
 
 [node name="ToProne" type="Node" parent="StateChart/Root/Legs/Standing"]
 script = ExtResource("22_n3f1l")
 to = NodePath("../../Prone")
 event = &"Prone"
+delay_in_seconds = "0.0"
 
 [node name="ToBusy" type="Node" parent="StateChart/Root/Legs/Standing"]
 script = ExtResource("22_n3f1l")
 to = NodePath("../../LegsBusy")
 event = &"LegsBusy"
+delay_in_seconds = "0.0"
 
 [node name="ToJumping" type="Node" parent="StateChart/Root/Legs/Standing"]
 script = ExtResource("22_n3f1l")
 to = NodePath("../../Jumping")
 event = &"Jump"
+delay_in_seconds = "0.0"
 
 [node name="Walking" type="Node" parent="StateChart/Root/Legs"]
 script = ExtResource("21_cw2n6")
@@ -1356,36 +1369,43 @@ script = ExtResource("21_cw2n6")
 script = ExtResource("22_n3f1l")
 to = NodePath("../../Standing")
 event = &"Stop"
+delay_in_seconds = "0.0"
 
 [node name="ToSprinting" type="Node" parent="StateChart/Root/Legs/Walking"]
 script = ExtResource("22_n3f1l")
 to = NodePath("../../Sprinting")
 event = &"Sprint"
+delay_in_seconds = "0.0"
 
 [node name="ToCrouching" type="Node" parent="StateChart/Root/Legs/Walking"]
 script = ExtResource("22_n3f1l")
 to = NodePath("../../Crouching")
 event = &"Crouch"
+delay_in_seconds = "0.0"
 
 [node name="ToProne" type="Node" parent="StateChart/Root/Legs/Walking"]
 script = ExtResource("22_n3f1l")
 to = NodePath("../../Prone")
 event = &"Prone"
+delay_in_seconds = "0.0"
 
 [node name="ToBusy" type="Node" parent="StateChart/Root/Legs/Walking"]
 script = ExtResource("22_n3f1l")
 to = NodePath("../../LegsBusy")
 event = &"LegsBusy"
+delay_in_seconds = "0.0"
 
 [node name="ToJumping" type="Node" parent="StateChart/Root/Legs/Walking"]
 script = ExtResource("22_n3f1l")
 to = NodePath("../../Jumping")
 event = &"Jump"
+delay_in_seconds = "0.0"
 
 [node name="ToFalling" type="Node" parent="StateChart/Root/Legs/Walking"]
 script = ExtResource("22_n3f1l")
 to = NodePath("../../Falling")
 event = &"Fell"
+delay_in_seconds = "0.0"
 
 [node name="Sprinting" type="Node" parent="StateChart/Root/Legs"]
 script = ExtResource("21_cw2n6")
@@ -1394,36 +1414,43 @@ script = ExtResource("21_cw2n6")
 script = ExtResource("22_n3f1l")
 to = NodePath("../../Standing")
 event = &"Stop"
+delay_in_seconds = "0.0"
 
 [node name="ToWalking" type="Node" parent="StateChart/Root/Legs/Sprinting"]
 script = ExtResource("22_n3f1l")
 to = NodePath("../../Walking")
 event = &"Walk"
+delay_in_seconds = "0.0"
 
 [node name="ToCrouching" type="Node" parent="StateChart/Root/Legs/Sprinting"]
 script = ExtResource("22_n3f1l")
 to = NodePath("../../Crouching")
 event = &"Crouch"
+delay_in_seconds = "0.0"
 
 [node name="ToProne" type="Node" parent="StateChart/Root/Legs/Sprinting"]
 script = ExtResource("22_n3f1l")
 to = NodePath("../../Prone")
 event = &"Prone"
+delay_in_seconds = "0.0"
 
 [node name="ToBusy" type="Node" parent="StateChart/Root/Legs/Sprinting"]
 script = ExtResource("22_n3f1l")
 to = NodePath("../../LegsBusy")
 event = &"LegsBusy"
+delay_in_seconds = "0.0"
 
 [node name="ToJumping" type="Node" parent="StateChart/Root/Legs/Sprinting"]
 script = ExtResource("22_n3f1l")
 to = NodePath("../../Jumping")
 event = &"Jump"
+delay_in_seconds = "0.0"
 
 [node name="ToFalling" type="Node" parent="StateChart/Root/Legs/Sprinting"]
 script = ExtResource("22_n3f1l")
 to = NodePath("../../Falling")
 event = &"Fell"
+delay_in_seconds = "0.0"
 
 [node name="Crouching" type="Node" parent="StateChart/Root/Legs"]
 script = ExtResource("21_cw2n6")
@@ -1432,21 +1459,25 @@ script = ExtResource("21_cw2n6")
 script = ExtResource("22_n3f1l")
 to = NodePath("../../Standing")
 event = &"Stand"
+delay_in_seconds = "0.0"
 
 [node name="ToCrouchWalking" type="Node" parent="StateChart/Root/Legs/Crouching"]
 script = ExtResource("22_n3f1l")
 to = NodePath("../../CrouchWalking")
 event = &"CrouchWalk"
+delay_in_seconds = "0.0"
 
 [node name="ToProne" type="Node" parent="StateChart/Root/Legs/Crouching"]
 script = ExtResource("22_n3f1l")
 to = NodePath("../../Prone")
 event = &"Prone"
+delay_in_seconds = "0.0"
 
 [node name="ToBusy" type="Node" parent="StateChart/Root/Legs/Crouching"]
 script = ExtResource("22_n3f1l")
 to = NodePath("../../LegsBusy")
 event = &"LegsBusy"
+delay_in_seconds = "0.0"
 
 [node name="CrouchWalking" type="Node" parent="StateChart/Root/Legs"]
 script = ExtResource("21_cw2n6")
@@ -1455,26 +1486,31 @@ script = ExtResource("21_cw2n6")
 script = ExtResource("22_n3f1l")
 to = NodePath("../../Crouching")
 event = &"Stop"
+delay_in_seconds = "0.0"
 
 [node name="ToStanding" type="Node" parent="StateChart/Root/Legs/CrouchWalking"]
 script = ExtResource("22_n3f1l")
 to = NodePath("../../Standing")
 event = &"Stand"
+delay_in_seconds = "0.0"
 
 [node name="ToProne" type="Node" parent="StateChart/Root/Legs/CrouchWalking"]
 script = ExtResource("22_n3f1l")
 to = NodePath("../../Prone")
 event = &"Prone"
+delay_in_seconds = "0.0"
 
 [node name="ToBusy" type="Node" parent="StateChart/Root/Legs/CrouchWalking"]
 script = ExtResource("22_n3f1l")
 to = NodePath("../../LegsBusy")
 event = &"LegsBusy"
+delay_in_seconds = "0.0"
 
 [node name="ToFalling" type="Node" parent="StateChart/Root/Legs/CrouchWalking"]
 script = ExtResource("22_n3f1l")
 to = NodePath("../../Falling")
 event = &"Fell"
+delay_in_seconds = "0.0"
 
 [node name="Prone" type="Node" parent="StateChart/Root/Legs"]
 script = ExtResource("21_cw2n6")
@@ -1483,21 +1519,25 @@ script = ExtResource("21_cw2n6")
 script = ExtResource("22_n3f1l")
 to = NodePath("../../Standing")
 event = &"Stand"
+delay_in_seconds = "0.0"
 
 [node name="ToCrouching" type="Node" parent="StateChart/Root/Legs/Prone"]
 script = ExtResource("22_n3f1l")
 to = NodePath("../../Crouching")
 event = &"Crouch"
+delay_in_seconds = "0.0"
 
 [node name="ToCrawling" type="Node" parent="StateChart/Root/Legs/Prone"]
 script = ExtResource("22_n3f1l")
 to = NodePath("../../Crawling")
 event = &"Crawl"
+delay_in_seconds = "0.0"
 
 [node name="ToBusy" type="Node" parent="StateChart/Root/Legs/Prone"]
 script = ExtResource("22_n3f1l")
 to = NodePath("../../LegsBusy")
 event = &"LegsBusy"
+delay_in_seconds = "0.0"
 
 [node name="Crawling" type="Node" parent="StateChart/Root/Legs"]
 script = ExtResource("21_cw2n6")
@@ -1506,26 +1546,31 @@ script = ExtResource("21_cw2n6")
 script = ExtResource("22_n3f1l")
 to = NodePath("../../Prone")
 event = &"Stop"
+delay_in_seconds = "0.0"
 
 [node name="ToStanding" type="Node" parent="StateChart/Root/Legs/Crawling"]
 script = ExtResource("22_n3f1l")
 to = NodePath("../../Standing")
 event = &"Stand"
+delay_in_seconds = "0.0"
 
 [node name="ToCrouching" type="Node" parent="StateChart/Root/Legs/Crawling"]
 script = ExtResource("22_n3f1l")
 to = NodePath("../../Crouching")
 event = &"Crouch"
+delay_in_seconds = "0.0"
 
 [node name="ToBusy" type="Node" parent="StateChart/Root/Legs/Crawling"]
 script = ExtResource("22_n3f1l")
 to = NodePath("../../LegsBusy")
 event = &"LegsBusy"
+delay_in_seconds = "0.0"
 
 [node name="ToFalling" type="Node" parent="StateChart/Root/Legs/Crawling"]
 script = ExtResource("22_n3f1l")
 to = NodePath("../../Falling")
 event = &"Fell"
+delay_in_seconds = "0.0"
 
 [node name="LegsBusy" type="Node" parent="StateChart/Root/Legs"]
 script = ExtResource("21_cw2n6")
@@ -1534,6 +1579,7 @@ script = ExtResource("21_cw2n6")
 script = ExtResource("22_n3f1l")
 to = NodePath("../../Resume")
 event = &"LegsDone"
+delay_in_seconds = "0.0"
 
 [node name="Resume" type="Node" parent="StateChart/Root/Legs"]
 script = ExtResource("16_udw3d")
@@ -1545,7 +1591,7 @@ script = ExtResource("21_cw2n6")
 [node name="ToFalling" type="Node" parent="StateChart/Root/Legs/Jumping"]
 script = ExtResource("22_n3f1l")
 to = NodePath("../../Falling")
-delay_seconds = 0.1
+delay_in_seconds = "0.1"
 
 [node name="Falling" type="Node" parent="StateChart/Root/Legs"]
 script = ExtResource("21_cw2n6")
@@ -1554,11 +1600,13 @@ script = ExtResource("21_cw2n6")
 script = ExtResource("22_n3f1l")
 to = NodePath("../../Standing")
 event = &"Landed"
+delay_in_seconds = "0.0"
 
 [node name="ToStuck" type="Node" parent="StateChart/Root/Legs/Falling"]
 script = ExtResource("22_n3f1l")
 to = NodePath("../../Stuck")
 event = &"Stuck"
+delay_in_seconds = "0.0"
 
 [node name="Stuck" type="Node" parent="StateChart/Root/Legs"]
 script = ExtResource("21_cw2n6")
@@ -1567,6 +1615,7 @@ script = ExtResource("21_cw2n6")
 script = ExtResource("22_n3f1l")
 to = NodePath("../../Falling")
 event = &"Fell"
+delay_in_seconds = "0.0"
 
 [node name="Arms" type="Node" parent="StateChart/Root"]
 script = ExtResource("20_8eyuc")
@@ -1580,16 +1629,19 @@ script = ExtResource("22_n3f1l")
 to = NodePath("../../ADS")
 event = &"ADS"
 guard = SubResource("Resource_jadr3")
+delay_in_seconds = "0.0"
 
 [node name="ToUsing" type="Node" parent="StateChart/Root/Arms/Ready"]
 script = ExtResource("22_n3f1l")
 to = NodePath("../../Using")
 event = &"Use"
+delay_in_seconds = "0.0"
 
 [node name="ToBusy" type="Node" parent="StateChart/Root/Arms/Ready"]
 script = ExtResource("22_n3f1l")
 to = NodePath("../../ArmsBusy")
 event = &"ArmsBusy"
+delay_in_seconds = "0.0"
 
 [node name="ADS" type="Node" parent="StateChart/Root/Arms"]
 script = ExtResource("21_cw2n6")
@@ -1598,11 +1650,13 @@ script = ExtResource("21_cw2n6")
 script = ExtResource("22_n3f1l")
 to = NodePath("../../Ready")
 event = &"StopADS"
+delay_in_seconds = "0.0"
 
 [node name="ToBusy" type="Node" parent="StateChart/Root/Arms/ADS"]
 script = ExtResource("22_n3f1l")
 to = NodePath("../../ArmsBusy")
 event = &"ArmsBusy"
+delay_in_seconds = "0.0"
 
 [node name="Using" type="Node" parent="StateChart/Root/Arms"]
 script = ExtResource("21_cw2n6")
@@ -1611,11 +1665,13 @@ script = ExtResource("21_cw2n6")
 script = ExtResource("22_n3f1l")
 to = NodePath("../../Ready")
 event = &"LegsDone"
+delay_in_seconds = "0.0"
 
 [node name="ToBusy" type="Node" parent="StateChart/Root/Arms/Using"]
 script = ExtResource("22_n3f1l")
 to = NodePath("../../ArmsBusy")
 event = &"ArmsBusy"
+delay_in_seconds = "0.0"
 
 [node name="ArmsBusy" type="Node" parent="StateChart/Root/Arms"]
 script = ExtResource("21_cw2n6")
@@ -1624,6 +1680,7 @@ script = ExtResource("21_cw2n6")
 script = ExtResource("22_n3f1l")
 to = NodePath("../../Resume")
 event = &"ArmsDone"
+delay_in_seconds = "0.0"
 
 [node name="Resume" type="Node" parent="StateChart/Root/Arms"]
 script = ExtResource("16_udw3d")
@@ -1641,12 +1698,14 @@ script = ExtResource("22_n3f1l")
 to = NodePath("../../Right")
 event = &"LeanRight"
 guard = SubResource("Resource_u7xi3")
+delay_in_seconds = "0.0"
 
 [node name="ToLeft" type="Node" parent="StateChart/Root/Waist/Center"]
 script = ExtResource("22_n3f1l")
 to = NodePath("../../Left")
 event = &"LeanLeft"
 guard = SubResource("Resource_u7xi3")
+delay_in_seconds = "0.0"
 
 [node name="Left" type="Node" parent="StateChart/Root/Waist"]
 script = ExtResource("21_cw2n6")
@@ -1655,6 +1714,7 @@ script = ExtResource("21_cw2n6")
 script = ExtResource("22_n3f1l")
 to = NodePath("../../Center")
 event = &"StopLean"
+delay_in_seconds = "0.0"
 
 [node name="Right" type="Node" parent="StateChart/Root/Waist"]
 script = ExtResource("21_cw2n6")
@@ -1663,6 +1723,7 @@ script = ExtResource("21_cw2n6")
 script = ExtResource("22_n3f1l")
 to = NodePath("../../Center")
 event = &"StopLean"
+delay_in_seconds = "0.0"
 
 [node name="Animation Control" type="Node" parent="StateChart/Root"]
 script = ExtResource("20_8eyuc")
@@ -1676,21 +1737,25 @@ animation_tree = NodePath("../../../../AnimationTree2")
 script = ExtResource("22_n3f1l")
 to = NodePath("../../Walking")
 event = &"Walk"
+delay_in_seconds = "0.0"
 
 [node name="ToCrouching" type="Node" parent="StateChart/Root/Animation Control/Standing"]
 script = ExtResource("22_n3f1l")
 to = NodePath("../../Crouching")
 event = &"Crouch"
+delay_in_seconds = "0.0"
 
 [node name="ToProne" type="Node" parent="StateChart/Root/Animation Control/Standing"]
 script = ExtResource("22_n3f1l")
 to = NodePath("../../Prone")
 event = &"Prone"
+delay_in_seconds = "0.0"
 
 [node name="ToJumping" type="Node" parent="StateChart/Root/Animation Control/Standing"]
 script = ExtResource("22_n3f1l")
 to = NodePath("../../Jumping")
 event = &"Jump"
+delay_in_seconds = "0.0"
 
 [node name="Walking" type="Node" parent="StateChart/Root/Animation Control"]
 script = ExtResource("20_wlai8")
@@ -1700,26 +1765,31 @@ animation_tree = NodePath("../../../../AnimationTree2")
 script = ExtResource("22_n3f1l")
 to = NodePath("../../Standing")
 event = &"Stop"
+delay_in_seconds = "0.0"
 
 [node name="ToSprinting" type="Node" parent="StateChart/Root/Animation Control/Walking"]
 script = ExtResource("22_n3f1l")
 to = NodePath("../../Sprinting")
 event = &"Sprint"
+delay_in_seconds = "0.0"
 
 [node name="ToCrouching" type="Node" parent="StateChart/Root/Animation Control/Walking"]
 script = ExtResource("22_n3f1l")
 to = NodePath("../../Crouching")
 event = &"Crouch"
+delay_in_seconds = "0.0"
 
 [node name="ToProne" type="Node" parent="StateChart/Root/Animation Control/Walking"]
 script = ExtResource("22_n3f1l")
 to = NodePath("../../Prone")
 event = &"Prone"
+delay_in_seconds = "0.0"
 
 [node name="ToJumping" type="Node" parent="StateChart/Root/Animation Control/Walking"]
 script = ExtResource("22_n3f1l")
 to = NodePath("../../Jumping")
 event = &"Jump"
+delay_in_seconds = "0.0"
 
 [node name="Sprinting" type="Node" parent="StateChart/Root/Animation Control"]
 script = ExtResource("20_wlai8")
@@ -1729,26 +1799,31 @@ animation_tree = NodePath("../../../../AnimationTree2")
 script = ExtResource("22_n3f1l")
 to = NodePath("../../Standing")
 event = &"Stop"
+delay_in_seconds = "0.0"
 
 [node name="ToWalking" type="Node" parent="StateChart/Root/Animation Control/Sprinting"]
 script = ExtResource("22_n3f1l")
 to = NodePath("../../Walking")
 event = &"Walk"
+delay_in_seconds = "0.0"
 
 [node name="ToCrouching" type="Node" parent="StateChart/Root/Animation Control/Sprinting"]
 script = ExtResource("22_n3f1l")
 to = NodePath("../../Crouching")
 event = &"Crouch"
+delay_in_seconds = "0.0"
 
 [node name="ToProne" type="Node" parent="StateChart/Root/Animation Control/Sprinting"]
 script = ExtResource("22_n3f1l")
 to = NodePath("../../Prone")
 event = &"Prone"
+delay_in_seconds = "0.0"
 
 [node name="ToJumping" type="Node" parent="StateChart/Root/Animation Control/Sprinting"]
 script = ExtResource("22_n3f1l")
 to = NodePath("../../Jumping")
 event = &"Jump"
+delay_in_seconds = "0.0"
 
 [node name="Crouching" type="Node" parent="StateChart/Root/Animation Control"]
 script = ExtResource("20_wlai8")
@@ -1758,16 +1833,19 @@ animation_tree = NodePath("../../../../AnimationTree2")
 script = ExtResource("22_n3f1l")
 to = NodePath("../../Standing")
 event = &"Stand"
+delay_in_seconds = "0.0"
 
 [node name="ToCrouchWalking" type="Node" parent="StateChart/Root/Animation Control/Crouching"]
 script = ExtResource("22_n3f1l")
 to = NodePath("../../CrouchWalking")
 event = &"CrouchWalk"
+delay_in_seconds = "0.0"
 
 [node name="ToProne" type="Node" parent="StateChart/Root/Animation Control/Crouching"]
 script = ExtResource("22_n3f1l")
 to = NodePath("../../Prone")
 event = &"Prone"
+delay_in_seconds = "0.0"
 
 [node name="CrouchWalking" type="Node" parent="StateChart/Root/Animation Control"]
 script = ExtResource("20_wlai8")
@@ -1777,16 +1855,19 @@ animation_tree = NodePath("../../../../AnimationTree2")
 script = ExtResource("22_n3f1l")
 to = NodePath("../../Crouching")
 event = &"Stop"
+delay_in_seconds = "0.0"
 
 [node name="ToStanding" type="Node" parent="StateChart/Root/Animation Control/CrouchWalking"]
 script = ExtResource("22_n3f1l")
 to = NodePath("../../Standing")
 event = &"Stand"
+delay_in_seconds = "0.0"
 
 [node name="ToProne" type="Node" parent="StateChart/Root/Animation Control/CrouchWalking"]
 script = ExtResource("22_n3f1l")
 to = NodePath("../../Prone")
 event = &"Prone"
+delay_in_seconds = "0.0"
 
 [node name="Prone" type="Node" parent="StateChart/Root/Animation Control"]
 script = ExtResource("20_wlai8")
@@ -1796,16 +1877,19 @@ animation_tree = NodePath("../../../../AnimationTree2")
 script = ExtResource("22_n3f1l")
 to = NodePath("../../Standing")
 event = &"Stand"
+delay_in_seconds = "0.0"
 
 [node name="ToCrouching" type="Node" parent="StateChart/Root/Animation Control/Prone"]
 script = ExtResource("22_n3f1l")
 to = NodePath("../../Crouching")
 event = &"Crouch"
+delay_in_seconds = "0.0"
 
 [node name="ToCrawling" type="Node" parent="StateChart/Root/Animation Control/Prone"]
 script = ExtResource("22_n3f1l")
 to = NodePath("../../Crawling")
 event = &"Crawl"
+delay_in_seconds = "0.0"
 
 [node name="Crawling" type="Node" parent="StateChart/Root/Animation Control"]
 script = ExtResource("20_wlai8")
@@ -1815,16 +1899,19 @@ animation_tree = NodePath("../../../../AnimationTree2")
 script = ExtResource("22_n3f1l")
 to = NodePath("../../Prone")
 event = &"Stop"
+delay_in_seconds = "0.0"
 
 [node name="ToStanding" type="Node" parent="StateChart/Root/Animation Control/Crawling"]
 script = ExtResource("22_n3f1l")
 to = NodePath("../../Standing")
 event = &"Stand"
+delay_in_seconds = "0.0"
 
 [node name="ToCrouching" type="Node" parent="StateChart/Root/Animation Control/Crawling"]
 script = ExtResource("22_n3f1l")
 to = NodePath("../../Crouching")
 event = &"Crouch"
+delay_in_seconds = "0.0"
 
 [node name="Resume" type="Node" parent="StateChart/Root/Animation Control"]
 script = ExtResource("16_udw3d")
@@ -1838,6 +1925,7 @@ animation_tree = NodePath("../../../../AnimationTree2")
 script = ExtResource("22_n3f1l")
 to = NodePath("../../Resume")
 event = &"LegsDone"
+delay_in_seconds = "0.0"
 
 [node name="DeathCameraPivot" type="Node3D" parent="."]
 

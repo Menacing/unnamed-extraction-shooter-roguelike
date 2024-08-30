@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://gfj0vsvmo4ik"]
+[gd_scene load_steps=15 format=3 uid="uid://gfj0vsvmo4ik"]
 
 [ext_resource type="Script" path="res://game_objects/bullet/iterative_raycast_bullet.gd" id="1_ite5r"]
 [ext_resource type="Shader" path="res://game_objects/bullet/tracer_particle.gdshader" id="2_a36ed"]
 [ext_resource type="Shader" path="res://game_objects/bullet/tracer.gdshader" id="3_5crjh"]
 [ext_resource type="Script" path="res://components/attack_component/attack_component.gd" id="4_guqwi"]
+[ext_resource type="Texture2D" uid="uid://dx228u747xfcn" path="res://game_objects/effects/assets/Rotated/trace_01_rotated.png" id="5_5mawb"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_sr6c2"]
 shader = ExtResource("2_a36ed")
@@ -27,6 +28,23 @@ shader_parameter/tex = SubResource("GradientTexture2D_10bv2")
 
 [sub_resource type="QuadMesh" id="QuadMesh_a8vkh"]
 material = SubResource("ShaderMaterial_bhr6y")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t6tcf"]
+transparency = 1
+emission_enabled = true
+emission = Color(1, 1, 1, 1)
+emission_texture = ExtResource("5_5mawb")
+
+[sub_resource type="Curve" id="Curve_o4jaa"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.685912, 0.80131), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Gradient" id="Gradient_ul88y"]
+colors = PackedColorArray(0.477375, 0.932014, 7.70092e-07, 1, 1, 1, 1, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rixx7"]
+emission_enabled = true
+emission = Color(0, 1, 0, 1)
 
 [node name="IterativeRaycastBullet" type="RayCast3D" groups=["attack"]]
 target_position = Vector3(0, 0, -1)
@@ -54,5 +72,16 @@ unique_name_in_owner = true
 script = ExtResource("4_guqwi")
 damage = 15.0
 armor_penetration_rating = 9
+
+[node name="TrailEmitter" type="TrailEmitter" parent="."]
+material = SubResource("StandardMaterial3D_t6tcf")
+curve = SubResource("Curve_o4jaa")
+gradient = SubResource("Gradient_ul88y")
+geometry_nodepath = NodePath("..")
+update_interval = 0.05
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="."]
+radius = 0.1
+material = SubResource("StandardMaterial3D_rixx7")
 
 [connection signal="timeout" from="DespawnTimer" to="." method="_on_despawn_timer_timeout"]

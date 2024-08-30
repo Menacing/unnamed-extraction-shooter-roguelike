@@ -41,16 +41,15 @@ func canFire() -> bool:
 
 func fireGun():
 	if canFire():
-		var muzzle = get_node(muzzle_np)
+		var muzzle:Node3D = get_node(muzzle_np)
 		
-		var shoot_origin = muzzle.global_transform.origin
 		
 		var bulletInst:IterativeRaycastBullet = _bullet_scene.instantiate()
+		bulletInst.global_transform = muzzle.global_transform
 		bulletInst.moa = _gun_stats.moa
 		assign_bullet_stats(bulletInst, current_ammo_subtype)
 		bulletInst.set_as_top_level(true)		
-		get_parent().add_child(bulletInst)
-		bulletInst.global_transform.origin = shoot_origin
+		LevelManager.add_node_to_level(bulletInst)
 		bulletInst.firer = firer
 		current_magazine_size -= 1
 		muzzle_flash_animation_player.play("fire")

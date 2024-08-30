@@ -60,7 +60,6 @@ tracks/0/use_blend = true
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_4g2ko"]
 random_pitch = 1.05
 streams_count = 1
-stream_0/weight = 1.0
 
 [sub_resource type="Animation" id="Animation_jelv1"]
 resource_name = "patrol_started"
@@ -88,7 +87,6 @@ tracks/0/use_blend = true
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_83d5t"]
 random_pitch = 1.05
 streams_count = 1
-stream_0/weight = 1.0
 
 [sub_resource type="Animation" id="Animation_ppwor"]
 resource_name = "target_lost"
@@ -116,7 +114,6 @@ tracks/0/use_blend = true
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_iq1vw"]
 random_pitch = 1.05
 streams_count = 1
-stream_0/weight = 1.0
 
 [sub_resource type="Animation" id="Animation_qeyji"]
 resource_name = "target_spotted"
@@ -173,9 +170,9 @@ transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0.2
 animate_physical_bones = false
 
 [node name="Physical Bone Bone" type="PhysicalBone3D" parent="combat-roomba/Armature/Skeleton3D" index="1"]
-transform = Transform3D(1, -2.70006e-13, 0, 0, 0, -1, 1.77636e-13, 1, 0, 0, 0.222436, 0)
-joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.222436)
-body_offset = Transform3D(1, -2.70006e-13, 0, 0, 0, -1, 1.77636e-13, 1, 0, 0, 0.222436, 0)
+transform = Transform3D(2.8455, -4.54747e-13, 0, 0, 0, -2.8455, 4.54747e-13, 2.8455, 0, 0, 0.222436, 0)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.0781711)
+body_offset = Transform3D(2.8455, -4.83169e-13, 0, 0, 0, -2.8455, 4.83169e-13, 2.8455, 0, 0, 0.222436, 0)
 bone_name = "Bone"
 
 [node name="Head" type="Node3D" parent="combat-roomba/Armature/Skeleton3D/Physical Bone Bone"]

@@ -31,10 +31,16 @@ func _init(state_chart:StateChart):
 
 func _register_settings_updates():
 	# print("Registering settings updates for ", _state_chart.get_path())
+	if not _state_chart.is_inside_tree():
+		return
+	
 	EngineDebugger.register_message_capture(DebuggerMessage.SETTINGS_UPDATED_MESSAGE + str(_state_chart.get_path()), _on_settings_updated)
 
 func _unregister_settings_updates():
 	# print("Unregistering settings updates for ", _state_chart.get_path())
+	if not _state_chart.is_inside_tree():
+		return
+
 	EngineDebugger.unregister_message_capture(DebuggerMessage.SETTINGS_UPDATED_MESSAGE + str(_state_chart.get_path()))
 
 func _on_settings_updated(key:String, data:Array) -> bool:
@@ -46,17 +52,15 @@ func _on_settings_updated(key:String, data:Array) -> bool:
 
 ## Connects all signals from the currently processing state chart
 func _prepare():
-	_state_chart.tree_entered.connect(_on_tree_entered)
-	_state_chart.tree_exited.connect(_on_tree_exited)
 	_state_chart.event_received.connect(_on_event_received)
 
 	# find all state nodes below the state chart and connect their signals
 	for child in _state_chart.get_children():
-		if child is State:
+		if child is StateChartState:
 			_prepare_state(child)
 
 
-func _prepare_state(state:State):
+func _prepare_state(state:StateChartState):
 	state.state_entered.connect(_on_state_entered.bind(state))
 	state.state_exited.connect(_on_state_exited.bind(state))
 	state.transition_pending.connect(_on_transition_pending.bind(state))
@@ -66,23 +70,24 @@ func _prepare_state(state:State):
 
 	# recurse into children
 	for child in state.get_children():
-		if child is State:
+		if child is StateChartState:
 			_prepare_state(child)
 		if child is Transition:
 			child.taken.connect(_on_transition_taken.bind(state, child))
 
 
-func _on_tree_entered():
-	DebuggerMessage.state_chart_added(_state_chart)
-	_register_settings_updates()
+func _notification(what):
+	match(what):
+		Node.NOTIFICATION_ENTER_TREE:
+			DebuggerMessage.state_chart_added(_state_chart)
+			_register_settings_updates()
+		Node.NOTIFICATION_UNPARENTED:
+			DebuggerMessage.state_chart_removed(_state_chart)
+			_unregister_settings_updates()
+				
 
 
-func _on_tree_exited():
-	DebuggerMessage.state_chart_removed(_state_chart)
-	_unregister_settings_updates()
-
-
-func _on_transition_taken(source:State, transition:Transition):
+func _on_transition_taken(source:StateChartState, transition:Transition):
 	if _ignore_transitions:
 		return
 	DebuggerMessage.transition_taken(_state_chart, source, transition)
@@ -93,13 +98,13 @@ func _on_event_received(event:StringName):
 		return
 	DebuggerMessage.event_received(_state_chart, event)
 	
-func _on_state_entered(state:State):
+func _on_state_entered(state:StateChartState):
 	DebuggerMessage.state_entered(_state_chart, state)		
 
-func _on_state_exited(state:State):
+func _on_state_exited(state:StateChartState):
 	DebuggerMessage.state_exited(_state_chart, state)
 
-func _on_transition_pending(num1, remaining, state:State):
+func _on_transition_pending(num1, remaining, state:StateChartState):
 	DebuggerMessage.transition_pending(_state_chart, state, state._pending_transition, remaining)
 		
 
