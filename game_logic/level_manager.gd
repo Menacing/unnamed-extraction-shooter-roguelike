@@ -6,6 +6,8 @@ var resource_group:ResourceGroup = load("res://levels/biomes/map_information_res
 
 var current_level:Node
 
+var level_navigation_maps:Dictionary = {}
+
 func _ready():
 	# declare a type safe array
 

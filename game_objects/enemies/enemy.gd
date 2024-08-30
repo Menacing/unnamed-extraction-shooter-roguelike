@@ -50,7 +50,12 @@ func _ready():
 		
 	if nav_agent: 
 		nav_agent.velocity_computed.connect(_on_velocity_computed)
-		EventBus.navigation_mesh_list_item_baked.connect(_on_navigation_mesh_list_item_baked)
+		
+		#check for existing nav map, otherwise wait for a new one
+		if nav_mesh_list_item and LevelManager.level_navigation_maps.has(nav_mesh_list_item.name):
+			nav_agent.set_navigation_map(LevelManager.level_navigation_maps[nav_mesh_list_item.name].map_rid)
+		else:
+			EventBus.navigation_mesh_list_item_baked.connect(_on_navigation_mesh_list_item_baked)
 	EventBus.game_saving.connect(_on_game_saving)
 	EventBus.before_game_loading.connect(_on_game_before_loading)
 

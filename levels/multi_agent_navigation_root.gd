@@ -5,9 +5,11 @@ class_name MultiAgentNavigationRoot
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	call_deferred("_setup")
+	EventBus.level_loaded.connect(_setup)
 	
 func _setup():
+	LevelManager.level_navigation_maps = {}
+	
 	# Create the source geometry resource that will hold the parsed geometry data.
 	var source_geometry_data: NavigationMeshSourceGeometryData3D = NavigationMeshSourceGeometryData3D.new()
 	
@@ -35,6 +37,7 @@ func _setup():
 		# Set navigation mesh for each region.
 		NavigationServer3D.region_set_navigation_mesh(navigation_region_rid, mesh_item.mesh)
 		EventBus.navigation_mesh_list_item_baked.emit(mesh_item)
+		LevelManager.level_navigation_maps[mesh_item.name] = mesh_item
 
 func get_navigation_mesh_list_item(mesh_name:String) -> NavigationMeshListItem:
 	for item in navigation_mesh_list_items:
