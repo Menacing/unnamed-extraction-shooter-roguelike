@@ -22,7 +22,7 @@ func hit(attack_component:AttackComponent) -> AttackResult:
 			damage_to_apply = damage_to_apply * armor_hit_result.percent_penetrated
 		
 		#if penetrates armor, do damage and return penetration ratio
-		if  attack_component.armor_penetration_rating >= armor_rating:
+		if  attack_component.armor_penetration_rating >= armor_rating and damage_to_apply > 0.0:
 			var damage = damage_to_apply * damage_multiplier
 			var attack_result = AttackResult.new(percent_penetrated)
 			attack_result._map_from_attack_component(attack_component)

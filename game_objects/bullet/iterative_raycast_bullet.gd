@@ -20,7 +20,7 @@ var continue_process:bool = true
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	current_speed = initial_speed
-	attack_component.damage = initial_damage
+	current_damage = initial_damage
 	Helpers.random_angle_deviation_moa(self, moa,moa)
 
 func _physics_process(delta):
@@ -62,6 +62,8 @@ func do_raycast_movement(delta:float):
 				if damage_component:
 					attack_component.attack_normal = self.get_collision_normal()
 					attack_component.attack_position = self.get_collision_point()
+					attack_component.damage = current_damage
+					attack_component.armor_penetration_rating = pen_rating
 					var attack_result:AttackResult = damage_component.hit(attack_component)
 					
 					var new_speed = current_speed * attack_result.percent_penetrated

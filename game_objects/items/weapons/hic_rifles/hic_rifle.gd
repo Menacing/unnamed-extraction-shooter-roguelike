@@ -38,6 +38,7 @@ func fireGun():
 		
 		var bulletInst:IterativeRaycastBullet = _bullet_scene.instantiate()
 		bulletInst.moa = _gun_stats.moa
+		assign_bullet_stats(bulletInst, current_ammo_subtype)
 		bulletInst.set_as_top_level(true)
 		get_parent().add_child(bulletInst)
 		bulletInst.global_transform.origin = shoot_origin
