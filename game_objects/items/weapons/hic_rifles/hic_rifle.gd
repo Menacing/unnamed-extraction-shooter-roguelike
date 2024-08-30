@@ -38,14 +38,9 @@ func fireGun():
 		var bulletInst:IterativeRaycastBullet = _bullet_scene.instantiate()
 		assign_bullet_stats(bulletInst, current_ammo_subtype)
 		bulletInst.firer = firer
-		bulletInst.initial_speed = 100
-		bulletInst.current_speed = 100
 		bulletInst.set_as_top_level(true)
 		if !LevelManager.add_node_to_level(bulletInst):
 			get_parent().add_child(bulletInst)
-		var muzzle_global_position = muzzle.global_position
-		var muzzle_global_basis = muzzle.global_basis
-		var muzzle_global_rotation = muzzle.global_rotation_degrees
 		
 		bulletInst.global_transform.origin = muzzle.global_transform.origin
 		bulletInst.global_basis = muzzle.global_basis

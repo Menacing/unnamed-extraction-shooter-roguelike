@@ -1,4 +1,4 @@
-[gd_scene load_steps=110 format=4 uid="uid://ctahsvj88g1om"]
+[gd_scene load_steps=106 format=4 uid="uid://ctahsvj88g1om"]
 
 [ext_resource type="Script" path="res://levels/demo_level.gd" id="1_8448e"]
 [ext_resource type="PackedScene" uid="uid://d08aatgxmymbf" path="res://game_objects/player/player.tscn" id="1_eisjc"]
@@ -34,8 +34,6 @@
 [ext_resource type="PackedScene" uid="uid://b7b1goghrkw51" path="res://game_objects/items/key/fuel_core/fuel_core.tscn" id="29_6ciiy"]
 [ext_resource type="PackedScene" uid="uid://dsu2lajkgpbva" path="res://game_objects/items/materials/polymer_pile/polymer_pile.tscn" id="30_yv3x5"]
 [ext_resource type="PackedScene" uid="uid://c1ldryy4boogo" path="res://game_objects/items/materials/polymer_spool/polymer_spool.tscn" id="31_tiks5"]
-[ext_resource type="PackedScene" uid="uid://dr48wela8mtxd" path="res://game_objects/items/weapons/hic_rifles/pm_52/pm_52.tscn" id="32_aypor"]
-[ext_resource type="Resource" uid="uid://3nqgvhg4lre8" path="res://components/ammo_component/ammo_types/heavy_intermediate_cartridge/heavy_intermediate_cartridge.tres" id="33_058oc"]
 [ext_resource type="PackedScene" uid="uid://dyymfnrwyu0re" path="res://game_objects/items/ammo/lpc/lpc_box_ap.tscn" id="35_btk64"]
 [ext_resource type="PackedScene" uid="uid://c58b7dwqutp75" path="res://game_objects/items/ammo/lpc/lpc_box_fmj.tscn" id="36_xl7vn"]
 [ext_resource type="PackedScene" uid="uid://btg5dmqcu3ni3" path="res://game_objects/items/ammo/lpc/lpc_box_hp.tscn" id="37_1gb6g"]
@@ -339,40 +337,6 @@ ads_fov = 50.0
 moa = 4.0
 turn_speed = 25.0
 ammo_type = ExtResource("10_q80ko")
-reload_time_Sec = 2.5
-reload_thresholds = Array[float]([1.0])
-
-[sub_resource type="Resource" id="Resource_pdgdb"]
-resource_local_to_scene = true
-script = ExtResource("11_hh747")
-weapon_category_name = "FIC Rifle"
-magazine_size = 30
-rpm = 800
-base_recoil = Vector2(0, 0.017)
-recoil_variability = Vector2(0.02, 0.01)
-fire_modes = ["semi", "auto"]
-ads_accel = 10.0
-ads_fov = 50.0
-moa = 4.0
-turn_speed = 25.0
-ammo_type = ExtResource("10_q80ko")
-reload_time_Sec = 2.5
-reload_thresholds = Array[float]([1.0])
-
-[sub_resource type="Resource" id="Resource_7xdau"]
-resource_local_to_scene = true
-script = ExtResource("11_hh747")
-weapon_category_name = "HIC Rifle"
-magazine_size = 30
-rpm = 600
-base_recoil = Vector2(0, 0.025)
-recoil_variability = Vector2(0.025, 0.013)
-fire_modes = ["semi", "auto"]
-ads_accel = 10.0
-ads_fov = 50.0
-moa = 5.0
-turn_speed = 25.0
-ammo_type = ExtResource("33_058oc")
 reload_time_Sec = 2.5
 reload_thresholds = Array[float]([1.0])
 
@@ -1349,14 +1313,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.41267, 0.0788298, -5.35211)
 
 [node name="PolymerSpool" parent="." instance=ExtResource("31_tiks5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.36543, 0.243834, -4.88059)
-
-[node name="S5" parent="." instance=ExtResource("9_7oj7m")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.1374, 0.237284, -5.26319)
-_gun_stats = SubResource("Resource_pdgdb")
-
-[node name="PM52" parent="." instance=ExtResource("32_aypor")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.7313, 0.0788302, -5.3492)
-_gun_stats = SubResource("Resource_7xdau")
 
 [node name="LpcBoxHP" parent="." instance=ExtResource("35_btk64")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.18096, 0.137877, -5.32793)

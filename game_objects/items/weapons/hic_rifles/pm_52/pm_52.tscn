@@ -11,7 +11,7 @@
 [ext_resource type="AudioStream" uid="uid://c71dtcsweexj4" path="res://game_objects/items/weapons/hic_rifles/hic_charging_handle.ogg" id="8_njdhy"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_a6wgc"]
-size = Vector3(0.88, 0.22, 0.056)
+size = Vector3(0.058623, 0.208564, 0.716576)
 
 [sub_resource type="Animation" id="Animation_048m7"]
 resource_name = "fire"
@@ -186,8 +186,7 @@ model_node = NodePath("gun")
 foley_player = NodePath("FoleyAudioStreamPlayer3D")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0.115114, 0.0719389)
-visible = false
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00245605, 0.0708904, 0.0553259)
 shape = SubResource("BoxShape3D_a6wgc")
 
 [node name="ReloadTimer" type="Timer" parent="."]
@@ -218,7 +217,37 @@ visible = false
 visible = false
 
 [node name="Muzzle" type="Node3D" parent="gun"]
-transform = Transform3D(1, 0, 2.84217e-14, 0, 1, 0, -2.84217e-14, 0, 1, -0.629664, 0.00352678, 2.75234e-08)
+transform = Transform3D(1, 0, 2.84217e-14, 0, 1, 0, -2.84217e-14, 0, 1, 0, -0.0630141, -0.507848)
+visible = false
+
+[node name="FlashSpriteV3D" type="Sprite3D" parent="gun/Muzzle"]
+transform = Transform3D(0.2, 0, -5.68434e-15, 0, 0.2, 0, 5.68434e-15, 0, 0.2, 1.33971e-14, 0.000585541, -0.471367)
+cast_shadow = 0
+axis = 1
+alpha_cut = 2
+texture_filter = 0
+texture = ExtResource("6_ok4lf")
+
+[node name="FlashSpriteH3D" type="Sprite3D" parent="gun/Muzzle"]
+transform = Transform3D(-8.74228e-09, 0.2, -5.68434e-15, -0.2, -8.74228e-09, 0, -2.48471e-22, 5.68434e-15, 0.2, 1.33971e-14, 0.000585541, -0.471367)
+cast_shadow = 0
+axis = 1
+alpha_cut = 2
+texture_filter = 0
+texture = ExtResource("6_ok4lf")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="gun/Muzzle"]
+transform = Transform3D(1.66667, 0, -4.73695e-14, 0, 1.66667, 0, 4.73695e-14, 0, 1.66667, 4.84052e-15, 0.0809975, -0.170311)
+light_color = Color(0.917647, 0.784314, 0.611765, 1)
+shadow_enabled = true
+distance_fade_enabled = true
+
+[node name="MuzzleFlashAnimationPlayer" type="AnimationPlayer" parent="gun/Muzzle"]
+unique_name_in_owner = true
+root_node = NodePath("")
+libraries = {
+"": SubResource("AnimationLibrary_clf16")
+}
 
 [node name="scope_anchor" type="Node3D" parent="gun"]
 transform = Transform3D(-6.0333e-06, 0, 1.66667, 0, 1.66667, 0, -1.66667, 0, -6.0333e-06, 0.280392, 0.079555, -1.01501e-06)
@@ -255,37 +284,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.179712, 0.137292, -0.076894
 
 [node name="ADS_Head" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.2, 0.1, 0)
-
-[node name="MuzzleFlash" type="Node3D" parent="."]
-visible = false
-
-[node name="FlashSpriteV3D" type="Sprite3D" parent="MuzzleFlash"]
-transform = Transform3D(0.12, 0, 0, 0, 0.12, 0, 0, 0, 0.12, 0, 0.175, -0.602602)
-cast_shadow = 0
-axis = 1
-alpha_cut = 2
-texture_filter = 0
-texture = ExtResource("6_ok4lf")
-
-[node name="FlashSpriteH3D" type="Sprite3D" parent="MuzzleFlash"]
-transform = Transform3D(-5.24537e-09, 0.12, 0, -0.12, -5.24537e-09, 0, 0, 0, 0.12, 0, 0.175, -0.602602)
-cast_shadow = 0
-axis = 1
-alpha_cut = 2
-texture_filter = 0
-texture = ExtResource("6_ok4lf")
-
-[node name="OmniLight3D" type="OmniLight3D" parent="MuzzleFlash"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.178028, -0.406895)
-light_color = Color(0.917647, 0.784314, 0.611765, 1)
-shadow_enabled = true
-distance_fade_enabled = true
-
-[node name="MuzzleFlashAnimationPlayer" type="AnimationPlayer" parent="MuzzleFlash"]
-unique_name_in_owner = true
-libraries = {
-"": SubResource("AnimationLibrary_clf16")
-}
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
