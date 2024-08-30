@@ -1,10 +1,11 @@
-[gd_scene load_steps=14 format=3 uid="uid://kb0x3n21n6t4"]
+[gd_scene load_steps=15 format=3 uid="uid://kb0x3n21n6t4"]
 
 [ext_resource type="Script" path="res://test/ballistics/armor_testing.gd" id="1_m8hqe"]
 [ext_resource type="PackedScene" uid="uid://dr48wela8mtxd" path="res://game_objects/items/weapons/hic_rifles/pm_52/pm_52.tscn" id="2_15fr4"]
 [ext_resource type="Script" path="res://levels/entities/geo_ballistic_solid.gd" id="3_iwkb0"]
 [ext_resource type="Resource" uid="uid://3nqgvhg4lre8" path="res://components/ammo_component/ammo_types/heavy_intermediate_cartridge/heavy_intermediate_cartridge.tres" id="3_j3142"]
 [ext_resource type="Script" path="res://game_objects/items/weapons/gun_stats.gd" id="4_qxu4k"]
+[ext_resource type="Resource" uid="uid://ddqopa64822e6" path="res://components/ammo_component/ammo_types/heavy_intermediate_cartridge/ammo_subtypes/hollow_point.tres" id="5_pkij8"]
 [ext_resource type="PackedScene" uid="uid://d08aatgxmymbf" path="res://game_objects/player/player.tscn" id="6_qsaew"]
 [ext_resource type="PackedScene" uid="uid://c2mgc1vc3603e" path="res://game_objects/items/armor/light/light_armor_1.tscn" id="7_ka0kv"]
 [ext_resource type="PackedScene" uid="uid://fetf2vb0h86g" path="res://game_objects/items/armor/medium/1/medium_armor_1.tscn" id="8_si3ps"]
@@ -60,6 +61,7 @@ size = 5.0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.171724, 0.000634313, -2.05242)
 gravity_scale = 0.0
 _gun_stats = SubResource("Resource_n1luh")
+current_ammo_subtype = ExtResource("5_pkij8")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.72154, 0.873617)
@@ -85,161 +87,175 @@ transform = Transform3D(-0.826649, 0, -0.562718, 0, 1, 0, 0.562718, 0, -0.826649
 current = false
 
 [node name="Skeleton3D" parent="Player/CollisionShape3D/PlayerDefaultMeshAnimated/Armature" index="0"]
-bones/0/position = Vector3(-0.0974281, -0.00676539, -1.04811)
-bones/0/rotation = Quaternion(0.713764, -0.236399, 0.187979, -0.631919)
-bones/1/rotation = Quaternion(0.0760507, 0.0051781, 0.0058455, 0.997073)
-bones/2/rotation = Quaternion(0.0462867, 0.00988776, 0.00526658, 0.998865)
-bones/3/rotation = Quaternion(0.0785881, 0.00914585, -0.000753369, 0.996865)
-bones/4/rotation = Quaternion(0.00202817, 0.0500633, -0.00228796, 0.998741)
-bones/5/rotation = Quaternion(-0.0119468, 0.314187, -0.0488971, 0.948026)
-bones/7/rotation = Quaternion(0.738825, 0.328275, -0.407386, 0.424747)
-bones/8/rotation = Quaternion(0.368967, -0.239026, 0.0888572, 0.893775)
-bones/9/rotation = Quaternion(0.52466, -0.543262, 0.483681, 0.442324)
-bones/10/rotation = Quaternion(-0.00763196, -0.178153, 0.0595089, 0.982172)
-bones/19/rotation = Quaternion(0.703714, -0.379652, 0.430531, 0.418681)
-bones/20/rotation = Quaternion(0.246414, -0.164485, -0.23893, 0.924736)
-bones/21/rotation = Quaternion(0.0281787, 0.220658, -0.754649, 0.617269)
-bones/22/rotation = Quaternion(0.0804642, 0.130794, -0.173788, 0.972737)
-bones/31/rotation = Quaternion(0.141764, 0.156076, 0.969215, -0.127147)
-bones/32/rotation = Quaternion(-0.256849, -0.123332, -0.00593629, 0.958531)
-bones/33/rotation = Quaternion(0.478883, -0.147634, 0.00108189, 0.865375)
-bones/36/rotation = Quaternion(-0.196904, 0.127566, 0.957458, 0.168019)
-bones/37/rotation = Quaternion(-0.338926, 0.0203017, -0.0019223, 0.940592)
-bones/38/rotation = Quaternion(0.587259, 0.134688, 0.0425094, 0.796981)
+bones/0/position = Vector3(-0.0981716, -0.00771285, -1.04692)
+bones/0/rotation = Quaternion(0.715303, -0.23687, 0.187416, -0.630166)
+bones/1/rotation = Quaternion(0.0794175, 0.00592227, 0.00537231, 0.996809)
+bones/2/rotation = Quaternion(0.0483308, 0.0107998, 0.00662291, 0.998751)
+bones/3/rotation = Quaternion(0.0831697, 0.0105778, -0.0022685, 0.996477)
+bones/4/rotation = Quaternion(0.000495765, 0.050175, -0.00283051, 0.998736)
+bones/5/rotation = Quaternion(-0.0138387, 0.310352, -0.0533657, 0.949022)
+bones/7/rotation = Quaternion(0.742252, 0.325178, -0.407215, 0.421304)
+bones/8/rotation = Quaternion(0.361795, -0.245893, 0.0958126, 0.894126)
+bones/9/rotation = Quaternion(0.524205, -0.539474, 0.487371, 0.443449)
+bones/10/rotation = Quaternion(-0.0132138, -0.1792, 0.0575556, 0.982039)
+bones/11/rotation = Quaternion(0.0436634, -0.0294635, 0.153369, 0.986764)
+bones/12/rotation = Quaternion(0.0488257, -0.000220328, -0.119185, 0.991671)
+bones/13/rotation = Quaternion(-0.218619, -0.0420837, 0.181335, 0.95789)
+bones/15/rotation = Quaternion(0.299671, 0.0850329, 0.0599188, 0.948355)
+bones/16/rotation = Quaternion(0.152937, 0.00601103, 0.0169483, 0.988072)
+bones/17/rotation = Quaternion(0.148469, -0.00227734, 0.01785, 0.988753)
+bones/19/rotation = Quaternion(0.702243, -0.385502, 0.433965, 0.412209)
+bones/20/rotation = Quaternion(0.242486, -0.155855, -0.246957, 0.925161)
+bones/21/rotation = Quaternion(0.0288617, 0.220758, -0.755256, 0.616459)
+bones/22/rotation = Quaternion(0.0831299, 0.128198, -0.171724, 0.973224)
+bones/23/rotation = Quaternion(-0.0236578, -0.101738, -0.124064, 0.986761)
+bones/24/rotation = Quaternion(0.00401807, 0.0111689, 0.192377, 0.981249)
+bones/25/rotation = Quaternion(-0.144459, -0.00142761, 0.222599, 0.964147)
+bones/27/rotation = Quaternion(0.00424552, 0.000577868, 0.0828087, 0.996556)
+bones/28/rotation = Quaternion(0.516135, 0.00177225, 0.0150531, 0.856373)
+bones/29/rotation = Quaternion(-0.312428, 0.00991786, 0.0434396, 0.948896)
+bones/31/rotation = Quaternion(0.141705, 0.156156, 0.969119, -0.12784)
+bones/32/rotation = Quaternion(-0.260512, -0.122671, -0.00559364, 0.95763)
+bones/33/rotation = Quaternion(0.479957, -0.147759, 0.000790545, 0.864759)
+bones/34/rotation = Quaternion(0.266463, -0.0591006, 0.0171634, 0.961878)
+bones/36/rotation = Quaternion(-0.196706, 0.12746, 0.957388, 0.168727)
+bones/37/rotation = Quaternion(-0.342227, 0.0197503, -0.0020878, 0.939408)
+bones/38/rotation = Quaternion(0.588288, 0.134633, 0.0425219, 0.79623)
+bones/39/rotation = Quaternion(0.227263, 0.0718024, 0.0059336, 0.971165)
 
 [node name="Physical Bone mixamorig_Hips" parent="Player/CollisionShape3D/PlayerDefaultMeshAnimated/Armature/Skeleton3D" index="6"]
-transform = Transform3D(-0.929143, 0.354987, 0.102872, -0.329771, -0.921853, 0.203646, 0.16715, 0.155278, 0.973641, -0.0948913, -0.0232294, -1.02515)
-joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00455296, -0.0180904, -0.0175474)
-body_offset = Transform3D(-0.574976, 0.815676, -0.0626417, -0.0361772, -0.101806, -0.99416, -0.817367, -0.569428, 0.0880613, 0.0110389, -0.0194514, -0.0124774)
+transform = Transform3D(-0.931834, 0.351989, 0.0877246, -0.332561, -0.925407, 0.181814, 0.145201, 0.14023, 0.979428, -0.0915747, -0.0190122, -1.03174)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00455255, -0.0180907, -0.017548)
+body_offset = Transform3D(-0.574976, 0.815676, -0.0626417, -0.0361772, -0.101806, -0.99416, -0.817367, -0.569428, 0.0880612, 0.0110393, -0.019452, -0.0124772)
 
 [node name="Physical Bone mixamorig_Spine1" parent="Player/CollisionShape3D/PlayerDefaultMeshAnimated/Armature/Skeleton3D" index="7"]
-transform = Transform3D(0.963327, -0.257899, 0.0739565, 0.267804, 0.940455, -0.209294, -0.015595, 0.221378, 0.975205, -0.124772, -0.0312545, -1.26702)
-joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0205094, 0.0157701, -0.00415122)
-body_offset = Transform3D(0.603823, -0.786606, 0.129074, 0.0820928, -0.0996704, -0.991776, 0.792856, 0.609338, 0.00437181, 0.000556588, -0.00422895, -0.0258522)
+transform = Transform3D(0.959922, -0.267408, 0.0838054, 0.27866, 0.942236, -0.185778, -0.0293018, 0.201643, 0.979163, -0.120165, -0.0248668, -1.27297)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0205089, 0.0157704, -0.00415202)
+body_offset = Transform3D(0.603823, -0.786606, 0.129074, 0.0820928, -0.0996704, -0.991776, 0.792856, 0.609338, 0.00437186, 0.000557244, -0.00422966, -0.025852)
 
 [node name="Physical Bone mixamorig_Spine2" parent="Player/CollisionShape3D/PlayerDefaultMeshAnimated/Armature/Skeleton3D" index="8"]
-transform = Transform3D(0.971332, -0.237202, -0.0168501, 0.197932, 0.845704, -0.495606, 0.131812, 0.478027, 0.868542, -0.137522, 0.0132277, -1.40843)
-joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0312156, -0.00937818, 0.00590358)
-body_offset = Transform3D(0.623758, -0.740501, 0.250201, 0.0715417, -0.264656, -0.961829, 0.778361, 0.617742, -0.112073, -0.0278926, 0.000963032, -0.0178421)
+transform = Transform3D(0.969945, -0.241866, 0.0272517, 0.227398, 0.860553, -0.455794, 0.086798, 0.448262, 0.889822, -0.134685, 0.0156541, -1.41442)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0312152, -0.00937782, 0.00590315)
+body_offset = Transform3D(0.623758, -0.740501, 0.250201, 0.0715417, -0.264656, -0.961828, 0.778361, 0.617742, -0.112073, -0.027892, 0.000962734, -0.0178421)
 
 [node name="Physical Bone mixamorig_Neck" parent="Player/CollisionShape3D/PlayerDefaultMeshAnimated/Armature/Skeleton3D" index="9"]
-transform = Transform3D(-0.995617, 0.0736389, -0.0578523, -0.00549379, -0.662731, -0.748839, -0.0934431, -0.745324, 0.660355, -0.133, 0.0957711, -1.51184)
-joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.046731, 0.0630992, 0.00599156)
-body_offset = Transform3D(-0.696707, 0.57241, 0.432404, -0.06566, 0.549485, -0.833109, -0.714355, -0.608733, -0.345156, -0.0712672, -0.0327488, 0.00709605)
+transform = Transform3D(-0.997635, 0.0677095, -0.0126397, -0.0373468, -0.686098, -0.726549, -0.0578311, -0.72445, 0.687125, -0.136259, 0.0928793, -1.52108)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0467302, 0.0630994, 0.00599082)
+body_offset = Transform3D(-0.696707, 0.57241, 0.432404, -0.06566, 0.549485, -0.833108, -0.714355, -0.608733, -0.345156, -0.0712664, -0.0327495, 0.00709653)
 
 [node name="Physical Bone mixamorig_Head" parent="Player/CollisionShape3D/PlayerDefaultMeshAnimated/Armature/Skeleton3D" index="10"]
-transform = Transform3D(-0.331361, -0.762703, -0.555562, 0.924, -0.142806, -0.354941, 0.191422, -0.630937, 0.752061, -0.0224338, 0.217092, -1.62117)
-joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.106293, 0.0460842, 0.0386319)
-body_offset = Transform3D(-0.980332, 0.0903468, 0.175992, -0.115511, 0.461322, -0.879857, -0.160705, -0.882729, -0.44171, -0.115165, 0.000452816, 0.0406621)
+transform = Transform3D(-0.325759, -0.774639, -0.542198, 0.924313, -0.139954, -0.355263, 0.199363, -0.616877, 0.761602, -0.0297084, 0.212119, -1.63368)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.106293, 0.046085, 0.0386314)
+body_offset = Transform3D(-0.980332, 0.0903467, 0.175992, -0.115511, 0.461322, -0.879856, -0.160705, -0.882729, -0.44171, -0.115165, 0.000452071, 0.0406625)
 
 [node name="Physical Bone mixamorig_LeftShoulder" parent="Player/CollisionShape3D/PlayerDefaultMeshAnimated/Armature/Skeleton3D" index="11"]
-transform = Transform3D(0.936748, -0.0939554, -0.337349, -0.252969, -0.847696, -0.466346, -0.242212, 0.522249, -0.817876, -0.0886362, 0.0607672, -1.40566)
-joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0950447, -0.0214299, 0.110134)
-body_offset = Transform3D(0.184121, 0.551905, 0.813379, 0.711383, 0.496253, -0.497803, -0.678374, 0.670294, -0.301348, -0.0952528, -0.00215375, 0.112029)
+transform = Transform3D(0.920592, -0.0447073, -0.388118, -0.251266, -0.828479, -0.500546, -0.299222, 0.558375, -0.773965, -0.0818241, 0.0641999, -1.41345)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0950444, -0.0214297, 0.110135)
+body_offset = Transform3D(0.184121, 0.551905, 0.813379, 0.711383, 0.496253, -0.497803, -0.678374, 0.670294, -0.301348, -0.0952537, -0.00215304, 0.112029)
 
 [node name="Physical Bone mixamorig_LeftArm" parent="Player/CollisionShape3D/PlayerDefaultMeshAnimated/Armature/Skeleton3D" index="12"]
-transform = Transform3D(0.0937542, -0.809477, 0.579842, -0.437794, -0.556473, -0.706287, 0.894248, -0.187572, -0.406516, -0.0750637, 0.24762, -1.51066)
-joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.186869, 0.0342694, 0.274845)
-body_offset = Transform3D(0.398388, 0.844049, 0.359103, 0.917287, -0.3655, -0.158463, -0.00254209, 0.392543, -0.919917, -0.202069, -0.115334, 0.239858)
+transform = Transform3D(0.0990455, -0.795457, 0.598083, -0.451307, -0.571453, -0.68551, 0.88693, -0.201957, -0.415554, -0.077637, 0.248201, -1.52161)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.186868, 0.03427, 0.274845)
+body_offset = Transform3D(0.398388, 0.844049, 0.359103, 0.917287, -0.3655, -0.158463, -0.00254229, 0.392543, -0.919917, -0.202069, -0.115333, 0.239858)
 
 [node name="Physical Bone mixamorig_LeftForeArm" parent="Player/CollisionShape3D/PlayerDefaultMeshAnimated/Armature/Skeleton3D" index="13"]
-transform = Transform3D(-0.99918, -0.0249327, -0.0343498, -0.036354, 0.0844763, 0.995853, -0.0219029, 0.996292, -0.085293, 0.138073, -0.714627, -1.50675)
-joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0587907, 0.399237, 0.606558)
-body_offset = Transform3D(0.830908, 0.24179, 0.501303, -0.508439, -0.0366866, 0.860424, 0.226371, -0.969818, 0.092428, -0.351751, -0.537142, 0.344433)
+transform = Transform3D(-0.997399, -0.0553864, -0.0478445, -0.0509204, 0.0553243, 0.997259, -0.0525577, 0.997108, -0.0579843, 0.161429, -0.704684, -1.54075)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0587897, 0.399237, 0.606558)
+body_offset = Transform3D(0.830908, 0.24179, 0.501303, -0.508439, -0.0366866, 0.860424, 0.226371, -0.969818, 0.092428, -0.351752, -0.537141, 0.344432)
 
 [node name="Physical Bone mixamorig_LeftHand" parent="Player/CollisionShape3D/PlayerDefaultMeshAnimated/Armature/Skeleton3D" index="14"]
-transform = Transform3D(0.0479617, -0.861305, -0.506012, -0.315413, -0.493713, 0.810541, -0.947943, 0.120743, -0.29527, 0.125855, -0.918738, -1.2867)
-joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.429315, -0.676307, 0.764786)
-body_offset = Transform3D(-0.0340025, 0.402426, 0.914936, -0.173909, -0.903861, 0.391109, 0.984369, -0.145829, 0.100676, -0.442164, -0.985063, 0.246984)
+transform = Transform3D(0.0536308, -0.861192, -0.505636, -0.322229, -0.494179, 0.807571, -0.945343, 0.119635, -0.303926, 0.12778, -0.916971, -1.28404)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.429314, -0.676306, 0.764786)
+body_offset = Transform3D(-0.0340026, 0.402426, 0.914936, -0.173909, -0.903861, 0.391109, 0.984369, -0.145829, 0.100676, -0.442165, -0.985062, 0.246983)
 
 [node name="Physical Bone mixamorig_RightShoulder" parent="Player/CollisionShape3D/PlayerDefaultMeshAnimated/Armature/Skeleton3D" index="15"]
-transform = Transform3D(-0.607022, 0.249062, 0.754726, 0.407079, -0.718205, 0.564484, 0.682605, 0.649876, 0.334478, -0.302409, -0.0653989, -1.49368)
-joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0603668, -0.0849155, 0.200169)
-body_offset = Transform3D(0.0139066, 0.175007, 0.984523, 0.950962, -0.306746, 0.0410937, 0.30922, 0.935665, -0.170751, -0.18137, 0.0231333, 0.132298)
+transform = Transform3D(-0.542514, 0.280033, 0.79207, 0.466014, -0.684196, 0.561134, 0.699034, 0.673533, 0.240593, -0.306484, -0.0611334, -1.4809)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.060367, -0.0849163, 0.200168)
+body_offset = Transform3D(0.0139065, 0.175007, 0.984523, 0.950962, -0.306746, 0.0410937, 0.30922, 0.935665, -0.170751, -0.18137, 0.0231334, 0.132299)
 
 [node name="Physical Bone mixamorig_RightArm" parent="Player/CollisionShape3D/PlayerDefaultMeshAnimated/Armature/Skeleton3D" index="16"]
-transform = Transform3D(0.949497, -0.0564303, 0.308661, -0.270708, -0.64485, 0.714882, 0.158706, -0.762239, -0.627585, -0.423933, -0.0356784, -1.36458)
-joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.120894, -0.0727179, 0.269479)
-body_offset = Transform3D(0.977104, -0.184495, 0.105981, -0.124693, -0.90016, -0.417355, 0.172436, 0.394587, -0.902649, -0.160102, 0.0620853, 0.251092)
+transform = Transform3D(0.943419, -0.0606485, 0.326011, -0.287036, -0.641767, 0.711279, 0.166091, -0.764513, -0.622889, -0.42393, -0.0290775, -1.37529)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.120894, -0.0727176, 0.26948)
+body_offset = Transform3D(0.977104, -0.184495, 0.105981, -0.124693, -0.90016, -0.417355, 0.172436, 0.394587, -0.902649, -0.160102, 0.0620858, 0.251092)
 
 [node name="Physical Bone mixamorig_RightForeArm" parent="Player/CollisionShape3D/PlayerDefaultMeshAnimated/Armature/Skeleton3D" index="17"]
-transform = Transform3D(-0.196927, -0.972066, -0.128015, 0.973867, -0.178703, -0.140915, 0.114102, -0.152397, 0.981772, -0.416059, -0.130865, -1.14957)
-joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.364106, -0.197775, -0.0879724)
-body_offset = Transform3D(-0.0784416, 0.155714, -0.984744, -0.0286791, -0.987707, -0.153908, -0.996615, 0.016162, 0.0819366, -0.0272728, -0.198442, 0.373278)
+transform = Transform3D(-0.184828, -0.971838, -0.146461, 0.979179, -0.169135, -0.113191, 0.0852314, -0.164308, 0.982781, -0.418646, -0.124793, -1.14998)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.364106, -0.197775, -0.087973)
+body_offset = Transform3D(-0.0784416, 0.155714, -0.984744, -0.0286793, -0.987707, -0.153908, -0.996615, 0.0161621, 0.0819366, -0.0272734, -0.198442, 0.373278)
 
 [node name="Physical Bone mixamorig_RightHand" parent="Player/CollisionShape3D/PlayerDefaultMeshAnimated/Armature/Skeleton3D" index="18"]
-transform = Transform3D(-0.868165, -0.490583, 0.0756991, 0.176478, -0.447604, -0.876809, 0.463969, -0.747759, 0.475069, -0.486014, -0.000531435, -1.13503)
-joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.373043, -0.355191, -0.258516)
-body_offset = Transform3D(-0.0686462, 0.746944, -0.661407, -0.970678, -0.20325, -0.128783, -0.230638, 0.63319, 0.739033, 0.0687156, -0.46759, 0.329917)
+transform = Transform3D(-0.863687, -0.499045, 0.0714833, 0.18142, -0.439987, -0.87965, 0.470374, -0.746679, 0.470445, -0.484405, 0.00306249, -1.13862)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.373043, -0.35519, -0.258516)
+body_offset = Transform3D(-0.0686462, 0.746944, -0.661407, -0.970678, -0.20325, -0.128783, -0.230638, 0.63319, 0.739033, 0.0687148, -0.467589, 0.329917)
 
 [node name="Physical Bone mixamorig_LeftUpLeg" parent="Player/CollisionShape3D/PlayerDefaultMeshAnimated/Armature/Skeleton3D" index="19"]
-transform = Transform3D(-0.751453, -0.104506, -0.651523, 0.364985, 0.756715, -0.54243, 0.549671, -0.6454, -0.530566, 0.19112, 0.15849, -0.835073)
-joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00388467, -0.0351844, 0.335095)
-body_offset = Transform3D(0.816848, 0.550234, -0.173267, 0.159414, -0.503966, -0.849022, -0.55442, 0.665839, -0.499354, 0.0805937, 0.26739, 0.188604)
+transform = Transform3D(-0.762693, -0.0923439, -0.640199, 0.354724, 0.7679, -0.533443, 0.540836, -0.633942, -0.55299, 0.190486, 0.159256, -0.833252)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00388452, -0.0351839, 0.335095)
+body_offset = Transform3D(0.816848, 0.550234, -0.173267, 0.159414, -0.503966, -0.849022, -0.55442, 0.665839, -0.499354, 0.0805933, 0.267391, 0.188604)
 
 [node name="Physical Bone mixamorig_LeftLeg" parent="Player/CollisionShape3D/PlayerDefaultMeshAnimated/Armature/Skeleton3D" index="20"]
-transform = Transform3D(-0.653936, 0.743503, -0.140698, 0.711922, 0.667528, 0.218627, 0.256425, 0.0427907, -0.965912, 0.490055, 0.187893, -0.333526)
-joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00464356, -0.332262, 0.236991)
-body_offset = Transform3D(0.922904, 0.358724, 0.140648, 0.151657, -0.00257632, -0.988724, -0.354214, 0.933559, -0.0567753, 0.0901434, 0.234167, 0.321996)
+transform = Transform3D(-0.650822, 0.743286, -0.155505, 0.713061, 0.668604, 0.211509, 0.261137, 0.0267639, -0.965226, 0.487864, 0.186212, -0.339363)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0046435, -0.332261, 0.236991)
+body_offset = Transform3D(0.922904, 0.358724, 0.140648, 0.151657, -0.00257635, -0.988724, -0.354214, 0.933559, -0.0567753, 0.0901433, 0.234167, 0.321996)
 
 [node name="Physical Bone mixamorig_LeftFoot" parent="Player/CollisionShape3D/PlayerDefaultMeshAnimated/Armature/Skeleton3D" index="21"]
-transform = Transform3D(-0.45083, 0.472748, -0.757277, 0.892306, 0.210297, -0.399844, -0.0297709, -0.856008, -0.516592, 0.599057, 0.173403, -0.0600613)
-joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0205144, -0.177212, 0.388048)
-body_offset = Transform3D(0.93599, 0.182517, -0.301554, -0.30269, -0.0225051, -0.952943, -0.180681, 0.983182, 0.0342885, 0.168563, 0.35959, 0.15722)
+transform = Transform3D(-0.450903, 0.471264, -0.758158, 0.892302, 0.210522, -0.399734, -0.0287699, -0.85677, -0.515383, 0.600635, 0.173076, -0.0609788)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0205139, -0.177212, 0.388049)
+body_offset = Transform3D(0.93599, 0.182517, -0.301554, -0.30269, -0.022505, -0.952943, -0.180681, 0.983182, 0.0342886, 0.168563, 0.359591, 0.15722)
 
 [node name="Physical Bone mixamorig_RightUpLeg" parent="Player/CollisionShape3D/PlayerDefaultMeshAnimated/Armature/Skeleton3D" index="22"]
-transform = Transform3D(-0.309447, -0.801255, 0.512452, -0.922804, 0.122352, -0.365915, 0.230393, -0.586013, -0.777158, -0.26831, 0.0973928, -0.699062)
-joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0541677, 0.0780922, 0.295587)
-body_offset = Transform3D(0.13806, 0.905159, -0.402486, -0.174283, -0.377882, -0.909584, -0.975177, 0.195656, 0.105539, 0.0557621, 0.28893, -0.0992982)
+transform = Transform3D(-0.312225, -0.796763, 0.517743, -0.927391, 0.136735, -0.34882, 0.20704, -0.58895, -0.7815, -0.267606, 0.0943804, -0.704869)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0541672, 0.0780929, 0.295587)
+body_offset = Transform3D(0.13806, 0.905159, -0.402486, -0.174283, -0.377882, -0.909584, -0.975177, 0.195656, 0.105539, 0.0557613, 0.28893, -0.0992978)
 
 [node name="Physical Bone mixamorig_RightLeg" parent="Player/CollisionShape3D/PlayerDefaultMeshAnimated/Armature/Skeleton3D" index="23"]
-transform = Transform3D(-0.0875449, -0.996311, 0.00682656, -0.892545, 0.0814512, 0.443951, -0.442786, 0.0328153, -0.896332, -0.375601, 0.0495205, -0.396184)
-joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.132083, -0.147766, 0.243493)
-body_offset = Transform3D(0.0861037, 0.975868, 0.201493, -0.193818, 0.214813, -0.957529, -0.977436, 0.0433771, 0.20758, 0.106511, 0.239293, -0.173237)
+transform = Transform3D(-0.0893469, -0.996139, 0.00839572, -0.899184, 0.0842563, 0.429802, -0.42877, 0.0308957, -0.903188, -0.376319, 0.0462291, -0.394622)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.132083, -0.147766, 0.243492)
+body_offset = Transform3D(0.0861035, 0.975868, 0.201493, -0.193818, 0.214813, -0.957528, -0.977436, 0.0433771, 0.20758, 0.106511, 0.239293, -0.173237)
 
 [node name="Physical Bone mixamorig_RightFoot" parent="Player/CollisionShape3D/PlayerDefaultMeshAnimated/Armature/Skeleton3D" index="24"]
-transform = Transform3D(-0.00371945, -0.472479, 0.881387, -1.00014, 0.000536308, -0.00391045, 0.00134061, -0.881481, -0.472591, -0.485633, -0.0600486, -0.0704591)
-joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.213345, -0.0461401, 0.17211)
-body_offset = Transform3D(0.127212, 0.473138, -0.871812, -0.854435, -0.394401, -0.338708, -0.504029, 0.78793, 0.354147, 0.199018, -0.142192, -0.132129)
+transform = Transform3D(-0.00416285, -0.471964, 0.881661, -1.00013, -0.00137556, -0.00543615, 0.00374406, -0.881756, -0.472064, -0.486401, -0.0588534, -0.0701009)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.213345, -0.0461397, 0.172109)
+body_offset = Transform3D(0.127212, 0.473138, -0.871812, -0.854435, -0.394401, -0.338708, -0.504029, 0.787929, 0.354147, 0.199017, -0.142192, -0.132129)
 
 [node name="ChestBoneAttachment" parent="Player/CollisionShape3D/HitBox" index="0"]
-transform = Transform3D(-0.604046, 0.226786, 0.697278, 0.0525495, 0.914484, -0.251907, -0.731346, -0.121602, -0.594008, 0.0112631, 0.485895, 0.0991266)
+transform = Transform3D(-0.608779, 0.236039, 0.690053, 0.0522116, 0.910668, -0.265441, -0.727435, -0.132175, -0.596547, 0.0108205, 0.484621, 0.0995772)
 
 [node name="HeadBoneAttachment" parent="Player/CollisionShape3D/HitBox" index="1"]
-transform = Transform3D(-0.934607, 0.134424, 0.104594, 0.115273, 0.928693, -0.163528, -0.125387, -0.148187, -0.929956, 0.0905018, 0.715172, 0.0455561)
+transform = Transform3D(-0.935082, 0.131816, 0.103664, 0.111597, 0.927479, -0.172712, -0.125171, -0.157823, -0.928399, 0.0919397, 0.712648, 0.0433023)
 
 [node name="NeckBoneAttachment" parent="Player/CollisionShape3D/HitBox" index="2"]
-transform = Transform3D(-0.671737, 0.226563, 0.632407, 0.0734851, 0.913755, -0.249302, -0.667735, -0.127361, -0.663634, 0.0462447, 0.626953, 0.0803697)
+transform = Transform3D(-0.676188, 0.233051, 0.625266, 0.0734484, 0.910763, -0.260032, -0.663231, -0.136743, -0.666278, 0.0472294, 0.62509, 0.0791893)
 
 [node name="LeftUpperArmBoneAttachment" parent="Player/CollisionShape3D/HitBox" index="3"]
-transform = Transform3D(-0.848046, -0.0971115, 0.416998, -0.0417106, -0.902102, -0.29491, 0.42612, -0.281569, 0.801025, -0.045471, 0.547199, -0.0711651)
+transform = Transform3D(-0.845081, -0.0941569, 0.423642, -0.0455281, -0.903019, -0.29152, 0.431585, -0.279627, 0.798776, -0.0463128, 0.543605, -0.0702138)
 
 [node name="LeftLowerArmBoneAttachment" parent="Player/CollisionShape3D/HitBox" index="4"]
-transform = Transform3D(0.475179, 0.822492, 0.0145461, -0.160733, 0.076357, 0.933185, 0.806765, -0.46923, 0.177353, -0.0762672, 0.261122, -0.160457)
+transform = Transform3D(0.479992, 0.81976, 0.0100465, -0.165426, 0.0854444, 0.931576, 0.802958, -0.472433, 0.185918, -0.0761721, 0.257238, -0.15889)
 
 [node name="RightUpperArmBoneAttachment" parent="Player/CollisionShape3D/HitBox" index="5"]
-transform = Transform3D(-0.111264, 0.326463, -0.885179, -0.219305, -0.875848, -0.295456, -0.91762, 0.169738, 0.177942, 0.168685, 0.539353, 0.205364)
+transform = Transform3D(-0.104855, 0.321603, -0.887737, -0.218232, -0.877264, -0.292032, -0.91863, 0.171696, 0.170705, 0.168194, 0.537744, 0.2061)
 
 [node name="RightLowerArmBoneAttachment" parent="Player/CollisionShape3D/HitBox" index="6"]
-transform = Transform3D(0.00499045, 0.11307, -0.943234, 0.949974, 0.00420477, 0.00553015, 0.00483299, -0.943238, -0.113045, 0.272377, 0.261165, 0.259276)
+transform = Transform3D(0.00994028, 0.119634, -0.942385, 0.94992, 0.00599812, 0.0107813, 0.00730768, -0.942418, -0.119562, 0.270342, 0.259106, 0.260634)
 
 [node name="LeftUpperLegBoneAttachment" parent="Player/CollisionShape3D/HitBox" index="7"]
-transform = Transform3D(0.781961, 0.111955, 0.527734, -0.178128, -0.823618, 0.438662, 0.509223, -0.460021, -0.656942, -0.0468013, 0.0946512, 0.0198166)
+transform = Transform3D(0.782605, 0.114399, 0.526254, -0.177764, -0.821414, 0.44292, 0.50836, -0.463348, -0.65527, -0.0474732, 0.0935669, 0.0203955)
 
 [node name="RightUpperLegBoneAttachment" parent="Player/CollisionShape3D/HitBox" index="8"]
-transform = Transform3D(0.152382, 0.421258, 0.837748, 0.178435, -0.846256, 0.39308, 0.920567, 0.0943002, -0.214864, 0.0521492, 0.0896429, 0.151947)
+transform = Transform3D(0.15148, 0.424905, 0.836068, 0.177724, -0.844563, 0.397023, 0.920853, 0.0931033, -0.214158, 0.051483, 0.0885606, 0.152522)
 
 [node name="LeftLowerLegBoneAttachment" parent="Player/CollisionShape3D/HitBox" index="9"]
-transform = Transform3D(0.89032, -0.103466, 0.31484, -0.110451, -0.943555, 0.00225916, 0.312458, -0.0387219, -0.896309, 0.00695384, -0.30081, -0.201063)
+transform = Transform3D(0.890264, -0.104582, 0.314632, -0.11075, -0.943522, -0.000251625, 0.312514, -0.0364435, -0.896385, 0.00745595, -0.300837, -0.202082)
 
 [node name="RightLowerLegBoneAttachment" parent="Player/CollisionShape3D/HitBox" index="10"]
-transform = Transform3D(0.114031, -0.211271, 0.919164, 0.178492, -0.904291, -0.229996, 0.926089, 0.200305, -0.0688494, 0.254405, -0.316665, 0.197223)
+transform = Transform3D(0.11412, -0.213726, 0.918585, 0.178148, -0.903743, -0.232404, 0.926144, 0.200175, -0.0684845, 0.25549, -0.316935, 0.197223)
 
 [node name="RightFootBoneAttachment" parent="Player/CollisionShape3D/HitBox" index="11"]
-transform = Transform3D(-0.0896969, 0.816454, 0.477345, 0.00493876, -0.479076, 0.820343, 0.945744, 0.0799367, 0.0409894, 0.154528, -0.744165, 0.291916)
+transform = Transform3D(-0.0897429, 0.816403, 0.477424, 0.00489059, -0.479161, 0.820293, 0.94574, 0.079948, 0.0410622, 0.154453, -0.744176, 0.291855)
 
 [node name="LeftFootBoneAttachment" parent="Player/CollisionShape3D/HitBox" index="12"]
-transform = Transform3D(0.946718, 0.0772802, 0.0159305, 0.0265942, -0.493087, 0.811577, 0.0742884, -0.808327, -0.493547, -0.0419683, -0.746955, -0.219373)
+transform = Transform3D(0.946723, 0.0772126, 0.015941, 0.0265576, -0.493172, 0.811527, 0.0742334, -0.808281, -0.49363, -0.0419939, -0.746966, -0.219313)
 
 [node name="light_armor_1" parent="." instance=ExtResource("7_ka0kv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.37263, 0, -0.893725)

@@ -9,3 +9,4 @@ class_name AmmoSubtype
 @export var initial_damage:float
 @export var armor_penetration_rating:float
 @export var initial_speed:float
+@export var ballistic_coefficient_k:float

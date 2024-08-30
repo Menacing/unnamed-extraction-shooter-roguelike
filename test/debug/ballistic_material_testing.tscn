@@ -1,19 +1,20 @@
-[gd_scene load_steps=30 format=3 uid="uid://bose3ay7o32xw"]
+[gd_scene load_steps=31 format=3 uid="uid://bose3ay7o32xw"]
 
 [ext_resource type="Script" path="res://levels/ballistic_testing.gd" id="1_gbeur"]
 [ext_resource type="PackedScene" uid="uid://dr48wela8mtxd" path="res://game_objects/items/weapons/hic_rifles/pm_52/pm_52.tscn" id="2_cebdm"]
 [ext_resource type="Resource" uid="uid://3nqgvhg4lre8" path="res://components/ammo_component/ammo_types/heavy_intermediate_cartridge/heavy_intermediate_cartridge.tres" id="3_8bfkd"]
-[ext_resource type="PackedScene" uid="uid://by4mxbof8gk0n" path="res://game_objects/bullet/test_bullet.tscn" id="3_qi338"]
 [ext_resource type="Script" path="res://game_objects/items/weapons/gun_stats.gd" id="4_opxar"]
 [ext_resource type="Script" path="res://levels/entities/geo_ballistic_solid.gd" id="10_0hi85"]
 [ext_resource type="Texture2D" uid="uid://5owi221pdrdn" path="res://levels/textures/asphalt/asphalt_1.png" id="10_eoss8"]
+[ext_resource type="PackedScene" uid="uid://bo5i75565y5co" path="res://game_objects/effects/hit_effects/bullet_hit_sparks.tscn" id="10_jywj6"]
 [ext_resource type="Texture2D" uid="uid://7qsivu8jpske" path="res://levels/textures/wood/wood_1.png" id="11_4xtol"]
-[ext_resource type="PackedScene" uid="uid://dbduds4bsaaby" path="res://game_objects/bullet/bullet_hole.tscn" id="11_yjd08"]
+[ext_resource type="PackedScene" uid="uid://3ma183br8axn" path="res://game_objects/effects/hit_effects/bullet_hit_stone.tscn" id="12_3yefp"]
 [ext_resource type="Texture2D" uid="uid://cw1op21ktq7cc" path="res://levels/textures/brick/brick_1.png" id="12_4loe8"]
-[ext_resource type="PackedScene" uid="uid://5n7aup1d2u20" path="res://game_objects/effects/bullet_hit_sparks.tscn" id="12_p6nk0"]
+[ext_resource type="PackedScene" uid="uid://64ippi50nu6t" path="res://components/damage_component/damage_component.tscn" id="12_35p10"]
 [ext_resource type="AudioStream" uid="uid://chvv4165nfb61" path="res://game_objects/effects/sounds/steps/footstep_concrete_001.ogg" id="13_okg0b"]
+[ext_resource type="PackedScene" uid="uid://cliu3gfmcv7xd" path="res://components/damage_effect_component/damage_effect_component.tscn" id="13_rb40w"]
 [ext_resource type="Texture2D" uid="uid://dqx54p0qqneon" path="res://levels/textures/metal/metal_1.png" id="13_t7kyq"]
-[ext_resource type="PackedScene" uid="uid://b7x11nf8gbi6e" path="res://game_objects/effects/bullet_hit_stone.tscn" id="19_685x4"]
+[ext_resource type="PackedScene" uid="uid://bn6v1rairpb6i" path="res://game_objects/effects/hit_effects/bullet_hit_wood.tscn" id="14_c516o"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_0dgg1"]
 font_size = 60
@@ -23,6 +24,7 @@ font_size = 60
 [sub_resource type="Resource" id="Resource_20lvj"]
 resource_local_to_scene = true
 script = ExtResource("4_opxar")
+weapon_category_name = ""
 magazine_size = 30
 rpm = 600
 base_recoil = Vector2(0, 0.025)
@@ -152,11 +154,10 @@ size = 5.0
 [node name="AK47-Projectile" parent="." instance=ExtResource("2_cebdm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.171724, 0.000634313, -2.05242)
 gravity_scale = 0.0
-_bullet_scene = ExtResource("3_qi338")
 _gun_stats = SubResource("Resource_20lvj")
 
 [node name="FireTimer" type="Timer" parent="."]
-wait_time = 0.2
+wait_time = 0.5
 autostart = true
 
 [node name="QodotMap" type="Node3D" parent="."]
@@ -170,8 +171,6 @@ collision_layer = 3
 script = ExtResource("10_0hi85")
 _pen_ratio = 0.5
 _armor_rating = 10
-_bullet_hole_scene = ExtResource("11_yjd08")
-_impact_hit_scene = ExtResource("12_p6nk0")
 _footstep_sound = ExtResource("13_okg0b")
 
 [node name="entity_1_mesh_instance" type="MeshInstance3D" parent="QodotMap/entity_1_geo_ballistic_solid"]
@@ -180,14 +179,18 @@ mesh = SubResource("ArrayMesh_6k02i")
 [node name="entity_1_brush_0_collision_shape" type="CollisionShape3D" parent="QodotMap/entity_1_geo_ballistic_solid"]
 shape = SubResource("ConvexPolygonShape3D_dm1r2")
 
+[node name="DamageComponent" parent="QodotMap/entity_1_geo_ballistic_solid" instance=ExtResource("12_35p10")]
+armor_rating = 8
+
+[node name="DamageEffectComponent" parent="QodotMap/entity_1_geo_ballistic_solid" instance=ExtResource("13_rb40w")]
+damage_effect_scene = ExtResource("10_jywj6")
+
 [node name="entity_2_geo_ballistic_solid" type="StaticBody3D" parent="QodotMap"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 2.4, 6.2)
 collision_layer = 3
 script = ExtResource("10_0hi85")
 _pen_ratio = 0.6
 _armor_rating = 6
-_bullet_hole_scene = ExtResource("11_yjd08")
-_impact_hit_scene = ExtResource("19_685x4")
 _footstep_sound = ExtResource("13_okg0b")
 
 [node name="entity_2_mesh_instance" type="MeshInstance3D" parent="QodotMap/entity_2_geo_ballistic_solid"]
@@ -196,14 +199,19 @@ mesh = SubResource("ArrayMesh_tc8r8")
 [node name="entity_2_brush_0_collision_shape" type="CollisionShape3D" parent="QodotMap/entity_2_geo_ballistic_solid"]
 shape = SubResource("ConvexPolygonShape3D_6sbyt")
 
+[node name="DamageComponent" parent="QodotMap/entity_2_geo_ballistic_solid" instance=ExtResource("12_35p10")]
+percent_penetrated = 0.1
+armor_rating = 8
+
+[node name="DamageEffectComponent" parent="QodotMap/entity_2_geo_ballistic_solid" instance=ExtResource("13_rb40w")]
+damage_effect_scene = ExtResource("12_3yefp")
+
 [node name="entity_3_geo_ballistic_solid" type="StaticBody3D" parent="QodotMap"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.4, -0.4, 12.6)
 collision_layer = 3
 script = ExtResource("10_0hi85")
 _pen_ratio = 0.4
 _armor_rating = 8
-_bullet_hole_scene = ExtResource("11_yjd08")
-_impact_hit_scene = ExtResource("19_685x4")
 _footstep_sound = ExtResource("13_okg0b")
 
 [node name="entity_3_mesh_instance" type="MeshInstance3D" parent="QodotMap/entity_3_geo_ballistic_solid"]
@@ -212,14 +220,18 @@ mesh = SubResource("ArrayMesh_rerdg")
 [node name="entity_3_brush_0_collision_shape" type="CollisionShape3D" parent="QodotMap/entity_3_geo_ballistic_solid"]
 shape = SubResource("ConvexPolygonShape3D_dnh2d")
 
+[node name="DamageComponent" parent="QodotMap/entity_3_geo_ballistic_solid" instance=ExtResource("12_35p10")]
+percent_penetrated = 0.0
+
+[node name="DamageEffectComponent" parent="QodotMap/entity_3_geo_ballistic_solid" instance=ExtResource("13_rb40w")]
+damage_effect_scene = ExtResource("14_c516o")
+
 [node name="entity_4_geo_ballistic_solid" type="StaticBody3D" parent="QodotMap"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 2.4, 4.6)
 collision_layer = 3
 script = ExtResource("10_0hi85")
 _pen_ratio = 0.4
 _armor_rating = 8
-_bullet_hole_scene = ExtResource("11_yjd08")
-_impact_hit_scene = ExtResource("12_p6nk0")
 _footstep_sound = ExtResource("13_okg0b")
 
 [node name="entity_4_mesh_instance" type="MeshInstance3D" parent="QodotMap/entity_4_geo_ballistic_solid"]
@@ -228,4 +240,19 @@ mesh = SubResource("ArrayMesh_yxkvc")
 [node name="entity_4_brush_0_collision_shape" type="CollisionShape3D" parent="QodotMap/entity_4_geo_ballistic_solid"]
 shape = SubResource("ConvexPolygonShape3D_vv530")
 
+[node name="DamageComponent" parent="QodotMap/entity_4_geo_ballistic_solid" instance=ExtResource("12_35p10")]
+percent_penetrated = 0.8
+armor_rating = 2
+
+[node name="DamageEffectComponent" parent="QodotMap/entity_4_geo_ballistic_solid" instance=ExtResource("13_rb40w")]
+damage_effect_scene = ExtResource("14_c516o")
+
 [connection signal="timeout" from="FireTimer" to="." method="_on_fire_timer_timeout"]
+[connection signal="hit_occured" from="QodotMap/entity_1_geo_ballistic_solid/DamageComponent" to="." method="_on_csg_mesh_3d_object_hit"]
+[connection signal="hit_occured" from="QodotMap/entity_1_geo_ballistic_solid/DamageComponent" to="QodotMap/entity_1_geo_ballistic_solid/DamageEffectComponent" method="create_effect"]
+[connection signal="hit_occured" from="QodotMap/entity_2_geo_ballistic_solid/DamageComponent" to="." method="_on_csg_mesh_3d_object_hit"]
+[connection signal="hit_occured" from="QodotMap/entity_2_geo_ballistic_solid/DamageComponent" to="QodotMap/entity_2_geo_ballistic_solid/DamageEffectComponent" method="create_effect"]
+[connection signal="hit_occured" from="QodotMap/entity_3_geo_ballistic_solid/DamageComponent" to="." method="_on_csg_mesh_3d_object_hit"]
+[connection signal="hit_occured" from="QodotMap/entity_3_geo_ballistic_solid/DamageComponent" to="QodotMap/entity_4_geo_ballistic_solid/DamageEffectComponent" method="create_effect"]
+[connection signal="hit_occured" from="QodotMap/entity_4_geo_ballistic_solid/DamageComponent" to="." method="_on_csg_mesh_3d_object_hit"]
+[connection signal="hit_occured" from="QodotMap/entity_4_geo_ballistic_solid/DamageComponent" to="QodotMap/entity_4_geo_ballistic_solid/DamageEffectComponent" method="create_effect"]

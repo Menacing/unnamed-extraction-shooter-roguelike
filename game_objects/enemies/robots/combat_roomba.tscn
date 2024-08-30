@@ -1,32 +1,23 @@
-[gd_scene load_steps=32 format=3 uid="uid://ciaqbr34myu5w"]
+[gd_scene load_steps=31 format=3 uid="uid://ciaqbr34myu5w"]
 
 [ext_resource type="Script" path="res://game_objects/enemies/robots/combat_roomba.gd" id="1_f1cah"]
 [ext_resource type="PackedScene" uid="uid://dr48wela8mtxd" path="res://game_objects/items/weapons/hic_rifles/pm_52/pm_52.tscn" id="2_q4rc2"]
 [ext_resource type="PackedScene" uid="uid://o7vvmqxsny5t" path="res://game_objects/enemies/robots/combat-roomba.glb" id="3_wwy82"]
-[ext_resource type="PackedScene" uid="uid://5n7aup1d2u20" path="res://game_objects/effects/bullet_hit_sparks.tscn" id="3_x3mdn"]
 [ext_resource type="Resource" uid="uid://hw8blc564g2i" path="res://levels/roomba_nav_mesh.tres" id="4_k7kme"]
-[ext_resource type="Script" path="res://game_objects/containers/world_container.gd" id="5_grn4r"]
-[ext_resource type="Resource" uid="uid://bod4q15y8cr6g" path="res://game_objects/enemies/robots/combat_roomba_loot_spawn_information.tres" id="6_iu150"]
-[ext_resource type="PackedScene" uid="uid://douyxwjscs4ff" path="res://ui/inventory/world_inventory.tscn" id="7_gxy1y"]
-[ext_resource type="Script" path="res://resource_access/Inventory.gd" id="9_8s6q1"]
 [ext_resource type="BehaviorTree" uid="uid://c3o1pihtd3pqc" path="res://ai/trees/combat_roomba.tres" id="9_huqy6"]
 [ext_resource type="AudioStream" uid="uid://wef8dj3iyrtm" path="res://game_objects/enemies/robots/audio/enemy_spotted_audio_stream_randomizer.tres" id="10_iwbga"]
 [ext_resource type="AudioStream" uid="uid://hd40mi2hpmcb" path="res://game_objects/enemies/robots/audio/enemy_lost_audio_stream_randomizer.tres" id="11_ll5t6"]
 [ext_resource type="AudioStream" uid="uid://qjx8mxhhx0a5" path="res://game_objects/enemies/robots/audio/idle_audio_stream_randomizer.tres" id="12_o55mw"]
 [ext_resource type="AudioStream" uid="uid://dpy6rknda42mj" path="res://game_objects/enemies/robots/audio/patrol_started_audio_stream_randomizer.tres" id="13_8dkak"]
 [ext_resource type="Script" path="res://helpers/intro_outro_audio_stream_player.gd" id="14_noua2"]
+[ext_resource type="PackedScene" uid="uid://dvm24rm8f0isk" path="res://components/loot_fiesta_component/LootFiestaComponent.tscn" id="17_7ftd3"]
+[ext_resource type="Script" path="res://game_objects/health_component.gd" id="17_rju44"]
+[ext_resource type="Script" path="res://components/damage_component/damage_component.gd" id="18_kd44g"]
+[ext_resource type="PackedScene" uid="uid://cliu3gfmcv7xd" path="res://components/damage_effect_component/damage_effect_component.tscn" id="19_k7rcm"]
+[ext_resource type="PackedScene" uid="uid://bo5i75565y5co" path="res://game_objects/effects/hit_effects/bullet_hit_sparks.tscn" id="20_3xthi"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_wvt7k"]
 size = Vector3(0.3, 2.1, 0.3)
-
-[sub_resource type="Resource" id="Resource_1qy4a"]
-resource_local_to_scene = true
-script = ExtResource("9_8s6q1")
-inventory_id = 0
-initial_height = 7
-initial_width = 7
-grid_slots = {}
-equipment_slots = Array[Resource("res://resource_access/equipment_slot_type.gd")]([])
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_cn06a"]
 height = 10.0
@@ -163,7 +154,6 @@ transform = Transform3D(1.00409, 0, 0, 0, 1.00409, 0, 0, 0, 1.00409, 0, 0, 0)
 collision_layer = 3
 script = ExtResource("1_f1cah")
 gun_scene = ExtResource("2_q4rc2")
-hit_effect = ExtResource("3_x3mdn")
 nav_agent = NodePath("NavigationAgent3D")
 head_node = NodePath("combat-roomba/Armature/Skeleton3D/Physical Bone Bone/Head")
 vert_moa = 60.0
@@ -184,14 +174,9 @@ animate_physical_bones = false
 
 [node name="Physical Bone Bone" type="PhysicalBone3D" parent="combat-roomba/Armature/Skeleton3D" index="1"]
 transform = Transform3D(1, -2.70006e-13, 0, 0, 0, -1, 1.77636e-13, 1, 0, 0, 0.222436, 0)
-collision_layer = 5
 joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.222436)
 body_offset = Transform3D(1, -2.70006e-13, 0, 0, 0, -1, 1.77636e-13, 1, 0, 0, 0.222436, 0)
 bone_name = "Bone"
-script = ExtResource("5_grn4r")
-container_size = 21
-max_spawned = 1
-loot_spawn_mapping = ExtResource("6_iu150")
 
 [node name="Head" type="Node3D" parent="combat-roomba/Armature/Skeleton3D/Physical Bone Bone"]
 transform = Transform3D(-1, 0, 8.74228e-08, -8.74228e-08, 0, -1, 0, -1, 0, 0.0238471, 2.08478e-09, -1.87783)
@@ -208,10 +193,6 @@ spot_angle = 5.0
 [node name="CollisionShape3D" type="CollisionShape3D" parent="combat-roomba/Armature/Skeleton3D/Physical Bone Bone"]
 transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, 0, 0, -0.703788)
 shape = SubResource("BoxShape3D_wvt7k")
-
-[node name="WorldInventory" parent="combat-roomba/Armature/Skeleton3D/Physical Bone Bone" instance=ExtResource("7_gxy1y")]
-visible = false
-_inventory = SubResource("Resource_1qy4a")
 
 [node name="DetectRadius" type="Area3D" parent="."]
 collision_layer = 0
@@ -285,5 +266,26 @@ attenuation_model = 1
 volume_db = -16.0
 bus = &"SFX"
 
+[node name="HealthComponent" type="Node" parent="."]
+script = ExtResource("17_rju44")
+location = 1
+current_health = 100.0
+max_health = 100.0
+
+[node name="DamageComponent" type="Node" parent="."]
+script = ExtResource("18_kd44g")
+location_type = 1
+
+[node name="DamageEffectComponent" parent="." instance=ExtResource("19_k7rcm")]
+damage_effect_scene = ExtResource("20_3xthi")
+
+[node name="LootFiestaComponent" parent="." instance=ExtResource("17_7ftd3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.790082, 0)
+distribution = 1
+max_to_spawn = 3
+
+[connection signal="location_destroyed" from="HealthComponent" to="." method="_on_health_component_location_destroyed"]
+[connection signal="hit_occured" from="DamageComponent" to="HealthComponent" method="_on_hit_occured"]
+[connection signal="hit_occured" from="DamageComponent" to="DamageEffectComponent" method="create_effect"]
+
 [editable path="combat-roomba"]
-[editable path="combat-roomba/Armature/Skeleton3D/Physical Bone Bone/WorldInventory"]

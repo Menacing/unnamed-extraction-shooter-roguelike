@@ -39,12 +39,17 @@ var leg_m:float
 
 var armor_item_instance_id:int = 0
 
-@export var health_component:HealthComponent
+@export var main_health_component:HealthComponent
+@export var arms_health_component:HealthComponent
+@export var legs_health_component:HealthComponent
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	health_component.health_changed.connect(_on_health_changed)
-	health_component.armor_item_instance_id_set.connect(_on_armor_item_instance_id_set)
+	main_health_component.health_changed.connect(_on_main_health_changed)
+	arms_health_component.health_changed.connect(_on_arms_health_changed)
+	legs_health_component.health_changed.connect(_on_legs_health_changed)
+	#health_component.armor_item_instance_id_set.connect(_on_armor_item_instance_id_set)
 	EventBus.item_durability_changed.connect(_on_item_durability_changed)
 	set_health_mode()
 
@@ -52,17 +57,23 @@ func _on_armor_item_instance_id_set(aiii:int):
 	armor_item_instance_id = aiii
 	set_health_mode()
 
-func _on_health_changed(loc:HealthLocation):
-	match loc.location:
-		HealthLocation.HEALTH_LOCATION.ARMS:
-			arm_c = loc.current_health
-			arm_m = loc.max_health
-		HealthLocation.HEALTH_LOCATION.LEGS:
-			leg_c = loc.current_health
-			leg_m = loc.max_health
-		HealthLocation.HEALTH_LOCATION.MAIN:
-			main_c = loc.current_health
-			main_m = loc.max_health
+
+
+func _on_main_health_changed(hp:HealthComponent):
+	main_c = hp.current_health
+	main_m = hp.max_health
+	update_display_values()
+	set_health_mode()
+	
+func _on_arms_health_changed(hp:HealthComponent):
+	arm_c = hp.current_health
+	arm_m = hp.max_health
+	update_display_values()
+	set_health_mode()
+
+func _on_legs_health_changed(hp:HealthComponent):
+	leg_c = hp.current_health
+	leg_m = hp.max_health
 	update_display_values()
 	set_health_mode()
 

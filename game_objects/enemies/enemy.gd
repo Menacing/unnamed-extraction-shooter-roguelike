@@ -84,7 +84,7 @@ func _on_body_exited_detection_radius(body:Node3D):
 		#target_player = null
 	
 func _on_body_entered_ballistic_detection_radius(body:Node3D):
-	if body is BulletProjRay:
+	if body.is_in_group("attack"):
 		if body.firer and body.firer is Player:
 			target_player = body.firer
 	pass
