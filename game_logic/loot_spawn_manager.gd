@@ -26,15 +26,23 @@ var _current_shuffle_bags:Dictionary = {}
 var _model_shuffle_bags:Dictionary = {}
 
 func _ready() -> void:
+	for biome_index in loot_spawn_mapping_mapping:
+		_current_shuffle_bags[biome_index] = {}
+		_model_shuffle_bags[biome_index] = {}
+		for tier_index in loot_spawn_mapping_mapping[biome_index]:
+			var loot_spawn_mapping:LootSpawnMapping = loot_spawn_mapping_mapping[biome_index][tier_index]
+			var model_shuffle_bag:Array[LootSpawnInformation] = []
+			var current_shuffle_bag:Array[LootSpawnInformation] = []
+			#generate shufflebags
+			for i in range(loot_spawn_mapping.spawn_weights.size()):
+				var weight:LootSpawnWeight = loot_spawn_mapping.spawn_weights[i]
+				for j in range(weight.weight):
+					model_shuffle_bag.append(weight.loot.duplicate())
 	
-	#generate shufflebags
-	for i in range(loot_spawn_mapping.spawn_weights.size()):
-		var weight:LootSpawnWeight = loot_spawn_mapping.spawn_weights[i]
-		for j in range(weight.weight):
-			model_shuffle_bag.append(weight.loot.duplicate())
-	
-	current_shuffle_bag = model_shuffle_bag.duplicate(true)
-	current_shuffle_bag.shuffle()
+			current_shuffle_bag = model_shuffle_bag.duplicate(true)
+			current_shuffle_bag.shuffle()
+			_current_shuffle_bags[biome_index][tier_index] = current_shuffle_bag
+			_model_shuffle_bags[biome_index][tier_index] = model_shuffle_bag
 
 func get_loot_spawn_mapping(biome_index:int, tier_index:int) -> LootSpawnMapping:
 	var biome = _biome_index_mapping[biome_index]
