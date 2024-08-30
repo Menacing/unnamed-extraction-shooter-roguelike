@@ -6,6 +6,8 @@ var resource_group:ResourceGroup = load("res://levels/biomes/map_information_res
 
 var current_level:Node
 
+var level_navigation_maps:Dictionary = {}
+
 func _ready():
 	# declare a type safe array
 
@@ -71,9 +73,12 @@ func emit_populate_level():
 	EventBus.populate_level.emit()
 	EventBus.level_populated.emit()
 
-func add_node_to_level(node:Node):
+func add_node_to_level(node:Node) -> bool:
 	if current_level and node:
 		current_level.add_child(node)
+		return true
+	else:
+		return false
 
 func get_level_informations(number:int) -> Array[LevelInformation]:
 	var return_array:Array[LevelInformation] = []

@@ -5,7 +5,6 @@ class_name IterativeRaycastBullet
 @export var initial_damage = 30.0
 @export var pen_rating: int = 5
 @export var k: float = 0.001289
-@export var moa:float
 @onready var shot_origin:Vector3 = self.global_position
 var firer:Node3D
 
@@ -17,84 +16,79 @@ var continue_process:bool = true
 @onready var despawn_timer:Timer = $DespawnTimer
 @onready var attack_component:AttackComponent = %AttackComponent
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	current_speed = initial_speed
-	current_damage = initial_damage
-	Helpers.random_angle_deviation_moa(self, moa,moa)
 
 func _physics_process(delta):
 	elapsed_time += delta
 	if continue_process:
 		do_raycast_movement(delta)
 
-func raycast_to_dest(source_global_pos:Vector3,destination_global_pos:Vector3):
-	self.global_position = source_global_pos
-	self.target_position = self.to_local(destination_global_pos)
+func raycast_to_dest(new_target_position:Vector3):
+	self.target_position = new_target_position
 	self.force_raycast_update()
 
 func do_raycast_movement(delta:float):
 	#set up initial value and destination
-	var motion_dir = -delta * current_speed * transform.basis.z
-	var travel_vector:Vector3 = Vector3() 
-	var remaining_delta:float = delta
-	var start_source_destination:Vector3 = self.global_position
-	var start_target_destination:Vector3 = self.global_position + motion_dir
-	var remaining_distance:float = (start_target_destination - start_source_destination).length()
-	var source_destination:Vector3 = start_source_destination
-	var target_destination:Vector3 = start_target_destination
+	var motion_dir = delta * current_speed * Vector3.FORWARD
+	var remaining_delta = delta
 	#While we have distance to cover, loop
-	while remaining_distance > 0.0001:
+	while motion_dir.length() > 0.0001:
+		var new_speed:float
+		var new_pos_g:Vector3
 		#Raycast to target location
-		raycast_to_dest(source_destination,target_destination)
-		#If we didn't hit anything, add the travel distance and break
+		raycast_to_dest(motion_dir)
+		
+		#Handle collision
+		#If we didn't hit anything, move the full distance, and stop
 		if !self.is_colliding():
-			travel_vector += (target_destination - source_destination)
-			remaining_distance = 0.0
-		#else, handle collision
+			new_pos_g =  self.to_global(motion_dir)
+			motion_dir = Vector3.ZERO
+			new_speed = (current_speed/ (1+k*remaining_delta*current_speed))
+			remaining_delta = 0.0
 		else:
-			#Add traveled distance to collision location
-			travel_vector += (self.get_collision_point() - source_destination)
-			#if collider has an onhit function, call it and handle result
 			var collider = self.get_collider()
+			#if we hit a collider, check for a damage component
 			if collider:
 				var damage_component:DamageComponent = Helpers.get_component_of_type(collider, DamageComponent)
 				if damage_component:
+					#apply damage
 					attack_component.attack_normal = self.get_collision_normal()
 					attack_component.attack_position = self.get_collision_point()
 					attack_component.damage = current_damage
 					attack_component.armor_penetration_rating = pen_rating
 					var attack_result:AttackResult = damage_component.hit(attack_component)
-					
-					var new_speed = current_speed * attack_result.percent_penetrated
+					#update speed based on result
+					new_speed = current_speed * attack_result.percent_penetrated
 				
-					#calculate new target and delta
-					var distance_went:float = (self.get_collision_point() - source_destination).length()
-					var time_took:float = distance_went * remaining_delta / (target_destination - source_destination).length()
-					remaining_delta -= time_took
-					current_damage = pow(new_speed/current_speed,2) * current_damage
-					current_speed = new_speed
-					target_destination = self.get_collision_point() + (-remaining_delta * current_speed * transform.basis.z)
+				#else if we hit an area3D, let them know and adjust speed ballistically
 				elif collider is Area3D:
+					new_speed = (current_speed/ (1+k*remaining_delta*current_speed))
 					collider.body_entered.emit(self)
+				
+				#in both cases move to collision point for recalculation
+				new_pos_g = self.get_collision_point()
+				var distance_travelled:float = (new_pos_g - self.global_position).length()
+				var time_taken:float = distance_travelled / current_speed
+				remaining_delta = remaining_delta - time_taken
+				motion_dir = remaining_delta * new_speed * Vector3.FORWARD
 			else:
+				printerr("Hit something WEIRD")
+				motion_dir = Vector3.ZERO
 				startDespawn()
 				
 			self.add_exception_rid(self.get_collider_rid())
-			
-			#set current position to collision location
-			source_destination = self.get_collision_point()
-			#set remaining distance to cover
-			remaining_distance = (target_destination - source_destination).length()
-			pass
-			
-	var new_speed = (current_speed/ (1+k*delta*current_speed))
+		
+		#adjust speed and damage
+		_adjust_speed(new_speed)
+		#set new global position
+		self.global_position = new_pos_g
+
+
+func _adjust_speed(new_speed:float):
 	current_damage = pow(new_speed/current_speed,2) * current_damage
 	current_speed = new_speed
 	if is_nan(current_damage) or current_damage / initial_damage < .25:
 		print("bullet peetered out after %s" % elapsed_time)
 		startDespawn()
-
 
 func startDespawn():
 	continue_process = false

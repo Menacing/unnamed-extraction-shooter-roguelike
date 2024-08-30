@@ -9,9 +9,26 @@ namespace GodotStateCharts
     /// <summary>
     /// Wrapper around the compound state node.
     /// </summary>
-    public class CompoundState : State
+    public class CompoundState : StateChartState
     {
-
+        /// <summary>
+        /// Called when a child state is entered.
+        /// </summary>
+        public event Action ChildStateEntered
+        {
+            add => Wrapped.Connect(SignalName.ChildStateEntered, Callable.From(value));
+            remove => Wrapped.Disconnect(SignalName.ChildStateEntered, Callable.From(value));
+        }
+        
+        /// <summary>
+        /// Called when a child state is exited.
+        /// </summary>
+        public event Action ChildStateExited
+        {
+            add => Wrapped.Connect(SignalName.ChildStateExited, Callable.From(value));
+            remove => Wrapped.Disconnect(SignalName.ChildStateExited, Callable.From(value));
+        }
+        
         private CompoundState(Node wrapped) : base(wrapped)
         {
         }
@@ -35,16 +52,13 @@ namespace GodotStateCharts
             return new CompoundState(state);
         }
 
-        public new class SignalName : State.SignalName
+        public new class SignalName : StateChartState.SignalName
         {
-            /// <summary>
-            /// Called when a child state is entered.
-            /// </summary>
+  
+            /// <see cref="CompoundState.ChildStateEntered"/>
             public static readonly StringName ChildStateEntered = "child_state_entered";
 
-            /// <summary>
-            /// Called when a child state is exited.
-            /// </summary>
+            /// <see cref="CompoundState.ChildStateExited"/>
             public static readonly StringName ChildStateExited = "child_state_exited";
 
         }

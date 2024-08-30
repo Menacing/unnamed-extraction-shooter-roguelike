@@ -50,7 +50,12 @@ func _ready():
 		
 	if nav_agent: 
 		nav_agent.velocity_computed.connect(_on_velocity_computed)
-		EventBus.navigation_mesh_list_item_baked.connect(_on_navigation_mesh_list_item_baked)
+		
+		#check for existing nav map, otherwise wait for a new one
+		if nav_mesh_list_item and LevelManager.level_navigation_maps.has(nav_mesh_list_item.name):
+			nav_agent.set_navigation_map(LevelManager.level_navigation_maps[nav_mesh_list_item.name].map_rid)
+		else:
+			EventBus.navigation_mesh_list_item_baked.connect(_on_navigation_mesh_list_item_baked)
 	EventBus.game_saving.connect(_on_game_saving)
 	EventBus.before_game_loading.connect(_on_game_before_loading)
 
@@ -58,14 +63,6 @@ func _physics_process(delta):
 	if nav_agent.is_navigation_finished():
 		return
 
-	var full_path = nav_agent.get_current_navigation_path()
-	var final_destination = nav_agent.get_final_position()
-	var agent_navigation_map_rid = nav_agent.get_navigation_map()
-	var nav_mesh_list_item_map_rid = nav_mesh_list_item.map_rid
-	var current_target_pos = nav_agent.target_position
-	var manual_path
-	if move_target:
-		manual_path = NavigationServer3D.map_get_path(nav_mesh_list_item.map_rid, self.global_position,  move_target.global_position, true)
 	var next_path_position: Vector3 = nav_agent.get_next_path_position()
 	var target_velocity: Vector3 = global_position.direction_to(next_path_position) * move_speed
 	var new_velocity = velocity.move_toward(target_velocity, acceleration)
@@ -129,6 +126,7 @@ func has_target_player() -> bool:
 		return false
 		
 func has_los_to_player() -> bool:
+	return false
 	if target_player:
 		
 		var los_result = Helpers.los_to_point(head_node,target_player.los_check_locations,.6,exclusions,true)

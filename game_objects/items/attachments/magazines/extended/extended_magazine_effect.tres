@@ -1,15 +1,16 @@
-[gd_resource type="Resource" script_class="GameplayEffect" load_steps=7 format=3 uid="uid://dsvxj63mr811r"]
+[gd_resource type="Resource" script_class="GameplayEffect" load_steps=8 format=3 uid="uid://dsvxj63mr811r"]
 
 [ext_resource type="Script" path="res://game_logic/gameplay_effect.gd" id="1_bmekc"]
 [ext_resource type="Script" path="res://game_logic/gameplay_effect_list_item.gd" id="1_p15dd"]
 [ext_resource type="Resource" uid="uid://bl7268bp73up6" path="res://game_objects/items/attachments/magazines/extended/extended_magazine_mag_multiplier.tres" id="2_1ovpl"]
 [ext_resource type="Script" path="res://game_logic/gameplay_effect_list.gd" id="3_81njx"]
+[ext_resource type="Script" path="res://game_logic/stat_modifier.gd" id="3_s2d3s"]
 
 [sub_resource type="Resource" id="Resource_p1vge"]
 script = ExtResource("1_p15dd")
 modifiable_stat_name = "_magazine_size"
 modifiable_stat_display_name = "Magazine Size"
-stat_modifiers = Array[Resource("res://game_logic/stat_modifier.gd")]([ExtResource("2_1ovpl")])
+stat_modifiers = Array[ExtResource("3_s2d3s")]([ExtResource("2_1ovpl")])
 
 [sub_resource type="Resource" id="Resource_y2m1l"]
 script = ExtResource("3_81njx")

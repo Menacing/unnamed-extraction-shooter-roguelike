@@ -1,5 +1,6 @@
-[gd_resource type="Resource" script_class="Inventory" load_steps=9 format=3 uid="uid://bsx4m3o1cjpe5"]
+[gd_resource type="Resource" script_class="Inventory" load_steps=10 format=3 uid="uid://bsx4m3o1cjpe5"]
 
+[ext_resource type="Script" path="res://resource_access/equipment_slot_type.gd" id="1_2y584"]
 [ext_resource type="Resource" uid="uid://bstwuttx0c0do" path="res://game_objects/items/weapons/optics_equipment_slot.tres" id="1_n1krj"]
 [ext_resource type="Resource" uid="uid://cqxsusjebsqrp" path="res://game_objects/items/weapons/grips_equipment_slot.tres" id="2_6ksem"]
 [ext_resource type="Script" path="res://resource_access/Inventory.gd" id="2_gr67i"]
@@ -16,4 +17,4 @@ inventory_id = 0
 initial_height = 0
 initial_width = 0
 grid_slots = {}
-equipment_slots = Array[Resource("res://resource_access/equipment_slot_type.gd")]([ExtResource("1_n1krj"), ExtResource("2_6ksem"), ExtResource("3_vv3jg"), ExtResource("4_hb40g"), ExtResource("5_osdti"), ExtResource("6_175lb"), ExtResource("7_en5v0")])
+equipment_slots = Array[ExtResource("1_2y584")]([ExtResource("1_n1krj"), ExtResource("2_6ksem"), ExtResource("3_vv3jg"), ExtResource("4_hb40g"), ExtResource("5_osdti"), ExtResource("6_175lb"), ExtResource("7_en5v0")])

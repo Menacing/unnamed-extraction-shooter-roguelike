@@ -24,26 +24,34 @@ signal event_received(event:StringName)
 ## state chart debugger in the editor.
 @export var track_in_editor:bool = false
 
+## Initial values for the expression properties. These properties can be used in expressions, e.g
+## for guards or transition delays. It is recommended to set an initial value for each property
+## you use in an expression to ensure that this expression is always valid. If you don't set
+## an initial value, some expressions may fail to be evaluated if they use a property that has
+## not been set yet.
+@export var initial_expression_properties:Dictionary = {}
+
 ## The root state of the state chart.
-var _state:State = null
+var _state:StateChartState = null
 
 ## This dictonary contains known properties used in expression guards. Use the 
 ## [method set_expression_property] to add properties to this dictionary.
 var _expression_properties:Dictionary = {
 }
 
-## A list of events which are still pending resolution.
+## A list of pending events 
 var _queued_events:Array[StringName] = []
 
-## Flag indicating if the state chart is currently processing an 
-## event. Until an event is fully processed, new events will be queued
-## and then processed later.
-var _event_processing_active:bool = false
+## Whether or not a property change is pending.
+var _property_change_pending:bool = false
 
+## Flag indicating if the state chart is currently processing. 
+## Until a change is fully processed, no further changes can
+## be introduced from the outside.
+var _locked_down:bool = false
 
 var _queued_transitions:Array[Dictionary] = []
 var _transitions_processing_active:bool = false
-
 
 var _debugger_remote:DebuggerRemote = null
 
@@ -58,13 +66,21 @@ func _ready() -> void:
 		return
 
 	# check if the child is a state
-	var child = get_child(0)
-	if not child is State:
+	var child:Node = get_child(0)
+	if not child is StateChartState:
 		push_error("StateMachine's child must be a State")
 		return
+	
+	# set the initial expression properties
+	if initial_expression_properties != null:
+		for key in initial_expression_properties.keys():
+			if not key is String and not key is StringName:
+				push_error("Expression property names must be strings. Ignoring initial expression property with key ", key)
+				continue
+			_expression_properties[key] = initial_expression_properties[key]
 
 	# initialize the state machine
-	_state = child as State
+	_state = child as StateChartState
 	_state._state_init()
 
 	# enter the state
@@ -82,44 +98,82 @@ func _ready() -> void:
 ## will process the event as soon as possible but there is no guarantee that the 
 ## event will be fully processed when this method returns.
 func send_event(event:StringName) -> void:
-	if not is_instance_valid(_state):
-		push_error("StateMachine is not initialized")
+	if not is_node_ready():
+		push_error("State chart is not yet ready. If you call `send_event` in _ready, please call it deferred, e.g. `state_chart.send_event.call_deferred(\"my_event\").")
 		return
 		
-	if _event_processing_active:
-		# the state chart is currently processing an event
-		# therefore queue the event and process it later.
-		_queued_events.append(event)
-		return	
-
-	# enable the reentrance lock for event processing
-	_event_processing_active = true
+	if not is_instance_valid(_state):
+		push_error("State chart has no root state. Ignoring call to `send_event`.")
+		return
 	
-	# first process this event.
-	event_received.emit(event)
-	_state._state_event(event)
-	
-	# if other events have accumulated while the event was processing
-	# process them in order now
-	while _queued_events.size() > 0:
-		var next_event = _queued_events.pop_front()
-		event_received.emit(next_event)
-		_state._state_event(next_event)
+	_queued_events.append(event)
+	_run_changes()
 		
-	_event_processing_active = false
+		
+## Sets a property that can be used in expression guards. The property will be available as a global variable
+## with the same name. E.g. if you set the property "foo" to 42, you can use the expression "foo == 42" in
+## an expression guard.
+func set_expression_property(name:StringName, value) -> void:
+	if not is_node_ready():
+		push_error("State chart is not yet ready. If you call `set_expression_property` in `_ready`, please call it deferred, e.g. `state_chart.set_expression_property.call_deferred(\"my_property\", 5).")
+		return
+		
+	if not is_instance_valid(_state):
+		push_error("State chart has no root state. Ignoring call to `set_expression_property`.")
+		return
+	
+	_expression_properties[name] = value
+	_property_change_pending = true
+	_run_changes()
+		
+
+## Returns the value of a previously set expression property. If the property does not exist, the default value
+## will be returned.
+func get_expression_property(name:StringName, default:Variant = null) -> Variant:
+	return _expression_properties.get(name, default)
+
+
+func _run_changes() -> void:
+	if _locked_down:
+		return
+		
+	# enable the reentrance lock
+	_locked_down = true
+	
+	while (not _queued_events.is_empty()) or _property_change_pending:
+		# first run any pending property changes, so that we keep the order
+		# in which stuff is processed
+		if _property_change_pending:
+			_property_change_pending = false
+			_state._process_transitions(&"", true)
+	
+		if not _queued_events.is_empty():
+			# process the next event	
+			var next_event = _queued_events.pop_front()
+			event_received.emit(next_event)
+			_state._process_transitions(next_event, false)
+	
+	_locked_down = false
+
 
 ## Allows states to queue a transition for running. This will eventually run the transition
 ## once all currently running transitions have finished. States should call this method
 ## when they want to transition away from themselves. 
-func _run_transition(transition:Transition, source:State):
-	# if we are currently inside of a transition, queue it up
+func _run_transition(transition:Transition, source:StateChartState) -> void:
+	# if we are currently inside of a transition, queue it up. This can happen
+	# if a state has an automatic transition on enter, in which case we want to
+	# finish the current transition before starting a new one.
 	if _transitions_processing_active:
 		_queued_transitions.append({transition : source})
 		return
+		
+	_transitions_processing_active = true
 
 	# we can only transition away from a currently active state
 	# if for some reason the state no longer is active, ignore the transition	
 	_do_run_transition(transition, source)
+	
+	var execution_count := 1
 	
 	# if we still have transitions
 	while _queued_transitions.size() > 0:
@@ -127,10 +181,16 @@ func _run_transition(transition:Transition, source:State):
 		var next_transition = next_transition_entry.keys()[0]
 		var next_transition_source = next_transition_entry[next_transition]
 		_do_run_transition(next_transition, next_transition_source)
-
+		execution_count += 1
+	
+		if execution_count > 100:
+			push_error("Infinite loop detected in transitions. Aborting. The state chart is now in an invalid state and no longer usable.")
+			break
+	
+	_transitions_processing_active = false
 
 ## Runs the transition. Used internally by the state chart, do not call this directly.	
-func _do_run_transition(transition:Transition, source:State):
+func _do_run_transition(transition:Transition, source:StateChartState):
 	if source.active:
 		# Notify interested parties that the transition is about to be taken
 		transition.taken.emit()
@@ -139,27 +199,29 @@ func _do_run_transition(transition:Transition, source:State):
 		_warn_not_active(transition, source)	
 
 
-func _warn_not_active(transition:Transition, source:State):
+func _warn_not_active(transition:Transition, source:StateChartState):
 	push_warning("Ignoring request for transitioning from ", source.name, " to ", transition.to, " as the source state is no longer active. Check whether your trigger multiple state changes within a single frame.")
 
-## Sets a property that can be used in expression guards. The property will be available as a global variable
-## with the same name. E.g. if you set the property "foo" to 42, you can use the expression "foo == 42" in
-## an expression guard.
-func set_expression_property(name:StringName, value) -> void:
-	_expression_properties[name] = value
 
 
 ## Calls the `step` function in all active states. Used for situations where `state_processing` and 
 ## `state_physics_processing` don't make sense (e.g. turn-based games, or games with a fixed timestep).
-func step():
+func step() -> void:
+	if not is_node_ready():
+		push_error("State chart is not yet ready. If you call `step` in `_ready`, please call it deferred, e.g. `state_chart.step.call_deferred()`.")
+		return
+		
+	if not is_instance_valid(_state):
+		push_error("State chart has no root state. Ignoring call to `step`.")
+		return
 	_state._state_step()
 
 func _get_configuration_warnings() -> PackedStringArray:
-	var warnings = []
+	var warnings:PackedStringArray = []
 	if get_child_count() != 1:
 		warnings.append("StateChart must have exactly one child")
 	else:
-		var child = get_child(0)
-		if not child is State:
+		var child:Node = get_child(0)
+		if not child is StateChartState:
 			warnings.append("StateChart's child must be a State")
 	return warnings

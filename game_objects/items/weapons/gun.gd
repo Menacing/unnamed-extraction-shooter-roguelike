@@ -151,5 +151,6 @@ func get_weapon_category() -> String:
 func assign_bullet_stats(bullet:IterativeRaycastBullet, subtype:AmmoSubtype):
 	bullet.current_damage = subtype.initial_damage
 	bullet.initial_speed = subtype.initial_speed
+	bullet.current_speed = subtype.initial_speed
 	bullet.pen_rating = subtype.armor_penetration_rating
 	bullet.k = subtype.ballistic_coefficient_k

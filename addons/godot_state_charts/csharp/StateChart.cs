@@ -10,7 +10,25 @@ namespace GodotStateCharts
     /// </summary>
     public class StateChart : NodeWrapper
     {
-        private StateChart(Node wrapped) : base(wrapped)
+        /// <summary>
+        /// Emitted when the state chart receives an event. This will be 
+        /// emitted no matter which state is currently active and can be 
+        /// useful to trigger additional logic elsewhere in the game 
+        /// without having to create a custom event bus. It is also used
+        /// by the state chart debugger. Note that this will emit the 
+        /// events in the order in which they are processed, which may 
+        /// be different from the order in which they were received. This is
+        /// because the state chart will always finish processing one event
+        /// fully before processing the next. If an event is received
+        /// while another is still processing, it will be enqueued.
+        /// </summary>
+        public event Action<StringName> EventReceived
+        {
+            add => Wrapped.Connect(SignalName.EventReceived, Callable.From(value));
+            remove => Wrapped.Disconnect(SignalName.EventReceived, Callable.From(value));
+        } 
+            
+        protected StateChart(Node wrapped) : base(wrapped)
         {
         }
 
@@ -39,7 +57,7 @@ namespace GodotStateCharts
         /// <param name="eventName">the name of the event to send</param>
         public void SendEvent(string eventName)
         {
-            Wrapped.Call("send_event", eventName);
+            Call(MethodName.SendEvent, eventName);
         }
 
         /// <summary>
@@ -49,7 +67,19 @@ namespace GodotStateCharts
         /// <param name="value">the value to set the property to.</param>
         public void SetExpressionProperty(string name, Variant value)
         {
-            Wrapped.Call("set_expression_property", name, value);
+            Call(MethodName.SetExpressionProperty, name, value);
+        }
+        
+        
+        /// <summary>
+        /// Returns the value of an expression property on the state chart node.
+        /// </summary>
+        /// <param name="name">the name of the proeprty to read. This is case sensitive. </param>
+        /// <param name="defaultValue">the default value to be returned if no such property exists</param>
+        /// <returns>the value of the property</returns>
+        public T GetExpressionProperty<[MustBeVariant]T>(string name, T defaultValue = default)
+        {
+            return Call(MethodName.GetExpressionProperty, name, Variant.From(defaultValue)).As<T>();
         }
 
         /// <summary>
@@ -59,24 +89,41 @@ namespace GodotStateCharts
         /// </summary>
         public void Step()
         {
-            Wrapped.Call("step");
+            Call(MethodName.Step);
         }
 
         public class SignalName : Node.SignalName
         {
-            /// <summary>
-            /// Emitted when the state chart receives an event. This will be 
-            /// emitted no matter which state is currently active and can be 
-            /// useful to trigger additional logic elsewhere in the game 
-            /// without having to create a custom event bus. It is also used
-            /// by the state chart debugger. Note that this will emit the 
-            /// events in the order in which they are processed, which may 
-            /// be different from the order in which they were received. This is
-            /// because the state chart will always finish processing one event
-            /// fully before processing the next. If an event is received
-            /// while another is still processing, it will be enqueued.
-            /// </summary>
+           /// <see cref="StateChart.EventReceived"/>
+           /// 
+           /// </summary>
             public static readonly StringName EventReceived = "event_received";
         }
+        
+        public new class MethodName : Node.MethodName
+        {
+            /// <summary>
+            /// Sends an event to the state chart node.
+            /// </summary>
+            public static readonly StringName SendEvent = "send_event";
+            
+            /// <summary>
+            /// Sets an expression property on the state chart node for later use with expression guards.
+            /// </summary>
+            public static readonly StringName SetExpressionProperty = "set_expression_property";
+            
+            /// <summary>
+            /// Returns the value of an expression property on the state chart node.
+            /// </summary>
+            public static readonly StringName GetExpressionProperty = "get_expression_property";
+            
+            /// <summary>
+            /// Steps the state chart node. This will invoke all <code>state_stepped</code> signals on the
+            /// currently active states in the state charts. See the "Stepping Mode" section of the manual
+            /// for more details.
+            /// </summary>
+            public static readonly StringName Step = "step";
+        }
+        
     }
 }

@@ -71,7 +71,7 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(0, 3.14159, 0)]
+"values": [Vector3(0, 0, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_llqna"]
@@ -111,7 +111,7 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0, 1, 1.5, 2.2),
 "transitions": PackedFloat32Array(0.378929, 1, 1, 1),
 "update": 0,
-"values": [Vector3(0, 3.14159, 0), Vector3(-0.343206, 3.02279, 0.340882), Vector3(-0.343206, 3.02279, 0.340882), Vector3(0, 3.14159, 0)]
+"values": [Vector3(0, 0, 0), Vector3(-0.34383, -0.118682, 0.340339), Vector3(-0.34383, -0.118682, 0.340339), Vector3(0, 0, 0)]
 }
 tracks/3/type = "audio"
 tracks/3/imported = false
@@ -170,7 +170,6 @@ random_pitch = 1.05
 random_volume_offset_db = 0.5
 streams_count = 1
 stream_0/stream = ExtResource("10_vdlnj")
-stream_0/weight = 1.0
 
 [node name="S5" type="RigidBody3D" node_paths=PackedStringArray("mag_node", "model_node", "foley_player")]
 disable_mode = 1
@@ -202,7 +201,6 @@ wait_time = 2.5
 one_shot = true
 
 [node name="s5" parent="." instance=ExtResource("4_v8p8c")]
-transform = Transform3D(-1, 0, 2.53518e-06, 0, 1, 0, -2.53518e-06, 0, -1, 0, 0, 0)
 
 [node name="extended_magazine" parent="s5/magazines" index="0"]
 visible = false
@@ -211,11 +209,11 @@ visible = false
 visible = false
 
 [node name="Muzzle" type="Node3D" parent="s5"]
-transform = Transform3D(-2.62269e-08, 0, 0.6, 0, 0.6, 0, -0.6, 0, -2.62269e-08, -7.60565e-10, 0, 0.4783)
+transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, -7.60565e-10, 0, -0.476936)
 visible = false
 
 [node name="FlashSpriteV3D" type="Sprite3D" parent="s5/Muzzle"]
-transform = Transform3D(-8.74226e-09, 0, 0.2, 0, 0.2, 0, -0.2, 0, -8.74226e-09, -0.482, 0, 0)
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, -0.482)
 cast_shadow = 0
 axis = 1
 alpha_cut = 2
@@ -223,7 +221,7 @@ texture_filter = 0
 texture = ExtResource("5_wks76")
 
 [node name="FlashSpriteH3D" type="Sprite3D" parent="s5/Muzzle"]
-transform = Transform3D(3.82137e-16, -8.74226e-09, 0.2, -0.2, -8.74228e-09, 0, 8.74228e-09, -0.2, -8.74226e-09, -0.482, 0, 0)
+transform = Transform3D(-8.74228e-09, 0.2, 0, -0.2, -8.74228e-09, 0, 0, 0, 0.2, 0, 0, -0.482)
 cast_shadow = 0
 axis = 1
 alpha_cut = 2
@@ -231,7 +229,7 @@ texture_filter = 0
 texture = ExtResource("5_wks76")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="s5/Muzzle"]
-transform = Transform3D(-7.28522e-08, 0, 1.66667, 0, 1.66667, 0, -1.66667, 0, -7.28522e-08, -0.189991, 0, -2.18123e-08)
+transform = Transform3D(1.66667, 0, 0, 0, 1.66667, 0, 0, 0, 1.66667, 0, 0, -0.19)
 light_color = Color(0.917647, 0.784314, 0.611765, 1)
 shadow_enabled = true
 distance_fade_enabled = true
