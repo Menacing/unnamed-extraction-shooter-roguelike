@@ -1,8 +1,15 @@
-[gd_scene load_steps=5 format=3 uid="uid://dpvoqq6pjm1ya"]
+[gd_scene load_steps=8 format=3 uid="uid://dpvoqq6pjm1ya"]
 
 [ext_resource type="Script" path="res://game_objects/items/materials/bio_gel_vial/bio_gel_vial.gd" id="1_ar5l1"]
 [ext_resource type="PackedScene" uid="uid://b8llqsyirogqh" path="res://game_objects/items/materials/bio_gel_vial/bio_gel_vial.blend" id="2_ipmcg"]
 [ext_resource type="Material" uid="uid://tt2r07ij8bf5" path="res://game_objects/items/materials/bio_gel_vial/bio_gel_vial.tres" id="2_xv0qv"]
+[ext_resource type="Resource" uid="uid://c8v7lgcr1goac" path="res://game_objects/items/materials/bio_gel_vial/bio_gel_vial_inventory_info.tres" id="3_qwlwy"]
+[ext_resource type="Script" path="res://resource_access/slot_data.gd" id="4_eioyh"]
+
+[sub_resource type="Resource" id="Resource_iup3y"]
+script = ExtResource("4_eioyh")
+item_data = ExtResource("3_qwlwy")
+quantity = 1
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_b3w72"]
 height = 0.2
@@ -12,8 +19,10 @@ radius = 0.024
 transform = Transform3D(0.871377, -0.490615, 0, 0.490615, 0.871377, 0, 0, 0, 1, 0, 0, 0)
 collision_layer = 5
 collision_mask = 5
+mass = 0.25
 script = ExtResource("1_ar5l1")
 liquidShaderMaterial = ExtResource("2_xv0qv")
+slot_data = SubResource("Resource_iup3y")
 item_type_id = "bio_gel_vial"
 world_collider_path = NodePath("CollisionShape3D")
 longest_side_size = 0.1

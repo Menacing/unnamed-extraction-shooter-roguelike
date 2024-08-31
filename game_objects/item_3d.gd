@@ -1,6 +1,8 @@
 extends RigidBody3D
 class_name Item3D
 
+@export var slot_data:SlotData
+
 var _actor_id:int = 0
 var item_instance_id:int
 var item_3d_id:int:
@@ -73,6 +75,11 @@ func _ready() -> void:
 		_prox_fade_mats.append(new_mat)
 	EventBus.game_saving.connect(_on_game_saving)
 	EventBus.before_game_loading.connect(_on_game_before_loading)
+
+func pick_up_item(inventory_data:InventoryData) -> void:
+	if inventory_data.pick_up_slot_data(slot_data):
+		#TODO: We probably don't want to queue free here for real
+		queue_free()
 
 func dropped() -> void:
 	world_collider.disabled = false

@@ -1,5 +1,7 @@
 extends Control
 
+@export var drop_location:Node3D
+
 var grabbed_slot_data:SlotData
 var external_inventory_owner
 
@@ -58,6 +60,7 @@ func on_inventory_interact(inventory_data:InventoryData, index:int, button:int):
 		[_, MOUSE_BUTTON_LEFT]:
 			grabbed_slot_data = inventory_data.drop_slot_data(grabbed_slot_data, index)
 		[null, MOUSE_BUTTON_RIGHT]:
+			inventory_data.open_slot_context_menu(index)
 			pass
 		[_, MOUSE_BUTTON_RIGHT]:
 			grabbed_slot_data = inventory_data.drop_single_slot_data(grabbed_slot_data, index)
@@ -69,3 +72,35 @@ func update_grabbed_slot() -> void:
 		grabbed_slot.set_slot_data
 	else:
 		grabbed_slot.hide()
+
+
+func _on_gui_input(event: InputEvent) -> void:
+	if event is InputEventMouseButton and event.is_pressed() and grabbed_slot_data:
+		match event.button_index:
+			MOUSE_BUTTON_LEFT:
+				drop_slot_data(grabbed_slot_data)
+				grabbed_slot_data = null
+			MOUSE_BUTTON_RIGHT:
+				drop_slot_data(grabbed_slot_data.create_single_slot_data())
+				if grabbed_slot_data.quantity < 1:
+					grabbed_slot_data = null
+				
+		update_grabbed_slot()
+
+func drop_slot_data(slot_data:SlotData) -> void:
+	#TODO finish this
+	#Instantiate the correct Item3D scene: probably need to pull this from the item info
+	
+	#Add it to the level
+	
+	#move it to the drop point
+	
+	pass
+
+
+func _on_visibility_changed() -> void:
+	if not visible and grabbed_slot_data:
+		drop_slot_data(grabbed_slot_data)
+		grabbed_slot_data = null
+		update_grabbed_slot()
+	pass # Replace with function body.

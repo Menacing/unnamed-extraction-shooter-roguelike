@@ -3,6 +3,7 @@ class_name SlotData
 
 @export var item_data:ItemInformation
 @export_range(1,99) var quantity:int = 1: set = set_quantity
+@export var durability:int = 1: set = set_durability
 
 func can_merge_with(other_slot_data:SlotData) -> bool:
 	return item_data == other_slot_data.item_data and item_data.has_stacks \
@@ -26,3 +27,9 @@ func set_quantity(value:int) -> void:
 	if quantity > 1 and not item_data.has_stacks:
 		quantity = 1
 		push_error("%s is not stackable, setting quantity to 1" % item_data.display_name)
+		
+func set_durability(value:int) -> void:
+	durability = value
+	if not item_data.has_durability:
+		durability = 1
+		push_error("%s does not have durability, setting durability to 1" % item_data.display_name)

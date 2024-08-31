@@ -4,6 +4,7 @@ signal slot_clicked(index:int, button:int)
 
 @onready var texture_rect: TextureRect = $MarginContainer/TextureRect
 @onready var quantity_label: Label = $QuantityLabel
+@onready var durability_label: Label = $DurabilityLabel
 
 
 func set_slot_data(slot_data:SlotData) -> void:
@@ -16,6 +17,9 @@ func set_slot_data(slot_data:SlotData) -> void:
 		quantity_label.show()
 	else:
 		quantity_label.hide()
+	
+	if slot_data.item_data.has_durability:
+		durability_label.text = "%s%" % slot_data.durability
 
 func _on_gui_input(event: InputEvent) -> void:
 	#TODO rework this to the mappable events
