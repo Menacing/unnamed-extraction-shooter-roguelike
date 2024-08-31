@@ -36,9 +36,9 @@ func load_game(file_path:String) -> SaveFile:
 	EventBus.before_game_loading.emit()
 	
 	#restore item instances
-	ItemAccess._on_load_game(saved_game)
-	#restore inventories
-	InventoryManager._on_load_game(saved_game)
+	#ItemAccess._on_load_game(saved_game)
+	##restore inventories
+	#InventoryManager._on_load_game(saved_game)
 	
 	#restore all root game elements
 	for item:TopLevelEntitySaveData in saved_game.top_level_entity_save_data:
@@ -60,7 +60,7 @@ func load_game(file_path:String) -> SaveFile:
 	
 	#restore items in inventories
 	await get_tree().process_frame
-	InventoryManager._restore_inventories()
+	#InventoryManager._restore_inventories()
 	print("finished loading!")
 	EventBus.game_loaded.emit()
 	

@@ -1,0 +1,26 @@
+[gd_scene load_steps=6 format=3 uid="uid://dalylkjs05jvn"]
+
+[ext_resource type="PackedScene" uid="uid://d08aatgxmymbf" path="res://game_objects/player/player.tscn" id="1_djb1h"]
+[ext_resource type="Script" path="res://levels/loot_chest.gd" id="2_7gssw"]
+[ext_resource type="Script" path="res://resource_access/equipment_slot_type.gd" id="3_pumtn"]
+[ext_resource type="Script" path="res://resource_access/inventory_data.gd" id="4_wpdyo"]
+
+[sub_resource type="Resource" id="Resource_ylxxo"]
+script = ExtResource("4_wpdyo")
+equipment_slots = Array[ExtResource("3_pumtn")]([])
+slot_datas = Array[Array]([])
+
+[node name="InventoryTestbed" type="Node3D"]
+
+[node name="Floor" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, 0)
+use_collision = true
+size = Vector3(10, 0.5, 10)
+
+[node name="Player" parent="." instance=ExtResource("1_djb1h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.539896, 1.15445, 2.38289)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -3.00282)
+script = ExtResource("2_7gssw")
+inventory_data = SubResource("Resource_ylxxo")

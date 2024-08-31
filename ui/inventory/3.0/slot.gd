@@ -19,7 +19,7 @@ func set_slot_data(slot_data:SlotData) -> void:
 		quantity_label.hide()
 	
 	if slot_data.item_data.has_durability:
-		durability_label.text = "%s%" % slot_data.durability
+		durability_label.text = "%s%" % (slot_data.durability/slot_data.item_data.max_durability * 100)
 
 func _on_gui_input(event: InputEvent) -> void:
 	#TODO rework this to the mappable events
