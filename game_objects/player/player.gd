@@ -1,6 +1,10 @@
 extends SteppingCharacterBody3D
 class_name Player
 
+@export var inventory_data:InventoryData
+
+signal toggle_inventory
+
 @onready var state_chart :StateChart = %StateChart
 @export var gun_scene1: PackedScene
 @export var gun_scene2: PackedScene
@@ -382,7 +386,7 @@ func _unhandled_input(event):
 
 func _input(event):
 	if event.is_action_pressed("inventory"):
-		toggle_inventory()
+		toggle_inventory.emit()
 	else:
 		if event.is_action_pressed("toggleFireMode"):
 			if equipped_gun.has_method("toggle_fire_mode"):
@@ -431,17 +435,17 @@ func _input(event):
 		elif event.is_action_pressed("quick_load"):
 			SaveManager.quick_load()
 
-func toggle_inventory():
-	toggle_inv_f = !toggle_inv_f
-	
-	if toggle_inv_f:
-		open_inventory()
-		if HideoutManager.in_hideout:
-			HideoutManager.show_hideout_menu()
-	else:
-		close_inventory()
-		if HideoutManager.in_hideout:
-			HideoutManager.hide_hideout_menu()
+#func toggle_inventory():
+	#toggle_inv_f = !toggle_inv_f
+	#
+	#if toggle_inv_f:
+		#open_inventory()
+		#if HideoutManager.in_hideout:
+			#HideoutManager.show_hideout_menu()
+	#else:
+		#close_inventory()
+		#if HideoutManager.in_hideout:
+			#HideoutManager.hide_hideout_menu()
 		
 func open_inventory():
 	toggle_inv_f = true

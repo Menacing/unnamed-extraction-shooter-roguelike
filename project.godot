@@ -55,6 +55,10 @@ project/assembly_name="Unnamed-extraction-shooter-roguelike"
 
 enabled=PackedStringArray("res://addons/func_godot/plugin.cfg", "res://addons/gdUnit4/plugin.cfg", "res://addons/ggs/plugin.cfg", "res://addons/godot_resource_groups/plugin.cfg", "res://addons/godot_state_charts/plugin.cfg", "res://addons/safe_resource_loader/plugin.cfg")
 
+[global_group]
+
+external_inventory=""
+
 [godot_resource_groups]
 
 auto_rebuild=true

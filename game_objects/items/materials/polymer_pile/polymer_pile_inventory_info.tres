@@ -1,6 +1,7 @@
-[gd_resource type="Resource" script_class="MaterialInformation" load_steps=9 format=3 uid="uid://bk7x5qi5hl1p8"]
+[gd_resource type="Resource" script_class="MaterialInformation" load_steps=10 format=3 uid="uid://bk7x5qi5hl1p8"]
 
 [ext_resource type="Resource" uid="uid://b7xbokgogvcm4" path="res://ui/inventory/split_stack_context_item.tres" id="1_2vlxm"]
+[ext_resource type="Script" path="res://ui/inventory/item_context_item.gd" id="1_c01bl"]
 [ext_resource type="Resource" uid="uid://o6tesi76nbth" path="res://ui/inventory/drop_item_context_item.tres" id="1_efr8v"]
 [ext_resource type="PackedScene" uid="uid://dsu2lajkgpbva" path="res://game_objects/items/materials/polymer_pile/polymer_pile.tscn" id="2_u8rja"]
 [ext_resource type="PackedScene" uid="uid://cn3ywqty7xvvr" path="res://ui/inventory/item_control.tscn" id="3_5r67a"]
@@ -23,7 +24,7 @@ item_type = 2
 icon = ExtResource("3_df7ph")
 icon_r = ExtResource("3_df7ph")
 detail_scene = ExtResource("3_ha2yn")
-context_menu_items = Array[Resource("res://ui/inventory/item_context_item.gd")]([ExtResource("1_2vlxm"), ExtResource("1_efr8v")])
+context_menu_items = Array[ExtResource("1_c01bl")]([ExtResource("1_2vlxm"), ExtResource("1_efr8v")])
 max_stacks = 10
 has_stacks = true
 max_durability = 1
