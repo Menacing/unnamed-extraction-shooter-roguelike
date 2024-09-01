@@ -19,6 +19,7 @@ func _physics_process(delta: float) -> void:
 
 func set_player_inventory_data(inventory_data:InventoryData) -> void:
 	inventory_data.inventory_interact.connect(on_inventory_interact)
+	inventory_data.inventory_context_menu.connect(_on_inventory_context_menu)
 	player_inventory.set_inventory_data(inventory_data)
 	
 func set_external_inventory(_external_inventory_owner) -> void:
@@ -26,6 +27,7 @@ func set_external_inventory(_external_inventory_owner) -> void:
 	var inventory_data = external_inventory_owner.inventory_data
 	
 	inventory_data.inventory_interact.connect(on_inventory_interact)
+	inventory_data.inventory_context_menu.connect(_on_inventory_context_menu)
 	external_inventory.set_inventory_data(inventory_data)
 	
 	external_inventory.show()
@@ -35,6 +37,8 @@ func clear_external_inventory() -> void:
 		var inventory_data = external_inventory_owner.inventory_data
 		
 		inventory_data.inventory_interact.disconnect(on_inventory_interact)
+		inventory_data.inventory_context_menu.disconnect(_on_inventory_context_menu)
+		
 		external_inventory.clear_inventory_data(inventory_data)
 		
 		external_inventory.hide()
@@ -53,17 +57,17 @@ func _on_toggle_inventory(external_inventory_owner = null) -> void:
 	else:
 		clear_external_inventory()
 		
-func on_inventory_interact(inventory_data:InventoryData, index:int, button:int):
-	match [grabbed_slot_data, button]:
-		[null, MOUSE_BUTTON_LEFT]:
-			grabbed_slot_data = inventory_data.grab_slot_data(index)
-		[_, MOUSE_BUTTON_LEFT]:
-			grabbed_slot_data = inventory_data.drop_slot_data(grabbed_slot_data, index)
-		[null, MOUSE_BUTTON_RIGHT]:
-			inventory_data.open_slot_context_menu(index)
-			pass
-		[_, MOUSE_BUTTON_RIGHT]:
-			grabbed_slot_data = inventory_data.drop_single_slot_data(grabbed_slot_data, index)
+func on_inventory_interact(inventory_data:InventoryData, index:int, event:InputEvent):
+	
+	if grabbed_slot_data == null and event.is_action_pressed("inv_grab"):
+		grabbed_slot_data = inventory_data.grab_slot_data(index)
+	elif event.is_action_pressed("inv_grab"):
+		grabbed_slot_data = inventory_data.drop_slot_data(grabbed_slot_data, index)
+	elif grabbed_slot_data == null and event.is_action_pressed("openContextMenu"):
+		inventory_data.open_slot_context_menu(index)
+	elif grabbed_slot_data and event.is_action_pressed("place_single_of_stack"):
+		grabbed_slot_data = inventory_data.drop_single_slot_data(grabbed_slot_data, index)
+		
 	update_grabbed_slot()
 
 func update_grabbed_slot() -> void:
@@ -73,23 +77,18 @@ func update_grabbed_slot() -> void:
 	else:
 		grabbed_slot.hide()
 
-
 func _on_gui_input(event: InputEvent) -> void:
-	if event is InputEventMouseButton and event.is_pressed() and grabbed_slot_data:
-		match event.button_index:
-			MOUSE_BUTTON_LEFT:
-				drop_slot_data(grabbed_slot_data)
-				grabbed_slot_data = null
-			MOUSE_BUTTON_RIGHT:
-				drop_slot_data(grabbed_slot_data.create_single_slot_data())
-				if grabbed_slot_data.quantity < 1:
-					grabbed_slot_data = null
+	if event.is_action_pressed("inv_grab") and grabbed_slot_data:
+		drop_slot_data(grabbed_slot_data)
+		grabbed_slot_data = null
+	elif event.is_action_pressed("place_single_of_stack") and grabbed_slot_data:
+		drop_slot_data(grabbed_slot_data.create_single_slot_data())
+		if grabbed_slot_data.quantity < 1:
+			grabbed_slot_data = null
 				
-		update_grabbed_slot()
+	update_grabbed_slot()
 
 func drop_slot_data(slot_data:SlotData) -> void:
-	#TODO finish this
-	#Instantiate the correct Item3D scene: probably need to pull this from the item info
 	var item_3d:Item3D = slot_data.item_data.item_3d_scene.instantiate()
 	item_3d.slot_data = slot_data
 	
@@ -101,10 +100,23 @@ func drop_slot_data(slot_data:SlotData) -> void:
 	item_3d.global_position = drop_location.global_position
 	pass
 
-
 func _on_visibility_changed() -> void:
 	if not visible and grabbed_slot_data:
 		drop_slot_data(grabbed_slot_data)
 		grabbed_slot_data = null
 		update_grabbed_slot()
 	pass # Replace with function body.
+
+
+func _on_inventory_context_menu(slot_data:SlotData):
+	var menu = PopupMenu.new()
+	for item in slot_data.item_data.context_menu_items:
+		menu.add_item(item.label)
+	#pass
+	self.add_child(menu)
+	var popup_rect = Rect2i()
+	popup_rect.position = Vector2i(get_global_mouse_position())
+	#menu.id_pressed.connect(_on_context_menu_pressed)
+	#menu.close_requested.connect(_on_menu_close_requested)
+	#menu.popup_hide.connect(_on_menu_close_requested)
+	menu.popup(popup_rect)

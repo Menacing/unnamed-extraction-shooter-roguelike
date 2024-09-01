@@ -2,7 +2,8 @@ extends Resource
 class_name InventoryData
 
 signal inventory_updated(inventory_data:InventoryData)
-signal inventory_interact(inventory_data:InventoryData, index:int, button:int)
+signal inventory_interact(inventory_data:InventoryData, index:int, event:InputEvent)
+signal inventory_context_menu(slot_data:SlotData)
 
 var width = 7
 @export var equipment_slots:Array[EquipmentSlotType]
@@ -61,6 +62,8 @@ func open_slot_context_menu(index:int) -> void:
 	
 	if not slot_data:
 		return
+	else:
+		inventory_context_menu.emit(slot_data)
 	
 	print(slot_data.item_data.display_name)
 
@@ -83,5 +86,5 @@ func pick_up_slot_data(slot_data:SlotData) -> bool:
 	
 	return false
 
-func on_slot_clicked(index:int, button:int) -> void:
-	inventory_interact.emit(self, index, button)
+func on_slot_clicked(index:int, event:InputEvent) -> void:
+	inventory_interact.emit(self, index, event)

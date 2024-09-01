@@ -1,6 +1,6 @@
 extends PanelContainer
 
-signal slot_clicked(index:int, button:int)
+signal slot_clicked(index:int, event:InputEvent)
 
 @onready var texture_rect: TextureRect = $MarginContainer/TextureRect
 @onready var quantity_label: Label = $QuantityLabel
@@ -22,7 +22,9 @@ func set_slot_data(slot_data:SlotData) -> void:
 		durability_label.text = "%s%" % (slot_data.durability/slot_data.item_data.max_durability * 100)
 
 func _on_gui_input(event: InputEvent) -> void:
-	#TODO rework this to the mappable events
-	if event is InputEventMouseButton and (event.button_index == MOUSE_BUTTON_LEFT \
-				or event.button_index == MOUSE_BUTTON_RIGHT) and event.is_pressed():
-		slot_clicked.emit(get_index(), event.button_index)
+	if event.is_action_pressed("inv_grab") or event.is_action_pressed("place_single_of_stack"):
+		slot_clicked.emit(get_index(), event)
+	
+	##TODO rework this to the mappable events
+	#if event is InputEventMouseButton and (event.button_index == MOUSE_BUTTON_LEFT \
+				#or event.button_index == MOUSE_BUTTON_RIGHT) and event.is_pressed():
