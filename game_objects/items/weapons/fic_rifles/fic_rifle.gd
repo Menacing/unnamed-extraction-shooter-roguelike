@@ -130,38 +130,39 @@ func copy_gun_model() -> Node3D:
 	return gun_model_node.duplicate()
 
 func _on_item_picked_up(result:InventoryInsertResult):
-	if result.inventory_id == internal_inventory_id:
-		super(result)
-		var item_instance:ItemInstance = InventoryManager.get_item(result.item_instance_id)
-		var item_3d:Item3D = ItemAccess.get_item_3d(item_instance.id_3d)
-		if result.location.location == InventoryLocationResult.LocationType.SLOT:
-			match result.location.slot_name:
-				"OpticsSlot":
-					scope = item_3d as Scope
-					for np : NodePath in on_scope_show_nps:
-						var ss_node = get_node(np)
-						ss_node.visible = true
-					for np : NodePath in on_scope_hide_nps:
-						var sh_node = get_node(np)
-						sh_node.visible = false
-					
-					move_attachment_to_anchor(item_3d, scope_anchor)
-					pass
-				"MagsSlot":
-					if item_instance.get_item_type_id() == "extended_magazine":
-						$s5/magazines/magazine.visible = false
-						$s5/magazines/extended_magazine.visible = true
-				"ForegripsSlot":
-					if item_instance.get_item_type_id() == "stable_foregrip":
-						$s5/stable_foregrip.visible = true
-			if item_3d is Attachment:
-				var attachment:Attachment = item_3d as Attachment
-				for effect in attachment.attachment_effect.effect_lists:
-					effect.effect_target_node = self
-				EventBus.create_effect.emit(firer.get_instance_id(), attachment.attachment_effect)
-		elif result.location.location == InventoryLocationResult.LocationType.GRID:
-			item_3d.visible = false
-			
+	#if result.inventory_id == internal_inventory_id:
+		#super(result)
+		#var item_instance:ItemInstance = InventoryManager.get_item(result.item_instance_id)
+		#var item_3d:Item3D = ItemAccess.get_item_3d(item_instance.id_3d)
+		#if result.location.location == InventoryLocationResult.LocationType.SLOT:
+			#match result.location.slot_name:
+				#"OpticsSlot":
+					#scope = item_3d as Scope
+					#for np : NodePath in on_scope_show_nps:
+						#var ss_node = get_node(np)
+						#ss_node.visible = true
+					#for np : NodePath in on_scope_hide_nps:
+						#var sh_node = get_node(np)
+						#sh_node.visible = false
+					#
+					#move_attachment_to_anchor(item_3d, scope_anchor)
+					#pass
+				#"MagsSlot":
+					#if item_instance.get_item_type_id() == "extended_magazine":
+						#$s5/magazines/magazine.visible = false
+						#$s5/magazines/extended_magazine.visible = true
+				#"ForegripsSlot":
+					#if item_instance.get_item_type_id() == "stable_foregrip":
+						#$s5/stable_foregrip.visible = true
+			#if item_3d is Attachment:
+				#var attachment:Attachment = item_3d as Attachment
+				#for effect in attachment.attachment_effect.effect_lists:
+					#effect.effect_target_node = self
+				#EventBus.create_effect.emit(firer.get_instance_id(), attachment.attachment_effect)
+		#elif result.location.location == InventoryLocationResult.LocationType.GRID:
+			#item_3d.visible = false
+	pass
+	
 func move_attachment_to_anchor(attachment:Node3D, anchor:Node3D):
 	if attachment:
 		Helpers.force_parent(attachment, anchor)
@@ -179,25 +180,26 @@ func get_ads_anchor() -> Vector3:
 	return base_position
 	
 func _on_item_removed_from_slot(item_inst:ItemInstance, inventory_id:int, slot_name:String):
-	if inventory_id == internal_inventory_id:
-		var item_3d:Item3D = ItemAccess.get_item_3d(item_inst.id_3d)
-		match slot_name:
-			"OpticsSlot":
-				scope = null
-				for np : NodePath in on_scope_show_nps:
-					var ss_node = get_node(np)
-					ss_node.visible = false
-				for np : NodePath in on_scope_hide_nps:
-					var sh_node = get_node(np)
-					sh_node.visible = true
-				pass
-			"MagsSlot":
-				if item_inst.get_item_type_id() == "extended_magazine":
-					$s5/magazines/magazine.visible = true
-					$s5/magazines/extended_magazine.visible = false
-			"ForegripsSlot":
-				if item_inst.get_item_type_id() == "stable_foregrip":
-					$s5/stable_foregrip.visible = false
-		if item_3d is Attachment:
-			var attachment:Attachment = item_3d as Attachment
-			EventBus.remove_effect.emit(firer.get_instance_id(), attachment.attachment_effect)
+	#if inventory_id == internal_inventory_id:
+		#var item_3d:Item3D = ItemAccess.get_item_3d(item_inst.id_3d)
+		#match slot_name:
+			#"OpticsSlot":
+				#scope = null
+				#for np : NodePath in on_scope_show_nps:
+					#var ss_node = get_node(np)
+					#ss_node.visible = false
+				#for np : NodePath in on_scope_hide_nps:
+					#var sh_node = get_node(np)
+					#sh_node.visible = true
+				#pass
+			#"MagsSlot":
+				#if item_inst.get_item_type_id() == "extended_magazine":
+					#$s5/magazines/magazine.visible = true
+					#$s5/magazines/extended_magazine.visible = false
+			#"ForegripsSlot":
+				#if item_inst.get_item_type_id() == "stable_foregrip":
+					#$s5/stable_foregrip.visible = false
+		#if item_3d is Attachment:
+			#var attachment:Attachment = item_3d as Attachment
+			#EventBus.remove_effect.emit(firer.get_instance_id(), attachment.attachment_effect)
+	pass

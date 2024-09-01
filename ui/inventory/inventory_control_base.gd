@@ -25,11 +25,11 @@ var inventory_id:int :
 			inventory_id = inv.inventory_id
 
 func _ready():
-	EventBus.open_inventory.connect(_on_open_inventory)
-	EventBus.close_inventory.connect(_on_close_inventory)
-	EventBus.close_all_inventories.connect(_on_close_all_inventories)
-	EventBus.item_removed_from_inventory.connect(_on_item_removed_from_inventory)
-	EventBus.item_picked_up.connect(_on_item_picked_up)
+	#EventBus.open_inventory.connect(_on_open_inventory)
+	#EventBus.close_inventory.connect(_on_close_inventory)
+	#EventBus.close_all_inventories.connect(_on_close_all_inventories)
+	#EventBus.item_removed_from_inventory.connect(_on_item_removed_from_inventory)
+	#EventBus.item_picked_up.connect(_on_item_picked_up)
 	EventBus.before_populate_level.connect(_on_before_populate_level)
 	_inventory_container = get_node(_inventory_container_path)
 	
@@ -85,5 +85,3 @@ func _on_item_removed_from_inventory(item_inst:ItemInstance, in_inventory_id:int
 			var parent = item_control.get_parent()
 			if parent:
 				parent.remove_child(item_control)
-
-

@@ -1,9 +1,9 @@
 extends Node
 
 func _ready() -> void:
-	EventBus.pickup_item.connect(_on_pickup_item)
-	EventBus.add_inventory.connect(add_inventory)
-	EventBus.item_durability_changed.connect(_destroy_depleted_durability)
+	#EventBus.pickup_item.connect(_on_pickup_item)
+	#EventBus.add_inventory.connect(add_inventory)
+	#EventBus.item_durability_changed.connect(_destroy_depleted_durability)
 	EventBus.game_saving.connect(_on_game_saving)
 	EventBus.before_game_loading.connect(_on_game_before_loading)
 

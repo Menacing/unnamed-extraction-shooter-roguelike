@@ -14,14 +14,6 @@ grow_vertical = 2
 script = ExtResource("1_caxe5")
 metadata/_edit_use_anchors_ = true
 
-[node name="GrabbedSlot" parent="." instance=ExtResource("3_xhv20")]
-visible = false
-modulate = Color(1, 1, 1, 0.490196)
-self_modulate = Color(1, 1, 1, 0)
-layout_mode = 0
-offset_right = 64.0
-offset_bottom = 64.0
-
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
@@ -42,6 +34,7 @@ layout_mode = 2
 size_flags_horizontal = 2
 
 [node name="ExternalInventory" parent="MarginContainer/HBoxContainer/ExternalInventorySpacer" instance=ExtResource("2_n5hmi")]
+unique_name_in_owner = true
 visible = false
 layout_mode = 2
 size_flags_horizontal = 3
@@ -55,8 +48,17 @@ layout_mode = 2
 size_flags_horizontal = 10
 
 [node name="PlayerInventory" parent="MarginContainer/HBoxContainer/PlayerInventorySpacer" instance=ExtResource("2_n5hmi")]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
+
+[node name="GrabbedSlot" parent="." instance=ExtResource("3_xhv20")]
+visible = false
+modulate = Color(1, 1, 1, 0.490196)
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_right = 64.0
+offset_bottom = 64.0
 
 [connection signal="gui_input" from="." to="." method="_on_gui_input"]
 [connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]

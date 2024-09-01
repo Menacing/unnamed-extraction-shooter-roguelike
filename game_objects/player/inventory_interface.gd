@@ -5,9 +5,9 @@ extends Control
 var grabbed_slot_data:SlotData
 var external_inventory_owner
 
-@onready var player_inventory: PanelContainer = $PlayerInventory
+@onready var player_inventory: PanelContainer = %PlayerInventory
 @onready var grabbed_slot: PanelContainer = $GrabbedSlot
-@onready var external_inventory: PanelContainer = $ExternalInventory
+@onready var external_inventory: PanelContainer = %ExternalInventory
 
 func _ready() -> void:
 	for node in get_tree().get_nodes_in_group("external_inventory"):
@@ -69,7 +69,7 @@ func on_inventory_interact(inventory_data:InventoryData, index:int, button:int):
 func update_grabbed_slot() -> void:
 	if grabbed_slot_data:
 		grabbed_slot.show()
-		grabbed_slot.set_slot_data
+		grabbed_slot.set_slot_data(grabbed_slot_data)
 	else:
 		grabbed_slot.hide()
 
@@ -90,11 +90,15 @@ func _on_gui_input(event: InputEvent) -> void:
 func drop_slot_data(slot_data:SlotData) -> void:
 	#TODO finish this
 	#Instantiate the correct Item3D scene: probably need to pull this from the item info
+	var item_3d:Item3D = slot_data.item_data.item_3d_scene.instantiate()
+	item_3d.slot_data = slot_data
 	
 	#Add it to the level
+	if !LevelManager.add_node_to_level(item_3d):
+		get_tree().root.add_child(item_3d)
 	
 	#move it to the drop point
-	
+	item_3d.global_position = drop_location.global_position
 	pass
 
 

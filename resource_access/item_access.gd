@@ -22,7 +22,8 @@ func _ready():
 
 func map_item_info_array(iia:Array[ItemInformation]):
 	for info:ItemInformation in iia:
-		_item_info_mapping[info.item_type_id] = info
+		if info:
+			_item_info_mapping[info.item_type_id] = info
 	
 func spawn_from_item3d(item3d:Item3D):
 	if item3d:
@@ -202,4 +203,3 @@ func _on_load_game(save_file:SaveFile):
 		item_inst.is_equipped = iisd.is_equipped
 
 		item_inst.spawn_item(false)
-

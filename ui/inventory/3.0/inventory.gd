@@ -2,7 +2,7 @@ extends PanelContainer
 
 const Slot = preload("res://ui/inventory/3.0/slot.tscn")
 
-@onready var item_grid: GridContainer = $MarginContainer/ItemGrid
+@onready var item_grid: GridContainer = %ItemGrid
 
 func set_inventory_data(inventory_data:InventoryData) -> void:
 	inventory_data.inventory_updated.connect(populate_item_grid)

@@ -120,33 +120,34 @@ func make_opaque():
 		pass
 
 func _on_item_picked_up(result:InventoryInsertResult):
-	if result.inventory_id == internal_inventory_id:
-		super(result)
-		var item_instance:ItemInstance = InventoryManager.get_item(result.item_instance_id)
-		var item_3d:Item3D = ItemAccess.get_item_3d(item_instance.id_3d)
-		if result.location.location == InventoryLocationResult.LocationType.SLOT:
-			match result.location.slot_name:
-				"OpticsSlot":
-					scope = item_3d as Scope
-					scope_mount_model.visible = true
-					move_attachment_to_anchor(item_3d, scope_anchor)
-					pass
-				"MagsSlot":
-					if item_instance.get_item_type_id() == "extended_magazine":
-						$gun/Node_15/gun/mag/cube_003.visible = false
-						$gun/Node_15/gun/mag/extended_magazine.visible = true
-				"ForegripsSlot":
-					if item_instance.get_item_type_id() == "stable_foregrip":
-						$gun/Node_15/gun/handguard/default.visible = false
-						$gun/Node_15/gun/handguard/stable.visible = true
-			if item_3d is Attachment:
-				var attachment:Attachment = item_3d as Attachment
-				for effect in attachment.attachment_effect.effect_lists:
-					effect.effect_target_node = self
-				EventBus.create_effect.emit(firer.get_instance_id(), attachment.attachment_effect)
-		elif result.location.location == InventoryLocationResult.LocationType.GRID:
-			item_3d.visible = false
-			
+	#if result.inventory_id == internal_inventory_id:
+		#super(result)
+		#var item_instance:ItemInstance = InventoryManager.get_item(result.item_instance_id)
+		#var item_3d:Item3D = ItemAccess.get_item_3d(item_instance.id_3d)
+		#if result.location.location == InventoryLocationResult.LocationType.SLOT:
+			#match result.location.slot_name:
+				#"OpticsSlot":
+					#scope = item_3d as Scope
+					#scope_mount_model.visible = true
+					#move_attachment_to_anchor(item_3d, scope_anchor)
+					#pass
+				#"MagsSlot":
+					#if item_instance.get_item_type_id() == "extended_magazine":
+						#$gun/Node_15/gun/mag/cube_003.visible = false
+						#$gun/Node_15/gun/mag/extended_magazine.visible = true
+				#"ForegripsSlot":
+					#if item_instance.get_item_type_id() == "stable_foregrip":
+						#$gun/Node_15/gun/handguard/default.visible = false
+						#$gun/Node_15/gun/handguard/stable.visible = true
+			#if item_3d is Attachment:
+				#var attachment:Attachment = item_3d as Attachment
+				#for effect in attachment.attachment_effect.effect_lists:
+					#effect.effect_target_node = self
+				#EventBus.create_effect.emit(firer.get_instance_id(), attachment.attachment_effect)
+		#elif result.location.location == InventoryLocationResult.LocationType.GRID:
+			#item_3d.visible = false
+	pass
+	
 func move_attachment_to_anchor(attachment:Node3D, anchor:Node3D):
 	if attachment:
 		Helpers.force_parent(attachment, anchor)
@@ -161,21 +162,22 @@ func get_ads_anchor() -> Vector3:
 	return base_position
 	
 func _on_item_removed_from_slot(item_inst:ItemInstance, inventory_id:int, slot_name:String):
-	if inventory_id == internal_inventory_id:
-		var item_3d:Item3D = ItemAccess.get_item_3d(item_inst.id_3d)
-		match slot_name:
-			"OpticsSlot":
-				scope = null
-				scope_mount_model.visible = false
-				pass
-			"MagsSlot":
-				if item_inst.get_item_type_id() == "extended_magazine":
-					$gun/Node_15/gun/mag/cube_003.visible = false
-					$gun/Node_15/gun/mag/extended_magazine.visible = true
-			"ForegripsSlot":
-				if item_inst.get_item_type_id() == "stable_foregrip":
-					$gun/Node_15/gun/handguard/default.visible = true
-					$gun/Node_15/gun/handguard/stable.visible = false
-		if item_3d is Attachment:
-			var attachment:Attachment = item_3d as Attachment
-			EventBus.remove_effect.emit(firer.get_instance_id(), attachment.attachment_effect)
+	#if inventory_id == internal_inventory_id:
+		#var item_3d:Item3D = ItemAccess.get_item_3d(item_inst.id_3d)
+		#match slot_name:
+			#"OpticsSlot":
+				#scope = null
+				#scope_mount_model.visible = false
+				#pass
+			#"MagsSlot":
+				#if item_inst.get_item_type_id() == "extended_magazine":
+					#$gun/Node_15/gun/mag/cube_003.visible = false
+					#$gun/Node_15/gun/mag/extended_magazine.visible = true
+			#"ForegripsSlot":
+				#if item_inst.get_item_type_id() == "stable_foregrip":
+					#$gun/Node_15/gun/handguard/default.visible = true
+					#$gun/Node_15/gun/handguard/stable.visible = false
+		#if item_3d is Attachment:
+			#var attachment:Attachment = item_3d as Attachment
+			#EventBus.remove_effect.emit(firer.get_instance_id(), attachment.attachment_effect)
+	pass

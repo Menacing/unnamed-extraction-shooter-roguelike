@@ -1,13 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://5kxtoc8tn1ps"]
+[gd_scene load_steps=2 format=3 uid="uid://5kxtoc8tn1ps"]
 
 [ext_resource type="Script" path="res://ui/inventory/3.0/slot.gd" id="1_o7y0k"]
-[ext_resource type="Texture2D" uid="uid://vsv4wbmeog0q" path="res://icon.svg" id="2_ckjb7"]
 
 [node name="Slot" type="PanelContainer"]
 custom_minimum_size = Vector2(64, 64)
 offset_right = 32.0
 offset_bottom = 32.0
-mouse_filter = 2
 script = ExtResource("1_o7y0k")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
@@ -19,7 +17,6 @@ theme_override_constants/margin_bottom = 4
 
 [node name="TextureRect" type="TextureRect" parent="MarginContainer"]
 layout_mode = 2
-texture = ExtResource("2_ckjb7")
 expand_mode = 1
 stretch_mode = 5
 

@@ -1,14 +1,33 @@
-[gd_scene load_steps=6 format=3 uid="uid://dalylkjs05jvn"]
+[gd_scene load_steps=12 format=3 uid="uid://dalylkjs05jvn"]
 
 [ext_resource type="PackedScene" uid="uid://d08aatgxmymbf" path="res://game_objects/player/player.tscn" id="1_djb1h"]
 [ext_resource type="Script" path="res://levels/loot_chest.gd" id="2_7gssw"]
 [ext_resource type="Script" path="res://resource_access/equipment_slot_type.gd" id="3_pumtn"]
 [ext_resource type="Script" path="res://resource_access/inventory_data.gd" id="4_wpdyo"]
+[ext_resource type="Resource" uid="uid://bk7x5qi5hl1p8" path="res://game_objects/items/materials/polymer_pile/polymer_pile_inventory_info.tres" id="5_jowp7"]
+[ext_resource type="Script" path="res://resource_access/slot_data.gd" id="6_lpxmd"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nimtq"]
+albedo_color = Color(0.358214, 0.266036, 0, 1)
+
+[sub_resource type="Resource" id="Resource_hqixs"]
+script = ExtResource("4_wpdyo")
+equipment_slots = Array[ExtResource("3_pumtn")]([])
+slot_datas = Array[Array]([[null, null, null, null, null, null, null], [null, null, null, null, null, null, null]])
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4skll"]
+albedo_color = Color(0.352643, 0.513708, 0.301008, 1)
+
+[sub_resource type="Resource" id="Resource_sg8ar"]
+script = ExtResource("6_lpxmd")
+item_data = ExtResource("5_jowp7")
+quantity = 5
+durability = 1
 
 [sub_resource type="Resource" id="Resource_ylxxo"]
 script = ExtResource("4_wpdyo")
 equipment_slots = Array[ExtResource("3_pumtn")]([])
-slot_datas = Array[Array]([])
+slot_datas = Array[Array]([[null, null, SubResource("Resource_sg8ar"), null, null, null, null], [null, null, null, null, null, null, null], [null, null, null, null, null, null, null], [null, null, null, null, null, null, null]])
 
 [node name="InventoryTestbed" type="Node3D"]
 
@@ -16,11 +35,17 @@ slot_datas = Array[Array]([])
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, 0)
 use_collision = true
 size = Vector3(10, 0.5, 10)
+material = SubResource("StandardMaterial3D_nimtq")
 
 [node name="Player" parent="." instance=ExtResource("1_djb1h")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.539896, 1.15445, 2.38289)
+inventory_data = SubResource("Resource_hqixs")
 
-[node name="CSGBox3D" type="CSGBox3D" parent="."]
+[node name="CSGBox3D" type="CSGBox3D" parent="." groups=["external_inventory"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -3.00282)
+use_collision = true
+collision_layer = 5
+collision_mask = 5
+material = SubResource("StandardMaterial3D_4skll")
 script = ExtResource("2_7gssw")
 inventory_data = SubResource("Resource_ylxxo")

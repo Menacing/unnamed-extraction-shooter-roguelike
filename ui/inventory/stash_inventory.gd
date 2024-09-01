@@ -20,17 +20,17 @@ var player:Player
 
 func _ready():
 	super()
-	EventBus.drop_item.connect(_on_drop_item)
-	sig = get_node(_inventory_grid_path)
-	
-	for cme:CraftingMaterialEntry in HideoutManager.crafting_materials:
-		if cme.material_definition.name == "Polymer":
-			cme.amount_changed.connect(_on_crafting_material_entry_amount_changed.bind(polymer_count_label))
-		if cme.material_definition.name == "Scrap Metal":
-			cme.amount_changed.connect(_on_crafting_material_entry_amount_changed.bind(scrap_metal_count_label))
-		if cme.material_definition.name == "Bio Gel":
-			cme.amount_changed.connect(_on_crafting_material_entry_amount_changed.bind(bio_gel_count_label))
-		pass
+	#EventBus.drop_item.connect(_on_drop_item)
+	#sig = get_node(_inventory_grid_path)
+	#
+	#for cme:CraftingMaterialEntry in HideoutManager.crafting_materials:
+		#if cme.material_definition.name == "Polymer":
+			#cme.amount_changed.connect(_on_crafting_material_entry_amount_changed.bind(polymer_count_label))
+		#if cme.material_definition.name == "Scrap Metal":
+			#cme.amount_changed.connect(_on_crafting_material_entry_amount_changed.bind(scrap_metal_count_label))
+		#if cme.material_definition.name == "Bio Gel":
+			#cme.amount_changed.connect(_on_crafting_material_entry_amount_changed.bind(bio_gel_count_label))
+		#pass
 	
 func _on_crafting_material_entry_amount_changed(new_amount:int, label:Label):
 	label.text = str(new_amount)

@@ -4,6 +4,7 @@ class_name Player
 @export var inventory_data:InventoryData
 
 signal toggle_inventory
+@onready var inventory_interface: Control = %InventoryInterface
 
 @onready var state_chart :StateChart = %StateChart
 @export var gun_scene1: PackedScene
@@ -187,10 +188,10 @@ func _ready():
 	#EventBus.item_picked_up.connect(_on_item_picked_up)
 	#EventBus.item_removed_from_slot.connect(_on_item_removed_from_slot)
 	#EventBus.drop_item.connect(_on_drop_item)
-	if toggle_inv_f:
-		EventBus.open_inventory.emit(player_inventory_id)
-	else:
-		EventBus.close_all_inventories.emit()
+	#if toggle_inv_f:
+		#EventBus.open_inventory.emit(player_inventory_id)
+	#else:
+		#EventBus.close_all_inventories.emit()
 	EventBus.ammo_type_changed.connect(_on_ammo_type_changed)
 	EventBus.game_saving.connect(_on_game_saving)
 	EventBus.before_game_loading.connect(_on_game_before_loading)
@@ -205,7 +206,8 @@ func _ready():
 	ik_head.start()
 	
 	pov_rotation_node = chest
-
+	
+	inventory_interface.set_player_inventory_data(inventory_data)
 
 #func _on_item_picked_up(result:InventoryInsertResult):
 	#if result.inventory_id == player_inventory_id:
@@ -363,8 +365,8 @@ func _physics_process(delta):
 					if col is Item3D:
 						#Sometimes item instance is null when you pick object up
 						var display_text = ''
-						if col.get_item_instance():
-							display_text = col.get_item_instance().get_display_short_name()
+						if col.slot_data:
+							display_text = col.slot_data.item_data.display_short_name
 						EventBus.pickup_helper_visibility.emit(true, display_text)
 					elif col.has_method("use"):
 						EventBus.use_helper_visibility.emit(true)
@@ -378,10 +380,10 @@ func _physics_process(delta):
 func _unhandled_input(event):
 	if event.is_action_pressed("ui_cancel"):
 		#If inventories are closed, trigger the pause menu, else close open inventories
-		if !toggle_inv_f:
+		if !inventory_interface.visible:
 			MenuManager.load_menu(MenuManager.MENU_LEVEL.PAUSE)
 		else:
-			close_inventory()
+			toggle_inventory.emit()
 		
 
 func _input(event):
@@ -397,7 +399,7 @@ func _input(event):
 			if use_shape.is_colliding():
 				var col = use_shape.get_collider(0)
 				if col is Item3D:
-					#EventBus.pickup_item.emit(col.get_item_instance(), player_inventory_id)
+					col.pick_up_item(inventory_data)
 					pass
 				elif col.has_method("use"):
 					col.use(self)
@@ -447,23 +449,16 @@ func _input(event):
 		#close_inventory()
 		#if HideoutManager.in_hideout:
 			#HideoutManager.hide_hideout_menu()
-		
-func open_inventory():
-	toggle_inv_f = true
-	Input.mouse_mode = Input.MOUSE_MODE_CONFINED
-	EventBus.open_inventory.emit(player_inventory_id)
-	state_chart.send_event("LegsBusy")
-	state_chart.send_event("ArmsBusy")
-	state_chart.send_event("StopLean")
-	
-	
-func close_inventory():
-	toggle_inv_f = false
-	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-	EventBus.close_all_inventories.emit()
-	state_chart.send_event("LegsDone")
-	state_chart.send_event("ArmsDone")
 
+func _on_inventory_interface_visibility_changed() -> void:
+	if inventory_interface.visible:
+		state_chart.send_event("LegsBusy")
+		state_chart.send_event("ArmsBusy")
+		state_chart.send_event("StopLean")
+	else:
+		state_chart.send_event("LegsDone")
+		state_chart.send_event("ArmsDone")
+	pass # Replace with function body.
 
 func shoot():
 	equipped_gun.fireGun()
