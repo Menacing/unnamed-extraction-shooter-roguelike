@@ -12,7 +12,6 @@ config_version=5
 
 config/name="Unnamed-extraction-shooter-roguelike"
 config/version="v0.1.1.1"
-run/main_scene="res://main.tscn"
 config/features=PackedStringArray("4.3")
 config/icon="res://icon.svg"
 
@@ -25,6 +24,7 @@ MenuManager="*res://game_logic/menu_manager.gd"
 GameplayEnums="*res://game_logic/gameplay_enums.gd"
 GGS="*res://addons/ggs/classes/global/ggs.tscn"
 SaveManager="*res://game_logic/save_manager.gd"
+ItemMappingRepository="*res://game_logic/item_mapping_repository.gd"
 ItemAccess="*res://resource_access/item_access.gd"
 InventoryAccess="*res://resource_access/inventory_access.gd"
 InventoryManager="*res://game_logic/inventory_manager.gd"

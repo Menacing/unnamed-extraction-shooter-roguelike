@@ -1,8 +1,6 @@
 extends Resource
 class_name ItemInformation
 
-@export var item_control_scene:PackedScene
-@export var item_3d_scene:PackedScene
 @export var item_type_id:String
 @export var show_name:bool = false
 @export var display_name:String

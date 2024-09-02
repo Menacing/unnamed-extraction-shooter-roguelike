@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ItemMapping" load_steps=4 format=3 uid="uid://mg1lfuhy7cio"]
+
+[ext_resource type="PackedScene" uid="uid://dsu2lajkgpbva" path="res://game_objects/items/materials/polymer_pile/polymer_pile.tscn" id="1_d1040"]
+[ext_resource type="Script" path="res://resource_access/item_mapping.gd" id="1_sf4hb"]
+[ext_resource type="Resource" uid="uid://bk7x5qi5hl1p8" path="res://game_objects/items/materials/polymer_pile/polymer_pile_inventory_info.tres" id="2_5nws2"]
+
+[resource]
+script = ExtResource("1_sf4hb")
+item_type_id = "polymer_pile_small"
+item_information = ExtResource("2_5nws2")
+item_3d_scene = ExtResource("1_d1040")

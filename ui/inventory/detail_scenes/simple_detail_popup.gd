@@ -80,4 +80,3 @@ func adjust_camera_to_fit():
 
 	var largest_axis = item_3d.longest_side_size
 	viewport_camera.size = largest_axis * 1.1
-

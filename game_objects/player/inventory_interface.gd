@@ -89,15 +89,17 @@ func _on_gui_input(event: InputEvent) -> void:
 	update_grabbed_slot()
 
 func drop_slot_data(slot_data:SlotData) -> void:
-	var item_3d:Item3D = slot_data.item_data.item_3d_scene.instantiate()
-	item_3d.slot_data = slot_data
-	
-	#Add it to the level
-	if !LevelManager.add_node_to_level(item_3d):
-		get_tree().root.add_child(item_3d)
-	
-	#move it to the drop point
-	item_3d.global_position = drop_location.global_position
+	var item_3d_scene = ItemMappingRepository.get_item_3d(slot_data.item_data.item_type_id)
+	if item_3d_scene:
+		var item_3d:Item3D = item_3d_scene.instantiate()
+		item_3d.slot_data = slot_data
+		
+		#Add it to the level
+		if !LevelManager.add_node_to_level(item_3d):
+			get_tree().root.add_child(item_3d)
+		
+		#move it to the drop point
+		item_3d.global_position = drop_location.global_position
 	pass
 
 func _on_visibility_changed() -> void:

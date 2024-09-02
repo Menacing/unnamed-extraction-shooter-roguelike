@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ResourceGroup" load_steps=2 format=3 uid="uid://co8dm5mvyr723"]
+
+[ext_resource type="Script" path="res://addons/godot_resource_groups/resource_group.gd" id="1_4bq2c"]
+
+[resource]
+script = ExtResource("1_4bq2c")
+base_folder = "res://game_objects/items"
+includes = Array[String](["**_item_mapping.tres"])
+excludes = Array[String]([])
+paths = Array[String](["res://game_objects/items/materials/polymer_pile/polymer_pile_item_mapping.tres"])

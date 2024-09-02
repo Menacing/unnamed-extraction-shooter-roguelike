@@ -306,4 +306,3 @@ static func _report_inventory_contents(inv:Inventory) -> Dictionary:
 				result[slot.item_instance_id] = pickup_result
 	return result
 	
-
