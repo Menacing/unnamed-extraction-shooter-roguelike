@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ItemMapping" load_steps=4 format=3 uid="uid://ctt1u5ctyqi3j"]
+
+[ext_resource type="PackedScene" uid="uid://c4d3mbvlwijgv" path="res://game_objects/items/ammo/fic/fic_box_hp.tscn" id="1_2dtgw"]
+[ext_resource type="Resource" uid="uid://bf0wutrj2bdog" path="res://game_objects/items/ammo/fic/fic_box_hp_inventory_info.tres" id="2_5jymf"]
+[ext_resource type="Script" path="res://resource_access/item_mapping.gd" id="3_vp6r2"]
+
+[resource]
+script = ExtResource("3_vp6r2")
+item_type_id = "fic_box_hp"
+item_information = ExtResource("2_5jymf")
+item_3d_scene = ExtResource("1_2dtgw")

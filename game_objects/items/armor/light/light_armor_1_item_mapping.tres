@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ItemMapping" load_steps=4 format=3 uid="uid://din7vgqcghwyx"]
+
+[ext_resource type="PackedScene" uid="uid://c2mgc1vc3603e" path="res://game_objects/items/armor/light/light_armor_1.tscn" id="1_m04w8"]
+[ext_resource type="Script" path="res://resource_access/item_mapping.gd" id="1_wxsbt"]
+[ext_resource type="Resource" uid="uid://25dmf2cpvdfq" path="res://game_objects/items/armor/light/light_armor_1_inventory_info.tres" id="2_eqfr6"]
+
+[resource]
+script = ExtResource("1_wxsbt")
+item_type_id = "light_armor_1"
+item_information = ExtResource("2_eqfr6")
+item_3d_scene = ExtResource("1_m04w8")

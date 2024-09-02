@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ItemMapping" load_steps=4 format=3 uid="uid://taocuqc4f7ea"]
+
+[ext_resource type="PackedScene" uid="uid://btg5dmqcu3ni3" path="res://game_objects/items/ammo/lpc/lpc_box_hp.tscn" id="1_p2302"]
+[ext_resource type="Resource" uid="uid://dk1myfjylof2q" path="res://game_objects/items/ammo/lpc/lpc_box_hp_inventory_info.tres" id="2_us54x"]
+[ext_resource type="Script" path="res://resource_access/item_mapping.gd" id="3_0s7xh"]
+
+[resource]
+script = ExtResource("3_0s7xh")
+item_type_id = "lpc_box_hp"
+item_information = ExtResource("2_us54x")
+item_3d_scene = ExtResource("1_p2302")

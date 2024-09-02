@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ItemMapping" load_steps=4 format=3 uid="uid://b3ndsxm1foe0"]
+
+[ext_resource type="Script" path="res://resource_access/item_mapping.gd" id="1_0w6ow"]
+[ext_resource type="PackedScene" uid="uid://d0o2yjbp3avaa" path="res://game_objects/items/attachments/magazines/extended/extended_magazine.tscn" id="1_a7l0g"]
+[ext_resource type="Resource" uid="uid://yj4rydxs1mju" path="res://game_objects/items/attachments/magazines/extended/extended_magazine_inventory_info.tres" id="2_2uxkf"]
+
+[resource]
+script = ExtResource("1_0w6ow")
+item_type_id = "extended_magazine"
+item_information = ExtResource("2_2uxkf")
+item_3d_scene = ExtResource("1_a7l0g")

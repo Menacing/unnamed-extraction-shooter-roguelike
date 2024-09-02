@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ItemMapping" load_steps=4 format=3 uid="uid://umv4nrm2q6hx"]
+
+[ext_resource type="Script" path="res://resource_access/item_mapping.gd" id="1_eeiyo"]
+[ext_resource type="PackedScene" uid="uid://b6xejgxv7attc" path="res://game_objects/items/backpacks/large/large_backpack_1.tscn" id="1_v5oap"]
+[ext_resource type="Resource" uid="uid://dv187kl8jcl01" path="res://game_objects/items/backpacks/large/large_backpack_1_inventory_info.tres" id="2_e8qwv"]
+
+[resource]
+script = ExtResource("1_eeiyo")
+item_type_id = "large_backpack_1"
+item_information = ExtResource("2_e8qwv")
+item_3d_scene = ExtResource("1_v5oap")

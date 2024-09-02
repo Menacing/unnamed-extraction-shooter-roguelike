@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ItemMapping" load_steps=4 format=3 uid="uid://beukwrqef58v2"]
+
+[ext_resource type="PackedScene" uid="uid://cwhv3r1tw0orw" path="res://game_objects/items/consumables/regel_pod/regel_pod.tscn" id="1_ojupf"]
+[ext_resource type="Resource" uid="uid://ik6f3hhg63nv" path="res://game_objects/items/consumables/regel_pod/regel_pod_inventory_info.tres" id="1_tqma4"]
+[ext_resource type="Script" path="res://resource_access/item_mapping.gd" id="2_2ci4w"]
+
+[resource]
+script = ExtResource("2_2ci4w")
+item_type_id = "regel_pod"
+item_information = ExtResource("1_tqma4")
+item_3d_scene = ExtResource("1_ojupf")
