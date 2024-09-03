@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://dalylkjs05jvn"]
+[gd_scene load_steps=14 format=3 uid="uid://dalylkjs05jvn"]
 
 [ext_resource type="PackedScene" uid="uid://d08aatgxmymbf" path="res://game_objects/player/player.tscn" id="1_djb1h"]
 [ext_resource type="Script" path="res://levels/loot_chest.gd" id="2_7gssw"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://resource_access/inventory_data.gd" id="4_wpdyo"]
 [ext_resource type="Resource" uid="uid://bk7x5qi5hl1p8" path="res://game_objects/items/materials/polymer_pile/polymer_pile_inventory_info.tres" id="5_jowp7"]
 [ext_resource type="Script" path="res://resource_access/slot_data.gd" id="6_lpxmd"]
+[ext_resource type="Resource" uid="uid://xufa6auvjw6t" path="res://game_objects/items/weapons/hic_rifles/pm_52/pm_52_inventory_info.tres" id="7_55m32"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nimtq"]
 albedo_color = Color(0.358214, 0.266036, 0, 1)
@@ -24,10 +25,16 @@ item_data = ExtResource("5_jowp7")
 quantity = 5
 durability = 1
 
+[sub_resource type="Resource" id="Resource_oo1vv"]
+script = ExtResource("6_lpxmd")
+item_data = ExtResource("7_55m32")
+quantity = 1
+durability = 1
+
 [sub_resource type="Resource" id="Resource_ylxxo"]
 script = ExtResource("4_wpdyo")
 equipment_slots = Array[ExtResource("3_pumtn")]([])
-slot_datas = Array[Array]([[null, null, SubResource("Resource_sg8ar"), null, null, null, null], [null, null, null, null, null, null, null], [null, null, null, null, null, null, null], [null, null, null, null, null, null, null]])
+slot_datas = Array[Array]([[null, null, SubResource("Resource_sg8ar"), null, null, null, null], [null, null, null, null, null, null, null], [SubResource("Resource_oo1vv"), null, null, null, null, null, null], [null, null, null, null, null, null, null]])
 
 [node name="InventoryTestbed" type="Node3D"]
 

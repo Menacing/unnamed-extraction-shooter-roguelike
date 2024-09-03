@@ -28,9 +28,10 @@ var item_3d:Item3D:
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	var item_instance:ItemInstance = ItemAccess.get_item_instance(item_instance_id)
-	if item_instance:
-		item_3d = ItemAccess.get_item_3d(item_instance.id_3d) as Item3D
+	pass
+	#var item_instance:ItemInstance = ItemAccess.get_item_instance(item_instance_id)
+	#if item_instance:
+		#item_3d = ItemAccess.get_item_3d(item_instance.id_3d) as Item3D
 
 
 func set_internal_inventory(internal_inventory:Inventory):
@@ -85,4 +86,3 @@ func adjust_camera_to_fit():
 
 	var largest_axis = item_3d.longest_side_size
 	viewport_camera.size = largest_axis * 1.1
-

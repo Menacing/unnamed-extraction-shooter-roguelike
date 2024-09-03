@@ -40,16 +40,17 @@ func _on_before_populate_level():
 	container_size = _inventory.initial_height * _inventory.initial_width
 
 func _on_item_picked_up(result:InventoryInsertResult):
-	if result.inventory_id == _inventory.inventory_id and result.picked_up:
-		var item_instance:ItemInstance = InventoryManager.get_item(result.item_instance_id)
-		var item_control:ItemControl = ItemAccess.get_item_control(item_instance.id_2d)
-		var location = result.location
-		if location.location == InventoryLocationResult.LocationType.GRID:
-			sig.add_item_control(item_control, location.grid_x, location.grid_y)
-			
-		if item_instance.get_item_type() == GameplayEnums.ItemType.MATERIAL:
-			var remainder:int = HideoutManager.add_crafting_material_item_instance(item_instance)
-			item_instance.stacks = remainder
+	pass
+	#if result.inventory_id == _inventory.inventory_id and result.picked_up:
+		#var item_instance:ItemInstance = InventoryManager.get_item(result.item_instance_id)
+		#var item_control:ItemControl = ItemAccess.get_item_control(item_instance.id_2d)
+		#var location = result.location
+		#if location.location == InventoryLocationResult.LocationType.GRID:
+			#sig.add_item_control(item_control, location.grid_x, location.grid_y)
+			#
+		#if item_instance.get_item_type() == GameplayEnums.ItemType.MATERIAL:
+			#var remainder:int = HideoutManager.add_crafting_material_item_instance(item_instance)
+			#item_instance.stacks = remainder
 
 func _on_open_inventory(inventory_id:int):
 	super(inventory_id)
@@ -68,9 +69,10 @@ func _on_close_all_inventories():
 	EventBus.remove_control_from_HUD.emit(hideout_menu, original_parent)
 	
 func _on_drop_item(item_inst:ItemInstance, _inventory_id:int):
-	if _inventory_id == self.inventory_id:
-		var item_3d:Item3D = ItemAccess.get_item_3d(item_inst.id_3d)
-		Helpers.force_parent(item_3d,get_parent())
-		item_3d.dropped()
-		var aabb = Helpers.get_aabb_of_node(self)
-		item_3d.global_position = player.drop_location.global_position
+	pass
+	#if _inventory_id == self.inventory_id:
+		#var item_3d:Item3D = ItemAccess.get_item_3d(item_inst.id_3d)
+		#Helpers.force_parent(item_3d,get_parent())
+		#item_3d.dropped()
+		#var aabb = Helpers.get_aabb_of_node(self)
+		#item_3d.global_position = player.drop_location.global_position
