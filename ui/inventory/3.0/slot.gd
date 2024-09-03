@@ -1,5 +1,7 @@
 extends PanelContainer
 
+@export var cell_margin:int = 4
+
 signal slot_clicked(index:int, event:InputEvent)
 
 @onready var quantity_label: Label = $QuantityLabel
@@ -36,16 +38,21 @@ func _on_gui_input(event: InputEvent) -> void:
 	if event.is_action_pressed("inv_grab") or event.is_action_pressed("place_single_of_stack"):
 		slot_clicked.emit(get_index(), event)
 
+func _convert_cells_to_pixels(number_cells:int):
+	return (number_cells * cell_size) + ((number_cells-1) * cell_margin)
+
 func set_slot_texture(slot_data:SlotData):
 	var item_data:ItemInformation = slot_data.item_data
 	
 	icon_sprite_2d.texture = item_data.icon
 	
-	var target_width = slot_data.get_width() * cell_size
-	var target_height = slot_data.get_height() * cell_size
+	var target_width = _convert_cells_to_pixels(slot_data.get_width())
+	var target_height = _convert_cells_to_pixels(slot_data.get_height())
 	if slot_data.is_rotated:
-		target_height = slot_data.get_width() * cell_size
-		target_width = slot_data.get_height() * cell_size
+		target_height = _convert_cells_to_pixels(slot_data.get_width()) 
+		target_width = _convert_cells_to_pixels(slot_data.get_height())
+		
+	
 	
 	var icon_tex_size = icon_sprite_2d.texture.get_size()
 	var icon_target_width_scale = target_width / icon_tex_size.x
