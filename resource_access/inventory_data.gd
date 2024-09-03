@@ -3,12 +3,14 @@ class_name InventoryData
 
 signal inventory_updated(inventory_data:InventoryData)
 signal inventory_interact(inventory_data:InventoryData, index:int, event:InputEvent)
-signal inventory_context_menu(slot_data:SlotData)
+signal inventory_context_menu(inventory_data:InventoryData, slot_data:SlotData)
+signal inventory_drop_item(slot_data:SlotData)
 
 var width = 7
 @export var equipment_slots:Array[EquipmentSlotType]
 @export var slot_datas:Array[Array]
 
+##Pickup slot data OUT OF inventory
 func grab_slot_data(index:int) -> SlotData:
 	var row_i = index/width
 	var col_i = index % width
@@ -23,6 +25,7 @@ func grab_slot_data(index:int) -> SlotData:
 		
 	return slot_data
 
+##Drop slot data INTO inventory
 func drop_slot_data(grabbed_slot_data:SlotData, index:int) -> SlotData:
 	var row_i = index/width
 	var col_i = index % width
@@ -92,9 +95,26 @@ func open_slot_context_menu(index:int) -> void:
 	if not slot_data:
 		return
 	else:
-		inventory_context_menu.emit(slot_data)
+		inventory_context_menu.emit(self, slot_data)
 	
 	print(slot_data.item_data.display_name)
+	
+func handle_context_menu(menu_id:int, slot_index:int) -> void:
+	var row_i = slot_index/width
+	var col_i = slot_index % width
+	
+	var slot_data:SlotData = slot_datas[row_i][col_i]
+	if slot_data:
+		var item:ItemContextItem = slot_data.item_data.context_menu_items[menu_id]
+		
+		match item.label:
+			"Drop":
+				grab_slot_data(slot_index)
+				inventory_drop_item.emit(slot_data)
+				inventory_updated.emit(self)
+		
+	pass
+	
 
 #TODO Rework this for item width and height
 func pick_up_slot_data(slot_data:SlotData) -> bool:

@@ -3,6 +3,7 @@ extends Control
 @export var drop_location:Node3D
 
 var grabbed_slot_data:SlotData
+var context_menu_slot_data:SlotData
 var external_inventory_owner
 
 @onready var player_inventory: PanelContainer = %PlayerInventory
@@ -20,6 +21,7 @@ func _physics_process(delta: float) -> void:
 func set_player_inventory_data(inventory_data:InventoryData) -> void:
 	inventory_data.inventory_interact.connect(on_inventory_interact)
 	inventory_data.inventory_context_menu.connect(_on_inventory_context_menu)
+	inventory_data.inventory_drop_item.connect(drop_slot_data)
 	player_inventory.set_inventory_data(inventory_data)
 	
 func set_external_inventory(_external_inventory_owner) -> void:
@@ -28,6 +30,8 @@ func set_external_inventory(_external_inventory_owner) -> void:
 	
 	inventory_data.inventory_interact.connect(on_inventory_interact)
 	inventory_data.inventory_context_menu.connect(_on_inventory_context_menu)
+	inventory_data.inventory_drop_item.connect(drop_slot_data)
+	
 	external_inventory.set_inventory_data(inventory_data)
 	
 	external_inventory.show()
@@ -38,6 +42,7 @@ func clear_external_inventory() -> void:
 		
 		inventory_data.inventory_interact.disconnect(on_inventory_interact)
 		inventory_data.inventory_context_menu.disconnect(_on_inventory_context_menu)
+		inventory_data.inventory_drop_item.disconnect(drop_slot_data)
 		
 		external_inventory.clear_inventory_data(inventory_data)
 		
@@ -115,7 +120,7 @@ func _on_visibility_changed() -> void:
 	pass # Replace with function body.
 
 
-func _on_inventory_context_menu(slot_data:SlotData):
+func _on_inventory_context_menu(inventory_data:InventoryData, slot_data:SlotData):
 	var menu = PopupMenu.new()
 	for item in slot_data.item_data.context_menu_items:
 		menu.add_item(item.label)
@@ -123,7 +128,11 @@ func _on_inventory_context_menu(slot_data:SlotData):
 	self.add_child(menu)
 	var popup_rect = Rect2i()
 	popup_rect.position = Vector2i(get_global_mouse_position())
-	#menu.id_pressed.connect(_on_context_menu_pressed)
+	menu.id_pressed.connect(inventory_data.handle_context_menu.bind(slot_data.root_index))
 	#menu.close_requested.connect(_on_menu_close_requested)
 	#menu.popup_hide.connect(_on_menu_close_requested)
 	menu.popup(popup_rect)
+
+
+#func _on_menu_close_requested():
+	#context_menu_slot_data = null
