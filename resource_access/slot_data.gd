@@ -23,6 +23,13 @@ func create_single_slot_data() -> SlotData:
 	new_slot_data.quantity = 1
 	quantity -= 1
 	return new_slot_data
+	
+func create_half_slot_data() -> SlotData:
+	var new_slot_data = duplicate()
+	
+	new_slot_data.quantity = quantity/2
+	quantity -= new_slot_data.quantity
+	return new_slot_data
 
 func set_quantity(value:int) -> void:
 	quantity = value

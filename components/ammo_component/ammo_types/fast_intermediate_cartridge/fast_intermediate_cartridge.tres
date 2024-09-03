@@ -1,14 +1,15 @@
-[gd_resource type="Resource" script_class="AmmoType" load_steps=6 format=3 uid="uid://bikewy7dlkv20"]
+[gd_resource type="Resource" script_class="AmmoType" load_steps=7 format=3 uid="uid://bikewy7dlkv20"]
 
 [ext_resource type="Script" path="res://components/ammo_component/ammo_type.gd" id="1_3a3r8"]
 [ext_resource type="Texture2D" uid="uid://cinh6lyylmmm7" path="res://ui/icons/White/ammo_AR01.png" id="1_nojb5"]
 [ext_resource type="Resource" uid="uid://cv0v8s66c5nn4" path="res://components/ammo_component/ammo_types/fast_intermediate_cartridge/ammo_subtypes/full_metal_jacket.tres" id="2_emook"]
 [ext_resource type="Resource" uid="uid://vcs5he7yn7nc" path="res://components/ammo_component/ammo_types/fast_intermediate_cartridge/ammo_subtypes/armor_piercing.tres" id="3_1wxmk"]
+[ext_resource type="Script" path="res://components/ammo_component/ammo_subtype.gd" id="3_ytout"]
 [ext_resource type="Resource" uid="uid://d3346f3lutske" path="res://components/ammo_component/ammo_types/fast_intermediate_cartridge/ammo_subtypes/hollow_point.tres" id="4_di6h2"]
 
 [resource]
 script = ExtResource("1_3a3r8")
 name = "Fast Intermediate Cartdridge"
 abbreviation = "FIC"
-sub_types = Array[Resource("res://components/ammo_component/ammo_subtype.gd")]([ExtResource("2_emook"), ExtResource("3_1wxmk"), ExtResource("4_di6h2")])
+sub_types = Array[ExtResource("3_ytout")]([ExtResource("2_emook"), ExtResource("3_1wxmk"), ExtResource("4_di6h2")])
 display_icon = ExtResource("1_nojb5")

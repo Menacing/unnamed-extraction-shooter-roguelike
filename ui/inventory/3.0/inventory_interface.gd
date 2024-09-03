@@ -85,6 +85,10 @@ func _on_gui_input(event: InputEvent) -> void:
 	if event.is_action_pressed("inv_grab") and grabbed_slot_data:
 		drop_slot_data(grabbed_slot_data)
 		grabbed_slot_data = null
+	elif event.is_action_pressed("place_half_of_stack") and grabbed_slot_data:
+		drop_slot_data(grabbed_slot_data.create_half_slot_data())
+		if grabbed_slot_data.quantity < 1:
+			grabbed_slot_data = null
 	elif event.is_action_pressed("place_single_of_stack") and grabbed_slot_data:
 		drop_slot_data(grabbed_slot_data.create_single_slot_data())
 		if grabbed_slot_data.quantity < 1:
@@ -129,10 +133,4 @@ func _on_inventory_context_menu(inventory_data:InventoryData, slot_data:SlotData
 	var popup_rect = Rect2i()
 	popup_rect.position = Vector2i(get_global_mouse_position())
 	menu.id_pressed.connect(inventory_data.handle_context_menu.bind(slot_data.root_index))
-	#menu.close_requested.connect(_on_menu_close_requested)
-	#menu.popup_hide.connect(_on_menu_close_requested)
 	menu.popup(popup_rect)
-
-
-#func _on_menu_close_requested():
-	#context_menu_slot_data = null
