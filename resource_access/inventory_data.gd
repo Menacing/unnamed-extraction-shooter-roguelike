@@ -13,25 +13,47 @@ func grab_slot_data(index:int) -> SlotData:
 	var row_i = index/width
 	var col_i = index % width
 	
-	var slot_data = slot_datas[row_i][col_i]
+	var slot_data:SlotData = slot_datas[row_i][col_i]
 	
 	if slot_data:
-		slot_datas[row_i][col_i] = null
+		row_i = slot_data.root_index / width
+		col_i = slot_data.root_index % width
+		set_slot_data(row_i, slot_data.item_data.row_span, col_i, slot_data.item_data.column_span, null)
 		inventory_updated.emit(self)
 		
 	return slot_data
-	
+
 func drop_slot_data(grabbed_slot_data:SlotData, index:int) -> SlotData:
 	var row_i = index/width
 	var col_i = index % width
-	var slot_data = slot_datas[row_i][col_i]
+	var original_slot_data:SlotData = slot_datas[row_i][col_i]
 	
 	var return_slot_data:SlotData
-	if slot_data and slot_data.can_fully_merge_with(grabbed_slot_data):
-		slot_data.fully_merge_with(grabbed_slot_data)
+	#If empty, check for space
+	if not original_slot_data:
+		if room_for_slot_data(index, grabbed_slot_data):
+			set_slot_data(row_i, grabbed_slot_data.item_data.row_span, col_i, grabbed_slot_data.item_data.row_span, grabbed_slot_data)
+			return_slot_data = null
+		else:
+			#no room, do nothing, don't need to update inventory
+			return grabbed_slot_data
+	#else check if can merge
 	else:
-		slot_datas[row_i][col_i] = grabbed_slot_data
-		return_slot_data = slot_data
+		if original_slot_data.can_fully_merge_with(grabbed_slot_data):
+			original_slot_data.fully_merge_with(grabbed_slot_data)
+		#else check for space for swap
+		else:
+			#remove original
+			set_slot_data_by_index(original_slot_data.root_index, null, original_slot_data.item_data.row_span, original_slot_data.item_data.column_span)
+			
+			
+			if room_for_slot_data(index, grabbed_slot_data):
+				set_slot_data(row_i, grabbed_slot_data.item_data.row_span, col_i, grabbed_slot_data.item_data.row_span, grabbed_slot_data)
+				return_slot_data = original_slot_data
+			else:
+				set_slot_data_by_index(original_slot_data.root_index, original_slot_data)
+				#no room, do nothing, don't need to update inventory
+				return grabbed_slot_data
 		
 	inventory_updated.emit(self)
 	
@@ -40,12 +62,19 @@ func drop_slot_data(grabbed_slot_data:SlotData, index:int) -> SlotData:
 func drop_single_slot_data(grabbed_slot_data:SlotData, index:int) -> SlotData:
 	var row_i = index/width
 	var col_i = index % width
-	var slot_data = slot_datas[row_i][col_i]
+	var original_slot_data = slot_datas[row_i][col_i]
 	
-	if not slot_data:
-		slot_datas[row_i][col_i] = grabbed_slot_data.create_single_slot_data()
-	elif slot_data.can_merge_with(grabbed_slot_data):
-		slot_data.fully_merge_with(grabbed_slot_data.create_single_slot_data())
+	#If empty, check for space
+	if not original_slot_data:
+		if room_for_slot_data(index, grabbed_slot_data):
+			set_slot_data(row_i, grabbed_slot_data.item_data.row_span, col_i, grabbed_slot_data.item_data.row_span, grabbed_slot_data.create_single_slot_data())
+		else:
+			#no room, do nothing, don't need to update inventory
+			return grabbed_slot_data
+	#else check if can merge
+	else:
+		if original_slot_data.can_merge_with(grabbed_slot_data):
+			original_slot_data.fully_merge_with(grabbed_slot_data.create_single_slot_data())
 	
 	inventory_updated.emit(self)
 
@@ -80,7 +109,7 @@ func pick_up_slot_data(slot_data:SlotData) -> bool:
 	for row_i in slot_datas.size():
 		for col_i in slot_datas[row_i].size():
 			if not slot_datas[row_i][col_i]:
-				set_slot_data(row_i, col_i, slot_data)
+				set_slot_data(row_i, slot_data.item_data.row_span, col_i, slot_data.item_data.column_span, slot_data)
 				inventory_updated.emit(self)
 				return true
 	
@@ -89,17 +118,36 @@ func pick_up_slot_data(slot_data:SlotData) -> bool:
 func on_slot_clicked(index:int, event:InputEvent) -> void:
 	inventory_interact.emit(self, index, event)
 
-func set_slot_data_by_index(index:int, slot_data:SlotData) -> void:
+func set_slot_data_by_index(index:int, slot_data:SlotData, h:int = 1, w:int = 1) -> void:
 	var row_i = index/width
 	var col_i = index % width
 	
-	set_slot_data(row_i, col_i, slot_data)
-
-func set_slot_data(row_i:int, col_i:int, slot_data:SlotData) -> void:
+	if slot_data:
+		h = slot_data.item_data.row_span
+		w = slot_data.item_data.column_span
 	
-	var item_width = slot_data.item_data.column_span
-	var item_height = slot_data.item_data.row_span
-	 
+	set_slot_data(row_i, h, col_i, w, slot_data)
+
+func set_slot_data(row_i:int, item_height:int, col_i:int, item_width:int, slot_data:SlotData) -> void:
+	if slot_data:
+		slot_data.root_index = (row_i * width) + col_i
 	for i in range(row_i, row_i + item_height):
 		for j in range(col_i, col_i + item_width):
 			slot_datas[i][j] = slot_data
+
+func room_for_slot_data(target_index:int, slot_data:SlotData) -> bool:
+	var row_i = target_index/width
+	var col_i = target_index % width
+	var h: = 0
+	var w: = 0
+	
+	if slot_data:
+		h = slot_data.item_data.row_span
+		w = slot_data.item_data.column_span
+	
+	for i in range(row_i, row_i + h):
+		for j in range(col_i, col_i + w):
+			if slot_datas[i][j]:
+				return false
+	
+	return true

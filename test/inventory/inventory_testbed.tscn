@@ -6,7 +6,7 @@
 [ext_resource type="Script" path="res://resource_access/inventory_data.gd" id="4_wpdyo"]
 [ext_resource type="Resource" uid="uid://bk7x5qi5hl1p8" path="res://game_objects/items/materials/polymer_pile/polymer_pile_inventory_info.tres" id="5_jowp7"]
 [ext_resource type="Script" path="res://resource_access/slot_data.gd" id="6_lpxmd"]
-[ext_resource type="Resource" uid="uid://xufa6auvjw6t" path="res://game_objects/items/weapons/hic_rifles/pm_52/pm_52_inventory_info.tres" id="7_55m32"]
+[ext_resource type="Resource" uid="uid://3a15imh4nlqg" path="res://game_objects/items/materials/polymer_spool/polymer_spool_inventory_info.tres" id="7_uirql"]
 [ext_resource type="PackedScene" uid="uid://dr48wela8mtxd" path="res://game_objects/items/weapons/hic_rifles/pm_52/pm_52.tscn" id="8_5tnfd"]
 [ext_resource type="Resource" uid="uid://3nqgvhg4lre8" path="res://components/ammo_component/ammo_types/heavy_intermediate_cartridge/heavy_intermediate_cartridge.tres" id="9_6aw1f"]
 [ext_resource type="Script" path="res://game_objects/items/weapons/gun_stats.gd" id="10_7awja"]
@@ -27,17 +27,19 @@ script = ExtResource("6_lpxmd")
 item_data = ExtResource("5_jowp7")
 quantity = 5
 durability = 1
+root_index = 2
 
-[sub_resource type="Resource" id="Resource_oo1vv"]
+[sub_resource type="Resource" id="Resource_ft8wo"]
 script = ExtResource("6_lpxmd")
-item_data = ExtResource("7_55m32")
-quantity = 1
+item_data = ExtResource("7_uirql")
+quantity = 2
 durability = 1
+root_index = 5
 
 [sub_resource type="Resource" id="Resource_ylxxo"]
 script = ExtResource("4_wpdyo")
 equipment_slots = Array[ExtResource("3_pumtn")]([])
-slot_datas = Array[Array]([[null, null, SubResource("Resource_sg8ar"), null, null, null, null], [null, null, null, null, null, null, null], [SubResource("Resource_oo1vv"), null, null, null, null, null, null], [null, null, null, null, null, null, null]])
+slot_datas = Array[Array]([[null, null, SubResource("Resource_sg8ar"), null, null, SubResource("Resource_ft8wo"), SubResource("Resource_ft8wo")], [null, null, null, null, null, SubResource("Resource_ft8wo"), SubResource("Resource_ft8wo")], [null, null, null, null, null, null, null], [null, null, null, null, null, null, null]])
 
 [sub_resource type="Resource" id="Resource_ct15q"]
 resource_local_to_scene = true

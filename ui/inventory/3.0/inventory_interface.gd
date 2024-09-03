@@ -73,7 +73,7 @@ func on_inventory_interact(inventory_data:InventoryData, index:int, event:InputE
 func update_grabbed_slot() -> void:
 	if grabbed_slot_data:
 		grabbed_slot.show()
-		grabbed_slot.set_slot_data(grabbed_slot_data)
+		grabbed_slot.set_slot_data(grabbed_slot_data, true)
 	else:
 		grabbed_slot.hide()
 

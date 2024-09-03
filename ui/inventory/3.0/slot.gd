@@ -9,8 +9,8 @@ signal slot_clicked(index:int, event:InputEvent)
 
 const cell_size:int = 64
 
-func set_slot_data(slot_data:SlotData) -> void:
-	if slot_data:
+func set_slot_data(slot_data:SlotData, force_display = false) -> void:
+	if slot_data and (force_display or slot_data.root_index == get_index()):
 		var item_data = slot_data.item_data
 		set_slot_texture(slot_data)
 		tooltip_text = "%s\n%s" % [item_data.display_name, item_data.description_text]

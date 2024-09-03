@@ -150,11 +150,7 @@ var toggle_crouch_f: bool = false
 var toggle_prone_f: bool = false
 var toggle_inv_f: bool = false
 var legs_destroyed: bool = false
-var player_inventory_id:
-	get: 
-		return $PlayerInventories.player_inventory_id
-	set(value):
-		$PlayerInventories.player_inventory_id = value
+
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
@@ -510,7 +506,7 @@ func _on_game_saving(save_file:SaveFile):
 		#player_information.path_to_parent = self.get_parent().get_path()
 		player_information.scene_path = self.scene_file_path
 		
-		player_information.additional_data["player_inventory_id"] = player_inventory_id
+		#player_information.additional_data["player_inventory_id"] = player_inventory_id
 		
 		#save health
 		main_health_component._on_game_saving(player_information)
@@ -534,7 +530,7 @@ func _on_load_game(save_data:TopLevelEntitySaveData):
 		v_rot_acc = save_data.additional_data["v_rot_acc"]
 		h_rot_acc = save_data.additional_data["h_rot_acc"]
 		
-		player_inventory_id = save_data.additional_data["player_inventory_id"]
+		#player_inventory_id = save_data.additional_data["player_inventory_id"]
 		
 		#load health
 		main_health_component._on_load_game(save_data)
