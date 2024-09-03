@@ -24,7 +24,7 @@ texture = ExtResource("3_h26w8")
 centered = false
 
 [node name="IconSprite2D" type="Sprite2D" parent="."]
-scale = Vector2(2, 2)
+visible = false
 centered = false
 
 [node name="QuantityLabel" type="Label" parent="."]

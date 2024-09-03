@@ -40,14 +40,19 @@ func set_slot_texture(slot_data:SlotData):
 	var item_data:ItemInformation = slot_data.item_data
 	
 	icon_sprite_2d.texture = item_data.icon
-	var target_width = item_data.column_span * cell_size
-	var target_height = item_data.row_span * cell_size
+	
+	var target_width = slot_data.get_width() * cell_size
+	var target_height = slot_data.get_height() * cell_size
+	if slot_data.is_rotated:
+		target_height = slot_data.get_width() * cell_size
+		target_width = slot_data.get_height() * cell_size
 	
 	var icon_tex_size = icon_sprite_2d.texture.get_size()
 	var icon_target_width_scale = target_width / icon_tex_size.x
 	var icon_target_height_scale = target_height / icon_tex_size.y
 	
 	icon_sprite_2d.scale = Vector2(icon_target_width_scale, icon_target_height_scale)
+	
 	icon_sprite_2d.show()
 	
 	var background_tex_size = background_sprite_2d.texture.get_size()
@@ -56,5 +61,16 @@ func set_slot_texture(slot_data:SlotData):
 	
 	background_sprite_2d.scale = Vector2(background_target_width_scale, background_target_height_scale)
 	background_sprite_2d.show()
+	
+	if slot_data.is_rotated:
+		icon_sprite_2d.rotation_degrees = 90
+		icon_sprite_2d.position.x = target_height
+		background_sprite_2d.rotation_degrees = 90
+		background_sprite_2d.position.x = target_height
+	else:
+		icon_sprite_2d.rotation_degrees = 0
+		icon_sprite_2d.position.x = 0
+		background_sprite_2d.rotation_degrees = 0
+		background_sprite_2d.position.x = 0
 	
 	self.z_index = 1

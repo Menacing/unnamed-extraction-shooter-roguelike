@@ -67,7 +67,6 @@ func on_inventory_interact(inventory_data:InventoryData, index:int, event:InputE
 		inventory_data.open_slot_context_menu(index)
 	elif grabbed_slot_data and event.is_action_pressed("place_single_of_stack"):
 		grabbed_slot_data = inventory_data.drop_single_slot_data(grabbed_slot_data, index)
-		
 	update_grabbed_slot()
 
 func update_grabbed_slot() -> void:
@@ -85,8 +84,14 @@ func _on_gui_input(event: InputEvent) -> void:
 		drop_slot_data(grabbed_slot_data.create_single_slot_data())
 		if grabbed_slot_data.quantity < 1:
 			grabbed_slot_data = null
-				
 	update_grabbed_slot()
+
+func _input(event: InputEvent) -> void:
+	if self.visible and event.is_action_pressed("rotate_held_item") and grabbed_slot_data:
+		grabbed_slot_data.is_rotated = !grabbed_slot_data.is_rotated
+		update_grabbed_slot()
+		self.get_viewport().set_input_as_handled()
+		
 
 func drop_slot_data(slot_data:SlotData) -> void:
 	var item_3d_scene = ItemMappingRepository.get_item_3d(slot_data.item_data.item_type_id)

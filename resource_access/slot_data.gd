@@ -5,6 +5,7 @@ class_name SlotData
 @export_range(1,99) var quantity:int = 1: set = set_quantity
 @export var durability:int = 1: set = set_durability
 @export var root_index:int = 0
+@export var is_rotated:bool = false
 
 func can_merge_with(other_slot_data:SlotData) -> bool:
 	return item_data == other_slot_data.item_data and item_data.has_stacks \
@@ -34,3 +35,21 @@ func set_durability(value:int) -> void:
 	if not item_data.has_durability:
 		durability = 1
 		push_error("%s does not have durability, setting durability to 1" % item_data.display_name)
+
+func get_width() -> int:
+	if item_data:
+		if not is_rotated:
+			return item_data.column_span
+		else:
+			return item_data.row_span
+	else:
+		return 1
+	
+func get_height() -> int:
+	if item_data:
+		if not is_rotated:
+			return item_data.row_span
+		else:
+			return item_data.column_span
+	else:
+		return 1
