@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://dalylkjs05jvn"]
+[gd_scene load_steps=18 format=3 uid="uid://dalylkjs05jvn"]
 
 [ext_resource type="PackedScene" uid="uid://d08aatgxmymbf" path="res://game_objects/player/player.tscn" id="1_djb1h"]
 [ext_resource type="Script" path="res://levels/loot_chest.gd" id="2_7gssw"]
@@ -7,6 +7,9 @@
 [ext_resource type="Resource" uid="uid://bk7x5qi5hl1p8" path="res://game_objects/items/materials/polymer_pile/polymer_pile_inventory_info.tres" id="5_jowp7"]
 [ext_resource type="Script" path="res://resource_access/slot_data.gd" id="6_lpxmd"]
 [ext_resource type="Resource" uid="uid://xufa6auvjw6t" path="res://game_objects/items/weapons/hic_rifles/pm_52/pm_52_inventory_info.tres" id="7_55m32"]
+[ext_resource type="PackedScene" uid="uid://dr48wela8mtxd" path="res://game_objects/items/weapons/hic_rifles/pm_52/pm_52.tscn" id="8_5tnfd"]
+[ext_resource type="Resource" uid="uid://3nqgvhg4lre8" path="res://components/ammo_component/ammo_types/heavy_intermediate_cartridge/heavy_intermediate_cartridge.tres" id="9_6aw1f"]
+[ext_resource type="Script" path="res://game_objects/items/weapons/gun_stats.gd" id="10_7awja"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nimtq"]
 albedo_color = Color(0.358214, 0.266036, 0, 1)
@@ -36,6 +39,23 @@ script = ExtResource("4_wpdyo")
 equipment_slots = Array[ExtResource("3_pumtn")]([])
 slot_datas = Array[Array]([[null, null, SubResource("Resource_sg8ar"), null, null, null, null], [null, null, null, null, null, null, null], [SubResource("Resource_oo1vv"), null, null, null, null, null, null], [null, null, null, null, null, null, null]])
 
+[sub_resource type="Resource" id="Resource_ct15q"]
+resource_local_to_scene = true
+script = ExtResource("10_7awja")
+weapon_category_name = "HIC Rifle"
+magazine_size = 30
+rpm = 600
+base_recoil = Vector2(0, 0.025)
+recoil_variability = Vector2(0.025, 0.013)
+fire_modes = ["semi", "auto"]
+ads_accel = 10.0
+ads_fov = 50.0
+moa = 5.0
+turn_speed = 25.0
+ammo_type = ExtResource("9_6aw1f")
+reload_time_Sec = 2.5
+reload_thresholds = Array[float]([1.0])
+
 [node name="InventoryTestbed" type="Node3D"]
 
 [node name="Floor" type="CSGBox3D" parent="."]
@@ -56,3 +76,7 @@ collision_mask = 5
 material = SubResource("StandardMaterial3D_4skll")
 script = ExtResource("2_7gssw")
 inventory_data = SubResource("Resource_ylxxo")
+
+[node name="PM52" parent="." instance=ExtResource("8_5tnfd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.643464, 0.446171, -1.31019)
+_gun_stats = SubResource("Resource_ct15q")

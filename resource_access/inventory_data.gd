@@ -80,7 +80,7 @@ func pick_up_slot_data(slot_data:SlotData) -> bool:
 	for row_i in slot_datas.size():
 		for col_i in slot_datas[row_i].size():
 			if not slot_datas[row_i][col_i]:
-				slot_datas[row_i][col_i] = slot_data
+				set_slot_data(row_i, col_i, slot_data)
 				inventory_updated.emit(self)
 				return true
 	
@@ -88,3 +88,18 @@ func pick_up_slot_data(slot_data:SlotData) -> bool:
 
 func on_slot_clicked(index:int, event:InputEvent) -> void:
 	inventory_interact.emit(self, index, event)
+
+func set_slot_data_by_index(index:int, slot_data:SlotData) -> void:
+	var row_i = index/width
+	var col_i = index % width
+	
+	set_slot_data(row_i, col_i, slot_data)
+
+func set_slot_data(row_i:int, col_i:int, slot_data:SlotData) -> void:
+	
+	var item_width = slot_data.item_data.column_span
+	var item_height = slot_data.item_data.row_span
+	 
+	for i in range(row_i, row_i + item_height):
+		for j in range(col_i, col_i + item_width):
+			slot_datas[i][j] = slot_data
