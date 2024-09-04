@@ -204,6 +204,54 @@ func _ready():
 	pov_rotation_node = chest
 	
 	inventory_interface.set_player_inventory_data(inventory_data)
+	inventory_data.item_equipment_changed.connect(_on_item_equipment_changed)
+
+func _on_item_equipment_changed(inventory_data:InventoryData, equipment_slot:EquipmentSlot):
+	match equipment_slot.slot_name:
+		"GunSlot1":
+			if equipment_slot.slot_data:
+				var item_3d:Gun = Item3D.instantiate_from_slot_data(equipment_slot.slot_data)
+				
+				gun_slot_1 = item_3d as Gun
+				move_gun_to_player_model(gun_slot_1)
+		#"GunSlot2":
+			#gun_slot_2 = item_3d as Gun
+			#move_gun_to_player_model(gun_slot_2) 
+		#"BackpackSlot":
+			#move_backpack_to_anchor(item_3d)
+			#var backpack:Backpack = item_3d as Backpack
+			#if backpack:
+				#if backpack.backpack_size == Backpack.Size.NONE:
+					#InventoryManager.set_inventory_size(player_inventory_id, Vector2i(7,2))
+				#elif backpack.backpack_size == Backpack.Size.SMALL:
+					#InventoryManager.set_inventory_size(player_inventory_id, Vector2i(7,4))
+				#elif backpack.backpack_size == Backpack.Size.MEDIUM:
+					#InventoryManager.set_inventory_size(player_inventory_id, Vector2i(7,6))
+				#elif backpack.backpack_size == Backpack.Size.LARGE:
+					#InventoryManager.set_inventory_size(player_inventory_id, Vector2i(7,8))
+		#"ArmorSlot":
+			#armor_equipped.emit(item_3d as BodyArmor)
+			#move_armor_to_anchor(item_3d)
+	pass
+
+#func _on_drop_item(item_inst:ItemInstance, inventory_id:int):
+	#if inventory_id == player_inventory_id:
+		#var item_3d:Item3D = ItemAccess.get_item_3d(item_inst.id_3d)
+		#Helpers.force_parent(item_3d,get_parent())
+		#item_3d.dropped()
+		#item_3d.global_position = drop_location.global_position
+		#
+		#if item_3d is Gun:
+			#if item_3d == equipped_gun:
+				#stop_arms_ik()
+				#equipped_gun = null	
+			#if item_3d == gun_slot_1:
+				#gun_slot_1 = null	
+			#if item_3d == gun_slot_2:
+				#gun_slot_2 = null	
+			#if item_3d == shoulder_gun:
+				#shoulder_gun = null
+
 
 #func _on_item_picked_up(result:InventoryInsertResult):
 	#if result.inventory_id == player_inventory_id:

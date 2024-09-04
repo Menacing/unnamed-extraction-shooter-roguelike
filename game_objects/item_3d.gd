@@ -3,6 +3,16 @@ class_name Item3D
 
 @export var slot_data:SlotData
 
+static func instantiate_from_slot_data(slot_data:SlotData) -> Item3D:
+	var item_3d_scene = ItemMappingRepository.get_item_3d(slot_data.item_data.item_type_id)
+	if item_3d_scene:
+		var item_3d:Item3D = item_3d_scene.instantiate()
+		item_3d.slot_data = slot_data
+		
+		return item_3d
+	else:
+		return null
+
 #var _actor_id:int = 0
 #var item_instance_id:int
 #var item_3d_id:int:

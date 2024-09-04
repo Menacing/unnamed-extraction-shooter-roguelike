@@ -162,26 +162,20 @@ func _input(event: InputEvent) -> void:
 		
 
 func drop_slot_data(slot_data:SlotData) -> void:
-	var item_3d_scene = ItemMappingRepository.get_item_3d(slot_data.item_data.item_type_id)
-	if item_3d_scene:
-		var item_3d:Item3D = item_3d_scene.instantiate()
-		item_3d.slot_data = slot_data
-		
+	var item_3d:Item3D = Item3D.instantiate_from_slot_data(slot_data)
+	
+	if item_3d:
 		#Add it to the level
 		if !LevelManager.add_node_to_level(item_3d):
 			get_tree().root.add_child(item_3d)
-		
 		#move it to the drop point
 		item_3d.global_position = drop_location.global_position
-	pass
 
 func _on_visibility_changed() -> void:
 	if not visible and grabbed_slot_data:
 		drop_slot_data(grabbed_slot_data)
 		grabbed_slot_data = null
 		update_grabbed_slot()
-	pass # Replace with function body.
-
 
 func _on_inventory_context_menu(inventory_data:InventoryData, slot_data:SlotData):
 	var menu = PopupMenu.new()

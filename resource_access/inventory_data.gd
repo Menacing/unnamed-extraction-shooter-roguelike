@@ -6,8 +6,7 @@ signal inventory_interact(inventory_data:InventoryData, index:int, event:InputEv
 signal inventory_equipment_slot_interact(inventory_data:InventoryData, slot_name:String, event:InputEvent)
 signal inventory_context_menu(inventory_data:InventoryData, slot_data:SlotData)
 signal inventory_drop_item(slot_data:SlotData)
-signal item_equipped(inventory_data:InventoryData, equipment_slot:EquipmentSlot)
-signal item_unequipped(inventory_data:InventoryData, equipment_slot:EquipmentSlot)
+signal item_equipment_changed(inventory_data:InventoryData, equipment_slot:EquipmentSlot)
 
 var width = 7
 @export var equipment_slots:Array[EquipmentSlot]
@@ -47,6 +46,7 @@ func grab_equipment_slot_data(slot_name:String) -> SlotData:
 			if slot_data:
 				equipment_slot.slot_data = null
 				inventory_updated.emit(self)
+				item_equipment_changed.emit(self, equipment_slot)
 	
 	return slot_data
 
@@ -100,6 +100,7 @@ func drop_equipment_slot_data(grabbed_slot_data:SlotData, slot_name:String) -> S
 	if not original_slot_data:
 		if grabbed_slot_data.item_data.item_type in equipment_slot.allowed_types:
 			equipment_slot.slot_data = grabbed_slot_data
+			item_equipment_changed.emit(self, equipment_slot)
 			return_slot_data = null
 		else:
 			#not allowed, do nothing, don't need to update inventory
@@ -112,6 +113,8 @@ func drop_equipment_slot_data(grabbed_slot_data:SlotData, slot_name:String) -> S
 		else:
 			if grabbed_slot_data.item_data.item_type in equipment_slot.allowed_types:
 				equipment_slot.slot_data = grabbed_slot_data
+				item_equipment_changed.emit(self, equipment_slot)
+				
 				return_slot_data = original_slot_data
 			else:
 				#not allowed, do nothing, don't need to update inventory
@@ -157,6 +160,7 @@ func drop_half_slot_data_equipment_slot(grabbed_slot_data:SlotData, slot_name:St
 	if not original_slot_data:
 		if grabbed_slot_data.item_data.item_type in equipment_slot.allowed_types:
 			equipment_slot.slot_data = grabbed_slot_data.create_half_slot_data()
+			item_equipment_changed.emit(self, equipment_slot)
 			return_slot_data = null
 		else:
 			#not allowed, do nothing, don't need to update inventory
@@ -206,6 +210,7 @@ func drop_single_slot_data_equipment_slot(grabbed_slot_data:SlotData, slot_name:
 	if not original_slot_data:
 		if grabbed_slot_data.item_data.item_type in equipment_slot.allowed_types:
 			equipment_slot.slot_data = grabbed_slot_data.create_single_slot_data()
+			item_equipment_changed.emit(self, equipment_slot)
 			return_slot_data = null
 		else:
 			#not allowed, do nothing, don't need to update inventory
@@ -262,8 +267,8 @@ func pick_up_slot_data(slot_data:SlotData) -> bool:
 	for equipment_slot:EquipmentSlot in equipment_slots:
 		if !equipment_slot.slot_data and slot_data.item_data.item_type in equipment_slot.allowed_types:
 			equipment_slot.slot_data = slot_data
-			item_equipped.emit(equipment_slot)
 			inventory_updated.emit(self)
+			item_equipment_changed.emit(self, equipment_slot)
 			return true
 	
 	
