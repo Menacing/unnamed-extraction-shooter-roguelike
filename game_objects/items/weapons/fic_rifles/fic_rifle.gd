@@ -4,8 +4,6 @@ class_name FICRifle
 @warning_ignore("unsafe_method_access")
 @onready var gun_mat: BaseMaterial3D = get_node(gun_material_np).get_active_material(0)
 
-var current_fire_mode_i = 0
-
 var _new_bullets:int = 0
 @onready var fire_timer:Timer = $FireTimer
 @onready var reload_timer:Timer = $ReloadTimer
@@ -29,7 +27,7 @@ func _ready():
 	reload_timer.connect("timeout", reloaded_callback)
 
 	fire_timer.wait_time = 60.0/_gun_stats.rpm
-	current_fire_mode = _gun_stats.fire_modes[current_fire_mode_i]
+	current_fire_mode = _gun_stats.fire_modes[slot_data.current_fire_mode_index]
 	reload_time.base_value = _gun_stats.reload_time_Sec
 	reload_timer.wait_time = reload_time.get_modified_value()
 
@@ -44,7 +42,7 @@ func fireGun():
 		var muzzle:Node3D = get_node(muzzle_np)
 		
 		var bulletInst:IterativeRaycastBullet = _bullet_scene.instantiate()
-		assign_bullet_stats(bulletInst, current_ammo_subtype)
+		assign_bullet_stats(bulletInst, slot_data.current_ammo_subtype)
 		bulletInst.firer = firer
 		bulletInst.set_as_top_level(true)
 		if !LevelManager.add_node_to_level(bulletInst):
@@ -98,12 +96,12 @@ func _on_unequipped(player:Player):
 		
 
 func toggle_fire_mode() -> String:
-	var next_i = current_fire_mode_i + 1
+	var next_i = slot_data.current_fire_mode_index + 1
 	if next_i > _gun_stats.fire_modes.size() - 1:
-		current_fire_mode_i = 0
+		slot_data.current_fire_mode_index = 0
 	else:
-		current_fire_mode_i = next_i
-	current_fire_mode = _gun_stats.fire_modes[current_fire_mode_i]
+		slot_data.current_fire_mode_index = next_i
+	current_fire_mode = _gun_stats.fire_modes[slot_data.current_fire_mode_index]
 	return current_fire_mode
 
 var is_transparent: bool = false

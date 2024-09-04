@@ -7,14 +7,17 @@
 [ext_resource type="PackedScene" uid="uid://d1y3lghk4h5l3" path="res://game_objects/items/weapons/fic_rifles/s5/s5.blend" id="4_v8p8c"]
 [ext_resource type="Resource" uid="uid://se4uj7i6ud3y" path="res://game_objects/items/weapons/fic_rifles/s5/s5_inventory_info.tres" id="5_2k3hk"]
 [ext_resource type="Texture2D" uid="uid://dkcxx06s6kdp6" path="res://game_objects/items/weapons/hic_rifles/pm_52/PixelMuzzelFlash.png" id="5_wks76"]
-[ext_resource type="Script" path="res://resource_access/slot_data.gd" id="6_yrgrl"]
+[ext_resource type="Script" path="res://resource_access/gun_slot_data.gd" id="6_ug424"]
 [ext_resource type="AudioStream" uid="uid://bc1wim1c1t021" path="res://game_objects/items/weapons/fic_rifles/fic_mag_out.ogg" id="7_hvlr1"]
 [ext_resource type="AudioStream" uid="uid://belfvaan2qeva" path="res://game_objects/items/weapons/fic_rifles/fic_mag_in.ogg" id="8_ib0ga"]
 [ext_resource type="AudioStream" uid="uid://c2wxubwa7ilv" path="res://game_objects/items/weapons/fic_rifles/fic_charging_handle.ogg" id="9_qj0jf"]
 [ext_resource type="AudioStream" uid="uid://howm8uexygj7" path="res://game_objects/items/weapons/fic_rifles/fic_shot_2.ogg" id="10_vdlnj"]
 
-[sub_resource type="Resource" id="Resource_jtj8x"]
-script = ExtResource("6_yrgrl")
+[sub_resource type="Resource" id="Resource_cl1di"]
+script = ExtResource("6_ug424")
+current_number_bullets = 30
+current_fire_mode_index = 0
+current_ammo_subtype = ExtResource("4_3mr2u")
 item_data = ExtResource("5_2k3hk")
 quantity = 1
 durability = 1
@@ -192,9 +195,8 @@ on_scope_hide_nps = Array[NodePath]([NodePath("s5/front_sight"), NodePath("s5/re
 muzzle_np = NodePath("s5/Muzzle")
 _bullet_scene = ExtResource("2_x83q3")
 _gun_stats = ExtResource("3_x74o3")
-current_ammo_subtype = ExtResource("4_3mr2u")
 mag_node = NodePath("s5/magazines")
-slot_data = SubResource("Resource_jtj8x")
+slot_data = SubResource("Resource_cl1di")
 item_type_id = "s5"
 world_collider_path = NodePath("CollisionShape3D")
 longest_side_size = 0.9

@@ -211,12 +211,17 @@ func _on_item_equipment_changed(inventory_data:InventoryData, equipment_slot:Equ
 		"GunSlot1":
 			if equipment_slot.slot_data:
 				var item_3d:Gun = Item3D.instantiate_from_slot_data(equipment_slot.slot_data)
-				
+				if gun_slot_1:
+					gun_slot_1.queue_free()
 				gun_slot_1 = item_3d as Gun
 				move_gun_to_player_model(gun_slot_1)
-		#"GunSlot2":
-			#gun_slot_2 = item_3d as Gun
-			#move_gun_to_player_model(gun_slot_2) 
+		"GunSlot2":
+			if equipment_slot.slot_data:
+				var item_3d:Gun = Item3D.instantiate_from_slot_data(equipment_slot.slot_data)
+				if gun_slot_2:
+					gun_slot_2.queue_free()
+				gun_slot_2 = item_3d as Gun
+				move_gun_to_player_model(gun_slot_2)
 		#"BackpackSlot":
 			#move_backpack_to_anchor(item_3d)
 			#var backpack:Backpack = item_3d as Backpack

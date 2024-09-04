@@ -11,17 +11,18 @@ var firer:Node3D
 @export var ads_lean_factor:float = 1.0
 @export var _gun_stats:GunStats
 
-@export var current_ammo_subtype:AmmoSubtype
-
 @onready var rng: RandomNumberGenerator = RandomNumberGenerator.new()
 
 func _ready():
 	super()
-	if current_ammo_subtype == null:
-		current_ammo_subtype = _gun_stats.ammo_type.sub_types[0]
+	if slot_data.current_ammo_subtype == null:
+		slot_data.current_ammo_subtype = _gun_stats.ammo_type.sub_types[0]
 
 var current_fire_mode:String
 var reloading: bool = false
+
+func set_additional_slot_data(slot_data:SlotData) -> void:
+	pass
 
 func get_right_hand_node() -> Node3D:
 	return self.get_node("Right_Hand")
@@ -98,7 +99,12 @@ func get_ADS_FOV() -> float:
 func get_max_magazine_size() -> int:
 	return _magazine_size.get_modified_value()
 
-@onready var current_magazine_size: int = get_max_magazine_size()
+var current_magazine_size:int:
+	get:
+		if slot_data is GunSlotData:
+			return slot_data.current_number_bullets
+		else:
+			return 0
 
 @onready var _base_recoil_x: ModifiableStatFloat = ModifiableStatFloat.new(_gun_stats.base_recoil.x)
 func get_base_recoil_x() -> float:
@@ -140,7 +146,7 @@ func get_unselected_ammo_subtypes() -> Array[AmmoSubtype]:
 	var less_selected:Array[AmmoSubtype] = []
 	
 	for ast:AmmoSubtype in all_subtypes:
-		if ast.name != current_ammo_subtype.name:
+		if ast.name != slot_data.current_ammo_subtype.name:
 			less_selected.append(ast)
 	
 	return less_selected
