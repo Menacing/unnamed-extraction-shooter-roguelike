@@ -7,8 +7,6 @@
 [ext_resource type="Texture2D" uid="uid://d14qjudcylhe0" path="res://game_objects/items/weapons/fic_rifles/s5/s5_icon.png" id="4_vyqt0"]
 [ext_resource type="Resource" uid="uid://dxq125myj32c7" path="res://game_objects/items/weapons/fic_rifles/fic_rifles_inventory.tres" id="5_jgwc5"]
 [ext_resource type="Texture2D" uid="uid://dvhwavsgo6hxq" path="res://game_objects/items/weapons/fic_rifles/s5/s5_icon_r.png" id="5_slab2"]
-[ext_resource type="PackedScene" uid="uid://cprpop5lkmyhe" path="res://game_objects/items/weapons/fic_rifles/s5/s5.tscn" id="6_oedub"]
-[ext_resource type="PackedScene" uid="uid://cn3ywqty7xvvr" path="res://ui/inventory/item_control.tscn" id="7_w8mby"]
 [ext_resource type="Script" path="res://resource_access/item_information.gd" id="9_ghylw"]
 [ext_resource type="AudioStream" uid="uid://c2wxubwa7ilv" path="res://game_objects/items/weapons/fic_rifles/fic_charging_handle.ogg" id="10_2qnvk"]
 
@@ -19,8 +17,6 @@ signal_name = "context_menus_open_item_detail"
 
 [resource]
 script = ExtResource("9_ghylw")
-item_control_scene = ExtResource("7_w8mby")
-item_3d_scene = ExtResource("6_oedub")
 item_type_id = "s5"
 show_name = true
 display_name = "S5"

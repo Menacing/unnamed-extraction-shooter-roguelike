@@ -6,16 +6,12 @@
 [ext_resource type="Script" path="res://ui/inventory/item_context_item.gd" id="3_v88eq"]
 [ext_resource type="PackedScene" uid="uid://djpvx3f8rfem0" path="res://ui/inventory/detail_scenes/ammo_detail_popup.tscn" id="3_whkxf"]
 [ext_resource type="Texture2D" uid="uid://uyrp0qvveaa2" path="res://game_objects/items/ammo/fic/fic_fmj_icon.png" id="4_0p4bb"]
-[ext_resource type="PackedScene" uid="uid://c17uhpgl0dvt4" path="res://game_objects/items/ammo/fic/fic_box_fmj.tscn" id="5_by4sg"]
-[ext_resource type="PackedScene" uid="uid://cn3ywqty7xvvr" path="res://ui/inventory/item_control.tscn" id="6_dbigp"]
 [ext_resource type="Script" path="res://game_objects/items/ammo/ammo_information.gd" id="7_pgfag"]
 
 [resource]
 script = ExtResource("7_pgfag")
 ammo_type = ExtResource("2_j0w4h")
 ammo_subtype = ExtResource("1_tw7vv")
-item_control_scene = ExtResource("6_dbigp")
-item_3d_scene = ExtResource("5_by4sg")
 item_type_id = "fic_box_fmj"
 show_name = false
 display_name = "Fast Intermediate Cartridge - Full Metal Jacket"

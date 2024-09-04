@@ -4,17 +4,13 @@
 [ext_resource type="Resource" uid="uid://3nqgvhg4lre8" path="res://components/ammo_component/ammo_types/heavy_intermediate_cartridge/heavy_intermediate_cartridge.tres" id="2_161qn"]
 [ext_resource type="PackedScene" uid="uid://djpvx3f8rfem0" path="res://ui/inventory/detail_scenes/ammo_detail_popup.tscn" id="3_xf8do"]
 [ext_resource type="Resource" uid="uid://o6tesi76nbth" path="res://ui/inventory/drop_item_context_item.tres" id="3_yvb51"]
-[ext_resource type="PackedScene" uid="uid://82pjqxlmcg2v" path="res://game_objects/items/ammo/hic/hic_box_ap.tscn" id="4_b4t56"]
 [ext_resource type="Texture2D" uid="uid://md2fvi5hcvif" path="res://game_objects/items/ammo/hic/hic_box_ap_icon.png" id="4_w0f3e"]
-[ext_resource type="PackedScene" uid="uid://cn3ywqty7xvvr" path="res://ui/inventory/item_control.tscn" id="5_2e8no"]
 [ext_resource type="Script" path="res://game_objects/items/ammo/ammo_information.gd" id="6_ox2j3"]
 
 [resource]
 script = ExtResource("6_ox2j3")
 ammo_type = ExtResource("2_161qn")
 ammo_subtype = ExtResource("1_5s5mq")
-item_control_scene = ExtResource("5_2e8no")
-item_3d_scene = ExtResource("4_b4t56")
 item_type_id = "hic_box_ap"
 show_name = false
 display_name = "Heavy Intermediate Cartridge - Armor Piercing"
