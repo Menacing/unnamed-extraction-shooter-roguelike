@@ -7,9 +7,9 @@ class_name SlotData
 @export var root_index:int = 0
 @export var is_rotated:bool = false
 
-func can_merge_with(other_slot_data:SlotData) -> bool:
+func can_merge_with(other_slot_data:SlotData, amount:int = 1) -> bool:
 	return item_data == other_slot_data.item_data and item_data.has_stacks \
-				and quantity < item_data.max_stacks
+				and quantity + amount <= item_data.max_stacks
 
 func can_fully_merge_with(other_slot_data:SlotData) -> bool:
 	return item_data == other_slot_data.item_data and item_data.has_stacks \

@@ -3,14 +3,24 @@ class_name InventoryData
 
 signal inventory_updated(inventory_data:InventoryData)
 signal inventory_interact(inventory_data:InventoryData, index:int, event:InputEvent)
+signal inventory_equipment_slot_interact(inventory_data:InventoryData, slot_name:String, event:InputEvent)
 signal inventory_context_menu(inventory_data:InventoryData, slot_data:SlotData)
 signal inventory_drop_item(slot_data:SlotData)
-signal item_equipped(equipment_slot:EquipmentSlot)
-signal item_unequipped(equipment_slot:EquipmentSlot)
+signal item_equipped(inventory_data:InventoryData, equipment_slot:EquipmentSlot)
+signal item_unequipped(inventory_data:InventoryData, equipment_slot:EquipmentSlot)
 
 var width = 7
 @export var equipment_slots:Array[EquipmentSlot]
 @export var slot_datas:Array[Array]
+
+func _get_equipment_slot(slot_name:String) -> EquipmentSlot:
+	var equipment_slot:EquipmentSlot
+
+	for es:EquipmentSlot in equipment_slots:
+		if es.slot_name == slot_name:
+			equipment_slot = es
+			break
+	return equipment_slot
 
 ##Pickup slot data OUT OF inventory
 func grab_slot_data(index:int) -> SlotData:
@@ -25,6 +35,19 @@ func grab_slot_data(index:int) -> SlotData:
 		set_slot_data(row_i, slot_data.get_height(), col_i, slot_data.get_width(), null)
 		inventory_updated.emit(self)
 		
+	return slot_data
+
+func grab_equipment_slot_data(slot_name:String) -> SlotData:
+	var slot_data:SlotData
+	if slot_name:
+		var equipment_slot:EquipmentSlot = _get_equipment_slot(slot_name)
+		
+		if equipment_slot:
+			slot_data = equipment_slot.slot_data
+			if slot_data:
+				equipment_slot.slot_data = null
+				inventory_updated.emit(self)
+	
 	return slot_data
 
 ##Drop slot data INTO inventory
@@ -64,6 +87,40 @@ func drop_slot_data(grabbed_slot_data:SlotData, index:int) -> SlotData:
 	
 	return return_slot_data
 
+func drop_equipment_slot_data(grabbed_slot_data:SlotData, slot_name:String) -> SlotData:
+	var return_slot_data:SlotData
+	var original_slot_data:SlotData
+	var equipment_slot:EquipmentSlot = _get_equipment_slot(slot_name)
+
+	if equipment_slot:
+		original_slot_data = equipment_slot.slot_data
+
+			
+	#If empty, check if allowed
+	if not original_slot_data:
+		if grabbed_slot_data.item_data.item_type in equipment_slot.allowed_types:
+			equipment_slot.slot_data = grabbed_slot_data
+			return_slot_data = null
+		else:
+			#not allowed, do nothing, don't need to update inventory
+			return grabbed_slot_data
+	#else check if can merge
+	else:
+		if original_slot_data.can_fully_merge_with(grabbed_slot_data):
+			original_slot_data.fully_merge_with(grabbed_slot_data)
+		#else check for space for swap
+		else:
+			if grabbed_slot_data.item_data.item_type in equipment_slot.allowed_types:
+				equipment_slot.slot_data = grabbed_slot_data
+				return_slot_data = original_slot_data
+			else:
+				#not allowed, do nothing, don't need to update inventory
+				return grabbed_slot_data
+		
+	inventory_updated.emit(self)
+	
+	return return_slot_data
+
 func drop_half_slot_data(grabbed_slot_data:SlotData, index:int) -> SlotData:
 	var row_i = index/width
 	var col_i = index % width
@@ -78,8 +135,8 @@ func drop_half_slot_data(grabbed_slot_data:SlotData, index:int) -> SlotData:
 			return grabbed_slot_data
 	#else check if can merge
 	else:
-		if original_slot_data.can_merge_with(grabbed_slot_data):
-			original_slot_data.fully_merge_with(grabbed_slot_data.create_single_slot_data())
+		if original_slot_data.can_merge_with(grabbed_slot_data, grabbed_slot_data.quantity/2):
+			original_slot_data.fully_merge_with(grabbed_slot_data.create_half_slot_data())
 	
 	inventory_updated.emit(self)
 
@@ -87,6 +144,31 @@ func drop_half_slot_data(grabbed_slot_data:SlotData, index:int) -> SlotData:
 		return grabbed_slot_data
 	else:
 		return null
+		
+func drop_half_slot_data_equipment_slot(grabbed_slot_data:SlotData, slot_name:String) -> SlotData:
+	var return_slot_data:SlotData
+	var original_slot_data:SlotData
+	var equipment_slot:EquipmentSlot = _get_equipment_slot(slot_name)
+
+	if equipment_slot:
+		original_slot_data = equipment_slot.slot_data
+	
+	#If empty, check if allowed
+	if not original_slot_data:
+		if grabbed_slot_data.item_data.item_type in equipment_slot.allowed_types:
+			equipment_slot.slot_data = grabbed_slot_data.create_half_slot_data()
+			return_slot_data = null
+		else:
+			#not allowed, do nothing, don't need to update inventory
+			return grabbed_slot_data
+	#else check if can merge
+	else:
+		if original_slot_data.can_merge_with(grabbed_slot_data, grabbed_slot_data.quantity/2):
+			original_slot_data.fully_merge_with(grabbed_slot_data.create_half_slot_data())
+		
+	inventory_updated.emit(self)
+	
+	return return_slot_data
 
 func drop_single_slot_data(grabbed_slot_data:SlotData, index:int) -> SlotData:
 	var row_i = index/width
@@ -111,8 +193,32 @@ func drop_single_slot_data(grabbed_slot_data:SlotData, index:int) -> SlotData:
 		return grabbed_slot_data
 	else:
 		return null
+		
+func drop_single_slot_data_equipment_slot(grabbed_slot_data:SlotData, slot_name:String) -> SlotData:
+	var return_slot_data:SlotData
+	var original_slot_data:SlotData
+	var equipment_slot:EquipmentSlot = _get_equipment_slot(slot_name)
 
-#TODO finish this
+	if equipment_slot:
+		original_slot_data = equipment_slot.slot_data
+	
+	#If empty, check if allowed
+	if not original_slot_data:
+		if grabbed_slot_data.item_data.item_type in equipment_slot.allowed_types:
+			equipment_slot.slot_data = grabbed_slot_data.create_single_slot_data()
+			return_slot_data = null
+		else:
+			#not allowed, do nothing, don't need to update inventory
+			return grabbed_slot_data
+	#else check if can merge
+	else:
+		if original_slot_data.can_merge_with(grabbed_slot_data):
+			original_slot_data.fully_merge_with(grabbed_slot_data.create_single_slot_data())
+		
+	inventory_updated.emit(self)
+	
+	return return_slot_data
+
 func open_slot_context_menu(index:int) -> void:
 	var row_i = index/width
 	var col_i = index % width
@@ -122,9 +228,18 @@ func open_slot_context_menu(index:int) -> void:
 		return
 	else:
 		inventory_context_menu.emit(self, slot_data)
+
+func open_equipment_slot_context_menu(slot_name:String) -> void:
+	var equipment_slot:EquipmentSlot = _get_equipment_slot(slot_name)
+	var slot_data:SlotData
+	if equipment_slot:
+		slot_data = equipment_slot.slot_data
 	
-	print(slot_data.item_data.display_name)
-	
+	if not slot_data:
+		return
+	else:
+		inventory_context_menu.emit(self, slot_data)
+
 func handle_context_menu(menu_id:int, slot_index:int) -> void:
 	var row_i = slot_index/width
 	var col_i = slot_index % width
@@ -171,6 +286,9 @@ func pick_up_slot_data(slot_data:SlotData) -> bool:
 
 func on_slot_clicked(index:int, event:InputEvent) -> void:
 	inventory_interact.emit(self, index, event)
+	
+func on_equipment_slot_clicked(slot_name:String, event:InputEvent) -> void:
+	inventory_equipment_slot_interact.emit(self, slot_name, event)
 
 func set_slot_data_by_index(index:int, slot_data:SlotData, h:int = 1, w:int = 1) -> void:
 	var row_i = index/width

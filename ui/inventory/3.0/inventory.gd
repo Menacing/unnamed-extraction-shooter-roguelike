@@ -30,6 +30,9 @@ func populate_item_grid(inventory_data:InventoryData) -> void:
 		var es = EQUIPMENT_SLOT.instantiate()
 		es.name = equipment_slot.slot_name
 		equipment_slot_container.add_child(es)
+		
+		es.equipment_slot_clicked.connect(inventory_data.on_equipment_slot_clicked)
+		
 		es.set_slot_data(equipment_slot)
 	
 	var ri:int = 0

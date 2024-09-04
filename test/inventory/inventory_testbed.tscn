@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://dalylkjs05jvn"]
+[gd_scene load_steps=28 format=3 uid="uid://dalylkjs05jvn"]
 
 [ext_resource type="PackedScene" uid="uid://d08aatgxmymbf" path="res://game_objects/player/player.tscn" id="1_djb1h"]
 [ext_resource type="Script" path="res://levels/loot_chest.gd" id="2_7gssw"]
@@ -13,6 +13,8 @@
 [ext_resource type="PackedScene" uid="uid://dr48wela8mtxd" path="res://game_objects/items/weapons/hic_rifles/pm_52/pm_52.tscn" id="8_5tnfd"]
 [ext_resource type="Resource" uid="uid://3nqgvhg4lre8" path="res://components/ammo_component/ammo_types/heavy_intermediate_cartridge/heavy_intermediate_cartridge.tres" id="9_6aw1f"]
 [ext_resource type="Script" path="res://game_objects/items/weapons/gun_stats.gd" id="10_7awja"]
+[ext_resource type="PackedScene" uid="uid://cprpop5lkmyhe" path="res://game_objects/items/weapons/fic_rifles/s5/s5.tscn" id="14_5mugt"]
+[ext_resource type="Resource" uid="uid://bikewy7dlkv20" path="res://components/ammo_component/ammo_types/fast_intermediate_cartridge/fast_intermediate_cartridge.tres" id="15_8ysfh"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nimtq"]
 albedo_color = Color(0.358214, 0.266036, 0, 1)
@@ -95,6 +97,23 @@ ammo_type = ExtResource("9_6aw1f")
 reload_time_Sec = 2.5
 reload_thresholds = Array[float]([1.0])
 
+[sub_resource type="Resource" id="Resource_xe1y5"]
+resource_local_to_scene = true
+script = ExtResource("10_7awja")
+weapon_category_name = "FIC Rifle"
+magazine_size = 30
+rpm = 800
+base_recoil = Vector2(0, 0.017)
+recoil_variability = Vector2(0.02, 0.01)
+fire_modes = ["semi", "auto"]
+ads_accel = 10.0
+ads_fov = 50.0
+moa = 4.0
+turn_speed = 25.0
+ammo_type = ExtResource("15_8ysfh")
+reload_time_Sec = 2.5
+reload_thresholds = Array[float]([1.0])
+
 [node name="InventoryTestbed" type="Node3D"]
 
 [node name="Floor" type="CSGBox3D" parent="."]
@@ -119,3 +138,7 @@ inventory_data = SubResource("Resource_ylxxo")
 [node name="PM52" parent="." instance=ExtResource("8_5tnfd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.643464, 0.446171, -1.31019)
 _gun_stats = SubResource("Resource_ct15q")
+
+[node name="S5" parent="." instance=ExtResource("14_5mugt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.312681, 0.719095, -0.719181)
+_gun_stats = SubResource("Resource_xe1y5")

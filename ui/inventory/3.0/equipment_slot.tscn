@@ -57,4 +57,5 @@ size_flags_vertical = 8
 theme_override_constants/outline_size = 3
 text = "100%"
 
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]
 [connection signal="resized" from="." to="." method="_on_resized"]

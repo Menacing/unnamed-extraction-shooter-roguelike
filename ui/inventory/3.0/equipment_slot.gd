@@ -1,5 +1,7 @@
 extends Panel
 
+signal equipment_slot_clicked(slot_name:String, event:InputEvent)
+
 const cell_size:int = 64
 @export var cell_margin:int = 0
 @onready var background_icon_texture_rect: TextureRect = $MarginContainer/BackgroundIconTextureRect
@@ -7,6 +9,7 @@ const cell_size:int = 64
 @onready var background_sprite_2d: Sprite2D = $BackgroundSprite2D
 @onready var quantity_label: Label = $QuantityLabel
 @onready var durability_label: Label = $DurabilityLabel
+@onready var slot_name:String
 
 func set_slot_data(equipment_slot:EquipmentSlot, force_display = false) -> void:
 	
@@ -14,6 +17,7 @@ func set_slot_data(equipment_slot:EquipmentSlot, force_display = false) -> void:
 	self.custom_minimum_size = Vector2(equipment_slot.slot_width * cell_size, equipment_slot.slot_height * cell_size)
 	
 	if equipment_slot.slot_data:
+		slot_name = equipment_slot.slot_name
 		var item_data = equipment_slot.slot_data.item_data
 		set_slot_texture(equipment_slot.slot_data)
 		tooltip_text = "%s\n%s" % [item_data.display_name, item_data.description_text]
@@ -73,3 +77,9 @@ func _on_resized() -> void:
 	if background_sprite_2d:
 		background_sprite_2d.position.x = self.size.x / 2
 		background_sprite_2d.position.y = self.size.y / 2
+
+
+func _on_gui_input(event: InputEvent) -> void:
+	if event.is_action_pressed("inv_grab") or event.is_action_pressed("openContextMenu") or event.is_action_pressed("place_single_of_stack") \
+		or event.is_action_pressed("place_half_of_stack") or event.is_action_pressed("quick_item_transfer") or event.is_action_pressed("drop_item"):
+		equipment_slot_clicked.emit(slot_name, event)

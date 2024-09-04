@@ -22,6 +22,7 @@ func _physics_process(delta: float) -> void:
 
 func set_player_inventory_data(inventory_data:InventoryData) -> void:
 	inventory_data.inventory_interact.connect(on_inventory_interact)
+	inventory_data.inventory_equipment_slot_interact.connect(on_inventory_equipment_slot_interact)
 	inventory_data.inventory_context_menu.connect(_on_inventory_context_menu)
 	inventory_data.inventory_drop_item.connect(drop_slot_data)
 	player_inventory.set_inventory_data(inventory_data)
@@ -32,6 +33,7 @@ func set_external_inventory(_external_inventory_owner) -> void:
 	var inventory_data = external_inventory_owner.inventory_data
 	
 	inventory_data.inventory_interact.connect(on_inventory_interact)
+	inventory_data.inventory_equipment_slot_interact.connect(on_inventory_equipment_slot_interact)
 	inventory_data.inventory_context_menu.connect(_on_inventory_context_menu)
 	inventory_data.inventory_drop_item.connect(drop_slot_data)
 	
@@ -45,6 +47,7 @@ func clear_external_inventory() -> void:
 		var inventory_data = external_inventory_owner.inventory_data
 		
 		inventory_data.inventory_interact.disconnect(on_inventory_interact)
+		inventory_data.inventory_equipment_slot_interact.disconnect(on_inventory_equipment_slot_interact)
 		inventory_data.inventory_context_menu.disconnect(_on_inventory_context_menu)
 		inventory_data.inventory_drop_item.disconnect(drop_slot_data)
 		
@@ -98,6 +101,37 @@ func on_inventory_interact(inventory_data:InventoryData, index:int, event:InputE
 			drop_slot_data(item_to_drop)
 	update_grabbed_slot()
 
+func on_inventory_equipment_slot_interact(inventory_data:InventoryData, slot_name:String, event:InputEvent) -> void:
+	if event.is_action_pressed("quick_item_transfer"):
+		var incoming_slot_data = inventory_data.grab_equipment_slot_data(slot_name)
+		if incoming_slot_data and player_inventory_data and external_inventory_data:
+			if inventory_data == player_inventory_data:
+				var result = external_inventory_data.pick_up_slot_data(incoming_slot_data)
+				if !result:
+					inventory_data.pick_up_slot_data(incoming_slot_data)
+			elif inventory_data == external_inventory_data:
+				var result = player_inventory_data.pick_up_slot_data(incoming_slot_data)
+				if !result:
+					inventory_data.pick_up_slot_data(incoming_slot_data)
+		else:
+			inventory_data.pick_up_slot_data(incoming_slot_data)
+		pass
+	elif grabbed_slot_data == null and event.is_action_pressed("inv_grab"):
+		grabbed_slot_data = inventory_data.grab_equipment_slot_data(slot_name)
+	elif event.is_action_pressed("inv_grab"):
+		grabbed_slot_data = inventory_data.drop_equipment_slot_data(grabbed_slot_data, slot_name)
+	elif grabbed_slot_data == null and event.is_action_pressed("openContextMenu"):
+		inventory_data.open_equipment_slot_context_menu(slot_name)
+	elif grabbed_slot_data and event.is_action_pressed("place_half_of_stack"):
+		grabbed_slot_data = inventory_data.drop_half_slot_data_equipment_slot(grabbed_slot_data, slot_name)
+	elif grabbed_slot_data and event.is_action_pressed("place_single_of_stack"):
+		grabbed_slot_data = inventory_data.drop_single_slot_data_equipment_slot(grabbed_slot_data, slot_name)
+	elif event.is_action_pressed("drop_item"):
+		var item_to_drop = inventory_data.grab_equipment_slot_data(slot_name)
+		if item_to_drop:
+			drop_slot_data(item_to_drop)
+	update_grabbed_slot()
+
 func update_grabbed_slot() -> void:
 	if grabbed_slot_data:
 		grabbed_slot.show()
@@ -105,6 +139,7 @@ func update_grabbed_slot() -> void:
 	else:
 		grabbed_slot.hide()
 
+##Didn't click a slot so you must be trying to drop something
 func _on_gui_input(event: InputEvent) -> void:
 	if event.is_action_pressed("inv_grab") and grabbed_slot_data:
 		drop_slot_data(grabbed_slot_data)
