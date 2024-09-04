@@ -1,6 +1,6 @@
 extends PanelContainer
 
-@export var cell_margin:int = 4
+@export var cell_margin:int = 0
 
 signal slot_clicked(index:int, event:InputEvent)
 
@@ -35,7 +35,8 @@ func set_slot_data(slot_data:SlotData, force_display = false) -> void:
 		durability_label.hide()
 
 func _on_gui_input(event: InputEvent) -> void:
-	if event.is_action_pressed("inv_grab") or event.is_action_pressed("place_single_of_stack"):
+	if event.is_action_pressed("inv_grab") or event.is_action_pressed("openContextMenu") or event.is_action_pressed("place_single_of_stack") \
+		or event.is_action_pressed("place_half_of_stack") or event.is_action_pressed("quick_item_transfer") or event.is_action_pressed("drop_item"):
 		slot_clicked.emit(get_index(), event)
 
 func _convert_cells_to_pixels(number_cells:int):

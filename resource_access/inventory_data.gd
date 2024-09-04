@@ -149,14 +149,14 @@ func pick_up_slot_data(slot_data:SlotData) -> bool:
 				slot_datas[row_i][col_i].fully_merge_with(slot_data)
 				inventory_updated.emit(self)
 				return true
-	
+	var test_index:int = 0
 	for row_i in slot_datas.size():
 		for col_i in slot_datas[row_i].size():
-			if not slot_datas[row_i][col_i]:
+			if room_for_slot_data(test_index,slot_data):
 				set_slot_data(row_i, slot_data.get_height(), col_i, slot_data.get_width(), slot_data)
 				inventory_updated.emit(self)
 				return true
-	
+			test_index += 1
 	return false
 
 func on_slot_clicked(index:int, event:InputEvent) -> void:

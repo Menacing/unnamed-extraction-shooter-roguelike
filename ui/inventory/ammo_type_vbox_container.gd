@@ -26,5 +26,3 @@ func _ready() -> void:
 		add_child(subtype_control)
 		
 	pass # Replace with function body.
-
-
