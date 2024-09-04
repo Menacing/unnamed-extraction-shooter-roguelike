@@ -62,6 +62,30 @@ func drop_slot_data(grabbed_slot_data:SlotData, index:int) -> SlotData:
 	
 	return return_slot_data
 
+func drop_half_slot_data(grabbed_slot_data:SlotData, index:int) -> SlotData:
+	var row_i = index/width
+	var col_i = index % width
+	var original_slot_data = slot_datas[row_i][col_i]
+	
+	#If empty, check for space
+	if not original_slot_data:
+		if room_for_slot_data(index, grabbed_slot_data):
+			set_slot_data(row_i, grabbed_slot_data.get_height(), col_i, grabbed_slot_data.get_width(), grabbed_slot_data.create_half_slot_data())
+		else:
+			#no room, do nothing, don't need to update inventory
+			return grabbed_slot_data
+	#else check if can merge
+	else:
+		if original_slot_data.can_merge_with(grabbed_slot_data):
+			original_slot_data.fully_merge_with(grabbed_slot_data.create_single_slot_data())
+	
+	inventory_updated.emit(self)
+
+	if grabbed_slot_data.quantity > 0:
+		return grabbed_slot_data
+	else:
+		return null
+
 func drop_single_slot_data(grabbed_slot_data:SlotData, index:int) -> SlotData:
 	var row_i = index/width
 	var col_i = index % width

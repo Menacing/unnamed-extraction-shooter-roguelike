@@ -70,6 +70,8 @@ func on_inventory_interact(inventory_data:InventoryData, index:int, event:InputE
 		grabbed_slot_data = inventory_data.drop_slot_data(grabbed_slot_data, index)
 	elif grabbed_slot_data == null and event.is_action_pressed("openContextMenu"):
 		inventory_data.open_slot_context_menu(index)
+	elif grabbed_slot_data and event.is_action_pressed("place_half_of_stack"):
+		grabbed_slot_data = inventory_data.drop_half_slot_data(grabbed_slot_data, index)
 	elif grabbed_slot_data and event.is_action_pressed("place_single_of_stack"):
 		grabbed_slot_data = inventory_data.drop_single_slot_data(grabbed_slot_data, index)
 	update_grabbed_slot()
