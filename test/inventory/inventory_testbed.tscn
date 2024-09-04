@@ -1,9 +1,12 @@
-[gd_scene load_steps=18 format=3 uid="uid://dalylkjs05jvn"]
+[gd_scene load_steps=25 format=3 uid="uid://dalylkjs05jvn"]
 
 [ext_resource type="PackedScene" uid="uid://d08aatgxmymbf" path="res://game_objects/player/player.tscn" id="1_djb1h"]
 [ext_resource type="Script" path="res://levels/loot_chest.gd" id="2_7gssw"]
-[ext_resource type="Script" path="res://resource_access/equipment_slot_type.gd" id="3_pumtn"]
+[ext_resource type="Script" path="res://resource_access/equipment_slot_data.gd" id="2_eic2w"]
+[ext_resource type="Texture2D" uid="uid://ujtgbvl6lktf" path="res://ui/icons/White/equip_gear09.png" id="3_lwrly"]
+[ext_resource type="Texture2D" uid="uid://bjvf3wmj1flwh" path="res://ui/icons/White/equip_gear02.png" id="4_klblm"]
 [ext_resource type="Script" path="res://resource_access/inventory_data.gd" id="4_wpdyo"]
+[ext_resource type="Texture2D" uid="uid://cv7g1bo5f2sdw" path="res://themes/GunSlotIcon-1.png" id="5_35vrs"]
 [ext_resource type="Resource" uid="uid://bk7x5qi5hl1p8" path="res://game_objects/items/materials/polymer_pile/polymer_pile_inventory_info.tres" id="5_jowp7"]
 [ext_resource type="Script" path="res://resource_access/slot_data.gd" id="6_lpxmd"]
 [ext_resource type="Resource" uid="uid://3a15imh4nlqg" path="res://game_objects/items/materials/polymer_spool/polymer_spool_inventory_info.tres" id="7_uirql"]
@@ -14,9 +17,41 @@
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nimtq"]
 albedo_color = Color(0.358214, 0.266036, 0, 1)
 
+[sub_resource type="Resource" id="Resource_6vkx1"]
+script = ExtResource("2_eic2w")
+slot_name = "BackpackSlot"
+allowed_types = Array[int]([1])
+slot_width = 3
+slot_height = 3
+background_icon = ExtResource("3_lwrly")
+
+[sub_resource type="Resource" id="Resource_sduuj"]
+script = ExtResource("2_eic2w")
+slot_name = "ArmorSlot"
+allowed_types = Array[int]([3])
+slot_width = 3
+slot_height = 3
+background_icon = ExtResource("4_klblm")
+
+[sub_resource type="Resource" id="Resource_uwmy2"]
+script = ExtResource("2_eic2w")
+slot_name = "GunSlot1"
+allowed_types = Array[int]([0])
+slot_width = 8
+slot_height = 4
+background_icon = ExtResource("5_35vrs")
+
+[sub_resource type="Resource" id="Resource_n518b"]
+script = ExtResource("2_eic2w")
+slot_name = "GunSlot1"
+allowed_types = Array[int]([0])
+slot_width = 8
+slot_height = 4
+background_icon = ExtResource("5_35vrs")
+
 [sub_resource type="Resource" id="Resource_hqixs"]
 script = ExtResource("4_wpdyo")
-equipment_slots = Array[ExtResource("3_pumtn")]([])
+equipment_slots = Array[ExtResource("2_eic2w")]([SubResource("Resource_6vkx1"), SubResource("Resource_sduuj"), SubResource("Resource_uwmy2"), SubResource("Resource_n518b")])
 slot_datas = Array[Array]([[null, null, null, null, null, null, null], [null, null, null, null, null, null, null]])
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4skll"]
@@ -40,7 +75,7 @@ is_rotated = false
 
 [sub_resource type="Resource" id="Resource_ylxxo"]
 script = ExtResource("4_wpdyo")
-equipment_slots = Array[ExtResource("3_pumtn")]([])
+equipment_slots = Array[ExtResource("2_eic2w")]([])
 slot_datas = Array[Array]([[null, null, SubResource("Resource_sg8ar"), null, null, SubResource("Resource_ft8wo"), SubResource("Resource_ft8wo")], [null, null, null, null, null, SubResource("Resource_ft8wo"), SubResource("Resource_ft8wo")], [null, null, null, null, null, null, null], [null, null, null, null, null, null, null]])
 
 [sub_resource type="Resource" id="Resource_ct15q"]

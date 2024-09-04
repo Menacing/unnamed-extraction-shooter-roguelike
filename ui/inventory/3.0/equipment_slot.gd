@@ -1,0 +1,81 @@
+extends Panel
+
+const cell_size:int = 64
+@export var cell_margin:int = 0
+@onready var background_icon_texture_rect: TextureRect = $MarginContainer/BackgroundIconTextureRect
+@onready var icon_sprite_2d: Sprite2D = $IconSprite2D
+@onready var background_sprite_2d: Sprite2D = $BackgroundSprite2D
+@onready var quantity_label: Label = $QuantityLabel
+@onready var durability_label: Label = $DurabilityLabel
+
+func set_slot_data(equipment_slot:EquipmentSlot, force_display = false) -> void:
+	
+	background_icon_texture_rect.texture = equipment_slot.background_icon
+	self.custom_minimum_size = Vector2(equipment_slot.slot_width * cell_size, equipment_slot.slot_height * cell_size)
+	
+	if equipment_slot.slot_data:
+		var item_data = equipment_slot.slot_data.item_data
+		set_slot_texture(equipment_slot.slot_data)
+		tooltip_text = "%s\n%s" % [item_data.display_name, item_data.description_text]
+		
+		if equipment_slot.slot_data.quantity > 1:
+			quantity_label.text = "x%s" % equipment_slot.slot_data.quantity
+			quantity_label.show()
+		else:
+			quantity_label.hide()
+		
+		if equipment_slot.slot_data.item_data.has_durability:
+			durability_label.text = "%s%" % (equipment_slot.slot_data.durability/equipment_slot.slot_data.item_data.max_durability * 100)
+			durability_label.show()
+		else:
+			durability_label.hide()
+	else:
+		background_sprite_2d.hide()
+		icon_sprite_2d.hide()
+		quantity_label.hide()
+		durability_label.hide()
+	pass
+
+func _convert_cells_to_pixels(number_cells:int):
+	return (number_cells * cell_size) + ((number_cells-1) * cell_margin)
+
+func set_slot_texture(slot_data:SlotData):
+	var item_data:ItemInformation = slot_data.item_data
+	
+	icon_sprite_2d.texture = item_data.icon
+	
+	var target_width = _convert_cells_to_pixels(slot_data.get_width())
+	var target_height = _convert_cells_to_pixels(slot_data.get_height())
+	if slot_data.is_rotated:
+		target_height = _convert_cells_to_pixels(slot_data.get_width()) 
+		target_width = _convert_cells_to_pixels(slot_data.get_height())
+		
+	
+	
+	var icon_tex_size = icon_sprite_2d.texture.get_size()
+	var icon_target_width_scale = target_width / icon_tex_size.x
+	var icon_target_height_scale = target_height / icon_tex_size.y
+	
+	icon_sprite_2d.scale = Vector2(icon_target_width_scale, icon_target_height_scale)
+	
+	icon_sprite_2d.show()
+	
+	var background_tex_size = background_sprite_2d.texture.get_size()
+	var background_target_width_scale = target_width / background_tex_size.x
+	var background_target_height_scale = target_height / background_tex_size.y
+	
+	background_sprite_2d.scale = Vector2(background_target_width_scale, background_target_height_scale)
+	background_sprite_2d.show()
+	
+	if slot_data.is_rotated:
+		icon_sprite_2d.rotation_degrees = 90
+		icon_sprite_2d.position.x = target_height
+		background_sprite_2d.rotation_degrees = 90
+		background_sprite_2d.position.x = target_height
+	else:
+		icon_sprite_2d.rotation_degrees = 0
+		icon_sprite_2d.position.x = 0
+		background_sprite_2d.rotation_degrees = 0
+		background_sprite_2d.position.x = 0
+	
+	self.z_index = 1

@@ -79,7 +79,8 @@ func on_inventory_interact(inventory_data:InventoryData, index:int, event:InputE
 				var result = player_inventory_data.pick_up_slot_data(incoming_slot_data)
 				if !result:
 					inventory_data.pick_up_slot_data(incoming_slot_data)
-			pass
+		else:
+			inventory_data.pick_up_slot_data(incoming_slot_data)
 		pass
 	elif grabbed_slot_data == null and event.is_action_pressed("inv_grab"):
 		grabbed_slot_data = inventory_data.grab_slot_data(index)

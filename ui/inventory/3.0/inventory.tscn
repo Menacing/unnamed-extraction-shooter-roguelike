@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://b6a88vw5glb7n"]
 
 [ext_resource type="Script" path="res://ui/inventory/3.0/inventory.gd" id="1_umall"]
-[ext_resource type="Texture2D" uid="uid://cm6yy3kv2uhwl" path="res://themes/BackpackSlotIcon-1.png" id="3_l5kb1"]
+[ext_resource type="PackedScene" uid="uid://b4tvrofq76m7u" path="res://ui/inventory/3.0/equipment_slot.tscn" id="2_aufpt"]
 [ext_resource type="Texture2D" uid="uid://dtqxp180upxtr" path="res://themes/ArmorSlotIcon-1.png" id="4_55nma"]
 [ext_resource type="Texture2D" uid="uid://cv7g1bo5f2sdw" path="res://themes/GunSlotIcon-1.png" id="5_jbrcj"]
 
@@ -16,17 +16,21 @@ layout_mode = 2
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
+[node name="EquipmentSlotContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
 visible = false
 layout_mode = 2
 
-[node name="BackpackSlot" type="Panel" parent="MarginContainer/HBoxContainer/VBoxContainer" groups=["droppable_inventory_controls"]]
+[node name="BackpackSlot" parent="MarginContainer/HBoxContainer/EquipmentSlotContainer" instance=ExtResource("2_aufpt")]
+layout_mode = 2
+
+[node name="ArmorSlot" type="Panel" parent="MarginContainer/HBoxContainer/EquipmentSlotContainer" groups=["droppable_inventory_controls"]]
 modulate = Color(0.686275, 0.686275, 0.686275, 1)
 custom_minimum_size = Vector2(160, 160)
 layout_mode = 2
 size_flags_horizontal = 8
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/BackpackSlot"]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/EquipmentSlotContainer/ArmorSlot"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -38,40 +42,17 @@ theme_override_constants/margin_top = 40
 theme_override_constants/margin_right = 40
 theme_override_constants/margin_bottom = 40
 
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer/VBoxContainer/BackpackSlot/MarginContainer"]
-layout_mode = 2
-texture = ExtResource("3_l5kb1")
-expand_mode = 2
-
-[node name="ArmorSlot" type="Panel" parent="MarginContainer/HBoxContainer/VBoxContainer" groups=["droppable_inventory_controls"]]
-modulate = Color(0.686275, 0.686275, 0.686275, 1)
-custom_minimum_size = Vector2(160, 160)
-layout_mode = 2
-size_flags_horizontal = 8
-
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/ArmorSlot"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/margin_left = 40
-theme_override_constants/margin_top = 40
-theme_override_constants/margin_right = 40
-theme_override_constants/margin_bottom = 40
-
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer/VBoxContainer/ArmorSlot/MarginContainer"]
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer/EquipmentSlotContainer/ArmorSlot/MarginContainer"]
 layout_mode = 2
 texture = ExtResource("4_55nma")
 expand_mode = 2
 
-[node name="GunSlot1" type="Panel" parent="MarginContainer/HBoxContainer/VBoxContainer" groups=["droppable_inventory_controls"]]
+[node name="GunSlot1" type="Panel" parent="MarginContainer/HBoxContainer/EquipmentSlotContainer" groups=["droppable_inventory_controls"]]
 modulate = Color(0.686275, 0.686275, 0.686275, 1)
 custom_minimum_size = Vector2(256, 128)
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/GunSlot1"]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/EquipmentSlotContainer/GunSlot1"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -83,18 +64,18 @@ theme_override_constants/margin_top = 25
 theme_override_constants/margin_right = 40
 theme_override_constants/margin_bottom = 25
 
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer/VBoxContainer/GunSlot1/MarginContainer"]
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer/EquipmentSlotContainer/GunSlot1/MarginContainer"]
 layout_mode = 2
 texture = ExtResource("5_jbrcj")
 expand_mode = 3
 stretch_mode = 4
 
-[node name="GunSlot2" type="Panel" parent="MarginContainer/HBoxContainer/VBoxContainer" groups=["droppable_inventory_controls"]]
+[node name="GunSlot2" type="Panel" parent="MarginContainer/HBoxContainer/EquipmentSlotContainer" groups=["droppable_inventory_controls"]]
 modulate = Color(0.686275, 0.686275, 0.686275, 1)
 custom_minimum_size = Vector2(256, 128)
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/GunSlot2"]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/EquipmentSlotContainer/GunSlot2"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -106,7 +87,7 @@ theme_override_constants/margin_top = 25
 theme_override_constants/margin_right = 40
 theme_override_constants/margin_bottom = 25
 
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer/VBoxContainer/GunSlot2/MarginContainer"]
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer/EquipmentSlotContainer/GunSlot2/MarginContainer"]
 layout_mode = 2
 texture = ExtResource("5_jbrcj")
 expand_mode = 3

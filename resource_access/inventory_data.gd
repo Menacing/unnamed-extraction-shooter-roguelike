@@ -5,9 +5,11 @@ signal inventory_updated(inventory_data:InventoryData)
 signal inventory_interact(inventory_data:InventoryData, index:int, event:InputEvent)
 signal inventory_context_menu(inventory_data:InventoryData, slot_data:SlotData)
 signal inventory_drop_item(slot_data:SlotData)
+signal item_equipped(equipment_slot:EquipmentSlot)
+signal item_unequipped(equipment_slot:EquipmentSlot)
 
 var width = 7
-@export var equipment_slots:Array[EquipmentSlotType]
+@export var equipment_slots:Array[EquipmentSlot]
 @export var slot_datas:Array[Array]
 
 ##Pickup slot data OUT OF inventory
@@ -140,8 +142,16 @@ func handle_context_menu(menu_id:int, slot_index:int) -> void:
 	pass
 	
 
-#TODO Rework this for item width and height
 func pick_up_slot_data(slot_data:SlotData) -> bool:
+	#check for suitable equipment slot
+	for equipment_slot:EquipmentSlot in equipment_slots:
+		if !equipment_slot.slot_data and slot_data.item_data.item_type in equipment_slot.allowed_types:
+			equipment_slot.slot_data = slot_data
+			item_equipped.emit(equipment_slot)
+			inventory_updated.emit(self)
+			return true
+	
+	
 	#check for mergable slot first
 	for row_i in slot_datas.size():
 		for col_i in slot_datas[row_i].size():

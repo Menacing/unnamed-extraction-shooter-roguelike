@@ -1,0 +1,53 @@
+[gd_scene load_steps=5 format=3 uid="uid://b4tvrofq76m7u"]
+
+[ext_resource type="Texture2D" uid="uid://cm6yy3kv2uhwl" path="res://themes/BackpackSlotIcon-1.png" id="1_jwlv0"]
+[ext_resource type="Script" path="res://ui/inventory/3.0/equipment_slot.gd" id="1_o1iu0"]
+[ext_resource type="Material" uid="uid://c0ipdgk1m22gh" path="res://ui/misc/ui_static_mat.tres" id="3_gpmo7"]
+[ext_resource type="Texture2D" uid="uid://dnwjqswetecya" path="res://ui/icons/black_32x32.png" id="4_6btf8"]
+
+[node name="EquipmentSlot" type="Panel" groups=["droppable_inventory_controls"]]
+modulate = Color(0.686275, 0.686275, 0.686275, 1)
+custom_minimum_size = Vector2(160, 160)
+size_flags_horizontal = 8
+script = ExtResource("1_o1iu0")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 40
+
+[node name="BackgroundIconTextureRect" type="TextureRect" parent="MarginContainer"]
+layout_mode = 2
+texture = ExtResource("1_jwlv0")
+expand_mode = 2
+
+[node name="BackgroundSprite2D" type="Sprite2D" parent="."]
+visible = false
+material = ExtResource("3_gpmo7")
+texture = ExtResource("4_6btf8")
+centered = false
+
+[node name="IconSprite2D" type="Sprite2D" parent="."]
+visible = false
+centered = false
+
+[node name="QuantityLabel" type="Label" parent="."]
+visible = false
+size_flags_horizontal = 8
+size_flags_vertical = 0
+theme_override_constants/outline_size = 3
+text = "x99"
+
+[node name="DurabilityLabel" type="Label" parent="."]
+visible = false
+size_flags_horizontal = 8
+size_flags_vertical = 8
+theme_override_constants/outline_size = 3
+text = "100%"
