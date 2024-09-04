@@ -214,26 +214,40 @@ func _on_item_equipment_changed(inventory_data:InventoryData, equipment_slot:Equ
 				if gun_slot_1:
 					gun_slot_1.queue_free()
 				gun_slot_1 = item_3d as Gun
+				item_3d.picked_up()
 				move_gun_to_player_model(gun_slot_1)
+			else:
+				drop_equipped_gun()
 		"GunSlot2":
 			if equipment_slot.slot_data:
 				var item_3d:Gun = Item3D.instantiate_from_slot_data(equipment_slot.slot_data)
 				if gun_slot_2:
 					gun_slot_2.queue_free()
 				gun_slot_2 = item_3d as Gun
+				item_3d.picked_up()
 				move_gun_to_player_model(gun_slot_2)
-		#"BackpackSlot":
-			#move_backpack_to_anchor(item_3d)
-			#var backpack:Backpack = item_3d as Backpack
-			#if backpack:
-				#if backpack.backpack_size == Backpack.Size.NONE:
-					#InventoryManager.set_inventory_size(player_inventory_id, Vector2i(7,2))
-				#elif backpack.backpack_size == Backpack.Size.SMALL:
-					#InventoryManager.set_inventory_size(player_inventory_id, Vector2i(7,4))
-				#elif backpack.backpack_size == Backpack.Size.MEDIUM:
-					#InventoryManager.set_inventory_size(player_inventory_id, Vector2i(7,6))
-				#elif backpack.backpack_size == Backpack.Size.LARGE:
-					#InventoryManager.set_inventory_size(player_inventory_id, Vector2i(7,8))
+			else:
+				drop_equipped_gun()
+		"BackpackSlot":
+			if equipment_slot.slot_data:
+				var backpack:Backpack = Item3D.instantiate_from_slot_data(equipment_slot.slot_data)
+				if backpack:
+					backpack.picked_up()
+					move_backpack_to_anchor(backpack)
+					if backpack.backpack_size == Backpack.Size.NONE:
+						inventory_data.set_inventory_size(2)
+					elif backpack.backpack_size == Backpack.Size.SMALL:
+						inventory_data.set_inventory_size(4)
+					elif backpack.backpack_size == Backpack.Size.MEDIUM:
+						inventory_data.set_inventory_size(6)
+					elif backpack.backpack_size == Backpack.Size.LARGE:
+						inventory_data.set_inventory_size(8)
+			else:
+				inventory_data.set_inventory_size(2)
+				if equipped_backpack:
+					equipped_backpack.queue_free()
+					equipped_backpack = null
+				
 		#"ArmorSlot":
 			#armor_equipped.emit(item_3d as BodyArmor)
 			#move_armor_to_anchor(item_3d)
@@ -363,12 +377,14 @@ func move_armor_to_anchor(armor:Node3D):
 		armor.transform = Transform3D.IDENTITY
 		armor.visible = true
 		pass
-		
+
+var equipped_backpack:Backpack
 func move_backpack_to_anchor(backpack:Node3D):
 	if backpack:
 		Helpers.force_parent(backpack, backpack_anchor)
 		backpack.transform = Transform3D.IDENTITY
 		backpack.visible = true
+		equipped_backpack = backpack
 
 func drop_equipped_gun():
 	if equipped_gun:

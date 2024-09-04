@@ -9,15 +9,17 @@ const cell_size:int = 64
 @onready var background_sprite_2d: Sprite2D = $BackgroundSprite2D
 @onready var quantity_label: Label = $QuantityLabel
 @onready var durability_label: Label = $DurabilityLabel
-@onready var slot_name:String
+@export var slot_name:String
 
 func set_slot_data(equipment_slot:EquipmentSlot, force_display = false) -> void:
 	
 	background_icon_texture_rect.texture = equipment_slot.background_icon
 	self.custom_minimum_size = Vector2(equipment_slot.slot_width * cell_size, equipment_slot.slot_height * cell_size)
+	slot_name = equipment_slot.slot_name
 	
 	if equipment_slot.slot_data:
-		slot_name = equipment_slot.slot_name
+		if slot_name == null or slot_name == '':
+			pass
 		var item_data = equipment_slot.slot_data.item_data
 		set_slot_texture(equipment_slot.slot_data)
 		tooltip_text = "%s\n%s" % [item_data.display_name, item_data.description_text]

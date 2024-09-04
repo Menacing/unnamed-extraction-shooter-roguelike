@@ -12,6 +12,33 @@ var width = 7
 @export var equipment_slots:Array[EquipmentSlot]
 @export var slot_datas:Array[Array]
 
+
+func set_inventory_size(new_number_rows:int) -> void:
+	var current_height:int = slot_datas.size()
+	
+	if new_number_rows == current_height:
+		return 
+	elif new_number_rows > current_height:
+		for i in range(0,new_number_rows - current_height):
+			var new_row = []
+			new_row.resize(width)
+			slot_datas.append(new_row)
+	elif new_number_rows < current_height:
+		
+		for i in range(current_height - 1, new_number_rows, -1):
+			#drop each item in row
+			for j in width:
+				var slot_data:SlotData = slot_datas[i][j]
+				if slot_data:
+					slot_data = grab_slot_data(slot_data.root_index)
+					inventory_drop_item.emit(slot_data)
+			#remove row
+			slot_datas.pop_back()
+		
+	inventory_updated.emit(self)
+	
+	pass
+
 func _get_equipment_slot(slot_name:String) -> EquipmentSlot:
 	var equipment_slot:EquipmentSlot
 
@@ -262,6 +289,7 @@ func handle_context_menu(menu_id:int, slot_index:int) -> void:
 	pass
 	
 
+##Checks for space to pick up an item into the inventory data. Returns true if successful
 func pick_up_slot_data(slot_data:SlotData) -> bool:
 	#check for suitable equipment slot
 	for equipment_slot:EquipmentSlot in equipment_slots:

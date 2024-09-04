@@ -1,7 +1,17 @@
-[gd_scene load_steps=4 format=3 uid="uid://b6xejgxv7attc"]
+[gd_scene load_steps=7 format=3 uid="uid://b6xejgxv7attc"]
 
 [ext_resource type="Script" path="res://game_objects/items/backpacks/backpack.gd" id="1_mleq4"]
+[ext_resource type="Resource" uid="uid://dv187kl8jcl01" path="res://game_objects/items/backpacks/large/large_backpack_1_inventory_info.tres" id="2_8amv4"]
 [ext_resource type="PackedScene" uid="uid://bi0xia4rstdus" path="res://game_objects/items/backpacks/large/large_backpack_1.glb" id="2_c16o3"]
+[ext_resource type="Script" path="res://resource_access/slot_data.gd" id="3_30e8h"]
+
+[sub_resource type="Resource" id="Resource_qwywk"]
+script = ExtResource("3_30e8h")
+item_data = ExtResource("2_8amv4")
+quantity = 1
+durability = 1
+root_index = 0
+is_rotated = false
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_lntsr"]
 size = Vector3(0.509955, 1.08099, 0.353562)
@@ -12,6 +22,7 @@ collision_mask = 5
 mass = 6.0
 script = ExtResource("1_mleq4")
 backpack_size = 3
+slot_data = SubResource("Resource_qwywk")
 item_type_id = "large_backpack_1"
 world_collider_path = NodePath("CollisionShape3D")
 longest_side_size = 1.1
