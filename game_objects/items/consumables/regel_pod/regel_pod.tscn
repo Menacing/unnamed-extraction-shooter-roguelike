@@ -6,7 +6,7 @@
 [sub_resource type="SphereShape3D" id="SphereShape3D_5q5or"]
 radius = 0.0499513
 
-[node name="RegelPod" type="RigidBody3D" node_paths=PackedStringArray("model_node", "foley_player")]
+[node name="RegelPod" type="RigidBody3D" node_paths=PackedStringArray("model_node")]
 collision_layer = 5
 collision_mask = 5
 script = ExtResource("1_pfdoj")
@@ -14,11 +14,8 @@ item_type_id = "regel_pod"
 world_collider_path = NodePath("CollisionShape3D")
 longest_side_size = 0.15
 model_node = NodePath("regel_pod")
-foley_player = NodePath("FoleyAudioStreamPlayer3D")
 
 [node name="regel_pod" parent="." instance=ExtResource("1_w1sce")]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("SphereShape3D_5q5or")
-
-[node name="FoleyAudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]

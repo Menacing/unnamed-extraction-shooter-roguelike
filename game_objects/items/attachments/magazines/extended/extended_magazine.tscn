@@ -7,7 +7,7 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_ph7ph"]
 size = Vector3(0.0214996, 0.245056, 0.115063)
 
-[node name="ExtendedMagazine" type="RigidBody3D" node_paths=PackedStringArray("model_node", "foley_player")]
+[node name="ExtendedMagazine" type="RigidBody3D" node_paths=PackedStringArray("model_node")]
 collision_layer = 5
 collision_mask = 5
 script = ExtResource("1_yig31")
@@ -16,12 +16,9 @@ item_type_id = "extended_magazine"
 world_collider_path = NodePath("CollisionShape3D")
 longest_side_size = 0.3
 model_node = NodePath("extended_magazine")
-foley_player = NodePath("FoleyAudioStreamPlayer3D")
 
 [node name="extended_magazine" parent="." instance=ExtResource("2_ahmcv")]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000160214, -0.0149841, 0.0120144)
 shape = SubResource("BoxShape3D_ph7ph")
-
-[node name="FoleyAudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]

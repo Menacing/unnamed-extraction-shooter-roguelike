@@ -60,5 +60,8 @@ layout_mode = 0
 offset_right = 64.0
 offset_bottom = 64.0
 
+[node name="FoleyAudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+max_polyphony = 8
+
 [connection signal="gui_input" from="." to="." method="_on_gui_input"]
 [connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]

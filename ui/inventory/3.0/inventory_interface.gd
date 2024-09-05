@@ -11,6 +11,7 @@ var external_inventory_owner
 ##only use for quick transfer
 var player_inventory_data:InventoryData
 var external_inventory_data:InventoryData
+@onready var foley_audio_stream_player_3d: AudioStreamPlayer3D = $FoleyAudioStreamPlayer3D
 
 func _ready() -> void:
 	for node in get_tree().get_nodes_in_group("external_inventory"):
@@ -73,6 +74,7 @@ func _on_toggle_inventory(external_inventory_owner = null) -> void:
 func on_inventory_interact(inventory_data:InventoryData, index:int, event:InputEvent):
 	if event.is_action_pressed("quick_item_transfer"):
 		var incoming_slot_data = inventory_data.grab_slot_data(index)
+		play_pickup_sound(incoming_slot_data)
 		if incoming_slot_data and player_inventory_data and external_inventory_data:
 			if inventory_data == player_inventory_data:
 				var result = external_inventory_data.pick_up_slot_data(incoming_slot_data)
@@ -87,13 +89,17 @@ func on_inventory_interact(inventory_data:InventoryData, index:int, event:InputE
 		pass
 	elif grabbed_slot_data == null and event.is_action_pressed("inv_grab"):
 		grabbed_slot_data = inventory_data.grab_slot_data(index)
+		play_pickup_sound(grabbed_slot_data)
 	elif event.is_action_pressed("inv_grab"):
+		play_drop_sound(grabbed_slot_data)
 		grabbed_slot_data = inventory_data.drop_slot_data(grabbed_slot_data, index)
 	elif grabbed_slot_data == null and event.is_action_pressed("openContextMenu"):
 		inventory_data.open_slot_context_menu(index)
 	elif grabbed_slot_data and event.is_action_pressed("place_half_of_stack"):
+		play_drop_sound(grabbed_slot_data)
 		grabbed_slot_data = inventory_data.drop_half_slot_data(grabbed_slot_data, index)
 	elif grabbed_slot_data and event.is_action_pressed("place_single_of_stack"):
+		play_drop_sound(grabbed_slot_data)
 		grabbed_slot_data = inventory_data.drop_single_slot_data(grabbed_slot_data, index)
 	elif event.is_action_pressed("drop_item"):
 		var item_to_drop = inventory_data.grab_slot_data(index)
@@ -104,6 +110,7 @@ func on_inventory_interact(inventory_data:InventoryData, index:int, event:InputE
 func on_inventory_equipment_slot_interact(inventory_data:InventoryData, slot_name:String, event:InputEvent) -> void:
 	if event.is_action_pressed("quick_item_transfer"):
 		var incoming_slot_data = inventory_data.grab_equipment_slot_data(slot_name)
+		play_pickup_sound(incoming_slot_data)
 		if incoming_slot_data and player_inventory_data and external_inventory_data:
 			if inventory_data == player_inventory_data:
 				var result = external_inventory_data.pick_up_slot_data(incoming_slot_data)
@@ -118,13 +125,17 @@ func on_inventory_equipment_slot_interact(inventory_data:InventoryData, slot_nam
 		pass
 	elif grabbed_slot_data == null and event.is_action_pressed("inv_grab"):
 		grabbed_slot_data = inventory_data.grab_equipment_slot_data(slot_name)
+		play_pickup_sound(grabbed_slot_data)
 	elif event.is_action_pressed("inv_grab"):
+		play_drop_sound(grabbed_slot_data)
 		grabbed_slot_data = inventory_data.drop_equipment_slot_data(grabbed_slot_data, slot_name)
 	elif grabbed_slot_data == null and event.is_action_pressed("openContextMenu"):
 		inventory_data.open_equipment_slot_context_menu(slot_name)
 	elif grabbed_slot_data and event.is_action_pressed("place_half_of_stack"):
+		play_drop_sound(grabbed_slot_data)
 		grabbed_slot_data = inventory_data.drop_half_slot_data_equipment_slot(grabbed_slot_data, slot_name)
 	elif grabbed_slot_data and event.is_action_pressed("place_single_of_stack"):
+		play_drop_sound(grabbed_slot_data)
 		grabbed_slot_data = inventory_data.drop_single_slot_data_equipment_slot(grabbed_slot_data, slot_name)
 	elif event.is_action_pressed("drop_item"):
 		var item_to_drop = inventory_data.grab_equipment_slot_data(slot_name)
@@ -165,6 +176,7 @@ func drop_slot_data(slot_data:SlotData) -> void:
 	var item_3d:Item3D = Item3D.instantiate_from_slot_data(slot_data)
 	
 	if item_3d:
+		play_drop_sound(slot_data)
 		#Add it to the level
 		if !LevelManager.add_node_to_level(item_3d):
 			get_tree().root.add_child(item_3d)
@@ -187,3 +199,15 @@ func _on_inventory_context_menu(inventory_data:InventoryData, slot_data:SlotData
 	popup_rect.position = Vector2i(get_global_mouse_position())
 	menu.id_pressed.connect(inventory_data.handle_context_menu.bind(slot_data.root_index))
 	menu.popup(popup_rect)
+
+func play_drop_sound(slot_data:SlotData):
+	if slot_data:
+		foley_audio_stream_player_3d.stream = slot_data.item_data.drop_sound
+		foley_audio_stream_player_3d.play()
+	pass
+	
+func play_pickup_sound(slot_data:SlotData):
+	if slot_data:
+		foley_audio_stream_player_3d.stream = slot_data.item_data.pickup_sound
+		foley_audio_stream_player_3d.play()
+	pass

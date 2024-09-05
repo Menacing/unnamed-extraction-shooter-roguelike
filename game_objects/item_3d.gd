@@ -15,25 +15,7 @@ static func instantiate_from_slot_data(slot_data:SlotData) -> Item3D:
 
 func set_additional_slot_data(slot_data:SlotData) -> void:
 	pass
-#var _actor_id:int = 0
-#var item_instance_id:int
-#var item_3d_id:int:
-	#get:
-		#return item_3d_id
-	#set(value):
-		#item_3d_id = value
-		#ItemAccess.add_item_3d(self)
-		#
-#func get_item_instance() -> ItemInstance:
-	#if item_instance_id == 0:
-		#spawn_item()
-	#var item_inst:ItemInstance = InventoryManager.get_item(item_instance_id)
-	#if item_inst:
-		#return item_inst
-	#else:
-		#return null 
-			
-#var internal_inventory_id:int
+
 ## string id of the item. Must match the id in the corresponding ItemInformation resources
 @export var item_type_id:String
 @export var world_collider_path:NodePath
@@ -50,7 +32,6 @@ var world_collider:CollisionShape3D:
 @onready var item_highlight_m:ShaderMaterial = load("res://themes/item_highlighter_m.tres")
 @export var start_highlighted:bool = true
 @export var meshes_to_fade_on_pickup:Array[MeshInstance3D] = []
-@export var foley_player:AudioStreamPlayer3D
 var _prox_fade_mats:Array[StandardMaterial3D] = []
 var is_picked_up:bool = false
 
@@ -61,17 +42,6 @@ func _ready() -> void:
 	else:
 		Helpers.apply_material_overlay_to_children(self,null)
 	
-	#if item_3d_id == 0:
-		#item_3d_id = Helpers.generate_new_id()
-	#
-	#var item_instance := get_item_instance()
-	#if item_instance:
-		#var item_internal_inventory := item_instance.get_item_inventory()
-		#if item_internal_inventory:
-			#internal_inventory_id = item_internal_inventory.inventory_id
-			#EventBus.item_picked_up.connect(_on_item_picked_up)
-			#EventBus.item_removed_from_slot.connect(_on_item_removed_from_slot)
-			
 
 	var _base_materials:Array[StandardMaterial3D] = []
 
@@ -105,10 +75,6 @@ func dropped() -> void:
 		var number_surfaces:int = mesh_inst.mesh.get_surface_count()
 		for i in range(number_surfaces):
 			mesh_inst.set_surface_override_material(i,null)
-			
-	if foley_player:
-		foley_player.stream = slot_data.item_data.drop_sound
-		foley_player.play()
 	
 	is_picked_up = false
 
@@ -125,38 +91,10 @@ func picked_up(actor_id:int = 0) -> void:
 		for i in range(number_surfaces):
 			mesh_inst.set_surface_override_material(i, _prox_fade_mats[mat_index])
 				
-	if foley_player:
-		foley_player.stream = slot_data.item_data.drop_sound
-		foley_player.play()
-	
 	is_picked_up = true
 	
 func destroy() -> void:
-	if foley_player and foley_player.playing:
-		foley_player.finished.connect(destroy)
-	else:
-		self.queue_free()
-
-#func set_stacks(amount:int) -> void:
-	#slot_data.stacks = amount
-	
-#func spawn_item() -> void:
-	#pass
-	#InventoryManager.spawn_from_item3d(self)
-
-#func _on_item_picked_up(result:InventoryInsertResult) -> void:
-	#if result.inventory_id == internal_inventory_id:
-		#var item_instance:ItemInstance = InventoryManager.get_item(result.item_instance_id)
-		#var item_3d:Item3D = ItemAccess.get_item_3d(item_instance.id_3d)
-		#Helpers.force_parent(item_3d,self)
-		#item_3d.picked_up()
-		#if result.location.location == InventoryLocationResult.LocationType.SLOT:
-			#pass
-		#elif result.location.location == InventoryLocationResult.LocationType.GRID:
-			#item_3d.visible = false
-			#
-#func _on_item_removed_from_slot(_item_inst:ItemInstance, _inventory_id:int, _slot_name:String) -> void:
-	#pass
+	self.queue_free()
 
 func copy_model() -> Node3D:
 	return model_node.duplicate()

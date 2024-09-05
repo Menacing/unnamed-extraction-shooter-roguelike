@@ -186,7 +186,7 @@ random_volume_offset_db = 0.5
 streams_count = 1
 stream_0/stream = ExtResource("6_r1jqa")
 
-[node name="PM52" type="RigidBody3D" node_paths=PackedStringArray("mag_node", "model_node", "foley_player")]
+[node name="PM52" type="RigidBody3D" node_paths=PackedStringArray("mag_node", "model_node")]
 disable_mode = 1
 collision_layer = 5
 collision_mask = 5
@@ -198,7 +198,6 @@ slot_data = SubResource("Resource_4qrw3")
 item_type_id = "pm-52"
 world_collider_path = NodePath("CollisionShape3D")
 model_node = NodePath("gun")
-foley_player = NodePath("FoleyAudioStreamPlayer3D")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00245605, 0.0708904, 0.0553259)
@@ -322,7 +321,5 @@ stream = SubResource("AudioStreamRandomizer_804ov")
 volume_db = 6.0
 max_polyphony = 20
 bus = &"SFX"
-
-[node name="FoleyAudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
 
 [editable path="gun"]
