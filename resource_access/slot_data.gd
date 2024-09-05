@@ -7,6 +7,30 @@ class_name SlotData
 @export var root_index:int = 0
 @export var is_rotated:bool = false
 
+static func instantiate_from_item_information(item_information:ItemInformation) -> SlotData:
+	var new_slot = SlotData.new()
+	if item_information:
+		new_slot.item_data = item_information
+		if item_information.has_stacks:
+			#Default to fun!
+			var stack:int = item_information.max_stacks
+			if item_information.stack_random_method == GameplayEnums.StackRandomMethod.RANDOM:
+				stack = randi_range(item_information.min_pickup_stacks, item_information.max_stacks)
+			elif item_information.stack_random_method == GameplayEnums.StackRandomMethod.NORMAL:
+				stack = Helpers.get_normalized_random_stack_count(item_information.min_pickup_stacks,
+																  item_information.mean_pickup_stacks,
+																  item_information.max_stacks)
+			else:
+				#Someone set an item up with a non specified random method, printing a missable
+				#error and keeping the max default for more fun!
+				printerr("{unhandled_enum_int} is an invalid integer for the GameplayEnums.StackRandomMethod enum. Defaulting to max stacks.".format({"unhandled_enum_int": item_information.stack_random_method}))
+
+			new_slot.quantity = stack
+		if item_information.has_durability:
+			new_slot.durability = item_information.max_durability
+	
+	return new_slot
+
 func can_merge_with(other_slot_data:SlotData, amount:int = 1) -> bool:
 	return item_data == other_slot_data.item_data and item_data.has_stacks \
 				and quantity + amount <= item_data.max_stacks

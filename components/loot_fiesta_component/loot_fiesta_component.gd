@@ -23,7 +23,8 @@ func fiesta():
 	for i in number_to_spawn:
 		var spawn_info:LootSpawnInformation = LootSpawnManager.get_spawn_info(biome, tier)
 		var item_info:ItemInformation = spawn_info.item_information
-		var scene = item_info.item_3d_scene.instantiate()
+		var slot_data:SlotData = SlotData.instantiate_from_item_information(item_info)
+		var scene:Item3D = Item3D.instantiate_from_slot_data(slot_data)
 		scene.set_as_top_level(true)		
 		LevelManager.add_node_to_level.call_deferred(scene)
 		scene.set_global_position.call_deferred(self.global_position)
