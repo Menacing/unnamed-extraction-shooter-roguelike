@@ -20,13 +20,7 @@ class_name GunDetailPopup
 
 @export var item_outline_material:Material = load("res://ui/inventory/item_outline_material.tres")
 
-var _weapon_modification_container:InventoryControlBase
-var weapon_modification_container:InventoryControlBase:
-	get:
-		return $VBoxContainer/ModificationSlotVBoxContainer
-
-
-var weapon_mod_template_scene = preload("res://ui/inventory/weapon_modification_slot.tscn")
+const EQUIPMENT_SLOT = preload("res://ui/inventory/3.0/equipment_slot.tscn")
 
 var _gun_3d:Gun
 var gun_3d:Gun:
@@ -41,15 +35,6 @@ var gun_3d:Gun:
 		map_ammo_type(value)
 		setup_gun_model(value)
 		setup_mod_slots(value)
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass
-		
-		
-
-func set_internal_inventory(internal_inventory:Inventory):
-	weapon_modification_container._inventory = internal_inventory
 
 func _input(event:InputEvent):
 	if event.is_action_pressed("ui_cancel"):
@@ -105,34 +90,23 @@ func setup_gun_model(gun:Gun):
 	adjust_camera_to_fit()
 	
 func setup_mod_slots(gun:Gun):
+	var gun_slot_data:GunSlotData = gun.slot_data
 	#get the internal inventory
-	var item_inventory:Inventory = gun.get_item_instance().get_item_inventory()
+	var item_inventory:InventoryData = gun_slot_data.internal_inventory
 
-	#get the equipment slots
-	var item_equipment_slots:Array[EquipmentSlotType] = item_inventory.equipment_slots
-	var current_sibling:Node = $VBoxContainer/ModificationSlotVBoxContainer/FrontSpacer
-	for slot in item_equipment_slots:
-		#for each equipment slot, create a weapon mod slot instance
-		var slot_control:EquipmentSlotControl = weapon_mod_template_scene.instantiate()
-		#set the name and icon based on the slot info
-		slot_control.name = slot.name
-		slot_control.slot_icon = _get_slot_icon(slot.allowed_types)
-		#Set up connection to inventory control, probably the vbox container
-		slot_control.parent_inventory_control_base = weapon_modification_container
-		#add it as child to vbox container
-		current_sibling.add_sibling(slot_control)
-		slot_control.owner = self
-		current_sibling = slot_control
-		
-		#if the slot has an item, put the item control in the slot
-		#if slot.item_instance_id != 0:
-			#var item_instance:ItemInstance = ItemAccess.get_item_instance(slot.item_instance_id)
-			#if item_instance:
-				#var item_control:ItemControl = item_instance.get_item_control()
-				#if item_control:
-					#slot_control.add_item_control(item_control)
-		#pass
-	pass
+	if item_inventory:
+		#get the equipment slots
+		var item_equipment_slots:Array[EquipmentSlot] = item_inventory.equipment_slots
+		var current_sibling:Node = $VBoxContainer/ModificationSlotVBoxContainer/FrontSpacer
+		for slot in item_equipment_slots:
+			#for each equipment slot, create a weapon mod slot instance
+			var slot_control = EQUIPMENT_SLOT.instantiate()
+			slot_control.name = slot.name
+			slot_control.set_slot_data(slot)
+			#add it as child to vbox container
+			current_sibling.add_sibling(slot_control)
+			slot_control.owner = self
+			current_sibling = slot_control
 
 func adjust_camera_to_fit():
 	# Ensure item_model_anchor has content.
@@ -141,42 +115,3 @@ func adjust_camera_to_fit():
 
 	var largest_axis = gun_3d.longest_side_size
 	viewport_camera.size = largest_axis * 1.1
-	
-var armor_icon = preload("res://themes/ArmorSlotIcon-1.png")
-var backpack_icon = preload("res://themes/BackpackSlotIcon-1.png")
-var foregrip_icon = preload("res://themes/Foregrip Icon-1.png")
-var grip_icon = preload("res://themes/Grip Icon-1.png")
-var gun_icon = preload("res://themes/GunSlotIcon-1.png")
-var laser_icon = preload("res://themes/Laser Icon-1.png")
-var mag_icon = preload("res://themes/Magazine Icon-1.png")
-var muzzle_icon = preload("res://themes/Muzzle Icon-1.png")
-var scope_icon = preload("res://themes/Scope Icon-1.png")
-var stock_icon = preload("res://themes/Stock Icon-1.png")
-var oops_icon = preload("res://themes/LegIcon.png")
-
-func _get_slot_icon(item_types:Array[GameplayEnums.ItemType]) -> Texture2D:
-	match (item_types[0]):
-		GameplayEnums.ItemType.GUN:
-			return gun_icon
-		GameplayEnums.ItemType.ARMOR:
-			return armor_icon
-		GameplayEnums.ItemType.BACKPACK:
-			return backpack_icon
-		GameplayEnums.ItemType.FOREGRIP:
-			return foregrip_icon
-		GameplayEnums.ItemType.GRIP:
-			return grip_icon
-		GameplayEnums.ItemType.LASER:
-			return laser_icon
-		GameplayEnums.ItemType.MAG:
-			return mag_icon
-		GameplayEnums.ItemType.MUZZLE:
-			return muzzle_icon
-		GameplayEnums.ItemType.OPTIC:
-			return scope_icon
-		GameplayEnums.ItemType.STOCK:
-			return stock_icon
-		_:
-			return oops_icon
-	
-	

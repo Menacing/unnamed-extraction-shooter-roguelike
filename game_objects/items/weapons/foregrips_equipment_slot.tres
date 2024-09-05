@@ -1,9 +1,13 @@
-[gd_resource type="Resource" script_class="EquipmentSlotType" load_steps=2 format=3 uid="uid://d2e8vacodeiau"]
+[gd_resource type="Resource" script_class="EquipmentSlot" load_steps=3 format=3 uid="uid://d2e8vacodeiau"]
 
-[ext_resource type="Script" path="res://resource_access/equipment_slot_type.gd" id="1_w2byn"]
+[ext_resource type="Texture2D" uid="uid://bdxmrl73ocy6u" path="res://themes/Foregrip Icon-1.png" id="1_f0ohc"]
+[ext_resource type="Script" path="res://resource_access/equipment_slot_data.gd" id="1_v88gv"]
 
 [resource]
 resource_local_to_scene = true
-script = ExtResource("1_w2byn")
-name = "ForegripsSlot"
+script = ExtResource("1_v88gv")
+slot_name = "ForegripsSlot"
 allowed_types = Array[int]([9])
+slot_width = 0
+slot_height = 0
+background_icon = ExtResource("1_f0ohc")

@@ -6,6 +6,7 @@ class_name SlotData
 @export var durability:int = 1: set = set_durability
 @export var root_index:int = 0
 @export var is_rotated:bool = false
+@export var internal_inventory:InventoryData = null
 
 static func instantiate_from_item_information(item_information:ItemInformation) -> SlotData:
 	var new_slot = SlotData.new()
@@ -28,6 +29,8 @@ static func instantiate_from_item_information(item_information:ItemInformation) 
 			new_slot.quantity = stack
 		if item_information.has_durability:
 			new_slot.durability = item_information.max_durability
+		if item_information.model_internal_inventory:
+			new_slot.internal_inventory = item_information.model_internal_inventory.duplicate(true)
 	
 	return new_slot
 
