@@ -209,26 +209,31 @@ func _ready():
 func _on_item_equipment_changed(inventory_data:InventoryData, equipment_slot:EquipmentSlot):
 	match equipment_slot.slot_name:
 		"GunSlot1":
+			if gun_slot_1 == equipped_gun:
+				drop_equipped_gun()
 			if equipment_slot.slot_data:
 				var item_3d:Gun = Item3D.instantiate_from_slot_data(equipment_slot.slot_data)
 				if gun_slot_1:
 					gun_slot_1.queue_free()
 				gun_slot_1 = item_3d as Gun
-				item_3d.picked_up()
-				move_gun_to_player_model(gun_slot_1)
-			else:
-				drop_equipped_gun()
+				if item_3d:
+					item_3d.picked_up()
+					move_gun_to_player_model(gun_slot_1)
 		"GunSlot2":
+			if gun_slot_2 == equipped_gun:
+				drop_equipped_gun()
 			if equipment_slot.slot_data:
 				var item_3d:Gun = Item3D.instantiate_from_slot_data(equipment_slot.slot_data)
 				if gun_slot_2:
 					gun_slot_2.queue_free()
 				gun_slot_2 = item_3d as Gun
-				item_3d.picked_up()
-				move_gun_to_player_model(gun_slot_2)
-			else:
-				drop_equipped_gun()
+				if item_3d:
+					item_3d.picked_up()
+					move_gun_to_player_model(gun_slot_2)
 		"BackpackSlot":
+			if equipped_backpack:
+				equipped_backpack.queue_free()
+				equipped_backpack = null
 			if equipment_slot.slot_data:
 				var backpack:Backpack = Item3D.instantiate_from_slot_data(equipment_slot.slot_data)
 				if backpack:
@@ -244,98 +249,24 @@ func _on_item_equipment_changed(inventory_data:InventoryData, equipment_slot:Equ
 						inventory_data.set_inventory_size(8)
 			else:
 				inventory_data.set_inventory_size(2)
-				if equipped_backpack:
-					equipped_backpack.queue_free()
-					equipped_backpack = null
-				
-		#"ArmorSlot":
-			#armor_equipped.emit(item_3d as BodyArmor)
-			#move_armor_to_anchor(item_3d)
+		"ArmorSlot":
+			if equipped_armor:
+				equipped_armor.queue_free()
+				equipped_armor = null
+			if equipment_slot.slot_data:
+				var armor:BodyArmor = Item3D.instantiate_from_slot_data(equipment_slot.slot_data)
+				armor_equipped.emit(armor)
+				armor.picked_up()
+				move_armor_to_anchor(armor)
 	pass
 
-#func _on_drop_item(item_inst:ItemInstance, inventory_id:int):
-	#if inventory_id == player_inventory_id:
-		#var item_3d:Item3D = ItemAccess.get_item_3d(item_inst.id_3d)
-		#Helpers.force_parent(item_3d,get_parent())
-		#item_3d.dropped()
-		#item_3d.global_position = drop_location.global_position
-		#
-		#if item_3d is Gun:
-			#if item_3d == equipped_gun:
-				#stop_arms_ik()
-				#equipped_gun = null	
-			#if item_3d == gun_slot_1:
-				#gun_slot_1 = null	
-			#if item_3d == gun_slot_2:
-				#gun_slot_2 = null	
-			#if item_3d == shoulder_gun:
-				#shoulder_gun = null
-
-
-#func _on_item_picked_up(result:InventoryInsertResult):
-	#if result.inventory_id == player_inventory_id:
-		#var item_instance:ItemInstance = InventoryManager.get_item(result.item_instance_id)
-		#
-		#send_item_pickup_message(item_instance)
-		#
-		#var item_3d:Item3D = ItemAccess.get_item_3d(item_instance.id_3d)
-		#Helpers.force_parent(item_3d,self)
-		#item_3d.picked_up(get_instance_id())
-		#if result.location.location == InventoryLocationResult.LocationType.SLOT:
-			#match result.location.slot_name:
-				#"GunSlot1":
-					#gun_slot_1 = item_3d as Gun
-					#move_gun_to_player_model(gun_slot_1)
-				#"GunSlot2":
-					#gun_slot_2 = item_3d as Gun
-					#move_gun_to_player_model(gun_slot_2) 
-				#"BackpackSlot":
-					#move_backpack_to_anchor(item_3d)
-					#var backpack:Backpack = item_3d as Backpack
-					#if backpack:
-						#if backpack.backpack_size == Backpack.Size.NONE:
-							#InventoryManager.set_inventory_size(player_inventory_id, Vector2i(7,2))
-						#elif backpack.backpack_size == Backpack.Size.SMALL:
-							#InventoryManager.set_inventory_size(player_inventory_id, Vector2i(7,4))
-						#elif backpack.backpack_size == Backpack.Size.MEDIUM:
-							#InventoryManager.set_inventory_size(player_inventory_id, Vector2i(7,6))
-						#elif backpack.backpack_size == Backpack.Size.LARGE:
-							#InventoryManager.set_inventory_size(player_inventory_id, Vector2i(7,8))
-				#"ArmorSlot":
-					#armor_equipped.emit(item_3d as BodyArmor)
-					#move_armor_to_anchor(item_3d)
-		#elif result.location.location == InventoryLocationResult.LocationType.GRID:
-			#item_3d.visible = false
-		#
-		#if item_instance.get_item_type() == GameplayEnums.ItemType.AMMO:
-			#var ammo_information:AmmoInformation = item_instance._item_info
-			#var remainder = ammo_component.add_ammo(ammo_information.ammo_type.name, ammo_information.ammo_subtype.name, item_instance.stacks)
-			#item_instance.stacks = remainder
-			#
-
-#func send_item_pickup_message(item_instance:ItemInstance):
-	#var message_text:String = "Picked up " + item_instance.get_display_name()
-	#
-	#if item_instance.get_has_stacks():
-		#message_text += " " + str(item_instance.stacks)
-		#
-	#EventBus.create_message.emit("pickup_"+str(item_instance.item_instance_id), message_text, 2.0)
-
-#func _on_item_removed_from_slot(item_inst:ItemInstance, inventory_id:int, slot_name:String):
-	#if inventory_id == player_inventory_id:
-		#var item_3d:Item3D = ItemAccess.get_item_3d(item_inst.id_3d)
-		#if item_3d is Gun:
-			#if item_3d == equipped_gun:
-				#stop_arms_ik()
-				#equipped_gun = null	
-			#if item_3d == gun_slot_1:
-				#gun_slot_1 = null	
-			#if item_3d == gun_slot_2:
-				#gun_slot_2 = null	
-			#if item_3d == shoulder_gun:
-				#shoulder_gun = null
-		#if item_3d is BodyArmor:
-			#pass
+func send_item_pickup_message(slot_data:SlotData):
+	var message_text:String = "Picked up " + slot_data.item_data.display_name
+	
+	if slot_data.item_data.has_stacks:
+		message_text += " " + str(slot_data.quantity)
+		
+	EventBus.create_message.emit("pickup_"+str(randi()), message_text, 2.0)
 
 func move_gun_to_player_model(gun:Gun):
 	gun.show()	
@@ -371,12 +302,13 @@ func move_gun_to_shoulder(gun:Gun):
 		gun.top_level = false
 		pass
 
+var equipped_armor:BodyArmor
 func move_armor_to_anchor(armor:Node3D):
 	if armor:
 		Helpers.force_parent(armor, armor_anchor)
 		armor.transform = Transform3D.IDENTITY
 		armor.visible = true
-		pass
+		equipped_armor = armor
 
 var equipped_backpack:Backpack
 func move_backpack_to_anchor(backpack:Node3D):
@@ -395,24 +327,6 @@ func drop_equipped_gun():
 		
 		equipped_gun = null
 		stop_arms_ik()
-
-#func _on_drop_item(item_inst:ItemInstance, inventory_id:int):
-	#if inventory_id == player_inventory_id:
-		#var item_3d:Item3D = ItemAccess.get_item_3d(item_inst.id_3d)
-		#Helpers.force_parent(item_3d,get_parent())
-		#item_3d.dropped()
-		#item_3d.global_position = drop_location.global_position
-		#
-		#if item_3d is Gun:
-			#if item_3d == equipped_gun:
-				#stop_arms_ik()
-				#equipped_gun = null	
-			#if item_3d == gun_slot_1:
-				#gun_slot_1 = null	
-			#if item_3d == gun_slot_2:
-				#gun_slot_2 = null	
-			#if item_3d == shoulder_gun:
-				#shoulder_gun = null
 
 #realtime inputs - movement stuff
 func _physics_process(delta):
@@ -464,8 +378,15 @@ func _input(event):
 			if use_shape.is_colliding():
 				var col = use_shape.get_collider(0)
 				if col is Item3D:
-					col.pick_up_item(inventory_data)
+					var slot_data:SlotData = col.slot_data
+					if slot_data.item_data.item_type == GameplayEnums.ItemType.AMMO:
+						var ammo_information:AmmoInformation = slot_data.item_data
+						var remainder = ammo_component.add_ammo(ammo_information.ammo_type.name, ammo_information.ammo_subtype.name, slot_data.quantity)
+						slot_data.quantity = remainder
+					elif col.pick_up_item(inventory_data):
+						send_item_pickup_message(slot_data)
 					pass
+					
 				elif col.has_method("use"):
 					col.use(self)
 		elif event.is_action_pressed("dropGun"):
@@ -503,17 +424,6 @@ func _input(event):
 		elif event.is_action_pressed("quick_load"):
 			SaveManager.quick_load()
 
-#func toggle_inventory():
-	#toggle_inv_f = !toggle_inv_f
-	#
-	#if toggle_inv_f:
-		#open_inventory()
-		#if HideoutManager.in_hideout:
-			#HideoutManager.show_hideout_menu()
-	#else:
-		#close_inventory()
-		#if HideoutManager.in_hideout:
-			#HideoutManager.hide_hideout_menu()
 
 func _on_inventory_interface_visibility_changed() -> void:
 	if inventory_interface.visible:

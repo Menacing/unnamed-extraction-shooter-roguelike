@@ -88,10 +88,12 @@ func _ready() -> void:
 	EventBus.game_saving.connect(_on_game_saving)
 	EventBus.before_game_loading.connect(_on_game_before_loading)
 
-func pick_up_item(inventory_data:InventoryData) -> void:
+func pick_up_item(inventory_data:InventoryData) -> bool:
 	if inventory_data.pick_up_slot_data(slot_data):
 		#TODO: We probably don't want to queue free here for real
 		queue_free()
+		return true
+	return false
 
 func dropped() -> void:
 	world_collider.disabled = false
