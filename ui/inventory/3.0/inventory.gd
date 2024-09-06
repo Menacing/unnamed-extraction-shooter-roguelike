@@ -3,7 +3,7 @@ extends PanelContainer
 const Slot = preload("res://ui/inventory/3.0/slot.tscn")
 const EQUIPMENT_SLOT = preload("res://ui/inventory/3.0/equipment_slot.tscn")
 @onready var item_grid: GridContainer = %ItemGrid
-@onready var equipment_slot_container: VBoxContainer = %EquipmentSlotContainer
+@onready var equipment_slot_container: Control = %EquipmentSlotContainer
 
 func set_inventory_data(inventory_data:InventoryData) -> void:
 	inventory_data.inventory_updated.connect(populate_item_grid)

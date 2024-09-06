@@ -42,11 +42,10 @@ func set_external_inventory(_external_inventory_owner) -> void:
 	
 	external_inventory_data = inventory_data
 	external_inventory.set_inventory_data(inventory_data)
-	
 	external_inventory.show()
 	
-func set_hideout_inventory(_external_inventory_owner) -> void:
-	external_inventory_owner = _external_inventory_owner
+func set_hideout_inventory() -> void:
+	external_inventory_owner = HideoutManager
 	var inventory_data = external_inventory_owner.inventory_data
 	
 	inventory_data.inventory_interact.connect(on_inventory_interact)
@@ -56,7 +55,6 @@ func set_hideout_inventory(_external_inventory_owner) -> void:
 	
 	external_inventory_data = inventory_data
 	hideout_menu.stash_inventory_control.set_inventory_data(inventory_data)
-	
 	hideout_menu.show()
 	
 func clear_external_inventory() -> void:
@@ -70,13 +68,11 @@ func clear_external_inventory() -> void:
 		if !HideoutManager.in_hideout:
 			external_inventory_data = null
 			external_inventory.clear_inventory_data(inventory_data)
-			
 			external_inventory.hide()
 			external_inventory_owner = null
 		else:
 			external_inventory_data = null
 			hideout_menu.stash_inventory_control.clear_inventory_data(inventory_data)
-			
 			hideout_menu.hide()
 			external_inventory_owner = null
 
@@ -88,11 +84,10 @@ func _on_toggle_inventory(external_inventory_owner = null) -> void:
 	else:
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 		
-	if external_inventory_owner and self.visible:
-		if !HideoutManager.in_hideout:
-			set_external_inventory(external_inventory_owner)
-		else:
-			set_hideout_inventory(external_inventory_owner)
+	if self.visible and HideoutManager.in_hideout:
+		set_hideout_inventory()
+	elif external_inventory_owner and self.visible:
+		set_external_inventory(external_inventory_owner)
 	else:
 		clear_external_inventory()
 		
@@ -236,3 +231,11 @@ func play_pickup_sound(slot_data:SlotData):
 		foley_audio_stream_player_3d.stream = slot_data.item_data.pickup_sound
 		foley_audio_stream_player_3d.play()
 	pass
+
+
+func _on_player_toggle_stash() -> void:
+	hideout_menu.show_stash_tab()
+
+
+func _on_player_toggle_map_select() -> void:
+	hideout_menu.show_map_select_tab()

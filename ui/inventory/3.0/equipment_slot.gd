@@ -2,7 +2,7 @@ extends Panel
 
 signal equipment_slot_clicked(slot_name:String, event:InputEvent)
 
-const cell_size:int = 64
+const cell_size:int = 48
 @export var cell_margin:int = 0
 @onready var background_icon_texture_rect: TextureRect = $MarginContainer/BackgroundIconTextureRect
 @onready var icon_sprite_2d: Sprite2D = $IconSprite2D

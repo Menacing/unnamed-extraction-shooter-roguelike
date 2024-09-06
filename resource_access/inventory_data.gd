@@ -8,7 +8,7 @@ signal inventory_context_menu(inventory_data:InventoryData, slot_data:SlotData)
 signal inventory_drop_item(slot_data:SlotData)
 signal item_equipment_changed(inventory_data:InventoryData, equipment_slot:EquipmentSlot)
 
-var width = 7
+var width = 10
 @export var equipment_slots:Array[EquipmentSlot]
 @export var slot_datas:Array[Array]
 

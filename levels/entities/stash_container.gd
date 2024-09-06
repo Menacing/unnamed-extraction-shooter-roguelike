@@ -9,13 +9,14 @@ signal toggle_inventory(external_inventory_owner)
 @export var inventory_data:InventoryData
 
 func use(player:Player) -> void:
-	toggle_inventory.emit(self)
+	#toggle_inventory.emit(self)
 	player.toggle_stash.emit()
 
 @export var container_size:int
 
 func _ready():
 	inventory_data.set_inventory_size(container_size)
+	HideoutManager.inventory_data = inventory_data
 	#if Engine.is_editor_hint():
 		#return
 	##do ballistic solid stuff

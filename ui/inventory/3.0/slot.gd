@@ -9,7 +9,7 @@ signal slot_clicked(index:int, event:InputEvent)
 @onready var background_sprite_2d: Sprite2D = $BackgroundSprite2D
 @onready var icon_sprite_2d: Sprite2D = $IconSprite2D
 
-const cell_size:int = 64
+const cell_size:int = 48
 
 func set_slot_data(slot_data:SlotData, force_display = false) -> void:
 	if slot_data and (force_display or slot_data.root_index == get_index()):
