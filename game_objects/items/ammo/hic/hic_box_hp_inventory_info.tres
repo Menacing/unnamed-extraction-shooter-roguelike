@@ -1,8 +1,9 @@
-[gd_resource type="Resource" script_class="AmmoInformation" load_steps=9 format=3 uid="uid://dl5gkd026ppyh"]
+[gd_resource type="Resource" script_class="AmmoInformation" load_steps=8 format=3 uid="uid://dl5gkd026ppyh"]
 
 [ext_resource type="Resource" uid="uid://ddqopa64822e6" path="res://components/ammo_component/ammo_types/heavy_intermediate_cartridge/ammo_subtypes/hollow_point.tres" id="1_q6j0i"]
 [ext_resource type="Resource" uid="uid://3nqgvhg4lre8" path="res://components/ammo_component/ammo_types/heavy_intermediate_cartridge/heavy_intermediate_cartridge.tres" id="2_uj4bs"]
 [ext_resource type="Resource" uid="uid://o6tesi76nbth" path="res://ui/inventory/drop_item_context_item.tres" id="3_fx20n"]
+[ext_resource type="Script" path="res://ui/inventory/item_context_item.gd" id="3_jjxbw"]
 [ext_resource type="PackedScene" uid="uid://djpvx3f8rfem0" path="res://ui/inventory/detail_scenes/ammo_detail_popup.tscn" id="3_x6w0x"]
 [ext_resource type="Texture2D" uid="uid://ch8eo51ff3lbx" path="res://game_objects/items/ammo/hic/hic_hp_box_icon.png" id="4_peq0o"]
 [ext_resource type="Script" path="res://game_objects/items/ammo/ammo_information.gd" id="6_k7au1"]
@@ -19,7 +20,7 @@ item_type = 11
 icon = ExtResource("4_peq0o")
 icon_r = ExtResource("4_peq0o")
 detail_scene = ExtResource("3_x6w0x")
-context_menu_items = Array[Resource("res://ui/inventory/item_context_item.gd")]([ExtResource("3_fx20n")])
+context_menu_items = Array[ExtResource("3_jjxbw")]([ExtResource("3_fx20n")])
 max_stacks = 20
 has_stacks = true
 max_durability = 1

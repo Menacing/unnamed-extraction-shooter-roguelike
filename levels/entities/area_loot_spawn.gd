@@ -76,7 +76,7 @@ func _on_populate_level():
 			if loc_free:
 				var slot_data = SlotData.instantiate_from_item_information(item_info)
 				var scene = Item3D.instantiate_from_slot_data(slot_data)
-				scene.set_as_top_level(true)		
+				scene.set_as_top_level(true)
 				LevelManager.add_node_to_level.call_deferred(scene)
 				scene.set_global_position.call_deferred(try_pos + self.global_position)
 				var random_rotation = Vector3(randf_range(0,360),randf_range(0,360),randf_range(0,360))

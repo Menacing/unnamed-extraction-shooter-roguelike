@@ -1,11 +1,11 @@
 [gd_resource type="Resource" script_class="ItemMapping" load_steps=4 format=3 uid="uid://cnxscynhwrdl3"]
 
-[ext_resource type="PackedScene" uid="uid://byxda6yp3siwd" path="res://game_objects/items/ammo/fic/fic_box_ap.tscn" id="1_15t8o"]
-[ext_resource type="Resource" uid="uid://byluf3otp3krd" path="res://game_objects/items/ammo/fic/fic_box_ap_inventory_info.tres" id="2_1jyhs"]
+[ext_resource type="PackedScene" uid="uid://c17uhpgl0dvt4" path="res://game_objects/items/ammo/fic/fic_box_fmj.tscn" id="1_cxnbc"]
+[ext_resource type="Resource" uid="uid://cao3l7jt7txws" path="res://game_objects/items/ammo/fic/fic_box_fmj_inventory_info.tres" id="2_e0y5g"]
 [ext_resource type="Script" path="res://resource_access/item_mapping.gd" id="3_grcii"]
 
 [resource]
 script = ExtResource("3_grcii")
-item_type_id = "fic_box_ap"
-item_information = ExtResource("2_1jyhs")
-item_3d_scene = ExtResource("1_15t8o")
+item_type_id = "fic_box_fmj"
+item_information = ExtResource("2_e0y5g")
+item_3d_scene = ExtResource("1_cxnbc")

@@ -16,8 +16,14 @@ var external_inventory_data:InventoryData
 @onready var foley_audio_stream_player_3d: AudioStreamPlayer3D = $FoleyAudioStreamPlayer3D
 
 func _ready() -> void:
-	for node in get_tree().get_nodes_in_group("external_inventory"):
-		node.toggle_inventory.connect(_on_toggle_inventory)
+	EventBus.level_loaded.connect(_connect_external_inventories)
+	_connect_external_inventories()
+
+func _connect_external_inventories() -> void:
+	var all_nodes =  get_tree().get_nodes_in_group("external_inventory")
+	for node in all_nodes:
+		if !node.toggle_inventory.is_connected(_on_toggle_inventory):
+			node.toggle_inventory.connect(_on_toggle_inventory)
 
 func _physics_process(delta: float) -> void:
 	if grabbed_slot.visible:

@@ -1,6 +1,8 @@
 extends Resource
 class_name SlotData
 
+enum SLOT_DATA_TYPE {SLOT_DATA, GUN_SLOT_DATA}
+
 @export var item_data:ItemInformation
 @export_range(1,99) var quantity:int = 1: set = set_quantity
 @export var durability:int = 1: set = set_durability
@@ -9,8 +11,13 @@ class_name SlotData
 @export var internal_inventory:InventoryData = null
 
 static func instantiate_from_item_information(item_information:ItemInformation) -> SlotData:
-	var new_slot = SlotData.new()
+	var new_slot
 	if item_information:
+		match item_information.slot_data_type:
+			SLOT_DATA_TYPE.GUN_SLOT_DATA:
+				new_slot = GunSlotData.new()
+			_:
+				new_slot = SlotData.new()
 		new_slot.item_data = item_information
 		if item_information.has_stacks:
 			#Default to fun!

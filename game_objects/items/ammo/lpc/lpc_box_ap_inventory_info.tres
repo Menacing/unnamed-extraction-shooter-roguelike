@@ -3,7 +3,9 @@
 [ext_resource type="Resource" uid="uid://d3mmo5kstfdwe" path="res://components/ammo_component/ammo_types/light_pistol_cartridge/ammo_subtypes/armor_piercing.tres" id="1_fn2ra"]
 [ext_resource type="Resource" uid="uid://dcejbnpeogafm" path="res://components/ammo_component/ammo_types/light_pistol_cartridge/light_pistol_cartridge.tres" id="2_6ue1l"]
 [ext_resource type="Resource" uid="uid://o6tesi76nbth" path="res://ui/inventory/drop_item_context_item.tres" id="3_8eo5f"]
+[ext_resource type="Script" path="res://ui/inventory/item_context_item.gd" id="3_c2w8k"]
 [ext_resource type="PackedScene" uid="uid://djpvx3f8rfem0" path="res://ui/inventory/detail_scenes/ammo_detail_popup.tscn" id="4_4btu1"]
+[ext_resource type="Texture2D" uid="uid://ckaehq6tr4to5" path="res://game_objects/items/ammo/lpc/lpc_ap_icon.png" id="6_a0xan"]
 [ext_resource type="Script" path="res://game_objects/items/ammo/ammo_information.gd" id="7_kga62"]
 
 [resource]
@@ -15,8 +17,10 @@ show_name = false
 display_name = "Light Pistol Cartridge - Armor Piercing"
 display_short_name = "LPC AP"
 item_type = 11
+icon = ExtResource("6_a0xan")
+icon_r = ExtResource("6_a0xan")
 detail_scene = ExtResource("4_4btu1")
-context_menu_items = Array[Resource("res://ui/inventory/item_context_item.gd")]([ExtResource("3_8eo5f")])
+context_menu_items = Array[ExtResource("3_c2w8k")]([ExtResource("3_8eo5f")])
 max_stacks = 50
 has_stacks = true
 max_durability = 1
@@ -28,3 +32,4 @@ flavor_text = ""
 min_pickup_stacks = 1
 mean_pickup_stacks = 10
 stack_random_method = 1
+slot_data_type = 0
