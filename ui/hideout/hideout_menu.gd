@@ -4,7 +4,7 @@ class_name HideoutMenu
 @export var tab_bar:TabContainer
 
 @export var stash_tab_index:int
-@export var stash_inventory_control:StashInventory
+@export var stash_inventory_control:Control
 
 @export var map_select_tab_index:int
 @export var map_select_control:MapSelectionMenu

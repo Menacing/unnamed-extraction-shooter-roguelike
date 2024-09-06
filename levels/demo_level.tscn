@@ -1,4 +1,4 @@
-[gd_scene load_steps=117 format=4 uid="uid://ctahsvj88g1om"]
+[gd_scene load_steps=118 format=4 uid="uid://ctahsvj88g1om"]
 
 [ext_resource type="Script" path="res://levels/demo_level.gd" id="1_8448e"]
 [ext_resource type="PackedScene" uid="uid://d08aatgxmymbf" path="res://game_objects/player/player.tscn" id="1_eisjc"]
@@ -25,6 +25,7 @@
 [ext_resource type="PackedScene" uid="uid://byxda6yp3siwd" path="res://game_objects/items/ammo/fic/fic_box_ap.tscn" id="20_6qx0q"]
 [ext_resource type="Script" path="res://levels/loot_chest.gd" id="20_ub3ij"]
 [ext_resource type="PackedScene" uid="uid://c4d3mbvlwijgv" path="res://game_objects/items/ammo/fic/fic_box_hp.tscn" id="21_ckpue"]
+[ext_resource type="Script" path="res://resource_access/equipment_slot_data.gd" id="21_qlm4m"]
 [ext_resource type="Script" path="res://resource_access/inventory_data.gd" id="21_ym4ob"]
 [ext_resource type="PackedScene" uid="uid://bbsjagcj1p70g" path="res://game_objects/items/ammo/hic/hic_box_fmj.tscn" id="22_80o60"]
 [ext_resource type="Resource" uid="uid://c8v7lgcr1goac" path="res://game_objects/items/materials/bio_gel_vial/bio_gel_vial_inventory_info.tres" id="22_nlrd0"]
@@ -353,9 +354,13 @@ albedo_color = Color(0.206777, 0.746646, 0.218838, 1)
 script = ExtResource("23_3b7t8")
 item_data = ExtResource("22_nlrd0")
 quantity = 1
+durability = 1
+root_index = 0
+is_rotated = false
 
 [sub_resource type="Resource" id="Resource_pbdhj"]
 script = ExtResource("21_ym4ob")
+equipment_slots = Array[ExtResource("21_qlm4m")]([])
 slot_datas = Array[Array]([[SubResource("Resource_0qw6n"), null, null, null, null, null, null], [null, null, null, null, null, null, null], [null, null, null, null, null, null, null], [null, null, null, null, null, null, null]])
 
 [sub_resource type="Resource" id="Resource_r0rg5"]

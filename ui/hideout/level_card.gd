@@ -26,6 +26,7 @@ func _ready():
 		preview_rect.texture = level_information.preview_image
 		biome_label.text = LevelInformation.get_biome_string(level_information.biome)
 		size_label.text = LevelInformation.get_size_string(level_information.size)
+		desc_label.text = level_information.description
 		pass # Replace with function body.
 
 	mouse_over_audio_player.stream = mouse_over_sound

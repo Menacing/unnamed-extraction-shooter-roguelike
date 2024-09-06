@@ -8,6 +8,8 @@ var external_inventory_owner
 @onready var player_inventory: PanelContainer = %PlayerInventory
 @onready var grabbed_slot: PanelContainer = $GrabbedSlot
 @onready var external_inventory: PanelContainer = %ExternalInventory
+@onready var hideout_menu: HideoutMenu = %HideoutMenu
+
 ##only use for quick transfer
 var player_inventory_data:InventoryData
 var external_inventory_data:InventoryData
@@ -43,6 +45,20 @@ func set_external_inventory(_external_inventory_owner) -> void:
 	
 	external_inventory.show()
 	
+func set_hideout_inventory(_external_inventory_owner) -> void:
+	external_inventory_owner = _external_inventory_owner
+	var inventory_data = external_inventory_owner.inventory_data
+	
+	inventory_data.inventory_interact.connect(on_inventory_interact)
+	inventory_data.inventory_equipment_slot_interact.connect(on_inventory_equipment_slot_interact)
+	inventory_data.inventory_context_menu.connect(_on_inventory_context_menu)
+	inventory_data.inventory_drop_item.connect(drop_slot_data)
+	
+	external_inventory_data = inventory_data
+	hideout_menu.stash_inventory_control.set_inventory_data(inventory_data)
+	
+	hideout_menu.show()
+	
 func clear_external_inventory() -> void:
 	if external_inventory_owner:
 		var inventory_data = external_inventory_owner.inventory_data
@@ -51,12 +67,18 @@ func clear_external_inventory() -> void:
 		inventory_data.inventory_equipment_slot_interact.disconnect(on_inventory_equipment_slot_interact)
 		inventory_data.inventory_context_menu.disconnect(_on_inventory_context_menu)
 		inventory_data.inventory_drop_item.disconnect(drop_slot_data)
-		
-		external_inventory_data = null
-		external_inventory.clear_inventory_data(inventory_data)
-		
-		external_inventory.hide()
-		external_inventory_owner = null
+		if !HideoutManager.in_hideout:
+			external_inventory_data = null
+			external_inventory.clear_inventory_data(inventory_data)
+			
+			external_inventory.hide()
+			external_inventory_owner = null
+		else:
+			external_inventory_data = null
+			hideout_menu.stash_inventory_control.clear_inventory_data(inventory_data)
+			
+			hideout_menu.hide()
+			external_inventory_owner = null
 
 func _on_toggle_inventory(external_inventory_owner = null) -> void:
 	self.visible = not self.visible
@@ -67,7 +89,10 @@ func _on_toggle_inventory(external_inventory_owner = null) -> void:
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 		
 	if external_inventory_owner and self.visible:
-		set_external_inventory(external_inventory_owner)
+		if !HideoutManager.in_hideout:
+			set_external_inventory(external_inventory_owner)
+		else:
+			set_hideout_inventory(external_inventory_owner)
 	else:
 		clear_external_inventory()
 		

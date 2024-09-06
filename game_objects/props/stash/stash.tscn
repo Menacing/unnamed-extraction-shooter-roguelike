@@ -1,15 +1,23 @@
-[gd_scene load_steps=4 format=3 uid="uid://c4y0iwlv3i13p"]
+[gd_scene load_steps=7 format=3 uid="uid://c4y0iwlv3i13p"]
 
 [ext_resource type="Script" path="res://levels/entities/stash_container.gd" id="1_55k0o"]
 [ext_resource type="PackedScene" uid="uid://cudd1ug1n5ge8" path="res://game_objects/props/stash/small_stash.blend" id="1_ns5tt"]
+[ext_resource type="Script" path="res://resource_access/equipment_slot_data.gd" id="2_p6w3b"]
+[ext_resource type="Script" path="res://resource_access/inventory_data.gd" id="3_eo4fn"]
+
+[sub_resource type="Resource" id="Resource_442n6"]
+script = ExtResource("3_eo4fn")
+equipment_slots = Array[ExtResource("2_p6w3b")]([])
+slot_datas = Array[Array]([])
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ijpyw"]
 size = Vector3(0.998047, 0.708862, 1.98669)
 
-[node name="Stash" type="StaticBody3D"]
+[node name="Stash" type="StaticBody3D" groups=["external_inventory"]]
 collision_layer = 7
 collision_mask = 7
 script = ExtResource("1_55k0o")
+inventory_data = SubResource("Resource_442n6")
 container_size = 70
 
 [node name="small_stash2" parent="." instance=ExtResource("1_ns5tt")]

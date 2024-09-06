@@ -4,6 +4,9 @@ class_name Player
 @export var inventory_data:InventoryData
 
 signal toggle_inventory
+signal toggle_map_select
+signal toggle_stash
+
 @onready var inventory_interface: Control = %InventoryInterface
 
 @onready var state_chart :StateChart = %StateChart
@@ -1271,17 +1274,3 @@ func _on_right_state_physics_processing(delta):
 		return
 	waist.basis = Quaternion(waist.basis).slerp(Quaternion(right_lean_basis),0.5)
 #endregion
-
-
-
-
-
-
-
-
-
-
-
-
-func _on_damage_component_hit_occured(attack_result: AttackResult) -> void:
-	pass # Replace with function body.
