@@ -51,24 +51,30 @@
 	game_material_info(choices) : "List of GameMaterialInfo objects. Keep the order in sync with the GameMaterialInfoList or the linkage will break" = 
 	[
 		0 : "brick"
+		5 : "glass"
 		1 : "metal"
 		2 : "stone"
 		4 : "tile"
 		3 : "wood"
 	]
 	game_material_info_path(string) : "godot path to the GameMaterialInfo file for this brush" : ""
+	transparent(choices) : "Is the solid transparent to enemy LOS checks?" = 
+	[
+		0 : "No"
+		1 : "Yes"
+	]
 ]
 
 @PointClass base(Light) = omnilight : "OmniLight3D entity." 
 [
-	range(float) : "The light's radius in Quake Units. The entity script converts this to Godot Units in the LightOmni script." : "320"
+	range(float) : "The light's radius in Quake Units. The entity script converts this to Godot Units in the LightOmni script." : "4000"
 ]
 
 @PointClass base(Light) = lightspot : "SpotLight3D entity." 
 [
 	angle(float) : "The spotlight's angle in degrees." : "45"
 	mangle(string) : "Orientation in degrees." : "0 0 0"
-	range(float) : "The maximal range that can be reached by the spotlight in Quake Units. The entity script converts this to Godot Units in the LightOmni script." : "320"
+	range(float) : "The maximal range that can be reached by the spotlight in Quake Units. The entity script converts this to Godot Units in the LightOmni script." : "4000"
 ]
 
 @SolidClass color(204 204 204) = area_enemy_spawn : "enemy spawn area" 
@@ -77,6 +83,7 @@
 	[
 		0 : "science"
 	]
+	chance_active(float) : "" : "1"
 	max_spawned(integer) : "" : 1
 	min_spawned(integer) : "" : 1
 	tier(choices) : "default tier" : 0 = 
@@ -93,6 +100,7 @@
 	[
 		0 : "science"
 	]
+	chance_active(float) : "" : "1"
 	max_spawned(integer) : "" : 1
 	min_spawned(integer) : "" : 1
 	tier(choices) : "default tier" : 0 = 
@@ -103,7 +111,7 @@
 	]
 ]
 
-@SolidClass color(204 204 204) = area_extract : "Extraction area" []
+@SolidClass color(204 204 204) base(Target, Targetname) = area_extract : "Extraction area" []
 
 @SolidClass color(204 204 204) base(geo_ballistic_solid) = geo_ballistic_container : "Solid geometry with ballistic penetration" 
 [
@@ -111,7 +119,8 @@
 	[
 		0 : "science"
 	]
-	container_size(integer) : "" : 28
+	chance_active(float) : "" : "1"
+	container_size(integer) : "" : 4
 	max_spawned(integer) : "" : 1
 	min_spawned(integer) : "" : 1
 	tier(choices) : "default tier" : 0 = 
@@ -122,7 +131,7 @@
 	]
 ]
 
-@PointClass color(204 204 204) size(-2 -2 -2, 2 2 2) base(Target) = door_hinge : "door_hinge" []
+@PointClass color(204 204 204) size(-2 -4 -4, 2 4 4) base(Target) = door_hinge : "door_hinge" []
 
 @SolidClass color(204 204 204) base(geo_ballistic_solid, mover_base) = geo_ballistic_mover : "Solid geometry with ballistic penetration that can move" []
 
@@ -137,8 +146,21 @@
 
 @PointClass color(204 204 204) size(-2 -2 -2, 2 2 2) base(Target) = point_nav_link : "point_nav_link" 
 [
-	startname(string) : "" : ""
 	endname(string) : "" : ""
+	startname(string) : "" : ""
 ]
 
 @PointClass color(204 204 204) size(-2 -2 -2, 2 2 2) base(Target) = point : "point" []
+
+@SolidClass color(204 204 204) = area_ambient_sound : "Ambient Sound Area" 
+[
+	audio_stream_path(string) : "" : ""
+	fg_reverb_bus_name(string) : "" : ""
+	is_proximate(choices) : "" = 
+	[
+		0 : "No"
+		1 : "Yes"
+	]
+	transition_duration(float) : "" : "3"
+	volume_db(float) : "" : "0"
+]

@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="ItemInformation" load_steps=8 format=3 uid="uid://dw11vln3ec2uk"]
+[gd_resource type="Resource" script_class="ItemInformation" load_steps=6 format=3 uid="uid://dw11vln3ec2uk"]
 
 [ext_resource type="Script" path="res://ui/inventory/item_context_item.gd" id="1_hqtvv"]
 [ext_resource type="Texture2D" uid="uid://dcapkkg0xlpco" path="res://game_objects/items/attachments/scopes/red_dot/red_dot_icon.png" id="2_kow8l"]
@@ -28,3 +28,4 @@ flavor_text = "Astigmatism be damned"
 min_pickup_stacks = 1
 mean_pickup_stacks = 1
 stack_random_method = 0
+slot_data_type = 0
