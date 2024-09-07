@@ -16,5 +16,3 @@ func _ready() -> void:
 		var spacer_control = spacer_control_scene.instantiate()
 		vbox.add_child(ammo_type_control)
 		vbox.add_child(spacer_control)
-
-

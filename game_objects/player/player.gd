@@ -212,26 +212,42 @@ func _ready():
 func _on_item_equipment_changed(inventory_data:InventoryData, equipment_slot:EquipmentSlot):
 	match equipment_slot.slot_name:
 		"GunSlot1":
+			#If slot is equipped, clear equipped gun
 			if gun_slot_1 == equipped_gun:
 				drop_equipped_gun()
+			#else if shoulder gun, clear shoulder gun
+			elif gun_slot_1 == shoulder_gun:
+				shoulder_gun = null
+			
+			#if there's a gun, queue it free and set to null
+			if gun_slot_1:
+				gun_slot_1.queue_free()
+				gun_slot_1 = null
+				
+			#if we're equipping an item, add it
 			if equipment_slot.slot_data:
 				var item_3d:Gun = Item3D.instantiate_from_slot_data(equipment_slot.slot_data)
-				if gun_slot_1:
-					gun_slot_1.queue_free()
 				gun_slot_1 = item_3d as Gun
 				if item_3d:
-					item_3d.picked_up()
 					move_gun_to_player_model(gun_slot_1)
 		"GunSlot2":
+			#If slot is equipped, clear equipped gun
 			if gun_slot_2 == equipped_gun:
 				drop_equipped_gun()
+			#else if shoulder gun, clear shoulder gun
+			elif gun_slot_2 == shoulder_gun:
+				shoulder_gun = null
+			
+			#if there's a gun, queue it free and set to null
+			if gun_slot_2:
+				gun_slot_2.queue_free()
+				gun_slot_2 = null
+				
+			#if we're equipping an item, add it
 			if equipment_slot.slot_data:
 				var item_3d:Gun = Item3D.instantiate_from_slot_data(equipment_slot.slot_data)
-				if gun_slot_2:
-					gun_slot_2.queue_free()
 				gun_slot_2 = item_3d as Gun
 				if item_3d:
-					item_3d.picked_up()
 					move_gun_to_player_model(gun_slot_2)
 		"BackpackSlot":
 			if equipped_backpack:
@@ -280,7 +296,7 @@ func move_gun_to_player_model(gun:Gun):
 	
 func move_gun_to_hands(gun:Gun):
 	equipped_gun = gun
-	if gun:	
+	if gun:
 		gun.transform = Transform3D.IDENTITY
 		gun.fired.connect(_on_gun_fired)
 		gun.reloaded.connect(_on_gun_reloaded)
@@ -294,6 +310,8 @@ func move_gun_to_hands(gun:Gun):
 		
 		var gun_stats = gun.get_gun_stats()
 		ammo_component.set_active_ammo(gun_stats.ammo_type.name, gun_stats.ammo_type.sub_types[0].name)
+		gun.picked_up(self.get_instance_id())
+		
 
 func move_gun_to_shoulder(gun:Gun):
 	shoulder_gun = gun
@@ -303,7 +321,8 @@ func move_gun_to_shoulder(gun:Gun):
 		gun.rotate_x(-PI/2)
 		gun.visible = true
 		gun.top_level = false
-		pass
+		gun.picked_up(self.get_instance_id())
+
 
 var equipped_armor:BodyArmor
 func move_armor_to_anchor(armor:Node3D):

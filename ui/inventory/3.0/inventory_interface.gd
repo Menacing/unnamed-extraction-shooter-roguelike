@@ -5,7 +5,7 @@ extends Control
 var grabbed_slot_data:SlotData
 var external_inventory_owner
 
-@onready var player_inventory: PanelContainer = %PlayerInventory
+@onready var player_inventory: PanelContainer = %ITEMS
 @onready var grabbed_slot: PanelContainer = $GrabbedSlot
 @onready var external_inventory: PanelContainer = %ExternalInventory
 @onready var hideout_menu: HideoutMenu = %HideoutMenu

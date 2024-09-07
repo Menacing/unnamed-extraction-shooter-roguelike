@@ -57,6 +57,9 @@ func _ready() -> void:
 		_prox_fade_mats.append(new_mat)
 	EventBus.game_saving.connect(_on_game_saving)
 	EventBus.before_game_loading.connect(_on_game_before_loading)
+	
+	if !slot_data:
+		slot_data = SlotData.instantiate_from_item_information(ItemMappingRepository.get_item_information(item_type_id))
 
 func pick_up_item(inventory_data:InventoryData) -> bool:
 	if inventory_data.pick_up_slot_data(slot_data):
