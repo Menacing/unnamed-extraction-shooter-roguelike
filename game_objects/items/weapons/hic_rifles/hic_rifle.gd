@@ -23,7 +23,7 @@ func _ready():
 	reload_timer.wait_time = reload_time.get_modified_value()
 
 func canFire() -> bool:
-	if slot_data.current_magazine_size > 0 and !reloading and fire_timer.time_left == 0:
+	if current_magazine_size > 0 and !reloading and fire_timer.time_left == 0:
 		return true
 	else:
 		return false
@@ -44,7 +44,7 @@ func fireGun():
 		bulletInst.global_basis = muzzle.global_basis
 		Helpers.random_angle_deviation_moa(bulletInst, _gun_stats.moa, _gun_stats.moa)
 		
-		slot_data.current_magazine_size -= 1
+		current_magazine_size -= 1
 		muzzle_flash_animation_player.play("fire")
 		$ShotAudioStreamPlayer3D.play()
 		fire_timer.start()
@@ -61,8 +61,8 @@ func reloadGun(new_bullets:int):
 	
 func reloaded_callback():
 	
-	slot_data.current_magazine_size = slot_data.current_magazine_size + _new_bullets
-	assert(slot_data.current_magazine_size <= get_max_magazine_size())
+	current_magazine_size = current_magazine_size + _new_bullets
+	assert(current_magazine_size <= get_max_magazine_size())
 	_new_bullets = 0
 	reload_timer.stop()
 	reloading = false

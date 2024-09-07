@@ -105,6 +105,9 @@ var current_magazine_size:int:
 			return slot_data.current_number_bullets
 		else:
 			return 0
+	set(value):
+		if slot_data is GunSlotData:
+			slot_data.current_number_bullets = value
 
 @onready var _base_recoil_x: ModifiableStatFloat = ModifiableStatFloat.new(_gun_stats.base_recoil.x)
 func get_base_recoil_x() -> float:
