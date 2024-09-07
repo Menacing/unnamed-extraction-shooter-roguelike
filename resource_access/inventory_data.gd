@@ -5,8 +5,10 @@ signal inventory_updated(inventory_data:InventoryData)
 signal inventory_interact(inventory_data:InventoryData, index:int, event:InputEvent)
 signal inventory_equipment_slot_interact(inventory_data:InventoryData, slot_name:String, event:InputEvent)
 signal inventory_context_menu(inventory_data:InventoryData, slot_data:SlotData)
+signal inventory_equipment_slot_context_menu(inventory_data:InventoryData, equipment_slot:EquipmentSlot)
 signal inventory_drop_item(slot_data:SlotData)
 signal item_equipment_changed(inventory_data:InventoryData, equipment_slot:EquipmentSlot)
+signal item_show_detail_scene(inventory_data:InventoryData, detail_scene:ItemDetailPopup)
 
 var width = 10
 @export var equipment_slots:Array[EquipmentSlot]
@@ -270,7 +272,7 @@ func open_equipment_slot_context_menu(slot_name:String) -> void:
 	if not slot_data:
 		return
 	else:
-		inventory_context_menu.emit(self, slot_data)
+		inventory_equipment_slot_context_menu.emit(self, equipment_slot)
 
 func handle_context_menu(menu_id:int, slot_index:int) -> void:
 	var row_i = slot_index/width
@@ -285,9 +287,31 @@ func handle_context_menu(menu_id:int, slot_index:int) -> void:
 				grab_slot_data(slot_index)
 				inventory_drop_item.emit(slot_data)
 				inventory_updated.emit(self)
-		
+			"Item Detail":
+				var detail_scene:PackedScene = slot_data.item_data.detail_scene
+				var detail_control:ItemDetailPopup = detail_scene.instantiate()
+				item_show_detail_scene.emit(slot_data.internal_inventory, detail_control)
+				pass
 	pass
+
+func handle_equipment_slot_context_menu(menu_id:int, slot_name:String) -> void:
+	var equipment_slot:EquipmentSlot = _get_equipment_slot(slot_name)
 	
+	var slot_data:SlotData = equipment_slot.slot_data
+	if slot_data:
+		var item:ItemContextItem = slot_data.item_data.context_menu_items[menu_id]
+		
+		match item.label:
+			"Drop":
+				grab_equipment_slot_data(slot_name)
+				inventory_drop_item.emit(slot_data)
+				inventory_updated.emit(self)
+			"Item Detail":
+				var detail_scene:PackedScene = slot_data.item_data.detail_scene
+				var detail_control:ItemDetailPopup = detail_scene.instantiate()
+				item_show_detail_scene.emit(slot_data.internal_inventory, detail_control)
+				pass
+	pass
 
 ##Checks for space to pick up an item into the inventory data. Returns true if successful
 func pick_up_slot_data(slot_data:SlotData) -> bool:

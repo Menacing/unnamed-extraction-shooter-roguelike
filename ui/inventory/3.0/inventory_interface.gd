@@ -29,11 +29,25 @@ func _physics_process(delta: float) -> void:
 	if grabbed_slot.visible:
 		grabbed_slot.global_position = get_global_mouse_position() + Vector2(5,5)
 
-func set_player_inventory_data(inventory_data:InventoryData) -> void:
+func _connect_inventory_data_signals(inventory_data:InventoryData) -> void:
 	inventory_data.inventory_interact.connect(on_inventory_interact)
 	inventory_data.inventory_equipment_slot_interact.connect(on_inventory_equipment_slot_interact)
 	inventory_data.inventory_context_menu.connect(_on_inventory_context_menu)
+	inventory_data.inventory_equipment_slot_context_menu.connect(_on_inventory_equipment_slot_context_menu)
 	inventory_data.inventory_drop_item.connect(drop_slot_data)
+	inventory_data.item_show_detail_scene.connect(_on_item_show_detail_scene)
+	
+func _disconnect_inventory_data_signals(inventory_data:InventoryData) -> void:
+	inventory_data.inventory_interact.disconnect(on_inventory_interact)
+	inventory_data.inventory_equipment_slot_interact.disconnect(on_inventory_equipment_slot_interact)
+	inventory_data.inventory_context_menu.disconnect(_on_inventory_context_menu)
+	inventory_data.inventory_equipment_slot_context_menu.disconnect(_on_inventory_equipment_slot_context_menu)
+	inventory_data.inventory_drop_item.disconnect(drop_slot_data)
+	inventory_data.item_show_detail_scene.disconnect(_on_item_show_detail_scene)
+
+func set_player_inventory_data(inventory_data:InventoryData) -> void:
+	_connect_inventory_data_signals(inventory_data)
+	
 	player_inventory.set_inventory_data(inventory_data)
 	player_inventory_data = inventory_data
 	
@@ -41,10 +55,7 @@ func set_external_inventory(_external_inventory_owner) -> void:
 	external_inventory_owner = _external_inventory_owner
 	var inventory_data = external_inventory_owner.inventory_data
 	
-	inventory_data.inventory_interact.connect(on_inventory_interact)
-	inventory_data.inventory_equipment_slot_interact.connect(on_inventory_equipment_slot_interact)
-	inventory_data.inventory_context_menu.connect(_on_inventory_context_menu)
-	inventory_data.inventory_drop_item.connect(drop_slot_data)
+	_connect_inventory_data_signals(inventory_data)
 	
 	external_inventory_data = inventory_data
 	external_inventory.set_inventory_data(inventory_data)
@@ -54,10 +65,7 @@ func set_hideout_inventory() -> void:
 	external_inventory_owner = HideoutManager
 	var inventory_data = external_inventory_owner.inventory_data
 	
-	inventory_data.inventory_interact.connect(on_inventory_interact)
-	inventory_data.inventory_equipment_slot_interact.connect(on_inventory_equipment_slot_interact)
-	inventory_data.inventory_context_menu.connect(_on_inventory_context_menu)
-	inventory_data.inventory_drop_item.connect(drop_slot_data)
+	_connect_inventory_data_signals(inventory_data)
 	
 	external_inventory_data = inventory_data
 	hideout_menu.stash_inventory_control.set_inventory_data(inventory_data)
@@ -67,10 +75,7 @@ func clear_external_inventory() -> void:
 	if external_inventory_owner:
 		var inventory_data = external_inventory_owner.inventory_data
 		
-		inventory_data.inventory_interact.disconnect(on_inventory_interact)
-		inventory_data.inventory_equipment_slot_interact.disconnect(on_inventory_equipment_slot_interact)
-		inventory_data.inventory_context_menu.disconnect(_on_inventory_context_menu)
-		inventory_data.inventory_drop_item.disconnect(drop_slot_data)
+		_disconnect_inventory_data_signals(inventory_data)
 		if !HideoutManager.in_hideout:
 			external_inventory_data = null
 			external_inventory.clear_inventory_data(inventory_data)
@@ -215,7 +220,7 @@ func _on_visibility_changed() -> void:
 		grabbed_slot_data = null
 		update_grabbed_slot()
 
-func _on_inventory_context_menu(inventory_data:InventoryData, slot_data:SlotData):
+func _on_inventory_context_menu(inventory_data:InventoryData, slot_data:SlotData) -> void:
 	var menu = PopupMenu.new()
 	for item in slot_data.item_data.context_menu_items:
 		menu.add_item(item.label)
@@ -225,6 +230,24 @@ func _on_inventory_context_menu(inventory_data:InventoryData, slot_data:SlotData
 	popup_rect.position = Vector2i(get_global_mouse_position())
 	menu.id_pressed.connect(inventory_data.handle_context_menu.bind(slot_data.root_index))
 	menu.popup(popup_rect)
+	
+func _on_inventory_equipment_slot_context_menu(inventory_data:InventoryData, equipment_slot:EquipmentSlot) -> void:
+	var menu = PopupMenu.new()
+	for item in equipment_slot.slot_data.item_data.context_menu_items:
+		menu.add_item(item.label)
+	#pass
+	self.add_child(menu)
+	var popup_rect = Rect2i()
+	popup_rect.position = Vector2i(get_global_mouse_position())
+	menu.id_pressed.connect(inventory_data.handle_equipment_slot_context_menu.bind(equipment_slot.slot_name))
+	menu.popup(popup_rect)
+
+func _on_item_show_detail_scene(inventory_data:InventoryData, detail_scene:ItemDetailPopup) -> void:
+	if (inventory_data):
+		#item_detail_popup.set_internal_inventory(internal_inventory)
+		pass
+	self.add_child(detail_scene)
+	pass
 
 func play_drop_sound(slot_data:SlotData):
 	if slot_data:
@@ -238,10 +261,8 @@ func play_pickup_sound(slot_data:SlotData):
 		foley_audio_stream_player_3d.play()
 	pass
 
-
 func _on_player_toggle_stash() -> void:
 	hideout_menu.show_stash_tab()
-
 
 func _on_player_toggle_map_select() -> void:
 	hideout_menu.show_map_select_tab()
