@@ -406,6 +406,8 @@ func _input(event):
 						var remainder = ammo_component.add_ammo(ammo_information.ammo_type.name, ammo_information.ammo_subtype.name, slot_data.quantity)
 						inventory_interface.play_pickup_sound(slot_data)
 						slot_data.quantity = remainder
+						if slot_data.quantity == 0:
+							col.queue_free()
 					elif col.pick_up_item(inventory_data):
 						inventory_interface.play_pickup_sound(slot_data)
 						send_item_pickup_message(slot_data)

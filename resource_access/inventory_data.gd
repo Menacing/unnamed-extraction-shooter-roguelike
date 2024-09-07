@@ -9,6 +9,7 @@ signal inventory_equipment_slot_context_menu(inventory_data:InventoryData, equip
 signal inventory_drop_item(slot_data:SlotData)
 signal item_equipment_changed(inventory_data:InventoryData, equipment_slot:EquipmentSlot)
 signal item_show_detail_scene(inventory_data:InventoryData, detail_scene:ItemDetailPopup)
+signal ammo_picked_up(inventory_data:InventoryData, slot_data:SlotData)
 
 var width = 10
 @export var equipment_slots:Array[EquipmentSlot]
@@ -363,6 +364,9 @@ func set_slot_data(row_i:int, item_height:int, col_i:int, item_width:int, slot_d
 	for i in range(row_i, row_i + item_height):
 		for j in range(col_i, col_i + item_width):
 			slot_datas[i][j] = slot_data
+			
+	if slot_data and slot_data.item_data.item_type == GameplayEnums.ItemType.AMMO:
+		ammo_picked_up.emit(self, slot_data)
 
 func room_for_slot_data(target_index:int, slot_data:SlotData) -> bool:
 	var row_i = target_index/width

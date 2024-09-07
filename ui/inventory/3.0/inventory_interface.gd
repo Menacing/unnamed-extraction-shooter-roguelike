@@ -1,6 +1,7 @@
 extends Control
 
 @export var drop_location:Node3D
+@export var ammo_component:AmmoComponent
 
 var grabbed_slot_data:SlotData
 var external_inventory_owner
@@ -47,7 +48,7 @@ func _disconnect_inventory_data_signals(inventory_data:InventoryData) -> void:
 
 func set_player_inventory_data(inventory_data:InventoryData) -> void:
 	_connect_inventory_data_signals(inventory_data)
-	
+	inventory_data.ammo_picked_up.connect(_on_ammo_picked_up)
 	player_inventory.set_inventory_data(inventory_data)
 	player_inventory_data = inventory_data
 	
@@ -248,6 +249,14 @@ func _on_item_show_detail_scene(inventory_data:InventoryData, detail_scene:ItemD
 		pass
 	self.add_child(detail_scene)
 	pass
+
+func _on_ammo_picked_up(inventory_data:InventoryData, slot_data:SlotData) -> void:
+	var ammo_information:AmmoInformation = slot_data.item_data
+	var remainder = ammo_component.add_ammo(ammo_information.ammo_type.name, ammo_information.ammo_subtype.name, slot_data.quantity)
+	play_pickup_sound(slot_data)
+	slot_data.quantity = remainder
+	if remainder == 0:
+		inventory_data.set_slot_data_by_index(slot_data.root_index, null, slot_data.get_height(), slot_data.get_width())
 
 func play_drop_sound(slot_data:SlotData):
 	if slot_data:
