@@ -243,11 +243,11 @@ func _on_inventory_equipment_slot_context_menu(inventory_data:InventoryData, equ
 	menu.id_pressed.connect(inventory_data.handle_equipment_slot_context_menu.bind(equipment_slot.slot_name))
 	menu.popup(popup_rect)
 
-func _on_item_show_detail_scene(inventory_data:InventoryData, detail_scene:ItemDetailPopup) -> void:
-	if (inventory_data):
-		#item_detail_popup.set_internal_inventory(internal_inventory)
-		pass
+func _on_item_show_detail_scene(slot_data:SlotData, detail_scene:ItemDetailPopup) -> void:
 	self.add_child(detail_scene)
+	if (slot_data):
+		detail_scene.set_slot_data(slot_data)
+		pass
 	pass
 
 func _on_ammo_picked_up(inventory_data:InventoryData, slot_data:SlotData) -> void:

@@ -22,6 +22,17 @@ class_name GunDetailPopup
 
 const EQUIPMENT_SLOT = preload("res://ui/inventory/3.0/equipment_slot.tscn")
 
+func set_slot_data(slot_data:SlotData) -> void:
+	if slot_data is GunSlotData:
+		var item_3d:Item3D = Item3D.instantiate_from_slot_data(slot_data)
+		if item_3d is Gun:
+			#add as child to trigger onready
+			item_model_anchor.add_child(item_3d)
+			gun_3d = item_3d
+	else:
+		printerr("Tried setting generic slot data for gun popup")
+	pass
+
 var _gun_3d:Gun
 var gun_3d:Gun:
 	get:
@@ -58,18 +69,18 @@ func map_gun_stats(gun:Gun):
 	turn_speed_label.text = str(gun_stats.turn_speed)
 
 func map_gun_description(gun:Gun):
-	var item_inst = gun.get_item_instance()
+	var item_information:ItemInformation = gun.slot_data.item_data
 	var constructed_description_string:String = ""
-	constructed_description_string += item_inst.get_item_description_text().to_upper()
+	constructed_description_string += item_information.description_text.to_upper()
 	constructed_description_string += "\n\n"
 	constructed_description_string += "[i]"
-	constructed_description_string += item_inst.get_item_flavor_text().to_upper()
+	constructed_description_string += item_information.flavor_text.to_upper()
 	constructed_description_string += "[/i]"
 	item_description_label.text = constructed_description_string
 
 func map_item_name(gun:Gun):
-	weapon_name_label.text = gun.get_item_instance().get_display_name()
-	title = gun.get_item_instance().get_display_name()
+	weapon_name_label.text = gun.slot_data.item_data.display_name
+	title = gun.slot_data.item_data.display_name
 	
 func map_weapon_category(gun:Gun):
 	weapon_category_label.text = gun.get_weapon_category()
@@ -101,10 +112,10 @@ func setup_mod_slots(gun:Gun):
 		for slot in item_equipment_slots:
 			#for each equipment slot, create a weapon mod slot instance
 			var slot_control = EQUIPMENT_SLOT.instantiate()
-			slot_control.name = slot.name
-			slot_control.set_slot_data(slot)
+			slot_control.name = slot.slot_name
 			#add it as child to vbox container
 			current_sibling.add_sibling(slot_control)
+			slot_control.set_slot_data(slot)
 			slot_control.owner = self
 			current_sibling = slot_control
 

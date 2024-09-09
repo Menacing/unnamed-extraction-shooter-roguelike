@@ -8,7 +8,7 @@ signal inventory_context_menu(inventory_data:InventoryData, slot_data:SlotData)
 signal inventory_equipment_slot_context_menu(inventory_data:InventoryData, equipment_slot:EquipmentSlot)
 signal inventory_drop_item(slot_data:SlotData)
 signal item_equipment_changed(inventory_data:InventoryData, equipment_slot:EquipmentSlot)
-signal item_show_detail_scene(inventory_data:InventoryData, detail_scene:ItemDetailPopup)
+signal item_show_detail_scene(slot_data:SlotData, detail_scene:ItemDetailPopup)
 signal ammo_picked_up(inventory_data:InventoryData, slot_data:SlotData)
 
 var width = 10
@@ -291,7 +291,7 @@ func handle_context_menu(menu_id:int, slot_index:int) -> void:
 			"Item Detail":
 				var detail_scene:PackedScene = slot_data.item_data.detail_scene
 				var detail_control:ItemDetailPopup = detail_scene.instantiate()
-				item_show_detail_scene.emit(slot_data.internal_inventory, detail_control)
+				item_show_detail_scene.emit(slot_data, detail_control)
 				pass
 	pass
 
@@ -310,7 +310,7 @@ func handle_equipment_slot_context_menu(menu_id:int, slot_name:String) -> void:
 			"Item Detail":
 				var detail_scene:PackedScene = slot_data.item_data.detail_scene
 				var detail_control:ItemDetailPopup = detail_scene.instantiate()
-				item_show_detail_scene.emit(slot_data.internal_inventory, detail_control)
+				item_show_detail_scene.emit(slot_data, detail_control)
 				pass
 	pass
 

@@ -1,17 +1,31 @@
-[gd_scene load_steps=21 format=3 uid="uid://dr48wela8mtxd"]
+[gd_scene load_steps=31 format=3 uid="uid://dr48wela8mtxd"]
 
 [ext_resource type="Script" path="res://game_objects/items/weapons/hic_rifles/hic_rifle.gd" id="1_xmoyr"]
 [ext_resource type="PackedScene" uid="uid://gfj0vsvmo4ik" path="res://game_objects/bullet/iterative_raycast_bullet.tscn" id="2_18wg8"]
 [ext_resource type="Resource" uid="uid://dls8psqyu06aw" path="res://game_objects/items/weapons/hic_rifles/hic_rifle_gun_stats.tres" id="3_5vh7j"]
 [ext_resource type="Resource" uid="uid://cct85d3u48yuj" path="res://components/ammo_component/ammo_types/heavy_intermediate_cartridge/ammo_subtypes/full_metal_jacket.tres" id="4_6dlns"]
 [ext_resource type="Resource" uid="uid://xufa6auvjw6t" path="res://game_objects/items/weapons/hic_rifles/pm_52/pm_52_inventory_info.tres" id="4_han0a"]
+[ext_resource type="Script" path="res://resource_access/equipment_slot_data.gd" id="5_e3iqb"]
 [ext_resource type="AudioStream" uid="uid://cvetwcylway6p" path="res://game_objects/items/weapons/hic_rifles/hic_mag_out.ogg" id="6_1us7e"]
 [ext_resource type="PackedScene" uid="uid://pm3nps6dkjt8" path="res://game_objects/items/weapons/hic_rifles/pm_52/pm_52.blend" id="6_78q42"]
 [ext_resource type="Texture2D" uid="uid://dkcxx06s6kdp6" path="res://game_objects/items/weapons/hic_rifles/pm_52/PixelMuzzelFlash.png" id="6_ok4lf"]
 [ext_resource type="AudioStream" uid="uid://dplusv72g11du" path="res://game_objects/items/weapons/hic_rifles/hic_shot_1.ogg" id="6_r1jqa"]
+[ext_resource type="Resource" uid="uid://d2e8vacodeiau" path="res://game_objects/items/weapons/foregrips_equipment_slot.tres" id="6_uu83h"]
 [ext_resource type="Script" path="res://resource_access/gun_slot_data.gd" id="6_vlmn2"]
+[ext_resource type="Resource" uid="uid://cqxsusjebsqrp" path="res://game_objects/items/weapons/grips_equipment_slot.tres" id="7_lu1d1"]
 [ext_resource type="AudioStream" uid="uid://61nbakc75l5g" path="res://game_objects/items/weapons/hic_rifles/hic_mag_in.ogg" id="7_vwawx"]
+[ext_resource type="Resource" uid="uid://bemliobbiifl2" path="res://game_objects/items/weapons/lasers_equipment_slot.tres" id="8_fsyp6"]
 [ext_resource type="AudioStream" uid="uid://c71dtcsweexj4" path="res://game_objects/items/weapons/hic_rifles/hic_charging_handle.ogg" id="8_njdhy"]
+[ext_resource type="Resource" uid="uid://3m7iiyunllog" path="res://game_objects/items/weapons/mags_equipment_slot.tres" id="9_1ebbf"]
+[ext_resource type="Resource" uid="uid://qfkhmq1ohqqh" path="res://game_objects/items/weapons/muzzles_equipment_slot.tres" id="10_klxy4"]
+[ext_resource type="Resource" uid="uid://bstwuttx0c0do" path="res://game_objects/items/weapons/optics_equipment_slot.tres" id="11_8cml8"]
+[ext_resource type="Resource" uid="uid://cfint47docku3" path="res://game_objects/items/weapons/stocks_equipment_slot.tres" id="12_e15hy"]
+[ext_resource type="Script" path="res://resource_access/inventory_data.gd" id="13_kext3"]
+
+[sub_resource type="Resource" id="Resource_u5ea7"]
+script = ExtResource("13_kext3")
+equipment_slots = Array[ExtResource("5_e3iqb")]([ExtResource("6_uu83h"), ExtResource("7_lu1d1"), ExtResource("8_fsyp6"), ExtResource("9_1ebbf"), ExtResource("10_klxy4"), ExtResource("11_8cml8"), ExtResource("12_e15hy")])
+slot_datas = Array[Array]([])
 
 [sub_resource type="Resource" id="Resource_4qrw3"]
 script = ExtResource("6_vlmn2")
@@ -23,6 +37,7 @@ quantity = 1
 durability = 1
 root_index = 0
 is_rotated = false
+internal_inventory = SubResource("Resource_u5ea7")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_a6wgc"]
 size = Vector3(0.058623, 0.208564, 0.716576)
