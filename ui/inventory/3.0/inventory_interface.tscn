@@ -52,6 +52,10 @@ visible = false
 [node name="NEXT MAP" parent="MarginContainer/HBoxContainer/ExternalInventorySpacer/HideoutMenu" index="2"]
 visible = true
 
+[node name="ItemDetailContainer" type="PanelContainer" parent="MarginContainer/HBoxContainer/ExternalInventorySpacer"]
+unique_name_in_owner = true
+layout_mode = 2
+
 [node name="DropAreaSpacer" type="MarginContainer" parent="MarginContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
@@ -75,12 +79,13 @@ layout_mode = 2
 metadata/_tab_index = 1
 
 [node name="GrabbedSlot" parent="." instance=ExtResource("3_xhv20")]
-visible = false
 modulate = Color(1, 1, 1, 0.490196)
 self_modulate = Color(1, 1, 1, 0)
 layout_mode = 0
-offset_right = 64.0
-offset_bottom = 64.0
+offset_left = 929.0
+offset_top = 249.0
+offset_right = 993.0
+offset_bottom = 313.0
 
 [node name="FoleyAudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
 max_polyphony = 8

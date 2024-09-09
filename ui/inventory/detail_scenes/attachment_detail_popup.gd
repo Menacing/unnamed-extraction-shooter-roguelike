@@ -72,7 +72,7 @@ func map_item_description(item:Item3D):
 
 func map_item_name(item:Item3D):
 	item_name_label.text = item.get_item_instance().get_display_name()
-	title = item.get_item_instance().get_display_name()
+	#title = item.get_item_instance().get_display_name()
 	
 func setup_item_model(item:Item3D):
 	#clear any existing children

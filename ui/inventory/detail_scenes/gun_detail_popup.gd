@@ -47,16 +47,7 @@ var gun_3d:Gun:
 		setup_gun_model(value)
 		setup_mod_slots(value)
 
-func _input(event:InputEvent):
-	if event.is_action_pressed("ui_cancel"):
-		#accept_event()
-		_close_self()
 
-func _on_done_button_pressed():
-	_close_self()
-
-func _close_self():
-	self.queue_free()
 
 func map_gun_stats(gun:Gun):
 	var gun_stats:GunStats = gun.get_gun_stats()
@@ -80,7 +71,7 @@ func map_gun_description(gun:Gun):
 
 func map_item_name(gun:Gun):
 	weapon_name_label.text = gun.slot_data.item_data.display_name
-	title = gun.slot_data.item_data.display_name
+	#title = gun.slot_data.item_data.display_name
 	
 func map_weapon_category(gun:Gun):
 	weapon_category_label.text = gun.get_weapon_category()
@@ -104,20 +95,37 @@ func setup_mod_slots(gun:Gun):
 	var gun_slot_data:GunSlotData = gun.slot_data
 	#get the internal inventory
 	var item_inventory:InventoryData = gun_slot_data.internal_inventory
+	
 
 	if item_inventory:
+		if parent_inventory_interface:
+			parent_inventory_interface._connect_inventory_data_signals(item_inventory)
+			_inventory_data = item_inventory
+		item_inventory.inventory_updated.connect(update_mod_slots)
+		update_mod_slots(item_inventory)
+
+func update_mod_slots(item_inventory:InventoryData) -> void :
 		#get the equipment slots
-		var item_equipment_slots:Array[EquipmentSlot] = item_inventory.equipment_slots
-		var current_sibling:Node = $VBoxContainer/ModificationSlotVBoxContainer/FrontSpacer
-		for slot in item_equipment_slots:
-			#for each equipment slot, create a weapon mod slot instance
-			var slot_control = EQUIPMENT_SLOT.instantiate()
-			slot_control.name = slot.slot_name
-			#add it as child to vbox container
-			current_sibling.add_sibling(slot_control)
-			slot_control.set_slot_data(slot)
-			slot_control.owner = self
-			current_sibling = slot_control
+	var item_equipment_slots:Array[EquipmentSlot] = item_inventory.equipment_slots
+	var current_sibling:Node = $VBoxContainer/ModificationSlotVBoxContainer/FrontSpacer
+	#clear out existing slots
+	for child in slots_box.get_children():
+		if !child.is_in_group("spacer"):
+			slots_box.remove_child(child)
+			child.queue_free()
+	for slot in item_equipment_slots:
+		
+		#for each equipment slot, create a weapon mod slot instance
+		var slot_control = EQUIPMENT_SLOT.instantiate()
+		slot_control.name = slot.slot_name
+		#add it as child to vbox container
+		current_sibling.add_sibling(slot_control)
+		
+		slot_control.equipment_slot_clicked.connect(item_inventory.on_equipment_slot_clicked)
+
+		slot_control.set_slot_data(slot)
+		slot_control.owner = self
+		current_sibling = slot_control
 
 func adjust_camera_to_fit():
 	# Ensure item_model_anchor has content.

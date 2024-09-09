@@ -1,4 +1,5 @@
 extends PanelContainer
+class_name ItemSlotControl
 
 @export var cell_margin:int = 0
 

@@ -256,8 +256,8 @@ func _on_item_equipment_changed(inventory_data:InventoryData, equipment_slot:Equ
 			if equipment_slot.slot_data:
 				var backpack:Backpack = Item3D.instantiate_from_slot_data(equipment_slot.slot_data)
 				if backpack:
-					backpack.picked_up()
 					move_backpack_to_anchor(backpack)
+					backpack.picked_up()
 					if backpack.backpack_size == Backpack.Size.NONE:
 						inventory_data.set_inventory_size(2)
 					elif backpack.backpack_size == Backpack.Size.SMALL:
@@ -275,8 +275,8 @@ func _on_item_equipment_changed(inventory_data:InventoryData, equipment_slot:Equ
 			if equipment_slot.slot_data:
 				var armor:BodyArmor = Item3D.instantiate_from_slot_data(equipment_slot.slot_data)
 				armor_equipped.emit(armor)
-				armor.picked_up()
 				move_armor_to_anchor(armor)
+				armor.picked_up()
 	pass
 
 func send_item_pickup_message(slot_data:SlotData):

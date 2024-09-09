@@ -4,12 +4,12 @@
 [ext_resource type="Material" uid="uid://buea3slsi1k1c" path="res://ui/inventory/item_outline_material.tres" id="2_u2h1q"]
 [ext_resource type="Shader" path="res://ui/inventory/item_detail_popup.gdshader" id="3_b2uqi"]
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_vk3ro"]
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_dbbaj"]
 
 [sub_resource type="Sky" id="Sky_2itlb"]
-sky_material = SubResource("ProceduralSkyMaterial_vk3ro")
+sky_material = SubResource("ProceduralSkyMaterial_dbbaj")
 
-[sub_resource type="Environment" id="Environment_114pw"]
+[sub_resource type="Environment" id="Environment_qr2wy"]
 background_mode = 1
 sky = SubResource("Sky_2itlb")
 ambient_light_source = 2
@@ -17,7 +17,7 @@ ambient_light_color = Color(1, 1, 1, 1)
 reflected_light_source = 2
 
 [sub_resource type="World3D" id="World3D_u4sok"]
-environment = SubResource("Environment_114pw")
+environment = SubResource("Environment_qr2wy")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_g2wy8"]
 shader = ExtResource("3_b2uqi")
@@ -30,20 +30,14 @@ shader_parameter/white_noise_rate = 0.053
 [sub_resource type="Theme" id="Theme_s1mk1"]
 resource_local_to_scene = true
 
-[node name="gun_detail_popup" type="Window"]
-initial_position = 2
-size = Vector2i(750, 600)
-exclusive = true
-always_on_top = true
+[node name="gun_detail_popup" type="MarginContainer"]
+offset_right = 750.0
+offset_bottom = 600.0
 script = ExtResource("1_ethna")
 item_outline_material = ExtResource("2_u2h1q")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+layout_mode = 2
 
 [node name="TitleHBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
@@ -71,6 +65,7 @@ layout_mode = 2
 size_flags_vertical = 3
 
 [node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/HBoxContainer"]
+clip_contents = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -91,9 +86,11 @@ render_target_update_mode = 4
 [node name="Camera3D" type="Camera3D" parent="VBoxContainer/HBoxContainer/MarginContainer/SubViewportContainer/SubViewport"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10)
 projection = 1
+current = true
 
-[node name="ColorRect" type="ColorRect" parent="VBoxContainer/HBoxContainer/MarginContainer"]
+[node name="ColorRect" type="ColorRect" parent="VBoxContainer/HBoxContainer/MarginContainer/SubViewportContainer"]
 material = SubResource("ShaderMaterial_g2wy8")
+clip_contents = true
 layout_mode = 2
 
 [node name="StatsVBoxContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer"]
@@ -194,11 +191,11 @@ text = "25"
 [node name="ModificationSlotVBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
 
-[node name="FrontSpacer" type="Container" parent="VBoxContainer/ModificationSlotVBoxContainer"]
+[node name="FrontSpacer" type="Container" parent="VBoxContainer/ModificationSlotVBoxContainer" groups=["spacer"]]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="BackSpacer" type="Container" parent="VBoxContainer/ModificationSlotVBoxContainer"]
+[node name="BackSpacer" type="Container" parent="VBoxContainer/ModificationSlotVBoxContainer" groups=["spacer"]]
 layout_mode = 2
 size_flags_horizontal = 3
 
@@ -229,5 +226,3 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis ornare velit et ru
 
 In eget nunc iaculis, ultrices quam vitae, tincidunt turpis. Phasellus eget arcu sit amet augue cursus ornare. Mauris in nunc a urna lobortis malesuada. Morbi quis lacus nisi. Proin cursus hendrerit ex, ut euismod massa. Pellentesque massa urna, lacinia pretium tincidunt et, gravida eget orci. Nulla facilisi. Sed ut congue tortor. Quisque sed imperdiet est, facilisis imperdiet erat. Vestibulum et ligula eu lorem pretium feugiat. Nullam eget mattis magna, pharetra iaculis eros. Nulla facilisi. Nullam in purus diam. Suspendisse potenti. Nam commodo eros ut mauris dignissim molestie.
 "
-
-[connection signal="close_requested" from="." to="." method="_close_self"]

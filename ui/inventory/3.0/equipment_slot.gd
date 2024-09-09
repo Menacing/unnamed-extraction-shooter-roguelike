@@ -9,11 +9,20 @@ const cell_size:int = 48
 @onready var background_sprite_2d: Sprite2D = $BackgroundSprite2D
 @onready var quantity_label: Label = $QuantityLabel
 @onready var durability_label: Label = $DurabilityLabel
+@onready var margin_container: MarginContainer = $MarginContainer
 @export var slot_name:String
 
 func set_slot_data(equipment_slot:EquipmentSlot, force_display = false) -> void:
 	
 	background_icon_texture_rect.texture = equipment_slot.background_icon
+	
+	# This code sample assumes the current script is extending MarginContainer.
+	var margin_value = equipment_slot.slot_width * cell_size / 4
+	margin_container.add_theme_constant_override("margin_top", margin_value)
+	margin_container.add_theme_constant_override("margin_left", margin_value)
+	margin_container.add_theme_constant_override("margin_bottom", margin_value)
+	margin_container.add_theme_constant_override("margin_right", margin_value)
+
 	self.custom_minimum_size = Vector2(equipment_slot.slot_width * cell_size, equipment_slot.slot_height * cell_size)
 	slot_name = equipment_slot.slot_name
 	

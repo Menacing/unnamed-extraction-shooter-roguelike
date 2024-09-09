@@ -1,4 +1,5 @@
 extends Control
+class_name InventoryInterface
 
 @export var drop_location:Node3D
 @export var ammo_component:AmmoComponent
@@ -7,9 +8,10 @@ var grabbed_slot_data:SlotData
 var external_inventory_owner
 
 @onready var player_inventory: PanelContainer = %ITEMS
-@onready var grabbed_slot: PanelContainer = $GrabbedSlot
+@onready var grabbed_slot: ItemSlotControl = $GrabbedSlot
 @onready var external_inventory: PanelContainer = %ExternalInventory
 @onready var hideout_menu: HideoutMenu = %HideoutMenu
+@onready var item_detail_container: PanelContainer = %ItemDetailContainer
 
 ##only use for quick transfer
 var player_inventory_data:InventoryData
@@ -244,7 +246,10 @@ func _on_inventory_equipment_slot_context_menu(inventory_data:InventoryData, equ
 	menu.popup(popup_rect)
 
 func _on_item_show_detail_scene(slot_data:SlotData, detail_scene:ItemDetailPopup) -> void:
-	self.add_child(detail_scene)
+	for child in item_detail_container.get_children():
+		child.queue_free()
+	item_detail_container.add_child(detail_scene)
+	detail_scene.parent_inventory_interface = self
 	if (slot_data):
 		detail_scene.set_slot_data(slot_data)
 		pass
