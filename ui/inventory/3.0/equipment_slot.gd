@@ -40,7 +40,7 @@ func set_slot_data(equipment_slot:EquipmentSlot, force_display = false) -> void:
 			quantity_label.hide()
 		
 		if equipment_slot.slot_data.item_data.has_durability:
-			durability_label.text = "%s%" % (equipment_slot.slot_data.durability/equipment_slot.slot_data.item_data.max_durability * 100)
+			durability_label.text = "%s%%" % (equipment_slot.slot_data.durability/equipment_slot.slot_data.item_data.max_durability * 100)
 			durability_label.show()
 		else:
 			durability_label.hide()

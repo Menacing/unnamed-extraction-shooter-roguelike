@@ -1,43 +1,14 @@
-[gd_scene load_steps=31 format=3 uid="uid://cprpop5lkmyhe"]
+[gd_scene load_steps=17 format=3 uid="uid://cprpop5lkmyhe"]
 
 [ext_resource type="Script" path="res://game_objects/items/weapons/fic_rifles/fic_rifle.gd" id="1_rora5"]
 [ext_resource type="PackedScene" uid="uid://gfj0vsvmo4ik" path="res://game_objects/bullet/iterative_raycast_bullet.tscn" id="2_x83q3"]
 [ext_resource type="Resource" uid="uid://crt7yeietv5y7" path="res://game_objects/items/weapons/fic_rifles/fic_rifle_gun_stats.tres" id="3_x74o3"]
-[ext_resource type="Resource" uid="uid://cv0v8s66c5nn4" path="res://components/ammo_component/ammo_types/fast_intermediate_cartridge/ammo_subtypes/full_metal_jacket.tres" id="4_3mr2u"]
 [ext_resource type="PackedScene" uid="uid://d1y3lghk4h5l3" path="res://game_objects/items/weapons/fic_rifles/s5/s5.blend" id="4_v8p8c"]
-[ext_resource type="Script" path="res://resource_access/equipment_slot_data.gd" id="5_2brk0"]
-[ext_resource type="Resource" uid="uid://se4uj7i6ud3y" path="res://game_objects/items/weapons/fic_rifles/s5/s5_inventory_info.tres" id="5_2k3hk"]
 [ext_resource type="Texture2D" uid="uid://dkcxx06s6kdp6" path="res://game_objects/items/weapons/hic_rifles/pm_52/PixelMuzzelFlash.png" id="5_wks76"]
-[ext_resource type="Script" path="res://resource_access/gun_slot_data.gd" id="6_ug424"]
-[ext_resource type="Resource" uid="uid://d2e8vacodeiau" path="res://game_objects/items/weapons/foregrips_equipment_slot.tres" id="6_x4p4x"]
-[ext_resource type="Resource" uid="uid://cqxsusjebsqrp" path="res://game_objects/items/weapons/grips_equipment_slot.tres" id="7_bfqob"]
 [ext_resource type="AudioStream" uid="uid://bc1wim1c1t021" path="res://game_objects/items/weapons/fic_rifles/fic_mag_out.ogg" id="7_hvlr1"]
 [ext_resource type="AudioStream" uid="uid://belfvaan2qeva" path="res://game_objects/items/weapons/fic_rifles/fic_mag_in.ogg" id="8_ib0ga"]
-[ext_resource type="Resource" uid="uid://bemliobbiifl2" path="res://game_objects/items/weapons/lasers_equipment_slot.tres" id="8_uut1t"]
-[ext_resource type="Resource" uid="uid://3m7iiyunllog" path="res://game_objects/items/weapons/mags_equipment_slot.tres" id="9_5amb7"]
 [ext_resource type="AudioStream" uid="uid://c2wxubwa7ilv" path="res://game_objects/items/weapons/fic_rifles/fic_charging_handle.ogg" id="9_qj0jf"]
-[ext_resource type="Resource" uid="uid://qfkhmq1ohqqh" path="res://game_objects/items/weapons/muzzles_equipment_slot.tres" id="10_kchbk"]
 [ext_resource type="AudioStream" uid="uid://howm8uexygj7" path="res://game_objects/items/weapons/fic_rifles/fic_shot_2.ogg" id="10_vdlnj"]
-[ext_resource type="Resource" uid="uid://bstwuttx0c0do" path="res://game_objects/items/weapons/optics_equipment_slot.tres" id="11_i6eer"]
-[ext_resource type="Resource" uid="uid://cfint47docku3" path="res://game_objects/items/weapons/stocks_equipment_slot.tres" id="12_uanu7"]
-[ext_resource type="Script" path="res://resource_access/inventory_data.gd" id="13_mnbog"]
-
-[sub_resource type="Resource" id="Resource_oe06g"]
-script = ExtResource("13_mnbog")
-equipment_slots = Array[ExtResource("5_2brk0")]([ExtResource("6_x4p4x"), ExtResource("7_bfqob"), ExtResource("8_uut1t"), ExtResource("9_5amb7"), ExtResource("10_kchbk"), ExtResource("11_i6eer"), ExtResource("12_uanu7")])
-slot_datas = Array[Array]([])
-
-[sub_resource type="Resource" id="Resource_cl1di"]
-script = ExtResource("6_ug424")
-current_number_bullets = 30
-current_fire_mode_index = 0
-current_ammo_subtype = ExtResource("4_3mr2u")
-item_data = ExtResource("5_2k3hk")
-quantity = 1
-durability = 1
-root_index = 0
-is_rotated = false
-internal_inventory = SubResource("Resource_oe06g")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_a6wgc"]
 size = Vector3(0.852813, 0.283394, 0.071228)
@@ -211,7 +182,6 @@ muzzle_np = NodePath("s5/Muzzle")
 _bullet_scene = ExtResource("2_x83q3")
 _gun_stats = ExtResource("3_x74o3")
 mag_node = NodePath("s5/magazines")
-slot_data = SubResource("Resource_cl1di")
 item_type_id = "s5"
 world_collider_path = NodePath("CollisionShape3D")
 longest_side_size = 0.9

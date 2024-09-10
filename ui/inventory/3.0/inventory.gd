@@ -13,7 +13,6 @@ func clear_inventory_data(inventory_data:InventoryData) -> void:
 	inventory_data.inventory_updated.disconnect(populate_item_grid)
 
 func populate_item_grid(inventory_data:InventoryData) -> void:
-	
 	for child in equipment_slot_container.get_children():
 		#remove from the grid or they stick around long enough to mess up the indexing
 		equipment_slot_container.remove_child(child)

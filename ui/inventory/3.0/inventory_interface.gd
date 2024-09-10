@@ -89,6 +89,10 @@ func clear_external_inventory() -> void:
 			hideout_menu.stash_inventory_control.clear_inventory_data(inventory_data)
 			hideout_menu.hide()
 			external_inventory_owner = null
+	if item_detail_container.visible:
+		for child in item_detail_container.get_children():
+			child.queue_free()
+		item_detail_container.hide()
 
 func _on_toggle_inventory(external_inventory_owner = null) -> void:
 	self.visible = not self.visible
@@ -249,6 +253,7 @@ func _on_item_show_detail_scene(slot_data:SlotData, detail_scene:ItemDetailPopup
 	for child in item_detail_container.get_children():
 		child.queue_free()
 	item_detail_container.add_child(detail_scene)
+	item_detail_container.show()
 	detail_scene.parent_inventory_interface = self
 	if (slot_data):
 		detail_scene.set_slot_data(slot_data)

@@ -391,3 +391,25 @@ func room_for_slot_data(target_index:int, slot_data:SlotData) -> bool:
 				return false
 	
 	return true
+
+func deep_duplicate() -> InventoryData:
+	var new_inventory_data = InventoryData.new()
+	var new_equipment_slots:Array[EquipmentSlot] = []
+	for i: int in equipment_slots.size():
+		var val = equipment_slots[i]
+		if val and val is Resource:
+			new_equipment_slots.append(val.duplicate(true))
+		else:
+			new_equipment_slots.append(val)
+	new_inventory_data.equipment_slots = new_equipment_slots
+	
+	var new_slot_datas:Array[Array] = []
+	for i in slot_datas.size():
+		var new_row = []
+		new_row.resize(width)
+		new_slot_datas.append(new_row)
+		for j in width:
+			new_slot_datas[i][j] = slot_datas[i][j]
+			
+	new_inventory_data.slot_datas = new_slot_datas
+	return new_inventory_data

@@ -37,7 +37,7 @@ static func instantiate_from_item_information(item_information:ItemInformation) 
 		if item_information.has_durability:
 			new_slot.durability = item_information.max_durability
 		if item_information.model_internal_inventory:
-			new_slot.internal_inventory = item_information.model_internal_inventory.duplicate(true)
+			new_slot.internal_inventory = item_information.model_internal_inventory.deep_duplicate()
 	
 	return new_slot
 
