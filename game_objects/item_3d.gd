@@ -48,7 +48,6 @@ func _ready() -> void:
 	else:
 		Helpers.apply_material_overlay_to_children(self,null)
 	
-
 	var _base_materials:Array[StandardMaterial3D] = []
 
 	for mesh_inst:MeshInstance3D in meshes_to_fade_on_pickup:

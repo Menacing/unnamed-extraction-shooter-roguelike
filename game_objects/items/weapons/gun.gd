@@ -55,6 +55,10 @@ func _ready():
 		var mat = gm_node.get_active_material(0)
 		if mat:
 			gun_materials.append(mat)
+	
+	if slot_data.internal_inventory:
+		for eq:EquipmentSlot in slot_data.internal_inventory.equipment_slots:
+			_on_item_equipment_changed(slot_data.internal_inventory, eq)
 
 var current_fire_mode:String
 var reloading: bool = false
@@ -273,46 +277,61 @@ func move_attachment_to_anchor(attachment:Node3D, anchor:Node3D):
 		attachment.transform = Transform3D.IDENTITY
 		attachment.visible = true
 
+var foregrips_equip_effect_component:EquipEffectComponent
+var optics_equip_effect_component:EquipEffectComponent
+var magazine_equip_effect_component:EquipEffectComponent
 
 func _on_item_equipment_changed(inventory_data:InventoryData, equipment_slot:EquipmentSlot):
-	var item_3d:Item3D
-	if equipment_slot.slot_data:
-		item_3d = Item3D.instantiate_from_slot_data(equipment_slot.slot_data)
-		if item_3d is Attachment:
-			var attachment:Attachment = item_3d as Attachment
-			for effect in attachment.attachment_effect.effect_lists:
-				effect.effect_target_node = self
-			EventBus.create_effect.emit(firer.get_instance_id(), attachment.attachment_effect)
 	match equipment_slot.slot_name:
 		"OpticsSlot":
-			if scope:
-				scope.queue_free()
-				scope = null
+			scope.queue_free()
+			scope = null
+			hide_nodes(on_scope_show_nodes)
+			show_nodes(on_scope_hide_nodes)
+			if optics_equip_effect_component:
+				self.remove_child(optics_equip_effect_component)
+				optics_equip_effect_component.queue_free()
+				optics_equip_effect_component = null
+			
+			if equipment_slot.slot_data:
+				var item_3d = Item3D.instantiate_from_slot_data(equipment_slot.slot_data)
 				scope = item_3d as Scope
 				show_nodes(on_scope_show_nodes)
 				hide_nodes(on_scope_hide_nodes)
 				
 				move_attachment_to_anchor(item_3d, scope_anchor)
-			else:
-				scope = null
-				hide_nodes(on_scope_show_nodes)
-				show_nodes(on_scope_hide_nodes)
+				optics_equip_effect_component = equipment_slot.slot_data.item_data.equip_effect_component.instantiate()
+				self.add_child(optics_equip_effect_component)
 			pass
 		"MagsSlot":
 			show_nodes(on_default_magazine_show_nodes)
-			hide_nodes(on_default_magazine_hide_nodes)
+			hide_nodes(on_default_magazine_hide_nodes)			
+			if magazine_equip_effect_component:
+				self.remove_child(magazine_equip_effect_component)
+				magazine_equip_effect_component.queue_free()
+				magazine_equip_effect_component = null
 			if equipment_slot.slot_data:
 				if equipment_slot.slot_data.item_data.item_type_id == "extended_magazine":
 					show_nodes(on_extended_magazine_show_nodes)
 					hide_nodes(on_extended_magazine_hide_nodes)
 					
+				magazine_equip_effect_component = equipment_slot.slot_data.item_data.equip_effect_component.instantiate()
+				self.add_child(magazine_equip_effect_component)
 		"ForegripsSlot":
 			show_nodes(on_stable_foregrip_hide_nodes)
 			hide_nodes(on_stable_foregrip_show_nodes)
+			if foregrips_equip_effect_component:
+				self.remove_child(foregrips_equip_effect_component)
+				foregrips_equip_effect_component.queue_free()
+				foregrips_equip_effect_component = null
+				
 			if equipment_slot.slot_data:
 				if equipment_slot.slot_data.item_data.item_type_id == "stable_foregrip":
 					show_nodes(on_stable_foregrip_show_nodes)
 					hide_nodes(on_stable_foregrip_hide_nodes)
+				
+				foregrips_equip_effect_component = equipment_slot.slot_data.item_data.equip_effect_component.instantiate()
+				self.add_child(foregrips_equip_effect_component)
 
 	pass
 
