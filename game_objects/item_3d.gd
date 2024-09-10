@@ -1,7 +1,13 @@
 extends RigidBody3D
 class_name Item3D
 
-@export var slot_data:SlotData
+@export var slot_data:SlotData:
+	get:
+		return slot_data
+	set(value):
+		slot_data = value
+		if slot_data and slot_data.internal_inventory:
+			slot_data.internal_inventory.item_equipment_changed.connect(_on_item_equipment_changed)
 
 static func instantiate_from_slot_data(slot_data:SlotData) -> Item3D:
 	var item_3d_scene = ItemMappingRepository.get_item_3d(slot_data.item_data.item_type_id)
@@ -120,3 +126,6 @@ func _on_load_game(save_data:TopLevelEntitySaveData):
 		self.global_transform = save_data.global_transform
 		#item_instance_id = save_data.additional_data["item_instance_id"]
 		#item_3d_id = save_data.additional_data["item_3d_id"]
+
+func _on_item_equipment_changed(inventory_data:InventoryData, equipment_slot:EquipmentSlot):
+	pass

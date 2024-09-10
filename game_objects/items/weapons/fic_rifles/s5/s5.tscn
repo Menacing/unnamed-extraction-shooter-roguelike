@@ -1,8 +1,6 @@
-[gd_scene load_steps=17 format=3 uid="uid://cprpop5lkmyhe"]
+[gd_scene load_steps=15 format=3 uid="uid://cprpop5lkmyhe"]
 
-[ext_resource type="Script" path="res://game_objects/items/weapons/fic_rifles/fic_rifle.gd" id="1_rora5"]
-[ext_resource type="PackedScene" uid="uid://gfj0vsvmo4ik" path="res://game_objects/bullet/iterative_raycast_bullet.tscn" id="2_x83q3"]
-[ext_resource type="Resource" uid="uid://crt7yeietv5y7" path="res://game_objects/items/weapons/fic_rifles/fic_rifle_gun_stats.tres" id="3_x74o3"]
+[ext_resource type="Script" path="res://game_objects/items/weapons/gun.gd" id="1_lhsj7"]
 [ext_resource type="PackedScene" uid="uid://d1y3lghk4h5l3" path="res://game_objects/items/weapons/fic_rifles/s5/s5.blend" id="4_v8p8c"]
 [ext_resource type="Texture2D" uid="uid://dkcxx06s6kdp6" path="res://game_objects/items/weapons/hic_rifles/pm_52/PixelMuzzelFlash.png" id="5_wks76"]
 [ext_resource type="AudioStream" uid="uid://bc1wim1c1t021" path="res://game_objects/items/weapons/fic_rifles/fic_mag_out.ogg" id="7_hvlr1"]
@@ -170,22 +168,11 @@ random_volume_offset_db = 0.5
 streams_count = 1
 stream_0/stream = ExtResource("10_vdlnj")
 
-[node name="S5" type="RigidBody3D" node_paths=PackedStringArray("mag_node", "model_node")]
+[node name="S5" type="RigidBody3D"]
 disable_mode = 1
 collision_layer = 5
 collision_mask = 5
-script = ExtResource("1_rora5")
-gun_material_np = NodePath("s5/barrel")
-gun_model_np = NodePath("s5")
-on_scope_hide_nps = Array[NodePath]([NodePath("s5/front_sight"), NodePath("s5/rear_sight")])
-muzzle_np = NodePath("s5/Muzzle")
-_bullet_scene = ExtResource("2_x83q3")
-_gun_stats = ExtResource("3_x74o3")
-mag_node = NodePath("s5/magazines")
-item_type_id = "s5"
-world_collider_path = NodePath("CollisionShape3D")
-longest_side_size = 0.9
-model_node = NodePath("s5")
+script = ExtResource("1_lhsj7")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -0.00137329, -0.064, -0.054)

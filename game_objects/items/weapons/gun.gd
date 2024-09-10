@@ -11,12 +11,50 @@ var firer:Node3D
 @export var ads_lean_factor:float = 1.0
 @export var _gun_stats:GunStats
 
+@export var muzzle:Node3D
+@export var muzzle_flash_animation_player:AnimationPlayer
+@export var fire_timer:Timer
+@export var reload_timer:Timer
+var reload_time:ModifiableStatFloat = ModifiableStatFloat.new(1.0)
+var _new_bullets:int = 0
+@export var reload_animation_player:AnimationPlayer
+
+
+@export var gun_model_node:Node3D
+@export var gun_material_nodes:Array[MeshInstance3D]
+var gun_materials:Array[Material] = []
+
+var scope:Scope
+@export var scope_anchor:Node3D
+@export var on_scope_show_nodes:Array[Node3D]
+@export var on_scope_hide_nodes:Array[Node3D]
+
+@export var on_default_magazine_show_nodes:Array[Node3D]
+@export var on_default_magazine_hide_nodes:Array[Node3D]
+@export var on_extended_magazine_show_nodes:Array[Node3D]
+@export var on_extended_magazine_hide_nodes:Array[Node3D]
+
+@export var on_stable_foregrip_show_nodes:Array[Node3D]
+@export var on_stable_foregrip_hide_nodes:Array[Node3D]
+
 @onready var rng: RandomNumberGenerator = RandomNumberGenerator.new()
 
 func _ready():
 	super()
 	if slot_data.current_ammo_subtype == null:
 		slot_data.current_ammo_subtype = _gun_stats.ammo_type.sub_types[0]
+		
+	reload_timer.connect("timeout", reloaded_callback)
+
+	fire_timer.wait_time = 60.0/_gun_stats.rpm
+	current_fire_mode = _gun_stats.fire_modes[slot_data.current_fire_mode_index]
+	reload_time.base_value = _gun_stats.reload_time_Sec
+	reload_timer.wait_time = reload_time.get_modified_value()
+	
+	for gm_node in gun_material_nodes:
+		var mat = gm_node.get_active_material(0)
+		if mat:
+			gun_materials.append(mat)
 
 var current_fire_mode:String
 var reloading: bool = false
@@ -37,7 +75,13 @@ func get_left_fingers_node() -> Node3D:
 	return self.get_node("Left_Fingers")
 	
 func get_ads_anchor() -> Vector3:
-	return self.get_node("ADS").position
+	var base_position = self.get_node("ADS").position
+	if scope:
+		#if scope is equipped, get new x,y positions, keep z 
+		var scope_offset = scope.get_ads_offset()
+		base_position.x = scope_anchor.position.x + scope_offset.x
+		base_position.y = scope_anchor.position.y + scope_offset.y
+	return base_position
 	
 func get_ads_head_anchor() -> Vector3:
 	return self.get_node("ADS_Head").position
@@ -66,22 +110,77 @@ func picked_up(actor_id:int = 0) -> void:
 		firer = actor_object
 
 func canFire() -> bool:
-	return false
+	if current_magazine_size > 0 and !reloading and fire_timer.time_left == 0:
+		return true
+	else:
+		return false
 	
 func fireGun() -> void:
-	pass
+	if canFire():
+		var bulletInst:IterativeRaycastBullet = _bullet_scene.instantiate()
+		assign_bullet_stats(bulletInst, slot_data.current_ammo_subtype)
+		bulletInst.firer = firer
+		bulletInst.set_as_top_level(true)
+		if !LevelManager.add_node_to_level(bulletInst):
+			get_parent().add_child(bulletInst)
+		
+		bulletInst.global_transform.origin = muzzle.global_transform.origin
+		bulletInst.global_basis = muzzle.global_basis
+		Helpers.random_angle_deviation_moa(bulletInst, _gun_stats.moa, _gun_stats.moa)
+		current_magazine_size -= 1
+		muzzle_flash_animation_player.play("fire")
+		#$ShotAudioStreamPlayer3D.play()
+		fire_timer.start()
+		fired.emit(generate_recoil())
+	else:
+		#click
+		pass
 
-func reloadGun(_new_bullets:int) -> void:
-	pass
+func reloadGun(new_bullets:int) -> void:
+	reload_timer.start(reload_time.get_modified_value())
+	reloading = true
+	reload_animation_player.play("reload")
+	_new_bullets = new_bullets
+	
+func reloaded_callback():
+	
+	current_magazine_size = current_magazine_size + _new_bullets
+	assert(current_magazine_size <= get_max_magazine_size())
+	_new_bullets = 0
+	reload_timer.stop()
+	reloading = false
+	reloaded.emit()
 	
 func toggle_fire_mode() -> String:
-	return ""
+	var next_i = slot_data.current_fire_mode_index + 1
+	if next_i > _gun_stats.fire_modes.size() - 1:
+		slot_data.current_fire_mode_index = 0
+	else:
+		slot_data.current_fire_mode_index = next_i
+	current_fire_mode = _gun_stats.fire_modes[slot_data.current_fire_mode_index]
+	return current_fire_mode
 	
-func make_transparent() -> void:
-	pass
+var is_transparent: bool = false
+func make_transparent():
+	if !is_transparent:
+		for gun_mat in gun_materials:
+			gun_mat.distance_fade_mode = BaseMaterial3D.DISTANCE_FADE_PIXEL_DITHER
+			gun_mat.distance_fade_max_distance = .75
+			#Pixel dither looks better, but this is another way of doing it
+			#gun_mat.blend_mode = gun_mat.BLEND_MODE_ADD
+		is_transparent = true
+		pass
+	else:
+		pass
 
-func make_opaque() -> void:
-	pass
+func make_opaque():
+	if is_transparent:
+		for gun_mat in gun_materials:
+			gun_mat.distance_fade_mode = BaseMaterial3D.DISTANCE_FADE_DISABLED		
+		#gun_mat.blend_mode = gun_mat.BLEND_MODE_MIX
+		is_transparent = false
+	else:
+		pass
 
 @onready var _ads_acceleration: ModifiableStatFloat = ModifiableStatFloat.new(_gun_stats.ads_accel)
 func get_ADS_acceleration() -> float:
@@ -163,3 +262,65 @@ func assign_bullet_stats(bullet:IterativeRaycastBullet, subtype:AmmoSubtype):
 	bullet.current_speed = subtype.initial_speed
 	bullet.pen_rating = subtype.armor_penetration_rating
 	bullet.k = subtype.ballistic_coefficient_k
+	
+func copy_gun_model() -> Node3D:
+	return gun_model_node.duplicate()
+	
+func move_attachment_to_anchor(attachment:Node3D, anchor:Node3D):
+	if attachment:
+		Helpers.force_parent(attachment, anchor)
+		attachment.top_level = false
+		attachment.transform = Transform3D.IDENTITY
+		attachment.visible = true
+
+
+func _on_item_equipment_changed(inventory_data:InventoryData, equipment_slot:EquipmentSlot):
+	var item_3d:Item3D
+	if equipment_slot.slot_data:
+		item_3d = Item3D.instantiate_from_slot_data(equipment_slot.slot_data)
+		if item_3d is Attachment:
+			var attachment:Attachment = item_3d as Attachment
+			for effect in attachment.attachment_effect.effect_lists:
+				effect.effect_target_node = self
+			EventBus.create_effect.emit(firer.get_instance_id(), attachment.attachment_effect)
+	match equipment_slot.slot_name:
+		"OpticsSlot":
+			if scope:
+				scope.queue_free()
+				scope = null
+				scope = item_3d as Scope
+				show_nodes(on_scope_show_nodes)
+				hide_nodes(on_scope_hide_nodes)
+				
+				move_attachment_to_anchor(item_3d, scope_anchor)
+			else:
+				scope = null
+				hide_nodes(on_scope_show_nodes)
+				show_nodes(on_scope_hide_nodes)
+			pass
+		"MagsSlot":
+			show_nodes(on_default_magazine_show_nodes)
+			hide_nodes(on_default_magazine_hide_nodes)
+			if equipment_slot.slot_data:
+				if equipment_slot.slot_data.item_data.item_type_id == "extended_magazine":
+					show_nodes(on_extended_magazine_show_nodes)
+					hide_nodes(on_extended_magazine_hide_nodes)
+					
+		"ForegripsSlot":
+			show_nodes(on_stable_foregrip_hide_nodes)
+			hide_nodes(on_stable_foregrip_show_nodes)
+			if equipment_slot.slot_data:
+				if equipment_slot.slot_data.item_data.item_type_id == "stable_foregrip":
+					show_nodes(on_stable_foregrip_show_nodes)
+					hide_nodes(on_stable_foregrip_hide_nodes)
+
+	pass
+
+func show_nodes(nodes_to_show:Array[Node3D]) -> void:
+	for node in nodes_to_show:
+		node.show()
+		
+func hide_nodes(nodes_to_hide:Array[Node3D]) -> void:
+	for node in nodes_to_hide:
+		node.hide()
+	

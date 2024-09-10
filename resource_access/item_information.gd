@@ -25,3 +25,4 @@ class_name ItemInformation
 @export var pickup_sound:AudioStream = load("res://game_objects/effects/sounds/foley/generic_pickup_1.ogg")
 @export var drop_sound:AudioStream = load("res://game_objects/effects/sounds/foley/generic_pickup_2.ogg")
 @export var slot_data_type:SlotData.SLOT_DATA_TYPE = SlotData.SLOT_DATA_TYPE.SLOT_DATA
+@export var equip_effect_components:Array[PackedScene]

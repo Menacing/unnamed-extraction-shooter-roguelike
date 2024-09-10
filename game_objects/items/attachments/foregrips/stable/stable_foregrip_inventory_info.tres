@@ -1,9 +1,11 @@
 [gd_resource type="Resource" script_class="ItemInformation" load_steps=9 format=3 uid="uid://crfm8n2r2y2mk"]
 
+[ext_resource type="Script" path="res://ui/inventory/item_context_item.gd" id="1_rv0hj"]
 [ext_resource type="Resource" uid="uid://o6tesi76nbth" path="res://ui/inventory/drop_item_context_item.tres" id="1_yayiw"]
 [ext_resource type="PackedScene" uid="uid://davckdv3keyh5" path="res://ui/inventory/detail_scenes/attachment_detail_popup.tscn" id="2_5v6ym"]
 [ext_resource type="Texture2D" uid="uid://dimeqf2kbasxj" path="res://game_objects/items/attachments/foregrips/stable/stable_foregrip_icon.png" id="3_1j5wg"]
 [ext_resource type="AudioStream" uid="uid://bt2pmu0v5otjo" path="res://game_objects/effects/sounds/foley/rattle_2.ogg" id="3_58oje"]
+[ext_resource type="PackedScene" uid="uid://drq1dhr0sgjk3" path="res://game_objects/items/attachments/foregrips/stable/stable_foregrip_equip_effect_component.tscn" id="5_22n47"]
 [ext_resource type="Script" path="res://resource_access/item_information.gd" id="6_2581o"]
 [ext_resource type="AudioStream" uid="uid://d2ecw1ttj8xem" path="res://game_objects/effects/sounds/foley/rattle_1.ogg" id="7_qdfj2"]
 
@@ -17,7 +19,7 @@ item_type = 9
 icon = ExtResource("3_1j5wg")
 icon_r = ExtResource("3_1j5wg")
 detail_scene = ExtResource("2_5v6ym")
-context_menu_items = Array[Resource("res://ui/inventory/item_context_item.gd")]([ExtResource("1_yayiw")])
+context_menu_items = Array[ExtResource("1_rv0hj")]([ExtResource("1_yayiw")])
 max_stacks = 1
 has_stacks = false
 max_durability = 1
@@ -31,3 +33,5 @@ mean_pickup_stacks = 1
 stack_random_method = 0
 pickup_sound = ExtResource("7_qdfj2")
 drop_sound = ExtResource("3_58oje")
+slot_data_type = 0
+equip_effect_components = Array[PackedScene]([ExtResource("5_22n47")])
