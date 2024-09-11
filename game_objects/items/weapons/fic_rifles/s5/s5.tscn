@@ -1,6 +1,7 @@
-[gd_scene load_steps=15 format=3 uid="uid://cprpop5lkmyhe"]
+[gd_scene load_steps=16 format=3 uid="uid://cprpop5lkmyhe"]
 
 [ext_resource type="Script" path="res://game_objects/items/weapons/gun.gd" id="1_lhsj7"]
+[ext_resource type="Resource" uid="uid://crt7yeietv5y7" path="res://game_objects/items/weapons/fic_rifles/fic_rifle_gun_stats.tres" id="2_kxl03"]
 [ext_resource type="PackedScene" uid="uid://d1y3lghk4h5l3" path="res://game_objects/items/weapons/fic_rifles/s5/s5.blend" id="4_v8p8c"]
 [ext_resource type="Texture2D" uid="uid://dkcxx06s6kdp6" path="res://game_objects/items/weapons/hic_rifles/pm_52/PixelMuzzelFlash.png" id="5_wks76"]
 [ext_resource type="AudioStream" uid="uid://bc1wim1c1t021" path="res://game_objects/items/weapons/fic_rifles/fic_mag_out.ogg" id="7_hvlr1"]
@@ -168,11 +169,31 @@ random_volume_offset_db = 0.5
 streams_count = 1
 stream_0/stream = ExtResource("10_vdlnj")
 
-[node name="S5" type="RigidBody3D"]
+[node name="S5" type="RigidBody3D" node_paths=PackedStringArray("muzzle", "muzzle_flash_animation_player", "fire_timer", "reload_timer", "reload_animation_player", "gun_model_node", "gun_material_nodes", "scope_anchor", "on_scope_hide_nodes", "on_default_magazine_show_nodes", "on_default_magazine_hide_nodes", "on_extended_magazine_show_nodes", "on_extended_magazine_hide_nodes", "on_stable_foregrip_show_nodes", "mag_node", "model_node")]
 disable_mode = 1
 collision_layer = 5
 collision_mask = 5
+mass = 3.3
 script = ExtResource("1_lhsj7")
+_gun_stats = ExtResource("2_kxl03")
+muzzle = NodePath("s5/Muzzle")
+muzzle_flash_animation_player = NodePath("s5/Muzzle/MuzzleFlashAnimationPlayer")
+fire_timer = NodePath("FireTimer")
+reload_timer = NodePath("ReloadTimer")
+reload_animation_player = NodePath("AnimationPlayer")
+gun_model_node = NodePath("s5")
+gun_material_nodes = [NodePath("s5/barrel")]
+scope_anchor = NodePath("s5/scope_anchor")
+on_scope_hide_nodes = [NodePath("s5/front_sight")]
+on_default_magazine_show_nodes = [NodePath("s5/magazines/magazine")]
+on_default_magazine_hide_nodes = [NodePath("s5/magazines/extended_magazine")]
+on_extended_magazine_show_nodes = [NodePath("s5/magazines/extended_magazine")]
+on_extended_magazine_hide_nodes = [NodePath("s5/magazines/magazine")]
+on_stable_foregrip_show_nodes = [NodePath("s5/stable_foregrip")]
+mag_node = NodePath("s5/magazines")
+item_type_id = "s5"
+world_collider_path = NodePath("CollisionShape3D")
+model_node = NodePath("s5")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -0.00137329, -0.064, -0.054)

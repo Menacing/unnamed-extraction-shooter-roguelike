@@ -3197,7 +3197,7 @@ size = Vector3(4.91016, 3.78424, 11.2449)
 [sub_resource type="BoxShape3D" id="BoxShape3D_7eexi"]
 size = Vector3(1.63269, 1.27386, 2.85742)
 
-[sub_resource type="Resource" id="Resource_vfqya"]
+[sub_resource type="Resource" id="Resource_400va"]
 resource_local_to_scene = true
 script = ExtResource("46_ku5gw")
 weapon_category_name = "FIC Rifle"
@@ -7247,4 +7247,4 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.13073, 0.640675, -1.60992)
 
 [node name="S5" parent="." instance=ExtResource("44_h7vf8")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.75543, 0.591431, -1.44589)
-_gun_stats = SubResource("Resource_vfqya")
+_gun_stats = SubResource("Resource_400va")

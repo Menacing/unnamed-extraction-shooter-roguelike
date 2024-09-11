@@ -330,7 +330,7 @@ points = PackedVector3Array(0.183334, 0.1, 0.15, 0.183334, -0.35, 0.15, 0.233334
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_2cpg3"]
 points = PackedVector3Array(-0.166666, 0.1, 0.15, -0.166666, -0.35, 0.15, -0.116666, -0.35, 0.15, -0.116666, 0.1, 0.15, -0.166666, 0.1, 0.2, -0.166666, -0.35, 0.2, -0.116666, -0.35, 0.2, -0.116666, 0.1, 0.2)
 
-[sub_resource type="Resource" id="Resource_r5vvs"]
+[sub_resource type="Resource" id="Resource_wdqrb"]
 resource_local_to_scene = true
 script = ExtResource("11_hh747")
 weapon_category_name = ""
@@ -363,7 +363,7 @@ script = ExtResource("21_ym4ob")
 equipment_slots = Array[ExtResource("21_qlm4m")]([])
 slot_datas = Array[Array]([[SubResource("Resource_0qw6n"), null, null, null, null, null, null], [null, null, null, null, null, null, null], [null, null, null, null, null, null, null], [null, null, null, null, null, null, null]])
 
-[sub_resource type="Resource" id="Resource_r0rg5"]
+[sub_resource type="Resource" id="Resource_mdbm7"]
 resource_local_to_scene = true
 script = ExtResource("11_hh747")
 weapon_category_name = "FIC Rifle"
@@ -380,7 +380,7 @@ ammo_type = ExtResource("10_q80ko")
 reload_time_Sec = 2.5
 reload_thresholds = Array[float]([1.0])
 
-[sub_resource type="Resource" id="Resource_prq8s"]
+[sub_resource type="Resource" id="Resource_5twge"]
 resource_local_to_scene = true
 script = ExtResource("11_hh747")
 weapon_category_name = "HIC Rifle"
@@ -1279,7 +1279,7 @@ transform = Transform3D(0.846085, 0.142345, -0.513691, -0.165908, 0.986141, 0, 0
 
 [node name="S5" parent="MultiAgentNavigationRoot" instance=ExtResource("9_7oj7m")]
 transform = Transform3D(0.28034, 0.0823512, -0.956362, -0.224502, -0.963056, -0.148736, -0.933278, 0.256402, -0.251495, 0.524934, 0.92531, -0.402487)
-_gun_stats = SubResource("Resource_r5vvs")
+_gun_stats = SubResource("Resource_wdqrb")
 
 [node name="HicBoxAp" parent="MultiAgentNavigationRoot" instance=ExtResource("15_lbv4t")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.70498, 0.227854, -0.46793)
@@ -1403,11 +1403,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 0.112062, -4)
 
 [node name="S5" parent="." instance=ExtResource("9_7oj7m")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.98456, 0.488079, -5.02159)
-_gun_stats = SubResource("Resource_r0rg5")
+_gun_stats = SubResource("Resource_mdbm7")
 
 [node name="PM52" parent="." instance=ExtResource("41_70t3f")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.6161, 0.347091, -5.23843)
-_gun_stats = SubResource("Resource_prq8s")
+_gun_stats = SubResource("Resource_5twge")
 
 [connection signal="hit_occured" from="MultiAgentNavigationRoot/FiestaBox/DamageComponent" to="MultiAgentNavigationRoot/FiestaBox" method="_on_damage_component_hit_occured"]
 [connection signal="hit_occured" from="MultiAgentNavigationRoot/LootChest/DamageComponent" to="MultiAgentNavigationRoot/LootChest" method="_on_damage_component_hit_occured"]

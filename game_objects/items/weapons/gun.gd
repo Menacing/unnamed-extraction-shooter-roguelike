@@ -284,8 +284,9 @@ var magazine_equip_effect_component:EquipEffectComponent
 func _on_item_equipment_changed(inventory_data:InventoryData, equipment_slot:EquipmentSlot):
 	match equipment_slot.slot_name:
 		"OpticsSlot":
-			scope.queue_free()
-			scope = null
+			if scope:
+				scope.queue_free()
+				scope = null
 			hide_nodes(on_scope_show_nodes)
 			show_nodes(on_scope_hide_nodes)
 			if optics_equip_effect_component:
