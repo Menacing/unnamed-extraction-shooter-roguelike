@@ -53,13 +53,13 @@ func _ready():
 func _on_game_saving(save_file:SaveFile):
 	var save_data:LevelEntitySaveData = LevelEntitySaveData.new()
 	save_data.node_path = self.get_path()
+	save_data.additional_data["inventory_data"] = inventory_data
 	save_file.level_entity_save_data.append(save_data)
 	pass
 
 func _on_load_game(save_data:LevelEntitySaveData):
 	pass
-	#inventory_id = save_data.additional_data["inventory_id"]
-	#world_inventory_control.inventory_id = inventory_id
+	inventory_data = save_data.additional_data["inventory_data"]
 
 func _on_populate_level():
 	

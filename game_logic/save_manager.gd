@@ -35,11 +35,6 @@ func load_game(file_path:String) -> SaveFile:
 	# clear the stage
 	EventBus.before_game_loading.emit()
 	
-	#restore item instances
-	#ItemAccess._on_load_game(saved_game)
-	##restore inventories
-	#InventoryManager._on_load_game(saved_game)
-	
 	#restore all root game elements
 	for item:TopLevelEntitySaveData in saved_game.top_level_entity_save_data:
 		# load the scene of the saved item and create a new instance

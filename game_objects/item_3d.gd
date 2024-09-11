@@ -113,8 +113,7 @@ func _on_game_saving(save_file:SaveFile):
 		var item_data:TopLevelEntitySaveData = TopLevelEntitySaveData.new()
 		item_data.global_transform = self.global_transform
 		item_data.scene_path = self.scene_file_path
-		#item_data.additional_data["item_instance_id"] = item_instance_id
-		#item_data.additional_data["item_3d_id"] = item_3d_id
+		item_data.additional_data["slot_data"] = slot_data
 		save_file.top_level_entity_save_data.append(item_data)
 
 func _on_game_before_loading():
@@ -123,8 +122,7 @@ func _on_game_before_loading():
 func _on_load_game(save_data:TopLevelEntitySaveData):
 	if save_data:
 		self.global_transform = save_data.global_transform
-		#item_instance_id = save_data.additional_data["item_instance_id"]
-		#item_3d_id = save_data.additional_data["item_3d_id"]
+		slot_data = save_data.additional_data["slot_data"]
 
 func _on_item_equipment_changed(inventory_data:InventoryData, equipment_slot:EquipmentSlot):
 	pass
