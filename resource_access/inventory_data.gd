@@ -99,6 +99,9 @@ func drop_slot_data(grabbed_slot_data:SlotData, index:int) -> SlotData:
 	else:
 		if original_slot_data.can_fully_merge_with(grabbed_slot_data):
 			original_slot_data.fully_merge_with(grabbed_slot_data)
+		elif original_slot_data.internal_inventory and original_slot_data.internal_inventory.pick_up_slot_data(grabbed_slot_data):
+			#equip item into internal inventory
+			return_slot_data = null
 		#else check for space for swap
 		else:
 			#remove original
@@ -124,7 +127,6 @@ func drop_equipment_slot_data(grabbed_slot_data:SlotData, slot_name:String) -> S
 
 	if equipment_slot:
 		original_slot_data = equipment_slot.slot_data
-
 			
 	#If empty, check if allowed
 	if not original_slot_data:
@@ -139,6 +141,9 @@ func drop_equipment_slot_data(grabbed_slot_data:SlotData, slot_name:String) -> S
 	else:
 		if original_slot_data.can_fully_merge_with(grabbed_slot_data):
 			original_slot_data.fully_merge_with(grabbed_slot_data)
+		elif original_slot_data.internal_inventory and original_slot_data.internal_inventory.pick_up_slot_data(grabbed_slot_data):
+			#equip item into internal inventory
+			return_slot_data = null
 		#else check for space for swap
 		else:
 			if grabbed_slot_data.item_data.item_type in equipment_slot.allowed_types:

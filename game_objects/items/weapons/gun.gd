@@ -301,8 +301,9 @@ func _on_item_equipment_changed(inventory_data:InventoryData, equipment_slot:Equ
 				hide_nodes(on_scope_hide_nodes)
 				
 				move_attachment_to_anchor(item_3d, scope_anchor)
-				optics_equip_effect_component = equipment_slot.slot_data.item_data.equip_effect_component.instantiate()
-				self.add_child(optics_equip_effect_component)
+				if equipment_slot.slot_data.item_data.equip_effect_component:
+					optics_equip_effect_component = equipment_slot.slot_data.item_data.equip_effect_component.instantiate()
+					self.add_child(optics_equip_effect_component)
 			pass
 		"MagsSlot":
 			show_nodes(on_default_magazine_show_nodes)
@@ -315,9 +316,9 @@ func _on_item_equipment_changed(inventory_data:InventoryData, equipment_slot:Equ
 				if equipment_slot.slot_data.item_data.item_type_id == "extended_magazine":
 					show_nodes(on_extended_magazine_show_nodes)
 					hide_nodes(on_extended_magazine_hide_nodes)
-					
-				magazine_equip_effect_component = equipment_slot.slot_data.item_data.equip_effect_component.instantiate()
-				self.add_child(magazine_equip_effect_component)
+				if equipment_slot.slot_data.item_data.equip_effect_component:
+					magazine_equip_effect_component = equipment_slot.slot_data.item_data.equip_effect_component.instantiate()
+					self.add_child(magazine_equip_effect_component)
 		"ForegripsSlot":
 			show_nodes(on_stable_foregrip_hide_nodes)
 			hide_nodes(on_stable_foregrip_show_nodes)
@@ -330,9 +331,9 @@ func _on_item_equipment_changed(inventory_data:InventoryData, equipment_slot:Equ
 				if equipment_slot.slot_data.item_data.item_type_id == "stable_foregrip":
 					show_nodes(on_stable_foregrip_show_nodes)
 					hide_nodes(on_stable_foregrip_hide_nodes)
-				
-				foregrips_equip_effect_component = equipment_slot.slot_data.item_data.equip_effect_component.instantiate()
-				self.add_child(foregrips_equip_effect_component)
+				if equipment_slot.slot_data.item_data.equip_effect_component:
+					foregrips_equip_effect_component = equipment_slot.slot_data.item_data.equip_effect_component.instantiate()
+					self.add_child(foregrips_equip_effect_component)
 
 	pass
 
