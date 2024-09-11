@@ -69,6 +69,7 @@ func set_hideout_inventory() -> void:
 	var inventory_data = external_inventory_owner.inventory_data
 	
 	_connect_inventory_data_signals(inventory_data)
+	inventory_data.material_picked_up.connect(_on_material_picked_up)
 	
 	external_inventory_data = inventory_data
 	hideout_menu.stash_inventory_control.set_inventory_data(inventory_data)
@@ -263,6 +264,13 @@ func _on_item_show_detail_scene(slot_data:SlotData, detail_scene:ItemDetailPopup
 func _on_ammo_picked_up(inventory_data:InventoryData, slot_data:SlotData) -> void:
 	var ammo_information:AmmoInformation = slot_data.item_data
 	var remainder = ammo_component.add_ammo(ammo_information.ammo_type.name, ammo_information.ammo_subtype.name, slot_data.quantity)
+	play_pickup_sound(slot_data)
+	slot_data.quantity = remainder
+	if remainder == 0:
+		inventory_data.set_slot_data_by_index(slot_data.root_index, null, slot_data.get_height(), slot_data.get_width())
+		
+func _on_material_picked_up(inventory_data:InventoryData, slot_data:SlotData) -> void:
+	var remainder = HideoutManager.add_crafting_material(slot_data)
 	play_pickup_sound(slot_data)
 	slot_data.quantity = remainder
 	if remainder == 0:

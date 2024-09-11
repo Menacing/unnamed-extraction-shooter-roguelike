@@ -48,13 +48,12 @@ func _on_load_game(save_data:LevelEntitySaveData):
 	pass
 
 
-func add_crafting_material_item_instance(material:ItemInstance) -> int:
-	if material._item_info is MaterialInformation:
-		var mat_info:MaterialInformation = material._item_info
+func add_crafting_material(material:SlotData) -> int:
+	if material.item_data is MaterialInformation:
+		var mat_info:MaterialInformation = material.item_data
 		for cme:CraftingMaterialEntry in crafting_materials:
 			if cme.material_definition.name == mat_info.crafting_material_definition.name:
 				cme.amount += material.stacks * mat_info.amount_per_stack
-			
 	else:
 		printerr("NO MAPPING FOR ITEM %s" % material.get_item_type_id())
 	
