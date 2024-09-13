@@ -85,7 +85,10 @@ func get_ads_anchor() -> Vector3:
 		var scope_offset = scope.get_ads_offset()
 		base_position.x = scope_anchor.position.x + scope_offset.x
 		base_position.y = scope_anchor.position.y + scope_offset.y
-	return base_position
+		return base_position
+	else:
+		return self.get_node("ADS").position
+		
 	
 func get_ads_head_anchor() -> Vector3:
 	return self.get_node("ADS_Head").position

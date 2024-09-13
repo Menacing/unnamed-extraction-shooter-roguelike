@@ -1,7 +1,8 @@
-[gd_scene load_steps=16 format=3 uid="uid://cprpop5lkmyhe"]
+[gd_scene load_steps=17 format=3 uid="uid://cprpop5lkmyhe"]
 
 [ext_resource type="Script" path="res://game_objects/items/weapons/gun.gd" id="1_lhsj7"]
 [ext_resource type="Resource" uid="uid://crt7yeietv5y7" path="res://game_objects/items/weapons/fic_rifles/fic_rifle_gun_stats.tres" id="2_kxl03"]
+[ext_resource type="PackedScene" uid="uid://gfj0vsvmo4ik" path="res://game_objects/bullet/iterative_raycast_bullet.tscn" id="2_qrg6d"]
 [ext_resource type="PackedScene" uid="uid://d1y3lghk4h5l3" path="res://game_objects/items/weapons/fic_rifles/s5/s5.blend" id="4_v8p8c"]
 [ext_resource type="Texture2D" uid="uid://dkcxx06s6kdp6" path="res://game_objects/items/weapons/hic_rifles/pm_52/PixelMuzzelFlash.png" id="5_wks76"]
 [ext_resource type="AudioStream" uid="uid://bc1wim1c1t021" path="res://game_objects/items/weapons/fic_rifles/fic_mag_out.ogg" id="7_hvlr1"]
@@ -175,6 +176,7 @@ collision_layer = 5
 collision_mask = 5
 mass = 3.3
 script = ExtResource("1_lhsj7")
+_bullet_scene = ExtResource("2_qrg6d")
 _gun_stats = ExtResource("2_kxl03")
 muzzle = NodePath("s5/Muzzle")
 muzzle_flash_animation_player = NodePath("s5/Muzzle/MuzzleFlashAnimationPlayer")
@@ -183,7 +185,7 @@ reload_timer = NodePath("ReloadTimer")
 reload_animation_player = NodePath("AnimationPlayer")
 gun_model_node = NodePath("s5")
 gun_material_nodes = [NodePath("s5/barrel")]
-scope_anchor = NodePath("s5/scope_anchor")
+scope_anchor = NodePath("scope_anchor")
 on_scope_hide_nodes = [NodePath("s5/front_sight"), NodePath("s5/rear_sight")]
 on_default_magazine_show_nodes = [NodePath("s5/magazines/magazine")]
 on_default_magazine_hide_nodes = [NodePath("s5/magazines/extended_magazine")]
@@ -245,9 +247,6 @@ libraries = {
 "": SubResource("AnimationLibrary_rga3e")
 }
 
-[node name="scope_anchor" type="Node3D" parent="s5"]
-transform = Transform3D(-1, 0, -2.53518e-06, 0, 1, 0, 2.53518e-06, 0, -1, -1.31228e-07, 0.02233, -0.0517627)
-
 [node name="Right_Hand" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 7.10543e-15, 0, 1, 0, -7.10543e-15, 0, 1, 0.025, -0.123366, 0.144166)
 
@@ -296,5 +295,8 @@ stream = SubResource("AudioStreamRandomizer_has1p")
 volume_db = 6.0
 max_polyphony = 20
 bus = &"SFX"
+
+[node name="scope_anchor" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.31228e-07, 0.02233, 0.0551294)
 
 [editable path="s5"]

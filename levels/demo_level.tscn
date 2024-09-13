@@ -1277,9 +1277,16 @@ shape = SubResource("ConvexPolygonShape3D_2cpg3")
 [node name="red_dot" parent="MultiAgentNavigationRoot" instance=ExtResource("8_2b85p")]
 transform = Transform3D(0.846085, 0.142345, -0.513691, -0.165908, 0.986141, 0, 0.506572, 0.0852256, 0.857975, 0.0414739, 0.58301, 0.16491)
 
-[node name="S5" parent="MultiAgentNavigationRoot" instance=ExtResource("9_7oj7m")]
+[node name="S5" parent="MultiAgentNavigationRoot" node_paths=PackedStringArray("gun_material_nodes", "on_scope_hide_nodes", "on_default_magazine_show_nodes", "on_default_magazine_hide_nodes", "on_extended_magazine_show_nodes", "on_extended_magazine_hide_nodes", "on_stable_foregrip_show_nodes") instance=ExtResource("9_7oj7m")]
 transform = Transform3D(0.28034, 0.0823512, -0.956362, -0.224502, -0.963056, -0.148736, -0.933278, 0.256402, -0.251495, 0.524934, 0.92531, -0.402487)
 _gun_stats = SubResource("Resource_wdqrb")
+gun_material_nodes = []
+on_scope_hide_nodes = []
+on_default_magazine_show_nodes = []
+on_default_magazine_hide_nodes = []
+on_extended_magazine_show_nodes = []
+on_extended_magazine_hide_nodes = []
+on_stable_foregrip_show_nodes = []
 
 [node name="HicBoxAp" parent="MultiAgentNavigationRoot" instance=ExtResource("15_lbv4t")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.70498, 0.227854, -0.46793)
@@ -1401,13 +1408,28 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.5375, 0.0788302, -4.91273)
 [node name="ScrapMetalWheel" parent="." instance=ExtResource("40_0qi33")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 0.112062, -4)
 
-[node name="S5" parent="." instance=ExtResource("9_7oj7m")]
+[node name="S5" parent="." node_paths=PackedStringArray("gun_material_nodes", "on_scope_hide_nodes", "on_default_magazine_show_nodes", "on_default_magazine_hide_nodes", "on_extended_magazine_show_nodes", "on_extended_magazine_hide_nodes", "on_stable_foregrip_show_nodes") instance=ExtResource("9_7oj7m")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.98456, 0.488079, -5.02159)
 _gun_stats = SubResource("Resource_mdbm7")
+gun_material_nodes = []
+on_scope_hide_nodes = []
+on_default_magazine_show_nodes = []
+on_default_magazine_hide_nodes = []
+on_extended_magazine_show_nodes = []
+on_extended_magazine_hide_nodes = []
+on_stable_foregrip_show_nodes = []
 
-[node name="PM52" parent="." instance=ExtResource("41_70t3f")]
+[node name="PM52" parent="." node_paths=PackedStringArray("gun_material_nodes", "on_scope_show_nodes", "on_default_magazine_show_nodes", "on_default_magazine_hide_nodes", "on_extended_magazine_show_nodes", "on_extended_magazine_hide_nodes", "on_stable_foregrip_show_nodes", "on_stable_foregrip_hide_nodes") instance=ExtResource("41_70t3f")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.6161, 0.347091, -5.23843)
 _gun_stats = SubResource("Resource_5twge")
+gun_material_nodes = []
+on_scope_show_nodes = []
+on_default_magazine_show_nodes = []
+on_default_magazine_hide_nodes = []
+on_extended_magazine_show_nodes = []
+on_extended_magazine_hide_nodes = []
+on_stable_foregrip_show_nodes = []
+on_stable_foregrip_hide_nodes = []
 
 [connection signal="hit_occured" from="MultiAgentNavigationRoot/FiestaBox/DamageComponent" to="MultiAgentNavigationRoot/FiestaBox" method="_on_damage_component_hit_occured"]
 [connection signal="hit_occured" from="MultiAgentNavigationRoot/LootChest/DamageComponent" to="MultiAgentNavigationRoot/LootChest" method="_on_damage_component_hit_occured"]

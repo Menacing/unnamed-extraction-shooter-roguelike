@@ -5,3 +5,6 @@ class_name Scope
 
 func get_ads_offset() -> Vector3:
 	return eye_position.position
+
+func get_global_eye_position() -> Vector3:
+	return eye_position.global_position
