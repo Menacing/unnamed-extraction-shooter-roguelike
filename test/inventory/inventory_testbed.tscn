@@ -1,0 +1,107 @@
+[gd_scene load_steps=21 format=3 uid="uid://dalylkjs05jvn"]
+
+[ext_resource type="PackedScene" uid="uid://d08aatgxmymbf" path="res://game_objects/player/player.tscn" id="1_djb1h"]
+[ext_resource type="Script" path="res://levels/loot_chest.gd" id="2_7gssw"]
+[ext_resource type="Script" path="res://resource_access/equipment_slot_data.gd" id="2_eic2w"]
+[ext_resource type="Script" path="res://resource_access/inventory_data.gd" id="4_wpdyo"]
+[ext_resource type="Resource" uid="uid://bk7x5qi5hl1p8" path="res://game_objects/items/materials/polymer_pile/polymer_pile_inventory_info.tres" id="5_jowp7"]
+[ext_resource type="Script" path="res://resource_access/slot_data.gd" id="6_lpxmd"]
+[ext_resource type="Resource" uid="uid://3a15imh4nlqg" path="res://game_objects/items/materials/polymer_spool/polymer_spool_inventory_info.tres" id="7_uirql"]
+[ext_resource type="PackedScene" uid="uid://dr48wela8mtxd" path="res://game_objects/items/weapons/hic_rifles/pm_52/pm_52.tscn" id="8_5tnfd"]
+[ext_resource type="Resource" uid="uid://3nqgvhg4lre8" path="res://components/ammo_component/ammo_types/heavy_intermediate_cartridge/heavy_intermediate_cartridge.tres" id="9_6aw1f"]
+[ext_resource type="Script" path="res://game_objects/items/weapons/gun_stats.gd" id="10_7awja"]
+[ext_resource type="PackedScene" uid="uid://b6xejgxv7attc" path="res://game_objects/items/backpacks/large/large_backpack_1.tscn" id="13_ltmnb"]
+[ext_resource type="PackedScene" uid="uid://cprpop5lkmyhe" path="res://game_objects/items/weapons/fic_rifles/s5/s5.tscn" id="14_5mugt"]
+[ext_resource type="Resource" uid="uid://bikewy7dlkv20" path="res://components/ammo_component/ammo_types/fast_intermediate_cartridge/fast_intermediate_cartridge.tres" id="15_8ysfh"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nimtq"]
+albedo_color = Color(0.358214, 0.266036, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4skll"]
+albedo_color = Color(0.352643, 0.513708, 0.301008, 1)
+
+[sub_resource type="Resource" id="Resource_sg8ar"]
+script = ExtResource("6_lpxmd")
+item_data = ExtResource("5_jowp7")
+quantity = 5
+durability = 1
+root_index = 2
+is_rotated = false
+
+[sub_resource type="Resource" id="Resource_ft8wo"]
+script = ExtResource("6_lpxmd")
+item_data = ExtResource("7_uirql")
+quantity = 2
+durability = 1
+root_index = 5
+is_rotated = false
+
+[sub_resource type="Resource" id="Resource_ylxxo"]
+script = ExtResource("4_wpdyo")
+equipment_slots = Array[ExtResource("2_eic2w")]([])
+slot_datas = Array[Array]([[null, null, SubResource("Resource_sg8ar"), null, null, SubResource("Resource_ft8wo"), SubResource("Resource_ft8wo")], [null, null, null, null, null, SubResource("Resource_ft8wo"), SubResource("Resource_ft8wo")], [null, null, null, null, null, null, null], [null, null, null, null, null, null, null]])
+
+[sub_resource type="Resource" id="Resource_ct15q"]
+resource_local_to_scene = true
+script = ExtResource("10_7awja")
+weapon_category_name = "HIC Rifle"
+magazine_size = 30
+rpm = 600
+base_recoil = Vector2(0, 0.025)
+recoil_variability = Vector2(0.025, 0.013)
+fire_modes = ["semi", "auto"]
+ads_accel = 10.0
+ads_fov = 50.0
+moa = 5.0
+turn_speed = 25.0
+ammo_type = ExtResource("9_6aw1f")
+reload_time_Sec = 2.5
+reload_thresholds = Array[float]([1.0])
+
+[sub_resource type="Resource" id="Resource_xe1y5"]
+resource_local_to_scene = true
+script = ExtResource("10_7awja")
+weapon_category_name = "FIC Rifle"
+magazine_size = 30
+rpm = 800
+base_recoil = Vector2(0, 0.017)
+recoil_variability = Vector2(0.02, 0.01)
+fire_modes = ["semi", "auto"]
+ads_accel = 10.0
+ads_fov = 50.0
+moa = 4.0
+turn_speed = 25.0
+ammo_type = ExtResource("15_8ysfh")
+reload_time_Sec = 2.5
+reload_thresholds = Array[float]([1.0])
+
+[node name="InventoryTestbed" type="Node3D"]
+
+[node name="Floor" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, 0)
+use_collision = true
+size = Vector3(10, 0.5, 10)
+material = SubResource("StandardMaterial3D_nimtq")
+
+[node name="Player" parent="." instance=ExtResource("1_djb1h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.539896, 1.15445, 2.38289)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="." groups=["external_inventory"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -3.00282)
+use_collision = true
+collision_layer = 5
+collision_mask = 5
+material = SubResource("StandardMaterial3D_4skll")
+script = ExtResource("2_7gssw")
+inventory_data = SubResource("Resource_ylxxo")
+
+[node name="PM52" parent="." instance=ExtResource("8_5tnfd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.643464, 0.446171, -1.31019)
+_gun_stats = SubResource("Resource_ct15q")
+
+[node name="S5" parent="." instance=ExtResource("14_5mugt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.312681, 0.719095, -0.719181)
+_gun_stats = SubResource("Resource_xe1y5")
+
+[node name="large_backpack_1" parent="." instance=ExtResource("13_ltmnb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.50131, 0.270966, -1.53946)

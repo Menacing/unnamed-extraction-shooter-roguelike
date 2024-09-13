@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://byxda6yp3siwd"]
+[gd_scene load_steps=8 format=4 uid="uid://byxda6yp3siwd"]
 
 [ext_resource type="Script" path="res://game_objects/item_3d.gd" id="1_5aong"]
 [ext_resource type="PackedScene" uid="uid://bmn1b1gbvgcn6" path="res://game_objects/items/ammo/fic/fic_box_fmj.blend" id="2_rp18p"]
@@ -16,12 +16,12 @@ _surfaces = [{
 "aabb": AABB(-1, -1, -1, 2.00001, 2.00001, 2),
 "format": 34896613377,
 "index_count": 36,
-"index_data": PackedByteArray(0, 0, 6, 0, 4, 0, 0, 0, 2, 0, 6, 0, 3, 0, 6, 0, 2, 0, 3, 0, 7, 0, 6, 0, 7, 0, 4, 0, 6, 0, 7, 0, 5, 0, 4, 0, 5, 0, 3, 0, 1, 0, 5, 0, 7, 0, 3, 0, 1, 0, 2, 0, 0, 0, 1, 0, 3, 0, 2, 0, 5, 0, 0, 0, 4, 0, 5, 0, 1, 0, 0, 0),
+"index_data": PackedByteArray("AAAGAAQAAAACAAYAAwAGAAIAAwAHAAYABwAEAAYABwAFAAQABQADAAEABQAHAAMAAQACAAAAAQADAAIABQAAAAQABQABAAAA"),
 "name": "fmj_m",
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
 "vertex_count": 8,
-"vertex_data": PackedByteArray(254, 255, 254, 255, 0, 0, 0, 0, 254, 255, 0, 0, 0, 0, 0, 0, 254, 255, 254, 255, 255, 255, 0, 0, 254, 255, 0, 0, 255, 255, 0, 0, 0, 0, 254, 255, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 254, 255, 255, 255, 0, 0, 0, 0, 0, 0, 255, 255, 0, 0)
+"vertex_data": PackedByteArray("/v/+/wAAAAD+/wAAAAAAAP7//v///wAA/v8AAP//AAAAAP7/AAAAAAAAAAAAAAAAAAD+////AAAAAAAA//8AAA==")
 }]
 blend_shape_mode = 0
 
@@ -29,16 +29,16 @@ blend_shape_mode = 0
 resource_name = "fic_box_fmj_Cube"
 _surfaces = [{
 "aabb": AABB(-1, -1, -1, 2.00001, 2.00001, 2),
-"attribute_data": PackedByteArray(0, 0, 0, 0, 255, 255, 0, 0, 255, 135, 255, 127, 0, 0, 255, 255, 255, 135, 0, 0, 255, 255, 255, 127, 255, 135, 0, 0, 255, 255, 255, 127, 255, 135, 255, 255, 255, 135, 255, 255, 255, 135, 255, 127, 255, 255, 255, 255, 255, 135, 0, 0, 255, 135, 0, 0, 255, 135, 255, 255, 255, 135, 254, 255, 255, 255, 0, 0, 255, 255, 255, 255, 0, 0, 0, 0, 255, 135, 255, 127, 255, 135, 255, 127, 0, 0, 255, 255, 255, 255, 255, 127, 255, 255, 255, 127),
+"attribute_data": PackedByteArray("AAAAAP//AAD/h/9/AAD///+HAAD///9//4cAAP///3//h////4f///+H/3///////4cAAP+HAAD/h////4f+////AAD/////AAAAAP+H/3//h/9/AAD//////3////9/"),
 "format": 34896613399,
 "index_count": 36,
-"index_data": PackedByteArray(1, 0, 19, 0, 13, 0, 1, 0, 7, 0, 19, 0, 9, 0, 18, 0, 6, 0, 9, 0, 21, 0, 18, 0, 23, 0, 14, 0, 20, 0, 23, 0, 17, 0, 14, 0, 16, 0, 10, 0, 4, 0, 16, 0, 22, 0, 10, 0, 5, 0, 8, 0, 2, 0, 5, 0, 11, 0, 8, 0, 15, 0, 0, 0, 12, 0, 15, 0, 3, 0, 0, 0),
+"index_data": PackedByteArray("AQATAA0AAQAHABMACQASAAYACQAVABIAFwAOABQAFwARAA4AEAAKAAQAEAAWAAoABQAIAAIABQALAAgADwAAAAwADwADAAAA"),
 "material": SubResource("StandardMaterial3D_0fm3d"),
 "name": "fmj_m",
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
 "vertex_count": 24,
-"vertex_data": PackedByteArray(254, 255, 254, 255, 0, 0, 255, 255, 254, 255, 254, 255, 0, 0, 255, 191, 254, 255, 254, 255, 0, 0, 84, 213, 254, 255, 0, 0, 0, 0, 255, 255, 254, 255, 0, 0, 0, 0, 255, 255, 254, 255, 0, 0, 0, 0, 84, 213, 254, 255, 254, 255, 255, 255, 0, 128, 254, 255, 254, 255, 255, 255, 255, 191, 254, 255, 254, 255, 255, 255, 84, 213, 254, 255, 0, 0, 255, 255, 0, 128, 254, 255, 0, 0, 255, 255, 255, 255, 254, 255, 0, 0, 255, 255, 84, 213, 0, 0, 254, 255, 0, 0, 255, 255, 0, 0, 254, 255, 0, 0, 255, 191, 0, 0, 254, 255, 0, 0, 84, 213, 0, 0, 0, 0, 0, 0, 255, 255, 0, 0, 0, 0, 0, 0, 255, 255, 0, 0, 0, 0, 0, 0, 84, 213, 0, 0, 254, 255, 255, 255, 0, 128, 0, 0, 254, 255, 255, 255, 255, 191, 0, 0, 254, 255, 255, 255, 84, 213, 0, 0, 0, 0, 255, 255, 0, 128, 0, 0, 0, 0, 255, 255, 255, 255, 0, 0, 0, 0, 255, 255, 84, 213, 255, 127, 255, 255, 255, 255, 255, 127, 170, 170, 84, 85, 255, 127, 255, 255, 255, 127, 255, 63, 170, 170, 84, 85, 255, 127, 255, 255, 255, 255, 255, 127, 170, 170, 84, 85, 255, 127, 255, 255, 255, 127, 255, 63, 170, 170, 84, 85, 255, 127, 255, 255, 255, 255, 255, 127, 84, 85, 170, 170, 255, 127, 255, 255, 255, 127, 255, 63, 84, 85, 170, 170, 255, 127, 255, 255, 255, 255, 255, 127, 84, 85, 170, 170, 255, 127, 255, 255, 255, 127, 255, 63, 84, 85, 170, 170)
+"vertex_data": PackedByteArray("/v/+/wAA///+//7/AAD/v/7//v8AAFTV/v8AAAAA///+/wAAAAD///7/AAAAAFTV/v/+////AID+//7/////v/7//v///1TV/v8AAP//AID+/wAA//////7/AAD//1TVAAD+/wAA//8AAP7/AAD/vwAA/v8AAFTVAAAAAAAA//8AAAAAAAD//wAAAAAAAFTVAAD+////AIAAAP7/////vwAA/v///1TVAAAAAP//AIAAAAAA/////wAAAAD//1TV/3///////3+qqlRV/3////9//z+qqlRV/3///////3+qqlRV/3////9//z+qqlRV/3///////39UVaqq/3////9//z9UVaqq/3///////39UVaqq/3////9//z9UVaqq")
 }]
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_wnruo")
@@ -46,7 +46,7 @@ shadow_mesh = SubResource("ArrayMesh_wnruo")
 [sub_resource type="BoxShape3D" id="BoxShape3D_hxfpi"]
 size = Vector3(0.120941, 0.119818, 0.0797119)
 
-[node name="HicBox" type="RigidBody3D" node_paths=PackedStringArray("model_node", "foley_player")]
+[node name="HicBox" type="RigidBody3D" node_paths=PackedStringArray("model_node")]
 collision_layer = 5
 collision_mask = 5
 script = ExtResource("1_5aong")
@@ -54,7 +54,6 @@ item_type_id = "fic_box_ap"
 world_collider_path = NodePath("CollisionShape3D")
 longest_side_size = 0.15
 model_node = NodePath("fic_box_fmj")
-foley_player = NodePath("FoleyAudioStreamPlayer3D")
 
 [node name="fic_box_fmj" parent="." instance=ExtResource("2_rp18p")]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.0600941, 0)
@@ -65,7 +64,5 @@ mesh = SubResource("ArrayMesh_6mlmc")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000259388, 0.0599775, 6.10324e-05)
 shape = SubResource("BoxShape3D_hxfpi")
-
-[node name="FoleyAudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
 
 [editable path="fic_box_fmj"]

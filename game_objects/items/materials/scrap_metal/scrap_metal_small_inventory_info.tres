@@ -1,20 +1,16 @@
-[gd_resource type="Resource" script_class="MaterialInformation" load_steps=9 format=3 uid="uid://bflcwsdhsv8um"]
+[gd_resource type="Resource" script_class="MaterialInformation" load_steps=7 format=3 uid="uid://bflcwsdhsv8um"]
 
-[ext_resource type="Resource" uid="uid://b7xbokgogvcm4" path="res://ui/inventory/split_stack_context_item.tres" id="1_2rnvj"]
+[ext_resource type="Script" path="res://ui/inventory/item_context_item.gd" id="1_wvmb4"]
 [ext_resource type="Resource" uid="uid://o6tesi76nbth" path="res://ui/inventory/drop_item_context_item.tres" id="2_agqar"]
 [ext_resource type="Resource" uid="uid://c5prst133rftn" path="res://game_objects/crafting_materials/scrap_metal.tres" id="3_p8edo"]
 [ext_resource type="PackedScene" uid="uid://son7demex4pt" path="res://ui/inventory/detail_scenes/simple_detail_popup.tscn" id="4_sfgdo"]
 [ext_resource type="Texture2D" uid="uid://dtkyf01t40wth" path="res://game_objects/items/materials/scrap_metal/scrap_metal_small_icon.png" id="5_q2q1f"]
-[ext_resource type="PackedScene" uid="uid://cnum3ugscdofq" path="res://game_objects/items/materials/scrap_metal/scrap_metal_small.tscn" id="6_hotxo"]
-[ext_resource type="PackedScene" uid="uid://cn3ywqty7xvvr" path="res://ui/inventory/item_control.tscn" id="7_65nn4"]
 [ext_resource type="Script" path="res://game_objects/items/materials/material_information.gd" id="8_inhn3"]
 
 [resource]
 script = ExtResource("8_inhn3")
 crafting_material_definition = ExtResource("3_p8edo")
 amount_per_stack = 1
-item_control_scene = ExtResource("7_65nn4")
-item_3d_scene = ExtResource("6_hotxo")
 item_type_id = "scrap_metal_small"
 show_name = false
 display_name = "Scrap Metal"
@@ -23,7 +19,7 @@ item_type = 2
 icon = ExtResource("5_q2q1f")
 icon_r = ExtResource("5_q2q1f")
 detail_scene = ExtResource("4_sfgdo")
-context_menu_items = Array[Resource("res://ui/inventory/item_context_item.gd")]([ExtResource("1_2rnvj"), ExtResource("2_agqar")])
+context_menu_items = Array[ExtResource("1_wvmb4")]([ExtResource("2_agqar")])
 max_stacks = 10
 has_stacks = true
 max_durability = 1
@@ -35,3 +31,4 @@ flavor_text = ""
 min_pickup_stacks = 1
 mean_pickup_stacks = 1
 stack_random_method = 0
+slot_data_type = 0

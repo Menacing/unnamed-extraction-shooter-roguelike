@@ -11,10 +11,10 @@ class_name AmmoDetailPopup
 
 @export var item_outline_material:Material = load("res://ui/inventory/item_outline_material.tres")
 
-var _weapon_modification_container:InventoryControlBase
-var weapon_modification_container:InventoryControlBase:
-	get:
-		return $VBoxContainer/ModificationSlotVBoxContainer
+#var _weapon_modification_container:InventoryControlBase
+#var weapon_modification_container:InventoryControlBase:
+	#get:
+		#return $VBoxContainer/ModificationSlotVBoxContainer
 
 
 var _item_3d:Item3D
@@ -28,15 +28,6 @@ var item_3d:Item3D:
 		map_ammo_values(value)
 		setup_item_model(value)
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	var item_instance:ItemInstance = ItemAccess.get_item_instance(item_instance_id)
-	if item_instance:
-		item_3d = ItemAccess.get_item_3d(item_instance.id_3d) as Item3D
-
-
-func set_internal_inventory(internal_inventory:Inventory):
-	weapon_modification_container._inventory = internal_inventory
 
 func _input(event:InputEvent):
 	if event.is_action_pressed("ui_cancel"):
@@ -50,8 +41,7 @@ func _close_self():
 	self.queue_free()
 
 func map_ammo_values(item_3d:Item3D):
-	var item_inst:ItemInstance = item_3d.get_item_instance()
-	var item_info = item_inst._item_info
+	var item_info = item_3d.slot_data.item_data
 	if item_info is AmmoInformation:
 		var ammo_info:AmmoInformation = item_info
 		
@@ -71,7 +61,7 @@ func map_item_description(item:Item3D):
 
 func map_item_name(item:Item3D):
 	item_name_label.text = item.get_item_instance().get_display_name()
-	title = item.get_item_instance().get_display_name()
+	#title = item.get_item_instance().get_display_name()
 	
 func setup_item_model(item:Item3D):
 	#clear any existing children
@@ -93,4 +83,3 @@ func adjust_camera_to_fit():
 
 	var largest_axis = item_3d.longest_side_size
 	viewport_camera.size = largest_axis * 1.1
-

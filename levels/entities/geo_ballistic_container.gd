@@ -3,15 +3,19 @@ class_name GeoBallisticContainer
 extends GeoBallisticSolid
 
 @onready var item_highlight_m:ShaderMaterial = load("res://themes/item_highlighter_m.tres")
-@export var world_inventory_control_scene:PackedScene = preload("res://ui/inventory/world_inventory.tscn")
 @export var biome_index:int
 @export var tier_index:int
 @export var min_spawned:int
 @export var max_spawned:int
-var world_inventory_control:WorldInventory
 @export var container_size:int
-var inventory_id:int
 @export var chance_active:float = 1.0
+
+signal toggle_inventory(external_inventory_owner)
+
+@export var inventory_data:InventoryData = InventoryData.new()
+
+func use(player:Player) -> void:
+	toggle_inventory.emit(self)
 
 func _func_godot_apply_properties(entity_properties: Dictionary):
 	super(entity_properties)
@@ -27,6 +31,10 @@ func _func_godot_apply_properties(entity_properties: Dictionary):
 		max_spawned = int(func_godot_properties['max_spawned'])
 	if 'chance_active' in func_godot_properties:
 		chance_active = float(func_godot_properties['chance_active'])
+
+	inventory_data = InventoryData.new()
+	add_to_group("external_inventory", true)
+
 		
 var model_shuffle_bag:Array[LootSpawnInformation] = []
 var current_shuffle_bag:Array[LootSpawnInformation] = []
@@ -36,13 +44,8 @@ func _ready():
 		return
 	#do ballistic solid stuff
 	super()
-	#instantiate inventory control
-	world_inventory_control = world_inventory_control_scene.instantiate()
-	self.add_child(world_inventory_control)
-	
 	#setup inventory linkages
-	world_inventory_control.container_size = container_size
-	EventBus.item_picked_up.connect(_on_item_picked_up)
+	inventory_data.set_inventory_size(container_size)
 	Helpers.apply_material_overlay_to_children(self, item_highlight_m)
 	EventBus.populate_level.connect(_on_populate_level)
 	EventBus.game_saving.connect(_on_game_saving)
@@ -50,17 +53,15 @@ func _ready():
 func _on_game_saving(save_file:SaveFile):
 	var save_data:LevelEntitySaveData = LevelEntitySaveData.new()
 	save_data.node_path = self.get_path()
-	save_data.additional_data["inventory_id"] = inventory_id
+	save_data.additional_data["inventory_data"] = inventory_data
 	save_file.level_entity_save_data.append(save_data)
 	pass
 
 func _on_load_game(save_data:LevelEntitySaveData):
-	inventory_id = save_data.additional_data["inventory_id"]
-	world_inventory_control.inventory_id = inventory_id
+	pass
+	inventory_data = save_data.additional_data["inventory_data"]
 
 func _on_populate_level():
-	add_to_group("loot_container", true)
-	inventory_id = world_inventory_control.inventory_id
 	
 	var loot_spawn_mapping:LootSpawnMapping = LootSpawnManager.get_loot_spawn_mapping(biome_index,tier_index)
 	
@@ -85,18 +86,14 @@ func _on_populate_level():
 	
 	current_shuffle_bag = model_shuffle_bag.duplicate(true)
 	current_shuffle_bag.shuffle()
-	if InventoryManager.inventory_exists(inventory_id):
+	if inventory_data:
 		for i in range(number_to_spawn):
 			var lsi:LootSpawnInformation = get_spawn_info()
 			var item_info:ItemInformation = lsi.item_information
-			var item_instance = ItemInstance.new(item_info)
-			item_instance.spawn_item()
-			if item_info.max_stacks > 0:
-				var stack:int = randi_range(lsi.min_stack, lsi.max_stack)
-				item_instance.stacks = stack
-			EventBus.pickup_item.emit(item_instance, inventory_id)
-
-
+			
+			var slot_data:SlotData = SlotData.instantiate_from_item_information(item_info)
+			
+			inventory_data.pick_up_slot_data(slot_data)
 
 func get_spawn_info() -> LootSpawnInformation:
 	if current_shuffle_bag.is_empty():
@@ -104,23 +101,3 @@ func get_spawn_info() -> LootSpawnInformation:
 		current_shuffle_bag.shuffle()
 	
 	return current_shuffle_bag.pop_front()
-
-func use(player:Player):
-	if world_inventory_control.visible:
-		player.close_inventory()
-		EventBus.close_inventory.emit(inventory_id)
-	else:
-		player.open_inventory()
-		EventBus.open_inventory.emit(inventory_id)
-
-func on_inv_closed(player:Player):
-	EventBus.close_inventory.emit(inventory_id)
-
-
-func _on_item_picked_up(result:InventoryInsertResult):
-	if result.inventory_id == inventory_id:
-		var item_instance:ItemInstance = InventoryManager.get_item(result.item_instance_id)
-		var item_3d:Item3D = ItemAccess.get_item_3d(item_instance.id_3d)
-		Helpers.force_parent(item_3d,self)
-		item_3d.picked_up()
-		item_3d.visible = false

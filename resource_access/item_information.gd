@@ -1,8 +1,6 @@
 extends Resource
 class_name ItemInformation
 
-@export var item_control_scene:PackedScene
-@export var item_3d_scene:PackedScene
 @export var item_type_id:String
 @export var show_name:bool = false
 @export var display_name:String
@@ -10,7 +8,7 @@ class_name ItemInformation
 @export var item_type:GameplayEnums.ItemType
 @export var icon:Texture
 @export var icon_r:Texture
-@export var item_internal_inventory:Inventory
+@export var model_internal_inventory:InventoryData
 @export var detail_scene:PackedScene = load("res://ui/inventory/detail_scenes/simple_detail_popup.tscn")
 @export var context_menu_items:Array[ItemContextItem]
 @export var max_stacks:int = 1
@@ -26,3 +24,5 @@ class_name ItemInformation
 @export var stack_random_method:GameplayEnums.StackRandomMethod = GameplayEnums.StackRandomMethod.RANDOM
 @export var pickup_sound:AudioStream = load("res://game_objects/effects/sounds/foley/generic_pickup_1.ogg")
 @export var drop_sound:AudioStream = load("res://game_objects/effects/sounds/foley/generic_pickup_2.ogg")
+@export var slot_data_type:SlotData.SLOT_DATA_TYPE = SlotData.SLOT_DATA_TYPE.SLOT_DATA
+@export var equip_effect_component:PackedScene

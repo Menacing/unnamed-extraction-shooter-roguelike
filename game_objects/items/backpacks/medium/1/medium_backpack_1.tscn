@@ -6,7 +6,7 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_lntsr"]
 size = Vector3(0.48546, 0.84506, 0.38905)
 
-[node name="medium_backpack" type="RigidBody3D" node_paths=PackedStringArray("model_node", "meshes_to_fade_on_pickup", "foley_player")]
+[node name="medium_backpack" type="RigidBody3D" node_paths=PackedStringArray("model_node", "meshes_to_fade_on_pickup")]
 collision_layer = 5
 collision_mask = 5
 mass = 4.0
@@ -17,7 +17,6 @@ world_collider_path = NodePath("CollisionShape3D")
 longest_side_size = 0.5
 model_node = NodePath("medium_backpack_1")
 meshes_to_fade_on_pickup = [NodePath("medium_backpack_1/Cube")]
-foley_player = NodePath("FoleyAudioStreamPlayer3D")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00139695, 0.423553, 0.192747)
@@ -26,7 +25,5 @@ shape = SubResource("BoxShape3D_lntsr")
 
 [node name="medium_backpack_1" parent="." instance=ExtResource("2_oviqw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.425206, 0.137631)
-
-[node name="FoleyAudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
 
 [editable path="medium_backpack_1"]

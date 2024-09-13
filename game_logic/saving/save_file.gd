@@ -10,8 +10,3 @@ class_name SaveFile
 #things to save
 @export var top_level_entity_save_data:Array[TopLevelEntitySaveData] = []
 @export var level_entity_save_data:Array[LevelEntitySaveData] = []
-
-#all item instances
-@export var item_instances:Array[ItemInstanceSaveData] = []
-#all inventories
-@export var inventories:Array[Inventory] = []

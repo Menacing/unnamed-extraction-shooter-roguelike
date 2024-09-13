@@ -1,0 +1,96 @@
+[gd_scene load_steps=3 format=3 uid="uid://b6a88vw5glb7n"]
+
+[ext_resource type="Script" path="res://ui/inventory/3.0/inventory.gd" id="1_umall"]
+[ext_resource type="PackedScene" uid="uid://5kxtoc8tn1ps" path="res://ui/inventory/3.0/slot.tscn" id="3_ggmew"]
+
+[node name="Inventory" type="PanelContainer"]
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -320.0
+offset_right = 320.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_umall")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+
+[node name="HBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="EquipmentSlotContainer" type="HFlowContainer" parent="MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+alignment = 1
+
+[node name="ItemGrid" type="GridContainer" parent="MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/h_separation = 0
+theme_override_constants/v_separation = 0
+columns = 10
+
+[node name="Slot" parent="MarginContainer/HBoxContainer/ItemGrid" instance=ExtResource("3_ggmew")]
+layout_mode = 2
+
+[node name="Slot2" parent="MarginContainer/HBoxContainer/ItemGrid" instance=ExtResource("3_ggmew")]
+layout_mode = 2
+
+[node name="Slot3" parent="MarginContainer/HBoxContainer/ItemGrid" instance=ExtResource("3_ggmew")]
+layout_mode = 2
+
+[node name="Slot4" parent="MarginContainer/HBoxContainer/ItemGrid" instance=ExtResource("3_ggmew")]
+layout_mode = 2
+
+[node name="Slot5" parent="MarginContainer/HBoxContainer/ItemGrid" instance=ExtResource("3_ggmew")]
+layout_mode = 2
+
+[node name="Slot6" parent="MarginContainer/HBoxContainer/ItemGrid" instance=ExtResource("3_ggmew")]
+layout_mode = 2
+
+[node name="Slot7" parent="MarginContainer/HBoxContainer/ItemGrid" instance=ExtResource("3_ggmew")]
+layout_mode = 2
+
+[node name="Slot8" parent="MarginContainer/HBoxContainer/ItemGrid" instance=ExtResource("3_ggmew")]
+layout_mode = 2
+
+[node name="Slot9" parent="MarginContainer/HBoxContainer/ItemGrid" instance=ExtResource("3_ggmew")]
+layout_mode = 2
+
+[node name="Slot10" parent="MarginContainer/HBoxContainer/ItemGrid" instance=ExtResource("3_ggmew")]
+layout_mode = 2
+
+[node name="Slot11" parent="MarginContainer/HBoxContainer/ItemGrid" instance=ExtResource("3_ggmew")]
+layout_mode = 2
+
+[node name="Slot12" parent="MarginContainer/HBoxContainer/ItemGrid" instance=ExtResource("3_ggmew")]
+layout_mode = 2
+
+[node name="Slot13" parent="MarginContainer/HBoxContainer/ItemGrid" instance=ExtResource("3_ggmew")]
+layout_mode = 2
+
+[node name="Slot14" parent="MarginContainer/HBoxContainer/ItemGrid" instance=ExtResource("3_ggmew")]
+layout_mode = 2
+
+[node name="Slot15" parent="MarginContainer/HBoxContainer/ItemGrid" instance=ExtResource("3_ggmew")]
+layout_mode = 2
+
+[node name="Slot16" parent="MarginContainer/HBoxContainer/ItemGrid" instance=ExtResource("3_ggmew")]
+layout_mode = 2
+
+[node name="Slot17" parent="MarginContainer/HBoxContainer/ItemGrid" instance=ExtResource("3_ggmew")]
+layout_mode = 2
+
+[node name="Slot18" parent="MarginContainer/HBoxContainer/ItemGrid" instance=ExtResource("3_ggmew")]
+layout_mode = 2
+
+[node name="Slot19" parent="MarginContainer/HBoxContainer/ItemGrid" instance=ExtResource("3_ggmew")]
+layout_mode = 2
+
+[node name="Slot20" parent="MarginContainer/HBoxContainer/ItemGrid" instance=ExtResource("3_ggmew")]
+layout_mode = 2

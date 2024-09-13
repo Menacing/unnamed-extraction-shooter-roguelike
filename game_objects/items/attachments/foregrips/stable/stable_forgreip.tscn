@@ -8,7 +8,7 @@
 height = 0.120388
 radius = 0.016576
 
-[node name="StableForgreip" type="RigidBody3D" node_paths=PackedStringArray("model_node", "foley_player")]
+[node name="StableForgreip" type="RigidBody3D" node_paths=PackedStringArray("model_node")]
 collision_layer = 5
 collision_mask = 5
 script = ExtResource("1_bosbp")
@@ -17,12 +17,9 @@ item_type_id = "stable_foregrip"
 world_collider_path = NodePath("CollisionShape3D")
 longest_side_size = 0.2
 model_node = NodePath("stable_foregrip2")
-foley_player = NodePath("FoleyAudioStreamPlayer3D")
 
 [node name="stable_foregrip2" parent="." instance=ExtResource("2_6nx72")]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0602316, 0)
 shape = SubResource("CylinderShape3D_aroc3")
-
-[node name="FoleyAudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]

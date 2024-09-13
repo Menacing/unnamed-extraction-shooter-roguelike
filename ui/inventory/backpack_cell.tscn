@@ -1,5 +1,29 @@
-[gd_scene format=3 uid="uid://bshm12rhfjlbc"]
+[gd_scene load_steps=2 format=3 uid="uid://bshm12rhfjlbc"]
 
-[node name="Panel" type="Panel"]
-custom_minimum_size = Vector2(32, 32)
+[ext_resource type="Texture2D" uid="uid://vsv4wbmeog0q" path="res://icon.svg" id="1_smlo2"]
+
+[node name="Panel" type="PanelContainer"]
+custom_minimum_size = Vector2(64, 64)
+offset_right = 32.0
+offset_bottom = 32.0
 mouse_filter = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer"]
+layout_mode = 2
+texture = ExtResource("1_smlo2")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="QuantityLabel" type="Label" parent="."]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+theme_override_constants/outline_size = 3
+text = "x99"

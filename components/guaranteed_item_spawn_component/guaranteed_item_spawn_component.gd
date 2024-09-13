@@ -38,8 +38,9 @@ func _on_populate_level():
 					pass
 				
 				if spawn_pos:
-					var scene = guaranteed_item_information.item_3d_scene.instantiate()
-					scene.set_as_top_level(true)		
+					var slot_data = SlotData.instantiate_from_item_information(guaranteed_item_information)
+					var scene = Item3D.instantiate_from_slot_data(slot_data)
+					scene.set_as_top_level(true)
 					get_parent().add_child.call_deferred(scene)
 					scene.set_global_position.call_deferred(spawn_pos)
 

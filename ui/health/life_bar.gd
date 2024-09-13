@@ -49,8 +49,7 @@ func _ready():
 	main_health_component.health_changed.connect(_on_main_health_changed)
 	arms_health_component.health_changed.connect(_on_arms_health_changed)
 	legs_health_component.health_changed.connect(_on_legs_health_changed)
-	#health_component.armor_item_instance_id_set.connect(_on_armor_item_instance_id_set)
-	EventBus.item_durability_changed.connect(_on_item_durability_changed)
+	#EventBus.item_durability_changed.connect(_on_item_durability_changed)
 	set_health_mode()
 
 func _on_armor_item_instance_id_set(aiii:int):
@@ -154,14 +153,14 @@ func set_health_mode():
 		main_label_container.visible = true
 		leg_label_container.visible = true
 
-func _on_item_durability_changed(item_instance:ItemInstance):
-	if armor_item_instance_id and armor_item_instance_id !=0 and item_instance and item_instance.item_instance_id == armor_item_instance_id:
-		var dur:float = item_instance.durability
-		var max_dur:float = item_instance.get_max_durability()
-		armor_icon.value = dur
-		armor_icon.max_value = max_dur
-		armor_bar.value = dur
-		armor_bar.max_value = max_dur
-		armor_label_c.text = str(roundi(dur))
-		armor_label_m.text = str(roundi(max_dur))
-		set_health_mode()
+#func _on_item_durability_changed(item_instance:ItemInstance):
+	#if armor_item_instance_id and armor_item_instance_id !=0 and item_instance and item_instance.item_instance_id == armor_item_instance_id:
+		#var dur:float = item_instance.durability
+		#var max_dur:float = item_instance.get_max_durability()
+		#armor_icon.value = dur
+		#armor_icon.max_value = max_dur
+		#armor_bar.value = dur
+		#armor_bar.max_value = max_dur
+		#armor_label_c.text = str(roundi(dur))
+		#armor_label_m.text = str(roundi(max_dur))
+		#set_health_mode()

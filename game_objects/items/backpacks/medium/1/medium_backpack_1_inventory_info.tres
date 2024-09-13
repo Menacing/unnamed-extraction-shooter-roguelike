@@ -4,16 +4,12 @@
 [ext_resource type="PackedScene" uid="uid://b0ecb76mphfc7" path="res://ui/inventory/detail_scenes/backpack_detail_popup.tscn" id="2_lmxny"]
 [ext_resource type="Texture2D" uid="uid://c5v6d1pnpvrj8" path="res://game_objects/items/backpacks/medium/1/m_backpack_1_icon.png" id="3_1faml"]
 [ext_resource type="AudioStream" uid="uid://0apk0nwm1ffp" path="res://game_objects/effects/sounds/foley/cloth_1.ogg" id="3_63vgy"]
-[ext_resource type="PackedScene" uid="uid://dkq52ylhipkym" path="res://game_objects/items/backpacks/medium/1/medium_backpack_1.tscn" id="3_uaa3l"]
 [ext_resource type="Texture2D" uid="uid://d6gc7euj4aw4" path="res://game_objects/items/backpacks/medium/1/m_backpack_1_icon_r.png" id="4_fq3p1"]
-[ext_resource type="PackedScene" uid="uid://cn3ywqty7xvvr" path="res://ui/inventory/item_control.tscn" id="6_wkf8v"]
 [ext_resource type="Script" path="res://resource_access/item_information.gd" id="7_10mqc"]
 [ext_resource type="AudioStream" uid="uid://b78iks4jwmaqk" path="res://game_objects/effects/sounds/foley/zipper_2.ogg" id="8_wob4q"]
 
 [resource]
 script = ExtResource("7_10mqc")
-item_control_scene = ExtResource("6_wkf8v")
-item_3d_scene = ExtResource("3_uaa3l")
 item_type_id = "medium_backpack_1"
 show_name = true
 display_name = "Medium Backpack"

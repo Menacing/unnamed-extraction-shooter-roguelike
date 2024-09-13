@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ItemMapping" load_steps=4 format=3 uid="uid://cpa8u82ypf1e7"]
+
+[ext_resource type="PackedScene" uid="uid://mue3h2yq8han" path="res://game_objects/items/materials/scrap_metal_wheel/scrap_metal_wheel.tscn" id="1_dufwb"]
+[ext_resource type="Script" path="res://resource_access/item_mapping.gd" id="1_mu6ec"]
+[ext_resource type="Resource" uid="uid://dmgx7gb8w42hq" path="res://game_objects/items/materials/scrap_metal_wheel/scrap_metal_wheel_inventory_info.tres" id="2_3x7mp"]
+
+[resource]
+script = ExtResource("1_mu6ec")
+item_type_id = "scrap_metal_wheel_medium"
+item_information = ExtResource("2_3x7mp")
+item_3d_scene = ExtResource("1_dufwb")
