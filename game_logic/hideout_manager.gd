@@ -53,7 +53,7 @@ func add_crafting_material(material:SlotData) -> int:
 		var mat_info:MaterialInformation = material.item_data
 		for cme:CraftingMaterialEntry in crafting_materials:
 			if cme.material_definition.name == mat_info.crafting_material_definition.name:
-				cme.amount += material.stacks * mat_info.amount_per_stack
+				cme.amount += material.quantity * mat_info.amount_per_stack
 	else:
 		printerr("NO MAPPING FOR ITEM %s" % material.get_item_type_id())
 	

@@ -11,10 +11,10 @@ class_name AmmoDetailPopup
 
 @export var item_outline_material:Material = load("res://ui/inventory/item_outline_material.tres")
 
-var _weapon_modification_container:InventoryControlBase
-var weapon_modification_container:InventoryControlBase:
-	get:
-		return $VBoxContainer/ModificationSlotVBoxContainer
+#var _weapon_modification_container:InventoryControlBase
+#var weapon_modification_container:InventoryControlBase:
+	#get:
+		#return $VBoxContainer/ModificationSlotVBoxContainer
 
 
 var _item_3d:Item3D
@@ -28,13 +28,6 @@ var item_3d:Item3D:
 		map_ammo_values(value)
 		setup_item_model(value)
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass
-
-
-func set_internal_inventory(internal_inventory:Inventory):
-	weapon_modification_container._inventory = internal_inventory
 
 func _input(event:InputEvent):
 	if event.is_action_pressed("ui_cancel"):
@@ -48,8 +41,7 @@ func _close_self():
 	self.queue_free()
 
 func map_ammo_values(item_3d:Item3D):
-	var item_inst:ItemInstance = item_3d.get_item_instance()
-	var item_info = item_inst._item_info
+	var item_info = item_3d.slot_data.item_data
 	if item_info is AmmoInformation:
 		var ammo_info:AmmoInformation = item_info
 		

@@ -299,7 +299,7 @@ func _on_item_equipment_changed(inventory_data:InventoryData, equipment_slot:Equ
 				scope = item_3d as Scope
 				show_nodes(on_scope_show_nodes)
 				hide_nodes(on_scope_hide_nodes)
-				
+				item_3d.picked_up()
 				move_attachment_to_anchor(item_3d, scope_anchor)
 				if equipment_slot.slot_data.item_data.equip_effect_component:
 					optics_equip_effect_component = equipment_slot.slot_data.item_data.equip_effect_component.instantiate()

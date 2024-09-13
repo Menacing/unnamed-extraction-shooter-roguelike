@@ -1,7 +1,7 @@
 extends MarginContainer
 
-var ammo_type_control_scene:PackedScene = load("res://ui/inventory/ammo_type_vbox_container.tscn")
-var spacer_control_scene:PackedScene = load("res://ui/inventory/amm_h_separator.tscn")
+var ammo_type_control_scene:PackedScene = load("res://ui/inventory/ammo/ammo_type_vbox_container.tscn")
+var spacer_control_scene:PackedScene = load("res://ui/inventory/ammo/amm_h_separator.tscn")
 
 @onready var vbox:VBoxContainer = $ScrollContainer/VBoxContainer
 @export var _actor_node:Node3D
