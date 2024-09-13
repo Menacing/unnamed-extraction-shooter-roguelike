@@ -536,7 +536,11 @@ func _on_load_game(save_data:TopLevelEntitySaveData):
 		h_rot_acc = save_data.additional_data["h_rot_acc"]
 		
 		inventory_data = save_data.additional_data["inventory_data"]
-		
+		inventory_interface.set_player_inventory_data(inventory_data)
+		inventory_data.item_equipment_changed.connect(_on_item_equipment_changed)
+		for eq:EquipmentSlot in inventory_data.equipment_slots:
+			_on_item_equipment_changed(inventory_data, eq)
+			
 		#load health
 		main_health_component._on_load_game(save_data)
 		arms_health_component._on_load_game(save_data)
@@ -546,6 +550,7 @@ func _on_load_game(save_data:TopLevelEntitySaveData):
 		ammo_component._ammo_map = save_data.additional_data["ammo_map"]
 		ammo_component._active_ammo_type = save_data.additional_data["active_ammo_type"] 
 		ammo_component._active_ammo_subtype = save_data.additional_data["active_ammo_subtype"]
+		
 	
 var arm_destroyed_effect:GameplayEffect = load("res://game_objects/player/stat_modifiers/arm_destruction_effect.tres")
 func _on_arms_destroyed(hc:HealthComponent):
