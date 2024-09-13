@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://bose3ay7o32xw"]
+[gd_scene load_steps=31 format=4 uid="uid://bose3ay7o32xw"]
 
 [ext_resource type="Script" path="res://levels/ballistic_testing.gd" id="1_gbeur"]
 [ext_resource type="PackedScene" uid="uid://dr48wela8mtxd" path="res://game_objects/items/weapons/hic_rifles/pm_52/pm_52.tscn" id="2_cebdm"]
@@ -38,6 +38,28 @@ ammo_type = ExtResource("3_8bfkd")
 reload_time_Sec = 0.0
 reload_thresholds = Array[float]([])
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h00so"]
+albedo_texture = ExtResource("10_eoss8")
+texture_filter = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_rerdg"]
+_surfaces = [{
+"aabb": AABB(-19.8, -0.4, -15, 39.6, 0.80001, 30),
+"attribute_data": PackedByteArray("AABAPwAAAAAAAEA/AACAPgAAOsEAAIA+AAA6wQAAAAAAAEC/AAAAAAAACkEAAAAAAAAKQQAAgD4AAEC/AACAPgAAQD8AADrBAABAPwAAQD8AAArBAABAPwAACsEAADrBAABAvwAAOsEAAApBAAA6wQAACkEAAEA/AABAvwAAQD8AAEA/AAAAAAAAQD8AAIA+AAAKwQAAgD4AAArBAAAAAAAAQL8AAAAAAAA6QQAAAAAAADpBAACAPgAAQL8AAIA+"),
+"format": 34359742487,
+"index_count": 36,
+"index_data": PackedByteArray("AAABAAIAAAACAAMABAAFAAYABAAGAAcACAAJAAoACAAKAAsADAANAA4ADAAOAA8AEAARABIAEAASABMAFAAVABYAFAAWABcA"),
+"material": SubResource("StandardMaterial3D_h00so"),
+"name": "asphalt/asphalt_1",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 24,
+"vertex_data": PackedByteArray("Zmaewc3MzD4AAHDBZmaewc3MzL4AAHDBZmaeQc3MzL4AAHDBZmaeQc3MzD4AAHDBZmaewc3MzD4AAHDBZmaewc3MzD4AAHBBZmaewc3MzL4AAHBBZmaewc3MzL4AAHDBZmaeQc3MzL4AAHDBZmaewc3MzL4AAHDBZmaewc3MzL4AAHBBZmaeQc3MzL4AAHBBZmaeQc3MzD4AAHDBZmaeQc3MzD4AAHBBZmaewc3MzD4AAHBBZmaewc3MzD4AAHDBZmaeQc3MzD4AAHDBZmaeQc3MzL4AAHDBZmaeQc3MzL4AAHBBZmaeQc3MzD4AAHBBZmaewc3MzD4AAHBBZmaeQc3MzD4AAHBBZmaeQc3MzL4AAHBBZmaewc3MzL4AAHBB/////wAA/7//////AAD/v/////8AAP+//////wAA/78AAP9//3//vwAA/3//f/+/AAD/f/9//78AAP9//3//v/9/AAD//////38AAP//////fwAA//////9/AAD//////3////9//7//f////3//v/9/////f/+//3////9//7////9//////////3//////////f/////////9///////9//3////+//3//f////7//f/9/////v/9//3////+/")
+}]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_dnh2d"]
+points = PackedVector3Array(-19.8, 0.4, -15, -19.8, -0.4, -15, 19.8, -0.4, -15, 19.8, 0.4, -15, -19.8, 0.4, 15, -19.8, -0.4, 15, 19.8, -0.4, 15, 19.8, 0.4, 15)
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hkji3"]
 albedo_texture = ExtResource("13_t7kyq")
 texture_filter = 0
@@ -45,16 +67,16 @@ texture_filter = 0
 [sub_resource type="ArrayMesh" id="ArrayMesh_6k02i"]
 _surfaces = [{
 "aabb": AABB(-2, -2.4, -0.2, 4, 4.80001, 0.4),
-"attribute_data": PackedByteArray(0, 0, 0, 0, 0, 0, 192, 191, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 160, 191, 0, 0, 0, 0, 0, 0, 160, 191, 0, 0, 192, 191, 0, 0, 24, 64, 0, 0, 192, 191, 0, 0, 32, 64, 0, 0, 192, 191, 0, 0, 32, 64, 0, 0, 0, 0, 0, 0, 24, 64, 0, 0, 0, 0, 0, 0, 24, 192, 0, 0, 160, 191, 0, 0, 24, 192, 0, 0, 0, 0, 0, 0, 32, 192, 0, 0, 0, 0, 0, 0, 32, 192, 0, 0, 160, 191, 0, 0, 24, 64, 0, 0, 160, 191, 0, 0, 32, 64, 0, 0, 160, 191, 0, 0, 32, 64, 0, 0, 0, 0, 0, 0, 24, 64, 0, 0, 0, 0, 0, 0, 24, 192, 0, 0, 192, 191, 0, 0, 24, 192, 0, 0, 0, 0, 0, 0, 32, 192, 0, 0, 0, 0, 0, 0, 32, 192, 0, 0, 192, 191, 0, 0, 0, 0, 0, 0, 192, 191, 0, 0, 160, 63, 0, 0, 192, 191, 0, 0, 160, 63, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+"attribute_data": PackedByteArray("AAAAAAAAwL8AAAAAAAAAAAAAoL8AAAAAAACgvwAAwL8AABhAAADAvwAAIEAAAMC/AAAgQAAAAAAAABhAAAAAAAAAGMAAAKC/AAAYwAAAAAAAACDAAAAAAAAAIMAAAKC/AAAYQAAAoL8AACBAAACgvwAAIEAAAAAAAAAYQAAAAAAAABjAAADAvwAAGMAAAAAAAAAgwAAAAAAAACDAAADAvwAAAAAAAMC/AACgPwAAwL8AAKA/AAAAAAAAAAAAAAAA"),
 "format": 34359742487,
 "index_count": 36,
-"index_data": PackedByteArray(0, 0, 1, 0, 2, 0, 0, 0, 2, 0, 3, 0, 4, 0, 5, 0, 6, 0, 4, 0, 6, 0, 7, 0, 8, 0, 9, 0, 10, 0, 8, 0, 10, 0, 11, 0, 12, 0, 13, 0, 14, 0, 12, 0, 14, 0, 15, 0, 16, 0, 17, 0, 18, 0, 16, 0, 18, 0, 19, 0, 20, 0, 21, 0, 22, 0, 20, 0, 22, 0, 23, 0),
+"index_data": PackedByteArray("AAABAAIAAAACAAMABAAFAAYABAAGAAcACAAJAAoACAAKAAsADAANAA4ADAAOAA8AEAARABIAEAASABMAFAAVABYAFAAWABcA"),
 "material": SubResource("StandardMaterial3D_hkji3"),
 "name": "metal/metal_1",
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
 "vertex_count": 24,
-"vertex_data": PackedByteArray(0, 0, 0, 192, 154, 153, 25, 64, 205, 204, 76, 190, 0, 0, 0, 192, 154, 153, 25, 192, 205, 204, 76, 190, 0, 0, 0, 64, 154, 153, 25, 192, 205, 204, 76, 190, 0, 0, 0, 64, 154, 153, 25, 64, 205, 204, 76, 190, 0, 0, 0, 192, 154, 153, 25, 64, 205, 204, 76, 190, 0, 0, 0, 192, 154, 153, 25, 64, 205, 204, 76, 62, 0, 0, 0, 192, 154, 153, 25, 192, 205, 204, 76, 62, 0, 0, 0, 192, 154, 153, 25, 192, 205, 204, 76, 190, 0, 0, 0, 64, 154, 153, 25, 192, 205, 204, 76, 190, 0, 0, 0, 192, 154, 153, 25, 192, 205, 204, 76, 190, 0, 0, 0, 192, 154, 153, 25, 192, 205, 204, 76, 62, 0, 0, 0, 64, 154, 153, 25, 192, 205, 204, 76, 62, 0, 0, 0, 64, 154, 153, 25, 64, 205, 204, 76, 190, 0, 0, 0, 64, 154, 153, 25, 64, 205, 204, 76, 62, 0, 0, 0, 192, 154, 153, 25, 64, 205, 204, 76, 62, 0, 0, 0, 192, 154, 153, 25, 64, 205, 204, 76, 190, 0, 0, 0, 64, 154, 153, 25, 64, 205, 204, 76, 190, 0, 0, 0, 64, 154, 153, 25, 192, 205, 204, 76, 190, 0, 0, 0, 64, 154, 153, 25, 192, 205, 204, 76, 62, 0, 0, 0, 64, 154, 153, 25, 64, 205, 204, 76, 62, 0, 0, 0, 192, 154, 153, 25, 64, 205, 204, 76, 62, 0, 0, 0, 64, 154, 153, 25, 64, 205, 204, 76, 62, 0, 0, 0, 64, 154, 153, 25, 192, 205, 204, 76, 62, 0, 0, 0, 192, 154, 153, 25, 192, 205, 204, 76, 62, 255, 255, 255, 255, 0, 0, 255, 191, 255, 255, 255, 255, 0, 0, 255, 191, 255, 255, 255, 255, 0, 0, 255, 191, 255, 255, 255, 255, 0, 0, 255, 191, 0, 0, 255, 127, 255, 127, 255, 191, 0, 0, 255, 127, 255, 127, 255, 191, 0, 0, 255, 127, 255, 127, 255, 191, 0, 0, 255, 127, 255, 127, 255, 191, 255, 127, 0, 0, 255, 255, 255, 255, 255, 127, 0, 0, 255, 255, 255, 255, 255, 127, 0, 0, 255, 255, 255, 255, 255, 127, 0, 0, 255, 255, 255, 255, 255, 127, 255, 255, 255, 127, 255, 191, 255, 127, 255, 255, 255, 127, 255, 191, 255, 127, 255, 255, 255, 127, 255, 191, 255, 127, 255, 255, 255, 127, 255, 191, 255, 255, 255, 127, 255, 255, 255, 255, 255, 255, 255, 127, 255, 255, 255, 255, 255, 255, 255, 127, 255, 255, 255, 255, 255, 255, 255, 127, 255, 255, 255, 255, 255, 127, 255, 127, 255, 255, 255, 191, 255, 127, 255, 127, 255, 255, 255, 191, 255, 127, 255, 127, 255, 255, 255, 191, 255, 127, 255, 127, 255, 255, 255, 191)
+"vertex_data": PackedByteArray("AAAAwJqZGUDNzEy+AAAAwJqZGcDNzEy+AAAAQJqZGcDNzEy+AAAAQJqZGUDNzEy+AAAAwJqZGUDNzEy+AAAAwJqZGUDNzEw+AAAAwJqZGcDNzEw+AAAAwJqZGcDNzEy+AAAAQJqZGcDNzEy+AAAAwJqZGcDNzEy+AAAAwJqZGcDNzEw+AAAAQJqZGcDNzEw+AAAAQJqZGUDNzEy+AAAAQJqZGUDNzEw+AAAAwJqZGUDNzEw+AAAAwJqZGUDNzEy+AAAAQJqZGUDNzEy+AAAAQJqZGcDNzEy+AAAAQJqZGcDNzEw+AAAAQJqZGUDNzEw+AAAAwJqZGUDNzEw+AAAAQJqZGUDNzEw+AAAAQJqZGcDNzEw+AAAAwJqZGcDNzEw+/////wAA/7//////AAD/v/////8AAP+//////wAA/78AAP9//3//vwAA/3//f/+/AAD/f/9//78AAP9//3//v/9/AAD//////38AAP//////fwAA//////9/AAD//////3////9//7//f////3//v/9/////f/+//3////9//7////9//////////3//////////f/////////9///////9//3////+//3//f////7//f/9/////v/9//3////+/")
 }]
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_dm1r2"]
@@ -67,42 +89,20 @@ texture_filter = 0
 [sub_resource type="ArrayMesh" id="ArrayMesh_tc8r8"]
 _surfaces = [{
 "aabb": AABB(-2, -2.4, -0.2, 4, 4.80001, 0.4),
-"attribute_data": PackedByteArray(0, 0, 0, 0, 0, 0, 192, 191, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 160, 191, 0, 0, 0, 0, 0, 0, 160, 191, 0, 0, 192, 191, 0, 0, 240, 63, 0, 0, 192, 191, 0, 0, 0, 64, 0, 0, 192, 191, 0, 0, 0, 64, 0, 0, 0, 0, 0, 0, 240, 63, 0, 0, 0, 0, 0, 0, 240, 191, 0, 0, 160, 191, 0, 0, 240, 191, 0, 0, 0, 0, 0, 0, 0, 192, 0, 0, 0, 0, 0, 0, 0, 192, 0, 0, 160, 191, 0, 0, 240, 63, 0, 0, 160, 191, 0, 0, 0, 64, 0, 0, 160, 191, 0, 0, 0, 64, 0, 0, 0, 0, 0, 0, 240, 63, 0, 0, 0, 0, 0, 0, 240, 191, 0, 0, 192, 191, 0, 0, 240, 191, 0, 0, 0, 0, 0, 0, 0, 192, 0, 0, 0, 0, 0, 0, 0, 192, 0, 0, 192, 191, 0, 0, 0, 0, 0, 0, 192, 191, 0, 0, 160, 63, 0, 0, 192, 191, 0, 0, 160, 63, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+"attribute_data": PackedByteArray("AAAAAAAAwL8AAAAAAAAAAAAAoL8AAAAAAACgvwAAwL8AAPA/AADAvwAAAEAAAMC/AAAAQAAAAAAAAPA/AAAAAAAA8L8AAKC/AADwvwAAAAAAAADAAAAAAAAAAMAAAKC/AADwPwAAoL8AAABAAACgvwAAAEAAAAAAAADwPwAAAAAAAPC/AADAvwAA8L8AAAAAAAAAwAAAAAAAAADAAADAvwAAAAAAAMC/AACgPwAAwL8AAKA/AAAAAAAAAAAAAAAA"),
 "format": 34359742487,
 "index_count": 36,
-"index_data": PackedByteArray(0, 0, 1, 0, 2, 0, 0, 0, 2, 0, 3, 0, 4, 0, 5, 0, 6, 0, 4, 0, 6, 0, 7, 0, 8, 0, 9, 0, 10, 0, 8, 0, 10, 0, 11, 0, 12, 0, 13, 0, 14, 0, 12, 0, 14, 0, 15, 0, 16, 0, 17, 0, 18, 0, 16, 0, 18, 0, 19, 0, 20, 0, 21, 0, 22, 0, 20, 0, 22, 0, 23, 0),
+"index_data": PackedByteArray("AAABAAIAAAACAAMABAAFAAYABAAGAAcACAAJAAoACAAKAAsADAANAA4ADAAOAA8AEAARABIAEAASABMAFAAVABYAFAAWABcA"),
 "material": SubResource("StandardMaterial3D_6uhw4"),
 "name": "brick/brick_1",
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
 "vertex_count": 24,
-"vertex_data": PackedByteArray(0, 0, 0, 192, 154, 153, 25, 64, 205, 204, 76, 190, 0, 0, 0, 192, 154, 153, 25, 192, 205, 204, 76, 190, 0, 0, 0, 64, 154, 153, 25, 192, 205, 204, 76, 190, 0, 0, 0, 64, 154, 153, 25, 64, 205, 204, 76, 190, 0, 0, 0, 192, 154, 153, 25, 64, 205, 204, 76, 190, 0, 0, 0, 192, 154, 153, 25, 64, 205, 204, 76, 62, 0, 0, 0, 192, 154, 153, 25, 192, 205, 204, 76, 62, 0, 0, 0, 192, 154, 153, 25, 192, 205, 204, 76, 190, 0, 0, 0, 64, 154, 153, 25, 192, 205, 204, 76, 190, 0, 0, 0, 192, 154, 153, 25, 192, 205, 204, 76, 190, 0, 0, 0, 192, 154, 153, 25, 192, 205, 204, 76, 62, 0, 0, 0, 64, 154, 153, 25, 192, 205, 204, 76, 62, 0, 0, 0, 64, 154, 153, 25, 64, 205, 204, 76, 190, 0, 0, 0, 64, 154, 153, 25, 64, 205, 204, 76, 62, 0, 0, 0, 192, 154, 153, 25, 64, 205, 204, 76, 62, 0, 0, 0, 192, 154, 153, 25, 64, 205, 204, 76, 190, 0, 0, 0, 64, 154, 153, 25, 64, 205, 204, 76, 190, 0, 0, 0, 64, 154, 153, 25, 192, 205, 204, 76, 190, 0, 0, 0, 64, 154, 153, 25, 192, 205, 204, 76, 62, 0, 0, 0, 64, 154, 153, 25, 64, 205, 204, 76, 62, 0, 0, 0, 192, 154, 153, 25, 64, 205, 204, 76, 62, 0, 0, 0, 64, 154, 153, 25, 64, 205, 204, 76, 62, 0, 0, 0, 64, 154, 153, 25, 192, 205, 204, 76, 62, 0, 0, 0, 192, 154, 153, 25, 192, 205, 204, 76, 62, 255, 255, 255, 255, 0, 0, 255, 191, 255, 255, 255, 255, 0, 0, 255, 191, 255, 255, 255, 255, 0, 0, 255, 191, 255, 255, 255, 255, 0, 0, 255, 191, 0, 0, 255, 127, 255, 127, 255, 191, 0, 0, 255, 127, 255, 127, 255, 191, 0, 0, 255, 127, 255, 127, 255, 191, 0, 0, 255, 127, 255, 127, 255, 191, 255, 127, 0, 0, 255, 255, 255, 255, 255, 127, 0, 0, 255, 255, 255, 255, 255, 127, 0, 0, 255, 255, 255, 255, 255, 127, 0, 0, 255, 255, 255, 255, 255, 127, 255, 255, 255, 127, 255, 191, 255, 127, 255, 255, 255, 127, 255, 191, 255, 127, 255, 255, 255, 127, 255, 191, 255, 127, 255, 255, 255, 127, 255, 191, 255, 255, 255, 127, 255, 255, 255, 255, 255, 255, 255, 127, 255, 255, 255, 255, 255, 255, 255, 127, 255, 255, 255, 255, 255, 255, 255, 127, 255, 255, 255, 255, 255, 127, 255, 127, 255, 255, 255, 191, 255, 127, 255, 127, 255, 255, 255, 191, 255, 127, 255, 127, 255, 255, 255, 191, 255, 127, 255, 127, 255, 255, 255, 191)
+"vertex_data": PackedByteArray("AAAAwJqZGUDNzEy+AAAAwJqZGcDNzEy+AAAAQJqZGcDNzEy+AAAAQJqZGUDNzEy+AAAAwJqZGUDNzEy+AAAAwJqZGUDNzEw+AAAAwJqZGcDNzEw+AAAAwJqZGcDNzEy+AAAAQJqZGcDNzEy+AAAAwJqZGcDNzEy+AAAAwJqZGcDNzEw+AAAAQJqZGcDNzEw+AAAAQJqZGUDNzEy+AAAAQJqZGUDNzEw+AAAAwJqZGUDNzEw+AAAAwJqZGUDNzEy+AAAAQJqZGUDNzEy+AAAAQJqZGcDNzEy+AAAAQJqZGcDNzEw+AAAAQJqZGUDNzEw+AAAAwJqZGUDNzEw+AAAAQJqZGUDNzEw+AAAAQJqZGcDNzEw+AAAAwJqZGcDNzEw+/////wAA/7//////AAD/v/////8AAP+//////wAA/78AAP9//3//vwAA/3//f/+/AAD/f/9//78AAP9//3//v/9/AAD//////38AAP//////fwAA//////9/AAD//////3////9//7//f////3//v/9/////f/+//3////9//7////9//////////3//////////f/////////9///////9//3////+//3//f////7//f/9/////v/9//3////+/")
 }]
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_6sbyt"]
 points = PackedVector3Array(-2, 2.4, -0.2, -2, -2.4, -0.2, 2, -2.4, -0.2, 2, 2.4, -0.2, -2, 2.4, 0.2, -2, -2.4, 0.2, 2, -2.4, 0.2, 2, 2.4, 0.2)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h00so"]
-albedo_texture = ExtResource("10_eoss8")
-texture_filter = 0
-
-[sub_resource type="ArrayMesh" id="ArrayMesh_rerdg"]
-_surfaces = [{
-"aabb": AABB(-19.8, -0.4, -15, 39.6, 0.80001, 30),
-"attribute_data": PackedByteArray(0, 0, 64, 63, 0, 0, 0, 0, 0, 0, 64, 63, 0, 0, 128, 62, 0, 0, 58, 193, 0, 0, 128, 62, 0, 0, 58, 193, 0, 0, 0, 0, 0, 0, 64, 191, 0, 0, 0, 0, 0, 0, 10, 65, 0, 0, 0, 0, 0, 0, 10, 65, 0, 0, 128, 62, 0, 0, 64, 191, 0, 0, 128, 62, 0, 0, 64, 63, 0, 0, 58, 193, 0, 0, 64, 63, 0, 0, 64, 63, 0, 0, 10, 193, 0, 0, 64, 63, 0, 0, 10, 193, 0, 0, 58, 193, 0, 0, 64, 191, 0, 0, 58, 193, 0, 0, 10, 65, 0, 0, 58, 193, 0, 0, 10, 65, 0, 0, 64, 63, 0, 0, 64, 191, 0, 0, 64, 63, 0, 0, 64, 63, 0, 0, 0, 0, 0, 0, 64, 63, 0, 0, 128, 62, 0, 0, 10, 193, 0, 0, 128, 62, 0, 0, 10, 193, 0, 0, 0, 0, 0, 0, 64, 191, 0, 0, 0, 0, 0, 0, 58, 65, 0, 0, 0, 0, 0, 0, 58, 65, 0, 0, 128, 62, 0, 0, 64, 191, 0, 0, 128, 62),
-"format": 34359742487,
-"index_count": 36,
-"index_data": PackedByteArray(0, 0, 1, 0, 2, 0, 0, 0, 2, 0, 3, 0, 4, 0, 5, 0, 6, 0, 4, 0, 6, 0, 7, 0, 8, 0, 9, 0, 10, 0, 8, 0, 10, 0, 11, 0, 12, 0, 13, 0, 14, 0, 12, 0, 14, 0, 15, 0, 16, 0, 17, 0, 18, 0, 16, 0, 18, 0, 19, 0, 20, 0, 21, 0, 22, 0, 20, 0, 22, 0, 23, 0),
-"material": SubResource("StandardMaterial3D_h00so"),
-"name": "asphalt/asphalt_1",
-"primitive": 3,
-"uv_scale": Vector4(0, 0, 0, 0),
-"vertex_count": 24,
-"vertex_data": PackedByteArray(102, 102, 158, 193, 205, 204, 204, 62, 0, 0, 112, 193, 102, 102, 158, 193, 205, 204, 204, 190, 0, 0, 112, 193, 102, 102, 158, 65, 205, 204, 204, 190, 0, 0, 112, 193, 102, 102, 158, 65, 205, 204, 204, 62, 0, 0, 112, 193, 102, 102, 158, 193, 205, 204, 204, 62, 0, 0, 112, 193, 102, 102, 158, 193, 205, 204, 204, 62, 0, 0, 112, 65, 102, 102, 158, 193, 205, 204, 204, 190, 0, 0, 112, 65, 102, 102, 158, 193, 205, 204, 204, 190, 0, 0, 112, 193, 102, 102, 158, 65, 205, 204, 204, 190, 0, 0, 112, 193, 102, 102, 158, 193, 205, 204, 204, 190, 0, 0, 112, 193, 102, 102, 158, 193, 205, 204, 204, 190, 0, 0, 112, 65, 102, 102, 158, 65, 205, 204, 204, 190, 0, 0, 112, 65, 102, 102, 158, 65, 205, 204, 204, 62, 0, 0, 112, 193, 102, 102, 158, 65, 205, 204, 204, 62, 0, 0, 112, 65, 102, 102, 158, 193, 205, 204, 204, 62, 0, 0, 112, 65, 102, 102, 158, 193, 205, 204, 204, 62, 0, 0, 112, 193, 102, 102, 158, 65, 205, 204, 204, 62, 0, 0, 112, 193, 102, 102, 158, 65, 205, 204, 204, 190, 0, 0, 112, 193, 102, 102, 158, 65, 205, 204, 204, 190, 0, 0, 112, 65, 102, 102, 158, 65, 205, 204, 204, 62, 0, 0, 112, 65, 102, 102, 158, 193, 205, 204, 204, 62, 0, 0, 112, 65, 102, 102, 158, 65, 205, 204, 204, 62, 0, 0, 112, 65, 102, 102, 158, 65, 205, 204, 204, 190, 0, 0, 112, 65, 102, 102, 158, 193, 205, 204, 204, 190, 0, 0, 112, 65, 255, 255, 255, 255, 0, 0, 255, 191, 255, 255, 255, 255, 0, 0, 255, 191, 255, 255, 255, 255, 0, 0, 255, 191, 255, 255, 255, 255, 0, 0, 255, 191, 0, 0, 255, 127, 255, 127, 255, 191, 0, 0, 255, 127, 255, 127, 255, 191, 0, 0, 255, 127, 255, 127, 255, 191, 0, 0, 255, 127, 255, 127, 255, 191, 255, 127, 0, 0, 255, 255, 255, 255, 255, 127, 0, 0, 255, 255, 255, 255, 255, 127, 0, 0, 255, 255, 255, 255, 255, 127, 0, 0, 255, 255, 255, 255, 255, 127, 255, 255, 255, 127, 255, 191, 255, 127, 255, 255, 255, 127, 255, 191, 255, 127, 255, 255, 255, 127, 255, 191, 255, 127, 255, 255, 255, 127, 255, 191, 255, 255, 255, 127, 255, 255, 255, 255, 255, 255, 255, 127, 255, 255, 255, 255, 255, 255, 255, 127, 255, 255, 255, 255, 255, 255, 255, 127, 255, 255, 255, 255, 255, 127, 255, 127, 255, 255, 255, 191, 255, 127, 255, 127, 255, 255, 255, 191, 255, 127, 255, 127, 255, 255, 255, 191, 255, 127, 255, 127, 255, 255, 255, 191)
-}]
-
-[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_dnh2d"]
-points = PackedVector3Array(-19.8, 0.4, -15, -19.8, -0.4, -15, 19.8, -0.4, -15, 19.8, 0.4, -15, -19.8, 0.4, 15, -19.8, -0.4, 15, 19.8, -0.4, 15, 19.8, 0.4, 15)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vhow2"]
 albedo_texture = ExtResource("11_4xtol")
@@ -111,16 +111,16 @@ texture_filter = 0
 [sub_resource type="ArrayMesh" id="ArrayMesh_yxkvc"]
 _surfaces = [{
 "aabb": AABB(-2, -2.4, -0.2, 4, 4.80001, 0.4),
-"attribute_data": PackedByteArray(0, 0, 0, 0, 0, 0, 192, 191, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 160, 191, 0, 0, 0, 0, 0, 0, 160, 191, 0, 0, 192, 191, 0, 0, 176, 63, 0, 0, 192, 191, 0, 0, 192, 63, 0, 0, 192, 191, 0, 0, 192, 63, 0, 0, 0, 0, 0, 0, 176, 63, 0, 0, 0, 0, 0, 0, 176, 191, 0, 0, 160, 191, 0, 0, 176, 191, 0, 0, 0, 0, 0, 0, 192, 191, 0, 0, 0, 0, 0, 0, 192, 191, 0, 0, 160, 191, 0, 0, 176, 63, 0, 0, 160, 191, 0, 0, 192, 63, 0, 0, 160, 191, 0, 0, 192, 63, 0, 0, 0, 0, 0, 0, 176, 63, 0, 0, 0, 0, 0, 0, 176, 191, 0, 0, 192, 191, 0, 0, 176, 191, 0, 0, 0, 0, 0, 0, 192, 191, 0, 0, 0, 0, 0, 0, 192, 191, 0, 0, 192, 191, 0, 0, 0, 0, 0, 0, 192, 191, 0, 0, 160, 63, 0, 0, 192, 191, 0, 0, 160, 63, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+"attribute_data": PackedByteArray("AAAAAAAAwL8AAAAAAAAAAAAAoL8AAAAAAACgvwAAwL8AALA/AADAvwAAwD8AAMC/AADAPwAAAAAAALA/AAAAAAAAsL8AAKC/AACwvwAAAAAAAMC/AAAAAAAAwL8AAKC/AACwPwAAoL8AAMA/AACgvwAAwD8AAAAAAACwPwAAAAAAALC/AADAvwAAsL8AAAAAAADAvwAAAAAAAMC/AADAvwAAAAAAAMC/AACgPwAAwL8AAKA/AAAAAAAAAAAAAAAA"),
 "format": 34359742487,
 "index_count": 36,
-"index_data": PackedByteArray(0, 0, 1, 0, 2, 0, 0, 0, 2, 0, 3, 0, 4, 0, 5, 0, 6, 0, 4, 0, 6, 0, 7, 0, 8, 0, 9, 0, 10, 0, 8, 0, 10, 0, 11, 0, 12, 0, 13, 0, 14, 0, 12, 0, 14, 0, 15, 0, 16, 0, 17, 0, 18, 0, 16, 0, 18, 0, 19, 0, 20, 0, 21, 0, 22, 0, 20, 0, 22, 0, 23, 0),
+"index_data": PackedByteArray("AAABAAIAAAACAAMABAAFAAYABAAGAAcACAAJAAoACAAKAAsADAANAA4ADAAOAA8AEAARABIAEAASABMAFAAVABYAFAAWABcA"),
 "material": SubResource("StandardMaterial3D_vhow2"),
 "name": "wood/wood_1",
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
 "vertex_count": 24,
-"vertex_data": PackedByteArray(0, 0, 0, 192, 154, 153, 25, 64, 205, 204, 76, 190, 0, 0, 0, 192, 154, 153, 25, 192, 205, 204, 76, 190, 0, 0, 0, 64, 154, 153, 25, 192, 205, 204, 76, 190, 0, 0, 0, 64, 154, 153, 25, 64, 205, 204, 76, 190, 0, 0, 0, 192, 154, 153, 25, 64, 205, 204, 76, 190, 0, 0, 0, 192, 154, 153, 25, 64, 205, 204, 76, 62, 0, 0, 0, 192, 154, 153, 25, 192, 205, 204, 76, 62, 0, 0, 0, 192, 154, 153, 25, 192, 205, 204, 76, 190, 0, 0, 0, 64, 154, 153, 25, 192, 205, 204, 76, 190, 0, 0, 0, 192, 154, 153, 25, 192, 205, 204, 76, 190, 0, 0, 0, 192, 154, 153, 25, 192, 205, 204, 76, 62, 0, 0, 0, 64, 154, 153, 25, 192, 205, 204, 76, 62, 0, 0, 0, 64, 154, 153, 25, 64, 205, 204, 76, 190, 0, 0, 0, 64, 154, 153, 25, 64, 205, 204, 76, 62, 0, 0, 0, 192, 154, 153, 25, 64, 205, 204, 76, 62, 0, 0, 0, 192, 154, 153, 25, 64, 205, 204, 76, 190, 0, 0, 0, 64, 154, 153, 25, 64, 205, 204, 76, 190, 0, 0, 0, 64, 154, 153, 25, 192, 205, 204, 76, 190, 0, 0, 0, 64, 154, 153, 25, 192, 205, 204, 76, 62, 0, 0, 0, 64, 154, 153, 25, 64, 205, 204, 76, 62, 0, 0, 0, 192, 154, 153, 25, 64, 205, 204, 76, 62, 0, 0, 0, 64, 154, 153, 25, 64, 205, 204, 76, 62, 0, 0, 0, 64, 154, 153, 25, 192, 205, 204, 76, 62, 0, 0, 0, 192, 154, 153, 25, 192, 205, 204, 76, 62, 255, 255, 255, 255, 0, 0, 255, 191, 255, 255, 255, 255, 0, 0, 255, 191, 255, 255, 255, 255, 0, 0, 255, 191, 255, 255, 255, 255, 0, 0, 255, 191, 0, 0, 255, 127, 255, 127, 255, 191, 0, 0, 255, 127, 255, 127, 255, 191, 0, 0, 255, 127, 255, 127, 255, 191, 0, 0, 255, 127, 255, 127, 255, 191, 255, 127, 0, 0, 255, 255, 255, 255, 255, 127, 0, 0, 255, 255, 255, 255, 255, 127, 0, 0, 255, 255, 255, 255, 255, 127, 0, 0, 255, 255, 255, 255, 255, 127, 255, 255, 255, 127, 255, 191, 255, 127, 255, 255, 255, 127, 255, 191, 255, 127, 255, 255, 255, 127, 255, 191, 255, 127, 255, 255, 255, 127, 255, 191, 255, 255, 255, 127, 255, 255, 255, 255, 255, 255, 255, 127, 255, 255, 255, 255, 255, 255, 255, 127, 255, 255, 255, 255, 255, 255, 255, 127, 255, 255, 255, 255, 255, 127, 255, 127, 255, 255, 255, 191, 255, 127, 255, 127, 255, 255, 255, 191, 255, 127, 255, 127, 255, 255, 255, 191, 255, 127, 255, 127, 255, 255, 255, 191)
+"vertex_data": PackedByteArray("AAAAwJqZGUDNzEy+AAAAwJqZGcDNzEy+AAAAQJqZGcDNzEy+AAAAQJqZGUDNzEy+AAAAwJqZGUDNzEy+AAAAwJqZGUDNzEw+AAAAwJqZGcDNzEw+AAAAwJqZGcDNzEy+AAAAQJqZGcDNzEy+AAAAwJqZGcDNzEy+AAAAwJqZGcDNzEw+AAAAQJqZGcDNzEw+AAAAQJqZGUDNzEy+AAAAQJqZGUDNzEw+AAAAwJqZGUDNzEw+AAAAwJqZGUDNzEy+AAAAQJqZGUDNzEy+AAAAQJqZGcDNzEy+AAAAQJqZGcDNzEw+AAAAQJqZGUDNzEw+AAAAwJqZGUDNzEw+AAAAQJqZGUDNzEw+AAAAQJqZGcDNzEw+AAAAwJqZGcDNzEw+/////wAA/7//////AAD/v/////8AAP+//////wAA/78AAP9//3//vwAA/3//f/+/AAD/f/9//78AAP9//3//v/9/AAD//////38AAP//////fwAA//////9/AAD//////3////9//7//f////3//v/9/////f/+//3////9//7////9//////////3//////////f/////////9///////9//3////+//3//f////7//f/9/////v/9//3////+/")
 }]
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_vv530"]
@@ -142,69 +142,28 @@ label_settings = SubResource("LabelSettings_0dgg1")
 environment = SubResource("Environment_8p7aq")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(-0.0164578, -0.0488708, 0.99867, 0.0114867, 0.99873, 0.0490631, -0.999799, 0.0122789, -0.0158755, 3.42623, 0.231235, -5.13848)
+transform = Transform3D(-0.999798, 0.0122788, -0.0158755, 0.0114867, 0.99873, 0.049063, 0.0164579, 0.0488707, -0.99867, -1.80931, 0.231235, -13.5657)
 projection = 1
+current = true
 size = 5.0
 
 [node name="Camera3D2" type="Camera3D" parent="."]
-transform = Transform3D(0.602698, -0.0673764, 0.795119, 0.0115534, 0.997061, 0.075731, -0.797885, -0.0364566, 0.601706, 4.21415, 0.231235, -4.50384)
+transform = Transform3D(-0.0662272, -0.762013, 0.644166, -0.0779324, 0.647561, 0.758018, -0.994757, -2.66968e-09, -0.102272, 5.24213, 6.52961, -10.899)
 current = true
 size = 5.0
 
 [node name="AK47-Projectile" parent="." instance=ExtResource("2_cebdm")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.171724, 0.000634313, -2.05242)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.437737, 0.000634313, -8.66945)
 gravity_scale = 0.0
 _gun_stats = SubResource("Resource_20lvj")
 
 [node name="FireTimer" type="Timer" parent="."]
-wait_time = 0.5
 autostart = true
 
 [node name="QodotMap" type="Node3D" parent="."]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.191383, -0.910634, 0.0021317)
 
 [node name="entity_0_worldspawn" type="Node3D" parent="QodotMap"]
-
-[node name="entity_1_geo_ballistic_solid" type="StaticBody3D" parent="QodotMap"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 2.4, 7.8)
-collision_layer = 3
-script = ExtResource("10_0hi85")
-_pen_ratio = 0.5
-_armor_rating = 10
-_footstep_sound = ExtResource("13_okg0b")
-
-[node name="entity_1_mesh_instance" type="MeshInstance3D" parent="QodotMap/entity_1_geo_ballistic_solid"]
-mesh = SubResource("ArrayMesh_6k02i")
-
-[node name="entity_1_brush_0_collision_shape" type="CollisionShape3D" parent="QodotMap/entity_1_geo_ballistic_solid"]
-shape = SubResource("ConvexPolygonShape3D_dm1r2")
-
-[node name="DamageComponent" parent="QodotMap/entity_1_geo_ballistic_solid" instance=ExtResource("12_35p10")]
-armor_rating = 8
-
-[node name="DamageEffectComponent" parent="QodotMap/entity_1_geo_ballistic_solid" instance=ExtResource("13_rb40w")]
-damage_effect_scene = ExtResource("10_jywj6")
-
-[node name="entity_2_geo_ballistic_solid" type="StaticBody3D" parent="QodotMap"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 2.4, 6.2)
-collision_layer = 3
-script = ExtResource("10_0hi85")
-_pen_ratio = 0.6
-_armor_rating = 6
-_footstep_sound = ExtResource("13_okg0b")
-
-[node name="entity_2_mesh_instance" type="MeshInstance3D" parent="QodotMap/entity_2_geo_ballistic_solid"]
-mesh = SubResource("ArrayMesh_tc8r8")
-
-[node name="entity_2_brush_0_collision_shape" type="CollisionShape3D" parent="QodotMap/entity_2_geo_ballistic_solid"]
-shape = SubResource("ConvexPolygonShape3D_6sbyt")
-
-[node name="DamageComponent" parent="QodotMap/entity_2_geo_ballistic_solid" instance=ExtResource("12_35p10")]
-percent_penetrated = 0.1
-armor_rating = 8
-
-[node name="DamageEffectComponent" parent="QodotMap/entity_2_geo_ballistic_solid" instance=ExtResource("13_rb40w")]
-damage_effect_scene = ExtResource("12_3yefp")
 
 [node name="entity_3_geo_ballistic_solid" type="StaticBody3D" parent="QodotMap"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.4, -0.4, 12.6)
@@ -215,9 +174,11 @@ _armor_rating = 8
 _footstep_sound = ExtResource("13_okg0b")
 
 [node name="entity_3_mesh_instance" type="MeshInstance3D" parent="QodotMap/entity_3_geo_ballistic_solid"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -7.93992, -1.19209e-07, -19.667)
 mesh = SubResource("ArrayMesh_rerdg")
 
 [node name="entity_3_brush_0_collision_shape" type="CollisionShape3D" parent="QodotMap/entity_3_geo_ballistic_solid"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -7.93992, -1.19209e-07, -19.667)
 shape = SubResource("ConvexPolygonShape3D_dnh2d")
 
 [node name="DamageComponent" parent="QodotMap/entity_3_geo_ballistic_solid" instance=ExtResource("12_35p10")]
@@ -226,7 +187,55 @@ percent_penetrated = 0.0
 [node name="DamageEffectComponent" parent="QodotMap/entity_3_geo_ballistic_solid" instance=ExtResource("13_rb40w")]
 damage_effect_scene = ExtResource("14_c516o")
 
-[node name="entity_4_geo_ballistic_solid" type="StaticBody3D" parent="QodotMap"]
+[node name="Node3D" type="Node3D" parent="QodotMap"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.2379, 0, 8.95001e-07)
+
+[node name="entity_1_geo_ballistic_solid" type="StaticBody3D" parent="QodotMap/Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 2.4, 7.8)
+collision_layer = 3
+script = ExtResource("10_0hi85")
+_pen_ratio = 0.5
+_armor_rating = 10
+_footstep_sound = ExtResource("13_okg0b")
+
+[node name="entity_1_mesh_instance" type="MeshInstance3D" parent="QodotMap/Node3D/entity_1_geo_ballistic_solid"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 2.66008, 0, 0.533015)
+mesh = SubResource("ArrayMesh_6k02i")
+
+[node name="entity_1_brush_0_collision_shape" type="CollisionShape3D" parent="QodotMap/Node3D/entity_1_geo_ballistic_solid"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 2.66008, 0, 0.533015)
+shape = SubResource("ConvexPolygonShape3D_dm1r2")
+
+[node name="DamageComponent" parent="QodotMap/Node3D/entity_1_geo_ballistic_solid" instance=ExtResource("12_35p10")]
+armor_rating = 8
+
+[node name="DamageEffectComponent" parent="QodotMap/Node3D/entity_1_geo_ballistic_solid" instance=ExtResource("13_rb40w")]
+damage_effect_scene = ExtResource("10_jywj6")
+
+[node name="entity_2_geo_ballistic_solid" type="StaticBody3D" parent="QodotMap/Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 2.4, 6.2)
+collision_layer = 3
+script = ExtResource("10_0hi85")
+_pen_ratio = 0.6
+_armor_rating = 6
+_footstep_sound = ExtResource("13_okg0b")
+
+[node name="entity_2_mesh_instance" type="MeshInstance3D" parent="QodotMap/Node3D/entity_2_geo_ballistic_solid"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1.06008, 0, 2.13302)
+mesh = SubResource("ArrayMesh_tc8r8")
+
+[node name="entity_2_brush_0_collision_shape" type="CollisionShape3D" parent="QodotMap/Node3D/entity_2_geo_ballistic_solid"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1.06008, 0, 2.13302)
+shape = SubResource("ConvexPolygonShape3D_6sbyt")
+
+[node name="DamageComponent" parent="QodotMap/Node3D/entity_2_geo_ballistic_solid" instance=ExtResource("12_35p10")]
+percent_penetrated = 0.1
+armor_rating = 8
+
+[node name="DamageEffectComponent" parent="QodotMap/Node3D/entity_2_geo_ballistic_solid" instance=ExtResource("13_rb40w")]
+damage_effect_scene = ExtResource("12_3yefp")
+
+[node name="entity_4_geo_ballistic_solid" type="StaticBody3D" parent="QodotMap/Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 2.4, 4.6)
 collision_layer = 3
 script = ExtResource("10_0hi85")
@@ -234,25 +243,181 @@ _pen_ratio = 0.4
 _armor_rating = 8
 _footstep_sound = ExtResource("13_okg0b")
 
-[node name="entity_4_mesh_instance" type="MeshInstance3D" parent="QodotMap/entity_4_geo_ballistic_solid"]
+[node name="entity_4_mesh_instance" type="MeshInstance3D" parent="QodotMap/Node3D/entity_4_geo_ballistic_solid"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.539918, 0, 3.73302)
 mesh = SubResource("ArrayMesh_yxkvc")
 
-[node name="entity_4_brush_0_collision_shape" type="CollisionShape3D" parent="QodotMap/entity_4_geo_ballistic_solid"]
+[node name="entity_4_brush_0_collision_shape" type="CollisionShape3D" parent="QodotMap/Node3D/entity_4_geo_ballistic_solid"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.539918, 0, 3.73302)
 shape = SubResource("ConvexPolygonShape3D_vv530")
 
-[node name="DamageComponent" parent="QodotMap/entity_4_geo_ballistic_solid" instance=ExtResource("12_35p10")]
+[node name="DamageComponent" parent="QodotMap/Node3D/entity_4_geo_ballistic_solid" instance=ExtResource("12_35p10")]
 percent_penetrated = 0.8
 armor_rating = 2
 
-[node name="DamageEffectComponent" parent="QodotMap/entity_4_geo_ballistic_solid" instance=ExtResource("13_rb40w")]
+[node name="DamageEffectComponent" parent="QodotMap/Node3D/entity_4_geo_ballistic_solid" instance=ExtResource("13_rb40w")]
+damage_effect_scene = ExtResource("14_c516o")
+
+[node name="Node3D2" type="Node3D" parent="QodotMap"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.10948e-07, 0, -7.05589)
+
+[node name="entity_1_geo_ballistic_solid2" type="StaticBody3D" parent="QodotMap/Node3D2"]
+transform = Transform3D(-0.0451189, 0, 0.998982, 0, 1, 0, -0.998982, 0, -0.0451189, -1.22165, 2.4, 6.12781)
+collision_layer = 3
+script = ExtResource("10_0hi85")
+_pen_ratio = 0.5
+_armor_rating = 10
+_footstep_sound = ExtResource("13_okg0b")
+
+[node name="entity_1_mesh_instance" type="MeshInstance3D" parent="QodotMap/Node3D2/entity_1_geo_ballistic_solid2"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 2.66008, 0, 0.533015)
+mesh = SubResource("ArrayMesh_6k02i")
+
+[node name="entity_1_brush_0_collision_shape" type="CollisionShape3D" parent="QodotMap/Node3D2/entity_1_geo_ballistic_solid2"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 2.66008, 0, 0.533015)
+shape = SubResource("ConvexPolygonShape3D_dm1r2")
+
+[node name="DamageComponent" parent="QodotMap/Node3D2/entity_1_geo_ballistic_solid2" instance=ExtResource("12_35p10")]
+armor_rating = 8
+
+[node name="DamageEffectComponent" parent="QodotMap/Node3D2/entity_1_geo_ballistic_solid2" instance=ExtResource("13_rb40w")]
+damage_effect_scene = ExtResource("10_jywj6")
+
+[node name="entity_2_geo_ballistic_solid2" type="StaticBody3D" parent="QodotMap/Node3D2"]
+transform = Transform3D(-0.0451189, 0, 0.998982, 0, 1, 0, -0.998982, 0, -0.0451189, -2.82002, 2.4, 6.2)
+collision_layer = 3
+script = ExtResource("10_0hi85")
+_pen_ratio = 0.6
+_armor_rating = 6
+_footstep_sound = ExtResource("13_okg0b")
+
+[node name="entity_2_mesh_instance" type="MeshInstance3D" parent="QodotMap/Node3D2/entity_2_geo_ballistic_solid2"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1.06008, 0, 2.13302)
+mesh = SubResource("ArrayMesh_tc8r8")
+
+[node name="entity_2_brush_0_collision_shape" type="CollisionShape3D" parent="QodotMap/Node3D2/entity_2_geo_ballistic_solid2"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1.06008, 0, 2.13302)
+shape = SubResource("ConvexPolygonShape3D_6sbyt")
+
+[node name="DamageComponent" parent="QodotMap/Node3D2/entity_2_geo_ballistic_solid2" instance=ExtResource("12_35p10")]
+percent_penetrated = 0.1
+armor_rating = 8
+
+[node name="DamageEffectComponent" parent="QodotMap/Node3D2/entity_2_geo_ballistic_solid2" instance=ExtResource("13_rb40w")]
+damage_effect_scene = ExtResource("12_3yefp")
+
+[node name="entity_4_geo_ballistic_solid2" type="StaticBody3D" parent="QodotMap/Node3D2"]
+transform = Transform3D(-0.0451189, 0, 0.998982, 0, 1, 0, -0.998982, 0, -0.0451189, -4.4184, 2.4, 6.27219)
+collision_layer = 3
+script = ExtResource("10_0hi85")
+_pen_ratio = 0.4
+_armor_rating = 8
+_footstep_sound = ExtResource("13_okg0b")
+
+[node name="entity_4_mesh_instance" type="MeshInstance3D" parent="QodotMap/Node3D2/entity_4_geo_ballistic_solid2"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.539918, 0, 3.73302)
+mesh = SubResource("ArrayMesh_yxkvc")
+
+[node name="entity_4_brush_0_collision_shape" type="CollisionShape3D" parent="QodotMap/Node3D2/entity_4_geo_ballistic_solid2"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.539918, 0, 3.73302)
+shape = SubResource("ConvexPolygonShape3D_vv530")
+
+[node name="DamageComponent" parent="QodotMap/Node3D2/entity_4_geo_ballistic_solid2" instance=ExtResource("12_35p10")]
+percent_penetrated = 0.8
+armor_rating = 2
+
+[node name="DamageEffectComponent" parent="QodotMap/Node3D2/entity_4_geo_ballistic_solid2" instance=ExtResource("13_rb40w")]
+damage_effect_scene = ExtResource("14_c516o")
+
+[node name="Node3D3" type="Node3D" parent="QodotMap"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.96046e-07, 0, 6.89661)
+
+[node name="entity_1_geo_ballistic_solid3" type="StaticBody3D" parent="QodotMap/Node3D3"]
+transform = Transform3D(0.045119, 0, -0.998982, 0, 1, 0, 0.998982, 0, 0.045119, -0.823721, 2.4, 16.0335)
+collision_layer = 3
+script = ExtResource("10_0hi85")
+_pen_ratio = 0.5
+_armor_rating = 10
+_footstep_sound = ExtResource("13_okg0b")
+
+[node name="entity_1_mesh_instance" type="MeshInstance3D" parent="QodotMap/Node3D3/entity_1_geo_ballistic_solid3"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 2.66008, 0, 0.533015)
+mesh = SubResource("ArrayMesh_6k02i")
+
+[node name="entity_1_brush_0_collision_shape" type="CollisionShape3D" parent="QodotMap/Node3D3/entity_1_geo_ballistic_solid3"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 2.66008, 0, 0.533015)
+shape = SubResource("ConvexPolygonShape3D_dm1r2")
+
+[node name="DamageComponent" parent="QodotMap/Node3D3/entity_1_geo_ballistic_solid3" instance=ExtResource("12_35p10")]
+armor_rating = 8
+
+[node name="DamageEffectComponent" parent="QodotMap/Node3D3/entity_1_geo_ballistic_solid3" instance=ExtResource("13_rb40w")]
+damage_effect_scene = ExtResource("10_jywj6")
+
+[node name="entity_2_geo_ballistic_solid3" type="StaticBody3D" parent="QodotMap/Node3D3"]
+transform = Transform3D(0.045119, 0, -0.998982, 0, 1, 0, 0.998982, 0, 0.045119, 0.77465, 2.4, 15.9613)
+collision_layer = 3
+script = ExtResource("10_0hi85")
+_pen_ratio = 0.6
+_armor_rating = 6
+_footstep_sound = ExtResource("13_okg0b")
+
+[node name="entity_2_mesh_instance" type="MeshInstance3D" parent="QodotMap/Node3D3/entity_2_geo_ballistic_solid3"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1.06008, 0, 2.13302)
+mesh = SubResource("ArrayMesh_tc8r8")
+
+[node name="entity_2_brush_0_collision_shape" type="CollisionShape3D" parent="QodotMap/Node3D3/entity_2_geo_ballistic_solid3"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1.06008, 0, 2.13302)
+shape = SubResource("ConvexPolygonShape3D_6sbyt")
+
+[node name="DamageComponent" parent="QodotMap/Node3D3/entity_2_geo_ballistic_solid3" instance=ExtResource("12_35p10")]
+percent_penetrated = 0.1
+armor_rating = 8
+
+[node name="DamageEffectComponent" parent="QodotMap/Node3D3/entity_2_geo_ballistic_solid3" instance=ExtResource("13_rb40w")]
+damage_effect_scene = ExtResource("12_3yefp")
+
+[node name="entity_4_geo_ballistic_solid3" type="StaticBody3D" parent="QodotMap/Node3D3"]
+transform = Transform3D(0.045119, 0, -0.998982, 0, 1, 0, 0.998982, 0, 0.045119, 2.37302, 2.4, 15.8891)
+collision_layer = 3
+script = ExtResource("10_0hi85")
+_pen_ratio = 0.4
+_armor_rating = 8
+_footstep_sound = ExtResource("13_okg0b")
+
+[node name="entity_4_mesh_instance" type="MeshInstance3D" parent="QodotMap/Node3D3/entity_4_geo_ballistic_solid3"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.539918, 0, 3.73302)
+mesh = SubResource("ArrayMesh_yxkvc")
+
+[node name="entity_4_brush_0_collision_shape" type="CollisionShape3D" parent="QodotMap/Node3D3/entity_4_geo_ballistic_solid3"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.539918, 0, 3.73302)
+shape = SubResource("ConvexPolygonShape3D_vv530")
+
+[node name="DamageComponent" parent="QodotMap/Node3D3/entity_4_geo_ballistic_solid3" instance=ExtResource("12_35p10")]
+percent_penetrated = 0.8
+armor_rating = 2
+
+[node name="DamageEffectComponent" parent="QodotMap/Node3D3/entity_4_geo_ballistic_solid3" instance=ExtResource("13_rb40w")]
 damage_effect_scene = ExtResource("14_c516o")
 
 [connection signal="timeout" from="FireTimer" to="." method="_on_fire_timer_timeout"]
-[connection signal="hit_occured" from="QodotMap/entity_1_geo_ballistic_solid/DamageComponent" to="." method="_on_csg_mesh_3d_object_hit"]
-[connection signal="hit_occured" from="QodotMap/entity_1_geo_ballistic_solid/DamageComponent" to="QodotMap/entity_1_geo_ballistic_solid/DamageEffectComponent" method="create_effect"]
-[connection signal="hit_occured" from="QodotMap/entity_2_geo_ballistic_solid/DamageComponent" to="." method="_on_csg_mesh_3d_object_hit"]
-[connection signal="hit_occured" from="QodotMap/entity_2_geo_ballistic_solid/DamageComponent" to="QodotMap/entity_2_geo_ballistic_solid/DamageEffectComponent" method="create_effect"]
 [connection signal="hit_occured" from="QodotMap/entity_3_geo_ballistic_solid/DamageComponent" to="." method="_on_csg_mesh_3d_object_hit"]
-[connection signal="hit_occured" from="QodotMap/entity_3_geo_ballistic_solid/DamageComponent" to="QodotMap/entity_4_geo_ballistic_solid/DamageEffectComponent" method="create_effect"]
-[connection signal="hit_occured" from="QodotMap/entity_4_geo_ballistic_solid/DamageComponent" to="." method="_on_csg_mesh_3d_object_hit"]
-[connection signal="hit_occured" from="QodotMap/entity_4_geo_ballistic_solid/DamageComponent" to="QodotMap/entity_4_geo_ballistic_solid/DamageEffectComponent" method="create_effect"]
+[connection signal="hit_occured" from="QodotMap/entity_3_geo_ballistic_solid/DamageComponent" to="QodotMap/Node3D/entity_4_geo_ballistic_solid/DamageEffectComponent" method="create_effect"]
+[connection signal="hit_occured" from="QodotMap/Node3D/entity_1_geo_ballistic_solid/DamageComponent" to="." method="_on_csg_mesh_3d_object_hit"]
+[connection signal="hit_occured" from="QodotMap/Node3D/entity_1_geo_ballistic_solid/DamageComponent" to="QodotMap/Node3D/entity_1_geo_ballistic_solid/DamageEffectComponent" method="create_effect"]
+[connection signal="hit_occured" from="QodotMap/Node3D/entity_2_geo_ballistic_solid/DamageComponent" to="." method="_on_csg_mesh_3d_object_hit"]
+[connection signal="hit_occured" from="QodotMap/Node3D/entity_2_geo_ballistic_solid/DamageComponent" to="QodotMap/Node3D/entity_2_geo_ballistic_solid/DamageEffectComponent" method="create_effect"]
+[connection signal="hit_occured" from="QodotMap/Node3D/entity_4_geo_ballistic_solid/DamageComponent" to="." method="_on_csg_mesh_3d_object_hit"]
+[connection signal="hit_occured" from="QodotMap/Node3D/entity_4_geo_ballistic_solid/DamageComponent" to="QodotMap/Node3D/entity_4_geo_ballistic_solid/DamageEffectComponent" method="create_effect"]
+[connection signal="hit_occured" from="QodotMap/Node3D2/entity_1_geo_ballistic_solid2/DamageComponent" to="." method="_on_csg_mesh_3d_object_hit"]
+[connection signal="hit_occured" from="QodotMap/Node3D2/entity_1_geo_ballistic_solid2/DamageComponent" to="QodotMap/Node3D2/entity_1_geo_ballistic_solid2/DamageEffectComponent" method="create_effect"]
+[connection signal="hit_occured" from="QodotMap/Node3D2/entity_2_geo_ballistic_solid2/DamageComponent" to="." method="_on_csg_mesh_3d_object_hit"]
+[connection signal="hit_occured" from="QodotMap/Node3D2/entity_2_geo_ballistic_solid2/DamageComponent" to="QodotMap/Node3D2/entity_2_geo_ballistic_solid2/DamageEffectComponent" method="create_effect"]
+[connection signal="hit_occured" from="QodotMap/Node3D2/entity_4_geo_ballistic_solid2/DamageComponent" to="." method="_on_csg_mesh_3d_object_hit"]
+[connection signal="hit_occured" from="QodotMap/Node3D2/entity_4_geo_ballistic_solid2/DamageComponent" to="QodotMap/Node3D2/entity_4_geo_ballistic_solid2/DamageEffectComponent" method="create_effect"]
+[connection signal="hit_occured" from="QodotMap/Node3D3/entity_1_geo_ballistic_solid3/DamageComponent" to="." method="_on_csg_mesh_3d_object_hit"]
+[connection signal="hit_occured" from="QodotMap/Node3D3/entity_1_geo_ballistic_solid3/DamageComponent" to="QodotMap/Node3D3/entity_1_geo_ballistic_solid3/DamageEffectComponent" method="create_effect"]
+[connection signal="hit_occured" from="QodotMap/Node3D3/entity_2_geo_ballistic_solid3/DamageComponent" to="." method="_on_csg_mesh_3d_object_hit"]
+[connection signal="hit_occured" from="QodotMap/Node3D3/entity_2_geo_ballistic_solid3/DamageComponent" to="QodotMap/Node3D3/entity_2_geo_ballistic_solid3/DamageEffectComponent" method="create_effect"]
+[connection signal="hit_occured" from="QodotMap/Node3D3/entity_4_geo_ballistic_solid3/DamageComponent" to="." method="_on_csg_mesh_3d_object_hit"]
+[connection signal="hit_occured" from="QodotMap/Node3D3/entity_4_geo_ballistic_solid3/DamageComponent" to="QodotMap/Node3D3/entity_4_geo_ballistic_solid3/DamageEffectComponent" method="create_effect"]

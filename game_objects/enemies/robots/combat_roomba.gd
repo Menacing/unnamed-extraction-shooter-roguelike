@@ -38,18 +38,6 @@ func _ready():
 		gun.firer = self
 		gun_node = gun
 
-#func _physics_process(delta):
-	#super(delta)
-	#if alive:
-		#if player_aimpoint:
-			#Helpers.slow_rotate_to_point(head, player_aimpoint.global_transform.origin, turret_rotation, delta)
-			#Helpers.slow_rotate_to_point(gun, player_aimpoint.global_transform.origin, turret_rotation, delta)
-
-#func _on_took_damage(damage:float):
-	#health-=damage
-	#if health < 0:
-		#die()
-		
 func die():
 	print("I am dead")
 	alive = false
