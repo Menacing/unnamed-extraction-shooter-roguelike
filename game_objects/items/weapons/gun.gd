@@ -40,6 +40,10 @@ var scope:Scope
 @onready var rng: RandomNumberGenerator = RandomNumberGenerator.new()
 
 func _ready():
+	var default_bullets_in_mag:int = _gun_stats.magazine_size
+	var set_default_bullets:bool = false
+	if !slot_data:
+		set_default_bullets = true
 	super()
 	if slot_data.current_ammo_subtype == null:
 		slot_data.current_ammo_subtype = _gun_stats.ammo_type.sub_types[0]
@@ -59,6 +63,9 @@ func _ready():
 	if slot_data.internal_inventory:
 		for eq:EquipmentSlot in slot_data.internal_inventory.equipment_slots:
 			_on_item_equipment_changed(slot_data.internal_inventory, eq)
+	
+	if set_default_bullets:
+		current_magazine_size = default_bullets_in_mag
 
 var current_fire_mode:String
 var reloading: bool = false
