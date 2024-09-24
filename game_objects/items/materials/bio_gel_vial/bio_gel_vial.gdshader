@@ -76,9 +76,9 @@ void fragment() {
 	}
 }
 
-void light() 
+void light()
 {
-	// Liquid "glow" when held against light. 
+	// Liquid "glow" when held against light.
 	lowp float d  = dot(-VIEW, LIGHT);
 	lowp float dd = smoothstep(0.0, 1.0, d);
 	dd *= dd;
