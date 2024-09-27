@@ -170,15 +170,16 @@ transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0.2
 animate_physical_bones = false
 
 [node name="Physical Bone Bone" type="PhysicalBone3D" parent="combat-roomba/Armature/Skeleton3D" index="1"]
-transform = Transform3D(2.8455, -3.97904e-13, 0, 0, 0, -2.8455, 3.97904e-13, 2.8455, 0, 0, 0.222436, 0)
-joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.0781711)
-body_offset = Transform3D(2.8455, -4.26326e-13, 0, 0, 0, -2.8455, 4.26326e-13, 2.8455, 0, 0, 0.222436, 0)
+transform = Transform3D(2.8455, -3.41061e-13, 0, 0, 0, -2.8455, 3.41061e-13, 2.8455, 0, 0, 0.222436, 0)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.078171)
+body_offset = Transform3D(2.8455, -3.69482e-13, 0, 0, 0, -2.8455, 3.69482e-13, 2.8455, 0, 0, 0.222436, 0)
 bone_name = "Bone"
 
 [node name="Head" type="Node3D" parent="combat-roomba/Armature/Skeleton3D/Physical Bone Bone"]
 transform = Transform3D(-1, 0, 8.74228e-08, -8.74228e-08, 0, -1, 0, -1, 0, 0.0238471, 2.08478e-09, -1.87783)
 
 [node name="SpotLight3D" type="SpotLight3D" parent="combat-roomba/Armature/Skeleton3D/Physical Bone Bone/Head"]
+visible = false
 light_color = Color(1, 0, 0, 1)
 shadow_enabled = true
 distance_fade_enabled = true

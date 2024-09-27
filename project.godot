@@ -33,6 +33,7 @@ GameplayEffectManager="*res://game_logic/gameplay_effect_manager.gd"
 UiSounds="*res://game_logic/ui_sounds.gd"
 LevelManager="*res://game_logic/level_manager.gd"
 HideoutManager="*res://game_logic/hideout_manager.gd"
+DebugMenu="*res://addons/debug_menu/debug_menu.tscn"
 
 [debug]
 
@@ -44,6 +45,7 @@ shapes/collision/shape_color=Color(0, 0.6, 0.701961, 0.929412)
 window/size/initial_position_type=0
 window/size/initial_position=Vector2i(600, 500)
 window/dpi/allow_hidpi=false
+window/vsync/vsync_mode=0
 
 [dotnet]
 
@@ -51,7 +53,7 @@ project/assembly_name="Unnamed-extraction-shooter-roguelike"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/func_godot/plugin.cfg", "res://addons/gdUnit4/plugin.cfg", "res://addons/ggs/plugin.cfg", "res://addons/godot_resource_groups/plugin.cfg", "res://addons/godot_state_charts/plugin.cfg", "res://addons/safe_resource_loader/plugin.cfg")
+enabled=PackedStringArray("res://addons/debug_menu/plugin.cfg", "res://addons/func_godot/plugin.cfg", "res://addons/gdUnit4/plugin.cfg", "res://addons/ggs/plugin.cfg", "res://addons/godot_resource_groups/plugin.cfg", "res://addons/godot_state_charts/plugin.cfg", "res://addons/safe_resource_loader/plugin.cfg")
 
 [global_group]
 
