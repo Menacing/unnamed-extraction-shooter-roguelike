@@ -8,17 +8,20 @@ Singleton to hold common gameplay settings. If there's a preference type thing r
 ### [Helpers](../helpers/helpers.gd)
 Singleton for a bunch of common functions to help out. If you're writing a lot of boilerplate code to accomplish something over and over, consider throwing it in a function and putting it here.
 
-### [InventoryManager](../game_logic/inventory_manager.gd)
-Singleton for interacting with the inventory system. See the [Item System documentation](./item_system.md) for more information.
-
 ### [MenuManager](../game_logic/menu_manager.gd)
 Singlton for managing showing and hiding game menus, such as the pause and options menu. Inventory is part of gameplay and considered part of the HUD and handled elsewhere
+
+### [GameplayEnums](../game_logic/gameplay_enums.gd)
+Singleton to hold enums so we don't have to remember which class each enum is attached to. GD Script doesn't allow global scope easily
 
 ### [GGS](../addons/ggs/classes/global/ggs.tscn)
 Singleton for the Godot Game Settings addon. Probably don't need to modify directly
 
-### [GameplayEnums](../game_logic/gameplay_enums.gd)
-Singleton to hold enums so we don't have to remember which class each enum is attached to. GD Script doesn't allow global scope easily
+### [SaveManager](../game_logic/save_manager.gd)
+Singleton to handle saving and loading game save data
+
+### [ItemMappingRepository](../game_logic/item_mapping_repository.gd)]
+Singleton to load app ItemMappings to tie ItemInformation, SlotData, and Item3D together without creating a circular dependency
 
 ### [AmmoLoader](../components/ammo_component/ammo_loader.gd)
 Singleton that crawls the file system and loads up a mapping of every ammo type
@@ -31,3 +34,12 @@ Same, but for loot spawn areas
 
 ### [GameplayEffectManager](../game_logic/gameplay_effect_manager.gd)
 Singleton for registering new gameplay effects.
+
+### [UiSounds](../game_logic/ui_sounds.gd)
+Adds sounds to menus
+
+### [LevelManager](../game_logic/level_manager.gd)
+Handles loading and unloading levels and adding new objects to the stage
+
+### [HideoutManager](../game_logic/hideout_manager.gd)
+Handles upgrades, stash, and materials for a run along with run level information

@@ -1,13 +1,11 @@
-[gd_resource type="Resource" script_class="MaterialInformation" load_steps=11 format=3 uid="uid://dp68uqdisljis"]
+[gd_resource type="Resource" script_class="MaterialInformation" load_steps=9 format=3 uid="uid://dp68uqdisljis"]
 
-[ext_resource type="Resource" uid="uid://b7xbokgogvcm4" path="res://ui/inventory/split_stack_context_item.tres" id="1_35623"]
+[ext_resource type="Script" path="res://ui/inventory/item_context_item.gd" id="1_w05un"]
 [ext_resource type="Resource" uid="uid://o6tesi76nbth" path="res://ui/inventory/drop_item_context_item.tres" id="2_piyf5"]
 [ext_resource type="Resource" uid="uid://c3nod8jldkobw" path="res://game_objects/crafting_materials/polymer.tres" id="3_6sh34"]
 [ext_resource type="PackedScene" uid="uid://son7demex4pt" path="res://ui/inventory/detail_scenes/simple_detail_popup.tscn" id="4_qek0v"]
 [ext_resource type="Texture2D" uid="uid://dh5tygmy0hcnd" path="res://game_objects/items/materials/polymer_bale/polymer_bale_icon.png" id="5_amaf8"]
 [ext_resource type="AudioStream" uid="uid://0apk0nwm1ffp" path="res://game_objects/effects/sounds/foley/cloth_1.ogg" id="5_dc16h"]
-[ext_resource type="PackedScene" uid="uid://rsiuhbktl4h8" path="res://game_objects/items/materials/polymer_bale/polymer_bale.tscn" id="6_lkayn"]
-[ext_resource type="PackedScene" uid="uid://cn3ywqty7xvvr" path="res://ui/inventory/item_control.tscn" id="7_cyrsl"]
 [ext_resource type="Script" path="res://game_objects/items/materials/material_information.gd" id="8_803bh"]
 [ext_resource type="AudioStream" uid="uid://ctq3d7iis43qd" path="res://game_objects/effects/sounds/foley/cloth_3.ogg" id="9_3lsvs"]
 
@@ -15,8 +13,6 @@
 script = ExtResource("8_803bh")
 crafting_material_definition = ExtResource("3_6sh34")
 amount_per_stack = 120
-item_control_scene = ExtResource("7_cyrsl")
-item_3d_scene = ExtResource("6_lkayn")
 item_type_id = "polymer_bale_large"
 show_name = true
 display_name = "Polymer Bale"
@@ -25,7 +21,7 @@ item_type = 2
 icon = ExtResource("5_amaf8")
 icon_r = ExtResource("5_amaf8")
 detail_scene = ExtResource("4_qek0v")
-context_menu_items = Array[Resource("res://ui/inventory/item_context_item.gd")]([ExtResource("1_35623"), ExtResource("2_piyf5")])
+context_menu_items = Array[ExtResource("1_w05un")]([ExtResource("2_piyf5")])
 max_stacks = 1
 has_stacks = false
 max_durability = 1
@@ -39,3 +35,4 @@ mean_pickup_stacks = 1
 stack_random_method = 0
 pickup_sound = ExtResource("9_3lsvs")
 drop_sound = ExtResource("5_dc16h")
+slot_data_type = 0

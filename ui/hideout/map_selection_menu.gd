@@ -9,9 +9,6 @@ var level_options:Array[LevelInformation]
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	EventBus.populate_level.connect(_on_populate_level)
-	
-func _on_populate_level():
 	if HideoutManager.in_hideout:
 		
 		level_options = LevelManager.get_level_informations(3)

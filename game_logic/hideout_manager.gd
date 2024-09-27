@@ -1,9 +1,5 @@
 extends Node
 
-@export var _hideout_menu_scene:PackedScene = load("res://ui/hideout/hideout_menu.tscn")
-
-@onready var hideout_menu:HideoutMenu = _hideout_menu_scene.instantiate()
-
 var crafting_materials_resource_group:ResourceGroup = load("res://game_objects/crafting_materials/crafting_materials_resource_group.tres")
 var in_hideout:bool = false
 var _crafting_material_definitions:Array[CraftingMaterialDefinition]
@@ -14,6 +10,9 @@ var next_map:LevelInformation
 var selected_run_length:GameplayEnums.GameLength
 var current_map_number:int = 0
 var selected_difficulty:GameplayEnums.GameDifficulty
+var inventory_data:InventoryData
+
+
 
 func _ready():
 	crafting_materials_resource_group.load_all_into(_crafting_material_definitions)
@@ -26,12 +25,10 @@ func _ready():
 	crafting_materials.sort_custom(CraftingMaterialEntry._sort)
 	
 	EventBus.game_saving.connect(_on_game_saving)
-	EventBus.level_loaded.connect(_on_level_loaded)
-	self.add_child(hideout_menu)
 	
 func _on_game_saving(save_file:SaveFile):
 	var run_save_data:RunSaveData = RunSaveData.new()
-	hideout_menu.save_run_data(run_save_data)
+	#hideout_menu.save_run_data(run_save_data)
 	run_save_data.selected_next_level = next_map
 	run_save_data.game_length = selected_run_length
 	run_save_data.current_map_number = current_map_number
@@ -47,27 +44,16 @@ func _on_load_game(save_data:LevelEntitySaveData):
 	current_map_number = run_save_data.current_map_number
 	selected_difficulty = run_save_data.difficulty
 	crafting_materials = run_save_data.crafting_materials
-	hideout_menu.load_run_data(run_save_data)
+	#hideout_menu.load_run_data(run_save_data)
 	pass
 
-func is_menu_visible() -> bool:
-	return hideout_menu.visible
 
-func show_hideout_menu():
-	hideout_menu.visible = true
-	EventBus.add_control_to_HUD.emit(hideout_menu)
-	
-func hide_hideout_menu():
-	hideout_menu.visible = false
-	EventBus.remove_control_from_HUD.emit(hideout_menu,self)
-
-func add_crafting_material_item_instance(material:ItemInstance) -> int:
-	if material._item_info is MaterialInformation:
-		var mat_info:MaterialInformation = material._item_info
+func add_crafting_material(material:SlotData) -> int:
+	if material.item_data is MaterialInformation:
+		var mat_info:MaterialInformation = material.item_data
 		for cme:CraftingMaterialEntry in crafting_materials:
 			if cme.material_definition.name == mat_info.crafting_material_definition.name:
-				cme.amount += material.stacks * mat_info.amount_per_stack
-			
+				cme.amount += material.quantity * mat_info.amount_per_stack
 	else:
 		printerr("NO MAPPING FOR ITEM %s" % material.get_item_type_id())
 	
@@ -83,7 +69,3 @@ func has_extracted_enough() -> bool:
 			return current_map_number >= 7
 		_:
 			return false
-
-func _on_level_loaded():
-	hideout_menu.visible = false
-	EventBus.remove_control_from_HUD.emit(hideout_menu,self)

@@ -1,0 +1,50 @@
+[gd_scene load_steps=5 format=3 uid="uid://5kxtoc8tn1ps"]
+
+[ext_resource type="Script" path="res://ui/inventory/3.0/slot.gd" id="1_o7y0k"]
+[ext_resource type="Material" uid="uid://c0ipdgk1m22gh" path="res://ui/misc/ui_static_mat.tres" id="2_ldusq"]
+[ext_resource type="Texture2D" uid="uid://c7mqojhjkgdj1" path="res://ui/icons/White/crosshair_11.png" id="2_uwi6d"]
+[ext_resource type="Texture2D" uid="uid://dnwjqswetecya" path="res://ui/icons/black_32x32.png" id="3_h26w8"]
+
+[node name="Slot" type="PanelContainer"]
+custom_minimum_size = Vector2(48, 48)
+offset_right = 32.0
+offset_bottom = 32.0
+script = ExtResource("1_o7y0k")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+layout_mode = 2
+texture = ExtResource("2_uwi6d")
+draw_center = false
+region_rect = Rect2(3, 3, 26, 26)
+patch_margin_left = 4
+patch_margin_top = 4
+patch_margin_right = 4
+patch_margin_bottom = 4
+
+[node name="BackgroundSprite2D" type="Sprite2D" parent="."]
+visible = false
+material = ExtResource("2_ldusq")
+texture = ExtResource("3_h26w8")
+centered = false
+
+[node name="IconSprite2D" type="Sprite2D" parent="."]
+visible = false
+centered = false
+
+[node name="QuantityLabel" type="Label" parent="."]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+theme_override_constants/outline_size = 3
+text = "x99"
+
+[node name="DurabilityLabel" type="Label" parent="."]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+theme_override_constants/outline_size = 3
+text = "100%"
+
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]

@@ -1,8 +1,9 @@
-[gd_resource type="Resource" script_class="AmmoType" load_steps=6 format=3 uid="uid://dcejbnpeogafm"]
+[gd_resource type="Resource" script_class="AmmoType" load_steps=7 format=3 uid="uid://dcejbnpeogafm"]
 
 [ext_resource type="Texture2D" uid="uid://b1gn6e4wb3fn0" path="res://ui/icons/White/ammo_handgun01.png" id="1_0g8l1"]
 [ext_resource type="Script" path="res://components/ammo_component/ammo_type.gd" id="1_a0qd7"]
 [ext_resource type="Resource" uid="uid://cviikbecdwok0" path="res://components/ammo_component/ammo_types/light_pistol_cartridge/ammo_subtypes/full_metal_jacket.tres" id="3_7mdp3"]
+[ext_resource type="Script" path="res://components/ammo_component/ammo_subtype.gd" id="3_bjbx4"]
 [ext_resource type="Resource" uid="uid://d3mmo5kstfdwe" path="res://components/ammo_component/ammo_types/light_pistol_cartridge/ammo_subtypes/armor_piercing.tres" id="4_w4kwo"]
 [ext_resource type="Resource" uid="uid://cu356qtmcj2lq" path="res://components/ammo_component/ammo_types/light_pistol_cartridge/ammo_subtypes/hollow_point.tres" id="5_m36cv"]
 
@@ -10,5 +11,5 @@
 script = ExtResource("1_a0qd7")
 name = "Light Pistol Cartdridge"
 abbreviation = "LPC"
-sub_types = Array[Resource("res://components/ammo_component/ammo_subtype.gd")]([ExtResource("3_7mdp3"), ExtResource("4_w4kwo"), ExtResource("5_m36cv")])
+sub_types = Array[ExtResource("3_bjbx4")]([ExtResource("3_7mdp3"), ExtResource("4_w4kwo"), ExtResource("5_m36cv")])
 display_icon = ExtResource("1_0g8l1")

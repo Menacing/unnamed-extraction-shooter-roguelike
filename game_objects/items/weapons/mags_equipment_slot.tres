@@ -1,9 +1,13 @@
-[gd_resource type="Resource" script_class="EquipmentSlotType" load_steps=2 format=3 uid="uid://3m7iiyunllog"]
+[gd_resource type="Resource" script_class="EquipmentSlot" load_steps=3 format=3 uid="uid://3m7iiyunllog"]
 
-[ext_resource type="Script" path="res://resource_access/equipment_slot_type.gd" id="1_nuj83"]
+[ext_resource type="Texture2D" uid="uid://i3kveumpw8i5" path="res://themes/Magazine Icon-1.png" id="1_xm68a"]
+[ext_resource type="Script" path="res://resource_access/equipment_slot_data.gd" id="2_ra6kv"]
 
 [resource]
 resource_local_to_scene = true
-script = ExtResource("1_nuj83")
-name = "MagsSlot"
+script = ExtResource("2_ra6kv")
+slot_name = ""
 allowed_types = Array[int]([6])
+slot_width = 2
+slot_height = 2
+background_icon = ExtResource("1_xm68a")

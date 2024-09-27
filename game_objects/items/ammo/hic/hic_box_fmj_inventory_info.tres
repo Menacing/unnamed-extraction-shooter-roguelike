@@ -6,15 +6,11 @@
 [ext_resource type="Script" path="res://game_objects/items/ammo/ammo_information.gd" id="2_t5hlb"]
 [ext_resource type="PackedScene" uid="uid://djpvx3f8rfem0" path="res://ui/inventory/detail_scenes/ammo_detail_popup.tscn" id="3_1m3xi"]
 [ext_resource type="Resource" uid="uid://o6tesi76nbth" path="res://ui/inventory/drop_item_context_item.tres" id="3_xnnjh"]
-[ext_resource type="PackedScene" uid="uid://bbsjagcj1p70g" path="res://game_objects/items/ammo/hic/hic_box_fmj.tscn" id="4_w52h5"]
-[ext_resource type="PackedScene" uid="uid://cn3ywqty7xvvr" path="res://ui/inventory/item_control.tscn" id="5_yo5w2"]
 
 [resource]
 script = ExtResource("2_t5hlb")
 ammo_type = ExtResource("2_ex81d")
 ammo_subtype = ExtResource("1_le5ou")
-item_control_scene = ExtResource("5_yo5w2")
-item_3d_scene = ExtResource("4_w52h5")
 item_type_id = "hic_box_fmj"
 show_name = false
 display_name = "Heavy Intermediate Cartridge - Full Metal Jacket"

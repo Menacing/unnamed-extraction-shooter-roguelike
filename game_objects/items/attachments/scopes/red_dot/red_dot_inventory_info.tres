@@ -1,17 +1,13 @@
-[gd_resource type="Resource" script_class="ItemInformation" load_steps=8 format=3 uid="uid://dw11vln3ec2uk"]
+[gd_resource type="Resource" script_class="ItemInformation" load_steps=6 format=3 uid="uid://dw11vln3ec2uk"]
 
 [ext_resource type="Script" path="res://ui/inventory/item_context_item.gd" id="1_hqtvv"]
 [ext_resource type="Texture2D" uid="uid://dcapkkg0xlpco" path="res://game_objects/items/attachments/scopes/red_dot/red_dot_icon.png" id="2_kow8l"]
 [ext_resource type="PackedScene" uid="uid://son7demex4pt" path="res://ui/inventory/detail_scenes/simple_detail_popup.tscn" id="2_na6fj"]
 [ext_resource type="Resource" uid="uid://o6tesi76nbth" path="res://ui/inventory/drop_item_context_item.tres" id="2_wy4v7"]
-[ext_resource type="PackedScene" uid="uid://trlm60n2q0k4" path="res://game_objects/items/attachments/scopes/red_dot/red_dot.tscn" id="3_1uu0l"]
-[ext_resource type="PackedScene" uid="uid://cn3ywqty7xvvr" path="res://ui/inventory/item_control.tscn" id="5_i4472"]
 [ext_resource type="Script" path="res://resource_access/item_information.gd" id="6_eeylw"]
 
 [resource]
 script = ExtResource("6_eeylw")
-item_control_scene = ExtResource("5_i4472")
-item_3d_scene = ExtResource("3_1uu0l")
 item_type_id = "red_dot"
 show_name = false
 display_name = "Red Dot"
@@ -32,3 +28,4 @@ flavor_text = "Astigmatism be damned"
 min_pickup_stacks = 1
 mean_pickup_stacks = 1
 stack_random_method = 0
+slot_data_type = 0

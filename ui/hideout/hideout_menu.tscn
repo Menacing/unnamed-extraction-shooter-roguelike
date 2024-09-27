@@ -1,38 +1,33 @@
-[gd_scene load_steps=6 format=3 uid="uid://5cgjmdxllnhl"]
+[gd_scene load_steps=4 format=3 uid="uid://5cgjmdxllnhl"]
 
-[ext_resource type="PackedScene" uid="uid://jixiqnpe13py" path="res://ui/inventory/stash_inventory.tscn" id="1_csmx2"]
+[ext_resource type="PackedScene" uid="uid://jixiqnpe13py" path="res://ui/hideout/stash_inventory.tscn" id="1_csmx2"]
 [ext_resource type="Script" path="res://ui/hideout/hideout_menu.gd" id="1_gn5or"]
-[ext_resource type="Script" path="res://resource_access/Inventory.gd" id="2_vuj48"]
 [ext_resource type="PackedScene" uid="uid://b6qibk2bpsyd7" path="res://ui/hideout/map_selection_menu.tscn" id="4_ev05a"]
 
-[sub_resource type="Resource" id="Resource_c1qqh"]
-resource_local_to_scene = true
-script = ExtResource("2_vuj48")
-inventory_id = 0
-initial_height = 10
-initial_width = 7
-grid_slots = {}
-equipment_slots = Array[Resource("res://resource_access/equipment_slot_type.gd")]([])
-
 [node name="HideoutMenu" type="TabContainer" node_paths=PackedStringArray("tab_bar", "stash_inventory_control", "map_select_control")]
-visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-current_tab = 1
+size_flags_horizontal = 3
+current_tab = 0
 script = ExtResource("1_gn5or")
 tab_bar = NodePath(".")
-stash_inventory_control = NodePath("STASH")
+stash_inventory_control = NodePath("STASH/VBoxContainer/MarginContainer/Inventory")
 map_select_tab_index = 1
 map_select_control = NodePath("NEXT MAP")
 
-[node name="STASH" parent="." node_paths=PackedStringArray("hideout_menu") instance=ExtResource("1_csmx2")]
-visible = false
+[node name="STASH" parent="." instance=ExtResource("1_csmx2")]
 layout_mode = 2
-hideout_menu = NodePath("..")
-_model_inventory = SubResource("Resource_c1qqh")
+metadata/_tab_index = 0
 
 [node name="NEXT MAP" parent="." instance=ExtResource("4_ev05a")]
+visible = false
 layout_mode = 2
+metadata/_tab_index = 1
+
+[editable path="STASH"]
+[editable path="STASH/VBoxContainer/HBoxContainer/PolymerCount"]
+[editable path="STASH/VBoxContainer/HBoxContainer/ScrapMetalCount"]
+[editable path="STASH/VBoxContainer/HBoxContainer/BioGelCount"]

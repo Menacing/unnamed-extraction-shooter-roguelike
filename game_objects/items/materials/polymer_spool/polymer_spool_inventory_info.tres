@@ -1,20 +1,16 @@
-[gd_resource type="Resource" script_class="MaterialInformation" load_steps=9 format=3 uid="uid://3a15imh4nlqg"]
+[gd_resource type="Resource" script_class="MaterialInformation" load_steps=7 format=3 uid="uid://3a15imh4nlqg"]
 
-[ext_resource type="Resource" uid="uid://b7xbokgogvcm4" path="res://ui/inventory/split_stack_context_item.tres" id="1_2vlxm"]
+[ext_resource type="Script" path="res://ui/inventory/item_context_item.gd" id="1_a8myv"]
 [ext_resource type="Resource" uid="uid://o6tesi76nbth" path="res://ui/inventory/drop_item_context_item.tres" id="1_efr8v"]
-[ext_resource type="PackedScene" uid="uid://cn3ywqty7xvvr" path="res://ui/inventory/item_control.tscn" id="3_5r67a"]
 [ext_resource type="Resource" uid="uid://c3nod8jldkobw" path="res://game_objects/crafting_materials/polymer.tres" id="3_71t26"]
 [ext_resource type="PackedScene" uid="uid://son7demex4pt" path="res://ui/inventory/detail_scenes/simple_detail_popup.tscn" id="3_ha2yn"]
 [ext_resource type="Texture2D" uid="uid://ix2li5ku0mhp" path="res://game_objects/items/materials/polymer_spool/polymer_spool_icon.png" id="4_2y541"]
-[ext_resource type="PackedScene" uid="uid://c1ldryy4boogo" path="res://game_objects/items/materials/polymer_spool/polymer_spool.tscn" id="5_t7sxi"]
 [ext_resource type="Script" path="res://game_objects/items/materials/material_information.gd" id="8_yh541"]
 
 [resource]
 script = ExtResource("8_yh541")
 crafting_material_definition = ExtResource("3_71t26")
 amount_per_stack = 5
-item_control_scene = ExtResource("3_5r67a")
-item_3d_scene = ExtResource("5_t7sxi")
 item_type_id = "polymer_spool_medium"
 show_name = false
 display_name = "Polymer Spool"
@@ -23,7 +19,7 @@ item_type = 2
 icon = ExtResource("4_2y541")
 icon_r = ExtResource("4_2y541")
 detail_scene = ExtResource("3_ha2yn")
-context_menu_items = Array[Resource("res://ui/inventory/item_context_item.gd")]([ExtResource("1_2vlxm"), ExtResource("1_efr8v")])
+context_menu_items = Array[ExtResource("1_a8myv")]([ExtResource("1_efr8v")])
 max_stacks = 10
 has_stacks = true
 max_durability = 1
@@ -35,3 +31,4 @@ flavor_text = "More polymer makes it more possible"
 min_pickup_stacks = 1
 mean_pickup_stacks = 5
 stack_random_method = 1
+slot_data_type = 0

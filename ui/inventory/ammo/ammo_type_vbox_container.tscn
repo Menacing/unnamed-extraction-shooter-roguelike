@@ -1,0 +1,19 @@
+[gd_scene load_steps=2 format=3 uid="uid://mandkqfdhj1m"]
+
+[ext_resource type="Script" path="res://ui/inventory/ammo/ammo_type_vbox_container.gd" id="1_odu8p"]
+
+[node name="VBoxContainer" type="VBoxContainer"]
+script = ExtResource("1_odu8p")
+
+[node name="AmmoTypeHBox" type="HBoxContainer" parent="."]
+layout_mode = 2
+alignment = 1
+
+[node name="AmmoTypeDisplayIcon" type="TextureRect" parent="AmmoTypeHBox"]
+layout_mode = 2
+expand_mode = 3
+
+[node name="AmmoTypeLabel" type="Label" parent="AmmoTypeHBox"]
+layout_mode = 2
+text = "Fast Intermediate Cartridge"
+uppercase = true

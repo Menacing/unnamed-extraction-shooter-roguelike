@@ -1,7 +1,5 @@
 [gd_resource type="Resource" script_class="ItemInformation" load_steps=8 format=3 uid="uid://cn8v720gwl35e"]
 
-[ext_resource type="PackedScene" uid="uid://cn3ywqty7xvvr" path="res://ui/inventory/item_control.tscn" id="1_0pjew"]
-[ext_resource type="PackedScene" uid="uid://b7b1goghrkw51" path="res://game_objects/items/key/fuel_core/fuel_core.tscn" id="1_bbt30"]
 [ext_resource type="Texture2D" uid="uid://5yl74rombvn8" path="res://game_objects/items/key/fuel_core/fuel_core_icon.png" id="1_d4wbc"]
 [ext_resource type="Script" path="res://resource_access/item_information.gd" id="1_dpvk6"]
 [ext_resource type="AudioStream" uid="uid://bxvq1m37pr6q8" path="res://game_objects/effects/sounds/foley/heavy_2.ogg" id="1_go7ik"]
@@ -10,8 +8,6 @@
 
 [resource]
 script = ExtResource("1_dpvk6")
-item_control_scene = ExtResource("1_0pjew")
-item_3d_scene = ExtResource("1_bbt30")
 item_type_id = "fuel_core"
 show_name = true
 display_name = "Fuel Core"

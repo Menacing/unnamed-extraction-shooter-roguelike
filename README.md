@@ -1,13 +1,13 @@
 # unnamed-extraction-shooter-roguelike
 ## Required Tools
-* [Godot 4.2.2](https://godotengine.org/download/archive/4.2.2-stable/)
+* [Godot 4.3](https://godotengine.org/download/archive/4.3-stable/)
 * Blender 3.6
     * You can use Blender 4.0 and later to make assets, but as of right now the automatic blender export in Godot doesn't work with Blender 4.0+ so you'll need 3.6 somewhere on your machine.
 * Trenchbroom
 
 ## Developer Setup Instructions
 1) Install Blender 3.6
-2) Install Godot 4.2.2
+2) Install Godot 4.3
 3) Open the project
 4) Open Editor->Editor Settings
 5) Set Blender Path to your installed Blender .exe

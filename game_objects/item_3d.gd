@@ -1,25 +1,27 @@
 extends RigidBody3D
 class_name Item3D
 
-var _actor_id:int = 0
-var item_instance_id:int
-var item_3d_id:int:
+@export var slot_data:SlotData:
 	get:
-		return item_3d_id
+		return slot_data
 	set(value):
-		item_3d_id = value
-		ItemAccess.add_item_3d(self)
-		
-func get_item_instance() -> ItemInstance:
-	if item_instance_id == 0:
-		spawn_item()
-	var item_inst:ItemInstance = InventoryManager.get_item(item_instance_id)
-	if item_inst:
-		return item_inst
+		slot_data = value
+		if slot_data and slot_data.internal_inventory:
+			slot_data.internal_inventory.item_equipment_changed.connect(_on_item_equipment_changed)
+
+static func instantiate_from_slot_data(slot_data:SlotData) -> Item3D:
+	var item_3d_scene = ItemMappingRepository.get_item_3d(slot_data.item_data.item_type_id)
+	if item_3d_scene:
+		var item_3d:Item3D = item_3d_scene.instantiate()
+		item_3d.slot_data = slot_data
+		item_3d.set_additional_slot_data(slot_data)
+		return item_3d
 	else:
-		return null 
-			
-var internal_inventory_id:int
+		return null
+
+func set_additional_slot_data(slot_data:SlotData) -> void:
+	pass
+
 ## string id of the item. Must match the id in the corresponding ItemInformation resources
 @export var item_type_id:String
 @export var world_collider_path:NodePath
@@ -36,7 +38,6 @@ var world_collider:CollisionShape3D:
 @onready var item_highlight_m:ShaderMaterial = load("res://themes/item_highlighter_m.tres")
 @export var start_highlighted:bool = true
 @export var meshes_to_fade_on_pickup:Array[MeshInstance3D] = []
-@export var foley_player:AudioStreamPlayer3D
 var _prox_fade_mats:Array[StandardMaterial3D] = []
 var is_picked_up:bool = false
 
@@ -47,18 +48,6 @@ func _ready() -> void:
 	else:
 		Helpers.apply_material_overlay_to_children(self,null)
 	
-	if item_3d_id == 0:
-		item_3d_id = Helpers.generate_new_id()
-	
-	var item_instance := get_item_instance()
-	if item_instance:
-		var item_internal_inventory := item_instance.get_item_inventory()
-		if item_internal_inventory:
-			internal_inventory_id = item_internal_inventory.inventory_id
-			EventBus.item_picked_up.connect(_on_item_picked_up)
-			EventBus.item_removed_from_slot.connect(_on_item_removed_from_slot)
-			
-
 	var _base_materials:Array[StandardMaterial3D] = []
 
 	for mesh_inst:MeshInstance3D in meshes_to_fade_on_pickup:
@@ -73,6 +62,16 @@ func _ready() -> void:
 		_prox_fade_mats.append(new_mat)
 	EventBus.game_saving.connect(_on_game_saving)
 	EventBus.before_game_loading.connect(_on_game_before_loading)
+	
+	if !slot_data:
+		slot_data = SlotData.instantiate_from_item_information(ItemMappingRepository.get_item_information(item_type_id))
+
+func pick_up_item(inventory_data:InventoryData) -> bool:
+	if inventory_data.pick_up_slot_data(slot_data):
+		#TODO: We probably don't want to queue free here for real
+		queue_free()
+		return true
+	return false
 
 func dropped() -> void:
 	world_collider.disabled = false
@@ -80,15 +79,10 @@ func dropped() -> void:
 	self.visible = true
 	Helpers.apply_material_overlay_to_children(self,item_highlight_m)
 	self.apply_torque_impulse(Vector3.FORWARD)
-	_actor_id = 0
 	for mesh_inst:MeshInstance3D in meshes_to_fade_on_pickup:
 		var number_surfaces:int = mesh_inst.mesh.get_surface_count()
 		for i in range(number_surfaces):
 			mesh_inst.set_surface_override_material(i,null)
-			
-	if foley_player:
-		foley_player.stream = get_item_instance().get_drop_sound()
-		foley_player.play()
 	
 	is_picked_up = false
 
@@ -98,46 +92,17 @@ func picked_up(actor_id:int = 0) -> void:
 	world_collider.disabled = true
 	self.freeze = true
 	Helpers.apply_material_overlay_to_children(self,null)
-	_actor_id = actor_id
-	if _actor_id != 0:
-		var mat_index:int = 0
-		for mesh_inst:MeshInstance3D in meshes_to_fade_on_pickup:
-			var number_surfaces:int = mesh_inst.mesh.get_surface_count()
-			for i in range(number_surfaces):
-				mesh_inst.set_surface_override_material(i, _prox_fade_mats[mat_index])
+
+	var mat_index:int = 0
+	for mesh_inst:MeshInstance3D in meshes_to_fade_on_pickup:
+		var number_surfaces:int = mesh_inst.mesh.get_surface_count()
+		for i in range(number_surfaces):
+			mesh_inst.set_surface_override_material(i, _prox_fade_mats[mat_index])
 				
-	if foley_player:
-		foley_player.stream = get_item_instance().get_pickup_sound()
-		foley_player.play()
-	
 	is_picked_up = true
 	
 func destroy() -> void:
-	if foley_player and foley_player.playing:
-		foley_player.finished.connect(destroy)
-	else:
-		self.queue_free()
-
-func set_stacks(amount:int) -> void:
-	get_item_instance().stacks = amount
-	
-func spawn_item() -> void:
-	pass
-	InventoryManager.spawn_from_item3d(self)
-
-func _on_item_picked_up(result:InventoryInsertResult) -> void:
-	if result.inventory_id == internal_inventory_id:
-		var item_instance:ItemInstance = InventoryManager.get_item(result.item_instance_id)
-		var item_3d:Item3D = ItemAccess.get_item_3d(item_instance.id_3d)
-		Helpers.force_parent(item_3d,self)
-		item_3d.picked_up()
-		if result.location.location == InventoryLocationResult.LocationType.SLOT:
-			pass
-		elif result.location.location == InventoryLocationResult.LocationType.GRID:
-			item_3d.visible = false
-			
-func _on_item_removed_from_slot(_item_inst:ItemInstance, _inventory_id:int, _slot_name:String) -> void:
-	pass
+	self.queue_free()
 
 func copy_model() -> Node3D:
 	return model_node.duplicate()
@@ -147,10 +112,8 @@ func _on_game_saving(save_file:SaveFile):
 	if save_file and !is_picked_up:
 		var item_data:TopLevelEntitySaveData = TopLevelEntitySaveData.new()
 		item_data.global_transform = self.global_transform
-		#player_information.path_to_parent = self.get_parent().get_path()
 		item_data.scene_path = self.scene_file_path
-		item_data.additional_data["item_instance_id"] = item_instance_id
-		item_data.additional_data["item_3d_id"] = item_3d_id
+		item_data.additional_data["slot_data"] = slot_data
 		save_file.top_level_entity_save_data.append(item_data)
 
 func _on_game_before_loading():
@@ -159,5 +122,7 @@ func _on_game_before_loading():
 func _on_load_game(save_data:TopLevelEntitySaveData):
 	if save_data:
 		self.global_transform = save_data.global_transform
-		item_instance_id = save_data.additional_data["item_instance_id"]
-		item_3d_id = save_data.additional_data["item_3d_id"]
+		slot_data = save_data.additional_data["slot_data"]
+
+func _on_item_equipment_changed(inventory_data:InventoryData, equipment_slot:EquipmentSlot):
+	pass

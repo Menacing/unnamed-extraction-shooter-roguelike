@@ -1,4 +1,4 @@
-[gd_scene load_steps=110 format=4 uid="uid://ctahsvj88g1om"]
+[gd_scene load_steps=118 format=4 uid="uid://ctahsvj88g1om"]
 
 [ext_resource type="Script" path="res://levels/demo_level.gd" id="1_8448e"]
 [ext_resource type="PackedScene" uid="uid://d08aatgxmymbf" path="res://game_objects/player/player.tscn" id="1_eisjc"]
@@ -23,8 +23,13 @@
 [ext_resource type="Script" path="res://components/damage_component/damage_component.gd" id="18_dvips"]
 [ext_resource type="PackedScene" uid="uid://dkq52ylhipkym" path="res://game_objects/items/backpacks/medium/1/medium_backpack_1.tscn" id="19_hry6u"]
 [ext_resource type="PackedScene" uid="uid://byxda6yp3siwd" path="res://game_objects/items/ammo/fic/fic_box_ap.tscn" id="20_6qx0q"]
+[ext_resource type="Script" path="res://levels/loot_chest.gd" id="20_ub3ij"]
 [ext_resource type="PackedScene" uid="uid://c4d3mbvlwijgv" path="res://game_objects/items/ammo/fic/fic_box_hp.tscn" id="21_ckpue"]
+[ext_resource type="Script" path="res://resource_access/equipment_slot_data.gd" id="21_qlm4m"]
+[ext_resource type="Script" path="res://resource_access/inventory_data.gd" id="21_ym4ob"]
 [ext_resource type="PackedScene" uid="uid://bbsjagcj1p70g" path="res://game_objects/items/ammo/hic/hic_box_fmj.tscn" id="22_80o60"]
+[ext_resource type="Resource" uid="uid://c8v7lgcr1goac" path="res://game_objects/items/materials/bio_gel_vial/bio_gel_vial_inventory_info.tres" id="22_nlrd0"]
+[ext_resource type="Script" path="res://resource_access/slot_data.gd" id="23_3b7t8"]
 [ext_resource type="PackedScene" uid="uid://c8y8q8sw14nbw" path="res://game_objects/items/ammo/hic/hic_box_hp.tscn" id="23_xk7fk"]
 [ext_resource type="PackedScene" uid="uid://c2mgc1vc3603e" path="res://game_objects/items/armor/light/light_armor_1.tscn" id="24_bw0sj"]
 [ext_resource type="PackedScene" uid="uid://fetf2vb0h86g" path="res://game_objects/items/armor/medium/1/medium_armor_1.tscn" id="25_43i1p"]
@@ -325,7 +330,7 @@ points = PackedVector3Array(0.183334, 0.1, 0.15, 0.183334, -0.35, 0.15, 0.233334
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_2cpg3"]
 points = PackedVector3Array(-0.166666, 0.1, 0.15, -0.166666, -0.35, 0.15, -0.116666, -0.35, 0.15, -0.116666, 0.1, 0.15, -0.166666, 0.1, 0.2, -0.166666, -0.35, 0.2, -0.116666, -0.35, 0.2, -0.116666, 0.1, 0.2)
 
-[sub_resource type="Resource" id="Resource_r5vvs"]
+[sub_resource type="Resource" id="Resource_wdqrb"]
 resource_local_to_scene = true
 script = ExtResource("11_hh747")
 weapon_category_name = ""
@@ -342,7 +347,23 @@ ammo_type = ExtResource("10_q80ko")
 reload_time_Sec = 2.5
 reload_thresholds = Array[float]([1.0])
 
-[sub_resource type="Resource" id="Resource_r0rg5"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_34u7k"]
+albedo_color = Color(0.206777, 0.746646, 0.218838, 1)
+
+[sub_resource type="Resource" id="Resource_0qw6n"]
+script = ExtResource("23_3b7t8")
+item_data = ExtResource("22_nlrd0")
+quantity = 1
+durability = 1
+root_index = 0
+is_rotated = false
+
+[sub_resource type="Resource" id="Resource_pbdhj"]
+script = ExtResource("21_ym4ob")
+equipment_slots = Array[ExtResource("21_qlm4m")]([])
+slot_datas = Array[Array]([[SubResource("Resource_0qw6n"), null, null, null, null, null, null], [null, null, null, null, null, null, null], [null, null, null, null, null, null, null], [null, null, null, null, null, null, null]])
+
+[sub_resource type="Resource" id="Resource_mdbm7"]
 resource_local_to_scene = true
 script = ExtResource("11_hh747")
 weapon_category_name = "FIC Rifle"
@@ -359,7 +380,7 @@ ammo_type = ExtResource("10_q80ko")
 reload_time_Sec = 2.5
 reload_thresholds = Array[float]([1.0])
 
-[sub_resource type="Resource" id="Resource_prq8s"]
+[sub_resource type="Resource" id="Resource_5twge"]
 resource_local_to_scene = true
 script = ExtResource("11_hh747")
 weapon_category_name = "HIC Rifle"
@@ -1256,9 +1277,16 @@ shape = SubResource("ConvexPolygonShape3D_2cpg3")
 [node name="red_dot" parent="MultiAgentNavigationRoot" instance=ExtResource("8_2b85p")]
 transform = Transform3D(0.846085, 0.142345, -0.513691, -0.165908, 0.986141, 0, 0.506572, 0.0852256, 0.857975, 0.0414739, 0.58301, 0.16491)
 
-[node name="S5" parent="MultiAgentNavigationRoot" instance=ExtResource("9_7oj7m")]
+[node name="S5" parent="MultiAgentNavigationRoot" node_paths=PackedStringArray("gun_material_nodes", "on_scope_hide_nodes", "on_default_magazine_show_nodes", "on_default_magazine_hide_nodes", "on_extended_magazine_show_nodes", "on_extended_magazine_hide_nodes", "on_stable_foregrip_show_nodes") instance=ExtResource("9_7oj7m")]
 transform = Transform3D(0.28034, 0.0823512, -0.956362, -0.224502, -0.963056, -0.148736, -0.933278, 0.256402, -0.251495, 0.524934, 0.92531, -0.402487)
-_gun_stats = SubResource("Resource_r5vvs")
+_gun_stats = SubResource("Resource_wdqrb")
+gun_material_nodes = []
+on_scope_hide_nodes = []
+on_default_magazine_show_nodes = []
+on_default_magazine_hide_nodes = []
+on_extended_magazine_show_nodes = []
+on_extended_magazine_hide_nodes = []
+on_stable_foregrip_show_nodes = []
 
 [node name="HicBoxAp" parent="MultiAgentNavigationRoot" instance=ExtResource("15_lbv4t")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.70498, 0.227854, -0.46793)
@@ -1294,6 +1322,18 @@ script = ExtResource("17_atdna")
 max_to_spawn = 10
 
 [node name="DamageComponent" type="Node" parent="MultiAgentNavigationRoot/FiestaBox"]
+script = ExtResource("18_dvips")
+
+[node name="LootChest" type="CSGBox3D" parent="MultiAgentNavigationRoot" groups=["external_inventory"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.3896, 0.584802, 1.90786)
+use_collision = true
+collision_layer = 7
+collision_mask = 0
+material = SubResource("StandardMaterial3D_34u7k")
+script = ExtResource("20_ub3ij")
+inventory_data = SubResource("Resource_pbdhj")
+
+[node name="DamageComponent" type="Node" parent="MultiAgentNavigationRoot/LootChest"]
 script = ExtResource("18_dvips")
 
 [node name="Player" parent="." instance=ExtResource("1_eisjc")]
@@ -1368,12 +1408,28 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.5375, 0.0788302, -4.91273)
 [node name="ScrapMetalWheel" parent="." instance=ExtResource("40_0qi33")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 0.112062, -4)
 
-[node name="S5" parent="." instance=ExtResource("9_7oj7m")]
+[node name="S5" parent="." node_paths=PackedStringArray("gun_material_nodes", "on_scope_hide_nodes", "on_default_magazine_show_nodes", "on_default_magazine_hide_nodes", "on_extended_magazine_show_nodes", "on_extended_magazine_hide_nodes", "on_stable_foregrip_show_nodes") instance=ExtResource("9_7oj7m")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.98456, 0.488079, -5.02159)
-_gun_stats = SubResource("Resource_r0rg5")
+_gun_stats = SubResource("Resource_mdbm7")
+gun_material_nodes = []
+on_scope_hide_nodes = []
+on_default_magazine_show_nodes = []
+on_default_magazine_hide_nodes = []
+on_extended_magazine_show_nodes = []
+on_extended_magazine_hide_nodes = []
+on_stable_foregrip_show_nodes = []
 
-[node name="PM52" parent="." instance=ExtResource("41_70t3f")]
+[node name="PM52" parent="." node_paths=PackedStringArray("gun_material_nodes", "on_scope_show_nodes", "on_default_magazine_show_nodes", "on_default_magazine_hide_nodes", "on_extended_magazine_show_nodes", "on_extended_magazine_hide_nodes", "on_stable_foregrip_show_nodes", "on_stable_foregrip_hide_nodes") instance=ExtResource("41_70t3f")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.6161, 0.347091, -5.23843)
-_gun_stats = SubResource("Resource_prq8s")
+_gun_stats = SubResource("Resource_5twge")
+gun_material_nodes = []
+on_scope_show_nodes = []
+on_default_magazine_show_nodes = []
+on_default_magazine_hide_nodes = []
+on_extended_magazine_show_nodes = []
+on_extended_magazine_hide_nodes = []
+on_stable_foregrip_show_nodes = []
+on_stable_foregrip_hide_nodes = []
 
 [connection signal="hit_occured" from="MultiAgentNavigationRoot/FiestaBox/DamageComponent" to="MultiAgentNavigationRoot/FiestaBox" method="_on_damage_component_hit_occured"]
+[connection signal="hit_occured" from="MultiAgentNavigationRoot/LootChest/DamageComponent" to="MultiAgentNavigationRoot/LootChest" method="_on_damage_component_hit_occured"]

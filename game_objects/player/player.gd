@@ -1,6 +1,14 @@
 extends SteppingCharacterBody3D
 class_name Player
 
+@export var inventory_data:InventoryData
+
+signal toggle_inventory
+signal toggle_map_select
+signal toggle_stash
+
+@onready var inventory_interface: Control = %InventoryInterface
+
 @onready var state_chart :StateChart = %StateChart
 @export var gun_scene1: PackedScene
 @export var gun_scene2: PackedScene
@@ -145,11 +153,7 @@ var toggle_crouch_f: bool = false
 var toggle_prone_f: bool = false
 var toggle_inv_f: bool = false
 var legs_destroyed: bool = false
-var player_inventory_id:
-	get: 
-		return $PlayerInventories.player_inventory_id
-	set(value):
-		$PlayerInventories.player_inventory_id = value
+
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
@@ -180,13 +184,13 @@ func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	EventBus.fire_mode_changed.emit("")
 	EventBus.magazine_ammo_count_changed.emit(0)
-	EventBus.item_picked_up.connect(_on_item_picked_up)
-	EventBus.item_removed_from_slot.connect(_on_item_removed_from_slot)
-	EventBus.drop_item.connect(_on_drop_item)
-	if toggle_inv_f:
-		EventBus.open_inventory.emit(player_inventory_id)
-	else:
-		EventBus.close_all_inventories.emit()
+	#EventBus.item_picked_up.connect(_on_item_picked_up)
+	#EventBus.item_removed_from_slot.connect(_on_item_removed_from_slot)
+	#EventBus.drop_item.connect(_on_drop_item)
+	#if toggle_inv_f:
+		#EventBus.open_inventory.emit(player_inventory_id)
+	#else:
+		#EventBus.close_all_inventories.emit()
 	EventBus.ammo_type_changed.connect(_on_ammo_type_changed)
 	EventBus.game_saving.connect(_on_game_saving)
 	EventBus.before_game_loading.connect(_on_game_before_loading)
@@ -201,72 +205,87 @@ func _ready():
 	ik_head.start()
 	
 	pov_rotation_node = chest
-
-
-func _on_item_picked_up(result:InventoryInsertResult):
-	if result.inventory_id == player_inventory_id:
-		var item_instance:ItemInstance = InventoryManager.get_item(result.item_instance_id)
-		
-		send_item_pickup_message(item_instance)
-		
-		var item_3d:Item3D = ItemAccess.get_item_3d(item_instance.id_3d)
-		Helpers.force_parent(item_3d,self)
-		item_3d.picked_up(get_instance_id())
-		if result.location.location == InventoryLocationResult.LocationType.SLOT:
-			match result.location.slot_name:
-				"GunSlot1":
-					gun_slot_1 = item_3d as Gun
-					move_gun_to_player_model(gun_slot_1)
-				"GunSlot2":
-					gun_slot_2 = item_3d as Gun
-					move_gun_to_player_model(gun_slot_2) 
-				"BackpackSlot":
-					move_backpack_to_anchor(item_3d)
-					var backpack:Backpack = item_3d as Backpack
-					if backpack:
-						if backpack.backpack_size == Backpack.Size.NONE:
-							InventoryManager.set_inventory_size(player_inventory_id, Vector2i(7,2))
-						elif backpack.backpack_size == Backpack.Size.SMALL:
-							InventoryManager.set_inventory_size(player_inventory_id, Vector2i(7,4))
-						elif backpack.backpack_size == Backpack.Size.MEDIUM:
-							InventoryManager.set_inventory_size(player_inventory_id, Vector2i(7,6))
-						elif backpack.backpack_size == Backpack.Size.LARGE:
-							InventoryManager.set_inventory_size(player_inventory_id, Vector2i(7,8))
-				"ArmorSlot":
-					armor_equipped.emit(item_3d as BodyArmor)
-					move_armor_to_anchor(item_3d)
-		elif result.location.location == InventoryLocationResult.LocationType.GRID:
-			item_3d.visible = false
-		
-		if item_instance.get_item_type() == GameplayEnums.ItemType.AMMO:
-			var ammo_information:AmmoInformation = item_instance._item_info
-			var remainder = ammo_component.add_ammo(ammo_information.ammo_type.name, ammo_information.ammo_subtype.name, item_instance.stacks)
-			item_instance.stacks = remainder
-			
-
-func send_item_pickup_message(item_instance:ItemInstance):
-	var message_text:String = "Picked up " + item_instance.get_display_name()
 	
-	if item_instance.get_has_stacks():
-		message_text += " " + str(item_instance.stacks)
-		
-	EventBus.create_message.emit("pickup_"+str(item_instance.item_instance_id), message_text, 2.0)
+	inventory_interface.set_player_inventory_data(inventory_data)
+	inventory_data.item_equipment_changed.connect(_on_item_equipment_changed)
 
-func _on_item_removed_from_slot(item_inst:ItemInstance, inventory_id:int, slot_name:String):
-	if inventory_id == player_inventory_id:
-		var item_3d:Item3D = ItemAccess.get_item_3d(item_inst.id_3d)
-		if item_3d is Gun:
-			if item_3d == equipped_gun:
-				stop_arms_ik()
-				equipped_gun = null	
-			if item_3d == gun_slot_1:
-				gun_slot_1 = null	
-			if item_3d == gun_slot_2:
-				gun_slot_2 = null	
-			if item_3d == shoulder_gun:
+func _on_item_equipment_changed(inventory_data:InventoryData, equipment_slot:EquipmentSlot):
+	match equipment_slot.slot_name:
+		"GunSlot1":
+			#If slot is equipped, clear equipped gun
+			if gun_slot_1 == equipped_gun:
+				drop_equipped_gun()
+			#else if shoulder gun, clear shoulder gun
+			elif gun_slot_1 == shoulder_gun:
 				shoulder_gun = null
-		if item_3d is BodyArmor:
-			pass
+			
+			#if there's a gun, queue it free and set to null
+			if gun_slot_1:
+				gun_slot_1.queue_free()
+				gun_slot_1 = null
+				
+			#if we're equipping an item, add it
+			if equipment_slot.slot_data:
+				var item_3d:Gun = Item3D.instantiate_from_slot_data(equipment_slot.slot_data)
+				gun_slot_1 = item_3d as Gun
+				if item_3d:
+					move_gun_to_player_model(gun_slot_1)
+		"GunSlot2":
+			#If slot is equipped, clear equipped gun
+			if gun_slot_2 == equipped_gun:
+				drop_equipped_gun()
+			#else if shoulder gun, clear shoulder gun
+			elif gun_slot_2 == shoulder_gun:
+				shoulder_gun = null
+			
+			#if there's a gun, queue it free and set to null
+			if gun_slot_2:
+				gun_slot_2.queue_free()
+				gun_slot_2 = null
+				
+			#if we're equipping an item, add it
+			if equipment_slot.slot_data:
+				var item_3d:Gun = Item3D.instantiate_from_slot_data(equipment_slot.slot_data)
+				gun_slot_2 = item_3d as Gun
+				if item_3d:
+					move_gun_to_player_model(gun_slot_2)
+		"BackpackSlot":
+			if equipped_backpack:
+				equipped_backpack.queue_free()
+				equipped_backpack = null
+			if equipment_slot.slot_data:
+				var backpack:Backpack = Item3D.instantiate_from_slot_data(equipment_slot.slot_data)
+				if backpack:
+					move_backpack_to_anchor(backpack)
+					backpack.picked_up()
+					if backpack.backpack_size == Backpack.Size.NONE:
+						inventory_data.set_inventory_size(2)
+					elif backpack.backpack_size == Backpack.Size.SMALL:
+						inventory_data.set_inventory_size(4)
+					elif backpack.backpack_size == Backpack.Size.MEDIUM:
+						inventory_data.set_inventory_size(6)
+					elif backpack.backpack_size == Backpack.Size.LARGE:
+						inventory_data.set_inventory_size(8)
+			else:
+				inventory_data.set_inventory_size(2)
+		"ArmorSlot":
+			if equipped_armor:
+				equipped_armor.queue_free()
+				equipped_armor = null
+			if equipment_slot.slot_data:
+				var armor:BodyArmor = Item3D.instantiate_from_slot_data(equipment_slot.slot_data)
+				armor_equipped.emit(armor)
+				move_armor_to_anchor(armor)
+				armor.picked_up()
+	pass
+
+func send_item_pickup_message(slot_data:SlotData):
+	var message_text:String = "Picked up " + slot_data.item_data.display_name
+	
+	if slot_data.item_data.has_stacks:
+		message_text += " " + str(slot_data.quantity)
+		
+	EventBus.create_message.emit("pickup_"+str(randi()), message_text, 2.0)
 
 func move_gun_to_player_model(gun:Gun):
 	gun.show()	
@@ -277,7 +296,7 @@ func move_gun_to_player_model(gun:Gun):
 	
 func move_gun_to_hands(gun:Gun):
 	equipped_gun = gun
-	if gun:	
+	if gun:
 		gun.transform = Transform3D.IDENTITY
 		gun.fired.connect(_on_gun_fired)
 		gun.reloaded.connect(_on_gun_reloaded)
@@ -291,6 +310,8 @@ func move_gun_to_hands(gun:Gun):
 		
 		var gun_stats = gun.get_gun_stats()
 		ammo_component.set_active_ammo(gun_stats.ammo_type.name, gun_stats.ammo_type.sub_types[0].name)
+		gun.picked_up(self.get_instance_id())
+		
 
 func move_gun_to_shoulder(gun:Gun):
 	shoulder_gun = gun
@@ -300,20 +321,24 @@ func move_gun_to_shoulder(gun:Gun):
 		gun.rotate_x(-PI/2)
 		gun.visible = true
 		gun.top_level = false
-		pass
+		gun.picked_up(self.get_instance_id())
 
+
+var equipped_armor:BodyArmor
 func move_armor_to_anchor(armor:Node3D):
 	if armor:
 		Helpers.force_parent(armor, armor_anchor)
 		armor.transform = Transform3D.IDENTITY
 		armor.visible = true
-		pass
-		
+		equipped_armor = armor
+
+var equipped_backpack:Backpack
 func move_backpack_to_anchor(backpack:Node3D):
 	if backpack:
 		Helpers.force_parent(backpack, backpack_anchor)
 		backpack.transform = Transform3D.IDENTITY
 		backpack.visible = true
+		equipped_backpack = backpack
 
 func drop_equipped_gun():
 	if equipped_gun:
@@ -324,24 +349,6 @@ func drop_equipped_gun():
 		
 		equipped_gun = null
 		stop_arms_ik()
-
-func _on_drop_item(item_inst:ItemInstance, inventory_id:int):
-	if inventory_id == player_inventory_id:
-		var item_3d:Item3D = ItemAccess.get_item_3d(item_inst.id_3d)
-		Helpers.force_parent(item_3d,get_parent())
-		item_3d.dropped()
-		item_3d.global_position = drop_location.global_position
-		
-		if item_3d is Gun:
-			if item_3d == equipped_gun:
-				stop_arms_ik()
-				equipped_gun = null	
-			if item_3d == gun_slot_1:
-				gun_slot_1 = null	
-			if item_3d == gun_slot_2:
-				gun_slot_2 = null	
-			if item_3d == shoulder_gun:
-				shoulder_gun = null
 
 #realtime inputs - movement stuff
 func _physics_process(delta):
@@ -359,8 +366,8 @@ func _physics_process(delta):
 					if col is Item3D:
 						#Sometimes item instance is null when you pick object up
 						var display_text = ''
-						if col.get_item_instance():
-							display_text = col.get_item_instance().get_display_short_name()
+						if col.slot_data:
+							display_text = col.slot_data.item_data.display_short_name
 						EventBus.pickup_helper_visibility.emit(true, display_text)
 					elif col.has_method("use"):
 						EventBus.use_helper_visibility.emit(true)
@@ -374,15 +381,15 @@ func _physics_process(delta):
 func _unhandled_input(event):
 	if event.is_action_pressed("ui_cancel"):
 		#If inventories are closed, trigger the pause menu, else close open inventories
-		if !toggle_inv_f:
+		if !inventory_interface.visible:
 			MenuManager.load_menu(MenuManager.MENU_LEVEL.PAUSE)
 		else:
-			close_inventory()
+			toggle_inventory.emit()
 		
 
 func _input(event):
 	if event.is_action_pressed("inventory"):
-		toggle_inventory()
+		toggle_inventory.emit()
 	else:
 		if event.is_action_pressed("toggleFireMode"):
 			if equipped_gun.has_method("toggle_fire_mode"):
@@ -393,7 +400,19 @@ func _input(event):
 			if use_shape.is_colliding():
 				var col = use_shape.get_collider(0)
 				if col is Item3D:
-					EventBus.pickup_item.emit(col.get_item_instance(), player_inventory_id)
+					var slot_data:SlotData = col.slot_data
+					if slot_data.item_data.item_type == GameplayEnums.ItemType.AMMO:
+						var ammo_information:AmmoInformation = slot_data.item_data
+						var remainder = ammo_component.add_ammo(ammo_information.ammo_type.name, ammo_information.ammo_subtype.name, slot_data.quantity)
+						inventory_interface.play_pickup_sound(slot_data)
+						slot_data.quantity = remainder
+						if slot_data.quantity == 0:
+							col.queue_free()
+					elif col.pick_up_item(inventory_data):
+						inventory_interface.play_pickup_sound(slot_data)
+						send_item_pickup_message(slot_data)
+					pass
+					
 				elif col.has_method("use"):
 					col.use(self)
 		elif event.is_action_pressed("dropGun"):
@@ -431,34 +450,16 @@ func _input(event):
 		elif event.is_action_pressed("quick_load"):
 			SaveManager.quick_load()
 
-func toggle_inventory():
-	toggle_inv_f = !toggle_inv_f
-	
-	if toggle_inv_f:
-		open_inventory()
-		if HideoutManager.in_hideout:
-			HideoutManager.show_hideout_menu()
-	else:
-		close_inventory()
-		if HideoutManager.in_hideout:
-			HideoutManager.hide_hideout_menu()
-		
-func open_inventory():
-	toggle_inv_f = true
-	Input.mouse_mode = Input.MOUSE_MODE_CONFINED
-	EventBus.open_inventory.emit(player_inventory_id)
-	state_chart.send_event("LegsBusy")
-	state_chart.send_event("ArmsBusy")
-	state_chart.send_event("StopLean")
-	
-	
-func close_inventory():
-	toggle_inv_f = false
-	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-	EventBus.close_all_inventories.emit()
-	state_chart.send_event("LegsDone")
-	state_chart.send_event("ArmsDone")
 
+func _on_inventory_interface_visibility_changed() -> void:
+	if inventory_interface.visible:
+		state_chart.send_event("LegsBusy")
+		state_chart.send_event("ArmsBusy")
+		state_chart.send_event("StopLean")
+	else:
+		state_chart.send_event("LegsDone")
+		state_chart.send_event("ArmsDone")
+	pass # Replace with function body.
 
 func shoot():
 	equipped_gun.fireGun()
@@ -510,7 +511,7 @@ func _on_game_saving(save_file:SaveFile):
 		#player_information.path_to_parent = self.get_parent().get_path()
 		player_information.scene_path = self.scene_file_path
 		
-		player_information.additional_data["player_inventory_id"] = player_inventory_id
+		player_information.additional_data["inventory_data"] = inventory_data
 		
 		#save health
 		main_health_component._on_game_saving(player_information)
@@ -534,8 +535,12 @@ func _on_load_game(save_data:TopLevelEntitySaveData):
 		v_rot_acc = save_data.additional_data["v_rot_acc"]
 		h_rot_acc = save_data.additional_data["h_rot_acc"]
 		
-		player_inventory_id = save_data.additional_data["player_inventory_id"]
-		
+		inventory_data = save_data.additional_data["inventory_data"]
+		inventory_interface.set_player_inventory_data(inventory_data)
+		inventory_data.item_equipment_changed.connect(_on_item_equipment_changed)
+		for eq:EquipmentSlot in inventory_data.equipment_slots:
+			_on_item_equipment_changed(inventory_data, eq)
+			
 		#load health
 		main_health_component._on_load_game(save_data)
 		arms_health_component._on_load_game(save_data)
@@ -545,6 +550,7 @@ func _on_load_game(save_data:TopLevelEntitySaveData):
 		ammo_component._ammo_map = save_data.additional_data["ammo_map"]
 		ammo_component._active_ammo_type = save_data.additional_data["active_ammo_type"] 
 		ammo_component._active_ammo_subtype = save_data.additional_data["active_ammo_subtype"]
+		
 	
 var arm_destroyed_effect:GameplayEffect = load("res://game_objects/player/stat_modifiers/arm_destruction_effect.tres")
 func _on_arms_destroyed(hc:HealthComponent):
@@ -1294,17 +1300,3 @@ func _on_right_state_physics_processing(delta):
 		return
 	waist.basis = Quaternion(waist.basis).slerp(Quaternion(right_lean_basis),0.5)
 #endregion
-
-
-
-
-
-
-
-
-
-
-
-
-func _on_damage_component_hit_occured(attack_result: AttackResult) -> void:
-	pass # Replace with function body.

@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ItemMapping" load_steps=4 format=3 uid="uid://dfwjq8uh8gosr"]
+
+[ext_resource type="Script" path="res://resource_access/item_mapping.gd" id="1_o6poq"]
+[ext_resource type="PackedScene" uid="uid://dpvoqq6pjm1ya" path="res://game_objects/items/materials/bio_gel_vial/bio_gel_vial.tscn" id="1_ol5jm"]
+[ext_resource type="Resource" uid="uid://c8v7lgcr1goac" path="res://game_objects/items/materials/bio_gel_vial/bio_gel_vial_inventory_info.tres" id="2_cpq5j"]
+
+[resource]
+script = ExtResource("1_o6poq")
+item_type_id = "bio_gel_vial"
+item_information = ExtResource("2_cpq5j")
+item_3d_scene = ExtResource("1_ol5jm")
