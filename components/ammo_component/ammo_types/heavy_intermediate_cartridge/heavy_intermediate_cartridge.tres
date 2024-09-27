@@ -4,12 +4,12 @@
 [ext_resource type="Script" path="res://components/ammo_component/ammo_type.gd" id="1_xbqql"]
 [ext_resource type="Resource" uid="uid://cct85d3u48yuj" path="res://components/ammo_component/ammo_types/heavy_intermediate_cartridge/ammo_subtypes/full_metal_jacket.tres" id="2_056if"]
 [ext_resource type="Resource" uid="uid://e74bf0ee7eck" path="res://components/ammo_component/ammo_types/heavy_intermediate_cartridge/ammo_subtypes/armor_piercing.tres" id="3_0w2mg"]
-[ext_resource type="Script" path="res://components/ammo_component/ammo_subtype.gd" id="3_1d405"]
+[ext_resource type="Script" path="res://components/ammo_component/ammo_subtype.gd" id="3_wo2ar"]
 [ext_resource type="Resource" uid="uid://ddqopa64822e6" path="res://components/ammo_component/ammo_types/heavy_intermediate_cartridge/ammo_subtypes/hollow_point.tres" id="4_4pviq"]
 
 [resource]
 script = ExtResource("1_xbqql")
 name = "Heavy Intermediate Cartdridge"
 abbreviation = "HIC"
-sub_types = Array[ExtResource("3_1d405")]([ExtResource("2_056if"), ExtResource("3_0w2mg"), ExtResource("4_4pviq")])
+sub_types = Array[ExtResource("3_wo2ar")]([ExtResource("2_056if"), ExtResource("3_0w2mg"), ExtResource("4_4pviq")])
 display_icon = ExtResource("1_bh557")
