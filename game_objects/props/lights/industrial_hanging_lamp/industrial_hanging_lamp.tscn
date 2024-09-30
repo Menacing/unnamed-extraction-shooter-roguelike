@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://47ji61xdh2hs"]
+
+[ext_resource type="PackedScene" uid="uid://dpnewrh1rre1g" path="res://game_objects/props/lights/industrial_hanging_lamp/industrial_hanging_lamp.blend" id="1_hphdt"]
+[ext_resource type="Texture2D" uid="uid://daqvndsohpnyb" path="res://game_objects/effects/assets/light_01.png" id="2_n35vc"]
+
+[node name="IndustrialHangingLamp" type="Node3D"]
+
+[node name="industrial_hanging_lamp" parent="." instance=ExtResource("1_hphdt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.404582, 0)
+
+[node name="SpotLight3D" type="SpotLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -0.404582, 0)
+light_color = Color(1, 0.807843, 0.65098, 1)
+light_energy = 3.0
+light_indirect_energy = 3.0
+light_projector = ExtResource("2_n35vc")
+light_bake_mode = 1
+shadow_enabled = true

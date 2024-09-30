@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://dlmiqubqcqf0y"]
+
+[ext_resource type="PackedScene" uid="uid://fud3as6esaox" path="res://game_objects/props/lights/tube_light/tube_light.blend" id="1_yyqcv"]
+
+[node name="TubeLight" type="Node3D"]
+
+[node name="tube_light" parent="." instance=ExtResource("1_yyqcv")]
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.228245, 0)
+light_color = Color(1, 0.964706, 0.929412, 1)
+light_size = 1.0
+light_specular = 0.0
+shadow_enabled = true
