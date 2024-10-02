@@ -1,4 +1,4 @@
-[gd_scene load_steps=576 format=4 uid="uid://d2txigapsdl18"]
+[gd_scene load_steps=574 format=4 uid="uid://d2txigapsdl18"]
 
 [ext_resource type="Script" path="res://levels/level.gd" id="1_d1tug"]
 [ext_resource type="CameraAttributesPractical" uid="uid://jafbi2bjurvn" path="res://test/debug/vibe_check_camera.tres" id="2_7vsv1"]
@@ -12,10 +12,8 @@
 [ext_resource type="AudioStream" uid="uid://chvv4165nfb61" path="res://game_objects/effects/sounds/steps/footstep_concrete_001.ogg" id="10_kxvgh"]
 [ext_resource type="Material" uid="uid://cb2psvlsyu6yk" path="res://levels/textures/lights/light_13.tres" id="11_4ygpn"]
 [ext_resource type="PackedScene" uid="uid://64ippi50nu6t" path="res://components/damage_component/damage_component.tscn" id="11_jkr1j"]
-[ext_resource type="Script" path="res://components/damage_component/damage_component.gd" id="12_p5soi"]
 [ext_resource type="Material" uid="uid://bfg40ybkyktnp" path="res://levels/textures/metal/metal_39.tres" id="12_r32bi"]
 [ext_resource type="PackedScene" uid="uid://cliu3gfmcv7xd" path="res://components/damage_effect_component/damage_effect_component.tscn" id="13_8fmw4"]
-[ext_resource type="Script" path="res://components/damage_effect_component/damage_effect_component.gd" id="14_6yfql"]
 [ext_resource type="Material" uid="uid://lh44gucu42hs" path="res://levels/textures/metal/metal_40.tres" id="14_l0ixq"]
 [ext_resource type="Material" uid="uid://ba78wvi824fxe" path="res://levels/textures/glass/glass_1.tres" id="14_n4wit"]
 [ext_resource type="Material" uid="uid://c1aeita7ocbri" path="res://levels/textures/metal/metal_16.tres" id="15_g16lw"]
@@ -3260,13 +3258,11 @@ shape = SubResource("ConvexPolygonShape3D_lkmhd")
 [node name="entity_1_brush_4_collision_shape" type="CollisionShape3D" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_1_geo_ballistic_solid"]
 shape = SubResource("ConvexPolygonShape3D_dnany")
 
-[node name="DamageComponent" type="Node" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_1_geo_ballistic_solid" instance=ExtResource("11_jkr1j")]
-script = ExtResource("12_p5soi")
+[node name="DamageComponent" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_1_geo_ballistic_solid" instance=ExtResource("11_jkr1j")]
 percent_penetrated = 0.4
 armor_rating = 8
 
-[node name="DamageEffectComponent" type="Node" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_1_geo_ballistic_solid" instance=ExtResource("13_8fmw4")]
-script = ExtResource("14_6yfql")
+[node name="DamageEffectComponent" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_1_geo_ballistic_solid" instance=ExtResource("13_8fmw4")]
 damage_effect_scene = ExtResource("7_4hkqg")
 
 [node name="entity_2_geo_ballistic_solid" type="StaticBody3D" parent="MultiAgentNavigationRoot/FuncGodotMap" node_paths=PackedStringArray("damage_component", "damage_effect_component")]
@@ -3308,13 +3304,11 @@ shape = SubResource("ConvexPolygonShape3D_v8aor")
 [node name="entity_2_brush_4_collision_shape" type="CollisionShape3D" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_2_geo_ballistic_solid"]
 shape = SubResource("ConvexPolygonShape3D_bhdje")
 
-[node name="DamageComponent" type="Node" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_2_geo_ballistic_solid" instance=ExtResource("11_jkr1j")]
-script = ExtResource("12_p5soi")
+[node name="DamageComponent" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_2_geo_ballistic_solid" instance=ExtResource("11_jkr1j")]
 percent_penetrated = 0.4
 armor_rating = 8
 
-[node name="DamageEffectComponent" type="Node" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_2_geo_ballistic_solid" instance=ExtResource("13_8fmw4")]
-script = ExtResource("14_6yfql")
+[node name="DamageEffectComponent" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_2_geo_ballistic_solid" instance=ExtResource("13_8fmw4")]
 damage_effect_scene = ExtResource("7_4hkqg")
 
 [node name="entity_3_geo_ballistic_solid" type="StaticBody3D" parent="MultiAgentNavigationRoot/FuncGodotMap" node_paths=PackedStringArray("damage_component", "damage_effect_component")]
@@ -3356,13 +3350,11 @@ shape = SubResource("ConvexPolygonShape3D_a33nl")
 [node name="entity_3_brush_4_collision_shape" type="CollisionShape3D" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_3_geo_ballistic_solid"]
 shape = SubResource("ConvexPolygonShape3D_vbxxg")
 
-[node name="DamageComponent" type="Node" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_3_geo_ballistic_solid" instance=ExtResource("11_jkr1j")]
-script = ExtResource("12_p5soi")
+[node name="DamageComponent" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_3_geo_ballistic_solid" instance=ExtResource("11_jkr1j")]
 percent_penetrated = 0.4
 armor_rating = 8
 
-[node name="DamageEffectComponent" type="Node" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_3_geo_ballistic_solid" instance=ExtResource("13_8fmw4")]
-script = ExtResource("14_6yfql")
+[node name="DamageEffectComponent" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_3_geo_ballistic_solid" instance=ExtResource("13_8fmw4")]
 damage_effect_scene = ExtResource("7_4hkqg")
 
 [node name="entity_4_geo_ballistic_solid" type="StaticBody3D" parent="MultiAgentNavigationRoot/FuncGodotMap" node_paths=PackedStringArray("damage_component", "damage_effect_component")]
@@ -3519,13 +3511,11 @@ shape = SubResource("ConvexPolygonShape3D_15ggi")
 [node name="entity_4_brush_43_collision_shape" type="CollisionShape3D" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_4_geo_ballistic_solid"]
 shape = SubResource("ConvexPolygonShape3D_6ukkr")
 
-[node name="DamageComponent" type="Node" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_4_geo_ballistic_solid" instance=ExtResource("11_jkr1j")]
-script = ExtResource("12_p5soi")
+[node name="DamageComponent" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_4_geo_ballistic_solid" instance=ExtResource("11_jkr1j")]
 percent_penetrated = 0.6
 armor_rating = 6
 
-[node name="DamageEffectComponent" type="Node" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_4_geo_ballistic_solid" instance=ExtResource("13_8fmw4")]
-script = ExtResource("14_6yfql")
+[node name="DamageEffectComponent" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_4_geo_ballistic_solid" instance=ExtResource("13_8fmw4")]
 damage_effect_scene = ExtResource("15_y2lir")
 
 [node name="entity_5_geo_ballistic_solid" type="StaticBody3D" parent="MultiAgentNavigationRoot/FuncGodotMap" node_paths=PackedStringArray("damage_component", "damage_effect_component")]
@@ -3552,11 +3542,9 @@ mesh = SubResource("ArrayMesh_2jflc")
 [node name="entity_5_brush_0_collision_shape" type="CollisionShape3D" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_5_geo_ballistic_solid"]
 shape = SubResource("ConvexPolygonShape3D_qag4h")
 
-[node name="DamageComponent" type="Node" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_5_geo_ballistic_solid" instance=ExtResource("11_jkr1j")]
-script = ExtResource("12_p5soi")
+[node name="DamageComponent" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_5_geo_ballistic_solid" instance=ExtResource("11_jkr1j")]
 
-[node name="DamageEffectComponent" type="Node" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_5_geo_ballistic_solid" instance=ExtResource("13_8fmw4")]
-script = ExtResource("14_6yfql")
+[node name="DamageEffectComponent" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_5_geo_ballistic_solid" instance=ExtResource("13_8fmw4")]
 damage_effect_scene = ExtResource("15_y2lir")
 
 [node name="entity_6_geo_ballistic_solid" type="StaticBody3D" parent="MultiAgentNavigationRoot/FuncGodotMap" node_paths=PackedStringArray("damage_component", "damage_effect_component")]
@@ -3583,11 +3571,9 @@ mesh = SubResource("ArrayMesh_dl7jv")
 [node name="entity_6_brush_0_collision_shape" type="CollisionShape3D" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_6_geo_ballistic_solid"]
 shape = SubResource("ConvexPolygonShape3D_6og25")
 
-[node name="DamageComponent" type="Node" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_6_geo_ballistic_solid" instance=ExtResource("11_jkr1j")]
-script = ExtResource("12_p5soi")
+[node name="DamageComponent" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_6_geo_ballistic_solid" instance=ExtResource("11_jkr1j")]
 
-[node name="DamageEffectComponent" type="Node" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_6_geo_ballistic_solid" instance=ExtResource("13_8fmw4")]
-script = ExtResource("14_6yfql")
+[node name="DamageEffectComponent" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_6_geo_ballistic_solid" instance=ExtResource("13_8fmw4")]
 damage_effect_scene = ExtResource("15_y2lir")
 
 [node name="entity_7_geo_ballistic_solid" type="StaticBody3D" parent="MultiAgentNavigationRoot/FuncGodotMap" node_paths=PackedStringArray("damage_component", "damage_effect_component")]
@@ -3620,11 +3606,9 @@ shape = SubResource("ConvexPolygonShape3D_oreig")
 [node name="entity_7_brush_2_collision_shape" type="CollisionShape3D" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_7_geo_ballistic_solid"]
 shape = SubResource("ConvexPolygonShape3D_tnei5")
 
-[node name="DamageComponent" type="Node" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_7_geo_ballistic_solid" instance=ExtResource("11_jkr1j")]
-script = ExtResource("12_p5soi")
+[node name="DamageComponent" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_7_geo_ballistic_solid" instance=ExtResource("11_jkr1j")]
 
-[node name="DamageEffectComponent" type="Node" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_7_geo_ballistic_solid" instance=ExtResource("13_8fmw4")]
-script = ExtResource("14_6yfql")
+[node name="DamageEffectComponent" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_7_geo_ballistic_solid" instance=ExtResource("13_8fmw4")]
 damage_effect_scene = ExtResource("15_y2lir")
 
 [node name="entity_8_geo_ballistic_solid" type="StaticBody3D" parent="MultiAgentNavigationRoot/FuncGodotMap" node_paths=PackedStringArray("damage_component", "damage_effect_component")]
@@ -3657,11 +3641,9 @@ shape = SubResource("ConvexPolygonShape3D_x5py2")
 [node name="entity_8_brush_2_collision_shape" type="CollisionShape3D" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_8_geo_ballistic_solid"]
 shape = SubResource("ConvexPolygonShape3D_rxmms")
 
-[node name="DamageComponent" type="Node" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_8_geo_ballistic_solid" instance=ExtResource("11_jkr1j")]
-script = ExtResource("12_p5soi")
+[node name="DamageComponent" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_8_geo_ballistic_solid" instance=ExtResource("11_jkr1j")]
 
-[node name="DamageEffectComponent" type="Node" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_8_geo_ballistic_solid" instance=ExtResource("13_8fmw4")]
-script = ExtResource("14_6yfql")
+[node name="DamageEffectComponent" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_8_geo_ballistic_solid" instance=ExtResource("13_8fmw4")]
 damage_effect_scene = ExtResource("15_y2lir")
 
 [node name="entity_9_geo_ballistic_solid" type="StaticBody3D" parent="MultiAgentNavigationRoot/FuncGodotMap" node_paths=PackedStringArray("damage_component", "damage_effect_component")]
@@ -3688,11 +3670,9 @@ mesh = SubResource("ArrayMesh_56gg6")
 [node name="entity_9_brush_0_collision_shape" type="CollisionShape3D" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_9_geo_ballistic_solid"]
 shape = SubResource("ConvexPolygonShape3D_duqau")
 
-[node name="DamageComponent" type="Node" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_9_geo_ballistic_solid" instance=ExtResource("11_jkr1j")]
-script = ExtResource("12_p5soi")
+[node name="DamageComponent" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_9_geo_ballistic_solid" instance=ExtResource("11_jkr1j")]
 
-[node name="DamageEffectComponent" type="Node" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_9_geo_ballistic_solid" instance=ExtResource("13_8fmw4")]
-script = ExtResource("14_6yfql")
+[node name="DamageEffectComponent" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_9_geo_ballistic_solid" instance=ExtResource("13_8fmw4")]
 damage_effect_scene = ExtResource("15_y2lir")
 
 [node name="entity_10_geo_ballistic_solid" type="StaticBody3D" parent="MultiAgentNavigationRoot/FuncGodotMap" node_paths=PackedStringArray("damage_component", "damage_effect_component")]
@@ -3719,11 +3699,9 @@ mesh = SubResource("ArrayMesh_ivvn3")
 [node name="entity_10_brush_0_collision_shape" type="CollisionShape3D" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_10_geo_ballistic_solid"]
 shape = SubResource("ConvexPolygonShape3D_jdlme")
 
-[node name="DamageComponent" type="Node" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_10_geo_ballistic_solid" instance=ExtResource("11_jkr1j")]
-script = ExtResource("12_p5soi")
+[node name="DamageComponent" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_10_geo_ballistic_solid" instance=ExtResource("11_jkr1j")]
 
-[node name="DamageEffectComponent" type="Node" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_10_geo_ballistic_solid" instance=ExtResource("13_8fmw4")]
-script = ExtResource("14_6yfql")
+[node name="DamageEffectComponent" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_10_geo_ballistic_solid" instance=ExtResource("13_8fmw4")]
 damage_effect_scene = ExtResource("15_y2lir")
 
 [node name="entity_11_geo_ballistic_solid" type="StaticBody3D" parent="MultiAgentNavigationRoot/FuncGodotMap" node_paths=PackedStringArray("damage_component", "damage_effect_component")]
@@ -3823,13 +3801,11 @@ shape = SubResource("ConvexPolygonShape3D_v5a1o")
 [node name="entity_11_brush_24_collision_shape" type="CollisionShape3D" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_11_geo_ballistic_solid"]
 shape = SubResource("ConvexPolygonShape3D_1rhy0")
 
-[node name="DamageComponent" type="Node" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_11_geo_ballistic_solid" instance=ExtResource("11_jkr1j")]
-script = ExtResource("12_p5soi")
+[node name="DamageComponent" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_11_geo_ballistic_solid" instance=ExtResource("11_jkr1j")]
 percent_penetrated = 0.4
 armor_rating = 8
 
-[node name="DamageEffectComponent" type="Node" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_11_geo_ballistic_solid" instance=ExtResource("13_8fmw4")]
-script = ExtResource("14_6yfql")
+[node name="DamageEffectComponent" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_11_geo_ballistic_solid" instance=ExtResource("13_8fmw4")]
 damage_effect_scene = ExtResource("7_4hkqg")
 
 [node name="entity_12_geo_ballistic_solid" type="StaticBody3D" parent="MultiAgentNavigationRoot/FuncGodotMap" node_paths=PackedStringArray("damage_component", "damage_effect_component")]
@@ -3890,13 +3866,11 @@ shape = SubResource("ConvexPolygonShape3D_0f8am")
 [node name="entity_12_brush_11_collision_shape" type="CollisionShape3D" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_12_geo_ballistic_solid"]
 shape = SubResource("ConvexPolygonShape3D_m2tao")
 
-[node name="DamageComponent" type="Node" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_12_geo_ballistic_solid" instance=ExtResource("11_jkr1j")]
-script = ExtResource("12_p5soi")
+[node name="DamageComponent" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_12_geo_ballistic_solid" instance=ExtResource("11_jkr1j")]
 percent_penetrated = 0.4
 armor_rating = 8
 
-[node name="DamageEffectComponent" type="Node" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_12_geo_ballistic_solid" instance=ExtResource("13_8fmw4")]
-script = ExtResource("14_6yfql")
+[node name="DamageEffectComponent" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_12_geo_ballistic_solid" instance=ExtResource("13_8fmw4")]
 damage_effect_scene = ExtResource("7_4hkqg")
 
 [node name="entity_13_geo_ballistic_solid" type="StaticBody3D" parent="MultiAgentNavigationRoot/FuncGodotMap" node_paths=PackedStringArray("damage_component", "damage_effect_component")]
@@ -4044,13 +4018,11 @@ shape = SubResource("ConvexPolygonShape3D_q5nt0")
 [node name="entity_13_brush_40_collision_shape" type="CollisionShape3D" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_13_geo_ballistic_solid"]
 shape = SubResource("ConvexPolygonShape3D_8gcwj")
 
-[node name="DamageComponent" type="Node" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_13_geo_ballistic_solid" instance=ExtResource("11_jkr1j")]
-script = ExtResource("12_p5soi")
+[node name="DamageComponent" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_13_geo_ballistic_solid" instance=ExtResource("11_jkr1j")]
 percent_penetrated = 0.4
 armor_rating = 8
 
-[node name="DamageEffectComponent" type="Node" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_13_geo_ballistic_solid" instance=ExtResource("13_8fmw4")]
-script = ExtResource("14_6yfql")
+[node name="DamageEffectComponent" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_13_geo_ballistic_solid" instance=ExtResource("13_8fmw4")]
 damage_effect_scene = ExtResource("7_4hkqg")
 
 [node name="entity_14_geo_ballistic_solid" type="StaticBody3D" parent="MultiAgentNavigationRoot/FuncGodotMap" node_paths=PackedStringArray("damage_component", "damage_effect_component")]
@@ -4132,13 +4104,11 @@ shape = SubResource("ConvexPolygonShape3D_waouf")
 [node name="entity_14_brush_18_collision_shape" type="CollisionShape3D" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_14_geo_ballistic_solid"]
 shape = SubResource("ConvexPolygonShape3D_7vpln")
 
-[node name="DamageComponent" type="Node" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_14_geo_ballistic_solid" instance=ExtResource("11_jkr1j")]
-script = ExtResource("12_p5soi")
+[node name="DamageComponent" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_14_geo_ballistic_solid" instance=ExtResource("11_jkr1j")]
 percent_penetrated = 0.4
 armor_rating = 8
 
-[node name="DamageEffectComponent" type="Node" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_14_geo_ballistic_solid" instance=ExtResource("13_8fmw4")]
-script = ExtResource("14_6yfql")
+[node name="DamageEffectComponent" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_14_geo_ballistic_solid" instance=ExtResource("13_8fmw4")]
 damage_effect_scene = ExtResource("7_4hkqg")
 
 [node name="entity_15_geo_ballistic_solid" type="StaticBody3D" parent="MultiAgentNavigationRoot/FuncGodotMap" node_paths=PackedStringArray("damage_component", "damage_effect_component")]
@@ -4193,13 +4163,11 @@ shape = SubResource("ConvexPolygonShape3D_33qsj")
 [node name="entity_15_brush_9_collision_shape" type="CollisionShape3D" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_15_geo_ballistic_solid"]
 shape = SubResource("ConvexPolygonShape3D_suydx")
 
-[node name="DamageComponent" type="Node" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_15_geo_ballistic_solid" instance=ExtResource("11_jkr1j")]
-script = ExtResource("12_p5soi")
+[node name="DamageComponent" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_15_geo_ballistic_solid" instance=ExtResource("11_jkr1j")]
 percent_penetrated = 0.4
 armor_rating = 8
 
-[node name="DamageEffectComponent" type="Node" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_15_geo_ballistic_solid" instance=ExtResource("13_8fmw4")]
-script = ExtResource("14_6yfql")
+[node name="DamageEffectComponent" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_15_geo_ballistic_solid" instance=ExtResource("13_8fmw4")]
 damage_effect_scene = ExtResource("7_4hkqg")
 
 [node name="entity_16_geo_ballistic_solid" type="StaticBody3D" parent="MultiAgentNavigationRoot/FuncGodotMap" node_paths=PackedStringArray("damage_component", "damage_effect_component")]
@@ -4230,13 +4198,11 @@ shape = SubResource("ConvexPolygonShape3D_06cpk")
 [node name="entity_16_brush_1_collision_shape" type="CollisionShape3D" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_16_geo_ballistic_solid"]
 shape = SubResource("ConvexPolygonShape3D_m42ge")
 
-[node name="DamageComponent" type="Node" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_16_geo_ballistic_solid" instance=ExtResource("11_jkr1j")]
-script = ExtResource("12_p5soi")
+[node name="DamageComponent" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_16_geo_ballistic_solid" instance=ExtResource("11_jkr1j")]
 percent_penetrated = 0.4
 armor_rating = 8
 
-[node name="DamageEffectComponent" type="Node" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_16_geo_ballistic_solid" instance=ExtResource("13_8fmw4")]
-script = ExtResource("14_6yfql")
+[node name="DamageEffectComponent" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_16_geo_ballistic_solid" instance=ExtResource("13_8fmw4")]
 damage_effect_scene = ExtResource("7_4hkqg")
 
 [node name="entity_17_geo_ballistic_solid" type="StaticBody3D" parent="MultiAgentNavigationRoot/FuncGodotMap" node_paths=PackedStringArray("damage_component", "damage_effect_component")]
@@ -4280,13 +4246,11 @@ shape = SubResource("ConvexPolygonShape3D_ragtk")
 [node name="entity_17_brush_5_collision_shape" type="CollisionShape3D" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_17_geo_ballistic_solid"]
 shape = SubResource("ConvexPolygonShape3D_5b46r")
 
-[node name="DamageComponent" type="Node" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_17_geo_ballistic_solid" instance=ExtResource("11_jkr1j")]
-script = ExtResource("12_p5soi")
+[node name="DamageComponent" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_17_geo_ballistic_solid" instance=ExtResource("11_jkr1j")]
 percent_penetrated = 0.4
 armor_rating = 8
 
-[node name="DamageEffectComponent" type="Node" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_17_geo_ballistic_solid" instance=ExtResource("13_8fmw4")]
-script = ExtResource("14_6yfql")
+[node name="DamageEffectComponent" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_17_geo_ballistic_solid" instance=ExtResource("13_8fmw4")]
 damage_effect_scene = ExtResource("7_4hkqg")
 
 [node name="entity_18_geo_ballistic_solid" type="StaticBody3D" parent="MultiAgentNavigationRoot/FuncGodotMap" node_paths=PackedStringArray("damage_component", "damage_effect_component")]
@@ -4330,13 +4294,11 @@ shape = SubResource("ConvexPolygonShape3D_bsosr")
 [node name="entity_18_brush_5_collision_shape" type="CollisionShape3D" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_18_geo_ballistic_solid"]
 shape = SubResource("ConvexPolygonShape3D_rdfm0")
 
-[node name="DamageComponent" type="Node" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_18_geo_ballistic_solid" instance=ExtResource("11_jkr1j")]
-script = ExtResource("12_p5soi")
+[node name="DamageComponent" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_18_geo_ballistic_solid" instance=ExtResource("11_jkr1j")]
 percent_penetrated = 0.4
 armor_rating = 8
 
-[node name="DamageEffectComponent" type="Node" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_18_geo_ballistic_solid" instance=ExtResource("13_8fmw4")]
-script = ExtResource("14_6yfql")
+[node name="DamageEffectComponent" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_18_geo_ballistic_solid" instance=ExtResource("13_8fmw4")]
 damage_effect_scene = ExtResource("7_4hkqg")
 
 [node name="entity_19_geo_ballistic_solid" type="StaticBody3D" parent="MultiAgentNavigationRoot/FuncGodotMap" node_paths=PackedStringArray("damage_component", "damage_effect_component")]
@@ -4377,13 +4339,11 @@ shape = SubResource("ConvexPolygonShape3D_tsx5k")
 [node name="entity_19_brush_4_collision_shape" type="CollisionShape3D" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_19_geo_ballistic_solid"]
 shape = SubResource("ConvexPolygonShape3D_0e0e2")
 
-[node name="DamageComponent" type="Node" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_19_geo_ballistic_solid" instance=ExtResource("11_jkr1j")]
-script = ExtResource("12_p5soi")
+[node name="DamageComponent" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_19_geo_ballistic_solid" instance=ExtResource("11_jkr1j")]
 percent_penetrated = 0.4
 armor_rating = 8
 
-[node name="DamageEffectComponent" type="Node" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_19_geo_ballistic_solid" instance=ExtResource("13_8fmw4")]
-script = ExtResource("14_6yfql")
+[node name="DamageEffectComponent" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_19_geo_ballistic_solid" instance=ExtResource("13_8fmw4")]
 damage_effect_scene = ExtResource("7_4hkqg")
 
 [node name="entity_20_geo_ballistic_solid" type="StaticBody3D" parent="MultiAgentNavigationRoot/FuncGodotMap" node_paths=PackedStringArray("damage_component", "damage_effect_component")]
@@ -4424,13 +4384,11 @@ shape = SubResource("ConvexPolygonShape3D_yp411")
 [node name="entity_20_brush_4_collision_shape" type="CollisionShape3D" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_20_geo_ballistic_solid"]
 shape = SubResource("ConvexPolygonShape3D_ek828")
 
-[node name="DamageComponent" type="Node" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_20_geo_ballistic_solid" instance=ExtResource("11_jkr1j")]
-script = ExtResource("12_p5soi")
+[node name="DamageComponent" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_20_geo_ballistic_solid" instance=ExtResource("11_jkr1j")]
 percent_penetrated = 0.4
 armor_rating = 8
 
-[node name="DamageEffectComponent" type="Node" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_20_geo_ballistic_solid" instance=ExtResource("13_8fmw4")]
-script = ExtResource("14_6yfql")
+[node name="DamageEffectComponent" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_20_geo_ballistic_solid" instance=ExtResource("13_8fmw4")]
 damage_effect_scene = ExtResource("7_4hkqg")
 
 [node name="entity_21_geo_ballistic_solid" type="StaticBody3D" parent="MultiAgentNavigationRoot/FuncGodotMap" node_paths=PackedStringArray("damage_component", "damage_effect_component")]
@@ -4462,13 +4420,11 @@ shape = SubResource("ConvexPolygonShape3D_3h1qm")
 [node name="entity_21_brush_1_collision_shape" type="CollisionShape3D" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_21_geo_ballistic_solid"]
 shape = SubResource("ConvexPolygonShape3D_j2xt1")
 
-[node name="DamageComponent" type="Node" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_21_geo_ballistic_solid" instance=ExtResource("11_jkr1j")]
-script = ExtResource("12_p5soi")
+[node name="DamageComponent" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_21_geo_ballistic_solid" instance=ExtResource("11_jkr1j")]
 percent_penetrated = 0.4
 armor_rating = 8
 
-[node name="DamageEffectComponent" type="Node" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_21_geo_ballistic_solid" instance=ExtResource("13_8fmw4")]
-script = ExtResource("14_6yfql")
+[node name="DamageEffectComponent" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_21_geo_ballistic_solid" instance=ExtResource("13_8fmw4")]
 damage_effect_scene = ExtResource("7_4hkqg")
 
 [node name="entity_22_geo_ballistic_solid" type="StaticBody3D" parent="MultiAgentNavigationRoot/FuncGodotMap" node_paths=PackedStringArray("damage_component", "damage_effect_component")]
@@ -4500,13 +4456,11 @@ shape = SubResource("ConvexPolygonShape3D_n4tdx")
 [node name="entity_22_brush_1_collision_shape" type="CollisionShape3D" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_22_geo_ballistic_solid"]
 shape = SubResource("ConvexPolygonShape3D_1hbks")
 
-[node name="DamageComponent" type="Node" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_22_geo_ballistic_solid" instance=ExtResource("11_jkr1j")]
-script = ExtResource("12_p5soi")
+[node name="DamageComponent" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_22_geo_ballistic_solid" instance=ExtResource("11_jkr1j")]
 percent_penetrated = 0.4
 armor_rating = 8
 
-[node name="DamageEffectComponent" type="Node" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_22_geo_ballistic_solid" instance=ExtResource("13_8fmw4")]
-script = ExtResource("14_6yfql")
+[node name="DamageEffectComponent" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_22_geo_ballistic_solid" instance=ExtResource("13_8fmw4")]
 damage_effect_scene = ExtResource("7_4hkqg")
 
 [node name="entity_23_geo_ballistic_solid" type="StaticBody3D" parent="MultiAgentNavigationRoot/FuncGodotMap" node_paths=PackedStringArray("damage_component", "damage_effect_component")]
@@ -4536,11 +4490,9 @@ shape = SubResource("ConvexPolygonShape3D_yb2wc")
 [node name="entity_23_brush_1_collision_shape" type="CollisionShape3D" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_23_geo_ballistic_solid"]
 shape = SubResource("ConvexPolygonShape3D_edvda")
 
-[node name="DamageComponent" type="Node" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_23_geo_ballistic_solid" instance=ExtResource("11_jkr1j")]
-script = ExtResource("12_p5soi")
+[node name="DamageComponent" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_23_geo_ballistic_solid" instance=ExtResource("11_jkr1j")]
 
-[node name="DamageEffectComponent" type="Node" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_23_geo_ballistic_solid" instance=ExtResource("13_8fmw4")]
-script = ExtResource("14_6yfql")
+[node name="DamageEffectComponent" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_23_geo_ballistic_solid" instance=ExtResource("13_8fmw4")]
 damage_effect_scene = ExtResource("15_y2lir")
 
 [node name="entity_24_geo_ballistic_solid" type="StaticBody3D" parent="MultiAgentNavigationRoot/FuncGodotMap" node_paths=PackedStringArray("damage_component", "damage_effect_component")]
@@ -4569,13 +4521,11 @@ mesh = SubResource("ArrayMesh_gq0e2")
 [node name="entity_24_brush_0_collision_shape" type="CollisionShape3D" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_24_geo_ballistic_solid"]
 shape = SubResource("ConvexPolygonShape3D_jy3h0")
 
-[node name="DamageComponent" type="Node" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_24_geo_ballistic_solid" instance=ExtResource("11_jkr1j")]
-script = ExtResource("12_p5soi")
+[node name="DamageComponent" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_24_geo_ballistic_solid" instance=ExtResource("11_jkr1j")]
 percent_penetrated = 0.4
 armor_rating = 8
 
-[node name="DamageEffectComponent" type="Node" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_24_geo_ballistic_solid" instance=ExtResource("13_8fmw4")]
-script = ExtResource("14_6yfql")
+[node name="DamageEffectComponent" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_24_geo_ballistic_solid" instance=ExtResource("13_8fmw4")]
 damage_effect_scene = ExtResource("7_4hkqg")
 
 [node name="entity_25_geo_ballistic_solid" type="StaticBody3D" parent="MultiAgentNavigationRoot/FuncGodotMap" node_paths=PackedStringArray("damage_component", "damage_effect_component")]
@@ -4619,13 +4569,11 @@ shape = SubResource("ConvexPolygonShape3D_a54yc")
 [node name="entity_25_brush_5_collision_shape" type="CollisionShape3D" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_25_geo_ballistic_solid"]
 shape = SubResource("ConvexPolygonShape3D_spvby")
 
-[node name="DamageComponent" type="Node" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_25_geo_ballistic_solid" instance=ExtResource("11_jkr1j")]
-script = ExtResource("12_p5soi")
+[node name="DamageComponent" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_25_geo_ballistic_solid" instance=ExtResource("11_jkr1j")]
 percent_penetrated = 0.4
 armor_rating = 8
 
-[node name="DamageEffectComponent" type="Node" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_25_geo_ballistic_solid" instance=ExtResource("13_8fmw4")]
-script = ExtResource("14_6yfql")
+[node name="DamageEffectComponent" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_25_geo_ballistic_solid" instance=ExtResource("13_8fmw4")]
 damage_effect_scene = ExtResource("7_4hkqg")
 
 [node name="entity_26_geo_ballistic_solid" type="StaticBody3D" parent="MultiAgentNavigationRoot/FuncGodotMap" node_paths=PackedStringArray("damage_component", "damage_effect_component")]
@@ -4653,13 +4601,11 @@ mesh = SubResource("ArrayMesh_gbv5p")
 [node name="entity_26_brush_0_collision_shape" type="CollisionShape3D" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_26_geo_ballistic_solid"]
 shape = SubResource("ConvexPolygonShape3D_cpuu4")
 
-[node name="DamageComponent" type="Node" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_26_geo_ballistic_solid" instance=ExtResource("11_jkr1j")]
-script = ExtResource("12_p5soi")
+[node name="DamageComponent" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_26_geo_ballistic_solid" instance=ExtResource("11_jkr1j")]
 percent_penetrated = 0.4
 armor_rating = 8
 
-[node name="DamageEffectComponent" type="Node" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_26_geo_ballistic_solid" instance=ExtResource("13_8fmw4")]
-script = ExtResource("14_6yfql")
+[node name="DamageEffectComponent" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_26_geo_ballistic_solid" instance=ExtResource("13_8fmw4")]
 damage_effect_scene = ExtResource("7_4hkqg")
 
 [node name="entity_27_geo_ballistic_solid" type="StaticBody3D" parent="MultiAgentNavigationRoot/FuncGodotMap" node_paths=PackedStringArray("damage_component", "damage_effect_component")]
@@ -4687,13 +4633,11 @@ mesh = SubResource("ArrayMesh_tp0i3")
 [node name="entity_27_brush_0_collision_shape" type="CollisionShape3D" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_27_geo_ballistic_solid"]
 shape = SubResource("ConvexPolygonShape3D_ubo6d")
 
-[node name="DamageComponent" type="Node" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_27_geo_ballistic_solid" instance=ExtResource("11_jkr1j")]
-script = ExtResource("12_p5soi")
+[node name="DamageComponent" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_27_geo_ballistic_solid" instance=ExtResource("11_jkr1j")]
 percent_penetrated = 0.4
 armor_rating = 8
 
-[node name="DamageEffectComponent" type="Node" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_27_geo_ballistic_solid" instance=ExtResource("13_8fmw4")]
-script = ExtResource("14_6yfql")
+[node name="DamageEffectComponent" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_27_geo_ballistic_solid" instance=ExtResource("13_8fmw4")]
 damage_effect_scene = ExtResource("7_4hkqg")
 
 [node name="entity_28_geo_ballistic_solid" type="StaticBody3D" parent="MultiAgentNavigationRoot/FuncGodotMap" node_paths=PackedStringArray("damage_component", "damage_effect_component")]
@@ -4728,13 +4672,11 @@ shape = SubResource("ConvexPolygonShape3D_cvggw")
 [node name="entity_28_brush_2_collision_shape" type="CollisionShape3D" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_28_geo_ballistic_solid"]
 shape = SubResource("ConvexPolygonShape3D_d3bdo")
 
-[node name="DamageComponent" type="Node" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_28_geo_ballistic_solid" instance=ExtResource("11_jkr1j")]
-script = ExtResource("12_p5soi")
+[node name="DamageComponent" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_28_geo_ballistic_solid" instance=ExtResource("11_jkr1j")]
 percent_penetrated = 0.4
 armor_rating = 8
 
-[node name="DamageEffectComponent" type="Node" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_28_geo_ballistic_solid" instance=ExtResource("13_8fmw4")]
-script = ExtResource("14_6yfql")
+[node name="DamageEffectComponent" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_28_geo_ballistic_solid" instance=ExtResource("13_8fmw4")]
 damage_effect_scene = ExtResource("7_4hkqg")
 
 [node name="entity_29_geo_ballistic_solid" type="StaticBody3D" parent="MultiAgentNavigationRoot/FuncGodotMap" node_paths=PackedStringArray("damage_component", "damage_effect_component")]
@@ -4764,13 +4706,11 @@ mesh = SubResource("ArrayMesh_ycadb")
 [node name="entity_29_brush_0_collision_shape" type="CollisionShape3D" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_29_geo_ballistic_solid"]
 shape = SubResource("ConvexPolygonShape3D_2rbf7")
 
-[node name="DamageComponent" type="Node" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_29_geo_ballistic_solid" instance=ExtResource("11_jkr1j")]
-script = ExtResource("12_p5soi")
+[node name="DamageComponent" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_29_geo_ballistic_solid" instance=ExtResource("11_jkr1j")]
 percent_penetrated = 0.4
 armor_rating = 8
 
-[node name="DamageEffectComponent" type="Node" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_29_geo_ballistic_solid" instance=ExtResource("13_8fmw4")]
-script = ExtResource("14_6yfql")
+[node name="DamageEffectComponent" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_29_geo_ballistic_solid" instance=ExtResource("13_8fmw4")]
 damage_effect_scene = ExtResource("7_4hkqg")
 
 [node name="entity_30_geo_ballistic_solid" type="StaticBody3D" parent="MultiAgentNavigationRoot/FuncGodotMap" node_paths=PackedStringArray("damage_component", "damage_effect_component")]
@@ -4805,13 +4745,11 @@ shape = SubResource("ConvexPolygonShape3D_sai21")
 [node name="entity_30_brush_2_collision_shape" type="CollisionShape3D" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_30_geo_ballistic_solid"]
 shape = SubResource("ConvexPolygonShape3D_35sew")
 
-[node name="DamageComponent" type="Node" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_30_geo_ballistic_solid" instance=ExtResource("11_jkr1j")]
-script = ExtResource("12_p5soi")
+[node name="DamageComponent" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_30_geo_ballistic_solid" instance=ExtResource("11_jkr1j")]
 percent_penetrated = 0.4
 armor_rating = 8
 
-[node name="DamageEffectComponent" type="Node" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_30_geo_ballistic_solid" instance=ExtResource("13_8fmw4")]
-script = ExtResource("14_6yfql")
+[node name="DamageEffectComponent" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_30_geo_ballistic_solid" instance=ExtResource("13_8fmw4")]
 damage_effect_scene = ExtResource("7_4hkqg")
 
 [node name="entity_31_geo_ballistic_solid" type="StaticBody3D" parent="MultiAgentNavigationRoot/FuncGodotMap" node_paths=PackedStringArray("damage_component", "damage_effect_component")]
@@ -4841,13 +4779,11 @@ mesh = SubResource("ArrayMesh_qe17n")
 [node name="entity_31_brush_0_collision_shape" type="CollisionShape3D" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_31_geo_ballistic_solid"]
 shape = SubResource("ConvexPolygonShape3D_4pn7b")
 
-[node name="DamageComponent" type="Node" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_31_geo_ballistic_solid" instance=ExtResource("11_jkr1j")]
-script = ExtResource("12_p5soi")
+[node name="DamageComponent" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_31_geo_ballistic_solid" instance=ExtResource("11_jkr1j")]
 percent_penetrated = 0.4
 armor_rating = 8
 
-[node name="DamageEffectComponent" type="Node" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_31_geo_ballistic_solid" instance=ExtResource("13_8fmw4")]
-script = ExtResource("14_6yfql")
+[node name="DamageEffectComponent" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_31_geo_ballistic_solid" instance=ExtResource("13_8fmw4")]
 damage_effect_scene = ExtResource("7_4hkqg")
 
 [node name="entity_32_geo_ballistic_solid" type="StaticBody3D" parent="MultiAgentNavigationRoot/FuncGodotMap" node_paths=PackedStringArray("damage_component", "damage_effect_component")]
@@ -4882,13 +4818,11 @@ shape = SubResource("ConvexPolygonShape3D_g5ntg")
 [node name="entity_32_brush_2_collision_shape" type="CollisionShape3D" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_32_geo_ballistic_solid"]
 shape = SubResource("ConvexPolygonShape3D_ysnps")
 
-[node name="DamageComponent" type="Node" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_32_geo_ballistic_solid" instance=ExtResource("11_jkr1j")]
-script = ExtResource("12_p5soi")
+[node name="DamageComponent" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_32_geo_ballistic_solid" instance=ExtResource("11_jkr1j")]
 percent_penetrated = 0.4
 armor_rating = 8
 
-[node name="DamageEffectComponent" type="Node" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_32_geo_ballistic_solid" instance=ExtResource("13_8fmw4")]
-script = ExtResource("14_6yfql")
+[node name="DamageEffectComponent" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_32_geo_ballistic_solid" instance=ExtResource("13_8fmw4")]
 damage_effect_scene = ExtResource("7_4hkqg")
 
 [node name="entity_33_geo_ballistic_solid" type="StaticBody3D" parent="MultiAgentNavigationRoot/FuncGodotMap" node_paths=PackedStringArray("damage_component", "damage_effect_component")]
@@ -4918,13 +4852,11 @@ mesh = SubResource("ArrayMesh_4l3ib")
 [node name="entity_33_brush_0_collision_shape" type="CollisionShape3D" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_33_geo_ballistic_solid"]
 shape = SubResource("ConvexPolygonShape3D_qf7ud")
 
-[node name="DamageComponent" type="Node" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_33_geo_ballistic_solid" instance=ExtResource("11_jkr1j")]
-script = ExtResource("12_p5soi")
+[node name="DamageComponent" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_33_geo_ballistic_solid" instance=ExtResource("11_jkr1j")]
 percent_penetrated = 0.4
 armor_rating = 8
 
-[node name="DamageEffectComponent" type="Node" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_33_geo_ballistic_solid" instance=ExtResource("13_8fmw4")]
-script = ExtResource("14_6yfql")
+[node name="DamageEffectComponent" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_33_geo_ballistic_solid" instance=ExtResource("13_8fmw4")]
 damage_effect_scene = ExtResource("7_4hkqg")
 
 [node name="entity_34_geo_ballistic_solid" type="StaticBody3D" parent="MultiAgentNavigationRoot/FuncGodotMap" node_paths=PackedStringArray("damage_component", "damage_effect_component")]
@@ -4959,13 +4891,11 @@ shape = SubResource("ConvexPolygonShape3D_hf2ll")
 [node name="entity_34_brush_2_collision_shape" type="CollisionShape3D" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_34_geo_ballistic_solid"]
 shape = SubResource("ConvexPolygonShape3D_rj0oj")
 
-[node name="DamageComponent" type="Node" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_34_geo_ballistic_solid" instance=ExtResource("11_jkr1j")]
-script = ExtResource("12_p5soi")
+[node name="DamageComponent" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_34_geo_ballistic_solid" instance=ExtResource("11_jkr1j")]
 percent_penetrated = 0.4
 armor_rating = 8
 
-[node name="DamageEffectComponent" type="Node" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_34_geo_ballistic_solid" instance=ExtResource("13_8fmw4")]
-script = ExtResource("14_6yfql")
+[node name="DamageEffectComponent" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_34_geo_ballistic_solid" instance=ExtResource("13_8fmw4")]
 damage_effect_scene = ExtResource("7_4hkqg")
 
 [node name="entity_35_geo_ballistic_solid" type="StaticBody3D" parent="MultiAgentNavigationRoot/FuncGodotMap" node_paths=PackedStringArray("damage_component", "damage_effect_component")]
@@ -4995,13 +4925,11 @@ mesh = SubResource("ArrayMesh_hfyw4")
 [node name="entity_35_brush_0_collision_shape" type="CollisionShape3D" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_35_geo_ballistic_solid"]
 shape = SubResource("ConvexPolygonShape3D_fa0u6")
 
-[node name="DamageComponent" type="Node" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_35_geo_ballistic_solid" instance=ExtResource("11_jkr1j")]
-script = ExtResource("12_p5soi")
+[node name="DamageComponent" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_35_geo_ballistic_solid" instance=ExtResource("11_jkr1j")]
 percent_penetrated = 0.4
 armor_rating = 8
 
-[node name="DamageEffectComponent" type="Node" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_35_geo_ballistic_solid" instance=ExtResource("13_8fmw4")]
-script = ExtResource("14_6yfql")
+[node name="DamageEffectComponent" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_35_geo_ballistic_solid" instance=ExtResource("13_8fmw4")]
 damage_effect_scene = ExtResource("7_4hkqg")
 
 [node name="entity_36_geo_ballistic_solid" type="StaticBody3D" parent="MultiAgentNavigationRoot/FuncGodotMap" node_paths=PackedStringArray("damage_component", "damage_effect_component")]
@@ -5038,13 +4966,11 @@ shape = SubResource("ConvexPolygonShape3D_x1x8e")
 [node name="entity_36_brush_3_collision_shape" type="CollisionShape3D" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_36_geo_ballistic_solid"]
 shape = SubResource("ConvexPolygonShape3D_dma6c")
 
-[node name="DamageComponent" type="Node" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_36_geo_ballistic_solid" instance=ExtResource("11_jkr1j")]
-script = ExtResource("12_p5soi")
+[node name="DamageComponent" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_36_geo_ballistic_solid" instance=ExtResource("11_jkr1j")]
 percent_penetrated = 0.4
 armor_rating = 8
 
-[node name="DamageEffectComponent" type="Node" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_36_geo_ballistic_solid" instance=ExtResource("13_8fmw4")]
-script = ExtResource("14_6yfql")
+[node name="DamageEffectComponent" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_36_geo_ballistic_solid" instance=ExtResource("13_8fmw4")]
 damage_effect_scene = ExtResource("7_4hkqg")
 
 [node name="entity_37_geo_ballistic_solid" type="StaticBody3D" parent="MultiAgentNavigationRoot/FuncGodotMap" node_paths=PackedStringArray("damage_component", "damage_effect_component")]
@@ -5081,13 +5007,11 @@ shape = SubResource("ConvexPolygonShape3D_luomy")
 [node name="entity_37_brush_3_collision_shape" type="CollisionShape3D" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_37_geo_ballistic_solid"]
 shape = SubResource("ConvexPolygonShape3D_oi82g")
 
-[node name="DamageComponent" type="Node" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_37_geo_ballistic_solid" instance=ExtResource("11_jkr1j")]
-script = ExtResource("12_p5soi")
+[node name="DamageComponent" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_37_geo_ballistic_solid" instance=ExtResource("11_jkr1j")]
 percent_penetrated = 0.4
 armor_rating = 8
 
-[node name="DamageEffectComponent" type="Node" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_37_geo_ballistic_solid" instance=ExtResource("13_8fmw4")]
-script = ExtResource("14_6yfql")
+[node name="DamageEffectComponent" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_37_geo_ballistic_solid" instance=ExtResource("13_8fmw4")]
 damage_effect_scene = ExtResource("7_4hkqg")
 
 [node name="entity_38_geo_ballistic_solid" type="StaticBody3D" parent="MultiAgentNavigationRoot/FuncGodotMap" node_paths=PackedStringArray("damage_component", "damage_effect_component")]
@@ -5180,11 +5104,9 @@ shape = SubResource("ConvexPolygonShape3D_04ns0")
 [node name="entity_38_brush_22_collision_shape" type="CollisionShape3D" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_38_geo_ballistic_solid"]
 shape = SubResource("ConvexPolygonShape3D_j023b")
 
-[node name="DamageComponent" type="Node" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_38_geo_ballistic_solid" instance=ExtResource("11_jkr1j")]
-script = ExtResource("12_p5soi")
+[node name="DamageComponent" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_38_geo_ballistic_solid" instance=ExtResource("11_jkr1j")]
 
-[node name="DamageEffectComponent" type="Node" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_38_geo_ballistic_solid" instance=ExtResource("13_8fmw4")]
-script = ExtResource("14_6yfql")
+[node name="DamageEffectComponent" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_38_geo_ballistic_solid" instance=ExtResource("13_8fmw4")]
 damage_effect_scene = ExtResource("15_y2lir")
 
 [node name="entity_39_geo_ballistic_solid" type="StaticBody3D" parent="MultiAgentNavigationRoot/FuncGodotMap" node_paths=PackedStringArray("damage_component", "damage_effect_component")]
@@ -5211,11 +5133,9 @@ mesh = SubResource("ArrayMesh_lsdht")
 [node name="entity_39_brush_0_collision_shape" type="CollisionShape3D" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_39_geo_ballistic_solid"]
 shape = SubResource("ConvexPolygonShape3D_elrme")
 
-[node name="DamageComponent" type="Node" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_39_geo_ballistic_solid" instance=ExtResource("11_jkr1j")]
-script = ExtResource("12_p5soi")
+[node name="DamageComponent" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_39_geo_ballistic_solid" instance=ExtResource("11_jkr1j")]
 
-[node name="DamageEffectComponent" type="Node" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_39_geo_ballistic_solid" instance=ExtResource("13_8fmw4")]
-script = ExtResource("14_6yfql")
+[node name="DamageEffectComponent" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_39_geo_ballistic_solid" instance=ExtResource("13_8fmw4")]
 damage_effect_scene = ExtResource("15_y2lir")
 
 [node name="entity_40_geo_ballistic_solid" type="StaticBody3D" parent="MultiAgentNavigationRoot/FuncGodotMap" node_paths=PackedStringArray("damage_component", "damage_effect_component")]
@@ -5244,13 +5164,11 @@ mesh = SubResource("ArrayMesh_yc30l")
 [node name="entity_40_brush_0_collision_shape" type="CollisionShape3D" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_40_geo_ballistic_solid"]
 shape = SubResource("ConvexPolygonShape3D_uvf6h")
 
-[node name="DamageComponent" type="Node" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_40_geo_ballistic_solid" instance=ExtResource("11_jkr1j")]
-script = ExtResource("12_p5soi")
+[node name="DamageComponent" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_40_geo_ballistic_solid" instance=ExtResource("11_jkr1j")]
 percent_penetrated = 0.4
 armor_rating = 8
 
-[node name="DamageEffectComponent" type="Node" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_40_geo_ballistic_solid" instance=ExtResource("13_8fmw4")]
-script = ExtResource("14_6yfql")
+[node name="DamageEffectComponent" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_40_geo_ballistic_solid" instance=ExtResource("13_8fmw4")]
 damage_effect_scene = ExtResource("7_4hkqg")
 
 [node name="entity_41_geo_ballistic_solid" type="StaticBody3D" parent="MultiAgentNavigationRoot/FuncGodotMap" node_paths=PackedStringArray("damage_component", "damage_effect_component")]
@@ -5285,13 +5203,11 @@ shape = SubResource("ConvexPolygonShape3D_32wwr")
 [node name="entity_41_brush_2_collision_shape" type="CollisionShape3D" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_41_geo_ballistic_solid"]
 shape = SubResource("ConvexPolygonShape3D_fyk5s")
 
-[node name="DamageComponent" type="Node" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_41_geo_ballistic_solid" instance=ExtResource("11_jkr1j")]
-script = ExtResource("12_p5soi")
+[node name="DamageComponent" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_41_geo_ballistic_solid" instance=ExtResource("11_jkr1j")]
 percent_penetrated = 0.4
 armor_rating = 8
 
-[node name="DamageEffectComponent" type="Node" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_41_geo_ballistic_solid" instance=ExtResource("13_8fmw4")]
-script = ExtResource("14_6yfql")
+[node name="DamageEffectComponent" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_41_geo_ballistic_solid" instance=ExtResource("13_8fmw4")]
 damage_effect_scene = ExtResource("7_4hkqg")
 
 [node name="entity_42_geo_ballistic_solid" type="StaticBody3D" parent="MultiAgentNavigationRoot/FuncGodotMap" node_paths=PackedStringArray("damage_component", "damage_effect_component")]
@@ -5321,13 +5237,11 @@ mesh = SubResource("ArrayMesh_oldwu")
 [node name="entity_42_brush_0_collision_shape" type="CollisionShape3D" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_42_geo_ballistic_solid"]
 shape = SubResource("ConvexPolygonShape3D_a0it8")
 
-[node name="DamageComponent" type="Node" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_42_geo_ballistic_solid" instance=ExtResource("11_jkr1j")]
-script = ExtResource("12_p5soi")
+[node name="DamageComponent" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_42_geo_ballistic_solid" instance=ExtResource("11_jkr1j")]
 percent_penetrated = 0.4
 armor_rating = 8
 
-[node name="DamageEffectComponent" type="Node" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_42_geo_ballistic_solid" instance=ExtResource("13_8fmw4")]
-script = ExtResource("14_6yfql")
+[node name="DamageEffectComponent" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_42_geo_ballistic_solid" instance=ExtResource("13_8fmw4")]
 damage_effect_scene = ExtResource("7_4hkqg")
 
 [node name="entity_43_geo_ballistic_solid" type="StaticBody3D" parent="MultiAgentNavigationRoot/FuncGodotMap" node_paths=PackedStringArray("damage_component", "damage_effect_component")]
@@ -5362,13 +5276,11 @@ shape = SubResource("ConvexPolygonShape3D_iendl")
 [node name="entity_43_brush_2_collision_shape" type="CollisionShape3D" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_43_geo_ballistic_solid"]
 shape = SubResource("ConvexPolygonShape3D_iiy12")
 
-[node name="DamageComponent" type="Node" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_43_geo_ballistic_solid" instance=ExtResource("11_jkr1j")]
-script = ExtResource("12_p5soi")
+[node name="DamageComponent" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_43_geo_ballistic_solid" instance=ExtResource("11_jkr1j")]
 percent_penetrated = 0.4
 armor_rating = 8
 
-[node name="DamageEffectComponent" type="Node" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_43_geo_ballistic_solid" instance=ExtResource("13_8fmw4")]
-script = ExtResource("14_6yfql")
+[node name="DamageEffectComponent" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_43_geo_ballistic_solid" instance=ExtResource("13_8fmw4")]
 damage_effect_scene = ExtResource("7_4hkqg")
 
 [node name="entity_44_geo_ballistic_solid" type="StaticBody3D" parent="MultiAgentNavigationRoot/FuncGodotMap" node_paths=PackedStringArray("damage_component", "damage_effect_component")]
@@ -5398,13 +5310,11 @@ mesh = SubResource("ArrayMesh_4uvup")
 [node name="entity_44_brush_0_collision_shape" type="CollisionShape3D" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_44_geo_ballistic_solid"]
 shape = SubResource("ConvexPolygonShape3D_1010s")
 
-[node name="DamageComponent" type="Node" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_44_geo_ballistic_solid" instance=ExtResource("11_jkr1j")]
-script = ExtResource("12_p5soi")
+[node name="DamageComponent" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_44_geo_ballistic_solid" instance=ExtResource("11_jkr1j")]
 percent_penetrated = 0.4
 armor_rating = 8
 
-[node name="DamageEffectComponent" type="Node" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_44_geo_ballistic_solid" instance=ExtResource("13_8fmw4")]
-script = ExtResource("14_6yfql")
+[node name="DamageEffectComponent" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_44_geo_ballistic_solid" instance=ExtResource("13_8fmw4")]
 damage_effect_scene = ExtResource("7_4hkqg")
 
 [node name="entity_45_geo_ballistic_solid" type="StaticBody3D" parent="MultiAgentNavigationRoot/FuncGodotMap" node_paths=PackedStringArray("damage_component", "damage_effect_component")]
@@ -5439,13 +5349,11 @@ shape = SubResource("ConvexPolygonShape3D_7eh5o")
 [node name="entity_45_brush_2_collision_shape" type="CollisionShape3D" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_45_geo_ballistic_solid"]
 shape = SubResource("ConvexPolygonShape3D_2ytok")
 
-[node name="DamageComponent" type="Node" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_45_geo_ballistic_solid" instance=ExtResource("11_jkr1j")]
-script = ExtResource("12_p5soi")
+[node name="DamageComponent" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_45_geo_ballistic_solid" instance=ExtResource("11_jkr1j")]
 percent_penetrated = 0.4
 armor_rating = 8
 
-[node name="DamageEffectComponent" type="Node" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_45_geo_ballistic_solid" instance=ExtResource("13_8fmw4")]
-script = ExtResource("14_6yfql")
+[node name="DamageEffectComponent" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_45_geo_ballistic_solid" instance=ExtResource("13_8fmw4")]
 damage_effect_scene = ExtResource("7_4hkqg")
 
 [node name="entity_46_geo_ballistic_solid" type="StaticBody3D" parent="MultiAgentNavigationRoot/FuncGodotMap" node_paths=PackedStringArray("damage_component", "damage_effect_component")]
@@ -5475,13 +5383,11 @@ mesh = SubResource("ArrayMesh_rwmad")
 [node name="entity_46_brush_0_collision_shape" type="CollisionShape3D" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_46_geo_ballistic_solid"]
 shape = SubResource("ConvexPolygonShape3D_ikp1t")
 
-[node name="DamageComponent" type="Node" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_46_geo_ballistic_solid" instance=ExtResource("11_jkr1j")]
-script = ExtResource("12_p5soi")
+[node name="DamageComponent" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_46_geo_ballistic_solid" instance=ExtResource("11_jkr1j")]
 percent_penetrated = 0.4
 armor_rating = 8
 
-[node name="DamageEffectComponent" type="Node" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_46_geo_ballistic_solid" instance=ExtResource("13_8fmw4")]
-script = ExtResource("14_6yfql")
+[node name="DamageEffectComponent" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_46_geo_ballistic_solid" instance=ExtResource("13_8fmw4")]
 damage_effect_scene = ExtResource("7_4hkqg")
 
 [node name="entity_47_geo_ballistic_solid" type="StaticBody3D" parent="MultiAgentNavigationRoot/FuncGodotMap" node_paths=PackedStringArray("damage_component", "damage_effect_component")]
@@ -5516,13 +5422,11 @@ shape = SubResource("ConvexPolygonShape3D_b671m")
 [node name="entity_47_brush_2_collision_shape" type="CollisionShape3D" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_47_geo_ballistic_solid"]
 shape = SubResource("ConvexPolygonShape3D_u5mtu")
 
-[node name="DamageComponent" type="Node" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_47_geo_ballistic_solid" instance=ExtResource("11_jkr1j")]
-script = ExtResource("12_p5soi")
+[node name="DamageComponent" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_47_geo_ballistic_solid" instance=ExtResource("11_jkr1j")]
 percent_penetrated = 0.4
 armor_rating = 8
 
-[node name="DamageEffectComponent" type="Node" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_47_geo_ballistic_solid" instance=ExtResource("13_8fmw4")]
-script = ExtResource("14_6yfql")
+[node name="DamageEffectComponent" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_47_geo_ballistic_solid" instance=ExtResource("13_8fmw4")]
 damage_effect_scene = ExtResource("7_4hkqg")
 
 [node name="entity_48_geo_ballistic_solid" type="StaticBody3D" parent="MultiAgentNavigationRoot/FuncGodotMap" node_paths=PackedStringArray("damage_component", "damage_effect_component")]
@@ -5552,13 +5456,11 @@ mesh = SubResource("ArrayMesh_0n217")
 [node name="entity_48_brush_0_collision_shape" type="CollisionShape3D" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_48_geo_ballistic_solid"]
 shape = SubResource("ConvexPolygonShape3D_s16hh")
 
-[node name="DamageComponent" type="Node" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_48_geo_ballistic_solid" instance=ExtResource("11_jkr1j")]
-script = ExtResource("12_p5soi")
+[node name="DamageComponent" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_48_geo_ballistic_solid" instance=ExtResource("11_jkr1j")]
 percent_penetrated = 0.4
 armor_rating = 8
 
-[node name="DamageEffectComponent" type="Node" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_48_geo_ballistic_solid" instance=ExtResource("13_8fmw4")]
-script = ExtResource("14_6yfql")
+[node name="DamageEffectComponent" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_48_geo_ballistic_solid" instance=ExtResource("13_8fmw4")]
 damage_effect_scene = ExtResource("7_4hkqg")
 
 [node name="entity_49_geo_ballistic_solid" type="StaticBody3D" parent="MultiAgentNavigationRoot/FuncGodotMap" node_paths=PackedStringArray("damage_component", "damage_effect_component")]
@@ -5593,13 +5495,11 @@ shape = SubResource("ConvexPolygonShape3D_2dvfe")
 [node name="entity_49_brush_2_collision_shape" type="CollisionShape3D" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_49_geo_ballistic_solid"]
 shape = SubResource("ConvexPolygonShape3D_ggwqb")
 
-[node name="DamageComponent" type="Node" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_49_geo_ballistic_solid" instance=ExtResource("11_jkr1j")]
-script = ExtResource("12_p5soi")
+[node name="DamageComponent" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_49_geo_ballistic_solid" instance=ExtResource("11_jkr1j")]
 percent_penetrated = 0.4
 armor_rating = 8
 
-[node name="DamageEffectComponent" type="Node" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_49_geo_ballistic_solid" instance=ExtResource("13_8fmw4")]
-script = ExtResource("14_6yfql")
+[node name="DamageEffectComponent" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_49_geo_ballistic_solid" instance=ExtResource("13_8fmw4")]
 damage_effect_scene = ExtResource("7_4hkqg")
 
 [node name="entity_50_geo_ballistic_solid" type="StaticBody3D" parent="MultiAgentNavigationRoot/FuncGodotMap" node_paths=PackedStringArray("damage_component", "damage_effect_component")]
@@ -5629,13 +5529,11 @@ mesh = SubResource("ArrayMesh_qymy8")
 [node name="entity_50_brush_0_collision_shape" type="CollisionShape3D" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_50_geo_ballistic_solid"]
 shape = SubResource("ConvexPolygonShape3D_1i7ov")
 
-[node name="DamageComponent" type="Node" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_50_geo_ballistic_solid" instance=ExtResource("11_jkr1j")]
-script = ExtResource("12_p5soi")
+[node name="DamageComponent" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_50_geo_ballistic_solid" instance=ExtResource("11_jkr1j")]
 percent_penetrated = 0.4
 armor_rating = 8
 
-[node name="DamageEffectComponent" type="Node" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_50_geo_ballistic_solid" instance=ExtResource("13_8fmw4")]
-script = ExtResource("14_6yfql")
+[node name="DamageEffectComponent" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_50_geo_ballistic_solid" instance=ExtResource("13_8fmw4")]
 damage_effect_scene = ExtResource("7_4hkqg")
 
 [node name="entity_51_geo_ballistic_solid" type="StaticBody3D" parent="MultiAgentNavigationRoot/FuncGodotMap" node_paths=PackedStringArray("damage_component", "damage_effect_component")]
@@ -5670,13 +5568,11 @@ shape = SubResource("ConvexPolygonShape3D_gtpnj")
 [node name="entity_51_brush_2_collision_shape" type="CollisionShape3D" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_51_geo_ballistic_solid"]
 shape = SubResource("ConvexPolygonShape3D_tsa1b")
 
-[node name="DamageComponent" type="Node" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_51_geo_ballistic_solid" instance=ExtResource("11_jkr1j")]
-script = ExtResource("12_p5soi")
+[node name="DamageComponent" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_51_geo_ballistic_solid" instance=ExtResource("11_jkr1j")]
 percent_penetrated = 0.4
 armor_rating = 8
 
-[node name="DamageEffectComponent" type="Node" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_51_geo_ballistic_solid" instance=ExtResource("13_8fmw4")]
-script = ExtResource("14_6yfql")
+[node name="DamageEffectComponent" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_51_geo_ballistic_solid" instance=ExtResource("13_8fmw4")]
 damage_effect_scene = ExtResource("7_4hkqg")
 
 [node name="entity_52_geo_ballistic_solid" type="StaticBody3D" parent="MultiAgentNavigationRoot/FuncGodotMap" node_paths=PackedStringArray("damage_component", "damage_effect_component")]
@@ -5706,13 +5602,11 @@ mesh = SubResource("ArrayMesh_lapua")
 [node name="entity_52_brush_0_collision_shape" type="CollisionShape3D" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_52_geo_ballistic_solid"]
 shape = SubResource("ConvexPolygonShape3D_nmr82")
 
-[node name="DamageComponent" type="Node" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_52_geo_ballistic_solid" instance=ExtResource("11_jkr1j")]
-script = ExtResource("12_p5soi")
+[node name="DamageComponent" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_52_geo_ballistic_solid" instance=ExtResource("11_jkr1j")]
 percent_penetrated = 0.4
 armor_rating = 8
 
-[node name="DamageEffectComponent" type="Node" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_52_geo_ballistic_solid" instance=ExtResource("13_8fmw4")]
-script = ExtResource("14_6yfql")
+[node name="DamageEffectComponent" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_52_geo_ballistic_solid" instance=ExtResource("13_8fmw4")]
 damage_effect_scene = ExtResource("7_4hkqg")
 
 [node name="entity_53_geo_ballistic_solid" type="StaticBody3D" parent="MultiAgentNavigationRoot/FuncGodotMap" node_paths=PackedStringArray("damage_component", "damage_effect_component")]
@@ -5747,13 +5641,11 @@ shape = SubResource("ConvexPolygonShape3D_y3vj1")
 [node name="entity_53_brush_2_collision_shape" type="CollisionShape3D" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_53_geo_ballistic_solid"]
 shape = SubResource("ConvexPolygonShape3D_wmnj2")
 
-[node name="DamageComponent" type="Node" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_53_geo_ballistic_solid" instance=ExtResource("11_jkr1j")]
-script = ExtResource("12_p5soi")
+[node name="DamageComponent" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_53_geo_ballistic_solid" instance=ExtResource("11_jkr1j")]
 percent_penetrated = 0.4
 armor_rating = 8
 
-[node name="DamageEffectComponent" type="Node" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_53_geo_ballistic_solid" instance=ExtResource("13_8fmw4")]
-script = ExtResource("14_6yfql")
+[node name="DamageEffectComponent" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_53_geo_ballistic_solid" instance=ExtResource("13_8fmw4")]
 damage_effect_scene = ExtResource("7_4hkqg")
 
 [node name="entity_54_geo_ballistic_solid" type="StaticBody3D" parent="MultiAgentNavigationRoot/FuncGodotMap" node_paths=PackedStringArray("damage_component", "damage_effect_component")]
@@ -5783,13 +5675,11 @@ mesh = SubResource("ArrayMesh_yo2sl")
 [node name="entity_54_brush_0_collision_shape" type="CollisionShape3D" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_54_geo_ballistic_solid"]
 shape = SubResource("ConvexPolygonShape3D_rni75")
 
-[node name="DamageComponent" type="Node" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_54_geo_ballistic_solid" instance=ExtResource("11_jkr1j")]
-script = ExtResource("12_p5soi")
+[node name="DamageComponent" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_54_geo_ballistic_solid" instance=ExtResource("11_jkr1j")]
 percent_penetrated = 0.4
 armor_rating = 8
 
-[node name="DamageEffectComponent" type="Node" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_54_geo_ballistic_solid" instance=ExtResource("13_8fmw4")]
-script = ExtResource("14_6yfql")
+[node name="DamageEffectComponent" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_54_geo_ballistic_solid" instance=ExtResource("13_8fmw4")]
 damage_effect_scene = ExtResource("7_4hkqg")
 
 [node name="entity_55_geo_ballistic_solid" type="StaticBody3D" parent="MultiAgentNavigationRoot/FuncGodotMap" node_paths=PackedStringArray("damage_component", "damage_effect_component")]
@@ -5824,13 +5714,11 @@ shape = SubResource("ConvexPolygonShape3D_8lm6x")
 [node name="entity_55_brush_2_collision_shape" type="CollisionShape3D" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_55_geo_ballistic_solid"]
 shape = SubResource("ConvexPolygonShape3D_14t52")
 
-[node name="DamageComponent" type="Node" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_55_geo_ballistic_solid" instance=ExtResource("11_jkr1j")]
-script = ExtResource("12_p5soi")
+[node name="DamageComponent" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_55_geo_ballistic_solid" instance=ExtResource("11_jkr1j")]
 percent_penetrated = 0.4
 armor_rating = 8
 
-[node name="DamageEffectComponent" type="Node" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_55_geo_ballistic_solid" instance=ExtResource("13_8fmw4")]
-script = ExtResource("14_6yfql")
+[node name="DamageEffectComponent" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_55_geo_ballistic_solid" instance=ExtResource("13_8fmw4")]
 damage_effect_scene = ExtResource("7_4hkqg")
 
 [node name="entity_56_geo_ballistic_solid" type="StaticBody3D" parent="MultiAgentNavigationRoot/FuncGodotMap" node_paths=PackedStringArray("damage_component", "damage_effect_component")]
@@ -5860,13 +5748,11 @@ mesh = SubResource("ArrayMesh_et4wh")
 [node name="entity_56_brush_0_collision_shape" type="CollisionShape3D" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_56_geo_ballistic_solid"]
 shape = SubResource("ConvexPolygonShape3D_r7t8x")
 
-[node name="DamageComponent" type="Node" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_56_geo_ballistic_solid" instance=ExtResource("11_jkr1j")]
-script = ExtResource("12_p5soi")
+[node name="DamageComponent" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_56_geo_ballistic_solid" instance=ExtResource("11_jkr1j")]
 percent_penetrated = 0.4
 armor_rating = 8
 
-[node name="DamageEffectComponent" type="Node" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_56_geo_ballistic_solid" instance=ExtResource("13_8fmw4")]
-script = ExtResource("14_6yfql")
+[node name="DamageEffectComponent" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_56_geo_ballistic_solid" instance=ExtResource("13_8fmw4")]
 damage_effect_scene = ExtResource("7_4hkqg")
 
 [node name="entity_57_geo_ballistic_solid" type="StaticBody3D" parent="MultiAgentNavigationRoot/FuncGodotMap" node_paths=PackedStringArray("damage_component", "damage_effect_component")]
@@ -5901,13 +5787,11 @@ shape = SubResource("ConvexPolygonShape3D_nugv2")
 [node name="entity_57_brush_2_collision_shape" type="CollisionShape3D" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_57_geo_ballistic_solid"]
 shape = SubResource("ConvexPolygonShape3D_se382")
 
-[node name="DamageComponent" type="Node" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_57_geo_ballistic_solid" instance=ExtResource("11_jkr1j")]
-script = ExtResource("12_p5soi")
+[node name="DamageComponent" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_57_geo_ballistic_solid" instance=ExtResource("11_jkr1j")]
 percent_penetrated = 0.4
 armor_rating = 8
 
-[node name="DamageEffectComponent" type="Node" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_57_geo_ballistic_solid" instance=ExtResource("13_8fmw4")]
-script = ExtResource("14_6yfql")
+[node name="DamageEffectComponent" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_57_geo_ballistic_solid" instance=ExtResource("13_8fmw4")]
 damage_effect_scene = ExtResource("7_4hkqg")
 
 [node name="entity_58_geo_ballistic_solid" type="StaticBody3D" parent="MultiAgentNavigationRoot/FuncGodotMap" node_paths=PackedStringArray("damage_component", "damage_effect_component")]
@@ -5937,13 +5821,11 @@ mesh = SubResource("ArrayMesh_pnrj5")
 [node name="entity_58_brush_0_collision_shape" type="CollisionShape3D" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_58_geo_ballistic_solid"]
 shape = SubResource("ConvexPolygonShape3D_p0ra3")
 
-[node name="DamageComponent" type="Node" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_58_geo_ballistic_solid" instance=ExtResource("11_jkr1j")]
-script = ExtResource("12_p5soi")
+[node name="DamageComponent" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_58_geo_ballistic_solid" instance=ExtResource("11_jkr1j")]
 percent_penetrated = 0.4
 armor_rating = 8
 
-[node name="DamageEffectComponent" type="Node" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_58_geo_ballistic_solid" instance=ExtResource("13_8fmw4")]
-script = ExtResource("14_6yfql")
+[node name="DamageEffectComponent" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_58_geo_ballistic_solid" instance=ExtResource("13_8fmw4")]
 damage_effect_scene = ExtResource("7_4hkqg")
 
 [node name="entity_59_geo_ballistic_solid" type="StaticBody3D" parent="MultiAgentNavigationRoot/FuncGodotMap" node_paths=PackedStringArray("damage_component", "damage_effect_component")]
@@ -5978,13 +5860,11 @@ shape = SubResource("ConvexPolygonShape3D_a5kh5")
 [node name="entity_59_brush_2_collision_shape" type="CollisionShape3D" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_59_geo_ballistic_solid"]
 shape = SubResource("ConvexPolygonShape3D_3iesw")
 
-[node name="DamageComponent" type="Node" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_59_geo_ballistic_solid" instance=ExtResource("11_jkr1j")]
-script = ExtResource("12_p5soi")
+[node name="DamageComponent" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_59_geo_ballistic_solid" instance=ExtResource("11_jkr1j")]
 percent_penetrated = 0.4
 armor_rating = 8
 
-[node name="DamageEffectComponent" type="Node" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_59_geo_ballistic_solid" instance=ExtResource("13_8fmw4")]
-script = ExtResource("14_6yfql")
+[node name="DamageEffectComponent" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_59_geo_ballistic_solid" instance=ExtResource("13_8fmw4")]
 damage_effect_scene = ExtResource("7_4hkqg")
 
 [node name="entity_60_geo_ballistic_solid" type="StaticBody3D" parent="MultiAgentNavigationRoot/FuncGodotMap" node_paths=PackedStringArray("damage_component", "damage_effect_component")]
@@ -6014,13 +5894,11 @@ mesh = SubResource("ArrayMesh_dao51")
 [node name="entity_60_brush_0_collision_shape" type="CollisionShape3D" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_60_geo_ballistic_solid"]
 shape = SubResource("ConvexPolygonShape3D_7hxw1")
 
-[node name="DamageComponent" type="Node" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_60_geo_ballistic_solid" instance=ExtResource("11_jkr1j")]
-script = ExtResource("12_p5soi")
+[node name="DamageComponent" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_60_geo_ballistic_solid" instance=ExtResource("11_jkr1j")]
 percent_penetrated = 0.4
 armor_rating = 8
 
-[node name="DamageEffectComponent" type="Node" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_60_geo_ballistic_solid" instance=ExtResource("13_8fmw4")]
-script = ExtResource("14_6yfql")
+[node name="DamageEffectComponent" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_60_geo_ballistic_solid" instance=ExtResource("13_8fmw4")]
 damage_effect_scene = ExtResource("7_4hkqg")
 
 [node name="entity_61_geo_ballistic_solid" type="StaticBody3D" parent="MultiAgentNavigationRoot/FuncGodotMap" node_paths=PackedStringArray("damage_component", "damage_effect_component")]
@@ -6055,13 +5933,11 @@ shape = SubResource("ConvexPolygonShape3D_rta55")
 [node name="entity_61_brush_2_collision_shape" type="CollisionShape3D" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_61_geo_ballistic_solid"]
 shape = SubResource("ConvexPolygonShape3D_4wrqw")
 
-[node name="DamageComponent" type="Node" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_61_geo_ballistic_solid" instance=ExtResource("11_jkr1j")]
-script = ExtResource("12_p5soi")
+[node name="DamageComponent" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_61_geo_ballistic_solid" instance=ExtResource("11_jkr1j")]
 percent_penetrated = 0.4
 armor_rating = 8
 
-[node name="DamageEffectComponent" type="Node" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_61_geo_ballistic_solid" instance=ExtResource("13_8fmw4")]
-script = ExtResource("14_6yfql")
+[node name="DamageEffectComponent" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_61_geo_ballistic_solid" instance=ExtResource("13_8fmw4")]
 damage_effect_scene = ExtResource("7_4hkqg")
 
 [node name="entity_62_geo_ballistic_solid" type="StaticBody3D" parent="MultiAgentNavigationRoot/FuncGodotMap" node_paths=PackedStringArray("damage_component", "damage_effect_component")]
@@ -6091,13 +5967,11 @@ mesh = SubResource("ArrayMesh_sqquh")
 [node name="entity_62_brush_0_collision_shape" type="CollisionShape3D" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_62_geo_ballistic_solid"]
 shape = SubResource("ConvexPolygonShape3D_ebcut")
 
-[node name="DamageComponent" type="Node" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_62_geo_ballistic_solid" instance=ExtResource("11_jkr1j")]
-script = ExtResource("12_p5soi")
+[node name="DamageComponent" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_62_geo_ballistic_solid" instance=ExtResource("11_jkr1j")]
 percent_penetrated = 0.4
 armor_rating = 8
 
-[node name="DamageEffectComponent" type="Node" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_62_geo_ballistic_solid" instance=ExtResource("13_8fmw4")]
-script = ExtResource("14_6yfql")
+[node name="DamageEffectComponent" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_62_geo_ballistic_solid" instance=ExtResource("13_8fmw4")]
 damage_effect_scene = ExtResource("7_4hkqg")
 
 [node name="entity_63_geo_ballistic_solid" type="StaticBody3D" parent="MultiAgentNavigationRoot/FuncGodotMap" node_paths=PackedStringArray("damage_component", "damage_effect_component")]
@@ -6132,13 +6006,11 @@ shape = SubResource("ConvexPolygonShape3D_mhws6")
 [node name="entity_63_brush_2_collision_shape" type="CollisionShape3D" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_63_geo_ballistic_solid"]
 shape = SubResource("ConvexPolygonShape3D_olc4l")
 
-[node name="DamageComponent" type="Node" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_63_geo_ballistic_solid" instance=ExtResource("11_jkr1j")]
-script = ExtResource("12_p5soi")
+[node name="DamageComponent" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_63_geo_ballistic_solid" instance=ExtResource("11_jkr1j")]
 percent_penetrated = 0.4
 armor_rating = 8
 
-[node name="DamageEffectComponent" type="Node" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_63_geo_ballistic_solid" instance=ExtResource("13_8fmw4")]
-script = ExtResource("14_6yfql")
+[node name="DamageEffectComponent" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_63_geo_ballistic_solid" instance=ExtResource("13_8fmw4")]
 damage_effect_scene = ExtResource("7_4hkqg")
 
 [node name="entity_64_geo_ballistic_solid" type="StaticBody3D" parent="MultiAgentNavigationRoot/FuncGodotMap" node_paths=PackedStringArray("damage_component", "damage_effect_component")]
@@ -6168,13 +6040,11 @@ mesh = SubResource("ArrayMesh_obkr5")
 [node name="entity_64_brush_0_collision_shape" type="CollisionShape3D" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_64_geo_ballistic_solid"]
 shape = SubResource("ConvexPolygonShape3D_fb2de")
 
-[node name="DamageComponent" type="Node" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_64_geo_ballistic_solid" instance=ExtResource("11_jkr1j")]
-script = ExtResource("12_p5soi")
+[node name="DamageComponent" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_64_geo_ballistic_solid" instance=ExtResource("11_jkr1j")]
 percent_penetrated = 0.4
 armor_rating = 8
 
-[node name="DamageEffectComponent" type="Node" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_64_geo_ballistic_solid" instance=ExtResource("13_8fmw4")]
-script = ExtResource("14_6yfql")
+[node name="DamageEffectComponent" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_64_geo_ballistic_solid" instance=ExtResource("13_8fmw4")]
 damage_effect_scene = ExtResource("7_4hkqg")
 
 [node name="entity_65_geo_ballistic_solid" type="StaticBody3D" parent="MultiAgentNavigationRoot/FuncGodotMap" node_paths=PackedStringArray("damage_component", "damage_effect_component")]
@@ -6209,13 +6079,11 @@ shape = SubResource("ConvexPolygonShape3D_cuxfw")
 [node name="entity_65_brush_2_collision_shape" type="CollisionShape3D" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_65_geo_ballistic_solid"]
 shape = SubResource("ConvexPolygonShape3D_761uo")
 
-[node name="DamageComponent" type="Node" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_65_geo_ballistic_solid" instance=ExtResource("11_jkr1j")]
-script = ExtResource("12_p5soi")
+[node name="DamageComponent" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_65_geo_ballistic_solid" instance=ExtResource("11_jkr1j")]
 percent_penetrated = 0.4
 armor_rating = 8
 
-[node name="DamageEffectComponent" type="Node" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_65_geo_ballistic_solid" instance=ExtResource("13_8fmw4")]
-script = ExtResource("14_6yfql")
+[node name="DamageEffectComponent" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_65_geo_ballistic_solid" instance=ExtResource("13_8fmw4")]
 damage_effect_scene = ExtResource("7_4hkqg")
 
 [node name="entity_66_geo_ballistic_solid" type="StaticBody3D" parent="MultiAgentNavigationRoot/FuncGodotMap" node_paths=PackedStringArray("damage_component", "damage_effect_component")]
@@ -6245,13 +6113,11 @@ mesh = SubResource("ArrayMesh_1wvoi")
 [node name="entity_66_brush_0_collision_shape" type="CollisionShape3D" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_66_geo_ballistic_solid"]
 shape = SubResource("ConvexPolygonShape3D_bwkf2")
 
-[node name="DamageComponent" type="Node" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_66_geo_ballistic_solid" instance=ExtResource("11_jkr1j")]
-script = ExtResource("12_p5soi")
+[node name="DamageComponent" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_66_geo_ballistic_solid" instance=ExtResource("11_jkr1j")]
 percent_penetrated = 0.4
 armor_rating = 8
 
-[node name="DamageEffectComponent" type="Node" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_66_geo_ballistic_solid" instance=ExtResource("13_8fmw4")]
-script = ExtResource("14_6yfql")
+[node name="DamageEffectComponent" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_66_geo_ballistic_solid" instance=ExtResource("13_8fmw4")]
 damage_effect_scene = ExtResource("7_4hkqg")
 
 [node name="entity_67_geo_ballistic_solid" type="StaticBody3D" parent="MultiAgentNavigationRoot/FuncGodotMap" node_paths=PackedStringArray("damage_component", "damage_effect_component")]
@@ -6286,13 +6152,11 @@ shape = SubResource("ConvexPolygonShape3D_sihps")
 [node name="entity_67_brush_2_collision_shape" type="CollisionShape3D" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_67_geo_ballistic_solid"]
 shape = SubResource("ConvexPolygonShape3D_hfbi6")
 
-[node name="DamageComponent" type="Node" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_67_geo_ballistic_solid" instance=ExtResource("11_jkr1j")]
-script = ExtResource("12_p5soi")
+[node name="DamageComponent" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_67_geo_ballistic_solid" instance=ExtResource("11_jkr1j")]
 percent_penetrated = 0.4
 armor_rating = 8
 
-[node name="DamageEffectComponent" type="Node" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_67_geo_ballistic_solid" instance=ExtResource("13_8fmw4")]
-script = ExtResource("14_6yfql")
+[node name="DamageEffectComponent" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_67_geo_ballistic_solid" instance=ExtResource("13_8fmw4")]
 damage_effect_scene = ExtResource("7_4hkqg")
 
 [node name="entity_68_geo_ballistic_solid" type="StaticBody3D" parent="MultiAgentNavigationRoot/FuncGodotMap" node_paths=PackedStringArray("damage_component", "damage_effect_component")]
@@ -6322,13 +6186,11 @@ mesh = SubResource("ArrayMesh_n840l")
 [node name="entity_68_brush_0_collision_shape" type="CollisionShape3D" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_68_geo_ballistic_solid"]
 shape = SubResource("ConvexPolygonShape3D_yxnik")
 
-[node name="DamageComponent" type="Node" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_68_geo_ballistic_solid" instance=ExtResource("11_jkr1j")]
-script = ExtResource("12_p5soi")
+[node name="DamageComponent" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_68_geo_ballistic_solid" instance=ExtResource("11_jkr1j")]
 percent_penetrated = 0.4
 armor_rating = 8
 
-[node name="DamageEffectComponent" type="Node" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_68_geo_ballistic_solid" instance=ExtResource("13_8fmw4")]
-script = ExtResource("14_6yfql")
+[node name="DamageEffectComponent" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_68_geo_ballistic_solid" instance=ExtResource("13_8fmw4")]
 damage_effect_scene = ExtResource("7_4hkqg")
 
 [node name="entity_69_geo_ballistic_solid" type="StaticBody3D" parent="MultiAgentNavigationRoot/FuncGodotMap" node_paths=PackedStringArray("damage_component", "damage_effect_component")]
@@ -6363,13 +6225,11 @@ shape = SubResource("ConvexPolygonShape3D_pjjyk")
 [node name="entity_69_brush_2_collision_shape" type="CollisionShape3D" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_69_geo_ballistic_solid"]
 shape = SubResource("ConvexPolygonShape3D_o45eg")
 
-[node name="DamageComponent" type="Node" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_69_geo_ballistic_solid" instance=ExtResource("11_jkr1j")]
-script = ExtResource("12_p5soi")
+[node name="DamageComponent" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_69_geo_ballistic_solid" instance=ExtResource("11_jkr1j")]
 percent_penetrated = 0.4
 armor_rating = 8
 
-[node name="DamageEffectComponent" type="Node" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_69_geo_ballistic_solid" instance=ExtResource("13_8fmw4")]
-script = ExtResource("14_6yfql")
+[node name="DamageEffectComponent" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_69_geo_ballistic_solid" instance=ExtResource("13_8fmw4")]
 damage_effect_scene = ExtResource("7_4hkqg")
 
 [node name="entity_70_geo_ballistic_solid" type="StaticBody3D" parent="MultiAgentNavigationRoot/FuncGodotMap" node_paths=PackedStringArray("damage_component", "damage_effect_component")]
@@ -6399,13 +6259,11 @@ mesh = SubResource("ArrayMesh_gtrig")
 [node name="entity_70_brush_0_collision_shape" type="CollisionShape3D" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_70_geo_ballistic_solid"]
 shape = SubResource("ConvexPolygonShape3D_w54ff")
 
-[node name="DamageComponent" type="Node" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_70_geo_ballistic_solid" instance=ExtResource("11_jkr1j")]
-script = ExtResource("12_p5soi")
+[node name="DamageComponent" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_70_geo_ballistic_solid" instance=ExtResource("11_jkr1j")]
 percent_penetrated = 0.4
 armor_rating = 8
 
-[node name="DamageEffectComponent" type="Node" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_70_geo_ballistic_solid" instance=ExtResource("13_8fmw4")]
-script = ExtResource("14_6yfql")
+[node name="DamageEffectComponent" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_70_geo_ballistic_solid" instance=ExtResource("13_8fmw4")]
 damage_effect_scene = ExtResource("7_4hkqg")
 
 [node name="entity_71_geo_ballistic_solid" type="StaticBody3D" parent="MultiAgentNavigationRoot/FuncGodotMap" node_paths=PackedStringArray("damage_component", "damage_effect_component")]
@@ -6440,13 +6298,11 @@ shape = SubResource("ConvexPolygonShape3D_aem8t")
 [node name="entity_71_brush_2_collision_shape" type="CollisionShape3D" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_71_geo_ballistic_solid"]
 shape = SubResource("ConvexPolygonShape3D_noku7")
 
-[node name="DamageComponent" type="Node" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_71_geo_ballistic_solid" instance=ExtResource("11_jkr1j")]
-script = ExtResource("12_p5soi")
+[node name="DamageComponent" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_71_geo_ballistic_solid" instance=ExtResource("11_jkr1j")]
 percent_penetrated = 0.4
 armor_rating = 8
 
-[node name="DamageEffectComponent" type="Node" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_71_geo_ballistic_solid" instance=ExtResource("13_8fmw4")]
-script = ExtResource("14_6yfql")
+[node name="DamageEffectComponent" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_71_geo_ballistic_solid" instance=ExtResource("13_8fmw4")]
 damage_effect_scene = ExtResource("7_4hkqg")
 
 [node name="entity_72_geo_ballistic_solid" type="StaticBody3D" parent="MultiAgentNavigationRoot/FuncGodotMap" node_paths=PackedStringArray("damage_component", "damage_effect_component")]
@@ -6476,13 +6332,11 @@ mesh = SubResource("ArrayMesh_xsmr5")
 [node name="entity_72_brush_0_collision_shape" type="CollisionShape3D" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_72_geo_ballistic_solid"]
 shape = SubResource("ConvexPolygonShape3D_tl1v1")
 
-[node name="DamageComponent" type="Node" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_72_geo_ballistic_solid" instance=ExtResource("11_jkr1j")]
-script = ExtResource("12_p5soi")
+[node name="DamageComponent" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_72_geo_ballistic_solid" instance=ExtResource("11_jkr1j")]
 percent_penetrated = 0.4
 armor_rating = 8
 
-[node name="DamageEffectComponent" type="Node" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_72_geo_ballistic_solid" instance=ExtResource("13_8fmw4")]
-script = ExtResource("14_6yfql")
+[node name="DamageEffectComponent" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_72_geo_ballistic_solid" instance=ExtResource("13_8fmw4")]
 damage_effect_scene = ExtResource("7_4hkqg")
 
 [node name="entity_73_geo_ballistic_solid" type="StaticBody3D" parent="MultiAgentNavigationRoot/FuncGodotMap" node_paths=PackedStringArray("damage_component", "damage_effect_component")]
@@ -6517,13 +6371,11 @@ shape = SubResource("ConvexPolygonShape3D_dg32c")
 [node name="entity_73_brush_2_collision_shape" type="CollisionShape3D" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_73_geo_ballistic_solid"]
 shape = SubResource("ConvexPolygonShape3D_e6mrb")
 
-[node name="DamageComponent" type="Node" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_73_geo_ballistic_solid" instance=ExtResource("11_jkr1j")]
-script = ExtResource("12_p5soi")
+[node name="DamageComponent" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_73_geo_ballistic_solid" instance=ExtResource("11_jkr1j")]
 percent_penetrated = 0.4
 armor_rating = 8
 
-[node name="DamageEffectComponent" type="Node" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_73_geo_ballistic_solid" instance=ExtResource("13_8fmw4")]
-script = ExtResource("14_6yfql")
+[node name="DamageEffectComponent" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_73_geo_ballistic_solid" instance=ExtResource("13_8fmw4")]
 damage_effect_scene = ExtResource("7_4hkqg")
 
 [node name="entity_74_geo_ballistic_solid" type="StaticBody3D" parent="MultiAgentNavigationRoot/FuncGodotMap" node_paths=PackedStringArray("damage_component", "damage_effect_component")]
@@ -6553,13 +6405,11 @@ mesh = SubResource("ArrayMesh_8wmp6")
 [node name="entity_74_brush_0_collision_shape" type="CollisionShape3D" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_74_geo_ballistic_solid"]
 shape = SubResource("ConvexPolygonShape3D_fvykw")
 
-[node name="DamageComponent" type="Node" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_74_geo_ballistic_solid" instance=ExtResource("11_jkr1j")]
-script = ExtResource("12_p5soi")
+[node name="DamageComponent" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_74_geo_ballistic_solid" instance=ExtResource("11_jkr1j")]
 percent_penetrated = 0.4
 armor_rating = 8
 
-[node name="DamageEffectComponent" type="Node" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_74_geo_ballistic_solid" instance=ExtResource("13_8fmw4")]
-script = ExtResource("14_6yfql")
+[node name="DamageEffectComponent" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_74_geo_ballistic_solid" instance=ExtResource("13_8fmw4")]
 damage_effect_scene = ExtResource("7_4hkqg")
 
 [node name="entity_75_geo_ballistic_solid" type="StaticBody3D" parent="MultiAgentNavigationRoot/FuncGodotMap" node_paths=PackedStringArray("damage_component", "damage_effect_component")]
@@ -6594,13 +6444,11 @@ shape = SubResource("ConvexPolygonShape3D_o54v1")
 [node name="entity_75_brush_2_collision_shape" type="CollisionShape3D" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_75_geo_ballistic_solid"]
 shape = SubResource("ConvexPolygonShape3D_v01x3")
 
-[node name="DamageComponent" type="Node" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_75_geo_ballistic_solid" instance=ExtResource("11_jkr1j")]
-script = ExtResource("12_p5soi")
+[node name="DamageComponent" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_75_geo_ballistic_solid" instance=ExtResource("11_jkr1j")]
 percent_penetrated = 0.4
 armor_rating = 8
 
-[node name="DamageEffectComponent" type="Node" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_75_geo_ballistic_solid" instance=ExtResource("13_8fmw4")]
-script = ExtResource("14_6yfql")
+[node name="DamageEffectComponent" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_75_geo_ballistic_solid" instance=ExtResource("13_8fmw4")]
 damage_effect_scene = ExtResource("7_4hkqg")
 
 [node name="entity_76_geo_ballistic_solid" type="StaticBody3D" parent="MultiAgentNavigationRoot/FuncGodotMap" node_paths=PackedStringArray("damage_component", "damage_effect_component")]
@@ -6630,13 +6478,11 @@ mesh = SubResource("ArrayMesh_12v0v")
 [node name="entity_76_brush_0_collision_shape" type="CollisionShape3D" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_76_geo_ballistic_solid"]
 shape = SubResource("ConvexPolygonShape3D_mkhpl")
 
-[node name="DamageComponent" type="Node" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_76_geo_ballistic_solid" instance=ExtResource("11_jkr1j")]
-script = ExtResource("12_p5soi")
+[node name="DamageComponent" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_76_geo_ballistic_solid" instance=ExtResource("11_jkr1j")]
 percent_penetrated = 0.4
 armor_rating = 8
 
-[node name="DamageEffectComponent" type="Node" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_76_geo_ballistic_solid" instance=ExtResource("13_8fmw4")]
-script = ExtResource("14_6yfql")
+[node name="DamageEffectComponent" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_76_geo_ballistic_solid" instance=ExtResource("13_8fmw4")]
 damage_effect_scene = ExtResource("7_4hkqg")
 
 [node name="entity_77_geo_ballistic_solid" type="StaticBody3D" parent="MultiAgentNavigationRoot/FuncGodotMap" node_paths=PackedStringArray("damage_component", "damage_effect_component")]
@@ -6671,13 +6517,11 @@ shape = SubResource("ConvexPolygonShape3D_e1lhw")
 [node name="entity_77_brush_2_collision_shape" type="CollisionShape3D" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_77_geo_ballistic_solid"]
 shape = SubResource("ConvexPolygonShape3D_fnma0")
 
-[node name="DamageComponent" type="Node" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_77_geo_ballistic_solid" instance=ExtResource("11_jkr1j")]
-script = ExtResource("12_p5soi")
+[node name="DamageComponent" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_77_geo_ballistic_solid" instance=ExtResource("11_jkr1j")]
 percent_penetrated = 0.4
 armor_rating = 8
 
-[node name="DamageEffectComponent" type="Node" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_77_geo_ballistic_solid" instance=ExtResource("13_8fmw4")]
-script = ExtResource("14_6yfql")
+[node name="DamageEffectComponent" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_77_geo_ballistic_solid" instance=ExtResource("13_8fmw4")]
 damage_effect_scene = ExtResource("7_4hkqg")
 
 [node name="entity_78_geo_ballistic_solid" type="StaticBody3D" parent="MultiAgentNavigationRoot/FuncGodotMap" node_paths=PackedStringArray("damage_component", "damage_effect_component")]
@@ -6707,13 +6551,11 @@ mesh = SubResource("ArrayMesh_eocgs")
 [node name="entity_78_brush_0_collision_shape" type="CollisionShape3D" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_78_geo_ballistic_solid"]
 shape = SubResource("ConvexPolygonShape3D_l317c")
 
-[node name="DamageComponent" type="Node" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_78_geo_ballistic_solid" instance=ExtResource("11_jkr1j")]
-script = ExtResource("12_p5soi")
+[node name="DamageComponent" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_78_geo_ballistic_solid" instance=ExtResource("11_jkr1j")]
 percent_penetrated = 0.4
 armor_rating = 8
 
-[node name="DamageEffectComponent" type="Node" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_78_geo_ballistic_solid" instance=ExtResource("13_8fmw4")]
-script = ExtResource("14_6yfql")
+[node name="DamageEffectComponent" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_78_geo_ballistic_solid" instance=ExtResource("13_8fmw4")]
 damage_effect_scene = ExtResource("7_4hkqg")
 
 [node name="entity_79_geo_ballistic_solid" type="StaticBody3D" parent="MultiAgentNavigationRoot/FuncGodotMap" node_paths=PackedStringArray("damage_component", "damage_effect_component")]
@@ -6748,13 +6590,11 @@ shape = SubResource("ConvexPolygonShape3D_ntvtq")
 [node name="entity_79_brush_2_collision_shape" type="CollisionShape3D" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_79_geo_ballistic_solid"]
 shape = SubResource("ConvexPolygonShape3D_8tl8a")
 
-[node name="DamageComponent" type="Node" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_79_geo_ballistic_solid" instance=ExtResource("11_jkr1j")]
-script = ExtResource("12_p5soi")
+[node name="DamageComponent" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_79_geo_ballistic_solid" instance=ExtResource("11_jkr1j")]
 percent_penetrated = 0.4
 armor_rating = 8
 
-[node name="DamageEffectComponent" type="Node" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_79_geo_ballistic_solid" instance=ExtResource("13_8fmw4")]
-script = ExtResource("14_6yfql")
+[node name="DamageEffectComponent" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_79_geo_ballistic_solid" instance=ExtResource("13_8fmw4")]
 damage_effect_scene = ExtResource("7_4hkqg")
 
 [node name="entity_80_geo_ballistic_solid" type="StaticBody3D" parent="MultiAgentNavigationRoot/FuncGodotMap" node_paths=PackedStringArray("damage_component", "damage_effect_component")]
@@ -6784,13 +6624,11 @@ mesh = SubResource("ArrayMesh_jqo2h")
 [node name="entity_80_brush_0_collision_shape" type="CollisionShape3D" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_80_geo_ballistic_solid"]
 shape = SubResource("ConvexPolygonShape3D_gibae")
 
-[node name="DamageComponent" type="Node" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_80_geo_ballistic_solid" instance=ExtResource("11_jkr1j")]
-script = ExtResource("12_p5soi")
+[node name="DamageComponent" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_80_geo_ballistic_solid" instance=ExtResource("11_jkr1j")]
 percent_penetrated = 0.4
 armor_rating = 8
 
-[node name="DamageEffectComponent" type="Node" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_80_geo_ballistic_solid" instance=ExtResource("13_8fmw4")]
-script = ExtResource("14_6yfql")
+[node name="DamageEffectComponent" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_80_geo_ballistic_solid" instance=ExtResource("13_8fmw4")]
 damage_effect_scene = ExtResource("7_4hkqg")
 
 [node name="entity_81_geo_ballistic_solid" type="StaticBody3D" parent="MultiAgentNavigationRoot/FuncGodotMap" node_paths=PackedStringArray("damage_component", "damage_effect_component")]
@@ -6825,13 +6663,11 @@ shape = SubResource("ConvexPolygonShape3D_a20un")
 [node name="entity_81_brush_2_collision_shape" type="CollisionShape3D" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_81_geo_ballistic_solid"]
 shape = SubResource("ConvexPolygonShape3D_gyh7x")
 
-[node name="DamageComponent" type="Node" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_81_geo_ballistic_solid" instance=ExtResource("11_jkr1j")]
-script = ExtResource("12_p5soi")
+[node name="DamageComponent" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_81_geo_ballistic_solid" instance=ExtResource("11_jkr1j")]
 percent_penetrated = 0.4
 armor_rating = 8
 
-[node name="DamageEffectComponent" type="Node" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_81_geo_ballistic_solid" instance=ExtResource("13_8fmw4")]
-script = ExtResource("14_6yfql")
+[node name="DamageEffectComponent" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_81_geo_ballistic_solid" instance=ExtResource("13_8fmw4")]
 damage_effect_scene = ExtResource("7_4hkqg")
 
 [node name="entity_82_geo_ballistic_solid" type="StaticBody3D" parent="MultiAgentNavigationRoot/FuncGodotMap" node_paths=PackedStringArray("damage_component", "damage_effect_component")]
@@ -6861,13 +6697,11 @@ mesh = SubResource("ArrayMesh_yyi5o")
 [node name="entity_82_brush_0_collision_shape" type="CollisionShape3D" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_82_geo_ballistic_solid"]
 shape = SubResource("ConvexPolygonShape3D_kdkuv")
 
-[node name="DamageComponent" type="Node" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_82_geo_ballistic_solid" instance=ExtResource("11_jkr1j")]
-script = ExtResource("12_p5soi")
+[node name="DamageComponent" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_82_geo_ballistic_solid" instance=ExtResource("11_jkr1j")]
 percent_penetrated = 0.4
 armor_rating = 8
 
-[node name="DamageEffectComponent" type="Node" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_82_geo_ballistic_solid" instance=ExtResource("13_8fmw4")]
-script = ExtResource("14_6yfql")
+[node name="DamageEffectComponent" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_82_geo_ballistic_solid" instance=ExtResource("13_8fmw4")]
 damage_effect_scene = ExtResource("7_4hkqg")
 
 [node name="entity_83_geo_ballistic_solid" type="StaticBody3D" parent="MultiAgentNavigationRoot/FuncGodotMap" node_paths=PackedStringArray("damage_component", "damage_effect_component")]
@@ -6902,13 +6736,11 @@ shape = SubResource("ConvexPolygonShape3D_qrilw")
 [node name="entity_83_brush_2_collision_shape" type="CollisionShape3D" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_83_geo_ballistic_solid"]
 shape = SubResource("ConvexPolygonShape3D_ny4o4")
 
-[node name="DamageComponent" type="Node" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_83_geo_ballistic_solid" instance=ExtResource("11_jkr1j")]
-script = ExtResource("12_p5soi")
+[node name="DamageComponent" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_83_geo_ballistic_solid" instance=ExtResource("11_jkr1j")]
 percent_penetrated = 0.4
 armor_rating = 8
 
-[node name="DamageEffectComponent" type="Node" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_83_geo_ballistic_solid" instance=ExtResource("13_8fmw4")]
-script = ExtResource("14_6yfql")
+[node name="DamageEffectComponent" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_83_geo_ballistic_solid" instance=ExtResource("13_8fmw4")]
 damage_effect_scene = ExtResource("7_4hkqg")
 
 [node name="entity_84_geo_ballistic_solid" type="StaticBody3D" parent="MultiAgentNavigationRoot/FuncGodotMap" node_paths=PackedStringArray("damage_component", "damage_effect_component")]
@@ -6938,13 +6770,11 @@ mesh = SubResource("ArrayMesh_jglcw")
 [node name="entity_84_brush_0_collision_shape" type="CollisionShape3D" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_84_geo_ballistic_solid"]
 shape = SubResource("ConvexPolygonShape3D_mh0vy")
 
-[node name="DamageComponent" type="Node" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_84_geo_ballistic_solid" instance=ExtResource("11_jkr1j")]
-script = ExtResource("12_p5soi")
+[node name="DamageComponent" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_84_geo_ballistic_solid" instance=ExtResource("11_jkr1j")]
 percent_penetrated = 0.4
 armor_rating = 8
 
-[node name="DamageEffectComponent" type="Node" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_84_geo_ballistic_solid" instance=ExtResource("13_8fmw4")]
-script = ExtResource("14_6yfql")
+[node name="DamageEffectComponent" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_84_geo_ballistic_solid" instance=ExtResource("13_8fmw4")]
 damage_effect_scene = ExtResource("7_4hkqg")
 
 [node name="entity_85_geo_ballistic_solid" type="StaticBody3D" parent="MultiAgentNavigationRoot/FuncGodotMap" node_paths=PackedStringArray("damage_component", "damage_effect_component")]
@@ -6979,13 +6809,11 @@ shape = SubResource("ConvexPolygonShape3D_nvgwu")
 [node name="entity_85_brush_2_collision_shape" type="CollisionShape3D" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_85_geo_ballistic_solid"]
 shape = SubResource("ConvexPolygonShape3D_3gtoc")
 
-[node name="DamageComponent" type="Node" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_85_geo_ballistic_solid" instance=ExtResource("11_jkr1j")]
-script = ExtResource("12_p5soi")
+[node name="DamageComponent" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_85_geo_ballistic_solid" instance=ExtResource("11_jkr1j")]
 percent_penetrated = 0.4
 armor_rating = 8
 
-[node name="DamageEffectComponent" type="Node" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_85_geo_ballistic_solid" instance=ExtResource("13_8fmw4")]
-script = ExtResource("14_6yfql")
+[node name="DamageEffectComponent" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_85_geo_ballistic_solid" instance=ExtResource("13_8fmw4")]
 damage_effect_scene = ExtResource("7_4hkqg")
 
 [node name="entity_86_geo_ballistic_solid" type="StaticBody3D" parent="MultiAgentNavigationRoot/FuncGodotMap" node_paths=PackedStringArray("damage_component", "damage_effect_component")]
@@ -7015,13 +6843,11 @@ mesh = SubResource("ArrayMesh_7g4fc")
 [node name="entity_86_brush_0_collision_shape" type="CollisionShape3D" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_86_geo_ballistic_solid"]
 shape = SubResource("ConvexPolygonShape3D_omvqa")
 
-[node name="DamageComponent" type="Node" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_86_geo_ballistic_solid" instance=ExtResource("11_jkr1j")]
-script = ExtResource("12_p5soi")
+[node name="DamageComponent" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_86_geo_ballistic_solid" instance=ExtResource("11_jkr1j")]
 percent_penetrated = 0.4
 armor_rating = 8
 
-[node name="DamageEffectComponent" type="Node" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_86_geo_ballistic_solid" instance=ExtResource("13_8fmw4")]
-script = ExtResource("14_6yfql")
+[node name="DamageEffectComponent" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_86_geo_ballistic_solid" instance=ExtResource("13_8fmw4")]
 damage_effect_scene = ExtResource("7_4hkqg")
 
 [node name="entity_87_geo_ballistic_solid" type="StaticBody3D" parent="MultiAgentNavigationRoot/FuncGodotMap" node_paths=PackedStringArray("damage_component", "damage_effect_component")]
@@ -7056,13 +6882,11 @@ shape = SubResource("ConvexPolygonShape3D_f0b6v")
 [node name="entity_87_brush_2_collision_shape" type="CollisionShape3D" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_87_geo_ballistic_solid"]
 shape = SubResource("ConvexPolygonShape3D_3w3n2")
 
-[node name="DamageComponent" type="Node" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_87_geo_ballistic_solid" instance=ExtResource("11_jkr1j")]
-script = ExtResource("12_p5soi")
+[node name="DamageComponent" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_87_geo_ballistic_solid" instance=ExtResource("11_jkr1j")]
 percent_penetrated = 0.4
 armor_rating = 8
 
-[node name="DamageEffectComponent" type="Node" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_87_geo_ballistic_solid" instance=ExtResource("13_8fmw4")]
-script = ExtResource("14_6yfql")
+[node name="DamageEffectComponent" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_87_geo_ballistic_solid" instance=ExtResource("13_8fmw4")]
 damage_effect_scene = ExtResource("7_4hkqg")
 
 [node name="entity_88_geo_ballistic_solid" type="StaticBody3D" parent="MultiAgentNavigationRoot/FuncGodotMap" node_paths=PackedStringArray("damage_component", "damage_effect_component")]
@@ -7092,13 +6916,11 @@ mesh = SubResource("ArrayMesh_p4mbr")
 [node name="entity_88_brush_0_collision_shape" type="CollisionShape3D" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_88_geo_ballistic_solid"]
 shape = SubResource("ConvexPolygonShape3D_8hnky")
 
-[node name="DamageComponent" type="Node" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_88_geo_ballistic_solid" instance=ExtResource("11_jkr1j")]
-script = ExtResource("12_p5soi")
+[node name="DamageComponent" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_88_geo_ballistic_solid" instance=ExtResource("11_jkr1j")]
 percent_penetrated = 0.4
 armor_rating = 8
 
-[node name="DamageEffectComponent" type="Node" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_88_geo_ballistic_solid" instance=ExtResource("13_8fmw4")]
-script = ExtResource("14_6yfql")
+[node name="DamageEffectComponent" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_88_geo_ballistic_solid" instance=ExtResource("13_8fmw4")]
 damage_effect_scene = ExtResource("7_4hkqg")
 
 [node name="entity_89_geo_ballistic_solid" type="StaticBody3D" parent="MultiAgentNavigationRoot/FuncGodotMap" node_paths=PackedStringArray("damage_component", "damage_effect_component")]
@@ -7133,13 +6955,11 @@ shape = SubResource("ConvexPolygonShape3D_yrspi")
 [node name="entity_89_brush_2_collision_shape" type="CollisionShape3D" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_89_geo_ballistic_solid"]
 shape = SubResource("ConvexPolygonShape3D_ve5g0")
 
-[node name="DamageComponent" type="Node" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_89_geo_ballistic_solid" instance=ExtResource("11_jkr1j")]
-script = ExtResource("12_p5soi")
+[node name="DamageComponent" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_89_geo_ballistic_solid" instance=ExtResource("11_jkr1j")]
 percent_penetrated = 0.4
 armor_rating = 8
 
-[node name="DamageEffectComponent" type="Node" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_89_geo_ballistic_solid" instance=ExtResource("13_8fmw4")]
-script = ExtResource("14_6yfql")
+[node name="DamageEffectComponent" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_89_geo_ballistic_solid" instance=ExtResource("13_8fmw4")]
 damage_effect_scene = ExtResource("7_4hkqg")
 
 [node name="entity_90_geo_ballistic_solid" type="StaticBody3D" parent="MultiAgentNavigationRoot/FuncGodotMap" node_paths=PackedStringArray("damage_component", "damage_effect_component")]
@@ -7169,13 +6989,11 @@ mesh = SubResource("ArrayMesh_bv6og")
 [node name="entity_90_brush_0_collision_shape" type="CollisionShape3D" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_90_geo_ballistic_solid"]
 shape = SubResource("ConvexPolygonShape3D_sd523")
 
-[node name="DamageComponent" type="Node" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_90_geo_ballistic_solid" instance=ExtResource("11_jkr1j")]
-script = ExtResource("12_p5soi")
+[node name="DamageComponent" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_90_geo_ballistic_solid" instance=ExtResource("11_jkr1j")]
 percent_penetrated = 0.4
 armor_rating = 8
 
-[node name="DamageEffectComponent" type="Node" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_90_geo_ballistic_solid" instance=ExtResource("13_8fmw4")]
-script = ExtResource("14_6yfql")
+[node name="DamageEffectComponent" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_90_geo_ballistic_solid" instance=ExtResource("13_8fmw4")]
 damage_effect_scene = ExtResource("7_4hkqg")
 
 [node name="entity_91_geo_ballistic_solid" type="StaticBody3D" parent="MultiAgentNavigationRoot/FuncGodotMap" node_paths=PackedStringArray("damage_component", "damage_effect_component")]
@@ -7210,13 +7028,11 @@ shape = SubResource("ConvexPolygonShape3D_y3w81")
 [node name="entity_91_brush_2_collision_shape" type="CollisionShape3D" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_91_geo_ballistic_solid"]
 shape = SubResource("ConvexPolygonShape3D_ifp1c")
 
-[node name="DamageComponent" type="Node" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_91_geo_ballistic_solid" instance=ExtResource("11_jkr1j")]
-script = ExtResource("12_p5soi")
+[node name="DamageComponent" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_91_geo_ballistic_solid" instance=ExtResource("11_jkr1j")]
 percent_penetrated = 0.4
 armor_rating = 8
 
-[node name="DamageEffectComponent" type="Node" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_91_geo_ballistic_solid" instance=ExtResource("13_8fmw4")]
-script = ExtResource("14_6yfql")
+[node name="DamageEffectComponent" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_91_geo_ballistic_solid" instance=ExtResource("13_8fmw4")]
 damage_effect_scene = ExtResource("7_4hkqg")
 
 [node name="entity_92_geo_ballistic_solid" type="StaticBody3D" parent="MultiAgentNavigationRoot/FuncGodotMap" node_paths=PackedStringArray("damage_component", "damage_effect_component")]
@@ -7246,13 +7062,11 @@ mesh = SubResource("ArrayMesh_gsryr")
 [node name="entity_92_brush_0_collision_shape" type="CollisionShape3D" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_92_geo_ballistic_solid"]
 shape = SubResource("ConvexPolygonShape3D_ooj6w")
 
-[node name="DamageComponent" type="Node" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_92_geo_ballistic_solid" instance=ExtResource("11_jkr1j")]
-script = ExtResource("12_p5soi")
+[node name="DamageComponent" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_92_geo_ballistic_solid" instance=ExtResource("11_jkr1j")]
 percent_penetrated = 0.4
 armor_rating = 8
 
-[node name="DamageEffectComponent" type="Node" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_92_geo_ballistic_solid" instance=ExtResource("13_8fmw4")]
-script = ExtResource("14_6yfql")
+[node name="DamageEffectComponent" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_92_geo_ballistic_solid" instance=ExtResource("13_8fmw4")]
 damage_effect_scene = ExtResource("7_4hkqg")
 
 [node name="entity_93_geo_ballistic_solid" type="StaticBody3D" parent="MultiAgentNavigationRoot/FuncGodotMap" node_paths=PackedStringArray("damage_component", "damage_effect_component")]
@@ -7287,13 +7101,11 @@ shape = SubResource("ConvexPolygonShape3D_88rkm")
 [node name="entity_93_brush_2_collision_shape" type="CollisionShape3D" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_93_geo_ballistic_solid"]
 shape = SubResource("ConvexPolygonShape3D_jjnu2")
 
-[node name="DamageComponent" type="Node" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_93_geo_ballistic_solid" instance=ExtResource("11_jkr1j")]
-script = ExtResource("12_p5soi")
+[node name="DamageComponent" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_93_geo_ballistic_solid" instance=ExtResource("11_jkr1j")]
 percent_penetrated = 0.4
 armor_rating = 8
 
-[node name="DamageEffectComponent" type="Node" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_93_geo_ballistic_solid" instance=ExtResource("13_8fmw4")]
-script = ExtResource("14_6yfql")
+[node name="DamageEffectComponent" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_93_geo_ballistic_solid" instance=ExtResource("13_8fmw4")]
 damage_effect_scene = ExtResource("7_4hkqg")
 
 [node name="entity_94_geo_ballistic_solid" type="StaticBody3D" parent="MultiAgentNavigationRoot/FuncGodotMap" node_paths=PackedStringArray("damage_component", "damage_effect_component")]
@@ -7323,13 +7135,11 @@ mesh = SubResource("ArrayMesh_ou1nj")
 [node name="entity_94_brush_0_collision_shape" type="CollisionShape3D" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_94_geo_ballistic_solid"]
 shape = SubResource("ConvexPolygonShape3D_2b7i4")
 
-[node name="DamageComponent" type="Node" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_94_geo_ballistic_solid" instance=ExtResource("11_jkr1j")]
-script = ExtResource("12_p5soi")
+[node name="DamageComponent" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_94_geo_ballistic_solid" instance=ExtResource("11_jkr1j")]
 percent_penetrated = 0.4
 armor_rating = 8
 
-[node name="DamageEffectComponent" type="Node" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_94_geo_ballistic_solid" instance=ExtResource("13_8fmw4")]
-script = ExtResource("14_6yfql")
+[node name="DamageEffectComponent" parent="MultiAgentNavigationRoot/FuncGodotMap/entity_94_geo_ballistic_solid" instance=ExtResource("13_8fmw4")]
 damage_effect_scene = ExtResource("7_4hkqg")
 
 [node name="entity_95_area_ambient_sound" type="Area3D" parent="MultiAgentNavigationRoot/FuncGodotMap"]
@@ -7425,10 +7235,22 @@ _gun_stats = SubResource("Resource_400va")
 [node name="LightmapGI" type="LightmapGI" parent="."]
 quality = 3
 directional = true
+texel_scale = 0.5
 camera_attributes = ExtResource("2_7vsv1")
 light_data = ExtResource("50_04twg")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.9649, 5.23349, 0)
 light_color = Color(1, 0.931774, 0.796294, 1)
+light_energy = 2.0
+light_bake_mode = 1
 omni_range = 6.48267
+
+[node name="ReflectionProbe" type="ReflectionProbe" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.5956, 1.3071, 0.121528)
+
+[node name="ReflectionProbe2" type="ReflectionProbe" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.63243, 1.3071, 0.121528)
+
+[node name="ReflectionProbe3" type="ReflectionProbe" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.10695, 1.84311, 0.121528)
