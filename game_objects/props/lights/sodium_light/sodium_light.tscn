@@ -1,0 +1,94 @@
+[gd_scene load_steps=7 format=4 uid="uid://d3qu8ewdc1ye3"]
+
+[ext_resource type="PackedScene" uid="uid://bhkwtuxqkdjqo" path="res://game_objects/props/lights/sodium_light/sodium_light.blend" id="1_4qsfx"]
+[ext_resource type="Texture2D" uid="uid://dutjmramrijdo" path="res://game_objects/props/lights/sodium_light/sodium_light_t.png" id="2_eioxk"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1kkqh"]
+resource_name = "frame_m"
+cull_mode = 2
+albedo_texture = ExtResource("2_eioxk")
+roughness = 0.5
+texture_filter = 2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_13fy6"]
+resource_name = "light_m"
+cull_mode = 2
+albedo_texture = ExtResource("2_eioxk")
+roughness = 0.5
+emission_enabled = true
+emission_energy_multiplier = 8.0
+emission_texture = ExtResource("2_eioxk")
+texture_filter = 2
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_0sttb"]
+_surfaces = [{
+"aabb": AABB(-0.3, -0.03, -0.1, 0.6, 0.03, 0.2),
+"format": 34896613377,
+"index_count": 54,
+"index_data": PackedByteArray("CQADAAEACQAIAAMACAAHAAMACAAKAAcACgAFAAcACgALAAUACwABAAUACwAJAAEABwABAAMABwAFAAEAAgAJAAAAAgAIAAkABgAIAAIABgAKAAgABAAKAAYABAALAAoAAAALAAQAAAAJAAsA"),
+"name": "frame_m",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 12,
+"vertex_data": PackedByteArray("RAQAADLzAAAAAP////8AAEQEAADMDAAAAAD//wAAAAC6+wAAMvMAAP///////wAAuvsAAMwMAAD/////AAAAAAAAAAAAAAAAAAAAAP//AAD//wAAAAAAAP//AAD//wAA")
+}, {
+"aabb": AABB(-0.29, -0.06, -0.09, 0.58, 0.03, 0.18),
+"format": 34896613377,
+"index_count": 78,
+"index_data": PackedByteArray("AwAKAAIAAwAIAAoAAQAIAAMAAQAEAAgAAgAHAAAAAgAKAAcABQALAAkABQAGAAsADAAHAA0ADAAEAAcADgAEAAwADgAIAAQADwAIAA4ADwAKAAgADQAKAA8ADQAHAAoAAAAEAAEAAAAHAAQABQANAAYABQAMAA0ACQAMAAUACQAOAAwACwAOAAkACwAPAA4ABgAPAAsABgANAA8A"),
+"name": "light_m",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 16,
+"vertex_data": PackedByteArray("AAD/////AAAAAP//AAAAAP///////wAA/////wAAAAAAAKqqAAAAAKcRAADjOAAApxEAABvHAAAAAKqq//8AAP//qqoAAAAAV+4AAOM4AAD//6qq//8AAFfuAAAbxwAAaQRVVTgOAABpBFVVxvEAAJX7VVU4DgAAlftVVcbxAAA=")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_a50il"]
+resource_name = "sodium_light_Cube_001"
+_surfaces = [{
+"aabb": AABB(-0.3, -0.03, -0.1, 0.6, 0.03, 0.2),
+"attribute_data": PackedByteArray("jUvA435jw7BrAXniHh58r/xF+PuNS7L6O1Wy+msB+PuMCnyvRyz4+15a4eV+Y7L6Hh74+/xFfK9hFZvkO1XDsF5a0/yMCvj7Ryx8r2EVGv5HBfj7REr4+4RW+PtnDnyvRwV54kRKeeLHZHyvQxp8r4RWfK+nWxr+Zw74+4URGv6nW5vkx2T4+0Ma+PuFEZvk"),
+"format": 34896613399,
+"index_count": 54,
+"index_data": PackedByteArray("GAAHAAIAGAAUAAcAFwARAAgAFwAeABEAHwAOABMAHwAjAA4AIgADAAwAIgAbAAMAEgAEAAkAEgANAAQABQAZAAAABQAVABkADwAWAAYADwAcABYACgAdABAACgAgAB0AAQAhAAsAAQAaACEA"),
+"material": SubResource("StandardMaterial3D_1kkqh"),
+"name": "frame_m",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 36,
+"vertex_data": PackedByteArray("RAQAADLz/79EBAAAMvNU1QAA/////1TVAAD//////78AAP////9U1UQEAADMDP+/RAQAAMwMVNUAAP//AABU1QAA//8AAP//AAD//wAAVNW6+wAAMvP/v7r7AAAy81TV/////////7////////9U1f///////1TVuvsAAMwMVNW6+wAAzAz/v/////8AAP///////wAAVNX/////AABU1QAAAAAAAFTVAAAAAAAA/78AAAAAAABU1QAAAAAAAP//AAAAAP//VNUAAAAA////vwAAAAD//1TVAAAAAP///7///wAAAABU1f//AAAAAP+///8AAAAA/////wAAAABU1f//AAD///+///8AAP//VNX//wAA////v///AAD//1TVAAD/f6oqVNVUVaqq/////6qqqqoAAP9/VFVUVVRVqar/P/+/qqqqqgAA/3+qKlTV/////6qqqqqqKqoqVFVUVQAA/3//P/+/qqqqqqoqqipUVamqAAD/f1RVVFX/P/+/VFWqqgAA/3+qKlTV/////1RVVFUAAP9//z//v6oqqioAAP9/qipU1f////+qKqoq")
+}, {
+"aabb": AABB(-0.29, -0.06, -0.09, 0.58, 0.03, 0.18),
+"attribute_data": PackedByteArray("B7L4+0J1CbIHsgblDW/4+0J1+PuiIy1yDW8JsqIjH4m+sAblT441/HuXCbLEbfj727zN+LqJ+PskxCX427wO7OB8+Pvk3Gm4vrD4+0+OQ+X1qfj7+XMJsnuX+PvEbQmyyaBD5VkiH4m6iTy8JMRpuEjRYvj1qQmy+XP4+8mgNfxZIi1y4Hw8vOTcJfhI0aPrIZDv+su4oPw1yPj7TJlPsyGQiebLuDvo9OCWtMarsvo1yJa0TJmy+ljVNfyaoonm9OD4+8arT7NY1dDnmqLv+g=="),
+"format": 34896613399,
+"index_count": 78,
+"index_data": PackedByteArray("BwAgAAUABwAZACAAAwAXAAYAAwALABcABAAVAAEABAAeABUADQAhABoADQAQACEAJAATACgAJAAJABMALQAKACcALQAWAAoAMwAYAC8AMwAfABgAKwAdADEAKwAUAB0AAAAIAAIAAAASAAgADAApAA8ADAAlACkAGwAmAA4AGwAsACYAIwAuABwAIwAyAC4AEQAwACIAEQAqADAA"),
+"material": SubResource("StandardMaterial3D_13fy6"),
+"name": "light_m",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 52,
+"vertex_data": PackedByteArray("AAD/////VNUAAP//////vwAA//8AAFTVAAD//wAA////////////v////////1TV/////wAA////////AABU1QAAqqoAAFTVAACqqgAA/MUAAKqqAACq6QAAqqoAAP//pxEAAOM4CsGnEQAA4zhU1acRAADjOEPdpxEAABvHCsGnEQAAG8dU1acRAAAbxzbOAACqqv//VNUAAKqq///8xQAAqqr///zFAACqqv///7///6qqAACq6f//qqoAAP////+qqgAAqun//6qqAABU1VfuAADjOFTVV+4AAOM4Q91X7gAA4zgKwf//qqr///zF//+qqv///7///6qq//+q6f//qqr//1TVV+4AABvHVNVX7gAAG8c2zlfuAAAbxwrBaQRVVTgO/MVpBFVVOA4KwWkEVVU4DkPdaQRVVTgOqulpBFVVxvH8xWkEVVXG8QrBaQRVVcbxNs5pBFVVxvH8xZX7VVU4DkPdlftVVTgOqumV+1VVOA4KwZX7VVU4DqrplftVVcbxNs6V+1VVxvH8xZX7VVXG8QrBlftVVcbxqulU1VTV/////1TVVNX/v/+//////6oqqir/v/+/qiqqKlTVVNX+Of6cBDX6yv+//79cH62PVFVUVfNQ9FBcH62PVFVUVcklNdpU1VTV/jn+nABjAGP/////BDX6yv+//7/1lfpKqiqqKlRVVFXzUPRQrg+iYABjAGP/////9ZX6SqoqqipUVVRVySU12q4PomD+Of6cXB+tj/NQ9FAENfrK/jn+nFwfrY/JJTXaAGMAY/NQ9FAENfrKrg+iYPWV+krJJTXaAGMAY64PomD1lfpK")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_0sttb")
+
+[node name="SodiumLight" type="Node3D"]
+
+[node name="sodium_light" parent="." instance=ExtResource("1_4qsfx")]
+
+[node name="Cube" parent="sodium_light" index="0"]
+mesh = SubResource("ArrayMesh_a50il")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -0.0642659, 0)
+light_color = Color(1, 0.862745, 0, 1)
+light_energy = 2.0
+light_bake_mode = 1
+shadow_enabled = true
+distance_fade_enabled = true
+spot_range = 10.0
+spot_angle = 80.0
+
+[editable path="sodium_light"]
