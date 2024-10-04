@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ItemMapping" load_steps=4 format=3 uid="uid://df0htqvcrltgo"]
+
+[ext_resource type="Script" path="res://resource_access/item_mapping.gd" id="1_cdgl5"]
+[ext_resource type="PackedScene" uid="uid://dr48wela8mtxd" path="res://game_objects/items/weapons/hic_rifles/pm_52/pm_52.tscn" id="1_s05jp"]
+[ext_resource type="Resource" uid="uid://xufa6auvjw6t" path="res://game_objects/items/weapons/hic_rifles/pm_52/pm_52_inventory_info.tres" id="2_yxrqb"]
+
+[resource]
+script = ExtResource("1_cdgl5")
+item_type_id = "pm-52"
+item_information = ExtResource("2_yxrqb")
+item_3d_scene = ExtResource("1_s05jp")
