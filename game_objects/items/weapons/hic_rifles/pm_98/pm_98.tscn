@@ -1,17 +1,88 @@
-[gd_scene load_steps=17 format=3 uid="uid://dr48wela8mtxd"]
+[gd_scene load_steps=22 format=4 uid="uid://ctjttl3dpkou"]
 
-[ext_resource type="Script" path="res://game_objects/items/weapons/gun.gd" id="1_4e183"]
-[ext_resource type="PackedScene" uid="uid://gfj0vsvmo4ik" path="res://game_objects/bullet/iterative_raycast_bullet.tscn" id="2_405qr"]
-[ext_resource type="Resource" uid="uid://dls8psqyu06aw" path="res://game_objects/items/weapons/hic_rifles/hic_rifle_gun_stats.tres" id="2_aa0bx"]
-[ext_resource type="AudioStream" uid="uid://cvetwcylway6p" path="res://game_objects/items/weapons/hic_rifles/hic_mag_out.ogg" id="6_1us7e"]
-[ext_resource type="PackedScene" uid="uid://pm3nps6dkjt8" path="res://game_objects/items/weapons/hic_rifles/pm_52/pm_52.blend" id="6_78q42"]
-[ext_resource type="Texture2D" uid="uid://dkcxx06s6kdp6" path="res://game_objects/items/weapons/hic_rifles/pm_52/PixelMuzzelFlash.png" id="6_ok4lf"]
-[ext_resource type="AudioStream" uid="uid://dplusv72g11du" path="res://game_objects/items/weapons/hic_rifles/hic_shot_1.ogg" id="6_r1jqa"]
-[ext_resource type="AudioStream" uid="uid://61nbakc75l5g" path="res://game_objects/items/weapons/hic_rifles/hic_mag_in.ogg" id="7_vwawx"]
-[ext_resource type="AudioStream" uid="uid://c71dtcsweexj4" path="res://game_objects/items/weapons/hic_rifles/hic_charging_handle.ogg" id="8_njdhy"]
+[ext_resource type="Script" path="res://game_objects/items/weapons/gun.gd" id="1_f4wsv"]
+[ext_resource type="PackedScene" uid="uid://gfj0vsvmo4ik" path="res://game_objects/bullet/iterative_raycast_bullet.tscn" id="2_7ex6x"]
+[ext_resource type="Resource" uid="uid://dls8psqyu06aw" path="res://game_objects/items/weapons/hic_rifles/hic_rifle_gun_stats.tres" id="3_gip66"]
+[ext_resource type="PackedScene" uid="uid://pm3nps6dkjt8" path="res://game_objects/items/weapons/hic_rifles/pm_98/pm_98.blend" id="4_bigek"]
+[ext_resource type="Texture2D" uid="uid://cpfdo65s0bmmd" path="res://game_objects/items/weapons/hic_rifles/pm_98/pm_98_t.png" id="5_kxyam"]
+[ext_resource type="Texture2D" uid="uid://dkcxx06s6kdp6" path="res://game_objects/items/weapons/hic_rifles/pm_98/PixelMuzzelFlash.png" id="5_plj7l"]
+[ext_resource type="AudioStream" uid="uid://cvetwcylway6p" path="res://game_objects/items/weapons/hic_rifles/hic_mag_out.ogg" id="6_n8dvm"]
+[ext_resource type="AudioStream" uid="uid://61nbakc75l5g" path="res://game_objects/items/weapons/hic_rifles/hic_mag_in.ogg" id="7_22tfv"]
+[ext_resource type="AudioStream" uid="uid://c71dtcsweexj4" path="res://game_objects/items/weapons/hic_rifles/hic_charging_handle.ogg" id="8_hwequ"]
+[ext_resource type="AudioStream" uid="uid://dplusv72g11du" path="res://game_objects/items/weapons/hic_rifles/hic_shot_1.ogg" id="9_4rrkh"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_a6wgc"]
-size = Vector3(0.058623, 0.208564, 0.716576)
+size = Vector3(0.058623, 0.208564, 0.735785)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pwa1u"]
+resource_name = "metal_m"
+cull_mode = 2
+albedo_texture = ExtResource("5_kxyam")
+metallic = 0.75
+roughness = 0.419162
+texture_filter = 2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jtxye"]
+resource_name = "m_gun_night_sight"
+cull_mode = 2
+albedo_color = Color(0, 0, 0, 1)
+metallic = 1.0
+emission_enabled = true
+emission = Color(0.337255, 0.968627, 0, 1)
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_oriyd"]
+_surfaces = [{
+"aabb": AABB(-0.0248351, 0.261343, -0.347882, 0.0496702, 0.085908, 0.645535),
+"format": 34896613377,
+"index_count": 354,
+"index_data": PackedByteArray("FQADAAsAFQARAAMAEQAHAAMAEQASAAcAFwAFAA8AFwATAAUAEwABAAUAEwAQAAEACQAEAAwACQAAAAQADwABAAoADwAFAAEABwALAAMABwAOAAsAAgANAAYAAgAIAA0ACAAMAA0ACAAJAAwAEgAOAAcAEgAWAA4AEAAKAAEAEAAUAAoACQAVABQACQAIABUAAAAUABAAAAAJABQADQAXABYADQAMABcABgAWABIABgANABYABAAQABMABAAAABAADAATABcADAAEABMAAgASABEAAgAGABIACAARABUACAACABEAFAAbABcAFAAYABsADgAVAAsADgAWABUACgAXAA8ACgAUABcAGgAYABkAGgAbABgAFwAaABYAFwAbABoAFgAZABUAFgAaABkAFQAYABQAFQAZABgAPwAfACsAPwA1AB8ANQAjAB8ANQA2ACMAOwAhADMAOwA3ACEANwAdACEANwA0AB0AJwAgACwAJwAcACAAMwAdACgAMwAhAB0AIwArAB8AIwAwACsAMQApACoAMQAyACkAHgAvACIAHgAkAC8AJAAuAC8AJAAlAC4AJQAtAC4AJQAmAC0AJgAsAC0AJgAnACwANgAwACMANgA4ADAANAAoAB0ANAA8ACgAPQAqACkAPQA+ACoAJQA/AD4AJQAkAD8AJgA+AD0AJgAlAD4AJwA9ADwAJwAmAD0AHAA8ADQAHAAnADwALQA7ADoALQAsADsALgA6ADkALgAtADoALwA5ADgALwAuADkAIgA4ADYAIgAvADgAIAA0ADcAIAAcADQALAA3ADsALAAgADcAHgA2ADUAHgAiADYAJAA1AD8AJAAeADUAOQA/ADgAOQA+AD8AOwA9ADoAOwA8AD0APAAzACgAPAA7ADMAPgAxACoAPgA5ADEAKwA4AD8AKwAwADgAKQA6AD0AKQAyADoA"),
+"name": "metal_m",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 64,
+"vertex_data": PackedByteArray("AAA+YxTYAAAAAP//FNgAAP7/PmMU2AAA/v///xTYAAAAAD5j//8AAAAA/////wAA//8+Y///AAD//////v8AAKmqPmMU2AAAVFU+YxTYAABUVf//FNgAAKmq//8U2AAAVVU+Y///AACqqj5j//8AAKqq/////wAAVVX/////AAAAALDGFNgAAP7/sMYU2AAA//+wxv//AAAAALDG//8AAFRVu8YU2AAAqaq7xhTYAACqqrDG//8AAFVVsMb//wAAVFU56xTYAACpqjnrFNgAAKqqOev//wAAVVU56///AADZNAAAAAAAANk0//8AAAAAJMsAAAAAAAAky///AAAAANk0AADkFQAA2TT//9MKAAAkywAA5BUAACTL///TCgAAFa0AAAAAAAAGjwAAAAAAAPdwAAAAAAAA6FIAAAAAAAA1RP//AAAAAPdw//8AAAAABo///wAAAADIu///AAAAAOhSAADkFQAA93AAAOQVAAAGjwAA5BUAABWtAADkFQAAyLv//9MKAAAGj///0woAAPdw///TCgAANUT//9MKAADZNDfcAAAAACTLN9wAAAAAJMs33HkMAADZNDfceQwAAMi7N9x5DAAABo833HkMAAD3cDfceQwAADVEN9x5DAAANUQ33AAAAAD3cDfcAAAAAAaPN9wAAAAAyLs33AAAAAA=")
+}, {
+"aabb": AABB(-0.00291633, 0.335243, -0.320578, 0.00583214, 0.0120075, 0.00415316),
+"format": 34896613377,
+"index_count": 6,
+"index_data": PackedByteArray("AgABAAAAAgADAAEA"),
+"name": "m_gun_night_sight",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 4,
+"vertex_data": PackedByteArray("/v///wAAAAAAAP//AAAAAP//AAD//wAAAAAAAP//AAA=")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_6nb4q"]
+resource_name = "pm_98_Cube_001"
+_surfaces = [{
+"aabb": AABB(-0.0248351, 0.261343, -0.347882, 0.0496702, 0.085908, 0.645535),
+"attribute_data": PackedByteArray("eGWt3OLKVuZOtv/b8MdE6/hDVuBkuf/jAY9P3YxJ/92x7v/bd8K76Iz5EtPAiv/j6aKt5OLKEtlOtrvO/jy7+PhDEtNkubvWhaCt3IxJu9Cx7rvOOjr/2Yz5VuDAirvW/19H2N6MT91pR//dflBW3ttdR9hUY63cW05W3gXNVuYTykTr1EFW4CQxu8qaxLvoaPcS037mu8xwf63cDKWt5FtOEtEFzRLZk4Gt3GKerdxpR7vQflAS0Rc4/9lo91bgfub/2SE/u/jUQRLTJDH/13hlR9jwx7vo/7H/2+C7/+MBj7Xhd8JE60SI/+MB8//bOjqH3IWgR9hEiLvWAfO7zv48RPvpokfg/7G7zuC7u9bbXa3cHmBZ0lRjR9gTyrzonzO7ynCPVtr/X63cHmCH1N6MtuGaxETr+j4SzwPku8wXOIfceDmH05OBR9hinkfY+j5W3ALk/9l4ObbVIT9E+3B/R9gMpUfgnzP/13CPE82JXlnSBf//39uNVtqJXofU4fz/32U9Es/iN4fT4fy70mU9VtziN7bVBf+70tuNE82OpFbSFKMz3PCt/20BL/L0wHVX2FuSxdzyZDR2+YQz1BERVm5R3ZbpXctW1oRlrdT4S1bOFKPt1BG1/21d1azkwHW+1FuSXuABSVbO+YTtzPAJVm56cn7jXcu90oRlFNGzZTR2UHVW0jmEM9TXiDPUzkEz0BF2VtIWiDPUHp4z1HU4VtCPQjPQXZ0z1LC6M9Q2OVbQzaNW0tWjM9zwuTPUny7y9F51V9gPZjPMJfby4h6BK9XefurOZPXy4l2AK9UOtKjLtN2W6cDLVtZy8DPMuExWzrb4VtDVo+3U8LntzBvLVtB3+VbQXZ3tzLC67czcy1bQ//1W0BaI7cwenu3MQEhWzr/+VtA5hO3M14jtzBhyfuPAy73ScvCayF2AktEOtA/IHoGS0d5+UcvA1azkXnW+1A9mmsgBL4f2jqSZyM6QxdzwrUJk8mR3bFHdK+sREZlk92Ot1AFJG8R6civlAQ2ZZPdjiND4SxvEXdVY5s6Q6uD/sUJkn0gbxB7/G8YYcivl/0+Ryf/xDsjcyxvG//0bxh5RkcmBsoPHG8sbxnf5G8Z6XrbNa4DFylpMG8RY+BvGwNVY5ltdts2CZA7Iny6H9pQ5mcYspJnIW12RyYJkM8x1OJnGj0J3xiX2h+R6XpHJa4Dqzs5Bd8YRdpnIZPWH5B5Rts2BsqjLVWV3bPJ0mci03Svr/0+2zf/xM8w="),
+"format": 34896613399,
+"index_count": 354,
+"index_data": PackedByteArray("TQAJACMATQA5AAkAOgAXAAsAOgA+ABcAVwAPADEAVwBAAA8AQwAFABEAQwA3AAUAHwANACkAHwABAA0AMgAEACEAMgAQAAQAFgAkAAoAFgAvACQABwAsABMABwAaACwAGwAoAC0AGwAeACgAPAAuABUAPABQAC4ANQAgAAMANQBHACAAHABKAEQAHAAYAEoAAABGADQAAAAdAEYAKgBYAFIAKgAmAFgAEgBTAD0AEgArAFMADgA2AEIADgACADYAJwBBAFkAJwAMAEEACAA/ADsACAAUAD8AGQA4AEwAGQAGADgASQBnAFsASQBeAGcAMABPACUAMABVAE8AIgBaADMAIgBIAFoAYwBdAGAAYwBmAF0AVgBiAFEAVgBlAGIAVABhAE4AVABkAGEASwBcAEUASwBfAFwA6QBxAJkA6QC7AHEAvQB/AHMAvQDBAH8A1QB3ALMA1QDDAHcAxABtAHkAxAC4AG0AjgB1AJ4AjgBpAHUAtABsAJEAtAB4AGwAfgCaAHIAfgCtAJoArwCUAJcArwCxAJQAbwCqAHsAbwCCAKoAgwCmAKsAgwCGAKYAhwCiAKcAhwCKAKIAiwCfAKMAiwCPAJ8AvwCsAH0AvwDIAKwAtgCQAGsAtgDYAJAA3wCWAJMA3wDkAJYAhQDoAOMAhQCBAOgAiQDiAN4AiQCEAOIAjADdANkAjACIAN0AaADaALcAaACNANoAoQDUANAAoQCdANQApADPAMsApACgAM8AqQDMAMcAqQClAMwAegDGAL4AegCoAMYAdgC5AMUAdgBqALkAnADCANMAnAB0AMIAcADAALwAcAB8AMAAgAC6AOcAgABuALoAzQDqAMkAzQDlAOoA1gDgANEA1gDbAOAA3AC1AJIA3ADXALUA5gCwAJgA5gDOALAAmwDKAOsAmwCuAMoAlQDSAOEAlQCyANIA"),
+"material": SubResource("StandardMaterial3D_pwa1u"),
+"name": "metal_m",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 236,
+"vertex_data": PackedByteArray("AAA+YxTY//8AAD5jFNj/vwAAPmMU2FTVAAD//xTY//8AAP//FNj//wAA//8U2FTV/v8+YxTY///+/z5jFNj/v/7/PmMU2FTV/v///xTY///+////FNj/v/7///8U2FTVAAA+Y///AIAAAD5j////vwAAPmP//1TVAAD/////AIAAAP///////wAA/////1TV//8+Y///AID//z5j////v///PmP//1TV//////7/AID//////v//v//////+/1TVqao+YxTY//+pqj5jFNj//6mqPmMU2P+/qao+YxTY/79UVT5jFNj//1RVPmMU2P//VFU+YxTY/79UVT5jFNj/v1RV//8U2P//VFX//xTY//9UVf//FNhU1amq//8U2P//qar//xTY/7+pqv//FNhU1VVVPmP//wCAVVU+Y///AIBVVT5j////v1VVPmP///+/qqo+Y///AICqqj5j//8AgKqqPmP///+/qqo+Y////7+qqv////8AgKqq//////+/qqr/////VNVVVf////8AgFVV////////VVX/////VNUAALDGFNj//wAAsMYU2P//AACwxhTYVNUAALDGFNhU1f7/sMYU2P///v+wxhTY///+/7DGFNhU1f7/sMYU2FTV//+wxv//AID//7DG//8AgP//sMb//1TV//+wxv//VNUAALDG//8AgAAAsMb//wCAAACwxv//VNUAALDG//9U1VRVu8YU2P//VFW7xhTY//9UVbvGFNj//1RVu8YU2P//VFW7xhTYVNVUVbvGFNhU1amqu8YU2P//qaq7xhTY//+pqrvGFNj//6mqu8YU2P//qaq7xhTYVNWpqrvGFNhU1aqqsMb//wCAqqqwxv///7+qqrDG//8AgKqqsMb//wCAqqqwxv//VNWqqrDG//9U1VVVsMb///+/VVWwxv//AIBVVbDG//8AgFVVsMb//wCAVVWwxv//VNVVVbDG//9U1VRVOesU2P//VFU56xTY//9UVTnrFNhU1amqOesU2P//qao56xTY//+pqjnrFNhU1aqqOev///+/qqo56/////+qqjnr//9U1VVVOev///+/VVU56/////9VVTnr//9U1dk0AAAAAP//2TQAAAAA/7/ZNAAAAAD/v9k0//8AAP//2TT//wAA///ZNP//AABU1STLAAAAAP//JMsAAAAA/78kywAAAAD/vyTL//8AAP//JMv//wAA//8ky///AABU1dk0AADkFauM2TQAAOQV/7/ZNAAA5BX/v9k0///TCpCN2TT//9MK///ZNP//0wpU1STLAADkFauMJMsAAOQV/78kywAA5BX/vyTL///TCpCNJMv//9MK//8ky///0wpU1RWtAAAAAP//Fa0AAAAA//8VrQAAAAD/vxWtAAAAAP+/Bo8AAAAA//8GjwAAAAD//waPAAAAAP+/Bo8AAAAA/7/3cAAAAAD///dwAAAAAP//93AAAAAA/7/3cAAAAAD/v+hSAAAAAP//6FIAAAAA///oUgAAAAD/v+hSAAAAAP+/NUT//wAA//81RP//AAD//zVE//8AAFTV93D//wAA///3cP//AAD///dw//8AAFTVBo///wAA//8Gj///AAD//waP//8AAFTVyLv//wAA///Iu///AAD//8i7//8AAFTV6FIAAOQVq4zoUgAA5BWrjOhSAADkFf+/6FIAAOQV/7/3cAAA5BWrjPdwAADkFauM93AAAOQV/7/3cAAA5BX/vwaPAADkFauMBo8AAOQVq4wGjwAA5BX/vwaPAADkFf+/Fa0AAOQVq4wVrQAA5BWrjBWtAADkFf+/Fa0AAOQV/7/Iu///0wqQjci7///TCv//yLv//9MKVNUGj///0wr//waP///TClTV93D//9MK///3cP//0wpU1TVE///TCpCNNUT//9MK//81RP//0wpU1dk0N9wAAP//2TQ33AAA///ZNDfcAABU1dk0N9wAAP+/JMs33AAA//8kyzfcAAD//yTLN9wAAP+/JMs33AAAVNUkyzfceQyrjCTLN9x5DJCNJMs33HkM/78kyzfceQxU1dk0N9x5DKuM2TQ33HkMkI3ZNDfceQxU1dk0N9x5DP+/yLs33HkMq4zIuzfceQyrjMi7N9x5DJCNyLs33HkM///IuzfceQxU1QaPN9x5DKuMBo833HkMq4wGjzfceQz//waPN9x5DFTV93A33HkMq4z3cDfceQyrjPdwN9x5DP+/93A33HkMVNU1RDfceQyrjDVEN9x5DKuMNUQ33HkMkI01RDfceQz/vzVEN9x5DFTVNUQ33AAA//81RDfcAAD//zVEN9wAAP//NUQ33AAA/781RDfcAABU1fdwN9wAAP//93A33AAA///3cDfcAAD///dwN9wAAP+/93A33AAAVNUGjzfcAAD//waPN9wAAP//Bo833AAA//8GjzfcAAD//waPN9wAAFTVyLs33AAA///IuzfcAAD//8i7N9wAAP//yLs33AAA///IuzfcAABU1f9///8AAP9/VFWqqv///3//f/+/VFWqqv///38AAP9/qiqqKv9///////9/qiqqKv9///8AAP9/VFWqqv9/////f/+/VFWqqv9///8AAP9/qiqqKv9///////9/qiqqKv///3////9/AAD/fwAA/3////9//3///wAA/38AAP9/////f/9//7+qqlRV/3///////39U1VTV/3////9///8AAP9/AAD/f/9/////f///AAD/fwAA/3//f///////f1TVVNX/f////3//v6qqVFX/f///////f1RVqqpUVaqq////f/9///+qKqoqqiqqKv9/////f///qiqqKqoqqir/f////3///1RVqqpUVaqq////f/8//7//f///////f6qqVFVUVaqq////f/8//7////9//3///6qqVFVU1VTV/3////9//3//f////3///6qqVFVU1VTV/3//f/9/////f////3///6qqVFVUVaqq/z//v/9//79UVaqq/z//v/9//7+qqlRV/3//f/9//7+qqlRV/3//f/9//79UVaqq/3///wAA/3//f////3////9//79U1VTV/3///wAA/3//fwAA/3////9//7+qKqoq////fwAA/3//f///////f/9//79U1VTV////fwAA/3//fwAA////f/9//7+qKqoq/3////9///8AAP9/AAD/f/9/////f///AAD/fwAA/3//f////3///wAA/38AAP9//3////9///8AAP9/AAD/f/9/////f/+/qiqqKv9/////f/+/VFWqqv9/////f/+/qiqqKv9/////f/+/VFWqqv///3////9/AAD/fwAA/3////9/////fwAA/38AAP9/////f////38AAP9/AAD/f////3////9/AAD/fwAA/3////9//3//v1RVqqr/f/+/qiqqKv9//79UVaqq////f/9//7+qKqoq/3////9///9U1VTV/3////9/////f////38AAKoqqir///9/////f/9/AACqKqoq////f////39U1VTV/3///////3////9/////f/9//79UVaqq////f////3//f/+/qiqqKv///3////9/////f1RVqqr///9/////f////3////9/qiqqKv9/////f////3///////3+qKqoq/3////9/////f///////f1RVqqr/f////3////9/////f/+/qiqqKv9/////f////3////9//79UVaqq")
+}, {
+"aabb": AABB(-0.00291633, 0.335243, -0.320578, 0.00583214, 0.0120075, 0.00415316),
+"attribute_data": PackedByteArray("CsZOblXDTm4KxjR0VcM0dA=="),
+"format": 34896613399,
+"index_count": 6,
+"index_data": PackedByteArray("AgABAAAAAgADAAEA"),
+"material": SubResource("StandardMaterial3D_jtxye"),
+"name": "m_gun_night_sight",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 4,
+"vertex_data": PackedByteArray("/v///wAAkI0AAP//AACQjf//AAD//5CNAAAAAP//kI3///9/////f////3////9/")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_oriyd")
 
 [sub_resource type="Animation" id="Animation_048m7"]
 resource_name = "fire"
@@ -30,7 +101,7 @@ tracks/0/keys = {
 "values": [true, false]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_clf16"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ro1ql"]
 resource_local_to_scene = true
 _data = {
 "fire": SubResource("Animation_048m7")
@@ -38,127 +109,55 @@ _data = {
 
 [sub_resource type="Animation" id="Animation_yr6ub"]
 length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("gun/Node_15/gun/mag:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 0, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("gun/Node_15/gun/mag:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 0, 0)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("gun:rotation")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 0, 0)]
-}
 
 [sub_resource type="Animation" id="Animation_i2jpl"]
 resource_name = "reload"
 length = 2.5
-tracks/0/type = "value"
+tracks/0/type = "audio"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("gun/Node_15/gun/mag:position")
+tracks/0/path = NodePath("MagOutStreamPlayer3D")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.9, 1.1, 1.3, 1.6),
-"transitions": PackedFloat32Array(1.07177, 1, 1, 1, 1, 1, 1, 1.07177),
-"update": 0,
-"values": [Vector3(0, 0, 0), Vector3(-0.061628, 0.00287006, 2.69384e-09), Vector3(-0.471579, 0.00287006, 0.700022), Vector3(0.197437, -0.170863, 1.60944), Vector3(0.197437, -0.170863, 1.60944), Vector3(-0.471579, 0.00287006, 0.700022), Vector3(-0.061628, 0.00287006, 2.69384e-09), Vector3(0, 0, 0)]
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("6_n8dvm")
+}],
+"times": PackedFloat32Array(0)
 }
-tracks/1/type = "value"
+tracks/0/use_blend = true
+tracks/1/type = "audio"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("gun/Node_15/gun/mag:rotation")
+tracks/1/path = NodePath("MagInStreamPlayer3D")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.9, 1.1, 1.3, 1.6),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector3(0, 0, 0), Vector3(-1.0081e-08, 1.17839e-09, -0.232722), Vector3(-0.512673, 0.640902, -0.232722), Vector3(-0.463847, 0.704759, -0.210558), Vector3(-0.463847, 0.704759, -0.210558), Vector3(-0.512673, 0.640902, -0.232722), Vector3(-1.0081e-08, 1.17839e-09, -0.232722), Vector3(0, 0, 0)]
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("7_22tfv")
+}],
+"times": PackedFloat32Array(1.2)
 }
+tracks/1/use_blend = true
 tracks/2/type = "audio"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("MagOutStreamPlayer3D")
+tracks/2/path = NodePath("ChargingHandleStreamPlayer3D")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "clips": [{
 "end_offset": 0.0,
 "start_offset": 0.0,
-"stream": ExtResource("6_1us7e")
-}],
-"times": PackedFloat32Array(0)
-}
-tracks/2/use_blend = true
-tracks/3/type = "audio"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("MagInStreamPlayer3D")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"clips": [{
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": ExtResource("7_vwawx")
-}],
-"times": PackedFloat32Array(1.2)
-}
-tracks/3/use_blend = true
-tracks/4/type = "audio"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("ChargingHandleStreamPlayer3D")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"clips": [{
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": ExtResource("8_njdhy")
+"stream": ExtResource("8_hwequ")
 }],
 "times": PackedFloat32Array(1.7)
 }
-tracks/4/use_blend = true
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("gun:rotation")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0, 0.5, 1, 1.3, 1.6, 1.9, 2.3, 2.5),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0, 0, -0.445059), Vector3(0, 0, -0.445059), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0.446804, 0, 0), Vector3(0.446804, 0, 0), Vector3(0, 0, 0)]
-}
+tracks/2/use_blend = true
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_tmnss"]
 _data = {
@@ -170,38 +169,34 @@ _data = {
 random_pitch = 1.05
 random_volume_offset_db = 0.5
 streams_count = 1
-stream_0/stream = ExtResource("6_r1jqa")
+stream_0/stream = ExtResource("9_4rrkh")
 
-[node name="PM52" type="RigidBody3D" node_paths=PackedStringArray("muzzle", "muzzle_flash_animation_player", "fire_timer", "reload_timer", "reload_animation_player", "gun_model_node", "gun_material_nodes", "scope_anchor", "on_scope_show_nodes", "on_default_magazine_show_nodes", "on_default_magazine_hide_nodes", "on_extended_magazine_show_nodes", "on_extended_magazine_hide_nodes", "on_stable_foregrip_show_nodes", "on_stable_foregrip_hide_nodes", "mag_node", "model_node")]
+[node name="PM98" type="RigidBody3D" node_paths=PackedStringArray("muzzle", "muzzle_flash_animation_player", "fire_timer", "reload_timer", "reload_animation_player", "gun_model_node", "gun_material_nodes", "scope_anchor", "on_default_magazine_show_nodes", "on_default_magazine_hide_nodes", "on_extended_magazine_show_nodes", "on_extended_magazine_hide_nodes", "mag_node")]
 disable_mode = 1
 collision_layer = 5
 collision_mask = 5
 mass = 4.8
-script = ExtResource("1_4e183")
-_bullet_scene = ExtResource("2_405qr")
-_gun_stats = ExtResource("2_aa0bx")
-muzzle = NodePath("gun/Muzzle")
-muzzle_flash_animation_player = NodePath("gun/Muzzle/MuzzleFlashAnimationPlayer")
+script = ExtResource("1_f4wsv")
+_bullet_scene = ExtResource("2_7ex6x")
+_gun_stats = ExtResource("3_gip66")
+muzzle = NodePath("pm_98/Muzzle")
+muzzle_flash_animation_player = NodePath("pm_98/Muzzle/MuzzleFlashAnimationPlayer")
 fire_timer = NodePath("FireTimer")
 reload_timer = NodePath("ReloadTimer")
 reload_animation_player = NodePath("AnimationPlayer")
-gun_model_node = NodePath("gun")
-gun_material_nodes = [NodePath("gun/Node_15/gun/barrel/Cube"), NodePath("gun/Node_15/gun/grip/cube_002")]
+gun_model_node = NodePath("pm_98")
+gun_material_nodes = [NodePath("pm_98/Node_15/gun/reciever/cube_001"), NodePath("pm_98/Node_15/gun/stock/stock_001")]
 scope_anchor = NodePath("scope_anchor")
-on_scope_show_nodes = [NodePath("gun/Node_15/scope_mount")]
-on_default_magazine_show_nodes = [NodePath("gun/Node_15/gun/mag/cube_003")]
-on_default_magazine_hide_nodes = [NodePath("gun/Node_15/gun/mag/extended_magazine")]
-on_extended_magazine_show_nodes = [NodePath("gun/Node_15/gun/mag/extended_magazine")]
-on_extended_magazine_hide_nodes = [NodePath("gun/Node_15/gun/mag/cube_003")]
-on_stable_foregrip_show_nodes = [NodePath("gun/Node_15/gun/handguard/stable")]
-on_stable_foregrip_hide_nodes = [NodePath("gun/Node_15/gun/handguard/default")]
-mag_node = NodePath("gun/Node_15/gun/mag")
-item_type_id = "pm-52"
+on_default_magazine_show_nodes = [NodePath("pm_98/Node_15/gun/mag/cube_003")]
+on_default_magazine_hide_nodes = [NodePath("pm_98/Node_15/gun/mag/extended_magazine")]
+on_extended_magazine_show_nodes = [NodePath("pm_98/Node_15/gun/mag/extended_magazine")]
+on_extended_magazine_hide_nodes = [NodePath("pm_98/Node_15/gun/mag/cube_003")]
+mag_node = NodePath("pm_98/Node_15/gun/mag")
+item_type_id = "pm-98"
 world_collider_path = NodePath("CollisionShape3D")
-model_node = NodePath("gun")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00245605, 0.0708904, 0.0553259)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00245605, -0.0612676, 0.0257573)
 shape = SubResource("BoxShape3D_a6wgc")
 
 [node name="ReloadTimer" type="Timer" parent="."]
@@ -210,59 +205,53 @@ wait_time = 2.5
 [node name="FireTimer" type="Timer" parent="."]
 one_shot = true
 
-[node name="gun" parent="." instance=ExtResource("6_78q42")]
-transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, 0.0375598, -0.0657505)
+[node name="pm_98" parent="." instance=ExtResource("4_bigek")]
+transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, -0.166877, 0)
 
-[node name="Node_15" parent="gun" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.338339, 0)
+[node name="Cube" parent="pm_98/Node_15/gun/barrel" index="0"]
+mesh = SubResource("ArrayMesh_6nb4q")
 
-[node name="stable" parent="gun/Node_15/gun/handguard" index="1"]
+[node name="stable" parent="pm_98/Node_15/gun/handguard" index="1"]
 visible = false
 
-[node name="mag" parent="gun/Node_15/gun" index="3"]
-transform = Transform3D(0.999999, 0, 0, 0, 0.999999, 0, 0, 0, 0.999999, 0, 0, 0)
-
-[node name="cube_003" parent="gun/Node_15/gun/mag" index="0"]
-transform = Transform3D(1, 0, 2.98023e-08, 7.45058e-09, 1, 1.11759e-08, -2.98023e-08, 2.6077e-08, 1, 0, 0, 0)
-
-[node name="extended_magazine" parent="gun/Node_15/gun/mag" index="1"]
+[node name="extended_magazine" parent="pm_98/Node_15/gun/mag" index="1"]
 visible = false
 
-[node name="Muzzle" type="Node3D" parent="gun"]
-transform = Transform3D(1, 0, 2.84217e-14, 0, 1, 0, -2.84217e-14, 0, 1, 0, -0.0630141, -0.507848)
+[node name="Muzzle" type="Node3D" parent="pm_98"]
+transform = Transform3D(1, 0, 2.84217e-14, 0, 1, 0, -2.84217e-14, 0, 1, 0, 0.277715, -0.56941)
 visible = false
 
-[node name="FlashSpriteV3D" type="Sprite3D" parent="gun/Muzzle"]
+[node name="FlashSpriteV3D" type="Sprite3D" parent="pm_98/Muzzle"]
 transform = Transform3D(0.2, 0, -5.68434e-15, 0, 0.2, 0, 5.68434e-15, 0, 0.2, 1.33971e-14, 0.000585541, -0.471367)
 cast_shadow = 0
 axis = 1
 alpha_cut = 2
 texture_filter = 0
-texture = ExtResource("6_ok4lf")
+texture = ExtResource("5_plj7l")
 
-[node name="FlashSpriteH3D" type="Sprite3D" parent="gun/Muzzle"]
+[node name="FlashSpriteH3D" type="Sprite3D" parent="pm_98/Muzzle"]
 transform = Transform3D(-8.74228e-09, 0.2, -5.68434e-15, -0.2, -8.74228e-09, 0, -2.48471e-22, 5.68434e-15, 0.2, 1.33971e-14, 0.000585541, -0.471367)
 cast_shadow = 0
 axis = 1
 alpha_cut = 2
 texture_filter = 0
-texture = ExtResource("6_ok4lf")
+texture = ExtResource("5_plj7l")
 
-[node name="OmniLight3D" type="OmniLight3D" parent="gun/Muzzle"]
+[node name="OmniLight3D" type="OmniLight3D" parent="pm_98/Muzzle"]
 transform = Transform3D(1.66667, 0, -4.73695e-14, 0, 1.66667, 0, 4.73695e-14, 0, 1.66667, 4.84052e-15, 0.0809975, -0.170311)
 light_color = Color(0.917647, 0.784314, 0.611765, 1)
 shadow_enabled = true
 distance_fade_enabled = true
 
-[node name="MuzzleFlashAnimationPlayer" type="AnimationPlayer" parent="gun/Muzzle"]
+[node name="MuzzleFlashAnimationPlayer" type="AnimationPlayer" parent="pm_98/Muzzle"]
 unique_name_in_owner = true
 root_node = NodePath("")
 libraries = {
-"": SubResource("AnimationLibrary_clf16")
+"": SubResource("AnimationLibrary_ro1ql")
 }
 
 [node name="scope_anchor" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0413221, 0.0698746)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0366532, 0.134202)
 
 [node name="Right_Hand" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 7.10543e-15, 0, 1, 0, -7.10543e-15, 0, 1, 0.025, -0.0767041, 0.195119)
@@ -320,4 +309,4 @@ volume_db = 6.0
 max_polyphony = 20
 bus = &"SFX"
 
-[editable path="gun"]
+[editable path="pm_98"]

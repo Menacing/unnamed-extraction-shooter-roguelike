@@ -3,9 +3,9 @@
 [ext_resource type="Resource" uid="uid://o6tesi76nbth" path="res://ui/inventory/drop_item_context_item.tres" id="1_vu7st"]
 [ext_resource type="Script" path="res://ui/inventory/item_context_item.gd" id="2_a4mq1"]
 [ext_resource type="PackedScene" uid="uid://0hy4cl1x7qwx" path="res://ui/inventory/detail_scenes/gun_detail_popup.tscn" id="3_x6ufe"]
-[ext_resource type="Texture2D" uid="uid://ccuey3obfnokx" path="res://game_objects/items/weapons/hic_rifles/pm_52/pm_52_icon.png" id="4_mcmqe"]
+[ext_resource type="Texture2D" uid="uid://ccuey3obfnokx" path="res://game_objects/items/weapons/hic_rifles/pm_98/pm_98_icon.png" id="4_mcmqe"]
 [ext_resource type="AudioStream" uid="uid://61nbakc75l5g" path="res://game_objects/items/weapons/hic_rifles/hic_mag_in.ogg" id="4_p63nd"]
-[ext_resource type="Texture2D" uid="uid://cel42xcp5y2hs" path="res://game_objects/items/weapons/hic_rifles/pm_52/pm_52_icon_r.png" id="5_ranmj"]
+[ext_resource type="Texture2D" uid="uid://cel42xcp5y2hs" path="res://game_objects/items/weapons/hic_rifles/pm_98/pm_98_icon_r.png" id="5_ranmj"]
 [ext_resource type="Script" path="res://resource_access/equipment_slot_data.gd" id="7_dctn7"]
 [ext_resource type="Script" path="res://resource_access/inventory_data.gd" id="8_rsuee"]
 [ext_resource type="Resource" uid="uid://d2e8vacodeiau" path="res://game_objects/items/weapons/foregrips_equipment_slot.tres" id="8_ryncj"]
@@ -30,10 +30,10 @@ slot_datas = Array[Array]([])
 
 [resource]
 script = ExtResource("9_41cf6")
-item_type_id = "pm-52"
+item_type_id = "pm-98"
 show_name = true
-display_name = "PM-52"
-display_short_name = "PM-52"
+display_name = "PM-98"
+display_short_name = "PM-98"
 item_type = 0
 icon = ExtResource("4_mcmqe")
 icon_r = ExtResource("5_ranmj")
@@ -46,8 +46,8 @@ max_durability = 1
 has_durability = false
 column_span = 5
 row_span = 2
-description_text = "The ZS-52 was developed shortly after the 2nd Great War to replace the service rifle, submachine gun, and light machine gun in the commie army. It didn't quite do that, but it they did make a ton of them. This one is in decent condition"
-flavor_text = "The PM-52 is not a device of aggression. I devised this weapon for the security of my country - Konstantin Maksim"
+description_text = "The PM-98 was the result of a last ditch effort of EASI to modernize their aging PM-52 platforms right before The Filter. Featuring modern materials and a more modular design it saw some limited deployment in the last few proxy wars."
+flavor_text = "Imagine if you took a PM-52 and just dragged it through a VostInc catalog. That’s the PM-98"
 min_pickup_stacks = 1
 mean_pickup_stacks = 1
 stack_random_method = 0
