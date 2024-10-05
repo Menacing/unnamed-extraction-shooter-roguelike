@@ -1,4 +1,4 @@
-[gd_scene load_steps=118 format=4 uid="uid://ctahsvj88g1om"]
+[gd_scene load_steps=120 format=4 uid="uid://ctahsvj88g1om"]
 
 [ext_resource type="Script" path="res://levels/demo_level.gd" id="1_8448e"]
 [ext_resource type="PackedScene" uid="uid://d08aatgxmymbf" path="res://game_objects/player/player.tscn" id="1_eisjc"]
@@ -47,6 +47,7 @@
 [ext_resource type="PackedScene" uid="uid://mue3h2yq8han" path="res://game_objects/items/materials/scrap_metal_wheel/scrap_metal_wheel.tscn" id="40_0qi33"]
 [ext_resource type="PackedScene" uid="uid://dr48wela8mtxd" path="res://game_objects/items/weapons/hic_rifles/pm_52/pm_52.tscn" id="41_70t3f"]
 [ext_resource type="Resource" uid="uid://3nqgvhg4lre8" path="res://components/ammo_component/ammo_types/heavy_intermediate_cartridge/heavy_intermediate_cartridge.tres" id="42_vqsrm"]
+[ext_resource type="PackedScene" uid="uid://ct0uk7oo13ve0" path="res://game_objects/items/weapons/hic_rifles/pm_98/pm_98.tscn" id="48_yan6s"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_6g5uc"]
 
@@ -380,7 +381,24 @@ ammo_type = ExtResource("10_q80ko")
 reload_time_Sec = 2.5
 reload_thresholds = Array[float]([1.0])
 
-[sub_resource type="Resource" id="Resource_5twge"]
+[sub_resource type="Resource" id="Resource_l1yld"]
+resource_local_to_scene = true
+script = ExtResource("11_hh747")
+weapon_category_name = "HIC Rifle"
+magazine_size = 30
+rpm = 600
+base_recoil = Vector2(0, 0.025)
+recoil_variability = Vector2(0.025, 0.013)
+fire_modes = ["semi", "auto"]
+ads_accel = 10.0
+ads_fov = 50.0
+moa = 5.0
+turn_speed = 25.0
+ammo_type = ExtResource("42_vqsrm")
+reload_time_Sec = 2.5
+reload_thresholds = Array[float]([1.0])
+
+[sub_resource type="Resource" id="Resource_osn8e"]
 resource_local_to_scene = true
 script = ExtResource("11_hh747")
 weapon_category_name = "HIC Rifle"
@@ -1420,16 +1438,20 @@ on_extended_magazine_hide_nodes = []
 on_stable_foregrip_show_nodes = []
 
 [node name="PM52" parent="." node_paths=PackedStringArray("gun_material_nodes", "on_scope_show_nodes", "on_default_magazine_show_nodes", "on_default_magazine_hide_nodes", "on_extended_magazine_show_nodes", "on_extended_magazine_hide_nodes", "on_stable_foregrip_show_nodes", "on_stable_foregrip_hide_nodes") instance=ExtResource("41_70t3f")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.6161, 0.347091, -5.23843)
-_gun_stats = SubResource("Resource_5twge")
-gun_material_nodes = []
-on_scope_show_nodes = []
-on_default_magazine_show_nodes = []
-on_default_magazine_hide_nodes = []
-on_extended_magazine_show_nodes = []
-on_extended_magazine_hide_nodes = []
-on_stable_foregrip_show_nodes = []
-on_stable_foregrip_hide_nodes = []
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.454, 0.37614, -5.35896)
+_gun_stats = SubResource("Resource_l1yld")
+gun_material_nodes = [null, null]
+on_scope_show_nodes = [null]
+on_default_magazine_show_nodes = [null]
+on_default_magazine_hide_nodes = [null]
+on_extended_magazine_show_nodes = [null]
+on_extended_magazine_hide_nodes = [null]
+on_stable_foregrip_show_nodes = [null]
+on_stable_foregrip_hide_nodes = [null]
+
+[node name="PM53" parent="." instance=ExtResource("48_yan6s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.1491, 0.468912, -4.35992)
+_gun_stats = SubResource("Resource_osn8e")
 
 [connection signal="hit_occured" from="MultiAgentNavigationRoot/FiestaBox/DamageComponent" to="MultiAgentNavigationRoot/FiestaBox" method="_on_damage_component_hit_occured"]
 [connection signal="hit_occured" from="MultiAgentNavigationRoot/LootChest/DamageComponent" to="MultiAgentNavigationRoot/LootChest" method="_on_damage_component_hit_occured"]

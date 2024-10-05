@@ -1,0 +1,56 @@
+[gd_resource type="Resource" script_class="ItemInformation" load_steps=20 format=3 uid="uid://rxvwe4pkqiar"]
+
+[ext_resource type="Script" path="res://ui/inventory/item_context_item.gd" id="1_kyjw6"]
+[ext_resource type="Resource" uid="uid://o6tesi76nbth" path="res://ui/inventory/drop_item_context_item.tres" id="2_dwgxw"]
+[ext_resource type="PackedScene" uid="uid://0hy4cl1x7qwx" path="res://ui/inventory/detail_scenes/gun_detail_popup.tscn" id="3_cxd67"]
+[ext_resource type="AudioStream" uid="uid://61nbakc75l5g" path="res://game_objects/items/weapons/hic_rifles/hic_mag_in.ogg" id="4_wav76"]
+[ext_resource type="Texture2D" uid="uid://ccuey3obfnokx" path="res://game_objects/items/weapons/hic_rifles/pm_52/pm_52_icon.png" id="5_gl53f"]
+[ext_resource type="Texture2D" uid="uid://cel42xcp5y2hs" path="res://game_objects/items/weapons/hic_rifles/pm_52/pm_52_icon_r.png" id="6_v7lnp"]
+[ext_resource type="Script" path="res://resource_access/equipment_slot_data.gd" id="7_ci3af"]
+[ext_resource type="Resource" uid="uid://d2e8vacodeiau" path="res://game_objects/items/weapons/foregrips_equipment_slot.tres" id="8_1qokn"]
+[ext_resource type="Resource" uid="uid://cqxsusjebsqrp" path="res://game_objects/items/weapons/grips_equipment_slot.tres" id="9_4devx"]
+[ext_resource type="Resource" uid="uid://bemliobbiifl2" path="res://game_objects/items/weapons/lasers_equipment_slot.tres" id="10_lxhg1"]
+[ext_resource type="Resource" uid="uid://3m7iiyunllog" path="res://game_objects/items/weapons/mags_equipment_slot.tres" id="11_jxrq5"]
+[ext_resource type="Resource" uid="uid://qfkhmq1ohqqh" path="res://game_objects/items/weapons/muzzles_equipment_slot.tres" id="12_l5oos"]
+[ext_resource type="Resource" uid="uid://bstwuttx0c0do" path="res://game_objects/items/weapons/optics_equipment_slot.tres" id="13_uiv66"]
+[ext_resource type="Resource" uid="uid://cfint47docku3" path="res://game_objects/items/weapons/stocks_equipment_slot.tres" id="14_8xwuh"]
+[ext_resource type="Script" path="res://resource_access/inventory_data.gd" id="15_c1rg0"]
+[ext_resource type="AudioStream" uid="uid://c71dtcsweexj4" path="res://game_objects/items/weapons/hic_rifles/hic_charging_handle.ogg" id="16_jb3nt"]
+[ext_resource type="Script" path="res://resource_access/item_information.gd" id="17_jo468"]
+
+[sub_resource type="Resource" id="Resource_6llv8"]
+script = ExtResource("1_kyjw6")
+label = "Item Detail"
+signal_name = "context_menus_open_item_detail"
+
+[sub_resource type="Resource" id="Resource_rkj1h"]
+script = ExtResource("15_c1rg0")
+equipment_slots = Array[ExtResource("7_ci3af")]([ExtResource("8_1qokn"), ExtResource("9_4devx"), ExtResource("10_lxhg1"), ExtResource("11_jxrq5"), ExtResource("12_l5oos"), ExtResource("13_uiv66"), ExtResource("14_8xwuh")])
+slot_datas = Array[Array]([])
+
+[resource]
+script = ExtResource("17_jo468")
+item_type_id = "pm-98"
+show_name = true
+display_name = "PM-98"
+display_short_name = "PM-98"
+item_type = 0
+icon = ExtResource("5_gl53f")
+icon_r = ExtResource("6_v7lnp")
+model_internal_inventory = SubResource("Resource_rkj1h")
+detail_scene = ExtResource("3_cxd67")
+context_menu_items = Array[ExtResource("1_kyjw6")]([ExtResource("2_dwgxw"), SubResource("Resource_6llv8")])
+max_stacks = 1
+has_stacks = false
+max_durability = 1
+has_durability = false
+column_span = 5
+row_span = 2
+description_text = "The PM-98 was the result of a last ditch effort of EASI to modernize their aging PM-52 platforms right before The Filter. Featuring modern materials and a more modular design it saw some limited deployment in the last few proxy wars."
+flavor_text = "Imagine if you took a PM-52 and just dragged it through a VostInc catalog. That’s the PM-98"
+min_pickup_stacks = 1
+mean_pickup_stacks = 1
+stack_random_method = 0
+pickup_sound = ExtResource("16_jb3nt")
+drop_sound = ExtResource("4_wav76")
+slot_data_type = 1
