@@ -109,6 +109,42 @@ _data = {
 
 [sub_resource type="Animation" id="Animation_yr6ub"]
 length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("pm_98:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("pm_98/Node_15/gun/mag:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("pm_98/Node_15/gun/mag:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_i2jpl"]
 resource_name = "reload"
@@ -158,6 +194,42 @@ tracks/2/keys = {
 "times": PackedFloat32Array(1.7)
 }
 tracks/2/use_blend = true
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("pm_98:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.5, 1, 1.3, 1.6, 1.9, 2.3, 2.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0.351056, 0, 0), Vector3(0.351056, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0.532081), Vector3(0, 0, 0.532081), Vector3(0, 0, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("pm_98/Node_15/gun/mag:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.233333, 0.466667, 0.666667, 0.933333, 1.2, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0.0159279, -0.0445056), Vector3(-0.851624, 0.0486951, 0.0799504), Vector3(-1.27545, 0.198875, 0.490026), Vector3(-0.851624, 0.0486951, 0.0799504), Vector3(0, 0.0159279, -0.0445056), Vector3(0, 0, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("pm_98/Node_15/gun/mag:rotation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.233333, 0.466667, 0.666667, 0.933333, 1.2, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0.219371, 0, 0), Vector3(0.181961, -0.186788, -0.402037), Vector3(0.181962, -0.186788, -0.402038), Vector3(0.181961, -0.186788, -0.402037), Vector3(0.219371, 0, 0), Vector3(0, 0, 0)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_tmnss"]
 _data = {
@@ -214,6 +286,9 @@ mesh = SubResource("ArrayMesh_kinp0")
 
 [node name="stable" parent="pm_98/Node_15/gun/handguard" index="1"]
 visible = false
+
+[node name="mag" parent="pm_98/Node_15/gun" index="3"]
+transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="extended_magazine" parent="pm_98/Node_15/gun/mag" index="1"]
 visible = false
