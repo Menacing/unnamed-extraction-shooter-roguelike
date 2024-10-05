@@ -5,15 +5,13 @@
 [ext_resource type="Resource" uid="uid://dls8psqyu06aw" path="res://game_objects/items/weapons/hic_rifles/hic_rifle_gun_stats.tres" id="2_aa0bx"]
 [ext_resource type="AudioStream" uid="uid://cvetwcylway6p" path="res://game_objects/items/weapons/hic_rifles/hic_mag_out.ogg" id="6_1us7e"]
 [ext_resource type="PackedScene" uid="uid://pm3nps6dkjt8" path="res://game_objects/items/weapons/hic_rifles/pm_52/pm_52.blend" id="6_78q42"]
+[ext_resource type="Texture2D" uid="uid://dkcxx06s6kdp6" path="res://game_objects/items/weapons/hic_rifles/pm_52/PixelMuzzelFlash.png" id="6_ok4lf"]
 [ext_resource type="AudioStream" uid="uid://dplusv72g11du" path="res://game_objects/items/weapons/hic_rifles/hic_shot_1.ogg" id="6_r1jqa"]
 [ext_resource type="AudioStream" uid="uid://61nbakc75l5g" path="res://game_objects/items/weapons/hic_rifles/hic_mag_in.ogg" id="7_vwawx"]
 [ext_resource type="AudioStream" uid="uid://c71dtcsweexj4" path="res://game_objects/items/weapons/hic_rifles/hic_charging_handle.ogg" id="8_njdhy"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_a6wgc"]
 size = Vector3(0.058623, 0.208564, 0.716576)
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_vdxb3"]
-load_path = "res://.godot/imported/PixelMuzzelFlash.png-6e028837ac85bea2f5c9002d78fbad18.s3tc.ctex"
 
 [sub_resource type="Animation" id="Animation_048m7"]
 resource_name = "fire"
@@ -203,7 +201,7 @@ world_collider_path = NodePath("CollisionShape3D")
 model_node = NodePath("gun")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00245605, 0.0708904, 0.0553259)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00245605, -0.0579076, -0.0107531)
 shape = SubResource("BoxShape3D_a6wgc")
 
 [node name="ReloadTimer" type="Timer" parent="."]
@@ -240,7 +238,7 @@ cast_shadow = 0
 axis = 1
 alpha_cut = 2
 texture_filter = 0
-texture = SubResource("CompressedTexture2D_vdxb3")
+texture = ExtResource("6_ok4lf")
 
 [node name="FlashSpriteH3D" type="Sprite3D" parent="gun/Muzzle"]
 transform = Transform3D(-8.74228e-09, 0.2, -5.68434e-15, -0.2, -8.74228e-09, 0, -2.48471e-22, 5.68434e-15, 0.2, 1.33971e-14, 0.000585541, -0.471367)
@@ -248,7 +246,7 @@ cast_shadow = 0
 axis = 1
 alpha_cut = 2
 texture_filter = 0
-texture = SubResource("CompressedTexture2D_vdxb3")
+texture = ExtResource("6_ok4lf")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="gun/Muzzle"]
 transform = Transform3D(1.66667, 0, -4.73695e-14, 0, 1.66667, 0, 4.73695e-14, 0, 1.66667, 4.84052e-15, 0.0809975, -0.170311)
