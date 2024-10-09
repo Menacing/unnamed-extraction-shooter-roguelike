@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://bv1jhh0d8fn5m"]
+
+[ext_resource type="Script" path="res://game_objects/enemies/enemy.gd" id="1_w13ju"]
+[ext_resource type="PackedScene" uid="uid://c7v4ansm4eaqo" path="res://game_objects/enemies/unendliche/unendliche.blend" id="2_aemuu"]
+
+[node name="Unendliche" type="CharacterBody3D"]
+script = ExtResource("1_w13ju")
+
+[node name="unendliche" parent="." instance=ExtResource("2_aemuu")]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
