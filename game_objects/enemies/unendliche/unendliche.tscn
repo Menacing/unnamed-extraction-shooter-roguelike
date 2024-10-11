@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://bv1jhh0d8fn5m"]
+[gd_scene load_steps=5 format=3 uid="uid://bv1jhh0d8fn5m"]
 
 [ext_resource type="Script" path="res://game_objects/enemies/enemy.gd" id="1_w13ju"]
 [ext_resource type="PackedScene" uid="uid://c7v4ansm4eaqo" path="res://game_objects/enemies/unendliche/unendliche.blend" id="2_aemuu"]
-[ext_resource type="AnimationLibrary" uid="uid://ca8rdla2u124h" path="res://game_objects/enemies/unendliche/test_anim.res.tres" id="3_2lyv8"]
+[ext_resource type="AnimationLibrary" uid="uid://ca8rdla2u124h" path="res://game_objects/enemies/unendliche/unendliche_walk.tres" id="3_2lyv8"]
+[ext_resource type="AnimationLibrary" uid="uid://ciglx3hrpk2fs" path="res://game_objects/enemies/unendliche/unendliche_scream_agonize_attack.tres" id="4_rw6oc"]
 
 [node name="Unendliche" type="CharacterBody3D"]
 script = ExtResource("1_w13ju")
@@ -11,30 +12,31 @@ script = ExtResource("1_w13ju")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.753584, 0)
 
 [node name="GeneralSkeleton" parent="unendliche/Armature" index="0"]
-bones/0/position = Vector3(9.1078e-05, 0.0371605, 0.00061625)
-bones/0/rotation = Quaternion(-0.0245329, -0.013851, 0.0148735, 0.999492)
-bones/1/rotation = Quaternion(0.347097, -0.0130664, 0.0761807, 0.934639)
-bones/2/rotation = Quaternion(-0.0515968, 0.0242457, -0.0185596, 0.998201)
-bones/3/rotation = Quaternion(-0.310021, 0.131773, -0.0892552, 0.937313)
-bones/4/rotation = Quaternion(0.53307, 0.449867, 0.541714, -0.469045)
-bones/5/rotation = Quaternion(0.257424, 0.932596, -0.241711, 0.0746616)
-bones/6/rotation = Quaternion(0.176256, -0.684788, 0.176256, 0.684787)
-bones/7/rotation = Quaternion(0.0792082, 0.301395, 0.0694914, 0.947659)
-bones/8/rotation = Quaternion(0.53089, -0.459646, -0.530718, -0.474574)
-bones/9/rotation = Quaternion(-0.373945, 0.791953, -0.30543, -0.37375)
-bones/10/rotation = Quaternion(0.188348, 0.681561, -0.188348, 0.681561)
-bones/11/rotation = Quaternion(0.150991, -0.420282, -0.0501081, 0.893339)
-bones/12/rotation = Quaternion(0.0528737, 0.357068, 0.93082, -0.05728)
-bones/13/rotation = Quaternion(-0.040551, 0.711836, -0.700232, 0.0363278)
-bones/14/rotation = Quaternion(0.0305041, 0.652841, -0.756039, -0.0356811)
-bones/15/rotation = Quaternion(-0.0967248, 0.316733, 0.937114, 0.110193)
-bones/16/rotation = Quaternion(-0.00829336, 0.811056, -0.583727, 0.0371781)
-bones/17/rotation = Quaternion(0.0330861, 0.503619, -0.862516, -0.036613)
+bones/0/position = Vector3(0.00411033, 0.038768, -0.00146613)
+bones/0/rotation = Quaternion(0.151404, -0.145825, -0.00562534, 0.97764)
+bones/1/rotation = Quaternion(0.0993181, -0.0336011, -0.00697233, 0.994464)
+bones/2/rotation = Quaternion(-0.0256229, 0.00821132, -0.0166352, 0.9995)
+bones/3/rotation = Quaternion(-0.443244, 0.0260477, 0.0299842, 0.89552)
+bones/4/rotation = Quaternion(0.531514, 0.4595, 0.52749, -0.477606)
+bones/5/rotation = Quaternion(0.169398, 0.908354, -0.37454, 0.0769213)
+bones/6/rotation = Quaternion(0.465249, -0.532489, 0.465249, 0.532488)
+bones/7/rotation = Quaternion(-0.11118, 0.853964, 0.269792, 0.430809)
+bones/8/rotation = Quaternion(0.516742, -0.468523, -0.536514, -0.474991)
+bones/9/rotation = Quaternion(-0.308149, 0.80168, -0.510986, 0.0353145)
+bones/10/rotation = Quaternion(0.504339, 0.495623, -0.504339, 0.495623)
+bones/11/rotation = Quaternion(-0.0316625, -0.759247, -0.0408472, 0.648748)
+bones/12/rotation = Quaternion(0.100244, 0.47928, 0.84778, -0.203742)
+bones/13/rotation = Quaternion(0.017391, 0.89597, -0.441987, -0.0397863)
+bones/14/rotation = Quaternion(-0.125959, 0.619299, -0.763013, 0.135702)
+bones/15/rotation = Quaternion(-0.144484, 0.453743, 0.867376, 0.144569)
+bones/16/rotation = Quaternion(-0.0441385, 0.882946, -0.463261, 0.0620318)
+bones/17/rotation = Quaternion(0.142995, 0.580991, -0.795254, -0.0978455)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="unendliche"]
 root_node = NodePath("../Armature")
 libraries = {
-"test_anim.res": ExtResource("3_2lyv8")
+"test_anim.res": ExtResource("3_2lyv8"),
+"unendliche_scream_agonize_attack": ExtResource("4_rw6oc")
 }
 
 [editable path="unendliche"]
