@@ -31,7 +31,16 @@ animation/trimming=false
 animation/remove_immutable_tracks=true
 animation/import_rest_as_RESET=false
 import_script/path=""
-_subresources={}
+_subresources={
+"nodes": {
+"PATH:Armature/Skeleton3D": {
+"rest_pose/external_animation_library": null,
+"retarget/bone_map": Object(BoneMap,"resource_local_to_scene":false,"resource_name":"","profile":Object(SkeletonProfileHumanoid,"resource_local_to_scene":false,"resource_name":"","root_bone":&"Root","scale_base_bone":&"Hips","group_size":4,"bone_size":56,"script":null)
+,"bonemap":null,"bone_map/Root":&"","bone_map/Hips":&"Hips","bone_map/Spine":&"Spine","bone_map/Chest":&"","bone_map/UpperChest":&"","bone_map/Neck":&"Neck","bone_map/Head":&"Head","bone_map/LeftEye":&"","bone_map/RightEye":&"","bone_map/Jaw":&"","bone_map/LeftShoulder":&"Shoulder_L","bone_map/LeftUpperArm":&"Upper_arm_L","bone_map/LeftLowerArm":&"Lower_Arm_L","bone_map/LeftHand":&"Hand_L","bone_map/LeftThumbMetacarpal":&"","bone_map/LeftThumbProximal":&"","bone_map/LeftThumbDistal":&"","bone_map/LeftIndexProximal":&"","bone_map/LeftIndexIntermediate":&"","bone_map/LeftIndexDistal":&"","bone_map/LeftMiddleProximal":&"","bone_map/LeftMiddleIntermediate":&"","bone_map/LeftMiddleDistal":&"","bone_map/LeftRingProximal":&"","bone_map/LeftRingIntermediate":&"","bone_map/LeftRingDistal":&"","bone_map/LeftLittleProximal":&"","bone_map/LeftLittleIntermediate":&"","bone_map/LeftLittleDistal":&"","bone_map/RightShoulder":&"Shoulder_R","bone_map/RightUpperArm":&"Upper_arm_R","bone_map/RightLowerArm":&"Lower_Arm_R","bone_map/RightHand":&"Hand_R","bone_map/RightThumbMetacarpal":&"","bone_map/RightThumbProximal":&"","bone_map/RightThumbDistal":&"","bone_map/RightIndexProximal":&"","bone_map/RightIndexIntermediate":&"","bone_map/RightIndexDistal":&"","bone_map/RightMiddleProximal":&"","bone_map/RightMiddleIntermediate":&"","bone_map/RightMiddleDistal":&"","bone_map/RightRingProximal":&"","bone_map/RightRingIntermediate":&"","bone_map/RightRingDistal":&"","bone_map/RightLittleProximal":&"","bone_map/RightLittleIntermediate":&"","bone_map/RightLittleDistal":&"","bone_map/LeftUpperLeg":&"Thigh_L","bone_map/LeftLowerLeg":&"Shin_L","bone_map/LeftFoot":&"Foot_L","bone_map/LeftToes":&"","bone_map/RightUpperLeg":&"Thigh_R","bone_map/RightLowerLeg":&"Shin_R","bone_map/RightFoot":&"Foot_R","bone_map/RightToes":&"","script":null)
+
+}
+}
+}
 blender/nodes/visible=0
 blender/nodes/active_collection_only=false
 blender/nodes/punctual_lights=true
