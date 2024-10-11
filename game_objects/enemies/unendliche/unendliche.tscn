@@ -1,9 +1,77 @@
-[gd_scene load_steps=5 format=3 uid="uid://bv1jhh0d8fn5m"]
+[gd_scene load_steps=18 format=3 uid="uid://bv1jhh0d8fn5m"]
 
 [ext_resource type="Script" path="res://game_objects/enemies/enemy.gd" id="1_w13ju"]
 [ext_resource type="PackedScene" uid="uid://c7v4ansm4eaqo" path="res://game_objects/enemies/unendliche/unendliche.blend" id="2_aemuu"]
 [ext_resource type="AnimationLibrary" uid="uid://ca8rdla2u124h" path="res://game_objects/enemies/unendliche/unendliche_walk.tres" id="3_2lyv8"]
 [ext_resource type="AnimationLibrary" uid="uid://ciglx3hrpk2fs" path="res://game_objects/enemies/unendliche/unendliche_scream_agonize_attack.tres" id="4_rw6oc"]
+[ext_resource type="Script" path="res://game_objects/health_component.gd" id="5_sujgm"]
+[ext_resource type="PackedScene" uid="uid://64ippi50nu6t" path="res://components/damage_component/damage_component.tscn" id="6_pdote"]
+
+[sub_resource type="Animation" id="Animation_bb6hs"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../../RightHandBoneAttachment3D/CollisionShape3D:disabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../../LeftHandBoneAttachment3D/CollisionShape3D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_gvfsd"]
+_data = {
+"RESET": SubResource("Animation_bb6hs")
+}
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_d6qsy"]
+size = Vector3(0.231812, 0.340576, 0.0802612)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_17o1m"]
+size = Vector3(0.232, 0.341, 0.08)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_mu4vt"]
+radius = 0.0839944
+height = 0.431556
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_cso6d"]
+radius = 0.222923
+height = 0.73941
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_k44kq"]
+radius = 0.0462203
+height = 0.357956
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_k2gb6"]
+radius = 0.0582453
+height = 0.561831
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_jild8"]
+radius = 0.0462203
+height = 0.655934
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_3bd6p"]
+radius = 0.0462203
+height = 0.357956
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_uhk08"]
+radius = 0.0462203
+height = 0.357956
 
 [node name="Unendliche" type="CharacterBody3D"]
 script = ExtResource("1_w13ju")
@@ -12,31 +80,246 @@ script = ExtResource("1_w13ju")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.753584, 0)
 
 [node name="GeneralSkeleton" parent="unendliche/Armature" index="0"]
-bones/0/position = Vector3(0.00411033, 0.038768, -0.00146613)
-bones/0/rotation = Quaternion(0.151404, -0.145825, -0.00562534, 0.97764)
-bones/1/rotation = Quaternion(0.0993181, -0.0336011, -0.00697233, 0.994464)
-bones/2/rotation = Quaternion(-0.0256229, 0.00821132, -0.0166352, 0.9995)
-bones/3/rotation = Quaternion(-0.443244, 0.0260477, 0.0299842, 0.89552)
-bones/4/rotation = Quaternion(0.531514, 0.4595, 0.52749, -0.477606)
-bones/5/rotation = Quaternion(0.169398, 0.908354, -0.37454, 0.0769213)
-bones/6/rotation = Quaternion(0.465249, -0.532489, 0.465249, 0.532488)
-bones/7/rotation = Quaternion(-0.11118, 0.853964, 0.269792, 0.430809)
-bones/8/rotation = Quaternion(0.516742, -0.468523, -0.536514, -0.474991)
-bones/9/rotation = Quaternion(-0.308149, 0.80168, -0.510986, 0.0353145)
-bones/10/rotation = Quaternion(0.504339, 0.495623, -0.504339, 0.495623)
-bones/11/rotation = Quaternion(-0.0316625, -0.759247, -0.0408472, 0.648748)
-bones/12/rotation = Quaternion(0.100244, 0.47928, 0.84778, -0.203742)
-bones/13/rotation = Quaternion(0.017391, 0.89597, -0.441987, -0.0397863)
-bones/14/rotation = Quaternion(-0.125959, 0.619299, -0.763013, 0.135702)
-bones/15/rotation = Quaternion(-0.144484, 0.453743, 0.867376, 0.144569)
-bones/16/rotation = Quaternion(-0.0441385, 0.882946, -0.463261, 0.0620318)
-bones/17/rotation = Quaternion(0.142995, 0.580991, -0.795254, -0.0978455)
+bones/0/position = Vector3(0.00244122, 0.0387104, 0.000941073)
+bones/0/rotation = Quaternion(-0.0205473, 0.0659456, 0.0042599, 0.997603)
+bones/1/rotation = Quaternion(0.291031, -0.104381, 0.0612621, 0.949027)
+bones/2/rotation = Quaternion(-0.00605367, 0.0245122, -0.0150196, 0.999568)
+bones/3/rotation = Quaternion(-0.363668, 0.129966, -0.0599922, 0.920465)
+bones/4/rotation = Quaternion(0.579977, 0.420187, 0.490669, -0.4963)
+bones/5/rotation = Quaternion(0.473249, 0.813304, -0.195655, 0.276207)
+bones/6/rotation = Quaternion(0.188663, -0.681474, 0.188663, 0.681473)
+bones/7/rotation = Quaternion(0.147988, 0.459162, 0.0267462, 0.875531)
+bones/8/rotation = Quaternion(0.524744, -0.467353, -0.522111, -0.483347)
+bones/9/rotation = Quaternion(-0.113361, 0.811551, -0.4975, -0.284654)
+bones/10/rotation = Quaternion(0.227724, 0.669434, -0.227723, 0.669434)
+bones/11/rotation = Quaternion(0.103765, -0.52833, 0.0332139, 0.842019)
+bones/12/rotation = Quaternion(0.0440112, 0.0209694, 0.99549, -0.0813831)
+bones/13/rotation = Quaternion(-0.0628996, 0.848078, -0.524159, -0.0454478)
+bones/14/rotation = Quaternion(-0.00592268, 0.718545, -0.695454, 0.0012687)
+bones/15/rotation = Quaternion(-0.0954405, 0.400103, 0.902908, 0.124762)
+bones/16/rotation = Quaternion(-0.00586635, 0.956559, -0.283278, -0.068661)
+bones/17/rotation = Quaternion(0.0268167, 0.583131, -0.810809, -0.0427485)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="unendliche"]
 root_node = NodePath("../Armature")
 libraries = {
+"": SubResource("AnimationLibrary_gvfsd"),
 "test_anim.res": ExtResource("3_2lyv8"),
 "unendliche_scream_agonize_attack": ExtResource("4_rw6oc")
 }
+
+[node name="RightHandBoneAttachment3D" type="BoneAttachment3D" parent="."]
+transform = Transform3D(-0.376628, -0.277051, 0.883965, 0.718256, -0.689963, 0.089778, 0.58503, 0.668726, 0.458853, -0.428987, 0.739709, 0.311448)
+bone_name = "RightHand"
+bone_idx = 11
+use_external_skeleton = true
+external_skeleton = NodePath("../unendliche/Armature/GeneralSkeleton")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RightHandBoneAttachment3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0564575, 0.164917, 0.00418091)
+shape = SubResource("BoxShape3D_d6qsy")
+
+[node name="LeftHandBoneAttachment3D" type="BoneAttachment3D" parent="."]
+transform = Transform3D(0.336313, -0.0960893, -0.936835, -0.933824, -0.162816, -0.318533, -0.121924, 0.981966, -0.144488, 0.343419, 1.06778, 0.712621)
+bone_name = "LeftHand"
+bone_idx = 7
+use_external_skeleton = true
+external_skeleton = NodePath("../unendliche/Armature/GeneralSkeleton")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LeftHandBoneAttachment3D"]
+transform = Transform3D(1, 0, 4.17233e-07, -2.98023e-08, 1, 9.76026e-07, 1.49012e-08, -7.45058e-09, 1, -0.0505295, 0.164917, 0.00418115)
+shape = SubResource("BoxShape3D_17o1m")
+
+[node name="HealthComponent" type="Node" parent="."]
+script = ExtResource("5_sujgm")
+location = 1
+current_health = 100.0
+max_health = 100.0
+
+[node name="HurtBox" type="Node3D" parent="."]
+unique_name_in_owner = true
+
+[node name="HeadBoneAttachment3D" type="BoneAttachment3D" parent="HurtBox"]
+transform = Transform3D(0.972968, -0.0444641, 0.226618, -0.00513809, 0.976879, 0.21373, -0.230882, -0.209117, 0.950244, -0.0629435, 1.46968, 0.30164)
+bone_name = "Head"
+bone_idx = 3
+use_external_skeleton = true
+external_skeleton = NodePath("../../unendliche/Armature/GeneralSkeleton")
+
+[node name="Area3D" type="Area3D" parent="HurtBox/HeadBoneAttachment3D"]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HurtBox/HeadBoneAttachment3D/Area3D"]
+shape = SubResource("CapsuleShape3D_mu4vt")
+
+[node name="DamageComponent" parent="HurtBox/HeadBoneAttachment3D/Area3D" instance=ExtResource("6_pdote")]
+location_type = 1
+
+[node name="ChestBoneAttachment3D" type="BoneAttachment3D" parent="HurtBox"]
+transform = Transform3D(0.992321, -0.113811, -0.0484304, 0.0708089, 0.843771, -0.532011, 0.101413, 0.524497, 0.845351, 0.000429026, 0.971646, -0.00631728)
+bone_name = "Spine"
+bone_idx = 1
+use_external_skeleton = true
+external_skeleton = NodePath("../../unendliche/Armature/GeneralSkeleton")
+
+[node name="Area3D" type="Area3D" parent="HurtBox/ChestBoneAttachment3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.211748, 0)
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HurtBox/ChestBoneAttachment3D/Area3D"]
+shape = SubResource("CapsuleShape3D_cso6d")
+
+[node name="DamageComponent" parent="HurtBox/ChestBoneAttachment3D/Area3D" instance=ExtResource("6_pdote")]
+location_type = 1
+
+[node name="LeftUpperArmBoneAttachment3D" type="BoneAttachment3D" parent="HurtBox"]
+transform = Transform3D(0.585037, 0.571744, -0.575188, -0.322661, -0.48659, -0.811862, -0.744058, 0.66056, -0.100194, 0.0788782, 1.31447, 0.189766)
+bone_name = "LeftUpperArm"
+bone_idx = 5
+use_external_skeleton = true
+external_skeleton = NodePath("../../unendliche/Armature/GeneralSkeleton")
+
+[node name="Area3D" type="Area3D" parent="HurtBox/LeftUpperArmBoneAttachment3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.211748, 0)
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HurtBox/LeftUpperArmBoneAttachment3D/Area3D"]
+shape = SubResource("CapsuleShape3D_k44kq")
+
+[node name="DamageComponent" parent="HurtBox/LeftUpperArmBoneAttachment3D/Area3D" instance=ExtResource("6_pdote")]
+location_type = 1
+
+[node name="LeftLowerArmBoneAttachment3D" type="BoneAttachment3D" parent="HurtBox"]
+transform = Transform3D(-0.575188, 0.189471, -0.795776, -0.811862, -0.251375, 0.526963, -0.100194, 0.949163, 0.298412, 0.281212, 1.13601, 0.426246)
+bone_name = "LeftLowerArm"
+bone_idx = 6
+use_external_skeleton = true
+external_skeleton = NodePath("../../unendliche/Armature/GeneralSkeleton")
+
+[node name="Area3D" type="Area3D" parent="HurtBox/LeftLowerArmBoneAttachment3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.211748, 0)
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HurtBox/LeftLowerArmBoneAttachment3D/Area3D"]
+shape = SubResource("CapsuleShape3D_k2gb6")
+
+[node name="DamageComponent" parent="HurtBox/LeftLowerArmBoneAttachment3D/Area3D" instance=ExtResource("6_pdote")]
+location_type = 1
+
+[node name="LeftUpperLegBoneAttachment3D" type="BoneAttachment3D" parent="HurtBox"]
+transform = Transform3D(-0.960537, 0.178042, 0.213704, -0.161952, -0.98262, 0.0907182, 0.226141, 0.0525284, 0.972677, 0.0963822, 0.908167, -0.0163836)
+bone_name = "LeftUpperLeg"
+bone_idx = 12
+use_external_skeleton = true
+external_skeleton = NodePath("../../unendliche/Armature/GeneralSkeleton")
+
+[node name="Area3D" type="Area3D" parent="HurtBox/LeftUpperLegBoneAttachment3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.211748, 0)
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HurtBox/LeftUpperLegBoneAttachment3D/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0518271, 0)
+shape = SubResource("CapsuleShape3D_jild8")
+
+[node name="DamageComponent" parent="HurtBox/LeftUpperLegBoneAttachment3D/Area3D" instance=ExtResource("6_pdote")]
+location_type = 1
+
+[node name="LeftLowerLegBoneAttachment3D" type="BoneAttachment3D" parent="HurtBox"]
+transform = Transform3D(0.969022, 0.03827, -0.243993, 0.230994, -0.49005, 0.840531, -0.0874019, -0.870854, -0.483709, 0.183668, 0.37204, 0.0144419)
+bone_name = "LeftLowerLeg"
+bone_idx = 13
+use_external_skeleton = true
+external_skeleton = NodePath("../../unendliche/Armature/GeneralSkeleton")
+
+[node name="Area3D" type="Area3D" parent="HurtBox/LeftLowerLegBoneAttachment3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.211748, 0)
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HurtBox/LeftLowerLegBoneAttachment3D/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0466964, 0)
+shape = SubResource("CapsuleShape3D_k2gb6")
+
+[node name="DamageComponent" parent="HurtBox/LeftLowerLegBoneAttachment3D/Area3D" instance=ExtResource("6_pdote")]
+location_type = 1
+
+[node name="RightUpperLegBoneAttachment3D" type="BoneAttachment3D" parent="HurtBox"]
+transform = Transform3D(-0.979782, -0.199954, 0.00669145, 0.131979, -0.620843, 0.772745, -0.15036, 0.758005, 0.634681, -0.0940873, 0.907055, 0.00893184)
+bone_name = "RightUpperLeg"
+bone_idx = 15
+use_external_skeleton = true
+external_skeleton = NodePath("../../unendliche/Armature/GeneralSkeleton")
+
+[node name="Area3D" type="Area3D" parent="HurtBox/RightUpperLegBoneAttachment3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.211748, 0)
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HurtBox/RightUpperLegBoneAttachment3D/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0518271, 0)
+shape = SubResource("CapsuleShape3D_jild8")
+
+[node name="DamageComponent" parent="HurtBox/RightUpperLegBoneAttachment3D/Area3D" instance=ExtResource("6_pdote")]
+location_type = 1
+
+[node name="RightLowerLegBoneAttachment3D" type="BoneAttachment3D" parent="HurtBox"]
+transform = Transform3D(0.965844, -0.12236, 0.228415, -0.0438356, -0.945937, -0.321374, 0.25539, 0.300385, -0.918991, -0.193101, 0.568022, 0.42276)
+bone_name = "RightLowerLeg"
+bone_idx = 16
+use_external_skeleton = true
+external_skeleton = NodePath("../../unendliche/Armature/GeneralSkeleton")
+
+[node name="Area3D" type="Area3D" parent="HurtBox/RightLowerLegBoneAttachment3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.211748, 0)
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HurtBox/RightLowerLegBoneAttachment3D/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0466964, 0)
+shape = SubResource("CapsuleShape3D_k2gb6")
+
+[node name="DamageComponent" parent="HurtBox/RightLowerLegBoneAttachment3D/Area3D" instance=ExtResource("6_pdote")]
+location_type = 1
+
+[node name="RightUpperArmBoneAttachment3D" type="BoneAttachment3D" parent="HurtBox"]
+transform = Transform3D(-0.269621, -0.342338, 0.900061, 0.0181983, -0.936319, -0.350678, 0.962794, -0.0781706, 0.258681, -0.171288, 1.29395, 0.182656)
+bone_name = "RightUpperArm"
+bone_idx = 9
+use_external_skeleton = true
+external_skeleton = NodePath("../../unendliche/Armature/GeneralSkeleton")
+
+[node name="Area3D" type="Area3D" parent="HurtBox/RightUpperArmBoneAttachment3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.211748, 0)
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HurtBox/RightUpperArmBoneAttachment3D/Area3D"]
+shape = SubResource("CapsuleShape3D_3bd6p")
+
+[node name="DamageComponent" parent="HurtBox/RightUpperArmBoneAttachment3D/Area3D" instance=ExtResource("6_pdote")]
+location_type = 1
+
+[node name="RightLowerArmBoneAttachment3D" type="BoneAttachment3D" parent="HurtBox"]
+transform = Transform3D(-0.900061, -0.435736, -0.00494125, 0.350677, -0.731, 0.585376, -0.258681, 0.525141, 0.810747, -0.289765, 0.956377, 0.155858)
+bone_name = "RightLowerArm"
+bone_idx = 10
+use_external_skeleton = true
+external_skeleton = NodePath("../../unendliche/Armature/GeneralSkeleton")
+
+[node name="Area3D" type="Area3D" parent="HurtBox/RightLowerArmBoneAttachment3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.211748, 0)
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HurtBox/RightLowerArmBoneAttachment3D/Area3D"]
+shape = SubResource("CapsuleShape3D_uhk08")
+
+[node name="DamageComponent" parent="HurtBox/RightLowerArmBoneAttachment3D/Area3D" instance=ExtResource("6_pdote")]
+location_type = 1
 
 [editable path="unendliche"]
