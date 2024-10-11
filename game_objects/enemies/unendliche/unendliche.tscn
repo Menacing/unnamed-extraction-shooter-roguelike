@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://bv1jhh0d8fn5m"]
+[gd_scene load_steps=20 format=3 uid="uid://bv1jhh0d8fn5m"]
 
 [ext_resource type="Script" path="res://game_objects/enemies/enemy.gd" id="1_w13ju"]
 [ext_resource type="PackedScene" uid="uid://c7v4ansm4eaqo" path="res://game_objects/enemies/unendliche/unendliche.blend" id="2_aemuu"]
@@ -6,6 +6,7 @@
 [ext_resource type="AnimationLibrary" uid="uid://ciglx3hrpk2fs" path="res://game_objects/enemies/unendliche/unendliche_scream_agonize_attack.tres" id="4_rw6oc"]
 [ext_resource type="Script" path="res://game_objects/health_component.gd" id="5_sujgm"]
 [ext_resource type="PackedScene" uid="uid://64ippi50nu6t" path="res://components/damage_component/damage_component.tscn" id="6_pdote"]
+[ext_resource type="BehaviorTree" uid="uid://c0fp03sullwqn" path="res://ai/trees/unendliche.tres" id="7_unrmq"]
 
 [sub_resource type="Animation" id="Animation_bb6hs"]
 length = 0.001
@@ -72,6 +73,8 @@ height = 0.357956
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_uhk08"]
 radius = 0.0462203
 height = 0.357956
+
+[sub_resource type="BlackboardPlan" id="BlackboardPlan_lt45t"]
 
 [node name="Unendliche" type="CharacterBody3D"]
 script = ExtResource("1_w13ju")
@@ -321,5 +324,9 @@ shape = SubResource("CapsuleShape3D_uhk08")
 
 [node name="DamageComponent" parent="HurtBox/RightLowerArmBoneAttachment3D/Area3D" instance=ExtResource("6_pdote")]
 location_type = 1
+
+[node name="BTPlayer" type="BTPlayer" parent="."]
+behavior_tree = ExtResource("7_unrmq")
+blackboard_plan = SubResource("BlackboardPlan_lt45t")
 
 [editable path="unendliche"]
