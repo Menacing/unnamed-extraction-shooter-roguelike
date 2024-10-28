@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://dy2gpu0mq6khj"]
+[gd_scene load_steps=8 format=3 uid="uid://dy2gpu0mq6khj"]
 
 [ext_resource type="PackedScene" uid="uid://ciaqbr34myu5w" path="res://game_objects/enemies/robots/combat_roomba.tscn" id="1_7gvkv"]
 [ext_resource type="Script" path="res://levels/multi_agent_navigation_root.gd" id="1_y0qet"]
 [ext_resource type="Script" path="res://levels/navigation_mesh_list_item.gd" id="2_e0kts"]
 [ext_resource type="Resource" uid="uid://hw8blc564g2i" path="res://levels/roomba_nav_mesh.tres" id="2_t60xv"]
+[ext_resource type="PackedScene" uid="uid://bv1jhh0d8fn5m" path="res://game_objects/enemies/unendliche/unendliche.tscn" id="5_lm6gu"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1n5u8"]
 albedo_color = Color(0, 0, 0, 1)
@@ -71,20 +72,4 @@ transform = Transform3D(1.00409, 0, 0, 0, 1.00409, 0, 0, 0, 1.00409, -19.5527, -
 [node name="combat_roomba6" parent="." instance=ExtResource("1_7gvkv")]
 transform = Transform3D(1.00409, 0, 0, 0, 1.00409, 0, 0, 0, 1.00409, -9.03323, -0.00390625, 15.5507)
 
-[node name="combat_roomba7" parent="." instance=ExtResource("1_7gvkv")]
-transform = Transform3D(1.00409, 0, 0, 0, 1.00409, 0, 0, 0, 1.00409, -10.527, -0.00390625, 12.1761)
-
-[node name="combat_roomba8" parent="." instance=ExtResource("1_7gvkv")]
-transform = Transform3D(1.00409, 0, 0, 0, 1.00409, 0, 0, 0, 1.00409, -12.9887, -0.00390625, 25.411)
-
-[node name="combat_roomba9" parent="." instance=ExtResource("1_7gvkv")]
-transform = Transform3D(1.00409, 0, 0, 0, 1.00409, 0, 0, 0, 1.00409, -7.64429, -0.00390625, 24.5549)
-
-[node name="combat_roomba10" parent="." instance=ExtResource("1_7gvkv")]
-transform = Transform3D(1.00409, 0, 0, 0, 1.00409, 0, 0, 0, 1.00409, -7.29087, -0.00390625, 3.15371)
-
-[node name="combat_roomba11" parent="." instance=ExtResource("1_7gvkv")]
-transform = Transform3D(1.00409, 0, 0, 0, 1.00409, 0, 0, 0, 1.00409, -23.5181, -0.00390434, 16.8564)
-
-[node name="combat_roomba12" parent="." instance=ExtResource("1_7gvkv")]
-transform = Transform3D(1.00409, 0, 0, 0, 1.00409, 0, 0, 0, 1.00409, -12.3427, -0.00390816, 17.141)
+[node name="Unendliche" parent="." instance=ExtResource("5_lm6gu")]
