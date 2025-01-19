@@ -83,9 +83,12 @@ radius = 25.0
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_m77j5"]
 radius = 2.0
 
-[node name="Unendliche" type="CharacterBody3D" node_paths=PackedStringArray("nav_agent")]
+[node name="Unendliche" type="CharacterBody3D" node_paths=PackedStringArray("nav_agent", "head_node", "detection_radius", "ballistic_detection_radius")]
 script = ExtResource("1_w13ju")
 nav_agent = NodePath("NavigationAgent3D")
+head_node = NodePath("unendliche/Armature/GeneralSkeleton/head")
+detection_radius = NodePath("DetectRadius")
+ballistic_detection_radius = NodePath("BulletDetectRadius")
 
 [node name="unendliche" parent="." instance=ExtResource("2_aemuu")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.829879, 0)

@@ -39,7 +39,8 @@ var exclusions:Array[RID]
 
 func _ready():
 	#Setting bus of instantiated in code stream player
-	movement_audio_player.set_bus("SFX")
+	if movement_audio_player:
+		movement_audio_player.set_bus("SFX")
 	
 	if detection_radius:
 		detection_radius.body_entered.connect(_on_body_entered_detection_radius)

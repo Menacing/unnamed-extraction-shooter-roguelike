@@ -170,9 +170,9 @@ transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0.2
 animate_physical_bones = false
 
 [node name="Physical Bone Bone" type="PhysicalBone3D" parent="combat-roomba/Armature/Skeleton3D" index="1"]
-transform = Transform3D(2.8455, -1.13687e-13, 0, 0, 0, -2.8455, 1.13687e-13, 2.8455, 0, 0, 0.222436, 0)
+transform = Transform3D(2.8455, -5.68434e-14, 0, 0, 0, -2.8455, 5.68434e-14, 2.8455, 0, 0, 0.222436, 0)
 joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.078171)
-body_offset = Transform3D(2.8455, -1.42109e-13, 0, 0, 0, -2.8455, 1.42109e-13, 2.8455, 0, 0, 0.222436, 0)
+body_offset = Transform3D(2.8455, -8.52651e-14, 0, 0, 0, -2.8455, 8.52651e-14, 2.8455, 0, 0, 0.222436, 0)
 bone_name = "Bone"
 
 [node name="Head" type="Node3D" parent="combat-roomba/Armature/Skeleton3D/Physical Bone Bone"]
