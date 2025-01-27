@@ -44,13 +44,13 @@ resource_name = "true"
 variable = &"seen_player"
 value = SubResource("BBVariant_r3dj3")
 
-[sub_resource type="BBNode" id="BBNode_8a0jb"]
-saved_value = NodePath("AnimationPlayer")
-resource_name = "AnimationPlayer"
+[sub_resource type="BBNode" id="BBNode_l4mrm"]
+saved_value = NodePath("unendliche/AnimationPlayer")
+resource_name = "unendliche/AnimationPlayer"
 
 [sub_resource type="BTPlayAnimation" id="BTPlayAnimation_v0vpr"]
-animation_player = SubResource("BBNode_8a0jb")
-animation_name = &"target_spotted"
+animation_player = SubResource("BBNode_l4mrm")
+animation_name = &"unendliche_scream_agonize_attack/Scream"
 custom_name = "Play Target Spotted Animation"
 
 [sub_resource type="BTSequence" id="BTSequence_fc8b1"]
@@ -173,12 +173,12 @@ children = [SubResource("BTCondition_6gkx3"), SubResource("BTCheckVar_fwv55"), S
 script = ExtResource("10_ny86q")
 
 [sub_resource type="BBNode" id="BBNode_1e6j8"]
-saved_value = NodePath("AnimationPlayer")
-resource_name = "AnimationPlayer"
+saved_value = NodePath("unendliche/AnimationPlayer")
+resource_name = "unendliche/AnimationPlayer"
 
 [sub_resource type="BTPlayAnimation" id="BTPlayAnimation_ta5j2"]
 animation_player = SubResource("BBNode_1e6j8")
-animation_name = &"patrol_started"
+animation_name = &"test_anim.res/Walk"
 custom_name = "Play Patrol Animation"
 
 [sub_resource type="BTAction" id="BTAction_5fgex"]
@@ -201,13 +201,13 @@ children = [SubResource("BTAlwaysSucceed_7qpwi"), SubResource("BTAction_68nij")]
 custom_name = "PatrolSequence"
 children = [SubResource("BTAction_ujsds"), SubResource("BTPlayAnimation_ta5j2"), SubResource("BTDynamicSequence_fhqqk")]
 
-[sub_resource type="BBNode" id="BBNode_fg7js"]
-saved_value = NodePath("AnimationPlayer")
-resource_name = "AnimationPlayer"
+[sub_resource type="BBNode" id="BBNode_t0y40"]
+saved_value = NodePath("unendliche/AnimationPlayer")
+resource_name = "unendliche/AnimationPlayer"
 
 [sub_resource type="BTPlayAnimation" id="BTPlayAnimation_hf2rm"]
-animation_player = SubResource("BBNode_fg7js")
-animation_name = &"idle"
+animation_player = SubResource("BBNode_t0y40")
+animation_name = &"unendliche_scream_agonize_attack/Agonize"
 custom_name = "Play idle Animation"
 
 [sub_resource type="BTRandomWait" id="BTRandomWait_bd64s"]

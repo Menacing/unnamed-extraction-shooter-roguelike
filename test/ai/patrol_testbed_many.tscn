@@ -1,13 +1,13 @@
-[gd_scene load_steps=8 format=3 uid="uid://dy2gpu0mq6khj"]
+[gd_scene load_steps=9 format=3 uid="uid://dy2gpu0mq6khj"]
 
 [ext_resource type="PackedScene" uid="uid://ciaqbr34myu5w" path="res://game_objects/enemies/robots/combat_roomba.tscn" id="1_7gvkv"]
 [ext_resource type="Script" path="res://levels/multi_agent_navigation_root.gd" id="1_y0qet"]
 [ext_resource type="Script" path="res://levels/navigation_mesh_list_item.gd" id="2_e0kts"]
 [ext_resource type="Resource" uid="uid://hw8blc564g2i" path="res://levels/roomba_nav_mesh.tres" id="2_t60xv"]
+[ext_resource type="Resource" uid="uid://bkm06qpqovt7f" path="res://levels/humanoid_nav_mesh.tres" id="4_hfiim"]
 [ext_resource type="PackedScene" uid="uid://bv1jhh0d8fn5m" path="res://game_objects/enemies/unendliche/unendliche.tscn" id="5_lm6gu"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1n5u8"]
-albedo_color = Color(0, 0, 0, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_4su0q"]
 size = Vector3(5, 5, 5)
@@ -16,7 +16,7 @@ size = Vector3(5, 5, 5)
 
 [node name="MultiAgentNavigationRoot" type="Node3D" parent="."]
 script = ExtResource("1_y0qet")
-navigation_mesh_list_items = Array[ExtResource("2_e0kts")]([ExtResource("2_t60xv")])
+navigation_mesh_list_items = Array[ExtResource("2_e0kts")]([ExtResource("2_t60xv"), ExtResource("4_hfiim")])
 
 [node name="Floor" type="CSGBox3D" parent="MultiAgentNavigationRoot"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.25875, -0.251953, 1.46129)
@@ -73,3 +73,6 @@ transform = Transform3D(1.00409, 0, 0, 0, 1.00409, 0, 0, 0, 1.00409, -19.5527, -
 transform = Transform3D(1.00409, 0, 0, 0, 1.00409, 0, 0, 0, 1.00409, -9.03323, -0.00390625, 15.5507)
 
 [node name="Unendliche" parent="." instance=ExtResource("5_lm6gu")]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 142.461, 0)
