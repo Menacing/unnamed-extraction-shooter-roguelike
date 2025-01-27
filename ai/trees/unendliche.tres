@@ -50,7 +50,7 @@ resource_name = "unendliche/AnimationPlayer"
 
 [sub_resource type="BTPlayAnimation" id="BTPlayAnimation_v0vpr"]
 animation_player = SubResource("BBNode_l4mrm")
-animation_name = &"unendliche_scream_agonize_attack/Scream"
+animation_name = &"target_spotted"
 custom_name = "Play Target Spotted Animation"
 
 [sub_resource type="BTSequence" id="BTSequence_fc8b1"]
@@ -178,7 +178,7 @@ resource_name = "unendliche/AnimationPlayer"
 
 [sub_resource type="BTPlayAnimation" id="BTPlayAnimation_ta5j2"]
 animation_player = SubResource("BBNode_1e6j8")
-animation_name = &"test_anim.res/Walk"
+animation_name = &"patrol_started"
 custom_name = "Play Patrol Animation"
 
 [sub_resource type="BTAction" id="BTAction_5fgex"]
@@ -207,7 +207,7 @@ resource_name = "unendliche/AnimationPlayer"
 
 [sub_resource type="BTPlayAnimation" id="BTPlayAnimation_hf2rm"]
 animation_player = SubResource("BBNode_t0y40")
-animation_name = &"unendliche_scream_agonize_attack/Agonize"
+animation_name = &"idle"
 custom_name = "Play idle Animation"
 
 [sub_resource type="BTRandomWait" id="BTRandomWait_bd64s"]

@@ -51,28 +51,28 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -29.3242, 0, 27.5649)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.47774, 0)
 shape = SubResource("BoxShape3D_4su0q")
 
-[node name="combat_roomba" parent="." instance=ExtResource("1_7gvkv")]
+[node name="combat_roomba" parent="MultiAgentNavigationRoot" instance=ExtResource("1_7gvkv")]
 transform = Transform3D(1.00409, 0, 0, 0, 1.00409, 0, 0, 0, 1.00409, 3.02189, 0, 14.4445)
+
+[node name="combat_roomba2" parent="MultiAgentNavigationRoot" instance=ExtResource("1_7gvkv")]
+transform = Transform3D(1.00409, 0, 0, 0, 1.00409, 0, 0, 0, 1.00409, -17.0842, -0.00390625, 13.6222)
+
+[node name="combat_roomba3" parent="MultiAgentNavigationRoot" instance=ExtResource("1_7gvkv")]
+transform = Transform3D(1.00409, 0, 0, 0, 1.00409, 0, 0, 0, 1.00409, -2.88205, -0.00390625, 15.6321)
+
+[node name="combat_roomba4" parent="MultiAgentNavigationRoot" instance=ExtResource("1_7gvkv")]
+transform = Transform3D(1.00409, 0, 0, 0, 1.00409, 0, 0, 0, 1.00409, -19.1117, -0.00390625, 25.7591)
+
+[node name="combat_roomba5" parent="MultiAgentNavigationRoot" instance=ExtResource("1_7gvkv")]
+transform = Transform3D(1.00409, 0, 0, 0, 1.00409, 0, 0, 0, 1.00409, -19.5527, -0.00390625, 2.48005)
+
+[node name="combat_roomba6" parent="MultiAgentNavigationRoot" instance=ExtResource("1_7gvkv")]
+transform = Transform3D(1.00409, 0, 0, 0, 1.00409, 0, 0, 0, 1.00409, -9.03323, -0.00390625, 15.5507)
+
+[node name="Unendliche" parent="MultiAgentNavigationRoot" instance=ExtResource("5_lm6gu")]
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(-0.513556, 0.196842, -0.835173, 2.00552e-08, 0.973331, 0.229405, 0.858056, 0.117812, -0.49986, -43.7458, 9.81279, -8.22052)
-
-[node name="combat_roomba2" parent="." instance=ExtResource("1_7gvkv")]
-transform = Transform3D(1.00409, 0, 0, 0, 1.00409, 0, 0, 0, 1.00409, -17.0842, -0.00390625, 13.6222)
-
-[node name="combat_roomba3" parent="." instance=ExtResource("1_7gvkv")]
-transform = Transform3D(1.00409, 0, 0, 0, 1.00409, 0, 0, 0, 1.00409, -2.88205, -0.00390625, 15.6321)
-
-[node name="combat_roomba4" parent="." instance=ExtResource("1_7gvkv")]
-transform = Transform3D(1.00409, 0, 0, 0, 1.00409, 0, 0, 0, 1.00409, -19.1117, -0.00390625, 25.7591)
-
-[node name="combat_roomba5" parent="." instance=ExtResource("1_7gvkv")]
-transform = Transform3D(1.00409, 0, 0, 0, 1.00409, 0, 0, 0, 1.00409, -19.5527, -0.00390625, 2.48005)
-
-[node name="combat_roomba6" parent="." instance=ExtResource("1_7gvkv")]
-transform = Transform3D(1.00409, 0, 0, 0, 1.00409, 0, 0, 0, 1.00409, -9.03323, -0.00390625, 15.5507)
-
-[node name="Unendliche" parent="." instance=ExtResource("5_lm6gu")]
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 142.461, 0)
