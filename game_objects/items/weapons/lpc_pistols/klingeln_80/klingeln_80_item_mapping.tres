@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ItemMapping" load_steps=4 format=3 uid="uid://bqea7rfy88tf"]
+
+[ext_resource type="Script" path="res://resource_access/item_mapping.gd" id="1_5mh22"]
+[ext_resource type="PackedScene" uid="uid://cnvoiecyb3sjn" path="res://game_objects/items/weapons/lpc_pistols/klingeln_80/klingeln_80.tscn" id="1_w7axq"]
+[ext_resource type="Resource" uid="uid://ufd2sll1er04" path="res://game_objects/items/weapons/lpc_pistols/klingeln_80/klingeln_80_inventory_info.tres" id="2_tre0l"]
+
+[resource]
+script = ExtResource("1_5mh22")
+item_type_id = "klingeln_80"
+item_information = ExtResource("2_tre0l")
+item_3d_scene = ExtResource("1_w7axq")

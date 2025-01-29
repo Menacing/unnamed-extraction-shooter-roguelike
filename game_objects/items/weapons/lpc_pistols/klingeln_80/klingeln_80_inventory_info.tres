@@ -1,0 +1,38 @@
+[gd_resource type="Resource" script_class="ItemInformation" load_steps=8 format=3 uid="uid://ufd2sll1er04"]
+
+[ext_resource type="Script" path="res://ui/inventory/item_context_item.gd" id="1_b4jk3"]
+[ext_resource type="Resource" uid="uid://o6tesi76nbth" path="res://ui/inventory/drop_item_context_item.tres" id="2_5am80"]
+[ext_resource type="PackedScene" uid="uid://0hy4cl1x7qwx" path="res://ui/inventory/detail_scenes/gun_detail_popup.tscn" id="2_5pv40"]
+[ext_resource type="Script" path="res://resource_access/item_information.gd" id="2_6ystw"]
+[ext_resource type="Texture2D" uid="uid://d14qjudcylhe0" path="res://game_objects/items/weapons/fic_rifles/s5/s5_icon.png" id="4_v032v"]
+[ext_resource type="Texture2D" uid="uid://dvhwavsgo6hxq" path="res://game_objects/items/weapons/fic_rifles/s5/s5_icon_r.png" id="5_navpo"]
+
+[sub_resource type="Resource" id="Resource_3vynl"]
+script = ExtResource("1_b4jk3")
+label = "Item Detail"
+signal_name = "context_menus_open_item_detail"
+
+[resource]
+script = ExtResource("2_6ystw")
+item_type_id = "klingeln_80"
+show_name = true
+display_name = "Klingeln 80"
+display_short_name = "Kling80"
+item_type = 0
+icon = ExtResource("4_v032v")
+icon_r = ExtResource("5_navpo")
+detail_scene = ExtResource("2_5pv40")
+context_menu_items = Array[ExtResource("1_b4jk3")]([ExtResource("2_5am80"), SubResource("Resource_3vynl")])
+max_stacks = 1
+has_stacks = false
+max_durability = 1
+has_durability = false
+column_span = 2
+row_span = 1
+description_text = "Bursting onto the scene in the latter half of the last century, Mr. Klingeln’s pistol helped to introduce the world to plastics. Famously reliable and affordable, the Klingeln 80 could be found everywhere from law enforcement to the criminal underground."
+flavor_text = "I grew up in the streets without no heart
+I'm prayin' to my Kling and my carbon"
+min_pickup_stacks = 1
+mean_pickup_stacks = 1
+stack_random_method = 0
+slot_data_type = 1
