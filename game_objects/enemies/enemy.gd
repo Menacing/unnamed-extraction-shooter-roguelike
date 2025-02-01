@@ -65,6 +65,10 @@ func _physics_process(delta):
 		return
 
 	var next_path_position: Vector3 = nav_agent.get_next_path_position()
+	var gpt = global_position
+	var gpdt = global_position.direction_to(next_path_position)
+	if !is_zero_approx((next_path_position - gpt).length()):
+		pass
 	var target_velocity: Vector3 = global_position.direction_to(next_path_position) * move_speed
 	var new_velocity = velocity.move_toward(target_velocity, acceleration)
 	if nav_agent.avoidance_enabled:
