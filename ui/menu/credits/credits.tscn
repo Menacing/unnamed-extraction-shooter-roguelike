@@ -193,6 +193,20 @@ mouse_filter = 1
 text = "GODOT SAFE RESOURCE LOADER"
 horizontal_alignment = 1
 
+[node name="debug_menu_label" type="Label" parent="MarginContainer/VBoxContainer2/ScrollContainer/VBoxContainer/addons_section"]
+layout_mode = 2
+tooltip_text = "https://github.com/godot-extended-libraries/godot-debug-menu?tab=readme-ov-file"
+mouse_filter = 1
+text = "GODOT DEBUG MENU"
+horizontal_alignment = 1
+
+[node name="extra_snaps_label" type="Label" parent="MarginContainer/VBoxContainer2/ScrollContainer/VBoxContainer/addons_section"]
+layout_mode = 2
+tooltip_text = "https://github.com/mharitsnf/ExtraSnaps"
+mouse_filter = 1
+text = "EXTRASNAPS"
+horizontal_alignment = 1
+
 [node name="assets_section_header" type="HBoxContainer" parent="MarginContainer/VBoxContainer2/ScrollContainer/VBoxContainer"]
 layout_mode = 2
 
