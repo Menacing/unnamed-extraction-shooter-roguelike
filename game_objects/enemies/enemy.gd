@@ -63,12 +63,8 @@ func _ready():
 func _physics_process(delta):
 	if nav_agent.is_navigation_finished():
 		return
-
+		
 	var next_path_position: Vector3 = nav_agent.get_next_path_position()
-	var gpt = global_position
-	var gpdt = global_position.direction_to(next_path_position)
-	if !is_zero_approx((next_path_position - gpt).length()):
-		pass
 	var target_velocity: Vector3 = global_position.direction_to(next_path_position) * move_speed
 	var new_velocity = velocity.move_toward(target_velocity, acceleration)
 	if nav_agent.avoidance_enabled:
@@ -189,6 +185,11 @@ func fire_weapon():
 
 func _on_navigation_mesh_list_item_baked(nmli:NavigationMeshListItem):
 	if nav_mesh_list_item and nav_mesh_list_item.name == nmli.name:
+		if nmli.mesh == null:
+			printerr("nav mesh is null!")
+		var mesh_polygon_count = nmli.mesh.get_polygon_count()
+		if nmli.mesh.get_polygon_count() == 0:
+			printerr("name mesh has no")
 		nav_agent.set_navigation_map(nmli.map_rid)
 
 func _on_game_saving(save_file:SaveFile):
