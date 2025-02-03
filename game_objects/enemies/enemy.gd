@@ -104,6 +104,19 @@ func _on_velocity_computed(safe_velocity: Vector3):
 				movement_audio_player.stop()
 	move_and_slide()
 
+func slow_body_turn(delta:float):
+	if velocity.length() > 0.01:
+		var target_direction = velocity.normalized()
+		var forward = Vector3(target_direction.x, 0, target_direction.z).normalized()  # Ignore Y component
+
+		if forward.length() > 0:
+			var current_basis = global_transform.basis
+			var target_basis = Basis().looking_at(forward, Vector3.UP, true)
+
+			# Smooth interpolation
+			global_transform.basis = current_basis.slerp(target_basis, delta * body_rotation_speed)  # Adjust speed
+
+
 func has_fire_target() -> bool:
 	if fire_target:
 		return true

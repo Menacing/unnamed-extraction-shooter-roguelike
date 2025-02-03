@@ -13,6 +13,7 @@ func _tick(p_delta: float) -> Status:
 			agent.move_target = agent
 			agent.set_new_path()
 			return SUCCESS
+		agent.slow_body_turn(p_delta)
 		return RUNNING
 		
 	return FAILURE

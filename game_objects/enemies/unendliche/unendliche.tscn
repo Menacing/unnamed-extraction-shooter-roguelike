@@ -2036,7 +2036,6 @@ radius = 2.0
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_72nri"]
 
 [node name="Unendliche" type="CharacterBody3D" node_paths=PackedStringArray("nav_agent", "head_node", "detection_radius", "ballistic_detection_radius")]
-collision_layer = 3
 script = ExtResource("1_w13ju")
 nav_agent = NodePath("NavigationAgent3D")
 head_node = NodePath("unendliche/Armature/GeneralSkeleton/head")
