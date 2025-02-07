@@ -12,6 +12,7 @@ func _ready():
 	alert_color.albedo_color = Color(1,0,0,1)
 	passive_color = StandardMaterial3D.new()
 	passive_color.albedo_color = Color(1,1,1,1)
+	EventBus.level_loaded.emit()
 	LevelManager.emit_populate_level.call_deferred()
 	var player_collider_rids = Helpers.get_all_collision_object_3d_recursive(player)
 	for rid in player_collider_rids:

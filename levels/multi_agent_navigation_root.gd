@@ -1,7 +1,16 @@
+@tool
 extends Node3D
 class_name MultiAgentNavigationRoot
 
 @export var navigation_mesh_list_items:Array[NavigationMeshListItem]
+
+func _get_configuration_warnings() -> PackedStringArray:
+	var warnings = []
+	
+	if navigation_mesh_list_items == null or navigation_mesh_list_items.size() == 0:  # Check if the value is unset or invalid
+		warnings.append("Must set Navigation Mesh List Items or no nav meshes will be calculated")
+	
+	return warnings
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
