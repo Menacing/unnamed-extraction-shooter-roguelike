@@ -66,7 +66,7 @@ script = ExtResource("3_lvbr0")
 script = ExtResource("4_go352")
 
 [sub_resource type="BTSelector" id="BTSelector_iiq57"]
-custom_name = "Select Fire Target Selector"
+custom_name = "Select Attack Target Selector"
 children = [SubResource("BTCondition_enbqx"), SubResource("BTAction_bou5m")]
 
 [sub_resource type="BTAction" id="BTAction_fkydl"]
@@ -84,7 +84,7 @@ start_cooled = true
 children = [SubResource("BTAction_amwn2")]
 
 [sub_resource type="BTAlwaysSucceed" id="BTAlwaysSucceed_3cfnl"]
-custom_name = "Fire Weapon Cooldown"
+custom_name = "Attack Cooldown"
 children = [SubResource("BTCooldown_2lnxi")]
 
 [sub_resource type="BTAction" id="BTAction_o87xc"]
@@ -131,7 +131,7 @@ start_cooled = true
 children = [SubResource("BTAction_opdww")]
 
 [sub_resource type="BTAlwaysSucceed" id="BTAlwaysSucceed_b2afx"]
-custom_name = "Fire Weapon Cooldown"
+custom_name = "Attack Cooldown"
 children = [SubResource("BTCooldown_t2xxm")]
 
 [sub_resource type="BTAction" id="BTAction_bk13g"]

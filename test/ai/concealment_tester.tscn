@@ -12,8 +12,9 @@ albedo_color = Color(0, 0, 0, 0.129412)
 [sub_resource type="BoxMesh" id="BoxMesh_nb6a8"]
 material = SubResource("StandardMaterial3D_vcg3w")
 
-[node name="ConcealmentTester" type="Node3D"]
+[node name="ConcealmentTester" type="Node3D" node_paths=PackedStringArray("mesh")]
 script = ExtResource("1_wxd5n")
+mesh = NodePath("MeshInstance3D")
 
 [node name="CSGBox3D" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.17795, -0.250977, -0.293945)

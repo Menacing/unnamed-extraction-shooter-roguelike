@@ -1,7 +1,7 @@
 extends Node3D
 
 @onready var player:Player = $Player
-@onready var mesh:MeshInstance3D = $MeshInstance3D
+@export var mesh:MeshInstance3D
 @onready var exclusions:Array[RID] = []
 var alert_color:StandardMaterial3D
 var passive_color:StandardMaterial3D

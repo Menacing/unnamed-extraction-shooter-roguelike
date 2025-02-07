@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dy2gpu0mq6khj"]
+[gd_scene load_steps=11 format=3 uid="uid://dy2gpu0mq6khj"]
 
 [ext_resource type="Script" path="res://test/ai/patrol_testbed_many.gd" id="1_o8yi7"]
 [ext_resource type="Script" path="res://levels/multi_agent_navigation_root.gd" id="1_y0qet"]
@@ -6,6 +6,7 @@
 [ext_resource type="Resource" uid="uid://hw8blc564g2i" path="res://levels/roomba_nav_mesh.tres" id="2_t60xv"]
 [ext_resource type="Resource" uid="uid://bkm06qpqovt7f" path="res://levels/humanoid_nav_mesh.tres" id="4_hfiim"]
 [ext_resource type="PackedScene" uid="uid://bv1jhh0d8fn5m" path="res://game_objects/enemies/unendliche/unendliche.tscn" id="5_lm6gu"]
+[ext_resource type="PackedScene" uid="uid://ciaqbr34myu5w" path="res://game_objects/enemies/robots/combat_roomba.tscn" id="7_h5vwb"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1n5u8"]
 
@@ -68,3 +69,18 @@ transform = Transform3D(-0.513556, 0.196842, -0.835173, 2.00552e-08, 0.973331, 0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 142.461, 0)
 
 [node name="Unendliche" parent="." instance=ExtResource("5_lm6gu")]
+
+[node name="combat_roomba" parent="." instance=ExtResource("7_h5vwb")]
+transform = Transform3D(1.00409, 0, 0, 0, 1.00409, 0, 0, 0, 1.00409, 8.57803, 0.370667, 0)
+
+[node name="combat_roomba2" parent="." instance=ExtResource("7_h5vwb")]
+transform = Transform3D(1.00409, 0, 0, 0, 1.00409, 0, 0, 0, 1.00409, 12.5447, 0.370667, 0)
+
+[node name="combat_roomba3" parent="." instance=ExtResource("7_h5vwb")]
+transform = Transform3D(1.00409, 0, 0, 0, 1.00409, 0, 0, 0, 1.00409, 5.19771, 0.370667, 0)
+
+[node name="combat_roomba4" parent="." instance=ExtResource("7_h5vwb")]
+transform = Transform3D(1.00409, 0, 0, 0, 1.00409, 0, 0, 0, 1.00409, 16.7184, 0.370667, 0)
+
+[node name="combat_roomba5" parent="." instance=ExtResource("7_h5vwb")]
+transform = Transform3D(1.00409, 0, 0, 0, 1.00409, 0, 0, 0, 1.00409, -3.83948, 0.370667, 0)

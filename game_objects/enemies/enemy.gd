@@ -1,7 +1,7 @@
 extends CharacterBody3D
 class_name Enemy
 
-var fire_target:Node3D
+var attack_target:Node3D
 var move_target:Node3D
 @export var move_target_distance:float = 1.0
 @export var patrol_poi_group:String = "PatrolPOI"
@@ -19,6 +19,7 @@ var move_target:Node3D
 @export var ballistic_detection_radius:Area3D
 @export var movement_audio_player:AudioStreamPlayer3D
 @export var nav_mesh_list_item:NavigationMeshListItem
+@export var animation_player:AnimationPlayer
 var _target_player:Player
 var target_player:Player:
 	set(value):
@@ -110,22 +111,22 @@ func slow_body_turn(delta:float):
 		var forward = Vector3(target_direction.x, 0, target_direction.z).normalized()  # Ignore Y component
 
 		if forward.length() > 0:
-			var current_basis = global_transform.basis
-			var target_basis = Basis().looking_at(forward, Vector3.UP, true)
+			var current_basis = global_transform.basis.orthonormalized()
+			var target_basis = Basis().looking_at(forward, Vector3.UP, true).orthonormalized()
 
 			# Smooth interpolation
 			global_transform.basis = current_basis.slerp(target_basis, delta * body_rotation_speed)  # Adjust speed
 
 
-func has_fire_target() -> bool:
-	if fire_target:
+func has_attack_target() -> bool:
+	if attack_target:
 		return true
 	else:
 		return false
 
-func set_fire_target():
+func set_attack_target():
 	if target_player:
-		fire_target = target_player.center_mass
+		attack_target = target_player.center_mass
 
 func has_move_target() -> bool:
 	if move_target:
@@ -140,7 +141,6 @@ func has_target_player() -> bool:
 		return false
 		
 func has_los_to_player() -> bool:
-	return false
 	if target_player:
 		
 		var los_result = Helpers.los_to_point(head_node,target_player.los_check_locations,.6,exclusions,true)
@@ -186,15 +186,21 @@ func set_new_path():
 		nav_agent.set_target_position(move_target_global_position)
 	
 func slow_weapon_turn():
-	if fire_target:
+	if attack_target:
 		var delta = get_physics_process_delta_time()
 
-		Helpers.slow_rotate_to_point(head_node, fire_target.global_transform.origin, weapon_rotation_speed, delta)
-		Helpers.slow_rotate_to_point(gun_node, fire_target.global_transform.origin, weapon_rotation_speed, delta)
+		if head_node:
+			Helpers.slow_rotate_to_point(head_node, attack_target.global_transform.origin, weapon_rotation_speed, delta)
+		if gun_node:
+			Helpers.slow_rotate_to_point(gun_node, attack_target.global_transform.origin, weapon_rotation_speed, delta)
 
-func fire_weapon():
-	Helpers.random_angle_deviation_moa(gun_node,vert_moa,hor_moa)
-	gun_node.fireGun()
+func attack():
+	if gun_node:
+		Helpers.random_angle_deviation_moa(gun_node,vert_moa,hor_moa)
+		gun_node.fireGun()
+	elif animation_player and animation_player.has_animation("attack"):
+		animation_player.play("attack")
+		
 
 func _on_navigation_mesh_list_item_baked(nmli:NavigationMeshListItem):
 	if nav_mesh_list_item and nav_mesh_list_item.name == nmli.name:
