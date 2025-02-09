@@ -1,4 +1,4 @@
-[gd_resource type="BehaviorTree" load_steps=68 format=3 uid="uid://c0fp03sullwqn"]
+[gd_resource type="BehaviorTree" load_steps=69 format=3 uid="uid://c0fp03sullwqn"]
 
 [ext_resource type="Script" path="res://ai/tasks/has_target_player_condition.gd" id="1_1omg5"]
 [ext_resource type="Script" path="res://ai/tasks/has_los_condition.gd" id="2_vi234"]
@@ -44,17 +44,19 @@ resource_name = "true"
 variable = &"seen_player"
 value = SubResource("BBVariant_r3dj3")
 
-[sub_resource type="BBNode" id="BBNode_l4mrm"]
+[sub_resource type="BBNode" id="BBNode_pfh38"]
 saved_value = NodePath("unendliche/AnimationPlayer")
 resource_name = "unendliche/AnimationPlayer"
 
-[sub_resource type="BTPlayAnimation" id="BTPlayAnimation_v0vpr"]
-animation_player = SubResource("BBNode_l4mrm")
+[sub_resource type="BTPlayAnimation" id="BTPlayAnimation_qcmmt"]
+await_completion = 3.0
+animation_player = SubResource("BBNode_pfh38")
 animation_name = &"target_spotted"
+blend = 0.5
 custom_name = "Play Target Spotted Animation"
 
 [sub_resource type="BTSequence" id="BTSequence_fc8b1"]
-children = [SubResource("BTRandomWait_2t7p0"), SubResource("BTSetVar_g78d7"), SubResource("BTPlayAnimation_v0vpr")]
+children = [SubResource("BTRandomWait_2t7p0"), SubResource("BTSetVar_g78d7"), SubResource("BTPlayAnimation_qcmmt")]
 
 [sub_resource type="BTSelector" id="BTSelector_et6s3"]
 children = [SubResource("BTCheckVar_a8imp"), SubResource("BTSequence_fc8b1")]
@@ -75,13 +77,21 @@ script = ExtResource("5_4u32l")
 [sub_resource type="BTAction" id="BTAction_waxrm"]
 script = ExtResource("6_dfpgs")
 
-[sub_resource type="BTAction" id="BTAction_amwn2"]
-script = ExtResource("7_rlirx")
+[sub_resource type="BBNode" id="BBNode_04hae"]
+saved_value = NodePath("unendliche/AnimationPlayer")
+resource_name = "unendliche/AnimationPlayer"
+
+[sub_resource type="BTPlayAnimation" id="BTPlayAnimation_b7s7y"]
+await_completion = 4.0
+animation_player = SubResource("BBNode_04hae")
+animation_name = &"attack"
+blend = 0.5
+custom_name = "Play Attack Animation"
 
 [sub_resource type="BTCooldown" id="BTCooldown_2lnxi"]
 duration = 1.0
 start_cooled = true
-children = [SubResource("BTAction_amwn2")]
+children = [SubResource("BTPlayAnimation_b7s7y")]
 
 [sub_resource type="BTAlwaysSucceed" id="BTAlwaysSucceed_3cfnl"]
 custom_name = "Attack Cooldown"
@@ -156,18 +166,20 @@ resource_name = "false"
 variable = &"seen_player"
 value = SubResource("BBVariant_keieu")
 
-[sub_resource type="BBNode" id="BBNode_wyk8j"]
-saved_value = NodePath("AnimationPlayer")
-resource_name = "AnimationPlayer"
+[sub_resource type="BBNode" id="BBNode_x3t5x"]
+saved_value = NodePath("unendliche/AnimationPlayer")
+resource_name = "unendliche/AnimationPlayer"
 
-[sub_resource type="BTPlayAnimation" id="BTPlayAnimation_8bsj3"]
-animation_player = SubResource("BBNode_wyk8j")
+[sub_resource type="BTPlayAnimation" id="BTPlayAnimation_flc42"]
+await_completion = 3.0
+animation_player = SubResource("BBNode_x3t5x")
 animation_name = &"target_lost"
+blend = 1.0
 custom_name = "Play Target Lost Animation"
 
 [sub_resource type="BTDynamicSequence" id="BTDynamicSequence_8yxad"]
 custom_name = "ChasePlayerSequence"
-children = [SubResource("BTCondition_6gkx3"), SubResource("BTCheckVar_fwv55"), SubResource("BTInvert_k8o4n"), SubResource("BTSetVar_lgfdt"), SubResource("BTPlayAnimation_8bsj3")]
+children = [SubResource("BTCondition_6gkx3"), SubResource("BTCheckVar_fwv55"), SubResource("BTInvert_k8o4n"), SubResource("BTSetVar_lgfdt"), SubResource("BTPlayAnimation_flc42")]
 
 [sub_resource type="BTAction" id="BTAction_ujsds"]
 script = ExtResource("10_ny86q")
@@ -208,6 +220,7 @@ resource_name = "unendliche/AnimationPlayer"
 [sub_resource type="BTPlayAnimation" id="BTPlayAnimation_hf2rm"]
 animation_player = SubResource("BBNode_t0y40")
 animation_name = &"idle"
+blend = 1.0
 custom_name = "Play idle Animation"
 
 [sub_resource type="BTRandomWait" id="BTRandomWait_bd64s"]

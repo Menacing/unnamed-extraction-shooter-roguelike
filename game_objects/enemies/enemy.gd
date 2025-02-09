@@ -19,7 +19,6 @@ var move_target:Node3D
 @export var ballistic_detection_radius:Area3D
 @export var movement_audio_player:AudioStreamPlayer3D
 @export var nav_mesh_list_item:NavigationMeshListItem
-@export var animation_player:AnimationPlayer
 var _target_player:Player
 var target_player:Player:
 	set(value):
@@ -195,12 +194,14 @@ func slow_weapon_turn():
 			Helpers.slow_rotate_to_point(gun_node, attack_target.global_transform.origin, weapon_rotation_speed, delta)
 
 func attack():
-	if gun_node:
-		Helpers.random_angle_deviation_moa(gun_node,vert_moa,hor_moa)
-		gun_node.fireGun()
-	elif animation_player and animation_player.has_animation("attack"):
-		animation_player.play("attack")
-		
+	pass
+	#if gun_node:
+		#Helpers.random_angle_deviation_moa(gun_node,vert_moa,hor_moa)
+		#gun_node.fireGun()
+	#elif animation_player and animation_player.has_animation("attack"):
+		#animation_player.play("attack")
+		#
+
 
 func _on_navigation_mesh_list_item_baked(nmli:NavigationMeshListItem):
 	if nav_mesh_list_item and nav_mesh_list_item.name == nmli.name:
