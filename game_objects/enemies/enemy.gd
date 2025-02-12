@@ -10,6 +10,7 @@ var move_target:Node3D
 @export var body_rotation_speed:float = 1.0
 @export var move_speed:float = 3.0
 @export var acceleration:float = .25
+@export var attack_range:float
 @export var head_node:Node3D
 @export var gun_node:Gun
 @export var vert_moa:float = 600
@@ -60,10 +61,10 @@ func _ready():
 	EventBus.game_saving.connect(_on_game_saving)
 	EventBus.before_game_loading.connect(_on_game_before_loading)
 
-func _physics_process(delta):
+func move_tick(p_delta):
 	if nav_agent.is_navigation_finished():
 		return
-		
+	slow_body_turn(p_delta)
 	var next_path_position: Vector3 = nav_agent.get_next_path_position()
 	var target_velocity: Vector3 = global_position.direction_to(next_path_position) * move_speed
 	var new_velocity = velocity.move_toward(target_velocity, acceleration)
@@ -179,6 +180,9 @@ func find_new_patrol_poi_move_target() -> bool:
 		#else take the poi
 	return false
 
+func stop_movement():
+	nav_agent.set_velocity(Vector3.ZERO)
+
 func set_new_path():
 	if move_target and nav_agent:
 		var move_target_global_position := move_target.global_position
@@ -192,6 +196,13 @@ func slow_weapon_turn():
 			Helpers.slow_rotate_to_point(head_node, attack_target.global_transform.origin, weapon_rotation_speed, delta)
 		if gun_node:
 			Helpers.slow_rotate_to_point(gun_node, attack_target.global_transform.origin, weapon_rotation_speed, delta)
+
+func attack_target_in_range() -> bool:
+	if attack_target:
+		var distance_to_target = self.global_position.distance_to(attack_target.global_position)
+		if distance_to_target <= attack_range:
+			return true
+	return false
 
 func attack():
 	pass

@@ -1,4 +1,4 @@
-[gd_resource type="BehaviorTree" load_steps=69 format=3 uid="uid://c0fp03sullwqn"]
+[gd_resource type="BehaviorTree" load_steps=78 format=3 uid="uid://c0fp03sullwqn"]
 
 [ext_resource type="Script" path="res://ai/tasks/has_target_player_condition.gd" id="1_1omg5"]
 [ext_resource type="Script" path="res://ai/tasks/has_los_condition.gd" id="2_vi234"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://ai/tasks/set_fire_target_task.gd" id="4_go352"]
 [ext_resource type="Script" path="res://ai/tasks/set_move_target_to_player_task.gd" id="5_4u32l"]
 [ext_resource type="Script" path="res://ai/tasks/slow_weapon_turn_task.gd" id="6_dfpgs"]
+[ext_resource type="Script" path="res://ai/tasks/attack_target_in_range_task.gd" id="7_ntgeo"]
 [ext_resource type="Script" path="res://ai/tasks/fire_weapon_task.gd" id="7_rlirx"]
 [ext_resource type="Script" path="res://ai/tasks/nav_agent_repath_task.gd" id="8_nd4tc"]
 [ext_resource type="Script" path="res://ai/tasks/nav_agent_move_task.gd" id="9_m3cma"]
@@ -77,6 +78,17 @@ script = ExtResource("5_4u32l")
 [sub_resource type="BTAction" id="BTAction_waxrm"]
 script = ExtResource("6_dfpgs")
 
+[sub_resource type="BTAction" id="BTAction_is60w"]
+script = ExtResource("7_ntgeo")
+
+[sub_resource type="BBNode" id="BBNode_wsyqm"]
+saved_value = NodePath(".")
+resource_name = "."
+
+[sub_resource type="BTCallMethod" id="BTCallMethod_jj3ga"]
+node = SubResource("BBNode_wsyqm")
+method = &"stop_movement"
+
 [sub_resource type="BBNode" id="BBNode_04hae"]
 saved_value = NodePath("unendliche/AnimationPlayer")
 resource_name = "unendliche/AnimationPlayer"
@@ -97,6 +109,16 @@ children = [SubResource("BTPlayAnimation_b7s7y")]
 custom_name = "Attack Cooldown"
 children = [SubResource("BTCooldown_2lnxi")]
 
+[sub_resource type="BTAction" id="BTAction_gwkdb"]
+script = ExtResource("8_nd4tc")
+
+[sub_resource type="BTSequence" id="BTSequence_qlicx"]
+custom_name = "CheckRangeAndAttackSequence"
+children = [SubResource("BTAction_is60w"), SubResource("BTCallMethod_jj3ga"), SubResource("BTAlwaysSucceed_3cfnl"), SubResource("BTAction_gwkdb")]
+
+[sub_resource type="BTAlwaysSucceed" id="BTAlwaysSucceed_lqv6g"]
+children = [SubResource("BTSequence_qlicx")]
+
 [sub_resource type="BTAction" id="BTAction_o87xc"]
 script = ExtResource("8_nd4tc")
 
@@ -107,15 +129,24 @@ children = [SubResource("BTAction_o87xc")]
 [sub_resource type="BTAlwaysSucceed" id="BTAlwaysSucceed_7btg4"]
 children = [SubResource("BTCooldown_vwpsg")]
 
+[sub_resource type="BBNode" id="BBNode_5eurj"]
+saved_value = NodePath("unendliche/AnimationPlayer")
+resource_name = "unendliche/AnimationPlayer"
+
+[sub_resource type="BTPlayAnimation" id="BTPlayAnimation_7v7be"]
+animation_player = SubResource("BBNode_5eurj")
+animation_name = &"patrol_started"
+custom_name = "Play Patrol Animation"
+
 [sub_resource type="BTAction" id="BTAction_x5gjo"]
 script = ExtResource("9_m3cma")
 
 [sub_resource type="BTDynamicSequence" id="BTDynamicSequence_tnoix"]
-children = [SubResource("BTAlwaysSucceed_7btg4"), SubResource("BTAction_x5gjo")]
+children = [SubResource("BTAlwaysSucceed_7btg4"), SubResource("BTPlayAnimation_7v7be"), SubResource("BTAction_x5gjo")]
 
 [sub_resource type="BTDynamicSequence" id="BTDynamicSequence_ij6fu"]
 custom_name = "AttackPlayerSequence"
-children = [SubResource("BTCondition_834gd"), SubResource("BTCondition_dn173"), SubResource("BTSelector_et6s3"), SubResource("BTSelector_iiq57"), SubResource("BTAction_fkydl"), SubResource("BTAction_waxrm"), SubResource("BTAlwaysSucceed_3cfnl"), SubResource("BTDynamicSequence_tnoix")]
+children = [SubResource("BTCondition_834gd"), SubResource("BTCondition_dn173"), SubResource("BTSelector_et6s3"), SubResource("BTSelector_iiq57"), SubResource("BTAction_fkydl"), SubResource("BTAction_waxrm"), SubResource("BTAlwaysSucceed_lqv6g"), SubResource("BTDynamicSequence_tnoix")]
 
 [sub_resource type="BTCondition" id="BTCondition_6gkx3"]
 script = ExtResource("1_1omg5")
