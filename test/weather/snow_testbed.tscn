@@ -1,0 +1,52 @@
+[gd_scene load_steps=7 format=3 uid="uid://detih1mgy442i"]
+
+[ext_resource type="PackedScene" uid="uid://d08aatgxmymbf" path="res://game_objects/player/player.tscn" id="1_7khvp"]
+[ext_resource type="Environment" uid="uid://s6q0fqlhuodl" path="res://test/debug/vibe_check_environment.tres" id="2_cnpb3"]
+[ext_resource type="CameraAttributesPractical" uid="uid://jafbi2bjurvn" path="res://test/debug/vibe_check_camera.tres" id="3_crky5"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_5tylh"]
+emission_shape_offset = Vector3(-500, 10, -500)
+emission_shape = 3
+emission_box_extents = Vector3(1000, 1, 1000)
+gravity = Vector3(0, -3, 0)
+turbulence_enabled = true
+turbulence_noise_scale = 1.135
+turbulence_noise_speed = Vector3(1, 0, 1)
+collision_mode = 2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_26b0b"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_qmxkq"]
+material = SubResource("StandardMaterial3D_26b0b")
+size = Vector2(0.05, 0.05)
+
+[node name="SnowTestbed" type="Node3D"]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, 0)
+use_collision = true
+collision_layer = 15
+collision_mask = 15
+size = Vector3(1000, 0.5, 1000)
+
+[node name="Player" parent="." instance=ExtResource("1_7khvp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource("2_cnpb3")
+camera_attributes = ExtResource("3_crky5")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.12806, 0)
+amount = 1000000
+lifetime = 30.0
+preprocess = 10.0
+visibility_aabb = AABB(-500, -25, -500, 1000, 50, 1000)
+process_material = SubResource("ParticleProcessMaterial_5tylh")
+draw_pass_1 = SubResource("QuadMesh_qmxkq")
+
+[node name="GPUParticlesCollisionHeightField3D" type="GPUParticlesCollisionHeightField3D" parent="."]
+size = Vector3(100, 10, 100)
+resolution = 3
