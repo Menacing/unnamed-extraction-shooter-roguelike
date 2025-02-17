@@ -1,0 +1,40 @@
+[gd_scene load_steps=6 format=3 uid="uid://boas3p6alif2e"]
+
+[ext_resource type="Shader" uid="uid://cflt50ihcyglf" path="res://game_objects/effects/pixel_blood.tres" id="1_m040a"]
+[ext_resource type="PackedScene" uid="uid://0orv0aorh17a" path="res://components/follow_component/follow_component.tscn" id="2_oemws"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_5tylh"]
+emission_shape_offset = Vector3(0, 10, 0)
+emission_shape = 6
+emission_ring_axis = Vector3(0, 1, 0)
+emission_ring_height = 1.0
+emission_ring_radius = 100.0
+emission_ring_inner_radius = 0.0
+gravity = Vector3(0, -3, 0)
+turbulence_enabled = true
+turbulence_noise_scale = 1.135
+turbulence_noise_speed = Vector3(1, 0, 1)
+collision_mode = 2
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1skph"]
+render_priority = 0
+shader = ExtResource("1_m040a")
+shader_parameter/ColorParameter = Color(1, 1, 1, 1)
+
+[sub_resource type="QuadMesh" id="QuadMesh_vu7ue"]
+lightmap_size_hint = Vector2i(2, 2)
+material = SubResource("ShaderMaterial_1skph")
+add_uv2 = true
+size = Vector2(0.05, 0.05)
+
+[node name="SnowParticleEmitter" type="GPUParticles3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.105462, 1.30279, 0.153276)
+amount = 10000
+lifetime = 30.0
+preprocess = 10.0
+visibility_aabb = AABB(-50, -25, -50, 100, 50, 100)
+process_material = SubResource("ParticleProcessMaterial_5tylh")
+draw_pass_1 = SubResource("QuadMesh_vu7ue")
+
+[node name="FollowComponent" parent="." node_paths=PackedStringArray("node_to_follow") instance=ExtResource("2_oemws")]
+node_to_follow = NodePath("")
