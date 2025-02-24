@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://bua5k3tujom4p"]
+
+[ext_resource type="Script" path="res://components/attack_component/attack_component.gd" id="1_70nle"]
+[ext_resource type="Script" path="res://components/melee_attack_component/melee_attack_area.gd" id="1_gdjt8"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wo0rc"]
+
+[node name="MeleeAttackArea" type="Area3D"]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("1_gdjt8")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_wo0rc")
+
+[node name="AttackComponent" type="Node3D" parent="."]
+unique_name_in_owner = true
+script = ExtResource("1_70nle")
+damage = 5.0
+damage_type = 1
+armor_penetration_rating = 9
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
