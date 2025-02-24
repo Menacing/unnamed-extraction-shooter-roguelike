@@ -1,0 +1,50 @@
+[gd_scene load_steps=6 format=3 uid="uid://schelkf7tca8"]
+
+[ext_resource type="PackedScene" uid="uid://d08aatgxmymbf" path="res://game_objects/player/player.tscn" id="1_1xbiv"]
+[ext_resource type="Environment" uid="uid://s6q0fqlhuodl" path="res://test/debug/vibe_check_environment.tres" id="2_lbjes"]
+[ext_resource type="CameraAttributesPractical" uid="uid://jafbi2bjurvn" path="res://test/debug/vibe_check_camera.tres" id="3_o67ik"]
+[ext_resource type="PackedScene" uid="uid://d23r2uap6tpce" path="res://game_objects/effects/weather/rain_particle_emitter.tscn" id="4_gfqfp"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_j72rc"]
+
+[node name="SnowTestbed" type="Node3D"]
+
+[node name="Player" parent="." instance=ExtResource("1_1xbiv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource("2_lbjes")
+camera_attributes = ExtResource("3_o67ik")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.650575, 0.759442, 0, -0.759442, 0.650575, -0.696909, 8.85029, 1.57911)
+
+[node name="CSGTorus3D" type="CSGTorus3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 3, 0)
+use_collision = true
+inner_radius = 1.0
+outer_radius = 2.0
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.93496, -10.9209)
+use_collision = true
+size = Vector3(10, 1, 10)
+material = SubResource("StandardMaterial3D_j72rc")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, 0)
+use_collision = true
+collision_layer = 15
+collision_mask = 15
+size = Vector3(1000, 0.5, 1000)
+
+[node name="GPUParticlesCollisionHeightField3D" type="GPUParticlesCollisionHeightField3D" parent="."]
+size = Vector3(100, 20, 100)
+resolution = 3
+
+[node name="RainEffectNode" parent="." instance=ExtResource("4_gfqfp")]
+
+[node name="FollowComponent" parent="RainEffectNode/RainParticleEmitter" index="0" node_paths=PackedStringArray("node_to_follow")]
+node_to_follow = NodePath("../../../Player")
+
+[editable path="RainEffectNode"]
