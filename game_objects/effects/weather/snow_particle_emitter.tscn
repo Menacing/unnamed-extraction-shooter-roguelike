@@ -36,5 +36,4 @@ visibility_aabb = AABB(-50, -25, -50, 100, 50, 100)
 process_material = SubResource("ParticleProcessMaterial_5tylh")
 draw_pass_1 = SubResource("QuadMesh_vu7ue")
 
-[node name="FollowComponent" parent="." node_paths=PackedStringArray("node_to_follow") instance=ExtResource("2_oemws")]
-node_to_follow = NodePath("")
+[node name="FollowComponent" parent="." instance=ExtResource("2_oemws")]

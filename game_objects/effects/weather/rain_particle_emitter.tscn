@@ -1,0 +1,76 @@
+[gd_scene load_steps=9 format=3 uid="uid://d23r2uap6tpce"]
+
+[ext_resource type="Shader" uid="uid://cflt50ihcyglf" path="res://game_objects/effects/pixel_blood.tres" id="1_yedbb"]
+[ext_resource type="PackedScene" uid="uid://0orv0aorh17a" path="res://components/follow_component/follow_component.tscn" id="2_dugql"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ei1q1"]
+emission_shape_offset = Vector3(0, 10, 0)
+emission_shape = 6
+emission_ring_axis = Vector3(0, 1, 0)
+emission_ring_height = 1.0
+emission_ring_radius = 100.0
+emission_ring_inner_radius = 0.0
+direction = Vector3(0, -1, 0)
+spread = 5.0
+initial_velocity_min = 8.0
+initial_velocity_max = 12.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.9
+scale_max = 1.1
+turbulence_noise_scale = 1.135
+turbulence_noise_speed = Vector3(1, 0, 1)
+collision_mode = 2
+sub_emitter_mode = 3
+sub_emitter_amount_at_collision = 5
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_em8xv"]
+transparency = 1
+cull_mode = 2
+shading_mode = 0
+albedo_color = Color(0.0156863, 0.305882, 0.411765, 0.717647)
+use_particle_trails = true
+
+[sub_resource type="RibbonTrailMesh" id="RibbonTrailMesh_55jul"]
+material = SubResource("StandardMaterial3D_em8xv")
+size = 0.025
+section_length = 0.05
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_rjso4"]
+direction = Vector3(0, 1, 0)
+initial_velocity_min = 1.0
+initial_velocity_max = 5.0
+sub_emitter_mode = 2
+sub_emitter_amount_at_end = 1
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_blrwp"]
+render_priority = 0
+shader = ExtResource("1_yedbb")
+shader_parameter/ColorParameter = Color(0.0156863, 0.305882, 0.411765, 0.717647)
+
+[sub_resource type="QuadMesh" id="QuadMesh_ljl45"]
+material = SubResource("ShaderMaterial_blrwp")
+size = Vector2(0.025, 0.025)
+
+[node name="RainEffectNode" type="Node3D"]
+
+[node name="RainParticleEmitter" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.105462, 1.30279, 0.153276)
+amount = 5000
+sub_emitter = NodePath("../RainParticleSubEmitter")
+lifetime = 2.0
+preprocess = 10.0
+collision_base_size = 0.1
+visibility_aabb = AABB(-50, -25, -50, 100, 50, 100)
+trail_enabled = true
+trail_lifetime = 0.1
+process_material = SubResource("ParticleProcessMaterial_ei1q1")
+draw_pass_1 = SubResource("RibbonTrailMesh_55jul")
+
+[node name="FollowComponent" parent="RainParticleEmitter" instance=ExtResource("2_dugql")]
+
+[node name="RainParticleSubEmitter" type="GPUParticles3D" parent="."]
+amount = 40000
+explosiveness = 1.0
+visibility_aabb = AABB(-50, -25, -50, 100, 50, 100)
+process_material = SubResource("ParticleProcessMaterial_rjso4")
+draw_pass_1 = SubResource("QuadMesh_ljl45")
