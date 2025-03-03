@@ -1,4 +1,4 @@
-[gd_scene load_steps=120 format=4 uid="uid://ctahsvj88g1om"]
+[gd_scene load_steps=121 format=4 uid="uid://ctahsvj88g1om"]
 
 [ext_resource type="Script" path="res://levels/demo_level.gd" id="1_8448e"]
 [ext_resource type="PackedScene" uid="uid://d08aatgxmymbf" path="res://game_objects/player/player.tscn" id="1_eisjc"]
@@ -33,6 +33,7 @@
 [ext_resource type="PackedScene" uid="uid://c8y8q8sw14nbw" path="res://game_objects/items/ammo/hic/hic_box_hp.tscn" id="23_xk7fk"]
 [ext_resource type="PackedScene" uid="uid://c2mgc1vc3603e" path="res://game_objects/items/armor/light/light_armor_1.tscn" id="24_bw0sj"]
 [ext_resource type="PackedScene" uid="uid://fetf2vb0h86g" path="res://game_objects/items/armor/medium/1/medium_armor_1.tscn" id="25_43i1p"]
+[ext_resource type="PackedScene" uid="uid://bv1jhh0d8fn5m" path="res://game_objects/enemies/unendliche/unendliche.tscn" id="25_dmw2f"]
 [ext_resource type="PackedScene" uid="uid://2ggq36ut12jw" path="res://game_objects/items/attachments/foregrips/stable/stable_forgreip.tscn" id="26_vh55a"]
 [ext_resource type="PackedScene" uid="uid://d0o2yjbp3avaa" path="res://game_objects/items/attachments/magazines/extended/extended_magazine.tscn" id="27_phudk"]
 [ext_resource type="PackedScene" uid="uid://cwhv3r1tw0orw" path="res://game_objects/items/consumables/regel_pod/regel_pod.tscn" id="28_2kj4q"]
@@ -1353,6 +1354,9 @@ inventory_data = SubResource("Resource_pbdhj")
 
 [node name="DamageComponent" type="Node" parent="MultiAgentNavigationRoot/LootChest"]
 script = ExtResource("18_dvips")
+
+[node name="Unendliche" parent="MultiAgentNavigationRoot" instance=ExtResource("25_dmw2f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.0243, 0, 0)
 
 [node name="Player" parent="." instance=ExtResource("1_eisjc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.48035, 1.04626, -2.63506)
