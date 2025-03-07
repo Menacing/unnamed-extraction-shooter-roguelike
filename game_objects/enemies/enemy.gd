@@ -21,6 +21,9 @@ var move_target:Node3D
 @export var movement_audio_player:AudioStreamPlayer3D
 @export var nav_mesh_list_item:NavigationMeshListItem
 @export var behavior_tree:BTPlayer
+@export var physical_bone_simulator:PhysicalBoneSimulator3D
+@export var animation_players:Array[AnimationPlayer]
+@export var character_body_collision_shapes:Array[CollisionShape3D]
 @export var loot_fiesta:LootFiestaComponent
 
 var _target_player:Player
@@ -250,15 +253,21 @@ func _on_health_component_location_destroyed(health_component: HealthComponent) 
 func die():
 	print("I am dead")
 	#alive = false
-	#skeleton.animate_physical_bones = true
-	#skeleton.physical_bones_start_simulation()
+	if behavior_tree:
+		behavior_tree.active = false
+	if loot_fiesta:
+		loot_fiesta.fiesta()
+
+	if physical_bone_simulator:
+		for ap3d in animation_players:
+			ap3d.stop()
+		for cs3d in character_body_collision_shapes:
+			cs3d.disabled = true
+		physical_bone_simulator.active = true
+		physical_bone_simulator.physical_bones_start_simulation()
 	#var damage_vector = last_damage_normal.normalized() * 5
 	#PhysicsServer3D.body_set_state(physical_bone.get_rid(), PhysicsServer3D.BODY_STATE_LINEAR_VELOCITY, damage_vector)
 	#$CollisionShape3D.disabled = true
 	#$CollisionShape3D2.disabled = true
 	#$CollisionShape3D3.disabled = true
 	#$"combat-roomba/Armature/Skeleton3D/Physical Bone Bone/Head/SpotLight3D".visible = false
-	if behavior_tree:
-		behavior_tree.active = false
-	if loot_fiesta:
-		loot_fiesta.fiesta()
