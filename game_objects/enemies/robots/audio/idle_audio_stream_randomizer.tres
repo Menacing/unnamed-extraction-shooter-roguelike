@@ -1,9 +1,8 @@
 [gd_resource type="AudioStreamRandomizer" load_steps=2 format=3 uid="uid://qjx8mxhhx0a5"]
 
-[ext_resource type="AudioStream" uid="uid://rhvnwx76k6xd" path="res://game_objects/enemies/robots/audio/idle.ogg" id="1_akkw2"]
+[ext_resource type="AudioStream" uid="uid://dj0tbe7gwesri" path="res://game_objects/enemies/unendliche/audio/unendlich-idle.ogg" id="1_r75ei"]
 
 [resource]
 random_pitch = 1.05
 streams_count = 1
-stream_0/stream = ExtResource("1_akkw2")
-stream_0/weight = 1.0
+stream_0/stream = ExtResource("1_r75ei")

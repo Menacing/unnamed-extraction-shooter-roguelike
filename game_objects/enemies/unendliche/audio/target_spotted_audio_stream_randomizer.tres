@@ -1,0 +1,8 @@
+[gd_resource type="AudioStreamRandomizer" load_steps=2 format=3 uid="uid://ci8y31mtl2cra"]
+
+[ext_resource type="AudioStream" uid="uid://b6mj3rw4jdpc8" path="res://game_objects/enemies/unendliche/audio/unendliche-attack.ogg" id="1_q6nvd"]
+
+[resource]
+random_volume_offset_db = 1.16
+streams_count = 1
+stream_0/stream = ExtResource("1_q6nvd")

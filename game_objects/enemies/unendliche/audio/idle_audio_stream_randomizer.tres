@@ -1,0 +1,8 @@
+[gd_resource type="AudioStreamRandomizer" load_steps=2 format=3 uid="uid://kxe2myxlb6gc"]
+
+[ext_resource type="AudioStream" uid="uid://dj0tbe7gwesri" path="res://game_objects/enemies/unendliche/audio/unendlich-idle.ogg" id="1_ai4ub"]
+
+[resource]
+random_volume_offset_db = 1.16
+streams_count = 1
+stream_0/stream = ExtResource("1_ai4ub")

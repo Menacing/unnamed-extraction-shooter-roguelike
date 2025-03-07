@@ -1,0 +1,8 @@
+[gd_resource type="AudioStreamRandomizer" load_steps=2 format=3 uid="uid://n8twdgbya82d"]
+
+[ext_resource type="AudioStream" uid="uid://y5bdvwsqonm8" path="res://game_objects/enemies/unendliche/audio/target_lost.ogg" id="1_2bqok"]
+
+[resource]
+random_volume_offset_db = 1.16
+streams_count = 1
+stream_0/stream = ExtResource("1_2bqok")
