@@ -1,12 +1,12 @@
 [gd_resource type="Resource" script_class="FuncGodotFGDSolidClass" load_steps=3 format=3 uid="uid://ch3e0dix85uhb"]
 
 [ext_resource type="Resource" uid="uid://nayxb8n7see2" path="res://addons/func_godot/fgd/phong_base.tres" id="1_ar63x"]
-[ext_resource type="Script" uid="uid://bs255vgd2x5ou" path="res://addons/func_godot/src/fgd/func_godot_fgd_solid_class.gd" id="2_lhb87"]
+[ext_resource type="Script" path="res://addons/func_godot/src/fgd/func_godot_fgd_solid_class.gd" id="2_lhb87"]
 
 [resource]
 script = ExtResource("2_lhb87")
 spawn_type = 2
-origin_type = 0
+origin_type = 4
 build_visuals = true
 use_in_baked_light = true
 shadow_casting_setting = 1
