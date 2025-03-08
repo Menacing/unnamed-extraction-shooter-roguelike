@@ -1430,28 +1430,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.5375, 0.0788302, -4.91273)
 [node name="ScrapMetalWheel" parent="." instance=ExtResource("40_0qi33")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 0.112062, -4)
 
-[node name="S5" parent="." node_paths=PackedStringArray("gun_material_nodes", "on_scope_hide_nodes", "on_default_magazine_show_nodes", "on_default_magazine_hide_nodes", "on_extended_magazine_show_nodes", "on_extended_magazine_hide_nodes", "on_stable_foregrip_show_nodes") instance=ExtResource("9_7oj7m")]
+[node name="S5" parent="." instance=ExtResource("9_7oj7m")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.98456, 0.488079, -5.02159)
 _gun_stats = SubResource("Resource_mdbm7")
-gun_material_nodes = []
-on_scope_hide_nodes = []
-on_default_magazine_show_nodes = []
-on_default_magazine_hide_nodes = []
-on_extended_magazine_show_nodes = []
-on_extended_magazine_hide_nodes = []
-on_stable_foregrip_show_nodes = []
 
-[node name="PM52" parent="." node_paths=PackedStringArray("gun_material_nodes", "on_scope_show_nodes", "on_default_magazine_show_nodes", "on_default_magazine_hide_nodes", "on_extended_magazine_show_nodes", "on_extended_magazine_hide_nodes", "on_stable_foregrip_show_nodes", "on_stable_foregrip_hide_nodes") instance=ExtResource("41_70t3f")]
+[node name="PM52" parent="." instance=ExtResource("41_70t3f")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.454, 0.37614, -5.35896)
 _gun_stats = SubResource("Resource_l1yld")
-gun_material_nodes = [null, null]
-on_scope_show_nodes = [null]
-on_default_magazine_show_nodes = [null]
-on_default_magazine_hide_nodes = [null]
-on_extended_magazine_show_nodes = [null]
-on_extended_magazine_hide_nodes = [null]
-on_stable_foregrip_show_nodes = [null]
-on_stable_foregrip_hide_nodes = [null]
 
 [node name="PM53" parent="." instance=ExtResource("48_yan6s")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.1491, 0.468912, -4.35992)

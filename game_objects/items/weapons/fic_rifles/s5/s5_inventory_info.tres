@@ -3,6 +3,8 @@
 [ext_resource type="Resource" uid="uid://o6tesi76nbth" path="res://ui/inventory/drop_item_context_item.tres" id="1_ny6ox"]
 [ext_resource type="Script" path="res://ui/inventory/item_context_item.gd" id="2_xupde"]
 [ext_resource type="PackedScene" uid="uid://0hy4cl1x7qwx" path="res://ui/inventory/detail_scenes/gun_detail_popup.tscn" id="3_np3eu"]
+[ext_resource type="Texture2D" uid="uid://d14qjudcylhe0" path="res://game_objects/items/weapons/fic_rifles/s5/s5_icon.png" id="4_3ewar"]
+[ext_resource type="Texture2D" uid="uid://dvhwavsgo6hxq" path="res://game_objects/items/weapons/fic_rifles/s5/s5_icon_r.png" id="5_2iyc8"]
 [ext_resource type="Script" path="res://resource_access/equipment_slot_data.gd" id="7_rpyh2"]
 [ext_resource type="Resource" uid="uid://d2e8vacodeiau" path="res://game_objects/items/weapons/foregrips_equipment_slot.tres" id="8_2d61f"]
 [ext_resource type="Resource" uid="uid://cqxsusjebsqrp" path="res://game_objects/items/weapons/grips_equipment_slot.tres" id="9_8yx0y"]
@@ -22,12 +24,6 @@ signal_name = "context_menus_open_item_detail"
 [sub_resource type="Resource" id="Resource_kxnxy"]
 metadata/__load_path__ = "res://game_objects/items/weapons/fic_rifles/fic_mag_out.ogg"
 
-[sub_resource type="Resource" id="Resource_h60v4"]
-metadata/__load_path__ = "res://game_objects/items/weapons/fic_rifles/s5/s5_icon.png"
-
-[sub_resource type="Resource" id="Resource_s0i5t"]
-metadata/__load_path__ = "res://game_objects/items/weapons/fic_rifles/s5/s5_icon_r.png"
-
 [sub_resource type="Resource" id="Resource_umu4s"]
 script = ExtResource("15_sn08k")
 equipment_slots = Array[ExtResource("7_rpyh2")]([ExtResource("8_2d61f"), ExtResource("9_8yx0y"), ExtResource("10_c6fnd"), ExtResource("11_c3otm"), ExtResource("12_c1jae"), ExtResource("13_444kv"), ExtResource("14_tawo2")])
@@ -43,8 +39,8 @@ show_name = true
 display_name = "S5"
 display_short_name = "S5"
 item_type = 0
-icon = SubResource("Resource_h60v4")
-icon_r = SubResource("Resource_s0i5t")
+icon = ExtResource("4_3ewar")
+icon_r = ExtResource("5_2iyc8")
 model_internal_inventory = SubResource("Resource_umu4s")
 detail_scene = ExtResource("3_np3eu")
 context_menu_items = Array[ExtResource("2_xupde")]([ExtResource("1_ny6ox"), SubResource("Resource_6llv8")])
