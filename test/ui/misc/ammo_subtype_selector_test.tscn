@@ -1,14 +1,15 @@
 [gd_scene load_steps=7 format=3 uid="uid://bd01yrr2g7w1f"]
 
-[ext_resource type="Script" path="res://test/ui/misc/ammo_subtype_selector_test.gd" id="1_y4bp8"]
+[ext_resource type="Script" uid="uid://cigffjgoqwoxh" path="res://test/ui/misc/ammo_subtype_selector_test.gd" id="1_y4bp8"]
 [ext_resource type="PackedScene" uid="uid://ccbup45n42jp6" path="res://ui/misc/ammo_subtype_selector.tscn" id="2_oy6od"]
 [ext_resource type="PackedScene" uid="uid://dr48wela8mtxd" path="res://game_objects/items/weapons/hic_rifles/pm_52/pm_52.tscn" id="3_6gp13"]
 [ext_resource type="Resource" uid="uid://3nqgvhg4lre8" path="res://components/ammo_component/ammo_types/heavy_intermediate_cartridge/heavy_intermediate_cartridge.tres" id="4_ooq2a"]
-[ext_resource type="Script" path="res://game_objects/items/weapons/gun_stats.gd" id="5_iaubw"]
+[ext_resource type="Script" uid="uid://b2newdlaaj70t" path="res://game_objects/items/weapons/gun_stats.gd" id="5_iaubw"]
 
 [sub_resource type="Resource" id="Resource_m46b0"]
 resource_local_to_scene = true
 script = ExtResource("5_iaubw")
+weapon_category_name = ""
 magazine_size = 30
 rpm = 600
 base_recoil = Vector2(0, 0.025)

@@ -1,10 +1,10 @@
 [gd_scene load_steps=15 format=3 uid="uid://kb0x3n21n6t4"]
 
-[ext_resource type="Script" path="res://test/ballistics/armor_testing.gd" id="1_m8hqe"]
+[ext_resource type="Script" uid="uid://i80ffvnh0akh" path="res://test/ballistics/armor_testing.gd" id="1_m8hqe"]
 [ext_resource type="PackedScene" uid="uid://dr48wela8mtxd" path="res://game_objects/items/weapons/hic_rifles/pm_52/pm_52.tscn" id="2_15fr4"]
-[ext_resource type="Script" path="res://levels/entities/geo_ballistic_solid.gd" id="3_iwkb0"]
+[ext_resource type="Script" uid="uid://fdkjo7y6gaw4" path="res://levels/entities/geo_ballistic_solid.gd" id="3_iwkb0"]
 [ext_resource type="Resource" uid="uid://3nqgvhg4lre8" path="res://components/ammo_component/ammo_types/heavy_intermediate_cartridge/heavy_intermediate_cartridge.tres" id="3_j3142"]
-[ext_resource type="Script" path="res://game_objects/items/weapons/gun_stats.gd" id="4_qxu4k"]
+[ext_resource type="Script" uid="uid://b2newdlaaj70t" path="res://game_objects/items/weapons/gun_stats.gd" id="4_qxu4k"]
 [ext_resource type="Resource" uid="uid://ddqopa64822e6" path="res://components/ammo_component/ammo_types/heavy_intermediate_cartridge/ammo_subtypes/hollow_point.tres" id="5_pkij8"]
 [ext_resource type="PackedScene" uid="uid://d08aatgxmymbf" path="res://game_objects/player/player.tscn" id="6_qsaew"]
 [ext_resource type="PackedScene" uid="uid://c2mgc1vc3603e" path="res://game_objects/items/armor/light/light_armor_1.tscn" id="7_ka0kv"]

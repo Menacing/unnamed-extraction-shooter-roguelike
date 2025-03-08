@@ -1,12 +1,10 @@
-[gd_scene load_steps=14 format=3 uid="uid://bhxqiwhh1cd6u"]
+[gd_scene load_steps=8 format=3 uid="uid://bhxqiwhh1cd6u"]
 
 [ext_resource type="PackedScene" uid="uid://d08aatgxmymbf" path="res://game_objects/player/player.tscn" id="1_aa7yj"]
-[ext_resource type="Script" path="res://test/weapon_view_tester.gd" id="1_xvdq1"]
-[ext_resource type="Script" path="res://resource_access/equipment_slot_type.gd" id="2_m7abe"]
-[ext_resource type="Script" path="res://resource_access/Inventory.gd" id="3_hhtjf"]
+[ext_resource type="Script" uid="uid://dkfkwco1kdlu5" path="res://test/weapon_view_tester.gd" id="1_xvdq1"]
 [ext_resource type="PackedScene" uid="uid://cprpop5lkmyhe" path="res://game_objects/items/weapons/fic_rifles/s5/s5.tscn" id="4_lppmx"]
 [ext_resource type="Resource" uid="uid://bikewy7dlkv20" path="res://components/ammo_component/ammo_types/fast_intermediate_cartridge/fast_intermediate_cartridge.tres" id="5_ky5d0"]
-[ext_resource type="Script" path="res://game_objects/items/weapons/gun_stats.gd" id="6_nrnc7"]
+[ext_resource type="Script" uid="uid://b2newdlaaj70t" path="res://game_objects/items/weapons/gun_stats.gd" id="6_nrnc7"]
 
 [sub_resource type="Resource" id="Resource_6fq1q"]
 resource_local_to_scene = true
@@ -25,32 +23,8 @@ ammo_type = ExtResource("5_ky5d0")
 reload_time_Sec = 2.5
 reload_thresholds = Array[float]([1.0])
 
-[sub_resource type="Resource" id="Resource_c2lqt"]
-script = ExtResource("2_m7abe")
-name = "BackpackSlot"
-allowed_types = Array[int]([1])
-
-[sub_resource type="Resource" id="Resource_5xhft"]
-script = ExtResource("2_m7abe")
-name = "ArmorSlot"
-allowed_types = Array[int]([3])
-
-[sub_resource type="Resource" id="Resource_3yuyw"]
-script = ExtResource("2_m7abe")
-name = "GunSlot1"
-allowed_types = Array[int]([0])
-
-[sub_resource type="Resource" id="Resource_k0qab"]
-script = ExtResource("2_m7abe")
-name = "GunSlot2"
-allowed_types = Array[int]([0])
-
 [sub_resource type="Resource" id="Resource_abjvd"]
 resource_local_to_scene = true
-script = ExtResource("3_hhtjf")
-initial_height = 2
-initial_width = 7
-equipment_slots = Array[ExtResource("2_m7abe")]([SubResource("Resource_c2lqt"), SubResource("Resource_5xhft"), SubResource("Resource_3yuyw"), SubResource("Resource_k0qab")])
 
 [node name="WeaponViewTester" type="Node3D"]
 script = ExtResource("1_xvdq1")

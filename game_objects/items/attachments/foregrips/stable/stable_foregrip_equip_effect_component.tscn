@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://drq1dhr0sgjk3"]
 
 [ext_resource type="PackedScene" uid="uid://cqtr38uah7rpa" path="res://components/equip_effect_component/equip_effect_component.tscn" id="1_8itf0"]
-[ext_resource type="Script" path="res://game_logic/gameplay_effect.gd" id="2_7g8nv"]
+[ext_resource type="Script" uid="uid://m2a8v6i2nq7b" path="res://game_logic/gameplay_effect.gd" id="2_7g8nv"]
 [ext_resource type="Resource" uid="uid://cr34s4lnuxje1" path="res://game_objects/items/attachments/foregrips/stable/stable_foregrip_effect.tres" id="3_4hr33"]
 
 [node name="StableForegripEquipEffectComponent" instance=ExtResource("1_8itf0")]

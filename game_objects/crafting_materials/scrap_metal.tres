@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="CraftingMaterialDefinition" load_steps=3 format=3 uid="uid://c5prst133rftn"]
 
-[ext_resource type="Script" path="res://game_objects/crafting_materials/crafting_material_definition.gd" id="1_27afs"]
+[ext_resource type="Script" uid="uid://74x3yntbybwr" path="res://game_objects/crafting_materials/crafting_material_definition.gd" id="1_27afs"]
 [ext_resource type="Texture2D" uid="uid://gmk08i5ntqy0" path="res://ui/icons/scrap_metal_icon.png" id="1_hti40"]
 
 [resource]
@@ -8,4 +8,3 @@ script = ExtResource("1_27afs")
 name = "Scrap Metal"
 rarity = null
 icon = ExtResource("1_hti40")
-item_size_mappings = null

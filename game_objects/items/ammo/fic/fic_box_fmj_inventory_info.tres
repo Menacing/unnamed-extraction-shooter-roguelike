@@ -3,10 +3,10 @@
 [ext_resource type="Resource" uid="uid://cv0v8s66c5nn4" path="res://components/ammo_component/ammo_types/fast_intermediate_cartridge/ammo_subtypes/full_metal_jacket.tres" id="1_tw7vv"]
 [ext_resource type="Resource" uid="uid://bikewy7dlkv20" path="res://components/ammo_component/ammo_types/fast_intermediate_cartridge/fast_intermediate_cartridge.tres" id="2_j0w4h"]
 [ext_resource type="Resource" uid="uid://o6tesi76nbth" path="res://ui/inventory/drop_item_context_item.tres" id="3_1su5s"]
-[ext_resource type="Script" path="res://ui/inventory/item_context_item.gd" id="3_v88eq"]
+[ext_resource type="Script" uid="uid://dw75el3q24f1f" path="res://ui/inventory/item_context_item.gd" id="3_v88eq"]
 [ext_resource type="PackedScene" uid="uid://djpvx3f8rfem0" path="res://ui/inventory/detail_scenes/ammo_detail_popup.tscn" id="3_whkxf"]
 [ext_resource type="Texture2D" uid="uid://uyrp0qvveaa2" path="res://game_objects/items/ammo/fic/fic_fmj_icon.png" id="4_0p4bb"]
-[ext_resource type="Script" path="res://game_objects/items/ammo/ammo_information.gd" id="7_pgfag"]
+[ext_resource type="Script" uid="uid://cn8b6jp0q2kyq" path="res://game_objects/items/ammo/ammo_information.gd" id="7_pgfag"]
 
 [resource]
 script = ExtResource("7_pgfag")

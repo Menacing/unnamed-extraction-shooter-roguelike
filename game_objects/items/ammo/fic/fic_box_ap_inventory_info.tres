@@ -2,11 +2,11 @@
 
 [ext_resource type="Resource" uid="uid://vcs5he7yn7nc" path="res://components/ammo_component/ammo_types/fast_intermediate_cartridge/ammo_subtypes/armor_piercing.tres" id="1_1k3lu"]
 [ext_resource type="Resource" uid="uid://bikewy7dlkv20" path="res://components/ammo_component/ammo_types/fast_intermediate_cartridge/fast_intermediate_cartridge.tres" id="2_dag6o"]
-[ext_resource type="Script" path="res://ui/inventory/item_context_item.gd" id="3_dcvlf"]
+[ext_resource type="Script" uid="uid://dw75el3q24f1f" path="res://ui/inventory/item_context_item.gd" id="3_dcvlf"]
 [ext_resource type="Resource" uid="uid://o6tesi76nbth" path="res://ui/inventory/drop_item_context_item.tres" id="3_iihjj"]
 [ext_resource type="PackedScene" uid="uid://djpvx3f8rfem0" path="res://ui/inventory/detail_scenes/ammo_detail_popup.tscn" id="3_kwl5u"]
 [ext_resource type="Texture2D" uid="uid://c2k74utr1xyqi" path="res://game_objects/items/ammo/fic/fic_ap_icon.png" id="4_8of05"]
-[ext_resource type="Script" path="res://game_objects/items/ammo/ammo_information.gd" id="7_lj6ei"]
+[ext_resource type="Script" uid="uid://cn8b6jp0q2kyq" path="res://game_objects/items/ammo/ammo_information.gd" id="7_lj6ei"]
 
 [resource]
 script = ExtResource("7_lj6ei")
@@ -32,3 +32,4 @@ flavor_text = ""
 min_pickup_stacks = 1
 mean_pickup_stacks = 10
 stack_random_method = 1
+slot_data_type = 0

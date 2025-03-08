@@ -1,8 +1,8 @@
 [gd_scene load_steps=11 format=3 uid="uid://dy2gpu0mq6khj"]
 
-[ext_resource type="Script" path="res://test/ai/patrol_testbed_many.gd" id="1_o8yi7"]
-[ext_resource type="Script" path="res://levels/multi_agent_navigation_root.gd" id="1_y0qet"]
-[ext_resource type="Script" path="res://levels/navigation_mesh_list_item.gd" id="2_e0kts"]
+[ext_resource type="Script" uid="uid://bgipl8rrfxlg3" path="res://test/ai/patrol_testbed_many.gd" id="1_o8yi7"]
+[ext_resource type="Script" uid="uid://dld574lvn7eun" path="res://levels/multi_agent_navigation_root.gd" id="1_y0qet"]
+[ext_resource type="Script" uid="uid://c3ffaehlq01k0" path="res://levels/navigation_mesh_list_item.gd" id="2_e0kts"]
 [ext_resource type="Resource" uid="uid://hw8blc564g2i" path="res://levels/roomba_nav_mesh.tres" id="2_t60xv"]
 [ext_resource type="Resource" uid="uid://bkm06qpqovt7f" path="res://levels/humanoid_nav_mesh.tres" id="4_hfiim"]
 [ext_resource type="PackedScene" uid="uid://bv1jhh0d8fn5m" path="res://game_objects/enemies/unendliche/unendliche.tscn" id="5_lm6gu"]

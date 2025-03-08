@@ -2,8 +2,10 @@
 
 [ext_resource type="Texture2D" uid="uid://bu4f73k5ekaws" path="res://ui/misc/flip.png" id="1"]
 [ext_resource type="Texture2D" uid="uid://dxakxp15f3if5" path="res://ui/misc/volume.png" id="2"]
-[ext_resource type="Script" path="res://ui/misc/ExampleScene.gd" id="3"]
-[ext_resource type="Script" path="res://addons/radial_menu/RadialMenu.gd" id="4"]
+[ext_resource type="Script" uid="uid://dncncgwsorfbo" path="res://ui/misc/ExampleScene.gd" id="3"]
+
+[sub_resource type="Resource" id="Resource_o40pa"]
+metadata/__load_path__ = "res://addons/radial_menu/RadialMenu.gd"
 
 [node name="ExampleScene" type="MarginContainer"]
 anchors_preset = 15
@@ -15,7 +17,7 @@ script = ExtResource("3")
 
 [node name="RadialMenu" type="Container" parent="."]
 layout_mode = 2
-script = ExtResource("4")
+script = SubResource("Resource_o40pa")
 snap = true
 bevel_width = 0.167
 modulate_enabled = true

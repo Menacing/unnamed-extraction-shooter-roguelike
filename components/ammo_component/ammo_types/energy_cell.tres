@@ -1,6 +1,7 @@
-[gd_resource type="Resource" script_class="AmmoType" load_steps=5 format=3 uid="uid://jyantd4a0xdh"]
+[gd_resource type="Resource" script_class="AmmoType" load_steps=6 format=3 uid="uid://jyantd4a0xdh"]
 
-[ext_resource type="Script" path="res://components/ammo_component/ammo_type.gd" id="1_g8b0s"]
+[ext_resource type="Script" uid="uid://bcuw0dew57lua" path="res://components/ammo_component/ammo_type.gd" id="1_g8b0s"]
+[ext_resource type="Script" uid="uid://dfspvq6b61b74" path="res://components/ammo_component/ammo_subtype.gd" id="2_5k1c3"]
 [ext_resource type="Resource" uid="uid://cct85d3u48yuj" path="res://components/ammo_component/ammo_types/heavy_intermediate_cartridge/ammo_subtypes/full_metal_jacket.tres" id="2_q4ueb"]
 [ext_resource type="Resource" uid="uid://e74bf0ee7eck" path="res://components/ammo_component/ammo_types/heavy_intermediate_cartridge/ammo_subtypes/armor_piercing.tres" id="3_fhc3e"]
 [ext_resource type="Resource" uid="uid://ddqopa64822e6" path="res://components/ammo_component/ammo_types/heavy_intermediate_cartridge/ammo_subtypes/hollow_point.tres" id="4_5862i"]
@@ -9,4 +10,4 @@
 script = ExtResource("1_g8b0s")
 name = "Energy Cell"
 abbreviation = "EC"
-sub_types = Array[Resource("res://components/ammo_component/ammo_subtype.gd")]([ExtResource("2_q4ueb"), ExtResource("3_fhc3e"), ExtResource("4_5862i")])
+sub_types = Array[ExtResource("2_5k1c3")]([ExtResource("2_q4ueb"), ExtResource("3_fhc3e"), ExtResource("4_5862i")])

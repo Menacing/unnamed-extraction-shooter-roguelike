@@ -1,10 +1,10 @@
 [gd_scene load_steps=31 format=4 uid="uid://bose3ay7o32xw"]
 
-[ext_resource type="Script" path="res://levels/ballistic_testing.gd" id="1_gbeur"]
+[ext_resource type="Script" uid="uid://bdl8758w3m2di" path="res://levels/ballistic_testing.gd" id="1_gbeur"]
 [ext_resource type="PackedScene" uid="uid://dr48wela8mtxd" path="res://game_objects/items/weapons/hic_rifles/pm_52/pm_52.tscn" id="2_cebdm"]
 [ext_resource type="Resource" uid="uid://3nqgvhg4lre8" path="res://components/ammo_component/ammo_types/heavy_intermediate_cartridge/heavy_intermediate_cartridge.tres" id="3_8bfkd"]
-[ext_resource type="Script" path="res://game_objects/items/weapons/gun_stats.gd" id="4_opxar"]
-[ext_resource type="Script" path="res://levels/entities/geo_ballistic_solid.gd" id="10_0hi85"]
+[ext_resource type="Script" uid="uid://b2newdlaaj70t" path="res://game_objects/items/weapons/gun_stats.gd" id="4_opxar"]
+[ext_resource type="Script" uid="uid://fdkjo7y6gaw4" path="res://levels/entities/geo_ballistic_solid.gd" id="10_0hi85"]
 [ext_resource type="Texture2D" uid="uid://5owi221pdrdn" path="res://levels/textures/asphalt/asphalt_1.png" id="10_eoss8"]
 [ext_resource type="PackedScene" uid="uid://bo5i75565y5co" path="res://game_objects/effects/hit_effects/bullet_hit_sparks.tscn" id="10_jywj6"]
 [ext_resource type="Texture2D" uid="uid://7qsivu8jpske" path="res://levels/textures/wood/wood_1.png" id="11_4xtol"]

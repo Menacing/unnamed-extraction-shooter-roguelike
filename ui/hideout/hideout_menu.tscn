@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://5cgjmdxllnhl"]
 
 [ext_resource type="PackedScene" uid="uid://jixiqnpe13py" path="res://ui/hideout/stash_inventory.tscn" id="1_csmx2"]
-[ext_resource type="Script" path="res://ui/hideout/hideout_menu.gd" id="1_gn5or"]
+[ext_resource type="Script" uid="uid://dammjov7agowf" path="res://ui/hideout/hideout_menu.gd" id="1_gn5or"]
 [ext_resource type="PackedScene" uid="uid://b6qibk2bpsyd7" path="res://ui/hideout/map_selection_menu.tscn" id="4_ev05a"]
 
 [node name="HideoutMenu" type="TabContainer" node_paths=PackedStringArray("tab_bar", "stash_inventory_control", "map_select_control")]

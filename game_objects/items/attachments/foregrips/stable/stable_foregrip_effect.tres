@@ -1,9 +1,9 @@
 [gd_resource type="Resource" script_class="GameplayEffect" load_steps=12 format=3 uid="uid://cr34s4lnuxje1"]
 
-[ext_resource type="Script" path="res://game_logic/gameplay_effect.gd" id="1_8cunr"]
-[ext_resource type="Script" path="res://game_logic/gameplay_effect_list_item.gd" id="1_nbb8p"]
-[ext_resource type="Script" path="res://game_logic/gameplay_effect_list.gd" id="2_33a3n"]
-[ext_resource type="Script" path="res://game_logic/stat_modifier.gd" id="2_vveq8"]
+[ext_resource type="Script" uid="uid://m2a8v6i2nq7b" path="res://game_logic/gameplay_effect.gd" id="1_8cunr"]
+[ext_resource type="Script" uid="uid://deuwpnxy7ns72" path="res://game_logic/gameplay_effect_list_item.gd" id="1_nbb8p"]
+[ext_resource type="Script" uid="uid://c0m4xp06mq6ev" path="res://game_logic/gameplay_effect_list.gd" id="2_33a3n"]
+[ext_resource type="Script" uid="uid://c6y0q2j5ry1kg" path="res://game_logic/stat_modifier.gd" id="2_vveq8"]
 
 [sub_resource type="Resource" id="Resource_5b6xs"]
 script = ExtResource("2_vveq8")

@@ -1,6 +1,6 @@
 [gd_scene load_steps=15 format=3 uid="uid://cnvoiecyb3sjn"]
 
-[ext_resource type="Script" path="res://game_objects/items/weapons/gun.gd" id="1_xiike"]
+[ext_resource type="Script" uid="uid://b1hgbiqq2ptq5" path="res://game_objects/items/weapons/gun.gd" id="1_xiike"]
 [ext_resource type="Resource" uid="uid://618jppuo3a3t" path="res://game_objects/items/weapons/lpc_pistols/lpc_pistol_gun_stats.tres" id="2_2gn87"]
 [ext_resource type="PackedScene" uid="uid://kph7hbjx4hxi" path="res://game_objects/items/weapons/lpc_pistols/klingeln_80/klingeln_80.blend" id="2_226gq"]
 [ext_resource type="PackedScene" uid="uid://gfj0vsvmo4ik" path="res://game_objects/bullet/iterative_raycast_bullet.tscn" id="2_mx004"]
@@ -30,7 +30,7 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_rga3e"]
 _data = {
-"fire": SubResource("Animation_hu2i7")
+&"fire": SubResource("Animation_hu2i7")
 }
 
 [sub_resource type="Animation" id="Animation_yps8t"]
@@ -159,8 +159,8 @@ tracks/5/use_blend = true
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_f650v"]
 _data = {
-"RESET": SubResource("Animation_yps8t"),
-"reload": SubResource("Animation_llqna")
+&"RESET": SubResource("Animation_yps8t"),
+&"reload": SubResource("Animation_llqna")
 }
 
 [node name="Klingeln80" type="RigidBody3D" node_paths=PackedStringArray("muzzle", "muzzle_flash_animation_player", "fire_timer", "reload_timer", "reload_animation_player", "gun_model_node", "mag_node", "model_node")]

@@ -1,10 +1,10 @@
 [gd_scene load_steps=8 format=3 uid="uid://dpvoqq6pjm1ya"]
 
-[ext_resource type="Script" path="res://game_objects/items/materials/bio_gel_vial/bio_gel_vial.gd" id="1_ar5l1"]
+[ext_resource type="Script" uid="uid://dk7d7yts1gl7b" path="res://game_objects/items/materials/bio_gel_vial/bio_gel_vial.gd" id="1_ar5l1"]
 [ext_resource type="PackedScene" uid="uid://b8llqsyirogqh" path="res://game_objects/items/materials/bio_gel_vial/bio_gel_vial.blend" id="2_ipmcg"]
 [ext_resource type="Material" uid="uid://tt2r07ij8bf5" path="res://game_objects/items/materials/bio_gel_vial/bio_gel_vial.tres" id="2_xv0qv"]
 [ext_resource type="Resource" uid="uid://c8v7lgcr1goac" path="res://game_objects/items/materials/bio_gel_vial/bio_gel_vial_inventory_info.tres" id="3_qwlwy"]
-[ext_resource type="Script" path="res://resource_access/slot_data.gd" id="4_eioyh"]
+[ext_resource type="Script" uid="uid://dslj1n7wsgisn" path="res://resource_access/slot_data.gd" id="4_eioyh"]
 
 [sub_resource type="Resource" id="Resource_iup3y"]
 script = ExtResource("4_eioyh")

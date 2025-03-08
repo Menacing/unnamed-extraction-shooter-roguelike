@@ -1,10 +1,10 @@
 [gd_resource type="Resource" script_class="AmmoType" load_steps=7 format=3 uid="uid://3nqgvhg4lre8"]
 
 [ext_resource type="Texture2D" uid="uid://b0orxljgy6bbj" path="res://ui/icons/White/icon_12.png" id="1_bh557"]
-[ext_resource type="Script" path="res://components/ammo_component/ammo_type.gd" id="1_xbqql"]
+[ext_resource type="Script" uid="uid://bcuw0dew57lua" path="res://components/ammo_component/ammo_type.gd" id="1_xbqql"]
 [ext_resource type="Resource" uid="uid://cct85d3u48yuj" path="res://components/ammo_component/ammo_types/heavy_intermediate_cartridge/ammo_subtypes/full_metal_jacket.tres" id="2_056if"]
 [ext_resource type="Resource" uid="uid://e74bf0ee7eck" path="res://components/ammo_component/ammo_types/heavy_intermediate_cartridge/ammo_subtypes/armor_piercing.tres" id="3_0w2mg"]
-[ext_resource type="Script" path="res://components/ammo_component/ammo_subtype.gd" id="3_wo2ar"]
+[ext_resource type="Script" uid="uid://dfspvq6b61b74" path="res://components/ammo_component/ammo_subtype.gd" id="3_wo2ar"]
 [ext_resource type="Resource" uid="uid://ddqopa64822e6" path="res://components/ammo_component/ammo_types/heavy_intermediate_cartridge/ammo_subtypes/hollow_point.tres" id="4_4pviq"]
 
 [resource]
