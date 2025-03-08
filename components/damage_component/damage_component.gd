@@ -14,7 +14,13 @@ class_name DamageComponent
 signal hit_occured(attack_result:AttackResult)
 
 func hit(attack_component:AttackComponent) -> AttackResult:
+	
 	if attack_component:
+		var effective_damage_multiplier:float = damage_multiplier
+		#Melee hits limbs hard
+		if attack_component.damage_type == AttackComponent.DamageType.MELEE:
+			effective_damage_multiplier = 1.0
+			
 		var damage_to_apply = attack_component.damage
 		# delgate hit to armor first
 		if armor_damage_component:
@@ -23,7 +29,7 @@ func hit(attack_component:AttackComponent) -> AttackResult:
 		
 		#if penetrates armor, do damage and return penetration ratio
 		if  attack_component.armor_penetration_rating >= armor_rating and damage_to_apply > 0.0:
-			var damage = damage_to_apply * damage_multiplier
+			var damage = damage_to_apply * effective_damage_multiplier
 			var attack_result = AttackResult.new(percent_penetrated)
 			attack_result._map_from_attack_component(attack_component)
 			attack_result.damage = damage
@@ -33,7 +39,7 @@ func hit(attack_component:AttackComponent) -> AttackResult:
 		else:
 			var attack_result = AttackResult.new(0.0)
 			attack_result._map_from_attack_component(attack_component)
-			attack_result.damage = damage_to_apply * damage_multiplier * damage_transmission_percent
+			attack_result.damage = damage_to_apply * effective_damage_multiplier * damage_transmission_percent
 			hit_occured.emit(attack_result)
 			return attack_result
 	else:
@@ -49,4 +55,3 @@ func _on_armor_equipped(armor:BodyArmor):
 func _on_armor_unequipped(armor:BodyArmor):
 	if armor.armored_locations.has(location_type):
 		armor_damage_component = null
-

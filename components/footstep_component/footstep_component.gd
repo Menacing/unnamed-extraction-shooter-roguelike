@@ -41,4 +41,3 @@ func _on_foostep_timer_timeout():
 					timer.start(new_delay)
 		
 	
-

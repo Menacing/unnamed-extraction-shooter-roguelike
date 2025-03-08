@@ -3,16 +3,14 @@
 [ext_resource type="Resource" uid="uid://o6tesi76nbth" path="res://ui/inventory/drop_item_context_item.tres" id="1_vu7st"]
 [ext_resource type="Script" path="res://ui/inventory/item_context_item.gd" id="2_a4mq1"]
 [ext_resource type="PackedScene" uid="uid://0hy4cl1x7qwx" path="res://ui/inventory/detail_scenes/gun_detail_popup.tscn" id="3_x6ufe"]
-[ext_resource type="Texture2D" uid="uid://ccuey3obfnokx" path="res://game_objects/items/weapons/hic_rifles/pm_52/pm_52_icon.png" id="4_mcmqe"]
-[ext_resource type="AudioStream" uid="uid://61nbakc75l5g" path="res://game_objects/items/weapons/hic_rifles/hic_mag_in.ogg" id="4_p63nd"]
-[ext_resource type="Texture2D" uid="uid://cel42xcp5y2hs" path="res://game_objects/items/weapons/hic_rifles/pm_52/pm_52_icon_r.png" id="5_ranmj"]
+[ext_resource type="Texture2D" uid="uid://ccuey3obfnokx" path="res://game_objects/items/weapons/hic_rifles/pm_52/pm_52_icon.png" id="4_wgp4x"]
+[ext_resource type="Texture2D" uid="uid://cel42xcp5y2hs" path="res://game_objects/items/weapons/hic_rifles/pm_52/pm_52_icon_r.png" id="5_mus3r"]
 [ext_resource type="Script" path="res://resource_access/equipment_slot_data.gd" id="7_dctn7"]
 [ext_resource type="Script" path="res://resource_access/inventory_data.gd" id="8_rsuee"]
 [ext_resource type="Resource" uid="uid://d2e8vacodeiau" path="res://game_objects/items/weapons/foregrips_equipment_slot.tres" id="8_ryncj"]
 [ext_resource type="Script" path="res://resource_access/item_information.gd" id="9_41cf6"]
 [ext_resource type="Resource" uid="uid://cqxsusjebsqrp" path="res://game_objects/items/weapons/grips_equipment_slot.tres" id="9_ioruh"]
 [ext_resource type="Resource" uid="uid://bemliobbiifl2" path="res://game_objects/items/weapons/lasers_equipment_slot.tres" id="10_a3rv8"]
-[ext_resource type="AudioStream" uid="uid://c71dtcsweexj4" path="res://game_objects/items/weapons/hic_rifles/hic_charging_handle.ogg" id="10_caix6"]
 [ext_resource type="Resource" uid="uid://3m7iiyunllog" path="res://game_objects/items/weapons/mags_equipment_slot.tres" id="11_7f8nm"]
 [ext_resource type="Resource" uid="uid://qfkhmq1ohqqh" path="res://game_objects/items/weapons/muzzles_equipment_slot.tres" id="12_d8b88"]
 [ext_resource type="Resource" uid="uid://bstwuttx0c0do" path="res://game_objects/items/weapons/optics_equipment_slot.tres" id="13_8uqaj"]
@@ -23,10 +21,16 @@ script = ExtResource("2_a4mq1")
 label = "Item Detail"
 signal_name = "context_menus_open_item_detail"
 
+[sub_resource type="Resource" id="Resource_cppfa"]
+metadata/__load_path__ = "res://game_objects/items/weapons/hic_rifles/hic_mag_in.ogg"
+
 [sub_resource type="Resource" id="Resource_rkj1h"]
 script = ExtResource("8_rsuee")
 equipment_slots = Array[ExtResource("7_dctn7")]([ExtResource("8_ryncj"), ExtResource("9_ioruh"), ExtResource("10_a3rv8"), ExtResource("11_7f8nm"), ExtResource("12_d8b88"), ExtResource("13_8uqaj"), ExtResource("14_04gj5")])
 slot_datas = Array[Array]([])
+
+[sub_resource type="Resource" id="Resource_p4ejx"]
+metadata/__load_path__ = "res://game_objects/items/weapons/hic_rifles/hic_charging_handle.ogg"
 
 [resource]
 script = ExtResource("9_41cf6")
@@ -35,8 +39,8 @@ show_name = true
 display_name = "PM-52"
 display_short_name = "PM-52"
 item_type = 0
-icon = ExtResource("4_mcmqe")
-icon_r = ExtResource("5_ranmj")
+icon = ExtResource("4_wgp4x")
+icon_r = ExtResource("5_mus3r")
 model_internal_inventory = SubResource("Resource_rkj1h")
 detail_scene = ExtResource("3_x6ufe")
 context_menu_items = Array[ExtResource("2_a4mq1")]([ExtResource("1_vu7st"), SubResource("Resource_6llv8")])
@@ -51,6 +55,6 @@ flavor_text = "The PM-52 is not a device of aggression. I devised this weapon fo
 min_pickup_stacks = 1
 mean_pickup_stacks = 1
 stack_random_method = 0
-pickup_sound = ExtResource("10_caix6")
-drop_sound = ExtResource("4_p63nd")
+pickup_sound = SubResource("Resource_p4ejx")
+drop_sound = SubResource("Resource_cppfa")
 slot_data_type = 1

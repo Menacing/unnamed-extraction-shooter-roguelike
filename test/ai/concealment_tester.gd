@@ -1,7 +1,7 @@
 extends Node3D
 
 @onready var player:Player = $Player
-@onready var mesh:MeshInstance3D = $MeshInstance3D
+@export var mesh:MeshInstance3D
 @onready var exclusions:Array[RID] = []
 var alert_color:StandardMaterial3D
 var passive_color:StandardMaterial3D
@@ -12,6 +12,7 @@ func _ready():
 	alert_color.albedo_color = Color(1,0,0,1)
 	passive_color = StandardMaterial3D.new()
 	passive_color.albedo_color = Color(1,1,1,1)
+	EventBus.level_loaded.emit()
 	LevelManager.emit_populate_level.call_deferred()
 	var player_collider_rids = Helpers.get_all_collision_object_3d_recursive(player)
 	for rid in player_collider_rids:

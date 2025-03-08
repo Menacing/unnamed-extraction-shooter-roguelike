@@ -5,12 +5,12 @@ extends BTAction
 
 # Display a customized name (requires @tool).
 func _generate_name():
-	return "Fire Weapon Task"
+	return "Attack Task"
 
 # Called each time this task is ticked (aka executed).
 func _tick(delta) -> Status:
 	if agent is Enemy:
-		agent.fire_weapon()
+		agent.attack()
 		return SUCCESS
 		
 	return FAILURE

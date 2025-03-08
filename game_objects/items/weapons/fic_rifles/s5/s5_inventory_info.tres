@@ -3,14 +3,12 @@
 [ext_resource type="Resource" uid="uid://o6tesi76nbth" path="res://ui/inventory/drop_item_context_item.tres" id="1_ny6ox"]
 [ext_resource type="Script" path="res://ui/inventory/item_context_item.gd" id="2_xupde"]
 [ext_resource type="PackedScene" uid="uid://0hy4cl1x7qwx" path="res://ui/inventory/detail_scenes/gun_detail_popup.tscn" id="3_np3eu"]
-[ext_resource type="AudioStream" uid="uid://bc1wim1c1t021" path="res://game_objects/items/weapons/fic_rifles/fic_mag_out.ogg" id="4_gim5i"]
-[ext_resource type="Texture2D" uid="uid://d14qjudcylhe0" path="res://game_objects/items/weapons/fic_rifles/s5/s5_icon.png" id="4_vyqt0"]
-[ext_resource type="Texture2D" uid="uid://dvhwavsgo6hxq" path="res://game_objects/items/weapons/fic_rifles/s5/s5_icon_r.png" id="5_slab2"]
+[ext_resource type="Texture2D" uid="uid://bgck4qdhs6rg0" path="res://game_objects/items/weapons/fic_rifles/s5/s_5_icon.png" id="4_yrk7e"]
+[ext_resource type="Texture2D" uid="uid://blvc5hwa6s4yx" path="res://game_objects/items/weapons/fic_rifles/s5/s_5_icon_r.png" id="5_5bke2"]
 [ext_resource type="Script" path="res://resource_access/equipment_slot_data.gd" id="7_rpyh2"]
 [ext_resource type="Resource" uid="uid://d2e8vacodeiau" path="res://game_objects/items/weapons/foregrips_equipment_slot.tres" id="8_2d61f"]
 [ext_resource type="Resource" uid="uid://cqxsusjebsqrp" path="res://game_objects/items/weapons/grips_equipment_slot.tres" id="9_8yx0y"]
 [ext_resource type="Script" path="res://resource_access/item_information.gd" id="9_ghylw"]
-[ext_resource type="AudioStream" uid="uid://c2wxubwa7ilv" path="res://game_objects/items/weapons/fic_rifles/fic_charging_handle.ogg" id="10_2qnvk"]
 [ext_resource type="Resource" uid="uid://bemliobbiifl2" path="res://game_objects/items/weapons/lasers_equipment_slot.tres" id="10_c6fnd"]
 [ext_resource type="Resource" uid="uid://3m7iiyunllog" path="res://game_objects/items/weapons/mags_equipment_slot.tres" id="11_c3otm"]
 [ext_resource type="Resource" uid="uid://qfkhmq1ohqqh" path="res://game_objects/items/weapons/muzzles_equipment_slot.tres" id="12_c1jae"]
@@ -23,10 +21,16 @@ script = ExtResource("2_xupde")
 label = "Item Detail"
 signal_name = "context_menus_open_item_detail"
 
+[sub_resource type="Resource" id="Resource_kxnxy"]
+metadata/__load_path__ = "res://game_objects/items/weapons/fic_rifles/fic_mag_out.ogg"
+
 [sub_resource type="Resource" id="Resource_umu4s"]
 script = ExtResource("15_sn08k")
 equipment_slots = Array[ExtResource("7_rpyh2")]([ExtResource("8_2d61f"), ExtResource("9_8yx0y"), ExtResource("10_c6fnd"), ExtResource("11_c3otm"), ExtResource("12_c1jae"), ExtResource("13_444kv"), ExtResource("14_tawo2")])
 slot_datas = Array[Array]([])
+
+[sub_resource type="Resource" id="Resource_p8bem"]
+metadata/__load_path__ = "res://game_objects/items/weapons/fic_rifles/fic_charging_handle.ogg"
 
 [resource]
 script = ExtResource("9_ghylw")
@@ -35,8 +39,8 @@ show_name = true
 display_name = "S5"
 display_short_name = "S5"
 item_type = 0
-icon = ExtResource("4_vyqt0")
-icon_r = ExtResource("5_slab2")
+icon = ExtResource("4_yrk7e")
+icon_r = ExtResource("5_5bke2")
 model_internal_inventory = SubResource("Resource_umu4s")
 detail_scene = ExtResource("3_np3eu")
 context_menu_items = Array[ExtResource("2_xupde")]([ExtResource("1_ny6ox"), SubResource("Resource_6llv8")])
@@ -51,6 +55,6 @@ flavor_text = "The truth is any good modern rifle is good enough. The determinin
 min_pickup_stacks = 1
 mean_pickup_stacks = 1
 stack_random_method = 0
-pickup_sound = ExtResource("10_2qnvk")
-drop_sound = ExtResource("4_gim5i")
+pickup_sound = SubResource("Resource_p8bem")
+drop_sound = SubResource("Resource_kxnxy")
 slot_data_type = 1

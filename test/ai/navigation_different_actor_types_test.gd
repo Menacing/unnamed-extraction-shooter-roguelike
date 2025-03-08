@@ -80,5 +80,3 @@ func get_paths(rid:RID):
 
 	if path_standard_agent.size() > 0 or path_small_agent.size() > 0 or path_huge_agent.size() > 0:
 		pass
-
-
