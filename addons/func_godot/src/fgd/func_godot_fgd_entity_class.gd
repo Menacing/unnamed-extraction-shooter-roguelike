@@ -25,6 +25,9 @@ var prefix: String = ""
 ## Descriptions for previously defined key value pair properties.
 @export var class_property_descriptions : Dictionary = {}
 
+## Automatically applies entity class properties to matching properties in the generated node. When using this feature, class properties need to be the correct type or you may run into errors on map build.
+@export var auto_apply_to_matching_node_properties : bool = false
+
 ## Appearance properties for the map editor. See the [**Valve FGD**](https://developer.valvesoftware.com/wiki/FGD#Entity_Description) and [**TrenchBroom**](https://trenchbroom.github.io/manual/latest/#display-models-for-entities) documentation for more information.
 @export var meta_properties : Dictionary = {
 	"size": AABB(Vector3(-8, -8, -8), Vector3(8, 8, 8)),
@@ -41,37 +44,37 @@ var prefix: String = ""
 ## Nodes will be named `"entity_" + name_property`. An entity's name should be unique, otherwise you may run into unexpected behavior.
 @export var name_property := ""
 
-func build_def_text(model_key_supported: bool = true) -> String:
+func build_def_text(target_editor: FuncGodotFGDFile.FuncGodotTargetMapEditors = FuncGodotFGDFile.FuncGodotTargetMapEditors.TRENCHBROOM) -> String:
 	# Class prefix
 	var res : String = prefix
-
+	
 	# Meta properties
 	var base_str = ""
 	var meta_props = meta_properties.duplicate()
-
+	
 	for base_class in base_classes:
 		if not 'classname' in base_class:
 			continue
-
+			
 		base_str += base_class.classname
-
+		
 		if base_class != base_classes.back():
 			base_str += ", "
-
+			
 	if base_str != "":
 		meta_props['base'] = base_str
-
+		
 	for prop in meta_props:
 		if prefix == '@SolidClass':
 			if prop == "size" or prop == "model":
 				continue
 		
-		if prop == 'model' and not model_key_supported:
+		if prop == 'model' and target_editor != FuncGodotFGDFile.FuncGodotTargetMapEditors.TRENCHBROOM:
 			continue
 		
 		var value = meta_props[prop]
 		res += " " + prop + "("
-
+		
 		if value is AABB:
 			res += "%s %s %s, %s %s %s" % [
 				value.position.x,
@@ -89,13 +92,13 @@ func build_def_text(model_key_supported: bool = true) -> String:
 			]
 		elif value is String:
 			res += value
-
+		
 		res += ")"
-
+	
 	res += " = " + classname
 	
 	if prefix != "@BaseClass": # having a description in BaseClasses crashes some editors
-		var normalized_description = description.replace("\n", " ").strip_edges() if prefix != "@BaseClass" else ""
+		var normalized_description = description.replace("\"", "\'")
 		if normalized_description != "":
 			res += " : \"%s\" " % [normalized_description]
 		else: # Having no description crashes some editors
@@ -159,6 +162,9 @@ func build_def_text(model_key_supported: bool = true) -> String:
 				prop_val = FuncGodotUtil.newline() + "\t[" + FuncGodotUtil.newline()
 				for choice in value:
 					var choice_val = value[choice]
+					if typeof(choice_val) == TYPE_STRING:
+						if not (choice_val as String).begins_with("\""):
+							choice_val = "\"" + choice_val + "\""
 					prop_val += "\t\t" + str(choice_val) + " : \"" + choice + "\"" + FuncGodotUtil.newline()
 				prop_val += "\t]"
 			TYPE_ARRAY:
@@ -169,29 +175,43 @@ func build_def_text(model_key_supported: bool = true) -> String:
 				prop_val += "\t]"
 			TYPE_NODE_PATH:
 				prop_type = "target_destination"
+				prop_val = "\"\""
 			TYPE_OBJECT:
-				prop_type = "target_source"
-
+				if value is Resource:
+					prop_val = value.resource_path
+					if value is Material:
+						if target_editor != FuncGodotFGDFile.FuncGodotTargetMapEditors.JACK:
+							prop_type = "material"
+						else:
+							prop_type = "shader"
+					elif value is Texture2D:
+						prop_type = "decal"
+					elif value is AudioStream:
+						prop_type = "sound"
+				else:
+					prop_type = "target_source"
+					prop_val = "\"\""
+		
 		if prop_val:
 			res += "\t"
 			res += prop
 			res += "("
 			res += prop_type
 			res += ")"
-
+			
 			if not value is Array:
 				if not value is Dictionary or prop_description != "":
 					res += " : "
 					res += prop_description
-
+			
 			if value is bool or value is Dictionary or value is Array:
 				res += " = "
 			else:
 				res += " : "
-
+			
 			res += prop_val
 			res += FuncGodotUtil.newline()
-
+	
 	res += "]" + FuncGodotUtil.newline()
-
+	
 	return res

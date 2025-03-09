@@ -1,13 +1,14 @@
 [gd_resource type="Resource" load_steps=2 format=3 uid="uid://dcx7lu1k4oqpi"]
 
-[ext_resource type="Script" path="res://game_settings/templates/bool_setting.gd" id="1_m1oiy"]
+[ext_resource type="Script" uid="uid://dv1q63vjnbxt6" path="res://game_settings/templates/bool_setting.gd" id="1_m1oiy"]
 
 [resource]
+resource_name = "toggle_crouch"
 script = ExtResource("1_m1oiy")
 current = false
 default = false
-name = ""
-category = ""
+name = "toggle_crouch"
+category = "controls"
 value_type = 1
 value_hint = 0
 value_hint_string = ""

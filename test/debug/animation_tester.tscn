@@ -1,14 +1,16 @@
 [gd_scene load_steps=10 format=3 uid="uid://cucj5boko1qpn"]
 
-[ext_resource type="Script" path="res://test/debug/animation_tester.gd" id="1_q42px"]
+[ext_resource type="Script" uid="uid://brnyrd8o74d3i" path="res://test/debug/animation_tester.gd" id="1_q42px"]
 [ext_resource type="PackedScene" uid="uid://d08aatgxmymbf" path="res://game_objects/player/player.tscn" id="2_8jxdu"]
 [ext_resource type="PackedScene" uid="uid://dr48wela8mtxd" path="res://game_objects/items/weapons/hic_rifles/pm_52/pm_52.tscn" id="3_jl4nq"]
-[ext_resource type="PackedScene" uid="uid://ddsqkhwkuipda" path="res://ui/inventory/player_inventory.tscn" id="3_w3nvw"]
 [ext_resource type="Resource" uid="uid://3nqgvhg4lre8" path="res://components/ammo_component/ammo_types/heavy_intermediate_cartridge/heavy_intermediate_cartridge.tres" id="7_acq5m"]
-[ext_resource type="Script" path="res://game_objects/items/weapons/gun_stats.gd" id="8_tkvb8"]
+[ext_resource type="Script" uid="uid://b2newdlaaj70t" path="res://game_objects/items/weapons/gun_stats.gd" id="8_tkvb8"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8i0q8"]
 albedo_color = Color(0.370508, 0.612208, 0, 1)
+
+[sub_resource type="Resource" id="Resource_7le57"]
+metadata/__load_path__ = "res://ui/inventory/player_inventory.tscn"
 
 [sub_resource type="Resource" id="Resource_rlsbf"]
 resource_local_to_scene = true
@@ -64,7 +66,7 @@ size = 4.5446
 
 [node name="PlayerHUD" type="CanvasLayer" parent="Camera3D"]
 
-[node name="PlayerInventory" parent="Camera3D/PlayerHUD" instance=ExtResource("3_w3nvw")]
+[node name="PlayerInventory" parent="Camera3D/PlayerHUD"]
 visible = false
 
 [node name="Timer" type="Timer" parent="."]

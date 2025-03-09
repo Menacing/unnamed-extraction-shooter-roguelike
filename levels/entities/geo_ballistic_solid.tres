@@ -1,8 +1,8 @@
 [gd_resource type="Resource" script_class="FuncGodotFGDSolidClass" load_steps=4 format=3 uid="uid://cdudy0xeveg5e"]
 
 [ext_resource type="Resource" uid="uid://dbc8wa7c1nbgx" path="res://levels/entities/base_entities/func_geo.tres" id="1_g4ky3"]
-[ext_resource type="Script" path="res://addons/func_godot/src/fgd/func_godot_fgd_solid_class.gd" id="1_ukana"]
-[ext_resource type="Script" path="res://levels/entities/geo_ballistic_solid.gd" id="2_2vssw"]
+[ext_resource type="Script" uid="uid://bs255vgd2x5ou" path="res://addons/func_godot/src/fgd/func_godot_fgd_solid_class.gd" id="1_ukana"]
+[ext_resource type="Script" uid="uid://fdkjo7y6gaw4" path="res://levels/entities/geo_ballistic_solid.gd" id="2_2vssw"]
 
 [resource]
 script = ExtResource("1_ukana")

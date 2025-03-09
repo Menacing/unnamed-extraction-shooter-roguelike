@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="AmmoSubtype" load_steps=3 format=3 uid="uid://vcs5he7yn7nc"]
 
 [ext_resource type="PackedScene" uid="uid://gfj0vsvmo4ik" path="res://game_objects/bullet/iterative_raycast_bullet.tscn" id="1_e1tkv"]
-[ext_resource type="Script" path="res://components/ammo_component/ammo_subtype.gd" id="2_qt6m2"]
+[ext_resource type="Script" uid="uid://dfspvq6b61b74" path="res://components/ammo_component/ammo_subtype.gd" id="2_qt6m2"]
 
 [resource]
 script = ExtResource("2_qt6m2")

@@ -1,6 +1,6 @@
 [gd_scene load_steps=17 format=3 uid="uid://3ma183br8axn"]
 
-[ext_resource type="Script" path="res://game_objects/effects/hit_effects/bullet_hit.gd" id="1_3vjnk"]
+[ext_resource type="Script" uid="uid://d2cfuihrr0v0r" path="res://game_objects/effects/hit_effects/bullet_hit.gd" id="1_3vjnk"]
 [ext_resource type="Texture2D" uid="uid://dgfwxp74xudg8" path="res://game_objects/bullet/Assets/hole-normal.png" id="2_iu3ds"]
 [ext_resource type="Texture2D" uid="uid://hx36albsqyt" path="res://game_objects/bullet/Assets/hole-difuse.png" id="2_q7t5w"]
 [ext_resource type="Gradient" uid="uid://0lbj3mx7svta" path="res://game_objects/effects/hit_effects/bullet_hit_stone.tres" id="3_70vgn"]
@@ -41,7 +41,7 @@ size = Vector2(0.2, 0.2)
 gradient = ExtResource("3_70vgn")
 
 [sub_resource type="Curve" id="Curve_t6le4"]
-max_value = 15.0
+_limits = [0.0, 15.0, 0.0, 1.0]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 12.6818), 0.0, 0.0, 0, 0]
 point_count = 2
 

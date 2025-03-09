@@ -1,11 +1,11 @@
 [gd_resource type="Resource" script_class="MaterialInformation" load_steps=7 format=3 uid="uid://bflcwsdhsv8um"]
 
-[ext_resource type="Script" path="res://ui/inventory/item_context_item.gd" id="1_wvmb4"]
+[ext_resource type="Script" uid="uid://dw75el3q24f1f" path="res://ui/inventory/item_context_item.gd" id="1_wvmb4"]
 [ext_resource type="Resource" uid="uid://o6tesi76nbth" path="res://ui/inventory/drop_item_context_item.tres" id="2_agqar"]
 [ext_resource type="Resource" uid="uid://c5prst133rftn" path="res://game_objects/crafting_materials/scrap_metal.tres" id="3_p8edo"]
 [ext_resource type="PackedScene" uid="uid://son7demex4pt" path="res://ui/inventory/detail_scenes/simple_detail_popup.tscn" id="4_sfgdo"]
 [ext_resource type="Texture2D" uid="uid://dtkyf01t40wth" path="res://game_objects/items/materials/scrap_metal/scrap_metal_small_icon.png" id="5_q2q1f"]
-[ext_resource type="Script" path="res://game_objects/items/materials/material_information.gd" id="8_inhn3"]
+[ext_resource type="Script" uid="uid://k138ce4es0kh" path="res://game_objects/items/materials/material_information.gd" id="8_inhn3"]
 
 [resource]
 script = ExtResource("8_inhn3")

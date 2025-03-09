@@ -12,6 +12,7 @@ var move_target:Node3D
 @export var acceleration:float = .25
 @export var attack_range:float
 @export var head_node:Node3D
+@export var head_lookatmodifier_node:LookAtModifier3D
 @export var gun_node:Gun
 @export var vert_moa:float = 600
 @export var hor_moa:float = 600
@@ -193,13 +194,29 @@ func set_new_path():
 	if move_target and nav_agent:
 		var move_target_global_position := move_target.global_position
 		nav_agent.set_target_position(move_target_global_position)
+		
+func set_lookatmodifier_target(target_node:Node3D) -> void:
+	if head_lookatmodifier_node:
+		if target_node:
+			head_lookatmodifier_node.target_node = target_node.get_path()
+		else:
+			if attack_target:
+				head_lookatmodifier_node.target_node = attack_target.get_path()
+			elif target_player:
+				head_lookatmodifier_node.target_node = target_player.get_path()
 	
+func clear_lookatmodifier_target() -> void:
+	head_lookatmodifier_node.target_node = NodePath()
+
 func slow_weapon_turn():
 	if attack_target:
 		var delta = get_physics_process_delta_time()
-
-		if head_node:
-			Helpers.slow_rotate_to_point(head_node, attack_target.global_transform.origin, weapon_rotation_speed, delta)
+		
+		#if head_lookatmodifier_node and head_lookatmodifier_node.target_node.is_empty():
+			#head_lookatmodifier_node.target_node = attack_target.get_path()
+		#else:
+			#Helpers.slow_rotate_to_point(head_node, attack_target.global_transform.origin, weapon_rotation_speed, delta)
+		
 		if gun_node:
 			Helpers.slow_rotate_to_point(gun_node, attack_target.global_transform.origin, weapon_rotation_speed, delta)
 

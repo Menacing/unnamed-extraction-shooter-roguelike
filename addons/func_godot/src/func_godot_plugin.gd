@@ -46,6 +46,16 @@ func _enter_tree() -> void:
 	add_control_to_container(EditorPlugin.CONTAINER_INSPECTOR_BOTTOM, func_godot_map_progress_bar)
 	
 	add_custom_type("FuncGodotMap", "Node3D", preload("res://addons/func_godot/src/map/func_godot_map.gd"), null)
+	
+	ProjectSettings.set("func_godot/default_map_settings", "res://addons/func_godot/func_godot_default_map_settings.tres")
+	var property_info = {
+		"name": "func_godot/default_map_settings",
+		"type": TYPE_STRING,
+		"hint": PROPERTY_HINT_FILE,
+		"hint_string": "*.tres"
+	}
+	ProjectSettings.add_property_info(property_info)
+	ProjectSettings.set_initial_value("func_godot/default_map_settings", "res://addons/func_godot/func_godot_default_map_settings.tres")
 
 func _exit_tree() -> void:
 	remove_custom_type("FuncGodotMap")
@@ -64,7 +74,7 @@ func _exit_tree() -> void:
 		func_godot_map_control = null
 
 	if func_godot_map_progress_bar:
-		remove_control_from_container(EditorPlugin.CONTAINER_SPATIAL_EDITOR_BOTTOM, func_godot_map_progress_bar)
+		remove_control_from_container(EditorPlugin.CONTAINER_INSPECTOR_BOTTOM, func_godot_map_progress_bar)
 		func_godot_map_progress_bar.queue_free()
 		func_godot_map_progress_bar = null
 
@@ -139,7 +149,8 @@ func func_godot_map_unwrap_uv2() -> void:
 		return
 
 	set_func_godot_map_control_disabled(true)
-	edited_object.connect("unwrap_uv2_complete", func_godot_map_build_complete.bind(edited_object))
+	if not edited_object.is_connected("unwrap_uv2_complete", func_godot_map_build_complete):
+		edited_object.connect("unwrap_uv2_complete", func_godot_map_build_complete.bind(edited_object))
 
 	edited_object.unwrap_uv2()
 

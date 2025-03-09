@@ -1,8 +1,7 @@
-[gd_scene load_steps=12 format=3 uid="uid://by4mxbof8gk0n"]
+[gd_scene load_steps=8 format=3 uid="uid://by4mxbof8gk0n"]
 
-[ext_resource type="Script" path="res://scenes/bullet/bullet_proj_ray.gd" id="1_mnti4"]
-[ext_resource type="Shader" path="res://scenes/bullet/tracer_particle.gdshader" id="2_dqing"]
-[ext_resource type="Shader" path="res://scenes/bullet/tracer.gdshader" id="2_vygfs"]
+[sub_resource type="Resource" id="Resource_nl47a"]
+metadata/__load_path__ = "res://scenes/bullet/bullet_proj_ray.gd"
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_a2qmd"]
 radius = 0.001
@@ -16,24 +15,8 @@ radius = 0.08
 height = 0.16
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_vncfw"]
-shader = ExtResource("2_dqing")
-shader_parameter/height = 0.01
-
-[sub_resource type="Gradient" id="Gradient_4f1o1"]
-interpolation_mode = 2
-colors = PackedColorArray(0.11, 3, 0.13, 1, 0.109804, 3, 0.129412, 0)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_l75du"]
-gradient = SubResource("Gradient_4f1o1")
-use_hdr = true
-fill = 1
-fill_from = Vector2(0.5, 0.5)
-fill_to = Vector2(1, 1)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_bh3am"]
-render_priority = 0
-shader = ExtResource("2_vygfs")
-shader_parameter/tex = SubResource("GradientTexture2D_l75du")
 
 [sub_resource type="QuadMesh" id="QuadMesh_7dl45"]
 material = SubResource("ShaderMaterial_bh3am")
@@ -41,7 +24,7 @@ material = SubResource("ShaderMaterial_bh3am")
 [node name="Bullet-Proj" type="CharacterBody3D"]
 collision_layer = 2147483648
 collision_mask = 2
-script = ExtResource("1_mnti4")
+script = SubResource("Resource_nl47a")
 initial_speed = 1000.0
 pen_rating = 10
 

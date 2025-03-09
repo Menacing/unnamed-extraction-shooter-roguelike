@@ -11,9 +11,13 @@ enum SpawnType {
 }
 
 enum OriginType {
-	IGNORE = 0, ## Ignore origin property and only use averaged brush vertices for positioning. Standard Quake 1 / Half-Life behavior.
-	ABSOLUTE = 1, ## Use origin property for position center, ignoring brush vertice positions.
-	RELATIVE = 2 ## Use origin relative to averaged brush vertice positions. Use this setting if brush entity vertices have coordinates local to the origin.
+	AVERAGED = 0, ## Use averaged brush vertices for center position. This is the old Qodot behavior.
+	ABSOLUTE = 1, ## Use `origin` class property in global coordinates as the center position.
+	RELATIVE = 2, ## Calculate center position using `origin` class property as an offset to the entity's bounding box center.
+	BRUSH = 3, ## Calculate center position based on the bounding box center of all brushes using the 'origin' texture specified in the [FuncGodotMapSettings].
+	BOUNDS_CENTER = 4, ## Use the center of the entity's bounding box for center position. This is the default option and recommended for most entities.
+	BOUNDS_MINS = 5, ## Use the lowest bounding box coordinates for center position. This is standard Quake and Half-Life brush entity behavior.
+	BOUNDS_MAXS = 6, ## Use the highest bounding box coordinates for center position.
 }
 
 enum CollisionShapeType {
@@ -24,8 +28,8 @@ enum CollisionShapeType {
 
 ## Controls whether this Solid Class is the worldspawn, is combined with the worldspawn, or is spawned as its own free-standing entity.
 @export var spawn_type: SpawnType = SpawnType.ENTITY
-## Controls how this Solid Class utilizes the `origin` key value pair to find its position.
-@export var origin_type: OriginType = OriginType.IGNORE
+## Controls how this Solid Class determines its center position. Only valid if [member spawn_type] is set to ENTITY.
+@export var origin_type: OriginType = OriginType.BOUNDS_CENTER
 
 @export_group("Visual Build")
 ## Controls whether a [MeshInstance3D] is built for this Solid Class.
@@ -50,6 +54,31 @@ enum CollisionShapeType {
 @export var collision_priority: float = 1.0
 ## The collision margin for the Solid Class' collision shapes. Not used in Godot Physics. See [Shape3D] for details.
 @export var collision_shape_margin: float = 0.04
+
+## The following properties tell FuncGodot to add a [i]"func_godot_mesh_data"[/i] Dictionary to the metadata of the generated node upon build. 
+## This data is parallelized, so that each element of the array is ordered to reference the same face in the mesh.
+@export_group("Mesh Metadata")
+## Add a texture lookup table to the generated node's metadata on build.[br][br] 
+## The data is split between an [Array] of [StringName] called [i]"texture_names"[/i] containing all currently used texture materials 
+## and a [PackedInt32Array] called [i]"textures"[/i] where each element is an index corresponding to the [i]"texture_names"[/i] entries.
+@export var add_textures_metadata: bool = false
+## Add a [PackedVector3Array] called [i]"vertices"[/i] to the generated node's metadata on build.[br][br] 
+## This is a list of every vertex in the generated node's [MeshInstance3D]. Every 3 vertices represent a single face.
+@export var add_vertex_metadata: bool = false
+## Add a [PackedVector3Array] called [i]"positions"[/i] to the generated node's metadata on build.[br][br] 
+## This is a list of positions for each face, local to the generated node, calculated by averaging the vertices to find the face's center.
+@export var add_face_position_metadata = false
+## Add a [PackedVector3Array] called [i]"normals"[/i] to the generated node's metadata on build.[br][br] 
+## Contains a list of each face's normal.
+@export var add_face_normal_metadata = false
+## Add a [Dictionary] called [i]"collision_shape_to_face_range_map"[/i] in the generated node's metadata on build.[br][br] 
+## Contains keys of strings, which are the names of child [CollisionShape3D] nodes, and values of
+## [Vector2i], where [i]X[/i] represents the starting index of that child's faces and [i]Y[/i] represents the
+## ending index.[br][br]
+## For example, an element of [br][br][code]{ "entity_1_brush_0_collision_shape" : Vector2i(0, 15) }[/code][br][br]
+## shows that this solid class has been generated with one child collision shape named 
+## [i]entity_1_brush_0_collision_shape[/i] which handles the first 15 faces of the parts of the mesh with collision.
+@export var add_collision_shape_face_range_metadata = false
 
 @export_group("Scripting")
 ## An optional script file to attach to the node generated on map build.

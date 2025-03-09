@@ -71,9 +71,9 @@ func _find_chart(parent:Node) -> StateChart:
 
 ## Runs a transition either immediately or delayed depending on the 
 ## transition settings.
-func _run_transition(transition:Transition):
+func _run_transition(transition:Transition, immediately:bool = false):
 	var initial_delay := transition.evaluate_delay()
-	if initial_delay > 0:
+	if not immediately and initial_delay > 0:
 		_queue_transition(transition, initial_delay)
 	else:
 		_chart._run_transition(transition, self)
@@ -94,12 +94,11 @@ func _state_init():
 			_transitions.append(child)
 	
 	
-## Called when the state is entered. The parameter indicates whether the state
-## is expected to immediately handle a transition after it has been entered.
-## In this case the state should not automatically activate a default child state.
-## This is to avoid a situation where a state is entered, activates a child then immediately
-## exits and activates another child due to a transition.
-func _state_enter(_expect_transition:bool = false):
+## Called when the state is entered. The parameter gives the target of the transition
+## that caused the entering of the state. This can be used determine whether an 
+## initial child state should be activated. If the state entering was not caused by a transition
+## this can be null.
+func _state_enter(_transition_target:StateChartState):
 	# print("state_enter: " + name)
 	_state_active = true
 	
@@ -110,12 +109,9 @@ func _state_enter(_expect_transition:bool = false):
 	
 	# emit the signal
 	state_entered.emit()
-	# run all automatic transitions
-	for transition in _transitions:
-		if not transition.has_event and transition.evaluate_guard():
-			# first match wins
-			_run_transition(transition)
-			break
+
+	# process transitions that are triggered by entering the state
+	_process_transitions(StateChart.TriggerType.STATE_ENTER)
 
 ## Called when the state is exited.
 func _state_exit():
@@ -187,7 +183,7 @@ func _state_restore(saved_state:SavedState, child_levels:int = -1) -> void:
 
 	# otherwise if we are currently inactive, activate the state
 	if not active:
-		_state_enter()
+		_state_enter(null)
 	# and restore any pending transition
 	_pending_transition = get_node_or_null(our_saved_state.pending_transition_name) as Transition
 	_pending_transition_remaining_delay = our_saved_state.pending_transition_remaining_delay
@@ -255,31 +251,32 @@ func _input(event:InputEvent):
 func _unhandled_input(event:InputEvent):
 	state_unhandled_input.emit(event)
 
-## Processes all transitions. If the property_change parameter is true
-## then only transitions which have no event are processed (eventless transitions/automatic transitions)
-func _process_transitions(event:StringName, property_change:bool = false) -> bool:
+## Processes all transitions in this state.
+func _process_transitions(trigger_type:StateChart.TriggerType, event:StringName = "") -> bool:
 	if not active:
 		return false
 
-	# emit an event received signal if this is not a property change
-	if not property_change:
+	# emit an event received signal if this is an event trigger
+	if trigger_type == StateChart.TriggerType.EVENT:
 		event_received.emit(event)
 
 	# Walk over all transitions
 	for transition in _transitions:
-		# the currently pending transition is not replaced by itself
-		if transition != _pending_transition \
-			# automatic transitions are always evaluated
-			# non-automatic only if this evaluation was not triggered
-			# by property change AND their event matches their current event
-			and (not transition.has_event or (not property_change and transition.event == event)) \
+		# Check if the transition is triggered by the given trigger type
+		if transition.is_triggered_by(trigger_type) \
+			# if the event is given it needs to match the event of the transition
+			and (event == "" or transition.event == event) \
 			# and in every case the guard needs to match
 			and transition.evaluate_guard():
 				# print(name +  ": consuming event " + event)
 				# first match wins
-				_run_transition(transition)
+				# if the winning transition is the currently pending transition, we do not replace it
+				if transition != _pending_transition:
+					_run_transition(transition)
+			
+				# but in any case we return true, because we consumed the event
 				return true
-
+				
 	return false
 
 ## Queues the transition to be triggered after the delay.

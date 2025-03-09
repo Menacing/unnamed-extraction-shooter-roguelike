@@ -1,9 +1,9 @@
 [gd_scene load_steps=14 format=3 uid="uid://gfj0vsvmo4ik"]
 
-[ext_resource type="Script" path="res://game_objects/bullet/iterative_raycast_bullet.gd" id="1_ite5r"]
-[ext_resource type="Shader" path="res://game_objects/bullet/tracer_particle.gdshader" id="2_a36ed"]
-[ext_resource type="Shader" path="res://game_objects/bullet/tracer.gdshader" id="3_5crjh"]
-[ext_resource type="Script" path="res://components/attack_component/attack_component.gd" id="4_guqwi"]
+[ext_resource type="Script" uid="uid://n6el1l473wjx" path="res://game_objects/bullet/iterative_raycast_bullet.gd" id="1_ite5r"]
+[ext_resource type="Shader" uid="uid://c8wrj01pu6c0v" path="res://game_objects/bullet/tracer_particle.gdshader" id="2_a36ed"]
+[ext_resource type="Shader" uid="uid://cb1gv0auexxfl" path="res://game_objects/bullet/tracer.gdshader" id="3_5crjh"]
+[ext_resource type="Script" uid="uid://dik8rk16lw8ip" path="res://components/attack_component/attack_component.gd" id="4_guqwi"]
 [ext_resource type="Texture2D" uid="uid://dx228u747xfcn" path="res://game_objects/effects/assets/Rotated/trace_01_rotated.png" id="5_5mawb"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_sr6c2"]

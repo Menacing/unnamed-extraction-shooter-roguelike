@@ -1,11 +1,12 @@
-[gd_resource type="Resource" script_class="ItemInformation" load_steps=10 format=3 uid="uid://25dmf2cpvdfq"]
+[gd_resource type="Resource" script_class="ItemInformation" load_steps=9 format=3 uid="uid://25dmf2cpvdfq"]
 
+[ext_resource type="Script" uid="uid://dw75el3q24f1f" path="res://ui/inventory/item_context_item.gd" id="1_nwd0a"]
 [ext_resource type="Resource" uid="uid://o6tesi76nbth" path="res://ui/inventory/drop_item_context_item.tres" id="1_rjnpu"]
 [ext_resource type="PackedScene" uid="uid://bmahofcvvfi8w" path="res://ui/inventory/detail_scenes/armor_detail_popup.tscn" id="2_bnww1"]
 [ext_resource type="Texture2D" uid="uid://ccisgbyye5uhd" path="res://game_objects/items/armor/light/light_armor_1_icon.png" id="2_l1s25"]
 [ext_resource type="Texture2D" uid="uid://dsfo3u3lcw42t" path="res://game_objects/items/armor/light/light_armor_1_icon_r.png" id="3_33vnq"]
 [ext_resource type="AudioStream" uid="uid://bjwa3xk32xn0v" path="res://game_objects/effects/sounds/foley/cloth_2.ogg" id="3_o55mf"]
-[ext_resource type="Script" path="res://resource_access/item_information.gd" id="4_b3cb6"]
+[ext_resource type="Script" uid="uid://hxr8853lym5l" path="res://resource_access/item_information.gd" id="4_b3cb6"]
 [ext_resource type="AudioStream" uid="uid://0apk0nwm1ffp" path="res://game_objects/effects/sounds/foley/cloth_1.ogg" id="8_17dim"]
 
 [resource]
@@ -18,7 +19,7 @@ item_type = 3
 icon = ExtResource("2_l1s25")
 icon_r = ExtResource("3_33vnq")
 detail_scene = ExtResource("2_bnww1")
-context_menu_items = Array[Resource("res://ui/inventory/item_context_item.gd")]([ExtResource("1_rjnpu")])
+context_menu_items = Array[ExtResource("1_nwd0a")]([ExtResource("1_rjnpu")])
 max_stacks = 1
 has_stacks = false
 max_durability = 100
@@ -32,3 +33,4 @@ mean_pickup_stacks = 1
 stack_random_method = 0
 pickup_sound = ExtResource("8_17dim")
 drop_sound = ExtResource("3_o55mf")
+slot_data_type = 0

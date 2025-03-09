@@ -1,9 +1,9 @@
 [gd_resource type="Resource" script_class="ItemInformation" load_steps=8 format=3 uid="uid://ik6f3hhg63nv"]
 
-[ext_resource type="Script" path="res://ui/inventory/item_context_item.gd" id="1_umf2r"]
+[ext_resource type="Script" uid="uid://dw75el3q24f1f" path="res://ui/inventory/item_context_item.gd" id="1_umf2r"]
 [ext_resource type="Resource" uid="uid://o6tesi76nbth" path="res://ui/inventory/drop_item_context_item.tres" id="2_2n3fr"]
 [ext_resource type="PackedScene" uid="uid://son7demex4pt" path="res://ui/inventory/detail_scenes/simple_detail_popup.tscn" id="4_v1g1g"]
-[ext_resource type="Script" path="res://resource_access/item_information.gd" id="5_0snh8"]
+[ext_resource type="Script" uid="uid://hxr8853lym5l" path="res://resource_access/item_information.gd" id="5_0snh8"]
 
 [sub_resource type="Resource" id="Resource_w7f3g"]
 script = ExtResource("1_umf2r")

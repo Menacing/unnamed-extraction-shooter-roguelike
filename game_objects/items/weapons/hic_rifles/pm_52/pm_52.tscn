@@ -1,6 +1,6 @@
 [gd_scene load_steps=17 format=3 uid="uid://dr48wela8mtxd"]
 
-[ext_resource type="Script" path="res://game_objects/items/weapons/gun.gd" id="1_4e183"]
+[ext_resource type="Script" uid="uid://b1hgbiqq2ptq5" path="res://game_objects/items/weapons/gun.gd" id="1_4e183"]
 [ext_resource type="PackedScene" uid="uid://gfj0vsvmo4ik" path="res://game_objects/bullet/iterative_raycast_bullet.tscn" id="2_405qr"]
 [ext_resource type="Resource" uid="uid://dls8psqyu06aw" path="res://game_objects/items/weapons/hic_rifles/hic_rifle_gun_stats.tres" id="2_aa0bx"]
 [ext_resource type="AudioStream" uid="uid://cvetwcylway6p" path="res://game_objects/items/weapons/hic_rifles/hic_mag_out.ogg" id="6_1us7e"]
@@ -33,7 +33,7 @@ tracks/0/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_clf16"]
 resource_local_to_scene = true
 _data = {
-"fire": SubResource("Animation_048m7")
+&"fire": SubResource("Animation_048m7")
 }
 
 [sub_resource type="Animation" id="Animation_yr6ub"]
@@ -162,8 +162,8 @@ tracks/5/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_tmnss"]
 _data = {
-"RESET": SubResource("Animation_yr6ub"),
-"reload": SubResource("Animation_i2jpl")
+&"RESET": SubResource("Animation_yr6ub"),
+&"reload": SubResource("Animation_i2jpl")
 }
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_804ov"]

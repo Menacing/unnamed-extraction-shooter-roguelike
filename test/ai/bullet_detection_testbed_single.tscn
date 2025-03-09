@@ -1,11 +1,10 @@
-[gd_scene load_steps=15 format=3 uid="uid://bls0w3vhti14a"]
+[gd_scene load_steps=14 format=3 uid="uid://bls0w3vhti14a"]
 
 [ext_resource type="PackedScene" uid="uid://ciaqbr34myu5w" path="res://game_objects/enemies/robots/combat_roomba.tscn" id="1_qceko"]
-[ext_resource type="Script" path="res://resource_access/Inventory.gd" id="2_cff0t"]
 [ext_resource type="PackedScene" uid="uid://d08aatgxmymbf" path="res://game_objects/player/player.tscn" id="2_vu4tf"]
 [ext_resource type="PackedScene" uid="uid://cprpop5lkmyhe" path="res://game_objects/items/weapons/fic_rifles/s5/s5.tscn" id="3_ufci3"]
 [ext_resource type="Resource" uid="uid://bikewy7dlkv20" path="res://components/ammo_component/ammo_types/fast_intermediate_cartridge/fast_intermediate_cartridge.tres" id="4_m22y8"]
-[ext_resource type="Script" path="res://game_objects/items/weapons/gun_stats.gd" id="5_1i4pj"]
+[ext_resource type="Script" uid="uid://b2newdlaaj70t" path="res://game_objects/items/weapons/gun_stats.gd" id="5_1i4pj"]
 
 [sub_resource type="Environment" id="Environment_rfiwl"]
 ambient_light_color = Color(1, 1, 1, 1)
@@ -23,10 +22,6 @@ size = Vector3(5, 5, 5)
 
 [sub_resource type="Resource" id="Resource_1qy4a"]
 resource_local_to_scene = true
-script = ExtResource("2_cff0t")
-initial_height = 7
-initial_width = 7
-equipment_slots = Array[Resource("res://resource_access/equipment_slot_type.gd")]([])
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_ntmfo"]
 height = 10.0
@@ -39,6 +34,7 @@ radius = 3.0
 [sub_resource type="Resource" id="Resource_hco6y"]
 resource_local_to_scene = true
 script = ExtResource("5_1i4pj")
+weapon_category_name = ""
 magazine_size = 30
 rpm = 800
 base_recoil = Vector2(0, 0.017)

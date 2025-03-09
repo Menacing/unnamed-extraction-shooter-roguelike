@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://cnfhk8lyswyee"]
 
 [ext_resource type="Material" uid="uid://c0ipdgk1m22gh" path="res://ui/misc/ui_static_mat.tres" id="1_2jylv"]
-[ext_resource type="Script" path="res://ui/misc/fire_mode.gd" id="2_mmbhy"]
+[ext_resource type="Script" uid="uid://bbir1mqm3ihwd" path="res://ui/misc/fire_mode.gd" id="2_mmbhy"]
 
 [node name="FireMode" type="Label"]
 material = ExtResource("1_2jylv")

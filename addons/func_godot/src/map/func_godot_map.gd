@@ -2,11 +2,8 @@
 @icon("res://addons/func_godot/icons/icon_slipgate3d.svg")
 ## A scene generator node that parses a Quake map file using a [FuncGodotFGDFile]. Uses a [FuncGodotMapSettings] resource to define map build settings.
 ## To use this node, select an instance of the node in the Godot editor and select "Quick Build", "Full Build", or "Unwrap UV2" from the toolbar. Alternatively, call [method manual_build] from code.
-extends Node3D
-class_name FuncGodotMap 
+class_name FuncGodotMap extends Node3D
 
-## Force reinitialization of Qodot on map build
-const DEBUG := false
 ## How long to wait between child/owner batches
 const YIELD_DURATION := 0.0
 
@@ -32,7 +29,7 @@ signal unwrap_uv2_complete()
 var _map_file_internal: String = ""
 
 ## Map settings resource that defines map build scale, textures location, and more.
-@export var map_settings: FuncGodotMapSettings = load("res://addons/func_godot/func_godot_default_map_settings.tres")
+@export var map_settings: FuncGodotMapSettings = load(ProjectSettings.get_setting("func_godot/default_map_settings", "res://addons/func_godot/func_godot_default_map_settings.tres"))
 
 @export_category("Build")
 ## If true, print profiling data before and after each build step.
@@ -44,15 +41,11 @@ var _map_file_internal: String = ""
 
 # Build context variables
 var func_godot: FuncGodot = null
-
 var profile_timestamps: Dictionary = {}
-
 var add_child_array: Array = []
 var set_owner_array: Array = []
-
 var should_add_children: bool = true
 var should_set_owners: bool = true
-
 var texture_list: Array = []
 var texture_loader = null
 var texture_dict: Dictionary = {}
@@ -65,15 +58,6 @@ var entity_nodes: Array = []
 var entity_mesh_instances: Dictionary = {}
 var entity_occluder_instances: Dictionary = {}
 var entity_collision_shapes: Array = []
-
-# Overrides
-func _ready() -> void:
-	if not DEBUG:
-		return
-	
-	if not Engine.is_editor_hint():
-		if verify_parameters():
-			build_map()
 
 # Utility
 ## Verify that FuncGodot is functioning and that [member map_file] exists. If so, build the map. If not, signal [signal build_failed]
@@ -91,13 +75,6 @@ func manual_build() -> void:
 
 ## Return true if parameters are valid; FuncGodot should be functioning and [member map_file] should exist.
 func verify_parameters() -> bool:
-	if not func_godot or DEBUG:
-		func_godot = load("res://addons/func_godot/src/core/func_godot.gd").new()
-	
-	if not func_godot:
-		push_error("Error: Failed to load func_godot.")
-		return false
-	
 	# Prioritize global map file path for building at runtime
 	_map_file_internal = global_map_file if global_map_file != "" else local_map_file
 
@@ -106,7 +83,21 @@ func verify_parameters() -> bool:
 		return false
 	
 	if not FileAccess.file_exists(_map_file_internal):
-		push_error("Error: No such file %s" % _map_file_internal)
+		if FileAccess.file_exists(_map_file_internal + ".import"):
+			_map_file_internal = _map_file_internal + ".import"
+		else:
+			push_error("Error: No such file %s" % _map_file_internal)
+			return false
+	
+	if not map_settings:
+		push_error("Error: Map settings not set")
+		return false
+	
+	if not func_godot:
+		func_godot = load("res://addons/func_godot/src/core/func_godot.gd").new()
+	
+	if not func_godot:
+		push_error("Error: Failed to load func_godot.")
 		return false
 	
 	return true
@@ -115,7 +106,6 @@ func verify_parameters() -> bool:
 func reset_build_context() -> void:
 	add_child_array = []
 	set_owner_array = []
-	
 	texture_list = []
 	texture_loader = null
 	texture_dict = {}
@@ -128,12 +118,11 @@ func reset_build_context() -> void:
 	entity_mesh_instances = {}
 	entity_occluder_instances = {}
 	entity_collision_shapes = []
-	
 	build_step_index = 0
 	build_step_count = 0
-	
 	if func_godot:
 		func_godot = load("res://addons/func_godot/src/core/func_godot.gd").new()
+		func_godot.map_settings = map_settings
 		
 ## Record the start time of a build step for profiling
 func start_profile(item_name: String) -> void:
@@ -146,20 +135,21 @@ func stop_profile(item_name: String) -> void:
 	if print_profiling_data:
 		if item_name in profile_timestamps:
 			var delta: float = Time.get_unix_time_from_system() - profile_timestamps[item_name]
-			print("Done in %s sec.\n" % snapped(delta, 0.01))
+			print("Completed in %s sec." % snapped(delta, 0.0001))
 			profile_timestamps.erase(item_name)
 
-## Run a build step. [code]step_name[/code] is the method corresponding to the step, [code]params[/code] are parameters to pass to the step, and [code]func_name[/code] does nothing.
-func run_build_step(step_name: String, params: Array = [], func_name: String = "") -> Variant:
+## Run a build step. [code]step_name[/code] is the method corresponding to the step.
+func run_build_step(step_name: String) -> Variant:
 	start_profile(step_name)
-	if func_name == "":
-		func_name = step_name
-	var result : Variant = callv(step_name, params)
+	var result : Variant = call(step_name)
 	stop_profile(step_name)
 	return result
 
 ## Add [code]node[/code] as a child of parent, or as a child of [code]below[/code] if non-null. Also queue for ownership assignment.
 func add_child_editor(parent: Node, node: Node, below: Node = null) -> void:
+	if not node or not parent:
+		return
+	
 	var prev_parent = node.get_parent()
 	if prev_parent:
 		prev_parent.remove_child(node)
@@ -192,8 +182,8 @@ var post_attach_steps : Array = []
 
 ## Register a build step.
 ## [code]build_step[/code] is a string that corresponds to a method on this class, [code]arguments[/code] a list of arguments to pass to this method, and [code]target[/code] is a property on this class to save the return value of the build step in. If [code]post_attach[/code] is true, the step will be run after the scene hierarchy is completed.
-func register_build_step(build_step: String, arguments: Array = [], target: String = "", post_attach: bool = false) -> void:
-	(post_attach_steps if post_attach else build_steps).append([build_step, arguments, target])
+func register_build_step(build_step: String, target: String = "", post_attach: bool = false) -> void:
+	(post_attach_steps if post_attach else build_steps).append([build_step, target])
 	build_step_count += 1
 
 ## Run all build steps. Emits [signal build_progress] after each step.
@@ -209,8 +199,8 @@ func run_build_steps(post_attach : bool = false) -> void:
 		if scene_tree and not block_until_complete:
 			await get_tree().create_timer(YIELD_DURATION).timeout
 		
-		var result : Variant = run_build_step(build_step[0], build_step[1])
-		var target : String = build_step[2]
+		var result : Variant = run_build_step(build_step[0])
+		var target : String = build_step[1]
 		if target != "":
 			set(target, result)
 			
@@ -229,28 +219,28 @@ func run_build_steps(post_attach : bool = false) -> void:
 func register_build_steps() -> void:
 	register_build_step('remove_children')
 	register_build_step('load_map')
-	register_build_step('fetch_texture_list', [], 'texture_list')
-	register_build_step('init_texture_loader', [], 'texture_loader')
-	register_build_step('load_textures', [], 'texture_dict')
-	register_build_step('build_texture_size_dict', [], 'texture_size_dict')
-	register_build_step('build_materials', [], 'material_dict')
-	register_build_step('fetch_entity_definitions', [], 'entity_definitions')
-	register_build_step('set_func_godot_entity_definitions', [])
-	register_build_step('generate_geometry', [])
-	register_build_step('fetch_entity_dicts', [], 'entity_dicts')
-	register_build_step('build_entity_nodes', [], 'entity_nodes')
-	register_build_step('resolve_trenchbroom_group_hierarchy', [])
-	register_build_step('build_entity_mesh_dict', [], 'entity_mesh_dict')
-	register_build_step('build_entity_mesh_instances', [], 'entity_mesh_instances')
-	register_build_step('build_entity_occluder_instances', [], 'entity_occluder_instances')
-	register_build_step('build_entity_collision_shape_nodes', [], 'entity_collision_shapes')
+	register_build_step('fetch_texture_list', 'texture_list')
+	register_build_step('init_texture_loader', 'texture_loader')
+	register_build_step('load_textures', 'texture_dict')
+	register_build_step('build_texture_size_dict', 'texture_size_dict')
+	register_build_step('build_materials', 'material_dict')
+	register_build_step('fetch_entity_definitions', 'entity_definitions')
+	register_build_step('set_core_entity_definitions')
+	register_build_step('generate_geometry')
+	register_build_step('fetch_entity_dicts', 'entity_dicts')
+	register_build_step('build_entity_nodes', 'entity_nodes')
+	register_build_step('resolve_trenchbroom_group_hierarchy')
+	register_build_step('build_entity_mesh_dict', 'entity_mesh_dict')
+	register_build_step('build_entity_mesh_instances', 'entity_mesh_instances')
+	register_build_step('build_entity_occluder_instances', 'entity_occluder_instances')
+	register_build_step('build_entity_collision_shape_nodes', 'entity_collision_shapes')
 
 ## Register all post-attach steps for the build. See [method register_build_step] and [method run_build_steps]
 func register_post_attach_steps() -> void:
-	register_build_step('build_entity_collision_shapes', [], "", true)
-	register_build_step('apply_entity_meshes', [], "", true)
-	register_build_step('apply_entity_occluders', [], "", true)
-	register_build_step('apply_properties_and_finish', [], "", true)
+	register_build_step('build_entity_collision_shapes', "", true)
+	register_build_step('apply_entity_meshes', "", true)
+	register_build_step('apply_entity_occluders', "", true)
+	register_build_step('apply_properties_and_finish', "", true)
 
 # Actions
 ## Build the map
@@ -260,7 +250,9 @@ func build_map() -> void:
 		printerr("Skipping build process: No map settings resource!")
 		emit_signal("build_complete")
 		return
-	print('Building %s\n' % _map_file_internal)
+	print('Building %s' % _map_file_internal)
+	#if print_profiling_data:
+		#print('\n')
 	start_profile('build_map')
 	register_build_steps()
 	register_post_attach_steps()
@@ -277,9 +269,10 @@ func unwrap_uv2(node: Node = null) -> void:
 		print("Unwrapping mesh UV2s")
 	
 	if target_node is MeshInstance3D:
-		var mesh: Mesh = target_node.get_mesh()
-		if mesh is ArrayMesh:
-			mesh.lightmap_unwrap(Transform3D.IDENTITY, map_settings.uv_unwrap_texel_size / map_settings.inverse_scale_factor)
+		if target_node.gi_mode == GeometryInstance3D.GI_MODE_STATIC:
+			var mesh: Mesh = target_node.get_mesh()
+			if mesh is ArrayMesh:
+				mesh.lightmap_unwrap(Transform3D.IDENTITY, map_settings.uv_unwrap_texel_size * map_settings.scale_factor)
 	
 	for child in target_node.get_children():
 		unwrap_uv2(child)
@@ -297,8 +290,7 @@ func remove_children() -> void:
 
 ## Parse and load [member map_file]
 func load_map() -> void:
-	var file: String = _map_file_internal
-	func_godot.load_map(file, map_settings.use_trenchbroom_groups_hierarchy)
+	func_godot.load_map(_map_file_internal, map_settings.use_trenchbroom_groups_hierarchy)
 
 ## Get textures found in [member map_file]
 func fetch_texture_list() -> Array:
@@ -321,14 +313,30 @@ func fetch_entity_definitions() -> Dictionary:
 	return map_settings.entity_fgd.get_entity_definitions()
 
 ## Hand the FuncGodot core the entity definitions
-func set_func_godot_entity_definitions() -> void:
-	func_godot.set_entity_definitions(build_libmap_entity_definitions(entity_definitions))
+func set_core_entity_definitions() -> void:
+	var core_ent_defs: Dictionary = {}
+	for classname in entity_definitions:
+		core_ent_defs[classname] = {}
+		var entity_definition: FuncGodotFGDEntityClass = entity_definitions[classname]
+		if entity_definition is FuncGodotFGDSolidClass:
+			core_ent_defs[classname]['spawn_type'] = entity_definition.spawn_type
+			core_ent_defs[classname]['origin_type'] = entity_definition.origin_type
+			
+			const MFlags = FuncGodotMapData.FuncGodotEntityMetadataInclusionFlags
+			var flags := MFlags.NONE
+			if entity_definition.add_textures_metadata: flags |= MFlags.TEXTURES
+			if entity_definition.add_vertex_metadata: flags |= MFlags.VERTEX
+			if entity_definition.add_face_normal_metadata: flags |= MFlags.FACE_NORMAL
+			if entity_definition.add_face_position_metadata: flags |= MFlags.FACE_POSITION
+			if entity_definition.add_collision_shape_face_range_metadata: flags |= MFlags.COLLISION_SHAPE_TO_FACE_RANGE_MAP
+			core_ent_defs[classname]['metadata_inclusion_flags'] = flags
+	func_godot.set_entity_definitions(core_ent_defs)
 
 ## Generate geometry from map file
 func generate_geometry() -> void:
 	func_godot.generate_geometry(texture_size_dict);
 
-## Get a list of dictionaries representing each entity from the FuncGodot C# core
+## Get a list of dictionaries representing each entity from the FuncGodot core
 func fetch_entity_dicts() -> Array:
 	return func_godot.get_entity_dicts()
 
@@ -345,25 +353,53 @@ func build_texture_size_dict() -> Dictionary:
 	
 	return texture_size_dict
 
-## Marshall FuncGodot FGD definitions for transfer to libmap
-func build_libmap_entity_definitions(entity_definitions: Dictionary) -> Dictionary:
-	var libmap_entity_definitions: Dictionary = {}
-	for classname in entity_definitions:
-		libmap_entity_definitions[classname] = {}
-		if entity_definitions[classname] is FuncGodotFGDSolidClass:
-			libmap_entity_definitions[classname]['spawn_type'] = entity_definitions[classname].spawn_type
-			libmap_entity_definitions[classname]['origin_type'] = entity_definitions[classname].origin_type
-	return libmap_entity_definitions
-
 ## Build nodes from the entities in [member entity_dicts]
 func build_entity_nodes() -> Array:
 	var entity_nodes : Array = []
+	entity_nodes.resize(entity_dicts.size())
+	
+	# TrenchBroom: Prevent generation of omitted layers
+	var omitted_entities : Array[int] = []
+	var omitted_groups: Array[String] = []
+	
+	if map_settings.use_trenchbroom_groups_hierarchy:
+		# Omit layers
+		for entity_idx in range(0, entity_dicts.size()):
+			var entity_dict: Dictionary = entity_dicts[entity_idx] as Dictionary
+			var properties: Dictionary = entity_dict['properties'] as Dictionary
+			
+			if '_tb_type' in properties and properties['_tb_type'] == '_tb_layer':
+				if '_tb_layer_omit_from_export' in properties and properties['_tb_layer_omit_from_export'] == "1":
+					omitted_entities.append(entity_idx)
+					omitted_groups.append("layer_" + str(properties.get('_tb_id', "-1")))
+		
+		# Omit groups and top-level entities
+		for entity_idx in range(0, entity_dicts.size()):
+			if omitted_entities.find(entity_idx) != -1:
+				continue
+			
+			var entity_dict: Dictionary = entity_dicts[entity_idx] as Dictionary
+			var properties: Dictionary = entity_dict['properties'] as Dictionary
+			
+			if '_tb_layer' in properties:
+				if omitted_groups.find("layer_" + str(properties['_tb_layer'])) != -1:
+					omitted_entities.append(entity_idx)
+					if '_tb_id' in properties and properties['_tb_type'] == '_tb_group':
+						omitted_groups.append("group_" + str(properties.get('_tb_id', "-1")))
 
 	for entity_idx in range(0, entity_dicts.size()):
 		var entity_dict: Dictionary = entity_dicts[entity_idx] as Dictionary
 		var properties: Dictionary = entity_dict['properties'] as Dictionary
-		
-		var node: Node = Node3D.new()
+
+		if map_settings.use_trenchbroom_groups_hierarchy:
+			if omitted_entities.find(entity_idx) != -1:
+				entity_nodes[entity_idx] = null
+				continue
+			if '_tb_group' in properties and omitted_groups.find("group_" + str(properties['_tb_group'])) != -1:
+				entity_nodes[entity_idx] = null
+				continue
+
+		var node: Node = null
 		var node_name: String = "entity_%s" % entity_idx
 		
 		var should_add_child: bool = should_add_children
@@ -384,20 +420,17 @@ func build_entity_nodes() -> Array:
 				
 				if entity_definition is FuncGodotFGDSolidClass:
 					if entity_definition.spawn_type == FuncGodotFGDSolidClass.SpawnType.MERGE_WORLDSPAWN:
-						entity_nodes.append(null)
+						entity_nodes[entity_idx] = null
 						continue
 					if entity_definition.node_class != "":
-						node.queue_free()
 						node = ClassDB.instantiate(entity_definition.node_class)
 				elif entity_definition is FuncGodotFGDPointClass:
 					if entity_definition.scene_file:
 						var flag: PackedScene.GenEditState = PackedScene.GEN_EDIT_STATE_DISABLED
 						if Engine.is_editor_hint():
 							flag = PackedScene.GEN_EDIT_STATE_INSTANCE
-						node.queue_free()
 						node = entity_definition.scene_file.instantiate(flag)
 					elif entity_definition.node_class != "":
-						node.queue_free()
 						node = ClassDB.instantiate(entity_definition.node_class)
 					if 'rotation_degrees' in node and entity_definition.apply_rotation_on_map_build:
 						var angles := Vector3.ZERO
@@ -422,8 +455,30 @@ func build_entity_nodes() -> Array:
 							angles.y += angle
 						angles.y += 180
 						node.rotation_degrees = angles
+					
+					if 'scale' in node and entity_definition.apply_scale_on_map_build:
+						if 'scale' in properties:
+							var scale_prop: Variant = properties['scale']
+							if typeof(scale_prop) == TYPE_STRING:
+								var scale_arr: PackedStringArray = (scale_prop as String).split(" ")
+								match scale_arr.size():
+									1: scale_prop = scale_arr[0].to_float()
+									3: scale_prop = Vector3(scale_arr[1].to_float(), scale_arr[2].to_float(), scale_arr[0].to_float())
+									2: scale_prop = Vector2(scale_arr[0].to_float(), scale_arr[0].to_float())
+							if typeof(scale_prop) == TYPE_FLOAT or typeof(scale_prop) == TYPE_INT:
+								node.scale *= scale_prop as float
+							elif node.scale is Vector3:
+								if typeof(scale_prop) == TYPE_VECTOR3 or typeof(scale_prop) == TYPE_VECTOR3I:
+									node.scale *= scale_prop as Vector3
+							elif node.scale is Vector2:
+								if typeof(scale_prop) == TYPE_VECTOR2 or typeof(scale_prop) == TYPE_VECTOR2I:
+									node.scale *= scale_prop as Vector2
+				else:
+					node = Node3D.new()
 				if entity_definition.script_class:
 					node.set_script(entity_definition.script_class)
+		if not node:
+			node = Node3D.new()
 		
 		node.name = node_name
 		
@@ -436,15 +491,15 @@ func build_entity_nodes() -> Array:
 				push_error("Invalid vector format for \'origin\' in " + node.name)
 			if 'position' in node:
 				if node.position is Vector3:
-					node.position = origin_vec / map_settings.inverse_scale_factor
+					node.position = origin_vec * map_settings.scale_factor
 				elif node.position is Vector2:
 					node.position = Vector2(origin_vec.z, -origin_vec.y)
 		else:
 			if entity_idx != 0 and 'position' in node:
 				if node.position is Vector3:
-					node.position = entity_dict['center'] / map_settings.inverse_scale_factor
+					node.position = entity_dict['center'] * map_settings.scale_factor
 		
-		entity_nodes.append(node)
+		entity_nodes[entity_idx] = node
 		
 		if should_add_child:
 			queue_add_child(self, node)
@@ -522,11 +577,12 @@ func build_entity_collision_shapes() -> void:
 		var entity_collision_shape: Array = entity_collision_shapes[entity_idx]
 		var concave: bool = false
 		var shape_margin: float = 0.04
+		var entity_definition: FuncGodotFGDSolidClass
 		
 		if 'classname' in properties:
 			var classname: String = properties['classname']
 			if classname in entity_definitions:
-				var entity_definition: FuncGodotFGDSolidClass = entity_definitions[classname] as FuncGodotFGDSolidClass
+				entity_definition = entity_definitions[classname] as FuncGodotFGDSolidClass
 				if entity_definition:
 					match(entity_definition.collision_shape_type):
 						FuncGodotFGDSolidClass.CollisionShapeType.NONE:
@@ -541,11 +597,13 @@ func build_entity_collision_shapes() -> void:
 			continue
 		
 		if concave:
-			func_godot.gather_entity_concave_collision_surfaces(entity_idx, map_settings.skip_texture)
+			func_godot.gather_entity_concave_collision_surfaces(entity_idx)
 		else:
 			func_godot.gather_entity_convex_collision_surfaces(entity_idx)
-		
-		var entity_surfaces: Array = func_godot.fetch_surfaces(map_settings.inverse_scale_factor) as Array
+		var entity_surfaces: Array = func_godot.fetch_surfaces(func_godot.surface_gatherer)
+		var metadata: Dictionary = func_godot.surface_gatherer.out_metadata
+		var collision_shape_to_face_range_map: Dictionary = {}
+		var face_shape_indices: Array[Vector2i] = metadata["shape_index_ranges"]
 		
 		var entity_verts: PackedVector3Array = PackedVector3Array()
 		
@@ -573,6 +631,10 @@ func build_entity_collision_shapes() -> void:
 				var collision_shape: CollisionShape3D = entity_collision_shape[surface_idx]
 				collision_shape.set_shape(shape)
 				
+				# For face shape range metadata, we need to add info about child node names
+				if entity_definition and entity_definition.add_collision_shape_face_range_metadata:
+					collision_shape_to_face_range_map[collision_shape.name] = face_shape_indices[surface_idx]
+				
 		if concave:
 			if entity_verts.size() == 0:
 				continue
@@ -583,18 +645,43 @@ func build_entity_collision_shapes() -> void:
 			
 			var collision_shape: CollisionShape3D = entity_collision_shapes[entity_idx][0]
 			collision_shape.set_shape(shape)
+			
+			if entity_definition and entity_definition.add_collision_shape_face_range_metadata:
+				collision_shape_to_face_range_map[collision_shape.name] = Vector2i(0, entity_verts.size() / 3)
+
+		if entity_definition:
+			if not entity_definition.add_face_normal_metadata:
+				metadata.erase("normals")
+			if not entity_definition.add_face_position_metadata:
+				metadata.erase("positions")
+			if not entity_definition.add_textures_metadata:
+				metadata.erase("textures")
+				metadata.erase("texture_names")
+			if not entity_definition.add_vertex_metadata:
+				metadata.erase("vertices")
+
+			metadata.erase("shape_index_ranges") # cleanup intermediate / buffer
+			if entity_definition.add_collision_shape_face_range_metadata:
+				metadata["collision_shape_to_face_range_map"] = collision_shape_to_face_range_map
+
+			if not metadata.is_empty():
+				entity_nodes[entity_idx].set_meta("func_godot_mesh_data", metadata)
 
 ## Build Dictionary from entity indices to [ArrayMesh] instances
 func build_entity_mesh_dict() -> Dictionary:
 	var meshes: Dictionary = {}
 	
 	var texture_surf_map: Dictionary
+	var texture_to_metadata_map: Dictionary
 	for texture in texture_dict:
 		texture_surf_map[texture] = Array()
+		texture_to_metadata_map[texture] = {}
 	
 	var gather_task = func(i):
 		var texture: String = texture_dict.keys()[i]
-		texture_surf_map[texture] = func_godot.gather_texture_surfaces_mt(texture, map_settings.clip_texture, map_settings.skip_texture, map_settings.inverse_scale_factor)
+		var fetch_result = func_godot.gather_texture_surfaces(texture)
+		texture_surf_map[texture] = fetch_result["surfaces"]
+		texture_to_metadata_map[texture] = fetch_result["metadata"]
 	
 	var task_id: int = WorkerThreadPool.add_group_task(gather_task, texture_dict.keys().size(), 4, true)
 	WorkerThreadPool.wait_for_group_task_completion(task_id)
@@ -607,11 +694,12 @@ func build_entity_mesh_dict() -> Dictionary:
 			var properties: Dictionary = entity_dict['properties']
 			
 			var entity_surface = texture_surfaces[entity_idx]
+			var entity_definition: FuncGodotFGDSolidClass
 			
 			if 'classname' in properties:
 				var classname: String = properties['classname']
 				if classname in entity_definitions:
-					var entity_definition: FuncGodotFGDSolidClass = entity_definitions[classname] as FuncGodotFGDSolidClass
+					entity_definition = entity_definitions[classname] as FuncGodotFGDSolidClass
 					if entity_definition:
 						if entity_definition.spawn_type == FuncGodotFGDSolidClass.SpawnType.MERGE_WORLDSPAWN:
 							entity_surface = null
@@ -629,7 +717,46 @@ func build_entity_mesh_dict() -> Dictionary:
 			mesh.add_surface_from_arrays(ArrayMesh.PRIMITIVE_TRIANGLES, entity_surface)
 			mesh.surface_set_name(mesh.get_surface_count() - 1, texture)
 			mesh.surface_set_material(mesh.get_surface_count() - 1, material_dict[texture])
-	
+
+			# Build metadata only if the node is set to not build collision. Otherwise we are already building it in build_entity_collision_shapes.
+			if entity_definition and entity_definition.collision_shape_type == FuncGodotFGDSolidClass.CollisionShapeType.NONE:
+				if not mesh.has_meta("func_godot_mesh_data"):
+					mesh.set_meta("func_godot_mesh_data", Dictionary())
+				var this_textures_metadata: Dictionary = texture_to_metadata_map[texture]
+				var entity_metadata: Dictionary = mesh.get_meta("func_godot_mesh_data")
+				var entity_index_ranges: Array[Vector2i] = this_textures_metadata["entity_index_ranges"]
+				var range: Vector2i = entity_index_ranges[entity_idx]
+
+				if entity_definition.add_vertex_metadata:
+					var vertices: PackedVector3Array = entity_metadata.get("vertices", PackedVector3Array())
+					vertices.append_array((this_textures_metadata["vertices"] as PackedVector3Array).slice(range.x * 3, range.y * 3))
+					entity_metadata["vertices"] = vertices
+
+				if entity_definition.add_face_normal_metadata:
+					var normals: PackedVector3Array = entity_metadata.get("normals", PackedVector3Array())
+					normals.append_array((this_textures_metadata["normals"] as PackedVector3Array).slice(range.x, range.y))
+					entity_metadata["normals"] = normals
+
+				if entity_definition.add_face_position_metadata:
+					var positions: PackedVector3Array = entity_metadata.get("positions", PackedVector3Array())
+					positions.append_array((this_textures_metadata["positions"] as PackedVector3Array).slice(range.x, range.y))
+					entity_metadata["positions"] = positions
+
+				if entity_definition.add_textures_metadata:
+					# different (if null: add empty) logic for texture_names due to not being able make a static typed
+					# Array[StringName] inline in the get() function
+					if not entity_metadata.has("texture_names"):
+						var new: Array[StringName] = []
+						entity_metadata["texture_names"] = new
+					var texture_names: Array[StringName] = entity_metadata["texture_names"]
+					var textures: PackedInt32Array = entity_metadata.get("textures", PackedInt32Array())
+					var texture_block: PackedInt32Array = []
+					texture_block.resize(range.y - range.x)
+					texture_block.fill(texture_names.size())
+					texture_names.append(StringName(texture))
+					textures.append_array(texture_block)
+					entity_metadata["textures"] = textures
+
 	return meshes
 
 ## Build [MeshInstance3D]s from brush entities and add them to the add child queue
@@ -699,10 +826,15 @@ func apply_entity_meshes() -> void:
 		var mesh: Mesh = entity_mesh_dict[entity_idx] as Mesh
 		var mesh_instance: MeshInstance3D = entity_mesh_instances[entity_idx] as MeshInstance3D
 		if not mesh or not mesh_instance:
+			if mesh.has_meta("func_godot_mesh_data"):
+				mesh.remove_meta("func_godot_mesh_data")
 			continue
 		
 		mesh_instance.set_mesh(mesh)
 		queue_add_child(entity_nodes[entity_idx], mesh_instance)
+		if mesh.has_meta("func_godot_mesh_data"):
+			entity_nodes[entity_idx].set_meta("func_godot_mesh_data", mesh.get_meta("func_godot_mesh_data"))
+			mesh.remove_meta("func_godot_mesh_data")
 
 func apply_entity_occluders() -> void:
 	for entity_idx in entity_mesh_dict:
@@ -717,13 +849,15 @@ func apply_entity_occluders() -> void:
 		
 		var verts: PackedVector3Array
 		var indices: PackedInt32Array
+		var index: int = 0
 		for surf_idx in range(mesh.get_surface_count()):
 			var vert_count: int = verts.size()
 			var surf_array: Array = mesh.surface_get_arrays(surf_idx)
 			verts.append_array(surf_array[Mesh.ARRAY_VERTEX])
 			indices.resize(indices.size() + surf_array[Mesh.ARRAY_INDEX].size())
 			for new_index in surf_array[Mesh.ARRAY_INDEX]:
-				indices.append(new_index + vert_count)
+				indices[index] = (new_index + vert_count)
+				index += 1
 		
 		var occluder: ArrayOccluder3D = ArrayOccluder3D.new()
 		occluder.set_arrays(verts, indices)
@@ -755,11 +889,12 @@ func resolve_trenchbroom_group_hierarchy() -> void:
 		
 		# identify parents
 		if '_tb_id' in properties:
+			node.set_meta("_tb_type", properties['_tb_type'])
+			if properties['_tb_type'] == "_tb_group":
+				node.name = "group_" + str(properties['_tb_id'])
+			elif properties['_tb_type'] == "_tb_layer":
+				node.name = "layer_" + str(properties['_tb_layer_sort_index'])
 			if properties['_tb_name'] != "Unnamed":
-				if properties['_tb_type'] == "_tb_group":
-					node.name = "group_" + str(properties['_tb_id'])
-				elif properties['_tb_type'] == "_tb_layer":
-					node.name = "layer_" + str(properties['_tb_layer_sort_index'])
 				node.name = node.name + "_" + properties['_tb_name']
 			parent_entities[node_idx] = node
 	
@@ -782,18 +917,15 @@ func resolve_trenchbroom_group_hierarchy() -> void:
 		var parent_entity = null
 		var parent_idx = null
 		
-		#...identify its direct parent out of the parent_entities array
+		# ...identify its direct parent out of the parent_entities array
 		for possible_parent in parent_entities:
 			parent_entity = parent_entities[possible_parent]
-			parent_properties = entity_dicts[possible_parent]['properties']
-			
+			parent_properties = entity_dicts[possible_parent]['properties']			
 			if parent_properties['_tb_id'] == tb_group:
-				if '_tb_layer_omit_from_export' in parent_properties:
-					properties['_tb_layer_omit_from_export'] = parent_properties['_tb_layer_omit_from_export']
 				parent = parent_entity
 				parent_idx = possible_parent
 				break
-		#if there's a match, pass it on to the child-parent relationship map
+		# If there's a match, pass it on to the child-parent relationship map
 		if parent:
 			child_to_parent_map[node_idx] = parent_idx 
 	
@@ -817,7 +949,7 @@ func add_children() -> void:
 					add_child_editor(data['parent'], data['node'], data['below'])
 					if data['relative']:
 						if (data['node'] is Node3D and data['parent'] is Node3D) or (data['node'] is Node2D and data['parent'] is Node2D):
-							data['node'].global_position -= data['parent'].global_position
+							data['node'].position -= data['parent'].position
 				continue
 			add_children_complete()
 			return
@@ -859,9 +991,6 @@ func set_owners_complete() -> void:
 ## Apply Map File properties to [Node3D] instances, transferring Map File dictionaries to [Node3D.func_godot_properties]
 ## and then calling the appropriate callbacks.
 func apply_properties_and_finish() -> void:
-	# Array of all entities' properties
-	var properties_arr: Array[Dictionary] = []
-	
 	for entity_idx in range(0, entity_nodes.size()):
 		var entity_node: Node = entity_nodes[entity_idx] as Node
 		if not entity_node:
@@ -869,11 +998,6 @@ func apply_properties_and_finish() -> void:
 		
 		var entity_dict: Dictionary = entity_dicts[entity_idx] as Dictionary
 		var properties: Dictionary = entity_dict['properties'] as Dictionary
-		
-		if '_tb_layer_omit_from_export' in properties and properties['_tb_layer_omit_from_export'] == "1":
-			entity_node.queue_free()
-			properties_arr.append({})
-			continue
 		
 		if 'classname' in properties:
 			var classname: String = properties['classname']
@@ -884,7 +1008,7 @@ func apply_properties_and_finish() -> void:
 					var prop_string = properties[property]
 					if property in entity_definition.class_properties:
 						var prop_default: Variant = entity_definition.class_properties[property]
-
+						
 						match typeof(prop_default):
 							TYPE_INT:
 								properties[property] = prop_string.to_int()
@@ -958,7 +1082,9 @@ func apply_properties_and_finish() -> void:
 									push_error("Invalid Vector4i format for \'" + property + "\' in entity \'" + classname + "\': " + prop_string)
 								properties[property] = prop_vec
 							TYPE_NODE_PATH:
-								properties[property] = NodePath(prop_string)
+								properties[property] = prop_string
+							TYPE_OBJECT:
+								properties[property] = prop_string
 				
 				# Assign properties not defined with defaults from the entity definition
 				for property in entity_definitions[classname].class_properties:
@@ -979,32 +1105,34 @@ func apply_properties_and_finish() -> void:
 								properties[property] = prop_desc[1]
 							else:
 								properties[property] = 0
+						elif prop_default is Resource:
+							properties[property] = prop_default.resource_path
+						elif prop_default is NodePath or prop_default is Object or prop_default == null:
+							properties[property] = ""
 						# Everything else
 						else:
 							properties[property] = prop_default
+						
+				if entity_definition.auto_apply_to_matching_node_properties:
+					for property in properties:
+						if property in entity_node:
+							if typeof(entity_node.get(property)) == typeof(properties[property]):
+								entity_node.set(property, properties[property])
+							else:
+								push_error("Entity %s property \'%s\' type mismatch with matching generated node property." % [entity_node.name, property])
 		
 		if 'func_godot_properties' in entity_node:
 			entity_node.func_godot_properties = properties
 		
-		properties_arr.append(properties.duplicate(true))
-	
-	for entity_idx in range(0, entity_nodes.size()):
-		var entity_node: Node = entity_nodes[entity_idx] as Node
-		if entity_node and entity_node.has_method("_func_godot_apply_properties"):
-			entity_node._func_godot_apply_properties(properties_arr[entity_idx])
-	
-	for entity_idx in range(0, entity_nodes.size()):
-		var entity_node: Node = entity_nodes[entity_idx] as Node
-		if entity_node and entity_node.has_method("_func_godot_build_complete"):
+		if entity_node.has_method("_func_godot_apply_properties"):
+			entity_node.call("_func_godot_apply_properties", properties)
+		
+		if entity_node.has_method("_func_godot_build_complete"):
 			entity_node.call_deferred("_func_godot_build_complete")
 
 # Cleanup after build is finished (internal)
 func _build_complete():
 	reset_build_context()
-	
 	stop_profile('build_map')
-	if not print_profiling_data:
-		print('\n')
 	print('Build complete\n')
-	
 	emit_signal("build_complete")

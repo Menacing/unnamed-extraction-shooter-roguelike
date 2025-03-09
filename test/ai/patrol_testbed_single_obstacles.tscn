@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://cjvnbsca7m8u5"]
+[gd_scene load_steps=6 format=3 uid="uid://cjvnbsca7m8u5"]
 
 [ext_resource type="PackedScene" uid="uid://ciaqbr34myu5w" path="res://game_objects/enemies/robots/combat_roomba.tscn" id="1_4pb7s"]
-[ext_resource type="Script" path="res://levels/multi_agent_navigation_root.gd" id="1_vdgf1"]
+[ext_resource type="Script" uid="uid://dld574lvn7eun" path="res://levels/multi_agent_navigation_root.gd" id="1_vdgf1"]
+[ext_resource type="Script" uid="uid://c3ffaehlq01k0" path="res://levels/navigation_mesh_list_item.gd" id="2_2nirt"]
 [ext_resource type="Resource" uid="uid://hw8blc564g2i" path="res://levels/roomba_nav_mesh.tres" id="2_yiary"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_4su0q"]
@@ -11,7 +12,7 @@ size = Vector3(5, 5, 5)
 
 [node name="MultiAgentNavigationRoot" type="Node3D" parent="."]
 script = ExtResource("1_vdgf1")
-navigation_mesh_list_items = Array[Resource("res://levels/navigation_mesh_list_item.gd")]([ExtResource("2_yiary")])
+navigation_mesh_list_items = Array[ExtResource("2_2nirt")]([ExtResource("2_yiary")])
 
 [node name="Floor" type="CSGBox3D" parent="MultiAgentNavigationRoot"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.25875, -0.251953, 1.46129)

@@ -1,11 +1,12 @@
-[gd_resource type="Resource" script_class="ItemInformation" load_steps=10 format=3 uid="uid://drfc8a0vpjede"]
+[gd_resource type="Resource" script_class="ItemInformation" load_steps=9 format=3 uid="uid://drfc8a0vpjede"]
 
 [ext_resource type="Resource" uid="uid://o6tesi76nbth" path="res://ui/inventory/drop_item_context_item.tres" id="1_7ilg0"]
+[ext_resource type="Script" uid="uid://dw75el3q24f1f" path="res://ui/inventory/item_context_item.gd" id="1_mu4wr"]
 [ext_resource type="PackedScene" uid="uid://b0ecb76mphfc7" path="res://ui/inventory/detail_scenes/backpack_detail_popup.tscn" id="2_lmxny"]
 [ext_resource type="Texture2D" uid="uid://c5v6d1pnpvrj8" path="res://game_objects/items/backpacks/medium/1/m_backpack_1_icon.png" id="3_1faml"]
 [ext_resource type="AudioStream" uid="uid://0apk0nwm1ffp" path="res://game_objects/effects/sounds/foley/cloth_1.ogg" id="3_63vgy"]
 [ext_resource type="Texture2D" uid="uid://d6gc7euj4aw4" path="res://game_objects/items/backpacks/medium/1/m_backpack_1_icon_r.png" id="4_fq3p1"]
-[ext_resource type="Script" path="res://resource_access/item_information.gd" id="7_10mqc"]
+[ext_resource type="Script" uid="uid://hxr8853lym5l" path="res://resource_access/item_information.gd" id="7_10mqc"]
 [ext_resource type="AudioStream" uid="uid://b78iks4jwmaqk" path="res://game_objects/effects/sounds/foley/zipper_2.ogg" id="8_wob4q"]
 
 [resource]
@@ -18,7 +19,7 @@ item_type = 1
 icon = ExtResource("3_1faml")
 icon_r = ExtResource("4_fq3p1")
 detail_scene = ExtResource("2_lmxny")
-context_menu_items = Array[Resource("res://ui/inventory/item_context_item.gd")]([ExtResource("1_7ilg0")])
+context_menu_items = Array[ExtResource("1_mu4wr")]([ExtResource("1_7ilg0")])
 max_stacks = 1
 has_stacks = false
 max_durability = 1
@@ -32,3 +33,4 @@ mean_pickup_stacks = 1
 stack_random_method = 0
 pickup_sound = ExtResource("8_wob4q")
 drop_sound = ExtResource("3_63vgy")
+slot_data_type = 0

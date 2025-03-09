@@ -1,7 +1,8 @@
-[gd_resource type="Resource" script_class="ItemInformation" load_steps=8 format=3 uid="uid://cn8v720gwl35e"]
+[gd_resource type="Resource" script_class="ItemInformation" load_steps=7 format=3 uid="uid://cn8v720gwl35e"]
 
 [ext_resource type="Texture2D" uid="uid://5yl74rombvn8" path="res://game_objects/items/key/fuel_core/fuel_core_icon.png" id="1_d4wbc"]
-[ext_resource type="Script" path="res://resource_access/item_information.gd" id="1_dpvk6"]
+[ext_resource type="Script" uid="uid://hxr8853lym5l" path="res://resource_access/item_information.gd" id="1_dpvk6"]
+[ext_resource type="Script" uid="uid://dw75el3q24f1f" path="res://ui/inventory/item_context_item.gd" id="1_encvo"]
 [ext_resource type="AudioStream" uid="uid://bxvq1m37pr6q8" path="res://game_objects/effects/sounds/foley/heavy_2.ogg" id="1_go7ik"]
 [ext_resource type="Texture2D" uid="uid://va8ww10nccvv" path="res://game_objects/items/key/fuel_core/fuel_core_icon_r.png" id="2_dhuss"]
 [ext_resource type="AudioStream" uid="uid://dx85q5h6h0og4" path="res://game_objects/effects/sounds/foley/heavy_1.ogg" id="6_ehllv"]
@@ -15,7 +16,7 @@ display_short_name = ""
 item_type = 2
 icon = ExtResource("1_d4wbc")
 icon_r = ExtResource("2_dhuss")
-context_menu_items = Array[Resource("res://ui/inventory/item_context_item.gd")]([])
+context_menu_items = Array[ExtResource("1_encvo")]([])
 max_stacks = 1
 has_stacks = false
 max_durability = 1
@@ -29,3 +30,4 @@ mean_pickup_stacks = 1
 stack_random_method = 0
 pickup_sound = ExtResource("6_ehllv")
 drop_sound = ExtResource("1_go7ik")
+slot_data_type = 0
