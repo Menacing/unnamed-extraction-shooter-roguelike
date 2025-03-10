@@ -1,14 +1,14 @@
-[gd_resource type="Resource" load_steps=2 format=3 uid="uid://c0a7pj887fuve"]
+[gd_resource type="Resource" script_class="ggsSetting" load_steps=2 format=3 uid="uid://c0a7pj887fuve"]
 
-[ext_resource type="Script" uid="uid://dv1q63vjnbxt6" path="res://game_settings/templates/bool_setting.gd" id="1_bylf6"]
+[ext_resource type="Script" uid="uid://cvv6m7yyfsxxg" path="res://addons/ggs/plugin/classes/ggs_setting.gd" id="1_0cc25"]
 
 [resource]
 resource_name = "disable_use_helper_when_ads"
-script = ExtResource("1_bylf6")
-current = true
+script = ExtResource("1_0cc25")
+read_only_properties = PackedStringArray()
 default = true
-name = "disable_use_helper_when_ads"
-category = "ui"
+section = "ui"
+key = "disable_use_helper_when_ads"
 value_type = 1
 value_hint = 0
 value_hint_string = ""

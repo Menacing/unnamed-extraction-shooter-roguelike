@@ -1,15 +1,15 @@
-[gd_resource type="Resource" load_steps=2 format=3 uid="uid://beoxhsngsckj0"]
+[gd_resource type="Resource" script_class="settingAudioVolume" load_steps=2 format=3 uid="uid://beoxhsngsckj0"]
 
-[ext_resource type="Script" uid="uid://b8tahdq7mxn64" path="res://game_settings/templates/audio/audio_volume.gd" id="1_03d4w"]
+[ext_resource type="Script" uid="uid://dmceltyypt2hi" path="res://addons/ggs/templates/audio/setting_audio_volume.gd" id="1_qlub0"]
 
 [resource]
 resource_name = "menu_volume"
-script = ExtResource("1_03d4w")
+script = ExtResource("1_qlub0")
 audio_bus = "Music"
-current = 80.0
+read_only_properties = PackedStringArray()
 default = 80.0
-name = "menu_volume"
-category = "audio"
+section = "audio"
+key = "menu_volume"
 value_type = 3
 value_hint = 1
 value_hint_string = "0,100"

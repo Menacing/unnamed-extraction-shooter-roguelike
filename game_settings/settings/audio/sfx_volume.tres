@@ -1,15 +1,15 @@
-[gd_resource type="Resource" load_steps=2 format=3 uid="uid://mojb0hbk5nuv"]
+[gd_resource type="Resource" script_class="settingAudioVolume" load_steps=2 format=3 uid="uid://mojb0hbk5nuv"]
 
-[ext_resource type="Script" uid="uid://b8tahdq7mxn64" path="res://game_settings/templates/audio/audio_volume.gd" id="1_oxidu"]
+[ext_resource type="Script" uid="uid://dmceltyypt2hi" path="res://addons/ggs/templates/audio/setting_audio_volume.gd" id="1_1s2vp"]
 
 [resource]
 resource_name = "sfx_volume"
-script = ExtResource("1_oxidu")
+script = ExtResource("1_1s2vp")
 audio_bus = "SFX"
-current = 80.0
+read_only_properties = PackedStringArray()
 default = 80.0
-name = "sfx_volume"
-category = "audio"
+section = "audio"
+key = "sfx_volume"
 value_type = 3
 value_hint = 1
 value_hint_string = "0,100"

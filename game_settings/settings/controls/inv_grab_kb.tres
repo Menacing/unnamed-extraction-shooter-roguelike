@@ -1,35 +1,16 @@
-[gd_resource type="Resource" script_class="ggsInputSetting" load_steps=4 format=3 uid="uid://dlr3jr4xeh7ir"]
+[gd_resource type="Resource" script_class="settingInput" load_steps=2 format=3 uid="uid://dlr3jr4xeh7ir"]
 
-[ext_resource type="Script" uid="uid://bdrt4prwma1je" path="res://game_settings/templates/input.gd" id="1_ibrgh"]
-
-[sub_resource type="InputEventMouseButton" id="InputEventMouseButton_amxy5"]
-device = -1
-button_mask = 1
-position = Vector2(154, 16)
-global_position = Vector2(158, 47)
-button_index = 1
-pressed = true
-
-[sub_resource type="InputEventMouseButton" id="InputEventMouseButton_5d383"]
-device = -1
-button_mask = 1
-position = Vector2(154, 16)
-global_position = Vector2(158, 47)
-button_index = 1
-pressed = true
+[ext_resource type="Script" uid="uid://bd8fqk1yxalmm" path="res://addons/ggs/templates/setting_input.gd" id="1_iuyn8"]
 
 [resource]
 resource_name = "inv_grab_kb"
-script = ExtResource("1_ibrgh")
+script = ExtResource("1_iuyn8")
 action = "inv_grab"
-event_index = 0
-type = 2
-default_as_event = SubResource("InputEventMouseButton_5d383")
-current_as_event = SubResource("InputEventMouseButton_amxy5")
-current = [2, 1]
-default = [2, 1]
-name = "inv_grab_kb"
-category = "controls"
+event_idx = 0
+read_only_properties = PackedStringArray("default", "type", "value_type", "value_hint", "value_hint_string")
+default = [2, 1, -1]
+section = "controls"
+key = "inv_grab_kb"
 value_type = 28
 value_hint = 0
 value_hint_string = ""

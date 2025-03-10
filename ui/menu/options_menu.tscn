@@ -1,30 +1,29 @@
-[gd_scene load_steps=57 format=3 uid="uid://b37h35qgnmcvk"]
+[gd_scene load_steps=56 format=3 uid="uid://b37h35qgnmcvk"]
 
 [ext_resource type="Script" uid="uid://dlvmhnvj3kcqo" path="res://ui/menu/options_menu.gd" id="1_0sxhr"]
-[ext_resource type="PackedScene" uid="uid://dm1av7skxvp1j" path="res://game_settings/components/input_btn/input_btn.tscn" id="1_lvxjt"]
+[ext_resource type="PackedScene" uid="uid://dm1av7skxvp1j" path="res://addons/ggs/components/input_btn/component_input_btn.tscn" id="1_lvxjt"]
 [ext_resource type="Resource" uid="uid://baqd80g3a22sm" path="res://game_settings/settings/controls/move_left_kb.tres" id="3_5ykfs"]
-[ext_resource type="PackedScene" uid="uid://b1btmq8y3gexs" path="res://game_settings/components/_misc_components/input_confirm_window/input_confirm_window.tscn" id="4_5ngqd"]
-[ext_resource type="PackedScene" uid="uid://bhkyf3l4ee800" path="res://game_settings/components/checkbox/checkbox.tscn" id="4_l86j1"]
+[ext_resource type="PackedScene" uid="uid://bhkyf3l4ee800" path="res://addons/ggs/components/checkbox/component_checkbox.tscn" id="4_l86j1"]
 [ext_resource type="Resource" uid="uid://d4aw2a0pqw4k6" path="res://game_settings/settings/controls/move_forward_kb.tres" id="4_pfptl"]
 [ext_resource type="Resource" uid="uid://lof5isfxrweo" path="res://game_settings/settings/controls/move_right_kb.tres" id="5_ifg1x"]
 [ext_resource type="Resource" uid="uid://48j4v6eubp3e" path="res://game_settings/settings/controls/move_back_kb.tres" id="6_ydmyx"]
 [ext_resource type="Resource" uid="uid://cf32gcg3rpkem" path="res://game_settings/settings/controls/jump_kb.tres" id="7_1c4vo"]
-[ext_resource type="PackedScene" uid="uid://57pn1j16a6tk" path="res://game_settings/components/_misc_components/apply_btn/apply_btn.tscn" id="7_h0jo0"]
-[ext_resource type="PackedScene" uid="uid://bqi00h7i7sg3u" path="res://game_settings/components/spinbox/spinbox.tscn" id="8_24oih"]
-[ext_resource type="PackedScene" uid="uid://cl4ahd7cjyya1" path="res://game_settings/components/_misc_components/reset_btn/reset_btn.tscn" id="8_411hw"]
+[ext_resource type="PackedScene" uid="uid://cww37aayk8gj6" path="res://addons/ggs/components/apply_btn/component_apply_btn.tscn" id="7_h0jo0"]
+[ext_resource type="PackedScene" uid="uid://bqi00h7i7sg3u" path="res://addons/ggs/components/spinbox/component_spinbox.tscn" id="8_24oih"]
+[ext_resource type="PackedScene" path="res://addons/ggs/components/reset_btn/component_reset_btn.tscn" id="8_411hw"]
 [ext_resource type="Resource" uid="uid://cyw0vxm6edd20" path="res://game_settings/settings/controls/sprint_kb.tres" id="8_rv7hm"]
 [ext_resource type="Resource" uid="uid://cb7eg68g6qycg" path="res://game_settings/settings/controls/toggle_sprint.tres" id="10_1q0xi"]
-[ext_resource type="PackedScene" uid="uid://ds06mwhee8ygm" path="res://game_settings/components/slider/slider.tscn" id="10_aqhiy"]
+[ext_resource type="PackedScene" uid="uid://ds06mwhee8ygm" path="res://addons/ggs/components/slider/component_slider.tscn" id="10_aqhiy"]
 [ext_resource type="Resource" uid="uid://cq358bopsi3j8" path="res://game_settings/settings/controls/crouch_kb.tres" id="11_w2qr3"]
 [ext_resource type="Resource" uid="uid://dcx7lu1k4oqpi" path="res://game_settings/settings/controls/toggle_crouch.tres" id="12_1dquo"]
-[ext_resource type="PackedScene" uid="uid://cha8xesfthpfk" path="res://game_settings/components/switch/switch.tscn" id="13_7wq5f"]
+[ext_resource type="PackedScene" uid="uid://cha8xesfthpfk" path="res://addons/ggs/components/switch/component_switch.tscn" id="13_7wq5f"]
 [ext_resource type="Resource" uid="uid://csylta77dgg1f" path="res://game_settings/settings/controls/prone_kb.tres" id="13_r137g"]
 [ext_resource type="Resource" uid="uid://d1kwolsy8hmy1" path="res://game_settings/settings/controls/lean_left_kb.tres" id="14_7pocc"]
 [ext_resource type="Resource" uid="uid://b70xxi4dboh6r" path="res://game_settings/settings/controls/lean_right_kb.tres" id="15_arxsr"]
 [ext_resource type="Resource" uid="uid://c4yhu8jlosb4g" path="res://game_settings/settings/controls/toggle_lean.tres" id="16_x18hq"]
 [ext_resource type="Resource" uid="uid://r35s0brad3kp" path="res://game_settings/settings/controls/h_mouse_sens.tres" id="18_tkarf"]
 [ext_resource type="Resource" uid="uid://bw1sceah6a7qy" path="res://game_settings/settings/controls/v_mouse_sens.tres" id="19_514nf"]
-[ext_resource type="PackedScene" uid="uid://b7m6l0lvojrsj" path="res://game_settings/components/option_list/option_list.tscn" id="20_1jn2v"]
+[ext_resource type="PackedScene" uid="uid://b7m6l0lvojrsj" path="res://addons/ggs/components/option_list/component_option_list.tscn" id="20_1jn2v"]
 [ext_resource type="Resource" uid="uid://ct6emk3bne5qi" path="res://game_settings/settings/controls/shoot_kb.tres" id="20_7x4lg"]
 [ext_resource type="Resource" uid="uid://dy0kda78ilfc3" path="res://game_settings/settings/controls/reload_kb.tres" id="21_aj0rp"]
 [ext_resource type="Resource" uid="uid://btolgwqrtu428" path="res://game_settings/settings/controls/fire_mode_kb.tres" id="22_o2ywx"]
@@ -100,9 +99,11 @@ uppercase = true
 [node name="option_tab_container" type="TabContainer" parent="main_container/vert_container"]
 custom_minimum_size = Vector2(500, 600)
 layout_mode = 2
+current_tab = 0
 
 [node name="Controls" type="MarginContainer" parent="main_container/vert_container/option_tab_container"]
 layout_mode = 2
+metadata/_tab_index = 0
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="main_container/vert_container/option_tab_container/Controls"]
 layout_mode = 2
@@ -110,7 +111,6 @@ layout_mode = 2
 [node name="ScrollContainer" type="ScrollContainer" parent="main_container/vert_container/option_tab_container/Controls/VBoxContainer2"]
 layout_mode = 2
 size_flags_vertical = 3
-scroll_vertical = 100
 
 [node name="MarginContainer" type="MarginContainer" parent="main_container/vert_container/option_tab_container/Controls/VBoxContainer2/ScrollContainer"]
 layout_mode = 2
@@ -153,9 +153,8 @@ text = "Move Forward"
 layout_mode = 2
 size_flags_horizontal = 10
 
-[node name="InputBtn" parent="main_container/vert_container/option_tab_container/Controls/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/move_forward/HBoxContainer" node_paths=PackedStringArray("ICW") groups=["controls_settings"] instance=ExtResource("1_lvxjt")]
+[node name="InputBtn" parent="main_container/vert_container/option_tab_container/Controls/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/move_forward/HBoxContainer" groups=["controls_settings"] instance=ExtResource("1_lvxjt")]
 layout_mode = 2
-ICW = NodePath("../../../../../../../../../../../InputConfirmWindow")
 setting = ExtResource("4_pfptl")
 
 [node name="Btn" parent="main_container/vert_container/option_tab_container/Controls/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/move_forward/HBoxContainer/InputBtn" index="0"]
@@ -172,9 +171,8 @@ text = "Move Back"
 layout_mode = 2
 size_flags_horizontal = 10
 
-[node name="InputBtn" parent="main_container/vert_container/option_tab_container/Controls/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/move_back/HBoxContainer" node_paths=PackedStringArray("ICW") groups=["controls_settings"] instance=ExtResource("1_lvxjt")]
+[node name="InputBtn" parent="main_container/vert_container/option_tab_container/Controls/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/move_back/HBoxContainer" groups=["controls_settings"] instance=ExtResource("1_lvxjt")]
 layout_mode = 2
-ICW = NodePath("../../../../../../../../../../../InputConfirmWindow")
 setting = ExtResource("6_ydmyx")
 
 [node name="Btn" parent="main_container/vert_container/option_tab_container/Controls/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/move_back/HBoxContainer/InputBtn" index="0"]
@@ -191,9 +189,8 @@ text = "Move Left"
 layout_mode = 2
 size_flags_horizontal = 10
 
-[node name="InputBtn" parent="main_container/vert_container/option_tab_container/Controls/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/move_left/HBoxContainer" node_paths=PackedStringArray("ICW") groups=["controls_settings"] instance=ExtResource("1_lvxjt")]
+[node name="InputBtn" parent="main_container/vert_container/option_tab_container/Controls/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/move_left/HBoxContainer" groups=["controls_settings"] instance=ExtResource("1_lvxjt")]
 layout_mode = 2
-ICW = NodePath("../../../../../../../../../../../InputConfirmWindow")
 setting = ExtResource("3_5ykfs")
 
 [node name="Btn" parent="main_container/vert_container/option_tab_container/Controls/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/move_left/HBoxContainer/InputBtn" index="0"]
@@ -210,9 +207,8 @@ text = "Move Right"
 layout_mode = 2
 size_flags_horizontal = 10
 
-[node name="InputBtn" parent="main_container/vert_container/option_tab_container/Controls/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/move_right/HBoxContainer" node_paths=PackedStringArray("ICW") groups=["controls_settings"] instance=ExtResource("1_lvxjt")]
+[node name="InputBtn" parent="main_container/vert_container/option_tab_container/Controls/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/move_right/HBoxContainer" groups=["controls_settings"] instance=ExtResource("1_lvxjt")]
 layout_mode = 2
-ICW = NodePath("../../../../../../../../../../../InputConfirmWindow")
 setting = ExtResource("5_ifg1x")
 
 [node name="Btn" parent="main_container/vert_container/option_tab_container/Controls/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/move_right/HBoxContainer/InputBtn" index="0"]
@@ -229,9 +225,8 @@ text = "Jump"
 layout_mode = 2
 size_flags_horizontal = 10
 
-[node name="InputBtn" parent="main_container/vert_container/option_tab_container/Controls/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/jump/HBoxContainer" node_paths=PackedStringArray("ICW") groups=["controls_settings"] instance=ExtResource("1_lvxjt")]
+[node name="InputBtn" parent="main_container/vert_container/option_tab_container/Controls/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/jump/HBoxContainer" groups=["controls_settings"] instance=ExtResource("1_lvxjt")]
 layout_mode = 2
-ICW = NodePath("../../../../../../../../../../../InputConfirmWindow")
 setting = ExtResource("7_1c4vo")
 
 [node name="Btn" parent="main_container/vert_container/option_tab_container/Controls/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/jump/HBoxContainer/InputBtn" index="0"]
@@ -249,9 +244,8 @@ text = "Sprint
 layout_mode = 2
 size_flags_horizontal = 10
 
-[node name="InputBtn" parent="main_container/vert_container/option_tab_container/Controls/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/sprint/HBoxContainer" node_paths=PackedStringArray("ICW") groups=["controls_settings"] instance=ExtResource("1_lvxjt")]
+[node name="InputBtn" parent="main_container/vert_container/option_tab_container/Controls/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/sprint/HBoxContainer" groups=["controls_settings"] instance=ExtResource("1_lvxjt")]
 layout_mode = 2
-ICW = NodePath("../../../../../../../../../../../InputConfirmWindow")
 setting = ExtResource("8_rv7hm")
 
 [node name="Btn" parent="main_container/vert_container/option_tab_container/Controls/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/sprint/HBoxContainer/InputBtn" index="0"]
@@ -271,6 +265,11 @@ size_flags_horizontal = 10
 
 [node name="Checkbox" parent="main_container/vert_container/option_tab_container/Controls/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/sprint_toggle/HBoxContainer" groups=["controls_settings"] instance=ExtResource("4_l86j1")]
 layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
 setting = ExtResource("10_1q0xi")
 
 [node name="crouch" type="HBoxContainer" parent="main_container/vert_container/option_tab_container/Controls/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer"]
@@ -285,9 +284,8 @@ text = "Crouch
 layout_mode = 2
 size_flags_horizontal = 10
 
-[node name="InputBtn" parent="main_container/vert_container/option_tab_container/Controls/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/crouch/HBoxContainer" node_paths=PackedStringArray("ICW") groups=["controls_settings"] instance=ExtResource("1_lvxjt")]
+[node name="InputBtn" parent="main_container/vert_container/option_tab_container/Controls/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/crouch/HBoxContainer" groups=["controls_settings"] instance=ExtResource("1_lvxjt")]
 layout_mode = 2
-ICW = NodePath("../../../../../../../../../../../InputConfirmWindow")
 setting = ExtResource("11_w2qr3")
 
 [node name="Btn" parent="main_container/vert_container/option_tab_container/Controls/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/crouch/HBoxContainer/InputBtn" index="0"]
@@ -321,9 +319,8 @@ text = "Prone
 layout_mode = 2
 size_flags_horizontal = 10
 
-[node name="InputBtn" parent="main_container/vert_container/option_tab_container/Controls/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/prone/HBoxContainer" node_paths=PackedStringArray("ICW") groups=["controls_settings"] instance=ExtResource("1_lvxjt")]
+[node name="InputBtn" parent="main_container/vert_container/option_tab_container/Controls/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/prone/HBoxContainer" groups=["controls_settings"] instance=ExtResource("1_lvxjt")]
 layout_mode = 2
-ICW = NodePath("../../../../../../../../../../../InputConfirmWindow")
 setting = ExtResource("13_r137g")
 
 [node name="Btn" parent="main_container/vert_container/option_tab_container/Controls/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/prone/HBoxContainer/InputBtn" index="0"]
@@ -342,9 +339,8 @@ text = "Lean Left
 layout_mode = 2
 size_flags_horizontal = 10
 
-[node name="InputBtn" parent="main_container/vert_container/option_tab_container/Controls/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/lean_left/HBoxContainer" node_paths=PackedStringArray("ICW") groups=["controls_settings"] instance=ExtResource("1_lvxjt")]
+[node name="InputBtn" parent="main_container/vert_container/option_tab_container/Controls/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/lean_left/HBoxContainer" groups=["controls_settings"] instance=ExtResource("1_lvxjt")]
 layout_mode = 2
-ICW = NodePath("../../../../../../../../../../../InputConfirmWindow")
 setting = ExtResource("14_7pocc")
 
 [node name="Btn" parent="main_container/vert_container/option_tab_container/Controls/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/lean_left/HBoxContainer/InputBtn" index="0"]
@@ -363,9 +359,8 @@ text = "Lean Right
 layout_mode = 2
 size_flags_horizontal = 10
 
-[node name="InputBtn" parent="main_container/vert_container/option_tab_container/Controls/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/lean_right/HBoxContainer" node_paths=PackedStringArray("ICW") groups=["controls_settings"] instance=ExtResource("1_lvxjt")]
+[node name="InputBtn" parent="main_container/vert_container/option_tab_container/Controls/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/lean_right/HBoxContainer" groups=["controls_settings"] instance=ExtResource("1_lvxjt")]
 layout_mode = 2
-ICW = NodePath("../../../../../../../../../../../InputConfirmWindow")
 setting = ExtResource("15_arxsr")
 
 [node name="Btn" parent="main_container/vert_container/option_tab_container/Controls/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/lean_right/HBoxContainer/InputBtn" index="0"]
@@ -453,10 +448,8 @@ text = "Fire
 layout_mode = 2
 size_flags_horizontal = 10
 
-[node name="InputBtn" parent="main_container/vert_container/option_tab_container/Controls/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/fire/HBoxContainer" node_paths=PackedStringArray("ICW") groups=["controls_settings"] instance=ExtResource("1_lvxjt")]
+[node name="InputBtn" parent="main_container/vert_container/option_tab_container/Controls/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/fire/HBoxContainer" groups=["controls_settings"] instance=ExtResource("1_lvxjt")]
 layout_mode = 2
-ICW = NodePath("../../../../../../../../../../../InputConfirmWindow")
-accept_mouse = true
 setting = ExtResource("20_7x4lg")
 
 [node name="Btn" parent="main_container/vert_container/option_tab_container/Controls/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/fire/HBoxContainer/InputBtn" index="0"]
@@ -474,9 +467,8 @@ text = "Reload
 layout_mode = 2
 size_flags_horizontal = 10
 
-[node name="InputBtn" parent="main_container/vert_container/option_tab_container/Controls/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/reload/HBoxContainer" node_paths=PackedStringArray("ICW") groups=["controls_settings"] instance=ExtResource("1_lvxjt")]
+[node name="InputBtn" parent="main_container/vert_container/option_tab_container/Controls/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/reload/HBoxContainer" groups=["controls_settings"] instance=ExtResource("1_lvxjt")]
 layout_mode = 2
-ICW = NodePath("../../../../../../../../../../../InputConfirmWindow")
 setting = ExtResource("21_aj0rp")
 
 [node name="Btn" parent="main_container/vert_container/option_tab_container/Controls/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/reload/HBoxContainer/InputBtn" index="0"]
@@ -494,9 +486,8 @@ text = "Toggle Fire Mode
 layout_mode = 2
 size_flags_horizontal = 10
 
-[node name="InputBtn" parent="main_container/vert_container/option_tab_container/Controls/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/fire_mode/HBoxContainer" node_paths=PackedStringArray("ICW") groups=["controls_settings"] instance=ExtResource("1_lvxjt")]
+[node name="InputBtn" parent="main_container/vert_container/option_tab_container/Controls/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/fire_mode/HBoxContainer" groups=["controls_settings"] instance=ExtResource("1_lvxjt")]
 layout_mode = 2
-ICW = NodePath("../../../../../../../../../../../InputConfirmWindow")
 setting = ExtResource("22_o2ywx")
 
 [node name="Btn" parent="main_container/vert_container/option_tab_container/Controls/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/fire_mode/HBoxContainer/InputBtn" index="0"]
@@ -514,9 +505,8 @@ text = "Change Ammo Subtype
 layout_mode = 2
 size_flags_horizontal = 10
 
-[node name="InputBtn" parent="main_container/vert_container/option_tab_container/Controls/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/ammo_subtype/HBoxContainer" node_paths=PackedStringArray("ICW") groups=["controls_settings"] instance=ExtResource("1_lvxjt")]
+[node name="InputBtn" parent="main_container/vert_container/option_tab_container/Controls/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/ammo_subtype/HBoxContainer" groups=["controls_settings"] instance=ExtResource("1_lvxjt")]
 layout_mode = 2
-ICW = NodePath("../../../../../../../../../../../InputConfirmWindow")
 setting = ExtResource("23_y5nc2")
 
 [node name="Btn" parent="main_container/vert_container/option_tab_container/Controls/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/ammo_subtype/HBoxContainer/InputBtn" index="0"]
@@ -534,10 +524,8 @@ text = "Aim Down Sight
 layout_mode = 2
 size_flags_horizontal = 10
 
-[node name="InputBtn" parent="main_container/vert_container/option_tab_container/Controls/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/ads/HBoxContainer" node_paths=PackedStringArray("ICW") groups=["controls_settings"] instance=ExtResource("1_lvxjt")]
+[node name="InputBtn" parent="main_container/vert_container/option_tab_container/Controls/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/ads/HBoxContainer" groups=["controls_settings"] instance=ExtResource("1_lvxjt")]
 layout_mode = 2
-ICW = NodePath("../../../../../../../../../../../InputConfirmWindow")
-accept_mouse = true
 setting = ExtResource("23_nh01t")
 
 [node name="Btn" parent="main_container/vert_container/option_tab_container/Controls/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/ads/HBoxContainer/InputBtn" index="0"]
@@ -609,9 +597,8 @@ text = "Equip Gun Slot 1
 layout_mode = 2
 size_flags_horizontal = 10
 
-[node name="InputBtn" parent="main_container/vert_container/option_tab_container/Controls/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/gun_slot_1/HBoxContainer" node_paths=PackedStringArray("ICW") groups=["controls_settings"] instance=ExtResource("1_lvxjt")]
+[node name="InputBtn" parent="main_container/vert_container/option_tab_container/Controls/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/gun_slot_1/HBoxContainer" groups=["controls_settings"] instance=ExtResource("1_lvxjt")]
 layout_mode = 2
-ICW = NodePath("../../../../../../../../../../../InputConfirmWindow")
 setting = ExtResource("28_b27xi")
 
 [node name="Btn" parent="main_container/vert_container/option_tab_container/Controls/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/gun_slot_1/HBoxContainer/InputBtn" index="0"]
@@ -629,9 +616,8 @@ text = "Equip Gun Slot 2
 layout_mode = 2
 size_flags_horizontal = 10
 
-[node name="InputBtn" parent="main_container/vert_container/option_tab_container/Controls/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/gun_slot_2/HBoxContainer" node_paths=PackedStringArray("ICW") groups=["controls_settings"] instance=ExtResource("1_lvxjt")]
+[node name="InputBtn" parent="main_container/vert_container/option_tab_container/Controls/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/gun_slot_2/HBoxContainer" groups=["controls_settings"] instance=ExtResource("1_lvxjt")]
 layout_mode = 2
-ICW = NodePath("../../../../../../../../../../../InputConfirmWindow")
 setting = ExtResource("29_us0mp")
 
 [node name="Btn" parent="main_container/vert_container/option_tab_container/Controls/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/gun_slot_2/HBoxContainer/InputBtn" index="0"]
@@ -665,9 +651,8 @@ text = "Use
 layout_mode = 2
 size_flags_horizontal = 10
 
-[node name="InputBtn" parent="main_container/vert_container/option_tab_container/Controls/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/use/HBoxContainer" node_paths=PackedStringArray("ICW") groups=["controls_settings"] instance=ExtResource("1_lvxjt")]
+[node name="InputBtn" parent="main_container/vert_container/option_tab_container/Controls/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/use/HBoxContainer" groups=["controls_settings"] instance=ExtResource("1_lvxjt")]
 layout_mode = 2
-ICW = NodePath("../../../../../../../../../../../InputConfirmWindow")
 setting = ExtResource("30_j61sd")
 
 [node name="Btn" parent="main_container/vert_container/option_tab_container/Controls/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/use/HBoxContainer/InputBtn" index="0"]
@@ -685,9 +670,8 @@ text = "Drop Gun
 layout_mode = 2
 size_flags_horizontal = 10
 
-[node name="InputBtn" parent="main_container/vert_container/option_tab_container/Controls/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/drop_gun/HBoxContainer" node_paths=PackedStringArray("ICW") groups=["controls_settings"] instance=ExtResource("1_lvxjt")]
+[node name="InputBtn" parent="main_container/vert_container/option_tab_container/Controls/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/drop_gun/HBoxContainer" groups=["controls_settings"] instance=ExtResource("1_lvxjt")]
 layout_mode = 2
-ICW = NodePath("../../../../../../../../../../../InputConfirmWindow")
 setting = ExtResource("31_ji8e4")
 
 [node name="Btn" parent="main_container/vert_container/option_tab_container/Controls/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/drop_gun/HBoxContainer/InputBtn" index="0"]
@@ -705,9 +689,8 @@ text = "Inventory
 layout_mode = 2
 size_flags_horizontal = 10
 
-[node name="InputBtn" parent="main_container/vert_container/option_tab_container/Controls/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/inventory/HBoxContainer" node_paths=PackedStringArray("ICW") groups=["controls_settings"] instance=ExtResource("1_lvxjt")]
+[node name="InputBtn" parent="main_container/vert_container/option_tab_container/Controls/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/inventory/HBoxContainer" groups=["controls_settings"] instance=ExtResource("1_lvxjt")]
 layout_mode = 2
-ICW = NodePath("../../../../../../../../../../../InputConfirmWindow")
 setting = ExtResource("32_rllb7")
 
 [node name="Btn" parent="main_container/vert_container/option_tab_container/Controls/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/inventory/HBoxContainer/InputBtn" index="0"]
@@ -725,9 +708,8 @@ text = "Grab Item
 layout_mode = 2
 size_flags_horizontal = 10
 
-[node name="InputBtn" parent="main_container/vert_container/option_tab_container/Controls/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/inv_grab/HBoxContainer" node_paths=PackedStringArray("ICW") groups=["controls_settings"] instance=ExtResource("1_lvxjt")]
+[node name="InputBtn" parent="main_container/vert_container/option_tab_container/Controls/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/inv_grab/HBoxContainer" groups=["controls_settings"] instance=ExtResource("1_lvxjt")]
 layout_mode = 2
-ICW = NodePath("../../../../../../../../../../../InputConfirmWindow")
 setting = ExtResource("33_4w1ay")
 
 [node name="Btn" parent="main_container/vert_container/option_tab_container/Controls/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/inv_grab/HBoxContainer/InputBtn" index="0"]
@@ -745,9 +727,8 @@ text = "Rotate Item
 layout_mode = 2
 size_flags_horizontal = 10
 
-[node name="InputBtn" parent="main_container/vert_container/option_tab_container/Controls/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/rotate_item/HBoxContainer" node_paths=PackedStringArray("ICW") groups=["controls_settings"] instance=ExtResource("1_lvxjt")]
+[node name="InputBtn" parent="main_container/vert_container/option_tab_container/Controls/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/rotate_item/HBoxContainer" groups=["controls_settings"] instance=ExtResource("1_lvxjt")]
 layout_mode = 2
-ICW = NodePath("../../../../../../../../../../../InputConfirmWindow")
 setting = ExtResource("34_25p35")
 
 [node name="Btn" parent="main_container/vert_container/option_tab_container/Controls/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/rotate_item/HBoxContainer/InputBtn" index="0"]
@@ -765,9 +746,8 @@ text = "Drop Item
 layout_mode = 2
 size_flags_horizontal = 10
 
-[node name="InputBtn" parent="main_container/vert_container/option_tab_container/Controls/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/drop_item/HBoxContainer" node_paths=PackedStringArray("ICW") groups=["controls_settings"] instance=ExtResource("1_lvxjt")]
+[node name="InputBtn" parent="main_container/vert_container/option_tab_container/Controls/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/drop_item/HBoxContainer" groups=["controls_settings"] instance=ExtResource("1_lvxjt")]
 layout_mode = 2
-ICW = NodePath("../../../../../../../../../../../InputConfirmWindow")
 setting = ExtResource("35_7ete6")
 
 [node name="Btn" parent="main_container/vert_container/option_tab_container/Controls/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/drop_item/HBoxContainer/InputBtn" index="0"]
@@ -785,9 +765,8 @@ text = "Item Context Menu
 layout_mode = 2
 size_flags_horizontal = 10
 
-[node name="InputBtn" parent="main_container/vert_container/option_tab_container/Controls/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/item_context_menu/HBoxContainer" node_paths=PackedStringArray("ICW") groups=["controls_settings"] instance=ExtResource("1_lvxjt")]
+[node name="InputBtn" parent="main_container/vert_container/option_tab_container/Controls/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/item_context_menu/HBoxContainer" groups=["controls_settings"] instance=ExtResource("1_lvxjt")]
 layout_mode = 2
-ICW = NodePath("../../../../../../../../../../../InputConfirmWindow")
 setting = ExtResource("36_ybnor")
 
 [node name="Btn" parent="main_container/vert_container/option_tab_container/Controls/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/item_context_menu/HBoxContainer/InputBtn" index="0"]
@@ -805,9 +784,8 @@ text = "Quick Save
 layout_mode = 2
 size_flags_horizontal = 10
 
-[node name="InputBtn" parent="main_container/vert_container/option_tab_container/Controls/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/quick_save/HBoxContainer" node_paths=PackedStringArray("ICW") groups=["controls_settings"] instance=ExtResource("1_lvxjt")]
+[node name="InputBtn" parent="main_container/vert_container/option_tab_container/Controls/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/quick_save/HBoxContainer" groups=["controls_settings"] instance=ExtResource("1_lvxjt")]
 layout_mode = 2
-ICW = NodePath("../../../../../../../../../../../InputConfirmWindow")
 setting = ExtResource("38_t8p18")
 
 [node name="Btn" parent="main_container/vert_container/option_tab_container/Controls/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/quick_save/HBoxContainer/InputBtn" index="0"]
@@ -825,9 +803,8 @@ text = "Quick Load
 layout_mode = 2
 size_flags_horizontal = 10
 
-[node name="InputBtn" parent="main_container/vert_container/option_tab_container/Controls/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/quick_load/HBoxContainer" node_paths=PackedStringArray("ICW") groups=["controls_settings"] instance=ExtResource("1_lvxjt")]
+[node name="InputBtn" parent="main_container/vert_container/option_tab_container/Controls/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/quick_load/HBoxContainer" groups=["controls_settings"] instance=ExtResource("1_lvxjt")]
 layout_mode = 2
-ICW = NodePath("../../../../../../../../../../../InputConfirmWindow")
 setting = ExtResource("39_y7uid")
 
 [node name="Btn" parent="main_container/vert_container/option_tab_container/Controls/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/quick_load/HBoxContainer/InputBtn" index="0"]
@@ -858,6 +835,7 @@ group = "controls_settings"
 [node name="Audio" type="MarginContainer" parent="main_container/vert_container/option_tab_container"]
 visible = false
 layout_mode = 2
+metadata/_tab_index = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="main_container/vert_container/option_tab_container/Audio"]
 layout_mode = 2
@@ -973,6 +951,7 @@ group = "audio_settings"
 [node name="Display" type="MarginContainer" parent="main_container/vert_container/option_tab_container"]
 visible = false
 layout_mode = 2
+metadata/_tab_index = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="main_container/vert_container/option_tab_container/Display"]
 layout_mode = 2
@@ -1081,6 +1060,7 @@ group = "display_settings"
 [node name="Game Play" type="MarginContainer" parent="main_container/vert_container/option_tab_container"]
 visible = false
 layout_mode = 2
+metadata/_tab_index = 3
 
 [node name="VBoxContainer" type="VBoxContainer" parent="main_container/vert_container/option_tab_container/Game Play"]
 layout_mode = 2
@@ -1114,12 +1094,11 @@ size_flags_horizontal = 10
 
 [node name="OptionList" parent="main_container/vert_container/option_tab_container/Game Play/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer" groups=["gameplay_settings"] instance=ExtResource("20_1jn2v")]
 layout_mode = 2
-use_ids = true
 setting = ExtResource("47_gderx")
 
 [node name="Btn" parent="main_container/vert_container/option_tab_container/Game Play/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer/OptionList" index="0"]
-item_count = 3
 selected = 0
+item_count = 3
 popup/item_0/text = "Bars"
 popup/item_0/id = 0
 popup/item_1/text = "Icons"
@@ -1142,7 +1121,6 @@ size_flags_horizontal = 10
 [node name="Checkbox" parent="main_container/vert_container/option_tab_container/Game Play/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer2/HBoxContainer" groups=["display_settings"] instance=ExtResource("4_l86j1")]
 layout_mode = 2
 setting = ExtResource("49_nt1ud")
-apply_on_change = true
 
 [node name="HBoxContainer" type="HBoxContainer" parent="main_container/vert_container/option_tab_container/Game Play/VBoxContainer"]
 layout_mode = 2
@@ -1158,8 +1136,6 @@ layout_mode = 2
 size_flags_horizontal = 3
 text = "Reset to Default"
 group = "audio_settings"
-
-[node name="InputConfirmWindow" parent="." instance=ExtResource("4_5ngqd")]
 
 [connection signal="mouse_entered" from="main_container/vert_container/HBoxContainer/back_button" to="." method="_on_back_button_mouse_entered"]
 [connection signal="pressed" from="main_container/vert_container/HBoxContainer/back_button" to="." method="_on_back_button_pressed"]

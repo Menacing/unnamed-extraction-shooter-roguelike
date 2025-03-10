@@ -1,25 +1,16 @@
-[gd_resource type="Resource" script_class="ggsInputSetting" load_steps=4 format=3 uid="uid://cq358bopsi3j8"]
+[gd_resource type="Resource" script_class="settingInput" load_steps=2 format=3 uid="uid://cq358bopsi3j8"]
 
-[ext_resource type="Script" uid="uid://bdrt4prwma1je" path="res://game_settings/templates/input.gd" id="1_fndfk"]
-
-[sub_resource type="InputEventKey" id="InputEventKey_mkdbj"]
-physical_keycode = 4194326
-
-[sub_resource type="InputEventKey" id="InputEventKey_l2vjl"]
-physical_keycode = 4194326
+[ext_resource type="Script" uid="uid://bd8fqk1yxalmm" path="res://addons/ggs/templates/setting_input.gd" id="1_qstg3"]
 
 [resource]
 resource_name = "crouch_kb"
-script = ExtResource("1_fndfk")
+script = ExtResource("1_qstg3")
 action = "crouch"
-event_index = 0
-type = 1
-default_as_event = SubResource("InputEventKey_l2vjl")
-current_as_event = SubResource("InputEventKey_mkdbj")
-current = [1, 4194326]
-default = [1, 4194326]
-name = "crouch_kb"
-category = "controls"
+event_idx = 0
+read_only_properties = PackedStringArray("default", "type", "value_type", "value_hint", "value_hint_string")
+default = [1, 4194326, -1]
+section = "controls"
+key = "crouch_kb"
 value_type = 28
 value_hint = 0
 value_hint_string = ""

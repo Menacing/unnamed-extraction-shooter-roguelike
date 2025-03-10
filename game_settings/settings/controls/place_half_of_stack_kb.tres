@@ -1,29 +1,16 @@
-[gd_resource type="Resource" script_class="ggsInputSetting" load_steps=4 format=3 uid="uid://b2cjr1ewogun"]
+[gd_resource type="Resource" script_class="settingInput" load_steps=2 format=3 uid="uid://b2cjr1ewogun"]
 
-[ext_resource type="Script" uid="uid://bdrt4prwma1je" path="res://game_settings/templates/input.gd" id="1_65l6b"]
-
-[sub_resource type="InputEventMouseButton" id="InputEventMouseButton_b7p1k"]
-device = -1
-shift_pressed = true
-button_index = 2
-
-[sub_resource type="InputEventMouseButton" id="InputEventMouseButton_xtxb2"]
-device = -1
-shift_pressed = true
-button_index = 2
+[ext_resource type="Script" uid="uid://bd8fqk1yxalmm" path="res://addons/ggs/templates/setting_input.gd" id="1_n6p8i"]
 
 [resource]
 resource_name = "place_half_of_stack_kb"
-script = ExtResource("1_65l6b")
+script = ExtResource("1_n6p8i")
 action = "place_half_of_stack"
-event_index = 0
-type = 2
-default_as_event = SubResource("InputEventMouseButton_xtxb2")
-current_as_event = SubResource("InputEventMouseButton_b7p1k")
-current = [2, 33554434]
-default = [2, 33554434]
-name = "place_half_of_stack_kb"
-category = "controls"
+event_idx = 0
+read_only_properties = PackedStringArray("default", "type", "value_type", "value_hint", "value_hint_string")
+default = [2, 33554434, -1]
+section = "controls"
+key = "place_half_of_stack_kb"
 value_type = 28
 value_hint = 0
 value_hint_string = ""

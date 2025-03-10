@@ -1,14 +1,14 @@
-[gd_resource type="Resource" load_steps=2 format=3 uid="uid://blgl21g0rau2q"]
+[gd_resource type="Resource" script_class="ggsSetting" load_steps=2 format=3 uid="uid://blgl21g0rau2q"]
 
-[ext_resource type="Script" uid="uid://dv1q63vjnbxt6" path="res://game_settings/templates/bool_setting.gd" id="1_gs2a5"]
+[ext_resource type="Script" uid="uid://cvv6m7yyfsxxg" path="res://addons/ggs/plugin/classes/ggs_setting.gd" id="1_twxud"]
 
 [resource]
 resource_name = "toggle_ads"
-script = ExtResource("1_gs2a5")
-current = false
+script = ExtResource("1_twxud")
+read_only_properties = PackedStringArray()
 default = false
-name = "toggle_ads"
-category = "controls"
+section = "controls"
+key = "toggle_ads"
 value_type = 1
 value_hint = 0
 value_hint_string = ""

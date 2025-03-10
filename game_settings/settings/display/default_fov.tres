@@ -1,14 +1,14 @@
-[gd_resource type="Resource" load_steps=2 format=3 uid="uid://5ncapys43e0n"]
+[gd_resource type="Resource" script_class="ggsSetting" load_steps=2 format=3 uid="uid://5ncapys43e0n"]
 
-[ext_resource type="Script" uid="uid://dogt0k5goivvy" path="res://game_settings/templates/float_setting.gd" id="1_a023l"]
+[ext_resource type="Script" uid="uid://cvv6m7yyfsxxg" path="res://addons/ggs/plugin/classes/ggs_setting.gd" id="1_e2uwl"]
 
 [resource]
 resource_name = "default_fov"
-script = ExtResource("1_a023l")
-current = 75.0
+script = ExtResource("1_e2uwl")
+read_only_properties = PackedStringArray()
 default = 75.0
-name = "default_fov"
-category = "display"
+section = "display"
+key = "default_fov"
 value_type = 3
 value_hint = 1
 value_hint_string = "50,120"

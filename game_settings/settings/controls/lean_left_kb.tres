@@ -1,25 +1,16 @@
-[gd_resource type="Resource" script_class="ggsInputSetting" load_steps=4 format=3 uid="uid://d1kwolsy8hmy1"]
+[gd_resource type="Resource" script_class="settingInput" load_steps=2 format=3 uid="uid://d1kwolsy8hmy1"]
 
-[ext_resource type="Script" uid="uid://bdrt4prwma1je" path="res://game_settings/templates/input.gd" id="1_po61f"]
-
-[sub_resource type="InputEventKey" id="InputEventKey_vfh5j"]
-physical_keycode = 81
-
-[sub_resource type="InputEventKey" id="InputEventKey_gqhc7"]
-physical_keycode = 81
+[ext_resource type="Script" uid="uid://bd8fqk1yxalmm" path="res://addons/ggs/templates/setting_input.gd" id="1_dpeh6"]
 
 [resource]
 resource_name = "lean_left_kb"
-script = ExtResource("1_po61f")
+script = ExtResource("1_dpeh6")
 action = "leanLeft"
-event_index = 0
-type = 1
-default_as_event = SubResource("InputEventKey_gqhc7")
-current_as_event = SubResource("InputEventKey_vfh5j")
-current = [1, 81]
-default = [1, 81]
-name = "lean_left_kb"
-category = "controls"
+event_idx = 0
+read_only_properties = PackedStringArray("default", "type", "value_type", "value_hint", "value_hint_string")
+default = [1, 81, -1]
+section = "controls"
+key = "lean_left_kb"
 value_type = 28
 value_hint = 0
 value_hint_string = ""

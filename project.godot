@@ -20,10 +20,10 @@ config/icon="res://icon.svg"
 
 EventBus="*res://game_logic/event_bus.gd"
 GameSettings="*res://game_logic/game_settings.gd"
+GGS="*res://addons/ggs/plugin/singleton/ggs.tscn"
 Helpers="*res://helpers/helpers.gd"
 MenuManager="*res://game_logic/menu_manager.gd"
 GameplayEnums="*res://game_logic/gameplay_enums.gd"
-GGS="*res://addons/ggs/classes/global/ggs.tscn"
 SaveManager="*res://game_logic/save_manager.gd"
 ItemMappingRepository="*res://game_logic/item_mapping_repository.gd"
 AmmoLoader="*res://components/ammo_component/ammo_loader.gd"
@@ -259,7 +259,7 @@ quick_load={
 [physics]
 
 3d/run_on_separate_thread=true
-3d/physics_engine="JoltPhysics3D"
+3d/physics_engine="Jolt Physics"
 jolt_3d/collisions/use_shape_margins=false
 
 [rendering]
