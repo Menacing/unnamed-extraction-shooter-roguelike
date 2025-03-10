@@ -1,14 +1,14 @@
-[gd_resource type="Resource" load_steps=2 format=3 uid="uid://r35s0brad3kp"]
+[gd_resource type="Resource" script_class="ggsSetting" load_steps=2 format=3 uid="uid://r35s0brad3kp"]
 
-[ext_resource type="Script" uid="uid://dogt0k5goivvy" path="res://game_settings/templates/float_setting.gd" id="1_ywmxj"]
+[ext_resource type="Script" uid="uid://cvv6m7yyfsxxg" path="res://addons/ggs/plugin/classes/ggs_setting.gd" id="1_4namu"]
 
 [resource]
 resource_name = "h_mouse_sens"
-script = ExtResource("1_ywmxj")
-current = 5.0
+script = ExtResource("1_4namu")
+read_only_properties = PackedStringArray()
 default = 5.0
-name = "h_mouse_sens"
-category = "controls"
+section = "controls"
+key = "h_mouse_sens"
 value_type = 3
 value_hint = 1
 value_hint_string = "0,10"

@@ -1,25 +1,16 @@
-[gd_resource type="Resource" script_class="ggsInputSetting" load_steps=4 format=3 uid="uid://btolgwqrtu428"]
+[gd_resource type="Resource" script_class="settingInput" load_steps=2 format=3 uid="uid://btolgwqrtu428"]
 
-[ext_resource type="Script" uid="uid://bdrt4prwma1je" path="res://game_settings/templates/input.gd" id="1_ej1ls"]
-
-[sub_resource type="InputEventKey" id="InputEventKey_4ae8m"]
-physical_keycode = 66
-
-[sub_resource type="InputEventKey" id="InputEventKey_sq0pu"]
-physical_keycode = 66
+[ext_resource type="Script" uid="uid://bd8fqk1yxalmm" path="res://addons/ggs/templates/setting_input.gd" id="1_hnhi3"]
 
 [resource]
 resource_name = "fire_mode_kb"
-script = ExtResource("1_ej1ls")
+script = ExtResource("1_hnhi3")
 action = "toggleFireMode"
-event_index = 0
-type = 1
-default_as_event = SubResource("InputEventKey_sq0pu")
-current_as_event = SubResource("InputEventKey_4ae8m")
-current = [1, 66]
-default = [1, 66]
-name = "fire_mode_kb"
-category = "controls"
+event_idx = 0
+read_only_properties = PackedStringArray("default", "type", "value_type", "value_hint", "value_hint_string")
+default = [1, 66, -1]
+section = "controls"
+key = "fire_mode_kb"
 value_type = 28
 value_hint = 0
 value_hint_string = ""

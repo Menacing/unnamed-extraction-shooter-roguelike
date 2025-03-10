@@ -1,15 +1,15 @@
-[gd_resource type="Resource" load_steps=2 format=3 uid="uid://oxban322y1uv"]
+[gd_resource type="Resource" script_class="settingAudioMute" load_steps=2 format=3 uid="uid://oxban322y1uv"]
 
-[ext_resource type="Script" uid="uid://csw2ucblx8qk6" path="res://game_settings/templates/audio/audio_mute.gd" id="1_uyn3g"]
+[ext_resource type="Script" uid="uid://cpoestiu0ow7e" path="res://addons/ggs/templates/audio/setting_audio_mute.gd" id="1_2sjka"]
 
 [resource]
 resource_name = "master_mute"
-script = ExtResource("1_uyn3g")
+script = ExtResource("1_2sjka")
 audio_bus = "Master"
-current = false
+read_only_properties = PackedStringArray()
 default = false
-name = "master_mute"
-category = "audio"
+section = "audio"
+key = "master_mute"
 value_type = 1
 value_hint = 0
 value_hint_string = ""

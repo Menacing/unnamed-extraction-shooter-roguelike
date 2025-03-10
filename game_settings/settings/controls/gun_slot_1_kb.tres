@@ -1,27 +1,16 @@
-[gd_resource type="Resource" script_class="ggsInputSetting" load_steps=4 format=3 uid="uid://dvtl224ulkdxs"]
+[gd_resource type="Resource" script_class="settingInput" load_steps=2 format=3 uid="uid://dvtl224ulkdxs"]
 
-[ext_resource type="Script" uid="uid://bdrt4prwma1je" path="res://game_settings/templates/input.gd" id="1_oacic"]
-
-[sub_resource type="InputEventKey" id="InputEventKey_fgunh"]
-physical_keycode = 49
-
-[sub_resource type="InputEventKey" id="InputEventKey_reipb"]
-device = -1
-physical_keycode = 49
-unicode = 49
+[ext_resource type="Script" uid="uid://bd8fqk1yxalmm" path="res://addons/ggs/templates/setting_input.gd" id="1_vwhxk"]
 
 [resource]
 resource_name = "gun_slot_1_kb"
-script = ExtResource("1_oacic")
+script = ExtResource("1_vwhxk")
 action = "equipGunSlot1"
-event_index = 0
-type = 1
-default_as_event = SubResource("InputEventKey_reipb")
-current_as_event = SubResource("InputEventKey_fgunh")
-current = [1, 49]
-default = [1, 49]
-name = "gun_slot_1_kb"
-category = "controls"
+event_idx = 0
+read_only_properties = PackedStringArray("default", "type", "value_type", "value_hint", "value_hint_string")
+default = [1, 49, -1]
+section = "controls"
+key = "gun_slot_1_kb"
 value_type = 28
 value_hint = 0
 value_hint_string = ""

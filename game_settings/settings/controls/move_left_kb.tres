@@ -1,25 +1,16 @@
-[gd_resource type="Resource" script_class="ggsInputSetting" load_steps=4 format=3 uid="uid://baqd80g3a22sm"]
+[gd_resource type="Resource" script_class="settingInput" load_steps=2 format=3 uid="uid://baqd80g3a22sm"]
 
-[ext_resource type="Script" uid="uid://bdrt4prwma1je" path="res://game_settings/templates/input.gd" id="1_xykci"]
-
-[sub_resource type="InputEventKey" id="InputEventKey_8sr4j"]
-physical_keycode = 65
-
-[sub_resource type="InputEventKey" id="InputEventKey_gogs3"]
-physical_keycode = 65
+[ext_resource type="Script" uid="uid://bd8fqk1yxalmm" path="res://addons/ggs/templates/setting_input.gd" id="1_6prm5"]
 
 [resource]
 resource_name = "move_left_kb"
-script = ExtResource("1_xykci")
+script = ExtResource("1_6prm5")
 action = "moveLeft"
-event_index = 0
-type = 1
-default_as_event = SubResource("InputEventKey_gogs3")
-current_as_event = SubResource("InputEventKey_8sr4j")
-current = [1, 65]
-default = [1, 65]
-name = "move_left_kb"
-category = "controls"
+event_idx = 0
+read_only_properties = PackedStringArray("default", "type", "value_type", "value_hint", "value_hint_string")
+default = [1, 65, -1]
+section = "controls"
+key = "move_left_kb"
 value_type = 28
 value_hint = 0
 value_hint_string = ""

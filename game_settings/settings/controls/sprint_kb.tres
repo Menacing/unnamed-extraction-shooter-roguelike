@@ -1,25 +1,16 @@
-[gd_resource type="Resource" script_class="ggsInputSetting" load_steps=4 format=3 uid="uid://cyw0vxm6edd20"]
+[gd_resource type="Resource" script_class="settingInput" load_steps=2 format=3 uid="uid://cyw0vxm6edd20"]
 
-[ext_resource type="Script" uid="uid://bdrt4prwma1je" path="res://game_settings/templates/input.gd" id="1_igwxf"]
-
-[sub_resource type="InputEventKey" id="InputEventKey_4r0yc"]
-physical_keycode = 4194325
-
-[sub_resource type="InputEventKey" id="InputEventKey_b4lkt"]
-physical_keycode = 4194325
+[ext_resource type="Script" uid="uid://bd8fqk1yxalmm" path="res://addons/ggs/templates/setting_input.gd" id="1_x83px"]
 
 [resource]
 resource_name = "sprint_kb"
-script = ExtResource("1_igwxf")
+script = ExtResource("1_x83px")
 action = "sprint"
-event_index = 0
-type = 1
-default_as_event = SubResource("InputEventKey_b4lkt")
-current_as_event = SubResource("InputEventKey_4r0yc")
-current = [1, 4194325]
-default = [1, 4194325]
-name = "sprint_kb"
-category = "controls"
+event_idx = 0
+read_only_properties = PackedStringArray("default", "type", "value_type", "value_hint", "value_hint_string")
+default = [1, 4194325, -1]
+section = "controls"
+key = "sprint_kb"
 value_type = 28
 value_hint = 0
 value_hint_string = ""

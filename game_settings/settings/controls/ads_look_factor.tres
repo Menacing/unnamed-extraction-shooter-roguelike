@@ -1,14 +1,14 @@
-[gd_resource type="Resource" load_steps=2 format=3 uid="uid://bt5juesj8aglk"]
+[gd_resource type="Resource" script_class="ggsSetting" load_steps=2 format=3 uid="uid://bt5juesj8aglk"]
 
-[ext_resource type="Script" uid="uid://dogt0k5goivvy" path="res://game_settings/templates/float_setting.gd" id="1_i307i"]
+[ext_resource type="Script" uid="uid://cvv6m7yyfsxxg" path="res://addons/ggs/plugin/classes/ggs_setting.gd" id="1_10kvu"]
 
 [resource]
 resource_name = "ads_look_factor"
-script = ExtResource("1_i307i")
-current = 0.37
+script = ExtResource("1_10kvu")
+read_only_properties = PackedStringArray()
 default = 1.0
-name = "ads_look_factor"
-category = "controls"
+section = "controls"
+key = "ads_look_factor"
 value_type = 3
 value_hint = 1
 value_hint_string = "0,2"

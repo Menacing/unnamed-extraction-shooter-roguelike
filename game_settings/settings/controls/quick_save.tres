@@ -1,26 +1,16 @@
-[gd_resource type="Resource" script_class="ggsInputSetting" load_steps=4 format=3 uid="uid://cgx5uig0yh3lb"]
+[gd_resource type="Resource" script_class="settingInput" load_steps=2 format=3 uid="uid://cgx5uig0yh3lb"]
 
-[ext_resource type="Script" uid="uid://bdrt4prwma1je" path="res://game_settings/templates/input.gd" id="1_7ogxu"]
-
-[sub_resource type="InputEventKey" id="InputEventKey_68i6u"]
-physical_keycode = 4194336
-
-[sub_resource type="InputEventKey" id="InputEventKey_qimjm"]
-device = -1
-physical_keycode = 4194336
+[ext_resource type="Script" uid="uid://bd8fqk1yxalmm" path="res://addons/ggs/templates/setting_input.gd" id="1_sirn6"]
 
 [resource]
 resource_name = "quick_save"
-script = ExtResource("1_7ogxu")
+script = ExtResource("1_sirn6")
 action = "quick_save"
-event_index = 0
-type = 1
-default_as_event = SubResource("InputEventKey_qimjm")
-current_as_event = SubResource("InputEventKey_68i6u")
-current = [1, 4194336]
-default = [1, 4194336]
-name = "quick_save"
-category = "controls"
+event_idx = 0
+read_only_properties = PackedStringArray("default", "type", "value_type", "value_hint", "value_hint_string")
+default = [1, 4194336, -1]
+section = "controls"
+key = "quick_save"
 value_type = 28
 value_hint = 0
 value_hint_string = ""
