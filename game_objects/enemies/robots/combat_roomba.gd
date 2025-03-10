@@ -2,7 +2,7 @@ extends Enemy
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
-@onready var head = $"combat-roomba/Armature/Skeleton3D/Physical Bone Bone/Head" as Node3D
+@onready var head = %Head as Node3D
 @export var gun_scene: PackedScene
 var gun: Gun
 var hf_pos: Vector3
@@ -10,8 +10,6 @@ var hf_pos: Vector3
 var accel = 3
 var turret_rotation:float = 2.0
 
-@onready var skeleton:Skeleton3D = $"combat-roomba/Armature/Skeleton3D"
-@onready var physical_bone:PhysicalBone3D = $"combat-roomba/Armature/Skeleton3D/Physical Bone Bone"
 var alive = true
 var last_damage_normal:Vector3
 var last_damage:float
@@ -39,19 +37,15 @@ func _ready():
 		gun_node = gun
 
 func die():
-	print("I am dead")
+	super()
 	alive = false
-	skeleton.animate_physical_bones = true
-	skeleton.physical_bones_start_simulation()
-	var damage_vector = last_damage_normal.normalized() * 5
-	PhysicsServer3D.body_set_state(physical_bone.get_rid(), PhysicsServer3D.BODY_STATE_LINEAR_VELOCITY, damage_vector)
 	$CollisionShape3D.disabled = true
 	$CollisionShape3D2.disabled = true
 	$CollisionShape3D3.disabled = true
-	$"combat-roomba/Armature/Skeleton3D/Physical Bone Bone/Head/SpotLight3D".visible = false
-	var behavior_tree:BTPlayer = $BTPlayer
-	behavior_tree.active = false
-	$LootFiestaComponent.fiesta()
+	$"combat-roomba/Armature/Skeleton3D/PhysicalBoneSimulator3D/Head/SpotLight3D".visible = false
+
+
+
 
 func _on_game_saving(save_file:SaveFile):
 	if save_file:

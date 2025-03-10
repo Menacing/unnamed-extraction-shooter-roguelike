@@ -229,12 +229,12 @@ func attack_target_in_range() -> bool:
 
 func attack():
 	pass
-	#if gun_node:
-		#Helpers.random_angle_deviation_moa(gun_node,vert_moa,hor_moa)
-		#gun_node.fireGun()
+	if gun_node:
+		Helpers.random_angle_deviation_moa(gun_node,vert_moa,hor_moa)
+		gun_node.fireGun()
 	#elif animation_player and animation_player.has_animation("attack"):
 		#animation_player.play("attack")
-		#
+		
 
 
 func _on_navigation_mesh_list_item_baked(nmli:NavigationMeshListItem):

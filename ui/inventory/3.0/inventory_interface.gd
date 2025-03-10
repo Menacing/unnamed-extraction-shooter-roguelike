@@ -113,19 +113,20 @@ func _on_toggle_inventory(external_inventory_owner = null) -> void:
 func on_inventory_interact(inventory_data:InventoryData, index:int, event:InputEvent):
 	if event.is_action_pressed("quick_item_transfer"):
 		var incoming_slot_data = inventory_data.grab_slot_data(index)
-		play_pickup_sound(incoming_slot_data)
-		if incoming_slot_data and player_inventory_data and external_inventory_data:
-			if inventory_data == player_inventory_data:
-				var result = external_inventory_data.pick_up_slot_data(incoming_slot_data)
-				if !result:
-					inventory_data.pick_up_slot_data(incoming_slot_data)
-			elif inventory_data == external_inventory_data:
-				var result = player_inventory_data.pick_up_slot_data(incoming_slot_data)
-				if !result:
-					inventory_data.pick_up_slot_data(incoming_slot_data)
-		else:
-			inventory_data.pick_up_slot_data(incoming_slot_data)
-		pass
+		if incoming_slot_data:
+			play_pickup_sound(incoming_slot_data)
+			if incoming_slot_data and player_inventory_data and external_inventory_data:
+				if inventory_data == player_inventory_data:
+					var result = external_inventory_data.pick_up_slot_data(incoming_slot_data)
+					if !result:
+						inventory_data.pick_up_slot_data(incoming_slot_data)
+				elif inventory_data == external_inventory_data:
+					var result = player_inventory_data.pick_up_slot_data(incoming_slot_data)
+					if !result:
+						inventory_data.pick_up_slot_data(incoming_slot_data)
+			else:
+				inventory_data.pick_up_slot_data(incoming_slot_data)
+			pass
 	elif grabbed_slot_data == null and event.is_action_pressed("inv_grab"):
 		grabbed_slot_data = inventory_data.grab_slot_data(index)
 		play_pickup_sound(grabbed_slot_data)
@@ -149,19 +150,20 @@ func on_inventory_interact(inventory_data:InventoryData, index:int, event:InputE
 func on_inventory_equipment_slot_interact(inventory_data:InventoryData, slot_name:String, event:InputEvent) -> void:
 	if event.is_action_pressed("quick_item_transfer"):
 		var incoming_slot_data = inventory_data.grab_equipment_slot_data(slot_name)
-		play_pickup_sound(incoming_slot_data)
-		if incoming_slot_data and player_inventory_data and external_inventory_data:
-			if inventory_data == player_inventory_data:
-				var result = external_inventory_data.pick_up_slot_data(incoming_slot_data)
-				if !result:
-					inventory_data.pick_up_slot_data(incoming_slot_data)
-			elif inventory_data == external_inventory_data:
-				var result = player_inventory_data.pick_up_slot_data(incoming_slot_data)
-				if !result:
-					inventory_data.pick_up_slot_data(incoming_slot_data)
-		else:
-			inventory_data.pick_up_slot_data(incoming_slot_data)
-		pass
+		if incoming_slot_data:
+			play_pickup_sound(incoming_slot_data)
+			if incoming_slot_data and player_inventory_data and external_inventory_data:
+				if inventory_data == player_inventory_data:
+					var result = external_inventory_data.pick_up_slot_data(incoming_slot_data)
+					if !result:
+						inventory_data.pick_up_slot_data(incoming_slot_data)
+				elif inventory_data == external_inventory_data:
+					var result = player_inventory_data.pick_up_slot_data(incoming_slot_data)
+					if !result:
+						inventory_data.pick_up_slot_data(incoming_slot_data)
+			else:
+				inventory_data.pick_up_slot_data(incoming_slot_data)
+			pass
 	elif grabbed_slot_data == null and event.is_action_pressed("inv_grab"):
 		grabbed_slot_data = inventory_data.grab_equipment_slot_data(slot_name)
 		play_pickup_sound(grabbed_slot_data)
