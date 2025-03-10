@@ -1,25 +1,4 @@
-[gd_resource type="Resource" script_class="ggsInputSetting" load_steps=4 format=3 uid="uid://d4aw2a0pqw4k6"]
-
-[ext_resource type="Script" uid="uid://bdrt4prwma1je" path="res://game_settings/templates/input.gd" id="1_m0fd3"]
-
-[sub_resource type="InputEventKey" id="InputEventKey_bncpd"]
-physical_keycode = 87
-
-[sub_resource type="InputEventKey" id="InputEventKey_wrewf"]
-physical_keycode = 87
+[gd_resource type="Resource" format=3 uid="uid://d4aw2a0pqw4k6"]
 
 [resource]
 resource_name = "move_forward_kb"
-script = ExtResource("1_m0fd3")
-action = "moveUp"
-event_index = 0
-type = 1
-default_as_event = SubResource("InputEventKey_wrewf")
-current_as_event = SubResource("InputEventKey_bncpd")
-current = [1, 87]
-default = [1, 87]
-name = "move_forward_kb"
-category = "controls"
-value_type = 28
-value_hint = 0
-value_hint_string = ""
