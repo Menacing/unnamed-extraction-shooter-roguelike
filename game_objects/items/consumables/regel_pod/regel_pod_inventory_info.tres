@@ -1,7 +1,8 @@
-[gd_resource type="Resource" script_class="ItemInformation" load_steps=8 format=3 uid="uid://ik6f3hhg63nv"]
+[gd_resource type="Resource" script_class="ItemInformation" load_steps=7 format=3 uid="uid://ik6f3hhg63nv"]
 
 [ext_resource type="Script" uid="uid://dw75el3q24f1f" path="res://ui/inventory/item_context_item.gd" id="1_umf2r"]
 [ext_resource type="Resource" uid="uid://o6tesi76nbth" path="res://ui/inventory/drop_item_context_item.tres" id="2_2n3fr"]
+[ext_resource type="Texture2D" uid="uid://cymbjyvt8w6ot" path="res://game_objects/items/consumables/regel_pod/regel_pod_icon.png" id="4_ubb62"]
 [ext_resource type="PackedScene" uid="uid://son7demex4pt" path="res://ui/inventory/detail_scenes/simple_detail_popup.tscn" id="4_v1g1g"]
 [ext_resource type="Script" uid="uid://hxr8853lym5l" path="res://resource_access/item_information.gd" id="5_0snh8"]
 
@@ -10,12 +11,6 @@ script = ExtResource("1_umf2r")
 label = "Use"
 signal_name = "context_menus_use"
 
-[sub_resource type="Resource" id="Resource_6emfi"]
-metadata/__load_path__ = "res://game_objects/items/consumables/regel_pod/regel_pod_icon.png"
-
-[sub_resource type="Resource" id="Resource_uomnn"]
-metadata/__load_path__ = "res://game_objects/items/consumables/regel_pod/regel_pod_icon.png"
-
 [resource]
 script = ExtResource("5_0snh8")
 item_type_id = "regel_pod"
@@ -23,8 +18,8 @@ show_name = false
 display_name = "ReGel Pod"
 display_short_name = ""
 item_type = 2
-icon = SubResource("Resource_6emfi")
-icon_r = SubResource("Resource_uomnn")
+icon = ExtResource("4_ubb62")
+icon_r = ExtResource("4_ubb62")
 detail_scene = ExtResource("4_v1g1g")
 context_menu_items = Array[ExtResource("1_umf2r")]([SubResource("Resource_w7f3g"), ExtResource("2_2n3fr")])
 max_stacks = 5

@@ -16,8 +16,9 @@
 [ext_resource type="PackedScene" uid="uid://cliu3gfmcv7xd" path="res://components/damage_effect_component/damage_effect_component.tscn" id="19_k7rcm"]
 [ext_resource type="PackedScene" uid="uid://bo5i75565y5co" path="res://game_objects/effects/hit_effects/bullet_hit_sparks.tscn" id="20_3xthi"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_wvt7k"]
-size = Vector3(0.3, 2.1, 0.3)
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_mxgj2"]
+radius = 0.0521091
+height = 0.861414
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_cn06a"]
 height = 10.0
@@ -146,19 +147,20 @@ _data = {
 &"target_spotted": SubResource("Animation_qeyji")
 }
 
-[node name="combat_roomba" type="CharacterBody3D" node_paths=PackedStringArray("nav_agent", "head_node", "detection_radius", "ballistic_detection_radius", "movement_audio_player")]
+[node name="combat_roomba" type="CharacterBody3D" node_paths=PackedStringArray("nav_agent", "head_node", "detection_radius", "ballistic_detection_radius", "movement_audio_player", "behavior_tree")]
 transform = Transform3D(1.00409, 0, 0, 0, 1.00409, 0, 0, 0, 1.00409, 0, 0, 0)
 collision_layer = 3
 script = ExtResource("1_f1cah")
 gun_scene = ExtResource("2_q4rc2")
 nav_agent = NodePath("NavigationAgent3D")
-head_node = NodePath("combat-roomba/Armature/Skeleton3D/Physical Bone Bone/Head")
+head_node = NodePath("combat-roomba/Armature/Skeleton3D/PhysicalBoneSimulator3D/Head")
 vert_moa = 60.0
 hor_moa = 60.0
 detection_radius = NodePath("DetectRadius")
 ballistic_detection_radius = NodePath("BulletDetectRadius")
 movement_audio_player = NodePath("MovementIntroOutroAudioStreamPlayer")
 nav_mesh_list_item = ExtResource("4_k7kme")
+behavior_tree = NodePath("BTPlayer")
 
 [node name="combat-roomba" parent="." instance=ExtResource("3_wwy82")]
 transform = Transform3D(0.35, 0, 0, 0, 0.35, 0, 0, 0, 0.35, 0, 0, 0)
@@ -169,16 +171,24 @@ transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0.2
 [node name="Skeleton3D" parent="combat-roomba/Armature" index="0"]
 animate_physical_bones = false
 
-[node name="Physical Bone Bone" type="PhysicalBone3D" parent="combat-roomba/Armature/Skeleton3D" index="1"]
+[node name="PhysicalBoneSimulator3D" type="PhysicalBoneSimulator3D" parent="combat-roomba/Armature/Skeleton3D" index="1"]
+active = false
+
+[node name="Physical Bone Bone" type="PhysicalBone3D" parent="combat-roomba/Armature/Skeleton3D/PhysicalBoneSimulator3D"]
 transform = Transform3D(2.8455, 2.84217e-14, 0, 0, 0, -2.8455, -2.84217e-14, 2.8455, 0, 0, 0.222436, 0)
 joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.078171)
 body_offset = Transform3D(2.8455, 2.84217e-14, 0, 0, 0, -2.8455, -2.84217e-14, 2.8455, 0, 0, 0.222436, 0)
 bone_name = "Bone"
 
-[node name="Head" type="Node3D" parent="combat-roomba/Armature/Skeleton3D/Physical Bone Bone"]
-transform = Transform3D(-1, 0, 8.74228e-08, -8.74228e-08, 0, -1, 0, -1, 0, 0.0238471, 2.08478e-09, -1.87783)
+[node name="CollisionShape3D" type="CollisionShape3D" parent="combat-roomba/Armature/Skeleton3D/PhysicalBoneSimulator3D/Physical Bone Bone"]
+transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, 0, 0, -0.26635)
+shape = SubResource("CapsuleShape3D_mxgj2")
 
-[node name="SpotLight3D" type="SpotLight3D" parent="combat-roomba/Armature/Skeleton3D/Physical Bone Bone/Head"]
+[node name="Head" type="Node3D" parent="combat-roomba/Armature/Skeleton3D/PhysicalBoneSimulator3D"]
+unique_name_in_owner = true
+transform = Transform3D(-2.8455, 0, 2.48762e-07, 0, 2.8455, 0, -2.48762e-07, 0, -2.8455, 0, 2.054, 0)
+
+[node name="SpotLight3D" type="SpotLight3D" parent="combat-roomba/Armature/Skeleton3D/PhysicalBoneSimulator3D/Head"]
 light_color = Color(1, 0, 0, 1)
 light_bake_mode = 0
 shadow_enabled = true
@@ -187,10 +197,6 @@ distance_fade_begin = 50.0
 spot_range = 50.0
 spot_attenuation = 5.27803
 spot_angle = 5.0
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="combat-roomba/Armature/Skeleton3D/Physical Bone Bone"]
-transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, 0, 0, -0.703788)
-shape = SubResource("BoxShape3D_wvt7k")
 
 [node name="DetectRadius" type="Area3D" parent="."]
 collision_layer = 0
@@ -246,7 +252,7 @@ bus = &"SFX"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_w37k2")
+&"": SubResource("AnimationLibrary_w37k2")
 }
 
 [node name="MovementIntroOutroAudioStreamPlayer" type="AudioStreamPlayer3D" parent="." node_paths=PackedStringArray("OutroStreamPlayer")]
