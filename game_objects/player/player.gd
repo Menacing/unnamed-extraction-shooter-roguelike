@@ -54,7 +54,8 @@ var pov_rotation_node:Node3D
 @onready var ik_left_hand:SkeletonIK3D = %PlayerDefaultMeshAnimated/Armature/Skeleton3D/SkeletonIK3D_Hand_Left_Fingers
 @onready var ik_left_hand_fingers:SkeletonIK3D = %PlayerDefaultMeshAnimated/Armature/Skeleton3D/SkeletonIK3D_Hand_Left
 @onready var ik_head:SkeletonIK3D = %PlayerDefaultMeshAnimated/Armature/Skeleton3D/SkeletonIK3D_Head
-@onready var animation_tree:AnimationTree = $AnimationTree2
+@onready var animation_tree:AnimationTree = $AnimationTree
+@onready var animation_tree_state_machine:AnimationNodeStateMachinePlayback = animation_tree["parameters/playback"]
 var los_check_locations:Array[Node3D] = []
 
 @export_category("Movement")
@@ -652,6 +653,7 @@ func should_prone() -> bool:
 func move(move_global_velocity:Vector3, delta:float, going_forward:bool):
 	if not is_on_floor():
 		state_chart.send_event("Fell")
+		animation_tree_state_machine.travel("Jumping")
 		return
 	else:
 		velocity.x = move_toward(velocity.x, move_global_velocity.x, accel)
@@ -681,21 +683,26 @@ func _on_standing_state_exited():
 func _on_standing_state_input(event):
 	if event.is_action_pressed("jump") and !legs_destroyed and is_on_floor():
 		state_chart.send_event("Jump")
+		animation_tree_state_machine.travel("Jumping")
 		return
 		
 func _on_standing_state_physics_processing(delta):
 	if should_crouch():
 		state_chart.send_event("Crouch")
+		animation_tree_state_machine.travel("Crouching")
 		return
 	
 	if should_prone():
 		state_chart.send_event("Prone")
+		animation_tree_state_machine.travel("Prone")
+		
 		return
 	
 	var input_direction = Input.get_vector("moveLeft", "moveRight", "moveUp", "moveDown")
 	var direction:Vector3 = (transform.basis * Vector3(input_direction.x, 0, input_direction.y)).normalized()
 	if !is_equal_approx(input_direction.length(), 0.0):
 		state_chart.send_event("Walk")
+		animation_tree_state_machine.travel("Walking")
 		return
 	else:
 		move(direction, delta, input_direction.y < 0)
@@ -720,24 +727,31 @@ func _on_walking_state_exited() -> void:
 func _on_walking_state_input(event):
 	if event.is_action_pressed("jump") and !legs_destroyed and is_on_floor():
 		state_chart.send_event("Jump")
+		animation_tree_state_machine.travel("Jumping")
 		return
 		
 func _on_walking_state_physics_processing(delta):
 	if should_crouch():
 		state_chart.send_event("Crouch")
+		animation_tree_state_machine.travel("Crouching")
 		return
 	
 	if should_prone():
 		state_chart.send_event("Prone")
+		animation_tree_state_machine.travel("Prone")
+		
 		return
 	
 	var input_direction = Input.get_vector("moveLeft", "moveRight", "moveUp", "moveDown")
 	var direction:Vector3 = (transform.basis * Vector3(input_direction.x, 0, input_direction.y)).normalized()
 	if is_equal_approx(input_direction.length(), 0.0):
 		state_chart.send_event("Stop")
+		animation_tree_state_machine.travel("Standing")
 		return
 	elif should_sprint():
 		state_chart.send_event("Sprint")
+		animation_tree_state_machine.travel("Sprinting")
+		
 		return
 	else:
 		animation_tree["parameters/Walking/blend_position"] = input_direction
@@ -749,6 +763,8 @@ func _on_walking_state_physics_processing(delta):
 func _on_sprinting_state_input(event):
 	if event.is_action_pressed("jump") and !legs_destroyed and is_on_floor():
 		state_chart.send_event("Jump")
+		animation_tree_state_machine.travel("Jumping")
+		
 		return
 
 @export var sprinting_recoil_factor:StatModifier
@@ -773,19 +789,25 @@ func _on_sprinting_state_exited():
 func _on_sprinting_state_physics_processing(delta):
 	if should_crouch():
 		state_chart.send_event("Crouch")
+		animation_tree_state_machine.travel("Crouching")
 		return
 	
 	if should_prone():
 		state_chart.send_event("Prone")
+		animation_tree_state_machine.travel("Prone")
 		return
 	
 	var input_direction = Input.get_vector("moveLeft", "moveRight", "moveUp", "moveDown")
 	var direction:Vector3 = (transform.basis * Vector3(input_direction.x, 0, input_direction.y)).normalized()
 	if is_equal_approx(input_direction.length(), 0.0):
 		state_chart.send_event("Stop")
+		animation_tree_state_machine.travel("Standing")
+		
 		return
 	elif !should_sprint():
 		state_chart.send_event("Walk")
+		animation_tree_state_machine.travel("Walking")
+		
 		return
 	else:
 		animation_tree["parameters/Sprinting/blend_position"] = input_direction
@@ -830,19 +852,27 @@ func _on_crouch_walking_state_exited():
 func _on_crouching_state_physics_processing(delta):
 	if !should_crouch():
 		state_chart.send_event("Stand")
+		animation_tree_state_machine.travel("Standing")
+		
 		return
 	
 	if should_prone():
 		state_chart.send_event("Prone")
+		animation_tree_state_machine.travel("Prone")
+		
 		return
 	
 	var input_direction = Input.get_vector("moveLeft", "moveRight", "moveUp", "moveDown")
 	var direction:Vector3 = (transform.basis * Vector3(input_direction.x, 0, input_direction.y)).normalized()
 	if should_sprint():
 		state_chart.send_event("Stand")
+		animation_tree_state_machine.travel("Standing")
+		
 		return
 	elif !is_equal_approx(input_direction.length(), 0.0):
 		state_chart.send_event("CrouchWalk")
+		animation_tree_state_machine.travel("CrouchWalking")
+		
 		return
 	else:
 		move(direction, delta, input_direction.y < 0)
@@ -850,19 +880,27 @@ func _on_crouching_state_physics_processing(delta):
 func _on_crouch_walking_state_physics_processing(delta):
 	if !should_crouch():
 		state_chart.send_event("Stand")
+		animation_tree_state_machine.travel("Standing")
+		
 		return
 	
 	if should_prone():
 		state_chart.send_event("Prone")
+		animation_tree_state_machine.travel("Prone")
+		
 		return
 	
 	var input_direction = Input.get_vector("moveLeft", "moveRight", "moveUp", "moveDown")
 	var direction:Vector3 = (transform.basis * Vector3(input_direction.x, 0, input_direction.y)).normalized()
 	if should_sprint():
 		state_chart.send_event("Stand")
+		animation_tree_state_machine.travel("Standing")
+		
 		return
 	elif is_equal_approx(input_direction.length(), 0.0):
 		state_chart.send_event("Stop")
+		animation_tree_state_machine.travel("Crouching")
+		
 		return
 	else:
 		animation_tree["parameters/CrouchWalking/blend_position"] = input_direction
@@ -891,16 +929,21 @@ func _on_prone_state_exited():
 func _on_prone_state_physics_processing(delta):
 	if should_crouch():
 		state_chart.send_event("Crouch")
+		animation_tree_state_machine.travel("Crouching")
+		
 		return
 	
 	if !should_prone():
 		state_chart.send_event("Stand")
+		animation_tree_state_machine.travel("Standing")
 		return
 	
 	var input_direction = Input.get_vector("moveLeft", "moveRight", "moveUp", "moveDown")
 	var direction:Vector3 = (transform.basis * Vector3(input_direction.x, 0, input_direction.y)).normalized()
 	if !is_equal_approx(input_direction.length(), 0.0):
 		state_chart.send_event("Crawl")
+		animation_tree_state_machine.travel("Crawling")
+		
 		return
 	else:
 		move(direction, delta, input_direction.y < 0)
@@ -928,16 +971,22 @@ func _on_crawling_state_exited():
 func _on_crawling_state_physics_processing(delta):
 	if should_crouch():
 		state_chart.send_event("Crouch")
+		animation_tree_state_machine.travel("Crouching")
+		
 		return
 	
 	if !should_prone():
 		state_chart.send_event("Stand")
+		animation_tree_state_machine.travel("Standing")
+		
 		return
 	
 	var input_direction = Input.get_vector("moveLeft", "moveRight", "moveUp", "moveDown")
 	var direction:Vector3 = (transform.basis * Vector3(input_direction.x, 0, input_direction.y)).normalized()
 	if is_equal_approx(input_direction.length(), 0.0):
 		state_chart.send_event("Stop")
+		animation_tree_state_machine.travel("Prone")
+		
 		return
 	else:
 		
@@ -991,6 +1040,8 @@ func _on_falling_state_physics_processing(delta: float) -> void:
 		
 	if _stuck_timer >= _stuck_threshold:
 		state_chart.send_event("Stuck")
+		animation_tree_state_machine.travel("Jumping")
+		
 	elif not is_on_floor():
 		var input_direction = Input.get_vector("moveLeft", "moveRight", "moveUp", "moveDown")
 		var direction:Vector3 = (transform.basis * Vector3(input_direction.x, 0, input_direction.y)).normalized()
@@ -1002,6 +1053,8 @@ func _on_falling_state_physics_processing(delta: float) -> void:
 		move_step_and_slide(delta)
 	else:
 		state_chart.send_event("Landed")
+		animation_tree_state_machine.travel("Standing")
+		
 		return
 
 func _on_stuck_state_entered():
@@ -1027,6 +1080,8 @@ func _on_stuck_state_input(event):
 		#fall
 		_stuck_timer = 0.0
 		state_chart.send_event("Fell")
+		animation_tree_state_machine.travel("Jumping")
+		
 
 #endregion
 #endregion
