@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://ctqmopbbqb2b5"]
+
+[ext_resource type="PackedScene" uid="uid://cx8kauffxhqke" path="res://game_objects/props/lights/flashlight/flashlight.blend" id="1_nwker"]
+[ext_resource type="Texture2D" uid="uid://7fi0upsekmpy" path="res://game_objects/effects/assets/light_03.png" id="2_r2tpf"]
+
+[node name="Flashlight" type="Node3D"]
+
+[node name="flashlight" parent="." instance=ExtResource("1_nwker")]
+
+[node name="SpotLight3D" type="SpotLight3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -7.85033e-15, 0, 0.131767)
+light_energy = 8.0
+light_indirect_energy = 3.0
+light_projector = ExtResource("2_r2tpf")
+light_bake_mode = 1
+shadow_enabled = true
+distance_fade_enabled = true
+distance_fade_begin = 50.0
+spot_range = 50.0
+spot_angle = 15.0
+spot_angle_attenuation = 0.267943
