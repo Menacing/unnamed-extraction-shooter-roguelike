@@ -13,6 +13,7 @@ var firer:Node3D
 
 @export var muzzle:Node3D
 @export var muzzle_flash_animation_player:AnimationPlayer
+@export var fire_sound_player:AudioStreamPlayer3D
 @export var fire_timer:Timer
 @export var reload_timer:Timer
 var reload_time:ModifiableStatFloat = ModifiableStatFloat.new(1.0)
@@ -143,7 +144,7 @@ func fireGun() -> void:
 		Helpers.random_angle_deviation_moa(bulletInst, _gun_stats.moa, _gun_stats.moa)
 		current_magazine_size -= 1
 		muzzle_flash_animation_player.play("fire")
-		#$ShotAudioStreamPlayer3D.play()
+		fire_sound_player.play()
 		fire_timer.start()
 		fired.emit(generate_recoil())
 	else:

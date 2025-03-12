@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://dr48wela8mtxd"]
+[gd_scene load_steps=18 format=3 uid="uid://dr48wela8mtxd"]
 
 [ext_resource type="Script" uid="uid://b1hgbiqq2ptq5" path="res://game_objects/items/weapons/gun.gd" id="1_4e183"]
 [ext_resource type="PackedScene" uid="uid://gfj0vsvmo4ik" path="res://game_objects/bullet/iterative_raycast_bullet.tscn" id="2_405qr"]
@@ -20,7 +20,7 @@ step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath(".:visible")
+tracks/0/path = NodePath("gun/Muzzle:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -30,9 +30,25 @@ tracks/0/keys = {
 "values": [true, false]
 }
 
+[sub_resource type="Animation" id="Animation_5q3cs"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("gun/Muzzle:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_clf16"]
 resource_local_to_scene = true
 _data = {
+&"RESET": SubResource("Animation_5q3cs"),
 &"fire": SubResource("Animation_048m7")
 }
 
@@ -172,7 +188,7 @@ random_volume_offset_db = 0.5
 streams_count = 1
 stream_0/stream = ExtResource("6_r1jqa")
 
-[node name="PM52" type="RigidBody3D" node_paths=PackedStringArray("muzzle", "muzzle_flash_animation_player", "fire_timer", "reload_timer", "reload_animation_player", "gun_model_node", "gun_material_nodes", "scope_anchor", "on_scope_show_nodes", "on_default_magazine_show_nodes", "on_default_magazine_hide_nodes", "on_extended_magazine_show_nodes", "on_extended_magazine_hide_nodes", "on_stable_foregrip_show_nodes", "on_stable_foregrip_hide_nodes", "mag_node", "model_node")]
+[node name="PM52" type="RigidBody3D" node_paths=PackedStringArray("muzzle", "muzzle_flash_animation_player", "fire_sound_player", "fire_timer", "reload_timer", "reload_animation_player", "gun_model_node", "gun_material_nodes", "scope_anchor", "on_scope_show_nodes", "on_default_magazine_show_nodes", "on_default_magazine_hide_nodes", "on_extended_magazine_show_nodes", "on_extended_magazine_hide_nodes", "on_stable_foregrip_show_nodes", "on_stable_foregrip_hide_nodes", "mag_node", "model_node")]
 disable_mode = 1
 collision_layer = 5
 collision_mask = 5
@@ -182,6 +198,7 @@ _bullet_scene = ExtResource("2_405qr")
 _gun_stats = ExtResource("2_aa0bx")
 muzzle = NodePath("gun/Muzzle")
 muzzle_flash_animation_player = NodePath("gun/Muzzle/MuzzleFlashAnimationPlayer")
+fire_sound_player = NodePath("ShotAudioStreamPlayer3D")
 fire_timer = NodePath("FireTimer")
 reload_timer = NodePath("ReloadTimer")
 reload_animation_player = NodePath("AnimationPlayer")
@@ -256,9 +273,9 @@ distance_fade_enabled = true
 
 [node name="MuzzleFlashAnimationPlayer" type="AnimationPlayer" parent="gun/Muzzle"]
 unique_name_in_owner = true
-root_node = NodePath("")
+root_node = NodePath("../../..")
 libraries = {
-"": SubResource("AnimationLibrary_clf16")
+&"": SubResource("AnimationLibrary_clf16")
 }
 
 [node name="scope_anchor" type="Node3D" parent="."]
@@ -299,7 +316,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.2, 0.1, 0)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_tmnss")
+&"": SubResource("AnimationLibrary_tmnss")
 }
 
 [node name="MagInStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
