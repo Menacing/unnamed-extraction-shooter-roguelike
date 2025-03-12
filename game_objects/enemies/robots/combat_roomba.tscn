@@ -1,9 +1,11 @@
-[gd_scene load_steps=31 format=3 uid="uid://ciaqbr34myu5w"]
+[gd_scene load_steps=34 format=3 uid="uid://ciaqbr34myu5w"]
 
 [ext_resource type="Script" uid="uid://uhx6btiktgn0" path="res://game_objects/enemies/robots/combat_roomba.gd" id="1_f1cah"]
 [ext_resource type="PackedScene" uid="uid://dr48wela8mtxd" path="res://game_objects/items/weapons/hic_rifles/pm_52/pm_52.tscn" id="2_q4rc2"]
 [ext_resource type="PackedScene" uid="uid://o7vvmqxsny5t" path="res://game_objects/enemies/robots/combat-roomba.glb" id="3_wwy82"]
 [ext_resource type="Resource" uid="uid://hw8blc564g2i" path="res://levels/roomba_nav_mesh.tres" id="4_k7kme"]
+[ext_resource type="Texture2D" uid="uid://7fi0upsekmpy" path="res://game_objects/effects/assets/light_03.png" id="5_qdph4"]
+[ext_resource type="Texture2D" uid="uid://daqvndsohpnyb" path="res://game_objects/effects/assets/light_01.png" id="6_5orm7"]
 [ext_resource type="BehaviorTree" uid="uid://c3o1pihtd3pqc" path="res://ai/trees/combat_roomba.tres" id="9_huqy6"]
 [ext_resource type="AudioStream" uid="uid://wef8dj3iyrtm" path="res://game_objects/enemies/robots/audio/enemy_spotted_audio_stream_randomizer.tres" id="10_iwbga"]
 [ext_resource type="AudioStream" uid="uid://hd40mi2hpmcb" path="res://game_objects/enemies/robots/audio/enemy_lost_audio_stream_randomizer.tres" id="11_ll5t6"]
@@ -19,6 +21,14 @@
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_mxgj2"]
 radius = 0.0521091
 height = 0.861414
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_54ull"]
+transparency = 1
+albedo_color = Color(1, 0, 0, 1)
+albedo_texture = ExtResource("6_5orm7")
+emission_enabled = true
+emission = Color(1, 0, 0, 1)
+emission_texture = ExtResource("6_5orm7")
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_cn06a"]
 height = 10.0
@@ -189,14 +199,24 @@ unique_name_in_owner = true
 transform = Transform3D(-2.8455, 0, 2.48762e-07, 0, 2.8455, 0, -2.48762e-07, 0, -2.8455, 0, 2.054, 0)
 
 [node name="SpotLight3D" type="SpotLight3D" parent="combat-roomba/Armature/Skeleton3D/PhysicalBoneSimulator3D/Head"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.85033e-15, 0, -0.0526111)
 light_color = Color(1, 0, 0, 1)
-light_bake_mode = 0
+light_energy = 4.115
+light_projector = ExtResource("5_qdph4")
 shadow_enabled = true
 distance_fade_enabled = true
 distance_fade_begin = 50.0
 spot_range = 50.0
-spot_attenuation = 5.27803
 spot_angle = 5.0
+
+[node name="Sprite3D" type="Sprite3D" parent="combat-roomba/Armature/Skeleton3D/PhysicalBoneSimulator3D/Head/SpotLight3D"]
+transform = Transform3D(-0.1, 0, -8.74228e-09, 0, 0.1, 0, 8.74228e-09, 0, -0.1, -5.70952e-15, 0, -0.0382639)
+material_override = SubResource("StandardMaterial3D_54ull")
+cast_shadow = 0
+gi_mode = 0
+modulate = Color(1, 0, 0, 1)
+double_sided = false
+texture = ExtResource("6_5orm7")
 
 [node name="DetectRadius" type="Area3D" parent="."]
 collision_layer = 0
