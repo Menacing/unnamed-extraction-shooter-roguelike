@@ -1,0 +1,19 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://jei0slo0cbki"]
+
+[ext_resource type="Texture2D" uid="uid://cxkgqbmd1sfkw" path="res://game_objects/props/lights/tube_light/glass_t.png" id="1_4wr8n"]
+
+[resource]
+resource_name = "glass_m"
+cull_mode = 2
+albedo_texture = ExtResource("1_4wr8n")
+roughness = 0.5
+emission_enabled = true
+emission_energy_multiplier = 100.0
+emission_texture = ExtResource("1_4wr8n")
+texture_filter = 2
+metadata/extras = {
+"zen_uv": {
+"trimsheet_image": {},
+"world_size_image": {}
+}
+}
