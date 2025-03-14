@@ -5,3 +5,10 @@
 [node name="TubeLight" type="Node3D"]
 
 [node name="tube_light" parent="." instance=ExtResource("1_yyqcv")]
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.246781, 0)
+light_size = 1.0
+light_bake_mode = 1
+shadow_enabled = true
+omni_range = 30.0

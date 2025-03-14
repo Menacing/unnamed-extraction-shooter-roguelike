@@ -1,13 +1,10 @@
-[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://bmqfsr4wfxyi"]
-
-[ext_resource type="Texture2D" uid="uid://dutjmramrijdo" path="res://game_objects/props/lights/sodium_light/sodium_light_t.png" id="1_iywtf"]
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://bmqfsr4wfxyi"]
 
 [resource]
 resource_name = "light_m"
 cull_mode = 2
-albedo_texture = ExtResource("1_iywtf")
 roughness = 0.5
 emission_enabled = true
-emission_energy_multiplier = 100.0
-emission_texture = ExtResource("1_iywtf")
+emission = Color(1, 0.858824, 0.329412, 1)
+emission_energy_multiplier = 2.0
 texture_filter = 2

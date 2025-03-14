@@ -5,3 +5,12 @@
 [node name="SodiumLight" type="Node3D"]
 
 [node name="sodium_light" parent="." instance=ExtResource("1_4qsfx")]
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0674782, 0)
+light_color = Color(1, 0.858824, 0.329412, 1)
+light_energy = 4.0
+light_size = 0.5
+light_bake_mode = 1
+shadow_enabled = true
+omni_range = 20.0
