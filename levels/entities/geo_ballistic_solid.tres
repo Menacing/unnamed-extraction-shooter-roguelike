@@ -18,6 +18,11 @@ collision_layer = 11
 collision_mask = 1
 collision_priority = 1.0
 collision_shape_margin = 0.04
+add_textures_metadata = false
+add_vertex_metadata = false
+add_face_position_metadata = false
+add_face_normal_metadata = false
+add_collision_shape_face_range_metadata = false
 script_class = ExtResource("2_2vssw")
 classname = "geo_ballistic_solid"
 description = "Solid geometry with ballistic penetration"
@@ -34,6 +39,7 @@ class_properties = {
 "wood": 3
 },
 "game_material_info_path": "",
+"gi_lightmap_texel_scale": 0.5,
 "transparent": false
 }
 class_property_descriptions = {
@@ -41,6 +47,7 @@ class_property_descriptions = {
 "game_material_info_path": "godot path to the GameMaterialInfo file for this brush",
 "transparent": "Is the solid transparent to enemy LOS checks?"
 }
+auto_apply_to_matching_node_properties = true
 meta_properties = {
 "color": Color(0.8, 0.8, 0.8, 1),
 "size": AABB(-8, -8, -8, 8, 8, 8)

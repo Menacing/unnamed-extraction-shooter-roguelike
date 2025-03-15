@@ -45,6 +45,7 @@ func _func_godot_apply_properties(entity_properties: Dictionary):
 	if 'transparent' in func_godot_properties:
 		_transparent = func_godot_properties['transparent']
 		
+		
 	set_collision_layer_value(4,!_transparent)
 	
 	var dc:DamageComponent = damage_component_scene.instantiate() as DamageComponent
