@@ -45,6 +45,10 @@ func _func_godot_apply_properties(entity_properties: Dictionary):
 	if 'transparent' in func_godot_properties:
 		_transparent = func_godot_properties['transparent']
 		
+	if 'gi_lightmap_texel_scale' in func_godot_properties:
+		var meshes:Array[MeshInstance3D] = Helpers.get_all_mesh_nodes(self)
+		for mesh:MeshInstance3D in meshes:
+			mesh.gi_lightmap_texel_scale = float(func_godot_properties['gi_lightmap_texel_scale'])
 		
 	set_collision_layer_value(4,!_transparent)
 	
