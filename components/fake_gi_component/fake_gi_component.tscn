@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://c65jhr75ocbnv"]
+
+[ext_resource type="Script" uid="uid://mf5dhmckktdw" path="res://components/fake_gi_component/fake_gi_component.gd" id="1_xbpog"]
+
+[node name="FakeGiComponent" type="Node"]
+script = ExtResource("1_xbpog")
