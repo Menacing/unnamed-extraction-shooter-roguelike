@@ -4,9 +4,3 @@
 
 [node name="FakeGiComponent" type="Node3D"]
 script = ExtResource("1_xbpog")
-range_factor = null
-energy_factor = null
-
-[node name="RayCast3D" type="RayCast3D" parent="."]
-target_position = Vector3(0, -50, 0)
-collision_mask = 11

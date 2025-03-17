@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=4 uid="uid://47ji61xdh2hs"]
+[gd_scene load_steps=9 format=4 uid="uid://47ji61xdh2hs"]
 
 [ext_resource type="PackedScene" uid="uid://dpnewrh1rre1g" path="res://game_objects/props/lights/industrial_hanging_lamp/industrial_hanging_lamp.blend" id="1_hphdt"]
 [ext_resource type="Texture2D" uid="uid://daqvndsohpnyb" path="res://game_objects/effects/assets/light_01.png" id="2_n35vc"]
 [ext_resource type="Texture2D" uid="uid://bjsgtugpdxt4h" path="res://game_objects/props/lights/industrial_hanging_lamp/textures/industrial_hanging_lamp_t.png" id="2_ttvts"]
+[ext_resource type="PackedScene" uid="uid://c65jhr75ocbnv" path="res://components/fake_gi_component/fake_gi_component.tscn" id="4_wrbpp"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6yvki"]
 resource_name = "aluminum_m"
@@ -92,5 +93,17 @@ light_projector = ExtResource("2_n35vc")
 light_bake_mode = 1
 shadow_enabled = true
 distance_fade_enabled = true
+
+[node name="FakeGiComponent" parent="SpotLight3D" instance=ExtResource("4_wrbpp")]
+range_factor = 1.2
+energy_factor = 0.2
+
+[node name="OmniLight3D" type="OmniLight3D" parent="SpotLight3D/FakeGiComponent"]
+light_color = Color(1, 0.807843, 0.65098, 1)
+light_energy = 0.6
+light_specular = 0.0
+light_bake_mode = 1
+distance_fade_enabled = true
+omni_range = 6.0
 
 [editable path="industrial_hanging_lamp"]

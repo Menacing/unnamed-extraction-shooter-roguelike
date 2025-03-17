@@ -7,33 +7,18 @@
 
 [node name="sodium_dome_light" parent="." instance=ExtResource("1_kw30s")]
 
-[node name="OmniLight3D" type="OmniLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.212064, 0)
-light_color = Color(1, 0.858824, 0.329412, 1)
-light_bake_mode = 1
-shadow_enabled = true
-omni_range = 20.0
-
-[node name="FakeGiComponent" parent="OmniLight3D" instance=ExtResource("2_ou6os")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.212064, 0)
-range_factor = null
-energy_factor = null
-
-[node name="@OmniLight3D@40753" type="OmniLight3D" parent="OmniLight3D/FakeGiComponent"]
-light_color = Color(1, 0.858824, 0.329412, 1)
-light_energy = 0.3
-light_specular = 0.0
-light_bake_mode = 1
-omni_range = 28.0
-
 [node name="SpotLight3D" type="SpotLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
-visible = false
 light_color = Color(1, 0.858824, 0.329412, 1)
 light_size = 0.25
 light_bake_mode = 1
 shadow_enabled = true
-spot_range = 40.0
+spot_range = 20.0
 spot_angle = 80.0
+
+[node name="FakeGiComponent" parent="SpotLight3D" instance=ExtResource("2_ou6os")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+range_factor = 1.1
+energy_factor = 0.1
 
 [editable path="sodium_dome_light"]

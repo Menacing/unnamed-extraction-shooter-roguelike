@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://ctqmopbbqb2b5"]
+[gd_scene load_steps=4 format=3 uid="uid://ctqmopbbqb2b5"]
 
 [ext_resource type="PackedScene" uid="uid://cx8kauffxhqke" path="res://game_objects/props/lights/flashlight/flashlight.blend" id="1_nwker"]
 [ext_resource type="Texture2D" uid="uid://7fi0upsekmpy" path="res://game_objects/effects/assets/light_03.png" id="2_r2tpf"]
+[ext_resource type="PackedScene" uid="uid://c65jhr75ocbnv" path="res://components/fake_gi_component/fake_gi_component.tscn" id="3_kroes"]
 
 [node name="Flashlight" type="Node3D"]
 
@@ -19,3 +20,13 @@ distance_fade_begin = 50.0
 spot_range = 50.0
 spot_angle = 15.0
 spot_angle_attenuation = 0.267943
+
+[node name="FakeGiComponent" parent="SpotLight3D" instance=ExtResource("3_kroes")]
+
+[node name="OmniLight3D" type="OmniLight3D" parent="SpotLight3D/FakeGiComponent"]
+light_energy = 2.4
+light_specular = 0.0
+light_bake_mode = 1
+distance_fade_enabled = true
+distance_fade_begin = 50.0
+omni_range = 70.0

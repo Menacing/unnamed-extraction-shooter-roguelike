@@ -1,7 +1,6 @@
 @tool
 extends Node3D
 
-@onready var ray_cast_3d: RayCast3D = $RayCast3D
 
 @export_range(0.0,2.0,0.05) var range_factor:float = 1.4
 @export_range(0.0,2.0,0.05) var energy_factor:float = 0.3
@@ -28,7 +27,7 @@ func create_fake_gi_light():
 			print("create new fake gi light")
 			
 			fake_gi_light = OmniLight3D.new()
-			self.add_child(fake_gi_light)
+			self.add_child(fake_gi_light, true)
 			fake_gi_light.owner = get_tree().edited_scene_root
 			
 		#In the secondary OmniLight3D node, perform the following changes:
@@ -63,7 +62,7 @@ func create_fake_gi_light():
 		if fake_gi_light == null:
 			print("create new fake gi light")
 			fake_gi_light = OmniLight3D.new()
-			self.add_child(fake_gi_light,true)
+			self.add_child(fake_gi_light, true)
 			fake_gi_light.owner = get_tree().edited_scene_root
 			
 		#In the secondary OmniLight3D node, perform the following changes:
@@ -84,25 +83,26 @@ func create_fake_gi_light():
 		#Set Specular to 0. Indirect lighting shouldn't emit visible specular lobes, so we need to disable specular lighting entirely for the secondary light.
 		fake_gi_light.light_specular = 0.0
 
-		#raycast along facing
-		var raycast_result = cast_ray()
-		print("raycast result: ", raycast_result)
-		if raycast_result:
-			fake_gi_light.global_position = raycast_result
-		else:
-			print("no collision found, removing fake gi light")
-			fake_gi_light.queue_free()
+		#Raycasting from a tool script is a mess. Maybe someday, till then just position these by hand
+		##raycast along facing
+		#var raycast_result = cast_ray()
+		#print("raycast result: ", raycast_result)
+		#if raycast_result:
+			#fake_gi_light.global_position = raycast_result
+		#else:
+			#print("no collision found, removing fake gi light")
+			#fake_gi_light.queue_free()
 	pass
-	
-func cast_ray():
-	if Engine.is_editor_hint():
-		#raycasting in the editor is a nightmare, just return self
-		return self.global_position
-	else:
-		if ray_cast_3d.is_colliding():
-			return ray_cast_3d.get_collision_point()
-		else:
-			return null
+	#
+#func cast_ray():
+	#if Engine.is_editor_hint():
+		##raycasting in the editor is a nightmare, just return self
+		#return self.global_position
+	#else:
+		#if ray_cast_3d.is_colliding():
+			#return ray_cast_3d.get_collision_point()
+		#else:
+			#return null
 
 
 func _get_configuration_warnings():
@@ -111,13 +111,13 @@ func _get_configuration_warnings():
 	else:
 		return ["Component's parent must be OmniLight3D or SpotLight3D"]
 		
-func _ready():
-	#check for existing light
-	var fake_gi_light: OmniLight3D
-	for child in self.get_children():
-		if child is OmniLight3D:
-			fake_gi_light = child
-			break
-	if fake_gi_light == null:
-		create_fake_gi_light()
+#func _ready():
+	##check for existing light
+	#var fake_gi_light: OmniLight3D
+	#for child in self.get_children():
+		#if child is OmniLight3D:
+			#fake_gi_light = child
+			#break
+	#if fake_gi_light == null:
+		#create_fake_gi_light()
 	
