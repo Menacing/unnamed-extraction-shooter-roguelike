@@ -1,4 +1,4 @@
-[gd_scene load_steps=385 format=4 uid="uid://d2txigapsdl18"]
+[gd_scene load_steps=384 format=4 uid="uid://d2txigapsdl18"]
 
 [ext_resource type="Script" uid="uid://c7t5re1e03cfg" path="res://levels/level.gd" id="1_d1tug"]
 [ext_resource type="CameraAttributesPractical" uid="uid://jafbi2bjurvn" path="res://test/debug/vibe_check_camera.tres" id="2_7vsv1"]
@@ -44,7 +44,6 @@
 [ext_resource type="Script" uid="uid://b2newdlaaj70t" path="res://game_objects/items/weapons/gun_stats.gd" id="46_ku5gw"]
 [ext_resource type="PackedScene" uid="uid://d3qu8ewdc1ye3" path="res://game_objects/props/lights/sodium_light/sodium_light.tscn" id="46_oudwg"]
 [ext_resource type="PackedScene" uid="uid://dlmiqubqcqf0y" path="res://game_objects/props/lights/tube_light/tube_light.tscn" id="47_jg2x3"]
-[ext_resource type="LightmapGIData" uid="uid://i6p2auk8rfc2" path="res://levels/hideout.lmbake" id="50_04twg"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_miqso"]
 sky_top_color = Color(0, 0, 0, 1)
@@ -3664,16 +3663,37 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.13073, 0.640675, -1.60992)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.75543, 0.591431, -1.44589)
 _gun_stats = SubResource("Resource_400va")
 
-[node name="LightmapGI" type="LightmapGI" parent="."]
-denoiser_strength = 0.2
-camera_attributes = ExtResource("2_7vsv1")
-light_data = ExtResource("50_04twg")
-
 [node name="ReflectionProbe" type="ReflectionProbe" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.5956, 1.3071, 0.121528)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.5458, 1.56296, 1.76829)
+size = Vector3(6.83008, 5.38672, 5.0329)
 
-[node name="ReflectionProbe2" type="ReflectionProbe" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.63243, 1.3071, 0.121528)
+[node name="ReflectionProbe4" type="ReflectionProbe" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.5223, 1.71594, 3.10281)
+size = Vector3(5.00848, 5.21048, 5.1521)
+
+[node name="ReflectionProbe7" type="ReflectionProbe" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.36901, 1.71594, 3.10281)
+size = Vector3(5.00848, 5.21048, 5.1521)
+
+[node name="ReflectionProbe8" type="ReflectionProbe" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.24693, 1.71594, 3.10281)
+size = Vector3(5.00848, 5.21048, 5.1521)
+
+[node name="ReflectionProbe9" type="ReflectionProbe" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.39266, 1.71594, 3.10281)
+size = Vector3(4.17563, 5.21048, 5.1521)
+
+[node name="ReflectionProbe10" type="ReflectionProbe" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.17091, 1.71594, 0.0451713)
+size = Vector3(13.7321, 5.21048, 5.11139)
+
+[node name="ReflectionProbe5" type="ReflectionProbe" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.0749, 1.70149, -3.27157)
+size = Vector3(8.45309, 5.21048, 5.21863)
+
+[node name="ReflectionProbe6" type="ReflectionProbe" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.36506, 1.70149, -3.27157)
+size = Vector3(7.40502, 5.21048, 5.21863)
 
 [node name="ReflectionProbe3" type="ReflectionProbe" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.10695, 1.84311, 0.121528)
@@ -3691,3 +3711,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.79497, 5.8, 3.53767)
 
 [node name="TubeLight5" parent="Lights" instance=ExtResource("47_jg2x3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.79497, 5.8, -3.51735)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Lights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.4971, 2.51694, 0.00205912)
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="Lights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.37837, 1.40828, 0.00205912)
+
+[node name="OmniLight3D3" type="OmniLight3D" parent="Lights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.29212, 1.40828, 0.00205912)
+
+[node name="OmniLight3D4" type="OmniLight3D" parent="Lights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.98415, 1.40828, 0.00205912)
