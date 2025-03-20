@@ -163,6 +163,7 @@ collision_layer = 3
 script = ExtResource("1_f1cah")
 gun_scene = ExtResource("2_q4rc2")
 nav_agent = NodePath("NavigationAgent3D")
+move_speed = 2.0
 head_node = NodePath("combat-roomba/Armature/Skeleton3D/PhysicalBoneSimulator3D/Head")
 vert_moa = 60.0
 hor_moa = 60.0
