@@ -1,8 +1,11 @@
-[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://gao64qxfh2u2"]
+[gd_resource type="StandardMaterial3D" load_steps=3 format=3 uid="uid://gao64qxfh2u2"]
 
 [ext_resource type="Texture2D" uid="uid://cllcib0nm2g42" path="res://levels/textures/asphalt/asphalt_4.png" id="1_y1diy"]
+[ext_resource type="Texture2D" uid="uid://fut4gcnskwl3" path="res://levels/normal_maps/asphalt_4_normal.png" id="2_ilmlv"]
 
 [resource]
 albedo_texture = ExtResource("1_y1diy")
 metallic_specular = 0.0
+normal_enabled = true
+normal_texture = ExtResource("2_ilmlv")
 texture_filter = 2
