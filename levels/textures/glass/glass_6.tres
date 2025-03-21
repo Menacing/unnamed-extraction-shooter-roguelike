@@ -3,6 +3,11 @@
 [ext_resource type="Texture2D" uid="uid://cjm06fw5fbyjs" path="res://levels/textures/glass/glass_6.png" id="1_jm68n"]
 
 [resource]
+transparency = 1
+albedo_color = Color(1, 1, 1, 0.615686)
 albedo_texture = ExtResource("1_jm68n")
 metallic_specular = 0.0
+roughness = 0.0
+clearcoat_enabled = true
+clearcoat_roughness = 0.0
 texture_filter = 2

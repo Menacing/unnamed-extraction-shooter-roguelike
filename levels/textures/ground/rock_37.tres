@@ -1,8 +1,11 @@
-[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://ca0o1lpl1bgi5"]
+[gd_resource type="StandardMaterial3D" load_steps=3 format=3 uid="uid://ca0o1lpl1bgi5"]
 
 [ext_resource type="Texture2D" uid="uid://dui7xi5tai606" path="res://levels/textures/ground/rock_37.png" id="1_itvgq"]
+[ext_resource type="Texture2D" uid="uid://cdbbsofu0cvqy" path="res://levels/normal_maps/rock_37_normal.png" id="2_m3wl3"]
 
 [resource]
 albedo_texture = ExtResource("1_itvgq")
 metallic_specular = 0.0
+normal_enabled = true
+normal_texture = ExtResource("2_m3wl3")
 texture_filter = 2

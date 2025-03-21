@@ -422,3 +422,45 @@ func deep_duplicate() -> InventoryData:
 			
 	new_inventory_data.slot_datas = new_slot_datas
 	return new_inventory_data
+
+func number_items_of_type(item_type_id:String) -> int:
+	#var slot_data:SlotData = slot_datas[row_i][col_i]
+	var total := 0
+	var skip_coordinates:Array[Vector2i] = []
+	
+	#only run if we're actually given a type ID
+	if item_type_id and item_type_id != "":
+		#for each row
+		for row_i in slot_datas.size():
+			var row:Array = slot_datas[row_i]
+			
+			#for each slot
+			for col_i in row.size():
+				var slot:SlotData = row[col_i]
+				
+				#if slot exists, has item data, and the item data matches the id
+				if slot:
+					if slot.item_data:
+						if slot.item_data.item_type_id == item_type_id:
+							
+							#only count if we haven't counted it already
+							var skip_slot:bool = false
+							for vec in skip_coordinates:
+								if vec.x == col_i and vec.y == row_i:
+									skip_slot = true
+									break
+							
+							if not skip_slot:
+								total += slot.quantity
+								
+								var height = slot.get_height()
+								var width = slot.get_width()
+								
+								for row_span_i in slot.get_height():
+									for col_span_i in slot.get_width():
+										#skip first cel
+										if !(row_span_i == 0 and col_span_i == 0):
+											skip_coordinates.append(Vector2i(col_i+col_span_i, row_i + row_span_i))
+							
+	
+	return total

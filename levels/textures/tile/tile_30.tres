@@ -1,8 +1,12 @@
-[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://bpho4g57jwvdm"]
+[gd_resource type="StandardMaterial3D" load_steps=3 format=3 uid="uid://bpho4g57jwvdm"]
 
 [ext_resource type="Texture2D" uid="uid://dnrlnqcifds20" path="res://levels/textures/tile/tile_30.png" id="1_wfyu0"]
+[ext_resource type="Texture2D" uid="uid://cbnqtq61aiyhe" path="res://levels/normal_maps/tile_30_normal.png" id="2_yapb3"]
 
 [resource]
 albedo_texture = ExtResource("1_wfyu0")
 metallic_specular = 0.0
+normal_enabled = true
+normal_texture = ExtResource("2_yapb3")
+clearcoat_enabled = true
 texture_filter = 2

@@ -1,8 +1,18 @@
-[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://dqg7hd6i34xlj"]
+[gd_resource type="StandardMaterial3D" load_steps=4 format=3 uid="uid://dqg7hd6i34xlj"]
 
 [ext_resource type="Texture2D" uid="uid://dfaia3r6adpi1" path="res://levels/textures/tile/tile_34.png" id="1_lanw6"]
+[ext_resource type="Texture2D" uid="uid://c65kxs53srvia" path="res://levels/height_maps/tile_34.png" id="2_wk2p5"]
+[ext_resource type="Texture2D" uid="uid://ntr332k3nap5" path="res://levels/normal_maps/tile_34_normal.png" id="3_r5145"]
 
 [resource]
 albedo_texture = ExtResource("1_lanw6")
 metallic_specular = 0.0
+roughness = 0.2
+roughness_texture = ExtResource("2_wk2p5")
+roughness_texture_channel = 4
+normal_enabled = true
+normal_texture = ExtResource("3_r5145")
+clearcoat_enabled = true
+clearcoat_roughness = 0.2
+clearcoat_texture = ExtResource("2_wk2p5")
 texture_filter = 2

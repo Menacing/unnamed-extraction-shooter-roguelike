@@ -267,7 +267,7 @@ func unwrap_uv2(node: Node = null) -> void:
 	else:
 		target_node = self
 		print("Unwrapping mesh UV2s")
-	
+		
 	if target_node is MeshInstance3D:
 		if target_node.gi_mode == GeometryInstance3D.GI_MODE_STATIC:
 			var mesh: Mesh = target_node.get_mesh()

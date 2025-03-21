@@ -55,7 +55,7 @@ project/assembly_name="Unnamed-extraction-shooter-roguelike"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/csg_converter/plugin.cfg", "res://addons/debug_menu/plugin.cfg", "res://addons/func_godot/plugin.cfg", "res://addons/gdUnit4/plugin.cfg", "res://addons/ggs/plugin.cfg", "res://addons/godot_resource_groups/plugin.cfg", "res://addons/godot_state_charts/plugin.cfg", "res://addons/safe_resource_loader/plugin.cfg")
+enabled=PackedStringArray("res://addons/csg_converter/plugin.cfg", "res://addons/debug_menu/plugin.cfg", "res://addons/extra_snaps/plugin.cfg", "res://addons/func_godot/plugin.cfg", "res://addons/gdUnit4/plugin.cfg", "res://addons/ggs/plugin.cfg", "res://addons/godot_resource_groups/plugin.cfg", "res://addons/godot_state_charts/plugin.cfg", "res://addons/safe_resource_loader/plugin.cfg")
 
 [global_group]
 
@@ -267,10 +267,13 @@ jolt_3d/collisions/use_shape_margins=false
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
-lights_and_shadows/directional_shadow/soft_shadow_filter_quality=0
-lights_and_shadows/positional_shadow/soft_shadow_filter_quality=0
+lights_and_shadows/directional_shadow/size=16384
+lights_and_shadows/directional_shadow/soft_shadow_filter_quality=5
+lights_and_shadows/positional_shadow/soft_shadow_filter_quality=5
+lights_and_shadows/positional_shadow/soft_shadow_filter_quality.mobile=3
 reflections/reflection_atlas/reflection_size=128
 reflections/reflection_atlas/reflection_count=128
 textures/decals/filter=0
 textures/light_projectors/filter=0
 occlusion_culling/use_occlusion_culling=true
+lights_and_shadows/positional_shadow/atlas_size=16384

@@ -1,10 +1,12 @@
-[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://sya2jh7l4v7n"]
+[gd_resource type="StandardMaterial3D" load_steps=3 format=3 uid="uid://sya2jh7l4v7n"]
 
 [ext_resource type="Texture2D" uid="uid://bs1lh3gnmi346" path="res://levels/textures/tile/tile_24.png" id="1_jisxx"]
+[ext_resource type="Texture2D" uid="uid://dcl80bwrhueaa" path="res://levels/normal_maps/tile_24_normal.png" id="2_ouoq2"]
 
 [resource]
 albedo_texture = ExtResource("1_jisxx")
-metallic_specular = 0.0
+normal_enabled = true
+normal_texture = ExtResource("2_ouoq2")
 clearcoat_enabled = true
 clearcoat = 0.2
 clearcoat_roughness = 0.32
