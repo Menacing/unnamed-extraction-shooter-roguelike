@@ -4,7 +4,8 @@ class_name MessageCenterMessage
 @onready var message_label:RichTextLabel = $"."
 
 func update_message(message_text:String):
-	message_label.text = message_text
+	if message_label:
+		message_label.text = message_text
 
 func start_message(message_text:String, message_timeout:float):
 	message_label.text = message_text
