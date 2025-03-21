@@ -16,6 +16,8 @@ var width = 10
 @export var equipment_slots:Array[EquipmentSlot]
 @export var slot_datas:Array[Array]
 
+func get_inventory_size() -> int:
+	return width * slot_datas.size()
 
 func set_inventory_size(new_number_rows:int) -> void:
 	var current_height:int = slot_datas.size()
@@ -66,6 +68,13 @@ func grab_slot_data(index:int) -> SlotData:
 		inventory_updated.emit(self)
 		
 	return slot_data
+	
+func _get_slot_data(index:int) -> SlotData:
+	var row_i = index/width
+	var col_i = index % width
+	
+	return slot_datas[row_i][col_i]
+	
 
 func grab_equipment_slot_data(slot_name:String) -> SlotData:
 	var slot_data:SlotData
