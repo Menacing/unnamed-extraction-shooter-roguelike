@@ -1,4 +1,4 @@
-[gd_scene load_steps=56 format=3 uid="uid://b37h35qgnmcvk"]
+[gd_scene load_steps=57 format=3 uid="uid://b37h35qgnmcvk"]
 
 [ext_resource type="Script" uid="uid://dlvmhnvj3kcqo" path="res://ui/menu/options_menu.gd" id="1_0sxhr"]
 [ext_resource type="PackedScene" uid="uid://dm1av7skxvp1j" path="res://addons/ggs/components/input_btn/component_input_btn.tscn" id="1_lvxjt"]
@@ -55,6 +55,7 @@
 [ext_resource type="Resource" uid="uid://mojb0hbk5nuv" path="res://game_settings/settings/audio/sfx_volume.tres" id="46_0twxo"]
 [ext_resource type="Resource" uid="uid://o8o6hnt6k74j" path="res://game_settings/settings/ui/health_display_mode.tres" id="47_gderx"]
 [ext_resource type="Resource" uid="uid://c0a7pj887fuve" path="res://game_settings/settings/ui/disable_use_helper_when_ads.tres" id="49_nt1ud"]
+[ext_resource type="Resource" uid="uid://dukeeu4j71kp7" path="res://game_settings/settings/display/downsampling_enabled.tres" id="54_vdjf2"]
 
 [node name="options_menu" type="ColorRect"]
 anchors_preset = 15
@@ -99,9 +100,10 @@ uppercase = true
 [node name="option_tab_container" type="TabContainer" parent="main_container/vert_container"]
 custom_minimum_size = Vector2(500, 600)
 layout_mode = 2
-current_tab = 0
+current_tab = 2
 
 [node name="Controls" type="MarginContainer" parent="main_container/vert_container/option_tab_container"]
+visible = false
 layout_mode = 2
 metadata/_tab_index = 0
 
@@ -949,7 +951,6 @@ text = "Reset to Default"
 group = "audio_settings"
 
 [node name="Display" type="MarginContainer" parent="main_container/vert_container/option_tab_container"]
-visible = false
 layout_mode = 2
 metadata/_tab_index = 2
 
@@ -1041,6 +1042,22 @@ layout_mode = 2
 text = "75"
 horizontal_alignment = 2
 script = ExtResource("24_rgung")
+
+[node name="downsampling_enabled" type="HBoxContainer" parent="main_container/vert_container/option_tab_container/Display/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="main_container/vert_container/option_tab_container/Display/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/downsampling_enabled"]
+layout_mode = 2
+text = "Downsampling Filter Enabled"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="main_container/vert_container/option_tab_container/Display/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/downsampling_enabled"]
+layout_mode = 2
+size_flags_horizontal = 10
+
+[node name="Checkbox" parent="main_container/vert_container/option_tab_container/Display/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/downsampling_enabled/HBoxContainer" groups=["display_settings"] instance=ExtResource("4_l86j1")]
+layout_mode = 2
+setting = ExtResource("54_vdjf2")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="main_container/vert_container/option_tab_container/Display/VBoxContainer"]
 layout_mode = 2
