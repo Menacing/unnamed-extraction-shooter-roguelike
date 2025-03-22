@@ -66,6 +66,9 @@ func recalculate_obj_marker_pos():
 		var deg_to_obj = angle_to_deg(Vector3.FORWARD, dir_to_obj)
 		var real_deg_to_obj = Helpers.gddeg_to_compass_deg(int(round(deg_to_obj)))
 		
+		if _player_compass_rotation > 270:
+			real_deg_to_obj += 360
+		
 		var hscroll_val = degree_to_hscroll(real_deg_to_obj, pixels_per_360)
 		obj_marker.position.y = vertical_offset
 		obj_marker.position.x = hscroll_val + pixels_per_360/2 - obj_marker.get_rect().size.x/2
