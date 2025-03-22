@@ -10,10 +10,10 @@ const __source = 'res://ui/misc/CompassPanel.gd'
 
 func test_degree_to_hscroll() -> void:
 	assert_float(CompassBar.degree_to_hscroll(0,500)).is_equal_approx(500.0,0.01)
-	assert_float(CompassBar.degree_to_hscroll(-90,500)).is_equal_approx(750.0,0.01)
-	assert_float(CompassBar.degree_to_hscroll(-180,500)).is_equal_approx(1000.0,0.01)
-	assert_float(CompassBar.degree_to_hscroll(180,500)).is_equal_approx(0.0,0.01)
-	assert_float(CompassBar.degree_to_hscroll(90,500)).is_equal_approx(250.0,0.01)
+	assert_float(CompassBar.degree_to_hscroll(90,500)).is_equal_approx(750.0,0.01)
+	assert_float(CompassBar.degree_to_hscroll(180,500)).is_equal_approx(1000.0,0.01)
+	assert_float(CompassBar.degree_to_hscroll(270,500)).is_equal_approx(1250.0,0.01)
+	assert_float(CompassBar.degree_to_hscroll(359,500)).is_equal_approx(1499.0,5.0)
 
 
 func test_angle_to_deg() -> void:

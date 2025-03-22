@@ -1,0 +1,10 @@
+[gd_scene load_steps=4 format=3 uid="uid://dtv6j3n4hmjnr"]
+
+[ext_resource type="Script" uid="uid://cveft0bt8pk25" path="res://components/equip_effect_component/equip_effect_component.gd" id="1_ced4c"]
+[ext_resource type="Script" uid="uid://m2a8v6i2nq7b" path="res://game_logic/gameplay_effect.gd" id="2_0rylt"]
+[ext_resource type="Resource" uid="uid://dsvxj63mr811r" path="res://game_objects/items/attachments/magazines/extended/extended_magazine_effect.tres" id="3_5cu6a"]
+
+[node name="ExtendedMagazineEquipEffectComponent" type="Node"]
+script = ExtResource("1_ced4c")
+gameplay_effects = Array[ExtResource("2_0rylt")]([ExtResource("3_5cu6a")])
+metadata/_custom_type_script = "uid://cveft0bt8pk25"

@@ -85,7 +85,7 @@ func setup_gun_model(gun:Gun):
 		child.queue_free()
 		
 	var model = gun.copy_model()
-	
+	model.rotate_y(deg_to_rad(90))
 	Helpers.apply_material_overlay_to_children(model, item_outline_material)
 	Helpers.force_parent(model, item_model_anchor)
 	

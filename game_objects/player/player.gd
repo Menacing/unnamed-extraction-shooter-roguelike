@@ -435,7 +435,7 @@ func _input(event):
 				selector_request.subtypes = []
 				
 				var current_request_item:AmmoSubtypeSelector.AmmoSubtypeSelectionRequestItem = AmmoSubtypeSelector.AmmoSubtypeSelectionRequestItem.new()
-				current_request_item.subtype = equipped_gun.current_ammo_subtype
+				current_request_item.subtype = equipped_gun.get_current_ammo_subtype()
 				current_request_item.current_amount = ammo_component.get_ammo_subtype_count(selector_request.type.name, current_request_item.subtype.name)
 				selector_request.subtypes.append(current_request_item)
 				
