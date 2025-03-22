@@ -157,7 +157,7 @@ _data = {
 &"target_spotted": SubResource("Animation_qeyji")
 }
 
-[node name="combat_roomba" type="CharacterBody3D" node_paths=PackedStringArray("nav_agent", "head_node", "detection_radius", "ballistic_detection_radius", "movement_audio_player", "behavior_tree")]
+[node name="combat_roomba" type="CharacterBody3D" node_paths=PackedStringArray("nav_agent", "head_node", "detection_radius", "ballistic_detection_radius", "movement_audio_player", "behavior_tree", "physical_bone_simulator", "loot_fiesta")]
 transform = Transform3D(1.00409, 0, 0, 0, 1.00409, 0, 0, 0, 1.00409, 0, 0, 0)
 collision_layer = 3
 script = ExtResource("1_f1cah")
@@ -172,6 +172,8 @@ ballistic_detection_radius = NodePath("BulletDetectRadius")
 movement_audio_player = NodePath("MovementIntroOutroAudioStreamPlayer")
 nav_mesh_list_item = ExtResource("4_k7kme")
 behavior_tree = NodePath("BTPlayer")
+physical_bone_simulator = NodePath("combat-roomba/Armature/Skeleton3D/PhysicalBoneSimulator3D")
+loot_fiesta = NodePath("LootFiestaComponent")
 
 [node name="combat-roomba" parent="." instance=ExtResource("3_wwy82")]
 transform = Transform3D(0.35, 0, 0, 0, 0.35, 0, 0, 0, 0.35, 0, 0, 0)
@@ -187,7 +189,7 @@ active = false
 
 [node name="Physical Bone Bone" type="PhysicalBone3D" parent="combat-roomba/Armature/Skeleton3D/PhysicalBoneSimulator3D"]
 transform = Transform3D(2.8455, 2.84217e-14, 0, 0, 0, -2.8455, -2.84217e-14, 2.8455, 0, 0, 0.222436, 0)
-joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.0781711)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.078171)
 body_offset = Transform3D(2.8455, 2.84217e-14, 0, 0, 0, -2.8455, -2.84217e-14, 2.8455, 0, 0, 0.222436, 0)
 bone_name = "Bone"
 
@@ -245,10 +247,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000492002, 0.578961, 0.000
 shape = SubResource("BoxShape3D_hycai")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+path_height_offset = 0.3
 avoidance_enabled = true
-height = 2.0
-radius = 1.0
-neighbor_distance = 10.0
+neighbor_distance = 5.0
 
 [node name="BTPlayer" type="BTPlayer" parent="."]
 behavior_tree = ExtResource("9_huqy6")
@@ -306,7 +307,7 @@ damage_effect_scene = ExtResource("20_3xthi")
 [node name="LootFiestaComponent" parent="." instance=ExtResource("17_7ftd3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.790082, 0)
 distribution = 1
-max_to_spawn = 3
+min_to_spawn = 1
 
 [connection signal="location_destroyed" from="HealthComponent" to="." method="_on_health_component_location_destroyed"]
 [connection signal="hit_occured" from="DamageComponent" to="HealthComponent" method="_on_hit_occured"]

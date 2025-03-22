@@ -269,6 +269,8 @@ func _on_health_component_location_destroyed(health_component: HealthComponent) 
 func die():
 	print("I am dead")
 	#alive = false
+	velocity = Vector3.ZERO
+	nav_agent.velocity_computed.disconnect(_on_velocity_computed)
 	if behavior_tree:
 		behavior_tree.active = false
 	if loot_fiesta:
