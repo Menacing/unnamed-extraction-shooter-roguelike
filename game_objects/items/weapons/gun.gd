@@ -255,6 +255,9 @@ func get_gun_stats() -> GunStats:
 
 func get_ammo_type() -> AmmoType:
 	return _gun_stats.ammo_type
+	
+func get_current_ammo_subtype() -> AmmoSubtype:
+	return slot_data.current_ammo_subtype
 
 func get_ammo_subtypes() -> Array[AmmoSubtype]:
 	return _gun_stats.ammo_type.sub_types
@@ -351,9 +354,11 @@ func _on_item_equipment_changed(inventory_data:InventoryData, equipment_slot:Equ
 
 func show_nodes(nodes_to_show:Array[Node3D]) -> void:
 	for node in nodes_to_show:
-		node.show()
+		if node:
+			node.show()
 		
 func hide_nodes(nodes_to_hide:Array[Node3D]) -> void:
 	for node in nodes_to_hide:
-		node.hide()
+		if node:
+			node.hide()
 	
