@@ -1,16 +1,53 @@
-[gd_scene load_steps=15 format=3 uid="uid://cnvoiecyb3sjn"]
+[gd_scene load_steps=18 format=3 uid="uid://cnvoiecyb3sjn"]
 
 [ext_resource type="Script" uid="uid://b1hgbiqq2ptq5" path="res://game_objects/items/weapons/gun.gd" id="1_xiike"]
 [ext_resource type="Resource" uid="uid://618jppuo3a3t" path="res://game_objects/items/weapons/lpc_pistols/lpc_pistol_gun_stats.tres" id="2_2gn87"]
 [ext_resource type="PackedScene" uid="uid://kph7hbjx4hxi" path="res://game_objects/items/weapons/lpc_pistols/klingeln_80/klingeln_80.blend" id="2_226gq"]
 [ext_resource type="PackedScene" uid="uid://gfj0vsvmo4ik" path="res://game_objects/bullet/iterative_raycast_bullet.tscn" id="2_mx004"]
 [ext_resource type="Texture2D" uid="uid://dkcxx06s6kdp6" path="res://game_objects/items/weapons/hic_rifles/pm_52/PixelMuzzelFlash.png" id="5_3b5om"]
-[ext_resource type="AudioStream" uid="uid://bc1wim1c1t021" path="res://game_objects/items/weapons/fic_rifles/fic_mag_out.ogg" id="6_uwon5"]
-[ext_resource type="AudioStream" uid="uid://belfvaan2qeva" path="res://game_objects/items/weapons/fic_rifles/fic_mag_in.ogg" id="7_q2udj"]
-[ext_resource type="AudioStream" uid="uid://c2wxubwa7ilv" path="res://game_objects/items/weapons/fic_rifles/fic_charging_handle.ogg" id="8_0jp2c"]
+[ext_resource type="AudioStream" uid="uid://bjlgotdbyema" path="res://game_objects/items/weapons/lpc_pistols/lpc_mag_out.ogg" id="6_jq2ss"]
+[ext_resource type="AudioStream" uid="uid://bmc2x762yrs24" path="res://game_objects/items/weapons/lpc_pistols/lpc_mag_in.ogg" id="7_g3ba3"]
+[ext_resource type="AudioStream" uid="uid://bcptwqmat1d51" path="res://game_objects/items/weapons/lpc_pistols/lpc_reload_slide.ogg" id="8_vpme4"]
+[ext_resource type="AudioStream" uid="uid://dull60hgujlxn" path="res://game_objects/items/weapons/lpc_pistols/lpc_shot_1.ogg" id="9_jq2ss"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_6hmum"]
 size = Vector3(0.0427246, 0.131729, 0.190857)
+
+[sub_resource type="Animation" id="Animation_f8q1i"]
+resource_name = "RESET"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "position_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../klingeln_80/front_sight")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 0, 0.0687664, -0.0809074)
+tracks/2/type = "position_3d"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../klingeln_80/rear_sight")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = PackedFloat32Array(0, 1, 0, 0.0676264, 0.0713831)
+tracks/3/type = "position_3d"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../klingeln_80/slide")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = PackedFloat32Array(0, 1, 0, 0, 0)
 
 [sub_resource type="Animation" id="Animation_hu2i7"]
 resource_name = "fire"
@@ -27,9 +64,31 @@ tracks/0/keys = {
 "update": 1,
 "values": [true, false]
 }
+tracks/1/type = "position_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../klingeln_80/front_sight")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0.01, 1, 0, 0.069, -0.061, 0.03, 1, 0, 0.0687664, -0.0809074)
+tracks/2/type = "position_3d"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../klingeln_80/rear_sight")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = PackedFloat32Array(0.01, 1, 0, 0.068, 0.091, 0.03, 1, 0, 0.0676264, 0.0713831)
+tracks/3/type = "position_3d"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../klingeln_80/slide")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = PackedFloat32Array(0.01, 1, 0, 0, 0.02, 0.03, 1, 0, 0, 0)
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_rga3e"]
 _data = {
+&"RESET": SubResource("Animation_f8q1i"),
 &"fire": SubResource("Animation_hu2i7")
 }
 
@@ -38,7 +97,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("s5/magazines:position")
+tracks/0/path = NodePath("klingeln_80:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -50,7 +109,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("s5/magazines:rotation")
+tracks/1/path = NodePath("klingeln_80/slide:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -62,10 +121,34 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("s5:rotation")
+tracks/2/path = NodePath("klingeln_80/front_sight:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0.0687664, -0.0809074)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("klingeln_80/rear_sight:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0.0676264, 0.0713831)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("klingeln_80/magazines:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
@@ -74,88 +157,112 @@ tracks/2/keys = {
 
 [sub_resource type="Animation" id="Animation_llqna"]
 resource_name = "reload"
-length = 2.5
+length = 1.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("s5/magazines:position")
+tracks/0/path = NodePath("klingeln_80:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.9, 1.1, 1.2, 1.3, 1.6, 1.8),
-"transitions": PackedFloat32Array(0.0647043, 1, 2.14355, 1, 1, 1, 1, 1, 6.72717, 1),
+"times": PackedFloat32Array(0, 0.2, 1.1, 1.25),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0, -0.10903, 0), Vector3(0.180492, -0.139945, 0.223694), Vector3(0.586997, -0.236852, -0.154478), Vector3(0.586997, -0.236852, -0.154478), Vector3(0.473901, -0.269267, 0.0641721), Vector3(0.304258, -0.21648, 0.124692), Vector3(0.0417096, -0.163259, 0.0739714), Vector3(0, -0.10903, 0), Vector3(0, 0, 0)]
+"values": [Vector3(0, 0, 0), Vector3(0.349066, 0, -0.523599), Vector3(0.349066, 0, -0.523599), Vector3(0, 0, 0)]
 }
-tracks/1/type = "value"
+tracks/1/type = "audio"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("s5/magazines:rotation")
+tracks/1/path = NodePath("MagOutStreamPlayer3D")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.9, 1.2, 1.6),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(-0.0547867, 0.735628, 0.480762), Vector3(0.744328, 0.739824, 0.915281), Vector3(0.744328, 0.739824, 0.915281), Vector3(0.434191, 0.431564, 0.533914), Vector3(0, 0, 0)]
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("6_jq2ss")
+}],
+"times": PackedFloat32Array(0.2)
 }
-tracks/2/type = "value"
+tracks/1/use_blend = true
+tracks/2/type = "audio"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("s5:rotation")
+tracks/2/path = NodePath("MagInStreamPlayer3D")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 1, 1.5, 2.2),
-"transitions": PackedFloat32Array(0.378929, 1, 1, 1),
-"update": 0,
-"values": [Vector3(0, 0, 0), Vector3(-0.34383, -0.118682, 0.340339), Vector3(-0.34383, -0.118682, 0.340339), Vector3(0, 0, 0)]
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("7_g3ba3")
+}],
+"times": PackedFloat32Array(0.9)
 }
+tracks/2/use_blend = true
 tracks/3/type = "audio"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("MagOutStreamPlayer3D")
+tracks/3/path = NodePath("ChargingHandleStreamPlayer3D")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
 "clips": [{
 "end_offset": 0.0,
 "start_offset": 0.0,
-"stream": ExtResource("6_uwon5")
+"stream": ExtResource("8_vpme4")
 }],
-"times": PackedFloat32Array(0)
+"times": PackedFloat32Array(1.25)
 }
 tracks/3/use_blend = true
-tracks/4/type = "audio"
+tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("MagInStreamPlayer3D")
+tracks/4/path = NodePath("klingeln_80/slide:position")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"clips": [{
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": ExtResource("7_q2udj")
-}],
-"times": PackedFloat32Array(1.6)
+"times": PackedFloat32Array(0, 1.25, 1.375, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0.02), Vector3(0, 0, 0)]
 }
-tracks/4/use_blend = true
-tracks/5/type = "audio"
+tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("ChargingHandleStreamPlayer3D")
+tracks/5/path = NodePath("klingeln_80/front_sight:position")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"clips": [{
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": ExtResource("8_0jp2c")
-}],
-"times": PackedFloat32Array(2)
+"times": PackedFloat32Array(0, 1.25, 1.375, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0.0687664, -0.0809074), Vector3(0, 0.0687664, -0.0809074), Vector3(0, 0.069, -0.061), Vector3(0, 0.0687664, -0.0809074)]
 }
-tracks/5/use_blend = true
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("klingeln_80/rear_sight:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 1.25, 1.375, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0.0676264, 0.0713831), Vector3(0, 0.0676264, 0.0713831), Vector3(0, 0.068, 0.091), Vector3(0, 0.0676264, 0.0713831)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("klingeln_80/magazines:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.5, 0.8, 1.1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(-0.2, -0.4, 0.2), Vector3(-0.2, -0.4, 0.2), Vector3(0, 0, 0)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_f650v"]
 _data = {
@@ -163,7 +270,13 @@ _data = {
 &"reload": SubResource("Animation_llqna")
 }
 
-[node name="Klingeln80" type="RigidBody3D" node_paths=PackedStringArray("muzzle", "muzzle_flash_animation_player", "fire_timer", "reload_timer", "reload_animation_player", "gun_model_node", "mag_node", "model_node")]
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_g3ba3"]
+random_pitch = 1.05
+random_volume_offset_db = 0.5
+streams_count = 1
+stream_0/stream = ExtResource("9_jq2ss")
+
+[node name="Klingeln80" type="RigidBody3D" node_paths=PackedStringArray("muzzle", "muzzle_flash_animation_player", "fire_timer", "reload_timer", "reload_animation_player")]
 disable_mode = 1
 collision_layer = 5
 collision_mask = 5
@@ -176,11 +289,8 @@ muzzle_flash_animation_player = NodePath("Muzzle/MuzzleFlashAnimationPlayer")
 fire_timer = NodePath("FireTimer")
 reload_timer = NodePath("ReloadTimer")
 reload_animation_player = NodePath("AnimationPlayer")
-gun_model_node = NodePath("klingeln_80")
-mag_node = NodePath("klingeln_80/magazines")
 item_type_id = "klingeln_80"
 world_collider_path = NodePath("CollisionShape3D")
-model_node = NodePath("klingeln_80")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00134277, 0.003685, -0.00100708)
@@ -194,14 +304,17 @@ one_shot = true
 
 [node name="klingeln_80" parent="." instance=ExtResource("2_226gq")]
 
-[node name="Camera" parent="klingeln_80" index="0"]
-visible = false
-
-[node name="Light" parent="klingeln_80" index="1"]
-visible = false
-
 [node name="extended_magazine" parent="klingeln_80/magazines" index="0"]
 visible = false
+
+[node name="slide" parent="klingeln_80" index="2"]
+transform = Transform3D(-1, 0, -3.25841e-07, 0, 1, 0, 3.25841e-07, 0, -1, 0, 0, 0)
+
+[node name="front_sight" parent="klingeln_80" index="3"]
+transform = Transform3D(-1, 0, -3.25841e-07, 0, 1, 0, 3.25841e-07, 0, -1, 0, 0.0687664, -0.0809074)
+
+[node name="rear_sight" parent="klingeln_80" index="4"]
+transform = Transform3D(-1, 0, -3.25841e-07, 0, 1, 0, 3.25841e-07, 0, -1, 0, 0.0676264, 0.0713831)
 
 [node name="ADS" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0690402, 0.469691)
@@ -219,11 +332,11 @@ text = "HF"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.178392, 0.1, 0)
 
 [node name="Muzzle" type="Node3D" parent="."]
-transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, -7.60565e-10, 0.0554439, 0.0558102)
+transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, 0.0532874, -0.0937121)
 visible = false
 
 [node name="FlashSpriteV3D" type="Sprite3D" parent="Muzzle"]
-transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, -0.482)
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, -0.287848)
 cast_shadow = 0
 axis = 1
 alpha_cut = 2
@@ -231,7 +344,7 @@ texture_filter = 0
 texture = ExtResource("5_3b5om")
 
 [node name="FlashSpriteH3D" type="Sprite3D" parent="Muzzle"]
-transform = Transform3D(-4.37114e-09, 0.1, 0, -0.1, -4.37114e-09, 0, 0, 0, 0.1, 0, 0, -0.482)
+transform = Transform3D(-4.37114e-09, 0.1, 0, -0.1, -4.37114e-09, 0, 0, 0, 0.1, 0, 0, -0.287848)
 cast_shadow = 0
 axis = 1
 alpha_cut = 2
@@ -247,7 +360,7 @@ distance_fade_enabled = true
 [node name="MuzzleFlashAnimationPlayer" type="AnimationPlayer" parent="Muzzle"]
 unique_name_in_owner = true
 libraries = {
-"": SubResource("AnimationLibrary_rga3e")
+&"": SubResource("AnimationLibrary_rga3e")
 }
 
 [node name="Right_Hand" type="Node3D" parent="."]
@@ -264,7 +377,25 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0118145, -0.0139525, 0.019
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_f650v")
+&"": SubResource("AnimationLibrary_f650v")
 }
+
+[node name="MagInStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+attenuation_model = 1
+bus = &"SFX"
+
+[node name="MagOutStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+attenuation_model = 1
+bus = &"SFX"
+
+[node name="ChargingHandleStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+attenuation_model = 1
+bus = &"SFX"
+
+[node name="ShotAudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = SubResource("AudioStreamRandomizer_g3ba3")
+volume_db = 6.0
+max_polyphony = 20
+bus = &"SFX"
 
 [editable path="klingeln_80"]

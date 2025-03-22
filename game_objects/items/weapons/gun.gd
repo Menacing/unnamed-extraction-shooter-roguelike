@@ -254,6 +254,9 @@ func get_gun_stats() -> GunStats:
 
 func get_ammo_type() -> AmmoType:
 	return _gun_stats.ammo_type
+	
+func get_current_ammo_subtype() -> AmmoSubtype:
+	return slot_data.current_ammo_subtype
 
 func get_ammo_subtypes() -> Array[AmmoSubtype]:
 	return _gun_stats.ammo_type.sub_types
