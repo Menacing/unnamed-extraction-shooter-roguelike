@@ -1,4 +1,4 @@
-[gd_scene load_steps=382 format=4 uid="uid://d2txigapsdl18"]
+[gd_scene load_steps=383 format=4 uid="uid://d2txigapsdl18"]
 
 [ext_resource type="Script" uid="uid://c7t5re1e03cfg" path="res://levels/level.gd" id="1_d1tug"]
 [ext_resource type="CameraAttributesPractical" uid="uid://jafbi2bjurvn" path="res://test/debug/vibe_check_camera.tres" id="2_7vsv1"]
@@ -41,6 +41,7 @@
 [ext_resource type="PackedScene" uid="uid://rsiuhbktl4h8" path="res://game_objects/items/materials/polymer_bale/polymer_bale.tscn" id="41_yhxea"]
 [ext_resource type="PackedScene" uid="uid://mue3h2yq8han" path="res://game_objects/items/materials/scrap_metal_wheel/scrap_metal_wheel.tscn" id="42_af1xf"]
 [ext_resource type="PackedScene" uid="uid://b6xejgxv7attc" path="res://game_objects/items/backpacks/large/large_backpack_1.tscn" id="43_naf82"]
+[ext_resource type="PackedScene" uid="uid://5ymni756p0xu" path="res://game_objects/props/printers/Printer.tscn" id="44_yhxea"]
 [ext_resource type="PackedScene" uid="uid://d3qu8ewdc1ye3" path="res://game_objects/props/lights/sodium_light/sodium_light.tscn" id="46_oudwg"]
 [ext_resource type="PackedScene" uid="uid://dlmiqubqcqf0y" path="res://game_objects/props/lights/tube_light/tube_light.tscn" id="47_jg2x3"]
 
@@ -3724,3 +3725,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.32515, 0.2, -4.46967)
 
 [node name="large_backpack_1" parent="." instance=ExtResource("43_naf82")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.64005, 0.2, -1.32537)
+
+[node name="Printer" parent="." instance=ExtResource("44_yhxea")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 11.5365, 0.2, 3.72364)
