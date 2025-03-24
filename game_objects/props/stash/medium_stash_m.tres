@@ -1,0 +1,21 @@
+[gd_resource type="StandardMaterial3D" load_steps=3 format=3 uid="uid://sphly7rq4q4b"]
+
+[ext_resource type="Texture2D" uid="uid://b82qkx6ump708" path="res://game_objects/props/stash/textures/Ucupaint medium_stash_m Roughness.png" id="1_h8v5p"]
+[ext_resource type="Texture2D" uid="uid://b5y61o273ull5" path="res://game_objects/props/stash/textures/medium_stash_m_palettized.png" id="1_l7877"]
+
+[resource]
+resource_name = "medium_stash_m"
+transparency = 4
+cull_mode = 2
+albedo_texture = ExtResource("1_l7877")
+metallic_texture = ExtResource("1_h8v5p")
+metallic_texture_channel = 2
+roughness_texture = ExtResource("1_h8v5p")
+roughness_texture_channel = 1
+texture_filter = 0
+metadata/extras = {
+"yp": {
+"active_ypaint_node": "Group",
+"ori_bsdf": ""
+}
+}

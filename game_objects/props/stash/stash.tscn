@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://c4y0iwlv3i13p"]
+[gd_scene load_steps=9 format=3 uid="uid://c4y0iwlv3i13p"]
 
 [ext_resource type="Script" uid="uid://bjjrpvjqkc231" path="res://levels/entities/stash_container.gd" id="1_55k0o"]
 [ext_resource type="PackedScene" uid="uid://cudd1ug1n5ge8" path="res://game_objects/props/stash/small_stash.blend" id="1_ns5tt"]
 [ext_resource type="Script" uid="uid://dwpbdijb5aofu" path="res://resource_access/equipment_slot_data.gd" id="2_p6w3b"]
 [ext_resource type="Script" uid="uid://dasb1tf171ead" path="res://resource_access/inventory_data.gd" id="3_eo4fn"]
+[ext_resource type="PackedScene" uid="uid://c7p2kvbthhu8p" path="res://game_objects/props/stash/medium_stash.blend" id="5_6qg7t"]
 
 [sub_resource type="Resource" id="Resource_442n6"]
 script = ExtResource("3_eo4fn")
@@ -12,6 +13,9 @@ slot_datas = Array[Array]([])
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ijpyw"]
 size = Vector3(0.998047, 0.708862, 1.98669)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_6qg7t"]
+size = Vector3(2, 1.5, 2)
 
 [node name="Stash" type="StaticBody3D" groups=["external_inventory"]]
 collision_layer = 7
@@ -25,3 +29,9 @@ transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 [node name="SmallStashCollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000976562, 0.348286, -0.00323486)
 shape = SubResource("BoxShape3D_ijpyw")
+
+[node name="MediumStashCollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000976562, 0.745461, -0.00323486)
+shape = SubResource("BoxShape3D_6qg7t")
+
+[node name="medium_stash2" parent="." instance=ExtResource("5_6qg7t")]
