@@ -1,0 +1,17 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://d0bow5gt2yq8e"]
+
+[ext_resource type="Shader" uid="uid://10swnbw7ntya" path="res://game_objects/effects/dissolve.gdshader" id="1_804ug"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_804ug")
+shader_parameter/baseColor = Color(1, 1, 1, 1)
+shader_parameter/dissolveSlider = 1.5
+shader_parameter/dissolveNoiseScale = 2.0
+shader_parameter/edgeNoiseScale = 0.0
+shader_parameter/edgesThickness = 0.071
+shader_parameter/edgeColor = Color(0.0156863, 0.717647, 0, 0.533333)
+shader_parameter/edgeEmissionSlider = 1.0
+shader_parameter/enable_dissolve_animation = true
+shader_parameter/animation_speed = 1.0
+shader_parameter/animation_intensity = 0.2
