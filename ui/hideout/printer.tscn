@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=3 uid="uid://bi8x1bx1e8eh8"]
+
+[ext_resource type="Script" uid="uid://bhjdob6ych5g6" path="res://ui/hideout/printer_control.gd" id="1_hwyu6"]
+[ext_resource type="PackedScene" uid="uid://umloovx45int" path="res://ui/hideout/materials_container.tscn" id="1_x4o5r"]
+[ext_resource type="Resource" uid="uid://cqieqm1pagg0r" path="res://game_objects/props/printers/small_printer_requirements.tres" id="3_x4o5r"]
+[ext_resource type="PackedScene" uid="uid://s1bitgakr131" path="res://ui/hideout/upgrade_h_box_container.tscn" id="4_a0ryk"]
+
+[node name="PRINTER" type="MarginContainer"]
+script = ExtResource("1_hwyu6")
+metadata/_tab_index = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="MaterialContainer" parent="VBoxContainer" instance=ExtResource("1_x4o5r")]
+layout_mode = 2
+
+[node name="UpgradeHBoxContainer" parent="VBoxContainer" instance=ExtResource("4_a0ryk")]
+layout_mode = 2
+upgrade_requirement = ExtResource("3_x4o5r")

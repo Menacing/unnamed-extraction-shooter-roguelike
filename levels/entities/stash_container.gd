@@ -65,7 +65,7 @@ func show_mesh_hide_others(mesh_to_show:MeshInstance3D, meshes_to_hide:Array[Mes
 	var animation_length = 2.0
 	dissolve_shader_m.set_shader_parameter("dissolveSlider", 1.5)
 	dissolve_shader_m.set_shader_parameter("baseColorTexture", mesh_material_texture)
-	mesh_to_show.material_override = dissolve_shader_m
+	mesh_to_show.material_override = dissolve_shader_m.duplicate()
 	tween.tween_property(mesh_to_show.material_override, "shader_parameter/dissolveSlider", -1.0, animation_length)
 	tween.tween_callback(show_mesh_cleanup.bind(mesh_to_show))
 	mesh_to_show.visible = true

@@ -14,6 +14,15 @@ var selected_difficulty:GameplayEnums.GameDifficulty
 var current_stash_size:StashContainer.StashSize = StashContainer.StashSize.SMALL
 var inventory_data:InventoryData
 
+var current_printer_size:PrinterStation.PrinterSize = PrinterStation.PrinterSize.UNBUILT:
+	get:
+		return current_printer_size
+	set(value):
+		current_printer_size = value
+		printer_size_changed.emit()
+		
+signal printer_size_changed
+
 func _ready():
 	crafting_materials_resource_group.load_all_into(_crafting_material_definitions)
 	for mat_def:CraftingMaterialDefinition in _crafting_material_definitions:
@@ -35,6 +44,7 @@ func _on_game_saving(save_file:SaveFile):
 	run_save_data.difficulty = selected_difficulty
 	run_save_data.crafting_materials = crafting_materials
 	run_save_data.stash_size = current_stash_size
+	run_save_data.printer_level = current_printer_size
 	save_file.run_save_data = run_save_data
 	pass
 
@@ -46,6 +56,7 @@ func _on_load_game(save_data:LevelEntitySaveData):
 	selected_difficulty = run_save_data.difficulty
 	crafting_materials = run_save_data.crafting_materials
 	current_stash_size = run_save_data.stash_size
+	current_printer_size = run_save_data.printer_level
 	#hideout_menu.load_run_data(run_save_data)
 	pass
 
@@ -98,3 +109,12 @@ func _on_stash_upgraded():
 	
 	inventory_data.set_inventory_size(current_stash_size)
 	pass
+
+func _on_printer_upgraded():
+	match current_printer_size:
+		PrinterStation.PrinterSize.UNBUILT:
+			current_printer_size = PrinterStation.PrinterSize.SMALL
+		PrinterStation.PrinterSize.SMALL:
+			printerr("Can't upgrade Stash any farther!")
+		_:
+			printerr("Setting stash to invalide size")

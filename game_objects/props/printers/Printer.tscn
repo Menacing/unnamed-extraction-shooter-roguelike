@@ -1,8 +1,8 @@
 [gd_scene load_steps=7 format=4 uid="uid://5ymni756p0xu"]
 
+[ext_resource type="Script" uid="uid://c3dxta5mb3q8h" path="res://game_objects/props/printers/printer.gd" id="1_rdc1u"]
 [ext_resource type="PackedScene" uid="uid://24iusoho57t2" path="res://game_objects/props/printers/small_printer.blend" id="1_uv6pp"]
 [ext_resource type="Material" uid="uid://tid6vrqw40j3" path="res://levels/textures/metal/metal_2.tres" id="2_r46jy"]
-[ext_resource type="Material" uid="uid://x43kpiqf2j7k" path="res://game_objects/effects/redacted_shader_material.tres" id="2_whjd6"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_r46jy"]
 size = Vector3(0.717285, 0.728088, 0.63623)
@@ -28,12 +28,10 @@ _surfaces = [{
 [node name="Printer" type="StaticBody3D"]
 collision_layer = 7
 collision_mask = 7
+script = ExtResource("1_rdc1u")
 
 [node name="small_printer" parent="." instance=ExtResource("1_uv6pp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.911492, 0)
-
-[node name="Cube" parent="small_printer" index="0"]
-material_override = ExtResource("2_whjd6")
 
 [node name="SmallPrinterCollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0314941, 1.26719, 0.0109863)
@@ -45,7 +43,6 @@ shape = SubResource("BoxShape3D_whjd6")
 
 [node name="printer_table" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.49522, 0)
-material_override = ExtResource("2_whjd6")
 mesh = SubResource("ArrayMesh_rdc1u")
 skeleton = NodePath("")
 
