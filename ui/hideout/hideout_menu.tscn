@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://dammjov7agowf" path="res://ui/hideout/hideout_menu.gd" id="1_gn5or"]
 [ext_resource type="PackedScene" uid="uid://b6qibk2bpsyd7" path="res://ui/hideout/map_selection_menu.tscn" id="4_ev05a"]
 
-[node name="HideoutMenu" type="TabContainer" node_paths=PackedStringArray("tab_bar", "stash_inventory_control", "map_select_control")]
+[node name="HideoutMenu" type="TabContainer" node_paths=PackedStringArray("tab_bar", "stash_inventory_control", "map_select_control", "polymer_label", "scrap_metal_label", "bio_gel_label")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -14,9 +14,12 @@ size_flags_horizontal = 3
 current_tab = 0
 script = ExtResource("1_gn5or")
 tab_bar = NodePath(".")
-stash_inventory_control = NodePath("STASH/VBoxContainer/MarginContainer/Inventory")
+stash_inventory_control = NodePath("STASH/VBoxContainer/InventoryMarginContainer/Inventory")
 map_select_tab_index = 1
 map_select_control = NodePath("NEXT MAP")
+polymer_label = NodePath("STASH/VBoxContainer/MaterialHBoxContainer/PolymerCount/HBoxContainer/MarginContainer2/Label")
+scrap_metal_label = NodePath("STASH/VBoxContainer/MaterialHBoxContainer/ScrapMetalCount/HBoxContainer/MarginContainer2/Label")
+bio_gel_label = NodePath("STASH/VBoxContainer/MaterialHBoxContainer/BioGelCount/HBoxContainer/MarginContainer2/Label")
 
 [node name="STASH" parent="." instance=ExtResource("1_csmx2")]
 layout_mode = 2
@@ -28,6 +31,6 @@ layout_mode = 2
 metadata/_tab_index = 1
 
 [editable path="STASH"]
-[editable path="STASH/VBoxContainer/HBoxContainer/PolymerCount"]
-[editable path="STASH/VBoxContainer/HBoxContainer/ScrapMetalCount"]
-[editable path="STASH/VBoxContainer/HBoxContainer/BioGelCount"]
+[editable path="STASH/VBoxContainer/MaterialHBoxContainer/PolymerCount"]
+[editable path="STASH/VBoxContainer/MaterialHBoxContainer/ScrapMetalCount"]
+[editable path="STASH/VBoxContainer/MaterialHBoxContainer/BioGelCount"]

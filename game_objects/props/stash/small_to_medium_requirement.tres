@@ -1,0 +1,30 @@
+[gd_resource type="Resource" script_class="UpgradeRequirement" load_steps=9 format=3 uid="uid://cqn7h2u7dyr0x"]
+
+[ext_resource type="Script" uid="uid://1xwcocwanxup" path="res://game_logic/upgrade_material_entry.gd" id="1_e1wfq"]
+[ext_resource type="Script" uid="uid://bognm2jn5680k" path="res://game_logic/upgrade_requirement.gd" id="2_51bps"]
+[ext_resource type="Resource" uid="uid://c5prst133rftn" path="res://game_objects/crafting_materials/scrap_metal.tres" id="2_i6gye"]
+[ext_resource type="Resource" uid="uid://c3nod8jldkobw" path="res://game_objects/crafting_materials/polymer.tres" id="3_48uni"]
+[ext_resource type="Resource" uid="uid://tnc0xmfk6ddc" path="res://game_objects/crafting_materials/bio-gel.tres" id="4_ga62t"]
+
+[sub_resource type="Resource" id="Resource_i6gye"]
+script = ExtResource("1_e1wfq")
+material = ExtResource("3_48uni")
+amount = 25
+metadata/_custom_type_script = "uid://1xwcocwanxup"
+
+[sub_resource type="Resource" id="Resource_48uni"]
+script = ExtResource("1_e1wfq")
+material = ExtResource("2_i6gye")
+amount = 50
+metadata/_custom_type_script = "uid://1xwcocwanxup"
+
+[sub_resource type="Resource" id="Resource_ga62t"]
+script = ExtResource("1_e1wfq")
+material = ExtResource("4_ga62t")
+amount = 2
+metadata/_custom_type_script = "uid://1xwcocwanxup"
+
+[resource]
+script = ExtResource("2_51bps")
+required_materials = Array[ExtResource("1_e1wfq")]([SubResource("Resource_i6gye"), SubResource("Resource_48uni"), SubResource("Resource_ga62t")])
+metadata/_custom_type_script = "uid://bognm2jn5680k"

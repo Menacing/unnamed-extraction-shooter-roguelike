@@ -54,11 +54,24 @@ func add_crafting_material(material:SlotData) -> int:
 		for cme:CraftingMaterialEntry in crafting_materials:
 			if cme.material_definition.name == mat_info.crafting_material_definition.name:
 				cme.amount += material.quantity * mat_info.amount_per_stack
+				EventBus.material_changed.emit(cme)
 	else:
 		printerr("NO MAPPING FOR ITEM %s" % material.get_item_type_id())
 	
 	return 0
-	
+
+func remove_crafting_material(material_name:String, amount:int):
+	for cme:CraftingMaterialEntry in crafting_materials:
+		if cme.material_definition.name == material_name:
+			cme.amount -= amount
+			EventBus.material_changed.emit(cme)
+
+func get_crafting_material_amount(material_name:String) -> int:
+	for cme:CraftingMaterialEntry in crafting_materials:
+		if cme.material_definition.name == material_name:
+			return cme.amount
+	return 0
+
 func has_extracted_enough() -> bool:
 	match selected_run_length:
 		GameplayEnums.GameLength.SHORT:

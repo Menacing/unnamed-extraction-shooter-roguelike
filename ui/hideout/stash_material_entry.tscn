@@ -1,11 +1,13 @@
-[gd_scene load_steps=2 format=3 uid="uid://bjl33aiqan6mg"]
+[gd_scene load_steps=3 format=3 uid="uid://bjl33aiqan6mg"]
 
+[ext_resource type="Script" uid="uid://dwfsoh52du6ju" path="res://ui/hideout/stash_material_entry.gd" id="1_dbbrk"]
 [ext_resource type="Texture2D" uid="uid://bk3o0x5mgasf0" path="res://ui/icons/polymer_icon.png" id="1_ntlk2"]
 
 [node name="Control" type="PanelContainer"]
 custom_minimum_size = Vector2(200, 64)
 offset_right = 45.0
 offset_bottom = 32.0
+script = ExtResource("1_dbbrk")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 2
@@ -40,6 +42,5 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 48
 text = "0"
-horizontal_alignment = 2
 vertical_alignment = 1
 uppercase = true
