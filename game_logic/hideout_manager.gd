@@ -11,7 +11,7 @@ var selected_run_length:GameplayEnums.GameLength
 var current_map_number:int = 0
 var selected_difficulty:GameplayEnums.GameDifficulty
 
-var current_stash_size:int = 4
+var current_stash_size:StashContainer.StashSize = StashContainer.StashSize.SMALL
 var inventory_data:InventoryData
 
 func _ready():
@@ -86,6 +86,15 @@ func has_extracted_enough() -> bool:
 			return false
 
 func _on_stash_upgraded():
-	current_stash_size += 4
+	match current_stash_size:
+		StashContainer.StashSize.SMALL:
+			current_stash_size = StashContainer.StashSize.MEDIUM
+		StashContainer.StashSize.MEDIUM:
+			current_stash_size = StashContainer.StashSize.LARGE
+		StashContainer.StashSize.LARGE:
+			printerr("Can't upgrade Stash any farther!")
+		_:
+			printerr("Setting stash to invalide size")
+	
 	inventory_data.set_inventory_size(current_stash_size)
 	pass

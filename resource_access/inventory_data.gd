@@ -2,6 +2,7 @@ extends Resource
 class_name InventoryData
 
 signal inventory_updated(inventory_data:InventoryData)
+signal inventory_size_changed(inventory_data:InventoryData, new_size:int)
 signal inventory_interact(inventory_data:InventoryData, index:int, event:InputEvent)
 signal inventory_equipment_slot_interact(inventory_data:InventoryData, slot_name:String, event:InputEvent)
 signal inventory_context_menu(inventory_data:InventoryData, slot_data:SlotData)
@@ -42,7 +43,7 @@ func set_inventory_size(new_number_rows:int) -> void:
 			slot_datas.pop_back()
 		
 	inventory_updated.emit(self)
-	
+	inventory_size_changed.emit(self, new_number_rows)
 	pass
 
 func _get_equipment_slot(slot_name:String) -> EquipmentSlot:
