@@ -35,3 +35,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000976562, 0.745461, -0.003
 shape = SubResource("BoxShape3D_6qg7t")
 
 [node name="medium_stash2" parent="." instance=ExtResource("5_6qg7t")]
+
+[editable path="small_stash2"]
+[editable path="medium_stash2"]
