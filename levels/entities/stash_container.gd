@@ -12,10 +12,9 @@ func use(player:Player) -> void:
 	#toggle_inventory.emit(self)
 	player.toggle_stash.emit()
 
-@export var container_size:int
 
 func _ready():
-	inventory_data.set_inventory_size(container_size)
+	inventory_data.set_inventory_size(HideoutManager.current_stash_size)
 	HideoutManager.inventory_data = inventory_data
 	#if Engine.is_editor_hint():
 		#return

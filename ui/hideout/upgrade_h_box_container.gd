@@ -1,5 +1,6 @@
 @tool
 extends VBoxContainer
+class_name UpgradeContainerControl
 
 const STASH_MATERIAL_ENTRY = preload("res://ui/hideout/stash_material_entry.tscn")
 

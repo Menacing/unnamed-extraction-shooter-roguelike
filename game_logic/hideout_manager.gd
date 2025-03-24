@@ -10,9 +10,9 @@ var next_map:LevelInformation
 var selected_run_length:GameplayEnums.GameLength
 var current_map_number:int = 0
 var selected_difficulty:GameplayEnums.GameDifficulty
+
+var current_stash_size:int = 4
 var inventory_data:InventoryData
-
-
 
 func _ready():
 	crafting_materials_resource_group.load_all_into(_crafting_material_definitions)
@@ -34,6 +34,7 @@ func _on_game_saving(save_file:SaveFile):
 	run_save_data.current_map_number = current_map_number
 	run_save_data.difficulty = selected_difficulty
 	run_save_data.crafting_materials = crafting_materials
+	run_save_data.stash_size = current_stash_size
 	save_file.run_save_data = run_save_data
 	pass
 
@@ -44,6 +45,7 @@ func _on_load_game(save_data:LevelEntitySaveData):
 	current_map_number = run_save_data.current_map_number
 	selected_difficulty = run_save_data.difficulty
 	crafting_materials = run_save_data.crafting_materials
+	current_stash_size = run_save_data.stash_size
 	#hideout_menu.load_run_data(run_save_data)
 	pass
 
@@ -82,3 +84,8 @@ func has_extracted_enough() -> bool:
 			return current_map_number >= 7
 		_:
 			return false
+
+func _on_stash_upgraded():
+	current_stash_size += 4
+	inventory_data.set_inventory_size(current_stash_size)
+	pass

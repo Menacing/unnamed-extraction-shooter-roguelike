@@ -7,3 +7,4 @@ class_name RunSaveData
 @export var current_map_number:int
 @export var difficulty:GameplayEnums.GameDifficulty
 @export var crafting_materials:Array[CraftingMaterialEntry] = []
+@export var stash_size:int
