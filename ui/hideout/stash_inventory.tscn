@@ -1,55 +1,31 @@
-[gd_scene load_steps=5 format=3 uid="uid://jixiqnpe13py"]
+[gd_scene load_steps=6 format=3 uid="uid://jixiqnpe13py"]
 
-[ext_resource type="PackedScene" uid="uid://bjl33aiqan6mg" path="res://ui/hideout/stash_material_entry.tscn" id="3_1s1cf"]
-[ext_resource type="Texture2D" uid="uid://gmk08i5ntqy0" path="res://ui/icons/scrap_metal_icon.png" id="4_20ic5"]
-[ext_resource type="Texture2D" uid="uid://vit64c7d7ii5" path="res://ui/icons/bio_gel_icon.png" id="5_udwhv"]
+[ext_resource type="Script" uid="uid://br64ghpsornj2" path="res://ui/hideout/stash_inventory.gd" id="1_fmvul"]
+[ext_resource type="PackedScene" uid="uid://umloovx45int" path="res://ui/hideout/materials_container.tscn" id="1_k2cv8"]
+[ext_resource type="PackedScene" uid="uid://s1bitgakr131" path="res://ui/hideout/upgrade_h_box_container.tscn" id="5_fmvul"]
 [ext_resource type="PackedScene" uid="uid://b6a88vw5glb7n" path="res://ui/inventory/3.0/inventory.tscn" id="6_8kii5"]
+[ext_resource type="Resource" uid="uid://cqn7h2u7dyr0x" path="res://game_objects/props/stash/small_to_medium_requirement.tres" id="6_ilpk3"]
 
 [node name="StashInventory" type="MarginContainer"]
 offset_right = 593.5
 offset_bottom = 561.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+script = ExtResource("1_fmvul")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+[node name="MaterialHBoxContainer" parent="VBoxContainer" instance=ExtResource("1_k2cv8")]
 layout_mode = 2
 
-[node name="PolymerCount" parent="VBoxContainer/HBoxContainer" instance=ExtResource("3_1s1cf")]
-layout_mode = 2
-
-[node name="Label" parent="VBoxContainer/HBoxContainer/PolymerCount/HBoxContainer/MarginContainer2" index="0"]
-horizontal_alignment = 0
-
-[node name="ScrapMetalCount" parent="VBoxContainer/HBoxContainer" instance=ExtResource("3_1s1cf")]
-layout_mode = 2
-
-[node name="TextureRect" parent="VBoxContainer/HBoxContainer/ScrapMetalCount/HBoxContainer/MarginContainer" index="0"]
-tooltip_text = "Scrap Metal"
-texture = ExtResource("4_20ic5")
-
-[node name="Label" parent="VBoxContainer/HBoxContainer/ScrapMetalCount/HBoxContainer/MarginContainer2" index="0"]
-horizontal_alignment = 0
-
-[node name="BioGelCount" parent="VBoxContainer/HBoxContainer" instance=ExtResource("3_1s1cf")]
-layout_mode = 2
-
-[node name="TextureRect" parent="VBoxContainer/HBoxContainer/BioGelCount/HBoxContainer/MarginContainer" index="0"]
-tooltip_text = "Bio Gel"
-texture = ExtResource("5_udwhv")
-
-[node name="Label" parent="VBoxContainer/HBoxContainer/BioGelCount/HBoxContainer/MarginContainer2" index="0"]
-horizontal_alignment = 0
-
-[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
+[node name="InventoryMarginContainer" type="MarginContainer" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="Inventory" parent="VBoxContainer/MarginContainer" instance=ExtResource("6_8kii5")]
+[node name="Inventory" parent="VBoxContainer/InventoryMarginContainer" instance=ExtResource("6_8kii5")]
 layout_mode = 2
 
-[editable path="VBoxContainer/HBoxContainer/PolymerCount"]
-[editable path="VBoxContainer/HBoxContainer/ScrapMetalCount"]
-[editable path="VBoxContainer/HBoxContainer/BioGelCount"]
+[node name="UpgradeHBoxContainer" parent="VBoxContainer" instance=ExtResource("5_fmvul")]
+layout_mode = 2
+upgrade_requirement = ExtResource("6_ilpk3")

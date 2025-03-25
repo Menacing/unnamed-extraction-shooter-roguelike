@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://5cgjmdxllnhl"]
+[gd_scene load_steps=5 format=3 uid="uid://5cgjmdxllnhl"]
 
 [ext_resource type="PackedScene" uid="uid://jixiqnpe13py" path="res://ui/hideout/stash_inventory.tscn" id="1_csmx2"]
 [ext_resource type="Script" uid="uid://dammjov7agowf" path="res://ui/hideout/hideout_menu.gd" id="1_gn5or"]
+[ext_resource type="PackedScene" uid="uid://bi8x1bx1e8eh8" path="res://ui/hideout/printer.tscn" id="4_318y0"]
 [ext_resource type="PackedScene" uid="uid://b6qibk2bpsyd7" path="res://ui/hideout/map_selection_menu.tscn" id="4_ev05a"]
 
 [node name="HideoutMenu" type="TabContainer" node_paths=PackedStringArray("tab_bar", "stash_inventory_control", "map_select_control")]
@@ -14,9 +15,10 @@ size_flags_horizontal = 3
 current_tab = 0
 script = ExtResource("1_gn5or")
 tab_bar = NodePath(".")
-stash_inventory_control = NodePath("STASH/VBoxContainer/MarginContainer/Inventory")
+stash_inventory_control = NodePath("STASH/VBoxContainer/InventoryMarginContainer/Inventory")
 map_select_tab_index = 1
 map_select_control = NodePath("NEXT MAP")
+printer_tab_index = 2
 
 [node name="STASH" parent="." instance=ExtResource("1_csmx2")]
 layout_mode = 2
@@ -27,7 +29,6 @@ visible = false
 layout_mode = 2
 metadata/_tab_index = 1
 
-[editable path="STASH"]
-[editable path="STASH/VBoxContainer/HBoxContainer/PolymerCount"]
-[editable path="STASH/VBoxContainer/HBoxContainer/ScrapMetalCount"]
-[editable path="STASH/VBoxContainer/HBoxContainer/BioGelCount"]
+[node name="PRINTER" parent="." instance=ExtResource("4_318y0")]
+visible = false
+layout_mode = 2

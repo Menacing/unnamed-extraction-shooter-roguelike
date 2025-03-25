@@ -2,6 +2,7 @@ extends Resource
 class_name InventoryData
 
 signal inventory_updated(inventory_data:InventoryData)
+signal inventory_size_changed(inventory_data:InventoryData, new_size:int)
 signal inventory_interact(inventory_data:InventoryData, index:int, event:InputEvent)
 signal inventory_equipment_slot_interact(inventory_data:InventoryData, slot_name:String, event:InputEvent)
 signal inventory_context_menu(inventory_data:InventoryData, slot_data:SlotData)
@@ -16,6 +17,8 @@ var width = 10
 @export var equipment_slots:Array[EquipmentSlot]
 @export var slot_datas:Array[Array]
 
+func get_inventory_size() -> int:
+	return width * slot_datas.size()
 
 func set_inventory_size(new_number_rows:int) -> void:
 	var current_height:int = slot_datas.size()
@@ -40,7 +43,7 @@ func set_inventory_size(new_number_rows:int) -> void:
 			slot_datas.pop_back()
 		
 	inventory_updated.emit(self)
-	
+	inventory_size_changed.emit(self, new_number_rows)
 	pass
 
 func _get_equipment_slot(slot_name:String) -> EquipmentSlot:
@@ -66,6 +69,13 @@ func grab_slot_data(index:int) -> SlotData:
 		inventory_updated.emit(self)
 		
 	return slot_data
+	
+func _get_slot_data(index:int) -> SlotData:
+	var row_i = index/width
+	var col_i = index % width
+	
+	return slot_datas[row_i][col_i]
+	
 
 func grab_equipment_slot_data(slot_name:String) -> SlotData:
 	var slot_data:SlotData
@@ -422,3 +432,45 @@ func deep_duplicate() -> InventoryData:
 			
 	new_inventory_data.slot_datas = new_slot_datas
 	return new_inventory_data
+
+func number_items_of_type(item_type_id:String) -> int:
+	#var slot_data:SlotData = slot_datas[row_i][col_i]
+	var total := 0
+	var skip_coordinates:Array[Vector2i] = []
+	
+	#only run if we're actually given a type ID
+	if item_type_id and item_type_id != "":
+		#for each row
+		for row_i in slot_datas.size():
+			var row:Array = slot_datas[row_i]
+			
+			#for each slot
+			for col_i in row.size():
+				var slot:SlotData = row[col_i]
+				
+				#if slot exists, has item data, and the item data matches the id
+				if slot:
+					if slot.item_data:
+						if slot.item_data.item_type_id == item_type_id:
+							
+							#only count if we haven't counted it already
+							var skip_slot:bool = false
+							for vec in skip_coordinates:
+								if vec.x == col_i and vec.y == row_i:
+									skip_slot = true
+									break
+							
+							if not skip_slot:
+								total += slot.quantity
+								
+								var height = slot.get_height()
+								var width = slot.get_width()
+								
+								for row_span_i in slot.get_height():
+									for col_span_i in slot.get_width():
+										#skip first cel
+										if !(row_span_i == 0 and col_span_i == 0):
+											skip_coordinates.append(Vector2i(col_i+col_span_i, row_i + row_span_i))
+							
+	
+	return total

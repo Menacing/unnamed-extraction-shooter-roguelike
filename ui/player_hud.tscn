@@ -1,5 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://gt018qo38blj"]
+[gd_scene load_steps=9 format=3 uid="uid://gt018qo38blj"]
 
+[ext_resource type="Material" uid="uid://c0ipdgk1m22gh" path="res://ui/misc/ui_static_mat.tres" id="4_f87sx"]
+[ext_resource type="Script" uid="uid://yry55hwbixwn" path="res://ui/run_timer.gd" id="4_q84jv"]
 [ext_resource type="PackedScene" uid="uid://bb7ue7ms53vhu" path="res://ui/health/life_bar.tscn" id="4_qme8g"]
 [ext_resource type="PackedScene" uid="uid://vb7f8fygilde" path="res://ui/misc/interaction_helpers.tscn" id="5_3ew52"]
 [ext_resource type="PackedScene" uid="uid://cmhu4drttopos" path="res://ui/misc/message_center.tscn" id="6_55h30"]
@@ -13,10 +15,36 @@
 
 [node name="interaction_helpers" parent="." instance=ExtResource("5_3ew52")]
 
-[node name="CompassLabel" parent="." instance=ExtResource("6_h13ew")]
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 104.0
+grow_horizontal = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="CompassLabel" parent="HBoxContainer" instance=ExtResource("6_h13ew")]
+layout_mode = 2
+
+[node name="MarginContainer2" type="MarginContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="PanelContainer" type="PanelContainer" parent="HBoxContainer/MarginContainer2"]
+material = ExtResource("4_f87sx")
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="Label" type="Label" parent="HBoxContainer/MarginContainer2/PanelContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "00:00:00"
+horizontal_alignment = 2
+script = ExtResource("4_q84jv")
 
 [node name="HitIndicatorParent" parent="." instance=ExtResource("7_4osqb")]
-visible = false
 
 [node name="menu" type="Node" parent="."]
 

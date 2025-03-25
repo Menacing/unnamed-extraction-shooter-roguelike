@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="ggsSetting" load_steps=2 format=3 uid="uid://dukeeu4j71kp7"]
+
+[ext_resource type="Script" uid="uid://cvv6m7yyfsxxg" path="res://addons/ggs/plugin/classes/ggs_setting.gd" id="1_4cxk2"]
+
+[resource]
+resource_name = "downsampling_enabled"
+script = ExtResource("1_4cxk2")
+read_only_properties = PackedStringArray()
+default = true
+section = "display"
+key = "downsampling_enabled"
+value_type = 1
+value_hint = 0
+value_hint_string = ""
+metadata/_custom_type_script = "uid://cvv6m7yyfsxxg"

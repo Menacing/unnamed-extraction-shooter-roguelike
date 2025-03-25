@@ -1,8 +1,11 @@
-[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://74oxnjv0nwdg"]
+[gd_resource type="StandardMaterial3D" load_steps=3 format=3 uid="uid://74oxnjv0nwdg"]
 
 [ext_resource type="Texture2D" uid="uid://b2mu7a8bvn31f" path="res://levels/textures/metal/metal_48.png" id="1_h02no"]
+[ext_resource type="Texture2D" uid="uid://dsipm1mdhp137" path="res://levels/normal_maps/metal_48_normal.png" id="2_mbiqk"]
 
 [resource]
 albedo_texture = ExtResource("1_h02no")
-metallic_specular = 0.0
+metallic = 0.7
+normal_enabled = true
+normal_texture = ExtResource("2_mbiqk")
 texture_filter = 2

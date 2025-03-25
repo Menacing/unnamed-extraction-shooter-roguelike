@@ -1,16 +1,21 @@
 extends PanelContainer
+class_name InventoryControl
 
 const Slot = preload("res://ui/inventory/3.0/slot.tscn")
 const EQUIPMENT_SLOT = preload("res://ui/inventory/3.0/equipment_slot.tscn")
 @onready var item_grid: GridContainer = %ItemGrid
 @onready var equipment_slot_container: Control = %EquipmentSlotContainer
 
+var _inventory_data:InventoryData
+
 func set_inventory_data(inventory_data:InventoryData) -> void:
 	inventory_data.inventory_updated.connect(populate_item_grid)
 	populate_item_grid(inventory_data)
+	_inventory_data = inventory_data
 	
 func clear_inventory_data(inventory_data:InventoryData) -> void:
 	inventory_data.inventory_updated.disconnect(populate_item_grid)
+	_inventory_data = null
 
 func populate_item_grid(inventory_data:InventoryData) -> void:
 	for child in equipment_slot_container.get_children():

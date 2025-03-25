@@ -27,6 +27,10 @@ func _connect_external_inventories() -> void:
 	for node in all_nodes:
 		if !node.toggle_inventory.is_connected(_on_toggle_inventory):
 			node.toggle_inventory.connect(_on_toggle_inventory)
+			
+	#if We just loaded in the hideout, transfer all of the materials and the fuel cell
+	if HideoutManager.in_hideout:
+		auto_transfer_hideout_items()
 
 func _physics_process(delta: float) -> void:
 	if grabbed_slot.visible:
@@ -295,3 +299,27 @@ func _on_player_toggle_stash() -> void:
 
 func _on_player_toggle_map_select() -> void:
 	hideout_menu.show_map_select_tab()
+	
+func _on_player_toggle_printer() -> void:
+	hideout_menu.show_printer_tab()
+
+func auto_transfer_hideout_items() -> void:
+	set_hideout_inventory()
+	var orig_volume = foley_audio_stream_player_3d.volume_db
+	foley_audio_stream_player_3d.volume_db = -100
+	#iterate through player inventory
+	if player_inventory_data:
+		for index in player_inventory_data.get_inventory_size():
+			var slot_data = player_inventory_data._get_slot_data(index)
+			if slot_data and slot_data.item_data:
+				#if item is fuel cell or is material, perform quick transfer
+				if slot_data.item_data.item_type == GameplayEnums.ItemType.MATERIAL:
+					var ev = InputEventAction.new()
+					ev.action = "quick_item_transfer"
+					ev.pressed = true
+					on_inventory_interact(player_inventory_data, index, ev)
+		pass
+	clear_external_inventory()
+	foley_audio_stream_player_3d.stop()
+	foley_audio_stream_player_3d.volume_db = orig_volume
+	

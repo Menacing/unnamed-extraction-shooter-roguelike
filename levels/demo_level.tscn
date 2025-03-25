@@ -1438,5 +1438,7 @@ _gun_stats = SubResource("Resource_l1yld")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.1491, 0.468912, -4.35992)
 _gun_stats = SubResource("Resource_osn8e")
 
+[node name="ObjectiveMarker" type="Node3D" parent="." groups=["Extract"]]
+
 [connection signal="hit_occured" from="MultiAgentNavigationRoot/FiestaBox/DamageComponent" to="MultiAgentNavigationRoot/FiestaBox" method="_on_damage_component_hit_occured"]
 [connection signal="hit_occured" from="MultiAgentNavigationRoot/LootChest/DamageComponent" to="MultiAgentNavigationRoot/LootChest" method="_on_damage_component_hit_occured"]

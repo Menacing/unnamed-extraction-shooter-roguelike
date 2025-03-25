@@ -214,9 +214,8 @@ func slow_weapon_turn():
 		
 		#if head_lookatmodifier_node and head_lookatmodifier_node.target_node.is_empty():
 			#head_lookatmodifier_node.target_node = attack_target.get_path()
-		#else:
-			#Helpers.slow_rotate_to_point(head_node, attack_target.global_transform.origin, weapon_rotation_speed, delta)
-		
+		if not head_lookatmodifier_node:
+			Helpers.slow_rotate_to_point(head_node, attack_target.global_transform.origin, weapon_rotation_speed, delta)
 		if gun_node:
 			Helpers.slow_rotate_to_point(gun_node, attack_target.global_transform.origin, weapon_rotation_speed, delta)
 
@@ -270,6 +269,8 @@ func _on_health_component_location_destroyed(health_component: HealthComponent) 
 func die():
 	print("I am dead")
 	#alive = false
+	velocity = Vector3.ZERO
+	nav_agent.velocity_computed.disconnect(_on_velocity_computed)
 	if behavior_tree:
 		behavior_tree.active = false
 	if loot_fiesta:

@@ -239,3 +239,15 @@ func get_component_of_type(parent:Node, type):
 		if is_instance_of(child,type):
 			return child
 	return null
+
+func get_textures_from_mesh(mesh:MeshInstance3D) -> Array[Texture2D]:
+	var textures:Array[Texture2D] = []
+	
+	for surface_index in mesh.get_surface_override_material_count():
+		var surface_mat = mesh.get_active_material(surface_index)
+		if surface_mat is BaseMaterial3D:
+			if  surface_mat.albedo_texture:
+				textures.append(surface_mat.albedo_texture)
+		
+	
+	return textures

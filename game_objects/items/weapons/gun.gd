@@ -87,12 +87,13 @@ func get_left_fingers_node() -> Node3D:
 	return self.get_node("Left_Fingers")
 	
 func get_ads_anchor() -> Vector3:
-	var base_position = self.get_node("ADS").position
 	if scope:
+		var base_position = self.get_node("ADS").position
 		#if scope is equipped, get new x,y positions, keep z 
 		var scope_offset = scope.get_ads_offset()
-		base_position.x = scope_anchor.position.x + scope_offset.x
-		base_position.y = scope_anchor.position.y + scope_offset.y
+		var scope_anchor_local = to_local(scope.global_position)
+		base_position.x = scope_anchor_local.x + scope_offset.x
+		base_position.y = scope_anchor_local.y + scope_offset.y
 		return base_position
 	else:
 		return self.get_node("ADS").position
@@ -310,11 +311,11 @@ func _on_item_equipment_changed(inventory_data:InventoryData, equipment_slot:Equ
 			
 			if equipment_slot.slot_data:
 				var item_3d = Item3D.instantiate_from_slot_data(equipment_slot.slot_data)
+				move_attachment_to_anchor(item_3d, scope_anchor)
 				scope = item_3d as Scope
 				show_nodes(on_scope_show_nodes)
 				hide_nodes(on_scope_hide_nodes)
 				item_3d.picked_up()
-				move_attachment_to_anchor(item_3d, scope_anchor)
 				if equipment_slot.slot_data.item_data.equip_effect_component:
 					optics_equip_effect_component = equipment_slot.slot_data.item_data.equip_effect_component.instantiate()
 					self.add_child(optics_equip_effect_component)
@@ -353,9 +354,11 @@ func _on_item_equipment_changed(inventory_data:InventoryData, equipment_slot:Equ
 
 func show_nodes(nodes_to_show:Array[Node3D]) -> void:
 	for node in nodes_to_show:
-		node.show()
+		if node:
+			node.show()
 		
 func hide_nodes(nodes_to_hide:Array[Node3D]) -> void:
 	for node in nodes_to_hide:
-		node.hide()
+		if node:
+			node.hide()
 	

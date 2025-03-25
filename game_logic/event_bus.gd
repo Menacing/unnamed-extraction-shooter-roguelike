@@ -1,6 +1,7 @@
 extends Node
 
-
+#Hideout Events
+signal material_changed(crafting_material_entry:CraftingMaterialEntry)
 
 #Inventory Events
 #signal add_inventory(inventory:Inventory)

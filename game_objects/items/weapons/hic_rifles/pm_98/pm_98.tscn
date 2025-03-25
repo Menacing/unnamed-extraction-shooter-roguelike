@@ -259,7 +259,7 @@ reload_timer = NodePath("ReloadTimer")
 reload_animation_player = NodePath("AnimationPlayer")
 gun_model_node = NodePath("pm_98")
 gun_material_nodes = [NodePath("pm_98/Node_15/gun/barrel/Cube"), NodePath("pm_98/Node_15/gun/handguard/default")]
-scope_anchor = NodePath("scope_anchor")
+scope_anchor = NodePath("pm_98/scope_anchor")
 on_default_magazine_show_nodes = [null]
 on_default_magazine_hide_nodes = [null]
 on_extended_magazine_show_nodes = [null]
@@ -327,8 +327,8 @@ libraries = {
 &"": SubResource("AnimationLibrary_juive")
 }
 
-[node name="scope_anchor" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0413221, 0.0934732)
+[node name="scope_anchor" type="Node3D" parent="pm_98"]
+transform = Transform3D(1.66667, 0, 0, 0, 1.66667, 0, 0, 0, 1.66667, 0, 0.349397, 0.240701)
 
 [node name="Right_Hand" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 7.10543e-15, 0, 1, 0, -7.10543e-15, 0, 1, 0.025, -0.0767041, 0.195119)

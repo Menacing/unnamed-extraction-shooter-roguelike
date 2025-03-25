@@ -115,4 +115,5 @@ func get_property_usage(property: String) -> PropertyUsageFlags:
 ## This method is called when GGS tries to apply the setting. In other words,
 ## it should contain the setting logic.
 func apply(value) -> void:
+	GGS.setting_applied.emit(key, value)
 	pass

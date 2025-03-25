@@ -1,0 +1,10 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://cfl5sqwjptvtl"]
+
+[ext_resource type="Texture2D" uid="uid://dutjmramrijdo" path="res://game_objects/props/lights/sodium_light/sodium_light_t.png" id="1_i4w0r"]
+
+[resource]
+resource_name = "frame_m"
+cull_mode = 2
+albedo_texture = ExtResource("1_i4w0r")
+roughness = 0.5
+texture_filter = 2

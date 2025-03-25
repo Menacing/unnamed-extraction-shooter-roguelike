@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=4 uid="uid://bqpysnkyujttr"]
+[gd_scene load_steps=8 format=4 uid="uid://bqpysnkyujttr"]
 
 [ext_resource type="PackedScene" uid="uid://srax5xgyem6" path="res://game_objects/props/lights/emergency_light/emergency_light.blend" id="1_q30eh"]
 [ext_resource type="Texture2D" uid="uid://dn1h3b2crwo0i" path="res://game_objects/props/lights/emergency_light/emergency_light_t.png" id="2_xo1o2"]
+[ext_resource type="PackedScene" uid="uid://c65jhr75ocbnv" path="res://components/fake_gi_component/fake_gi_component.tscn" id="3_cbm58"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7jdkg"]
 resource_name = "metal_m"
@@ -81,15 +82,30 @@ shadow_mesh = SubResource("ArrayMesh_ow0x5")
 [node name="emergency_light" parent="." instance=ExtResource("1_q30eh")]
 
 [node name="Cylinder" parent="emergency_light" index="0"]
+cast_shadow = 0
 mesh = SubResource("ArrayMesh_it3h1")
 
 [node name="SpotLight3D" type="SpotLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -0.0580828, 0)
 light_color = Color(0.666667, 0, 0, 1)
+light_energy = 4.0
+light_indirect_energy = 2.0
 light_bake_mode = 1
 shadow_enabled = true
 distance_fade_enabled = true
 spot_range = 10.0
 spot_angle = 80.0
+
+[node name="FakeGiComponent" parent="SpotLight3D" instance=ExtResource("3_cbm58")]
+range_factor = 1.1
+energy_factor = 0.1
+
+[node name="OmniLight3D" type="OmniLight3D" parent="SpotLight3D/FakeGiComponent"]
+light_color = Color(0.666667, 0, 0, 1)
+light_energy = 0.4
+light_specular = 0.0
+light_bake_mode = 1
+distance_fade_enabled = true
+omni_range = 11.0
 
 [editable path="emergency_light"]

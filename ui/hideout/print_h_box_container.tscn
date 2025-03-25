@@ -1,0 +1,39 @@
+[gd_scene load_steps=3 format=3 uid="uid://b4w8vwmnlv135"]
+
+[ext_resource type="Script" uid="uid://bic4qs2oadj40" path="res://ui/hideout/print_h_box_container.gd" id="1_flsbj"]
+[ext_resource type="PackedScene" uid="uid://bjl33aiqan6mg" path="res://ui/hideout/stash_material_entry.tscn" id="2_xjwdc"]
+
+[node name="PrintRequirementHBoxContainer" type="VBoxContainer"]
+script = ExtResource("1_flsbj")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Required Materials"
+horizontal_alignment = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 2
+vertical_scroll_mode = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer"]
+layout_mode = 2
+
+[node name="Control" parent="ScrollContainer/HBoxContainer" instance=ExtResource("2_xjwdc")]
+layout_mode = 2
+
+[node name="_PanelContainer_63076" parent="ScrollContainer/HBoxContainer" instance=ExtResource("2_xjwdc")]
+layout_mode = 2
+
+[node name="_PanelContainer_63077" parent="ScrollContainer/HBoxContainer" instance=ExtResource("2_xjwdc")]
+layout_mode = 2
+
+[node name="PrintButton" type="Button" parent="."]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Print!"
+
+[connection signal="pressed" from="PrintButton" to="." method="_on_print_button_pressed"]
