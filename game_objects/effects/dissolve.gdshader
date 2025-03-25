@@ -6,26 +6,26 @@ varying vec3 worldPos;
 varying vec3 localPos;
 varying vec2 uv;
 
-// Group: Base Color 
+// Group: Base Color
 group_uniforms base_color;
 uniform vec4 baseColor : source_color = vec4(1.0);
-uniform sampler2D baseColorTexture : source_color; 
+uniform sampler2D baseColorTexture : source_color;
 
 // Group: Extra Maps
 group_uniforms extra_maps;
-uniform sampler2D normalTexture : hint_normal;            
-uniform sampler2D aoTexture : hint_default_white;           
-uniform sampler2D heightTexture : hint_default_black;      
-uniform sampler2D roughnessTexture : hint_default_white;    
+uniform sampler2D normalTexture : hint_normal;
+uniform sampler2D aoTexture : hint_default_white;
+uniform sampler2D heightTexture : hint_default_black;
+uniform sampler2D roughnessTexture : hint_default_white;
 
 // Group: Dissolve
 group_uniforms dissolve;
-uniform float dissolveSlider : hint_range(-1.0, 1.5) = 0.0; 
-uniform float dissolveNoiseScale = 2.0; 
+uniform float dissolveSlider : hint_range(-1.0, 1.5) = 0.0;
+uniform float dissolveNoiseScale = 2.0;
 
 // Group: Edges
 group_uniforms edges;
-uniform float edgeNoiseScale : hint_range(-10.0, 0.0, 0.01) = 0.0;  
+uniform float edgeNoiseScale : hint_range(-10.0, 0.0, 0.01) = 0.0;
 uniform float edgesThickness : hint_range(0, 0.3) = 0.01;
 uniform vec4 edgeColor : source_color = vec4(0.0, 0.0, 1.0, 1.0);
 uniform float edgeEmissionSlider : hint_range(0.0, 10.0, 0.01) = 1.0;
@@ -121,10 +121,10 @@ void fragment() {
     vec3 B = normalize(cross(NORMAL, T));
     vec2 parallaxOffset = vec2(dot(viewDir, T), dot(viewDir, B)) * height * heightScale;
     texUV += parallaxOffset;
-    
+
     // Compute base albedo using the base color texture.
     vec4 albedoColor = baseColor * texture(baseColorTexture, texUV);
-    
+
     // Apply normal mapping.
     // (If no normal texture is assigned, the default neutral normal is used.)
     vec3 nMap = texture(normalTexture, texUV).rgb;
@@ -132,19 +132,19 @@ void fragment() {
     T = normalize(TANGENT);
     B = normalize(cross(NORMAL, T));
     NORMAL = normalize(T * nMap.x + B * nMap.y + NORMAL * nMap.z);
-    
+
     // Set ambient occlusion.
     // (Default white AO texture yields AO = 1.0)
     AO = texture(aoTexture, texUV).r;
-    
+
     // Set roughness.
     ROUGHNESS = texture(roughnessTexture, texUV).r;
-    
+
     // Dissolve and edge effects.
     float dissolveNoise = cnoise(localPos * dissolveNoiseScale) * 0.5 + 0.5;
     float edgeNoise = cnoise(localPos * edgeNoiseScale) * 0.5 + 0.5;
     float animatedDissolve = (1.0 - (dissolveSlider + 0.5)) + dissolveNoise;
-    
+
     if (enable_dissolve_animation) {
         float time_factor = TIME * animation_speed;
         animatedDissolve += animation_intensity *
@@ -155,7 +155,7 @@ void fragment() {
     float dissolveFactor = step(edgeNoise, animatedDissolve);
     float edgeMask = step(edgeNoise, animatedDissolve) - step(edgeNoise, animatedDissolve - edgesThickness);
     vec3 edgeEmission = edgeMask * edgeColor.rgb * edgeEmissionSlider;
-    
+
     ALBEDO = albedoColor.rgb;
     ALPHA = dissolveFactor;
     EMISSION = edgeEmission;
