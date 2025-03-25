@@ -1,0 +1,13 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://x43kpiqf2j7k"]
+
+[ext_resource type="Shader" uid="uid://c6jgcllugq0q2" path="res://game_objects/effects/redacted.gdshader" id="1_5osb8"]
+[ext_resource type="Texture2D" uid="uid://b5u2jkvapvodf" path="res://game_objects/effects/redacted.png" id="2_5ffn6"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_5osb8")
+shader_parameter/scroll_speed = Vector2(3, 5)
+shader_parameter/static_intensity = 0.25
+shader_parameter/color = Color(0, 0, 0, 1)
+shader_parameter/tex_scale = 1.0
+shader_parameter/albedo_tex = ExtResource("2_5ffn6")

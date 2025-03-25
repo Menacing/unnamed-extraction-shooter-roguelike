@@ -6,6 +6,12 @@
 [node name="UpgradeHBoxContainer" type="VBoxContainer"]
 script = ExtResource("1_n58d7")
 
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Required Materials"
+horizontal_alignment = 1
+
 [node name="ScrollContainer" type="ScrollContainer" parent="."]
 layout_mode = 2
 size_flags_vertical = 3

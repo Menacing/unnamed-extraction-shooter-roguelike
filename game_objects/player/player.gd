@@ -6,6 +6,7 @@ class_name Player
 signal toggle_inventory
 signal toggle_map_select
 signal toggle_stash
+signal toggle_printer
 
 @onready var inventory_interface: Control = %InventoryInterface
 

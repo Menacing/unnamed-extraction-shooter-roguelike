@@ -299,6 +299,9 @@ func _on_player_toggle_stash() -> void:
 
 func _on_player_toggle_map_select() -> void:
 	hideout_menu.show_map_select_tab()
+	
+func _on_player_toggle_printer() -> void:
+	hideout_menu.show_printer_tab()
 
 func auto_transfer_hideout_items() -> void:
 	set_hideout_inventory()
