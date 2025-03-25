@@ -8,7 +8,7 @@
 [ext_resource type="Script" uid="uid://1xwcocwanxup" path="res://game_logic/upgrade_material_entry.gd" id="4_xiaer"]
 [ext_resource type="Resource" uid="uid://c3nod8jldkobw" path="res://game_objects/crafting_materials/polymer.tres" id="5_pcfn5"]
 [ext_resource type="Resource" uid="uid://c5prst133rftn" path="res://game_objects/crafting_materials/scrap_metal.tres" id="6_d7pie"]
-[ext_resource type="Resource" uid="uid://xufa6auvjw6t" path="res://game_objects/items/weapons/hic_rifles/pm_52/pm_52_inventory_info.tres" id="7_pcfn5"]
+[ext_resource type="Resource" uid="uid://ufd2sll1er04" path="res://game_objects/items/weapons/lpc_pistols/klingeln_80/klingeln_80_inventory_info.tres" id="7_pcfn5"]
 
 [sub_resource type="Resource" id="Resource_w667w"]
 script = ExtResource("4_xiaer")
@@ -35,7 +35,7 @@ layout_mode = 2
 [node name="PrintRequirementHBoxContainer" parent="VBoxContainer" instance=ExtResource("3_f4vd3")]
 layout_mode = 2
 required_materials = Array[ExtResource("4_xiaer")]([SubResource("Resource_w667w"), SubResource("Resource_whqui")])
-display_name = "Basic Rifle"
+display_name = "Basic Pistol"
 item_to_print = ExtResource("7_pcfn5")
 required_printer_size = 1
 
