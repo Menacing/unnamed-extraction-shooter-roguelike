@@ -1,9 +1,26 @@
-[gd_scene load_steps=5 format=3 uid="uid://bi8x1bx1e8eh8"]
+[gd_scene load_steps=12 format=3 uid="uid://bi8x1bx1e8eh8"]
 
 [ext_resource type="Script" uid="uid://bhjdob6ych5g6" path="res://ui/hideout/printer_control.gd" id="1_hwyu6"]
 [ext_resource type="PackedScene" uid="uid://umloovx45int" path="res://ui/hideout/materials_container.tscn" id="1_x4o5r"]
+[ext_resource type="PackedScene" uid="uid://b4w8vwmnlv135" path="res://ui/hideout/print_h_box_container.tscn" id="3_f4vd3"]
 [ext_resource type="Resource" uid="uid://cqieqm1pagg0r" path="res://game_objects/props/printers/small_printer_requirements.tres" id="3_x4o5r"]
 [ext_resource type="PackedScene" uid="uid://s1bitgakr131" path="res://ui/hideout/upgrade_h_box_container.tscn" id="4_a0ryk"]
+[ext_resource type="Script" uid="uid://1xwcocwanxup" path="res://game_logic/upgrade_material_entry.gd" id="4_xiaer"]
+[ext_resource type="Resource" uid="uid://c3nod8jldkobw" path="res://game_objects/crafting_materials/polymer.tres" id="5_pcfn5"]
+[ext_resource type="Resource" uid="uid://c5prst133rftn" path="res://game_objects/crafting_materials/scrap_metal.tres" id="6_d7pie"]
+[ext_resource type="Resource" uid="uid://xufa6auvjw6t" path="res://game_objects/items/weapons/hic_rifles/pm_52/pm_52_inventory_info.tres" id="7_pcfn5"]
+
+[sub_resource type="Resource" id="Resource_w667w"]
+script = ExtResource("4_xiaer")
+material = ExtResource("5_pcfn5")
+amount = 25
+metadata/_custom_type_script = "uid://1xwcocwanxup"
+
+[sub_resource type="Resource" id="Resource_whqui"]
+script = ExtResource("4_xiaer")
+material = ExtResource("6_d7pie")
+amount = 10
+metadata/_custom_type_script = "uid://1xwcocwanxup"
 
 [node name="PRINTER" type="MarginContainer"]
 script = ExtResource("1_hwyu6")
@@ -14,6 +31,13 @@ layout_mode = 2
 
 [node name="MaterialContainer" parent="VBoxContainer" instance=ExtResource("1_x4o5r")]
 layout_mode = 2
+
+[node name="PrintRequirementHBoxContainer" parent="VBoxContainer" instance=ExtResource("3_f4vd3")]
+layout_mode = 2
+required_materials = Array[ExtResource("4_xiaer")]([SubResource("Resource_w667w"), SubResource("Resource_whqui")])
+display_name = "Basic Rifle"
+item_to_print = ExtResource("7_pcfn5")
+required_printer_size = 1
 
 [node name="UpgradeHBoxContainer" parent="VBoxContainer" instance=ExtResource("4_a0ryk")]
 layout_mode = 2

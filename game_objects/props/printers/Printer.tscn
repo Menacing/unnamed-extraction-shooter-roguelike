@@ -46,4 +46,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.49522, 0)
 mesh = SubResource("ArrayMesh_rdc1u")
 skeleton = NodePath("")
 
+[node name="PrintOrigin" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4575, 0.190555)
+
 [editable path="small_printer"]

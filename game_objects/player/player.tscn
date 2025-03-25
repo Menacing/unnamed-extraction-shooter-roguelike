@@ -1126,6 +1126,9 @@ visible = false
 drop_location = NodePath("../../CollisionShape3D/DropLocation")
 ammo_component = NodePath("../../AmmoComponent")
 
+[node name="UpgradeHBoxContainer" parent="PlayerHUD/InventoryInterface/MarginContainer/HBoxContainer/ExternalInventorySpacer/HideoutMenu/STASH/VBoxContainer" index="2"]
+upgrade_requirement = null
+
 [node name="AMMO" parent="PlayerHUD/InventoryInterface/MarginContainer/HBoxContainer/PlayerInventorySpacer/TabContainer" index="2" node_paths=PackedStringArray("_actor_node")]
 _actor_node = NodePath("../../../../../../..")
 

@@ -16,6 +16,7 @@ enum PrinterSize {
 
 func _ready():
 	HideoutManager.printer_size_changed.connect(_on_printer_size_changed)
+	HideoutManager.print_item.connect(_on_print_item)
 	_on_printer_size_changed()
 
 
@@ -32,6 +33,26 @@ func _on_printer_size_changed():
 			small_printer_mesh.material_override = null
 			printer_table_mesh.material_override = null
 			show_mesh_hide_others([small_printer_mesh,printer_table_mesh], [])
+
+func _on_print_item(item_to_print:ItemInformation):
+	var slot_data:SlotData = SlotData.instantiate_from_item_information(item_to_print)
+	var scene:Item3D = Item3D.instantiate_from_slot_data(slot_data)
+	scene.set_as_top_level(true)		
+	LevelManager.add_node_to_level.call_deferred(scene)
+	scene.set_global_position.call_deferred($PrintOrigin.global_position)
+	var random_rotation = Vector3(randf_range(0,360),randf_range(0,360),randf_range(0,360))
+	scene.set_rotation_degrees.call_deferred(random_rotation)
+	if scene is RigidBody3D:
+		var force_magnitude:float  = randf_range(5,15)
+		var x_rotation = randf_range(deg_to_rad(-30.0),deg_to_rad(30.0))
+		var z_rotation = randf_range(deg_to_rad(-30.0),deg_to_rad(30.0))
+		var vector_to_target = Vector3.UP.rotated(Vector3.RIGHT, x_rotation)
+		vector_to_target = vector_to_target.rotated(Vector3.FORWARD, z_rotation)
+		vector_to_target.normalized()
+		scene.linear_velocity = vector_to_target * force_magnitude
+	
+	var item_meshes = Helpers.get_all_mesh_nodes(scene)
+	show_mesh_hide_others(item_meshes,[])
 
 func show_mesh_hide_others(meshes_to_show:Array[MeshInstance3D], meshes_to_hide:Array[MeshInstance3D]):
 	for mesh in meshes_to_hide:

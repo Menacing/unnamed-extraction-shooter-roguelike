@@ -22,6 +22,7 @@ var current_printer_size:PrinterStation.PrinterSize = PrinterStation.PrinterSize
 		printer_size_changed.emit()
 		
 signal printer_size_changed
+signal print_item(item_to_print:ItemInformation)
 
 func _ready():
 	crafting_materials_resource_group.load_all_into(_crafting_material_definitions)

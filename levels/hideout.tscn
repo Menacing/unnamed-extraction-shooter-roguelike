@@ -1,4 +1,4 @@
-[gd_scene load_steps=383 format=4 uid="uid://d2txigapsdl18"]
+[gd_scene load_steps=379 format=4 uid="uid://d2txigapsdl18"]
 
 [ext_resource type="Script" uid="uid://c7t5re1e03cfg" path="res://levels/level.gd" id="1_d1tug"]
 [ext_resource type="CameraAttributesPractical" uid="uid://jafbi2bjurvn" path="res://test/debug/vibe_check_camera.tres" id="2_7vsv1"]
@@ -36,11 +36,7 @@
 [ext_resource type="Script" uid="uid://bi1g5cuiluo3b" path="res://levels/entities/area_ambient_sound.gd" id="32_asabl"]
 [ext_resource type="AudioStream" uid="uid://3vp28og4aea" path="res://levels/ambient_sounds/underground_lab_ambience_003.ogg" id="33_oli46"]
 [ext_resource type="PackedScene" uid="uid://c4y0iwlv3i13p" path="res://game_objects/props/stash/stash.tscn" id="38_1ckb4"]
-[ext_resource type="PackedScene" uid="uid://dpvoqq6pjm1ya" path="res://game_objects/items/materials/bio_gel_vial/bio_gel_vial.tscn" id="40_3x05d"]
 [ext_resource type="Script" uid="uid://bg6k8ta1d5u7s" path="res://levels/launch_mission_area.gd" id="41_1c2xw"]
-[ext_resource type="PackedScene" uid="uid://rsiuhbktl4h8" path="res://game_objects/items/materials/polymer_bale/polymer_bale.tscn" id="41_yhxea"]
-[ext_resource type="PackedScene" uid="uid://mue3h2yq8han" path="res://game_objects/items/materials/scrap_metal_wheel/scrap_metal_wheel.tscn" id="42_af1xf"]
-[ext_resource type="PackedScene" uid="uid://b6xejgxv7attc" path="res://game_objects/items/backpacks/large/large_backpack_1.tscn" id="43_naf82"]
 [ext_resource type="PackedScene" uid="uid://5ymni756p0xu" path="res://game_objects/props/printers/Printer.tscn" id="44_yhxea"]
 [ext_resource type="PackedScene" uid="uid://d3qu8ewdc1ye3" path="res://game_objects/props/lights/sodium_light/sodium_light.tscn" id="46_oudwg"]
 [ext_resource type="PackedScene" uid="uid://dlmiqubqcqf0y" path="res://game_objects/props/lights/tube_light/tube_light.tscn" id="47_jg2x3"]
@@ -3625,6 +3621,9 @@ shape = SubResource("BoxShape3D_lmxcw")
 [node name="Stash" parent="." instance=ExtResource("38_1ckb4")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -1.13535, 0.2, -3.23975)
 
+[node name="Printer" parent="." instance=ExtResource("44_yhxea")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 11.5365, 0.2, 3.72364)
+
 [node name="Area3D" type="StaticBody3D" parent="." groups=["Extract"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.0709, 1.32471, 0)
 collision_layer = 5
@@ -3695,36 +3694,3 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.29212, 1.40828, 0.00205912)
 
 [node name="OmniLight3D4" type="OmniLight3D" parent="Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.98415, 1.40828, 0.00205912)
-
-[node name="BioGelVial" parent="." instance=ExtResource("40_3x05d")]
-transform = Transform3D(0.871377, -0.490615, 0, 0.490615, 0.871377, 0, 0, 0, 1, -7.24993, 0.309212, -2.84658)
-
-[node name="BioGelVial2" parent="." instance=ExtResource("40_3x05d")]
-transform = Transform3D(0.871377, -0.490615, 0, 0.490615, 0.871377, 0, 0, 0, 1, -6.71528, 0.309212, -2.69548)
-
-[node name="PolymerBale" parent="." instance=ExtResource("41_yhxea")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.01823, 0.2, -2.34968)
-
-[node name="ScrapMetalWheel" parent="." instance=ExtResource("42_af1xf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.25844, 0.2, -1.58825)
-
-[node name="ScrapMetalWheel2" parent="." instance=ExtResource("42_af1xf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.84806, 0.2, -2.27311)
-
-[node name="ScrapMetalWheel3" parent="." instance=ExtResource("42_af1xf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.49153, 0.2, -4.46967)
-
-[node name="ScrapMetalWheel4" parent="." instance=ExtResource("42_af1xf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.88767, 0.2, -4.46967)
-
-[node name="ScrapMetalWheel5" parent="." instance=ExtResource("42_af1xf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.20761, 0.2, -4.46967)
-
-[node name="ScrapMetalWheel6" parent="." instance=ExtResource("42_af1xf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.32515, 0.2, -4.46967)
-
-[node name="large_backpack_1" parent="." instance=ExtResource("43_naf82")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.64005, 0.2, -1.32537)
-
-[node name="Printer" parent="." instance=ExtResource("44_yhxea")]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 11.5365, 0.2, 3.72364)
