@@ -4,8 +4,8 @@
 [ext_resource type="Resource" uid="uid://o6tesi76nbth" path="res://ui/inventory/drop_item_context_item.tres" id="2_5am80"]
 [ext_resource type="PackedScene" uid="uid://0hy4cl1x7qwx" path="res://ui/inventory/detail_scenes/gun_detail_popup.tscn" id="2_5pv40"]
 [ext_resource type="Script" uid="uid://hxr8853lym5l" path="res://resource_access/item_information.gd" id="2_6ystw"]
-[ext_resource type="Texture2D" uid="uid://d14qjudcylhe0" path="res://game_objects/items/weapons/fic_rifles/s5/s5_icon.png" id="4_v032v"]
-[ext_resource type="Texture2D" uid="uid://dvhwavsgo6hxq" path="res://game_objects/items/weapons/fic_rifles/s5/s5_icon_r.png" id="5_navpo"]
+[ext_resource type="Texture2D" uid="uid://dxc4u77wpj1vv" path="res://game_objects/items/weapons/lpc_pistols/klingeln_80/klingeln_80_icon.png" id="4_os0fo"]
+[ext_resource type="Texture2D" uid="uid://dwt2rxrco5kqj" path="res://game_objects/items/weapons/lpc_pistols/klingeln_80/klingeln_80_icon_r.png" id="5_jtygu"]
 
 [sub_resource type="Resource" id="Resource_3vynl"]
 script = ExtResource("1_b4jk3")
@@ -19,8 +19,8 @@ show_name = true
 display_name = "Klingeln 80"
 display_short_name = "Kling80"
 item_type = 0
-icon = ExtResource("4_v032v")
-icon_r = ExtResource("5_navpo")
+icon = ExtResource("4_os0fo")
+icon_r = ExtResource("5_jtygu")
 detail_scene = ExtResource("2_5pv40")
 context_menu_items = Array[ExtResource("1_b4jk3")]([ExtResource("2_5am80"), SubResource("Resource_3vynl")])
 max_stacks = 1

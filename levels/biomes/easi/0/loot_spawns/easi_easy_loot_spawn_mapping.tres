@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="LootSpawnMapping" load_steps=51 format=3 uid="uid://cpkios25eab1h"]
+[gd_resource type="Resource" script_class="LootSpawnMapping" load_steps=53 format=3 uid="uid://cpkios25eab1h"]
 
 [ext_resource type="Script" uid="uid://scensnhtcuvo" path="res://game_objects/items/loot_spawn_mapping.gd" id="1_4pmu7"]
 [ext_resource type="Resource" uid="uid://cfi8lq50axkxg" path="res://levels/biomes/easi/0/loot_spawns/science_easy_polymer_pile_spawn_weight.tres" id="2_1m4cd"]
@@ -28,6 +28,7 @@
 [ext_resource type="Resource" uid="uid://dudj53t3b5cjg" path="res://game_objects/items/materials/polymer_bale/polymer_bale_spawn_info.tres" id="26_y28fg"]
 [ext_resource type="Resource" uid="uid://cs285udgvi4ll" path="res://game_objects/items/materials/scrap_metal_wheel/scrap_metal_wheel_medium_spawn_info.tres" id="27_cw2sb"]
 [ext_resource type="Resource" uid="uid://c4jj0w1ek1t0y" path="res://game_objects/items/weapons/hic_rifles/pm_98/pm_98_spawn_info.tres" id="28_ndxhy"]
+[ext_resource type="Resource" uid="uid://c7t640mi7m7ex" path="res://game_objects/items/weapons/lpc_pistols/klingeln_80/klingeln_80_spawn_info.tres" id="29_ylwc1"]
 
 [sub_resource type="Resource" id="Resource_gq11x"]
 script = ExtResource("7_rt6d1")
@@ -136,9 +137,15 @@ loot = ExtResource("27_cw2sb")
 
 [sub_resource type="Resource" id="Resource_4ngfr"]
 script = ExtResource("7_rt6d1")
-weight = 3
+weight = 2
 loot = ExtResource("28_ndxhy")
+
+[sub_resource type="Resource" id="Resource_2bud2"]
+script = ExtResource("7_rt6d1")
+weight = 5
+loot = ExtResource("29_ylwc1")
+metadata/_custom_type_script = "uid://dqpkphb5p5d6r"
 
 [resource]
 script = ExtResource("1_4pmu7")
-spawn_weights = Array[ExtResource("7_rt6d1")]([ExtResource("4_dx76d"), ExtResource("2_1m4cd"), ExtResource("3_u0ejk"), ExtResource("5_7g4id"), SubResource("Resource_gq11x"), SubResource("Resource_qt6ml"), SubResource("Resource_gphd2"), SubResource("Resource_aby38"), SubResource("Resource_jnmsc"), SubResource("Resource_l1sec"), SubResource("Resource_wy3mp"), SubResource("Resource_rv0nd"), SubResource("Resource_qmq86"), SubResource("Resource_vc6vt"), SubResource("Resource_e3nok"), SubResource("Resource_et86o"), SubResource("Resource_hgwwb"), SubResource("Resource_1j8x0"), SubResource("Resource_3b8ry"), SubResource("Resource_6u57d"), SubResource("Resource_45ju0"), SubResource("Resource_p5os4"), SubResource("Resource_dvbjd"), SubResource("Resource_gi734"), SubResource("Resource_7u3qx"), SubResource("Resource_4ngfr")])
+spawn_weights = Array[ExtResource("7_rt6d1")]([ExtResource("4_dx76d"), ExtResource("2_1m4cd"), ExtResource("3_u0ejk"), ExtResource("5_7g4id"), SubResource("Resource_gq11x"), SubResource("Resource_qt6ml"), SubResource("Resource_gphd2"), SubResource("Resource_aby38"), SubResource("Resource_jnmsc"), SubResource("Resource_l1sec"), SubResource("Resource_wy3mp"), SubResource("Resource_rv0nd"), SubResource("Resource_qmq86"), SubResource("Resource_vc6vt"), SubResource("Resource_e3nok"), SubResource("Resource_et86o"), SubResource("Resource_hgwwb"), SubResource("Resource_1j8x0"), SubResource("Resource_3b8ry"), SubResource("Resource_6u57d"), SubResource("Resource_45ju0"), SubResource("Resource_p5os4"), SubResource("Resource_dvbjd"), SubResource("Resource_gi734"), SubResource("Resource_7u3qx"), SubResource("Resource_4ngfr"), SubResource("Resource_2bud2")])
