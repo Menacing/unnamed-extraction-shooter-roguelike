@@ -17,6 +17,21 @@ class_name Enemy
 @export var acceleration:float = .25
 @export var body_rotation_speed:float = 1.0
 
+func _get_configuration_warnings():
+	var warnings = []
+
+	if nav_agent == null:
+		warnings.append("nav_agent is required")
+
+	if state_chart == null:
+		warnings.append("state_chart is required")
+
+	if bt_player == null:
+		warnings.append("bt_player is required")
+		
+	# Returning an empty array means "no warning".
+	return warnings
+
 func _ready() -> void:
 	bt_player.blackboard.set_var("animation_player", animation_player)
 	bt_player.blackboard.set_var("nav_agent", nav_agent)

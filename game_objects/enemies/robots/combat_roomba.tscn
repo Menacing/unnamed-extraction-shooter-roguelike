@@ -1,7 +1,8 @@
-[gd_scene load_steps=39 format=3 uid="uid://ciaqbr34myu5w"]
+[gd_scene load_steps=40 format=3 uid="uid://ciaqbr34myu5w"]
 
 [ext_resource type="Script" uid="uid://bvqp78uoao257" path="res://game_objects/enemies/enemy.gd" id="1_kbenc"]
 [ext_resource type="PackedScene" uid="uid://o7vvmqxsny5t" path="res://game_objects/enemies/robots/combat-roomba.glb" id="3_wwy82"]
+[ext_resource type="Resource" uid="uid://hw8blc564g2i" path="res://levels/roomba_nav_mesh.tres" id="4_k7kme"]
 [ext_resource type="Texture2D" uid="uid://7fi0upsekmpy" path="res://game_objects/effects/assets/light_03.png" id="5_qdph4"]
 [ext_resource type="Texture2D" uid="uid://daqvndsohpnyb" path="res://game_objects/effects/assets/light_01.png" id="6_5orm7"]
 [ext_resource type="AudioStream" uid="uid://wef8dj3iyrtm" path="res://game_objects/enemies/robots/audio/enemy_spotted_audio_stream_randomizer.tres" id="10_iwbga"]
@@ -184,13 +185,16 @@ script = ExtResource("20_4j8ty")
 expression = "randf() < 0.5"
 metadata/_custom_type_script = "uid://bvp226g4anyr2"
 
-[node name="combat_roomba" type="CharacterBody3D" node_paths=PackedStringArray("animation_player", "state_chart", "bt_player")]
+[node name="combat_roomba" type="CharacterBody3D" node_paths=PackedStringArray("animation_player", "sensory_component", "state_chart", "bt_player", "nav_agent")]
 transform = Transform3D(1.00409, 0, 0, 0, 1.00409, 0, 0, 0, 1.00409, 0, 0, 0)
 collision_layer = 3
 script = ExtResource("1_kbenc")
 animation_player = NodePath("AnimationPlayer")
+sensory_component = NodePath("SenseComponent")
 state_chart = NodePath("StateChart")
 bt_player = NodePath("BTPlayer")
+nav_agent = NodePath("NavigationAgent3D")
+nav_mesh_list_item = ExtResource("4_k7kme")
 
 [node name="combat-roomba" parent="." instance=ExtResource("3_wwy82")]
 transform = Transform3D(0.35, 0, 0, 0, 0.35, 0, 0, 0, 0.35, 0, 0, 0)

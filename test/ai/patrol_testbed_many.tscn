@@ -69,6 +69,7 @@ transform = Transform3D(-0.513556, 0.196842, -0.835173, 2.00552e-08, 0.973331, 0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 142.461, 0)
 
 [node name="Unendliche" parent="." instance=ExtResource("5_lm6gu")]
+visible = false
 
 [node name="combat_roomba" parent="." instance=ExtResource("7_h5vwb")]
 transform = Transform3D(1.00409, 0, 0, 0, 1.00409, 0, 0, 0, 1.00409, 8.57803, 0.370667, 0)
