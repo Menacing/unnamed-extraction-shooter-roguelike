@@ -113,4 +113,3 @@ func test_duplicate_deep_workaround_array() -> void:
 	#assert
 	assert_str(arr3[0].subtype_item_id).is_not_equal(arr1[0].subtype_item_id)
 	assert_str(arr2[0].subtype_item_id).is_equal(arr1[0].subtype_item_id)
-	

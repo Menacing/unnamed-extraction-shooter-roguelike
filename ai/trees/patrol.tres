@@ -1,0 +1,44 @@
+[gd_resource type="BehaviorTree" load_steps=14 format=3 uid="uid://cv4fgban5sext"]
+
+[ext_resource type="Script" uid="uid://ce8e1t0emvu5b" path="res://ai/tasks/find_new_patrol_target_task.gd" id="1_lx756"]
+[ext_resource type="Script" uid="uid://bmbep2p4f7w40" path="res://ai/tasks/nav_agent_repath_task.gd" id="2_x08bg"]
+[ext_resource type="Script" uid="uid://blaj7bmpwo86q" path="res://ai/tasks/nav_agent_move_task.gd" id="3_rbrj2"]
+
+[sub_resource type="BlackboardPlan" id="BlackboardPlan_lx756"]
+
+[sub_resource type="BTAction" id="BTAction_sd7as"]
+script = ExtResource("1_lx756")
+
+[sub_resource type="BBNode" id="BBNode_x08bg"]
+value_source = 1
+variable = &"animation_player"
+resource_name = "$animation_player"
+
+[sub_resource type="BTPlayAnimation" id="BTPlayAnimation_je6wr"]
+animation_player = SubResource("BBNode_x08bg")
+animation_name = &"patrol_started"
+custom_name = "Play Patrol Animation"
+
+[sub_resource type="BTAction" id="BTAction_lpsoq"]
+script = ExtResource("2_x08bg")
+
+[sub_resource type="BTCooldown" id="BTCooldown_tbigv"]
+duration = 2.0
+children = [SubResource("BTAction_lpsoq")]
+
+[sub_resource type="BTAlwaysSucceed" id="BTAlwaysSucceed_ns66g"]
+children = [SubResource("BTCooldown_tbigv")]
+
+[sub_resource type="BTAction" id="BTAction_y0now"]
+script = ExtResource("3_rbrj2")
+
+[sub_resource type="BTDynamicSequence" id="BTDynamicSequence_8vjxy"]
+children = [SubResource("BTAlwaysSucceed_ns66g"), SubResource("BTAction_y0now")]
+
+[sub_resource type="BTSequence" id="BTSequence_kpb72"]
+custom_name = "PatrolSequence"
+children = [SubResource("BTAction_sd7as"), SubResource("BTPlayAnimation_je6wr"), SubResource("BTDynamicSequence_8vjxy")]
+
+[resource]
+blackboard_plan = SubResource("BlackboardPlan_lx756")
+root_task = SubResource("BTSequence_kpb72")

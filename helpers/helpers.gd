@@ -251,3 +251,6 @@ func get_textures_from_mesh(mesh:MeshInstance3D) -> Array[Texture2D]:
 		
 	
 	return textures
+
+func seconds_since_ms_timestamp(ms_ticks:int) -> float:
+	return (Time.get_ticks_msec() - ms_ticks)/1000.0

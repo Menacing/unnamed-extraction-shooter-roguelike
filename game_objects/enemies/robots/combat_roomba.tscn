@@ -1,20 +1,25 @@
-[gd_scene load_steps=33 format=3 uid="uid://ciaqbr34myu5w"]
+[gd_scene load_steps=39 format=3 uid="uid://ciaqbr34myu5w"]
 
+[ext_resource type="Script" uid="uid://bvqp78uoao257" path="res://game_objects/enemies/enemy.gd" id="1_kbenc"]
 [ext_resource type="PackedScene" uid="uid://o7vvmqxsny5t" path="res://game_objects/enemies/robots/combat-roomba.glb" id="3_wwy82"]
 [ext_resource type="Texture2D" uid="uid://7fi0upsekmpy" path="res://game_objects/effects/assets/light_03.png" id="5_qdph4"]
 [ext_resource type="Texture2D" uid="uid://daqvndsohpnyb" path="res://game_objects/effects/assets/light_01.png" id="6_5orm7"]
-[ext_resource type="BehaviorTree" uid="uid://c3o1pihtd3pqc" path="res://ai/trees/combat_roomba.tres" id="9_huqy6"]
 [ext_resource type="AudioStream" uid="uid://wef8dj3iyrtm" path="res://game_objects/enemies/robots/audio/enemy_spotted_audio_stream_randomizer.tres" id="10_iwbga"]
 [ext_resource type="AudioStream" uid="uid://hd40mi2hpmcb" path="res://game_objects/enemies/robots/audio/enemy_lost_audio_stream_randomizer.tres" id="11_ll5t6"]
 [ext_resource type="AudioStream" uid="uid://qjx8mxhhx0a5" path="res://game_objects/enemies/robots/audio/idle_audio_stream_randomizer.tres" id="12_o55mw"]
 [ext_resource type="AudioStream" uid="uid://dpy6rknda42mj" path="res://game_objects/enemies/robots/audio/patrol_started_audio_stream_randomizer.tres" id="13_8dkak"]
 [ext_resource type="Script" uid="uid://li54lddh3lo5" path="res://helpers/intro_outro_audio_stream_player.gd" id="14_noua2"]
+[ext_resource type="Script" uid="uid://dovxme4qyglfp" path="res://addons/godot_state_charts/state_chart.gd" id="16_54ull"]
 [ext_resource type="PackedScene" uid="uid://dvm24rm8f0isk" path="res://components/loot_fiesta_component/LootFiestaComponent.tscn" id="17_7ftd3"]
+[ext_resource type="Script" uid="uid://bh1dft2pk7y63" path="res://addons/godot_state_charts/compound_state.gd" id="17_kbenc"]
 [ext_resource type="Script" uid="uid://cln5qcby71pb6" path="res://game_objects/health_component.gd" id="17_rju44"]
+[ext_resource type="Script" uid="uid://mpejp7d8a1tm" path="res://addons/godot_state_charts/atomic_state.gd" id="18_0cxsc"]
 [ext_resource type="Script" uid="uid://bx51vpuw5qrqt" path="res://game_objects/enemies/sense_component.gd" id="18_54ull"]
 [ext_resource type="Script" uid="uid://bg366cry4wvy" path="res://components/damage_component/damage_component.gd" id="18_kd44g"]
+[ext_resource type="Script" uid="uid://cxyic42leanb1" path="res://addons/godot_state_charts/transition.gd" id="19_0cxsc"]
 [ext_resource type="PackedScene" uid="uid://cliu3gfmcv7xd" path="res://components/damage_effect_component/damage_effect_component.tscn" id="19_k7rcm"]
 [ext_resource type="PackedScene" uid="uid://bo5i75565y5co" path="res://game_objects/effects/hit_effects/bullet_hit_sparks.tscn" id="20_3xthi"]
+[ext_resource type="Script" uid="uid://bvp226g4anyr2" path="res://addons/godot_state_charts/expression_guard.gd" id="20_4j8ty"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_mxgj2"]
 radius = 0.0521091
@@ -28,9 +33,8 @@ emission_enabled = true
 emission = Color(1, 0, 0, 1)
 emission_texture = ExtResource("6_5orm7")
 
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_cn06a"]
-height = 10.0
-radius = 25.0
+[sub_resource type="BoxShape3D" id="BoxShape3D_mxgj2"]
+size = Vector3(100, 20, 100)
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_6hth5"]
 radius = 2.0
@@ -45,7 +49,7 @@ radius = 0.160629
 [sub_resource type="BoxShape3D" id="BoxShape3D_hycai"]
 size = Vector3(0.0996854, 0.507972, 0.102156)
 
-[sub_resource type="BlackboardPlan" id="BlackboardPlan_774i1"]
+[sub_resource type="BlackboardPlan" id="BlackboardPlan_5orm7"]
 
 [sub_resource type="Animation" id="Animation_8wc2m"]
 resource_name = "idle"
@@ -147,20 +151,46 @@ tracks/0/keys = {
 }
 tracks/0/use_blend = true
 
+[sub_resource type="Animation" id="Animation_54ull"]
+resource_name = "loitering"
+length = 3.7
+tracks/0/type = "audio"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("IdleAudioStreamPlayer3D")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("12_o55mw")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/0/use_blend = true
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_w37k2"]
 _data = {
 &"idle": SubResource("Animation_8wc2m"),
+&"loiter": SubResource("Animation_54ull"),
 &"patrol_started": SubResource("Animation_jelv1"),
 &"target_lost": SubResource("Animation_ppwor"),
 &"target_spotted": SubResource("Animation_qeyji")
 }
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_mxgj2"]
-size = Vector3(100, 20, 100)
+[sub_resource type="Resource" id="Resource_4y1jg"]
+script = ExtResource("20_4j8ty")
+expression = "randf() < 0.5"
+metadata/_custom_type_script = "uid://bvp226g4anyr2"
 
-[node name="combat_roomba" type="CharacterBody3D"]
+[node name="combat_roomba" type="CharacterBody3D" node_paths=PackedStringArray("animation_player", "state_chart", "bt_player")]
 transform = Transform3D(1.00409, 0, 0, 0, 1.00409, 0, 0, 0, 1.00409, 0, 0, 0)
 collision_layer = 3
+script = ExtResource("1_kbenc")
+animation_player = NodePath("AnimationPlayer")
+state_chart = NodePath("StateChart")
+bt_player = NodePath("BTPlayer")
 
 [node name="combat-roomba" parent="." instance=ExtResource("3_wwy82")]
 transform = Transform3D(0.35, 0, 0, 0, 0.35, 0, 0, 0, 0.35, 0, 0, 0)
@@ -208,17 +238,28 @@ modulate = Color(1, 0, 0, 1)
 double_sided = false
 texture = ExtResource("6_5orm7")
 
-[node name="DetectRadius" type="Area3D" parent="."]
+[node name="SenseComponent" type="Node3D" parent="." node_paths=PackedStringArray("view_cone", "head_node")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.779919, 0)
+script = ExtResource("18_54ull")
+view_cone = NodePath("ViewArea3D")
+head_node = NodePath("../combat-roomba/Armature/Skeleton3D/PhysicalBoneSimulator3D/Head")
+enemy_groups = Array[String](["players"])
+memory_seconds = 5.0
+metadata/_custom_type_script = "uid://bx51vpuw5qrqt"
+
+[node name="ViewArea3D" type="Area3D" parent="SenseComponent"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 0, 0, -69)
 collision_layer = 0
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="DetectRadius"]
-shape = SubResource("CylinderShape3D_cn06a")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SenseComponent/ViewArea3D"]
+shape = SubResource("BoxShape3D_mxgj2")
 
-[node name="BulletDetectRadius" type="Area3D" parent="."]
+[node name="BulletDetectRadius" type="Area3D" parent="SenseComponent"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.779919, 0)
 collision_layer = 2
 collision_mask = 2
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="BulletDetectRadius"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SenseComponent/BulletDetectRadius"]
 shape = SubResource("CylinderShape3D_6hth5")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
@@ -239,8 +280,7 @@ avoidance_enabled = true
 neighbor_distance = 5.0
 
 [node name="BTPlayer" type="BTPlayer" parent="."]
-behavior_tree = ExtResource("9_huqy6")
-blackboard_plan = SubResource("BlackboardPlan_774i1")
+blackboard_plan = SubResource("BlackboardPlan_5orm7")
 
 [node name="TargetSpottedAudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
 attenuation_model = 1
@@ -296,24 +336,76 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.790082, 0)
 distribution = 1
 min_to_spawn = 1
 
-[node name="SenseComponent" type="Node3D" parent="." node_paths=PackedStringArray("view_cone", "head_node")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.779919, 0)
-script = ExtResource("18_54ull")
-view_cone = NodePath("Area3D")
-head_node = NodePath("../combat-roomba/Armature/Skeleton3D/PhysicalBoneSimulator3D/Head")
-enemy_groups = Array[String](["players"])
-memory_seconds = 5.0
-metadata/_custom_type_script = "uid://bx51vpuw5qrqt"
+[node name="StateChart" type="Node" parent="."]
+script = ExtResource("16_54ull")
+metadata/_custom_type_script = "uid://dovxme4qyglfp"
 
-[node name="Area3D" type="Area3D" parent="SenseComponent"]
-transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 0, 0, -69)
-collision_layer = 0
+[node name="MonsterState" type="Node" parent="StateChart"]
+script = ExtResource("17_kbenc")
+initial_state = NodePath("Idle")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="SenseComponent/Area3D"]
-shape = SubResource("BoxShape3D_mxgj2")
+[node name="Idle" type="Node" parent="StateChart/MonsterState"]
+script = ExtResource("17_kbenc")
+initial_state = NodePath("DecideNext")
+
+[node name="DecideNext" type="Node" parent="StateChart/MonsterState/Idle"]
+script = ExtResource("18_0cxsc")
+
+[node name="ToPatroling" type="Node" parent="StateChart/MonsterState/Idle/DecideNext"]
+script = ExtResource("19_0cxsc")
+to = NodePath("../../Patroling")
+guard = SubResource("Resource_4y1jg")
+delay_in_seconds = "0.0"
+
+[node name="ToLoitering" type="Node" parent="StateChart/MonsterState/Idle/DecideNext"]
+script = ExtResource("19_0cxsc")
+to = NodePath("../../Loitering")
+delay_in_seconds = "0.0"
+
+[node name="Patroling" type="Node" parent="StateChart/MonsterState/Idle"]
+script = ExtResource("18_0cxsc")
+
+[node name="ToDecideNext" type="Node" parent="StateChart/MonsterState/Idle/Patroling"]
+script = ExtResource("19_0cxsc")
+to = NodePath("../../DecideNext")
+event = &"BT_Finished"
+delay_in_seconds = "0.0"
+
+[node name="Loitering" type="Node" parent="StateChart/MonsterState/Idle"]
+script = ExtResource("18_0cxsc")
+
+[node name="ToDecideNext" type="Node" parent="StateChart/MonsterState/Idle/Loitering"]
+script = ExtResource("19_0cxsc")
+to = NodePath("../../DecideNext")
+event = &"BT_Finished"
+delay_in_seconds = "0.0"
+
+[node name="Combat" type="Node" parent="StateChart/MonsterState"]
+script = ExtResource("17_kbenc")
+initial_state = NodePath("Attacking")
+
+[node name="Attacking" type="Node" parent="StateChart/MonsterState/Combat"]
+script = ExtResource("18_0cxsc")
+
+[node name="Chasing" type="Node" parent="StateChart/MonsterState/Combat"]
+script = ExtResource("18_0cxsc")
+
+[node name="Alert" type="Node" parent="StateChart/MonsterState"]
+script = ExtResource("17_kbenc")
+initial_state = NodePath("Searching")
+
+[node name="Searching" type="Node" parent="StateChart/MonsterState/Alert"]
+script = ExtResource("18_0cxsc")
+
+[node name="Dead" type="Node" parent="StateChart/MonsterState"]
+script = ExtResource("18_0cxsc")
 
 [connection signal="location_destroyed" from="HealthComponent" to="." method="_on_health_component_location_destroyed"]
 [connection signal="hit_occured" from="DamageComponent" to="HealthComponent" method="_on_hit_occured"]
 [connection signal="hit_occured" from="DamageComponent" to="DamageEffectComponent" method="create_effect"]
+[connection signal="state_entered" from="StateChart/MonsterState/Idle/Patroling" to="." method="_on_patroling_state_entered"]
+[connection signal="state_physics_processing" from="StateChart/MonsterState/Idle/Patroling" to="." method="_on_idle_state_physics_processing"]
+[connection signal="state_entered" from="StateChart/MonsterState/Idle/Loitering" to="." method="_on_loitering_state_entered"]
+[connection signal="state_physics_processing" from="StateChart/MonsterState/Idle/Loitering" to="." method="_on_idle_state_physics_processing"]
 
 [editable path="combat-roomba"]
