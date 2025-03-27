@@ -1,35 +1,76 @@
-extends Node
+extends Node3D
+class_name SenseComponent
 
-@export var tick_rate:float
-var elapsed_time
+var _process_delay:float
+@export_range(1,60) var tick_rate:int = 20:
+	get:
+		return tick_rate
+	set(value):
+		tick_rate = value
+		_process_delay = 1.0/float(tick_rate)
+var elapsed_time:float = 0.0
 
 @export var view_cone:Area3D
+@export_range(0.1,1.0, 0.1) var view_sensitivity = 0.5
+@export var listen_area:Area3D
 @export var head_node:Node3D
-var exclusions:Array[RID]
+@export var enemy_groups:Array[String]
+@export var memory_seconds:float = 10.0
+
+@onready var self_exclusions:Array[RID] = Helpers.get_all_collision_object_3d_recursive(self)
 
 #target information
-var targets:Array[TargetInformation] = []
+var sees_enemy:bool = false
+var targets:Dictionary[int,TargetInformation] = {}
 
 func _ready() -> void:
-	if view_cone:
-		view_cone.body_entered.connect(_on_body_entered_view_cone)
-		view_cone.body_exited.connect(_on_body_exited_view_cone)
+	pass
 
 func _physics_process(delta: float) -> void:
 	elapsed_time += delta
-	if elapsed_time > tick_rate:
+	if elapsed_time > _process_delay:
 		elapsed_time = 0.0
 		_process_senses()
 		
 func _process_senses():
+	_process_memory()
+	_process_look()
 	pass
+
+
+func _process_memory() -> void:
+	sees_enemy = false
 	
-func _on_body_entered_view_cone(body:Node3D):
-	if body is Player:
-		#var los_result = Helpers.los_to_point(head_node,body.los_check_locations,.6,exclusions,true)
-		#if los_result:
-		pass
-		
-func _on_body_exited_view_cone(body:Node3D):
-	if body is Player:
-		pass
+	var targets_to_forget:Array[int]
+	for key in targets:
+		var target:TargetInformation = targets[key]
+		var time_since_last_seen = Time.get_ticks_msec() - target.last_seen_mticks
+		if time_since_last_seen > memory_seconds * 1000:
+			targets_to_forget.append(key)
+	for key in targets_to_forget:
+		targets.erase(key)
+
+func _process_look() -> void:
+	for viewable_entity in LevelManager.viewable_entities:
+		if viewable_entity is PhysicsBody3D:
+			if view_cone.overlaps_body(viewable_entity):
+				for enemy_group in enemy_groups:
+					if viewable_entity.is_in_group(enemy_group):
+						var target_exclusions = Helpers.get_all_collision_object_3d_recursive(viewable_entity)
+						var los_comp = Helpers.get_component_of_type(viewable_entity, LOSTargetComponent)
+						var los_result = false
+						if los_comp:
+							los_result = Helpers.los_to_point(head_node,los_comp.los_targets,view_sensitivity, self_exclusions + target_exclusions,true)
+						else:
+							los_result = Helpers.los_to_point(head_node,[viewable_entity],view_sensitivity, self_exclusions + target_exclusions,true)
+						
+						if los_result:
+							sees_enemy = los_result
+							var target_information = TargetInformation.new()
+							target_information.last_known_position = viewable_entity.global_position
+							target_information.last_seen_mticks = Time.get_ticks_msec()
+							target_information.target = viewable_entity
+							targets[viewable_entity.get_instance_id()] = target_information
+				pass
+	
+	pass
