@@ -76,3 +76,17 @@ func _process_look() -> void:
 				pass
 	
 	pass
+
+
+func _on_bullet_detect_radius_body_shape_entered(body_rid: RID, body: Node3D, body_shape_index: int, local_shape_index: int) -> void:
+	if body.is_in_group("attack"):
+		if body.firer and body.firer is Player:
+			if targets[body.firer.get_instance_id()] == null:
+				var target_information = TargetInformation.new()
+				target_information.last_known_position = body.firer.global_position
+				target_information.last_seen_mticks = Time.get_ticks_msec()
+				target_information.target = body.firer
+				target_information.currently_has_los = false
+				targets[body.firer.get_instance_id()] = target_information
+			else:
+				targets[body.firer.get_instance_id()].last_seen_mticks = Time.get_ticks_msec()

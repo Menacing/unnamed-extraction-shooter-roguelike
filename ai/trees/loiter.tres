@@ -1,10 +1,15 @@
-[gd_resource type="BehaviorTree" load_steps=6 format=3 uid="uid://lrcpyuc8ewph"]
+[gd_resource type="BehaviorTree" load_steps=8 format=3 uid="uid://lrcpyuc8ewph"]
+
+[ext_resource type="Script" uid="uid://cswc6lsp2t4pk" path="res://ai/tasks/nav_agent_stop.gd" id="1_5ct68"]
 
 [sub_resource type="BlackboardPlan" id="BlackboardPlan_ch6bj"]
 var/animation_player/name = &"animation_player"
 var/animation_player/type = 24
 var/animation_player/hint = 34
 var/animation_player/hint_string = "AnimationPlayer"
+
+[sub_resource type="BTAction" id="BTAction_vbqq4"]
+script = ExtResource("1_5ct68")
 
 [sub_resource type="BBNode" id="BBNode_ch6bj"]
 value_source = 1
@@ -23,7 +28,7 @@ max_duration = 5.0
 
 [sub_resource type="BTSequence" id="BTSequence_r2sa6"]
 custom_name = "LoiterSequence"
-children = [SubResource("BTPlayAnimation_5ct68"), SubResource("BTRandomWait_vbqq4")]
+children = [SubResource("BTAction_vbqq4"), SubResource("BTPlayAnimation_5ct68"), SubResource("BTRandomWait_vbqq4")]
 
 [resource]
 blackboard_plan = SubResource("BlackboardPlan_ch6bj")

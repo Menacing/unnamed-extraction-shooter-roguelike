@@ -10,16 +10,10 @@ func _generate_name() -> String:
 # Called each time this task is ticked (aka executed).
 func _tick(p_delta: float) -> Status:
 	if agent is Enemy:
-		if agent._move_target and agent.nav_agent and agent.move_target_distance \
+		if (agent._move_target or agent._move_target_gpos) and agent.nav_agent and agent.move_target_distance \
 		and agent._current_max_speed and agent.acceleration and agent.body_rotation_speed:
 			
-			if is_near_move_target(agent._move_target, agent.move_target_distance):
-				#blackboard.set_var(move_target_var, scene_root)
-				#agent.set_new_path()
-				if agent.nav_agent.avoidance_enabled:
-					agent.nav_agent.set_velocity(Vector3.ZERO)
-				else:
-					agent._on_velocity_computed(Vector3.ZERO)
+			if is_near_move_target(agent._move_target, agent._move_target_gpos, agent.move_target_distance):
 				return SUCCESS
 			move_agent(p_delta, agent.nav_agent, agent._current_max_speed, agent.acceleration, agent.body_rotation_speed)
 			return RUNNING
@@ -52,12 +46,18 @@ func slow_body_turn(delta:float, body_rotation_speed:float):
 			agent.global_transform.basis = current_basis.slerp(target_basis, delta * body_rotation_speed)  # Adjust speed
 
 
-func is_near_move_target(move_target:Node3D, move_target_distance:float):
+func is_near_move_target(move_target:Node3D, move_target_gpos:Vector3, move_target_distance:float):
 	if move_target is Area3D:
 		return move_target.overlaps_body(scene_root)
-	else:
+	
+	elif move_target:
 		var dis = Helpers.distance_between(scene_root, move_target)
 		if dis <= move_target_distance:
+			return true
+	elif move_target_gpos:
+		var diff_vec:Vector3 = scene_root.global_position - move_target_gpos
+		var distance = abs(diff_vec.length())
+		if distance <= move_target_distance:
 			return true
 	
 	return false

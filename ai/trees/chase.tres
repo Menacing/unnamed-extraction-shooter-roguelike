@@ -31,11 +31,9 @@ children = [SubResource("BTAction_iajss"), SubResource("BTAlwaysSucceed_j5uku"),
 [sub_resource type="BTTimeLimit" id="BTTimeLimit_sixj2"]
 children = [SubResource("BTDynamicSequence_enj7o")]
 
-[sub_resource type="BTInvert" id="BTInvert_071mr"]
-children = [SubResource("BTTimeLimit_sixj2")]
-
 [sub_resource type="BBVariant" id="BBVariant_wgw8j"]
 saved_value = null
+resource_name = "<null>"
 
 [sub_resource type="BTSetAgentProperty" id="BTSetAgentProperty_813po"]
 property = &"_attack_target"
@@ -43,6 +41,7 @@ value = SubResource("BBVariant_wgw8j")
 
 [sub_resource type="BBVariant" id="BBVariant_viu31"]
 saved_value = null
+resource_name = "<null>"
 
 [sub_resource type="BTSetAgentProperty" id="BTSetAgentProperty_j2npk"]
 property = &"_move_target"
@@ -53,14 +52,17 @@ saved_value = NodePath("AnimationPlayer")
 resource_name = "AnimationPlayer"
 
 [sub_resource type="BTPlayAnimation" id="BTPlayAnimation_uh2om"]
+await_completion = 100.0
 animation_player = SubResource("BBNode_555j5")
 animation_name = &"target_lost"
 custom_name = "Play Target Lost Animation"
 
-[sub_resource type="BTDynamicSequence" id="BTDynamicSequence_78re5"]
-custom_name = "ChasePlayerSequence"
-children = [SubResource("BTInvert_071mr"), SubResource("BTSetAgentProperty_813po"), SubResource("BTSetAgentProperty_j2npk"), SubResource("BTPlayAnimation_uh2om")]
+[sub_resource type="BTSequence" id="BTSequence_wgw8j"]
+children = [SubResource("BTSetAgentProperty_813po"), SubResource("BTSetAgentProperty_j2npk"), SubResource("BTPlayAnimation_uh2om")]
+
+[sub_resource type="BTSelector" id="BTSelector_wgw8j"]
+children = [SubResource("BTTimeLimit_sixj2"), SubResource("BTSequence_wgw8j")]
 
 [resource]
 blackboard_plan = SubResource("BlackboardPlan_813po")
-root_task = SubResource("BTDynamicSequence_78re5")
+root_task = SubResource("BTSelector_wgw8j")

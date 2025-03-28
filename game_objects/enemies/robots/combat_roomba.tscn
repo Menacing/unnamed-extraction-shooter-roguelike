@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://ciaqbr34myu5w"]
+[gd_scene load_steps=43 format=3 uid="uid://ciaqbr34myu5w"]
 
 [ext_resource type="Script" uid="uid://bvqp78uoao257" path="res://game_objects/enemies/enemy.gd" id="1_kbenc"]
 [ext_resource type="PackedScene" uid="uid://dr48wela8mtxd" path="res://game_objects/items/weapons/hic_rifles/pm_52/pm_52.tscn" id="2_q4rc2"]
@@ -55,6 +55,25 @@ size = Vector3(0.0996854, 0.507972, 0.102156)
 
 [sub_resource type="Animation" id="Animation_8wc2m"]
 resource_name = "idle"
+length = 3.7
+tracks/0/type = "audio"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("IdleAudioStreamPlayer3D")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("12_o55mw")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/0/use_blend = true
+
+[sub_resource type="Animation" id="Animation_54ull"]
+resource_name = "loitering"
 length = 3.7
 tracks/0/type = "audio"
 tracks/0/imported = false
@@ -153,30 +172,44 @@ tracks/0/keys = {
 }
 tracks/0/use_blend = true
 
-[sub_resource type="Animation" id="Animation_54ull"]
-resource_name = "loitering"
-length = 3.7
-tracks/0/type = "audio"
+[sub_resource type="Animation" id="Animation_4y1jg"]
+resource_name = "search"
+length = 7.5
+tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("IdleAudioStreamPlayer3D")
+tracks/0/path = NodePath(".:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"clips": [{
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": ExtResource("12_o55mw")
-}],
-"times": PackedFloat32Array(0)
+"times": PackedFloat32Array(0, 1.7, 2.46667, 4.06667, 5.63333, 6.43333, 7.43333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 2.35619, 0), Vector3(0, 2.35619, 0), Vector3(0, 0, 0), Vector3(0, -2.35619, 0), Vector3(0, -2.35619, 0), Vector3(0, 0, 0)]
 }
-tracks/0/use_blend = true
+
+[sub_resource type="Animation" id="Animation_vbip7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_w37k2"]
 _data = {
+&"RESET": SubResource("Animation_vbip7"),
 &"idle": SubResource("Animation_8wc2m"),
 &"loiter": SubResource("Animation_54ull"),
 &"patrol_started": SubResource("Animation_jelv1"),
+&"search": SubResource("Animation_4y1jg"),
 &"target_lost": SubResource("Animation_ppwor"),
 &"target_spotted": SubResource("Animation_qeyji")
 }
@@ -186,7 +219,7 @@ script = ExtResource("20_4j8ty")
 expression = "randf() < 0.5"
 metadata/_custom_type_script = "uid://bvp226g4anyr2"
 
-[node name="combat_roomba" type="CharacterBody3D" node_paths=PackedStringArray("animation_player", "head_node", "sensory_component", "state_chart", "bt_player", "nav_agent")]
+[node name="combat_roomba" type="CharacterBody3D" node_paths=PackedStringArray("animation_player", "head_node", "sensory_component", "state_chart", "bt_player", "nav_agent", "loot_fiesta", "physical_bone_simulator", "character_body_collision_shapes")]
 transform = Transform3D(1.00409, 0, 0, 0, 1.00409, 0, 0, 0, 1.00409, 0, 0, 0)
 collision_layer = 3
 script = ExtResource("1_kbenc")
@@ -200,6 +233,9 @@ nav_mesh_list_item = ExtResource("4_k7kme")
 max_idle_speed = 2.0
 max_combat_speed = 3.0
 gun_scene = ExtResource("2_q4rc2")
+loot_fiesta = NodePath("LootFiestaComponent")
+physical_bone_simulator = NodePath("combat-roomba/Armature/Skeleton3D/PhysicalBoneSimulator3D")
+character_body_collision_shapes = [NodePath("CollisionShape3D"), NodePath("CollisionShape3D2"), NodePath("CollisionShape3D3")]
 
 [node name="combat-roomba" parent="." instance=ExtResource("3_wwy82")]
 transform = Transform3D(0.35, 0, 0, 0, 0.35, 0, 0, 0, 0.35, 0, 0, 0)
@@ -214,9 +250,9 @@ animate_physical_bones = false
 active = false
 
 [node name="Physical Bone Bone" type="PhysicalBone3D" parent="combat-roomba/Armature/Skeleton3D/PhysicalBoneSimulator3D"]
-transform = Transform3D(2.8455, 2.84217e-14, 0, 0, 0, -2.8455, -2.84217e-14, 2.8455, 0, 0, 0.222436, 0)
-joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.078171)
-body_offset = Transform3D(2.8455, 2.84217e-14, 0, 0, 0, -2.8455, -2.84217e-14, 2.8455, 0, 0, 0.222436, 0)
+transform = Transform3D(2.8455, 7.81561e-05, 0, 0, 0, -2.8455, -7.81561e-05, 2.8455, 0, 0, 0.222436, 0)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.0781709)
+body_offset = Transform3D(2.8455, 7.81561e-05, 0, 0, 0, -2.8455, -7.81561e-05, 2.8455, 0, 0, 0.222436, 0)
 bone_name = "Bone"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="combat-roomba/Armature/Skeleton3D/PhysicalBoneSimulator3D/Physical Bone Bone"]
@@ -253,7 +289,7 @@ script = ExtResource("18_54ull")
 view_cone = NodePath("ViewArea3D")
 head_node = NodePath("../combat-roomba/Armature/Skeleton3D/PhysicalBoneSimulator3D/Head")
 enemy_groups = Array[String](["players"])
-memory_seconds = 5.0
+memory_seconds = 30.0
 metadata/_custom_type_script = "uid://bx51vpuw5qrqt"
 
 [node name="ViewArea3D" type="Area3D" parent="SenseComponent"]
@@ -296,7 +332,6 @@ attenuation_model = 1
 bus = &"SFX"
 
 [node name="TargetLostAudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
-stream = ExtResource("11_ll5t6")
 attenuation_model = 1
 bus = &"SFX"
 
@@ -396,6 +431,12 @@ to = NodePath("../../Combat")
 event = &"SpottedEnemy"
 delay_in_seconds = "0.0"
 
+[node name="ToDead" type="Node" parent="StateChart/MonsterState/Idle"]
+script = ExtResource("19_0cxsc")
+to = NodePath("../../Dead")
+event = &"Died"
+delay_in_seconds = "0.0"
+
 [node name="Combat" type="Node" parent="StateChart/MonsterState"]
 script = ExtResource("17_kbenc")
 initial_state = NodePath("SpottedEnemy")
@@ -433,16 +474,61 @@ to = NodePath("../../../Idle")
 event = &"BT_Finished"
 delay_in_seconds = "0.0"
 
+[node name="ToDead" type="Node" parent="StateChart/MonsterState/Combat"]
+script = ExtResource("19_0cxsc")
+to = NodePath("../../Dead")
+event = &"Died"
+delay_in_seconds = "0.0"
+
+[node name="ToAlert" type="Node" parent="StateChart/MonsterState/Combat"]
+script = ExtResource("19_0cxsc")
+to = NodePath("../../Alert")
+event = &"Searching"
+delay_in_seconds = "0.0"
+
 [node name="Alert" type="Node" parent="StateChart/MonsterState"]
 script = ExtResource("17_kbenc")
-initial_state = NodePath("Searching")
+initial_state = NodePath("SelectSearchTarget")
+
+[node name="SelectSearchTarget" type="Node" parent="StateChart/MonsterState/Alert"]
+script = ExtResource("18_0cxsc")
+
+[node name="ToSearching" type="Node" parent="StateChart/MonsterState/Alert/SelectSearchTarget"]
+script = ExtResource("19_0cxsc")
+to = NodePath("../../Searching")
+delay_in_seconds = "0.0"
 
 [node name="Searching" type="Node" parent="StateChart/MonsterState/Alert"]
 script = ExtResource("18_0cxsc")
 
+[node name="ToSelectSearchTarget" type="Node" parent="StateChart/MonsterState/Alert/Searching"]
+script = ExtResource("19_0cxsc")
+to = NodePath("../../SelectSearchTarget")
+event = &"Searching"
+delay_in_seconds = "0.0"
+
+[node name="ToDead" type="Node" parent="StateChart/MonsterState/Alert"]
+script = ExtResource("19_0cxsc")
+to = NodePath("../../Dead")
+event = &"Died"
+delay_in_seconds = "0.0"
+
+[node name="ToIdle" type="Node" parent="StateChart/MonsterState/Alert"]
+script = ExtResource("19_0cxsc")
+to = NodePath("../../Idle")
+event = &"BT_Finished"
+delay_in_seconds = "0.0"
+
+[node name="ToCombat" type="Node" parent="StateChart/MonsterState/Alert"]
+script = ExtResource("19_0cxsc")
+to = NodePath("../../Combat")
+event = &"SpottedEnemy"
+delay_in_seconds = "0.0"
+
 [node name="Dead" type="Node" parent="StateChart/MonsterState"]
 script = ExtResource("18_0cxsc")
 
+[connection signal="body_shape_entered" from="SenseComponent/BulletDetectRadius" to="SenseComponent" method="_on_bullet_detect_radius_body_shape_entered"]
 [connection signal="location_destroyed" from="HealthComponent" to="." method="_on_health_component_location_destroyed"]
 [connection signal="hit_occured" from="DamageComponent" to="HealthComponent" method="_on_hit_occured"]
 [connection signal="hit_occured" from="DamageComponent" to="DamageEffectComponent" method="create_effect"]
@@ -458,5 +544,9 @@ script = ExtResource("18_0cxsc")
 [connection signal="state_physics_processing" from="StateChart/MonsterState/Combat/Attacking" to="." method="_on_attacking_state_physics_processing"]
 [connection signal="state_entered" from="StateChart/MonsterState/Combat/Chasing" to="." method="_on_chasing_state_entered"]
 [connection signal="state_physics_processing" from="StateChart/MonsterState/Combat/Chasing" to="." method="_on_chasing_state_physics_processing"]
+[connection signal="state_entered" from="StateChart/MonsterState/Alert/SelectSearchTarget" to="." method="_on_select_search_target_state_entered"]
+[connection signal="state_entered" from="StateChart/MonsterState/Alert/Searching" to="." method="_on_searching_state_entered"]
+[connection signal="state_physics_processing" from="StateChart/MonsterState/Alert/Searching" to="." method="_on_searching_state_physics_processing"]
+[connection signal="state_entered" from="StateChart/MonsterState/Dead" to="." method="_on_dead_state_entered"]
 
 [editable path="combat-roomba"]

@@ -11,6 +11,7 @@ class_name Enemy
 
 @export_category("Navigation")
 var _move_target:Node3D
+var _move_target_gpos:Vector3
 @export var nav_agent:NavigationAgent3D
 @export var move_target_distance:float = 1.0
 @export var nav_mesh_list_item:NavigationMeshListItem
@@ -30,6 +31,11 @@ var _reaction_timer:float = 0.0
 @export var gun_node:Gun
 @export var vert_moa:float = 600
 @export var hor_moa:float = 600
+
+@export_category("Death")
+@export var loot_fiesta:LootFiestaComponent
+@export var physical_bone_simulator:PhysicalBoneSimulator3D
+@export var character_body_collision_shapes:Array[CollisionShape3D]
 
 func _get_configuration_warnings():
 	var warnings = []
@@ -107,9 +113,22 @@ func find_best_visible_enemy():
 					distance_to_attack_target_sq = distance_to_new_target_sq
 	
 	_attack_target = new_attack_target
+
+func find_closest_last_seen_location() -> Vector3:
+	var closest_location:Vector3
+	var distance_to_closest_location_sq:float
 	
-	if new_attack_target == null:
-		state_chart.send_event("LostTarget")
+	for target_info:TargetInformation in sensory_component.targets.values():
+		if closest_location == Vector3.ZERO:
+			closest_location = target_info.last_known_position
+			distance_to_closest_location_sq = (closest_location - self.global_position).length_squared()
+		else:
+			var distance_to_new_target_sq = (target_info.target.global_position - self.global_position).length_squared()
+			if distance_to_new_target_sq < distance_to_closest_location_sq:
+				closest_location = target_info.last_known_position
+				distance_to_closest_location_sq = distance_to_new_target_sq
+	
+	return closest_location 
 
 #endregion
 
@@ -188,7 +207,8 @@ func _on_attacking_state_entered() -> void:
 	bt_player.behavior_tree = attack_bt
 
 func _on_attacking_state_physics_processing(delta: float) -> void:
-	
+	if _attack_target == null:
+		state_chart.send_event("LostTarget")
 	
 	pass # Replace with function body.
 	
@@ -210,5 +230,73 @@ func _on_chasing_state_physics_processing(delta: float) -> void:
 	
 	var bt_status:BT.Status = bt_player.get_bt_instance().get_last_status()
 	if bt_status != BT.Status.RUNNING:
+		#find a new target
+		if !sensory_component.targets.keys().is_empty():
+			state_chart.send_event("Searching")
+		else:
+			state_chart.send_event("BT_Finished")
+#endregion
+
+
+func _on_health_component_location_destroyed(health_component: HealthComponent) -> void:
+	if health_component.location == HealthComponent.HEALTH_LOCATION.MAIN:
+		state_chart.send_event("Died")
+	
+	pass # Replace with function body.
+
+
+func _on_dead_state_entered() -> void:
+	print("I am dead")
+	#alive = false
+	velocity = Vector3.ZERO
+	nav_agent.velocity_computed.disconnect(_on_velocity_computed)
+	if bt_player:
+		bt_player.active = false
+	if loot_fiesta:
+		loot_fiesta.fiesta()
+
+	if physical_bone_simulator:
+		animation_player.stop()
+		#for ap3d in animation_players:
+			#ap3d.stop()
+		for cs3d in character_body_collision_shapes:
+			cs3d.disabled = true
+		physical_bone_simulator.active = true
+		physical_bone_simulator.physical_bones_start_simulation()
+
+#region alert states
+func _on_select_search_target_state_entered() -> void:
+	if sensory_component.targets.keys().is_empty():
 		state_chart.send_event("BT_Finished")
+	else:
+		_move_target_gpos = find_closest_last_seen_location()
+			
+	pass # Replace with function body.
+	
+func _on_searching_state_entered() -> void:
+	if sensory_component.targets.keys().is_empty():
+		state_chart.send_event("BT_Finished")
+	var search_bt = load("res://ai/trees/search.tres")
+	bt_player.behavior_tree = search_bt
+	pass # Replace with function body.
+
+func _on_searching_state_physics_processing(delta: float) -> void:
+	if sensory_component.sees_enemy:
+		_reaction_timer += delta
+		if _reaction_timer > combat_reaction_time:
+			state_chart.send_event("SpottedEnemy")
+			_reaction_timer = 0.0
+			return
+	else:
+		_reaction_timer = 0.0
+	
+	var bt_status:BT.Status = bt_player.get_bt_instance().get_last_status()
+	if bt_status != BT.Status.RUNNING:
+		#find a new target
+		if !sensory_component.targets.keys().is_empty():
+			state_chart.send_event("Searching")
+		else:
+			state_chart.send_event("BT_Finished")
+	
+	pass # Replace with function body.
 #endregion
