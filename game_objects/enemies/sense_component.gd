@@ -44,6 +44,7 @@ func _process_memory() -> void:
 	var targets_to_forget:Array[int]
 	for key in targets:
 		var target:TargetInformation = targets[key]
+		target.currently_has_los = false
 		var time_since_last_seen = Time.get_ticks_msec() - target.last_seen_mticks
 		if time_since_last_seen > memory_seconds * 1000:
 			targets_to_forget.append(key)
@@ -70,6 +71,7 @@ func _process_look() -> void:
 							target_information.last_known_position = viewable_entity.global_position
 							target_information.last_seen_mticks = Time.get_ticks_msec()
 							target_information.target = viewable_entity
+							target_information.currently_has_los = los_result
 							targets[viewable_entity.get_instance_id()] = target_information
 				pass
 	

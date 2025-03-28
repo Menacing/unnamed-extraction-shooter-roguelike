@@ -10,7 +10,8 @@ func _generate_name():
 # Called each time this task is ticked (aka executed).
 func _tick(delta) -> Status:
 	if agent is Enemy:
-		agent.set_attack_target()
+		agent.find_best_visible_enemy()
+		blackboard.set_var("_attack_target", agent._attack_target)
 		return SUCCESS
 		
 	return FAILURE

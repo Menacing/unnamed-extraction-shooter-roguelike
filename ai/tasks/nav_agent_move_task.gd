@@ -5,35 +5,24 @@ extends BTAction
 func _generate_name() -> String:
 	return "Nav Agent Move"
 
-var move_target_var = "move_target"
-var nav_agent_var = "nav_agent"
-var move_target_distance_var = "move_target_distance"
-var max_move_speed_var = "max_move_speed"
-var acceleration_var = "acceleration"
-var body_rotation_speed_var = "body_rotation_speed"
+
 
 # Called each time this task is ticked (aka executed).
 func _tick(p_delta: float) -> Status:
-	if blackboard.has_var(move_target_var) and blackboard.has_var(nav_agent_var) \
-		and blackboard.has_var(move_target_distance_var) and blackboard.has_var(max_move_speed_var) \
-		and blackboard.has_var(acceleration_var) and blackboard.has_var(body_rotation_speed_var):
-		var move_target:Node3D = blackboard.get_var(move_target_var)
-		var nav_agent:NavigationAgent3D = blackboard.get_var(nav_agent_var)
-		var move_target_distance:float = blackboard.get_var(move_target_distance_var)
-		var max_move_speed:float = blackboard.get_var(max_move_speed_var)
-		var acceleration:float = blackboard.get_var(acceleration_var)
-		var body_rotation_speed:float = blackboard.get_var(body_rotation_speed_var)
-		
-		if is_near_move_target(move_target, move_target_distance):
-			#blackboard.set_var(move_target_var, scene_root)
-			#agent.set_new_path()
-			if nav_agent.avoidance_enabled:
-				nav_agent.set_velocity(Vector3.ZERO)
-			else:
-				agent._on_velocity_computed(Vector3.ZERO)
-			return SUCCESS
-		move_agent(p_delta, nav_agent, max_move_speed, acceleration, body_rotation_speed)
-		return RUNNING
+	if agent is Enemy:
+		if agent._move_target and agent.nav_agent and agent.move_target_distance \
+		and agent._current_max_speed and agent.acceleration and agent.body_rotation_speed:
+			
+			if is_near_move_target(agent._move_target, agent.move_target_distance):
+				#blackboard.set_var(move_target_var, scene_root)
+				#agent.set_new_path()
+				if agent.nav_agent.avoidance_enabled:
+					agent.nav_agent.set_velocity(Vector3.ZERO)
+				else:
+					agent._on_velocity_computed(Vector3.ZERO)
+				return SUCCESS
+			move_agent(p_delta, agent.nav_agent, agent._current_max_speed, agent.acceleration, agent.body_rotation_speed)
+			return RUNNING
 		
 	return FAILURE
 

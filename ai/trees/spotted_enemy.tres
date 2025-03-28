@@ -1,0 +1,17 @@
+[gd_resource type="BehaviorTree" load_steps=4 format=3 uid="uid://dm7rmyiph4rjv"]
+
+[sub_resource type="BlackboardPlan" id="BlackboardPlan_k5c5d"]
+
+[sub_resource type="BBNode" id="BBNode_87qjq"]
+value_source = 1
+variable = &"animation_player"
+resource_name = "$animation_player"
+
+[sub_resource type="BTPlayAnimation" id="BTPlayAnimation_87qjq"]
+animation_player = SubResource("BBNode_87qjq")
+animation_name = &"target_spotted"
+custom_name = "Play Target Spotted Animation"
+
+[resource]
+blackboard_plan = SubResource("BlackboardPlan_k5c5d")
+root_task = SubResource("BTPlayAnimation_87qjq")

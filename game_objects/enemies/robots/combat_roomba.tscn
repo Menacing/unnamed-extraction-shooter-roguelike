@@ -1,6 +1,7 @@
-[gd_scene load_steps=40 format=3 uid="uid://ciaqbr34myu5w"]
+[gd_scene load_steps=41 format=3 uid="uid://ciaqbr34myu5w"]
 
 [ext_resource type="Script" uid="uid://bvqp78uoao257" path="res://game_objects/enemies/enemy.gd" id="1_kbenc"]
+[ext_resource type="PackedScene" uid="uid://dr48wela8mtxd" path="res://game_objects/items/weapons/hic_rifles/pm_52/pm_52.tscn" id="2_q4rc2"]
 [ext_resource type="PackedScene" uid="uid://o7vvmqxsny5t" path="res://game_objects/enemies/robots/combat-roomba.glb" id="3_wwy82"]
 [ext_resource type="Resource" uid="uid://hw8blc564g2i" path="res://levels/roomba_nav_mesh.tres" id="4_k7kme"]
 [ext_resource type="Texture2D" uid="uid://7fi0upsekmpy" path="res://game_objects/effects/assets/light_03.png" id="5_qdph4"]
@@ -185,16 +186,20 @@ script = ExtResource("20_4j8ty")
 expression = "randf() < 0.5"
 metadata/_custom_type_script = "uid://bvp226g4anyr2"
 
-[node name="combat_roomba" type="CharacterBody3D" node_paths=PackedStringArray("animation_player", "sensory_component", "state_chart", "bt_player", "nav_agent")]
+[node name="combat_roomba" type="CharacterBody3D" node_paths=PackedStringArray("animation_player", "head_node", "sensory_component", "state_chart", "bt_player", "nav_agent")]
 transform = Transform3D(1.00409, 0, 0, 0, 1.00409, 0, 0, 0, 1.00409, 0, 0, 0)
 collision_layer = 3
 script = ExtResource("1_kbenc")
 animation_player = NodePath("AnimationPlayer")
+head_node = NodePath("combat-roomba/Armature/Skeleton3D/PhysicalBoneSimulator3D/Head")
 sensory_component = NodePath("SenseComponent")
 state_chart = NodePath("StateChart")
 bt_player = NodePath("BTPlayer")
 nav_agent = NodePath("NavigationAgent3D")
 nav_mesh_list_item = ExtResource("4_k7kme")
+max_idle_speed = 2.0
+max_combat_speed = 3.0
+gun_scene = ExtResource("2_q4rc2")
 
 [node name="combat-roomba" parent="." instance=ExtResource("3_wwy82")]
 transform = Transform3D(0.35, 0, 0, 0, 0.35, 0, 0, 0, 0.35, 0, 0, 0)
@@ -342,6 +347,7 @@ min_to_spawn = 1
 
 [node name="StateChart" type="Node" parent="."]
 script = ExtResource("16_54ull")
+track_in_editor = true
 metadata/_custom_type_script = "uid://dovxme4qyglfp"
 
 [node name="MonsterState" type="Node" parent="StateChart"]
@@ -384,15 +390,48 @@ to = NodePath("../../DecideNext")
 event = &"BT_Finished"
 delay_in_seconds = "0.0"
 
+[node name="ToCombat" type="Node" parent="StateChart/MonsterState/Idle"]
+script = ExtResource("19_0cxsc")
+to = NodePath("../../Combat")
+event = &"SpottedEnemy"
+delay_in_seconds = "0.0"
+
 [node name="Combat" type="Node" parent="StateChart/MonsterState"]
 script = ExtResource("17_kbenc")
-initial_state = NodePath("Attacking")
+initial_state = NodePath("SpottedEnemy")
+
+[node name="SpottedEnemy" type="Node" parent="StateChart/MonsterState/Combat"]
+script = ExtResource("18_0cxsc")
+
+[node name="ToAttacking" type="Node" parent="StateChart/MonsterState/Combat/SpottedEnemy"]
+script = ExtResource("19_0cxsc")
+to = NodePath("../../Attacking")
+event = &"BT_Finished"
+delay_in_seconds = "0.0"
 
 [node name="Attacking" type="Node" parent="StateChart/MonsterState/Combat"]
 script = ExtResource("18_0cxsc")
 
+[node name="ToChasing" type="Node" parent="StateChart/MonsterState/Combat/Attacking"]
+script = ExtResource("19_0cxsc")
+to = NodePath("../../Chasing")
+event = &"LostTarget"
+delay_in_seconds = "0.0"
+
 [node name="Chasing" type="Node" parent="StateChart/MonsterState/Combat"]
 script = ExtResource("18_0cxsc")
+
+[node name="ToAttacking" type="Node" parent="StateChart/MonsterState/Combat/Chasing"]
+script = ExtResource("19_0cxsc")
+to = NodePath("../../Attacking")
+event = &"SpottedEnemy"
+delay_in_seconds = "0.0"
+
+[node name="ToIdle" type="Node" parent="StateChart/MonsterState/Combat/Chasing"]
+script = ExtResource("19_0cxsc")
+to = NodePath("../../../Idle")
+event = &"BT_Finished"
+delay_in_seconds = "0.0"
 
 [node name="Alert" type="Node" parent="StateChart/MonsterState"]
 script = ExtResource("17_kbenc")
@@ -407,9 +446,17 @@ script = ExtResource("18_0cxsc")
 [connection signal="location_destroyed" from="HealthComponent" to="." method="_on_health_component_location_destroyed"]
 [connection signal="hit_occured" from="DamageComponent" to="HealthComponent" method="_on_hit_occured"]
 [connection signal="hit_occured" from="DamageComponent" to="DamageEffectComponent" method="create_effect"]
+[connection signal="state_entered" from="StateChart/MonsterState/Idle" to="." method="_on_idle_state_entered"]
 [connection signal="state_entered" from="StateChart/MonsterState/Idle/Patroling" to="." method="_on_patroling_state_entered"]
 [connection signal="state_physics_processing" from="StateChart/MonsterState/Idle/Patroling" to="." method="_on_idle_state_physics_processing"]
 [connection signal="state_entered" from="StateChart/MonsterState/Idle/Loitering" to="." method="_on_loitering_state_entered"]
 [connection signal="state_physics_processing" from="StateChart/MonsterState/Idle/Loitering" to="." method="_on_idle_state_physics_processing"]
+[connection signal="state_entered" from="StateChart/MonsterState/Combat" to="." method="_on_combat_state_entered"]
+[connection signal="state_entered" from="StateChart/MonsterState/Combat/SpottedEnemy" to="." method="_on_spotted_enemy_state_entered"]
+[connection signal="state_physics_processing" from="StateChart/MonsterState/Combat/SpottedEnemy" to="." method="_on_spotted_enemy_state_physics_processing"]
+[connection signal="state_entered" from="StateChart/MonsterState/Combat/Attacking" to="." method="_on_attacking_state_entered"]
+[connection signal="state_physics_processing" from="StateChart/MonsterState/Combat/Attacking" to="." method="_on_attacking_state_physics_processing"]
+[connection signal="state_entered" from="StateChart/MonsterState/Combat/Chasing" to="." method="_on_chasing_state_entered"]
+[connection signal="state_physics_processing" from="StateChart/MonsterState/Combat/Chasing" to="." method="_on_chasing_state_physics_processing"]
 
 [editable path="combat-roomba"]

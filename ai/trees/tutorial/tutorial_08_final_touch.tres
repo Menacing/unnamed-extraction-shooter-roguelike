@@ -1,12 +1,12 @@
 [gd_resource type="BehaviorTree" load_steps=52 format=3 uid="uid://dp0cglcytwcj5"]
 
-[ext_resource type="Script" path="res://ai/tasks/examples/get_first_in_group.gd" id="1_o5ahw"]
-[ext_resource type="Script" path="res://ai/tasks/examples/select_flanking_pos.gd" id="2_er25a"]
-[ext_resource type="Script" path="res://ai/tasks/examples/arrive_pos.gd" id="3_ed1xo"]
-[ext_resource type="Script" path="res://ai/tasks/examples/face_target.gd" id="4_128ei"]
-[ext_resource type="Script" path="res://ai/tasks/examples/in_range.gd" id="5_er18b"]
-[ext_resource type="Script" path="res://ai/tasks/examples/back_away.gd" id="6_1urfq"]
-[ext_resource type="Script" path="res://ai/tasks/examples/pursue.gd" id="7_ekws5"]
+[ext_resource type="Script" uid="uid://cq3nd2ltntlcs" path="res://ai/tasks/examples/get_first_in_group.gd" id="1_o5ahw"]
+[ext_resource type="Script" uid="uid://bxjypwbugqk60" path="res://ai/tasks/examples/select_flanking_pos.gd" id="2_er25a"]
+[ext_resource type="Script" uid="uid://da7a1hfxfmh4l" path="res://ai/tasks/examples/arrive_pos.gd" id="3_ed1xo"]
+[ext_resource type="Script" uid="uid://cr0u2k0ad8wrb" path="res://ai/tasks/examples/face_target.gd" id="4_128ei"]
+[ext_resource type="Script" uid="uid://c0374hfgiw75o" path="res://ai/tasks/examples/in_range.gd" id="5_er18b"]
+[ext_resource type="Script" uid="uid://bpwa5ypbqnh6v" path="res://ai/tasks/examples/back_away.gd" id="6_1urfq"]
+[ext_resource type="Script" uid="uid://d2yxq7gm6hq12" path="res://ai/tasks/examples/pursue.gd" id="7_ekws5"]
 
 [sub_resource type="BlackboardPlan" id="BlackboardPlan_ewfwq"]
 var/speed/name = &"speed"
@@ -34,8 +34,8 @@ script = ExtResource("4_128ei")
 target_var = &"target"
 
 [sub_resource type="BBNode" id="BBNode_6d0yy"]
-resource_name = "AnimationPlayer"
 saved_value = NodePath("AnimationPlayer")
+resource_name = "AnimationPlayer"
 
 [sub_resource type="BTPlayAnimation" id="BTPlayAnimation_wsspf"]
 await_completion = 5.0
@@ -43,8 +43,8 @@ animation_player = SubResource("BBNode_6d0yy")
 animation_name = &"attack_1"
 
 [sub_resource type="BBNode" id="BBNode_w45kn"]
-resource_name = "AnimationPlayer"
 saved_value = NodePath("AnimationPlayer")
+resource_name = "AnimationPlayer"
 
 [sub_resource type="BTPlayAnimation" id="BTPlayAnimation_d2lad"]
 await_completion = 5.0
@@ -55,8 +55,8 @@ animation_name = &"attack_2"
 children = [SubResource("BTCondition_m15aa"), SubResource("BTAction_oc76s"), SubResource("BTPlayAnimation_wsspf"), SubResource("BTPlayAnimation_d2lad")]
 
 [sub_resource type="BTCooldown" id="BTCooldown_3tvjt"]
-children = [SubResource("BTSequence_e0f8v")]
 duration = 5.0
+children = [SubResource("BTSequence_e0f8v")]
 
 [sub_resource type="BTCondition" id="BTCondition_x0uu7"]
 script = ExtResource("5_er18b")
@@ -65,8 +65,8 @@ distance_max = 200.0
 target_var = &"target"
 
 [sub_resource type="BBNode" id="BBNode_wksgd"]
-resource_name = "AnimationPlayer"
 saved_value = NodePath("AnimationPlayer")
+resource_name = "AnimationPlayer"
 
 [sub_resource type="BTPlayAnimation" id="BTPlayAnimation_umlwj"]
 animation_player = SubResource("BBNode_wksgd")
@@ -78,15 +78,15 @@ speed_var = &"speed"
 max_angle_deviation = 0.7
 
 [sub_resource type="BTTimeLimit" id="BTTimeLimit_6eii7"]
-children = [SubResource("BTAction_6q0k4")]
 time_limit = 2.0
+children = [SubResource("BTAction_6q0k4")]
 
 [sub_resource type="BTAlwaysSucceed" id="BTAlwaysSucceed_ieord"]
 children = [SubResource("BTTimeLimit_6eii7")]
 
 [sub_resource type="BBNode" id="BBNode_ayt56"]
-resource_name = "AnimationPlayer"
 saved_value = NodePath("AnimationPlayer")
+resource_name = "AnimationPlayer"
 
 [sub_resource type="BTPlayAnimation" id="BTPlayAnimation_l1tdg"]
 animation_player = SubResource("BBNode_ayt56")
@@ -107,8 +107,8 @@ range_max = 500
 position_var = &"pos"
 
 [sub_resource type="BBNode" id="BBNode_icf24"]
-resource_name = "AnimationPlayer"
 saved_value = NodePath("AnimationPlayer")
+resource_name = "AnimationPlayer"
 
 [sub_resource type="BTPlayAnimation" id="BTPlayAnimation_iiei3"]
 animation_player = SubResource("BBNode_icf24")
@@ -126,8 +126,8 @@ script = ExtResource("4_128ei")
 target_var = &"target"
 
 [sub_resource type="BBNode" id="BBNode_h4k80"]
-resource_name = "AnimationPlayer"
 saved_value = NodePath("AnimationPlayer")
+resource_name = "AnimationPlayer"
 
 [sub_resource type="BTPlayAnimation" id="BTPlayAnimation_40yja"]
 animation_player = SubResource("BBNode_h4k80")
@@ -136,8 +136,8 @@ animation_name = &"throw_prepare"
 [sub_resource type="BTWait" id="BTWait_2dc1v"]
 
 [sub_resource type="BBNode" id="BBNode_slipn"]
-resource_name = "AnimationPlayer"
 saved_value = NodePath("AnimationPlayer")
+resource_name = "AnimationPlayer"
 
 [sub_resource type="BTPlayAnimation" id="BTPlayAnimation_qnpjq"]
 await_completion = 5.0
@@ -145,8 +145,8 @@ animation_player = SubResource("BBNode_slipn")
 animation_name = &"throw"
 
 [sub_resource type="BBNode" id="BBNode_qaqnn"]
-resource_name = "."
 saved_value = NodePath(".")
+resource_name = "."
 
 [sub_resource type="BTCallMethod" id="BTCallMethod_yd0fn"]
 node = SubResource("BBNode_qaqnn")
@@ -156,8 +156,8 @@ method = &"throw_ninja_star"
 children = [SubResource("BTAction_n0rxm"), SubResource("BTPlayAnimation_iiei3"), SubResource("BTAction_g2up4"), SubResource("BTAction_d5lkr"), SubResource("BTPlayAnimation_40yja"), SubResource("BTWait_2dc1v"), SubResource("BTPlayAnimation_qnpjq"), SubResource("BTCallMethod_yd0fn")]
 
 [sub_resource type="BTProbability" id="BTProbability_omklt"]
-children = [SubResource("BTSequence_ws7nq")]
 run_chance = 0.25
+children = [SubResource("BTSequence_ws7nq")]
 
 [sub_resource type="BTCondition" id="BTCondition_d6aub"]
 script = ExtResource("5_er18b")
@@ -166,8 +166,8 @@ distance_max = 10000.0
 target_var = &"target"
 
 [sub_resource type="BBNode" id="BBNode_rpwld"]
-resource_name = "AnimationPlayer"
 saved_value = NodePath("AnimationPlayer")
+resource_name = "AnimationPlayer"
 
 [sub_resource type="BTPlayAnimation" id="BTPlayAnimation_dug2k"]
 animation_player = SubResource("BBNode_rpwld")
@@ -180,8 +180,8 @@ speed_var = &"speed"
 approach_distance = 100.0
 
 [sub_resource type="BBNode" id="BBNode_aw5jj"]
-resource_name = "AnimationPlayer"
 saved_value = NodePath("AnimationPlayer")
+resource_name = "AnimationPlayer"
 
 [sub_resource type="BTPlayAnimation" id="BTPlayAnimation_3aihc"]
 animation_player = SubResource("BBNode_aw5jj")

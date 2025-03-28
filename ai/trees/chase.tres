@@ -1,0 +1,66 @@
+[gd_resource type="BehaviorTree" load_steps=20 format=3 uid="uid://dqlbqsi255dq0"]
+
+[ext_resource type="Script" uid="uid://dmmuq2wf020yf" path="res://ai/tasks/slow_weapon_turn_task.gd" id="2_viu31"]
+[ext_resource type="Script" uid="uid://t8jwxqkplgeb" path="res://ai/tasks/fire_weapon_task.gd" id="3_j2npk"]
+[ext_resource type="Script" uid="uid://blaj7bmpwo86q" path="res://ai/tasks/nav_agent_move_task.gd" id="4_sff1q"]
+
+[sub_resource type="BlackboardPlan" id="BlackboardPlan_813po"]
+
+[sub_resource type="BTAction" id="BTAction_iajss"]
+script = ExtResource("2_viu31")
+
+[sub_resource type="BTAction" id="BTAction_85dga"]
+script = ExtResource("3_j2npk")
+
+[sub_resource type="BTCooldown" id="BTCooldown_x02wu"]
+duration = 1.0
+start_cooled = true
+children = [SubResource("BTAction_85dga")]
+
+[sub_resource type="BTAlwaysSucceed" id="BTAlwaysSucceed_j5uku"]
+custom_name = "Fire Weapon Cooldown"
+children = [SubResource("BTCooldown_x02wu")]
+
+[sub_resource type="BTAction" id="BTAction_futwg"]
+script = ExtResource("4_sff1q")
+
+[sub_resource type="BTDynamicSequence" id="BTDynamicSequence_enj7o"]
+custom_name = "ChasePlayerSequence"
+children = [SubResource("BTAction_iajss"), SubResource("BTAlwaysSucceed_j5uku"), SubResource("BTAction_futwg")]
+
+[sub_resource type="BTTimeLimit" id="BTTimeLimit_sixj2"]
+children = [SubResource("BTDynamicSequence_enj7o")]
+
+[sub_resource type="BTInvert" id="BTInvert_071mr"]
+children = [SubResource("BTTimeLimit_sixj2")]
+
+[sub_resource type="BBVariant" id="BBVariant_wgw8j"]
+saved_value = null
+
+[sub_resource type="BTSetAgentProperty" id="BTSetAgentProperty_813po"]
+property = &"_attack_target"
+value = SubResource("BBVariant_wgw8j")
+
+[sub_resource type="BBVariant" id="BBVariant_viu31"]
+saved_value = null
+
+[sub_resource type="BTSetAgentProperty" id="BTSetAgentProperty_j2npk"]
+property = &"_move_target"
+value = SubResource("BBVariant_viu31")
+
+[sub_resource type="BBNode" id="BBNode_555j5"]
+saved_value = NodePath("AnimationPlayer")
+resource_name = "AnimationPlayer"
+
+[sub_resource type="BTPlayAnimation" id="BTPlayAnimation_uh2om"]
+animation_player = SubResource("BBNode_555j5")
+animation_name = &"target_lost"
+custom_name = "Play Target Lost Animation"
+
+[sub_resource type="BTDynamicSequence" id="BTDynamicSequence_78re5"]
+custom_name = "ChasePlayerSequence"
+children = [SubResource("BTInvert_071mr"), SubResource("BTSetAgentProperty_813po"), SubResource("BTSetAgentProperty_j2npk"), SubResource("BTPlayAnimation_uh2om")]
+
+[resource]
+blackboard_plan = SubResource("BlackboardPlan_813po")
+root_task = SubResource("BTDynamicSequence_78re5")
