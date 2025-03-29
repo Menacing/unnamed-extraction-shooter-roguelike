@@ -40,7 +40,7 @@ func slow_body_turn(delta:float, body_rotation_speed:float):
 
 		if forward.length() > 0:
 			var current_basis = agent.global_transform.basis.orthonormalized()
-			var target_basis = Basis().looking_at(forward, Vector3.UP, false).orthonormalized()
+			var target_basis = Basis().looking_at(forward, Vector3.UP, true).orthonormalized()
 
 			# Smooth interpolation
 			agent.global_transform.basis = current_basis.slerp(target_basis, delta * body_rotation_speed)  # Adjust speed
