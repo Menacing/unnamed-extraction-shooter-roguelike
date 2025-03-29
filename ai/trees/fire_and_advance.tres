@@ -1,15 +1,15 @@
 [gd_resource type="BehaviorTree" load_steps=24 format=3 uid="uid://w3cgx8e6nk0a"]
 
-[ext_resource type="Script" uid="uid://cvw7ocnvo1j4f" path="res://ai/tasks/set_fire_target_task.gd" id="4_nyp2e"]
-[ext_resource type="Script" uid="uid://dmmuq2wf020yf" path="res://ai/tasks/slow_weapon_turn_task.gd" id="6_e5uqf"]
-[ext_resource type="Script" uid="uid://t8jwxqkplgeb" path="res://ai/tasks/fire_weapon_task.gd" id="7_7anl7"]
-[ext_resource type="Script" uid="uid://bmbep2p4f7w40" path="res://ai/tasks/nav_agent_repath_task.gd" id="8_lywy4"]
-[ext_resource type="Script" uid="uid://blaj7bmpwo86q" path="res://ai/tasks/nav_agent_move_task.gd" id="9_4xmh0"]
+[ext_resource type="Script" uid="uid://cvw7ocnvo1j4f" path="res://ai/tasks/set_fire_target_task.gd" id="1_b5ooy"]
+[ext_resource type="Script" uid="uid://dmmuq2wf020yf" path="res://ai/tasks/slow_weapon_turn_task.gd" id="2_ofiwr"]
+[ext_resource type="Script" uid="uid://t8jwxqkplgeb" path="res://ai/tasks/fire_weapon_task.gd" id="3_k376t"]
+[ext_resource type="Script" uid="uid://bmbep2p4f7w40" path="res://ai/tasks/nav_agent_repath_task.gd" id="4_60yct"]
+[ext_resource type="Script" uid="uid://blaj7bmpwo86q" path="res://ai/tasks/nav_agent_move_task.gd" id="5_hxwcx"]
 
 [sub_resource type="BlackboardPlan" id="BlackboardPlan_32mjl"]
 
 [sub_resource type="BTAction" id="BTAction_2q4mb"]
-script = ExtResource("4_nyp2e")
+script = ExtResource("1_b5ooy")
 
 [sub_resource type="BBVariant" id="BBVariant_t5ki5"]
 type = 24
@@ -32,10 +32,10 @@ children = [SubResource("BTDynamicSequence_hllmy")]
 children = [SubResource("BTCooldown_1g72r")]
 
 [sub_resource type="BTAction" id="BTAction_hcdbj"]
-script = ExtResource("6_e5uqf")
+script = ExtResource("2_ofiwr")
 
 [sub_resource type="BTAction" id="BTAction_ofxus"]
-script = ExtResource("7_7anl7")
+script = ExtResource("3_k376t")
 
 [sub_resource type="BTCooldown" id="BTCooldown_j2wid"]
 duration = 1.0
@@ -51,7 +51,7 @@ custom_name = "AttackPlayerSequence"
 children = [SubResource("BTAlwaysSucceed_t5ki5"), SubResource("BTAction_hcdbj"), SubResource("BTAlwaysSucceed_862lh")]
 
 [sub_resource type="BTAction" id="BTAction_y45nu"]
-script = ExtResource("8_lywy4")
+script = ExtResource("4_60yct")
 
 [sub_resource type="BTCooldown" id="BTCooldown_om268"]
 duration = 2.0
@@ -61,7 +61,7 @@ children = [SubResource("BTAction_y45nu")]
 children = [SubResource("BTCooldown_om268")]
 
 [sub_resource type="BTAction" id="BTAction_lsago"]
-script = ExtResource("9_4xmh0")
+script = ExtResource("5_hxwcx")
 
 [sub_resource type="BTDynamicSequence" id="BTDynamicSequence_u6x21"]
 custom_name = "MoveToTargetSequence"

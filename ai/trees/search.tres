@@ -1,7 +1,8 @@
-[gd_resource type="BehaviorTree" load_steps=9 format=3 uid="uid://cob2sylx0tsjb"]
+[gd_resource type="BehaviorTree" load_steps=11 format=3 uid="uid://cob2sylx0tsjb"]
 
 [ext_resource type="Script" uid="uid://bmbep2p4f7w40" path="res://ai/tasks/nav_agent_repath_task.gd" id="1_mh3rd"]
 [ext_resource type="Script" uid="uid://blaj7bmpwo86q" path="res://ai/tasks/nav_agent_move_task.gd" id="2_ob3na"]
+[ext_resource type="Script" uid="uid://cswc6lsp2t4pk" path="res://ai/tasks/nav_agent_stop.gd" id="3_ob3na"]
 
 [sub_resource type="BlackboardPlan" id="BlackboardPlan_gkug8"]
 
@@ -10,6 +11,9 @@ script = ExtResource("1_mh3rd")
 
 [sub_resource type="BTAction" id="BTAction_k4t8d"]
 script = ExtResource("2_ob3na")
+
+[sub_resource type="BTAction" id="BTAction_gkug8"]
+script = ExtResource("3_ob3na")
 
 [sub_resource type="BBNode" id="BBNode_y5vbd"]
 value_source = 1
@@ -24,7 +28,7 @@ custom_name = "Play search Animation"
 
 [sub_resource type="BTSequence" id="BTSequence_twrkb"]
 custom_name = "Search Sequence"
-children = [SubResource("BTAction_6ubv6"), SubResource("BTAction_k4t8d"), SubResource("BTPlayAnimation_52jv4")]
+children = [SubResource("BTAction_6ubv6"), SubResource("BTAction_k4t8d"), SubResource("BTAction_gkug8"), SubResource("BTPlayAnimation_52jv4")]
 
 [resource]
 blackboard_plan = SubResource("BlackboardPlan_gkug8")

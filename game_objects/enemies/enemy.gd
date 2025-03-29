@@ -8,6 +8,16 @@ class_name Enemy
 @export var sensory_component:SenseComponent
 @export var state_chart:StateChart
 @export var bt_player:BTPlayer
+@export var bt_dictionary:Dictionary[String, BehaviorTree] = {
+	"advance": preload("res://ai/trees/advance.tres"),
+	"melee_attack": preload("res://ai/trees/melee_attack.tres"),
+	"chase": preload("res://ai/trees/chase.tres"),
+	"fire_and_advance": preload("res://ai/trees/fire_and_advance.tres"),
+	"loiter": preload("res://ai/trees/loiter.tres"),
+	"patrol": preload("res://ai/trees/patrol.tres"),
+	"search": preload("res://ai/trees/search.tres"),
+	"spotted_enemy": preload("res://ai/trees/spotted_enemy.tres")
+}
 
 @export_category("Navigation")
 var _move_target:Node3D
@@ -31,6 +41,7 @@ var _reaction_timer:float = 0.0
 @export var gun_node:Gun
 @export var vert_moa:float = 600
 @export var hor_moa:float = 600
+@export var melee_range:float = 1.0
 
 @export_category("Death")
 @export var loot_fiesta:LootFiestaComponent
@@ -157,8 +168,7 @@ func _on_idle_state_entered() -> void:
 	pass # Replace with function body.
 	
 func _on_loitering_state_entered() -> void:
-	var loitering_bt = load("res://ai/trees/loiter.tres")
-	bt_player.behavior_tree = loitering_bt
+	bt_player.behavior_tree = bt_dictionary["loiter"]
 	
 	pass # Replace with function body.
 
@@ -180,8 +190,7 @@ func _on_idle_state_physics_processing(delta: float) -> void:
 
 
 func _on_patroling_state_entered() -> void:
-	var loitering_bt = load("res://ai/trees/patrol.tres")
-	bt_player.behavior_tree = loitering_bt
+	bt_player.behavior_tree = bt_dictionary["patrol"]
 	
 	pass # Replace with function body.
 #endregion
@@ -192,8 +201,7 @@ func _on_combat_state_entered() -> void:
 	pass # Replace with function body.
 	
 func _on_spotted_enemy_state_entered() -> void:
-	var spotted_enemy_bt = load("res://ai/trees/spotted_enemy.tres")
-	bt_player.behavior_tree = spotted_enemy_bt
+	bt_player.behavior_tree = bt_dictionary["spotted_enemy"]
 	
 	pass # Replace with function body.
 
@@ -202,19 +210,17 @@ func _on_spotted_enemy_state_physics_processing(delta: float) -> void:
 	if bt_status != BT.Status.RUNNING:
 		state_chart.send_event("BT_Finished")
 
-func _on_attacking_state_entered() -> void:
-	var attack_bt = load("res://ai/trees/attack.tres")
-	bt_player.behavior_tree = attack_bt
+func _on_fire_and_advance_state_entered() -> void:
+	bt_player.behavior_tree = bt_dictionary["fire_and_advance"]
 
 func _on_attacking_state_physics_processing(delta: float) -> void:
 	if _attack_target == null:
 		state_chart.send_event("LostTarget")
 	
 	pass # Replace with function body.
-	
+
 func _on_chasing_state_entered() -> void:
-	var chase_bt = load("res://ai/trees/chase.tres")
-	bt_player.behavior_tree = chase_bt
+	bt_player.behavior_tree = bt_dictionary["chase"]
 	pass # Replace with function body.
 
 func _on_chasing_state_physics_processing(delta: float) -> void:
@@ -276,8 +282,7 @@ func _on_select_search_target_state_entered() -> void:
 func _on_searching_state_entered() -> void:
 	if sensory_component.targets.keys().is_empty():
 		state_chart.send_event("BT_Finished")
-	var search_bt = load("res://ai/trees/search.tres")
-	bt_player.behavior_tree = search_bt
+	bt_player.behavior_tree = bt_dictionary["search"]
 	pass # Replace with function body.
 
 func _on_searching_state_physics_processing(delta: float) -> void:
@@ -300,3 +305,30 @@ func _on_searching_state_physics_processing(delta: float) -> void:
 	
 	pass # Replace with function body.
 #endregion
+
+
+func _on_advancing_state_entered() -> void:
+	bt_player.behavior_tree = bt_dictionary["advance"]
+	pass # Replace with function body.
+
+func _on_advancing_state_physics_processing(delta: float) -> void:
+	if _attack_target == null:
+		state_chart.send_event("LostTarget")
+	elif _attack_target.global_position.distance_to(self.global_position) <= melee_range:
+		state_chart.send_event("InMeleeRange")
+		
+	pass # Replace with function body.
+
+
+func _on_melee_attacking_state_entered() -> void:
+	bt_player.behavior_tree = bt_dictionary["melee_attack"]
+	pass # Replace with function body.
+
+
+func _on_melee_attacking_state_physics_processing(delta: float) -> void:
+	if _attack_target == null:
+		state_chart.send_event("LostTarget")
+	var bt_status:BT.Status = bt_player.get_bt_instance().get_last_status()
+	if bt_status != BT.Status.RUNNING:
+		state_chart.send_event("BT_Finished")
+	pass # Replace with function body.

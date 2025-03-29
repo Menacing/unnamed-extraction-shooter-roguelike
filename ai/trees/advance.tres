@@ -1,0 +1,26 @@
+[gd_resource type="BehaviorTree" load_steps=9 format=3 uid="uid://c86x5sn35veix"]
+
+[ext_resource type="Script" uid="uid://bmbep2p4f7w40" path="res://ai/tasks/nav_agent_repath_task.gd" id="1_0b7cn"]
+[ext_resource type="Script" uid="uid://blaj7bmpwo86q" path="res://ai/tasks/nav_agent_move_task.gd" id="2_4gnuj"]
+
+[sub_resource type="BlackboardPlan" id="BlackboardPlan_dgqy3"]
+
+[sub_resource type="BTAction" id="BTAction_v5awx"]
+script = ExtResource("1_0b7cn")
+
+[sub_resource type="BTCooldown" id="BTCooldown_gltrk"]
+duration = 2.0
+children = [SubResource("BTAction_v5awx")]
+
+[sub_resource type="BTAlwaysSucceed" id="BTAlwaysSucceed_xhqmo"]
+children = [SubResource("BTCooldown_gltrk")]
+
+[sub_resource type="BTAction" id="BTAction_7lsmt"]
+script = ExtResource("2_4gnuj")
+
+[sub_resource type="BTDynamicSequence" id="BTDynamicSequence_5m870"]
+children = [SubResource("BTAlwaysSucceed_xhqmo"), SubResource("BTAction_7lsmt")]
+
+[resource]
+blackboard_plan = SubResource("BlackboardPlan_dgqy3")
+root_task = SubResource("BTDynamicSequence_5m870")

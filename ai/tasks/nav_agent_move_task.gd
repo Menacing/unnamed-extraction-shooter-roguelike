@@ -15,6 +15,8 @@ func _tick(p_delta: float) -> Status:
 			
 			if is_near_move_target(agent._move_target, agent._move_target_gpos, agent.move_target_distance):
 				return SUCCESS
+			if agent.animation_player.has_animation("walk"):
+				agent.animation_player.play("walk")
 			move_agent(p_delta, agent.nav_agent, agent._current_max_speed, agent.acceleration, agent.body_rotation_speed)
 			return RUNNING
 		

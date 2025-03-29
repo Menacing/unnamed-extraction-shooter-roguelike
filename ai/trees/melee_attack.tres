@@ -1,0 +1,25 @@
+[gd_resource type="BehaviorTree" load_steps=7 format=3 uid="uid://capcj5wqod8qt"]
+
+[ext_resource type="Script" uid="uid://cswc6lsp2t4pk" path="res://ai/tasks/nav_agent_stop.gd" id="1_0sdk2"]
+
+[sub_resource type="BlackboardPlan" id="BlackboardPlan_6ewyl"]
+
+[sub_resource type="BTAction" id="BTAction_1qnrn"]
+script = ExtResource("1_0sdk2")
+
+[sub_resource type="BBNode" id="BBNode_yuctj"]
+value_source = 1
+variable = &"animation_player"
+resource_name = "$animation_player"
+
+[sub_resource type="BTAwaitAnimation" id="BTAwaitAnimation_t5ki5"]
+animation_player = SubResource("BBNode_yuctj")
+animation_name = &"attack"
+max_time = 10.0
+
+[sub_resource type="BTSequence" id="BTSequence_6nkjk"]
+children = [SubResource("BTAction_1qnrn"), SubResource("BTAwaitAnimation_t5ki5")]
+
+[resource]
+blackboard_plan = SubResource("BlackboardPlan_6ewyl")
+root_task = SubResource("BTSequence_6nkjk")

@@ -53,6 +53,21 @@ size = Vector3(0.0996854, 0.507972, 0.102156)
 
 [sub_resource type="BlackboardPlan" id="BlackboardPlan_5orm7"]
 
+[sub_resource type="Animation" id="Animation_vbip7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
 [sub_resource type="Animation" id="Animation_8wc2m"]
 resource_name = "idle"
 length = 3.7
@@ -118,6 +133,22 @@ tracks/0/keys = {
 }
 tracks/0/use_blend = true
 
+[sub_resource type="Animation" id="Animation_4y1jg"]
+resource_name = "search"
+length = 7.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.7, 2.46667, 4.06667, 5.63333, 6.43333, 7.43333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 2.35619, 0), Vector3(0, 2.35619, 0), Vector3(0, 0, 0), Vector3(0, -2.35619, 0), Vector3(0, -2.35619, 0), Vector3(0, 0, 0)]
+}
+
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_83d5t"]
 random_pitch = 1.05
 streams_count = 1
@@ -172,37 +203,6 @@ tracks/0/keys = {
 }
 tracks/0/use_blend = true
 
-[sub_resource type="Animation" id="Animation_4y1jg"]
-resource_name = "search"
-length = 7.5
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1.7, 2.46667, 4.06667, 5.63333, 6.43333, 7.43333),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0, 2.35619, 0), Vector3(0, 2.35619, 0), Vector3(0, 0, 0), Vector3(0, -2.35619, 0), Vector3(0, -2.35619, 0), Vector3(0, 0, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_vbip7"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 0, 0)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_w37k2"]
 _data = {
 &"RESET": SubResource("Animation_vbip7"),
@@ -250,9 +250,9 @@ animate_physical_bones = false
 active = false
 
 [node name="Physical Bone Bone" type="PhysicalBone3D" parent="combat-roomba/Armature/Skeleton3D/PhysicalBoneSimulator3D"]
-transform = Transform3D(2.8455, 7.81561e-05, 0, 0, 0, -2.8455, -7.81561e-05, 2.8455, 0, 0, 0.222436, 0)
-joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.0781709)
-body_offset = Transform3D(2.8455, 7.81561e-05, 0, 0, 0, -2.8455, -7.81561e-05, 2.8455, 0, 0, 0.222436, 0)
+transform = Transform3D(2.8455, 7.81562e-05, 0, 0, 0, -2.8455, -7.81562e-05, 2.8455, 0, 0, 0.222436, 0)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.078171)
+body_offset = Transform3D(2.8455, 7.81562e-05, 0, 0, 0, -2.8455, -7.81562e-05, 2.8455, 0, 0, 0.222436, 0)
 bone_name = "Bone"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="combat-roomba/Armature/Skeleton3D/PhysicalBoneSimulator3D/Physical Bone Bone"]
@@ -443,16 +443,16 @@ initial_state = NodePath("SpottedEnemy")
 [node name="SpottedEnemy" type="Node" parent="StateChart/MonsterState/Combat"]
 script = ExtResource("18_0cxsc")
 
-[node name="ToAttacking" type="Node" parent="StateChart/MonsterState/Combat/SpottedEnemy"]
+[node name="ToFireAndAdvance" type="Node" parent="StateChart/MonsterState/Combat/SpottedEnemy"]
 script = ExtResource("19_0cxsc")
-to = NodePath("../../Attacking")
+to = NodePath("../../FireAndAdvance")
 event = &"BT_Finished"
 delay_in_seconds = "0.0"
 
-[node name="Attacking" type="Node" parent="StateChart/MonsterState/Combat"]
+[node name="FireAndAdvance" type="Node" parent="StateChart/MonsterState/Combat"]
 script = ExtResource("18_0cxsc")
 
-[node name="ToChasing" type="Node" parent="StateChart/MonsterState/Combat/Attacking"]
+[node name="ToChasing" type="Node" parent="StateChart/MonsterState/Combat/FireAndAdvance"]
 script = ExtResource("19_0cxsc")
 to = NodePath("../../Chasing")
 event = &"LostTarget"
@@ -463,7 +463,7 @@ script = ExtResource("18_0cxsc")
 
 [node name="ToAttacking" type="Node" parent="StateChart/MonsterState/Combat/Chasing"]
 script = ExtResource("19_0cxsc")
-to = NodePath("../../Attacking")
+to = NodePath("../../FireAndAdvance")
 event = &"SpottedEnemy"
 delay_in_seconds = "0.0"
 
@@ -539,8 +539,8 @@ script = ExtResource("18_0cxsc")
 [connection signal="state_entered" from="StateChart/MonsterState/Combat" to="." method="_on_combat_state_entered"]
 [connection signal="state_entered" from="StateChart/MonsterState/Combat/SpottedEnemy" to="." method="_on_spotted_enemy_state_entered"]
 [connection signal="state_physics_processing" from="StateChart/MonsterState/Combat/SpottedEnemy" to="." method="_on_spotted_enemy_state_physics_processing"]
-[connection signal="state_entered" from="StateChart/MonsterState/Combat/Attacking" to="." method="_on_attacking_state_entered"]
-[connection signal="state_physics_processing" from="StateChart/MonsterState/Combat/Attacking" to="." method="_on_attacking_state_physics_processing"]
+[connection signal="state_entered" from="StateChart/MonsterState/Combat/FireAndAdvance" to="." method="_on_fire_and_advance_state_entered"]
+[connection signal="state_physics_processing" from="StateChart/MonsterState/Combat/FireAndAdvance" to="." method="_on_attacking_state_physics_processing"]
 [connection signal="state_entered" from="StateChart/MonsterState/Combat/Chasing" to="." method="_on_chasing_state_entered"]
 [connection signal="state_physics_processing" from="StateChart/MonsterState/Combat/Chasing" to="." method="_on_chasing_state_physics_processing"]
 [connection signal="state_entered" from="StateChart/MonsterState/Alert/SelectSearchTarget" to="." method="_on_select_search_target_state_entered"]
