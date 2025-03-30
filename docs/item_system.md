@@ -17,9 +17,9 @@ graph TB
 
 ## Adding an Item
 1. Create Model/Mesh
-    1. See [this doc](./blender.md) for more information
-2. Create Inventory Icons
-    1. See Future UI/UX guide for style and approach tips  
+    1. See [the Blender doc](./blender.md) for more information
+    2. Alternatively, try [Blockbench](./blockbench.md)
+2. Create [Inventory Icons](./item_icon_guide.md)
 3. Create new folder for item
     1. Somehwere in the game_objects/items/ folder is a good place to start
 4. Create a new ItemInformation resource in the folder
@@ -31,6 +31,8 @@ graph TB
     1. If the item you're creating has custom gameplay elements, extend Item3D with your custom game logic.
 7. Add Model/Mesh to 3D scene.
 8. Add Collider and set collider path in Item3D script
+9. Create an [`ItemMapping`](../resource_access/item_mapping.gd) resource for your item
+   1.  This is needed to tie the `Item3D` and `ItemInformation` objects to each other so we don't create a cyclical dependecy, which would cause problems. This is read in to the `ItemMappingRepository` to for use by the inventory system.
 
 ### Getting Item to show in game
 #### Quick and dirty
