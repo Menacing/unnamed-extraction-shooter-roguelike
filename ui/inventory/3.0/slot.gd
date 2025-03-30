@@ -83,3 +83,8 @@ func set_slot_texture(slot_data:SlotData):
 		background_sprite_2d.position.x = 0
 	
 	self.z_index = 1
+
+
+func _on_mouse_entered() -> void:
+	call_deferred("grab_focus")
+	pass # Replace with function body.

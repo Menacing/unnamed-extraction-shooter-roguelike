@@ -94,3 +94,8 @@ func _on_gui_input(event: InputEvent) -> void:
 	if event.is_action_pressed("inv_grab") or event.is_action_pressed("openContextMenu") or event.is_action_pressed("place_single_of_stack") \
 		or event.is_action_pressed("place_half_of_stack") or event.is_action_pressed("quick_item_transfer") or event.is_action_pressed("drop_item"):
 		equipment_slot_clicked.emit(slot_name, event)
+
+
+func _on_mouse_entered() -> void:
+	call_deferred("grab_focus")
+	pass # Replace with function body.
