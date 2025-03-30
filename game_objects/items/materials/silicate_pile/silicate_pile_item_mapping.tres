@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ItemMapping" load_steps=4 format=3 uid="uid://dn733iiswbbv"]
+
+[ext_resource type="PackedScene" uid="uid://dspfcw4lx5gss" path="res://game_objects/items/materials/silicate_pile/silicate_pile.tscn" id="1_65gwh"]
+[ext_resource type="Resource" uid="uid://tg1koobfs11b" path="res://game_objects/items/materials/silicate_pile/silicate_pile_inventory_info.tres" id="2_uyy22"]
+[ext_resource type="Script" uid="uid://c8amqbc45k2jw" path="res://resource_access/item_mapping.gd" id="3_jhxmf"]
+
+[resource]
+script = ExtResource("3_jhxmf")
+item_type_id = "silicate_pile_small"
+item_information = ExtResource("2_uyy22")
+item_3d_scene = ExtResource("1_65gwh")
