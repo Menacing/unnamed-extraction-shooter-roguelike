@@ -7,18 +7,18 @@
 [sub_resource type="BTAction" id="BTAction_1qnrn"]
 script = ExtResource("1_0sdk2")
 
-[sub_resource type="BBNode" id="BBNode_yuctj"]
+[sub_resource type="BBNode" id="BBNode_0sdk2"]
 value_source = 1
 variable = &"animation_player"
 resource_name = "$animation_player"
 
-[sub_resource type="BTAwaitAnimation" id="BTAwaitAnimation_t5ki5"]
-animation_player = SubResource("BBNode_yuctj")
+[sub_resource type="BTPlayAnimation" id="BTPlayAnimation_ed62u"]
+await_completion = 20.0
+animation_player = SubResource("BBNode_0sdk2")
 animation_name = &"attack"
-max_time = 10.0
 
 [sub_resource type="BTSequence" id="BTSequence_6nkjk"]
-children = [SubResource("BTAction_1qnrn"), SubResource("BTAwaitAnimation_t5ki5")]
+children = [SubResource("BTAction_1qnrn"), SubResource("BTPlayAnimation_ed62u")]
 
 [resource]
 blackboard_plan = SubResource("BlackboardPlan_6ewyl")

@@ -13,7 +13,6 @@ var elapsed_time:float = 0.0
 @export var view_cone:Area3D
 @export_range(0.1,1.0, 0.1) var view_sensitivity = 0.5
 @export var listen_area:Area3D
-@export var head_node:Node3D
 @export var enemy_groups:Array[String]
 @export var memory_seconds:float = 10.0
 
@@ -61,9 +60,9 @@ func _process_look() -> void:
 						var los_comp = Helpers.get_component_of_type(viewable_entity, LOSTargetComponent)
 						var los_result = false
 						if los_comp:
-							los_result = Helpers.los_to_point(head_node,los_comp.los_targets,view_sensitivity, self_exclusions + target_exclusions,true)
+							los_result = Helpers.los_to_point(self,los_comp.los_targets,view_sensitivity, self_exclusions + target_exclusions,true)
 						else:
-							los_result = Helpers.los_to_point(head_node,[viewable_entity],view_sensitivity, self_exclusions + target_exclusions,true)
+							los_result = Helpers.los_to_point(self,[viewable_entity],view_sensitivity, self_exclusions + target_exclusions,true)
 						
 						if los_result:
 							sees_enemy = los_result

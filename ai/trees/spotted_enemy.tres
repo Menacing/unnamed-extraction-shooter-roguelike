@@ -1,11 +1,25 @@
-[gd_resource type="BehaviorTree" load_steps=7 format=3 uid="uid://dm7rmyiph4rjv"]
+[gd_resource type="BehaviorTree" load_steps=11 format=3 uid="uid://dm7rmyiph4rjv"]
 
 [ext_resource type="Script" uid="uid://cswc6lsp2t4pk" path="res://ai/tasks/nav_agent_stop.gd" id="1_87qjq"]
+[ext_resource type="Script" uid="uid://cvw7ocnvo1j4f" path="res://ai/tasks/set_fire_target_task.gd" id="2_ahu68"]
 
 [sub_resource type="BlackboardPlan" id="BlackboardPlan_k5c5d"]
 
 [sub_resource type="BTAction" id="BTAction_ahu68"]
 script = ExtResource("1_87qjq")
+
+[sub_resource type="BTAction" id="BTAction_mkuab"]
+script = ExtResource("2_ahu68")
+
+[sub_resource type="BBVariant" id="BBVariant_j62l6"]
+type = 24
+value_source = 1
+variable = &"_attack_target"
+resource_name = "$_attack_target"
+
+[sub_resource type="BTSetAgentProperty" id="BTSetAgentProperty_ta0fs"]
+property = &"_move_target"
+value = SubResource("BBVariant_j62l6")
 
 [sub_resource type="BBNode" id="BBNode_87qjq"]
 value_source = 1
@@ -13,14 +27,13 @@ variable = &"animation_player"
 resource_name = "$animation_player"
 
 [sub_resource type="BTPlayAnimation" id="BTPlayAnimation_87qjq"]
-await_completion = 1.0
 animation_player = SubResource("BBNode_87qjq")
 animation_name = &"target_spotted"
 blend = 1.0
 custom_name = "Play Target Spotted Animation"
 
 [sub_resource type="BTSequence" id="BTSequence_mkuab"]
-children = [SubResource("BTAction_ahu68"), SubResource("BTPlayAnimation_87qjq")]
+children = [SubResource("BTAction_ahu68"), SubResource("BTAction_mkuab"), SubResource("BTSetAgentProperty_ta0fs"), SubResource("BTPlayAnimation_87qjq")]
 
 [resource]
 blackboard_plan = SubResource("BlackboardPlan_k5c5d")

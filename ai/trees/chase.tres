@@ -52,8 +52,9 @@ value = SubResource("BBVariant_viu31")
 script = ExtResource("4_813po")
 
 [sub_resource type="BBNode" id="BBNode_555j5"]
-saved_value = NodePath("AnimationPlayer")
-resource_name = "AnimationPlayer"
+value_source = 1
+variable = &"animation_player"
+resource_name = "$animation_player"
 
 [sub_resource type="BTPlayAnimation" id="BTPlayAnimation_uh2om"]
 await_completion = 100.0

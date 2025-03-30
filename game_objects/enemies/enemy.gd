@@ -91,6 +91,10 @@ func _ready() -> void:
 		gun.firer = self
 		gun_node = gun
 
+func _start_behavior_tree(tree_name:String):
+	bt_player.behavior_tree = bt_dictionary[tree_name]
+	bt_player.restart()
+
 #region movement
 
 func _on_velocity_computed(safe_velocity: Vector3):
@@ -168,7 +172,7 @@ func _on_idle_state_entered() -> void:
 	pass # Replace with function body.
 	
 func _on_loitering_state_entered() -> void:
-	bt_player.behavior_tree = bt_dictionary["loiter"]
+	_start_behavior_tree("loiter")
 	
 	pass # Replace with function body.
 
@@ -190,7 +194,7 @@ func _on_idle_state_physics_processing(delta: float) -> void:
 
 
 func _on_patroling_state_entered() -> void:
-	bt_player.behavior_tree = bt_dictionary["patrol"]
+	_start_behavior_tree("patrol")
 	
 	pass # Replace with function body.
 #endregion
@@ -201,7 +205,7 @@ func _on_combat_state_entered() -> void:
 	pass # Replace with function body.
 	
 func _on_spotted_enemy_state_entered() -> void:
-	bt_player.behavior_tree = bt_dictionary["spotted_enemy"]
+	_start_behavior_tree("spotted_enemy")
 	
 	pass # Replace with function body.
 
@@ -211,7 +215,7 @@ func _on_spotted_enemy_state_physics_processing(delta: float) -> void:
 		state_chart.send_event("BT_Finished")
 
 func _on_fire_and_advance_state_entered() -> void:
-	bt_player.behavior_tree = bt_dictionary["fire_and_advance"]
+	_start_behavior_tree("fire_and_advance")
 
 func _on_attacking_state_physics_processing(delta: float) -> void:
 	if _attack_target == null:
@@ -220,7 +224,7 @@ func _on_attacking_state_physics_processing(delta: float) -> void:
 	pass # Replace with function body.
 
 func _on_chasing_state_entered() -> void:
-	bt_player.behavior_tree = bt_dictionary["chase"]
+	_start_behavior_tree("chase")
 	pass # Replace with function body.
 
 func _on_chasing_state_physics_processing(delta: float) -> void:
@@ -282,7 +286,7 @@ func _on_select_search_target_state_entered() -> void:
 func _on_searching_state_entered() -> void:
 	if sensory_component.targets.keys().is_empty():
 		state_chart.send_event("BT_Finished")
-	bt_player.behavior_tree = bt_dictionary["search"]
+	_start_behavior_tree("search")
 	pass # Replace with function body.
 
 func _on_searching_state_physics_processing(delta: float) -> void:
@@ -308,20 +312,21 @@ func _on_searching_state_physics_processing(delta: float) -> void:
 
 
 func _on_advancing_state_entered() -> void:
-	bt_player.behavior_tree = bt_dictionary["advance"]
+	_start_behavior_tree("advance")
 	pass # Replace with function body.
 
 func _on_advancing_state_physics_processing(delta: float) -> void:
+	var dis_to_target = _attack_target.global_position.distance_to(self.global_position)
 	if _attack_target == null:
 		state_chart.send_event("LostTarget")
-	elif _attack_target.global_position.distance_to(self.global_position) <= melee_range:
+	elif dis_to_target <= melee_range:
 		state_chart.send_event("InMeleeRange")
 		
 	pass # Replace with function body.
 
 
 func _on_melee_attacking_state_entered() -> void:
-	bt_player.behavior_tree = bt_dictionary["melee_attack"]
+	_start_behavior_tree("melee_attack")
 	pass # Replace with function body.
 
 
