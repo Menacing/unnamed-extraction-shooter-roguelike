@@ -9,6 +9,7 @@
 custom_minimum_size = Vector2(48, 48)
 offset_right = 32.0
 offset_bottom = 32.0
+focus_mode = 2
 script = ExtResource("1_o7y0k")
 
 [node name="NinePatchRect" type="NinePatchRect" parent="."]
@@ -48,3 +49,4 @@ theme_override_constants/outline_size = 3
 text = "100%"
 
 [connection signal="gui_input" from="." to="." method="_on_gui_input"]
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]

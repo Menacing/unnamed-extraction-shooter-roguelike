@@ -21,6 +21,11 @@ var external_inventory_data:InventoryData
 func _ready() -> void:
 	EventBus.level_loaded.connect(_connect_external_inventories)
 	_connect_external_inventories()
+	
+
+func _on_mouse_entered() -> void:
+	call_deferred("grab_focus")
+	pass # Replace with function body.
 
 func _connect_external_inventories() -> void:
 	var all_nodes =  get_tree().get_nodes_in_group("external_inventory")
