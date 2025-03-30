@@ -26,6 +26,10 @@ func _setup():
 	# The navigation mesh is only required for the parse settings so any of the three will do.
 	var sample_navigation_mesh:NavigationMesh = NavigationMesh.new()
 	sample_navigation_mesh.geometry_parsed_geometry_type = NavigationMesh.PARSED_GEOMETRY_STATIC_COLLIDERS 
+	# Binary - set the bit corresponding to the layers you want to enable (1, 3, and 4) to 1, set all other bits to 0.
+	# Note: Layer 32 is the first bit, layer 1 is the last. The mask for layers 4,3 and 1 is therefore
+	var collision_mask = 0b00000000_00000000_00000000_0000001
+	sample_navigation_mesh.geometry_collision_mask = collision_mask
 	NavigationServer3D.parse_source_geometry_data(sample_navigation_mesh, source_geometry_data, self)
 	
 	var parsed_source_geometry_has_data = source_geometry_data.has_data()
@@ -37,6 +41,8 @@ func _setup():
 	# If required for performance this baking step could also be done on background threads.
 	for mesh_item:NavigationMeshListItem in navigation_mesh_list_items:
 		mesh_item.mesh = NavigationMesh.new()
+		mesh_item.mesh.geometry_parsed_geometry_type = NavigationMesh.PARSED_GEOMETRY_STATIC_COLLIDERS
+		mesh_item.mesh.geometry_collision_mask = collision_mask
 		mesh_item.mesh.agent_height = mesh_item.agent_height
 		mesh_item.mesh.agent_radius = mesh_item.agent_radius
 		NavigationServer3D.bake_from_source_geometry_data(mesh_item.mesh, source_geometry_data)
