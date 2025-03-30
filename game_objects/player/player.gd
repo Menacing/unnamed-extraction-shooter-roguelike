@@ -469,8 +469,9 @@ func shoot():
 func reload():
 	var needed_ammo = equipped_gun.get_max_magazine_size() - equipped_gun.current_magazine_size
 	var available_ammo = ammo_component.request_ammo(ammo_component._active_ammo_type, ammo_component._active_ammo_subtype, needed_ammo)
-	equipped_gun.reloadGun(available_ammo)
-	ik_left_hand.target_node = equipped_gun.get_mag_node().get_path()
+	if available_ammo > 0:
+		equipped_gun.reloadGun(available_ammo)
+		ik_left_hand.target_node = equipped_gun.get_mag_node().get_path()
 
 func unload():
 	var current_ammo = equipped_gun.current_magazine_size
