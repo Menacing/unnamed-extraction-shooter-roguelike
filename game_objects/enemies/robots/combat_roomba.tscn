@@ -1,22 +1,27 @@
-[gd_scene load_steps=34 format=3 uid="uid://ciaqbr34myu5w"]
+[gd_scene load_steps=43 format=3 uid="uid://ciaqbr34myu5w"]
 
-[ext_resource type="Script" uid="uid://uhx6btiktgn0" path="res://game_objects/enemies/robots/combat_roomba.gd" id="1_f1cah"]
+[ext_resource type="Script" uid="uid://bvqp78uoao257" path="res://game_objects/enemies/enemy.gd" id="1_kbenc"]
 [ext_resource type="PackedScene" uid="uid://dr48wela8mtxd" path="res://game_objects/items/weapons/hic_rifles/pm_52/pm_52.tscn" id="2_q4rc2"]
 [ext_resource type="PackedScene" uid="uid://o7vvmqxsny5t" path="res://game_objects/enemies/robots/combat-roomba.glb" id="3_wwy82"]
 [ext_resource type="Resource" uid="uid://hw8blc564g2i" path="res://levels/roomba_nav_mesh.tres" id="4_k7kme"]
 [ext_resource type="Texture2D" uid="uid://7fi0upsekmpy" path="res://game_objects/effects/assets/light_03.png" id="5_qdph4"]
 [ext_resource type="Texture2D" uid="uid://daqvndsohpnyb" path="res://game_objects/effects/assets/light_01.png" id="6_5orm7"]
-[ext_resource type="BehaviorTree" uid="uid://c3o1pihtd3pqc" path="res://ai/trees/combat_roomba.tres" id="9_huqy6"]
 [ext_resource type="AudioStream" uid="uid://wef8dj3iyrtm" path="res://game_objects/enemies/robots/audio/enemy_spotted_audio_stream_randomizer.tres" id="10_iwbga"]
 [ext_resource type="AudioStream" uid="uid://hd40mi2hpmcb" path="res://game_objects/enemies/robots/audio/enemy_lost_audio_stream_randomizer.tres" id="11_ll5t6"]
 [ext_resource type="AudioStream" uid="uid://qjx8mxhhx0a5" path="res://game_objects/enemies/robots/audio/idle_audio_stream_randomizer.tres" id="12_o55mw"]
 [ext_resource type="AudioStream" uid="uid://dpy6rknda42mj" path="res://game_objects/enemies/robots/audio/patrol_started_audio_stream_randomizer.tres" id="13_8dkak"]
 [ext_resource type="Script" uid="uid://li54lddh3lo5" path="res://helpers/intro_outro_audio_stream_player.gd" id="14_noua2"]
+[ext_resource type="Script" uid="uid://dovxme4qyglfp" path="res://addons/godot_state_charts/state_chart.gd" id="16_54ull"]
 [ext_resource type="PackedScene" uid="uid://dvm24rm8f0isk" path="res://components/loot_fiesta_component/LootFiestaComponent.tscn" id="17_7ftd3"]
+[ext_resource type="Script" uid="uid://bh1dft2pk7y63" path="res://addons/godot_state_charts/compound_state.gd" id="17_kbenc"]
 [ext_resource type="Script" uid="uid://cln5qcby71pb6" path="res://game_objects/health_component.gd" id="17_rju44"]
+[ext_resource type="Script" uid="uid://mpejp7d8a1tm" path="res://addons/godot_state_charts/atomic_state.gd" id="18_0cxsc"]
+[ext_resource type="Script" uid="uid://bx51vpuw5qrqt" path="res://game_objects/enemies/sense_component.gd" id="18_54ull"]
 [ext_resource type="Script" uid="uid://bg366cry4wvy" path="res://components/damage_component/damage_component.gd" id="18_kd44g"]
+[ext_resource type="Script" uid="uid://cxyic42leanb1" path="res://addons/godot_state_charts/transition.gd" id="19_0cxsc"]
 [ext_resource type="PackedScene" uid="uid://cliu3gfmcv7xd" path="res://components/damage_effect_component/damage_effect_component.tscn" id="19_k7rcm"]
 [ext_resource type="PackedScene" uid="uid://bo5i75565y5co" path="res://game_objects/effects/hit_effects/bullet_hit_sparks.tscn" id="20_3xthi"]
+[ext_resource type="Script" uid="uid://bvp226g4anyr2" path="res://addons/godot_state_charts/expression_guard.gd" id="20_4j8ty"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_mxgj2"]
 radius = 0.0521091
@@ -30,12 +35,11 @@ emission_enabled = true
 emission = Color(1, 0, 0, 1)
 emission_texture = ExtResource("6_5orm7")
 
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_cn06a"]
-height = 10.0
-radius = 25.0
+[sub_resource type="BoxShape3D" id="BoxShape3D_mxgj2"]
+size = Vector3(100, 20, 100)
 
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_6hth5"]
-radius = 2.0
+[sub_resource type="SphereShape3D" id="SphereShape3D_nws4b"]
+radius = 1.5
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_vlk8q"]
 height = 0.171738
@@ -47,10 +51,44 @@ radius = 0.160629
 [sub_resource type="BoxShape3D" id="BoxShape3D_hycai"]
 size = Vector3(0.0996854, 0.507972, 0.102156)
 
-[sub_resource type="BlackboardPlan" id="BlackboardPlan_774i1"]
+[sub_resource type="BlackboardPlan" id="BlackboardPlan_5orm7"]
+
+[sub_resource type="Animation" id="Animation_vbip7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_8wc2m"]
 resource_name = "idle"
+length = 3.7
+tracks/0/type = "audio"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("IdleAudioStreamPlayer3D")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("12_o55mw")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/0/use_blend = true
+
+[sub_resource type="Animation" id="Animation_54ull"]
+resource_name = "loitering"
 length = 3.7
 tracks/0/type = "audio"
 tracks/0/imported = false
@@ -94,6 +132,22 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.0001)
 }
 tracks/0/use_blend = true
+
+[sub_resource type="Animation" id="Animation_4y1jg"]
+resource_name = "search"
+length = 7.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.7, 2.46667, 4.06667, 5.63333, 6.43333, 7.43333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 2.35619, 0), Vector3(0, 2.35619, 0), Vector3(0, 0, 0), Vector3(0, -2.35619, 0), Vector3(0, -2.35619, 0), Vector3(0, 0, 0)]
+}
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_83d5t"]
 random_pitch = 1.05
@@ -151,32 +205,40 @@ tracks/0/use_blend = true
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_w37k2"]
 _data = {
+&"RESET": SubResource("Animation_vbip7"),
 &"idle": SubResource("Animation_8wc2m"),
+&"loiter": SubResource("Animation_54ull"),
 &"patrol_started": SubResource("Animation_jelv1"),
+&"search": SubResource("Animation_4y1jg"),
 &"target_lost": SubResource("Animation_ppwor"),
 &"target_spotted": SubResource("Animation_qeyji")
 }
 
-[node name="combat_roomba" type="CharacterBody3D" node_paths=PackedStringArray("nav_agent", "head_node", "detection_radius", "ballistic_detection_radius", "movement_audio_player", "behavior_tree", "physical_bone_simulator", "loot_fiesta")]
+[sub_resource type="Resource" id="Resource_4y1jg"]
+script = ExtResource("20_4j8ty")
+expression = "randf() < 0.5"
+metadata/_custom_type_script = "uid://bvp226g4anyr2"
+
+[node name="combat_roomba" type="CharacterBody3D" node_paths=PackedStringArray("animation_player", "head_node", "sensory_component", "state_chart", "bt_player", "nav_agent", "loot_fiesta", "physical_bone_simulator", "character_body_collision_shapes")]
 transform = Transform3D(1.00409, 0, 0, 0, 1.00409, 0, 0, 0, 1.00409, 0, 0, 0)
 collision_layer = 3
-script = ExtResource("1_f1cah")
-gun_scene = ExtResource("2_q4rc2")
-nav_agent = NodePath("NavigationAgent3D")
-move_speed = 2.0
+script = ExtResource("1_kbenc")
+animation_player = NodePath("AnimationPlayer")
 head_node = NodePath("combat-roomba/Armature/Skeleton3D/PhysicalBoneSimulator3D/Head")
-vert_moa = 60.0
-hor_moa = 60.0
-detection_radius = NodePath("DetectRadius")
-ballistic_detection_radius = NodePath("BulletDetectRadius")
-movement_audio_player = NodePath("MovementIntroOutroAudioStreamPlayer")
+sensory_component = NodePath("combat-roomba/Armature/Skeleton3D/PhysicalBoneSimulator3D/Head/SenseComponent")
+state_chart = NodePath("StateChart")
+bt_player = NodePath("BTPlayer")
+nav_agent = NodePath("NavigationAgent3D")
 nav_mesh_list_item = ExtResource("4_k7kme")
-behavior_tree = NodePath("BTPlayer")
-physical_bone_simulator = NodePath("combat-roomba/Armature/Skeleton3D/PhysicalBoneSimulator3D")
+max_idle_speed = 2.0
+max_combat_speed = 3.0
+gun_scene = ExtResource("2_q4rc2")
 loot_fiesta = NodePath("LootFiestaComponent")
+physical_bone_simulator = NodePath("combat-roomba/Armature/Skeleton3D/PhysicalBoneSimulator3D")
+character_body_collision_shapes = [NodePath("CollisionShape3D"), NodePath("CollisionShape3D2"), NodePath("CollisionShape3D3")]
 
 [node name="combat-roomba" parent="." instance=ExtResource("3_wwy82")]
-transform = Transform3D(0.35, 0, 0, 0, 0.35, 0, 0, 0, 0.35, 0, 0, 0)
+transform = Transform3D(-0.35, 0, -3.0598e-08, 0, 0.35, 0, 3.0598e-08, 0, -0.35, 0, 0, 0)
 
 [node name="Armature" parent="combat-roomba" index="0"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0.242868, 0)
@@ -188,9 +250,9 @@ animate_physical_bones = false
 active = false
 
 [node name="Physical Bone Bone" type="PhysicalBone3D" parent="combat-roomba/Armature/Skeleton3D/PhysicalBoneSimulator3D"]
-transform = Transform3D(2.8455, 2.84217e-14, 0, 0, 0, -2.8455, -2.84217e-14, 2.8455, 0, 0, 0.222436, 0)
-joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.078171)
-body_offset = Transform3D(2.8455, 2.84217e-14, 0, 0, 0, -2.8455, -2.84217e-14, 2.8455, 0, 0, 0.222436, 0)
+transform = Transform3D(2.84551, 7.42674e-05, 0, 0, 0, -2.8455, -7.42674e-05, 2.84551, 0, 0, 0.222436, 0)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.0781709)
+body_offset = Transform3D(2.84551, 7.42674e-05, 0, 0, 0, -2.8455, -7.42674e-05, 2.84551, 0, 0, 0.222436, 0)
 bone_name = "Bone"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="combat-roomba/Armature/Skeleton3D/PhysicalBoneSimulator3D/Physical Bone Bone"]
@@ -221,18 +283,27 @@ modulate = Color(1, 0, 0, 1)
 double_sided = false
 texture = ExtResource("6_5orm7")
 
-[node name="DetectRadius" type="Area3D" parent="."]
+[node name="SenseComponent" type="Node3D" parent="combat-roomba/Armature/Skeleton3D/PhysicalBoneSimulator3D/Head" node_paths=PackedStringArray("view_cone")]
+transform = Transform3D(1.00409, 0, 0, 0, 1.00409, 0, 0, 0, 1.00409, 0, -0.024083, 0)
+script = ExtResource("18_54ull")
+view_cone = NodePath("ViewArea3D")
+enemy_groups = Array[String](["players"])
+metadata/_custom_type_script = "uid://bx51vpuw5qrqt"
+
+[node name="ViewArea3D" type="Area3D" parent="combat-roomba/Armature/Skeleton3D/PhysicalBoneSimulator3D/Head/SenseComponent"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 0, 0, -69)
 collision_layer = 0
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="DetectRadius"]
-shape = SubResource("CylinderShape3D_cn06a")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="combat-roomba/Armature/Skeleton3D/PhysicalBoneSimulator3D/Head/SenseComponent/ViewArea3D"]
+shape = SubResource("BoxShape3D_mxgj2")
 
-[node name="BulletDetectRadius" type="Area3D" parent="."]
+[node name="BulletDetectRadius" type="Area3D" parent="combat-roomba/Armature/Skeleton3D/PhysicalBoneSimulator3D/Head/SenseComponent"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.779919, 0)
 collision_layer = 2
 collision_mask = 2
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="BulletDetectRadius"]
-shape = SubResource("CylinderShape3D_6hth5")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="combat-roomba/Armature/Skeleton3D/PhysicalBoneSimulator3D/Head/SenseComponent/BulletDetectRadius"]
+shape = SubResource("SphereShape3D_nws4b")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0857681, 0)
@@ -252,15 +323,13 @@ avoidance_enabled = true
 neighbor_distance = 5.0
 
 [node name="BTPlayer" type="BTPlayer" parent="."]
-behavior_tree = ExtResource("9_huqy6")
-blackboard_plan = SubResource("BlackboardPlan_774i1")
+blackboard_plan = SubResource("BlackboardPlan_5orm7")
 
 [node name="TargetSpottedAudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
 attenuation_model = 1
 bus = &"SFX"
 
 [node name="TargetLostAudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
-stream = ExtResource("11_ll5t6")
 attenuation_model = 1
 bus = &"SFX"
 
@@ -309,8 +378,173 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.790082, 0)
 distribution = 1
 min_to_spawn = 1
 
+[node name="StateChart" type="Node" parent="."]
+script = ExtResource("16_54ull")
+track_in_editor = true
+metadata/_custom_type_script = "uid://dovxme4qyglfp"
+
+[node name="MonsterState" type="Node" parent="StateChart"]
+script = ExtResource("17_kbenc")
+initial_state = NodePath("Idle")
+
+[node name="Idle" type="Node" parent="StateChart/MonsterState"]
+script = ExtResource("17_kbenc")
+initial_state = NodePath("DecideNext")
+
+[node name="DecideNext" type="Node" parent="StateChart/MonsterState/Idle"]
+script = ExtResource("18_0cxsc")
+
+[node name="ToPatroling" type="Node" parent="StateChart/MonsterState/Idle/DecideNext"]
+script = ExtResource("19_0cxsc")
+to = NodePath("../../Patroling")
+guard = SubResource("Resource_4y1jg")
+delay_in_seconds = "0.0"
+
+[node name="ToLoitering" type="Node" parent="StateChart/MonsterState/Idle/DecideNext"]
+script = ExtResource("19_0cxsc")
+to = NodePath("../../Loitering")
+delay_in_seconds = "0.0"
+
+[node name="Patroling" type="Node" parent="StateChart/MonsterState/Idle"]
+script = ExtResource("18_0cxsc")
+
+[node name="ToDecideNext" type="Node" parent="StateChart/MonsterState/Idle/Patroling"]
+script = ExtResource("19_0cxsc")
+to = NodePath("../../DecideNext")
+event = &"BT_Finished"
+delay_in_seconds = "0.0"
+
+[node name="Loitering" type="Node" parent="StateChart/MonsterState/Idle"]
+script = ExtResource("18_0cxsc")
+
+[node name="ToDecideNext" type="Node" parent="StateChart/MonsterState/Idle/Loitering"]
+script = ExtResource("19_0cxsc")
+to = NodePath("../../DecideNext")
+event = &"BT_Finished"
+delay_in_seconds = "0.0"
+
+[node name="ToCombat" type="Node" parent="StateChart/MonsterState/Idle"]
+script = ExtResource("19_0cxsc")
+to = NodePath("../../Combat")
+event = &"SpottedEnemy"
+delay_in_seconds = "0.0"
+
+[node name="ToDead" type="Node" parent="StateChart/MonsterState/Idle"]
+script = ExtResource("19_0cxsc")
+to = NodePath("../../Dead")
+event = &"Died"
+delay_in_seconds = "0.0"
+
+[node name="Combat" type="Node" parent="StateChart/MonsterState"]
+script = ExtResource("17_kbenc")
+initial_state = NodePath("SpottedEnemy")
+
+[node name="SpottedEnemy" type="Node" parent="StateChart/MonsterState/Combat"]
+script = ExtResource("18_0cxsc")
+
+[node name="ToFireAndAdvance" type="Node" parent="StateChart/MonsterState/Combat/SpottedEnemy"]
+script = ExtResource("19_0cxsc")
+to = NodePath("../../FireAndAdvance")
+event = &"BT_Finished"
+delay_in_seconds = "0.0"
+
+[node name="FireAndAdvance" type="Node" parent="StateChart/MonsterState/Combat"]
+script = ExtResource("18_0cxsc")
+
+[node name="ToChasing" type="Node" parent="StateChart/MonsterState/Combat/FireAndAdvance"]
+script = ExtResource("19_0cxsc")
+to = NodePath("../../Chasing")
+event = &"LostTarget"
+delay_in_seconds = "0.0"
+
+[node name="Chasing" type="Node" parent="StateChart/MonsterState/Combat"]
+script = ExtResource("18_0cxsc")
+
+[node name="ToAttacking" type="Node" parent="StateChart/MonsterState/Combat/Chasing"]
+script = ExtResource("19_0cxsc")
+to = NodePath("../../FireAndAdvance")
+event = &"SpottedEnemy"
+delay_in_seconds = "0.0"
+
+[node name="ToIdle" type="Node" parent="StateChart/MonsterState/Combat/Chasing"]
+script = ExtResource("19_0cxsc")
+to = NodePath("../../../Idle")
+event = &"BT_Finished"
+delay_in_seconds = "0.0"
+
+[node name="ToDead" type="Node" parent="StateChart/MonsterState/Combat"]
+script = ExtResource("19_0cxsc")
+to = NodePath("../../Dead")
+event = &"Died"
+delay_in_seconds = "0.0"
+
+[node name="ToAlert" type="Node" parent="StateChart/MonsterState/Combat"]
+script = ExtResource("19_0cxsc")
+to = NodePath("../../Alert")
+event = &"Searching"
+delay_in_seconds = "0.0"
+
+[node name="Alert" type="Node" parent="StateChart/MonsterState"]
+script = ExtResource("17_kbenc")
+initial_state = NodePath("SelectSearchTarget")
+
+[node name="SelectSearchTarget" type="Node" parent="StateChart/MonsterState/Alert"]
+script = ExtResource("18_0cxsc")
+
+[node name="ToSearching" type="Node" parent="StateChart/MonsterState/Alert/SelectSearchTarget"]
+script = ExtResource("19_0cxsc")
+to = NodePath("../../Searching")
+delay_in_seconds = "0.0"
+
+[node name="Searching" type="Node" parent="StateChart/MonsterState/Alert"]
+script = ExtResource("18_0cxsc")
+
+[node name="ToSelectSearchTarget" type="Node" parent="StateChart/MonsterState/Alert/Searching"]
+script = ExtResource("19_0cxsc")
+to = NodePath("../../SelectSearchTarget")
+event = &"Searching"
+delay_in_seconds = "0.0"
+
+[node name="ToDead" type="Node" parent="StateChart/MonsterState/Alert"]
+script = ExtResource("19_0cxsc")
+to = NodePath("../../Dead")
+event = &"Died"
+delay_in_seconds = "0.0"
+
+[node name="ToIdle" type="Node" parent="StateChart/MonsterState/Alert"]
+script = ExtResource("19_0cxsc")
+to = NodePath("../../Idle")
+event = &"BT_Finished"
+delay_in_seconds = "0.0"
+
+[node name="ToCombat" type="Node" parent="StateChart/MonsterState/Alert"]
+script = ExtResource("19_0cxsc")
+to = NodePath("../../Combat")
+event = &"SpottedEnemy"
+delay_in_seconds = "0.0"
+
+[node name="Dead" type="Node" parent="StateChart/MonsterState"]
+script = ExtResource("18_0cxsc")
+
+[connection signal="body_shape_entered" from="combat-roomba/Armature/Skeleton3D/PhysicalBoneSimulator3D/Head/SenseComponent/BulletDetectRadius" to="combat-roomba/Armature/Skeleton3D/PhysicalBoneSimulator3D/Head/SenseComponent" method="_on_bullet_detect_radius_body_shape_entered"]
 [connection signal="location_destroyed" from="HealthComponent" to="." method="_on_health_component_location_destroyed"]
 [connection signal="hit_occured" from="DamageComponent" to="HealthComponent" method="_on_hit_occured"]
 [connection signal="hit_occured" from="DamageComponent" to="DamageEffectComponent" method="create_effect"]
+[connection signal="state_entered" from="StateChart/MonsterState/Idle" to="." method="_on_idle_state_entered"]
+[connection signal="state_entered" from="StateChart/MonsterState/Idle/Patroling" to="." method="_on_patroling_state_entered"]
+[connection signal="state_physics_processing" from="StateChart/MonsterState/Idle/Patroling" to="." method="_on_idle_state_physics_processing"]
+[connection signal="state_entered" from="StateChart/MonsterState/Idle/Loitering" to="." method="_on_loitering_state_entered"]
+[connection signal="state_physics_processing" from="StateChart/MonsterState/Idle/Loitering" to="." method="_on_idle_state_physics_processing"]
+[connection signal="state_entered" from="StateChart/MonsterState/Combat" to="." method="_on_combat_state_entered"]
+[connection signal="state_entered" from="StateChart/MonsterState/Combat/SpottedEnemy" to="." method="_on_spotted_enemy_state_entered"]
+[connection signal="state_physics_processing" from="StateChart/MonsterState/Combat/SpottedEnemy" to="." method="_on_spotted_enemy_state_physics_processing"]
+[connection signal="state_entered" from="StateChart/MonsterState/Combat/FireAndAdvance" to="." method="_on_fire_and_advance_state_entered"]
+[connection signal="state_physics_processing" from="StateChart/MonsterState/Combat/FireAndAdvance" to="." method="_on_attacking_state_physics_processing"]
+[connection signal="state_entered" from="StateChart/MonsterState/Combat/Chasing" to="." method="_on_chasing_state_entered"]
+[connection signal="state_physics_processing" from="StateChart/MonsterState/Combat/Chasing" to="." method="_on_chasing_state_physics_processing"]
+[connection signal="state_entered" from="StateChart/MonsterState/Alert/SelectSearchTarget" to="." method="_on_select_search_target_state_entered"]
+[connection signal="state_entered" from="StateChart/MonsterState/Alert/Searching" to="." method="_on_searching_state_entered"]
+[connection signal="state_physics_processing" from="StateChart/MonsterState/Alert/Searching" to="." method="_on_searching_state_physics_processing"]
+[connection signal="state_entered" from="StateChart/MonsterState/Dead" to="." method="_on_dead_state_entered"]
 
 [editable path="combat-roomba"]

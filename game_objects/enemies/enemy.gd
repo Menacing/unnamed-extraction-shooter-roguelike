@@ -1,62 +1,71 @@
 extends CharacterBody3D
 class_name Enemy
 
-var attack_target:Node3D
-var move_target:Node3D
-@export var move_target_distance:float = 1.0
-@export var patrol_poi_group:String = "PatrolPOI"
-@export var nav_agent:NavigationAgent3D
-@export var weapon_rotation_speed:float = 2.0
-@export var body_rotation_speed:float = 1.0
-@export var move_speed:float = 3.0
-@export var acceleration:float = .25
-@export var attack_range:float
+@export var animation_player:AnimationPlayer
 @export var head_node:Node3D
-@export var head_lookatmodifier_node:LookAtModifier3D
+
+@export_category("AI")
+@export var sensory_component:SenseComponent
+@export var state_chart:StateChart
+@export var bt_player:BTPlayer
+@export var bt_dictionary:Dictionary[String, BehaviorTree] = {
+	"advance": preload("res://ai/trees/advance.tres"),
+	"melee_attack": preload("res://ai/trees/melee_attack.tres"),
+	"chase": preload("res://ai/trees/chase.tres"),
+	"fire_and_advance": preload("res://ai/trees/fire_and_advance.tres"),
+	"loiter": preload("res://ai/trees/loiter.tres"),
+	"patrol": preload("res://ai/trees/patrol.tres"),
+	"search": preload("res://ai/trees/search.tres"),
+	"spotted_enemy": preload("res://ai/trees/spotted_enemy.tres")
+}
+
+@export_category("Navigation")
+var _move_target:Node3D
+var _move_target_gpos:Vector3
+@export var nav_agent:NavigationAgent3D
+@export var move_target_distance:float = 1.0
+@export var nav_mesh_list_item:NavigationMeshListItem
+@export var max_idle_speed:float = 3.0
+@export var max_combat_speed:float = 6.0
+var _current_max_speed:float
+@export var acceleration:float = .25
+@export var body_rotation_speed:float = 1.0
+
+@export_category("Combat")
+var _attack_target:Node3D
+@export var weapon_rotation_speed:float = 2.0
+@export var idle_reaction_time:float = 1.0
+@export var combat_reaction_time:float = 0.5
+var _reaction_timer:float = 0.0
+@export var gun_scene:PackedScene
 @export var gun_node:Gun
 @export var vert_moa:float = 600
 @export var hor_moa:float = 600
-@export var los_location_ratio:float = 0.6
-@export var detection_radius:Area3D
-@export var ballistic_detection_radius:Area3D
-@export var movement_audio_player:AudioStreamPlayer3D
-@export var nav_mesh_list_item:NavigationMeshListItem
-@export var behavior_tree:BTPlayer
-@export var physical_bone_simulator:PhysicalBoneSimulator3D
-@export var animation_players:Array[AnimationPlayer]
-@export var character_body_collision_shapes:Array[CollisionShape3D]
+@export var melee_range:float = 1.0
+
+@export_category("Death")
 @export var loot_fiesta:LootFiestaComponent
+@export var physical_bone_simulator:PhysicalBoneSimulator3D
+@export var character_body_collision_shapes:Array[CollisionShape3D]
 
-var _target_player:Player
-var target_player:Player:
-	set(value):
-		_target_player = value
-		player_exclusions = Helpers.get_all_collision_object_3d_recursive(value)
-	get:
-		return _target_player
+func _get_configuration_warnings():
+	var warnings = []
 
-@onready var self_exclusions:Array[RID] = Helpers.get_all_collision_object_3d_recursive(self)
-var _player_exclusions:Array[RID]
-var player_exclusions:Array[RID]:
-	set(value):
-		_player_exclusions = value
-		exclusions = self_exclusions + value
-	get:
-		return _player_exclusions
-var exclusions:Array[RID]
+	if nav_agent == null:
+		warnings.append("nav_agent is required")
 
-func _ready():
-	#Setting bus of instantiated in code stream player
-	if movement_audio_player:
-		movement_audio_player.set_bus("SFX")
-	
-	if detection_radius:
-		detection_radius.body_entered.connect(_on_body_entered_detection_radius)
-		detection_radius.body_exited.connect(_on_body_exited_detection_radius)
-	if ballistic_detection_radius:
-		ballistic_detection_radius.body_entered.connect(_on_body_entered_ballistic_detection_radius)
-		ballistic_detection_radius.body_exited.connect(_on_body_exited_ballistic_detection_radius)
+	if state_chart == null:
+		warnings.append("state_chart is required")
+
+	if bt_player == null:
+		warnings.append("bt_player is required")
 		
+	# Returning an empty array means "no warning".
+	return warnings
+
+func _ready() -> void:
+	bt_player.blackboard.set_var("animation_player", animation_player)
+	
 	if nav_agent: 
 		nav_agent.velocity_computed.connect(_on_velocity_computed)
 		
@@ -67,174 +76,30 @@ func _ready():
 			EventBus.navigation_mesh_list_item_baked.connect(_on_navigation_mesh_list_item_baked)
 	EventBus.game_saving.connect(_on_game_saving)
 	EventBus.before_game_loading.connect(_on_game_before_loading)
+	
+	if gun_scene: 
+		var gun = gun_scene.instantiate()
+		gun.start_highlighted = false
+		gun.picked_up()
+		#TODO: Pull these from the packed scene instead of being hardcoded
+		gun._gun_stats.magazine_size = 30000
+		gun.current_magazine_size = 30000
+		var hf_pos = -gun.get_hip_fire_anchor()
 
-func move_tick(p_delta):
-	if nav_agent.is_navigation_finished():
-		return
-	slow_body_turn(p_delta)
-	var next_path_position: Vector3 = nav_agent.get_next_path_position()
-	var target_velocity: Vector3 = global_position.direction_to(next_path_position) * move_speed
-	var new_velocity = velocity.move_toward(target_velocity, acceleration)
-	if nav_agent.avoidance_enabled:
-		nav_agent.set_velocity(new_velocity)
-	else:
-		_on_velocity_computed(new_velocity)
-	
-func _on_body_entered_detection_radius(body:Node3D):
-	if body is Player:
-		target_player = body
-	
-func _on_body_exited_detection_radius(body:Node3D):
-	pass
-	#if body is Player:
-		#target_player = null
-	
-func _on_body_entered_ballistic_detection_radius(body:Node3D):
-	if body.is_in_group("attack"):
-		if body.firer and body.firer is Player:
-			target_player = body.firer
-	pass
-	
-func _on_body_exited_ballistic_detection_radius(body:Node3D):
-	pass
-	
+		gun.position = hf_pos
+		head_node.add_child(gun)
+		gun.firer = self
+		gun_node = gun
+
+func _start_behavior_tree(tree_name:String):
+	bt_player.behavior_tree = bt_dictionary[tree_name]
+	bt_player.restart()
+
+#region movement
+
 func _on_velocity_computed(safe_velocity: Vector3):
 	velocity = safe_velocity
-	if movement_audio_player:
-		var velocity_near_zero:bool = is_zero_approx(velocity.length_squared())
-		var movement_audio_playing:bool = movement_audio_player.playing
-		if !velocity_near_zero and !movement_audio_playing:
-			movement_audio_player.play()
-		elif velocity_near_zero and movement_audio_playing:
-			if movement_audio_player is IntroOutroAudioStreamPlayer:
-				movement_audio_player.request_stop()
-			else:
-				movement_audio_player.stop()
 	move_and_slide()
-
-func slow_body_turn(delta:float):
-	if velocity.length() > 0.01:
-		var target_direction = velocity.normalized()
-		var forward = Vector3(target_direction.x, 0, target_direction.z).normalized()  # Ignore Y component
-
-		if forward.length() > 0:
-			var current_basis = global_transform.basis.orthonormalized()
-			var target_basis = Basis().looking_at(forward, Vector3.UP, true).orthonormalized()
-
-			# Smooth interpolation
-			global_transform.basis = current_basis.slerp(target_basis, delta * body_rotation_speed)  # Adjust speed
-
-
-func has_attack_target() -> bool:
-	if attack_target:
-		return true
-	else:
-		return false
-
-func set_attack_target():
-	if target_player:
-		attack_target = target_player.center_mass
-
-func has_move_target() -> bool:
-	if move_target:
-		return true
-	else:
-		return false
-
-func has_target_player() -> bool:
-	if target_player:
-		return true
-	else:
-		return false
-		
-func has_los_to_player() -> bool:
-	if target_player:
-		
-		var los_result = Helpers.los_to_point(head_node,target_player.los_check_locations,.6,exclusions,true)
-		return los_result
-	else:
-		return false
-	
-func is_near_move_target() -> bool:
-	if has_move_target():
-		if move_target is Area3D:
-			return move_target.overlaps_body(self)
-		else:
-			var dis = Helpers.distance_between(self, move_target)
-			if dis <= move_target_distance:
-				return true
-	
-	return false
-
-func find_new_patrol_poi_move_target() -> bool:
-	var pois = get_tree().get_nodes_in_group(patrol_poi_group)
-	pois.shuffle()
-	
-	for poi in pois:
-		#if POI is not an Area3D, skip
-		if not poi is Area3D:
-			break
-		#If we don't currently have a target, take the first one
-		if !move_target:
-			move_target = poi
-			return true
-		#If the current target is the poi, skip it
-		if poi == move_target:
-			break
-		else:
-			move_target = poi
-			return true
-		#else take the poi
-	return false
-
-func stop_movement():
-	nav_agent.set_velocity(Vector3.ZERO)
-
-func set_new_path():
-	if move_target and nav_agent:
-		var move_target_global_position := move_target.global_position
-		nav_agent.set_target_position(move_target_global_position)
-		
-func set_lookatmodifier_target(target_node:Node3D) -> void:
-	if head_lookatmodifier_node:
-		if target_node:
-			head_lookatmodifier_node.target_node = target_node.get_path()
-		else:
-			if attack_target:
-				head_lookatmodifier_node.target_node = attack_target.get_path()
-			elif target_player:
-				head_lookatmodifier_node.target_node = target_player.get_path()
-	
-func clear_lookatmodifier_target() -> void:
-	head_lookatmodifier_node.target_node = NodePath()
-
-func slow_weapon_turn():
-	if attack_target:
-		var delta = get_physics_process_delta_time()
-		
-		#if head_lookatmodifier_node and head_lookatmodifier_node.target_node.is_empty():
-			#head_lookatmodifier_node.target_node = attack_target.get_path()
-		if not head_lookatmodifier_node:
-			Helpers.slow_rotate_to_point(head_node, attack_target.global_transform.origin, weapon_rotation_speed, delta)
-		if gun_node:
-			Helpers.slow_rotate_to_point(gun_node, attack_target.global_transform.origin, weapon_rotation_speed, delta)
-
-func attack_target_in_range() -> bool:
-	if attack_target:
-		var distance_to_target = self.global_position.distance_to(attack_target.global_position)
-		if distance_to_target <= attack_range:
-			return true
-	return false
-
-func attack():
-	pass
-	if gun_node:
-		Helpers.random_angle_deviation_moa(gun_node,vert_moa,hor_moa)
-		gun_node.fireGun()
-	#elif animation_player and animation_player.has_animation("attack"):
-		#animation_player.play("attack")
-		
-
 
 func _on_navigation_mesh_list_item_baked(nmli:NavigationMeshListItem):
 	if nav_mesh_list_item and nav_mesh_list_item.name == nmli.name:
@@ -244,6 +109,45 @@ func _on_navigation_mesh_list_item_baked(nmli:NavigationMeshListItem):
 		if nmli.mesh.get_polygon_count() == 0:
 			printerr("name mesh has no")
 		nav_agent.set_navigation_map(nmli.map_rid)
+#endregion
+
+#region combat
+func find_best_visible_enemy():
+	var new_attack_target:Node3D
+	var distance_to_attack_target_sq:float
+	
+	for target_info:TargetInformation in sensory_component.targets.values():
+		if target_info.currently_has_los:
+			if new_attack_target == null:
+				new_attack_target = target_info.target
+				distance_to_attack_target_sq = (new_attack_target.global_position - self.global_position).length_squared()
+			else:
+				var distance_to_new_target_sq = (target_info.target.global_position - self.global_position).length_squared()
+				if distance_to_new_target_sq < distance_to_attack_target_sq:
+					new_attack_target = target_info.target
+					distance_to_attack_target_sq = distance_to_new_target_sq
+	
+	_attack_target = new_attack_target
+
+func find_closest_last_seen_location() -> Vector3:
+	var closest_location:Vector3
+	var distance_to_closest_location_sq:float
+	
+	for target_info:TargetInformation in sensory_component.targets.values():
+		if closest_location == Vector3.ZERO:
+			closest_location = target_info.last_known_position
+			distance_to_closest_location_sq = (closest_location - self.global_position).length_squared()
+		else:
+			var distance_to_new_target_sq = (target_info.target.global_position - self.global_position).length_squared()
+			if distance_to_new_target_sq < distance_to_closest_location_sq:
+				closest_location = target_info.last_known_position
+				distance_to_closest_location_sq = distance_to_new_target_sq
+	
+	return closest_location 
+
+#endregion
+
+#region saving
 
 func _on_game_saving(save_file:SaveFile):
 	if save_file:
@@ -260,32 +164,176 @@ func _on_load_game(save_data:TopLevelEntitySaveData):
 	if save_data:
 		self.global_transform = save_data.global_transform
 
-func _on_health_component_location_destroyed(health_component: HealthComponent) -> void:
-	if health_component.location == HealthComponent.HEALTH_LOCATION.MAIN:
-		die()
+#endregion
+
+#region idle states
+func _on_idle_state_entered() -> void:
+	_current_max_speed = max_idle_speed
+	pass # Replace with function body.
+	
+func _on_loitering_state_entered() -> void:
+	_start_behavior_tree("loiter")
 	
 	pass # Replace with function body.
 
-func die():
+
+func _on_idle_state_physics_processing(delta: float) -> void:
+
+	if sensory_component.sees_enemy:
+		_reaction_timer += delta
+		if _reaction_timer > idle_reaction_time:
+			state_chart.send_event("SpottedEnemy")
+			_reaction_timer = 0.0
+			return
+	else:
+		_reaction_timer = 0.0
+	
+	var bt_status:BT.Status = bt_player.get_bt_instance().get_last_status()
+	if bt_status != BT.Status.RUNNING:
+		state_chart.send_event("BT_Finished")
+
+
+func _on_patroling_state_entered() -> void:
+	_start_behavior_tree("patrol")
+	
+	pass # Replace with function body.
+#endregion
+
+#region combat states
+func _on_combat_state_entered() -> void:
+	_current_max_speed = max_combat_speed
+	pass # Replace with function body.
+	
+func _on_spotted_enemy_state_entered() -> void:
+	_start_behavior_tree("spotted_enemy")
+	
+	pass # Replace with function body.
+
+func _on_spotted_enemy_state_physics_processing(delta: float) -> void:
+	var bt_status:BT.Status = bt_player.get_bt_instance().get_last_status()
+	if bt_status != BT.Status.RUNNING:
+		state_chart.send_event("BT_Finished")
+
+func _on_fire_and_advance_state_entered() -> void:
+	_start_behavior_tree("fire_and_advance")
+
+func _on_attacking_state_physics_processing(delta: float) -> void:
+	if _attack_target == null:
+		state_chart.send_event("LostTarget")
+	
+	pass # Replace with function body.
+
+func _on_chasing_state_entered() -> void:
+	_start_behavior_tree("chase")
+	pass # Replace with function body.
+
+func _on_chasing_state_physics_processing(delta: float) -> void:
+	
+	if sensory_component.sees_enemy:
+		_reaction_timer += delta
+		if _reaction_timer > combat_reaction_time:
+			state_chart.send_event("SpottedEnemy")
+			_reaction_timer = 0.0
+			return
+	else:
+		_reaction_timer = 0.0
+	
+	var bt_status:BT.Status = bt_player.get_bt_instance().get_last_status()
+	if bt_status != BT.Status.RUNNING:
+		#find a new target
+		if !sensory_component.targets.keys().is_empty():
+			state_chart.send_event("Searching")
+		else:
+			state_chart.send_event("BT_Finished")
+#endregion
+
+
+func _on_health_component_location_destroyed(health_component: HealthComponent) -> void:
+	if health_component.location == HealthComponent.HEALTH_LOCATION.MAIN:
+		state_chart.send_event("Died")
+	
+	pass # Replace with function body.
+
+
+func _on_dead_state_entered() -> void:
 	print("I am dead")
 	#alive = false
 	velocity = Vector3.ZERO
 	nav_agent.velocity_computed.disconnect(_on_velocity_computed)
-	if behavior_tree:
-		behavior_tree.active = false
+	if bt_player:
+		bt_player.active = false
 	if loot_fiesta:
 		loot_fiesta.fiesta()
 
 	if physical_bone_simulator:
-		for ap3d in animation_players:
-			ap3d.stop()
+		animation_player.stop()
+		#for ap3d in animation_players:
+			#ap3d.stop()
 		for cs3d in character_body_collision_shapes:
 			cs3d.disabled = true
 		physical_bone_simulator.active = true
 		physical_bone_simulator.physical_bones_start_simulation()
-	#var damage_vector = last_damage_normal.normalized() * 5
-	#PhysicsServer3D.body_set_state(physical_bone.get_rid(), PhysicsServer3D.BODY_STATE_LINEAR_VELOCITY, damage_vector)
-	#$CollisionShape3D.disabled = true
-	#$CollisionShape3D2.disabled = true
-	#$CollisionShape3D3.disabled = true
-	#$"combat-roomba/Armature/Skeleton3D/Physical Bone Bone/Head/SpotLight3D".visible = false
+
+#region alert states
+func _on_select_search_target_state_entered() -> void:
+	if sensory_component.targets.keys().is_empty():
+		state_chart.send_event("BT_Finished")
+	else:
+		_move_target_gpos = find_closest_last_seen_location()
+			
+	pass # Replace with function body.
+	
+func _on_searching_state_entered() -> void:
+	if sensory_component.targets.keys().is_empty():
+		state_chart.send_event("BT_Finished")
+	_start_behavior_tree("search")
+	pass # Replace with function body.
+
+func _on_searching_state_physics_processing(delta: float) -> void:
+	if sensory_component.sees_enemy:
+		_reaction_timer += delta
+		if _reaction_timer > combat_reaction_time:
+			state_chart.send_event("SpottedEnemy")
+			_reaction_timer = 0.0
+			return
+	else:
+		_reaction_timer = 0.0
+	
+	var bt_status:BT.Status = bt_player.get_bt_instance().get_last_status()
+	if bt_status != BT.Status.RUNNING:
+		#find a new target
+		if !sensory_component.targets.keys().is_empty():
+			state_chart.send_event("Searching")
+		else:
+			state_chart.send_event("BT_Finished")
+	
+	pass # Replace with function body.
+#endregion
+
+
+func _on_advancing_state_entered() -> void:
+	_start_behavior_tree("advance")
+	pass # Replace with function body.
+
+func _on_advancing_state_physics_processing(delta: float) -> void:
+	var dis_to_target = _attack_target.global_position.distance_to(self.global_position)
+	if _attack_target == null:
+		state_chart.send_event("LostTarget")
+	elif dis_to_target <= melee_range:
+		state_chart.send_event("InMeleeRange")
+		
+	pass # Replace with function body.
+
+
+func _on_melee_attacking_state_entered() -> void:
+	_start_behavior_tree("melee_attack")
+	pass # Replace with function body.
+
+
+func _on_melee_attacking_state_physics_processing(delta: float) -> void:
+	if _attack_target == null:
+		state_chart.send_event("LostTarget")
+	var bt_status:BT.Status = bt_player.get_bt_instance().get_last_status()
+	if bt_status != BT.Status.RUNNING:
+		state_chart.send_event("BT_Finished")
+	pass # Replace with function body.

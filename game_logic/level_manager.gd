@@ -8,6 +8,8 @@ var current_level:Node
 
 var level_navigation_maps:Dictionary = {}
 
+var viewable_entities:Array[Node] = []
+
 func _ready():
 	# declare a type safe array
 
@@ -15,6 +17,9 @@ func _ready():
 	resource_group.load_all_into(level_infos)
 	if level_infos.size() == 0:
 		push_error("NO LEVEL INFORMATION FOUND")
+		
+func _physics_process(delta: float) -> void:
+	viewable_entities = get_tree().get_nodes_in_group("viewable_entity")
 
 func clear_level():
 	for child in get_children():

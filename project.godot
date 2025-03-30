@@ -59,8 +59,10 @@ enabled=PackedStringArray("res://addons/csg_converter/plugin.cfg", "res://addons
 
 [global_group]
 
-external_inventory=""
-Extract=""
+external_inventory="Inventories external to the players. Loot crates, the stash, etc"
+Extract="Area for the player to extract from"
+players="The human players"
+viewable_entity="Anything an NPC should check if they can see"
 
 [godot_resource_groups]
 

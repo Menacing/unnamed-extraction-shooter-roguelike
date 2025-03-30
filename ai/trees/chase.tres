@@ -1,0 +1,73 @@
+[gd_resource type="BehaviorTree" load_steps=22 format=3 uid="uid://dqlbqsi255dq0"]
+
+[ext_resource type="Script" uid="uid://dmmuq2wf020yf" path="res://ai/tasks/slow_weapon_turn_task.gd" id="2_viu31"]
+[ext_resource type="Script" uid="uid://t8jwxqkplgeb" path="res://ai/tasks/fire_weapon_task.gd" id="3_j2npk"]
+[ext_resource type="Script" uid="uid://cswc6lsp2t4pk" path="res://ai/tasks/nav_agent_stop.gd" id="4_813po"]
+[ext_resource type="Script" uid="uid://blaj7bmpwo86q" path="res://ai/tasks/nav_agent_move_task.gd" id="4_sff1q"]
+
+[sub_resource type="BlackboardPlan" id="BlackboardPlan_813po"]
+
+[sub_resource type="BTAction" id="BTAction_iajss"]
+script = ExtResource("2_viu31")
+
+[sub_resource type="BTAction" id="BTAction_85dga"]
+script = ExtResource("3_j2npk")
+
+[sub_resource type="BTCooldown" id="BTCooldown_x02wu"]
+duration = 1.0
+start_cooled = true
+children = [SubResource("BTAction_85dga")]
+
+[sub_resource type="BTAlwaysSucceed" id="BTAlwaysSucceed_j5uku"]
+custom_name = "Fire Weapon Cooldown"
+children = [SubResource("BTCooldown_x02wu")]
+
+[sub_resource type="BTAction" id="BTAction_futwg"]
+script = ExtResource("4_sff1q")
+
+[sub_resource type="BTDynamicSequence" id="BTDynamicSequence_enj7o"]
+custom_name = "ChasePlayerSequence"
+children = [SubResource("BTAction_iajss"), SubResource("BTAlwaysSucceed_j5uku"), SubResource("BTAction_futwg")]
+
+[sub_resource type="BTTimeLimit" id="BTTimeLimit_sixj2"]
+children = [SubResource("BTDynamicSequence_enj7o")]
+
+[sub_resource type="BBVariant" id="BBVariant_wgw8j"]
+saved_value = null
+resource_name = "<null>"
+
+[sub_resource type="BTSetAgentProperty" id="BTSetAgentProperty_813po"]
+property = &"_attack_target"
+value = SubResource("BBVariant_wgw8j")
+
+[sub_resource type="BBVariant" id="BBVariant_viu31"]
+saved_value = null
+resource_name = "<null>"
+
+[sub_resource type="BTSetAgentProperty" id="BTSetAgentProperty_j2npk"]
+property = &"_move_target"
+value = SubResource("BBVariant_viu31")
+
+[sub_resource type="BTAction" id="BTAction_viu31"]
+script = ExtResource("4_813po")
+
+[sub_resource type="BBNode" id="BBNode_555j5"]
+value_source = 1
+variable = &"animation_player"
+resource_name = "$animation_player"
+
+[sub_resource type="BTPlayAnimation" id="BTPlayAnimation_uh2om"]
+await_completion = 100.0
+animation_player = SubResource("BBNode_555j5")
+animation_name = &"target_lost"
+custom_name = "Play Target Lost Animation"
+
+[sub_resource type="BTSequence" id="BTSequence_wgw8j"]
+children = [SubResource("BTSetAgentProperty_813po"), SubResource("BTSetAgentProperty_j2npk"), SubResource("BTAction_viu31"), SubResource("BTPlayAnimation_uh2om")]
+
+[sub_resource type="BTSelector" id="BTSelector_wgw8j"]
+children = [SubResource("BTTimeLimit_sixj2"), SubResource("BTSequence_wgw8j")]
+
+[resource]
+blackboard_plan = SubResource("BlackboardPlan_813po")
+root_task = SubResource("BTSelector_wgw8j")

@@ -1,0 +1,33 @@
+[gd_scene load_steps=4 format=3 uid="uid://bamjuqnlm35oo"]
+
+[ext_resource type="Script" uid="uid://bx51vpuw5qrqt" path="res://game_objects/enemies/sense_component.gd" id="1_nws4b"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_mxgj2"]
+size = Vector3(100, 20, 100)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_nws4b"]
+radius = 1.5
+
+[node name="SenseComponent" type="Node3D" node_paths=PackedStringArray("view_cone")]
+script = ExtResource("1_nws4b")
+view_cone = NodePath("ViewArea3D")
+enemy_groups = Array[String](["players"])
+memory_seconds = 30.0
+metadata/_custom_type_script = "uid://bx51vpuw5qrqt"
+
+[node name="ViewArea3D" type="Area3D" parent="."]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 0, 0, -69)
+collision_layer = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ViewArea3D"]
+shape = SubResource("BoxShape3D_mxgj2")
+
+[node name="BulletDetectRadius" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.779919, 0)
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="BulletDetectRadius"]
+shape = SubResource("SphereShape3D_nws4b")
+
+[connection signal="body_shape_entered" from="BulletDetectRadius" to="." method="_on_bullet_detect_radius_body_shape_entered"]
