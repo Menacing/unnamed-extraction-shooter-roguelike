@@ -100,10 +100,9 @@ uppercase = true
 [node name="option_tab_container" type="TabContainer" parent="main_container/vert_container"]
 custom_minimum_size = Vector2(500, 600)
 layout_mode = 2
-current_tab = 2
+current_tab = 0
 
 [node name="Controls" type="MarginContainer" parent="main_container/vert_container/option_tab_container"]
-visible = false
 layout_mode = 2
 metadata/_tab_index = 0
 
@@ -157,6 +156,8 @@ size_flags_horizontal = 10
 
 [node name="InputBtn" parent="main_container/vert_container/option_tab_container/Controls/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/move_forward/HBoxContainer" groups=["controls_settings"] instance=ExtResource("1_lvxjt")]
 layout_mode = 2
+_accepted_types = 15
+_accept_modifiers = true
 setting = ExtResource("4_pfptl")
 
 [node name="Btn" parent="main_container/vert_container/option_tab_container/Controls/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/move_forward/HBoxContainer/InputBtn" index="0"]
@@ -175,6 +176,8 @@ size_flags_horizontal = 10
 
 [node name="InputBtn" parent="main_container/vert_container/option_tab_container/Controls/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/move_back/HBoxContainer" groups=["controls_settings"] instance=ExtResource("1_lvxjt")]
 layout_mode = 2
+_accepted_types = 15
+_accept_modifiers = true
 setting = ExtResource("6_ydmyx")
 
 [node name="Btn" parent="main_container/vert_container/option_tab_container/Controls/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/move_back/HBoxContainer/InputBtn" index="0"]
@@ -193,6 +196,8 @@ size_flags_horizontal = 10
 
 [node name="InputBtn" parent="main_container/vert_container/option_tab_container/Controls/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/move_left/HBoxContainer" groups=["controls_settings"] instance=ExtResource("1_lvxjt")]
 layout_mode = 2
+_accepted_types = 15
+_accept_modifiers = true
 setting = ExtResource("3_5ykfs")
 
 [node name="Btn" parent="main_container/vert_container/option_tab_container/Controls/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/move_left/HBoxContainer/InputBtn" index="0"]
@@ -211,6 +216,8 @@ size_flags_horizontal = 10
 
 [node name="InputBtn" parent="main_container/vert_container/option_tab_container/Controls/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/move_right/HBoxContainer" groups=["controls_settings"] instance=ExtResource("1_lvxjt")]
 layout_mode = 2
+_accepted_types = 15
+_accept_modifiers = true
 setting = ExtResource("5_ifg1x")
 
 [node name="Btn" parent="main_container/vert_container/option_tab_container/Controls/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/move_right/HBoxContainer/InputBtn" index="0"]
@@ -229,6 +236,8 @@ size_flags_horizontal = 10
 
 [node name="InputBtn" parent="main_container/vert_container/option_tab_container/Controls/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/jump/HBoxContainer" groups=["controls_settings"] instance=ExtResource("1_lvxjt")]
 layout_mode = 2
+_accepted_types = 15
+_accept_modifiers = true
 setting = ExtResource("7_1c4vo")
 
 [node name="Btn" parent="main_container/vert_container/option_tab_container/Controls/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/jump/HBoxContainer/InputBtn" index="0"]
@@ -248,6 +257,8 @@ size_flags_horizontal = 10
 
 [node name="InputBtn" parent="main_container/vert_container/option_tab_container/Controls/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/sprint/HBoxContainer" groups=["controls_settings"] instance=ExtResource("1_lvxjt")]
 layout_mode = 2
+_accepted_types = 15
+_accept_modifiers = true
 setting = ExtResource("8_rv7hm")
 
 [node name="Btn" parent="main_container/vert_container/option_tab_container/Controls/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/sprint/HBoxContainer/InputBtn" index="0"]
@@ -288,6 +299,8 @@ size_flags_horizontal = 10
 
 [node name="InputBtn" parent="main_container/vert_container/option_tab_container/Controls/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/crouch/HBoxContainer" groups=["controls_settings"] instance=ExtResource("1_lvxjt")]
 layout_mode = 2
+_accepted_types = 15
+_accept_modifiers = true
 setting = ExtResource("11_w2qr3")
 
 [node name="Btn" parent="main_container/vert_container/option_tab_container/Controls/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/crouch/HBoxContainer/InputBtn" index="0"]
@@ -323,6 +336,8 @@ size_flags_horizontal = 10
 
 [node name="InputBtn" parent="main_container/vert_container/option_tab_container/Controls/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/prone/HBoxContainer" groups=["controls_settings"] instance=ExtResource("1_lvxjt")]
 layout_mode = 2
+_accepted_types = 15
+_accept_modifiers = true
 setting = ExtResource("13_r137g")
 
 [node name="Btn" parent="main_container/vert_container/option_tab_container/Controls/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/prone/HBoxContainer/InputBtn" index="0"]
@@ -343,6 +358,8 @@ size_flags_horizontal = 10
 
 [node name="InputBtn" parent="main_container/vert_container/option_tab_container/Controls/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/lean_left/HBoxContainer" groups=["controls_settings"] instance=ExtResource("1_lvxjt")]
 layout_mode = 2
+_accepted_types = 15
+_accept_modifiers = true
 setting = ExtResource("14_7pocc")
 
 [node name="Btn" parent="main_container/vert_container/option_tab_container/Controls/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/lean_left/HBoxContainer/InputBtn" index="0"]
@@ -363,6 +380,8 @@ size_flags_horizontal = 10
 
 [node name="InputBtn" parent="main_container/vert_container/option_tab_container/Controls/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/lean_right/HBoxContainer" groups=["controls_settings"] instance=ExtResource("1_lvxjt")]
 layout_mode = 2
+_accepted_types = 15
+_accept_modifiers = true
 setting = ExtResource("15_arxsr")
 
 [node name="Btn" parent="main_container/vert_container/option_tab_container/Controls/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/lean_right/HBoxContainer/InputBtn" index="0"]
@@ -452,6 +471,8 @@ size_flags_horizontal = 10
 
 [node name="InputBtn" parent="main_container/vert_container/option_tab_container/Controls/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/fire/HBoxContainer" groups=["controls_settings"] instance=ExtResource("1_lvxjt")]
 layout_mode = 2
+_accepted_types = 15
+_accept_modifiers = true
 setting = ExtResource("20_7x4lg")
 
 [node name="Btn" parent="main_container/vert_container/option_tab_container/Controls/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/fire/HBoxContainer/InputBtn" index="0"]
@@ -471,6 +492,8 @@ size_flags_horizontal = 10
 
 [node name="InputBtn" parent="main_container/vert_container/option_tab_container/Controls/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/reload/HBoxContainer" groups=["controls_settings"] instance=ExtResource("1_lvxjt")]
 layout_mode = 2
+_accepted_types = 15
+_accept_modifiers = true
 setting = ExtResource("21_aj0rp")
 
 [node name="Btn" parent="main_container/vert_container/option_tab_container/Controls/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/reload/HBoxContainer/InputBtn" index="0"]
@@ -490,6 +513,8 @@ size_flags_horizontal = 10
 
 [node name="InputBtn" parent="main_container/vert_container/option_tab_container/Controls/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/fire_mode/HBoxContainer" groups=["controls_settings"] instance=ExtResource("1_lvxjt")]
 layout_mode = 2
+_accepted_types = 15
+_accept_modifiers = true
 setting = ExtResource("22_o2ywx")
 
 [node name="Btn" parent="main_container/vert_container/option_tab_container/Controls/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/fire_mode/HBoxContainer/InputBtn" index="0"]
@@ -509,6 +534,8 @@ size_flags_horizontal = 10
 
 [node name="InputBtn" parent="main_container/vert_container/option_tab_container/Controls/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/ammo_subtype/HBoxContainer" groups=["controls_settings"] instance=ExtResource("1_lvxjt")]
 layout_mode = 2
+_accepted_types = 15
+_accept_modifiers = true
 setting = ExtResource("23_y5nc2")
 
 [node name="Btn" parent="main_container/vert_container/option_tab_container/Controls/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/ammo_subtype/HBoxContainer/InputBtn" index="0"]
@@ -528,6 +555,8 @@ size_flags_horizontal = 10
 
 [node name="InputBtn" parent="main_container/vert_container/option_tab_container/Controls/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/ads/HBoxContainer" groups=["controls_settings"] instance=ExtResource("1_lvxjt")]
 layout_mode = 2
+_accepted_types = 15
+_accept_modifiers = true
 setting = ExtResource("23_nh01t")
 
 [node name="Btn" parent="main_container/vert_container/option_tab_container/Controls/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/ads/HBoxContainer/InputBtn" index="0"]
@@ -601,6 +630,8 @@ size_flags_horizontal = 10
 
 [node name="InputBtn" parent="main_container/vert_container/option_tab_container/Controls/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/gun_slot_1/HBoxContainer" groups=["controls_settings"] instance=ExtResource("1_lvxjt")]
 layout_mode = 2
+_accepted_types = 15
+_accept_modifiers = true
 setting = ExtResource("28_b27xi")
 
 [node name="Btn" parent="main_container/vert_container/option_tab_container/Controls/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/gun_slot_1/HBoxContainer/InputBtn" index="0"]
@@ -620,6 +651,8 @@ size_flags_horizontal = 10
 
 [node name="InputBtn" parent="main_container/vert_container/option_tab_container/Controls/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/gun_slot_2/HBoxContainer" groups=["controls_settings"] instance=ExtResource("1_lvxjt")]
 layout_mode = 2
+_accepted_types = 15
+_accept_modifiers = true
 setting = ExtResource("29_us0mp")
 
 [node name="Btn" parent="main_container/vert_container/option_tab_container/Controls/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/gun_slot_2/HBoxContainer/InputBtn" index="0"]
@@ -655,6 +688,8 @@ size_flags_horizontal = 10
 
 [node name="InputBtn" parent="main_container/vert_container/option_tab_container/Controls/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/use/HBoxContainer" groups=["controls_settings"] instance=ExtResource("1_lvxjt")]
 layout_mode = 2
+_accepted_types = 15
+_accept_modifiers = true
 setting = ExtResource("30_j61sd")
 
 [node name="Btn" parent="main_container/vert_container/option_tab_container/Controls/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/use/HBoxContainer/InputBtn" index="0"]
@@ -674,6 +709,8 @@ size_flags_horizontal = 10
 
 [node name="InputBtn" parent="main_container/vert_container/option_tab_container/Controls/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/drop_gun/HBoxContainer" groups=["controls_settings"] instance=ExtResource("1_lvxjt")]
 layout_mode = 2
+_accepted_types = 15
+_accept_modifiers = true
 setting = ExtResource("31_ji8e4")
 
 [node name="Btn" parent="main_container/vert_container/option_tab_container/Controls/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/drop_gun/HBoxContainer/InputBtn" index="0"]
@@ -693,6 +730,8 @@ size_flags_horizontal = 10
 
 [node name="InputBtn" parent="main_container/vert_container/option_tab_container/Controls/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/inventory/HBoxContainer" groups=["controls_settings"] instance=ExtResource("1_lvxjt")]
 layout_mode = 2
+_accepted_types = 15
+_accept_modifiers = true
 setting = ExtResource("32_rllb7")
 
 [node name="Btn" parent="main_container/vert_container/option_tab_container/Controls/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/inventory/HBoxContainer/InputBtn" index="0"]
@@ -712,6 +751,8 @@ size_flags_horizontal = 10
 
 [node name="InputBtn" parent="main_container/vert_container/option_tab_container/Controls/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/inv_grab/HBoxContainer" groups=["controls_settings"] instance=ExtResource("1_lvxjt")]
 layout_mode = 2
+_accepted_types = 15
+_accept_modifiers = true
 setting = ExtResource("33_4w1ay")
 
 [node name="Btn" parent="main_container/vert_container/option_tab_container/Controls/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/inv_grab/HBoxContainer/InputBtn" index="0"]
@@ -731,6 +772,8 @@ size_flags_horizontal = 10
 
 [node name="InputBtn" parent="main_container/vert_container/option_tab_container/Controls/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/rotate_item/HBoxContainer" groups=["controls_settings"] instance=ExtResource("1_lvxjt")]
 layout_mode = 2
+_accepted_types = 15
+_accept_modifiers = true
 setting = ExtResource("34_25p35")
 
 [node name="Btn" parent="main_container/vert_container/option_tab_container/Controls/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/rotate_item/HBoxContainer/InputBtn" index="0"]
@@ -750,6 +793,8 @@ size_flags_horizontal = 10
 
 [node name="InputBtn" parent="main_container/vert_container/option_tab_container/Controls/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/drop_item/HBoxContainer" groups=["controls_settings"] instance=ExtResource("1_lvxjt")]
 layout_mode = 2
+_accepted_types = 15
+_accept_modifiers = true
 setting = ExtResource("35_7ete6")
 
 [node name="Btn" parent="main_container/vert_container/option_tab_container/Controls/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/drop_item/HBoxContainer/InputBtn" index="0"]
@@ -769,6 +814,8 @@ size_flags_horizontal = 10
 
 [node name="InputBtn" parent="main_container/vert_container/option_tab_container/Controls/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/item_context_menu/HBoxContainer" groups=["controls_settings"] instance=ExtResource("1_lvxjt")]
 layout_mode = 2
+_accepted_types = 15
+_accept_modifiers = true
 setting = ExtResource("36_ybnor")
 
 [node name="Btn" parent="main_container/vert_container/option_tab_container/Controls/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/item_context_menu/HBoxContainer/InputBtn" index="0"]
@@ -788,6 +835,8 @@ size_flags_horizontal = 10
 
 [node name="InputBtn" parent="main_container/vert_container/option_tab_container/Controls/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/quick_save/HBoxContainer" groups=["controls_settings"] instance=ExtResource("1_lvxjt")]
 layout_mode = 2
+_accepted_types = 15
+_accept_modifiers = true
 setting = ExtResource("38_t8p18")
 
 [node name="Btn" parent="main_container/vert_container/option_tab_container/Controls/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/quick_save/HBoxContainer/InputBtn" index="0"]
@@ -807,6 +856,8 @@ size_flags_horizontal = 10
 
 [node name="InputBtn" parent="main_container/vert_container/option_tab_container/Controls/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/quick_load/HBoxContainer" groups=["controls_settings"] instance=ExtResource("1_lvxjt")]
 layout_mode = 2
+_accepted_types = 15
+_accept_modifiers = true
 setting = ExtResource("39_y7uid")
 
 [node name="Btn" parent="main_container/vert_container/option_tab_container/Controls/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/quick_load/HBoxContainer/InputBtn" index="0"]
@@ -831,7 +882,7 @@ group = "controls_settings"
 [node name="ResetBtn" parent="main_container/vert_container/option_tab_container/Controls/VBoxContainer2/MarginContainer/HBoxContainer" instance=ExtResource("8_411hw")]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "RESET TO DEFAULT"
+text = "RESET ALL TO DEFAULT"
 group = "controls_settings"
 
 [node name="Audio" type="MarginContainer" parent="main_container/vert_container/option_tab_container"]
@@ -951,6 +1002,7 @@ text = "Reset to Default"
 group = "audio_settings"
 
 [node name="Display" type="MarginContainer" parent="main_container/vert_container/option_tab_container"]
+visible = false
 layout_mode = 2
 metadata/_tab_index = 2
 

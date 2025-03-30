@@ -79,7 +79,8 @@ func apply_setting() -> void:
 ## [settingResetBtn] calls this method to reset the associated settings.
 func reset_setting() -> void:
 	GGS.set_value(setting, setting.default)
-	setting.apply(value)
+	setting.apply(setting.default)
+	value = setting.default
 
 
 ## Validates if the assigned [member setting] is valid and can be used with
