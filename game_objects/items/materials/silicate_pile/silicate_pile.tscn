@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://dspfcw4lx5gss"]
+
+[ext_resource type="Script" uid="uid://bi18abresibqv" path="res://game_objects/item_3d.gd" id="1_2hmd8"]
+[ext_resource type="PackedScene" uid="uid://g6fvkx41lkqd" path="res://game_objects/items/materials/silicate_pile/silicate_pile.gltf" id="2_h7oeq"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_42oyq"]
+size = Vector3(0.333549, 0.20841, 0.312434)
+
+[node name="silicate_pile" type="RigidBody3D" node_paths=PackedStringArray("model_node")]
+collision_layer = 5
+collision_mask = 5
+script = ExtResource("1_2hmd8")
+item_type_id = "silicate_pile_small"
+world_collider_path = NodePath("CollisionShape3D")
+longest_side_size = 0.4
+model_node = NodePath("silicate_pile_model")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.103866, -0.00638057)
+shape = SubResource("BoxShape3D_42oyq")
+
+[node name="silicate_pile_model" parent="." instance=ExtResource("2_h7oeq")]
