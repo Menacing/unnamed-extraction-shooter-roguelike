@@ -4,3 +4,4 @@
     - [Item System](./item_system.md)
     - [Components](./components.md)
     - [Auto Loads](./autoloads.md)
+    - [AI System](./ai_system.md)
