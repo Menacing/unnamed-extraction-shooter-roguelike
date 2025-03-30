@@ -642,7 +642,7 @@ func should_crouch() -> bool:
 			toggle_crouch_f = !toggle_crouch_f
 		return toggle_crouch_f
 	else:
-		return Input.is_action_pressed("crouch")
+		return Input.is_action_pressed("crouch") and not should_sprint()
 		
 func should_prone() -> bool:
 	if legs_destroyed:
