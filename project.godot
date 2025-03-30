@@ -19,8 +19,8 @@ config/icon="res://icon.svg"
 [autoload]
 
 EventBus="*res://game_logic/event_bus.gd"
-GameSettings="*res://game_logic/game_settings.gd"
 GGS="*res://addons/ggs/plugin/singleton/ggs.tscn"
+GameSettings="*res://game_logic/game_settings.gd"
 Helpers="*res://helpers/helpers.gd"
 MenuManager="*res://game_logic/menu_manager.gd"
 GameplayEnums="*res://game_logic/gameplay_enums.gd"
