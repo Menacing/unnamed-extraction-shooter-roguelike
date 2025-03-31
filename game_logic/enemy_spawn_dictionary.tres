@@ -1,0 +1,27 @@
+[gd_resource type="Resource" script_class="EnemySpawnDictionary" load_steps=8 format=3 uid="uid://8477ts0rea5g"]
+
+[ext_resource type="Script" uid="uid://dhkqvqrxmtugi" path="res://levels/enemy_spawn_tables/enemy_spawn_key.gd" id="1_kdk3a"]
+[ext_resource type="Script" uid="uid://bysvs08bv72xr" path="res://game_objects/enemies/enemy_spawn_mapping.gd" id="2_oacj4"]
+[ext_resource type="Resource" uid="uid://mf8f6y7ne4mx" path="res://levels/enemy_spawn_tables/easi_easy_enemy_spawn_mapping.tres" id="3_0sp2v"]
+[ext_resource type="Script" uid="uid://btdlqkl7trtu2" path="res://game_logic/enemy_spawn_dictionary.gd" id="3_akw5g"]
+[ext_resource type="Resource" uid="uid://ig6xbwadvx0u" path="res://levels/enemy_spawn_tables/easi_medium_enemy_spawn_mapping.tres" id="4_h60x5"]
+
+[sub_resource type="Resource" id="Resource_iq8jd"]
+script = ExtResource("1_kdk3a")
+faction = 1
+tier = 0
+metadata/_custom_type_script = "uid://dhkqvqrxmtugi"
+
+[sub_resource type="Resource" id="Resource_2kel5"]
+script = ExtResource("1_kdk3a")
+faction = 1
+tier = 1
+metadata/_custom_type_script = "uid://dhkqvqrxmtugi"
+
+[resource]
+script = ExtResource("3_akw5g")
+enemy_spawn_dictionary = Dictionary[ExtResource("1_kdk3a"), ExtResource("2_oacj4")]({
+SubResource("Resource_iq8jd"): ExtResource("3_0sp2v"),
+SubResource("Resource_2kel5"): ExtResource("4_h60x5")
+})
+metadata/_custom_type_script = "uid://btdlqkl7trtu2"

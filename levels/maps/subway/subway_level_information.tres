@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="LevelInformation" load_steps=3 format=3 uid="uid://c2fc2x05sfe7k"]
+
+[ext_resource type="Texture2D" uid="uid://brsalpbyxll18" path="res://levels/maps/subway/subway_preview.png" id="1_x8mdk"]
+[ext_resource type="Script" uid="uid://b3y1kic8ii3qa" path="res://levels/level_information.gd" id="2_mguxx"]
+
+[resource]
+script = ExtResource("2_mguxx")
+level_path = "res://levels/biomes/wodc/maps/subway/subway.tscn"
+display_name = "Subway"
+biome = 0
+size = 0
+preview_image = ExtResource("1_x8mdk")
+description = "Once a convenient place for commuters to shop before heading into the city, its now a buried hub where remnants fight over scraps."

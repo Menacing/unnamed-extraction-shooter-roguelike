@@ -32,3 +32,27 @@ enum GameDifficulty {
 	MEDIUM,
 	HARD
 }
+
+enum LootTable {
+	GENERIC,
+	EASI,
+	CENT,
+	WODC,
+	MEDICAL,
+	SCIENCE
+}
+
+enum EnemyFaction {
+	NEUTRAL,
+	EASI,
+	CENT,
+	WODC
+}
+
+enum Tier {
+	COMMON,
+	UNCOMMON,
+	RARE,
+	EPIC,
+	UNIQUE
+}

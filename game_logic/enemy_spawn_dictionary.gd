@@ -1,0 +1,4 @@
+extends Resource
+class_name EnemySpawnDictionary
+
+@export var enemy_spawn_dictionary:Dictionary[EnemySpawnKey,EnemySpawnMapping]
