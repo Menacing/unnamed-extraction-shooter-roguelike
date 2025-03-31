@@ -13,7 +13,7 @@ func _tick(p_delta: float) -> Status:
 		if (agent._move_target or agent._move_target_gpos) and agent.nav_agent and agent.move_target_distance \
 		and agent._current_max_speed and agent.acceleration and agent.body_rotation_speed:
 			
-			if is_near_move_target(agent._move_target, agent._move_target_gpos, agent.move_target_distance):
+			if is_near_move_target(agent._move_target, agent._move_target_gpos, agent.move_target_distance) or agent.nav_agent.is_navigation_finished():
 				return SUCCESS
 			if agent.animation_player.has_animation("walk"):
 				agent.animation_player.play("walk")
@@ -23,8 +23,6 @@ func _tick(p_delta: float) -> Status:
 	return FAILURE
 
 func move_agent(p_delta, nav_agent:NavigationAgent3D, max_move_speed:float, acceleration:float, body_rotation_speed:float):
-	if nav_agent.is_navigation_finished():
-		return
 	slow_body_turn(p_delta, body_rotation_speed)
 	var next_path_position: Vector3 = nav_agent.get_next_path_position()
 	var current_velocity:Vector3 = agent.velocity

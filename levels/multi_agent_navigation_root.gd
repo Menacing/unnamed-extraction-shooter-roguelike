@@ -45,6 +45,8 @@ func _setup():
 		mesh_item.mesh.geometry_collision_mask = collision_mask
 		mesh_item.mesh.agent_height = mesh_item.agent_height
 		mesh_item.mesh.agent_radius = mesh_item.agent_radius
+		mesh_item.mesh.cell_height = 0.1
+		mesh_item.mesh.cell_size = 0.1
 		NavigationServer3D.bake_from_source_geometry_data(mesh_item.mesh, source_geometry_data)
 		
 		if mesh_item.mesh == null:
@@ -67,6 +69,12 @@ func _setup():
 		NavigationServer3D.region_set_navigation_mesh(navigation_region_rid, mesh_item.mesh)
 		EventBus.navigation_mesh_list_item_baked.emit(mesh_item)
 		LevelManager.level_navigation_maps[mesh_item.name] = mesh_item
+		if OS.is_debug_build():
+			var filename = "user://"+mesh_item.name+".tres"
+			var save_result := ResourceSaver.save(mesh_item.mesh,filename)
+			if save_result != OK:
+				pass
+	NavigationServer3D.set_debug_enabled(true)
 
 func get_navigation_mesh_list_item(mesh_name:String) -> NavigationMeshListItem:
 	for item in navigation_mesh_list_items:

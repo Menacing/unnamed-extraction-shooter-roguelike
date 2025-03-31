@@ -1,4 +1,4 @@
-extends CharacterBody3D
+extends StaticBody3D
 class_name Enemy
 
 @export var animation_player:AnimationPlayer
@@ -30,6 +30,7 @@ var _move_target_gpos:Vector3
 var _current_max_speed:float
 @export var acceleration:float = .25
 @export var body_rotation_speed:float = 1.0
+var velocity:Vector3
 
 @export_category("Combat")
 var _attack_target:Node3D
@@ -99,7 +100,9 @@ func _start_behavior_tree(tree_name:String):
 
 func _on_velocity_computed(safe_velocity: Vector3):
 	velocity = safe_velocity
-	move_and_slide()
+	if safe_velocity != Vector3.ZERO:
+		self.global_position += safe_velocity * get_physics_process_delta_time()
+	#move_and_slide()
 
 func _on_navigation_mesh_list_item_baked(nmli:NavigationMeshListItem):
 	if nav_mesh_list_item and nav_mesh_list_item.name == nmli.name:
@@ -258,7 +261,7 @@ func _on_health_component_location_destroyed(health_component: HealthComponent) 
 func _on_dead_state_entered() -> void:
 	print("I am dead")
 	#alive = false
-	velocity = Vector3.ZERO
+	#velocity = Vector3.ZERO
 	nav_agent.velocity_computed.disconnect(_on_velocity_computed)
 	if bt_player:
 		bt_player.active = false
