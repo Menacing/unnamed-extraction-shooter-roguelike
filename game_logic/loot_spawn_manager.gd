@@ -2,6 +2,7 @@
 extends Node
 
 const LOOT_SPAWN_DICTIONARY:LootSpawnDictionary = preload("res://game_logic/loot_spawn_dictionary.tres")
+var remapped_loot_spawn_dictionary:Dictionary = {}
 
 var _current_shuffle_bags:Dictionary = {}
 var _model_shuffle_bags:Dictionary = {}
@@ -9,6 +10,7 @@ var _model_shuffle_bags:Dictionary = {}
 func _ready() -> void:
 	for lsdk in LOOT_SPAWN_DICTIONARY.loot_spawn_dictionary:
 		var loot_spawn_mapping := LOOT_SPAWN_DICTIONARY.loot_spawn_dictionary[lsdk]
+		remapped_loot_spawn_dictionary[_map_loot_spawn_key_to_string(key)] = loot_spawn_mapping
 		var model_shuffle_bag:Array[LootSpawnInformation] = []
 		var current_shuffle_bag:Array[LootSpawnInformation] = []
 		#generate shufflebags
@@ -22,8 +24,11 @@ func _ready() -> void:
 		_current_shuffle_bags[lsdk] = current_shuffle_bag
 		_model_shuffle_bags[lsdk] = model_shuffle_bag
 
+func _map_loot_spawn_key_to_string(lsk:LootSpawnKey) -> String:
+	return str(lsk.loot_table) + "-" + str(lsk.tier)
+
 func get_loot_spawn_mapping(lsk:LootSpawnKey):
-	return LOOT_SPAWN_DICTIONARY.loot_spawn_dictionary[lsk]
+	return remapped_loot_spawn_dictionary[_map_loot_spawn_key_to_string(lsk)]
 
 func get_spawn_info(lsk:LootSpawnKey) -> LootSpawnInformation:
 	var current_shuffle_bag = _current_shuffle_bags[lsk]
