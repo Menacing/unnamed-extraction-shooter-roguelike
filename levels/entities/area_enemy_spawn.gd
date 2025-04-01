@@ -34,7 +34,7 @@ func _ready():
 func _on_populate_level():
 	var esk:EnemySpawnKey = EnemySpawnKey.new()
 	esk.faction = faction
-	esk.tier = tier
+	esk.tier = Helpers.clamp_int_to_enum(tier + EnemySpawnManager.get_run_enemy_tier_bonus(), GameplayEnums.Tier)
 	var enemy_spawn_mapping:EnemySpawnMapping = EnemySpawnManager.get_enemy_spawn_mapping(esk)
 	
 	randomize()
@@ -43,7 +43,7 @@ func _on_populate_level():
 	if active_roll > chance_active:
 		return
 		
-	var number_to_spawn = randi_range(min_spawned,max_spawned)
+	var number_to_spawn = int(randi_range(min_spawned,max_spawned) * EnemySpawnManager.get_difficulty_enemy_factor())
 	var aabb = Helpers.get_aabb_of_node(self)
 	var x_size = aabb.size.x
 	var z_size = aabb.size.z
