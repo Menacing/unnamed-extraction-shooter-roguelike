@@ -13,3 +13,12 @@ func _map_enemy_spawn_key_to_string(esk:EnemySpawnKey) -> String:
 
 func get_enemy_spawn_mapping(esk:EnemySpawnKey):
 	return remapped_enemy_spawn_dictionary[_map_enemy_spawn_key_to_string(esk)]
+
+func get_difficulty_enemy_factor() -> float:
+	match HideoutManager.selected_difficulty:
+		GameplayEnums.GameDifficulty.EASY:
+			return 1.0
+		GameplayEnums.GameDifficulty.MEDIUM:
+					return 1.5
+		GameplayEnums.GameDifficulty.HARD:
+					return 2.0
