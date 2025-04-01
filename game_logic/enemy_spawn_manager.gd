@@ -8,7 +8,7 @@ func _ready():
 	for key in ENEMY_SPAWN_DICTIONARY.enemy_spawn_dictionary:
 		remapped_enemy_spawn_dictionary[_map_enemy_spawn_key_to_string(key)] = ENEMY_SPAWN_DICTIONARY.enemy_spawn_dictionary[key]
 	
-func _map_enemy_spawn_key_to_string(esk:EnemySpawnKey) -> String:
+func _map_enemy_spawn_key_to_string(esk) -> String:
 	return str(esk.faction) + "-" + str(esk.tier)
 
 func get_enemy_spawn_mapping(esk:EnemySpawnKey):
@@ -19,9 +19,11 @@ func get_difficulty_enemy_factor() -> float:
 		GameplayEnums.GameDifficulty.EASY:
 			return 1.0
 		GameplayEnums.GameDifficulty.MEDIUM:
-					return 1.5
+			return 1.5
 		GameplayEnums.GameDifficulty.HARD:
-					return 2.0
+			return 2.0
+		_:
+			return 1.0
 
 func get_run_enemy_tier_bonus() -> int:
 	var current_extracts:float = float(HideoutManager.current_map_number)
