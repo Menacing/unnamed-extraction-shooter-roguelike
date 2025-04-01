@@ -34,7 +34,7 @@ func _ready():
 func _on_populate_level():
 	var lsk:LootSpawnKey = LootSpawnKey.new()
 	lsk.loot_table = loot_table
-	lsk.tier = tier
+	lsk.tier = Helpers.clamp_int_to_enum(tier + LootSpawnManager.get_run_loot_tier_bonus(), GameplayEnums.Tier) 
 	var loot_spawn_mapping:LootSpawnMapping = LootSpawnManager.get_loot_spawn_mapping(lsk)
 	
 	randomize()
@@ -43,7 +43,7 @@ func _on_populate_level():
 	if active_roll > chance_active:
 		return
 		
-	var number_to_spawn = randi_range(min_spawned,max_spawned)
+	var number_to_spawn = int(randi_range(min_spawned,max_spawned) * LootSpawnManager.get_difficulty_loot_factor())
 	var aabb = Helpers.get_aabb_of_node(self)
 	var x_begin = aabb.position.x
 	var x_end = aabb.end.x
