@@ -17,28 +17,39 @@ collision_layer = 1
 collision_mask = 1
 collision_priority = 1.0
 collision_shape_margin = 0.04
+add_textures_metadata = false
+add_vertex_metadata = false
+add_face_position_metadata = false
+add_face_normal_metadata = false
+add_collision_shape_face_range_metadata = false
 script_class = ExtResource("2_ntkgi")
 classname = "area_enemy_spawn"
 description = "enemy spawn area"
 func_godot_internal = false
 base_classes = Array[Resource]([])
 class_properties = {
-"biome": {
-"science": 0
-},
 "chance_active": 1.0,
+"faction": {
+"CENT": 2,
+"EASI": 1,
+"NEUTRAL": 0,
+"WODC": 3
+},
 "max_spawned": 1,
 "min_spawned": 1,
 "tier": {
-"easy": 0,
-"hard": 2,
-"medium": 1
+"COMMON": 0,
+"EPIC": 3,
+"RARE": 2,
+"UNCOMMON": 1,
+"UNIQUE": 4
 }
 }
 class_property_descriptions = {
-"biome": ["default biome", 0],
+"faction": ["default faction", 0],
 "tier": ["default tier", 0]
 }
+auto_apply_to_matching_node_properties = false
 meta_properties = {
 "color": Color(0.8, 0.8, 0.8, 1),
 "size": AABB(-8, -8, -8, 8, 8, 8)

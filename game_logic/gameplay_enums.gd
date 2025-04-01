@@ -39,7 +39,8 @@ enum LootTable {
 	CENT,
 	WODC,
 	MEDICAL,
-	SCIENCE
+	SCIENCE,
+	MILITARY
 }
 
 enum EnemyFaction {

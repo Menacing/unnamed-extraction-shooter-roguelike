@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="LootSpawnInformation" load_steps=3 format=3 uid="uid://bu4pt641lkf4b"]
+
+[ext_resource type="Resource" uid="uid://tg1koobfs11b" path="res://game_objects/items/materials/silicate_pile/silicate_pile_inventory_info.tres" id="1_7sufd"]
+[ext_resource type="Script" uid="uid://hkvfi3gp0ftm" path="res://game_objects/items/loot_spawn_information.gd" id="2_woky1"]
+
+[resource]
+script = ExtResource("2_woky1")
+item_information = ExtResource("1_7sufd")
+test_radius = 0.1
+min_stack = 1
+max_stack = 10

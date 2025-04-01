@@ -2,8 +2,8 @@
 class_name AreaLootSpawn
 extends Area3D
 
-@export var biome_index:int
-@export var tier_index:int
+@export var loot_table:GameplayEnums.LootTable
+@export var tier:GameplayEnums.Tier
 @export var min_spawned:int
 @export var max_spawned:int
 @export var chance_active:float = 1.0
@@ -11,10 +11,10 @@ extends Area3D
 @export var func_godot_properties: Dictionary
 
 func _func_godot_apply_properties(entity_properties: Dictionary):
-	if 'biome' in func_godot_properties:
-		biome_index = int(func_godot_properties['biome'])	
+	if 'loot_table' in func_godot_properties:
+		loot_table = int(func_godot_properties['loot_table'])	
 	if 'tier' in func_godot_properties:
-		tier_index = int(func_godot_properties['tier'])
+		tier = int(func_godot_properties['tier'])
 	if 'min_spawned' in func_godot_properties:
 		min_spawned = int(func_godot_properties['min_spawned'])
 	if 'max_spawned' in func_godot_properties:
@@ -32,7 +32,10 @@ func _ready():
 		EventBus.populate_level.connect(_on_populate_level)
 	
 func _on_populate_level():
-	var loot_spawn_mapping:LootSpawnMapping = LootSpawnManager.get_loot_spawn_mapping(biome_index,tier_index)
+	var lsk:LootSpawnKey = LootSpawnKey.new()
+	lsk.loot_table = loot_table
+	lsk.tier = tier
+	var loot_spawn_mapping:LootSpawnMapping = LootSpawnManager.get_loot_spawn_mapping(lsk)
 	
 	randomize()
 	

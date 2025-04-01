@@ -1,15 +1,135 @@
-[gd_resource type="Resource" script_class="EnemySpawnDictionary" load_steps=8 format=3 uid="uid://8477ts0rea5g"]
+[gd_resource type="Resource" script_class="EnemySpawnDictionary" load_steps=44 format=3 uid="uid://8477ts0rea5g"]
 
 [ext_resource type="Script" uid="uid://dhkqvqrxmtugi" path="res://levels/enemy_spawn_tables/enemy_spawn_key.gd" id="1_kdk3a"]
 [ext_resource type="Script" uid="uid://bysvs08bv72xr" path="res://game_objects/enemies/enemy_spawn_mapping.gd" id="2_oacj4"]
-[ext_resource type="Resource" uid="uid://mf8f6y7ne4mx" path="res://levels/enemy_spawn_tables/easi_easy_enemy_spawn_mapping.tres" id="3_0sp2v"]
 [ext_resource type="Script" uid="uid://btdlqkl7trtu2" path="res://game_logic/enemy_spawn_dictionary.gd" id="3_akw5g"]
-[ext_resource type="Resource" uid="uid://ig6xbwadvx0u" path="res://levels/enemy_spawn_tables/easi_medium_enemy_spawn_mapping.tres" id="4_h60x5"]
+[ext_resource type="Resource" uid="uid://mf8f6y7ne4mx" path="res://levels/enemy_spawn_tables/easi_common_enemy_spawn_mapping.tres" id="3_x741i"]
+[ext_resource type="Resource" uid="uid://ig6xbwadvx0u" path="res://levels/enemy_spawn_tables/easi_uncommon_enemy_spawn_mapping.tres" id="4_isjnv"]
+[ext_resource type="Resource" uid="uid://cgwgjk76ey2hy" path="res://levels/enemy_spawn_tables/easi_rare_enemy_spawn_mapping.tres" id="5_3ardx"]
+[ext_resource type="Resource" uid="uid://bo1c520xkihj5" path="res://levels/enemy_spawn_tables/easi_epic_enemy_spawn_mapping.tres" id="6_o3c0l"]
+[ext_resource type="Resource" uid="uid://bylmdo5j1u5tx" path="res://levels/enemy_spawn_tables/easi_unique_enemy_spawn_mapping.tres" id="7_fxc23"]
+[ext_resource type="Resource" uid="uid://ro1xj5q28kf5" path="res://levels/enemy_spawn_tables/cent_common_enemy_spawn_mapping.tres" id="8_0ug47"]
+[ext_resource type="Resource" uid="uid://bg86a40x3t7pu" path="res://levels/enemy_spawn_tables/cent_uncommon_enemy_spawn_mapping.tres" id="9_jyoga"]
+[ext_resource type="Resource" uid="uid://bv0ldb24pgywj" path="res://levels/enemy_spawn_tables/cent_rare_enemy_spawn_mapping.tres" id="10_vrax6"]
+[ext_resource type="Resource" uid="uid://bdgbftc263gtu" path="res://levels/enemy_spawn_tables/cent_epic_enemy_spawn_mapping.tres" id="11_pfc47"]
+[ext_resource type="Resource" uid="uid://b31x7apo13230" path="res://levels/enemy_spawn_tables/cent_unique_enemy_spawn_mapping.tres" id="12_gqxhb"]
+[ext_resource type="Resource" uid="uid://183tptk34hew" path="res://levels/enemy_spawn_tables/neutral_common_enemy_spawn_mapping.tres" id="13_ixr4v"]
+[ext_resource type="Resource" uid="uid://0m2thhx0y2ev" path="res://levels/enemy_spawn_tables/neutral_uncommon_enemy_spawn_mapping.tres" id="14_rcpo0"]
+[ext_resource type="Resource" uid="uid://b0mlirdjjilbh" path="res://levels/enemy_spawn_tables/neutral_rare_enemy_spawn_mapping.tres" id="15_r72hy"]
+[ext_resource type="Resource" uid="uid://b6sk1j11si1tk" path="res://levels/enemy_spawn_tables/neutral_epic_enemy_spawn_mapping.tres" id="16_3ahbe"]
+[ext_resource type="Resource" uid="uid://ds1ok4eqt8och" path="res://levels/enemy_spawn_tables/neutral_unique_enemy_spawn_mapping.tres" id="17_3cuc3"]
+[ext_resource type="Resource" uid="uid://c40f3e0s1qsom" path="res://levels/enemy_spawn_tables/wodc_common_enemy_spawn_mapping.tres" id="18_y681m"]
+[ext_resource type="Resource" uid="uid://buktud4qin2kx" path="res://levels/enemy_spawn_tables/wodc_uncommon_enemy_spawn_mapping.tres" id="19_nl85b"]
+[ext_resource type="Resource" uid="uid://cc4qcasaw4hhn" path="res://levels/enemy_spawn_tables/wodc_rare_enemy_spawn_mapping.tres" id="20_dwbvm"]
+[ext_resource type="Resource" uid="uid://mxtwb8fmkhsx" path="res://levels/enemy_spawn_tables/wodc_epic_enemy_spawn_mapping.tres" id="21_1e1is"]
+[ext_resource type="Resource" uid="uid://c1jsanf5cjihp" path="res://levels/enemy_spawn_tables/wodc_unique_enemy_spawn_mapping.tres" id="22_4fk3k"]
 
-[sub_resource type="Resource" id="Resource_iq8jd"]
+[sub_resource type="Resource" id="Resource_qngtb"]
+script = ExtResource("1_kdk3a")
+faction = 3
+tier = 4
+metadata/_custom_type_script = "uid://dhkqvqrxmtugi"
+
+[sub_resource type="Resource" id="Resource_d5xle"]
+script = ExtResource("1_kdk3a")
+faction = 3
+tier = 3
+metadata/_custom_type_script = "uid://dhkqvqrxmtugi"
+
+[sub_resource type="Resource" id="Resource_sw0ax"]
+script = ExtResource("1_kdk3a")
+faction = 3
+tier = 2
+metadata/_custom_type_script = "uid://dhkqvqrxmtugi"
+
+[sub_resource type="Resource" id="Resource_w7ivw"]
+script = ExtResource("1_kdk3a")
+faction = 3
+tier = 1
+metadata/_custom_type_script = "uid://dhkqvqrxmtugi"
+
+[sub_resource type="Resource" id="Resource_ke0fk"]
+script = ExtResource("1_kdk3a")
+faction = 3
+tier = 0
+metadata/_custom_type_script = "uid://dhkqvqrxmtugi"
+
+[sub_resource type="Resource" id="Resource_8kwle"]
+script = ExtResource("1_kdk3a")
+faction = 0
+tier = 4
+metadata/_custom_type_script = "uid://dhkqvqrxmtugi"
+
+[sub_resource type="Resource" id="Resource_f34g1"]
+script = ExtResource("1_kdk3a")
+faction = 0
+tier = 3
+metadata/_custom_type_script = "uid://dhkqvqrxmtugi"
+
+[sub_resource type="Resource" id="Resource_j8wwo"]
+script = ExtResource("1_kdk3a")
+faction = 0
+tier = 2
+metadata/_custom_type_script = "uid://dhkqvqrxmtugi"
+
+[sub_resource type="Resource" id="Resource_wuqfb"]
+script = ExtResource("1_kdk3a")
+faction = 0
+tier = 1
+metadata/_custom_type_script = "uid://dhkqvqrxmtugi"
+
+[sub_resource type="Resource" id="Resource_k80r2"]
+script = ExtResource("1_kdk3a")
+faction = 0
+tier = 0
+metadata/_custom_type_script = "uid://dhkqvqrxmtugi"
+
+[sub_resource type="Resource" id="Resource_vljk0"]
+script = ExtResource("1_kdk3a")
+faction = 2
+tier = 4
+metadata/_custom_type_script = "uid://dhkqvqrxmtugi"
+
+[sub_resource type="Resource" id="Resource_f7kye"]
+script = ExtResource("1_kdk3a")
+faction = 2
+tier = 3
+metadata/_custom_type_script = "uid://dhkqvqrxmtugi"
+
+[sub_resource type="Resource" id="Resource_ggodq"]
+script = ExtResource("1_kdk3a")
+faction = 2
+tier = 2
+metadata/_custom_type_script = "uid://dhkqvqrxmtugi"
+
+[sub_resource type="Resource" id="Resource_fl60i"]
+script = ExtResource("1_kdk3a")
+faction = 2
+tier = 1
+metadata/_custom_type_script = "uid://dhkqvqrxmtugi"
+
+[sub_resource type="Resource" id="Resource_00xni"]
+script = ExtResource("1_kdk3a")
+faction = 2
+tier = 0
+metadata/_custom_type_script = "uid://dhkqvqrxmtugi"
+
+[sub_resource type="Resource" id="Resource_rknb3"]
 script = ExtResource("1_kdk3a")
 faction = 1
-tier = 0
+tier = 4
+metadata/_custom_type_script = "uid://dhkqvqrxmtugi"
+
+[sub_resource type="Resource" id="Resource_0b2ql"]
+script = ExtResource("1_kdk3a")
+faction = 1
+tier = 3
+metadata/_custom_type_script = "uid://dhkqvqrxmtugi"
+
+[sub_resource type="Resource" id="Resource_p7myo"]
+script = ExtResource("1_kdk3a")
+faction = 1
+tier = 2
 metadata/_custom_type_script = "uid://dhkqvqrxmtugi"
 
 [sub_resource type="Resource" id="Resource_2kel5"]
@@ -18,10 +138,34 @@ faction = 1
 tier = 1
 metadata/_custom_type_script = "uid://dhkqvqrxmtugi"
 
+[sub_resource type="Resource" id="Resource_iq8jd"]
+script = ExtResource("1_kdk3a")
+faction = 1
+tier = 0
+metadata/_custom_type_script = "uid://dhkqvqrxmtugi"
+
 [resource]
 script = ExtResource("3_akw5g")
 enemy_spawn_dictionary = Dictionary[ExtResource("1_kdk3a"), ExtResource("2_oacj4")]({
-SubResource("Resource_iq8jd"): ExtResource("3_0sp2v"),
-SubResource("Resource_2kel5"): ExtResource("4_h60x5")
+SubResource("Resource_iq8jd"): ExtResource("3_x741i"),
+SubResource("Resource_2kel5"): ExtResource("4_isjnv"),
+SubResource("Resource_p7myo"): ExtResource("5_3ardx"),
+SubResource("Resource_0b2ql"): ExtResource("6_o3c0l"),
+SubResource("Resource_rknb3"): ExtResource("7_fxc23"),
+SubResource("Resource_00xni"): ExtResource("8_0ug47"),
+SubResource("Resource_fl60i"): ExtResource("9_jyoga"),
+SubResource("Resource_ggodq"): ExtResource("10_vrax6"),
+SubResource("Resource_f7kye"): ExtResource("11_pfc47"),
+SubResource("Resource_vljk0"): ExtResource("12_gqxhb"),
+SubResource("Resource_k80r2"): ExtResource("13_ixr4v"),
+SubResource("Resource_wuqfb"): ExtResource("14_rcpo0"),
+SubResource("Resource_j8wwo"): ExtResource("15_r72hy"),
+SubResource("Resource_f34g1"): ExtResource("16_3ahbe"),
+SubResource("Resource_8kwle"): ExtResource("17_3cuc3"),
+SubResource("Resource_ke0fk"): ExtResource("18_y681m"),
+SubResource("Resource_w7ivw"): ExtResource("19_nl85b"),
+SubResource("Resource_sw0ax"): ExtResource("20_dwbvm"),
+SubResource("Resource_d5xle"): ExtResource("21_1e1is"),
+SubResource("Resource_qngtb"): ExtResource("22_4fk3k")
 })
 metadata/_custom_type_script = "uid://btdlqkl7trtu2"
