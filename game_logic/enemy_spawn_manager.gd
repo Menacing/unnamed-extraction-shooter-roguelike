@@ -22,3 +22,22 @@ func get_difficulty_enemy_factor() -> float:
 					return 1.5
 		GameplayEnums.GameDifficulty.HARD:
 					return 2.0
+
+func get_run_enemy_tier_bonus() -> int:
+	var current_extracts:float = float(HideoutManager.current_map_number)
+	var percent_complete:float = 0.0
+	match HideoutManager.selected_run_length:
+			GameplayEnums.GameLength.SHORT:
+				percent_complete = current_extracts/3.0
+			GameplayEnums.GameLength.MEDIUM:
+				percent_complete = current_extracts/5.0
+			GameplayEnums.GameLength.LONG:
+				percent_complete = current_extracts/7.0
+			_:
+				return 0
+	if percent_complete >= 0.65:
+		return 2
+	elif percent_complete >= 0.32:
+		return 1
+	else:
+		return 0
