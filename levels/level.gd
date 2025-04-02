@@ -5,6 +5,9 @@ var player_scene:PackedScene = preload("res://game_objects/player/player.tscn")
 
 @export var is_hideout:bool = false
 
+@export var nodes_to_remove_medium:Array[Node]
+@export var nodes_to_remove_hard:Array[Node]
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	EventBus.populate_level.connect(_on_populate_level)
@@ -13,6 +16,13 @@ func _ready():
 		HideoutManager.in_hideout = true
 	else:
 		HideoutManager.in_hideout = false
+		
+	if HideoutManager.selected_difficulty == GameplayEnums.GameDifficulty.MEDIUM:
+		for node in nodes_to_remove_medium:
+			node.queue_free()
+	elif HideoutManager.selected_difficulty == GameplayEnums.GameDifficulty.HARD:
+		for node in nodes_to_remove_hard:
+			node.queue_free()
 
 func _on_game_saving(save_file:SaveFile):
 	if save_file:

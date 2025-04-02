@@ -1,4 +1,4 @@
-[gd_scene load_steps=379 format=4 uid="uid://d2txigapsdl18"]
+[gd_scene load_steps=384 format=4 uid="uid://d2txigapsdl18"]
 
 [ext_resource type="Script" uid="uid://c7t5re1e03cfg" path="res://levels/level.gd" id="1_d1tug"]
 [ext_resource type="CameraAttributesPractical" uid="uid://jafbi2bjurvn" path="res://test/debug/vibe_check_camera.tres" id="2_7vsv1"]
@@ -37,6 +37,10 @@
 [ext_resource type="AudioStream" uid="uid://3vp28og4aea" path="res://levels/ambient_sounds/underground_lab_ambience_003.ogg" id="33_oli46"]
 [ext_resource type="PackedScene" uid="uid://c4y0iwlv3i13p" path="res://game_objects/props/stash/stash.tscn" id="38_1ckb4"]
 [ext_resource type="Script" uid="uid://bg6k8ta1d5u7s" path="res://levels/launch_mission_area.gd" id="41_1c2xw"]
+[ext_resource type="PackedScene" uid="uid://cnvoiecyb3sjn" path="res://game_objects/items/weapons/lpc_pistols/klingeln_80/klingeln_80.tscn" id="41_3x05d"]
+[ext_resource type="Resource" uid="uid://dcejbnpeogafm" path="res://components/ammo_component/ammo_types/light_pistol_cartridge/light_pistol_cartridge.tres" id="42_yhxea"]
+[ext_resource type="Script" uid="uid://b2newdlaaj70t" path="res://game_objects/items/weapons/gun_stats.gd" id="43_af1xf"]
+[ext_resource type="PackedScene" uid="uid://c58b7dwqutp75" path="res://game_objects/items/ammo/lpc/lpc_box_fmj.tscn" id="44_af1xf"]
 [ext_resource type="PackedScene" uid="uid://5ymni756p0xu" path="res://game_objects/props/printers/Printer.tscn" id="44_yhxea"]
 [ext_resource type="PackedScene" uid="uid://d3qu8ewdc1ye3" path="res://game_objects/props/lights/sodium_light/sodium_light.tscn" id="46_oudwg"]
 [ext_resource type="PackedScene" uid="uid://dlmiqubqcqf0y" path="res://game_objects/props/lights/tube_light/tube_light.tscn" id="47_jg2x3"]
@@ -1869,11 +1873,30 @@ size = Vector3(4.91016, 3.78424, 11.2449)
 [sub_resource type="BoxShape3D" id="BoxShape3D_7eexi"]
 size = Vector3(1.63269, 1.27386, 2.85742)
 
-[node name="Hideout" type="WorldEnvironment"]
+[sub_resource type="Resource" id="Resource_naf82"]
+resource_local_to_scene = true
+script = ExtResource("43_af1xf")
+weapon_category_name = "LPC Pistol"
+magazine_size = 17
+rpm = 1400
+base_recoil = Vector2(0, 0.01)
+recoil_variability = Vector2(0.02, 0.01)
+fire_modes = ["semi"]
+ads_accel = 10.0
+ads_fov = 50.0
+moa = 7.0
+turn_speed = 25.0
+ammo_type = ExtResource("42_yhxea")
+reload_time_Sec = 1.5
+reload_thresholds = Array[float]([1.0])
+
+[node name="Hideout" type="WorldEnvironment" node_paths=PackedStringArray("nodes_to_remove_medium", "nodes_to_remove_hard")]
 environment = SubResource("Environment_sspln")
 camera_attributes = ExtResource("2_7vsv1")
 script = ExtResource("1_d1tug")
 is_hideout = true
+nodes_to_remove_medium = [NodePath("LpcBoxFmj2")]
+nodes_to_remove_hard = [NodePath("Klingeln80"), NodePath("LpcBoxFmj"), NodePath("LpcBoxFmj2")]
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.0244322, -0.315555, 0.948593, 0, 0.948876, 0.315649, -0.999701, 0.00771199, -0.0231831, 0, 0, 0)
@@ -3694,3 +3717,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.29212, 1.40828, 0.00205912)
 
 [node name="OmniLight3D4" type="OmniLight3D" parent="Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.98415, 1.40828, 0.00205912)
+
+[node name="Klingeln80" parent="." instance=ExtResource("41_3x05d")]
+transform = Transform3D(-3.30639e-08, -0.756413, -0.654094, 1, -4.37114e-08, 0, -2.85914e-08, -0.654094, 0.756413, 15.4313, 0.811986, -2.45603)
+_gun_stats = SubResource("Resource_naf82")
+
+[node name="LpcBoxFmj" parent="." instance=ExtResource("44_af1xf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.7268, 0.83, -2.51582)
+
+[node name="LpcBoxFmj2" parent="." instance=ExtResource("44_af1xf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.7131, 0.83, -2.3156)

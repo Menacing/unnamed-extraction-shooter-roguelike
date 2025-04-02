@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="EnemySpawnMapping" load_steps=9 format=3 uid="uid://bv0ldb24pgywj"]
+
+[ext_resource type="Script" uid="uid://bysvs08bv72xr" path="res://game_objects/enemies/enemy_spawn_mapping.gd" id="1_aj07h"]
+[ext_resource type="Script" uid="uid://b1vpwdv5tb7dx" path="res://game_objects/enemies/enemy_spawn_weight.gd" id="2_mtaxu"]
+[ext_resource type="Resource" uid="uid://ubvrd4an5bl1" path="res://game_objects/enemies/robots/combat_roomba_spawn_information.tres" id="3_gy7vi"]
+[ext_resource type="PackedScene" uid="uid://bv1jhh0d8fn5m" path="res://game_objects/enemies/unendliche/unendliche.tscn" id="4_gmgj3"]
+[ext_resource type="Script" uid="uid://doe2dp4d5p5md" path="res://game_objects/enemies/enemy_spawn_information.gd" id="5_x7evd"]
+
+[sub_resource type="Resource" id="Resource_62lkn"]
+script = ExtResource("2_mtaxu")
+weight = 2
+enemy = ExtResource("3_gy7vi")
+
+[sub_resource type="Resource" id="Resource_d2xhi"]
+script = ExtResource("5_x7evd")
+scene = ExtResource("4_gmgj3")
+test_radius = 1.0
+
+[sub_resource type="Resource" id="Resource_u4bqc"]
+script = ExtResource("2_mtaxu")
+weight = 1
+enemy = SubResource("Resource_d2xhi")
+
+[resource]
+script = ExtResource("1_aj07h")
+spawn_weights = Array[ExtResource("2_mtaxu")]([SubResource("Resource_62lkn"), SubResource("Resource_u4bqc")])

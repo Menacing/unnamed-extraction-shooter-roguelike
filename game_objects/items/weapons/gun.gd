@@ -126,7 +126,7 @@ func picked_up(actor_id:int = 0) -> void:
 		firer = actor_object
 
 func canFire() -> bool:
-	if current_magazine_size > 0 and !reloading and fire_timer.time_left == 0:
+	if current_magazine_size > 0 and !reloading and fire_timer.time_left == 0 and !HideoutManager.in_hideout:
 		return true
 	else:
 		return false

@@ -1,8 +1,8 @@
 extends Node3D
 class_name LootFiestaComponent
 
-@export var tier:LootSpawnManager.TIER
-@export var biome:LootSpawnManager.BIOME
+@export var tier:GameplayEnums.Tier
+@export var loot_table:GameplayEnums.LootTable
 @export var distribution:GameplayEnums.StackRandomMethod
 @export var min_to_spawn:int = 0
 @export var max_to_spawn:int = 1
@@ -11,7 +11,9 @@ class_name LootFiestaComponent
 
 func fiesta():
 	#Get mapping
-	var loot_spawn_mapping:LootSpawnMapping = LootSpawnManager.get_loot_spawn_mapping(biome,tier)
+	var lsk:LootSpawnKey = LootSpawnKey.new()
+	lsk.loot_table = loot_table
+	lsk.tier = tier
 	
 	#Generate number to spawn
 	var number_to_spawn:int
@@ -21,7 +23,7 @@ func fiesta():
 		number_to_spawn = Helpers.get_normalized_random_stack_count(min_to_spawn, mean_to_spawn, max_to_spawn)
 	
 	for i in number_to_spawn:
-		var spawn_info:LootSpawnInformation = LootSpawnManager.get_spawn_info(biome, tier)
+		var spawn_info:LootSpawnInformation = LootSpawnManager.get_spawn_info(lsk)
 		var item_info:ItemInformation = spawn_info.item_information
 		var slot_data:SlotData = SlotData.instantiate_from_item_information(item_info)
 		var scene:Item3D = Item3D.instantiate_from_slot_data(slot_data)

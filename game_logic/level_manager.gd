@@ -2,7 +2,7 @@ extends Node
 
 var level_infos:Array[LevelInformation] = []
 var current_shuffle_bag:Array[LevelInformation] = []
-var resource_group:ResourceGroup = load("res://levels/biomes/map_information_resource_group.tres")
+var resource_group:ResourceGroup = load("res://levels/maps/map_information_resource_group.tres")
 
 var current_level:Node
 

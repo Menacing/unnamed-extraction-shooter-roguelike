@@ -254,3 +254,9 @@ func get_textures_from_mesh(mesh:MeshInstance3D) -> Array[Texture2D]:
 
 func seconds_since_ms_timestamp(ms_ticks:int) -> float:
 	return (Time.get_ticks_msec() - ms_ticks)/1000.0
+
+func clamp_int_to_enum(value:int, enumeration:Dictionary) -> int:
+	var enum_values = enumeration.values()
+	var enum_max = enum_values.max()
+	var enum_min = enum_values.min()
+	return clampi(value, enum_min, enum_max)

@@ -1,0 +1,64 @@
+[gd_resource type="Resource" script_class="LootSpawnMapping" load_steps=19 format=3 uid="uid://cpkios25eab1h"]
+
+[ext_resource type="Script" uid="uid://scensnhtcuvo" path="res://game_objects/items/loot_spawn_mapping.gd" id="1_qeyp2"]
+[ext_resource type="Script" uid="uid://dqpkphb5p5d6r" path="res://game_objects/items/loot_spawn_weight.gd" id="2_u3s3j"]
+[ext_resource type="Resource" uid="uid://8dt1ajyi4jfi" path="res://game_objects/items/ammo/hic/hic_box_fmj_spawn_info.tres" id="3_3wcw8"]
+[ext_resource type="Resource" uid="uid://dfi5jdd3s8pcy" path="res://game_objects/items/ammo/hic/hic_box_ap_spawn_info.tres" id="4_irn4v"]
+[ext_resource type="Resource" uid="uid://drvqntpkse6fl" path="res://game_objects/items/ammo/hic/hic_box_hp_spawn_info.tres" id="5_wo74y"]
+[ext_resource type="Resource" uid="uid://cva5p7x1si3qb" path="res://game_objects/items/armor/light/light_armor_1_spawn_information.tres" id="6_l7vmo"]
+[ext_resource type="Resource" uid="uid://cbmk0nj8v80dn" path="res://game_objects/items/weapons/hic_rifles/pm_52/pm_52_spawn_info.tres" id="7_x1vhu"]
+[ext_resource type="Resource" uid="uid://c4jj0w1ek1t0y" path="res://game_objects/items/weapons/hic_rifles/pm_98/pm_98_spawn_info.tres" id="8_wb87d"]
+[ext_resource type="Resource" uid="uid://ivxl6gsd3xep" path="res://game_objects/items/materials/scrap_metal/scrap_metal_small_spawn_info.tres" id="9_wxby6"]
+[ext_resource type="Resource" uid="uid://cs285udgvi4ll" path="res://game_objects/items/materials/scrap_metal_wheel/scrap_metal_wheel_medium_spawn_info.tres" id="10_fvoay"]
+
+[sub_resource type="Resource" id="Resource_xd8uu"]
+script = ExtResource("2_u3s3j")
+weight = 10
+loot = ExtResource("3_3wcw8")
+metadata/_custom_type_script = "uid://dqpkphb5p5d6r"
+
+[sub_resource type="Resource" id="Resource_ukp7c"]
+script = ExtResource("2_u3s3j")
+weight = 2
+loot = ExtResource("4_irn4v")
+metadata/_custom_type_script = "uid://dqpkphb5p5d6r"
+
+[sub_resource type="Resource" id="Resource_s65xb"]
+script = ExtResource("2_u3s3j")
+weight = 2
+loot = ExtResource("5_wo74y")
+metadata/_custom_type_script = "uid://dqpkphb5p5d6r"
+
+[sub_resource type="Resource" id="Resource_67puv"]
+script = ExtResource("2_u3s3j")
+weight = 2
+loot = ExtResource("6_l7vmo")
+metadata/_custom_type_script = "uid://dqpkphb5p5d6r"
+
+[sub_resource type="Resource" id="Resource_0vbat"]
+script = ExtResource("2_u3s3j")
+weight = 3
+loot = ExtResource("7_x1vhu")
+metadata/_custom_type_script = "uid://dqpkphb5p5d6r"
+
+[sub_resource type="Resource" id="Resource_k58xg"]
+script = ExtResource("2_u3s3j")
+weight = 1
+loot = ExtResource("8_wb87d")
+metadata/_custom_type_script = "uid://dqpkphb5p5d6r"
+
+[sub_resource type="Resource" id="Resource_od5lv"]
+script = ExtResource("2_u3s3j")
+weight = 5
+loot = ExtResource("9_wxby6")
+metadata/_custom_type_script = "uid://dqpkphb5p5d6r"
+
+[sub_resource type="Resource" id="Resource_e166r"]
+script = ExtResource("2_u3s3j")
+weight = 2
+loot = ExtResource("10_fvoay")
+metadata/_custom_type_script = "uid://dqpkphb5p5d6r"
+
+[resource]
+script = ExtResource("1_qeyp2")
+spawn_weights = Array[ExtResource("2_u3s3j")]([SubResource("Resource_xd8uu"), SubResource("Resource_ukp7c"), SubResource("Resource_s65xb"), SubResource("Resource_67puv"), SubResource("Resource_0vbat"), SubResource("Resource_k58xg"), SubResource("Resource_od5lv"), SubResource("Resource_e166r")])

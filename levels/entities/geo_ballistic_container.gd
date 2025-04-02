@@ -3,8 +3,8 @@ class_name GeoBallisticContainer
 extends GeoBallisticSolid
 
 @onready var item_highlight_m:ShaderMaterial = load("res://themes/item_highlighter_m.tres")
-@export var biome_index:int
-@export var tier_index:int
+@export var loot_table:GameplayEnums.LootTable
+@export var tier:GameplayEnums.Tier
 @export var min_spawned:int
 @export var max_spawned:int
 @export var container_size:int
@@ -21,10 +21,10 @@ func _func_godot_apply_properties(entity_properties: Dictionary):
 	super(entity_properties)
 	if 'container_size' in func_godot_properties:
 		container_size = int(func_godot_properties['container_size'])
-	if 'biome' in func_godot_properties:
-		biome_index = int(func_godot_properties['biome'])	
+	if 'loot_table' in func_godot_properties:
+		loot_table = int(func_godot_properties['loot_table'])	
 	if 'tier' in func_godot_properties:
-		tier_index = int(func_godot_properties['tier'])
+		tier = int(func_godot_properties['tier'])
 	if 'min_spawned' in func_godot_properties:
 		min_spawned = int(func_godot_properties['min_spawned'])
 	if 'max_spawned' in func_godot_properties:
@@ -62,15 +62,17 @@ func _on_load_game(save_data:LevelEntitySaveData):
 	inventory_data = save_data.additional_data["inventory_data"]
 
 func _on_populate_level():
-	
-	var loot_spawn_mapping:LootSpawnMapping = LootSpawnManager.get_loot_spawn_mapping(biome_index,tier_index)
+	var lsk:LootSpawnKey = LootSpawnKey.new()
+	lsk.loot_table = loot_table
+	lsk.tier = Helpers.clamp_int_to_enum(tier + LootSpawnManager.get_run_loot_tier_bonus(), GameplayEnums.Tier)
+	var loot_spawn_mapping:LootSpawnMapping = LootSpawnManager.get_loot_spawn_mapping(lsk)
 	
 	randomize()
 	#var active_roll:float = randf()
 	#if active_roll > chance_active:
 		#return
 	
-	var number_to_spawn = randi_range(min_spawned,max_spawned)
+	var number_to_spawn = int(randi_range(min_spawned,max_spawned) * LootSpawnManager.get_difficulty_loot_factor())
 	var aabb = Helpers.get_aabb_of_node(self)
 	var x_size = aabb.size.x
 	var z_size = aabb.size.z

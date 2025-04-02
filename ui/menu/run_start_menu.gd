@@ -12,6 +12,30 @@ extends ColorRect
 @onready var medium_d_button:Button = %MediumDifficultyButton
 @onready var hard_button:Button = %HardButton
 
+@onready var length_description_label: Label = %LengthDescriptionLabel
+@onready var difficulty_description_label: Label = %DifficultyDescriptionLabel
+
+var short_description:String = "-3 Extracts
+-15-30 minutes"
+
+var medium_description:String = "-5 Extracts
+-30-45 minutes"
+
+var long_description:String = "-7 Extracts
+-45-60 minutes"
+
+var easy_description:String = "-Starting Items
+-Normal Loot
+-Normal Enemies"
+
+var medium_diff_description:String = "-Fewer Starting Items
+-Less Loot
+-More Enemies"
+
+var hard_description:String = "-No Starting Items
+-Least Loot
+-Most Enemies"
+
 func is_length_selected() -> bool:
 	var sb = short_button.button_pressed
 	var mb = medium_l_button.button_pressed
@@ -32,6 +56,7 @@ func _on_short_button_pressed() -> void:
 	long_button.set_pressed_no_signal(false)
 		
 	HideoutManager.selected_run_length = GameplayEnums.GameLength.SHORT
+	length_description_label.text = short_description
 
 
 func _on_medium_length_button_pressed() -> void:
@@ -42,6 +67,7 @@ func _on_medium_length_button_pressed() -> void:
 	long_button.set_pressed_no_signal(false)
 	
 	HideoutManager.selected_run_length = GameplayEnums.GameLength.MEDIUM
+	length_description_label.text = medium_description
 
 
 func _on_long_button_pressed() -> void:
@@ -52,6 +78,7 @@ func _on_long_button_pressed() -> void:
 	medium_l_button.set_pressed_no_signal(false)
 	
 	HideoutManager.selected_run_length = GameplayEnums.GameLength.LONG
+	length_description_label.text = long_description
 
 
 func _on_easy_button_pressed() -> void:
@@ -62,7 +89,7 @@ func _on_easy_button_pressed() -> void:
 	hard_button.set_pressed_no_signal(false)
 
 	HideoutManager.selected_difficulty = GameplayEnums.GameDifficulty.EASY
-
+	difficulty_description_label.text = easy_description
 
 func _on_medium_difficulty_button_pressed() -> void:
 	if is_length_selected() and is_difficulty_selected():
@@ -72,6 +99,7 @@ func _on_medium_difficulty_button_pressed() -> void:
 	hard_button.set_pressed_no_signal(false)
 	
 	HideoutManager.selected_difficulty = GameplayEnums.GameDifficulty.MEDIUM
+	difficulty_description_label.text = medium_diff_description
 
 
 func _on_hard_button_pressed() -> void:
@@ -82,6 +110,7 @@ func _on_hard_button_pressed() -> void:
 	medium_d_button.set_pressed_no_signal(false)
 	
 	HideoutManager.selected_difficulty = GameplayEnums.GameDifficulty.HARD
+	difficulty_description_label.text = hard_description
 
 
 func _on_back_button_pressed() -> void:

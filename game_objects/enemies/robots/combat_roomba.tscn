@@ -253,9 +253,9 @@ animate_physical_bones = false
 active = false
 
 [node name="Physical Bone Bone" type="PhysicalBone3D" parent="combat-roomba/Armature/Skeleton3D/PhysicalBoneSimulator3D"]
-transform = Transform3D(2.8455, 7.42674e-05, 0, 0, 0, -2.8455, -7.42674e-05, 2.8455, 0, 0, 0.222436, 0)
+transform = Transform3D(2.8455, 7.42676e-05, 0, 0, 0, -2.8455, -7.42676e-05, 2.8455, 0, 0, 0.222436, 0)
 joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.078171)
-body_offset = Transform3D(2.8455, 7.42674e-05, 0, 0, 0, -2.8455, -7.42674e-05, 2.8455, 0, 0, 0.222436, 0)
+body_offset = Transform3D(2.8455, 7.42676e-05, 0, 0, 0, -2.8455, -7.42676e-05, 2.8455, 0, 0, 0.222436, 0)
 bone_name = "Bone"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="combat-roomba/Armature/Skeleton3D/PhysicalBoneSimulator3D/Physical Bone Bone"]
@@ -541,6 +541,8 @@ delay_in_seconds = "0.0"
 script = ExtResource("18_0cxsc")
 
 [connection signal="body_shape_entered" from="combat-roomba/Armature/Skeleton3D/PhysicalBoneSimulator3D/Head/SenseComponent/BulletDetectRadius" to="combat-roomba/Armature/Skeleton3D/PhysicalBoneSimulator3D/Head/SenseComponent" method="_on_bullet_detect_radius_body_shape_entered"]
+[connection signal="hit_occured" from="HurtBox/Area3D/DamageComponent" to="HealthComponent" method="_on_hit_occured"]
+[connection signal="hit_occured" from="HurtBox/Area3D/DamageComponent" to="DamageEffectComponent" method="create_effect"]
 [connection signal="location_destroyed" from="HealthComponent" to="." method="_on_health_component_location_destroyed"]
 [connection signal="state_entered" from="StateChart/MonsterState/Idle" to="." method="_on_idle_state_entered"]
 [connection signal="state_entered" from="StateChart/MonsterState/Idle/Patroling" to="." method="_on_patroling_state_entered"]
