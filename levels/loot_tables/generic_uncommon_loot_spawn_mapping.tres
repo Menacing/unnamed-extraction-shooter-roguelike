@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="LootSpawnMapping" load_steps=11 format=3 uid="uid://15g3sh01ghlw"]
+[gd_resource type="Resource" script_class="LootSpawnMapping" load_steps=15 format=3 uid="uid://15g3sh01ghlw"]
 
 [ext_resource type="Script" uid="uid://scensnhtcuvo" path="res://game_objects/items/loot_spawn_mapping.gd" id="1_xiay2"]
 [ext_resource type="Script" uid="uid://dqpkphb5p5d6r" path="res://game_objects/items/loot_spawn_weight.gd" id="2_ppx6c"]
@@ -6,6 +6,8 @@
 [ext_resource type="Resource" uid="uid://ivxl6gsd3xep" path="res://game_objects/items/materials/scrap_metal/scrap_metal_small_spawn_info.tres" id="4_if1ss"]
 [ext_resource type="Resource" uid="uid://cs285udgvi4ll" path="res://game_objects/items/materials/scrap_metal_wheel/scrap_metal_wheel_medium_spawn_info.tres" id="5_bgmfw"]
 [ext_resource type="Resource" uid="uid://c7t640mi7m7ex" path="res://game_objects/items/weapons/lpc_pistols/klingeln_80/klingeln_80_spawn_info.tres" id="6_mrdpi"]
+[ext_resource type="Resource" uid="uid://cmqx4vt3dkmu2" path="res://game_objects/items/weapons/fic_rifles/cdr/cdr_spawn_info.tres" id="7_2foj7"]
+[ext_resource type="Resource" uid="uid://bib8ie33yhndk" path="res://game_objects/items/ammo/fic/fic_box_fmj_spawn_info.tres" id="8_if1ss"]
 
 [sub_resource type="Resource" id="Resource_yvmaf"]
 script = ExtResource("2_ppx6c")
@@ -31,7 +33,19 @@ weight = 1
 loot = ExtResource("6_mrdpi")
 metadata/_custom_type_script = "uid://dqpkphb5p5d6r"
 
+[sub_resource type="Resource" id="Resource_bgmfw"]
+script = ExtResource("2_ppx6c")
+weight = 1
+loot = ExtResource("7_2foj7")
+metadata/_custom_type_script = "uid://dqpkphb5p5d6r"
+
+[sub_resource type="Resource" id="Resource_mrdpi"]
+script = ExtResource("2_ppx6c")
+weight = 2
+loot = ExtResource("8_if1ss")
+metadata/_custom_type_script = "uid://dqpkphb5p5d6r"
+
 [resource]
 script = ExtResource("1_xiay2")
-spawn_weights = Array[ExtResource("2_ppx6c")]([SubResource("Resource_yvmaf"), SubResource("Resource_wf267"), SubResource("Resource_i8lx3"), SubResource("Resource_3tbyn")])
+spawn_weights = Array[ExtResource("2_ppx6c")]([SubResource("Resource_yvmaf"), SubResource("Resource_wf267"), SubResource("Resource_i8lx3"), SubResource("Resource_3tbyn"), SubResource("Resource_bgmfw"), SubResource("Resource_mrdpi")])
 metadata/_custom_type_script = "uid://scensnhtcuvo"
