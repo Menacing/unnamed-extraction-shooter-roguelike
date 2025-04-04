@@ -1,8 +1,10 @@
-[gd_resource type="Resource" script_class="ItemInformation" load_steps=16 format=3 uid="uid://boqgm4gxsicup"]
+[gd_resource type="Resource" script_class="ItemInformation" load_steps=18 format=3 uid="uid://boqgm4gxsicup"]
 
 [ext_resource type="Script" uid="uid://dw75el3q24f1f" path="res://ui/inventory/item_context_item.gd" id="1_ww381"]
 [ext_resource type="Resource" uid="uid://o6tesi76nbth" path="res://ui/inventory/drop_item_context_item.tres" id="2_6gupb"]
 [ext_resource type="PackedScene" uid="uid://0hy4cl1x7qwx" path="res://ui/inventory/detail_scenes/gun_detail_popup.tscn" id="3_tgwd5"]
+[ext_resource type="Texture2D" uid="uid://or20olc1mc5j" path="res://game_objects/items/weapons/fic_rifles/cdr/cdr_icon.png" id="4_1jcb3"]
+[ext_resource type="Texture2D" uid="uid://1kn5qhavx7jq" path="res://game_objects/items/weapons/fic_rifles/cdr/cdr_icon_r.png" id="5_bg74d"]
 [ext_resource type="Script" uid="uid://dwpbdijb5aofu" path="res://resource_access/equipment_slot_data.gd" id="6_ruc23"]
 [ext_resource type="Resource" uid="uid://d2e8vacodeiau" path="res://game_objects/items/weapons/foregrips_equipment_slot.tres" id="7_shbr1"]
 [ext_resource type="Resource" uid="uid://cqxsusjebsqrp" path="res://game_objects/items/weapons/grips_equipment_slot.tres" id="8_ca85e"]
@@ -31,6 +33,8 @@ show_name = true
 display_name = "Cazador de Ratas"
 display_short_name = "CDR"
 item_type = 0
+icon = ExtResource("4_1jcb3")
+icon_r = ExtResource("5_bg74d")
 model_internal_inventory = SubResource("Resource_umu4s")
 detail_scene = ExtResource("3_tgwd5")
 context_menu_items = Array[ExtResource("1_ww381")]([ExtResource("2_6gupb"), SubResource("Resource_6llv8")])
