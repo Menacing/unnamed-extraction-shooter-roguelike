@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=4 uid="uid://5ymni756p0xu"]
+[gd_scene load_steps=9 format=4 uid="uid://5ymni756p0xu"]
 
 [ext_resource type="Script" uid="uid://c3dxta5mb3q8h" path="res://game_objects/props/printers/printer.gd" id="1_rdc1u"]
 [ext_resource type="PackedScene" uid="uid://24iusoho57t2" path="res://game_objects/props/printers/small_printer.blend" id="1_uv6pp"]
 [ext_resource type="Material" uid="uid://tid6vrqw40j3" path="res://levels/textures/metal/metal_2.tres" id="2_r46jy"]
+[ext_resource type="PackedScene" uid="uid://dbec5o7bp80s1" path="res://game_objects/props/printers/medium_printer.gltf" id="4_rdc1u"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_r46jy"]
 size = Vector3(0.717285, 0.728088, 0.63623)
@@ -24,6 +25,9 @@ _surfaces = [{
 "vertex_count": 120,
 "vertex_data": PackedByteArray("zcxMv1O4nj7NzEy/zcxMv0bh+r7NzEy/MzMzv0bh+r7NzEy/MzMzv1O4nj7NzEy/zcxMv1O4nj7NzEy/zcxMv1O4nj4zMzO/zcxMv0bh+r4zMzO/zcxMv0bh+r7NzEy/MzMzv0bh+r7NzEy/zcxMv0bh+r7NzEy/zcxMv0bh+r4zMzO/MzMzv0bh+r4zMzO/MzMzv1O4nj7NzEy/MzMzv1O4nj4zMzO/zcxMv1O4nj4zMzO/zcxMv1O4nj7NzEy/MzMzv1O4nj7NzEy/MzMzv0bh+r7NzEy/MzMzv0bh+r4zMzO/MzMzv1O4nj4zMzO/zcxMv1O4nj4zMzO/MzMzv1O4nj4zMzO/MzMzv0bh+r4zMzO/zcxMv0bh+r4zMzO/MzMzP1O4nj7NzEy/MzMzP0bh+r7NzEy/zcxMP0bh+r7NzEy/zcxMP1O4nj7NzEy/MzMzP1O4nj7NzEy/MzMzP1O4nj4zMzO/MzMzP0bh+r4zMzO/MzMzP0bh+r7NzEy/zcxMP0bh+r7NzEy/MzMzP0bh+r7NzEy/MzMzP0bh+r4zMzO/zcxMP0bh+r4zMzO/zcxMP1O4nj7NzEy/zcxMP1O4nj4zMzO/MzMzP1O4nj4zMzO/MzMzP1O4nj7NzEy/zcxMP1O4nj7NzEy/zcxMP0bh+r7NzEy/zcxMP0bh+r4zMzO/zcxMP1O4nj4zMzO/MzMzP1O4nj4zMzO/zcxMP1O4nj4zMzO/zcxMP0bh+r4zMzO/MzMzP0bh+r4zMzO/zcxMv4br0T7NzEy/zcxMv1O4nj7NzEy/zcxMP1O4nj7NzEy/zcxMP4br0T7NzEy/zcxMv4br0T7NzEy/zcxMv4br0T7NzEw/zcxMv1O4nj7NzEw/zcxMv1O4nj7NzEy/zcxMP1O4nj7NzEy/zcxMv1O4nj7NzEy/zcxMv1O4nj7NzEw/zcxMP1O4nj7NzEw/zcxMP4br0T7NzEy/zcxMP4br0T7NzEw/zcxMv4br0T7NzEw/zcxMv4br0T7NzEy/zcxMP4br0T7NzEy/zcxMP1O4nj7NzEy/zcxMP1O4nj7NzEw/zcxMP4br0T7NzEw/zcxMv4br0T7NzEw/zcxMP4br0T7NzEw/zcxMP1O4nj7NzEw/zcxMv1O4nj7NzEw/zcxMv1O4nj4zMzM/zcxMv0bh+r4zMzM/MzMzv0bh+r4zMzM/MzMzv1O4nj4zMzM/zcxMv1O4nj4zMzM/zcxMv1O4nj7NzEw/zcxMv0bh+r7NzEw/zcxMv0bh+r4zMzM/MzMzv0bh+r4zMzM/zcxMv0bh+r4zMzM/zcxMv0bh+r7NzEw/MzMzv0bh+r7NzEw/MzMzv1O4nj4zMzM/MzMzv1O4nj7NzEw/zcxMv1O4nj7NzEw/zcxMv1O4nj4zMzM/MzMzv1O4nj4zMzM/MzMzv0bh+r4zMzM/MzMzv0bh+r7NzEw/MzMzv1O4nj7NzEw/zcxMv1O4nj7NzEw/MzMzv1O4nj7NzEw/MzMzv0bh+r7NzEw/zcxMv0bh+r7NzEw/MzMzP1O4nj4zMzM/MzMzP0bh+r4zMzM/zcxMP0bh+r4zMzM/zcxMP1O4nj4zMzM/MzMzP1O4nj4zMzM/MzMzP1O4nj7NzEw/MzMzP0bh+r7NzEw/MzMzP0bh+r4zMzM/zcxMP0bh+r4zMzM/MzMzP0bh+r4zMzM/MzMzP0bh+r7NzEw/zcxMP0bh+r7NzEw/zcxMP1O4nj4zMzM/zcxMP1O4nj7NzEw/MzMzP1O4nj7NzEw/MzMzP1O4nj4zMzM/zcxMP1O4nj4zMzM/zcxMP0bh+r4zMzM/zcxMP0bh+r7NzEw/zcxMP1O4nj7NzEw/MzMzP1O4nj7NzEw/zcxMP1O4nj7NzEw/zcxMP0bh+r7NzEw/MzMzP0bh+r7NzEw//////wAA/7//////AAD/v/////8AAP+//////wAA/78AAACA/3//vwAAAID/f/+/AAAAgP9//78AAACA/3//vwCAAAD/////AIAAAP////8AgAAA/////wCAAAD/////AID///9//78AgP///3//vwCA////f/+/AID///9//7///wCA////////AID///////8AgP///////wCA//////9//3////+//3//f////7//f/9/////v/9//3////+//////wAA/7//////AAD/v/////8AAP+//////wAA/78AAACA/3//vwAAAID/f/+/AAAAgP9//78AAACA/3//vwCAAAD/////AIAAAP////8AgAAA/////wCAAAD/////AID///9//78AgP///3//vwCA////f/+/AID///9//7///wCA////////AID///////8AgP///////wCA//////9//3////+//3//f////7//f/9/////v/9//3////+//////wAA/7//////AAD/v/////8AAP+//////wAA/78AAACA/3//vwAAAID/f/+/AAAAgP9//78AAACA/3//vwCAAAD/////AIAAAP////8AgAAA/////wCAAAD/////AID///9//78AgP///3//vwCA////f/+/AID///9//7///wCA////////AID///////8AgP///////wCA//////9//3////+//3//f////7//f/9/////v/9//3////+//////wAA/7//////AAD/v/////8AAP+//////wAA/78AAACA/3//vwAAAID/f/+/AAAAgP9//78AAACA/3//vwCAAAD/////AIAAAP////8AgAAA/////wCAAAD/////AID///9//78AgP///3//vwCA////f/+/AID///9//7///wCA////////AID///////8AgP///////wCA//////9//3////+//3//f////7//f/9/////v/9//3////+//////wAA/7//////AAD/v/////8AAP+//////wAA/78AAACA/3//vwAAAID/f/+/AAAAgP9//78AAACA/3//vwCAAAD/////AIAAAP////8AgAAA/////wCAAAD/////AID///9//78AgP///3//vwCA////f/+/AID///9//7///wCA////////AID///////8AgP///////wCA//////9//3////+//3//f////7//f/9/////v/9//3////+/")
 }]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_rdc1u"]
+size = Vector3(1.34937, 1.3963, 1.13647)
 
 [node name="Printer" type="StaticBody3D"]
 collision_layer = 7
@@ -47,6 +51,14 @@ mesh = SubResource("ArrayMesh_rdc1u")
 skeleton = NodePath("")
 
 [node name="PrintOrigin" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4575, 0.190555)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4575, 0.669702)
+
+[node name="medium_printer" parent="." instance=ExtResource("4_rdc1u")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0.900954, 0)
+
+[node name="MediumPrinterCollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00915527, 1.6092, 0.000610352)
+shape = SubResource("BoxShape3D_rdc1u")
 
 [editable path="small_printer"]
+[editable path="medium_printer"]

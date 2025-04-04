@@ -116,6 +116,6 @@ func _on_printer_upgraded():
 		PrinterStation.PrinterSize.UNBUILT:
 			current_printer_size = PrinterStation.PrinterSize.SMALL
 		PrinterStation.PrinterSize.SMALL:
-			printerr("Can't upgrade Stash any farther!")
+			current_printer_size = PrinterStation.PrinterSize.MEDIUM
 		_:
-			printerr("Setting stash to invalide size")
+			printerr("Setting printer to invalide size")
