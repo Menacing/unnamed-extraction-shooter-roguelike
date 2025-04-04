@@ -3,6 +3,13 @@ class_name PrinterStation
 
 @onready var small_printer_mesh: MeshInstance3D = $small_printer/Cube
 @onready var printer_table_mesh: MeshInstance3D = $printer_table
+@onready var medium_printer_mesh: MeshInstance3D = $medium_printer/Node/cube
+
+@onready var small_printer_collision_shape_3d: CollisionShape3D = $SmallPrinterCollisionShape3D
+@onready var printer_table_collision_shape_3d: CollisionShape3D = $PrinterTableCollisionShape3D
+@onready var medium_printer_collision_shape_3d: CollisionShape3D = $MediumPrinterCollisionShape3D
+
+
 @onready var dissolve_shader_m:ShaderMaterial = load("res://game_objects/effects/dissolve_shader_material.tres")
 @onready var redacted_shader_m:ShaderMaterial = load("res://game_objects/effects/redacted_shader_material.tres")
 
@@ -27,12 +34,21 @@ func use(player:Player) -> void:
 func _on_printer_size_changed():
 	match HideoutManager.current_printer_size:
 		PrinterSize.UNBUILT:
+			show_mesh_hide_others([small_printer_mesh,printer_table_mesh], [medium_printer_mesh])
+			small_printer_collision_shape_3d.disabled = false
+			printer_table_collision_shape_3d.disabled = false
+			medium_printer_collision_shape_3d.disabled = true
 			small_printer_mesh.material_override = redacted_shader_m
 			printer_table_mesh.material_override = redacted_shader_m
 		PrinterSize.SMALL:
 			small_printer_mesh.material_override = null
 			printer_table_mesh.material_override = null
-			show_mesh_hide_others([small_printer_mesh,printer_table_mesh], [])
+			show_mesh_hide_others([small_printer_mesh,printer_table_mesh], [medium_printer_mesh])
+			small_printer_collision_shape_3d.disabled = true
+			printer_table_collision_shape_3d.disabled = false
+			medium_printer_collision_shape_3d.disabled = false
+		PrinterSize.MEDIUM:
+			show_mesh_hide_others([medium_printer_mesh,printer_table_mesh],[small_printer_mesh])
 
 func _on_print_item(item_to_print:ItemInformation):
 	var slot_data:SlotData = SlotData.instantiate_from_item_information(item_to_print)
@@ -69,9 +85,11 @@ func show_mesh_hide_others(meshes_to_show:Array[MeshInstance3D], meshes_to_hide:
 		dissolve_shader_m.set_shader_parameter("dissolveSlider", 1.5)
 		dissolve_shader_m.set_shader_parameter("baseColorTexture", mesh_material_texture)
 		mesh.material_override = dissolve_shader_m.duplicate()
+		mesh.material_override.set_meta("remove_on_cleanup",true)
 		tween.tween_property(mesh.material_override, "shader_parameter/dissolveSlider", -1.0, animation_length)
 		tween.tween_callback(show_mesh_cleanup.bind(mesh))
 		mesh.visible = true
 
 func show_mesh_cleanup(mesh:MeshInstance3D):
-	mesh.material_override = null
+	if mesh.material_override.has_meta("remove_on_cleanup"):
+		mesh.material_override = null
