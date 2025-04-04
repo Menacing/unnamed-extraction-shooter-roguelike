@@ -1,0 +1,52 @@
+[gd_resource type="Resource" script_class="ItemInformation" load_steps=18 format=3 uid="uid://boqgm4gxsicup"]
+
+[ext_resource type="Script" uid="uid://dw75el3q24f1f" path="res://ui/inventory/item_context_item.gd" id="1_ww381"]
+[ext_resource type="Resource" uid="uid://o6tesi76nbth" path="res://ui/inventory/drop_item_context_item.tres" id="2_6gupb"]
+[ext_resource type="PackedScene" uid="uid://0hy4cl1x7qwx" path="res://ui/inventory/detail_scenes/gun_detail_popup.tscn" id="3_tgwd5"]
+[ext_resource type="Texture2D" uid="uid://or20olc1mc5j" path="res://game_objects/items/weapons/fic_rifles/cdr/cdr_icon.png" id="4_1jcb3"]
+[ext_resource type="Texture2D" uid="uid://1kn5qhavx7jq" path="res://game_objects/items/weapons/fic_rifles/cdr/cdr_icon_r.png" id="5_bg74d"]
+[ext_resource type="Script" uid="uid://dwpbdijb5aofu" path="res://resource_access/equipment_slot_data.gd" id="6_ruc23"]
+[ext_resource type="Resource" uid="uid://d2e8vacodeiau" path="res://game_objects/items/weapons/foregrips_equipment_slot.tres" id="7_shbr1"]
+[ext_resource type="Resource" uid="uid://cqxsusjebsqrp" path="res://game_objects/items/weapons/grips_equipment_slot.tres" id="8_ca85e"]
+[ext_resource type="Resource" uid="uid://bemliobbiifl2" path="res://game_objects/items/weapons/lasers_equipment_slot.tres" id="9_3lrjg"]
+[ext_resource type="Resource" uid="uid://3m7iiyunllog" path="res://game_objects/items/weapons/mags_equipment_slot.tres" id="10_w2u2g"]
+[ext_resource type="Resource" uid="uid://qfkhmq1ohqqh" path="res://game_objects/items/weapons/muzzles_equipment_slot.tres" id="11_qn14d"]
+[ext_resource type="Resource" uid="uid://bstwuttx0c0do" path="res://game_objects/items/weapons/optics_equipment_slot.tres" id="12_x6fh8"]
+[ext_resource type="Resource" uid="uid://cfint47docku3" path="res://game_objects/items/weapons/stocks_equipment_slot.tres" id="13_xj8oy"]
+[ext_resource type="Script" uid="uid://dasb1tf171ead" path="res://resource_access/inventory_data.gd" id="14_1rqtd"]
+[ext_resource type="Script" uid="uid://hxr8853lym5l" path="res://resource_access/item_information.gd" id="15_fgr5l"]
+
+[sub_resource type="Resource" id="Resource_6llv8"]
+script = ExtResource("1_ww381")
+label = "Item Detail"
+signal_name = "context_menus_open_item_detail"
+
+[sub_resource type="Resource" id="Resource_umu4s"]
+script = ExtResource("14_1rqtd")
+equipment_slots = Array[ExtResource("6_ruc23")]([ExtResource("7_shbr1"), ExtResource("8_ca85e"), ExtResource("9_3lrjg"), ExtResource("10_w2u2g"), ExtResource("11_qn14d"), ExtResource("12_x6fh8"), ExtResource("13_xj8oy")])
+slot_datas = Array[Array]([])
+
+[resource]
+script = ExtResource("15_fgr5l")
+item_type_id = "cdr"
+show_name = true
+display_name = "Cazador de Ratas"
+display_short_name = "CDR"
+item_type = 0
+icon = ExtResource("4_1jcb3")
+icon_r = ExtResource("5_bg74d")
+model_internal_inventory = SubResource("Resource_umu4s")
+detail_scene = ExtResource("3_tgwd5")
+context_menu_items = Array[ExtResource("1_ww381")]([ExtResource("2_6gupb"), SubResource("Resource_6llv8")])
+max_stacks = 1
+has_stacks = false
+max_durability = 1
+has_durability = false
+column_span = 5
+row_span = 2
+description_text = "Modern at home manufacturing techniques led to the creation of numerous DIY designs in a wide variety of calibers. After the Filter these designs would allow those caught without a weapon another shot at self defense."
+flavor_text = "Get started at alt.blam.org!"
+min_pickup_stacks = 1
+mean_pickup_stacks = 1
+stack_random_method = 0
+slot_data_type = 1

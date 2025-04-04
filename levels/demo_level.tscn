@@ -1,4 +1,4 @@
-[gd_scene load_steps=122 format=4 uid="uid://ctahsvj88g1om"]
+[gd_scene load_steps=124 format=4 uid="uid://ctahsvj88g1om"]
 
 [ext_resource type="Script" uid="uid://dwshafaid76mm" path="res://levels/demo_level.gd" id="1_8448e"]
 [ext_resource type="PackedScene" uid="uid://d08aatgxmymbf" path="res://game_objects/player/player.tscn" id="1_eisjc"]
@@ -50,6 +50,7 @@
 [ext_resource type="PackedScene" uid="uid://ct0uk7oo13ve0" path="res://game_objects/items/weapons/hic_rifles/pm_98/pm_98.tscn" id="48_yan6s"]
 [ext_resource type="PackedScene" uid="uid://ciaqbr34myu5w" path="res://game_objects/enemies/robots/combat_roomba.tscn" id="49_kw4it"]
 [ext_resource type="PackedScene" uid="uid://dspfcw4lx5gss" path="res://game_objects/items/materials/silicate_pile/silicate_pile.tscn" id="50_87nrf"]
+[ext_resource type="PackedScene" uid="uid://dwxg3y63bivcg" path="res://game_objects/items/weapons/fic_rifles/cdr/cdr.tscn" id="51_no68d"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_6g5uc"]
 
@@ -414,6 +415,23 @@ ads_fov = 50.0
 moa = 5.0
 turn_speed = 25.0
 ammo_type = ExtResource("42_vqsrm")
+reload_time_Sec = 2.5
+reload_thresholds = Array[float]([1.0])
+
+[sub_resource type="Resource" id="Resource_h3dqm"]
+resource_local_to_scene = true
+script = ExtResource("11_hh747")
+weapon_category_name = "FIC Rifle"
+magazine_size = 30
+rpm = 800
+base_recoil = Vector2(0, 0.017)
+recoil_variability = Vector2(0.02, 0.01)
+fire_modes = ["semi", "auto"]
+ads_accel = 10.0
+ads_fov = 50.0
+moa = 4.0
+turn_speed = 25.0
+ammo_type = ExtResource("10_q80ko")
 reload_time_Sec = 2.5
 reload_thresholds = Array[float]([1.0])
 
@@ -1447,6 +1465,10 @@ transform = Transform3D(1.00409, 0, 0, 0, 1.00409, 0, 0, 0, 1.00409, 16.5789, 0.
 
 [node name="silicate_pile" parent="." instance=ExtResource("50_87nrf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.37542, 0.0788302, -5.90429)
+
+[node name="Cdr" parent="." instance=ExtResource("51_no68d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.79346, 0.339906, -4.25288)
+_gun_stats = SubResource("Resource_h3dqm")
 
 [connection signal="hit_occured" from="MultiAgentNavigationRoot/FiestaBox/DamageComponent" to="MultiAgentNavigationRoot/FiestaBox" method="_on_damage_component_hit_occured"]
 [connection signal="hit_occured" from="MultiAgentNavigationRoot/LootChest/DamageComponent" to="MultiAgentNavigationRoot/LootChest" method="_on_damage_component_hit_occured"]

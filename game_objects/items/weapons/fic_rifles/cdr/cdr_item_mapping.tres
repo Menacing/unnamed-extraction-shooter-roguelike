@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ItemMapping" load_steps=4 format=3 uid="uid://bi7oj233qlw7a"]
+
+[ext_resource type="PackedScene" uid="uid://dwxg3y63bivcg" path="res://game_objects/items/weapons/fic_rifles/cdr/cdr.tscn" id="1_rth5r"]
+[ext_resource type="Resource" uid="uid://boqgm4gxsicup" path="res://game_objects/items/weapons/fic_rifles/cdr/cdr_inventory_info.tres" id="2_c7hg5"]
+[ext_resource type="Script" uid="uid://c8amqbc45k2jw" path="res://resource_access/item_mapping.gd" id="3_0by7p"]
+
+[resource]
+script = ExtResource("3_0by7p")
+item_type_id = "cdr"
+item_information = ExtResource("2_c7hg5")
+item_3d_scene = ExtResource("1_rth5r")
