@@ -1,0 +1,94 @@
+[gd_scene load_steps=13 format=4 uid="uid://dofbmo55i4rt0"]
+
+[ext_resource type="Script" uid="uid://bk7lygr8esauy" path="res://levels/entities/geo_ballistic_container.gd" id="1_7wfga"]
+[ext_resource type="Script" uid="uid://dwpbdijb5aofu" path="res://resource_access/equipment_slot_data.gd" id="2_sjt1a"]
+[ext_resource type="Script" uid="uid://dasb1tf171ead" path="res://resource_access/inventory_data.gd" id="3_q8xrv"]
+[ext_resource type="PackedScene" uid="uid://bn6v1rairpb6i" path="res://game_objects/effects/hit_effects/bullet_hit_wood.tscn" id="4_gn6j4"]
+[ext_resource type="AudioStream" uid="uid://th4cvexkwyb1" path="res://game_objects/effects/sounds/steps/footstep_wood_000.ogg" id="5_iepst"]
+[ext_resource type="Material" uid="uid://cnqi48f8iiy13" path="res://levels/textures/metal/metal_6.tres" id="6_jghba"]
+[ext_resource type="Material" uid="uid://csxhg4bl885by" path="res://levels/textures/wood/wood_green_1.tres" id="7_khec8"]
+[ext_resource type="PackedScene" uid="uid://64ippi50nu6t" path="res://components/damage_component/damage_component.tscn" id="8_qsiub"]
+[ext_resource type="PackedScene" uid="uid://cliu3gfmcv7xd" path="res://components/damage_effect_component/damage_effect_component.tscn" id="9_mcioi"]
+
+[sub_resource type="Resource" id="Resource_yq1t8"]
+script = ExtResource("3_q8xrv")
+equipment_slots = Array[ExtResource("2_sjt1a")]([])
+slot_datas = Array[Array]([])
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_si1lm"]
+_surfaces = [{
+"aabb": AABB(-0.625, -0.0285715, -0.142857, 1.25, 0.125, 0.025),
+"attribute_data": PackedByteArray("AIB6QAAAUD8AgHpAAABaPwCAeUAAAFo/AIB5QAAAUD8AAMG/AABQPwAAwL8AAFA/AADAvwAAWj8AAMG/AABaPwAAwT8AgHlAAADBPwCAekAAAMA/AIB6QAAAwD8AgHlAAADBvwCAeUAAAMC/AIB5QAAAwL8AgHpAAADBvwCAekAAAME/AABQPwAAwT8AAFo/AADAPwAAWj8AAMA/AABQPwCAesAAAFA/AIB5wAAAUD8AgHnAAABaPwCAesAAAFo/AIBiQAAAUD8AgGJAAABaPwCAYUAAAFo/AIBhQAAAUD8AAMG/AABQPwAAwL8AAFA/AADAvwAAWj8AAMG/AABaPwAAwT8AgGFAAADBPwCAYkAAAMA/AIBiQAAAwD8AgGFAAADBvwCAYUAAAMC/AIBhQAAAwL8AgGJAAADBvwCAYkAAAME/AABQPwAAwT8AAFo/AADAPwAAWj8AAMA/AABQPwCAYsAAAFA/AIBhwAAAUD8AgGHAAABaPwCAYsAAAFo/"),
+"format": 34359742487,
+"index_count": 72,
+"index_data": PackedByteArray("AAABAAIAAAACAAMABAAFAAYABAAGAAcACAAJAAoACAAKAAsADAANAA4ADAAOAA8AEAARABIAEAASABMAFAAVABYAFAAWABcAGAAZABoAGAAaABsAHAAdAB4AHAAeAB8AIAAhACIAIAAiACMAJAAlACYAJAAmACcAKAApACoAKAAqACsALAAtAC4ALAAuAC8A"),
+"material": ExtResource("6_jghba"),
+"name": "metal/metal_6",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 48,
+"vertex_data": PackedByteArray("AAAgv018xT0aSRK+AAAgv80O6rwaSRK+MzMTv80O6rwaSRK+MzMTv018xT0aSRK+AAAgv018xT0aSRK+AAAgv018xT0AX/G9AAAgv80O6rwAX/G9AAAgv80O6rwaSRK+MzMTv80O6rwaSRK+AAAgv80O6rwaSRK+AAAgv80O6rwAX/G9MzMTv80O6rwAX/G9MzMTv018xT0aSRK+MzMTv018xT0AX/G9AAAgv018xT0AX/G9AAAgv018xT0aSRK+MzMTv018xT0aSRK+MzMTv80O6rwaSRK+MzMTv80O6rwAX/G9MzMTv018xT0AX/G9AAAgv018xT0AX/G9MzMTv018xT0AX/G9MzMTv80O6rwAX/G9AAAgv80O6rwAX/G9MzMTP018xT0aSRK+MzMTP80O6rwaSRK+AAAgP80O6rwaSRK+AAAgP018xT0aSRK+MzMTP018xT0aSRK+MzMTP018xT0AX/G9MzMTP80O6rwAX/G9MzMTP80O6rwaSRK+AAAgP80O6rwaSRK+MzMTP80O6rwaSRK+MzMTP80O6rwAX/G9AAAgP80O6rwAX/G9AAAgP018xT0aSRK+AAAgP018xT0AX/G9MzMTP018xT0AX/G9MzMTP018xT0aSRK+AAAgP018xT0aSRK+AAAgP80O6rwaSRK+AAAgP80O6rwAX/G9AAAgP018xT0AX/G9MzMTP018xT0AX/G9AAAgP018xT0AX/G9AAAgP80O6rwAX/G9MzMTP80O6rwAX/G9/////wAA/7//////AAD/v/////8AAP+//////wAA/78AAP9//3//vwAA/3//f/+/AAD/f/9//78AAP9//3//v/9/AAD//////38AAP//////fwAA//////9/AAD//////3////9//7//f////3//v/9/////f/+//3////9//7////9//////////3//////////f/////////9///////9//3////+//3//f////7//f/9/////v/9//3////+//////wAA/7//////AAD/v/////8AAP+//////wAA/78AAP9//3//vwAA/3//f/+/AAD/f/9//78AAP9//3//v/9/AAD//////38AAP//////fwAA//////9/AAD//////3////9//7//f////3//v/9/////f/+//3////9//7////9//////////3//////////f/////////9///////9//3////+//3//f////7//f/9/////v/9//3////+/")
+}, {
+"aabb": AABB(-0.9, -0.303572, -0.167857, 1.8, 0.45, 0.65),
+"attribute_data": PackedByteArray("AACAQAAAUD8AAIBAAABwPwAAXEAAAHA/AABcQAAAUD8AAMC/AABQPwAAqL8AAFA/AACovwAAcD8AAMC/AABwPwAAwD8AAFxAAADAPwAAgEAAAKg/AACAQAAAqD8AAFxAAADAvwAAXEAAAKi/AABcQAAAqL8AAIBAAADAvwAAgEAAAMA/AABQPwAAwD8AAHA/AACoPwAAcD8AAKg/AABQPwAAgMAAAFA/AABcwAAAUD8AAFzAAABwPwAAgMAAAHA/AAB7QAAAkr8AAHtA//+XvwAAeUD//5e/AAB5QAAAkr8AALq/AQBMP///rb8BAEw/AACovwAAUD///7+/AABQP///vz8AAHlA//+/PwAAe0AAAKg/AAB7QAAAqD8AAHlAAAC6vwAAeUD//62/AAB5QP//rb8AAHtAAAC6vwAAe0AAALo/AQBMP///vz8AAFA/AACoPwAAUD///60/AQBMPwAAe8D+/1s/AAB5wP7/Wz8AAHnAAABQPwAAe8AAAFA/AABmQP//Yz8AAGZAAQBcPwAAaEABAFw/AABoQP//Yz/MzLw/AABmQMzMvD8AAGhAzszAPwAAaEDOzMA/AABmQGlmBj8AAGZAzMz8PgAAZkDMzPw+AABoQGlmBj8AAGhA//+/v/7/Uz///7+/AgBsPwAAwr///2M/AADCvwEAXD8AAMI/AQBcPwAAwj///2M///+/PwIAbD///78//v9TPwAAaMACAGw/AABowP7/Uz8AAGbA/v9TPwAAZsACAGw///9iQAAAkr///2JA//+XvwAAYUD//5e/AABhQAAAkr8AALq/AQBMP///rb8BAEw/AACovwAAUD///7+/AABQP///vz8AAGFA//+/P///YkAAAKg///9iQAAAqD8AAGFAAAC6vwAAYUD//62/AABhQP//rb///2JAAAC6v///YkAAALo/AQBMP///vz8AAFA/AACoPwAAUD///60/AQBMP///YsD+/1s/AABhwP7/Wz8AAGHAAABQP///YsAAAFA/AAB0QP//Yz8AAHRAAQBcPwAAdkABAFw/AAB2QP//Yz/MzLw/AAB0QMzMvD8AAHZAzszAPwAAdkDOzMA/AAB0QGlmBj8AAHRAzMz8PgAAdEDMzPw+AAB2QGlmBj8AAHZA//+/v/7/Uz///7+/AgBsPwAAwr///2M/AADCvwEAXD8AAMI/AQBcPwAAwj///2M///+/PwIAbD///78//v9TPwAAdsACAGw/AAB2wP7/Uz8AAHTA/v9TPwAAdMACAGw/"),
+"format": 34359742487,
+"index_count": 180,
+"index_data": PackedByteArray("AAABAAIAAAACAAMABAAFAAYABAAGAAcACAAJAAoACAAKAAsADAANAA4ADAAOAA8AEAARABIAEAASABMAFAAVABYAFAAWABcAGAAZABoAGAAaABsAHAAdAB4AHAAeAB8AIAAhACIAIAAiACMAJAAlACYAJAAmACcAKAApACoAKAAqACsALAAtAC4ALAAuAC8AMAAxADIAMAAyADMANAA1ADYANAA2ADcAOAA5ADoAOAA6ADsAPAA9AD4APAA+AD8AQABBAEIAQABCAEMARABFAEYARABGAEcASABJAEoASABKAEsATABNAE4ATABOAE8AUABRAFIAUABSAFMAVABVAFYAVABWAFcAWABZAFoAWABaAFsAXABdAF4AXABeAF8AYABhAGIAYABiAGMAZABlAGYAZABmAGcAaABpAGoAaABqAGsAbABtAG4AbABuAG8AcABxAHIAcAByAHMAdAB1AHYAdAB2AHcA"),
+"material": ExtResource("7_khec8"),
+"name": "wood/wood_green_1",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 120,
+"vertex_data": PackedByteArray("Z2Zmv018xT0AX/G9Z2Zmv7ptm74AX/G9Z2ZmP7ptm74AX/G9Z2ZmP018xT0AX/G9Z2Zmv018xT0AX/G9Z2Zmv018xT1z2/Y+Z2Zmv7ptm75z2/Y+Z2Zmv7ptm74AX/G9Z2ZmP7ptm74AX/G9Z2Zmv7ptm74AX/G9Z2Zmv7ptm75z2/Y+Z2ZmP7ptm75z2/Y+Z2ZmP018xT0AX/G9Z2ZmP018xT1z2/Y+Z2Zmv018xT1z2/Y+Z2Zmv018xT0AX/G9Z2ZmP018xT0AX/G9Z2ZmP7ptm74AX/G9Z2ZmP7ptm75z2/Y+Z2ZmP018xT1z2/Y+Z2Zmv018xT1z2/Y+Z2ZmP018xT1z2/Y+Z2ZmP7ptm75z2/Y+Z2Zmv7ptm75z2/Y+Z2Ymv03xFT5nqAM9Z2Ymv018xT3NXvG9zcwMv018xT3NXvG9zcwMv03xFT5nqAM9Z2Ymv03xFT5nqAM9Z2Ymv03xFT6zDqo+Z2Ymv018xT1z2/Y+Z2Ymv018xT3NXvG9zcwMv018xT3NXvG9Z2Ymv018xT3NXvG9Z2Ymv018xT1z2/Y+zcwMv018xT1z2/Y+zcwMv03xFT5nqAM9zcwMv03xFT6zDqo+Z2Ymv03xFT6zDqo+Z2Ymv03xFT5nqAM9zcwMv03xFT5nqAM9zcwMv018xT3NXvG9zcwMv018xT1z2/Y+zcwMv03xFT6zDqo+Z2Ymv03xFT6zDqo+zcwMv03xFT6zDqo+zcwMv018xT1z2/Y+Z2Ymv018xT1z2/Y+zczMPs1BHb6z4iu+zczMPgBuW72z4iu+mpmZPgBuW72z4iu+mpmZPs1BHb6z4iu+zczMPs1BHb6z4iu+mpmZPs1BHb6z4iu+mpmZPi3Ugb7NXvG9zczMPi3Ugb7NXvG9zczMPgBuW72z4iu+zczMPjMsPj3NXvG9mpmZPjMsPj3NXvG9mpmZPgBuW72z4iu+mpmZPjMsPj3NXvG9mpmZPi3Ugb7NXvG9mpmZPs1BHb6z4iu+mpmZPgBuW72z4iu+zczMPgBuW72z4iu+zczMPs1BHb6z4iu+zczMPi3Ugb7NXvG9zczMPjMsPj3NXvG9mpmZPi3Ugb7NXvG9mpmZPjMsPj3NXvG9zczMPjMsPj3NXvG9zczMPi3Ugb7NXvG92swMP03xFT5nqAM92swMP018xT3NXvG9Z2YmP018xT3NXvG9Z2YmP03xFT5nqAM92swMP03xFT5nqAM92swMP03xFT6zDqo+2swMP018xT1z2/Y+2swMP018xT3NXvG9Z2YmP018xT3NXvG92swMP018xT3NXvG92swMP018xT1z2/Y+Z2YmP018xT1z2/Y+Z2YmP03xFT5nqAM9Z2YmP03xFT6zDqo+2swMP03xFT6zDqo+2swMP03xFT5nqAM9Z2YmP03xFT5nqAM9Z2YmP018xT3NXvG9Z2YmP018xT1z2/Y+Z2YmP03xFT6zDqo+2swMP03xFT6zDqo+Z2YmP03xFT6zDqo+Z2YmP018xT1z2/Y+2swMP018xT1z2/Y+mpmZvs1BHb6z4iu+mpmZvgBuW72z4iu+zczMvgBuW72z4iu+zczMvs1BHb6z4iu+mpmZvs1BHb6z4iu+zczMvs1BHb6z4iu+zczMvi3Ugb7NXvG9mpmZvi3Ugb7NXvG9mpmZvgBuW72z4iu+mpmZvjMsPj3NXvG9zczMvjMsPj3NXvG9zczMvgBuW72z4iu+zczMvjMsPj3NXvG9zczMvi3Ugb7NXvG9zczMvs1BHb6z4iu+zczMvgBuW72z4iu+mpmZvgBuW72z4iu+mpmZvs1BHb6z4iu+mpmZvi3Ugb7NXvG9mpmZvjMsPj3NXvG9zczMvi3Ugb7NXvG9zczMvjMsPj3NXvG9mpmZvjMsPj3NXvG9mpmZvi3Ugb7NXvG9/////wAA/7//////AAD/v/////8AAP+//////wAA/78AAP9//3//vwAA/3//f/+/AAD/f/9//78AAP9//3//v/9/AAD//////38AAP//////fwAA//////9/AAD//////3////9//7//f////3//v/9/////f/+//3////9//7////9//////////3//////////f/////////9///////9//3////+//3//f////7//f/9/////v/9//3////+//5///wAA/z//n///AAD/P/+f//8AAP8//5///wAA/z8AAP9//3//vwAA/3//f/+/AAD/f/9//78AAP9//3//v/9/AAD//////38AAP//////fwAA//////9/AAD//////3////9//7//f////3//v/9/////f/+//3////9//7////9//////////3//////////f/////////9///////9//9////8//3//3////z//f//f////P/9//9////8//////wAA/7//////AAD/v/////8AAP+//////wAA/79U1QAA/3/+f1TVAAD/f/5/VNUAAP9//n9U1QAA/3/+f1TV////f/5/VNX///9//n9U1f///3/+f1TV////f/5/AAD/f/9//78AAP9//3//vwAA/3//f/+/AAD/f/9//7////9//////////3//////////f/////////9///////9//3////+//3//f////7//f/9/////v/9//3////+//5///wAA/z//n///AAD/P/+f//8AAP8//5///wAA/z8AAP9//3//vwAA/3//f/+/AAD/f/9//78AAP9//3//v/9/AAD//////38AAP//////fwAA//////9/AAD//////3////9//7//f////3//v/9/////f/+//3////9//7////9//////////3//////////f/////////9///////9//9////8//3//3////z//f//f////P/9//9////8//////wAA/7//////AAD/v/////8AAP+//////wAA/79U1QAA/3/+f1TVAAD/f/5/VNUAAP9//n9U1QAA/3/+f1TV////f/5/VNX///9//n9U1f///3/+f1TV////f/5/AAD/f/9//78AAP9//3//vwAA/3//f/+/AAD/f/9//7////9//////////3//////////f/////////9///////9//3////+//3//f////7//f/9/////v/9//3////+/")
+}]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_7wfga"]
+size = Vector3(1.80212, 0.404053, 0.626953)
+
+[node name="small_military_crate" type="StaticBody3D" node_paths=PackedStringArray("damage_component", "damage_effect_component") groups=["external_inventory"]]
+collision_layer = 15
+script = ExtResource("1_7wfga")
+loot_table = 6
+tier = 1
+min_spawned = 1
+max_spawned = 5
+container_size = 2
+chance_active = 0.7
+inventory_data = SubResource("Resource_yq1t8")
+func_godot_properties = {
+"_phong": false,
+"_tb_group": "58",
+"chance_active": 0.7,
+"classname": "geo_ballistic_container",
+"container_size": 2,
+"game_material_info": "3",
+"game_material_info_path": "",
+"gi_lightmap_texel_scale": 0.5,
+"globalname": "",
+"loot_table": 6,
+"max_spawned": 5,
+"min_spawned": 1,
+"tier": 1,
+"transparent": false
+}
+_pen_ratio = 0.8
+_armor_rating = 2
+_hit_effect_scene = ExtResource("4_gn6j4")
+_footstep_sound = ExtResource("5_iepst")
+damage_component = NodePath("DamageComponent")
+damage_effect_component = NodePath("DamageEffectComponent")
+
+[node name="entity_302_mesh_instance" type="MeshInstance3D" parent="."]
+gi_lightmap_texel_scale = 0.5
+mesh = SubResource("ArrayMesh_si1lm")
+
+[node name="entity_302_brush_0_collision_shape" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0022583, -0.105835, 0.168945)
+shape = SubResource("BoxShape3D_7wfga")
+
+[node name="DamageComponent" parent="." instance=ExtResource("8_qsiub")]
+percent_penetrated = 0.8
+armor_rating = 2
+
+[node name="DamageEffectComponent" parent="." instance=ExtResource("9_mcioi")]
+damage_effect_scene = ExtResource("4_gn6j4")
