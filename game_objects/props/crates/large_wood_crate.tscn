@@ -1,0 +1,150 @@
+[gd_scene load_steps=24 format=4 uid="uid://qondqrlt6cft"]
+
+[ext_resource type="Script" uid="uid://bk7lygr8esauy" path="res://levels/entities/geo_ballistic_container.gd" id="1_lxoga"]
+[ext_resource type="Script" uid="uid://dwpbdijb5aofu" path="res://resource_access/equipment_slot_data.gd" id="2_p8b7s"]
+[ext_resource type="Script" uid="uid://dasb1tf171ead" path="res://resource_access/inventory_data.gd" id="3_55p2r"]
+[ext_resource type="PackedScene" uid="uid://bn6v1rairpb6i" path="res://game_objects/effects/hit_effects/bullet_hit_wood.tscn" id="4_unw1a"]
+[ext_resource type="AudioStream" uid="uid://th4cvexkwyb1" path="res://game_objects/effects/sounds/steps/footstep_wood_000.ogg" id="5_tnncr"]
+[ext_resource type="Material" uid="uid://c3lw133o7fkd3" path="res://levels/textures/wood/wood_16.tres" id="6_twf3f"]
+[ext_resource type="PackedScene" uid="uid://64ippi50nu6t" path="res://components/damage_component/damage_component.tscn" id="7_lkjix"]
+[ext_resource type="PackedScene" uid="uid://cliu3gfmcv7xd" path="res://components/damage_effect_component/damage_effect_component.tscn" id="8_6gcos"]
+
+[sub_resource type="Resource" id="Resource_b4lvo"]
+script = ExtResource("3_55p2r")
+equipment_slots = Array[ExtResource("2_p8b7s")]([])
+slot_datas = Array[Array]([])
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_otw67"]
+_surfaces = [{
+"aabb": AABB(-0.9, -0.9, -0.9, 1.8, 1.8, 1.8),
+"attribute_data": PackedByteArray("AACdQAAAwD4AAJ1AAADQPgAAm0AAANA+AACbQAAAwD4AAAZAAADAPgAAKkAAAMA+AAAqQAAA0D4AAAZAAADQPgAABsAAAJtAAAAGwAAAnUAAACrAAACdQAAAKsAAAJtAAAAGQAAAm0AAACpAAACbQAAAKkAAAJ1AAAAGQAAAnUAAAAbAAADAPgAABsAAANA+AAAqwAAA0D4AACrAAADAPgAAncAAAMA+AACbwAAAwD4AAJvAAADQPgAAncAAANA+AACdQAAA0D4AAJ1AAABoPwAAm0AAAGg/AACbQAAA0D4AACZAAADQPgAAKkAAANA+AAAqQAAAaD8AACZAAABoPwAAJsAAAJtAAAAmwAAAnUAAACrAAACdQAAAKsAAAJtAAAAmQAAAm0AAACpAAACbQAAAKkAAAJ1AAAAmQAAAnUAAACbAAADQPgAAJsAAAGg/AAAqwAAAaD8AACrAAADQPgAAncAAANA+AACbwAAA0D4AAJvAAABoPwAAncAAAGg/AACrQAAAwD4AAKtAAADQPgAAnUAAANA+AACdQAAAwD4AACZAAADAPgAAKkAAAMA+AAAqQAAA0D4AACZAAADQPgAAJsAAAJ1AAAAmwAAAq0AAACrAAACrQAAAKsAAAJ1AAAAmQAAAnUAAACpAAACdQAAAKkAAAKtAAAAmQAAAq0AAACbAAADAPgAAJsAAANA+AAAqwAAA0D4AACrAAADAPgAAq8AAAMA+AACdwAAAwD4AAJ3AAADQPgAAq8AAANA+AACtQAAA0D4AAK1AAABoPwAAq0AAAGg/AACrQAAA0D4AACZAAADQPgAAKkAAANA+AAAqQAAAaD8AACZAAABoPwAAJsAAAKtAAAAmwAAArUAAACrAAACtQAAAKsAAAKtAAAAmQAAAq0AAACpAAACrQAAAKkAAAK1AAAAmQAAArUAAACbAAADQPgAAJsAAAGg/AAAqwAAAaD8AACrAAADQPgAArcAAANA+AACrwAAA0D4AAKvAAABoPwAArcAAAGg/AACtQAAAwD4AAK1AAADQPgAAq0AAANA+AACrQAAAwD4AAAZAAADAPgAAKkAAAMA+AAAqQAAA0D4AAAZAAADQPgAABsAAAKtAAAAGwAAArUAAACrAAACtQAAAKsAAAKtAAAAGQAAAq0AAACpAAACrQAAAKkAAAK1AAAAGQAAArUAAAAbA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"),
+"format": 34359742487,
+"index_count": 468,
+"index_data": PackedByteArray("AAABAAIAAAACAAMABAAFAAYABAAGAAcACAAJAAoACAAKAAsADAANAA4ADAAOAA8AEAARABIAEAASABMAFAAVABYAFAAWABcAGAAZABoAGAAaABsAHAAdAB4AHAAeAB8AIAAhACIAIAAiACMAJAAlACYAJAAmACcAKAApACoAKAAqACsALAAtAC4ALAAuAC8AMAAxADIAMAAyADMANAA1ADYANAA2ADcAOAA5ADoAOAA6ADsAPAA9AD4APAA+AD8AQABBAEIAQABCAEMARABFAEYARABGAEcASABJAEoASABKAEsATABNAE4ATABOAE8AUABRAFIAUABSAFMAVABVAFYAVABWAFcAWABZAFoAWABaAFsAXABdAF4AXABeAF8AYABhAGIAYABiAGMAZABlAGYAZABmAGcAaABpAGoAaABqAGsAbABtAG4AbABuAG8AcABxAHIAcAByAHMAdAB1AHYAdAB2AHcAeAB5AHoAeAB6AHsAfAB9AH4AfAB+AH8AgACBAIIAgACCAIMAhACFAIYAhACGAIcAiACJAIoAiACKAIsAjACNAI4AjACOAI8AkACRAJIAkACSAJMAlACVAJYAlACWAJcAmACZAJoAmACaAJsAnACdAJ4AnACeAJ8AoAChAKIAoACiAKMApAClAKYApACmAKcAqACpAKoAqACqAKsArACtAK4ArACuAK8AsACxALIAsACyALMAtAC1ALYAtAC2ALcAuAC5ALoAuAC6ALsAvAC9AL4AvAC+AL8AwADBAMIAwADCAMMAxADFAMYAxADGAMcAyADJAMoAyADKAMsAzADNAM4AzADOAM8A0ADRANIA0ADSANMA1ADVANYA1ADWANcA2ADZANoA2ADaANsA3ADdAN4A3ADeAN8A4ADhAOIA4ADiAOMA5ADlAOYA5ADmAOcA6ADpAOoA6ADqAOsA7ADtAO4A7ADuAO8A8ADxAPIA8ADyAPMA9AD1APYA9AD2APcA+AD5APoA+AD6APsA/AD9AP4A/AD+AP8AAAEBAQIBAAECAQMBBAEFAQYBBAEGAQcBCAEJAQoBCAEKAQsBDAENAQ4BDAEOAQ8BEAERARIBEAESARMBFAEVARYBFAEWARcBGAEZARoBGAEaARsBHAEdAR4BHAEeAR8BIAEhASIBIAEiASMBJAElASYBJAEmAScBKAEpASoBKAEqASsBLAEtAS4BLAEuAS8BMAExATIBMAEyATMBNAE1ATYBNAE2ATcB"),
+"material": ExtResource("6_twf3f"),
+"name": "wood/wood_16",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 312,
+"vertex_data": PackedByteArray("MzMzP2dmZj9nZma/MzMzP83MTD9nZma/Z2ZmP83MTD9nZma/Z2ZmP2dmZj9nZma/MzMzP2dmZj9nZma/MzMzP2dmZj9nZmY/MzMzP83MTD9nZmY/MzMzP83MTD9nZma/Z2ZmP83MTD9nZma/MzMzP83MTD9nZma/MzMzP83MTD9nZmY/Z2ZmP83MTD9nZmY/Z2ZmP2dmZj9nZma/Z2ZmP2dmZj9nZmY/MzMzP2dmZj9nZmY/MzMzP2dmZj9nZma/Z2ZmP2dmZj9nZma/Z2ZmP83MTD9nZma/Z2ZmP83MTD9nZmY/Z2ZmP2dmZj9nZmY/MzMzP2dmZj9nZmY/Z2ZmP2dmZj9nZmY/Z2ZmP83MTD9nZmY/MzMzP83MTD9nZmY/MzMzP83MTD8zMzM/MzMzP83MTL8zMzM/Z2ZmP83MTL8zMzM/Z2ZmP83MTD8zMzM/MzMzP83MTD8zMzM/MzMzP83MTD9nZmY/MzMzP83MTL9nZmY/MzMzP83MTL8zMzM/Z2ZmP83MTL8zMzM/MzMzP83MTL8zMzM/MzMzP83MTL9nZmY/Z2ZmP83MTL9nZmY/Z2ZmP83MTD8zMzM/Z2ZmP83MTD9nZmY/MzMzP83MTD9nZmY/MzMzP83MTD8zMzM/Z2ZmP83MTD8zMzM/Z2ZmP83MTL8zMzM/Z2ZmP83MTL9nZmY/Z2ZmP83MTD9nZmY/MzMzP83MTD9nZmY/Z2ZmP83MTD9nZmY/Z2ZmP83MTL9nZmY/MzMzP83MTL9nZmY/MzMzv2dmZj8zMzM/MzMzv83MTD8zMzM/MzMzP83MTD8zMzM/MzMzP2dmZj8zMzM/MzMzv2dmZj8zMzM/MzMzv2dmZj9nZmY/MzMzv83MTD9nZmY/MzMzv83MTD8zMzM/MzMzP83MTD8zMzM/MzMzv83MTD8zMzM/MzMzv83MTD9nZmY/MzMzP83MTD9nZmY/MzMzP2dmZj8zMzM/MzMzP2dmZj9nZmY/MzMzv2dmZj9nZmY/MzMzv2dmZj8zMzM/MzMzP2dmZj8zMzM/MzMzP83MTD8zMzM/MzMzP83MTD9nZmY/MzMzP2dmZj9nZmY/MzMzv2dmZj9nZmY/MzMzP2dmZj9nZmY/MzMzP83MTD9nZmY/MzMzv83MTD9nZmY/Z2Zmv83MTD8zMzM/Z2Zmv83MTL8zMzM/MzMzv83MTL8zMzM/MzMzv83MTD8zMzM/Z2Zmv83MTD8zMzM/Z2Zmv83MTD9nZmY/Z2Zmv83MTL9nZmY/Z2Zmv83MTL8zMzM/MzMzv83MTL8zMzM/Z2Zmv83MTL8zMzM/Z2Zmv83MTL9nZmY/MzMzv83MTL9nZmY/MzMzv83MTD8zMzM/MzMzv83MTD9nZmY/Z2Zmv83MTD9nZmY/Z2Zmv83MTD8zMzM/MzMzv83MTD8zMzM/MzMzv83MTL8zMzM/MzMzv83MTL9nZmY/MzMzv83MTD9nZmY/Z2Zmv83MTD9nZmY/MzMzv83MTD9nZmY/MzMzv83MTL9nZmY/Z2Zmv83MTL9nZmY/Z2Zmv2dmZj9nZma/Z2Zmv83MTD9nZma/MzMzv83MTD9nZma/MzMzv2dmZj9nZma/Z2Zmv2dmZj9nZma/Z2Zmv2dmZj9nZmY/Z2Zmv83MTD9nZmY/Z2Zmv83MTD9nZma/MzMzv83MTD9nZma/Z2Zmv83MTD9nZma/Z2Zmv83MTD9nZmY/MzMzv83MTD9nZmY/MzMzv2dmZj9nZma/MzMzv2dmZj9nZmY/Z2Zmv2dmZj9nZmY/Z2Zmv2dmZj9nZma/MzMzv2dmZj9nZma/MzMzv83MTD9nZma/MzMzv83MTD9nZmY/MzMzv2dmZj9nZmY/Z2Zmv2dmZj9nZmY/MzMzv2dmZj9nZmY/MzMzv83MTD9nZmY/Z2Zmv83MTD9nZmY/MzMzv2dmZj9nZma/MzMzv83MTD9nZma/MzMzP83MTD9nZma/MzMzP2dmZj9nZma/MzMzv2dmZj9nZma/MzMzv2dmZj8zMzO/MzMzv83MTD8zMzO/MzMzv83MTD9nZma/MzMzP83MTD9nZma/MzMzv83MTD9nZma/MzMzv83MTD8zMzO/MzMzP83MTD8zMzO/MzMzP2dmZj9nZma/MzMzP2dmZj8zMzO/MzMzv2dmZj8zMzO/MzMzv2dmZj9nZma/MzMzP2dmZj9nZma/MzMzP83MTD9nZma/MzMzP83MTD8zMzO/MzMzP2dmZj8zMzO/MzMzv2dmZj8zMzO/MzMzP2dmZj8zMzO/MzMzP83MTD8zMzO/MzMzv83MTD8zMzO/MzMzP83MTD9nZma/MzMzP83MTL9nZma/Z2ZmP83MTL9nZma/Z2ZmP83MTD9nZma/MzMzP83MTD9nZma/MzMzP83MTD8zMzO/MzMzP83MTL8zMzO/MzMzP83MTL9nZma/Z2ZmP83MTL9nZma/MzMzP83MTL9nZma/MzMzP83MTL8zMzO/Z2ZmP83MTL8zMzO/Z2ZmP83MTD9nZma/Z2ZmP83MTD8zMzO/MzMzP83MTD8zMzO/MzMzP83MTD9nZma/Z2ZmP83MTD9nZma/Z2ZmP83MTL9nZma/Z2ZmP83MTL8zMzO/Z2ZmP83MTD8zMzO/MzMzP83MTD8zMzO/Z2ZmP83MTD8zMzO/Z2ZmP83MTL8zMzO/MzMzP83MTL8zMzO/MzMzP83MTL9nZma/MzMzP2dmZr9nZma/Z2ZmP2dmZr9nZma/Z2ZmP83MTL9nZma/MzMzP83MTL9nZma/MzMzP83MTL9nZmY/MzMzP2dmZr9nZmY/MzMzP2dmZr9nZma/Z2ZmP2dmZr9nZma/MzMzP2dmZr9nZma/MzMzP2dmZr9nZmY/Z2ZmP2dmZr9nZmY/Z2ZmP83MTL9nZma/Z2ZmP83MTL9nZmY/MzMzP83MTL9nZmY/MzMzP83MTL9nZma/Z2ZmP83MTL9nZma/Z2ZmP2dmZr9nZma/Z2ZmP2dmZr9nZmY/Z2ZmP83MTL9nZmY/MzMzP83MTL9nZmY/Z2ZmP83MTL9nZmY/Z2ZmP2dmZr9nZmY/MzMzP2dmZr9nZmY/MzMzv83MTL8zMzM/MzMzv2dmZr8zMzM/MzMzP2dmZr8zMzM/MzMzP83MTL8zMzM/MzMzv83MTL8zMzM/MzMzv83MTL9nZmY/MzMzv2dmZr9nZmY/MzMzv2dmZr8zMzM/MzMzP2dmZr8zMzM/MzMzv2dmZr8zMzM/MzMzv2dmZr9nZmY/MzMzP2dmZr9nZmY/MzMzP83MTL8zMzM/MzMzP83MTL9nZmY/MzMzv83MTL9nZmY/MzMzv83MTL8zMzM/MzMzP83MTL8zMzM/MzMzP2dmZr8zMzM/MzMzP2dmZr9nZmY/MzMzP83MTL9nZmY/MzMzv83MTL9nZmY/MzMzP83MTL9nZmY/MzMzP2dmZr9nZmY/MzMzv2dmZr9nZmY/zcxMv83MTD/NzEy/zcxMv83MTL/NzEy/zcxMP83MTL/NzEy/zcxMP83MTD/NzEy/zcxMv83MTD/NzEy/zcxMv83MTD/NzEw/zcxMv83MTL/NzEw/zcxMv83MTL/NzEy/zcxMP83MTL/NzEy/zcxMv83MTL/NzEy/zcxMv83MTL/NzEw/zcxMP83MTL/NzEw/zcxMP83MTD/NzEy/zcxMP83MTD/NzEw/zcxMv83MTD/NzEw/zcxMv83MTD/NzEy/zcxMP83MTD/NzEy/zcxMP83MTL/NzEy/zcxMP83MTL/NzEw/zcxMP83MTD/NzEw/zcxMv83MTD/NzEw/zcxMP83MTD/NzEw/zcxMP83MTL/NzEw/zcxMv83MTL/NzEw/Z2Zmv83MTL9nZma/Z2Zmv2dmZr9nZma/MzMzv2dmZr9nZma/MzMzv83MTL9nZma/Z2Zmv83MTL9nZma/Z2Zmv83MTL9nZmY/Z2Zmv2dmZr9nZmY/Z2Zmv2dmZr9nZma/MzMzv2dmZr9nZma/Z2Zmv2dmZr9nZma/Z2Zmv2dmZr9nZmY/MzMzv2dmZr9nZmY/MzMzv83MTL9nZma/MzMzv83MTL9nZmY/Z2Zmv83MTL9nZmY/Z2Zmv83MTL9nZma/MzMzv83MTL9nZma/MzMzv2dmZr9nZma/MzMzv2dmZr9nZmY/MzMzv83MTL9nZmY/Z2Zmv83MTL9nZmY/MzMzv83MTL9nZmY/MzMzv2dmZr9nZmY/Z2Zmv2dmZr9nZmY/Z2Zmv83MTD9nZma/Z2Zmv83MTL9nZma/MzMzv83MTL9nZma/MzMzv83MTD9nZma/Z2Zmv83MTD9nZma/Z2Zmv83MTD8zMzO/Z2Zmv83MTL8zMzO/Z2Zmv83MTL9nZma/MzMzv83MTL9nZma/Z2Zmv83MTL9nZma/Z2Zmv83MTL8zMzO/MzMzv83MTL8zMzO/MzMzv83MTD9nZma/MzMzv83MTD8zMzO/Z2Zmv83MTD8zMzO/Z2Zmv83MTD9nZma/MzMzv83MTD9nZma/MzMzv83MTL9nZma/MzMzv83MTL8zMzO/MzMzv83MTD8zMzO/Z2Zmv83MTD8zMzO/MzMzv83MTD8zMzO/MzMzv83MTL8zMzO/Z2Zmv83MTL8zMzO/MzMzv83MTL9nZma/MzMzv2dmZr9nZma/MzMzP2dmZr9nZma/MzMzP83MTL9nZma/MzMzv83MTL9nZma/MzMzv83MTL8zMzO/MzMzv2dmZr8zMzO/MzMzv2dmZr9nZma/MzMzP2dmZr9nZma/MzMzv2dmZr9nZma/MzMzv2dmZr8zMzO/MzMzP2dmZr8zMzO/MzMzP83MTL9nZma/MzMzP83MTL8zMzO/MzMzv83MTL8zMzO/MzMzv83MTL9nZma/MzMzP83MTL9nZma/MzMzP2dmZr9nZma/MzMzP2dmZr8zMzO/MzMzP83MTL8zMzO/MzMzv83MTL8zMzO/MzMzP83MTL8zMzO/MzMzP2dmZr8zMzO/MzMzv2dmZr8zMzO//////wAA/7//////AAD/v/////8AAP+//////wAA/78AAP9//3//vwAA/3//f/+/AAD/f/9//78AAP9//3//v/9/AAD//////38AAP//////fwAA//////9/AAD//////3////9//7//f////3//v/9/////f/+//3////9//7////9//////////3//////////f/////////9///////9//3////+//3//f////7//f/9/////v/9//3////+//////wAA/7//////AAD/v/////8AAP+//////wAA/78AAP9//3//vwAA/3//f/+/AAD/f/9//78AAP9//3//v/9/AAD//////38AAP//////fwAA//////9/AAD//////3////9//7//f////3//v/9/////f/+//3////9//7////9//////////3//////////f/////////9///////9//3////+//3//f////7//f/9/////v/9//3////+//////wAA/7//////AAD/v/////8AAP+//////wAA/78AAP9//3//vwAA/3//f/+/AAD/f/9//78AAP9//3//v/9/AAD//////38AAP//////fwAA//////9/AAD//////3////9//7//f////3//v/9/////f/+//3////9//7////9//////////3//////////f/////////9///////9//3////+//3//f////7//f/9/////v/9//3////+//////wAA/7//////AAD/v/////8AAP+//////wAA/78AAP9//3//vwAA/3//f/+/AAD/f/9//78AAP9//3//v/9/AAD//////38AAP//////fwAA//////9/AAD//////3////9//7//f////3//v/9/////f/+//3////9//7////9//////////3//////////f/////////9///////9//3////+//3//f////7//f/9/////v/9//3////+//////wAA/7//////AAD/v/////8AAP+//////wAA/78AAP9//3//vwAA/3//f/+/AAD/f/9//78AAP9//3//v/9/AAD//////38AAP//////fwAA//////9/AAD//////3////9//7//f////3//v/9/////f/+//3////9//7////9//////////3//////////f/////////9///////9//3////+//3//f////7//f/9/////v/9//3////+//////wAA/7//////AAD/v/////8AAP+//////wAA/78AAP9//3//vwAA/3//f/+/AAD/f/9//78AAP9//3//v/9/AAD//////38AAP//////fwAA//////9/AAD//////3////9//7//f////3//v/9/////f/+//3////9//7////9//////////3//////////f/////////9///////9//3////+//3//f////7//f/9/////v/9//3////+//////wAA/7//////AAD/v/////8AAP+//////wAA/78AAP9//3//vwAA/3//f/+/AAD/f/9//78AAP9//3//v/9/AAD//////38AAP//////fwAA//////9/AAD//////3////9//7//f////3//v/9/////f/+//3////9//7////9//////////3//////////f/////////9///////9//3////+//3//f////7//f/9/////v/9//3////+//////wAA/7//////AAD/v/////8AAP+//////wAA/78AAP9//3//vwAA/3//f/+/AAD/f/9//78AAP9//3//v/9/AAD//////38AAP//////fwAA//////9/AAD//////3////9//7//f////3//v/9/////f/+//3////9//7////9//////////3//////////f/////////9///////9//3////+//3//f////7//f/9/////v/9//3////+//////wAA/7//////AAD/v/////8AAP+//////wAA/78AAP9//3//vwAA/3//f/+/AAD/f/9//78AAP9//3//v/9/AAD//////38AAP//////fwAA//////9/AAD//////3////9//7//f////3//v/9/////f/+//3////9//7////9//////////3//////////f/////////9///////9//3////+//3//f////7//f/9/////v/9//3////+//////wAA/7//////AAD/v/////8AAP+//////wAA/78AAP9//3//vwAA/3//f/+/AAD/f/9//78AAP9//3//v/9/AAD//////38AAP//////fwAA//////9/AAD//////3////9//7//f////3//v/9/////f/+//3////9//7////9//////////3//////////f/////////9///////9//3////+//3//f////7//f/9/////v/9//3////+//////wAA/7//////AAD/v/////8AAP+//////wAA/78AAP9//3//vwAA/3//f/+/AAD/f/9//78AAP9//3//v/9/AAD//////38AAP//////fwAA//////9/AAD//////3////9//7//f////3//v/9/////f/+//3////9//7////9//////////3//////////f/////////9///////9//3////+//3//f////7//f/9/////v/9//3////+//////wAA/7//////AAD/v/////8AAP+//////wAA/78AAP9//3//vwAA/3//f/+/AAD/f/9//78AAP9//3//v/9/AAD//////38AAP//////fwAA//////9/AAD//////3////9//7//f////3//v/9/////f/+//3////9//7////9//////////3//////////f/////////9///////9//3////+//3//f////7//f/9/////v/9//3////+//////wAA/7//////AAD/v/////8AAP+//////wAA/78AAP9//3//vwAA/3//f/+/AAD/f/9//78AAP9//3//v/9/AAD//////38AAP//////fwAA//////9/AAD//////3////9//7//f////3//v/9/////f/+//3////9//7////9//////////3//////////f/////////9///////9//3////+//3//f////7//f/9/////v/9//3////+/")
+}]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_qkc6x"]
+points = PackedVector3Array(0.7, 0.9, -0.9, 0.7, 0.8, -0.9, 0.9, 0.8, -0.9, 0.9, 0.9, -0.9, 0.7, 0.9, 0.9, 0.7, 0.8, 0.9, 0.9, 0.8, 0.9, 0.9, 0.9, 0.9)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_gp1n1"]
+points = PackedVector3Array(0.7, 0.8, 0.7, 0.7, -0.8, 0.7, 0.9, -0.8, 0.7, 0.9, 0.8, 0.7, 0.7, 0.8, 0.9, 0.7, -0.8, 0.9, 0.9, -0.8, 0.9, 0.9, 0.8, 0.9)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_clgqb"]
+points = PackedVector3Array(-0.7, 0.9, 0.7, -0.7, 0.8, 0.7, 0.7, 0.8, 0.7, 0.7, 0.9, 0.7, -0.7, 0.9, 0.9, -0.7, 0.8, 0.9, 0.7, 0.8, 0.9, 0.7, 0.9, 0.9)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_vxi6d"]
+points = PackedVector3Array(-0.9, 0.8, 0.7, -0.9, -0.8, 0.7, -0.7, -0.8, 0.7, -0.7, 0.8, 0.7, -0.9, 0.8, 0.9, -0.9, -0.8, 0.9, -0.7, -0.8, 0.9, -0.7, 0.8, 0.9)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_74r2c"]
+points = PackedVector3Array(-0.9, 0.9, -0.9, -0.9, 0.8, -0.9, -0.7, 0.8, -0.9, -0.7, 0.9, -0.9, -0.9, 0.9, 0.9, -0.9, 0.8, 0.9, -0.7, 0.8, 0.9, -0.7, 0.9, 0.9)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_pn5j2"]
+points = PackedVector3Array(-0.7, 0.9, -0.9, -0.7, 0.8, -0.9, 0.7, 0.8, -0.9, 0.7, 0.9, -0.9, -0.7, 0.9, -0.7, -0.7, 0.8, -0.7, 0.7, 0.8, -0.7, 0.7, 0.9, -0.7)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_enydy"]
+points = PackedVector3Array(0.7, 0.8, -0.9, 0.7, -0.8, -0.9, 0.9, -0.8, -0.9, 0.9, 0.8, -0.9, 0.7, 0.8, -0.7, 0.7, -0.8, -0.7, 0.9, -0.8, -0.7, 0.9, 0.8, -0.7)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_fkntb"]
+points = PackedVector3Array(0.7, -0.8, -0.9, 0.7, -0.9, -0.9, 0.9, -0.9, -0.9, 0.9, -0.8, -0.9, 0.7, -0.8, 0.9, 0.7, -0.9, 0.9, 0.9, -0.9, 0.9, 0.9, -0.8, 0.9)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_k0mfm"]
+points = PackedVector3Array(-0.7, -0.8, 0.7, -0.7, -0.9, 0.7, 0.7, -0.9, 0.7, 0.7, -0.8, 0.7, -0.7, -0.8, 0.9, -0.7, -0.9, 0.9, 0.7, -0.9, 0.9, 0.7, -0.8, 0.9)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_2hltf"]
+points = PackedVector3Array(-0.8, 0.8, -0.8, -0.8, -0.8, -0.8, 0.8, -0.8, -0.8, 0.8, 0.8, -0.8, -0.8, 0.8, 0.8, -0.8, -0.8, 0.8, 0.8, -0.8, 0.8, 0.8, 0.8, 0.8)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_bwq5i"]
+points = PackedVector3Array(-0.9, -0.8, -0.9, -0.9, -0.9, -0.9, -0.7, -0.9, -0.9, -0.7, -0.8, -0.9, -0.9, -0.8, 0.9, -0.9, -0.9, 0.9, -0.7, -0.9, 0.9, -0.7, -0.8, 0.9)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_hgp5a"]
+points = PackedVector3Array(-0.9, 0.8, -0.9, -0.9, -0.8, -0.9, -0.7, -0.8, -0.9, -0.7, 0.8, -0.9, -0.9, 0.8, -0.7, -0.9, -0.8, -0.7, -0.7, -0.8, -0.7, -0.7, 0.8, -0.7)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_0u1e8"]
+points = PackedVector3Array(-0.7, -0.8, -0.9, -0.7, -0.9, -0.9, 0.7, -0.9, -0.9, 0.7, -0.8, -0.9, -0.7, -0.8, -0.7, -0.7, -0.9, -0.7, 0.7, -0.9, -0.7, 0.7, -0.8, -0.7)
+
+[node name="entity_182_geo_ballistic_container" type="StaticBody3D" node_paths=PackedStringArray("damage_component", "damage_effect_component") groups=["external_inventory"]]
+collision_layer = 15
+script = ExtResource("1_lxoga")
+min_spawned = 1
+max_spawned = 5
+container_size = 7
+chance_active = 0.33
+inventory_data = SubResource("Resource_b4lvo")
+func_godot_properties = {
+"_phong": false,
+"_tb_group": "28",
+"chance_active": 0.33,
+"classname": "geo_ballistic_container",
+"container_size": 7,
+"game_material_info": "3",
+"game_material_info_path": "",
+"gi_lightmap_texel_scale": 0.5,
+"globalname": "",
+"loot_table": 0,
+"max_spawned": 5,
+"min_spawned": 1,
+"tier": 0,
+"transparent": false
+}
+_pen_ratio = 0.8
+_armor_rating = 2
+_hit_effect_scene = ExtResource("4_unw1a")
+_footstep_sound = ExtResource("5_tnncr")
+damage_component = NodePath("DamageComponent")
+damage_effect_component = NodePath("DamageEffectComponent")
+
+[node name="entity_182_mesh_instance" type="MeshInstance3D" parent="."]
+gi_lightmap_texel_scale = 0.5
+mesh = SubResource("ArrayMesh_otw67")
+
+[node name="entity_182_brush_0_collision_shape" type="CollisionShape3D" parent="."]
+shape = SubResource("ConvexPolygonShape3D_qkc6x")
+
+[node name="entity_182_brush_1_collision_shape" type="CollisionShape3D" parent="."]
+shape = SubResource("ConvexPolygonShape3D_gp1n1")
+
+[node name="entity_182_brush_2_collision_shape" type="CollisionShape3D" parent="."]
+shape = SubResource("ConvexPolygonShape3D_clgqb")
+
+[node name="entity_182_brush_3_collision_shape" type="CollisionShape3D" parent="."]
+shape = SubResource("ConvexPolygonShape3D_vxi6d")
+
+[node name="entity_182_brush_4_collision_shape" type="CollisionShape3D" parent="."]
+shape = SubResource("ConvexPolygonShape3D_74r2c")
+
+[node name="entity_182_brush_5_collision_shape" type="CollisionShape3D" parent="."]
+shape = SubResource("ConvexPolygonShape3D_pn5j2")
+
+[node name="entity_182_brush_6_collision_shape" type="CollisionShape3D" parent="."]
+shape = SubResource("ConvexPolygonShape3D_enydy")
+
+[node name="entity_182_brush_7_collision_shape" type="CollisionShape3D" parent="."]
+shape = SubResource("ConvexPolygonShape3D_fkntb")
+
+[node name="entity_182_brush_8_collision_shape" type="CollisionShape3D" parent="."]
+shape = SubResource("ConvexPolygonShape3D_k0mfm")
+
+[node name="entity_182_brush_9_collision_shape" type="CollisionShape3D" parent="."]
+shape = SubResource("ConvexPolygonShape3D_2hltf")
+
+[node name="entity_182_brush_10_collision_shape" type="CollisionShape3D" parent="."]
+shape = SubResource("ConvexPolygonShape3D_bwq5i")
+
+[node name="entity_182_brush_11_collision_shape" type="CollisionShape3D" parent="."]
+shape = SubResource("ConvexPolygonShape3D_hgp5a")
+
+[node name="entity_182_brush_12_collision_shape" type="CollisionShape3D" parent="."]
+shape = SubResource("ConvexPolygonShape3D_0u1e8")
+
+[node name="DamageComponent" parent="." instance=ExtResource("7_lkjix")]
+percent_penetrated = 0.8
+armor_rating = 2
+
+[node name="DamageEffectComponent" parent="." instance=ExtResource("8_6gcos")]
+damage_effect_scene = ExtResource("4_unw1a")
