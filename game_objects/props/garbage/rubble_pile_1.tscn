@@ -1,0 +1,31 @@
+[gd_scene load_steps=7 format=3 uid="uid://c1y7i1jb0gm45"]
+
+[ext_resource type="Script" uid="uid://fdkjo7y6gaw4" path="res://levels/entities/geo_ballistic_solid.gd" id="1_lvne2"]
+[ext_resource type="PackedScene" uid="uid://64ippi50nu6t" path="res://components/damage_component/damage_component.tscn" id="2_nlxbi"]
+[ext_resource type="PackedScene" uid="uid://cliu3gfmcv7xd" path="res://components/damage_effect_component/damage_effect_component.tscn" id="3_b31a2"]
+[ext_resource type="PackedScene" uid="uid://3ma183br8axn" path="res://game_objects/effects/hit_effects/bullet_hit_stone.tscn" id="4_dt35h"]
+[ext_resource type="PackedScene" uid="uid://c0kt0mssupho" path="res://game_objects/props/garbage/rubble_pile_1_merged.gltf" id="5_2tp3d"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_sxr5u"]
+points = PackedVector3Array(4.29873, 0.190358, -0.789991, 1.04396, -0.249502, 2.11319, 2.27518, -2.36088, -0.70235, 1.13184, 0.27855, -3.25387, 0.0783654, 0.127319, 1.14047, 1.30758, -0.865471, -3.07748, 2.45142, -1.12922, 1.32056, 1.43916, -2.40989, -0.861806, 2.09943, 0.190358, 1.84862, 3.94674, 0.0145239, -1.66971, -0.187742, -0.161585, -2.46179, -0.627602, 0.102441, -0.350683, 2.09943, -1.74491, -2.02193, -0.0998685, -0.249502, 0.968896, 1.74793, -1.92075, 0.529037, 3.77099, -0.0736685, 0.440844, 2.62716, 0.27855, -2.72526, -0.539728, -0.953663, -0.965825, 1.57219, 0.27855, 0.353203, 4.3866, -0.0736685, -0.789991, 2.80291, -1.74491, -0.174849, 0.867725, -0.953663, -2.72581, 1.04396, 0.0145239, -3.51789, 0.962075, -1.6875, 0.0953336, 2.01156, -0.777554, 1.84862, 3.68312, -0.865471, -1.05402, 0.252117, 0.190358, -2.9011, 2.27518, -0.337419, 1.84862, 3.41901, -0.601445, 0.529037, -0.627602, -0.0736685, 0.089177, 1.48382, -0.865471, 1.76097, -0.627602, -0.513528, -1.14221)
+
+[node name="RubblePile1" type="StaticBody3D" node_paths=PackedStringArray("damage_component", "damage_effect_component")]
+collision_layer = 11
+script = ExtResource("1_lvne2")
+damage_component = NodePath("DamageComponent")
+damage_effect_component = NodePath("DamageEffectComponent")
+
+[node name="DamageComponent" parent="." instance=ExtResource("2_nlxbi")]
+percent_penetrated = 0.0
+armor_rating = 10
+
+[node name="DamageEffectComponent" parent="." instance=ExtResource("3_b31a2")]
+damage_effect_scene = ExtResource("4_dt35h")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(-0.608762, -5.32196e-08, -0.793353, 8.74228e-08, -1, 3.79719e-15, -0.793353, -6.93571e-08, 0.608762, 0.648026, 0.0625, 1.79934)
+shape = SubResource("ConvexPolygonShape3D_sxr5u")
+
+[node name="blockbench_export" parent="." instance=ExtResource("5_2tp3d")]
+
+[editable path="blockbench_export"]
