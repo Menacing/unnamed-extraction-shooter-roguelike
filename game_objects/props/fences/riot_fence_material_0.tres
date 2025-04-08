@@ -1,0 +1,15 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://dosgrt3yk0yqb"]
+
+[ext_resource type="Texture2D" uid="uid://de4xyt201br28" path="res://game_objects/props/fences/riot_fence_0.png" id="1_npdqm"]
+
+[resource]
+resource_name = "material_0"
+transparency = 2
+alpha_scissor_threshold = 0.05
+alpha_antialiasing_mode = 0
+cull_mode = 2
+albedo_texture = ExtResource("1_npdqm")
+metallic = 0.77
+roughness = 0.75
+texture_filter = 0
+texture_repeat = false
