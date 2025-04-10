@@ -1,0 +1,31 @@
+[gd_scene load_steps=8 format=3 uid="uid://fecsyghp72b6"]
+
+[ext_resource type="Script" uid="uid://fdkjo7y6gaw4" path="res://levels/entities/geo_ballistic_solid.gd" id="1_xsdmq"]
+[ext_resource type="AudioStream" uid="uid://fl738hpu2xe3" path="res://game_objects/effects/sounds/steps/footstep_concrete_000.ogg" id="2_2ykx8"]
+[ext_resource type="PackedScene" uid="uid://cvqh8qn3x0j08" path="res://game_objects/props/sandbag_wall/sandbag_wall_section.gltf" id="2_u4511"]
+[ext_resource type="PackedScene" uid="uid://64ippi50nu6t" path="res://components/damage_component/damage_component.tscn" id="4_kcwto"]
+[ext_resource type="PackedScene" uid="uid://cliu3gfmcv7xd" path="res://components/damage_effect_component/damage_effect_component.tscn" id="5_gqvmc"]
+[ext_resource type="PackedScene" uid="uid://3ma183br8axn" path="res://game_objects/effects/hit_effects/bullet_hit_stone.tscn" id="6_3k3yt"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_yg4mh"]
+size = Vector3(2.55518, 1.00824, 0.210938)
+
+[node name="SandbagWallSection" type="StaticBody3D" node_paths=PackedStringArray("damage_component", "damage_effect_component")]
+collision_layer = 11
+script = ExtResource("1_xsdmq")
+_footstep_sound = ExtResource("2_2ykx8")
+damage_component = NodePath("DamageComponent")
+damage_effect_component = NodePath("DamageEffectComponent")
+
+[node name="blockbench_export" parent="." instance=ExtResource("2_u4511")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0612793, 0.505524, 0.0253906)
+shape = SubResource("BoxShape3D_yg4mh")
+
+[node name="DamageComponent" parent="." instance=ExtResource("4_kcwto")]
+percent_penetrated = 0.4
+armor_rating = 8
+
+[node name="DamageEffectComponent" parent="." instance=ExtResource("5_gqvmc")]
+damage_effect_scene = ExtResource("6_3k3yt")

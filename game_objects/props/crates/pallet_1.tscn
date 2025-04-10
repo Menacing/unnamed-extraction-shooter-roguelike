@@ -1,0 +1,29 @@
+[gd_scene load_steps=7 format=3 uid="uid://c4mwb2a8j6sur"]
+
+[ext_resource type="Script" uid="uid://fdkjo7y6gaw4" path="res://levels/entities/geo_ballistic_solid.gd" id="1_4i8qd"]
+[ext_resource type="PackedScene" uid="uid://64ippi50nu6t" path="res://components/damage_component/damage_component.tscn" id="2_1480f"]
+[ext_resource type="PackedScene" uid="uid://cliu3gfmcv7xd" path="res://components/damage_effect_component/damage_effect_component.tscn" id="3_synnf"]
+[ext_resource type="PackedScene" uid="uid://bn6v1rairpb6i" path="res://game_objects/effects/hit_effects/bullet_hit_wood.tscn" id="4_7pmpy"]
+[ext_resource type="PackedScene" uid="uid://dkidfwlbexais" path="res://game_objects/props/crates/pallet_1.gltf" id="5_4i8qd"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1480f"]
+size = Vector3(1.21259, 0.124741, 0.996628)
+
+[node name="Pallet1" type="StaticBody3D" node_paths=PackedStringArray("damage_component", "damage_effect_component")]
+collision_layer = 11
+script = ExtResource("1_4i8qd")
+damage_component = NodePath("DamageComponent")
+damage_effect_component = NodePath("DamageEffectComponent")
+
+[node name="DamageComponent" parent="." instance=ExtResource("2_1480f")]
+percent_penetrated = 0.8
+armor_rating = 3
+
+[node name="DamageEffectComponent" parent="." instance=ExtResource("3_synnf")]
+damage_effect_scene = ExtResource("4_7pmpy")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.016532, 0.0613328, -0.000496358)
+shape = SubResource("BoxShape3D_1480f")
+
+[node name="blockbench_export" parent="." instance=ExtResource("5_4i8qd")]

@@ -1,0 +1,30 @@
+[gd_scene load_steps=7 format=3 uid="uid://5tjbpd14iwup"]
+
+[ext_resource type="Script" uid="uid://fdkjo7y6gaw4" path="res://levels/entities/geo_ballistic_solid.gd" id="1_ppkv5"]
+[ext_resource type="PackedScene" uid="uid://64ippi50nu6t" path="res://components/damage_component/damage_component.tscn" id="2_lpu6d"]
+[ext_resource type="PackedScene" uid="uid://cliu3gfmcv7xd" path="res://components/damage_effect_component/damage_effect_component.tscn" id="3_74xlo"]
+[ext_resource type="PackedScene" uid="uid://3ma183br8axn" path="res://game_objects/effects/hit_effects/bullet_hit_stone.tscn" id="4_vm1yb"]
+[ext_resource type="PackedScene" uid="uid://ctvoaerrdaj8g" path="res://game_objects/props/fences/traffic_barrier.gltf" id="5_veqs6"]
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_x5f62"]
+data = PackedVector3Array(0.6563, 0.0937, -0.3125, 0.6563, 0.3906, 0.125, 0.6563, 0.3906, -0.125, 0.6563, 0.0937, -0.3125, 0.6563, 0.0937, 0.3125, 0.6563, 0.3906, 0.125, -0.6563, 0.8125, 0.075, 0.6563, 0.8125, -0.075, 0.6563, 0.8125, 0.075, -0.6563, 0.8125, 0.075, -0.6563, 0.8125, -0.075, 0.6563, 0.8125, -0.075, 0.6563, 0, -0.3125, -0.6563, 0, 0.3125, 0.6563, 0, 0.3125, 0.6563, 0, -0.3125, -0.6563, 0, -0.3125, -0.6563, 0, 0.3125, 0.6563, 0.0937, 0.3125, -0.6563, 0.3906, 0.125, 0.6563, 0.3906, 0.125, 0.6563, 0.0937, 0.3125, -0.6563, 0.0937, 0.3125, -0.6563, 0.3906, 0.125, -0.6563, 0.0937, -0.3125, 0.6563, 0.3906, -0.125, -0.6563, 0.3906, -0.125, -0.6563, 0.0937, -0.3125, 0.6563, 0.0937, -0.3125, 0.6563, 0.3906, -0.125, -0.6563, 0, -0.3125, 0.6563, 0.0937, -0.3125, -0.6563, 0.0937, -0.3125, -0.6563, 0, -0.3125, 0.6563, 0, -0.3125, 0.6563, 0.0937, -0.3125, 0.6563, 0, -0.3125, 0.6563, 0.0937, 0.3125, 0.6563, 0.0937, -0.3125, 0.6563, 0, -0.3125, 0.6563, 0, 0.3125, 0.6563, 0.0937, 0.3125, 0.6563, 0, 0.3125, -0.6563, 0.0937, 0.3125, 0.6563, 0.0937, 0.3125, 0.6563, 0, 0.3125, -0.6563, 0, 0.3125, -0.6563, 0.0937, 0.3125, -0.6563, 0.8125, 0.075, 0.6563, 0.3906, 0.125, -0.6563, 0.3906, 0.125, -0.6563, 0.8125, 0.075, 0.6563, 0.8125, 0.075, 0.6563, 0.3906, 0.125, 0.6563, 0.8125, 0.075, 0.6563, 0.3906, -0.125, 0.6563, 0.3906, 0.125, 0.6563, 0.8125, 0.075, 0.6563, 0.8125, -0.075, 0.6563, 0.3906, -0.125, 0.6563, 0.8125, -0.075, -0.6563, 0.3906, -0.125, 0.6563, 0.3906, -0.125, 0.6563, 0.8125, -0.075, -0.6563, 0.8125, -0.075, -0.6563, 0.3906, -0.125, -0.6563, 0.0937, 0.3125, -0.6563, 0.3906, -0.125, -0.6563, 0.3906, 0.125, -0.6563, 0.0937, 0.3125, -0.6563, 0.0937, -0.3125, -0.6563, 0.3906, -0.125, -0.6563, 0, 0.3125, -0.6563, 0.0937, -0.3125, -0.6563, 0.0937, 0.3125, -0.6563, 0, 0.3125, -0.6563, 0, -0.3125, -0.6563, 0.0937, -0.3125, -0.6563, 0.8125, -0.075, -0.6563, 0.3906, 0.125, -0.6563, 0.3906, -0.125, -0.6563, 0.8125, -0.075, -0.6563, 0.8125, 0.075, -0.6563, 0.3906, 0.125)
+
+[node name="TrafficBarrier" type="StaticBody3D" node_paths=PackedStringArray("damage_component", "damage_effect_component")]
+collision_layer = 11
+script = ExtResource("1_ppkv5")
+damage_component = NodePath("DamageComponent")
+damage_effect_component = NodePath("DamageEffectComponent")
+
+[node name="DamageComponent" parent="." instance=ExtResource("2_lpu6d")]
+percent_penetrated = 0.4
+armor_rating = 7
+
+[node name="DamageEffectComponent" parent="." instance=ExtResource("3_74xlo")]
+damage_effect_scene = ExtResource("4_vm1yb")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("ConcavePolygonShape3D_x5f62")
+
+[node name="blockbench_export" parent="." instance=ExtResource("5_veqs6")]
+
+[editable path="blockbench_export"]

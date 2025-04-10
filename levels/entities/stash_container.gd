@@ -32,7 +32,7 @@ func _ready():
 	inventory_data.inventory_size_changed.connect(_on_stash_size_changed)
 	inventory_data.set_inventory_size(HideoutManager.current_stash_size)
 	HideoutManager.inventory_data = inventory_data
-	
+	_on_stash_size_changed(inventory_data, HideoutManager.current_stash_size)
 
 func _on_stash_size_changed(inv_data:InventoryData, new_size:int) -> void:
 	match new_size:
