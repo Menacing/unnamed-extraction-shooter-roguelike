@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://bpqgnht4fxljp"]
+
+[ext_resource type="PackedScene" uid="uid://dflngvqw0jdd6" path="res://game_objects/props/clone_vat/clone_vat.gltf" id="1_p57gv"]
+
+[node name="CloneVat" type="StaticBody3D"]
+
+[node name="blockbench_export" parent="." instance=ExtResource("1_p57gv")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 0)

@@ -1,0 +1,13 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://b4rh8nvcieqib"]
+
+[ext_resource type="Texture2D" uid="uid://dj6mh3c7nvd8" path="res://game_objects/props/clone_vat/clone_vat_0.png" id="1_ix0fo"]
+
+[resource]
+resource_name = "material_0"
+transparency = 2
+alpha_scissor_threshold = 0.05
+alpha_antialiasing_mode = 0
+cull_mode = 2
+albedo_texture = ExtResource("1_ix0fo")
+texture_filter = 0
+texture_repeat = false
