@@ -42,7 +42,7 @@
 [ext_resource type="Script" uid="uid://b2newdlaaj70t" path="res://game_objects/items/weapons/gun_stats.gd" id="43_af1xf"]
 [ext_resource type="PackedScene" uid="uid://c58b7dwqutp75" path="res://game_objects/items/ammo/lpc/lpc_box_fmj.tscn" id="44_af1xf"]
 [ext_resource type="PackedScene" uid="uid://5ymni756p0xu" path="res://game_objects/props/printers/Printer.tscn" id="44_yhxea"]
-[ext_resource type="PackedScene" uid="uid://dflngvqw0jdd6" path="res://game_objects/props/clone_vat/clone_vat.gltf" id="45_af1xf"]
+[ext_resource type="PackedScene" uid="uid://bpqgnht4fxljp" path="res://game_objects/props/clone_vat/clone_vat.tscn" id="45_af1xf"]
 [ext_resource type="PackedScene" uid="uid://d3qu8ewdc1ye3" path="res://game_objects/props/lights/sodium_light/sodium_light.tscn" id="46_oudwg"]
 [ext_resource type="PackedScene" uid="uid://dlmiqubqcqf0y" path="res://game_objects/props/lights/tube_light/tube_light.tscn" id="47_jg2x3"]
 
@@ -3729,5 +3729,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.7268, 0.83, -2.51582)
 [node name="LpcBoxFmj2" parent="." instance=ExtResource("44_af1xf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.7131, 0.83, -2.3156)
 
-[node name="blockbench_export" parent="." instance=ExtResource("45_af1xf")]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 4.13573, 0.2, -3.08148)
+[node name="CloneVat" parent="." instance=ExtResource("45_af1xf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.20379, 0, -3.1804)
