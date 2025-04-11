@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=4 uid="uid://bpqgnht4fxljp"]
+[gd_scene load_steps=9 format=4 uid="uid://bpqgnht4fxljp"]
 
 [ext_resource type="PackedScene" uid="uid://dflngvqw0jdd6" path="res://game_objects/props/clone_vat/clone_vat.gltf" id="1_p57gv"]
 [ext_resource type="Material" uid="uid://ba78wvi824fxe" path="res://levels/textures/glass/glass_1.tres" id="2_qrtyk"]
@@ -55,7 +55,7 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_tul8k")
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_q7xsn"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_qrtyk"]
 resource_name = "blockbench_export_mesh5"
 _surfaces = [{
 "aabb": AABB(-0.75, 0, -0.75, 1.5, 2.5, 1.5),
@@ -74,12 +74,27 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_y8ilm")
 
+[sub_resource type="FogMaterial" id="FogMaterial_q7xsn"]
+density = 8.0
+emission = Color(0, 1, 0, 1)
+
 [node name="CloneVat" type="StaticBody3D"]
 
 [node name="blockbench_export" parent="." instance=ExtResource("1_p57gv")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 0)
 
 [node name="tank" parent="blockbench_export/Node" index="4"]
-mesh = SubResource("ArrayMesh_q7xsn")
+mesh = SubResource("ArrayMesh_qrtyk")
+
+[node name="FogVolume" type="FogVolume" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00303936, 1.2243, 0.0109329)
+size = Vector3(1.37451, 2.42209, 1.35271)
+shape = 2
+material = SubResource("FogMaterial_q7xsn")
+
+[node name="SpotLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 1.28752, 0)
+light_color = Color(0, 0.537255, 0, 1)
+shadow_enabled = true
 
 [editable path="blockbench_export"]

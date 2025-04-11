@@ -1,0 +1,48 @@
+[gd_resource type="ShaderMaterial" load_steps=7 format=3 uid="uid://c7nemjhgaspau"]
+
+[ext_resource type="Shader" uid="uid://di7ylbuld0ykh" path="res://game_objects/props/clone_vat/clone_vat.gdshader" id="1_uwgmk"]
+
+[sub_resource type="Gradient" id="Gradient_tlck0"]
+offsets = PackedFloat32Array(0.669312, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_q7xsn"]
+noise_type = 2
+frequency = 0.1
+fractal_type = 3
+fractal_octaves = 1
+fractal_lacunarity = 8.0
+fractal_gain = 1.0
+fractal_ping_pong_strength = 32.0
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_407qb"]
+width = 32
+height = 32
+seamless = true
+color_ramp = SubResource("Gradient_tlck0")
+noise = SubResource("FastNoiseLite_q7xsn")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_o8vso"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_7fb83"]
+noise = SubResource("FastNoiseLite_o8vso")
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_uwgmk")
+shader_parameter/coeff = Vector2(0, 0)
+shader_parameter/vel = 0.0
+shader_parameter/liquid_color = Color(0.163979, 0.431598, 5.19812e-06, 1)
+shader_parameter/foam_color = Color(0.9, 0.3, 0.8, 1)
+shader_parameter/foam_line = 0.2
+shader_parameter/fill_amount = 1.0
+shader_parameter/size = Vector2(1, 1)
+shader_parameter/glass_thickness = 0.05
+shader_parameter/scale = 1.0
+shader_parameter/wave_intensity = 0.05
+shader_parameter/waves_noise = SubResource("NoiseTexture2D_7fb83")
+shader_parameter/HasBubbles = true
+shader_parameter/AlwaysBubbles = true
+shader_parameter/BubbleStrength = 0.5
+shader_parameter/BubbleMask = 0.5
+shader_parameter/BubbleSpeed = Vector2(3, 3)
+shader_parameter/bubbles_tex = SubResource("NoiseTexture2D_407qb")
