@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=4 uid="uid://bpqgnht4fxljp"]
+[gd_scene load_steps=22 format=4 uid="uid://bpqgnht4fxljp"]
 
 [ext_resource type="PackedScene" uid="uid://dflngvqw0jdd6" path="res://game_objects/props/clone_vat/clone_vat.gltf" id="1_p57gv"]
 [ext_resource type="Material" uid="uid://1pvs8v6iixwb" path="res://levels/textures/glass/glass_2.tres" id="2_qrtyk"]
@@ -145,18 +145,19 @@ shadow_mesh = SubResource("ArrayMesh_y8ilm")
 density = 8.0
 emission = Color(0, 1, 0, 1)
 
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_tlck0"]
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_q7xsn"]
 lifetime_randomness = 0.1
 emission_shape_offset = Vector3(0, 0.555, 0)
 emission_shape = 6
 emission_ring_axis = Vector3(0, 1, 0)
 emission_ring_height = 0.1
-emission_ring_radius = 0.7
+emission_ring_radius = 0.3
 emission_ring_inner_radius = 0.0
 emission_ring_cone_angle = 90.0
 gravity = Vector3(0, 9.8, 0)
 scale_min = 0.8
 scale_max = 1.2
+collision_mode = 2
 
 [sub_resource type="VisualShaderNodeColorParameter" id="VisualShaderNodeColorParameter_q7xsn"]
 parameter_name = "ColorParameter"
@@ -215,7 +216,25 @@ material = SubResource("ShaderMaterial_7fb83")
 add_uv2 = true
 size = Vector2(0.05, 0.05)
 
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_tlck0"]
+lifetime_randomness = 0.1
+emission_shape_offset = Vector3(0, 0.555, 0)
+emission_shape = 6
+emission_ring_axis = Vector3(0, 1, 0)
+emission_ring_height = 0.1
+emission_ring_radius = 0.7
+emission_ring_inner_radius = 0.0
+emission_ring_cone_angle = 90.0
+gravity = Vector3(0, 9.8, 0)
+scale_min = 0.8
+scale_max = 1.2
+collision_mode = 2
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_tlck0"]
+size = Vector3(5.3653, 2.48938, 2.53564)
+
 [node name="CloneVat" type="StaticBody3D"]
+collision_layer = 15
 
 [node name="blockbench_export" parent="." instance=ExtResource("1_p57gv")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 0)
@@ -226,34 +245,64 @@ mesh = SubResource("ArrayMesh_tlck0")
 [node name="tank" parent="blockbench_export/Node" index="4"]
 mesh = SubResource("ArrayMesh_qrtyk")
 
-[node name="FogVolume" type="FogVolume" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00303936, 1.2243, 0.0109329)
-size = Vector3(1.37451, 2.42209, 1.35271)
+[node name="InputTankEffects" type="Node3D" parent="."]
+
+[node name="FogVolume2" type="FogVolume" parent="InputTankEffects"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.19197, 0.62922, -0.0566995)
+size = Vector3(0.556152, 1.23193, 0.561094)
 shape = 2
 material = SubResource("FogMaterial_q7xsn")
 
-[node name="FogVolume2" type="FogVolume" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.19368, 0.62922, -0.0611868)
-size = Vector3(0.72168, 1.23193, 0.699697)
+[node name="FogVolume3" type="FogVolume" parent="InputTankEffects"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.69574, 0.62922, 0.495921)
+size = Vector3(0.551392, 1.23193, 0.544492)
 shape = 2
 material = SubResource("FogMaterial_q7xsn")
 
-[node name="FogVolume3" type="FogVolume" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.69153, 0.62922, 0.51243)
-size = Vector3(0.72168, 1.23193, 0.699697)
-shape = 2
-material = SubResource("FogMaterial_q7xsn")
+[node name="GPUParticles3D2" type="GPUParticles3D" parent="InputTankEffects"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.19599, -0.463717, -0.071616)
+cast_shadow = 0
+amount = 20
+process_material = SubResource("ParticleProcessMaterial_q7xsn")
+draw_pass_1 = SubResource("QuadMesh_t43c2")
+
+[node name="GPUParticles3D3" type="GPUParticles3D" parent="InputTankEffects"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.6895, -0.463717, 0.491818)
+cast_shadow = 0
+amount = 20
+process_material = SubResource("ParticleProcessMaterial_q7xsn")
+draw_pass_1 = SubResource("QuadMesh_t43c2")
+
+[node name="GPUParticlesCollisionBox3D2" type="GPUParticlesCollisionBox3D" parent="InputTankEffects"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.87871, 1.7281, 0)
+size = Vector3(2, 0.953613, 2)
 
 [node name="SpotLight3D" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 1.28752, 0)
 light_color = Color(0, 0.537255, 0, 1)
 shadow_enabled = true
 
-[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+[node name="TankEffects" type="Node3D" parent="."]
+
+[node name="FogVolume" type="FogVolume" parent="TankEffects"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000622988, 1.2243, -0.00556793)
+size = Vector3(1.21338, 2.42209, 1.23027)
+shape = 2
+material = SubResource("FogMaterial_q7xsn")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="TankEffects"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.463717, 0)
 cast_shadow = 0
 amount = 20
 process_material = SubResource("ParticleProcessMaterial_tlck0")
 draw_pass_1 = SubResource("QuadMesh_t43c2")
+
+[node name="GPUParticlesCollisionBox3D" type="GPUParticlesCollisionBox3D" parent="TankEffects"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.56286, 0)
+size = Vector3(2, 0.953613, 2)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0965881, 1.24664, -0.167236)
+shape = SubResource("BoxShape3D_tlck0")
 
 [editable path="blockbench_export"]
