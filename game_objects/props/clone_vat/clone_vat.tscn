@@ -1,9 +1,10 @@
-[gd_scene load_steps=22 format=4 uid="uid://bpqgnht4fxljp"]
+[gd_scene load_steps=23 format=4 uid="uid://bpqgnht4fxljp"]
 
 [ext_resource type="PackedScene" uid="uid://dflngvqw0jdd6" path="res://game_objects/props/clone_vat/clone_vat.gltf" id="1_p57gv"]
 [ext_resource type="Material" uid="uid://1pvs8v6iixwb" path="res://levels/textures/glass/glass_2.tres" id="2_qrtyk"]
 [ext_resource type="Material" uid="uid://dnyl1v1ytruit" path="res://game_objects/props/clone_vat/material_3.tres" id="3_tlck0"]
 [ext_resource type="Material" uid="uid://b4rh8nvcieqib" path="res://game_objects/props/clone_vat/material_0.tres" id="4_q7xsn"]
+[ext_resource type="AudioStream" uid="uid://2hukqrqoj2os" path="res://game_objects/props/clone_vat/clone_vat_ambient.ogg" id="5_q7xsn"]
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_ugkef"]
 _surfaces = [{
@@ -293,7 +294,7 @@ material = SubResource("FogMaterial_q7xsn")
 [node name="GPUParticles3D" type="GPUParticles3D" parent="TankEffects"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.463717, 0)
 cast_shadow = 0
-amount = 20
+amount = 40
 process_material = SubResource("ParticleProcessMaterial_tlck0")
 draw_pass_1 = SubResource("QuadMesh_t43c2")
 
@@ -304,5 +305,14 @@ size = Vector3(2, 0.953613, 2)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0965881, 1.24664, -0.167236)
 shape = SubResource("BoxShape3D_tlck0")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.08755, 0)
+stream = ExtResource("5_q7xsn")
+attenuation_model = 1
+volume_db = -10.0
+autoplay = true
+bus = &"SFX"
+parameters/looping = true
 
 [editable path="blockbench_export"]
