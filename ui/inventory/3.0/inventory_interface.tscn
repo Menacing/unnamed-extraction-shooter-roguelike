@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://ctepwvhl6clus"]
+[gd_scene load_steps=7 format=3 uid="uid://ctepwvhl6clus"]
 
 [ext_resource type="Script" uid="uid://buy0vtlppa3jn" path="res://ui/inventory/3.0/inventory_interface.gd" id="1_caxe5"]
 [ext_resource type="PackedScene" uid="uid://b6a88vw5glb7n" path="res://ui/inventory/3.0/inventory.tscn" id="2_n5hmi"]
 [ext_resource type="PackedScene" uid="uid://5cgjmdxllnhl" path="res://ui/hideout/hideout_menu.tscn" id="2_r05sy"]
 [ext_resource type="PackedScene" uid="uid://5kxtoc8tn1ps" path="res://ui/inventory/3.0/slot.tscn" id="3_xhv20"]
 [ext_resource type="PackedScene" uid="uid://cts4vsll0guse" path="res://ui/inventory/ammo/ammo.tscn" id="4_wdh2q"]
+[ext_resource type="PackedScene" uid="uid://303hfyt1tu8o" path="res://ui/inventory/3.0/clones.tscn" id="5_486dq"]
 
 [node name="InventoryInterface" type="Control"]
 layout_mode = 3
@@ -69,17 +70,21 @@ size_flags_horizontal = 3
 
 [node name="TabContainer" type="TabContainer" parent="MarginContainer/HBoxContainer/PlayerInventorySpacer"]
 layout_mode = 2
-current_tab = 0
+current_tab = 1
 
 [node name="ITEMS" parent="MarginContainer/HBoxContainer/PlayerInventorySpacer/TabContainer" instance=ExtResource("2_n5hmi")]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 metadata/_tab_index = 0
 
 [node name="AMMO" parent="MarginContainer/HBoxContainer/PlayerInventorySpacer/TabContainer" instance=ExtResource("4_wdh2q")]
-visible = false
 layout_mode = 2
 metadata/_tab_index = 1
+
+[node name="CLONES" parent="MarginContainer/HBoxContainer/PlayerInventorySpacer/TabContainer" instance=ExtResource("5_486dq")]
+visible = false
+layout_mode = 2
 
 [node name="GrabbedSlot" parent="." instance=ExtResource("3_xhv20")]
 modulate = Color(1, 1, 1, 0.490196)

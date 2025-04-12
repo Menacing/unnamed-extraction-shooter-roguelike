@@ -13,6 +13,12 @@ var selected_difficulty:GameplayEnums.GameDifficulty
 
 var current_stash_size:StashContainer.StashSize = StashContainer.StashSize.SMALL
 var inventory_data:InventoryData
+var remaining_lives:int = 0:
+	get:
+		return remaining_lives
+	set(value):
+		remaining_lives = value
+		lives_changed.emit()
 
 var current_printer_size:PrinterStation.PrinterSize = PrinterStation.PrinterSize.UNBUILT:
 	get:
@@ -23,6 +29,7 @@ var current_printer_size:PrinterStation.PrinterSize = PrinterStation.PrinterSize
 		
 signal printer_size_changed
 signal print_item(item_to_print:ItemInformation)
+signal lives_changed
 
 func _ready():
 	crafting_materials_resource_group.load_all_into(_crafting_material_definitions)
@@ -34,7 +41,7 @@ func _ready():
 
 	crafting_materials.sort_custom(CraftingMaterialEntry._sort)
 	
-	EventBus.game_saving.connect(_on_game_saving)
+	EventBus.game_saving.connect(_on_game_saving) 
 	
 func _on_game_saving(save_file:SaveFile):
 	var run_save_data:RunSaveData = RunSaveData.new()
@@ -46,6 +53,8 @@ func _on_game_saving(save_file:SaveFile):
 	run_save_data.crafting_materials = crafting_materials
 	run_save_data.stash_size = current_stash_size
 	run_save_data.printer_level = current_printer_size
+	run_save_data.remaining_lives = remaining_lives
+	
 	save_file.run_save_data = run_save_data
 	pass
 
@@ -58,6 +67,7 @@ func _on_load_game(save_data:LevelEntitySaveData):
 	crafting_materials = run_save_data.crafting_materials
 	current_stash_size = run_save_data.stash_size
 	current_printer_size = run_save_data.printer_level
+	remaining_lives = run_save_data.remaining_lives
 	#hideout_menu.load_run_data(run_save_data)
 	pass
 

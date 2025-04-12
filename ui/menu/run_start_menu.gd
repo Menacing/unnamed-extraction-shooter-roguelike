@@ -118,5 +118,13 @@ func _on_back_button_pressed() -> void:
 
 
 func _on_start_button_pressed() -> void:
+	match HideoutManager.selected_difficulty:
+		GameplayEnums.GameDifficulty.EASY:
+			HideoutManager.remaining_lives = 2
+		GameplayEnums.GameDifficulty.MEDIUM:
+			HideoutManager.remaining_lives = 1
+		GameplayEnums.GameDifficulty.HARD:
+			HideoutManager.remaining_lives = 0
+			
 	await LevelManager.load_level_async("res://levels/hideout.tscn", true)
 	MenuManager.load_menu(MenuManager.MENU_LEVEL.NONE)
