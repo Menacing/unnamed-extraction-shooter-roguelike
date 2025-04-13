@@ -562,7 +562,14 @@ func _on_arms_destroyed(hc:HealthComponent):
 	EventBus.create_effect.emit(self.get_instance_id(), arm_destroyed_effect)
 			
 func _on_main_destroyed(hc:HealthComponent):
-	die()
+	if HideoutManager.remaining_lives > 0:
+		HideoutManager.remaining_lives -= 1
+		#TODO: Drop all items
+		
+		
+		pass
+	else:
+		die()
 			
 func _on_arms_restored(hc:HealthComponent):
 	EventBus.remove_effect.emit(self.get_instance_id(), arm_destroyed_effect)
