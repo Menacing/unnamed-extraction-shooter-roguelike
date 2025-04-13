@@ -1,4 +1,4 @@
-[gd_scene load_steps=386 format=4 uid="uid://d2txigapsdl18"]
+[gd_scene load_steps=385 format=4 uid="uid://d2txigapsdl18"]
 
 [ext_resource type="Script" uid="uid://c7t5re1e03cfg" path="res://levels/level.gd" id="1_d1tug"]
 [ext_resource type="CameraAttributesPractical" uid="uid://jafbi2bjurvn" path="res://test/debug/vibe_check_camera.tres" id="2_7vsv1"]
@@ -43,7 +43,6 @@
 [ext_resource type="PackedScene" uid="uid://c58b7dwqutp75" path="res://game_objects/items/ammo/lpc/lpc_box_fmj.tscn" id="44_af1xf"]
 [ext_resource type="PackedScene" uid="uid://5ymni756p0xu" path="res://game_objects/props/printers/Printer.tscn" id="44_yhxea"]
 [ext_resource type="PackedScene" uid="uid://bpqgnht4fxljp" path="res://game_objects/props/clone_vat/clone_vat.tscn" id="45_af1xf"]
-[ext_resource type="PackedScene" uid="uid://dpvoqq6pjm1ya" path="res://game_objects/items/materials/bio_gel_vial/bio_gel_vial.tscn" id="46_naf82"]
 [ext_resource type="PackedScene" uid="uid://d3qu8ewdc1ye3" path="res://game_objects/props/lights/sodium_light/sodium_light.tscn" id="46_oudwg"]
 [ext_resource type="PackedScene" uid="uid://dlmiqubqcqf0y" path="res://game_objects/props/lights/tube_light/tube_light.tscn" id="47_jg2x3"]
 
@@ -3733,24 +3732,3 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.7131, 0.83, -2.3156)
 
 [node name="CloneVat" parent="." instance=ExtResource("45_af1xf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.20379, 0, -3.1804)
-
-[node name="BioGelVial" parent="." instance=ExtResource("46_naf82")]
-transform = Transform3D(0.871377, -0.490615, 0, 0.490615, 0.871377, 0, 0, 0, 1, -5.84992, 0.309212, -1.89316)
-
-[node name="BioGelVial2" parent="." instance=ExtResource("46_naf82")]
-transform = Transform3D(0.871377, -0.490615, 0, 0.490615, 0.871377, 0, 0, 0, 1, -5.48279, 0.309212, -1.89316)
-
-[node name="BioGelVial3" parent="." instance=ExtResource("46_naf82")]
-transform = Transform3D(0.871377, -0.490615, 0, 0.490615, 0.871377, 0, 0, 0, 1, -4.95983, 0.309212, -1.89316)
-
-[node name="BioGelVial4" parent="." instance=ExtResource("46_naf82")]
-transform = Transform3D(0.871377, -0.490615, 0, 0.490615, 0.871377, 0, 0, 0, 1, -4.63023, 0.309212, -1.89316)
-
-[node name="BioGelVial5" parent="." instance=ExtResource("46_naf82")]
-transform = Transform3D(0.871377, -0.490615, 0, 0.490615, 0.871377, 0, 0, 0, 1, -4.03536, 0.309212, -1.89316)
-
-[node name="BioGelVial6" parent="." instance=ExtResource("46_naf82")]
-transform = Transform3D(0.871377, -0.490615, 0, 0.490615, 0.871377, 0, 0, 0, 1, -5.20856, 0.309212, -1.89316)
-
-[node name="BioGelVial7" parent="." instance=ExtResource("46_naf82")]
-transform = Transform3D(0.871377, -0.490615, 0, 0.490615, 0.871377, 0, 0, 0, 1, -5.20856, 0.309212, -1.52149)
