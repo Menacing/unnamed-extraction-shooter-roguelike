@@ -328,3 +328,12 @@ func auto_transfer_hideout_items() -> void:
 	foley_audio_stream_player_3d.stop()
 	foley_audio_stream_player_3d.volume_db = orig_volume
 	
+func drop_all_items() -> void:
+	var orig_volume = foley_audio_stream_player_3d.volume_db
+	foley_audio_stream_player_3d.volume_db = -100
+	if player_inventory_data:
+		var all_items = player_inventory_data.grab_all_items()
+		for sd in all_items:
+			drop_slot_data(sd)
+	foley_audio_stream_player_3d.stop()
+	foley_audio_stream_player_3d.volume_db = orig_volume

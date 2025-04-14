@@ -594,8 +594,10 @@ func calculate_fall_damage(vertical_velocity:float) -> float:
 	var calc_damage = (200.0/6.0*abs(vertical_velocity)) - 300.0
 	return max(0.0, calc_damage)
 
-var alive = true
+func drop_everything():
+	inventory_interface.drop_all_items()
 
+var alive = true
 func die():
 	alive = false
 	animation_tree.active = false
@@ -615,6 +617,7 @@ func die():
 	if HideoutManager.remaining_lives > 0:
 		HideoutManager.remaining_lives -= 1
 		#TODO: Drop all items
+		drop_everything()
 		await get_tree().create_timer(5).timeout
 
 		#undo all the death effect stuff

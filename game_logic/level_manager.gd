@@ -12,7 +12,7 @@ var previous_level:Level
 #The instantiated next level.
 var next_level:Level
 #The level that is actually loaded as a child of the level manager
-var loaded_level:Level
+var loaded_level:Node
 
 
 var level_navigation_maps:Dictionary = {}
