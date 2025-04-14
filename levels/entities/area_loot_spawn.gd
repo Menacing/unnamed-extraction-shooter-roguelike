@@ -28,8 +28,7 @@ var current_shuffle_bag:Array[LootSpawnInformation] = []
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	add_to_group("loot_spawn_area",true)
-	if not Engine.is_editor_hint():
-		EventBus.populate_level.connect(_on_populate_level)
+	add_to_group("has_on_populate_level_function",true)
 	
 func _on_populate_level():
 	var lsk:LootSpawnKey = LootSpawnKey.new()

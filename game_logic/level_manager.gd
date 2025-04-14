@@ -52,7 +52,7 @@ func load_hideout_async():
 	for child in get_children():
 		if not child.is_in_group("world_root_no_touch") and not child.is_in_group("players"):
 			if child is Level:
-				child.unload_level()
+				child.disconnect_level()
 				previous_level = child
 				self.remove_child(child)
 			else:
@@ -96,7 +96,7 @@ func load_level_async(path:String, populate_level:bool = false):
 		for child in get_children():
 			if not child.is_in_group("world_root_no_touch") and not child.is_in_group("players"):
 				if child is Level:
-					child.unload_level()
+					child.disconnect_level()
 					self.remove_child(child)
 					if !child.is_hideout:
 						if previous_level:
@@ -145,7 +145,7 @@ func load_previous_level_async():
 		for child in get_children():
 			if not child.is_in_group("world_root_no_touch") and not child.is_in_group("players"):
 				if child is Level:
-					child.unload_level()
+					child.disconnect_level()
 					self.remove_child(child)
 					if !child.is_hideout:
 						if previous_level:

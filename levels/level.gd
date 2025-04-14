@@ -30,13 +30,21 @@ func _on_game_saving(save_file:SaveFile):
 
 func _on_populate_level():
 	setup_player_spawn()
+	
+	get_tree().call_group("has_on_populate_level_function", "_on_populate_level")
+	
 	populated = true
+	
 
 func connect_level():
 	EventBus.populate_level.connect(_on_populate_level)
 	EventBus.game_saving.connect(_on_game_saving)
+	if is_hideout:
+		HideoutManager.in_hideout = true
+	else:
+		HideoutManager.in_hideout = false
 
-func unload_level():
+func disconnect_level():
 	EventBus.populate_level.disconnect(_on_populate_level)
 	EventBus.game_saving.disconnect(_on_game_saving)
 
