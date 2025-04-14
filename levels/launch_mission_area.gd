@@ -24,6 +24,7 @@ func use(player:Player):
 		EventBus.create_message.emit(str(get_instance_id()), "Select next mission first", 5)
 	
 func _on_extract_timer_timeout():
+	extract_timer.stop()
 	EventBus.remove_message.emit(str(get_instance_id()))
 	await LevelManager.load_level_async(HideoutManager.next_map.level_path, true)
 	

@@ -562,14 +562,7 @@ func _on_arms_destroyed(hc:HealthComponent):
 	EventBus.create_effect.emit(self.get_instance_id(), arm_destroyed_effect)
 			
 func _on_main_destroyed(hc:HealthComponent):
-	if HideoutManager.remaining_lives > 0:
-		HideoutManager.remaining_lives -= 1
-		#TODO: Drop all items
-		
-		
-		pass
-	else:
-		die()
+	die()
 			
 func _on_arms_restored(hc:HealthComponent):
 	EventBus.remove_effect.emit(self.get_instance_id(), arm_destroyed_effect)
@@ -618,7 +611,29 @@ func die():
 	death_cam.current = true
 	var death_animation_player:AnimationPlayer = %DeathAnimationPlayer
 	death_animation_player.play("death_spiral")
-	MenuManager.load_menu(MenuManager.MENU_LEVEL.DIED)
+	
+	if HideoutManager.remaining_lives > 0:
+		HideoutManager.remaining_lives -= 1
+		#TODO: Drop all items
+		await get_tree().create_timer(5).timeout
+
+		#undo all the death effect stuff
+		main_health_component.apply_healing(999)
+		alive = true
+		animation_tree.active = true
+		ik_head.start()
+		skeleton.animate_physical_bones = false
+		skeleton.physical_bones_stop_simulation()
+		collision_shape.disabled = false
+		state_chart.process_mode = Node.PROCESS_MODE_INHERIT
+		player_hud.visible = true
+		death_cam.current = false
+		death_animation_player.stop()
+
+		LevelManager.load_hideout_async()
+		pass
+	else:
+		MenuManager.load_menu(MenuManager.MENU_LEVEL.DIED)
 	
 #region Movement Code
 

@@ -46,13 +46,6 @@ layout_mode = 2
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
-current_tab = 1
-
-[node name="STASH" parent="MarginContainer/HBoxContainer/ExternalInventorySpacer/HideoutMenu" index="1"]
-visible = false
-
-[node name="NEXT MAP" parent="MarginContainer/HBoxContainer/ExternalInventorySpacer/HideoutMenu" index="2"]
-visible = true
 
 [node name="ItemDetailContainer" type="PanelContainer" parent="MarginContainer/HBoxContainer/ExternalInventorySpacer"]
 unique_name_in_owner = true
@@ -70,15 +63,15 @@ size_flags_horizontal = 3
 
 [node name="TabContainer" type="TabContainer" parent="MarginContainer/HBoxContainer/PlayerInventorySpacer"]
 layout_mode = 2
-current_tab = 1
+current_tab = 0
 
 [node name="ITEMS" parent="MarginContainer/HBoxContainer/PlayerInventorySpacer/TabContainer" instance=ExtResource("2_n5hmi")]
 unique_name_in_owner = true
-visible = false
 layout_mode = 2
 metadata/_tab_index = 0
 
 [node name="AMMO" parent="MarginContainer/HBoxContainer/PlayerInventorySpacer/TabContainer" instance=ExtResource("4_wdh2q")]
+visible = false
 layout_mode = 2
 metadata/_tab_index = 1
 
