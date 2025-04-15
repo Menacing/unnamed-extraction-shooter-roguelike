@@ -9,3 +9,4 @@ class_name RunSaveData
 @export var crafting_materials:Array[CraftingMaterialEntry] = []
 @export var stash_size:int
 @export var printer_level:int
+@export var remaining_lives:int

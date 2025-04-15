@@ -8,10 +8,10 @@ var player_scene:PackedScene = preload("res://game_objects/player/player.tscn")
 @export var nodes_to_remove_medium:Array[Node]
 @export var nodes_to_remove_hard:Array[Node]
 
+var populated:bool = false
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	EventBus.populate_level.connect(_on_populate_level)
-	EventBus.game_saving.connect(_on_game_saving)
 	if is_hideout:
 		HideoutManager.in_hideout = true
 	else:
@@ -29,12 +29,24 @@ func _on_game_saving(save_file:SaveFile):
 		save_file.level_scene_path = self.scene_file_path
 
 func _on_populate_level():
-	setup_player_spawn()
+	#setup_player_spawn()
+	
+	get_tree().call_group("has_on_populate_level_function", "_on_populate_level")
+	
+	populated = true
+	
 
-func unload_level():
+func connect_level():
+	EventBus.populate_level.connect(_on_populate_level)
+	EventBus.game_saving.connect(_on_game_saving)
+	if is_hideout:
+		HideoutManager.in_hideout = true
+	else:
+		HideoutManager.in_hideout = false
+
+func disconnect_level():
 	EventBus.populate_level.disconnect(_on_populate_level)
 	EventBus.game_saving.disconnect(_on_game_saving)
-	self.queue_free()
 
 func setup_player_spawn():
 	if is_hideout:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=124 format=4 uid="uid://ctahsvj88g1om"]
+[gd_scene load_steps=126 format=4 uid="uid://ctahsvj88g1om"]
 
 [ext_resource type="Script" uid="uid://dwshafaid76mm" path="res://levels/demo_level.gd" id="1_8448e"]
 [ext_resource type="PackedScene" uid="uid://d08aatgxmymbf" path="res://game_objects/player/player.tscn" id="1_eisjc"]
@@ -33,6 +33,7 @@
 [ext_resource type="PackedScene" uid="uid://c8y8q8sw14nbw" path="res://game_objects/items/ammo/hic/hic_box_hp.tscn" id="23_xk7fk"]
 [ext_resource type="PackedScene" uid="uid://c2mgc1vc3603e" path="res://game_objects/items/armor/light/light_armor_1.tscn" id="24_bw0sj"]
 [ext_resource type="PackedScene" uid="uid://fetf2vb0h86g" path="res://game_objects/items/armor/medium/1/medium_armor_1.tscn" id="25_43i1p"]
+[ext_resource type="Script" uid="uid://byh2ktg4m1kyh" path="res://levels/tests/drop_everything_chest.gd" id="25_h3dqm"]
 [ext_resource type="PackedScene" uid="uid://2ggq36ut12jw" path="res://game_objects/items/attachments/foregrips/stable/stable_forgreip.tscn" id="26_vh55a"]
 [ext_resource type="PackedScene" uid="uid://d0o2yjbp3avaa" path="res://game_objects/items/attachments/magazines/extended/extended_magazine.tscn" id="27_phudk"]
 [ext_resource type="PackedScene" uid="uid://cwhv3r1tw0orw" path="res://game_objects/items/consumables/regel_pod/regel_pod.tscn" id="28_2kj4q"]
@@ -366,6 +367,9 @@ is_rotated = false
 script = ExtResource("21_ym4ob")
 equipment_slots = Array[ExtResource("21_qlm4m")]([])
 slot_datas = Array[Array]([[SubResource("Resource_0qw6n"), null, null, null, null, null, null], [null, null, null, null, null, null, null], [null, null, null, null, null, null, null], [null, null, null, null, null, null, null]])
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_e4xtb"]
+albedo_color = Color(1, 0, 0.0117647, 1)
 
 [sub_resource type="Resource" id="Resource_mdbm7"]
 resource_local_to_scene = true
@@ -1374,6 +1378,17 @@ inventory_data = SubResource("Resource_pbdhj")
 [node name="DamageComponent" type="Node" parent="MultiAgentNavigationRoot/LootChest"]
 script = ExtResource("18_dvips")
 
+[node name="LootChest2" type="CSGBox3D" parent="MultiAgentNavigationRoot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.3896, 0.584802, 3.33876)
+use_collision = true
+collision_layer = 7
+collision_mask = 0
+material = SubResource("StandardMaterial3D_e4xtb")
+script = ExtResource("25_h3dqm")
+
+[node name="DamageComponent" type="Node" parent="MultiAgentNavigationRoot/LootChest2"]
+script = ExtResource("18_dvips")
+
 [node name="Player" parent="." instance=ExtResource("1_eisjc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.48035, 1.04626, -2.63506)
 
@@ -1472,3 +1487,4 @@ _gun_stats = SubResource("Resource_h3dqm")
 
 [connection signal="hit_occured" from="MultiAgentNavigationRoot/FiestaBox/DamageComponent" to="MultiAgentNavigationRoot/FiestaBox" method="_on_damage_component_hit_occured"]
 [connection signal="hit_occured" from="MultiAgentNavigationRoot/LootChest/DamageComponent" to="MultiAgentNavigationRoot/LootChest" method="_on_damage_component_hit_occured"]
+[connection signal="hit_occured" from="MultiAgentNavigationRoot/LootChest2/DamageComponent" to="MultiAgentNavigationRoot/LootChest2" method="_on_damage_component_hit_occured"]

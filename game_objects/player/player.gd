@@ -594,8 +594,10 @@ func calculate_fall_damage(vertical_velocity:float) -> float:
 	var calc_damage = (200.0/6.0*abs(vertical_velocity)) - 300.0
 	return max(0.0, calc_damage)
 
-var alive = true
+func drop_everything():
+	inventory_interface.drop_all_items()
 
+var alive = true
 func die():
 	alive = false
 	animation_tree.active = false
@@ -611,7 +613,30 @@ func die():
 	death_cam.current = true
 	var death_animation_player:AnimationPlayer = %DeathAnimationPlayer
 	death_animation_player.play("death_spiral")
-	MenuManager.load_menu(MenuManager.MENU_LEVEL.DIED)
+	
+	if HideoutManager.remaining_lives > 0:
+		HideoutManager.remaining_lives -= 1
+		#TODO: Drop all items
+		drop_everything()
+		await get_tree().create_timer(5).timeout
+
+		#undo all the death effect stuff
+		main_health_component.apply_healing(999)
+		alive = true
+		animation_tree.active = true
+		ik_head.start()
+		skeleton.animate_physical_bones = false
+		skeleton.physical_bones_stop_simulation()
+		collision_shape.disabled = false
+		state_chart.process_mode = Node.PROCESS_MODE_INHERIT
+		player_hud.visible = true
+		death_cam.current = false
+		death_animation_player.stop()
+
+		LevelManager.load_hideout_async(false, true)
+		pass
+	else:
+		MenuManager.load_menu(MenuManager.MENU_LEVEL.DIED)
 	
 #region Movement Code
 

@@ -25,14 +25,17 @@ var long_description:String = "-7 Extracts
 -45-60 minutes"
 
 var easy_description:String = "-Starting Items
+-2 Starting Lives
 -Normal Loot
 -Normal Enemies"
 
 var medium_diff_description:String = "-Fewer Starting Items
+-1 Starting Life
 -Less Loot
 -More Enemies"
 
 var hard_description:String = "-No Starting Items
+-No Lives
 -Least Loot
 -Most Enemies"
 
@@ -118,5 +121,13 @@ func _on_back_button_pressed() -> void:
 
 
 func _on_start_button_pressed() -> void:
-	await LevelManager.load_level_async("res://levels/hideout.tscn", true)
+	match HideoutManager.selected_difficulty:
+		GameplayEnums.GameDifficulty.EASY:
+			HideoutManager.remaining_lives = 2
+		GameplayEnums.GameDifficulty.MEDIUM:
+			HideoutManager.remaining_lives = 1
+		GameplayEnums.GameDifficulty.HARD:
+			HideoutManager.remaining_lives = 0
+			
+	await LevelManager.load_hideout_async(true, false)
 	MenuManager.load_menu(MenuManager.MENU_LEVEL.NONE)

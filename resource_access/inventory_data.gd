@@ -433,6 +433,25 @@ func deep_duplicate() -> InventoryData:
 	new_inventory_data.slot_datas = new_slot_datas
 	return new_inventory_data
 
+## removes all slot data from the inventory
+func grab_all_items() -> Array[SlotData]:
+	var unique_slot_datas:Array[SlotData] = []
+	var skip_coordinates:Array[Vector2i] = []
+	
+	#first do equipment
+	for es in equipment_slots:
+		var esd = grab_equipment_slot_data(es.slot_name)
+		if esd:
+			unique_slot_datas.append(esd)
+	
+	#for each index
+	for i in get_inventory_size():
+		var sd = grab_slot_data(i)
+		if sd:
+			unique_slot_datas.append(sd)
+
+	return unique_slot_datas
+
 func number_items_of_type(item_type_id:String) -> int:
 	#var slot_data:SlotData = slot_datas[row_i][col_i]
 	var total := 0

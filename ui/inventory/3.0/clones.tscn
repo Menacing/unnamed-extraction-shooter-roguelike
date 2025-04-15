@@ -1,0 +1,71 @@
+[gd_scene load_steps=8 format=3 uid="uid://303hfyt1tu8o"]
+
+[ext_resource type="Script" uid="uid://ct3in68vphv8y" path="res://ui/inventory/3.0/clones.gd" id="1_ewxwb"]
+[ext_resource type="Script" uid="uid://1xwcocwanxup" path="res://game_logic/upgrade_material_entry.gd" id="2_ewxwb"]
+[ext_resource type="Script" uid="uid://k0a2w8vhc7ip" path="res://ui/inventory/3.0/clone_buy_container.gd" id="2_litsc"]
+[ext_resource type="Resource" uid="uid://tnc0xmfk6ddc" path="res://game_objects/crafting_materials/bio-gel.tres" id="3_1fry5"]
+[ext_resource type="Script" uid="uid://bognm2jn5680k" path="res://game_logic/upgrade_requirement.gd" id="4_i54dm"]
+
+[sub_resource type="Resource" id="Resource_ewxwb"]
+script = ExtResource("2_ewxwb")
+material = ExtResource("3_1fry5")
+amount = 20
+metadata/_custom_type_script = "uid://1xwcocwanxup"
+
+[sub_resource type="Resource" id="Resource_1fry5"]
+script = ExtResource("4_i54dm")
+required_materials = Array[ExtResource("2_ewxwb")]([SubResource("Resource_ewxwb")])
+metadata/_custom_type_script = "uid://bognm2jn5680k"
+
+[node name="CLONES" type="MarginContainer"]
+script = ExtResource("1_ewxwb")
+metadata/_tab_index = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="ClonesLabel" type="Label" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "REMAINING CLONES:"
+vertical_alignment = 1
+
+[node name="ClonesNumberLabel" type="Label" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 40
+text = "0"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="UpgradeHBoxContainer" type="VBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+script = ExtResource("2_litsc")
+upgrade_requirement = SubResource("Resource_1fry5")
+
+[node name="Label" type="Label" parent="VBoxContainer/UpgradeHBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Required Materials"
+horizontal_alignment = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer/UpgradeHBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 2
+vertical_scroll_mode = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/UpgradeHBoxContainer/ScrollContainer"]
+layout_mode = 2
+
+[node name="UpgradeButton" type="Button" parent="VBoxContainer/UpgradeHBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "CLONE!"
+
+[connection signal="upgrade_triggered" from="VBoxContainer/UpgradeHBoxContainer" to="." method="_on_upgrade_h_box_container_upgrade_triggered"]
+[connection signal="pressed" from="VBoxContainer/UpgradeHBoxContainer/UpgradeButton" to="VBoxContainer/UpgradeHBoxContainer" method="_on_upgrade_button_pressed"]

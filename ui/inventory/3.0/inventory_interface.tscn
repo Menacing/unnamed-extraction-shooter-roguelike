@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://ctepwvhl6clus"]
+[gd_scene load_steps=7 format=3 uid="uid://ctepwvhl6clus"]
 
 [ext_resource type="Script" uid="uid://buy0vtlppa3jn" path="res://ui/inventory/3.0/inventory_interface.gd" id="1_caxe5"]
 [ext_resource type="PackedScene" uid="uid://b6a88vw5glb7n" path="res://ui/inventory/3.0/inventory.tscn" id="2_n5hmi"]
 [ext_resource type="PackedScene" uid="uid://5cgjmdxllnhl" path="res://ui/hideout/hideout_menu.tscn" id="2_r05sy"]
 [ext_resource type="PackedScene" uid="uid://5kxtoc8tn1ps" path="res://ui/inventory/3.0/slot.tscn" id="3_xhv20"]
 [ext_resource type="PackedScene" uid="uid://cts4vsll0guse" path="res://ui/inventory/ammo/ammo.tscn" id="4_wdh2q"]
+[ext_resource type="PackedScene" uid="uid://303hfyt1tu8o" path="res://ui/inventory/3.0/clones.tscn" id="5_486dq"]
 
 [node name="InventoryInterface" type="Control"]
 layout_mode = 3
@@ -45,13 +46,6 @@ layout_mode = 2
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
-current_tab = 1
-
-[node name="STASH" parent="MarginContainer/HBoxContainer/ExternalInventorySpacer/HideoutMenu" index="1"]
-visible = false
-
-[node name="NEXT MAP" parent="MarginContainer/HBoxContainer/ExternalInventorySpacer/HideoutMenu" index="2"]
-visible = true
 
 [node name="ItemDetailContainer" type="PanelContainer" parent="MarginContainer/HBoxContainer/ExternalInventorySpacer"]
 unique_name_in_owner = true
@@ -80,6 +74,10 @@ metadata/_tab_index = 0
 visible = false
 layout_mode = 2
 metadata/_tab_index = 1
+
+[node name="CLONES" parent="MarginContainer/HBoxContainer/PlayerInventorySpacer/TabContainer" instance=ExtResource("5_486dq")]
+visible = false
+layout_mode = 2
 
 [node name="GrabbedSlot" parent="." instance=ExtResource("3_xhv20")]
 modulate = Color(1, 1, 1, 0.490196)

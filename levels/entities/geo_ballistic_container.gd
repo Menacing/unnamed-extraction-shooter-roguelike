@@ -47,8 +47,9 @@ func _ready():
 	#setup inventory linkages
 	inventory_data.set_inventory_size(container_size)
 	Helpers.apply_material_overlay_to_children(self, item_highlight_m)
-	EventBus.populate_level.connect(_on_populate_level)
 	EventBus.game_saving.connect(_on_game_saving)
+	add_to_group("has_on_populate_level_function",true)
+
 
 func _on_game_saving(save_file:SaveFile):
 	var save_data:LevelEntitySaveData = LevelEntitySaveData.new()

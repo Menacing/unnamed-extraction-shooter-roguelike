@@ -5,7 +5,7 @@ extends Node3D
 func _ready() -> void:
 	LevelManager.emit_populate_level.call_deferred()
 	LevelManager.add_child(self)
-	LevelManager.current_level = self
+	LevelManager.loaded_level = self
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
