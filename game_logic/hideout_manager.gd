@@ -7,6 +7,7 @@ var crafting_materials:Array[CraftingMaterialEntry] = []
 
 #run information
 var next_map:LevelInformation
+var return_to_previous_level:bool = false
 var selected_run_length:GameplayEnums.GameLength
 var current_map_number:int = 0
 var selected_difficulty:GameplayEnums.GameDifficulty

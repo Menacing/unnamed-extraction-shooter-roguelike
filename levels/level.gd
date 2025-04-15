@@ -29,7 +29,7 @@ func _on_game_saving(save_file:SaveFile):
 		save_file.level_scene_path = self.scene_file_path
 
 func _on_populate_level():
-	setup_player_spawn()
+	#setup_player_spawn()
 	
 	get_tree().call_group("has_on_populate_level_function", "_on_populate_level")
 	

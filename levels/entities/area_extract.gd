@@ -56,7 +56,7 @@ func _on_extract_timer_timeout():
 	if HideoutManager.has_extracted_enough():
 		MenuManager.load_menu(MenuManager.MENU_LEVEL.EXTRACTED)
 	else:
-		LevelManager.load_level_async("res://levels/hideout.tscn", true)
+		LevelManager.load_hideout_async(true, false)
 	pass
 
 var disabled:bool = false

@@ -35,7 +35,7 @@ func clear_level():
 		remove_child(child)
 		child.queue_free()
 
-func load_hideout_async():
+func load_hideout_async(extracted:bool = false, died:bool = false):
 	# wait a physics frame so we can modify the tree
 	await get_tree().physics_frame
 	get_tree().paused = true
@@ -66,6 +66,8 @@ func load_hideout_async():
 	add_child(hideout_level)
 	hideout_level.connect_level()
 	
+	hideout_level.setup_player_spawn()
+	
 	call_deferred("emit_populate_level")
 	await EventBus.level_populated
 	
@@ -73,6 +75,11 @@ func load_hideout_async():
 	get_tree().paused = false
 	# connect the signal to get notified when the exit is reached
 	EventBus.level_loaded.emit()
+	
+	if extracted:
+		get_tree().call_group("has_on_extracted_function", "_on_extracted")
+	if died:
+		get_tree().call_group("has_on_died_function", "_on_died")
 	pass
 
 func load_level_async(path:String, populate_level:bool = false):
@@ -112,6 +119,8 @@ func load_level_async(path:String, populate_level:bool = false):
 		# add to world root
 		add_child(next_level)
 		next_level.connect_level()
+		
+		next_level.setup_player_spawn()
 		
 		if populate_level:
 			call_deferred("emit_populate_level")
@@ -161,6 +170,8 @@ func load_previous_level_async():
 		# add to world root
 		add_child(next_level)
 		next_level.connect_level()
+		
+		next_level.setup_player_spawn()
 		
 		if !next_level.populated:
 			call_deferred("emit_populate_level")

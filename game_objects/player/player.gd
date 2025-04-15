@@ -633,7 +633,7 @@ func die():
 		death_cam.current = false
 		death_animation_player.stop()
 
-		LevelManager.load_hideout_async()
+		LevelManager.load_hideout_async(false, true)
 		pass
 	else:
 		MenuManager.load_menu(MenuManager.MENU_LEVEL.DIED)

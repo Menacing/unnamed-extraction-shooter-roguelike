@@ -14,10 +14,10 @@ func _physics_process(delta: float) -> void:
 	pass
 
 func use(player:Player):
-	if HideoutManager.next_map and extract_timer.is_stopped():
+	if (HideoutManager.next_map or HideoutManager.return_to_previous_level) and extract_timer.is_stopped():
 		extract_timer.start(extract_cooldown)
 		EventBus.create_message.emit(str(get_instance_id()), extract_message_template % extract_cooldown, -1)		
-	elif HideoutManager.next_map and !extract_timer.is_stopped():
+	elif (HideoutManager.next_map or HideoutManager.return_to_previous_level) and !extract_timer.is_stopped():
 		extract_timer.stop()
 		EventBus.remove_message.emit(str(get_instance_id()))
 	else:
@@ -26,5 +26,8 @@ func use(player:Player):
 func _on_extract_timer_timeout():
 	extract_timer.stop()
 	EventBus.remove_message.emit(str(get_instance_id()))
-	await LevelManager.load_level_async(HideoutManager.next_map.level_path, true)
+	if HideoutManager.return_to_previous_level:
+		await LevelManager.load_previous_level_async()
+	else:
+		await LevelManager.load_level_async(HideoutManager.next_map.level_path, true)
 	
