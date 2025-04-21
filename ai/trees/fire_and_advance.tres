@@ -1,9 +1,10 @@
-[gd_resource type="BehaviorTree" load_steps=24 format=3 uid="uid://w3cgx8e6nk0a"]
+[gd_resource type="BehaviorTree" load_steps=26 format=3 uid="uid://w3cgx8e6nk0a"]
 
 [ext_resource type="Script" uid="uid://cvw7ocnvo1j4f" path="res://ai/tasks/set_fire_target_task.gd" id="1_b5ooy"]
 [ext_resource type="Script" uid="uid://dmmuq2wf020yf" path="res://ai/tasks/slow_weapon_turn_task.gd" id="2_ofiwr"]
 [ext_resource type="Script" uid="uid://t8jwxqkplgeb" path="res://ai/tasks/fire_weapon_task.gd" id="3_k376t"]
 [ext_resource type="Script" uid="uid://bmbep2p4f7w40" path="res://ai/tasks/nav_agent_repath_task.gd" id="4_60yct"]
+[ext_resource type="Script" uid="uid://cm5govmktva06" path="res://ai/tasks/variable_cooldown.gd" id="4_ofiwr"]
 [ext_resource type="Script" uid="uid://blaj7bmpwo86q" path="res://ai/tasks/nav_agent_move_task.gd" id="5_hxwcx"]
 
 [sub_resource type="BlackboardPlan" id="BlackboardPlan_32mjl"]
@@ -37,14 +38,20 @@ script = ExtResource("2_ofiwr")
 [sub_resource type="BTAction" id="BTAction_ofxus"]
 script = ExtResource("3_k376t")
 
-[sub_resource type="BTCooldown" id="BTCooldown_j2wid"]
-duration = 1.0
-start_cooled = true
+[sub_resource type="BBFloat" id="BBFloat_ofiwr"]
+value_source = 1
+variable = &"firing_cooldown"
+resource_name = "$firing_cooldown"
+
+[sub_resource type="BTCooldown" id="BTCooldown_k376t"]
+custom_name = "Firing Cooldown"
 children = [SubResource("BTAction_ofxus")]
+script = ExtResource("4_ofiwr")
+cooldown_length = SubResource("BBFloat_ofiwr")
 
 [sub_resource type="BTAlwaysSucceed" id="BTAlwaysSucceed_862lh"]
 custom_name = "Fire Weapon Cooldown"
-children = [SubResource("BTCooldown_j2wid")]
+children = [SubResource("BTCooldown_k376t")]
 
 [sub_resource type="BTDynamicSequence" id="BTDynamicSequence_lbavh"]
 custom_name = "AttackPlayerSequence"
