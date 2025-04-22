@@ -1,15 +1,14 @@
 [remap]
 
-importer="animation_library"
+importer="scene"
 importer_version=1
-type="AnimationLibrary"
-uid="uid://sufo0j8ikscq"
-path="res://.godot/imported/human_looking_around_2.fbx-5fd0cfe32c024020c5adac7442cc8a44.res"
+type="PackedScene"
+uid="uid://1tpbqmfpq07k"
+valid=false
 
 [deps]
 
 source_file="res://game_objects/enemies/outlaw/human_looking_around_2.fbx"
-dest_files=["res://.godot/imported/human_looking_around_2.fbx-5fd0cfe32c024020c5adac7442cc8a44.res"]
 
 [params]
 
@@ -32,13 +31,7 @@ animation/trimming=true
 animation/remove_immutable_tracks=true
 animation/import_rest_as_RESET=false
 import_script/path=""
-_subresources={
-"nodes": {
-"PATH:Skeleton3D": {
-"retarget/bone_map": Resource("res://game_objects/enemies/humanoid_bone_map.tres")
-}
-}
-}
-fbx/importer=0
+_subresources={}
+fbx/importer=1
 fbx/allow_geometry_helper_nodes=false
 fbx/embedded_image_handling=1

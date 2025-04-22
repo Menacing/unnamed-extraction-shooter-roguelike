@@ -93,6 +93,12 @@ func _ready() -> void:
 		head_node.add_child(gun)
 		gun.firer = self
 		gun_node = gun
+	elif gun_node:
+		gun_node.start_highlighted = false
+		gun_node.picked_up()
+		gun_node._gun_stats.magazine_size = 30000
+		gun_node.current_magazine_size = 30000
+		gun_node.firer = self
 
 func _start_behavior_tree(tree_name:String):
 	bt_player.behavior_tree = bt_dictionary[tree_name]

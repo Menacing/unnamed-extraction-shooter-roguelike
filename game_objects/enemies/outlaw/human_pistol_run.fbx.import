@@ -1,15 +1,14 @@
 [remap]
 
-importer="animation_library"
+importer="scene"
 importer_version=1
-type="AnimationLibrary"
-uid="uid://bdy8okxls1d3u"
-path="res://.godot/imported/human_pistol_run.fbx-39aeb3e6fb7aba01e059e57806e77028.res"
+type="PackedScene"
+uid="uid://cp40pa3gfm8vt"
+valid=false
 
 [deps]
 
 source_file="res://game_objects/enemies/outlaw/human_pistol_run.fbx"
-dest_files=["res://.godot/imported/human_pistol_run.fbx-39aeb3e6fb7aba01e059e57806e77028.res"]
 
 [params]
 
@@ -32,13 +31,7 @@ animation/trimming=true
 animation/remove_immutable_tracks=true
 animation/import_rest_as_RESET=false
 import_script/path=""
-_subresources={
-"nodes": {
-"PATH:Skeleton3D": {
-"retarget/bone_map": Resource("res://game_objects/enemies/humanoid_bone_map.tres")
-}
-}
-}
-fbx/importer=0
+_subresources={}
+fbx/importer=1
 fbx/allow_geometry_helper_nodes=false
 fbx/embedded_image_handling=1
