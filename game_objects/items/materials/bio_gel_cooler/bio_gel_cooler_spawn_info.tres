@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="LootSpawnInformation" load_steps=3 format=3 uid="uid://bjcfsklhywb0r"]
+
+[ext_resource type="Resource" uid="uid://caq20br4uv2t0" path="res://game_objects/items/materials/bio_gel_cooler/bio_gel_cooler_inventory_info.tres" id="1_ff52m"]
+[ext_resource type="Script" uid="uid://hkvfi3gp0ftm" path="res://game_objects/items/loot_spawn_information.gd" id="2_6rnes"]
+
+[resource]
+script = ExtResource("2_6rnes")
+item_information = ExtResource("1_ff52m")
+test_radius = 0.5
+min_stack = 1
+max_stack = 5

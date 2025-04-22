@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://cvh415ycsq5k6"]
+
+[ext_resource type="Script" uid="uid://bi18abresibqv" path="res://game_objects/item_3d.gd" id="1_e77bl"]
+[ext_resource type="PackedScene" uid="uid://csrk6xijp7dbn" path="res://game_objects/items/materials/bio_gel_cooler/bio_gel_cooler.gltf" id="2_aakmb"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_b65xc"]
+points = PackedVector3Array(-0.202012, 0.125279, -0.125117, 0.0787447, 0.446913, 0.0374412, 0.202012, 0.125279, -0.125117, -0.198979, 0.127744, 0.125442, -0.199074, 0.376463, -0.12328, 0.198979, 0.127744, 0.125442, 0.198978, 0.376421, -0.12322, -0.197408, 0.375735, 0.124461, 0.197458, 0.375756, 0.124491, -0.0800406, 0.449505, -0.0358178, 0.116544, 0.375268, -0.133861, -0.0925286, 0.129006, 0.136854, -0.116875, 0.129434, -0.134244, 0.092158, 0.375396, 0.13631, 0.0800406, 0.449505, -0.0358178, -0.0787447, 0.446913, 0.0374412, -0.116554, 0.375276, -0.133873, -0.0921459, 0.375385, 0.136292, 0.116875, 0.129434, -0.134244, 0.0925286, 0.129006, 0.136854, -0.0926317, 0.443808, 0.0381533, 0.0926317, 0.443808, 0.0381533, -0.172495, 0.394128, 0.0996525, 0.172495, 0.394128, 0.0996525, 0.171923, 0.37534, -0.127811, 0.123013, 0.424745, -0.0603708, -0.123037, 0.424772, -0.0603827, -0.171943, 0.37535, -0.127826, -0.153361, 0.375264, 0.129919, 0.153375, 0.375272, 0.129931, 0.191204, 0.381879, -0.116063, -0.191271, 0.381911, -0.116103)
+
+[node name="BioGelCooler" type="RigidBody3D" node_paths=PackedStringArray("model_node")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+collision_layer = 5
+collision_mask = 5
+script = ExtResource("1_e77bl")
+item_type_id = "bio_gel_cooler"
+world_collider_path = NodePath("CollisionShape3D")
+longest_side_size = 0.5
+model_node = NodePath("blockbench_export/Node/bio_gel_cooler")
+
+[node name="blockbench_export" parent="." instance=ExtResource("2_aakmb")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.125, 0)
+shape = SubResource("ConvexPolygonShape3D_b65xc")
+
+[editable path="blockbench_export"]

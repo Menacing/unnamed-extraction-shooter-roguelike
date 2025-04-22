@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ItemMapping" load_steps=4 format=3 uid="uid://dlak5a58pphmu"]
+
+[ext_resource type="PackedScene" uid="uid://cvh415ycsq5k6" path="res://game_objects/items/materials/bio_gel_cooler/bio_gel_cooler.tscn" id="1_npv12"]
+[ext_resource type="Resource" uid="uid://caq20br4uv2t0" path="res://game_objects/items/materials/bio_gel_cooler/bio_gel_cooler_inventory_info.tres" id="2_a3w4e"]
+[ext_resource type="Script" uid="uid://c8amqbc45k2jw" path="res://resource_access/item_mapping.gd" id="3_dbs10"]
+
+[resource]
+script = ExtResource("3_dbs10")
+item_type_id = "bio_gel_cooler"
+item_information = ExtResource("2_a3w4e")
+item_3d_scene = ExtResource("1_npv12")
