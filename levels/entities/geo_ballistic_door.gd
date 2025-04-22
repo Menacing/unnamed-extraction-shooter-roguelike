@@ -39,3 +39,11 @@ func reparent_hinge():
 	#set target values
 	base_transform = _hinge.transform
 	target_transform = base_transform
+
+func open_door():
+	moved = true
+	play_motion()
+	
+func close_door():
+	moved = false
+	play_motion()
