@@ -1,0 +1,9 @@
+[gd_resource type="AudioStreamRandomizer" load_steps=2 format=3 uid="uid://byfm57rw7ae1g"]
+
+[ext_resource type="AudioStream" uid="uid://b6m3ga7vcrg7m" path="res://game_objects/enemies/outlaw/audio/outlaw_loiter.ogg" id="1_fe0ae"]
+
+[resource]
+random_pitch = 1.1
+random_volume_offset_db = 0.5
+streams_count = 1
+stream_0/stream = ExtResource("1_fe0ae")

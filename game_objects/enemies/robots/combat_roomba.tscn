@@ -253,9 +253,9 @@ animate_physical_bones = false
 active = false
 
 [node name="Physical Bone Bone" type="PhysicalBone3D" parent="combat-roomba/Armature/Skeleton3D/PhysicalBoneSimulator3D"]
-transform = Transform3D(2.8455, 7.42677e-05, 0, 0, 0, -2.8455, -7.42677e-05, 2.8455, 0, 0, 0.222436, 0)
-joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.0781711)
-body_offset = Transform3D(2.8455, 7.42676e-05, 0, 0, 0, -2.8455, -7.42676e-05, 2.8455, 0, 0, 0.222436, 0)
+transform = Transform3D(2.8455, 7.42678e-05, 0, 0, 0, -2.8455, -7.42678e-05, 2.8455, 0, 0, 0.222436, 0)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.078171)
+body_offset = Transform3D(2.8455, 7.42678e-05, 0, 0, 0, -2.8455, -7.42678e-05, 2.8455, 0, 0, 0.222436, 0)
 bone_name = "Bone"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="combat-roomba/Armature/Skeleton3D/PhysicalBoneSimulator3D/Physical Bone Bone"]

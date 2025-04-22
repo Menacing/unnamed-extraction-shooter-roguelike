@@ -42,6 +42,7 @@ var _reaction_timer:float = 0.0
 @export var gun_node:Gun
 @export var vert_moa:float = 600
 @export var hor_moa:float = 600
+@export var firing_cooldown:float = 1.0
 @export var melee_range:float = 1.0
 
 @export_category("Death")
@@ -66,6 +67,7 @@ func _get_configuration_warnings():
 
 func _ready() -> void:
 	bt_player.blackboard.set_var("animation_player", animation_player)
+	bt_player.blackboard.set_var("firing_cooldown", firing_cooldown)
 	
 	if nav_agent: 
 		nav_agent.velocity_computed.connect(_on_velocity_computed)
@@ -91,6 +93,12 @@ func _ready() -> void:
 		head_node.add_child(gun)
 		gun.firer = self
 		gun_node = gun
+	elif gun_node:
+		gun_node.start_highlighted = false
+		gun_node.picked_up()
+		gun_node._gun_stats.magazine_size = 30000
+		gun_node.current_magazine_size = 30000
+		gun_node.firer = self
 
 func _start_behavior_tree(tree_name:String):
 	bt_player.behavior_tree = bt_dictionary[tree_name]

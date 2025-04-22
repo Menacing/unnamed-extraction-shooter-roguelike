@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=4 uid="uid://4mdathvlp5a5"]
+[gd_scene load_steps=22 format=4 uid="uid://4mdathvlp5a5"]
 
 [ext_resource type="Script" uid="uid://to07yl4k63kc" path="res://test/ai/concealment_tester.gd" id="1_dv7jw"]
 [ext_resource type="Script" uid="uid://dld574lvn7eun" path="res://levels/multi_agent_navigation_root.gd" id="2_hgtva"]
@@ -6,12 +6,11 @@
 [ext_resource type="Resource" uid="uid://hw8blc564g2i" path="res://levels/roomba_nav_mesh.tres" id="4_6of7y"]
 [ext_resource type="Resource" uid="uid://bkm06qpqovt7f" path="res://levels/humanoid_nav_mesh.tres" id="5_l0bi7"]
 [ext_resource type="PackedScene" uid="uid://d08aatgxmymbf" path="res://game_objects/player/player.tscn" id="6_2tam6"]
-[ext_resource type="PackedScene" uid="uid://bv1jhh0d8fn5m" path="res://game_objects/enemies/unendliche/unendliche.tscn" id="7_fedvk"]
 [ext_resource type="PackedScene" uid="uid://cprpop5lkmyhe" path="res://game_objects/items/weapons/fic_rifles/s5/s5.tscn" id="8_l0bi7"]
 [ext_resource type="Resource" uid="uid://bikewy7dlkv20" path="res://components/ammo_component/ammo_types/fast_intermediate_cartridge/fast_intermediate_cartridge.tres" id="9_2tam6"]
 [ext_resource type="Script" uid="uid://b2newdlaaj70t" path="res://game_objects/items/weapons/gun_stats.gd" id="10_fedvk"]
 [ext_resource type="PackedScene" uid="uid://c17uhpgl0dvt4" path="res://game_objects/items/ammo/fic/fic_box_fmj.tscn" id="11_2k45v"]
-[ext_resource type="PackedScene" uid="uid://ciaqbr34myu5w" path="res://game_objects/enemies/robots/combat_roomba.tscn" id="12_2tam6"]
+[ext_resource type="PackedScene" uid="uid://by0xokh7wvpyg" path="res://game_objects/enemies/outlaw/pistol_outlaw.tscn" id="11_l0bi7"]
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_0qrmu"]
 data = PackedVector3Array(6.2442, 0.249, 7.3303, 6.2442, 0.249, -7.3303, 6.2442, -0.249, -7.3303, 6.2442, -0.249, -7.3303, 6.2442, -0.249, 7.3303, 6.2442, 0.249, 7.3303, 6.2442, 0.249, 7.3303, -6.2442, 0.249, 7.3303, -6.2442, 0.249, -7.3303, -6.2442, 0.249, -7.3303, 6.2442, 0.249, -7.3303, 6.2442, 0.249, 7.3303, 6.2442, 0.249, 7.3303, 6.2442, -0.249, 7.3303, -6.2442, -0.249, 7.3303, -6.2442, -0.249, 7.3303, -6.2442, 0.249, 7.3303, 6.2442, 0.249, 7.3303, -6.2442, 0.249, -7.3303, -6.2442, 0.249, 7.3303, -6.2442, -0.249, 7.3303, -6.2442, -0.249, 7.3303, -6.2442, -0.249, -7.3303, -6.2442, 0.249, -7.3303, -6.2442, -0.249, 7.3303, 6.2442, -0.249, 7.3303, 6.2442, -0.249, -7.3303, 6.2442, -0.249, -7.3303, -6.2442, -0.249, -7.3303, -6.2442, -0.249, 7.3303, 6.2442, -0.249, -7.3303, 6.2442, 0.249, -7.3303, -6.2442, 0.249, -7.3303, -6.2442, 0.249, -7.3303, -6.2442, -0.249, -7.3303, 6.2442, -0.249, -7.3303)
@@ -142,9 +141,6 @@ skeleton = NodePath("../..")
 [node name="Player" parent="." instance=ExtResource("6_2tam6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.04344, 0.907751, 3.47038)
 
-[node name="Unendliche" parent="." instance=ExtResource("7_fedvk")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3.7577)
-
 [node name="S5" parent="." instance=ExtResource("8_l0bi7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.91152, 0.274286, 2.20479)
 _gun_stats = SubResource("Resource_lvvpd")
@@ -203,5 +199,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.64185, 0, 1.74345)
 [node name="HicBox18" parent="." instance=ExtResource("11_2k45v")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.00354, 0, 1.74345)
 
-[node name="combat_roomba" parent="." instance=ExtResource("12_2tam6")]
-transform = Transform3D(1.00409, 0, 0, 0, 1.00409, 0, 0, 0, 1.00409, 0.835469, 0, -2.56024)
+[node name="PistolOutlaw" parent="." instance=ExtResource("11_l0bi7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.566885, 0.0397083, -2.06648)

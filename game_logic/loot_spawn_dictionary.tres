@@ -39,18 +39,6 @@
 [ext_resource type="Resource" uid="uid://c5c7gkq2e3reh" path="res://levels/loot_tables/military_epic_loot_spawn_mapping.tres" id="36_fltvj"]
 [ext_resource type="Resource" uid="uid://gtkkof2p8buc" path="res://levels/loot_tables/military_unique_loot_spawn_mapping.tres" id="37_oqond"]
 
-[sub_resource type="Resource" id="Resource_a2s4f"]
-script = ExtResource("1_p04al")
-loot_table = 0
-tier = 3
-metadata/_custom_type_script = "uid://w1x8qc4my651"
-
-[sub_resource type="Resource" id="Resource_pmx5j"]
-script = ExtResource("1_p04al")
-loot_table = 0
-tier = 2
-metadata/_custom_type_script = "uid://w1x8qc4my651"
-
 [sub_resource type="Resource" id="Resource_nb065"]
 script = ExtResource("1_p04al")
 loot_table = 0
@@ -249,11 +237,21 @@ loot_table = 0
 tier = 4
 metadata/_custom_type_script = "uid://w1x8qc4my651"
 
+[sub_resource type="Resource" id="Resource_a2s4f"]
+script = ExtResource("1_p04al")
+loot_table = 0
+tier = 3
+metadata/_custom_type_script = "uid://w1x8qc4my651"
+
+[sub_resource type="Resource" id="Resource_pmx5j"]
+script = ExtResource("1_p04al")
+loot_table = 0
+tier = 2
+metadata/_custom_type_script = "uid://w1x8qc4my651"
+
 [resource]
 script = ExtResource("3_q0oo2")
 loot_spawn_dictionary = Dictionary[ExtResource("1_p04al"), ExtResource("2_k43u7")]({
-SubResource("Resource_1l0sv"): ExtResource("23_xajrm"),
-SubResource("Resource_35jr0"): ExtResource("22_0smh5"),
 SubResource("Resource_a4ca8"): ExtResource("21_6cpa8"),
 SubResource("Resource_6we45"): ExtResource("20_cda4m"),
 SubResource("Resource_idjtt"): ExtResource("19_vglx2"),
@@ -286,6 +284,8 @@ SubResource("Resource_ewri6"): ExtResource("28_a3hwb"),
 SubResource("Resource_4io3h"): ExtResource("27_c2idw"),
 SubResource("Resource_cfbln"): ExtResource("26_r0p60"),
 SubResource("Resource_5d0hc"): ExtResource("25_0uhrk"),
-SubResource("Resource_pqehj"): ExtResource("24_80vss")
+SubResource("Resource_pqehj"): ExtResource("24_80vss"),
+SubResource("Resource_1l0sv"): ExtResource("23_xajrm"),
+SubResource("Resource_35jr0"): ExtResource("22_0smh5")
 })
 metadata/_custom_type_script = "uid://b1um64ny5ajx0"
