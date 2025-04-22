@@ -1,0 +1,9 @@
+[gd_resource type="AudioStreamRandomizer" load_steps=2 format=3 uid="uid://dgawxnjcgcfff"]
+
+[ext_resource type="AudioStream" uid="uid://bcrrhpycd3mki" path="res://game_objects/enemies/outlaw/audio/outlaw_patrol_started.ogg" id="1_c42aw"]
+
+[resource]
+random_pitch = 1.1
+random_volume_offset_db = 0.5
+streams_count = 1
+stream_0/stream = ExtResource("1_c42aw")
