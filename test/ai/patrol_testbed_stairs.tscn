@@ -447,6 +447,9 @@ points = PackedVector3Array(-0.2, 0.9, -0.0599976, -0.2, -4.3, -0.0599976, 0.2, 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_8nxm3"]
 points = PackedVector3Array(-0.2, -0.7, 2.44, -0.2, -4.3, 2.44, 0.2, -4.3, 2.44, 0.2, -0.7, 2.44, -0.2, -0.7, 4.04, -0.2, -4.3, 4.04, 0.2, -4.3, 4.04, 0.2, -0.7, 4.04)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_wutxs"]
+size = Vector3(3, 2, 2)
+
 [sub_resource type="ArrayMesh" id="ArrayMesh_2fbqk"]
 _surfaces = [{
 "aabb": AABB(-0.1, -1.3, -0.8, 0.2, 2.6, 1.6),
@@ -464,9 +467,6 @@ _surfaces = [{
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_igi2j"]
 points = PackedVector3Array(-0.1, 1.3, -0.8, -0.1, -1.3, -0.8, 0.1, -1.3, -0.8, 0.1, 1.3, -0.8, -0.1, 1.3, 0.8, -0.1, -1.3, 0.8, 0.1, -1.3, 0.8, 0.1, 1.3, 0.8)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_wutxs"]
-size = Vector3(3, 2, 2)
 
 [node name="PatrolTestbedSingle" type="Node3D"]
 script = ExtResource("1_aaca3")
@@ -858,7 +858,20 @@ armor_rating = 8
 [node name="DamageEffectComponent" parent="NavigationRegion3D/MultiAgentNavigationRoot/entity_109_geo_ballistic_solid" instance=ExtResource("12_wutxs")]
 damage_effect_scene = ExtResource("7_oabn2")
 
+[node name="Area3D" type="Area3D" parent="NavigationRegion3D/MultiAgentNavigationRoot"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -1.45137, 4.52709, 3.09493)
+script = ExtResource("22_iw7fk")
+_target = "entity_1050_geo_ballistic_door"
+func_godot_properties = {
+"target": "entity_1050_geo_ballistic_door"
+}
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/MultiAgentNavigationRoot/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0302124, 0, 0)
+shape = SubResource("BoxShape3D_wutxs")
+
 [node name="entity_1050_geo_ballistic_door" type="CharacterBody3D" parent="NavigationRegion3D/MultiAgentNavigationRoot" node_paths=PackedStringArray("damage_component", "damage_effect_component")]
+unique_name_in_owner = true
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -1.45137, 4.52709, 3.09493)
 collision_layer = 15
 script = ExtResource("20_iw7fk")
@@ -900,14 +913,6 @@ armor_rating = 8
 
 [node name="DamageEffectComponent" parent="NavigationRegion3D/MultiAgentNavigationRoot/entity_1050_geo_ballistic_door" instance=ExtResource("12_wutxs")]
 damage_effect_scene = ExtResource("7_oabn2")
-
-[node name="Area3D" type="Area3D" parent="NavigationRegion3D/MultiAgentNavigationRoot/entity_1050_geo_ballistic_door" node_paths=PackedStringArray("door")]
-script = ExtResource("22_iw7fk")
-door = NodePath("..")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/MultiAgentNavigationRoot/entity_1050_geo_ballistic_door/Area3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0302124, 0, 0)
-shape = SubResource("BoxShape3D_wutxs")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(-0.965926, 0, -0.258819, 0, 1, 0, 0.258819, 0, -0.965926, -0.238754, 3.18945, -8.22052)

@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="FuncGodotFGDFile" load_steps=19 format=3 uid="uid://dr0etevtbyukb"]
+[gd_resource type="Resource" script_class="FuncGodotFGDFile" load_steps=20 format=3 uid="uid://dr0etevtbyukb"]
 
 [ext_resource type="Script" uid="uid://cibl16yrykqn7" path="res://addons/func_godot/src/fgd/func_godot_fgd_file.gd" id="1_djihb"]
 [ext_resource type="Resource" uid="uid://dkx68ra0tldrs" path="res://levels/entities/base_entities/base_fgd_entities.tres" id="1_lbp7d"]
@@ -18,6 +18,7 @@
 [ext_resource type="Resource" uid="uid://c0muyyktqtdm" path="res://levels/entities/point.tres" id="16_qti2q"]
 [ext_resource type="Resource" uid="uid://bx7xb3ea3rciu" path="res://levels/entities/area_ambient_sound.tres" id="17_i4im2"]
 [ext_resource type="Resource" uid="uid://bynwpxm2wh3ur" path="res://levels/entities/area_extract.tres" id="17_l5yim"]
+[ext_resource type="Resource" uid="uid://ccwslm3mcx20n" path="res://levels/entities/area_ai_door_opener.tres" id="18_6gm2v"]
 
 [resource]
 script = ExtResource("1_djihb")
@@ -25,4 +26,4 @@ export_file = false
 target_map_editor = 1
 fgd_name = "uesrl_fgd_entities"
 base_fgd_files = Array[Resource]([ExtResource("1_lbp7d"), ExtResource("2_niq5i")])
-entity_definitions = Array[Resource]([ExtResource("5_pn05p"), ExtResource("14_4acly"), ExtResource("15_j616q"), ExtResource("6_gj7jd"), ExtResource("7_bjhl7"), ExtResource("17_l5yim"), ExtResource("16_6lfdf"), ExtResource("12_ccfyh"), ExtResource("8_0v3ra"), ExtResource("9_57eth"), ExtResource("13_2ywqu"), ExtResource("14_hkafj"), ExtResource("15_61xq7"), ExtResource("16_qti2q"), ExtResource("17_i4im2")])
+entity_definitions = Array[Resource]([ExtResource("5_pn05p"), ExtResource("14_4acly"), ExtResource("15_j616q"), ExtResource("6_gj7jd"), ExtResource("7_bjhl7"), ExtResource("17_l5yim"), ExtResource("16_6lfdf"), ExtResource("12_ccfyh"), ExtResource("8_0v3ra"), ExtResource("9_57eth"), ExtResource("13_2ywqu"), ExtResource("14_hkafj"), ExtResource("15_61xq7"), ExtResource("16_qti2q"), ExtResource("17_i4im2"), ExtResource("18_6gm2v")])
