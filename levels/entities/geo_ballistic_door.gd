@@ -9,6 +9,8 @@ func _func_godot_apply_properties(entity_properties: Dictionary):
 	super(entity_properties)
 	if 'targetname' in func_godot_properties:
 		_target_name = func_godot_properties.targetname
+		self.name = func_godot_properties.targetname
+		self.unique_name_in_owner = true
 
 func _process(delta: float) -> void:
 	if Engine.is_editor_hint():
@@ -22,20 +24,11 @@ func _ready() -> void:
 	if Engine.is_editor_hint():
 		return
 	super()
-	if _target_name:
-		var hinge_node = get_node("%"+_target_name)
-		if hinge_node:
-			_hinge = hinge_node
-			call_deferred("reparent_hinge")
 
-
-func reparent_hinge():
-	#calculate new offset for door
-	var new_door_offset = self.global_transform.origin - _hinge.global_transform.origin
-	#reparent
-	Helpers.force_parent(self, _hinge)
-	#set new door transform
-	self.transform.origin = new_door_offset
-	#set target values
-	base_transform = _hinge.transform
-	target_transform = base_transform
+func open_door():
+	moved = true
+	play_motion()
+	
+func close_door():
+	moved = false
+	play_motion()
