@@ -1,0 +1,35 @@
+[gd_resource type="Resource" script_class="AmmoInformation" load_steps=8 format=3 uid="uid://dw41ukmri51ra"]
+
+[ext_resource type="Resource" uid="uid://c7rautngyo4gg" path="res://components/ammo_component/ammo_types/energy_cell_subtype.tres" id="1_ds75p"]
+[ext_resource type="Resource" uid="uid://jyantd4a0xdh" path="res://components/ammo_component/ammo_types/energy_cell.tres" id="2_kdh7c"]
+[ext_resource type="Script" uid="uid://dw75el3q24f1f" path="res://ui/inventory/item_context_item.gd" id="3_18s3u"]
+[ext_resource type="Resource" uid="uid://o6tesi76nbth" path="res://ui/inventory/drop_item_context_item.tres" id="4_kh5jk"]
+[ext_resource type="PackedScene" uid="uid://djpvx3f8rfem0" path="res://ui/inventory/detail_scenes/ammo_detail_popup.tscn" id="5_jwo7o"]
+[ext_resource type="Texture2D" uid="uid://bgosqacgr61pt" path="res://game_objects/items/ammo/energy/energy_cell/energy_cell_icon.png" id="6_kdh7c"]
+[ext_resource type="Script" uid="uid://cn8b6jp0q2kyq" path="res://game_objects/items/ammo/ammo_information.gd" id="7_3vqbp"]
+
+[resource]
+script = ExtResource("7_3vqbp")
+ammo_type = ExtResource("2_kdh7c")
+ammo_subtype = ExtResource("1_ds75p")
+item_type_id = "energy_cell"
+show_name = false
+display_name = "Energy Cell"
+display_short_name = "E. Cell"
+item_type = 11
+icon = ExtResource("6_kdh7c")
+icon_r = ExtResource("6_kdh7c")
+detail_scene = ExtResource("5_jwo7o")
+context_menu_items = Array[ExtResource("3_18s3u")]([ExtResource("4_kh5jk")])
+max_stacks = 20
+has_stacks = true
+max_durability = 1
+has_durability = false
+column_span = 1
+row_span = 1
+description_text = ""
+flavor_text = ""
+min_pickup_stacks = 1
+mean_pickup_stacks = 10
+stack_random_method = 1
+slot_data_type = 0

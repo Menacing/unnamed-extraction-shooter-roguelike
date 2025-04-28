@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ItemMapping" load_steps=4 format=3 uid="uid://bo1ucs8o1kup7"]
+
+[ext_resource type="PackedScene" uid="uid://cnxchecuop1nw" path="res://game_objects/items/ammo/energy/energy_cell/energy_cell.tscn" id="1_ho8yh"]
+[ext_resource type="Resource" uid="uid://dw41ukmri51ra" path="res://game_objects/items/ammo/energy/energy_cell/energy_cell_inventory_info.tres" id="2_nenfg"]
+[ext_resource type="Script" uid="uid://c8amqbc45k2jw" path="res://resource_access/item_mapping.gd" id="3_m3g8o"]
+
+[resource]
+script = ExtResource("3_m3g8o")
+item_type_id = "energy_cell"
+item_information = ExtResource("2_nenfg")
+item_3d_scene = ExtResource("1_ho8yh")

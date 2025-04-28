@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="LootSpawnMapping" load_steps=43 format=3 uid="uid://dyw4hdwcq8sva"]
+[gd_resource type="Resource" script_class="LootSpawnMapping" load_steps=45 format=3 uid="uid://dyw4hdwcq8sva"]
 
 [ext_resource type="Script" uid="uid://scensnhtcuvo" path="res://game_objects/items/loot_spawn_mapping.gd" id="1_17knl"]
 [ext_resource type="Script" uid="uid://dqpkphb5p5d6r" path="res://game_objects/items/loot_spawn_weight.gd" id="2_ah6ej"]
@@ -22,6 +22,7 @@
 [ext_resource type="Resource" uid="uid://cbmk0nj8v80dn" path="res://game_objects/items/weapons/hic_rifles/pm_52/pm_52_spawn_info.tres" id="20_p6ebg"]
 [ext_resource type="Resource" uid="uid://c4jj0w1ek1t0y" path="res://game_objects/items/weapons/hic_rifles/pm_98/pm_98_spawn_info.tres" id="21_eu15d"]
 [ext_resource type="Resource" uid="uid://c7t640mi7m7ex" path="res://game_objects/items/weapons/lpc_pistols/klingeln_80/klingeln_80_spawn_info.tres" id="22_0w6lr"]
+[ext_resource type="Resource" uid="uid://bhd1uvp3q8pj3" path="res://game_objects/items/ammo/energy/energy_cell/energy_cell_spawn_info.tres" id="23_ah6ej"]
 
 [sub_resource type="Resource" id="Resource_6glys"]
 script = ExtResource("2_ah6ej")
@@ -143,7 +144,13 @@ weight = 1
 loot = ExtResource("22_0w6lr")
 metadata/_custom_type_script = "uid://dqpkphb5p5d6r"
 
+[sub_resource type="Resource" id="Resource_pxpa2"]
+script = ExtResource("2_ah6ej")
+weight = 2
+loot = ExtResource("23_ah6ej")
+metadata/_custom_type_script = "uid://dqpkphb5p5d6r"
+
 [resource]
 script = ExtResource("1_17knl")
-spawn_weights = Array[ExtResource("2_ah6ej")]([SubResource("Resource_6glys"), SubResource("Resource_u80al"), SubResource("Resource_a88d8"), SubResource("Resource_hpucw"), SubResource("Resource_rvpkh"), SubResource("Resource_7n11o"), SubResource("Resource_75dl3"), SubResource("Resource_3juey"), SubResource("Resource_egwtk"), SubResource("Resource_le5yd"), SubResource("Resource_k6hwb"), SubResource("Resource_m3a76"), SubResource("Resource_xg8eh"), SubResource("Resource_vevov"), SubResource("Resource_cirj1"), SubResource("Resource_gyf1y"), SubResource("Resource_mmri5"), SubResource("Resource_k145o"), SubResource("Resource_nqb0h"), SubResource("Resource_8nsha")])
+spawn_weights = Array[ExtResource("2_ah6ej")]([SubResource("Resource_6glys"), SubResource("Resource_u80al"), SubResource("Resource_a88d8"), SubResource("Resource_hpucw"), SubResource("Resource_rvpkh"), SubResource("Resource_7n11o"), SubResource("Resource_75dl3"), SubResource("Resource_3juey"), SubResource("Resource_egwtk"), SubResource("Resource_le5yd"), SubResource("Resource_k6hwb"), SubResource("Resource_m3a76"), SubResource("Resource_xg8eh"), SubResource("Resource_vevov"), SubResource("Resource_cirj1"), SubResource("Resource_gyf1y"), SubResource("Resource_mmri5"), SubResource("Resource_k145o"), SubResource("Resource_nqb0h"), SubResource("Resource_8nsha"), SubResource("Resource_pxpa2")])
 metadata/_custom_type_script = "uid://scensnhtcuvo"

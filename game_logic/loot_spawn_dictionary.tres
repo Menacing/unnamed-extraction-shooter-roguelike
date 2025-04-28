@@ -39,12 +39,6 @@
 [ext_resource type="Resource" uid="uid://c5c7gkq2e3reh" path="res://levels/loot_tables/military_epic_loot_spawn_mapping.tres" id="36_fltvj"]
 [ext_resource type="Resource" uid="uid://gtkkof2p8buc" path="res://levels/loot_tables/military_unique_loot_spawn_mapping.tres" id="37_oqond"]
 
-[sub_resource type="Resource" id="Resource_idjtt"]
-script = ExtResource("1_p04al")
-loot_table = 3
-tier = 1
-metadata/_custom_type_script = "uid://w1x8qc4my651"
-
 [sub_resource type="Resource" id="Resource_342ii"]
 script = ExtResource("1_p04al")
 loot_table = 3
@@ -249,10 +243,15 @@ loot_table = 3
 tier = 2
 metadata/_custom_type_script = "uid://w1x8qc4my651"
 
+[sub_resource type="Resource" id="Resource_idjtt"]
+script = ExtResource("1_p04al")
+loot_table = 3
+tier = 1
+metadata/_custom_type_script = "uid://w1x8qc4my651"
+
 [resource]
 script = ExtResource("3_q0oo2")
 loot_spawn_dictionary = Dictionary[ExtResource("1_p04al"), ExtResource("2_k43u7")]({
-SubResource("Resource_yav6f"): ExtResource("34_gm4qn"),
 SubResource("Resource_w2tkt"): ExtResource("35_dok1m"),
 SubResource("Resource_mkjdo"): ExtResource("36_fltvj"),
 SubResource("Resource_vglx2"): ExtResource("37_oqond"),
@@ -286,6 +285,7 @@ SubResource("Resource_a2s4f"): ExtResource("6_iajhs"),
 SubResource("Resource_pmx5j"): ExtResource("5_4h3fg"),
 SubResource("Resource_nb065"): ExtResource("4_rljt7"),
 SubResource("Resource_q0oo2"): ExtResource("3_ft8u8"),
-SubResource("Resource_jwc5x"): ExtResource("33_b1d6t")
+SubResource("Resource_jwc5x"): ExtResource("33_b1d6t"),
+SubResource("Resource_yav6f"): ExtResource("34_gm4qn")
 })
 metadata/_custom_type_script = "uid://b1um64ny5ajx0"

@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="LootSpawnInformation" load_steps=3 format=3 uid="uid://bhd1uvp3q8pj3"]
+
+[ext_resource type="Resource" uid="uid://dw41ukmri51ra" path="res://game_objects/items/ammo/energy/energy_cell/energy_cell_inventory_info.tres" id="1_qxhvx"]
+[ext_resource type="Script" uid="uid://hkvfi3gp0ftm" path="res://game_objects/items/loot_spawn_information.gd" id="2_rcoyy"]
+
+[resource]
+script = ExtResource("2_rcoyy")
+item_information = ExtResource("1_qxhvx")
+test_radius = 0.2
+min_stack = 5
+max_stack = 20
