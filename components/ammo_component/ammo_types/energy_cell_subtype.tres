@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="AmmoSubtype" load_steps=2 format=3 uid="uid://c7rautngyo4gg"]
+
+[ext_resource type="Script" uid="uid://dfspvq6b61b74" path="res://components/ammo_component/ammo_subtype.gd" id="1_4x3nf"]
+
+[resource]
+script = ExtResource("1_4x3nf")
+name = "energy_cell"
+abbreviation = "EC"
+maximum_capacity = 200
+item_type_id = "energy_cell"
+initial_damage = 0.0
+armor_penetration_rating = 0.0
+initial_speed = 0.0
+ballistic_coefficient_k = 0.0
+metadata/_custom_type_script = "uid://dfspvq6b61b74"
