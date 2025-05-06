@@ -1,0 +1,302 @@
+[gd_scene load_steps=18 format=3 uid="uid://cckbg4vrve42l"]
+
+[ext_resource type="Script" uid="uid://b1hgbiqq2ptq5" path="res://game_objects/items/weapons/gun.gd" id="1_q8rk0"]
+[ext_resource type="PackedScene" uid="uid://gfj0vsvmo4ik" path="res://game_objects/bullet/iterative_raycast_bullet.tscn" id="2_va267"]
+[ext_resource type="Resource" uid="uid://crt7yeietv5y7" path="res://game_objects/items/weapons/fic_rifles/fic_rifle_gun_stats.tres" id="3_jq5ic"]
+[ext_resource type="Texture2D" uid="uid://dkcxx06s6kdp6" path="res://game_objects/items/weapons/hic_rifles/pm_52/PixelMuzzelFlash.png" id="6_5ocg4"]
+[ext_resource type="AudioStream" uid="uid://howm8uexygj7" path="res://game_objects/items/weapons/fic_rifles/fic_shot_2.ogg" id="9_1hpkt"]
+[ext_resource type="AudioStream" uid="uid://bc1wim1c1t021" path="res://game_objects/items/weapons/fic_rifles/fic_mag_out.ogg" id="10_42tjt"]
+[ext_resource type="PackedScene" uid="uid://djy47jcvh2jkv" path="res://game_objects/items/weapons/energy_weapons/laser_rifle/laser_rifle.gltf" id="11_548rk"]
+[ext_resource type="AudioStream" uid="uid://belfvaan2qeva" path="res://game_objects/items/weapons/fic_rifles/fic_mag_in.ogg" id="11_feet8"]
+[ext_resource type="AudioStream" uid="uid://c2wxubwa7ilv" path="res://game_objects/items/weapons/fic_rifles/fic_charging_handle.ogg" id="12_ciia3"]
+
+[sub_resource type="Animation" id="Animation_hu2i7"]
+resource_name = "fire"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rga3e"]
+_data = {
+&"fire": SubResource("Animation_hu2i7")
+}
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_032p4"]
+size = Vector3(0.94684, 0.222668, 0.112045)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_uw38r"]
+size = Vector3(0.111466, 0.189459, 0.112045)
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_r7uqx"]
+random_pitch = 1.05
+random_volume_offset_db = 0.5
+streams_count = 1
+stream_0/stream = ExtResource("9_1hpkt")
+
+[sub_resource type="Animation" id="Animation_8u1sy"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("blockbench_export/Node/magazines:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("blockbench_export/Node/magazines:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("blockbench_export/Node:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_efo6u"]
+resource_name = "reload"
+length = 2.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("blockbench_export/Node/magazines:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.9, 1.1, 1.2, 1.3, 1.6, 1.8),
+"transitions": PackedFloat32Array(0.0647043, 1, 2.14355, 1, 1, 1, 1, 1, 6.72717, 1),
+"update": 0,
+"values": [Vector3(0, 0, -0.0110408), Vector3(0, -0.109, -0.011), Vector3(-0.18, -0.14, 0.224), Vector3(-0.587, -0.237, 0.444), Vector3(-0.587, -0.237, 0.444), Vector3(-0.474, -0.269, 0.064), Vector3(-0.304, -0.216, 0.125), Vector3(-0.042, -0.163, 0.074), Vector3(0, -0.10903, 0), Vector3(0, 0, -0.0110408)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("blockbench_export/Node/magazines:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.9, 1.2, 1.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(-0.0547867, 0.735628, 0.480762), Vector3(0.744328, 0.739824, 0.915281), Vector3(0.744328, 0.739824, 0.915281), Vector3(0.434191, 0.431564, 0.533914), Vector3(0, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("blockbench_export/Node:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1, 1.5, 2.2),
+"transitions": PackedFloat32Array(0.378929, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0.34383, -0.118682, -0.340339), Vector3(0.34383, -0.118682, -0.340339), Vector3(0, 0, 0)]
+}
+tracks/3/type = "audio"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("MagOutStreamPlayer3D")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("10_42tjt")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/3/use_blend = true
+tracks/4/type = "audio"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("MagInStreamPlayer3D")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("11_feet8")
+}],
+"times": PackedFloat32Array(1.6)
+}
+tracks/4/use_blend = true
+tracks/5/type = "audio"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("ChargingHandleStreamPlayer3D")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("12_ciia3")
+}],
+"times": PackedFloat32Array(2)
+}
+tracks/5/use_blend = true
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_uiu2q"]
+_data = {
+&"RESET": SubResource("Animation_8u1sy"),
+&"reload": SubResource("Animation_efo6u")
+}
+
+[node name="Cdr" type="RigidBody3D" node_paths=PackedStringArray("muzzle", "muzzle_flash_animation_player", "fire_sound_player", "fire_timer", "reload_timer", "reload_animation_player", "gun_model_node", "scope_anchor", "on_scope_hide_nodes", "on_default_magazine_show_nodes", "on_default_magazine_hide_nodes", "on_extended_magazine_show_nodes", "on_extended_magazine_hide_nodes", "on_stable_foregrip_show_nodes", "mag_node", "model_node")]
+collision_layer = 5
+collision_mask = 5
+script = ExtResource("1_q8rk0")
+_bullet_scene = ExtResource("2_va267")
+_gun_stats = ExtResource("3_jq5ic")
+muzzle = NodePath("blockbench_export2/Node/Muzzle")
+muzzle_flash_animation_player = NodePath("blockbench_export2/Node/Muzzle/MuzzleFlashAnimationPlayer")
+fire_sound_player = NodePath("ShotAudioStreamPlayer3D")
+fire_timer = NodePath("FireTimer")
+reload_timer = NodePath("ReloadTimer")
+reload_animation_player = NodePath("AnimationPlayer")
+gun_model_node = NodePath("")
+scope_anchor = NodePath("blockbench_export2/Node/scope_anchor")
+on_scope_hide_nodes = [NodePath("")]
+on_default_magazine_show_nodes = [null]
+on_default_magazine_hide_nodes = [null]
+on_extended_magazine_show_nodes = [null]
+on_extended_magazine_hide_nodes = [null]
+on_stable_foregrip_show_nodes = [NodePath("")]
+mag_node = NodePath("")
+item_type_id = "cdr"
+world_collider_path = NodePath("CollisionShape3D")
+model_node = NodePath("")
+metadata/_custom_type_script = "uid://b1hgbiqq2ptq5"
+
+[node name="blockbench_export2" parent="." instance=ExtResource("11_548rk")]
+
+[node name="Muzzle" type="Node3D" parent="blockbench_export2/Node" index="6"]
+transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, -7.60565e-10, 0, -0.456939)
+visible = false
+
+[node name="FlashSpriteV3D" type="Sprite3D" parent="blockbench_export2/Node/Muzzle"]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, -0.482)
+cast_shadow = 0
+axis = 1
+alpha_cut = 2
+texture_filter = 0
+texture = ExtResource("6_5ocg4")
+
+[node name="FlashSpriteH3D" type="Sprite3D" parent="blockbench_export2/Node/Muzzle"]
+transform = Transform3D(-8.74228e-09, 0.2, 0, -0.2, -8.74228e-09, 0, 0, 0, 0.2, 0, 0, -0.482)
+cast_shadow = 0
+axis = 1
+alpha_cut = 2
+texture_filter = 0
+texture = ExtResource("6_5ocg4")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="blockbench_export2/Node/Muzzle"]
+transform = Transform3D(1.66667, 0, 0, 0, 1.66667, 0, 0, 0, 1.66667, 0, 0, -0.19)
+light_color = Color(0.917647, 0.784314, 0.611765, 1)
+shadow_enabled = true
+distance_fade_enabled = true
+
+[node name="MuzzleFlashAnimationPlayer" type="AnimationPlayer" parent="blockbench_export2/Node/Muzzle"]
+unique_name_in_owner = true
+libraries = {
+&"": SubResource("AnimationLibrary_rga3e")
+}
+
+[node name="scope_anchor" type="Node3D" parent="blockbench_export2/Node" index="7"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.31228e-07, 0.0630962, 0.0797759)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.000221256, -0.0288736, 0.0299491)
+shape = SubResource("BoxShape3D_032p4")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.000221257, -0.168411, 9.50396e-05)
+shape = SubResource("BoxShape3D_uw38r")
+
+[node name="ReloadTimer" type="Timer" parent="."]
+wait_time = 2.5
+
+[node name="FireTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="Right_Hand" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 7.10543e-15, 0, 1, 0, -7.10543e-15, 0, 1, 0.025, -0.103529, 0.116814)
+
+[node name="Right_Fingers" type="Node3D" parent="."]
+transform = Transform3D(-1, 8.74228e-08, 7.10543e-15, -8.74228e-08, -1, 0, 7.10543e-15, -6.21177e-22, 1, -0.0017045, -0.105695, 0.0846678)
+
+[node name="HipFire" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.171, 0.14, 0.398)
+
+[node name="Label3D" type="Label3D" parent="HipFire"]
+visible = false
+billboard = 1
+text = "HF"
+
+[node name="ADS" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0633722, 0.451)
+
+[node name="Left_Hand" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0283023, -0.0348404, -0.139877)
+
+[node name="Left_Fingers" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0436592, -0.0286331, -0.133734)
+
+[node name="ADS_Head" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.2, 0.1, 0)
+
+[node name="MagInStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+attenuation_model = 1
+bus = &"SFX"
+
+[node name="MagOutStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+attenuation_model = 1
+bus = &"SFX"
+
+[node name="ChargingHandleStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+attenuation_model = 1
+bus = &"SFX"
+
+[node name="ShotAudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = SubResource("AudioStreamRandomizer_r7uqx")
+volume_db = 6.0
+max_polyphony = 20
+bus = &"SFX"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_uiu2q")
+}
+
+[editable path="blockbench_export2"]

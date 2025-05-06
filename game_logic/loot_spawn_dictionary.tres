@@ -39,6 +39,108 @@
 [ext_resource type="Resource" uid="uid://c5c7gkq2e3reh" path="res://levels/loot_tables/military_epic_loot_spawn_mapping.tres" id="36_fltvj"]
 [ext_resource type="Resource" uid="uid://gtkkof2p8buc" path="res://levels/loot_tables/military_unique_loot_spawn_mapping.tres" id="37_oqond"]
 
+[sub_resource type="Resource" id="Resource_w2tkt"]
+script = ExtResource("1_p04al")
+loot_table = 6
+tier = 2
+metadata/_custom_type_script = "uid://w1x8qc4my651"
+
+[sub_resource type="Resource" id="Resource_mkjdo"]
+script = ExtResource("1_p04al")
+loot_table = 6
+tier = 3
+metadata/_custom_type_script = "uid://w1x8qc4my651"
+
+[sub_resource type="Resource" id="Resource_vglx2"]
+script = ExtResource("1_p04al")
+loot_table = 6
+tier = 4
+metadata/_custom_type_script = "uid://w1x8qc4my651"
+
+[sub_resource type="Resource" id="Resource_4h3fg"]
+script = ExtResource("1_p04al")
+loot_table = 5
+tier = 4
+metadata/_custom_type_script = "uid://w1x8qc4my651"
+
+[sub_resource type="Resource" id="Resource_ld1ba"]
+script = ExtResource("1_p04al")
+loot_table = 5
+tier = 3
+metadata/_custom_type_script = "uid://w1x8qc4my651"
+
+[sub_resource type="Resource" id="Resource_3obx1"]
+script = ExtResource("1_p04al")
+loot_table = 5
+tier = 2
+metadata/_custom_type_script = "uid://w1x8qc4my651"
+
+[sub_resource type="Resource" id="Resource_g3b50"]
+script = ExtResource("1_p04al")
+loot_table = 5
+tier = 1
+metadata/_custom_type_script = "uid://w1x8qc4my651"
+
+[sub_resource type="Resource" id="Resource_ewri6"]
+script = ExtResource("1_p04al")
+loot_table = 5
+tier = 0
+metadata/_custom_type_script = "uid://w1x8qc4my651"
+
+[sub_resource type="Resource" id="Resource_4io3h"]
+script = ExtResource("1_p04al")
+loot_table = 4
+tier = 4
+metadata/_custom_type_script = "uid://w1x8qc4my651"
+
+[sub_resource type="Resource" id="Resource_cfbln"]
+script = ExtResource("1_p04al")
+loot_table = 4
+tier = 3
+metadata/_custom_type_script = "uid://w1x8qc4my651"
+
+[sub_resource type="Resource" id="Resource_5d0hc"]
+script = ExtResource("1_p04al")
+loot_table = 4
+tier = 2
+metadata/_custom_type_script = "uid://w1x8qc4my651"
+
+[sub_resource type="Resource" id="Resource_pqehj"]
+script = ExtResource("1_p04al")
+loot_table = 4
+tier = 1
+metadata/_custom_type_script = "uid://w1x8qc4my651"
+
+[sub_resource type="Resource" id="Resource_1l0sv"]
+script = ExtResource("1_p04al")
+loot_table = 4
+tier = 0
+metadata/_custom_type_script = "uid://w1x8qc4my651"
+
+[sub_resource type="Resource" id="Resource_35jr0"]
+script = ExtResource("1_p04al")
+loot_table = 3
+tier = 4
+metadata/_custom_type_script = "uid://w1x8qc4my651"
+
+[sub_resource type="Resource" id="Resource_a4ca8"]
+script = ExtResource("1_p04al")
+loot_table = 3
+tier = 3
+metadata/_custom_type_script = "uid://w1x8qc4my651"
+
+[sub_resource type="Resource" id="Resource_6we45"]
+script = ExtResource("1_p04al")
+loot_table = 3
+tier = 2
+metadata/_custom_type_script = "uid://w1x8qc4my651"
+
+[sub_resource type="Resource" id="Resource_idjtt"]
+script = ExtResource("1_p04al")
+loot_table = 3
+tier = 1
+metadata/_custom_type_script = "uid://w1x8qc4my651"
+
 [sub_resource type="Resource" id="Resource_342ii"]
 script = ExtResource("1_p04al")
 loot_table = 3
@@ -147,111 +249,26 @@ loot_table = 6
 tier = 1
 metadata/_custom_type_script = "uid://w1x8qc4my651"
 
-[sub_resource type="Resource" id="Resource_w2tkt"]
-script = ExtResource("1_p04al")
-loot_table = 6
-tier = 2
-metadata/_custom_type_script = "uid://w1x8qc4my651"
-
-[sub_resource type="Resource" id="Resource_mkjdo"]
-script = ExtResource("1_p04al")
-loot_table = 6
-tier = 3
-metadata/_custom_type_script = "uid://w1x8qc4my651"
-
-[sub_resource type="Resource" id="Resource_vglx2"]
-script = ExtResource("1_p04al")
-loot_table = 6
-tier = 4
-metadata/_custom_type_script = "uid://w1x8qc4my651"
-
-[sub_resource type="Resource" id="Resource_4h3fg"]
-script = ExtResource("1_p04al")
-loot_table = 5
-tier = 4
-metadata/_custom_type_script = "uid://w1x8qc4my651"
-
-[sub_resource type="Resource" id="Resource_ld1ba"]
-script = ExtResource("1_p04al")
-loot_table = 5
-tier = 3
-metadata/_custom_type_script = "uid://w1x8qc4my651"
-
-[sub_resource type="Resource" id="Resource_3obx1"]
-script = ExtResource("1_p04al")
-loot_table = 5
-tier = 2
-metadata/_custom_type_script = "uid://w1x8qc4my651"
-
-[sub_resource type="Resource" id="Resource_g3b50"]
-script = ExtResource("1_p04al")
-loot_table = 5
-tier = 1
-metadata/_custom_type_script = "uid://w1x8qc4my651"
-
-[sub_resource type="Resource" id="Resource_ewri6"]
-script = ExtResource("1_p04al")
-loot_table = 5
-tier = 0
-metadata/_custom_type_script = "uid://w1x8qc4my651"
-
-[sub_resource type="Resource" id="Resource_4io3h"]
-script = ExtResource("1_p04al")
-loot_table = 4
-tier = 4
-metadata/_custom_type_script = "uid://w1x8qc4my651"
-
-[sub_resource type="Resource" id="Resource_cfbln"]
-script = ExtResource("1_p04al")
-loot_table = 4
-tier = 3
-metadata/_custom_type_script = "uid://w1x8qc4my651"
-
-[sub_resource type="Resource" id="Resource_5d0hc"]
-script = ExtResource("1_p04al")
-loot_table = 4
-tier = 2
-metadata/_custom_type_script = "uid://w1x8qc4my651"
-
-[sub_resource type="Resource" id="Resource_pqehj"]
-script = ExtResource("1_p04al")
-loot_table = 4
-tier = 1
-metadata/_custom_type_script = "uid://w1x8qc4my651"
-
-[sub_resource type="Resource" id="Resource_1l0sv"]
-script = ExtResource("1_p04al")
-loot_table = 4
-tier = 0
-metadata/_custom_type_script = "uid://w1x8qc4my651"
-
-[sub_resource type="Resource" id="Resource_35jr0"]
-script = ExtResource("1_p04al")
-loot_table = 3
-tier = 4
-metadata/_custom_type_script = "uid://w1x8qc4my651"
-
-[sub_resource type="Resource" id="Resource_a4ca8"]
-script = ExtResource("1_p04al")
-loot_table = 3
-tier = 3
-metadata/_custom_type_script = "uid://w1x8qc4my651"
-
-[sub_resource type="Resource" id="Resource_6we45"]
-script = ExtResource("1_p04al")
-loot_table = 3
-tier = 2
-metadata/_custom_type_script = "uid://w1x8qc4my651"
-
-[sub_resource type="Resource" id="Resource_idjtt"]
-script = ExtResource("1_p04al")
-loot_table = 3
-tier = 1
-metadata/_custom_type_script = "uid://w1x8qc4my651"
-
 [resource]
 script = ExtResource("3_q0oo2")
 loot_spawn_dictionary = Dictionary[ExtResource("1_p04al"), ExtResource("2_k43u7")]({
+SubResource("Resource_ugbr4"): ExtResource("17_w2tkt"),
+SubResource("Resource_32tns"): ExtResource("16_yav6f"),
+SubResource("Resource_y03sl"): ExtResource("15_jwc5x"),
+SubResource("Resource_dm464"): ExtResource("14_oqond"),
+SubResource("Resource_betu1"): ExtResource("13_fltvj"),
+SubResource("Resource_tv0je"): ExtResource("12_dok1m"),
+SubResource("Resource_fjntw"): ExtResource("11_gm4qn"),
+SubResource("Resource_30413"): ExtResource("10_b1d6t"),
+SubResource("Resource_4wfmc"): ExtResource("9_42g4f"),
+SubResource("Resource_4p52w"): ExtResource("3_k43u7"),
+SubResource("Resource_bun2h"): ExtResource("7_wiscc"),
+SubResource("Resource_a2s4f"): ExtResource("6_iajhs"),
+SubResource("Resource_pmx5j"): ExtResource("5_4h3fg"),
+SubResource("Resource_nb065"): ExtResource("4_rljt7"),
+SubResource("Resource_q0oo2"): ExtResource("3_ft8u8"),
+SubResource("Resource_jwc5x"): ExtResource("33_b1d6t"),
+SubResource("Resource_yav6f"): ExtResource("34_gm4qn"),
 SubResource("Resource_w2tkt"): ExtResource("35_dok1m"),
 SubResource("Resource_mkjdo"): ExtResource("36_fltvj"),
 SubResource("Resource_vglx2"): ExtResource("37_oqond"),
@@ -269,23 +286,6 @@ SubResource("Resource_35jr0"): ExtResource("22_0smh5"),
 SubResource("Resource_a4ca8"): ExtResource("21_6cpa8"),
 SubResource("Resource_6we45"): ExtResource("20_cda4m"),
 SubResource("Resource_idjtt"): ExtResource("19_vglx2"),
-SubResource("Resource_342ii"): ExtResource("18_mkjdo"),
-SubResource("Resource_ugbr4"): ExtResource("17_w2tkt"),
-SubResource("Resource_32tns"): ExtResource("16_yav6f"),
-SubResource("Resource_y03sl"): ExtResource("15_jwc5x"),
-SubResource("Resource_dm464"): ExtResource("14_oqond"),
-SubResource("Resource_betu1"): ExtResource("13_fltvj"),
-SubResource("Resource_tv0je"): ExtResource("12_dok1m"),
-SubResource("Resource_fjntw"): ExtResource("11_gm4qn"),
-SubResource("Resource_30413"): ExtResource("10_b1d6t"),
-SubResource("Resource_4wfmc"): ExtResource("9_42g4f"),
-SubResource("Resource_4p52w"): ExtResource("3_k43u7"),
-SubResource("Resource_bun2h"): ExtResource("7_wiscc"),
-SubResource("Resource_a2s4f"): ExtResource("6_iajhs"),
-SubResource("Resource_pmx5j"): ExtResource("5_4h3fg"),
-SubResource("Resource_nb065"): ExtResource("4_rljt7"),
-SubResource("Resource_q0oo2"): ExtResource("3_ft8u8"),
-SubResource("Resource_jwc5x"): ExtResource("33_b1d6t"),
-SubResource("Resource_yav6f"): ExtResource("34_gm4qn")
+SubResource("Resource_342ii"): ExtResource("18_mkjdo")
 })
 metadata/_custom_type_script = "uid://b1um64ny5ajx0"

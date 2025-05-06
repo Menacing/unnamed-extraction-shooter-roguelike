@@ -1,0 +1,15 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://bp7cip2akfrkh"]
+
+[ext_resource type="Texture2D" uid="uid://c71q5up6edcen" path="res://game_objects/items/weapons/energy_weapons/laser_rifle/laser_rifle_4.png" id="1_6j5d2"]
+
+[resource]
+resource_name = "material_4"
+transparency = 2
+alpha_scissor_threshold = 0.05
+alpha_antialiasing_mode = 0
+cull_mode = 2
+albedo_texture = ExtResource("1_6j5d2")
+metallic = 0.75
+roughness = 0.75
+texture_filter = 0
+texture_repeat = false
