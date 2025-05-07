@@ -1,4 +1,4 @@
-[gd_scene load_steps=128 format=4 uid="uid://ctahsvj88g1om"]
+[gd_scene load_steps=130 format=4 uid="uid://ctahsvj88g1om"]
 
 [ext_resource type="Script" uid="uid://dwshafaid76mm" path="res://levels/demo_level.gd" id="1_8448e"]
 [ext_resource type="PackedScene" uid="uid://d08aatgxmymbf" path="res://game_objects/player/player.tscn" id="1_eisjc"]
@@ -54,6 +54,7 @@
 [ext_resource type="PackedScene" uid="uid://dwxg3y63bivcg" path="res://game_objects/items/weapons/fic_rifles/cdr/cdr.tscn" id="51_no68d"]
 [ext_resource type="PackedScene" uid="uid://cvh415ycsq5k6" path="res://game_objects/items/materials/bio_gel_cooler/bio_gel_cooler.tscn" id="53_e4xtb"]
 [ext_resource type="PackedScene" uid="uid://cnxchecuop1nw" path="res://game_objects/items/ammo/energy/energy_cell/energy_cell.tscn" id="54_lex0s"]
+[ext_resource type="PackedScene" uid="uid://cckbg4vrve42l" path="res://game_objects/items/weapons/energy_weapons/laser_rifle/laser_rifle.tscn" id="55_st6li"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_6g5uc"]
 
@@ -425,6 +426,23 @@ reload_time_Sec = 2.5
 reload_thresholds = Array[float]([1.0])
 
 [sub_resource type="Resource" id="Resource_h3dqm"]
+resource_local_to_scene = true
+script = ExtResource("11_hh747")
+weapon_category_name = "FIC Rifle"
+magazine_size = 30
+rpm = 800
+base_recoil = Vector2(0, 0.017)
+recoil_variability = Vector2(0.02, 0.01)
+fire_modes = ["semi", "auto"]
+ads_accel = 10.0
+ads_fov = 50.0
+moa = 4.0
+turn_speed = 25.0
+ammo_type = ExtResource("10_q80ko")
+reload_time_Sec = 2.5
+reload_thresholds = Array[float]([1.0])
+
+[sub_resource type="Resource" id="Resource_6kn82"]
 resource_local_to_scene = true
 script = ExtResource("11_hh747")
 weapon_category_name = "FIC Rifle"
@@ -1492,6 +1510,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.84428, 0.20383, -4.91099)
 
 [node name="EnergyCell" parent="." instance=ExtResource("54_lex0s")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.93944, 0.0788299, -5.63844)
+
+[node name="LaserRifle" parent="." instance=ExtResource("55_st6li")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.6878, 0.328639, -4.95895)
+_gun_stats = SubResource("Resource_6kn82")
 
 [connection signal="hit_occured" from="MultiAgentNavigationRoot/FiestaBox/DamageComponent" to="MultiAgentNavigationRoot/FiestaBox" method="_on_damage_component_hit_occured"]
 [connection signal="hit_occured" from="MultiAgentNavigationRoot/LootChest/DamageComponent" to="MultiAgentNavigationRoot/LootChest" method="_on_damage_component_hit_occured"]

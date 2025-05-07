@@ -1,8 +1,8 @@
 [gd_scene load_steps=18 format=3 uid="uid://cckbg4vrve42l"]
 
 [ext_resource type="Script" uid="uid://b1hgbiqq2ptq5" path="res://game_objects/items/weapons/gun.gd" id="1_q8rk0"]
-[ext_resource type="PackedScene" uid="uid://gfj0vsvmo4ik" path="res://game_objects/bullet/iterative_raycast_bullet.tscn" id="2_va267"]
-[ext_resource type="Resource" uid="uid://crt7yeietv5y7" path="res://game_objects/items/weapons/fic_rifles/fic_rifle_gun_stats.tres" id="3_jq5ic"]
+[ext_resource type="PackedScene" uid="uid://diociyuj28rx2" path="res://game_objects/bullet/raycast_bullet.tscn" id="2_57hmn"]
+[ext_resource type="Resource" uid="uid://btfx61enbk1sj" path="res://game_objects/items/weapons/energy_weapons/laser_rifle/laser_rifle_gun_stats.tres" id="3_62u5g"]
 [ext_resource type="Texture2D" uid="uid://dkcxx06s6kdp6" path="res://game_objects/items/weapons/hic_rifles/pm_52/PixelMuzzelFlash.png" id="6_5ocg4"]
 [ext_resource type="AudioStream" uid="uid://howm8uexygj7" path="res://game_objects/items/weapons/fic_rifles/fic_shot_2.ogg" id="9_1hpkt"]
 [ext_resource type="AudioStream" uid="uid://bc1wim1c1t021" path="res://game_objects/items/weapons/fic_rifles/fic_mag_out.ogg" id="10_42tjt"]
@@ -177,8 +177,8 @@ _data = {
 collision_layer = 5
 collision_mask = 5
 script = ExtResource("1_q8rk0")
-_bullet_scene = ExtResource("2_va267")
-_gun_stats = ExtResource("3_jq5ic")
+_bullet_scene = ExtResource("2_57hmn")
+_gun_stats = ExtResource("3_62u5g")
 muzzle = NodePath("blockbench_export/Node/Muzzle")
 muzzle_flash_animation_player = NodePath("blockbench_export/Node/Muzzle/MuzzleFlashAnimationPlayer")
 fire_sound_player = NodePath("ShotAudioStreamPlayer3D")
@@ -192,7 +192,7 @@ on_default_magazine_hide_nodes = [null]
 on_extended_magazine_show_nodes = [null]
 on_extended_magazine_hide_nodes = [null]
 on_stable_foregrip_show_nodes = [null]
-item_type_id = "cdr"
+item_type_id = "laser_rifle"
 world_collider_path = NodePath("CollisionShape3D")
 metadata/_custom_type_script = "uid://b1hgbiqq2ptq5"
 
