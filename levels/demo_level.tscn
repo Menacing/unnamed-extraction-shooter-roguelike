@@ -1412,8 +1412,9 @@ script = ExtResource("18_dvips")
 [node name="Player" parent="." instance=ExtResource("1_eisjc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.48035, 1.04626, -2.63506)
 
-[node name="large_backpack_1" parent="." instance=ExtResource("18_7cjgh")]
+[node name="large_backpack_1" parent="." node_paths=PackedStringArray("world_colliders") instance=ExtResource("18_7cjgh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.2422, 0.0788298, -5.31462)
+world_colliders = [null]
 
 [node name="medium_backpack" parent="." instance=ExtResource("19_hry6u")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.49394, 0.0788302, -5.33228)
@@ -1427,8 +1428,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.17244, 0.0788298, -5.08134)
 [node name="HicBox3" parent="." instance=ExtResource("21_ckpue")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.41921, 0.07883, -5.09262)
 
-[node name="HicBoxAp" parent="." instance=ExtResource("15_lbv4t")]
+[node name="HicBoxAp" parent="." node_paths=PackedStringArray("world_colliders") instance=ExtResource("15_lbv4t")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.19979, 0.07883, -4.88231)
+world_colliders = [null]
 
 [node name="HicBox4" parent="." instance=ExtResource("22_80o60")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.90908, 0.07883, -4.90387)

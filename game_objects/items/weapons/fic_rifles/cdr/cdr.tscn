@@ -219,7 +219,7 @@ _data = {
 &"reload": SubResource("Animation_efo6u")
 }
 
-[node name="Cdr" type="RigidBody3D" node_paths=PackedStringArray("muzzle", "muzzle_flash_animation_player", "fire_sound_player", "fire_timer", "reload_timer", "reload_animation_player", "gun_model_node", "scope_anchor", "on_scope_hide_nodes", "on_default_magazine_show_nodes", "on_default_magazine_hide_nodes", "on_extended_magazine_show_nodes", "on_extended_magazine_hide_nodes", "on_stable_foregrip_show_nodes", "mag_node", "model_node")]
+[node name="Cdr" type="RigidBody3D" node_paths=PackedStringArray("muzzle", "muzzle_flash_animation_player", "fire_sound_player", "fire_timer", "reload_timer", "reload_animation_player", "gun_model_node", "scope_anchor", "on_scope_hide_nodes", "on_default_magazine_show_nodes", "on_default_magazine_hide_nodes", "on_extended_magazine_show_nodes", "on_extended_magazine_hide_nodes", "on_stable_foregrip_show_nodes", "mag_node", "model_node", "world_colliders")]
 collision_layer = 5
 collision_mask = 5
 script = ExtResource("1_sub03")
@@ -241,8 +241,8 @@ on_extended_magazine_hide_nodes = [null]
 on_stable_foregrip_show_nodes = [NodePath("blockbench_export/Node/stable_foregrip")]
 mag_node = NodePath("blockbench_export/Node/magazines")
 item_type_id = "cdr"
-world_collider_path = NodePath("CollisionShape3D")
 model_node = NodePath("blockbench_export")
+world_colliders = [NodePath("CollisionShape3D")]
 metadata/_custom_type_script = "uid://b1hgbiqq2ptq5"
 
 [node name="blockbench_export" parent="." instance=ExtResource("2_b3fml")]

@@ -46,14 +46,14 @@ shadow_mesh = SubResource("ArrayMesh_5b8wf")
 [sub_resource type="BoxShape3D" id="BoxShape3D_fluor"]
 size = Vector3(0.200562, 0.0610657, 0.100464)
 
-[node name="LpcBoxHP" type="RigidBody3D" node_paths=PackedStringArray("model_node")]
+[node name="LpcBoxHP" type="RigidBody3D" node_paths=PackedStringArray("model_node", "world_colliders")]
 collision_layer = 5
 collision_mask = 5
 script = ExtResource("1_a87wm")
 item_type_id = "lpc_box_ap"
-world_collider_path = NodePath("CollisionShape3D")
 longest_side_size = 0.25
 model_node = NodePath("lpc_box/Cube")
+world_colliders = [NodePath("CollisionShape3D")]
 
 [node name="lpc_box" type="Node3D" parent="."]
 

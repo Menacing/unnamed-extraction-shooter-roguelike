@@ -7,14 +7,14 @@
 height = 0.200714
 radius = 0.0551758
 
-[node name="EnergyCell" type="RigidBody3D" node_paths=PackedStringArray("model_node")]
+[node name="EnergyCell" type="RigidBody3D" node_paths=PackedStringArray("model_node", "world_colliders")]
 collision_layer = 5
 collision_mask = 5
 script = ExtResource("1_2exjs")
 item_type_id = "energy_cell"
-world_collider_path = NodePath("CollisionShape3D")
 longest_side_size = 0.2
 model_node = NodePath("blockbench_export")
+world_colliders = [NodePath("CollisionShape3D")]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000427246, 0.100006, 0.000549316)

@@ -1,8 +1,10 @@
-[gd_resource type="Resource" script_class="ItemInformation" load_steps=16 format=3 uid="uid://m42nfoom7xha"]
+[gd_resource type="Resource" script_class="ItemInformation" load_steps=18 format=3 uid="uid://m42nfoom7xha"]
 
 [ext_resource type="Script" uid="uid://dw75el3q24f1f" path="res://ui/inventory/item_context_item.gd" id="1_vm0pm"]
 [ext_resource type="Resource" uid="uid://o6tesi76nbth" path="res://ui/inventory/drop_item_context_item.tres" id="2_y4uwl"]
 [ext_resource type="PackedScene" uid="uid://0hy4cl1x7qwx" path="res://ui/inventory/detail_scenes/gun_detail_popup.tscn" id="3_tahlu"]
+[ext_resource type="Texture2D" uid="uid://bhh6w6j0mqt73" path="res://game_objects/items/weapons/energy_weapons/laser_rifle/laser_rifle_icon.png" id="4_qcu5t"]
+[ext_resource type="Texture2D" uid="uid://w01cp0mq2udi" path="res://game_objects/items/weapons/energy_weapons/laser_rifle/laser_rifle_icon_r.png" id="5_lk10c"]
 [ext_resource type="Script" uid="uid://dwpbdijb5aofu" path="res://resource_access/equipment_slot_data.gd" id="6_ykdxw"]
 [ext_resource type="Resource" uid="uid://d2e8vacodeiau" path="res://game_objects/items/weapons/foregrips_equipment_slot.tres" id="7_c5skc"]
 [ext_resource type="Resource" uid="uid://cqxsusjebsqrp" path="res://game_objects/items/weapons/grips_equipment_slot.tres" id="8_73fxv"]
@@ -31,6 +33,8 @@ show_name = true
 display_name = "Laser Rifle"
 display_short_name = "L. Rifle"
 item_type = 0
+icon = ExtResource("4_qcu5t")
+icon_r = ExtResource("5_lk10c")
 model_internal_inventory = SubResource("Resource_umu4s")
 detail_scene = ExtResource("3_tahlu")
 context_menu_items = Array[ExtResource("1_vm0pm")]([ExtResource("2_y4uwl"), SubResource("Resource_6llv8")])

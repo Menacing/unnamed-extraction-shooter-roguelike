@@ -1,9 +1,8 @@
-[gd_scene load_steps=18 format=3 uid="uid://cckbg4vrve42l"]
+[gd_scene load_steps=17 format=3 uid="uid://cckbg4vrve42l"]
 
 [ext_resource type="Script" uid="uid://b1hgbiqq2ptq5" path="res://game_objects/items/weapons/gun.gd" id="1_q8rk0"]
 [ext_resource type="PackedScene" uid="uid://diociyuj28rx2" path="res://game_objects/bullet/raycast_bullet.tscn" id="2_57hmn"]
 [ext_resource type="Resource" uid="uid://btfx61enbk1sj" path="res://game_objects/items/weapons/energy_weapons/laser_rifle/laser_rifle_gun_stats.tres" id="3_62u5g"]
-[ext_resource type="Texture2D" uid="uid://dkcxx06s6kdp6" path="res://game_objects/items/weapons/hic_rifles/pm_52/PixelMuzzelFlash.png" id="6_5ocg4"]
 [ext_resource type="AudioStream" uid="uid://howm8uexygj7" path="res://game_objects/items/weapons/fic_rifles/fic_shot_2.ogg" id="9_1hpkt"]
 [ext_resource type="AudioStream" uid="uid://bc1wim1c1t021" path="res://game_objects/items/weapons/fic_rifles/fic_mag_out.ogg" id="10_42tjt"]
 [ext_resource type="PackedScene" uid="uid://djy47jcvh2jkv" path="res://game_objects/items/weapons/energy_weapons/laser_rifle/laser_rifle.gltf" id="11_548rk"]
@@ -173,7 +172,7 @@ _data = {
 &"reload": SubResource("Animation_efo6u")
 }
 
-[node name="LaserRifle" type="RigidBody3D" node_paths=PackedStringArray("muzzle", "muzzle_flash_animation_player", "fire_sound_player", "fire_timer", "reload_timer", "reload_animation_player", "scope_anchor", "on_scope_hide_nodes", "on_default_magazine_show_nodes", "on_default_magazine_hide_nodes", "on_extended_magazine_show_nodes", "on_extended_magazine_hide_nodes", "on_stable_foregrip_show_nodes")]
+[node name="LaserRifle" type="RigidBody3D" node_paths=PackedStringArray("muzzle", "muzzle_flash_animation_player", "fire_sound_player", "fire_timer", "reload_timer", "reload_animation_player", "scope_anchor", "on_scope_hide_nodes", "on_default_magazine_show_nodes", "on_default_magazine_hide_nodes", "on_extended_magazine_show_nodes", "on_extended_magazine_hide_nodes", "on_stable_foregrip_show_nodes", "model_node", "world_colliders")]
 collision_layer = 5
 collision_mask = 5
 script = ExtResource("1_q8rk0")
@@ -193,7 +192,8 @@ on_extended_magazine_show_nodes = [null]
 on_extended_magazine_hide_nodes = [null]
 on_stable_foregrip_show_nodes = [null]
 item_type_id = "laser_rifle"
-world_collider_path = NodePath("CollisionShape3D")
+model_node = NodePath("blockbench_export")
+world_colliders = [NodePath("CollisionShape3D"), NodePath("CollisionShape3D2")]
 metadata/_custom_type_script = "uid://b1hgbiqq2ptq5"
 
 [node name="blockbench_export" parent="." instance=ExtResource("11_548rk")]
@@ -205,25 +205,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.262, 0)
 transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, -7.60565e-10, 0, -0.456939)
 visible = false
 
-[node name="FlashSpriteV3D" type="Sprite3D" parent="blockbench_export/Node/Muzzle"]
-transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, -0.482)
-cast_shadow = 0
-axis = 1
-alpha_cut = 2
-texture_filter = 0
-texture = ExtResource("6_5ocg4")
-
-[node name="FlashSpriteH3D" type="Sprite3D" parent="blockbench_export/Node/Muzzle"]
-transform = Transform3D(-8.74228e-09, 0.2, 0, -0.2, -8.74228e-09, 0, 0, 0, 0.2, 0, 0, -0.482)
-cast_shadow = 0
-axis = 1
-alpha_cut = 2
-texture_filter = 0
-texture = ExtResource("6_5ocg4")
-
 [node name="OmniLight3D" type="OmniLight3D" parent="blockbench_export/Node/Muzzle"]
 transform = Transform3D(1.66667, 0, 0, 0, 1.66667, 0, 0, 0, 1.66667, 0, 0, -0.19)
-light_color = Color(0.917647, 0.784314, 0.611765, 1)
+light_color = Color(1, 0.575941, 0.514184, 1)
 shadow_enabled = true
 distance_fade_enabled = true
 

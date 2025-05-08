@@ -6,37 +6,38 @@ class_name RaycastBullet
 @export var pen_rating: int = 5
 @onready var shot_origin:Vector3 = self.global_position
 var firer:Node3D
-
+var _beam_endpoint:Vector3
 
 var continue_process:bool = true
 @onready var despawn_timer:Timer = $DespawnTimer
 @onready var attack_component:AttackComponent = %AttackComponent
+@onready var beam_mesh: MeshInstance3D = $BeamMesh
 
 
 func _physics_process(delta):
 	if continue_process:
 		do_raycast_movement()
-
-func raycast_to_dest(new_target_position:Vector3):
-	self.target_position = new_target_position
-	self.force_raycast_update()
+		
+	update_beam()
+	
+func update_beam():
+	var local_beam_endpoint = to_local(_beam_endpoint)
+	beam_mesh.mesh.height = abs(local_beam_endpoint.z)
+	beam_mesh.position.z = abs(local_beam_endpoint.z/2)
 
 func do_raycast_movement():
 	#set up initial value and destination
-	var motion_dir = range * Vector3.FORWARD
-	#While we have distance to cover, loop
-	while motion_dir.length() > 0.0001:
-		var new_pos_g:Vector3
-		var damage_factor = 1.0
-		#Raycast to target location
-		raycast_to_dest(motion_dir)
-		
+	var damage_factor = 1.0
+	#Raycast to target location
+	self.target_position = range * Vector3.FORWARD
+	var beam_stopped = false
+
+	
+	while not beam_stopped:
+		self.force_raycast_update()
 		#Handle collision
 		#If we didn't hit anything, move the full distance, and stop
-		if !self.is_colliding():
-			new_pos_g =  self.to_global(motion_dir)
-			motion_dir = Vector3.ZERO
-		else:
+		if self.is_colliding():
 			var collider = self.get_collider()
 			#if we hit a collider, check for a damage component
 			if collider:
@@ -52,27 +53,26 @@ func do_raycast_movement():
 					damage_factor = damage_factor * attack_result.percent_penetrated
 					
 					if damage_factor <= 0.1:
-						motion_dir = Vector3.ZERO
+						beam_stopped = true
+						_beam_endpoint = self.get_collision_point()
 				
 				#else if we hit an area3D, let them know and adjust speed ballistically
 				elif collider is Area3D:
 					collider.body_entered.emit(self)
 				
-				#in both cases move to collision point for recalculation
-				new_pos_g = self.get_collision_point()
-				var distance_travelled:float = (new_pos_g - self.global_position).length()
-
-				motion_dir = (range - distance_travelled) * Vector3.FORWARD
+				#in both cases add collision exception
+				self.add_exception_rid(self.get_collider_rid())
 			else:
 				printerr("Hit something WEIRD")
-				motion_dir = Vector3.ZERO
+				beam_stopped = true
+				_beam_endpoint = self.get_collision_point()
 				startDespawn()
 				
 			self.add_exception_rid(self.get_collider_rid())
-		
-		#adjust speed and damage
-		#set new global position
-		self.global_position = new_pos_g
+			
+		else:
+			beam_stopped = true
+			_beam_endpoint = to_global(self.target_position)
 
 	startDespawn()
 	continue_process = false
