@@ -18,12 +18,11 @@ func _physics_process(delta):
 	if continue_process:
 		do_raycast_movement()
 		
-	update_beam()
 	
 func update_beam():
 	var local_beam_endpoint = to_local(_beam_endpoint)
 	beam_mesh.mesh.height = abs(local_beam_endpoint.z)
-	beam_mesh.position.z = abs(local_beam_endpoint.z/2)
+	beam_mesh.position.z = -abs(local_beam_endpoint.z/2)
 
 func do_raycast_movement():
 	#set up initial value and destination
@@ -76,6 +75,8 @@ func do_raycast_movement():
 
 	startDespawn()
 	continue_process = false
+	update_beam()
+	
 
 
 func startDespawn():
