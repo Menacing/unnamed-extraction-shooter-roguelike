@@ -4,10 +4,10 @@
 [ext_resource type="PackedScene" uid="uid://diociyuj28rx2" path="res://game_objects/bullet/raycast_bullet.tscn" id="2_57hmn"]
 [ext_resource type="Resource" uid="uid://btfx61enbk1sj" path="res://game_objects/items/weapons/energy_weapons/laser_rifle/laser_rifle_gun_stats.tres" id="3_62u5g"]
 [ext_resource type="AudioStream" uid="uid://ccf0hydp1j3m8" path="res://game_objects/items/weapons/energy_weapons/laser_rifle/laser_rifle.ogg" id="5_bfcie"]
+[ext_resource type="AudioStream" uid="uid://b2w68rv728702" path="res://game_objects/items/weapons/energy_weapons/laser_rifle/laser_rifle_charging.ogg" id="8_bfcie"]
 [ext_resource type="AudioStream" uid="uid://bc1wim1c1t021" path="res://game_objects/items/weapons/fic_rifles/fic_mag_out.ogg" id="10_42tjt"]
 [ext_resource type="PackedScene" uid="uid://djy47jcvh2jkv" path="res://game_objects/items/weapons/energy_weapons/laser_rifle/laser_rifle.gltf" id="11_548rk"]
 [ext_resource type="AudioStream" uid="uid://belfvaan2qeva" path="res://game_objects/items/weapons/fic_rifles/fic_mag_in.ogg" id="11_feet8"]
-[ext_resource type="AudioStream" uid="uid://c2wxubwa7ilv" path="res://game_objects/items/weapons/fic_rifles/fic_charging_handle.ogg" id="12_ciia3"]
 
 [sub_resource type="Animation" id="Animation_hu2i7"]
 resource_name = "fire"
@@ -83,7 +83,7 @@ tracks/2/keys = {
 
 [sub_resource type="Animation" id="Animation_efo6u"]
 resource_name = "reload"
-length = 2.5
+length = 3.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -160,9 +160,9 @@ tracks/5/keys = {
 "clips": [{
 "end_offset": 0.0,
 "start_offset": 0.0,
-"stream": ExtResource("12_ciia3")
+"stream": ExtResource("8_bfcie")
 }],
-"times": PackedFloat32Array(2)
+"times": PackedFloat32Array(1.83333)
 }
 tracks/5/use_blend = true
 
@@ -172,7 +172,7 @@ _data = {
 &"reload": SubResource("Animation_efo6u")
 }
 
-[node name="LaserRifle" type="RigidBody3D" node_paths=PackedStringArray("muzzle", "muzzle_flash_animation_player", "fire_sound_player", "fire_timer", "reload_timer", "reload_animation_player", "scope_anchor", "on_scope_hide_nodes", "on_default_magazine_show_nodes", "on_default_magazine_hide_nodes", "on_extended_magazine_show_nodes", "on_extended_magazine_hide_nodes", "on_stable_foregrip_show_nodes", "model_node", "world_colliders")]
+[node name="LaserRifle" type="RigidBody3D" node_paths=PackedStringArray("muzzle", "muzzle_flash_animation_player", "fire_sound_player", "fire_timer", "reload_timer", "reload_animation_player", "gun_model_node", "scope_anchor", "on_scope_hide_nodes", "on_default_magazine_show_nodes", "on_default_magazine_hide_nodes", "on_extended_magazine_show_nodes", "on_extended_magazine_hide_nodes", "on_stable_foregrip_show_nodes", "mag_node", "model_node", "world_colliders")]
 collision_layer = 5
 collision_mask = 5
 script = ExtResource("1_q8rk0")
@@ -184,6 +184,7 @@ fire_sound_player = NodePath("ShotAudioStreamPlayer3D")
 fire_timer = NodePath("FireTimer")
 reload_timer = NodePath("ReloadTimer")
 reload_animation_player = NodePath("AnimationPlayer")
+gun_model_node = NodePath("blockbench_export")
 scope_anchor = NodePath("blockbench_export/Node/scope_anchor")
 on_scope_hide_nodes = [null]
 on_default_magazine_show_nodes = [null]
@@ -191,6 +192,7 @@ on_default_magazine_hide_nodes = [null]
 on_extended_magazine_show_nodes = [null]
 on_extended_magazine_hide_nodes = [null]
 on_stable_foregrip_show_nodes = [null]
+mag_node = NodePath("blockbench_export/Node/energy_cell")
 item_type_id = "laser_rifle"
 model_node = NodePath("blockbench_export")
 world_colliders = [NodePath("CollisionShape3D"), NodePath("CollisionShape3D2")]
