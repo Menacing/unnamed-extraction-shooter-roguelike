@@ -13,6 +13,7 @@ var continue_process:bool = true
 @onready var attack_component:AttackComponent = %AttackComponent
 @onready var beam_mesh: MeshInstance3D = $BeamMesh
 
+@onready var bullet_hit_laser: Node3D = $BulletHitLaser
 
 func _physics_process(delta):
 	if continue_process:
@@ -23,6 +24,8 @@ func update_beam():
 	var local_beam_endpoint = to_local(_beam_endpoint)
 	beam_mesh.mesh.height = abs(local_beam_endpoint.z)
 	beam_mesh.position.z = -abs(local_beam_endpoint.z/2)
+	bullet_hit_laser.global_position = _beam_endpoint
+	bullet_hit_laser.global_basis.looking_at(self.global_position)
 
 func do_raycast_movement():
 	#set up initial value and destination

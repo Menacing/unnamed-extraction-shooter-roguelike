@@ -6,4 +6,3 @@ extends Node3D
 func _ready() -> void:
 	for ose:GPUParticles3D in one_shot_emitters:
 		ose.emitting = true
-

@@ -1,17 +1,18 @@
-[gd_scene load_steps=11 format=3 uid="uid://bb3mvj051tvxj"]
+[gd_scene load_steps=7 format=3 uid="uid://bb3mvj051tvxj"]
 
 [ext_resource type="Script" uid="uid://d2cfuihrr0v0r" path="res://game_objects/effects/hit_effects/bullet_hit.gd" id="1_ln2cl"]
 [ext_resource type="Texture2D" uid="uid://hx36albsqyt" path="res://game_objects/bullet/Assets/hole-difuse.png" id="2_fujsf"]
 [ext_resource type="Texture2D" uid="uid://dgfwxp74xudg8" path="res://game_objects/bullet/Assets/hole-normal.png" id="3_amjmn"]
 
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ctina"]
-spread = 5.0
-initial_velocity_min = 6.0
-initial_velocity_max = 10.0
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_dekxn"]
+spread = 80.0
+initial_velocity_min = 0.5
+initial_velocity_max = 5.0
+gravity = Vector3(0, 0, 0)
 linear_accel_min = -10.0
 linear_accel_max = -5.0
-scale_min = 0.75
-scale_max = 1.25
+scale_min = 0.25
+scale_max = 0.5
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dekxn"]
 transparency = 1
@@ -24,61 +25,22 @@ particles_anim_h_frames = 1
 particles_anim_v_frames = 1
 particles_anim_loop = false
 
-[sub_resource type="QuadMesh" id="QuadMesh_ln2cl"]
-material = SubResource("StandardMaterial3D_dekxn")
-size = Vector2(0.05, 0.05)
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_d8qxl"]
-spread = 15.0
-initial_velocity_min = 4.0
-initial_velocity_max = 7.0
-linear_accel_min = -10.0
-linear_accel_max = -5.0
-scale_min = 0.5
-
-[sub_resource type="QuadMesh" id="QuadMesh_fujsf"]
-material = SubResource("StandardMaterial3D_dekxn")
-size = Vector2(0.05, 0.05)
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_6orws"]
-spread = 80.0
-initial_velocity_min = 0.5
-initial_velocity_max = 5.0
-linear_accel_min = -10.0
-linear_accel_max = -5.0
-scale_min = 0.25
-scale_max = 0.5
-
 [sub_resource type="QuadMesh" id="QuadMesh_amjmn"]
 material = SubResource("StandardMaterial3D_dekxn")
 size = Vector2(0.05, 0.05)
 
 [node name="BulletHitLaser" type="Node3D" node_paths=PackedStringArray("one_shot_emitters")]
 script = ExtResource("1_ln2cl")
-one_shot_emitters = [NodePath("pixel_laser_far"), NodePath("pixel_laser_medium"), NodePath("pixel_laser_close")]
+one_shot_emitters = [NodePath("pixel_laser_close")]
 
 [node name="Bullet" type="Decal" parent="."]
 size = Vector3(0.157527, 0.16, 0.16)
 texture_albedo = ExtResource("2_fujsf")
 texture_normal = ExtResource("3_amjmn")
 
-[node name="pixel_laser_far" type="GPUParticles3D" parent="."]
-amount = 20
-explosiveness = 1.0
-randomness = 0.2
-process_material = SubResource("ParticleProcessMaterial_ctina")
-draw_pass_1 = SubResource("QuadMesh_ln2cl")
-
-[node name="pixel_laser_medium" type="GPUParticles3D" parent="."]
-amount = 30
-explosiveness = 1.0
-randomness = 0.2
-process_material = SubResource("ParticleProcessMaterial_d8qxl")
-draw_pass_1 = SubResource("QuadMesh_fujsf")
-
 [node name="pixel_laser_close" type="GPUParticles3D" parent="."]
 amount = 50
-explosiveness = 1.0
+lifetime = 0.2
 randomness = 0.2
-process_material = SubResource("ParticleProcessMaterial_6orws")
+process_material = SubResource("ParticleProcessMaterial_dekxn")
 draw_pass_1 = SubResource("QuadMesh_amjmn")
