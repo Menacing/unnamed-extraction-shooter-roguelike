@@ -6,14 +6,14 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_hxfpi"]
 size = Vector3(0.120941, 0.119818, 0.0797119)
 
-[node name="HicBox" type="RigidBody3D" node_paths=PackedStringArray("model_node")]
+[node name="HicBox" type="RigidBody3D" node_paths=PackedStringArray("model_node", "world_colliders")]
 collision_layer = 5
 collision_mask = 5
 script = ExtResource("1_68i3y")
 item_type_id = "hic_box_fmj"
-world_collider_path = NodePath("CollisionShape3D")
 longest_side_size = 0.15
 model_node = NodePath("hic_box2")
+world_colliders = [NodePath("CollisionShape3D")]
 
 [node name="hic_box2" parent="." instance=ExtResource("2_mvju1")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)

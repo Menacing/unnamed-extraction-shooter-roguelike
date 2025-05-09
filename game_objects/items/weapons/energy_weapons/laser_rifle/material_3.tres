@@ -1,0 +1,21 @@
+[gd_resource type="StandardMaterial3D" load_steps=3 format=3 uid="uid://xgjh7dfer04q"]
+
+[ext_resource type="Texture2D" uid="uid://cgnnyrmxbkhh0" path="res://game_objects/items/weapons/energy_weapons/laser_rifle/laser_rifle_3.png" id="1_r7nfj"]
+[ext_resource type="Texture2D" uid="uid://h40338dy4q3t" path="res://game_objects/items/ammo/energy/energy_cell/energy_cell_t_MER.png" id="2_4tp8d"]
+
+[resource]
+resource_name = "material_3"
+transparency = 2
+alpha_scissor_threshold = 0.05
+alpha_antialiasing_mode = 0
+cull_mode = 2
+albedo_texture = ExtResource("1_r7nfj")
+metallic = 1.0
+metallic_texture = ExtResource("2_4tp8d")
+roughness_texture = ExtResource("2_4tp8d")
+roughness_texture_channel = 2
+emission_enabled = true
+emission_operator = 1
+emission_texture = ExtResource("2_4tp8d")
+texture_filter = 0
+texture_repeat = false

@@ -7,14 +7,14 @@
 height = 0.105508
 radius = 0.199519
 
-[node name="PolymerSpool" type="RigidBody3D" node_paths=PackedStringArray("model_node")]
+[node name="PolymerSpool" type="RigidBody3D" node_paths=PackedStringArray("model_node", "world_colliders")]
 collision_layer = 5
 collision_mask = 5
 script = ExtResource("1_t08j1")
 item_type_id = "polymer_spool_medium"
-world_collider_path = NodePath("CollisionShape3D")
 longest_side_size = 0.6
 model_node = NodePath("polymer_spool")
+world_colliders = [NodePath("CollisionShape3D")]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CylinderShape3D_tsbfp")

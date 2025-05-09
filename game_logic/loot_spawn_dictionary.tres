@@ -39,24 +39,6 @@
 [ext_resource type="Resource" uid="uid://c5c7gkq2e3reh" path="res://levels/loot_tables/military_epic_loot_spawn_mapping.tres" id="36_fltvj"]
 [ext_resource type="Resource" uid="uid://gtkkof2p8buc" path="res://levels/loot_tables/military_unique_loot_spawn_mapping.tres" id="37_oqond"]
 
-[sub_resource type="Resource" id="Resource_342ii"]
-script = ExtResource("1_p04al")
-loot_table = 3
-tier = 0
-metadata/_custom_type_script = "uid://w1x8qc4my651"
-
-[sub_resource type="Resource" id="Resource_ugbr4"]
-script = ExtResource("1_p04al")
-loot_table = 2
-tier = 4
-metadata/_custom_type_script = "uid://w1x8qc4my651"
-
-[sub_resource type="Resource" id="Resource_32tns"]
-script = ExtResource("1_p04al")
-loot_table = 2
-tier = 3
-metadata/_custom_type_script = "uid://w1x8qc4my651"
-
 [sub_resource type="Resource" id="Resource_y03sl"]
 script = ExtResource("1_p04al")
 loot_table = 2
@@ -249,12 +231,27 @@ loot_table = 3
 tier = 1
 metadata/_custom_type_script = "uid://w1x8qc4my651"
 
+[sub_resource type="Resource" id="Resource_342ii"]
+script = ExtResource("1_p04al")
+loot_table = 3
+tier = 0
+metadata/_custom_type_script = "uid://w1x8qc4my651"
+
+[sub_resource type="Resource" id="Resource_ugbr4"]
+script = ExtResource("1_p04al")
+loot_table = 2
+tier = 4
+metadata/_custom_type_script = "uid://w1x8qc4my651"
+
+[sub_resource type="Resource" id="Resource_32tns"]
+script = ExtResource("1_p04al")
+loot_table = 2
+tier = 3
+metadata/_custom_type_script = "uid://w1x8qc4my651"
+
 [resource]
 script = ExtResource("3_q0oo2")
 loot_spawn_dictionary = Dictionary[ExtResource("1_p04al"), ExtResource("2_k43u7")]({
-SubResource("Resource_w2tkt"): ExtResource("35_dok1m"),
-SubResource("Resource_mkjdo"): ExtResource("36_fltvj"),
-SubResource("Resource_vglx2"): ExtResource("37_oqond"),
 SubResource("Resource_4h3fg"): ExtResource("32_rljt7"),
 SubResource("Resource_ld1ba"): ExtResource("31_b1kur"),
 SubResource("Resource_3obx1"): ExtResource("30_fr4hr"),
@@ -286,6 +283,9 @@ SubResource("Resource_pmx5j"): ExtResource("5_4h3fg"),
 SubResource("Resource_nb065"): ExtResource("4_rljt7"),
 SubResource("Resource_q0oo2"): ExtResource("3_ft8u8"),
 SubResource("Resource_jwc5x"): ExtResource("33_b1d6t"),
-SubResource("Resource_yav6f"): ExtResource("34_gm4qn")
+SubResource("Resource_yav6f"): ExtResource("34_gm4qn"),
+SubResource("Resource_w2tkt"): ExtResource("35_dok1m"),
+SubResource("Resource_mkjdo"): ExtResource("36_fltvj"),
+SubResource("Resource_vglx2"): ExtResource("37_oqond")
 })
 metadata/_custom_type_script = "uid://b1um64ny5ajx0"

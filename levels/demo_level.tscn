@@ -1,4 +1,4 @@
-[gd_scene load_steps=128 format=4 uid="uid://ctahsvj88g1om"]
+[gd_scene load_steps=129 format=4 uid="uid://ctahsvj88g1om"]
 
 [ext_resource type="Script" uid="uid://dwshafaid76mm" path="res://levels/demo_level.gd" id="1_8448e"]
 [ext_resource type="PackedScene" uid="uid://d08aatgxmymbf" path="res://game_objects/player/player.tscn" id="1_eisjc"]
@@ -54,6 +54,7 @@
 [ext_resource type="PackedScene" uid="uid://dwxg3y63bivcg" path="res://game_objects/items/weapons/fic_rifles/cdr/cdr.tscn" id="51_no68d"]
 [ext_resource type="PackedScene" uid="uid://cvh415ycsq5k6" path="res://game_objects/items/materials/bio_gel_cooler/bio_gel_cooler.tscn" id="53_e4xtb"]
 [ext_resource type="PackedScene" uid="uid://cnxchecuop1nw" path="res://game_objects/items/ammo/energy/energy_cell/energy_cell.tscn" id="54_lex0s"]
+[ext_resource type="PackedScene" uid="uid://cckbg4vrve42l" path="res://game_objects/items/weapons/energy_weapons/laser_rifle/laser_rifle.tscn" id="55_st6li"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_6g5uc"]
 
@@ -1394,8 +1395,9 @@ script = ExtResource("18_dvips")
 [node name="Player" parent="." instance=ExtResource("1_eisjc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.48035, 1.04626, -2.63506)
 
-[node name="large_backpack_1" parent="." instance=ExtResource("18_7cjgh")]
+[node name="large_backpack_1" parent="." node_paths=PackedStringArray("world_colliders") instance=ExtResource("18_7cjgh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.2422, 0.0788298, -5.31462)
+world_colliders = [null]
 
 [node name="medium_backpack" parent="." instance=ExtResource("19_hry6u")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.49394, 0.0788302, -5.33228)
@@ -1409,8 +1411,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.17244, 0.0788298, -5.08134)
 [node name="HicBox3" parent="." instance=ExtResource("21_ckpue")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.41921, 0.07883, -5.09262)
 
-[node name="HicBoxAp" parent="." instance=ExtResource("15_lbv4t")]
+[node name="HicBoxAp" parent="." node_paths=PackedStringArray("world_colliders") instance=ExtResource("15_lbv4t")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.19979, 0.07883, -4.88231)
+world_colliders = [null]
 
 [node name="HicBox4" parent="." instance=ExtResource("22_80o60")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.90908, 0.07883, -4.90387)
@@ -1492,6 +1495,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.84428, 0.20383, -4.91099)
 
 [node name="EnergyCell" parent="." instance=ExtResource("54_lex0s")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.93944, 0.0788299, -5.63844)
+
+[node name="LaserRifle" parent="." instance=ExtResource("55_st6li")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.6878, 0.328639, -4.95895)
 
 [connection signal="hit_occured" from="MultiAgentNavigationRoot/FiestaBox/DamageComponent" to="MultiAgentNavigationRoot/FiestaBox" method="_on_damage_component_hit_occured"]
 [connection signal="hit_occured" from="MultiAgentNavigationRoot/LootChest/DamageComponent" to="MultiAgentNavigationRoot/LootChest" method="_on_damage_component_hit_occured"]

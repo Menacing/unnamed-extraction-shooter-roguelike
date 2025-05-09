@@ -24,17 +24,9 @@ func set_additional_slot_data(slot_data:SlotData) -> void:
 
 ## string id of the item. Must match the id in the corresponding ItemInformation resources
 @export var item_type_id:String
-@export var world_collider_path:NodePath
 @export var longest_side_size:float = 1.0
 @export var model_node:Node3D
-var _world_collider:CollisionShape3D
-var world_collider:CollisionShape3D:
-	get:
-		if _world_collider:
-			return _world_collider
-		else:
-			_world_collider =  get_node(world_collider_path)
-			return _world_collider
+@export var world_colliders:Array[CollisionShape3D]
 @onready var item_highlight_m:ShaderMaterial = load("res://themes/item_highlighter_m.tres")
 @export var start_highlighted:bool = true
 @export var meshes_to_fade_on_pickup:Array[MeshInstance3D] = []
@@ -42,7 +34,7 @@ var _prox_fade_mats:Array[StandardMaterial3D] = []
 var is_picked_up:bool = false
 
 func _ready() -> void:
-	assert(world_collider_path != null)
+	assert(world_colliders != null and world_colliders.size() > 0)
 	if start_highlighted:
 		Helpers.apply_material_overlay_to_children(self,item_highlight_m)
 	else:
@@ -74,7 +66,9 @@ func pick_up_item(inventory_data:InventoryData) -> bool:
 	return false
 
 func dropped() -> void:
-	world_collider.disabled = false
+	for collider in world_colliders:
+		collider.disabled = false
+		
 	self.freeze = false
 	self.visible = true
 	Helpers.apply_material_overlay_to_children(self,item_highlight_m)
@@ -89,7 +83,8 @@ func dropped() -> void:
 func picked_up(actor_id:int = 0) -> void:
 	self.transform = Transform3D.IDENTITY
 #	self.gravity_scale = 0
-	world_collider.disabled = true
+	for collider in world_colliders:
+		collider.disabled = true
 	self.freeze = true
 	Helpers.apply_material_overlay_to_children(self,null)
 

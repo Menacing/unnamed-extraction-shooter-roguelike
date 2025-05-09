@@ -18,7 +18,7 @@ is_rotated = false
 height = 0.2
 radius = 0.024
 
-[node name="BioGelVial" type="RigidBody3D" node_paths=PackedStringArray("model_node")]
+[node name="BioGelVial" type="RigidBody3D" node_paths=PackedStringArray("model_node", "world_colliders")]
 transform = Transform3D(0.871377, -0.490615, 0, 0.490615, 0.871377, 0, 0, 0, 1, 0, 0, 0)
 collision_layer = 5
 collision_mask = 5
@@ -27,9 +27,9 @@ script = ExtResource("1_ar5l1")
 liquidShaderMaterial = ExtResource("2_xv0qv")
 slot_data = SubResource("Resource_iup3y")
 item_type_id = "bio_gel_vial"
-world_collider_path = NodePath("CollisionShape3D")
 longest_side_size = 0.1
 model_node = NodePath("bio_gel_vial/Cylinder")
+world_colliders = [NodePath("CollisionShape3D")]
 
 [node name="bio_gel_vial" parent="." instance=ExtResource("2_ipmcg")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)

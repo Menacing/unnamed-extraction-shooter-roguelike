@@ -133,7 +133,7 @@ func canFire() -> bool:
 	
 func fireGun() -> void:
 	if canFire():
-		var bulletInst:IterativeRaycastBullet = _bullet_scene.instantiate()
+		var bulletInst = _bullet_scene.instantiate()
 		assign_bullet_stats(bulletInst, slot_data.current_ammo_subtype)
 		bulletInst.firer = firer
 		bulletInst.set_as_top_level(true)
@@ -275,12 +275,16 @@ func get_unselected_ammo_subtypes() -> Array[AmmoSubtype]:
 func get_weapon_category() -> String:
 	return _gun_stats.weapon_category_name
 	
-func assign_bullet_stats(bullet:IterativeRaycastBullet, subtype:AmmoSubtype):
-	bullet.current_damage = subtype.initial_damage
-	bullet.initial_speed = subtype.initial_speed
-	bullet.current_speed = subtype.initial_speed
-	bullet.pen_rating = subtype.armor_penetration_rating
-	bullet.k = subtype.ballistic_coefficient_k
+func assign_bullet_stats(bullet, subtype:AmmoSubtype):
+	if bullet is IterativeRaycastBullet:
+		bullet.current_damage = subtype.initial_damage
+		bullet.initial_speed = subtype.initial_speed
+		bullet.current_speed = subtype.initial_speed
+		bullet.pen_rating = subtype.armor_penetration_rating
+		bullet.k = subtype.ballistic_coefficient_k
+	elif bullet is RaycastBullet:
+		bullet.initial_damage = subtype.initial_damage
+		bullet.pen_rating = subtype.armor_penetration_rating
 	
 func copy_gun_model() -> Node3D:
 	return gun_model_node.duplicate()

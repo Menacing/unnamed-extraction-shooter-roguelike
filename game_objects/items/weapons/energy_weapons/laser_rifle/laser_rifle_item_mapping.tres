@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ItemMapping" load_steps=4 format=3 uid="uid://n6kssum3ydb"]
+
+[ext_resource type="PackedScene" uid="uid://cckbg4vrve42l" path="res://game_objects/items/weapons/energy_weapons/laser_rifle/laser_rifle.tscn" id="1_mrgq2"]
+[ext_resource type="Resource" uid="uid://m42nfoom7xha" path="res://game_objects/items/weapons/energy_weapons/laser_rifle/laser_rifle_inventory_info.tres" id="2_meg1q"]
+[ext_resource type="Script" uid="uid://c8amqbc45k2jw" path="res://resource_access/item_mapping.gd" id="3_7bvuv"]
+
+[resource]
+script = ExtResource("3_7bvuv")
+item_type_id = "laser_rifle"
+item_information = ExtResource("2_meg1q")
+item_3d_scene = ExtResource("1_mrgq2")

@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="GunStats" load_steps=3 format=3 uid="uid://btfx61enbk1sj"]
+
+[ext_resource type="Resource" uid="uid://jyantd4a0xdh" path="res://components/ammo_component/ammo_types/energy_cell.tres" id="1_p60xg"]
+[ext_resource type="Script" uid="uid://b2newdlaaj70t" path="res://game_objects/items/weapons/gun_stats.gd" id="2_bilpc"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("2_bilpc")
+weapon_category_name = "LASER Rifle"
+magazine_size = 10
+rpm = 200
+base_recoil = Vector2(0, 0.01)
+recoil_variability = Vector2(0.01, 0.005)
+fire_modes = ["semi"]
+ads_accel = 10.0
+ads_fov = 50.0
+moa = 1.0
+turn_speed = 15.0
+ammo_type = ExtResource("1_p60xg")
+reload_time_Sec = 3.5
+reload_thresholds = Array[float]([1.0])

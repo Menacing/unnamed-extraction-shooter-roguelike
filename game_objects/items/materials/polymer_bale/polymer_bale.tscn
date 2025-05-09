@@ -6,13 +6,13 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_bx5bi"]
 size = Vector3(1.01723, 0.509644, 0.80722)
 
-[node name="PolymerBale" type="RigidBody3D" node_paths=PackedStringArray("model_node")]
+[node name="PolymerBale" type="RigidBody3D" node_paths=PackedStringArray("model_node", "world_colliders")]
 collision_layer = 5
 collision_mask = 5
 script = ExtResource("1_f3etl")
 item_type_id = "polymer_bale_large"
-world_collider_path = NodePath("CollisionShape3D")
 model_node = NodePath("polymer_bale")
+world_colliders = [NodePath("CollisionShape3D")]
 
 [node name="polymer_bale" parent="." instance=ExtResource("2_aeebe")]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)

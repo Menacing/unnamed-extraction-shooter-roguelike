@@ -1,5 +1,6 @@
-[gd_resource type="Resource" script_class="AmmoSubtype" load_steps=2 format=3 uid="uid://c7rautngyo4gg"]
+[gd_resource type="Resource" script_class="AmmoSubtype" load_steps=3 format=3 uid="uid://c7rautngyo4gg"]
 
+[ext_resource type="PackedScene" uid="uid://diociyuj28rx2" path="res://game_objects/bullet/raycast_bullet.tscn" id="1_1pio0"]
 [ext_resource type="Script" uid="uid://dfspvq6b61b74" path="res://components/ammo_component/ammo_subtype.gd" id="1_4x3nf"]
 
 [resource]
@@ -8,8 +9,9 @@ name = "energy_cell"
 abbreviation = "EC"
 maximum_capacity = 200
 item_type_id = "energy_cell"
-initial_damage = 0.0
-armor_penetration_rating = 0.0
+bullet_scene = ExtResource("1_1pio0")
+initial_damage = 50.0
+armor_penetration_rating = 1.0
 initial_speed = 0.0
 ballistic_coefficient_k = 0.0
 metadata/_custom_type_script = "uid://dfspvq6b61b74"

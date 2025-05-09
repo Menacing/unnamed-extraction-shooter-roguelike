@@ -1,0 +1,81 @@
+[gd_scene load_steps=11 format=3 uid="uid://diociyuj28rx2"]
+
+[ext_resource type="Script" uid="uid://eyslil0phtkh" path="res://game_objects/bullet/raycast_bullet.gd" id="1_gj4wa"]
+[ext_resource type="PackedScene" uid="uid://bb3mvj051tvxj" path="res://game_objects/effects/hit_effects/bullet_hit_laser.tscn" id="3_gksid"]
+[ext_resource type="Script" uid="uid://dik8rk16lw8ip" path="res://components/attack_component/attack_component.gd" id="4_kaok4"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_n3amb"]
+transparency = 1
+albedo_color = Color(1, 0, 0, 0.831373)
+emission_enabled = true
+emission = Color(1, 0, 0, 0.980392)
+emission_energy_multiplier = 10.0
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_gksid"]
+material = SubResource("StandardMaterial3D_n3amb")
+top_radius = 0.1
+bottom_radius = 0.1
+height = 1.0
+
+[sub_resource type="Curve" id="Curve_n3amb"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_gksid"]
+curve = SubResource("Curve_n3amb")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_jwebi"]
+direction = Vector3(0, 0, -1)
+spread = 0.0
+initial_velocity_min = 5.0
+initial_velocity_max = 10.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.25
+scale_max = 0.5
+scale_curve = SubResource("CurveTexture_gksid")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dekxn"]
+transparency = 1
+albedo_color = Color(1, 0, 0, 0.980392)
+emission_enabled = true
+emission = Color(1, 0, 0, 0.980392)
+emission_energy_multiplier = 10.0
+billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_gj4wa"]
+material = SubResource("StandardMaterial3D_dekxn")
+size = Vector2(0.05, 0.05)
+
+[node name="RaycastBullet" type="RayCast3D" groups=["attack"]]
+target_position = Vector3(0, 0, -1)
+collision_mask = 2
+collide_with_areas = true
+script = ExtResource("1_gj4wa")
+initial_damage = 15.0
+pen_rating = 9
+
+[node name="DespawnTimer" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+
+[node name="AttackComponent" type="Node3D" parent="."]
+unique_name_in_owner = true
+script = ExtResource("4_kaok4")
+damage = 40.0
+armor_penetration_rating = 1
+
+[node name="BeamMesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, -0.5)
+mesh = SubResource("CylinderMesh_gksid")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+amount = 20
+process_material = SubResource("ParticleProcessMaterial_jwebi")
+draw_pass_1 = SubResource("QuadMesh_gj4wa")
+
+[node name="BulletHitLaser" parent="." instance=ExtResource("3_gksid")]
+
+[connection signal="timeout" from="DespawnTimer" to="." method="_on_despawn_timer_timeout"]

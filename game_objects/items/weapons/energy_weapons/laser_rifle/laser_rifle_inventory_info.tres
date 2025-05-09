@@ -1,0 +1,37 @@
+[gd_resource type="Resource" script_class="ItemInformation" load_steps=8 format=3 uid="uid://m42nfoom7xha"]
+
+[ext_resource type="Script" uid="uid://dw75el3q24f1f" path="res://ui/inventory/item_context_item.gd" id="1_vm0pm"]
+[ext_resource type="Resource" uid="uid://o6tesi76nbth" path="res://ui/inventory/drop_item_context_item.tres" id="2_y4uwl"]
+[ext_resource type="PackedScene" uid="uid://0hy4cl1x7qwx" path="res://ui/inventory/detail_scenes/gun_detail_popup.tscn" id="3_tahlu"]
+[ext_resource type="Texture2D" uid="uid://bhh6w6j0mqt73" path="res://game_objects/items/weapons/energy_weapons/laser_rifle/laser_rifle_icon.png" id="4_qcu5t"]
+[ext_resource type="Texture2D" uid="uid://w01cp0mq2udi" path="res://game_objects/items/weapons/energy_weapons/laser_rifle/laser_rifle_icon_r.png" id="5_lk10c"]
+[ext_resource type="Script" uid="uid://hxr8853lym5l" path="res://resource_access/item_information.gd" id="15_hp8n4"]
+
+[sub_resource type="Resource" id="Resource_6llv8"]
+script = ExtResource("1_vm0pm")
+label = "Item Detail"
+signal_name = "context_menus_open_item_detail"
+
+[resource]
+script = ExtResource("15_hp8n4")
+item_type_id = "laser_rifle"
+show_name = true
+display_name = "Laser Rifle"
+display_short_name = "L. Rifle"
+item_type = 0
+icon = ExtResource("4_qcu5t")
+icon_r = ExtResource("5_lk10c")
+detail_scene = ExtResource("3_tahlu")
+context_menu_items = Array[ExtResource("1_vm0pm")]([ExtResource("2_y4uwl"), SubResource("Resource_6llv8")])
+max_stacks = 1
+has_stacks = false
+max_durability = 1
+has_durability = false
+column_span = 5
+row_span = 2
+description_text = "High energy coherent photons create a localized phase change on the surface of the target. This rapid transfer of energy is highly destructive, frequently resulting in the death of the target."
+flavor_text = "Light Amplification By Stimulated Emission of Radiation"
+min_pickup_stacks = 1
+mean_pickup_stacks = 1
+stack_random_method = 0
+slot_data_type = 1
