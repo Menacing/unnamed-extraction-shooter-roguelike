@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://b1hgbiqq2ptq5" path="res://game_objects/items/weapons/gun.gd" id="1_q8rk0"]
 [ext_resource type="PackedScene" uid="uid://diociyuj28rx2" path="res://game_objects/bullet/raycast_bullet.tscn" id="2_57hmn"]
 [ext_resource type="Resource" uid="uid://btfx61enbk1sj" path="res://game_objects/items/weapons/energy_weapons/laser_rifle/laser_rifle_gun_stats.tres" id="3_62u5g"]
-[ext_resource type="AudioStream" uid="uid://howm8uexygj7" path="res://game_objects/items/weapons/fic_rifles/fic_shot_2.ogg" id="9_1hpkt"]
+[ext_resource type="AudioStream" uid="uid://ccf0hydp1j3m8" path="res://game_objects/items/weapons/energy_weapons/laser_rifle/laser_rifle.ogg" id="5_bfcie"]
 [ext_resource type="AudioStream" uid="uid://bc1wim1c1t021" path="res://game_objects/items/weapons/fic_rifles/fic_mag_out.ogg" id="10_42tjt"]
 [ext_resource type="PackedScene" uid="uid://djy47jcvh2jkv" path="res://game_objects/items/weapons/energy_weapons/laser_rifle/laser_rifle.gltf" id="11_548rk"]
 [ext_resource type="AudioStream" uid="uid://belfvaan2qeva" path="res://game_objects/items/weapons/fic_rifles/fic_mag_in.ogg" id="11_feet8"]
@@ -36,11 +36,11 @@ size = Vector3(0.94684, 0.222668, 0.112045)
 [sub_resource type="BoxShape3D" id="BoxShape3D_uw38r"]
 size = Vector3(0.111466, 0.189459, 0.112045)
 
-[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_r7uqx"]
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_57hmn"]
 random_pitch = 1.05
 random_volume_offset_db = 0.5
 streams_count = 1
-stream_0/stream = ExtResource("9_1hpkt")
+stream_0/stream = ExtResource("5_bfcie")
 
 [sub_resource type="Animation" id="Animation_8u1sy"]
 length = 0.001
@@ -249,7 +249,7 @@ billboard = 1
 text = "HF"
 
 [node name="ADS" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0771579, 0.376314)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0771579, 0.612646)
 
 [node name="Left_Hand" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0283023, -0.0348404, -0.221513)
@@ -273,7 +273,7 @@ attenuation_model = 1
 bus = &"SFX"
 
 [node name="ShotAudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
-stream = SubResource("AudioStreamRandomizer_r7uqx")
+stream = SubResource("AudioStreamRandomizer_57hmn")
 volume_db = 6.0
 max_polyphony = 20
 bus = &"SFX"
