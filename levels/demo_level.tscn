@@ -1,4 +1,4 @@
-[gd_scene load_steps=129 format=4 uid="uid://ctahsvj88g1om"]
+[gd_scene load_steps=134 format=4 uid="uid://ctahsvj88g1om"]
 
 [ext_resource type="Script" uid="uid://dwshafaid76mm" path="res://levels/demo_level.gd" id="1_8448e"]
 [ext_resource type="PackedScene" uid="uid://d08aatgxmymbf" path="res://game_objects/player/player.tscn" id="1_eisjc"]
@@ -55,6 +55,9 @@
 [ext_resource type="PackedScene" uid="uid://cvh415ycsq5k6" path="res://game_objects/items/materials/bio_gel_cooler/bio_gel_cooler.tscn" id="53_e4xtb"]
 [ext_resource type="PackedScene" uid="uid://cnxchecuop1nw" path="res://game_objects/items/ammo/energy/energy_cell/energy_cell.tscn" id="54_lex0s"]
 [ext_resource type="PackedScene" uid="uid://cckbg4vrve42l" path="res://game_objects/items/weapons/energy_weapons/laser_rifle/laser_rifle.tscn" id="55_st6li"]
+[ext_resource type="Resource" uid="uid://jyantd4a0xdh" path="res://components/ammo_component/ammo_types/energy_cell.tres" id="56_nihu0"]
+[ext_resource type="PackedScene" uid="uid://cwbiqjd2dljr3" path="res://game_objects/items/weapons/lpc_smgs/geo_0/geo_0.tscn" id="57_xj6tr"]
+[ext_resource type="Resource" uid="uid://dcejbnpeogafm" path="res://components/ammo_component/ammo_types/light_pistol_cartridge/light_pistol_cartridge.tres" id="58_buvc6"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_6g5uc"]
 
@@ -440,6 +443,40 @@ moa = 4.0
 turn_speed = 25.0
 ammo_type = ExtResource("10_q80ko")
 reload_time_Sec = 2.5
+reload_thresholds = Array[float]([1.0])
+
+[sub_resource type="Resource" id="Resource_suppi"]
+resource_local_to_scene = true
+script = ExtResource("11_hh747")
+weapon_category_name = "LASER Rifle"
+magazine_size = 10
+rpm = 200
+base_recoil = Vector2(0, 0.01)
+recoil_variability = Vector2(0.01, 0.005)
+fire_modes = ["semi"]
+ads_accel = 10.0
+ads_fov = 50.0
+moa = 1.0
+turn_speed = 15.0
+ammo_type = ExtResource("56_nihu0")
+reload_time_Sec = 3.5
+reload_thresholds = Array[float]([1.0])
+
+[sub_resource type="Resource" id="Resource_cb6ao"]
+resource_local_to_scene = true
+script = ExtResource("11_hh747")
+weapon_category_name = "LPC SMG"
+magazine_size = 30
+rpm = 800
+base_recoil = Vector2(0, 0.01)
+recoil_variability = Vector2(0.02, 0.01)
+fire_modes = ["semi"]
+ads_accel = 10.0
+ads_fov = 50.0
+moa = 5.0
+turn_speed = 35.0
+ammo_type = ExtResource("58_buvc6")
+reload_time_Sec = 1.5
 reload_thresholds = Array[float]([1.0])
 
 [node name="Node3d" type="Node3D"]
@@ -1454,6 +1491,24 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.18096, 0.137877, -5.32793)
 [node name="LpcBoxFmj" parent="." instance=ExtResource("36_xl7vn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.91033, 0.163342, -5.32878)
 
+[node name="LpcBoxFmj2" parent="." instance=ExtResource("36_xl7vn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.91033, 0.163342, -5.95373)
+
+[node name="LpcBoxFmj3" parent="." instance=ExtResource("36_xl7vn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5386, 0.163342, -5.95373)
+
+[node name="LpcBoxFmj4" parent="." instance=ExtResource("36_xl7vn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5386, 0.163342, -6.25193)
+
+[node name="LpcBoxFmj5" parent="." instance=ExtResource("36_xl7vn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.8847, 0.163342, -6.25193)
+
+[node name="LpcBoxFmj6" parent="." instance=ExtResource("36_xl7vn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.8847, 0.163342, -6.55236)
+
+[node name="LpcBoxFmj7" parent="." instance=ExtResource("36_xl7vn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.50646, 0.163342, -6.55236)
+
 [node name="LpcBoxHP2" parent="." instance=ExtResource("37_1gb6g")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.45802, 0.167906, -5.31897)
 
@@ -1498,6 +1553,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.93944, 0.0788299, -5.63844)
 
 [node name="LaserRifle" parent="." instance=ExtResource("55_st6li")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.6878, 0.328639, -4.95895)
+_gun_stats = SubResource("Resource_suppi")
+
+[node name="Geo_0" parent="." instance=ExtResource("57_xj6tr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.73579, 0.552219, -5.94708)
+_gun_stats = SubResource("Resource_cb6ao")
 
 [connection signal="hit_occured" from="MultiAgentNavigationRoot/FiestaBox/DamageComponent" to="MultiAgentNavigationRoot/FiestaBox" method="_on_damage_component_hit_occured"]
 [connection signal="hit_occured" from="MultiAgentNavigationRoot/LootChest/DamageComponent" to="MultiAgentNavigationRoot/LootChest" method="_on_damage_component_hit_occured"]

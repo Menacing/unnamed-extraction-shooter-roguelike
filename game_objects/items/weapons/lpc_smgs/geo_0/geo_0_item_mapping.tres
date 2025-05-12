@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ItemMapping" load_steps=4 format=3 uid="uid://mixjy6ocw6pi"]
+
+[ext_resource type="PackedScene" uid="uid://cwbiqjd2dljr3" path="res://game_objects/items/weapons/lpc_smgs/geo_0/geo_0.tscn" id="1_xygng"]
+[ext_resource type="Resource" uid="uid://cgctjssgtfxft" path="res://game_objects/items/weapons/lpc_smgs/geo_0/geo_0_inventory_info.tres" id="2_jvvc4"]
+[ext_resource type="Script" uid="uid://c8amqbc45k2jw" path="res://resource_access/item_mapping.gd" id="3_wqumx"]
+
+[resource]
+script = ExtResource("3_wqumx")
+item_type_id = "geo_0"
+item_information = ExtResource("2_jvvc4")
+item_3d_scene = ExtResource("1_xygng")

@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="LootSpawnMapping" load_steps=17 format=3 uid="uid://15g3sh01ghlw"]
+[gd_resource type="Resource" script_class="LootSpawnMapping" load_steps=19 format=3 uid="uid://15g3sh01ghlw"]
 
 [ext_resource type="Script" uid="uid://scensnhtcuvo" path="res://game_objects/items/loot_spawn_mapping.gd" id="1_xiay2"]
 [ext_resource type="Script" uid="uid://dqpkphb5p5d6r" path="res://game_objects/items/loot_spawn_weight.gd" id="2_ppx6c"]
@@ -9,6 +9,7 @@
 [ext_resource type="Resource" uid="uid://cmqx4vt3dkmu2" path="res://game_objects/items/weapons/fic_rifles/cdr/cdr_spawn_info.tres" id="7_2foj7"]
 [ext_resource type="Resource" uid="uid://bib8ie33yhndk" path="res://game_objects/items/ammo/fic/fic_box_fmj_spawn_info.tres" id="8_if1ss"]
 [ext_resource type="Resource" uid="uid://bjcfsklhywb0r" path="res://game_objects/items/materials/bio_gel_cooler/bio_gel_cooler_spawn_info.tres" id="9_if1ss"]
+[ext_resource type="Resource" uid="uid://iurumh754j41" path="res://game_objects/items/weapons/lpc_smgs/geo_0/geo_0_spawn_info.tres" id="10_bgmfw"]
 
 [sub_resource type="Resource" id="Resource_yvmaf"]
 script = ExtResource("2_ppx6c")
@@ -52,7 +53,13 @@ weight = 2
 loot = ExtResource("9_if1ss")
 metadata/_custom_type_script = "uid://dqpkphb5p5d6r"
 
+[sub_resource type="Resource" id="Resource_qu2uy"]
+script = ExtResource("2_ppx6c")
+weight = 2
+loot = ExtResource("10_bgmfw")
+metadata/_custom_type_script = "uid://dqpkphb5p5d6r"
+
 [resource]
 script = ExtResource("1_xiay2")
-spawn_weights = Array[ExtResource("2_ppx6c")]([SubResource("Resource_yvmaf"), SubResource("Resource_wf267"), SubResource("Resource_i8lx3"), SubResource("Resource_3tbyn"), SubResource("Resource_bgmfw"), SubResource("Resource_mrdpi"), SubResource("Resource_njr8o")])
+spawn_weights = Array[ExtResource("2_ppx6c")]([SubResource("Resource_yvmaf"), SubResource("Resource_wf267"), SubResource("Resource_i8lx3"), SubResource("Resource_3tbyn"), SubResource("Resource_bgmfw"), SubResource("Resource_mrdpi"), SubResource("Resource_njr8o"), SubResource("Resource_qu2uy")])
 metadata/_custom_type_script = "uid://scensnhtcuvo"
