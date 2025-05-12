@@ -4,8 +4,8 @@
 [ext_resource type="PackedScene" uid="uid://gfj0vsvmo4ik" path="res://game_objects/bullet/iterative_raycast_bullet.tscn" id="2_mejxf"]
 [ext_resource type="Resource" uid="uid://bxmspql6usckj" path="res://game_objects/items/weapons/lpc_smgs/lpc_smg_gun_stats.tres" id="3_grjue"]
 [ext_resource type="PackedScene" uid="uid://dsatpjl7k0mmv" path="res://game_objects/items/weapons/lpc_smgs/geo_0/geo_0.gltf" id="4_mgcwt"]
+[ext_resource type="AudioStream" uid="uid://dull60hgujlxn" path="res://game_objects/items/weapons/lpc_pistols/lpc_shot_1.ogg" id="6_grjue"]
 [ext_resource type="Texture2D" uid="uid://dkcxx06s6kdp6" path="res://game_objects/items/weapons/hic_rifles/pm_52/PixelMuzzelFlash.png" id="6_m1nhf"]
-[ext_resource type="AudioStream" uid="uid://howm8uexygj7" path="res://game_objects/items/weapons/fic_rifles/fic_shot_2.ogg" id="7_ld3ql"]
 [ext_resource type="AudioStream" uid="uid://bc1wim1c1t021" path="res://game_objects/items/weapons/fic_rifles/fic_mag_out.ogg" id="8_i7evd"]
 [ext_resource type="AudioStream" uid="uid://belfvaan2qeva" path="res://game_objects/items/weapons/fic_rifles/fic_mag_in.ogg" id="9_wvevw"]
 [ext_resource type="AudioStream" uid="uid://c2wxubwa7ilv" path="res://game_objects/items/weapons/fic_rifles/fic_charging_handle.ogg" id="10_eqakx"]
@@ -34,11 +34,11 @@ _data = {
 [sub_resource type="BoxShape3D" id="BoxShape3D_032p4"]
 size = Vector3(0.572084, 0.250012, 0.071228)
 
-[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_r7uqx"]
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_3v1xo"]
 random_pitch = 1.05
 random_volume_offset_db = 0.5
 streams_count = 1
-stream_0/stream = ExtResource("7_ld3ql")
+stream_0/stream = ExtResource("6_grjue")
 
 [sub_resource type="Animation" id="Animation_8u1sy"]
 length = 0.001
@@ -78,6 +78,18 @@ tracks/2/keys = {
 "update": 0,
 "values": [Vector3(0, 0, 0)]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("blockbench_export/Node/magazine:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, -0.1875, -0.139062)]
+}
 
 [sub_resource type="Animation" id="Animation_efo6u"]
 resource_name = "reload"
@@ -85,19 +97,19 @@ length = 2.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("blockbench_export/Node/magazines:position")
+tracks/0/path = NodePath("blockbench_export/Node/magazine:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.9, 1.1, 1.2, 1.3, 1.6, 1.8),
 "transitions": PackedFloat32Array(0.0647043, 1, 2.14355, 1, 1, 1, 1, 1, 6.72717, 1),
 "update": 0,
-"values": [Vector3(0, 0, -0.0110408), Vector3(0, -0.109, -0.011), Vector3(-0.18, -0.14, 0.224), Vector3(-0.587, -0.237, 0.444), Vector3(-0.587, -0.237, 0.444), Vector3(-0.474, -0.269, 0.064), Vector3(-0.304, -0.216, 0.125), Vector3(-0.042, -0.163, 0.074), Vector3(0, -0.10903, 0), Vector3(0, 0, -0.0110408)]
+"values": [Vector3(0, -0.1875, -0.139062), Vector3(0, -0.297, -0.139), Vector3(-0.18, -0.14, 0.224), Vector3(-0.587, -0.237, 0.444), Vector3(-0.587, -0.237, 0.444), Vector3(-0.474, -0.269, 0.064), Vector3(-0.304, -0.216, 0.125), Vector3(-0.042, -0.163, 0.074), Vector3(0, -0.277, -0.139), Vector3(0, -0.1875, -0.139062)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("blockbench_export/Node/magazines:rotation")
+tracks/1/path = NodePath("blockbench_export/Node/magazine:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -282,7 +294,7 @@ attenuation_model = 1
 bus = &"SFX"
 
 [node name="ShotAudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
-stream = SubResource("AudioStreamRandomizer_r7uqx")
+stream = SubResource("AudioStreamRandomizer_3v1xo")
 volume_db = 6.0
 max_polyphony = 20
 bus = &"SFX"
