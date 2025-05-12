@@ -236,6 +236,7 @@ nav_mesh_list_item = ExtResource("4_k7kme")
 max_idle_speed = 2.0
 max_combat_speed = 3.0
 gun_scene = ExtResource("2_q4rc2")
+magazine_size = 3000
 loot_fiesta = NodePath("LootFiestaComponent")
 physical_bone_simulator = NodePath("combat-roomba/Armature/Skeleton3D/PhysicalBoneSimulator3D")
 character_body_collision_shapes = [NodePath("HurtBox/Area3D/CollisionShape3D"), NodePath("HurtBox/Area3D/CollisionShape3D2"), NodePath("HurtBox/Area3D/CollisionShape3D3")]
@@ -254,8 +255,8 @@ active = false
 
 [node name="Physical Bone Bone" type="PhysicalBone3D" parent="combat-roomba/Armature/Skeleton3D/PhysicalBoneSimulator3D"]
 transform = Transform3D(2.8455, 7.42679e-05, 0, 0, 0, -2.8455, -7.42679e-05, 2.8455, 0, 0, 0.222436, 0)
-joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.0781711)
-body_offset = Transform3D(2.8455, 7.42678e-05, 0, 0, 0, -2.8455, -7.42678e-05, 2.8455, 0, 0, 0.222436, 0)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.078171)
+body_offset = Transform3D(2.8455, 7.42679e-05, 0, 0, 0, -2.8455, -7.42679e-05, 2.8455, 0, 0, 0.222436, 0)
 bone_name = "Bone"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="combat-roomba/Armature/Skeleton3D/PhysicalBoneSimulator3D/Physical Bone Bone"]
