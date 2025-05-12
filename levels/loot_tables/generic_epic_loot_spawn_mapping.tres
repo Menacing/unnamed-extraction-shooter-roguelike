@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="LootSpawnMapping" load_steps=11 format=3 uid="uid://c70n1k80wuhpo"]
+[gd_resource type="Resource" script_class="LootSpawnMapping" load_steps=13 format=3 uid="uid://c70n1k80wuhpo"]
 
 [ext_resource type="Script" uid="uid://scensnhtcuvo" path="res://game_objects/items/loot_spawn_mapping.gd" id="1_e4yth"]
 [ext_resource type="Script" uid="uid://dqpkphb5p5d6r" path="res://game_objects/items/loot_spawn_weight.gd" id="2_vjwp2"]
@@ -6,6 +6,7 @@
 [ext_resource type="Resource" uid="uid://ivxl6gsd3xep" path="res://game_objects/items/materials/scrap_metal/scrap_metal_small_spawn_info.tres" id="4_1s2pp"]
 [ext_resource type="Resource" uid="uid://cs285udgvi4ll" path="res://game_objects/items/materials/scrap_metal_wheel/scrap_metal_wheel_medium_spawn_info.tres" id="5_xjhw8"]
 [ext_resource type="Resource" uid="uid://c7t640mi7m7ex" path="res://game_objects/items/weapons/lpc_pistols/klingeln_80/klingeln_80_spawn_info.tres" id="6_4vyus"]
+[ext_resource type="Resource" uid="uid://iurumh754j41" path="res://game_objects/items/weapons/lpc_smgs/geo_0/geo_0_spawn_info.tres" id="7_vjwp2"]
 
 [sub_resource type="Resource" id="Resource_yvmaf"]
 script = ExtResource("2_vjwp2")
@@ -31,7 +32,13 @@ weight = 1
 loot = ExtResource("6_4vyus")
 metadata/_custom_type_script = "uid://dqpkphb5p5d6r"
 
+[sub_resource type="Resource" id="Resource_cj7h6"]
+script = ExtResource("2_vjwp2")
+weight = 2
+loot = ExtResource("7_vjwp2")
+metadata/_custom_type_script = "uid://dqpkphb5p5d6r"
+
 [resource]
 script = ExtResource("1_e4yth")
-spawn_weights = Array[ExtResource("2_vjwp2")]([SubResource("Resource_yvmaf"), SubResource("Resource_wf267"), SubResource("Resource_i8lx3"), SubResource("Resource_3tbyn")])
+spawn_weights = Array[ExtResource("2_vjwp2")]([SubResource("Resource_yvmaf"), SubResource("Resource_wf267"), SubResource("Resource_i8lx3"), SubResource("Resource_3tbyn"), SubResource("Resource_cj7h6")])
 metadata/_custom_type_script = "uid://scensnhtcuvo"

@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="LootSpawnMapping" load_steps=21 format=3 uid="uid://cu38k0t7r5mgt"]
+[gd_resource type="Resource" script_class="LootSpawnMapping" load_steps=23 format=3 uid="uid://cu38k0t7r5mgt"]
 
 [ext_resource type="Script" uid="uid://scensnhtcuvo" path="res://game_objects/items/loot_spawn_mapping.gd" id="1_3ahny"]
 [ext_resource type="Script" uid="uid://dqpkphb5p5d6r" path="res://game_objects/items/loot_spawn_weight.gd" id="2_rj4ad"]
@@ -11,6 +11,7 @@
 [ext_resource type="Resource" uid="uid://bb703jva7e110" path="res://game_objects/items/materials/polymer_pile/polymer_pile_spawn_info.tres" id="9_wdpgv"]
 [ext_resource type="Resource" uid="uid://d0oj3n67ltwaw" path="res://game_objects/items/weapons/fic_rifles/s5/s5_spawn_info.tres" id="10_dhd3y"]
 [ext_resource type="Resource" uid="uid://c7t640mi7m7ex" path="res://game_objects/items/weapons/lpc_pistols/klingeln_80/klingeln_80_spawn_info.tres" id="11_d37ki"]
+[ext_resource type="Resource" uid="uid://iurumh754j41" path="res://game_objects/items/weapons/lpc_smgs/geo_0/geo_0_spawn_info.tres" id="12_rj4ad"]
 
 [sub_resource type="Resource" id="Resource_j2hoy"]
 script = ExtResource("2_rj4ad")
@@ -66,7 +67,13 @@ weight = 3
 loot = ExtResource("11_d37ki")
 metadata/_custom_type_script = "uid://dqpkphb5p5d6r"
 
+[sub_resource type="Resource" id="Resource_uoepm"]
+script = ExtResource("2_rj4ad")
+weight = 1
+loot = ExtResource("12_rj4ad")
+metadata/_custom_type_script = "uid://dqpkphb5p5d6r"
+
 [resource]
 script = ExtResource("1_3ahny")
-spawn_weights = Array[ExtResource("2_rj4ad")]([SubResource("Resource_j2hoy"), SubResource("Resource_ct2j0"), SubResource("Resource_273mm"), SubResource("Resource_ciyx6"), SubResource("Resource_i3yw1"), SubResource("Resource_hlsgv"), SubResource("Resource_7rg23"), SubResource("Resource_hrokb"), SubResource("Resource_u0q38")])
+spawn_weights = Array[ExtResource("2_rj4ad")]([SubResource("Resource_j2hoy"), SubResource("Resource_ct2j0"), SubResource("Resource_273mm"), SubResource("Resource_ciyx6"), SubResource("Resource_i3yw1"), SubResource("Resource_hlsgv"), SubResource("Resource_7rg23"), SubResource("Resource_hrokb"), SubResource("Resource_u0q38"), SubResource("Resource_uoepm")])
 metadata/_custom_type_script = "uid://scensnhtcuvo"
