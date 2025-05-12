@@ -1,0 +1,13 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://dq2jx3lvw22pg"]
+
+[ext_resource type="Texture2D" uid="uid://ciqbcy2o3a54b" path="res://game_objects/items/weapons/lpc_smgs/geo_0/geo_0_0.png" id="1_5isn7"]
+
+[resource]
+resource_name = "material_0"
+transparency = 2
+alpha_scissor_threshold = 0.05
+alpha_antialiasing_mode = 0
+cull_mode = 2
+albedo_texture = ExtResource("1_5isn7")
+texture_filter = 0
+texture_repeat = false

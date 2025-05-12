@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="GunStats" load_steps=3 format=3 uid="uid://bxmspql6usckj"]
+
+[ext_resource type="Resource" uid="uid://dcejbnpeogafm" path="res://components/ammo_component/ammo_types/light_pistol_cartridge/light_pistol_cartridge.tres" id="1_l4vbd"]
+[ext_resource type="Script" uid="uid://b2newdlaaj70t" path="res://game_objects/items/weapons/gun_stats.gd" id="2_j8m23"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("2_j8m23")
+weapon_category_name = "LPC SMG"
+magazine_size = 30
+rpm = 800
+base_recoil = Vector2(0, 0.01)
+recoil_variability = Vector2(0.02, 0.01)
+fire_modes = ["semi", "auto"]
+ads_accel = 10.0
+ads_fov = 50.0
+moa = 5.0
+turn_speed = 35.0
+ammo_type = ExtResource("1_l4vbd")
+reload_time_Sec = 1.5
+reload_thresholds = Array[float]([1.0])
