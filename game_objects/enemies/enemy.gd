@@ -40,6 +40,7 @@ var _attack_target:Node3D
 var _reaction_timer:float = 0.0
 @export var gun_scene:PackedScene
 @export var gun_node:Gun
+@export var magazine_size:int = 30
 @export var vert_moa:float = 600
 @export var hor_moa:float = 600
 @export var firing_cooldown:float = 1.0
@@ -85,8 +86,8 @@ func _ready() -> void:
 		gun.start_highlighted = false
 		gun.picked_up()
 		#TODO: Pull these from the packed scene instead of being hardcoded
-		gun._gun_stats.magazine_size = 30000
-		gun.current_magazine_size = 30000
+		gun._gun_stats.magazine_size = magazine_size
+		gun.current_magazine_size = magazine_size
 		var hf_pos = -gun.get_hip_fire_anchor()
 
 		gun.position = hf_pos
@@ -96,8 +97,8 @@ func _ready() -> void:
 	elif gun_node:
 		gun_node.start_highlighted = false
 		gun_node.picked_up()
-		gun_node._gun_stats.magazine_size = 30000
-		gun_node.current_magazine_size = 30000
+		gun_node._gun_stats.magazine_size = magazine_size
+		gun_node.current_magazine_size = magazine_size
 		gun_node.firer = self
 
 func _start_behavior_tree(tree_name:String):
@@ -348,3 +349,25 @@ func _on_melee_attacking_state_physics_processing(delta: float) -> void:
 	if bt_status != BT.Status.RUNNING:
 		state_chart.send_event("BT_Finished")
 	pass # Replace with function body.
+
+
+func _on_reloading_state_entered() -> void:
+	if gun_node and gun_node is Gun:
+		gun_node.current_magazine_size = magazine_size
+	_start_behavior_tree("reload")
+	pass # Replace with function body.
+
+
+func _on_reloading_state_physics_processing(delta: float) -> void:
+	var bt_status:BT.Status = bt_player.get_bt_instance().get_last_status()
+	if bt_status != BT.Status.RUNNING:
+		state_chart.send_event("BT_Finished")
+		
+	
+
+
+func _on_monster_state_state_physics_processing(delta: float) -> void:
+	if gun_node and gun_node is Gun and gun_node.current_magazine_size == 0:
+		state_chart.send_event("Reload")
+		
+		
