@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ItemMapping" load_steps=4 format=3 uid="uid://b1j11do4wertw"]
+
+[ext_resource type="PackedScene" uid="uid://swvutukqgaxo" path="res://game_objects/items/weapons/lpc_smgs/manx_251Z/manx_251Z.tscn" id="1_nyevf"]
+[ext_resource type="Resource" uid="uid://cyf0fq0jtatu8" path="res://game_objects/items/weapons/lpc_smgs/manx_251Z/manx_251z_inventory_info.tres" id="2_jqyle"]
+[ext_resource type="Script" uid="uid://c8amqbc45k2jw" path="res://resource_access/item_mapping.gd" id="3_r6ctu"]
+
+[resource]
+script = ExtResource("3_r6ctu")
+item_type_id = "manx_251z"
+item_information = ExtResource("2_jqyle")
+item_3d_scene = ExtResource("1_nyevf")

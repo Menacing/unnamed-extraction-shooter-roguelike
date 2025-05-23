@@ -1,0 +1,37 @@
+[gd_resource type="Resource" script_class="ItemInformation" load_steps=8 format=3 uid="uid://cyf0fq0jtatu8"]
+
+[ext_resource type="Script" uid="uid://dw75el3q24f1f" path="res://ui/inventory/item_context_item.gd" id="1_pwgke"]
+[ext_resource type="Resource" uid="uid://o6tesi76nbth" path="res://ui/inventory/drop_item_context_item.tres" id="2_dibe1"]
+[ext_resource type="PackedScene" uid="uid://0hy4cl1x7qwx" path="res://ui/inventory/detail_scenes/gun_detail_popup.tscn" id="3_vjj5g"]
+[ext_resource type="Texture2D" uid="uid://dbr1c4iepmiy4" path="res://game_objects/items/weapons/lpc_smgs/geo_0/geo_0_icon.png" id="4_cedyh"]
+[ext_resource type="Texture2D" uid="uid://f2e58q2t7s6t" path="res://game_objects/items/weapons/lpc_smgs/geo_0/geo_0_icon_r.png" id="5_yfq7g"]
+[ext_resource type="Script" uid="uid://hxr8853lym5l" path="res://resource_access/item_information.gd" id="6_i3ogo"]
+
+[sub_resource type="Resource" id="Resource_3vynl"]
+script = ExtResource("1_pwgke")
+label = "Item Detail"
+signal_name = "context_menus_open_item_detail"
+
+[resource]
+script = ExtResource("6_i3ogo")
+item_type_id = "manx_251z"
+show_name = true
+display_name = "Manx 251Z"
+display_short_name = "Manx"
+item_type = 0
+icon = ExtResource("4_cedyh")
+icon_r = ExtResource("5_yfq7g")
+detail_scene = ExtResource("3_vjj5g")
+context_menu_items = Array[ExtResource("1_pwgke")]([ExtResource("2_dibe1"), SubResource("Resource_3vynl")])
+max_stacks = 1
+has_stacks = false
+max_durability = 1
+has_durability = false
+column_span = 4
+row_span = 2
+description_text = "Small, cheap, and fully automatic, making it a logical choice for your criminal warlord. Aside from its criminal reputation, its simple construction and reliability keep it relevant even into the current era."
+flavor_text = "Even before its creation it was associated with the drug trade"
+min_pickup_stacks = 1
+mean_pickup_stacks = 1
+stack_random_method = 0
+slot_data_type = 1
