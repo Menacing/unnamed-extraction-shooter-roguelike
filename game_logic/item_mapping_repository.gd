@@ -30,3 +30,10 @@ func get_item_information(item_type_id:String) -> ItemInformation:
 		return _item_mappings[item_type_id].item_information
 	else:
 		return null
+
+func get_all_item_information() -> Array[ItemInformation]:
+	var item_infos:Array[ItemInformation] = []
+	for map:ItemMapping in _item_mappings:
+		if map:
+			item_infos.append(map.item_information)
+	return item_infos

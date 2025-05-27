@@ -57,3 +57,11 @@ enum Tier {
 	EPIC,
 	UNIQUE
 }
+
+enum Rarity {
+	COMMON,
+	UNCOMMON,
+	RARE,
+	EPIC,
+	UNIQUE
+}
