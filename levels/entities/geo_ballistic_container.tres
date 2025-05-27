@@ -29,7 +29,6 @@ description = "Solid geometry with ballistic penetration"
 func_godot_internal = false
 base_classes = Array[Resource]([ExtResource("1_1dwdt")])
 class_properties = {
-"chance_active": 1.0,
 "container_size": 4,
 "loot_table": {
 "CENT": 2,
@@ -41,7 +40,13 @@ class_properties = {
 "WODC": 3
 },
 "max_spawned": 1,
-"min_spawned": 1,
+"rarity": {
+"COMMON": 0,
+"EPIC": 3,
+"RARE": 2,
+"UNCOMMON": 1,
+"UNIQUE": 4
+},
 "tier": {
 "COMMON": 0,
 "EPIC": 3,
@@ -52,6 +57,7 @@ class_properties = {
 }
 class_property_descriptions = {
 "loot_table": ["default loot_table", 0],
+"rarity": ["default rarity", 0],
 "tier": ["default tier", 0]
 }
 auto_apply_to_matching_node_properties = false
