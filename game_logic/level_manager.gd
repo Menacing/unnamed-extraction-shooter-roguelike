@@ -9,10 +9,15 @@ const HIDEOUT_SCENE = preload("res://levels/hideout.tscn")
 var hideout_level:Level
 #The instantiated previous level
 var previous_level:Level
+var previous_level_info:LevelInformation
+
 #The instantiated next level.
 var next_level:Level
+var next_level_info:LevelInformation
+
 #The level that is actually loaded as a child of the level manager
 var loaded_level:Node
+var loaded_level_info:LevelInformation
 
 
 var level_navigation_maps:Dictionary = {}
@@ -54,6 +59,7 @@ func load_hideout_async(extracted:bool = false, died:bool = false):
 			if child is Level:
 				child.disconnect_level()
 				previous_level = child
+				previous_level_info = loaded_level_info
 				self.remove_child(child)
 			else:
 				#remove_child(child)
@@ -72,6 +78,7 @@ func load_hideout_async(extracted:bool = false, died:bool = false):
 	await EventBus.level_populated
 	
 	loaded_level = hideout_level
+	loaded_level_info = null
 	get_tree().paused = false
 	# connect the signal to get notified when the exit is reached
 	EventBus.level_loaded.emit()
@@ -82,7 +89,7 @@ func load_hideout_async(extracted:bool = false, died:bool = false):
 		get_tree().call_group("has_on_died_function", "_on_died")
 	pass
 
-func load_level_async(path:String, populate_level:bool = false):
+func load_level_async(path:String, populate_level:bool = false, level_info:LevelInformation = null):
 	if path:
 		# wait a physics frame so we can modify the tree
 		await get_tree().physics_frame
@@ -92,6 +99,8 @@ func load_level_async(path:String, populate_level:bool = false):
 		EventBus.before_level_loading.emit()
 		# instantiate the new level
 		var next_level:Level = load(path).instantiate()
+		if level_info:
+			next_level_info = level_info
 		#next_level.exit_reached.connect(_on_level_exit_reached)
 		
 		EventBus.before_previous_level_freed.emit()
@@ -109,6 +118,7 @@ func load_level_async(path:String, populate_level:bool = false):
 						if previous_level:
 							previous_level.queue_free()
 						previous_level = child
+						previous_level_info = loaded_level_info
 				else:
 					#remove_child(child)
 					child.queue_free()
@@ -127,6 +137,7 @@ func load_level_async(path:String, populate_level:bool = false):
 			await EventBus.level_populated
 		
 		loaded_level = next_level
+		loaded_level_info = next_level_info
 		get_tree().paused = false
 		# connect the signal to get notified when the exit is reached
 		EventBus.level_loaded.emit()
@@ -143,6 +154,7 @@ func load_previous_level_async():
 		EventBus.before_level_loading.emit()
 		# instantiate the new level
 		var next_level:Level = previous_level
+		next_level_info = previous_level_info
 		#next_level.exit_reached.connect(_on_level_exit_reached)
 		
 		EventBus.before_previous_level_freed.emit()
@@ -160,6 +172,7 @@ func load_previous_level_async():
 						if previous_level:
 							previous_level.queue_free()
 						previous_level = child
+						previous_level_info = loaded_level_info
 				else:
 					#remove_child(child)
 					child.queue_free()
@@ -178,6 +191,7 @@ func load_previous_level_async():
 			await EventBus.level_populated
 		
 		loaded_level = next_level
+		loaded_level_info = next_level_info
 		get_tree().paused = false
 		# connect the signal to get notified when the exit is reached
 		EventBus.level_loaded.emit()
@@ -189,6 +203,7 @@ func load_previous_level_async():
 func emit_populate_level():
 	EventBus.before_populate_level.emit()
 	EventBus.populate_level.emit()
+	LootSpawnManager.populate_level()
 	EventBus.level_populated.emit()
 
 func add_node_to_level(node:Node) -> bool:

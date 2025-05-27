@@ -4,18 +4,19 @@ extends Area3D
 
 @export var loot_table:GameplayEnums.LootTable
 @export var tier:GameplayEnums.Tier
-@export var min_spawned:int
+@export var rarity:GameplayEnums.Rarity
 @export var max_spawned:int
 
-@export var func_godot_properties: Dictionary
+var number_spawned:int = 0
 
+@export var func_godot_properties: Dictionary
 func _func_godot_apply_properties(entity_properties: Dictionary):
 	if 'loot_table' in func_godot_properties:
 		loot_table = int(func_godot_properties['loot_table'])	
 	if 'tier' in func_godot_properties:
 		tier = int(func_godot_properties['tier'])
-	if 'min_spawned' in func_godot_properties:
-		min_spawned = int(func_godot_properties['min_spawned'])
+	if 'rarity' in func_godot_properties:
+		rarity = int(func_godot_properties['rarity'])
 	if 'max_spawned' in func_godot_properties:
 		max_spawned = int(func_godot_properties['max_spawned'])
 

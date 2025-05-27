@@ -29,5 +29,5 @@ func _on_extract_timer_timeout():
 	if HideoutManager.return_to_previous_level:
 		await LevelManager.load_previous_level_async()
 	else:
-		await LevelManager.load_level_async(HideoutManager.next_map.level_path, true)
+		await LevelManager.load_level_async(HideoutManager.next_map.level_path, true, HideoutManager.next_map)
 	

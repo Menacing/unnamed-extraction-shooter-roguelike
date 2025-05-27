@@ -74,3 +74,108 @@ func get_run_loot_tier_bonus() -> int:
 		return 1
 	else:
 		return 0
+
+func populate_level() -> void:
+	pass
+	## get all loot spawn containers and areas
+	
+	var spawn_areas = get_tree().get_nodes_in_group("loot_spawn_area")
+	var spawn_containers = get_tree().get_nodes_in_group("loot_spawn_container")
+	
+	## create loot spawn shuffle bags
+	var model_spawn_location_shuffle_bag = []
+	var current_spawn_location_shuffle_bag = []
+	
+	for spawn_area in spawn_areas:
+		if spawn_area and spawn_area is AreaLootSpawn:
+			for i in range(get_rarity_value(spawn_area.rarity)):
+				model_spawn_location_shuffle_bag.append(spawn_area)
+	
+	for spawn_container in spawn_containers:
+		if spawn_container and spawn_container is GeoBallisticContainer:
+			for i in range(get_rarity_value(spawn_container.rarity)):
+				model_spawn_location_shuffle_bag.append(spawn_container)
+				
+	current_spawn_location_shuffle_bag = model_spawn_location_shuffle_bag.duplicate()
+	current_spawn_location_shuffle_bag.shuffle()
+	
+	## determine number of items to spawn
+	var number_items_to_spawn:int= 0
+	
+	if LevelManager.loaded_level_info:
+		match LevelManager.loaded_level_info.size:
+			LevelInformation.Size.Small:
+				number_items_to_spawn = Helpers.get_normalized_random_stack_count(20, 50, 100)
+			LevelInformation.Size.Medium:
+				number_items_to_spawn = Helpers.get_normalized_random_stack_count(50, 100, 150)
+			LevelInformation.Size.Large:
+				number_items_to_spawn = Helpers.get_normalized_random_stack_count(100, 200, 300)
+			_:
+				number_items_to_spawn = Helpers.get_normalized_random_stack_count(20, 50, 100)
+	else:
+		number_items_to_spawn = Helpers.get_normalized_random_stack_count(20, 50, 100)
+		
+	## for each
+	for i in range(number_items_to_spawn):
+		## Grab non-full spawn location
+		if current_spawn_location_shuffle_bag.is_empty():
+			for q in model_spawn_location_shuffle_bag.size():
+				var sl = model_spawn_location_shuffle_bag[q]
+				if sl.number_spawned >= sl.max_spawned:
+					model_spawn_location_shuffle_bag.remove_at(q)
+					
+			## ran out of space, done spawning
+			if model_spawn_location_shuffle_bag.size() == 0:
+				printerr("NO MORE ROOM IN LEVEL TO SPAWN ITEMS")
+				return
+			
+			current_spawn_location_shuffle_bag = model_spawn_location_shuffle_bag.duplicate()
+		
+		var valid_spawn_location
+		while current_spawn_location_shuffle_bag.size() > 0:
+			var spawn_location = current_spawn_location_shuffle_bag.pop_front()
+			if spawn_location.number_spawned < spawn_location.max_spawned:
+				valid_spawn_location = spawn_location
+				break
+			
+		if valid_spawn_location:
+			## Grab item information
+			var item_info:ItemInformation = get_spawn_info(valid_spawn_location.loot_table, valid_spawn_location.tier)
+			## Try to spawn item
+			if valid_spawn_location is AreaLootSpawn:
+				try_to_spawn_area_loot_spawn(item_info, valid_spawn_location)
+			elif valid_spawn_location is GeoBallisticContainer:
+				try_to_spawn_geo_ballistic_container(item_info, valid_spawn_location)
+				
+			## increment items in location
+			valid_spawn_location.number_spawned += 1
+		
+		
+func try_to_spawn_area_loot_spawn(item_info:ItemInformation, area:AreaLootSpawn) -> void:
+	var aabb = Helpers.get_aabb_of_node(area)
+	var x_begin = aabb.position.x
+	var x_end = aabb.end.x
+	var z_begin = aabb.position.z
+	var z_end = aabb.end.z
+
+	#generate random location
+	var try_pos = Vector3(randf_range(x_begin,x_end),0,randf_range(z_begin,z_end))
+
+	var slot_data = SlotData.instantiate_from_item_information(item_info)
+	var scene = Item3D.instantiate_from_slot_data(slot_data)
+	scene.set_as_top_level(true)
+	LevelManager.add_node_to_level.call_deferred(scene)
+	scene.set_global_position.call_deferred(try_pos + self.global_position)
+	var random_rotation = Vector3(randf_range(0,360),randf_range(0,360),randf_range(0,360))
+	scene.set_rotation_degrees.call_deferred(random_rotation)
+
+	return
+		
+func try_to_spawn_geo_ballistic_container(item_info:ItemInformation, gbc:GeoBallisticContainer) -> void:
+	assert(gbc.inventory_data != null)
+	if gbc.inventory_data:
+		var slot_data:SlotData = SlotData.instantiate_from_item_information(item_info)
+		gbc.inventory_data.pick_up_slot_data(slot_data)
+	else:
+		printerr("GEOBALLISTICCONTAINER MISSING INVENTORY DATA")
+	return

@@ -5,9 +5,11 @@ extends GeoBallisticSolid
 @onready var item_highlight_m:ShaderMaterial = load("res://themes/item_highlighter_m.tres")
 @export var loot_table:GameplayEnums.LootTable
 @export var tier:GameplayEnums.Tier
-@export var min_spawned:int
+@export var rarity:GameplayEnums.Rarity
 @export var max_spawned:int
 @export var container_size:int
+
+var number_spawned:int = 0
 
 signal toggle_inventory(external_inventory_owner)
 
@@ -24,8 +26,8 @@ func _func_godot_apply_properties(entity_properties: Dictionary):
 		loot_table = int(func_godot_properties['loot_table'])	
 	if 'tier' in func_godot_properties:
 		tier = int(func_godot_properties['tier'])
-	if 'min_spawned' in func_godot_properties:
-		min_spawned = int(func_godot_properties['min_spawned'])
+	if 'rarity' in func_godot_properties:
+		rarity = int(func_godot_properties['rarity'])
 	if 'max_spawned' in func_godot_properties:
 		max_spawned = int(func_godot_properties['max_spawned'])
 
