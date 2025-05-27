@@ -7,7 +7,7 @@ var _current_shuffle_bags:Dictionary = {}
 var _model_shuffle_bags:Dictionary = {}
 
 func _ready() -> void:
-	for item_info in ItemMappingRepository._item_mappings
+	for item_info in ItemMappingRepository.get_all_item_information():
 		#generate shufflebags
 		for i in range(loot_spawn_mapping.spawn_weights.size()):
 			var weight:LootSpawnWeight = loot_spawn_mapping.spawn_weights[i]
