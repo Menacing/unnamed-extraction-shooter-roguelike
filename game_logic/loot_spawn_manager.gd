@@ -1,42 +1,37 @@
 @tool
 extends Node
 
-
-
 var _current_shuffle_bags:Dictionary = {}
 var _model_shuffle_bags:Dictionary = {}
 
 func _ready() -> void:
 	for item_info in ItemMappingRepository.get_all_item_information():
 		#generate shufflebags
-		for i in range(loot_spawn_mapping.spawn_weights.size()):
-			var weight:LootSpawnWeight = loot_spawn_mapping.spawn_weights[i]
-			for j in range(weight.weight):
-				model_shuffle_bag.append(weight.loot.duplicate())
+		var model_shuffle_bag:Array[String] = []
+		var current_shuffle_bag:Array[String] = []
+		for i in range(get_rarity_value(item_info.rarity)):
+			model_shuffle_bag.append(item_info.item_type_id)
 
 		current_shuffle_bag = model_shuffle_bag.duplicate(true)
 		current_shuffle_bag.shuffle()
-		_current_shuffle_bags[_map_loot_spawn_key_to_string(lsdk)] = current_shuffle_bag
-		_model_shuffle_bags[_map_loot_spawn_key_to_string(lsdk)] = model_shuffle_bag
+		_current_shuffle_bags[_map_loot_spawn_key_to_string(item_info.loot_table, item_info.tier)] = current_shuffle_bag
+		_model_shuffle_bags[_map_loot_spawn_key_to_string(item_info.loot_table, item_info.tier)] = model_shuffle_bag
 
-func _map_loot_spawn_key_to_string(lsk) -> String:
-	return str(lsk.loot_table) + "-" + str(lsk.tier)
+func _map_loot_spawn_key_to_string(loot_table:GameplayEnums.LootTable, tier:GameplayEnums.Tier) -> String:
+	return str(loot_table) + "-" + str(tier)
 
-func get_loot_spawn_mapping(lsk:LootSpawnKey):
-	return remapped_loot_spawn_dictionary[_map_loot_spawn_key_to_string(lsk)]
-
-func get_spawn_info(lsk:LootSpawnKey) -> LootSpawnInformation:
-	var current_shuffle_bag = _current_shuffle_bags[_map_loot_spawn_key_to_string(lsk)]
-	var model_shuffle_bag = _model_shuffle_bags[_map_loot_spawn_key_to_string(lsk)]
+func get_spawn_info(loot_table:GameplayEnums.LootTable, tier:GameplayEnums.Tier) -> ItemInformation:
+	var current_shuffle_bag = _current_shuffle_bags[_map_loot_spawn_key_to_string(loot_table, tier)]
+	var model_shuffle_bag = _model_shuffle_bags[_map_loot_spawn_key_to_string(loot_table, tier)]
 	if current_shuffle_bag.is_empty():
 		current_shuffle_bag = model_shuffle_bag.duplicate(true)
 		current_shuffle_bag.shuffle()
-		_current_shuffle_bags[lsk] = current_shuffle_bag
+		_current_shuffle_bags[_map_loot_spawn_key_to_string(loot_table, tier)] = current_shuffle_bag
 	
-	return current_shuffle_bag.pop_front()
+	return ItemMappingRepository.get_item_information(current_shuffle_bag.pop_front())
 
 func get_difficulty_loot_factor() -> float:
-	match HideoutManager.selected_difficulty:
+	match HideoutManager.selected_difficulty: 
 		GameplayEnums.GameDifficulty.EASY:
 			return 1.0
 		GameplayEnums.GameDifficulty.MEDIUM:
@@ -45,6 +40,21 @@ func get_difficulty_loot_factor() -> float:
 			return 0.5
 		_:
 			return 1.0
+
+func get_rarity_value(rarity:GameplayEnums.Rarity) -> int:
+	match rarity:
+		GameplayEnums.Rarity.COMMON:
+			return 5
+		GameplayEnums.Rarity.UNCOMMON:
+			return 4
+		GameplayEnums.Rarity.RARE:
+			return 3
+		GameplayEnums.Rarity.EPIC:
+			return 2
+		GameplayEnums.Rarity.UNIQUE:
+			return 1
+		_:
+			return 0
 
 func get_run_loot_tier_bonus() -> int:
 	var current_extracts:float = float(HideoutManager.current_map_number)
