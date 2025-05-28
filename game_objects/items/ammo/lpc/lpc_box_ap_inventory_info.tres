@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="AmmoInformation" load_steps=8 format=3 uid="uid://btfl5njrpd278"]
+[gd_resource type="Resource" script_class="AmmoInformation" load_steps=13 format=3 uid="uid://btfl5njrpd278"]
 
 [ext_resource type="Resource" uid="uid://d3mmo5kstfdwe" path="res://components/ammo_component/ammo_types/light_pistol_cartridge/ammo_subtypes/armor_piercing.tres" id="1_fn2ra"]
 [ext_resource type="Resource" uid="uid://dcejbnpeogafm" path="res://components/ammo_component/ammo_types/light_pistol_cartridge/light_pistol_cartridge.tres" id="2_6ue1l"]
@@ -6,7 +6,36 @@
 [ext_resource type="Script" uid="uid://dw75el3q24f1f" path="res://ui/inventory/item_context_item.gd" id="3_c2w8k"]
 [ext_resource type="PackedScene" uid="uid://djpvx3f8rfem0" path="res://ui/inventory/detail_scenes/ammo_detail_popup.tscn" id="4_4btu1"]
 [ext_resource type="Texture2D" uid="uid://ckaehq6tr4to5" path="res://game_objects/items/ammo/lpc/lpc_ap_icon.png" id="6_a0xan"]
+[ext_resource type="Script" uid="uid://cxtmia6d8edl0" path="res://resource_access/item_spawn_information.gd" id="7_a24gc"]
 [ext_resource type="Script" uid="uid://cn8b6jp0q2kyq" path="res://game_objects/items/ammo/ammo_information.gd" id="7_kga62"]
+
+[sub_resource type="Resource" id="Resource_u34gt"]
+script = ExtResource("7_a24gc")
+loot_table = 3
+tier = 1
+rarity = 0
+metadata/_custom_type_script = "uid://cxtmia6d8edl0"
+
+[sub_resource type="Resource" id="Resource_x0w51"]
+script = ExtResource("7_a24gc")
+loot_table = 1
+tier = 1
+rarity = 0
+metadata/_custom_type_script = "uid://cxtmia6d8edl0"
+
+[sub_resource type="Resource" id="Resource_2qlq6"]
+script = ExtResource("7_a24gc")
+loot_table = 2
+tier = 1
+rarity = 0
+metadata/_custom_type_script = "uid://cxtmia6d8edl0"
+
+[sub_resource type="Resource" id="Resource_b5x78"]
+script = ExtResource("7_a24gc")
+loot_table = 6
+tier = 0
+rarity = 1
+metadata/_custom_type_script = "uid://cxtmia6d8edl0"
 
 [resource]
 script = ExtResource("7_kga62")
@@ -23,13 +52,17 @@ detail_scene = ExtResource("4_4btu1")
 context_menu_items = Array[ExtResource("3_c2w8k")]([ExtResource("3_8eo5f")])
 max_stacks = 50
 has_stacks = true
+min_stack = 0
+max_stack = 0
 max_durability = 1
 has_durability = false
 column_span = 1
 row_span = 1
 description_text = ""
 flavor_text = ""
+slot_data_type = 0
+item_spawn_informations = Array[ExtResource("7_a24gc")]([SubResource("Resource_u34gt"), SubResource("Resource_x0w51"), SubResource("Resource_2qlq6"), SubResource("Resource_b5x78")])
+test_radius = 0.0
 min_pickup_stacks = 1
 mean_pickup_stacks = 10
 stack_random_method = 1
-slot_data_type = 0

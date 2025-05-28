@@ -1,9 +1,0 @@
-[gd_resource type="Resource" script_class="LootSpawnMapping" load_steps=3 format=3 uid="uid://evn2tb6gcm7f"]
-
-[ext_resource type="Script" uid="uid://scensnhtcuvo" path="res://game_objects/items/loot_spawn_mapping.gd" id="1_xcubj"]
-[ext_resource type="Script" uid="uid://dqpkphb5p5d6r" path="res://game_objects/items/loot_spawn_weight.gd" id="2_f1p77"]
-
-[resource]
-script = ExtResource("1_xcubj")
-spawn_weights = Array[ExtResource("2_f1p77")]([])
-metadata/_custom_type_script = "uid://scensnhtcuvo"

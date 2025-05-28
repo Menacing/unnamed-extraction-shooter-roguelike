@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="MaterialInformation" load_steps=7 format=3 uid="uid://bk7x5qi5hl1p8"]
+[gd_resource type="Resource" script_class="MaterialInformation" load_steps=11 format=3 uid="uid://bk7x5qi5hl1p8"]
 
 [ext_resource type="Script" uid="uid://dw75el3q24f1f" path="res://ui/inventory/item_context_item.gd" id="1_c01bl"]
 [ext_resource type="Resource" uid="uid://o6tesi76nbth" path="res://ui/inventory/drop_item_context_item.tres" id="1_efr8v"]
@@ -6,6 +6,28 @@
 [ext_resource type="Resource" uid="uid://c3nod8jldkobw" path="res://game_objects/crafting_materials/polymer.tres" id="3_eneey"]
 [ext_resource type="PackedScene" uid="uid://son7demex4pt" path="res://ui/inventory/detail_scenes/simple_detail_popup.tscn" id="3_ha2yn"]
 [ext_resource type="Script" uid="uid://k138ce4es0kh" path="res://game_objects/items/materials/material_information.gd" id="3_jqbok"]
+[ext_resource type="Script" uid="uid://cxtmia6d8edl0" path="res://resource_access/item_spawn_information.gd" id="6_cj7kr"]
+
+[sub_resource type="Resource" id="Resource_lqc50"]
+script = ExtResource("6_cj7kr")
+loot_table = 0
+tier = 0
+rarity = 1
+metadata/_custom_type_script = "uid://cxtmia6d8edl0"
+
+[sub_resource type="Resource" id="Resource_pybkt"]
+script = ExtResource("6_cj7kr")
+loot_table = 5
+tier = 0
+rarity = 2
+metadata/_custom_type_script = "uid://cxtmia6d8edl0"
+
+[sub_resource type="Resource" id="Resource_tf6yt"]
+script = ExtResource("6_cj7kr")
+loot_table = 3
+tier = 0
+rarity = 2
+metadata/_custom_type_script = "uid://cxtmia6d8edl0"
 
 [resource]
 script = ExtResource("3_jqbok")
@@ -22,13 +44,17 @@ detail_scene = ExtResource("3_ha2yn")
 context_menu_items = Array[ExtResource("1_c01bl")]([ExtResource("1_efr8v")])
 max_stacks = 10
 has_stacks = true
+min_stack = 0
+max_stack = 0
 max_durability = 1
 has_durability = false
 column_span = 1
 row_span = 1
 description_text = "Scrap plastic fortified with glass fiber ready to be used by a modern printer"
 flavor_text = "Polymer makes it possible"
+slot_data_type = 0
+item_spawn_informations = Array[ExtResource("6_cj7kr")]([SubResource("Resource_lqc50"), SubResource("Resource_pybkt"), SubResource("Resource_tf6yt")])
+test_radius = 0.0
 min_pickup_stacks = 1
 mean_pickup_stacks = 5
 stack_random_method = 1
-slot_data_type = 0

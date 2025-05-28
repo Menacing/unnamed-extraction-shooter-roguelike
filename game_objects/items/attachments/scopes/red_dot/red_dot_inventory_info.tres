@@ -1,10 +1,46 @@
-[gd_resource type="Resource" script_class="ItemInformation" load_steps=6 format=3 uid="uid://dw11vln3ec2uk"]
+[gd_resource type="Resource" script_class="ItemInformation" load_steps=12 format=3 uid="uid://dw11vln3ec2uk"]
 
 [ext_resource type="Script" uid="uid://dw75el3q24f1f" path="res://ui/inventory/item_context_item.gd" id="1_hqtvv"]
 [ext_resource type="Texture2D" uid="uid://dcapkkg0xlpco" path="res://game_objects/items/attachments/scopes/red_dot/red_dot_icon.png" id="2_kow8l"]
 [ext_resource type="PackedScene" uid="uid://son7demex4pt" path="res://ui/inventory/detail_scenes/simple_detail_popup.tscn" id="2_na6fj"]
 [ext_resource type="Resource" uid="uid://o6tesi76nbth" path="res://ui/inventory/drop_item_context_item.tres" id="2_wy4v7"]
+[ext_resource type="Script" uid="uid://cxtmia6d8edl0" path="res://resource_access/item_spawn_information.gd" id="5_3yplm"]
 [ext_resource type="Script" uid="uid://hxr8853lym5l" path="res://resource_access/item_information.gd" id="6_eeylw"]
+
+[sub_resource type="Resource" id="Resource_863s7"]
+script = ExtResource("5_3yplm")
+loot_table = 1
+tier = 0
+rarity = 3
+metadata/_custom_type_script = "uid://cxtmia6d8edl0"
+
+[sub_resource type="Resource" id="Resource_11h2f"]
+script = ExtResource("5_3yplm")
+loot_table = 2
+tier = 0
+rarity = 2
+metadata/_custom_type_script = "uid://cxtmia6d8edl0"
+
+[sub_resource type="Resource" id="Resource_oxa4g"]
+script = ExtResource("5_3yplm")
+loot_table = 3
+tier = 0
+rarity = 1
+metadata/_custom_type_script = "uid://cxtmia6d8edl0"
+
+[sub_resource type="Resource" id="Resource_ydqcm"]
+script = ExtResource("5_3yplm")
+loot_table = 6
+tier = 0
+rarity = 2
+metadata/_custom_type_script = "uid://cxtmia6d8edl0"
+
+[sub_resource type="Resource" id="Resource_iamx0"]
+script = ExtResource("5_3yplm")
+loot_table = 0
+tier = 2
+rarity = 2
+metadata/_custom_type_script = "uid://cxtmia6d8edl0"
 
 [resource]
 script = ExtResource("6_eeylw")
@@ -19,13 +55,17 @@ detail_scene = ExtResource("2_na6fj")
 context_menu_items = Array[ExtResource("1_hqtvv")]([ExtResource("2_wy4v7")])
 max_stacks = 1
 has_stacks = false
+min_stack = 0
+max_stack = 0
 max_durability = 1
 has_durability = false
 column_span = 1
 row_span = 1
 description_text = "Tried and true design for creating a reliable sight picture in a compact package. Literally survived a nuclear war."
 flavor_text = "Astigmatism be damned"
+slot_data_type = 0
+item_spawn_informations = Array[ExtResource("5_3yplm")]([SubResource("Resource_863s7"), SubResource("Resource_11h2f"), SubResource("Resource_oxa4g"), SubResource("Resource_ydqcm"), SubResource("Resource_iamx0")])
+test_radius = 0.0
 min_pickup_stacks = 1
 mean_pickup_stacks = 1
 stack_random_method = 0
-slot_data_type = 0

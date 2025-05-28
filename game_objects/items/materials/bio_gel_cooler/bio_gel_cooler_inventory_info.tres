@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="MaterialInformation" load_steps=9 format=3 uid="uid://caq20br4uv2t0"]
+[gd_resource type="Resource" script_class="MaterialInformation" load_steps=12 format=3 uid="uid://caq20br4uv2t0"]
 
 [ext_resource type="Script" uid="uid://dw75el3q24f1f" path="res://ui/inventory/item_context_item.gd" id="1_nhu8b"]
 [ext_resource type="Resource" uid="uid://o6tesi76nbth" path="res://ui/inventory/drop_item_context_item.tres" id="2_4jnps"]
@@ -7,7 +7,22 @@
 [ext_resource type="AudioStream" uid="uid://be5aexsrpdork" path="res://game_objects/effects/sounds/foley/metal_2.ogg" id="5_uri4n"]
 [ext_resource type="Texture2D" uid="uid://d1ihrkka3u57m" path="res://game_objects/items/materials/bio_gel_cooler/bio_gel_cooler.png" id="6_bqfqr"]
 [ext_resource type="AudioStream" uid="uid://cyqia0rl65wrr" path="res://game_objects/effects/sounds/foley/metal_1.ogg" id="6_yj1c6"]
+[ext_resource type="Script" uid="uid://cxtmia6d8edl0" path="res://resource_access/item_spawn_information.gd" id="7_bqfqr"]
 [ext_resource type="Script" uid="uid://k138ce4es0kh" path="res://game_objects/items/materials/material_information.gd" id="8_cp8kj"]
+
+[sub_resource type="Resource" id="Resource_xht6i"]
+script = ExtResource("7_bqfqr")
+loot_table = 4
+tier = 2
+rarity = 2
+metadata/_custom_type_script = "uid://cxtmia6d8edl0"
+
+[sub_resource type="Resource" id="Resource_8wdae"]
+script = ExtResource("7_bqfqr")
+loot_table = 5
+tier = 1
+rarity = 2
+metadata/_custom_type_script = "uid://cxtmia6d8edl0"
 
 [resource]
 script = ExtResource("8_cp8kj")
@@ -24,15 +39,19 @@ detail_scene = ExtResource("4_l673p")
 context_menu_items = Array[ExtResource("1_nhu8b")]([ExtResource("2_4jnps")])
 max_stacks = 10
 has_stacks = true
+min_stack = 0
+max_stack = 0
 max_durability = 1
 has_durability = false
 column_span = 2
 row_span = 2
+pickup_sound = ExtResource("6_yj1c6")
 description_text = "Transporting larger quantities of BioGel requires more specialized containment units. Vacuum sealed and electrically cooled, the gel will keep for decades"
 flavor_text = "Grow a new you"
+drop_sound = ExtResource("5_uri4n")
+slot_data_type = 0
+item_spawn_informations = Array[ExtResource("7_bqfqr")]([SubResource("Resource_xht6i"), SubResource("Resource_8wdae")])
+test_radius = 0.0
 min_pickup_stacks = 1
 mean_pickup_stacks = 2
 stack_random_method = 1
-pickup_sound = ExtResource("6_yj1c6")
-drop_sound = ExtResource("5_uri4n")
-slot_data_type = 0

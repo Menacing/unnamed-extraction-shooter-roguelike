@@ -1,0 +1,63 @@
+[gd_resource type="Resource" script_class="ItemInformation" load_steps=12 format=3 uid="uid://cyf0fq0jtatu8"]
+
+[ext_resource type="Script" uid="uid://dw75el3q24f1f" path="res://ui/inventory/item_context_item.gd" id="1_pwgke"]
+[ext_resource type="Resource" uid="uid://o6tesi76nbth" path="res://ui/inventory/drop_item_context_item.tres" id="2_dibe1"]
+[ext_resource type="PackedScene" uid="uid://0hy4cl1x7qwx" path="res://ui/inventory/detail_scenes/gun_detail_popup.tscn" id="3_vjj5g"]
+[ext_resource type="Texture2D" uid="uid://4ooa4xisj0uy" path="res://game_objects/items/weapons/lpc_smgs/manx_251Z/manx_icon.png" id="4_f3jys"]
+[ext_resource type="Texture2D" uid="uid://c2ga6dbt216pg" path="res://game_objects/items/weapons/lpc_smgs/manx_251Z/manx_icon_r.png" id="5_3ujie"]
+[ext_resource type="Script" uid="uid://cxtmia6d8edl0" path="res://resource_access/item_spawn_information.gd" id="6_3ujie"]
+[ext_resource type="Script" uid="uid://hxr8853lym5l" path="res://resource_access/item_information.gd" id="6_i3ogo"]
+
+[sub_resource type="Resource" id="Resource_3vynl"]
+script = ExtResource("1_pwgke")
+label = "Item Detail"
+signal_name = "context_menus_open_item_detail"
+
+[sub_resource type="Resource" id="Resource_tr5dc"]
+script = ExtResource("6_3ujie")
+loot_table = 0
+tier = 1
+rarity = 3
+metadata/_custom_type_script = "uid://cxtmia6d8edl0"
+
+[sub_resource type="Resource" id="Resource_ua4uy"]
+script = ExtResource("6_3ujie")
+loot_table = 3
+tier = 0
+rarity = 2
+metadata/_custom_type_script = "uid://cxtmia6d8edl0"
+
+[sub_resource type="Resource" id="Resource_prm6q"]
+script = ExtResource("6_3ujie")
+loot_table = 6
+tier = 1
+rarity = 3
+metadata/_custom_type_script = "uid://cxtmia6d8edl0"
+
+[resource]
+script = ExtResource("6_i3ogo")
+item_type_id = "manx_251z"
+show_name = true
+display_name = "Manx 251Z"
+display_short_name = "Manx"
+item_type = 0
+icon = ExtResource("4_f3jys")
+icon_r = ExtResource("5_3ujie")
+detail_scene = ExtResource("3_vjj5g")
+context_menu_items = Array[ExtResource("1_pwgke")]([ExtResource("2_dibe1"), SubResource("Resource_3vynl")])
+max_stacks = 1
+has_stacks = false
+min_stack = 0
+max_stack = 0
+max_durability = 1
+has_durability = false
+column_span = 4
+row_span = 2
+description_text = "One of the more eye catching and unique submachine gun designs to come out of the interwar period, the Manx was ahead of its time in terms of materials and customization."
+flavor_text = "Height over bore just means less muzzle climb"
+slot_data_type = 1
+item_spawn_informations = Array[ExtResource("6_3ujie")]([SubResource("Resource_tr5dc"), SubResource("Resource_ua4uy"), SubResource("Resource_prm6q")])
+test_radius = 0.0
+min_pickup_stacks = 1
+mean_pickup_stacks = 1
+stack_random_method = 0

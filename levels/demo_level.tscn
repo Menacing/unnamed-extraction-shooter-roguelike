@@ -1,4 +1,4 @@
-[gd_scene load_steps=134 format=4 uid="uid://ctahsvj88g1om"]
+[gd_scene load_steps=136 format=4 uid="uid://ctahsvj88g1om"]
 
 [ext_resource type="Script" uid="uid://dwshafaid76mm" path="res://levels/demo_level.gd" id="1_8448e"]
 [ext_resource type="PackedScene" uid="uid://d08aatgxmymbf" path="res://game_objects/player/player.tscn" id="1_eisjc"]
@@ -58,6 +58,7 @@
 [ext_resource type="Resource" uid="uid://jyantd4a0xdh" path="res://components/ammo_component/ammo_types/energy_cell.tres" id="56_nihu0"]
 [ext_resource type="PackedScene" uid="uid://cwbiqjd2dljr3" path="res://game_objects/items/weapons/lpc_smgs/geo_0/geo_0.tscn" id="57_xj6tr"]
 [ext_resource type="Resource" uid="uid://dcejbnpeogafm" path="res://components/ammo_component/ammo_types/light_pistol_cartridge/light_pistol_cartridge.tres" id="58_buvc6"]
+[ext_resource type="PackedScene" uid="uid://swvutukqgaxo" path="res://game_objects/items/weapons/lpc_smgs/manx_251Z/manx_251Z.tscn" id="59_xj6tr"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_6g5uc"]
 
@@ -471,6 +472,23 @@ rpm = 800
 base_recoil = Vector2(0, 0.01)
 recoil_variability = Vector2(0.02, 0.01)
 fire_modes = ["semi"]
+ads_accel = 10.0
+ads_fov = 50.0
+moa = 5.0
+turn_speed = 35.0
+ammo_type = ExtResource("58_buvc6")
+reload_time_Sec = 1.5
+reload_thresholds = Array[float]([1.0])
+
+[sub_resource type="Resource" id="Resource_buvc6"]
+resource_local_to_scene = true
+script = ExtResource("11_hh747")
+weapon_category_name = "LPC SMG"
+magazine_size = 30
+rpm = 800
+base_recoil = Vector2(0, 0.01)
+recoil_variability = Vector2(0.02, 0.01)
+fire_modes = ["semi", "auto"]
 ads_accel = 10.0
 ads_fov = 50.0
 moa = 5.0
@@ -1558,6 +1576,10 @@ _gun_stats = SubResource("Resource_suppi")
 [node name="Geo_0" parent="." instance=ExtResource("57_xj6tr")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.73579, 0.552219, -5.94708)
 _gun_stats = SubResource("Resource_cb6ao")
+
+[node name="Manx251Z" parent="." instance=ExtResource("59_xj6tr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.0896, 0.491432, -6.94486)
+_gun_stats = SubResource("Resource_buvc6")
 
 [connection signal="hit_occured" from="MultiAgentNavigationRoot/FiestaBox/DamageComponent" to="MultiAgentNavigationRoot/FiestaBox" method="_on_damage_component_hit_occured"]
 [connection signal="hit_occured" from="MultiAgentNavigationRoot/LootChest/DamageComponent" to="MultiAgentNavigationRoot/LootChest" method="_on_damage_component_hit_occured"]

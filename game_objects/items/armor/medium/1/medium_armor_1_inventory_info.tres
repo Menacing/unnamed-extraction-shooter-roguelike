@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="ItemInformation" load_steps=8 format=3 uid="uid://csf4puq350ht0"]
+[gd_resource type="Resource" script_class="ItemInformation" load_steps=13 format=3 uid="uid://csf4puq350ht0"]
 
 [ext_resource type="Script" uid="uid://dw75el3q24f1f" path="res://ui/inventory/item_context_item.gd" id="1_78y0e"]
 [ext_resource type="Resource" uid="uid://o6tesi76nbth" path="res://ui/inventory/drop_item_context_item.tres" id="1_aafih"]
@@ -7,6 +7,35 @@
 [ext_resource type="Texture2D" uid="uid://dco540xbm65em" path="res://game_objects/items/armor/medium/1/medium_armor_1_icon.png" id="3_i4xpp"]
 [ext_resource type="Texture2D" uid="uid://b4uiu2s884pul" path="res://game_objects/items/armor/medium/1/medium_armor_1_icon_r.png" id="4_4rnhq"]
 [ext_resource type="Script" uid="uid://hxr8853lym5l" path="res://resource_access/item_information.gd" id="7_nef6r"]
+[ext_resource type="Script" uid="uid://cxtmia6d8edl0" path="res://resource_access/item_spawn_information.gd" id="7_xg4gt"]
+
+[sub_resource type="Resource" id="Resource_ururq"]
+script = ExtResource("7_xg4gt")
+loot_table = 1
+tier = 0
+rarity = 3
+metadata/_custom_type_script = "uid://cxtmia6d8edl0"
+
+[sub_resource type="Resource" id="Resource_xvyh1"]
+script = ExtResource("7_xg4gt")
+loot_table = 2
+tier = 0
+rarity = 3
+metadata/_custom_type_script = "uid://cxtmia6d8edl0"
+
+[sub_resource type="Resource" id="Resource_luy07"]
+script = ExtResource("7_xg4gt")
+loot_table = 3
+tier = 0
+rarity = 3
+metadata/_custom_type_script = "uid://cxtmia6d8edl0"
+
+[sub_resource type="Resource" id="Resource_hqxeo"]
+script = ExtResource("7_xg4gt")
+loot_table = 6
+tier = 0
+rarity = 2
+metadata/_custom_type_script = "uid://cxtmia6d8edl0"
 
 [resource]
 script = ExtResource("7_nef6r")
@@ -21,15 +50,19 @@ detail_scene = ExtResource("2_0p1lx")
 context_menu_items = Array[ExtResource("1_78y0e")]([ExtResource("1_aafih")])
 max_stacks = 1
 has_stacks = false
+min_stack = 0
+max_stack = 0
 max_durability = 150
 has_durability = true
 column_span = 3
 row_span = 3
+pickup_sound = ExtResource("3_06vhn")
 description_text = "After years of fighting in the desert, WODC stripped its usual assortment of armor, webbing, and gear down to the essentials. A few high quality plates."
 flavor_text = "This could save your life!"
+drop_sound = ExtResource("3_06vhn")
+slot_data_type = 0
+item_spawn_informations = Array[ExtResource("7_xg4gt")]([SubResource("Resource_ururq"), SubResource("Resource_xvyh1"), SubResource("Resource_luy07"), SubResource("Resource_hqxeo")])
+test_radius = 0.0
 min_pickup_stacks = 1
 mean_pickup_stacks = 1
 stack_random_method = 0
-pickup_sound = ExtResource("3_06vhn")
-drop_sound = ExtResource("3_06vhn")
-slot_data_type = 0

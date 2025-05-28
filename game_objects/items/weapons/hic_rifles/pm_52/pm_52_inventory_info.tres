@@ -1,10 +1,11 @@
-[gd_resource type="Resource" script_class="ItemInformation" load_steps=20 format=3 uid="uid://xufa6auvjw6t"]
+[gd_resource type="Resource" script_class="ItemInformation" load_steps=24 format=3 uid="uid://xufa6auvjw6t"]
 
 [ext_resource type="Resource" uid="uid://o6tesi76nbth" path="res://ui/inventory/drop_item_context_item.tres" id="1_vu7st"]
 [ext_resource type="Script" uid="uid://dw75el3q24f1f" path="res://ui/inventory/item_context_item.gd" id="2_a4mq1"]
 [ext_resource type="PackedScene" uid="uid://0hy4cl1x7qwx" path="res://ui/inventory/detail_scenes/gun_detail_popup.tscn" id="3_x6ufe"]
 [ext_resource type="Texture2D" uid="uid://ccuey3obfnokx" path="res://game_objects/items/weapons/hic_rifles/pm_52/pm_52_icon.png" id="4_wgp4x"]
 [ext_resource type="Texture2D" uid="uid://cel42xcp5y2hs" path="res://game_objects/items/weapons/hic_rifles/pm_52/pm_52_icon_r.png" id="5_mus3r"]
+[ext_resource type="Script" uid="uid://cxtmia6d8edl0" path="res://resource_access/item_spawn_information.gd" id="6_rec7n"]
 [ext_resource type="Script" uid="uid://dwpbdijb5aofu" path="res://resource_access/equipment_slot_data.gd" id="7_dctn7"]
 [ext_resource type="Script" uid="uid://dasb1tf171ead" path="res://resource_access/inventory_data.gd" id="8_rsuee"]
 [ext_resource type="Resource" uid="uid://d2e8vacodeiau" path="res://game_objects/items/weapons/foregrips_equipment_slot.tres" id="8_ryncj"]
@@ -23,6 +24,27 @@ signal_name = "context_menus_open_item_detail"
 
 [sub_resource type="Resource" id="Resource_cppfa"]
 metadata/__load_path__ = "res://game_objects/items/weapons/hic_rifles/hic_mag_in.ogg"
+
+[sub_resource type="Resource" id="Resource_423bg"]
+script = ExtResource("6_rec7n")
+loot_table = 0
+tier = 2
+rarity = 3
+metadata/_custom_type_script = "uid://cxtmia6d8edl0"
+
+[sub_resource type="Resource" id="Resource_xsliy"]
+script = ExtResource("6_rec7n")
+loot_table = 1
+tier = 0
+rarity = 2
+metadata/_custom_type_script = "uid://cxtmia6d8edl0"
+
+[sub_resource type="Resource" id="Resource_76oao"]
+script = ExtResource("6_rec7n")
+loot_table = 6
+tier = 2
+rarity = 3
+metadata/_custom_type_script = "uid://cxtmia6d8edl0"
 
 [sub_resource type="Resource" id="Resource_rkj1h"]
 script = ExtResource("8_rsuee")
@@ -46,15 +68,19 @@ detail_scene = ExtResource("3_x6ufe")
 context_menu_items = Array[ExtResource("2_a4mq1")]([ExtResource("1_vu7st"), SubResource("Resource_6llv8")])
 max_stacks = 1
 has_stacks = false
+min_stack = 0
+max_stack = 0
 max_durability = 1
 has_durability = false
 column_span = 5
 row_span = 2
+pickup_sound = SubResource("Resource_p4ejx")
 description_text = "The ZS-52 was developed shortly after the 2nd Great War to replace the service rifle, submachine gun, and light machine gun in the commie army. It didn't quite do that, but it they did make a ton of them. This one is in decent condition"
 flavor_text = "The PM-52 is not a device of aggression. I devised this weapon for the security of my country - Konstantin Maksim"
+drop_sound = SubResource("Resource_cppfa")
+slot_data_type = 1
+item_spawn_informations = Array[ExtResource("6_rec7n")]([SubResource("Resource_423bg"), SubResource("Resource_xsliy"), SubResource("Resource_76oao")])
+test_radius = 0.0
 min_pickup_stacks = 1
 mean_pickup_stacks = 1
 stack_random_method = 0
-pickup_sound = SubResource("Resource_p4ejx")
-drop_sound = SubResource("Resource_cppfa")
-slot_data_type = 1

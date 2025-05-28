@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="ItemInformation" load_steps=9 format=3 uid="uid://drfc8a0vpjede"]
+[gd_resource type="Resource" script_class="ItemInformation" load_steps=15 format=3 uid="uid://drfc8a0vpjede"]
 
 [ext_resource type="Resource" uid="uid://o6tesi76nbth" path="res://ui/inventory/drop_item_context_item.tres" id="1_7ilg0"]
 [ext_resource type="Script" uid="uid://dw75el3q24f1f" path="res://ui/inventory/item_context_item.gd" id="1_mu4wr"]
@@ -7,7 +7,43 @@
 [ext_resource type="AudioStream" uid="uid://0apk0nwm1ffp" path="res://game_objects/effects/sounds/foley/cloth_1.ogg" id="3_63vgy"]
 [ext_resource type="Texture2D" uid="uid://d6gc7euj4aw4" path="res://game_objects/items/backpacks/medium/1/m_backpack_1_icon_r.png" id="4_fq3p1"]
 [ext_resource type="Script" uid="uid://hxr8853lym5l" path="res://resource_access/item_information.gd" id="7_10mqc"]
+[ext_resource type="Script" uid="uid://cxtmia6d8edl0" path="res://resource_access/item_spawn_information.gd" id="7_nn1ly"]
 [ext_resource type="AudioStream" uid="uid://b78iks4jwmaqk" path="res://game_objects/effects/sounds/foley/zipper_2.ogg" id="8_wob4q"]
+
+[sub_resource type="Resource" id="Resource_8kqop"]
+script = ExtResource("7_nn1ly")
+loot_table = 1
+tier = 0
+rarity = 2
+metadata/_custom_type_script = "uid://cxtmia6d8edl0"
+
+[sub_resource type="Resource" id="Resource_5t8ne"]
+script = ExtResource("7_nn1ly")
+loot_table = 2
+tier = 0
+rarity = 2
+metadata/_custom_type_script = "uid://cxtmia6d8edl0"
+
+[sub_resource type="Resource" id="Resource_qrd5p"]
+script = ExtResource("7_nn1ly")
+loot_table = 3
+tier = 0
+rarity = 2
+metadata/_custom_type_script = "uid://cxtmia6d8edl0"
+
+[sub_resource type="Resource" id="Resource_1vmgf"]
+script = ExtResource("7_nn1ly")
+loot_table = 6
+tier = 1
+rarity = 1
+metadata/_custom_type_script = "uid://cxtmia6d8edl0"
+
+[sub_resource type="Resource" id="Resource_2nx6p"]
+script = ExtResource("7_nn1ly")
+loot_table = 0
+tier = 2
+rarity = 2
+metadata/_custom_type_script = "uid://cxtmia6d8edl0"
 
 [resource]
 script = ExtResource("7_10mqc")
@@ -22,15 +58,19 @@ detail_scene = ExtResource("2_lmxny")
 context_menu_items = Array[ExtResource("1_mu4wr")]([ExtResource("1_7ilg0")])
 max_stacks = 1
 has_stacks = false
+min_stack = 0
+max_stack = 0
 max_durability = 1
 has_durability = false
 column_span = 2
 row_span = 3
+pickup_sound = ExtResource("8_wob4q")
 description_text = "Medium Backpack for day trips or pleasent short hikes. Durable nylon and straps allow for additional customization and even weight distribution"
 flavor_text = "Moderation in all things"
+drop_sound = ExtResource("3_63vgy")
+slot_data_type = 0
+item_spawn_informations = Array[ExtResource("7_nn1ly")]([SubResource("Resource_8kqop"), SubResource("Resource_5t8ne"), SubResource("Resource_qrd5p"), SubResource("Resource_1vmgf"), SubResource("Resource_2nx6p")])
+test_radius = 0.0
 min_pickup_stacks = 1
 mean_pickup_stacks = 1
 stack_random_method = 0
-pickup_sound = ExtResource("8_wob4q")
-drop_sound = ExtResource("3_63vgy")
-slot_data_type = 0

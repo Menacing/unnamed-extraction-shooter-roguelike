@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="ItemInformation" load_steps=9 format=3 uid="uid://crfm8n2r2y2mk"]
+[gd_resource type="Resource" script_class="ItemInformation" load_steps=14 format=3 uid="uid://crfm8n2r2y2mk"]
 
 [ext_resource type="Script" uid="uid://dw75el3q24f1f" path="res://ui/inventory/item_context_item.gd" id="1_rv0hj"]
 [ext_resource type="Resource" uid="uid://o6tesi76nbth" path="res://ui/inventory/drop_item_context_item.tres" id="1_yayiw"]
@@ -7,7 +7,36 @@
 [ext_resource type="AudioStream" uid="uid://bt2pmu0v5otjo" path="res://game_objects/effects/sounds/foley/rattle_2.ogg" id="3_58oje"]
 [ext_resource type="PackedScene" uid="uid://drq1dhr0sgjk3" path="res://game_objects/items/attachments/foregrips/stable/stable_foregrip_equip_effect_component.tscn" id="5_5gs0i"]
 [ext_resource type="Script" uid="uid://hxr8853lym5l" path="res://resource_access/item_information.gd" id="6_2581o"]
+[ext_resource type="Script" uid="uid://cxtmia6d8edl0" path="res://resource_access/item_spawn_information.gd" id="7_qb076"]
 [ext_resource type="AudioStream" uid="uid://d2ecw1ttj8xem" path="res://game_objects/effects/sounds/foley/rattle_1.ogg" id="7_qdfj2"]
+
+[sub_resource type="Resource" id="Resource_rt8kt"]
+script = ExtResource("7_qb076")
+loot_table = 1
+tier = 0
+rarity = 2
+metadata/_custom_type_script = "uid://cxtmia6d8edl0"
+
+[sub_resource type="Resource" id="Resource_nv2rg"]
+script = ExtResource("7_qb076")
+loot_table = 2
+tier = 0
+rarity = 2
+metadata/_custom_type_script = "uid://cxtmia6d8edl0"
+
+[sub_resource type="Resource" id="Resource_3ekok"]
+script = ExtResource("7_qb076")
+loot_table = 3
+tier = 0
+rarity = 3
+metadata/_custom_type_script = "uid://cxtmia6d8edl0"
+
+[sub_resource type="Resource" id="Resource_pjdyv"]
+script = ExtResource("7_qb076")
+loot_table = 6
+tier = 0
+rarity = 2
+metadata/_custom_type_script = "uid://cxtmia6d8edl0"
 
 [resource]
 script = ExtResource("6_2581o")
@@ -22,16 +51,20 @@ detail_scene = ExtResource("2_5v6ym")
 context_menu_items = Array[ExtResource("1_rv0hj")]([ExtResource("1_yayiw")])
 max_stacks = 1
 has_stacks = false
+min_stack = 0
+max_stack = 0
 max_durability = 1
 has_durability = false
 column_span = 1
 row_span = 1
+pickup_sound = ExtResource("7_qdfj2")
 description_text = "Modular grip allowing the operator to get more leverage on the barrel, thereby reducing muzzle rise."
 flavor_text = "Hold on tight"
-min_pickup_stacks = 1
-mean_pickup_stacks = 1
-stack_random_method = 0
-pickup_sound = ExtResource("7_qdfj2")
 drop_sound = ExtResource("3_58oje")
 slot_data_type = 0
 equip_effect_component = ExtResource("5_5gs0i")
+item_spawn_informations = Array[ExtResource("7_qb076")]([SubResource("Resource_rt8kt"), SubResource("Resource_nv2rg"), SubResource("Resource_3ekok"), SubResource("Resource_pjdyv")])
+test_radius = 0.0
+min_pickup_stacks = 1
+mean_pickup_stacks = 1
+stack_random_method = 0

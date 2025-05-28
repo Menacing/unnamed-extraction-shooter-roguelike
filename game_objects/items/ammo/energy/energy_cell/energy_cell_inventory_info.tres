@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="AmmoInformation" load_steps=8 format=3 uid="uid://dw41ukmri51ra"]
+[gd_resource type="Resource" script_class="AmmoInformation" load_steps=11 format=3 uid="uid://dw41ukmri51ra"]
 
 [ext_resource type="Resource" uid="uid://c7rautngyo4gg" path="res://components/ammo_component/ammo_types/energy_cell_subtype.tres" id="1_ds75p"]
 [ext_resource type="Resource" uid="uid://jyantd4a0xdh" path="res://components/ammo_component/ammo_types/energy_cell.tres" id="2_kdh7c"]
@@ -7,6 +7,21 @@
 [ext_resource type="PackedScene" uid="uid://djpvx3f8rfem0" path="res://ui/inventory/detail_scenes/ammo_detail_popup.tscn" id="5_jwo7o"]
 [ext_resource type="Texture2D" uid="uid://bgosqacgr61pt" path="res://game_objects/items/ammo/energy/energy_cell/energy_cell_icon.png" id="6_kdh7c"]
 [ext_resource type="Script" uid="uid://cn8b6jp0q2kyq" path="res://game_objects/items/ammo/ammo_information.gd" id="7_3vqbp"]
+[ext_resource type="Script" uid="uid://cxtmia6d8edl0" path="res://resource_access/item_spawn_information.gd" id="7_605oq"]
+
+[sub_resource type="Resource" id="Resource_am837"]
+script = ExtResource("7_605oq")
+loot_table = 5
+tier = 2
+rarity = 0
+metadata/_custom_type_script = "uid://cxtmia6d8edl0"
+
+[sub_resource type="Resource" id="Resource_hme8y"]
+script = ExtResource("7_605oq")
+loot_table = 6
+tier = 3
+rarity = 0
+metadata/_custom_type_script = "uid://cxtmia6d8edl0"
 
 [resource]
 script = ExtResource("7_3vqbp")
@@ -23,13 +38,17 @@ detail_scene = ExtResource("5_jwo7o")
 context_menu_items = Array[ExtResource("3_18s3u")]([ExtResource("4_kh5jk")])
 max_stacks = 20
 has_stacks = true
+min_stack = 0
+max_stack = 0
 max_durability = 1
 has_durability = false
 column_span = 1
 row_span = 1
 description_text = ""
 flavor_text = ""
+slot_data_type = 0
+item_spawn_informations = Array[ExtResource("7_605oq")]([SubResource("Resource_am837"), SubResource("Resource_hme8y")])
+test_radius = 0.0
 min_pickup_stacks = 1
 mean_pickup_stacks = 10
 stack_random_method = 1
-slot_data_type = 0
