@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="ItemInformation" load_steps=10 format=3 uid="uid://yj4rydxs1mju"]
+[gd_resource type="Resource" script_class="ItemInformation" load_steps=16 format=3 uid="uid://yj4rydxs1mju"]
 
 [ext_resource type="Resource" uid="uid://o6tesi76nbth" path="res://ui/inventory/drop_item_context_item.tres" id="1_2bpe8"]
 [ext_resource type="Script" uid="uid://dw75el3q24f1f" path="res://ui/inventory/item_context_item.gd" id="1_ha5h5"]
@@ -8,7 +8,43 @@
 [ext_resource type="AudioStream" uid="uid://dll45k638cniw" path="res://game_objects/effects/sounds/foley/mag_2.ogg" id="3_pfvhe"]
 [ext_resource type="Script" uid="uid://hxr8853lym5l" path="res://resource_access/item_information.gd" id="5_2hel8"]
 [ext_resource type="PackedScene" uid="uid://dtv6j3n4hmjnr" path="res://game_objects/items/attachments/magazines/extended/extended_magazine_equip_effect_component.tscn" id="5_lttdc"]
+[ext_resource type="Script" uid="uid://cxtmia6d8edl0" path="res://resource_access/item_spawn_information.gd" id="8_1gncl"]
 [ext_resource type="AudioStream" uid="uid://vi51lpn5qcon" path="res://game_objects/effects/sounds/foley/mag_1.ogg" id="8_hqcrh"]
+
+[sub_resource type="Resource" id="Resource_mtycd"]
+script = ExtResource("8_1gncl")
+loot_table = 1
+tier = 0
+rarity = 2
+metadata/_custom_type_script = "uid://cxtmia6d8edl0"
+
+[sub_resource type="Resource" id="Resource_tby45"]
+script = ExtResource("8_1gncl")
+loot_table = 2
+tier = 0
+rarity = 2
+metadata/_custom_type_script = "uid://cxtmia6d8edl0"
+
+[sub_resource type="Resource" id="Resource_4wm86"]
+script = ExtResource("8_1gncl")
+loot_table = 3
+tier = 0
+rarity = 2
+metadata/_custom_type_script = "uid://cxtmia6d8edl0"
+
+[sub_resource type="Resource" id="Resource_1gyqr"]
+script = ExtResource("8_1gncl")
+loot_table = 6
+tier = 0
+rarity = 1
+metadata/_custom_type_script = "uid://cxtmia6d8edl0"
+
+[sub_resource type="Resource" id="Resource_abgld"]
+script = ExtResource("8_1gncl")
+loot_table = 0
+tier = 2
+rarity = 2
+metadata/_custom_type_script = "uid://cxtmia6d8edl0"
 
 [resource]
 script = ExtResource("5_2hel8")
@@ -35,9 +71,7 @@ flavor_text = "margin of error"
 drop_sound = ExtResource("3_pfvhe")
 slot_data_type = 0
 equip_effect_component = ExtResource("5_lttdc")
-loot_table = 6
-tier = 1
-rarity = 1
+item_spawn_informations = Array[ExtResource("8_1gncl")]([SubResource("Resource_mtycd"), SubResource("Resource_tby45"), SubResource("Resource_4wm86"), SubResource("Resource_1gyqr"), SubResource("Resource_abgld")])
 test_radius = 0.0
 min_pickup_stacks = 1
 mean_pickup_stacks = 1

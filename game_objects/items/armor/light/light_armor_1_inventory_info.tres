@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="ItemInformation" load_steps=9 format=3 uid="uid://25dmf2cpvdfq"]
+[gd_resource type="Resource" script_class="ItemInformation" load_steps=13 format=3 uid="uid://25dmf2cpvdfq"]
 
 [ext_resource type="Script" uid="uid://dw75el3q24f1f" path="res://ui/inventory/item_context_item.gd" id="1_nwd0a"]
 [ext_resource type="Resource" uid="uid://o6tesi76nbth" path="res://ui/inventory/drop_item_context_item.tres" id="1_rjnpu"]
@@ -7,7 +7,29 @@
 [ext_resource type="Texture2D" uid="uid://dsfo3u3lcw42t" path="res://game_objects/items/armor/light/light_armor_1_icon_r.png" id="3_33vnq"]
 [ext_resource type="AudioStream" uid="uid://bjwa3xk32xn0v" path="res://game_objects/effects/sounds/foley/cloth_2.ogg" id="3_o55mf"]
 [ext_resource type="Script" uid="uid://hxr8853lym5l" path="res://resource_access/item_information.gd" id="4_b3cb6"]
+[ext_resource type="Script" uid="uid://cxtmia6d8edl0" path="res://resource_access/item_spawn_information.gd" id="7_p8oj5"]
 [ext_resource type="AudioStream" uid="uid://0apk0nwm1ffp" path="res://game_objects/effects/sounds/foley/cloth_1.ogg" id="8_17dim"]
+
+[sub_resource type="Resource" id="Resource_rlfho"]
+script = ExtResource("7_p8oj5")
+loot_table = 0
+tier = 0
+rarity = 2
+metadata/_custom_type_script = "uid://cxtmia6d8edl0"
+
+[sub_resource type="Resource" id="Resource_oqauc"]
+script = ExtResource("7_p8oj5")
+loot_table = 4
+tier = 0
+rarity = 2
+metadata/_custom_type_script = "uid://cxtmia6d8edl0"
+
+[sub_resource type="Resource" id="Resource_j85ly"]
+script = ExtResource("7_p8oj5")
+loot_table = 5
+tier = 0
+rarity = 2
+metadata/_custom_type_script = "uid://cxtmia6d8edl0"
 
 [resource]
 script = ExtResource("4_b3cb6")
@@ -33,9 +55,7 @@ description_text = "Soft Kevlar with straps for mags and other gear. Won't stop 
 flavor_text = ""
 drop_sound = ExtResource("3_o55mf")
 slot_data_type = 0
-loot_table = 0
-tier = 1
-rarity = 1
+item_spawn_informations = Array[ExtResource("7_p8oj5")]([SubResource("Resource_rlfho"), SubResource("Resource_oqauc"), SubResource("Resource_j85ly")])
 test_radius = 0.0
 min_pickup_stacks = 1
 mean_pickup_stacks = 1

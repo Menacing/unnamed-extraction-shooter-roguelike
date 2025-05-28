@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="AmmoInformation" load_steps=8 format=3 uid="uid://cao3l7jt7txws"]
+[gd_resource type="Resource" script_class="AmmoInformation" load_steps=12 format=3 uid="uid://cao3l7jt7txws"]
 
 [ext_resource type="Resource" uid="uid://cv0v8s66c5nn4" path="res://components/ammo_component/ammo_types/fast_intermediate_cartridge/ammo_subtypes/full_metal_jacket.tres" id="1_tw7vv"]
 [ext_resource type="Resource" uid="uid://bikewy7dlkv20" path="res://components/ammo_component/ammo_types/fast_intermediate_cartridge/fast_intermediate_cartridge.tres" id="2_j0w4h"]
@@ -7,6 +7,28 @@
 [ext_resource type="PackedScene" uid="uid://djpvx3f8rfem0" path="res://ui/inventory/detail_scenes/ammo_detail_popup.tscn" id="3_whkxf"]
 [ext_resource type="Texture2D" uid="uid://uyrp0qvveaa2" path="res://game_objects/items/ammo/fic/fic_fmj_icon.png" id="4_0p4bb"]
 [ext_resource type="Script" uid="uid://cn8b6jp0q2kyq" path="res://game_objects/items/ammo/ammo_information.gd" id="7_pgfag"]
+[ext_resource type="Script" uid="uid://cxtmia6d8edl0" path="res://resource_access/item_spawn_information.gd" id="7_pl73w"]
+
+[sub_resource type="Resource" id="Resource_jxkiu"]
+script = ExtResource("7_pl73w")
+loot_table = 6
+tier = 0
+rarity = 0
+metadata/_custom_type_script = "uid://cxtmia6d8edl0"
+
+[sub_resource type="Resource" id="Resource_pl73w"]
+script = ExtResource("7_pl73w")
+loot_table = 3
+tier = 0
+rarity = 0
+metadata/_custom_type_script = "uid://cxtmia6d8edl0"
+
+[sub_resource type="Resource" id="Resource_mhuqn"]
+script = ExtResource("7_pl73w")
+loot_table = 0
+tier = 0
+rarity = 2
+metadata/_custom_type_script = "uid://cxtmia6d8edl0"
 
 [resource]
 script = ExtResource("7_pgfag")
@@ -23,13 +45,17 @@ detail_scene = ExtResource("3_whkxf")
 context_menu_items = Array[ExtResource("3_v88eq")]([ExtResource("3_1su5s")])
 max_stacks = 20
 has_stacks = true
+min_stack = 0
+max_stack = 0
 max_durability = 1
 has_durability = false
 column_span = 1
 row_span = 1
 description_text = ""
 flavor_text = ""
+slot_data_type = 0
+item_spawn_informations = Array[ExtResource("7_pl73w")]([SubResource("Resource_jxkiu"), SubResource("Resource_pl73w"), SubResource("Resource_mhuqn")])
+test_radius = 0.0
 min_pickup_stacks = 1
 mean_pickup_stacks = 10
 stack_random_method = 1
-slot_data_type = 0

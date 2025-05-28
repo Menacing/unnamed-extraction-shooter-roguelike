@@ -27,9 +27,7 @@ class_name ItemInformation
 @export var slot_data_type:SlotData.SLOT_DATA_TYPE = SlotData.SLOT_DATA_TYPE.SLOT_DATA
 @export var equip_effect_component:PackedScene
 @export_category("Spawn Information") 
-@export var loot_table:GameplayEnums.LootTable = GameplayEnums.LootTable.GENERIC
-@export var tier:GameplayEnums.Tier = GameplayEnums.Tier.COMMON
-@export var rarity:GameplayEnums.Rarity = GameplayEnums.Rarity.COMMON
+@export var item_spawn_informations:Array[ItemSpawnInformation]
 @export var test_radius:float
 @export var min_pickup_stacks:int = 1
 @export var mean_pickup_stacks:int = 1

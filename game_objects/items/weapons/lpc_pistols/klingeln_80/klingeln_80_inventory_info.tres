@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="ItemInformation" load_steps=8 format=3 uid="uid://ufd2sll1er04"]
+[gd_resource type="Resource" script_class="ItemInformation" load_steps=13 format=3 uid="uid://ufd2sll1er04"]
 
 [ext_resource type="Script" uid="uid://dw75el3q24f1f" path="res://ui/inventory/item_context_item.gd" id="1_b4jk3"]
 [ext_resource type="Resource" uid="uid://o6tesi76nbth" path="res://ui/inventory/drop_item_context_item.tres" id="2_5am80"]
@@ -6,11 +6,40 @@
 [ext_resource type="Script" uid="uid://hxr8853lym5l" path="res://resource_access/item_information.gd" id="2_6ystw"]
 [ext_resource type="Texture2D" uid="uid://dxc4u77wpj1vv" path="res://game_objects/items/weapons/lpc_pistols/klingeln_80/klingeln_80_icon.png" id="4_os0fo"]
 [ext_resource type="Texture2D" uid="uid://dwt2rxrco5kqj" path="res://game_objects/items/weapons/lpc_pistols/klingeln_80/klingeln_80_icon_r.png" id="5_jtygu"]
+[ext_resource type="Script" uid="uid://cxtmia6d8edl0" path="res://resource_access/item_spawn_information.gd" id="6_jtygu"]
 
 [sub_resource type="Resource" id="Resource_3vynl"]
 script = ExtResource("1_b4jk3")
 label = "Item Detail"
 signal_name = "context_menus_open_item_detail"
+
+[sub_resource type="Resource" id="Resource_76jfm"]
+script = ExtResource("6_jtygu")
+loot_table = 0
+tier = 0
+rarity = 2
+metadata/_custom_type_script = "uid://cxtmia6d8edl0"
+
+[sub_resource type="Resource" id="Resource_g8ynl"]
+script = ExtResource("6_jtygu")
+loot_table = 2
+tier = 0
+rarity = 2
+metadata/_custom_type_script = "uid://cxtmia6d8edl0"
+
+[sub_resource type="Resource" id="Resource_e2cb4"]
+script = ExtResource("6_jtygu")
+loot_table = 6
+tier = 0
+rarity = 2
+metadata/_custom_type_script = "uid://cxtmia6d8edl0"
+
+[sub_resource type="Resource" id="Resource_n36fg"]
+script = ExtResource("6_jtygu")
+loot_table = 5
+tier = 1
+rarity = 3
+metadata/_custom_type_script = "uid://cxtmia6d8edl0"
 
 [resource]
 script = ExtResource("2_6ystw")
@@ -35,9 +64,7 @@ description_text = "Bursting onto the scene in the latter half of the last centu
 flavor_text = "I grew up in the streets without no heart
 I'm prayin' to my Kling and my carbon"
 slot_data_type = 1
-loot_table = 0
-tier = 0
-rarity = 2
+item_spawn_informations = Array[ExtResource("6_jtygu")]([SubResource("Resource_76jfm"), SubResource("Resource_g8ynl"), SubResource("Resource_e2cb4"), SubResource("Resource_n36fg")])
 test_radius = 0.0
 min_pickup_stacks = 1
 mean_pickup_stacks = 1

@@ -74,11 +74,12 @@ func load_hideout_async(extracted:bool = false, died:bool = false):
 	
 	hideout_level.setup_player_spawn()
 	
+	loaded_level = hideout_level
+	loaded_level_info = null
+	
 	call_deferred("emit_populate_level")
 	await EventBus.level_populated
 	
-	loaded_level = hideout_level
-	loaded_level_info = null
 	get_tree().paused = false
 	# connect the signal to get notified when the exit is reached
 	EventBus.level_loaded.emit()
@@ -132,12 +133,13 @@ func load_level_async(path:String, populate_level:bool = false, level_info:Level
 		
 		next_level.setup_player_spawn()
 		
+		loaded_level = next_level
+		loaded_level_info = next_level_info
+		
 		if populate_level:
 			call_deferred("emit_populate_level")
 			await EventBus.level_populated
 		
-		loaded_level = next_level
-		loaded_level_info = next_level_info
 		get_tree().paused = false
 		# connect the signal to get notified when the exit is reached
 		EventBus.level_loaded.emit()
@@ -186,12 +188,13 @@ func load_previous_level_async():
 		
 		next_level.setup_player_spawn()
 		
+		loaded_level = next_level
+		loaded_level_info = next_level_info
+		
 		if !next_level.populated:
 			call_deferred("emit_populate_level")
 			await EventBus.level_populated
 		
-		loaded_level = next_level
-		loaded_level_info = next_level_info
 		get_tree().paused = false
 		# connect the signal to get notified when the exit is reached
 		EventBus.level_loaded.emit()

@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="MaterialInformation" load_steps=7 format=3 uid="uid://tg1koobfs11b"]
+[gd_resource type="Resource" script_class="MaterialInformation" load_steps=10 format=3 uid="uid://tg1koobfs11b"]
 
 [ext_resource type="Script" uid="uid://dw75el3q24f1f" path="res://ui/inventory/item_context_item.gd" id="1_b3wwc"]
 [ext_resource type="Resource" uid="uid://o6tesi76nbth" path="res://ui/inventory/drop_item_context_item.tres" id="2_1pjim"]
@@ -6,6 +6,21 @@
 [ext_resource type="PackedScene" uid="uid://son7demex4pt" path="res://ui/inventory/detail_scenes/simple_detail_popup.tscn" id="4_0qo6b"]
 [ext_resource type="Texture2D" uid="uid://d00d75k2koswt" path="res://game_objects/items/materials/silicate_pile/silicate_pile_icon.png" id="5_vax6e"]
 [ext_resource type="Script" uid="uid://k138ce4es0kh" path="res://game_objects/items/materials/material_information.gd" id="6_axdt3"]
+[ext_resource type="Script" uid="uid://cxtmia6d8edl0" path="res://resource_access/item_spawn_information.gd" id="6_cgw0p"]
+
+[sub_resource type="Resource" id="Resource_vq6gm"]
+script = ExtResource("6_cgw0p")
+loot_table = 0
+tier = 1
+rarity = 2
+metadata/_custom_type_script = "uid://cxtmia6d8edl0"
+
+[sub_resource type="Resource" id="Resource_l7oof"]
+script = ExtResource("6_cgw0p")
+loot_table = 5
+tier = 0
+rarity = 1
+metadata/_custom_type_script = "uid://cxtmia6d8edl0"
 
 [resource]
 script = ExtResource("6_axdt3")
@@ -31,9 +46,7 @@ row_span = 1
 description_text = "Purified silcate, the raw materials to make nearly any conventional computer."
 flavor_text = "Not just sand"
 slot_data_type = 0
-loot_table = 5
-tier = 0
-rarity = 1
+item_spawn_informations = Array[ExtResource("6_cgw0p")]([SubResource("Resource_vq6gm"), SubResource("Resource_l7oof")])
 test_radius = 0.0
 min_pickup_stacks = 1
 mean_pickup_stacks = 5

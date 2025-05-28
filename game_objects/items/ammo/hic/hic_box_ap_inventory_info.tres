@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="AmmoInformation" load_steps=8 format=3 uid="uid://dj0v5gb1ecfvy"]
+[gd_resource type="Resource" script_class="AmmoInformation" load_steps=11 format=3 uid="uid://dj0v5gb1ecfvy"]
 
 [ext_resource type="Resource" uid="uid://e74bf0ee7eck" path="res://components/ammo_component/ammo_types/heavy_intermediate_cartridge/ammo_subtypes/armor_piercing.tres" id="1_5s5mq"]
 [ext_resource type="Resource" uid="uid://3nqgvhg4lre8" path="res://components/ammo_component/ammo_types/heavy_intermediate_cartridge/heavy_intermediate_cartridge.tres" id="2_161qn"]
@@ -7,6 +7,21 @@
 [ext_resource type="Resource" uid="uid://o6tesi76nbth" path="res://ui/inventory/drop_item_context_item.tres" id="3_yvb51"]
 [ext_resource type="Texture2D" uid="uid://md2fvi5hcvif" path="res://game_objects/items/ammo/hic/hic_box_ap_icon.png" id="4_w0f3e"]
 [ext_resource type="Script" uid="uid://cn8b6jp0q2kyq" path="res://game_objects/items/ammo/ammo_information.gd" id="6_ox2j3"]
+[ext_resource type="Script" uid="uid://cxtmia6d8edl0" path="res://resource_access/item_spawn_information.gd" id="7_yoxe3"]
+
+[sub_resource type="Resource" id="Resource_08ljv"]
+script = ExtResource("7_yoxe3")
+loot_table = 1
+tier = 1
+rarity = 1
+metadata/_custom_type_script = "uid://cxtmia6d8edl0"
+
+[sub_resource type="Resource" id="Resource_bwnsk"]
+script = ExtResource("7_yoxe3")
+loot_table = 6
+tier = 1
+rarity = 2
+metadata/_custom_type_script = "uid://cxtmia6d8edl0"
 
 [resource]
 script = ExtResource("6_ox2j3")
@@ -32,9 +47,7 @@ row_span = 1
 description_text = ""
 flavor_text = ""
 slot_data_type = 0
-loot_table = 6
-tier = 1
-rarity = 1
+item_spawn_informations = Array[ExtResource("7_yoxe3")]([SubResource("Resource_08ljv"), SubResource("Resource_bwnsk")])
 test_radius = 0.0
 min_pickup_stacks = 1
 mean_pickup_stacks = 10

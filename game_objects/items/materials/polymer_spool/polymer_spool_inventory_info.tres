@@ -1,11 +1,33 @@
-[gd_resource type="Resource" script_class="MaterialInformation" load_steps=7 format=3 uid="uid://3a15imh4nlqg"]
+[gd_resource type="Resource" script_class="MaterialInformation" load_steps=11 format=3 uid="uid://3a15imh4nlqg"]
 
 [ext_resource type="Script" uid="uid://dw75el3q24f1f" path="res://ui/inventory/item_context_item.gd" id="1_a8myv"]
 [ext_resource type="Resource" uid="uid://o6tesi76nbth" path="res://ui/inventory/drop_item_context_item.tres" id="1_efr8v"]
 [ext_resource type="Resource" uid="uid://c3nod8jldkobw" path="res://game_objects/crafting_materials/polymer.tres" id="3_71t26"]
 [ext_resource type="PackedScene" uid="uid://son7demex4pt" path="res://ui/inventory/detail_scenes/simple_detail_popup.tscn" id="3_ha2yn"]
 [ext_resource type="Texture2D" uid="uid://ix2li5ku0mhp" path="res://game_objects/items/materials/polymer_spool/polymer_spool_icon.png" id="4_2y541"]
+[ext_resource type="Script" uid="uid://cxtmia6d8edl0" path="res://resource_access/item_spawn_information.gd" id="6_jkk63"]
 [ext_resource type="Script" uid="uid://k138ce4es0kh" path="res://game_objects/items/materials/material_information.gd" id="8_yh541"]
+
+[sub_resource type="Resource" id="Resource_vrsh1"]
+script = ExtResource("6_jkk63")
+loot_table = 0
+tier = 0
+rarity = 2
+metadata/_custom_type_script = "uid://cxtmia6d8edl0"
+
+[sub_resource type="Resource" id="Resource_eh3ot"]
+script = ExtResource("6_jkk63")
+loot_table = 3
+tier = 0
+rarity = 3
+metadata/_custom_type_script = "uid://cxtmia6d8edl0"
+
+[sub_resource type="Resource" id="Resource_jty5h"]
+script = ExtResource("6_jkk63")
+loot_table = 5
+tier = 0
+rarity = 2
+metadata/_custom_type_script = "uid://cxtmia6d8edl0"
 
 [resource]
 script = ExtResource("8_yh541")
@@ -31,9 +53,7 @@ row_span = 2
 description_text = "Spooled thread of plastic feedstock ready to be  used by a modern printer"
 flavor_text = "More polymer makes it more possible"
 slot_data_type = 0
-loot_table = 0
-tier = 1
-rarity = 1
+item_spawn_informations = Array[ExtResource("6_jkk63")]([SubResource("Resource_vrsh1"), SubResource("Resource_eh3ot"), SubResource("Resource_jty5h")])
 test_radius = 0.0
 min_pickup_stacks = 1
 mean_pickup_stacks = 5

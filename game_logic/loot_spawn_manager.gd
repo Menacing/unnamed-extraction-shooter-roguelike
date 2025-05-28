@@ -87,15 +87,16 @@ func _ready() -> void:
 
 	for item_info in ItemMappingRepository.get_all_item_information():
 		#generate shufflebags
-		var model_shuffle_bag:Array[String] = []
-		for i in range(get_rarity_value(item_info.rarity)):
-			model_shuffle_bag.append(item_info.item_type_id)
+		for spawn_info in item_info.item_spawn_informations:
+			var model_shuffle_bag:Array[String] = []
+			for i in range(get_rarity_value(spawn_info.rarity)):
+				model_shuffle_bag.append(item_info.item_type_id)
 
-		# for items tier and above, add it to the model shuffle bag
-		var current_tier = item_info.tier
-		while current_tier <= GameplayEnums.Tier.UNIQUE:
-			_model_shuffle_bags[_map_loot_spawn_key_to_string(item_info.loot_table, current_tier)].append_array(model_shuffle_bag)
-			current_tier += 1
+			# for items tier and above, add it to the model shuffle bag
+			var current_tier = spawn_info.tier
+			while current_tier <= GameplayEnums.Tier.UNIQUE:
+				_model_shuffle_bags[_map_loot_spawn_key_to_string(spawn_info.loot_table, current_tier)].append_array(model_shuffle_bag)
+				current_tier += 1
 		
 
 func _map_loot_spawn_key_to_string(loot_table:GameplayEnums.LootTable, tier:GameplayEnums.Tier) -> String:
@@ -186,15 +187,15 @@ func populate_level() -> void:
 	if LevelManager.loaded_level_info:
 		match LevelManager.loaded_level_info.size:
 			LevelInformation.Size.Small:
-				number_items_to_spawn = Helpers.get_normalized_random_stack_count(20, 50, 100)
-			LevelInformation.Size.Medium:
-				number_items_to_spawn = Helpers.get_normalized_random_stack_count(50, 100, 150)
-			LevelInformation.Size.Large:
 				number_items_to_spawn = Helpers.get_normalized_random_stack_count(100, 200, 300)
+			LevelInformation.Size.Medium:
+				number_items_to_spawn = Helpers.get_normalized_random_stack_count(200, 400, 600)
+			LevelInformation.Size.Large:
+				number_items_to_spawn = Helpers.get_normalized_random_stack_count(400, 600, 800)
 			_:
-				number_items_to_spawn = Helpers.get_normalized_random_stack_count(20, 50, 100)
+				number_items_to_spawn = Helpers.get_normalized_random_stack_count(100, 200, 300)
 	else:
-		number_items_to_spawn = Helpers.get_normalized_random_stack_count(20, 50, 100)
+		number_items_to_spawn = Helpers.get_normalized_random_stack_count(100, 200, 300)
 		
 	## for each
 	for i in range(number_items_to_spawn):
