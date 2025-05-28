@@ -10,11 +10,6 @@ class_name LootFiestaComponent
 @export var mean_to_spawn:int = 1
 
 func fiesta():
-	#Get mapping
-	var lsk:LootSpawnKey = LootSpawnKey.new()
-	lsk.loot_table = loot_table
-	lsk.tier = tier
-	
 	#Generate number to spawn
 	var number_to_spawn:int
 	if distribution == GameplayEnums.StackRandomMethod.RANDOM:
@@ -23,8 +18,7 @@ func fiesta():
 		number_to_spawn = Helpers.get_normalized_random_stack_count(min_to_spawn, mean_to_spawn, max_to_spawn)
 	
 	for i in number_to_spawn:
-		var spawn_info:LootSpawnInformation = LootSpawnManager.get_spawn_info(lsk)
-		var item_info:ItemInformation = spawn_info.item_information
+		var item_info:ItemInformation = LootSpawnManager.get_spawn_info(loot_table, tier)
 		var slot_data:SlotData = SlotData.instantiate_from_item_information(item_info)
 		var scene:Item3D = Item3D.instantiate_from_slot_data(slot_data)
 		scene.set_as_top_level(true)		

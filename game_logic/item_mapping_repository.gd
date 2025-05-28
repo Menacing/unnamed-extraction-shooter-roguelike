@@ -33,7 +33,8 @@ func get_item_information(item_type_id:String) -> ItemInformation:
 
 func get_all_item_information() -> Array[ItemInformation]:
 	var item_infos:Array[ItemInformation] = []
-	for map:ItemMapping in _item_mappings:
+	for key in _item_mappings.keys():
+		var map:ItemMapping = _item_mappings[key]
 		if map:
 			item_infos.append(map.item_information)
 	return item_infos

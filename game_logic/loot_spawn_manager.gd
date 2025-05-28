@@ -4,18 +4,99 @@ extends Node
 var _current_shuffle_bags:Dictionary = {}
 var _model_shuffle_bags:Dictionary = {}
 
+func create_empty_shuffle_bags():
+	_current_shuffle_bags[_map_loot_spawn_key_to_string(GameplayEnums.LootTable.GENERIC, GameplayEnums.Tier.COMMON)] = []
+	_model_shuffle_bags[_map_loot_spawn_key_to_string(GameplayEnums.LootTable.GENERIC, GameplayEnums.Tier.COMMON)] = []
+	_current_shuffle_bags[_map_loot_spawn_key_to_string(GameplayEnums.LootTable.GENERIC, GameplayEnums.Tier.UNCOMMON)] = []
+	_model_shuffle_bags[_map_loot_spawn_key_to_string(GameplayEnums.LootTable.GENERIC, GameplayEnums.Tier.UNCOMMON)] = []
+	_current_shuffle_bags[_map_loot_spawn_key_to_string(GameplayEnums.LootTable.GENERIC, GameplayEnums.Tier.RARE)] = []
+	_model_shuffle_bags[_map_loot_spawn_key_to_string(GameplayEnums.LootTable.GENERIC, GameplayEnums.Tier.RARE)] = []
+	_current_shuffle_bags[_map_loot_spawn_key_to_string(GameplayEnums.LootTable.GENERIC, GameplayEnums.Tier.EPIC)] = []
+	_model_shuffle_bags[_map_loot_spawn_key_to_string(GameplayEnums.LootTable.GENERIC, GameplayEnums.Tier.EPIC)] = []
+	_current_shuffle_bags[_map_loot_spawn_key_to_string(GameplayEnums.LootTable.GENERIC, GameplayEnums.Tier.UNIQUE)] = []
+	_model_shuffle_bags[_map_loot_spawn_key_to_string(GameplayEnums.LootTable.GENERIC, GameplayEnums.Tier.UNIQUE)] = []
+	
+	_current_shuffle_bags[_map_loot_spawn_key_to_string(GameplayEnums.LootTable.EASI, GameplayEnums.Tier.COMMON)] = []
+	_model_shuffle_bags[_map_loot_spawn_key_to_string(GameplayEnums.LootTable.EASI, GameplayEnums.Tier.COMMON)] = []
+	_current_shuffle_bags[_map_loot_spawn_key_to_string(GameplayEnums.LootTable.EASI, GameplayEnums.Tier.UNCOMMON)] = []
+	_model_shuffle_bags[_map_loot_spawn_key_to_string(GameplayEnums.LootTable.EASI, GameplayEnums.Tier.UNCOMMON)] = []
+	_current_shuffle_bags[_map_loot_spawn_key_to_string(GameplayEnums.LootTable.EASI, GameplayEnums.Tier.RARE)] = []
+	_model_shuffle_bags[_map_loot_spawn_key_to_string(GameplayEnums.LootTable.EASI, GameplayEnums.Tier.RARE)] = []
+	_current_shuffle_bags[_map_loot_spawn_key_to_string(GameplayEnums.LootTable.EASI, GameplayEnums.Tier.EPIC)] = []
+	_model_shuffle_bags[_map_loot_spawn_key_to_string(GameplayEnums.LootTable.EASI, GameplayEnums.Tier.EPIC)] = []
+	_current_shuffle_bags[_map_loot_spawn_key_to_string(GameplayEnums.LootTable.EASI, GameplayEnums.Tier.UNIQUE)] = []
+	_model_shuffle_bags[_map_loot_spawn_key_to_string(GameplayEnums.LootTable.EASI, GameplayEnums.Tier.UNIQUE)] = []
+	
+	_current_shuffle_bags[_map_loot_spawn_key_to_string(GameplayEnums.LootTable.CENT, GameplayEnums.Tier.COMMON)] = []
+	_model_shuffle_bags[_map_loot_spawn_key_to_string(GameplayEnums.LootTable.CENT, GameplayEnums.Tier.COMMON)] = []
+	_current_shuffle_bags[_map_loot_spawn_key_to_string(GameplayEnums.LootTable.CENT, GameplayEnums.Tier.UNCOMMON)] = []
+	_model_shuffle_bags[_map_loot_spawn_key_to_string(GameplayEnums.LootTable.CENT, GameplayEnums.Tier.UNCOMMON)] = []
+	_current_shuffle_bags[_map_loot_spawn_key_to_string(GameplayEnums.LootTable.CENT, GameplayEnums.Tier.RARE)] = []
+	_model_shuffle_bags[_map_loot_spawn_key_to_string(GameplayEnums.LootTable.CENT, GameplayEnums.Tier.RARE)] = []
+	_current_shuffle_bags[_map_loot_spawn_key_to_string(GameplayEnums.LootTable.CENT, GameplayEnums.Tier.EPIC)] = []
+	_model_shuffle_bags[_map_loot_spawn_key_to_string(GameplayEnums.LootTable.CENT, GameplayEnums.Tier.EPIC)] = []
+	_current_shuffle_bags[_map_loot_spawn_key_to_string(GameplayEnums.LootTable.CENT, GameplayEnums.Tier.UNIQUE)] = []
+	_model_shuffle_bags[_map_loot_spawn_key_to_string(GameplayEnums.LootTable.CENT, GameplayEnums.Tier.UNIQUE)] = []
+	
+	_current_shuffle_bags[_map_loot_spawn_key_to_string(GameplayEnums.LootTable.WODC, GameplayEnums.Tier.COMMON)] = []
+	_model_shuffle_bags[_map_loot_spawn_key_to_string(GameplayEnums.LootTable.WODC, GameplayEnums.Tier.COMMON)] = []
+	_current_shuffle_bags[_map_loot_spawn_key_to_string(GameplayEnums.LootTable.WODC, GameplayEnums.Tier.UNCOMMON)] = []
+	_model_shuffle_bags[_map_loot_spawn_key_to_string(GameplayEnums.LootTable.WODC, GameplayEnums.Tier.UNCOMMON)] = []
+	_current_shuffle_bags[_map_loot_spawn_key_to_string(GameplayEnums.LootTable.WODC, GameplayEnums.Tier.RARE)] = []
+	_model_shuffle_bags[_map_loot_spawn_key_to_string(GameplayEnums.LootTable.WODC, GameplayEnums.Tier.RARE)] = []
+	_current_shuffle_bags[_map_loot_spawn_key_to_string(GameplayEnums.LootTable.WODC, GameplayEnums.Tier.EPIC)] = []
+	_model_shuffle_bags[_map_loot_spawn_key_to_string(GameplayEnums.LootTable.WODC, GameplayEnums.Tier.EPIC)] = []
+	_current_shuffle_bags[_map_loot_spawn_key_to_string(GameplayEnums.LootTable.WODC, GameplayEnums.Tier.UNIQUE)] = []
+	_model_shuffle_bags[_map_loot_spawn_key_to_string(GameplayEnums.LootTable.WODC, GameplayEnums.Tier.UNIQUE)] = []
+
+	_current_shuffle_bags[_map_loot_spawn_key_to_string(GameplayEnums.LootTable.MEDICAL, GameplayEnums.Tier.COMMON)] = []
+	_model_shuffle_bags[_map_loot_spawn_key_to_string(GameplayEnums.LootTable.MEDICAL, GameplayEnums.Tier.COMMON)] = []
+	_current_shuffle_bags[_map_loot_spawn_key_to_string(GameplayEnums.LootTable.MEDICAL, GameplayEnums.Tier.UNCOMMON)] = []
+	_model_shuffle_bags[_map_loot_spawn_key_to_string(GameplayEnums.LootTable.MEDICAL, GameplayEnums.Tier.UNCOMMON)] = []
+	_current_shuffle_bags[_map_loot_spawn_key_to_string(GameplayEnums.LootTable.MEDICAL, GameplayEnums.Tier.RARE)] = []
+	_model_shuffle_bags[_map_loot_spawn_key_to_string(GameplayEnums.LootTable.MEDICAL, GameplayEnums.Tier.RARE)] = []
+	_current_shuffle_bags[_map_loot_spawn_key_to_string(GameplayEnums.LootTable.MEDICAL, GameplayEnums.Tier.EPIC)] = []
+	_model_shuffle_bags[_map_loot_spawn_key_to_string(GameplayEnums.LootTable.MEDICAL, GameplayEnums.Tier.EPIC)] = []
+	_current_shuffle_bags[_map_loot_spawn_key_to_string(GameplayEnums.LootTable.MEDICAL, GameplayEnums.Tier.UNIQUE)] = []
+	_model_shuffle_bags[_map_loot_spawn_key_to_string(GameplayEnums.LootTable.MEDICAL, GameplayEnums.Tier.UNIQUE)] = []
+
+	_current_shuffle_bags[_map_loot_spawn_key_to_string(GameplayEnums.LootTable.SCIENCE, GameplayEnums.Tier.COMMON)] = []
+	_model_shuffle_bags[_map_loot_spawn_key_to_string(GameplayEnums.LootTable.SCIENCE, GameplayEnums.Tier.COMMON)] = []
+	_current_shuffle_bags[_map_loot_spawn_key_to_string(GameplayEnums.LootTable.SCIENCE, GameplayEnums.Tier.UNCOMMON)] = []
+	_model_shuffle_bags[_map_loot_spawn_key_to_string(GameplayEnums.LootTable.SCIENCE, GameplayEnums.Tier.UNCOMMON)] = []
+	_current_shuffle_bags[_map_loot_spawn_key_to_string(GameplayEnums.LootTable.SCIENCE, GameplayEnums.Tier.RARE)] = []
+	_model_shuffle_bags[_map_loot_spawn_key_to_string(GameplayEnums.LootTable.SCIENCE, GameplayEnums.Tier.RARE)] = []
+	_current_shuffle_bags[_map_loot_spawn_key_to_string(GameplayEnums.LootTable.SCIENCE, GameplayEnums.Tier.EPIC)] = []
+	_model_shuffle_bags[_map_loot_spawn_key_to_string(GameplayEnums.LootTable.SCIENCE, GameplayEnums.Tier.EPIC)] = []
+	_current_shuffle_bags[_map_loot_spawn_key_to_string(GameplayEnums.LootTable.SCIENCE, GameplayEnums.Tier.UNIQUE)] = []
+	_model_shuffle_bags[_map_loot_spawn_key_to_string(GameplayEnums.LootTable.SCIENCE, GameplayEnums.Tier.UNIQUE)] = []
+	
+	_current_shuffle_bags[_map_loot_spawn_key_to_string(GameplayEnums.LootTable.MILITARY, GameplayEnums.Tier.COMMON)] = []
+	_model_shuffle_bags[_map_loot_spawn_key_to_string(GameplayEnums.LootTable.MILITARY, GameplayEnums.Tier.COMMON)] = []
+	_current_shuffle_bags[_map_loot_spawn_key_to_string(GameplayEnums.LootTable.MILITARY, GameplayEnums.Tier.UNCOMMON)] = []
+	_model_shuffle_bags[_map_loot_spawn_key_to_string(GameplayEnums.LootTable.MILITARY, GameplayEnums.Tier.UNCOMMON)] = []
+	_current_shuffle_bags[_map_loot_spawn_key_to_string(GameplayEnums.LootTable.MILITARY, GameplayEnums.Tier.RARE)] = []
+	_model_shuffle_bags[_map_loot_spawn_key_to_string(GameplayEnums.LootTable.MILITARY, GameplayEnums.Tier.RARE)] = []
+	_current_shuffle_bags[_map_loot_spawn_key_to_string(GameplayEnums.LootTable.MILITARY, GameplayEnums.Tier.EPIC)] = []
+	_model_shuffle_bags[_map_loot_spawn_key_to_string(GameplayEnums.LootTable.MILITARY, GameplayEnums.Tier.EPIC)] = []
+	_current_shuffle_bags[_map_loot_spawn_key_to_string(GameplayEnums.LootTable.MILITARY, GameplayEnums.Tier.UNIQUE)] = []
+	_model_shuffle_bags[_map_loot_spawn_key_to_string(GameplayEnums.LootTable.MILITARY, GameplayEnums.Tier.UNIQUE)] = []
+
 func _ready() -> void:
+	create_empty_shuffle_bags()
+
 	for item_info in ItemMappingRepository.get_all_item_information():
 		#generate shufflebags
 		var model_shuffle_bag:Array[String] = []
-		var current_shuffle_bag:Array[String] = []
 		for i in range(get_rarity_value(item_info.rarity)):
 			model_shuffle_bag.append(item_info.item_type_id)
 
-		current_shuffle_bag = model_shuffle_bag.duplicate(true)
-		current_shuffle_bag.shuffle()
-		_current_shuffle_bags[_map_loot_spawn_key_to_string(item_info.loot_table, item_info.tier)] = current_shuffle_bag
-		_model_shuffle_bags[_map_loot_spawn_key_to_string(item_info.loot_table, item_info.tier)] = model_shuffle_bag
+		# for items tier and above, add it to the model shuffle bag
+		var current_tier = item_info.tier
+		while current_tier <= GameplayEnums.Tier.UNIQUE:
+			_model_shuffle_bags[_map_loot_spawn_key_to_string(item_info.loot_table, current_tier)].append_array(model_shuffle_bag)
+			current_tier += 1
+		
 
 func _map_loot_spawn_key_to_string(loot_table:GameplayEnums.LootTable, tier:GameplayEnums.Tier) -> String:
 	return str(loot_table) + "-" + str(tier)
@@ -165,7 +246,7 @@ func try_to_spawn_area_loot_spawn(item_info:ItemInformation, area:AreaLootSpawn)
 	var scene = Item3D.instantiate_from_slot_data(slot_data)
 	scene.set_as_top_level(true)
 	LevelManager.add_node_to_level.call_deferred(scene)
-	scene.set_global_position.call_deferred(try_pos + self.global_position)
+	scene.set_global_position.call_deferred(try_pos + area.global_position)
 	var random_rotation = Vector3(randf_range(0,360),randf_range(0,360),randf_range(0,360))
 	scene.set_rotation_degrees.call_deferred(random_rotation)
 
