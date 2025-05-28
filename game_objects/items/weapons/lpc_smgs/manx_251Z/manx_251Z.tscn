@@ -45,22 +45,46 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("blockbench_export/Node/magazines:position")
+tracks/0/path = NodePath("blockbench_export/Node/magazine:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(0, 0, 0)]
+"values": [Vector3(-8.30707e-17, 0.0740566, 0.138561)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("blockbench_export/Node/magazines:rotation")
+tracks/1/path = NodePath("blockbench_export/Node/magazine:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-1.5708, 2.83302e-16, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("blockbench_export:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("blockbench_export:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
@@ -115,6 +139,54 @@ tracks/2/keys = {
 "times": PackedFloat32Array(2)
 }
 tracks/2/use_blend = true
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("blockbench_export/Node/magazine:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.59, 0.89, 1.17, 1.41, 1.64, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(-8.30707e-17, 0.0740566, 0.138561), Vector3(-8.30707e-17, 0.121894, 0.138561), Vector3(-0.462454, 0.127584, 0.171126), Vector3(-0.65612, 0.23566, 0.68478), Vector3(-0.462454, 0.127584, 0.171126), Vector3(-8.30707e-17, 0.121894, 0.138561), Vector3(-8.30707e-17, 0.0740566, 0.138561)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("blockbench_export/Node/magazine:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.59, 1.64, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(-1.5708, 2.83302e-16, 0), Vector3(-1.84307, 0, 0), Vector3(-1.84307, 0, 0), Vector3(-1.5708, 2.83302e-16, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("blockbench_export:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("blockbench_export:rotation")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.533333, 1.06667, 1.58, 2.07, 2.3, 2.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0.258658, -0.106709, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0.203436, 4.55933e-10, 0.312274), Vector3(0, 0, 0)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_uiu2q"]
 _data = {
@@ -150,6 +222,10 @@ world_colliders = [NodePath("CollisionShape3D")]
 metadata/_custom_type_script = "uid://b1hgbiqq2ptq5"
 
 [node name="blockbench_export" parent="." instance=ExtResource("4_k060u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="magazine" parent="blockbench_export/Node" index="3"]
+transform = Transform3D(1, -2.83302e-16, -1.23835e-23, 0, -4.37114e-08, 1, -2.83302e-16, -1, -4.37114e-08, -8.30707e-17, 0.0740566, 0.138561)
 
 [node name="optics_rail" parent="blockbench_export/Node" index="5"]
 visible = false
