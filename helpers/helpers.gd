@@ -260,3 +260,13 @@ func clamp_int_to_enum(value:int, enumeration:Dictionary) -> int:
 	var enum_max = enum_values.max()
 	var enum_min = enum_values.min()
 	return clampi(value, enum_min, enum_max)
+	
+func string_to_vector3(s: String) -> Vector3:
+	var cleaned = s.strip_edges()
+	if cleaned.begins_with("(") and cleaned.ends_with(")"):
+		cleaned = cleaned.substr(1, cleaned.length() - 2)
+	var parts = cleaned.split(",")
+	if parts.size() != 3:
+		push_error("Invalid Vector3 string: " + s)
+		return Vector3.ZERO
+	return Vector3(parts[0].to_float(), parts[1].to_float(), parts[2].to_float())
