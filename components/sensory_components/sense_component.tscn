@@ -30,4 +30,5 @@ collision_mask = 2
 [node name="CollisionShape3D" type="CollisionShape3D" parent="BulletDetectRadius"]
 shape = SubResource("SphereShape3D_nws4b")
 
+[connection signal="body_entered" from="BulletDetectRadius" to="." method="_on_bullet_detect_radius_body_entered"]
 [connection signal="body_shape_entered" from="BulletDetectRadius" to="." method="_on_bullet_detect_radius_body_shape_entered"]

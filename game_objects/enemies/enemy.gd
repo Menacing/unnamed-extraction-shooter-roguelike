@@ -45,6 +45,7 @@ var _reaction_timer:float = 0.0
 @export var hor_moa:float = 600
 @export var firing_cooldown:float = 1.0
 @export var melee_range:float = 1.0
+@export var suppression_threshold = 10
 
 @export_category("Death")
 @export var loot_fiesta:LootFiestaComponent
@@ -370,4 +371,5 @@ func _on_monster_state_state_physics_processing(delta: float) -> void:
 	if gun_node and gun_node is Gun and gun_node.current_magazine_size == 0:
 		state_chart.send_event("Reload")
 		
-		
+	if sensory_component.shots_taken.size() >= suppression_threshold:
+		state_chart.send_event("Suppressed") 

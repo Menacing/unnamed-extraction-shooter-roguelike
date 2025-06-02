@@ -21,6 +21,7 @@ var elapsed_time:float = 0.0
 #target information
 var sees_enemy:bool = false
 var targets:Dictionary[int,TargetInformation] = {}
+var shots_taken:Array[int] = []
 
 func _ready() -> void:
 	pass
@@ -39,16 +40,21 @@ func _process_senses():
 
 func _process_memory() -> void:
 	sees_enemy = false
-	
+	var now = Time.get_ticks_msec()
+	var memory_ms = memory_seconds * 1000
 	var targets_to_forget:Array[int]
 	for key in targets:
 		var target:TargetInformation = targets[key]
 		target.currently_has_los = false
-		var time_since_last_seen = Time.get_ticks_msec() - target.last_seen_mticks
-		if time_since_last_seen > memory_seconds * 1000:
+		var time_since_last_seen = now - target.last_seen_mticks
+		if time_since_last_seen > memory_ms:
 			targets_to_forget.append(key)
 	for key in targets_to_forget:
 		targets.erase(key)
+		
+	while shots_taken.size() > 0 and now - shots_taken[0] > memory_ms:
+		shots_taken.pop_front()
+		
 
 func _process_look() -> void:
 	for viewable_entity in LevelManager.viewable_entities:
@@ -80,6 +86,22 @@ func _process_look() -> void:
 func _on_bullet_detect_radius_body_shape_entered(body_rid: RID, body: Node3D, body_shape_index: int, local_shape_index: int) -> void:
 	if body.is_in_group("attack"):
 		if body.firer and body.firer is Player:
+			shots_taken.append(Time.get_ticks_msec())
+			if targets[body.firer.get_instance_id()] == null:
+				var target_information = TargetInformation.new()
+				target_information.last_known_position = body.firer.global_position
+				target_information.last_seen_mticks = Time.get_ticks_msec()
+				target_information.target = body.firer
+				target_information.currently_has_los = false
+				targets[body.firer.get_instance_id()] = target_information
+			else:
+				targets[body.firer.get_instance_id()].last_seen_mticks = Time.get_ticks_msec()
+
+
+func _on_bullet_detect_radius_body_entered(body: Node3D) -> void:
+	if body.is_in_group("attack"):
+		if body.firer and body.firer is Player:
+			shots_taken.append(Time.get_ticks_msec())
 			if targets[body.firer.get_instance_id()] == null:
 				var target_information = TargetInformation.new()
 				target_information.last_known_position = body.firer.global_position
