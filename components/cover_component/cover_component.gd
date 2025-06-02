@@ -8,6 +8,8 @@ func _ready() -> void:
 @export var level_node:Node3D
 @export var navigation_mesh:NavigationMesh
 
+@export_tool_button("Generate Cover Points", "Callable") var generate_cover_action = create_cover_points
+
 var edges:Dictionary[String, int] = {}
 
 func create_cover_points():
@@ -57,9 +59,9 @@ func create_cover_points():
 			var midpoint = start_point.lerp(end_point, 0.5)
 			
 			var cover_point:Marker3D = Marker3D.new()
+			self.add_child(cover_point)
 			cover_point.global_position = midpoint
 			cover_point.add_to_group("cover_point", true)
-			self.add_child(cover_point)
 		pass
 	else:
 		printerr("NO LEVEL NODE OR NAV MESH DATA SET")
