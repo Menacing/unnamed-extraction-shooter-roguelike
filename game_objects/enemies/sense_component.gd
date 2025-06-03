@@ -37,7 +37,6 @@ func _process_senses():
 	_process_look()
 	pass
 
-
 func _process_memory() -> void:
 	sees_enemy = false
 	var now = Time.get_ticks_msec()
@@ -82,7 +81,6 @@ func _process_look() -> void:
 	
 	pass
 
-
 func _on_bullet_detect_radius_body_shape_entered(body_rid: RID, body: Node3D, body_shape_index: int, local_shape_index: int) -> void:
 	if body.is_in_group("attack"):
 		if body.firer and body.firer is Player:
@@ -97,7 +95,6 @@ func _on_bullet_detect_radius_body_shape_entered(body_rid: RID, body: Node3D, bo
 			else:
 				targets[body.firer.get_instance_id()].last_seen_mticks = Time.get_ticks_msec()
 
-
 func _on_bullet_detect_radius_body_entered(body: Node3D) -> void:
 	if body.is_in_group("attack"):
 		if body.firer and body.firer is Player:
@@ -111,3 +108,11 @@ func _on_bullet_detect_radius_body_entered(body: Node3D) -> void:
 				targets[body.firer.get_instance_id()] = target_information
 			else:
 				targets[body.firer.get_instance_id()].last_seen_mticks = Time.get_ticks_msec()
+
+func get_last_known_locations() -> Array[Vector3]:
+	var returnable:Array[Vector3] = []
+	for key in targets.keys():
+		returnable.append(targets[key].last_known_position)
+		
+	return returnable
+		

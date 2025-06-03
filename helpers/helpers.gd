@@ -63,6 +63,31 @@ func los_to_point(target:Node3D, sources:Array[Node3D], threshold:float, exclusi
 			return false
 	else:
 		return false
+		
+#Only call during _physics_process
+func los_to_point_vec(target:Node3D, sources:Array[Vector3], threshold:float, exclusions:Array[RID] = [], concealment_layer:bool = false) -> bool:
+	var num_sources:int = sources.size()
+	var num_los:float = 0.0
+	var space_state:PhysicsDirectSpaceState3D = target.get_world_3d().direct_space_state
+	if space_state:
+		var target_global_pos:Vector3 = target.global_position
+		for source in sources:
+			var query:PhysicsRayQueryParameters3D = PhysicsRayQueryParameters3D.create(source,\
+				target_global_pos)
+			if exclusions.size() > 0:
+				query.exclude = exclusions
+			if concealment_layer:
+				query.collision_mask = 0b00000000_00000000_00000000_00001000
+			var result:Dictionary = space_state.intersect_ray(query)
+			if result.is_empty():
+				num_los += 1.0
+			pass
+		if (num_los/num_sources > threshold):
+			return true
+		else:
+			return false
+	else:
+		return false
 
 func get_all_collision_object_3d_recursive(node: Node) -> Array[RID]:
 	var list:Array[RID] = []

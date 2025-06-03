@@ -376,18 +376,33 @@ func _on_monster_state_state_physics_processing(delta: float) -> void:
 
 
 func find_cover_point() -> void:
-	var cover_points = get_tree().get_nodes_in_group("cover_point")
+	var player_locations = sensory_component.get_last_known_locations()
 	
-	#var closest_point:Node3D
-	#for point in cover_points:
-		#if point is Node3D:
-			#
+	if player_locations.size() > 0:
+		var cover_points = get_tree().get_nodes_in_group("cover_point")
+		
+		var closest_point:Node3D
+		var closest_distance_sq:float = INF
+		for point in cover_points:
+			if point is Node3D:
+				if Helpers.los_to_point_vec(point, player_locations, .9):
+					if closest_point == null:
+						closest_point = point
+						closest_distance_sq = self.global_position.distance_squared_to(point)
+					else:
+						var new_dist_sq = self.global_position.distance_squared_to(point)
+						if new_dist_sq < closest_distance_sq:
+							closest_point = point
+							closest_distance_sq = new_dist_sq
+	
+		if closest_point:
+			_move_target = closest_point
 	
 
 func _on_take_cover_state_entered() -> void:
 	#Find cover position
-	
-	#set cover position
+	find_cover_point()
 	
 	#start behavior tree
+	
 	pass # Replace with function body.
