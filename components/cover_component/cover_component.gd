@@ -13,7 +13,14 @@ func _ready() -> void:
 var edges:Dictionary[String, int] = {}
 
 func create_cover_points():
+	print("deleting previous children")
+	
+	for child in self.get_children():
+		child.queue_free()
+	
 	print("Generating cover points")
+	var cover_point_scene:PackedScene = load("res://components/cover_component/cover_point.tscn")
+	
 	if navigation_mesh and level_node:
 		var vertices:Array[Vector3] 
 		vertices.assign(navigation_mesh.get_vertices())
@@ -63,21 +70,23 @@ func create_cover_points():
 			if section_length < 2.0:
 				var midpoint = start_point.lerp(end_point, 0.5)
 				
-				var cover_point:Marker3D = Marker3D.new()
+				var cover_point:Node3D = cover_point_scene.instantiate()
 				self.add_child(cover_point)
 				cover_point.owner = get_tree().edited_scene_root
 				cover_point.global_position = midpoint
 				cover_point.add_to_group("cover_point", true)
+				cover_point.create_player_rays()
 			else:
 
 				var direction = (end_point - start_point).normalized()
 				var steps = int(section_length / 2.0)
 				for i in steps:
-					var cover_point:Marker3D = Marker3D.new()
+					var cover_point:Node3D = cover_point_scene.instantiate()
 					self.add_child(cover_point)
 					cover_point.owner = get_tree().edited_scene_root
 					cover_point.global_position = start_point + direction * (i * 2.0)
 					cover_point.add_to_group("cover_point", true)
+					cover_point.create_player_rays()
 		pass
 	else:
 		printerr("NO LEVEL NODE OR NAV MESH DATA SET")

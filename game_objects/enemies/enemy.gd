@@ -373,3 +373,21 @@ func _on_monster_state_state_physics_processing(delta: float) -> void:
 		
 	if sensory_component.shots_taken.size() >= suppression_threshold:
 		state_chart.send_event("Suppressed") 
+
+
+func find_cover_point() -> void:
+	var cover_points = get_tree().get_nodes_in_group("cover_point")
+	
+	#var closest_point:Node3D
+	#for point in cover_points:
+		#if point is Node3D:
+			#
+	
+
+func _on_take_cover_state_entered() -> void:
+	#Find cover position
+	
+	#set cover position
+	
+	#start behavior tree
+	pass # Replace with function body.

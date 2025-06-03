@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://db4qc6xandhu3"]
+
+[ext_resource type="Script" uid="uid://xgjt8ei4jwvn" path="res://components/cover_component/cover_point.gd" id="1_3korc"]
+
+[node name="CoverPoint" type="Marker3D" groups=["cover_point"]]
+script = ExtResource("1_3korc")
