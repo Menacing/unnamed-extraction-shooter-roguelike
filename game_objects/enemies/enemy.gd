@@ -46,6 +46,7 @@ var _reaction_timer:float = 0.0
 @export var firing_cooldown:float = 1.0
 @export var melee_range:float = 1.0
 @export var suppression_threshold = 10
+@export var cover_radius:float = 25.0
 
 @export_category("Death")
 @export var loot_fiesta:LootFiestaComponent
@@ -375,34 +376,56 @@ func _on_monster_state_state_physics_processing(delta: float) -> void:
 		state_chart.send_event("Suppressed") 
 
 
-func find_cover_point() -> void:
+func find_cover_point() -> bool:
+	var start_time = Time.get_ticks_usec()
 	var player_locations = sensory_component.get_last_known_locations()
+	var closest_point:Node3D
+	var low_cover_found:bool = false
 	
 	if player_locations.size() > 0:
 		var cover_points = get_tree().get_nodes_in_group("cover_point")
-		
-		var closest_point:Node3D
-		var closest_distance_sq:float = INF
+		var closest_distance:float = INF
 		for point in cover_points:
 			if point is Node3D:
-				if Helpers.los_to_point_vec(point, player_locations, .9):
-					if closest_point == null:
+				var distance_to_point = self.global_position.distance_to(point.global_position)
+				if distance_to_point <= cover_radius:
+					var offset = Vector3.UP * 1.5
+					var offset_player_locations:Array[Vector3] = []
+					for pl in player_locations:
+						offset_player_locations.append(pl + offset)
+
+					var high_los = Helpers.los_to_point_vec(point, offset_player_locations, .9)
+					var low_los = Helpers.los_to_point_vec(point, player_locations, .9)
+					
+					## If any cover and we haven't don't have a current point, select it
+					if (!high_los or !low_los) and closest_point == null:
 						closest_point = point
-						closest_distance_sq = self.global_position.distance_squared_to(point)
-					else:
-						var new_dist_sq = self.global_position.distance_squared_to(point)
-						if new_dist_sq < closest_distance_sq:
-							closest_point = point
-							closest_distance_sq = new_dist_sq
+						closest_distance = distance_to_point
+					## else if high cover and no low cover
+					elif !high_los and !low_los and !low_cover_found:
+						closest_point = point
+						closest_distance = distance_to_point
+					## else if low cover and closer
+					elif high_los and !low_los and distance_to_point < closest_distance:
+						closest_point = point
+						closest_distance = distance_to_point
+						low_cover_found = true
 	
-		if closest_point:
-			_move_target = closest_point
+	var end_time = Time.get_ticks_usec()
+	var duration_ms := float(end_time - start_time) / 1000.0
+	printt("Find Cover Elapsed Time ms", str(duration_ms))
 	
+	if closest_point:
+		_move_target = closest_point
+		return true
+	else:
+		return false
 
 func _on_take_cover_state_entered() -> void:
 	#Find cover position
-	find_cover_point()
-	
+	var cover_found = find_cover_point()
 	#start behavior tree
+	if cover_found:
+		_start_behavior_tree("take_cover")
 	
 	pass # Replace with function body.

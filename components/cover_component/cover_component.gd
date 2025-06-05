@@ -2,8 +2,8 @@
 extends Node3D
 class_name CoverComponent
 
-func _ready() -> void:
-	create_cover_points()
+#func _ready() -> void:
+	#create_cover_points()
 
 @export var level_node:Node3D
 @export var navigation_mesh:NavigationMesh

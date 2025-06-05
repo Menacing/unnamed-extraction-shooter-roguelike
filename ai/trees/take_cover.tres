@@ -1,0 +1,51 @@
+[gd_resource type="BehaviorTree" load_steps=14 format=3 uid="uid://b4smq1lqqwjt2"]
+
+[ext_resource type="Script" uid="uid://bmbep2p4f7w40" path="res://ai/tasks/nav_agent_repath_task.gd" id="2_d7y66"]
+[ext_resource type="Script" uid="uid://blaj7bmpwo86q" path="res://ai/tasks/nav_agent_move_task.gd" id="3_4hda8"]
+
+[sub_resource type="BlackboardPlan" id="BlackboardPlan_o4gde"]
+
+[sub_resource type="BBNode" id="BBNode_sopo0"]
+value_source = 1
+variable = &"animation_player"
+resource_name = "$animation_player"
+
+[sub_resource type="BTPlayAnimation" id="BTPlayAnimation_5a5se"]
+animation_player = SubResource("BBNode_sopo0")
+animation_name = &"running"
+custom_name = "Play Running Animation"
+
+[sub_resource type="BTAction" id="BTAction_ix3rg"]
+script = ExtResource("2_d7y66")
+
+[sub_resource type="BTCooldown" id="BTCooldown_ghuls"]
+duration = 2.0
+children = [SubResource("BTAction_ix3rg")]
+
+[sub_resource type="BTAlwaysSucceed" id="BTAlwaysSucceed_hi5hy"]
+children = [SubResource("BTCooldown_ghuls")]
+
+[sub_resource type="BTAction" id="BTAction_rodsq"]
+script = ExtResource("3_4hda8")
+
+[sub_resource type="BTDynamicSequence" id="BTDynamicSequence_26x6n"]
+children = [SubResource("BTAlwaysSucceed_hi5hy"), SubResource("BTAction_rodsq")]
+
+[sub_resource type="BBNode" id="BBNode_j3u4j"]
+value_source = 1
+variable = &"animation_player"
+resource_name = "$animation_player"
+
+[sub_resource type="BTPlayAnimation" id="BTPlayAnimation_rvcvm"]
+await_completion = 5.0
+animation_player = SubResource("BBNode_j3u4j")
+animation_name = &"take_cover"
+custom_name = "Play Cover Animation"
+
+[sub_resource type="BTSequence" id="BTSequence_wwg33"]
+custom_name = "TakeCoverSequence"
+children = [SubResource("BTPlayAnimation_5a5se"), SubResource("BTDynamicSequence_26x6n"), SubResource("BTPlayAnimation_rvcvm")]
+
+[resource]
+blackboard_plan = SubResource("BlackboardPlan_o4gde")
+root_task = SubResource("BTSequence_wwg33")

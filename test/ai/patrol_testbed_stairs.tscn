@@ -934,6 +934,7 @@ billboard = 1
 text = "PLAYER"
 
 [node name="Timer" type="Timer" parent="NavigationRegion3D/FakePlayer"]
+one_shot = true
 autostart = true
 
 [node name="Camera3D" type="Camera3D" parent="."]
@@ -966,2218 +967,2218 @@ script = ExtResource("25_wutxs")
 level_node = NodePath("../NavigationRegion3D/MultiAgentNavigationRoot")
 navigation_mesh = ExtResource("2_t6h81")
 
-[node name="@Marker3D@27594" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@36881" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.08205, 0.488, -10.8144)
 
-[node name="@Marker3D@27595" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@36882" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.08205, 0.488, -8.8144)
 
-[node name="@Marker3D@27596" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@36883" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.08205, 0.488, -6.8144)
 
-[node name="@Marker3D@27597" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@36884" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.08205, 0.488, -4.8144)
 
-[node name="@Marker3D@27598" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@36885" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.08205, 0.488, -2.8144)
 
-[node name="@Marker3D@27599" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@36886" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.08205, 0.488, -0.8144)
 
-[node name="@Marker3D@27600" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@36887" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.08205, 0.488, 2.18562)
 
-[node name="@Marker3D@27601" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@36888" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.08205, 0.488, 2.18562)
 
-[node name="@Marker3D@27602" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@36889" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.08205, 0.488, 2.18562)
 
-[node name="@Marker3D@27603" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@36890" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.08205, 0.488, 2.18562)
 
-[node name="@Marker3D@27604" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@36891" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.0821, 0.488, 2.18562)
 
-[node name="@Marker3D@27605" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@36892" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.0821, 0.488, 2.18562)
 
-[node name="@Marker3D@27606" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@36893" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.0821, 0.488, 2.18562)
 
-[node name="@Marker3D@27607" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@36894" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.0821, 0.488, 2.18562)
 
-[node name="@Marker3D@27608" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@36895" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.457, 0.488, 2.56062)
 
-[node name="@Marker3D@27609" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@36896" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.70705, 0.488, -10.9394)
 
-[node name="@Marker3D@27610" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@36897" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -138.332, 0.488, 2.93562)
 
-[node name="@Marker3D@27611" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@36898" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -138.332, 0.488, 0.93562)
 
-[node name="@Marker3D@27612" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@36899" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -138.332, 0.488, -1.06438)
 
-[node name="@Marker3D@27613" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@36900" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -138.332, 0.488, -3.06438)
 
-[node name="@Marker3D@27614" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@36901" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -138.332, 0.488, -5.06438)
 
-[node name="@Marker3D@27615" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@36902" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -138.332, 0.488, -7.06438)
 
-[node name="@Marker3D@27616" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@36903" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -138.332, 0.488, -9.06438)
 
-[node name="@Marker3D@27617" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@36904" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -138.332, 0.488, -11.0644)
 
-[node name="@Marker3D@27618" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@36905" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -138.332, 0.488, -13.0644)
 
-[node name="@Marker3D@27619" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@36906" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -138.332, 0.488, -15.0644)
 
-[node name="@Marker3D@27620" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@36907" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -138.332, 0.488, -17.0644)
 
-[node name="@Marker3D@27621" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@36908" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -138.332, 0.488, -19.0644)
 
-[node name="@Marker3D@27622" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@36909" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -138.332, 0.488, -21.0644)
 
-[node name="@Marker3D@27623" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@36910" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -138.332, 0.488, -23.0644)
 
-[node name="@Marker3D@27624" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@36911" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -138.332, 0.488, -25.0644)
 
-[node name="@Marker3D@27625" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@36912" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -138.332, 0.488, -27.0644)
 
-[node name="@Marker3D@27626" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@36913" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -138.332, 0.488, -29.0644)
 
-[node name="@Marker3D@27627" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@36914" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -138.332, 0.488, -31.0644)
 
-[node name="@Marker3D@27628" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@36915" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -138.332, 0.488, -33.0644)
 
-[node name="@Marker3D@27629" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@36916" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -138.332, 0.488, -35.0644)
 
-[node name="@Marker3D@27630" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@36917" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -138.332, 0.488, -37.0644)
 
-[node name="@Marker3D@27631" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@36918" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -138.332, 0.488, -39.0644)
 
-[node name="@Marker3D@27632" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@36919" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -138.332, 0.488, -41.0644)
 
-[node name="@Marker3D@27633" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@36920" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -138.332, 0.488, -43.0644)
 
-[node name="@Marker3D@27634" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@36921" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -138.332, 0.488, -45.0644)
 
-[node name="@Marker3D@27635" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@36922" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -138.332, 0.488, -47.0644)
 
-[node name="@Marker3D@27636" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@36923" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -138.332, 0.488, -49.0644)
 
-[node name="@Marker3D@27637" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@36924" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -138.332, 0.488, -51.0644)
 
-[node name="@Marker3D@27638" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@36925" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -138.332, 0.488, -53.0644)
 
-[node name="@Marker3D@27639" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@36926" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -138.332, 0.488, -55.0644)
 
-[node name="@Marker3D@27640" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@36927" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -138.332, 0.488, -57.0644)
 
-[node name="@Marker3D@27641" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@36928" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -138.332, 0.488, -59.0644)
 
-[node name="@Marker3D@27642" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@36929" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -138.332, 0.488, -61.0644)
 
-[node name="@Marker3D@27643" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@36930" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -138.332, 0.488, -63.0644)
 
-[node name="@Marker3D@27644" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@36931" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -138.332, 0.488, -65.0644)
 
-[node name="@Marker3D@27645" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@36932" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -138.332, 0.488, -67.0644)
 
-[node name="@Marker3D@27646" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@36933" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -138.332, 0.488, -69.0644)
 
-[node name="@Marker3D@27647" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@36934" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -138.332, 0.488, -71.0644)
 
-[node name="@Marker3D@27648" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@36935" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -138.332, 0.488, -73.0644)
 
-[node name="@Marker3D@27649" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@36936" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -138.332, 0.488, -75.0644)
 
-[node name="@Marker3D@27650" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@36937" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -138.332, 0.488, -77.0644)
 
-[node name="@Marker3D@27651" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@36938" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -138.332, 0.488, -79.0644)
 
-[node name="@Marker3D@27652" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@36939" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -138.332, 0.488, -81.0644)
 
-[node name="@Marker3D@27653" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@36940" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -138.332, 0.488, -83.0644)
 
-[node name="@Marker3D@27654" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@36941" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -138.332, 0.488, -85.0644)
 
-[node name="@Marker3D@27655" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@36942" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -138.332, 0.488, -87.0644)
 
-[node name="@Marker3D@27656" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@36943" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -138.332, 0.488, -89.0644)
 
-[node name="@Marker3D@27657" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@36944" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -138.332, 0.488, -91.0644)
 
-[node name="@Marker3D@27658" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@36945" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -138.332, 0.488, -93.0644)
 
-[node name="@Marker3D@27659" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@36946" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -138.332, 0.488, -95.0644)
 
-[node name="@Marker3D@27660" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@36947" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -138.332, 0.488, -97.0644)
 
-[node name="@Marker3D@27661" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@36948" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -138.332, 0.488, -99.0644)
 
-[node name="@Marker3D@27662" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@36949" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -138.332, 0.488, -101.064)
 
-[node name="@Marker3D@27663" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@36950" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -138.332, 0.488, -103.064)
 
-[node name="@Marker3D@27664" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@36951" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -138.332, 0.488, -105.064)
 
-[node name="@Marker3D@27665" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@36952" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -138.332, 0.488, -107.064)
 
-[node name="@Marker3D@27666" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@36953" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -138.332, 0.488, -109.064)
 
-[node name="@Marker3D@27667" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@36954" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -138.332, 0.488, -111.064)
 
-[node name="@Marker3D@27668" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@36955" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -138.332, 0.488, -113.064)
 
-[node name="@Marker3D@27669" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@36956" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -138.332, 0.488, -115.064)
 
-[node name="@Marker3D@27670" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@36957" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -138.332, 0.488, -117.064)
 
-[node name="@Marker3D@27671" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@36958" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -138.332, 0.488, -119.064)
 
-[node name="@Marker3D@27672" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@36959" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -138.332, 0.488, -121.064)
 
-[node name="@Marker3D@27673" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@36960" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -138.332, 0.488, -123.064)
 
-[node name="@Marker3D@27674" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@36961" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -138.332, 0.488, -125.064)
 
-[node name="@Marker3D@27675" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@36962" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -138.332, 0.488, -127.064)
 
-[node name="@Marker3D@27676" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@36963" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -138.332, 0.488, -129.064)
 
-[node name="@Marker3D@27677" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@36964" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -138.332, 0.488, -132.564)
 
-[node name="@Marker3D@27678" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@36965" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -136.332, 0.488, -132.564)
 
-[node name="@Marker3D@27679" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@36966" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -134.332, 0.488, -132.564)
 
-[node name="@Marker3D@27680" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@36967" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -132.332, 0.488, -132.564)
 
-[node name="@Marker3D@27681" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@36968" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -130.332, 0.488, -132.564)
 
-[node name="@Marker3D@27682" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@36969" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -128.332, 0.488, -132.564)
 
-[node name="@Marker3D@27683" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@36970" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -126.332, 0.488, -132.564)
 
-[node name="@Marker3D@27684" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@36971" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -124.332, 0.488, -132.564)
 
-[node name="@Marker3D@27685" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@36972" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -122.332, 0.488, -132.564)
 
-[node name="@Marker3D@27686" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@36973" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -120.332, 0.488, -132.564)
 
-[node name="@Marker3D@27687" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@36974" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -118.332, 0.488, -132.564)
 
-[node name="@Marker3D@27688" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@36975" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -116.332, 0.488, -132.564)
 
-[node name="@Marker3D@27689" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@36976" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -114.332, 0.488, -132.564)
 
-[node name="@Marker3D@27690" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@36977" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -112.332, 0.488, -132.564)
 
-[node name="@Marker3D@27691" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@36978" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -110.332, 0.488, -132.564)
 
-[node name="@Marker3D@27692" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@36979" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -108.332, 0.488, -132.564)
 
-[node name="@Marker3D@27693" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@36980" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -106.332, 0.488, -132.564)
 
-[node name="@Marker3D@27694" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@36981" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -104.332, 0.488, -132.564)
 
-[node name="@Marker3D@27695" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@36982" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -102.332, 0.488, -132.564)
 
-[node name="@Marker3D@27696" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@36983" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -100.332, 0.488, -132.564)
 
-[node name="@Marker3D@27697" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@36984" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -98.332, 0.488, -132.564)
 
-[node name="@Marker3D@27698" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@36985" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -96.332, 0.488, -132.564)
 
-[node name="@Marker3D@27699" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@36986" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -94.332, 0.488, -132.564)
 
-[node name="@Marker3D@27700" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@36987" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -92.332, 0.488, -132.564)
 
-[node name="@Marker3D@27701" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@36988" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -90.332, 0.488, -132.564)
 
-[node name="@Marker3D@27702" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@36989" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -88.332, 0.488, -132.564)
 
-[node name="@Marker3D@27703" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@36990" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -86.332, 0.488, -132.564)
 
-[node name="@Marker3D@27704" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@36991" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -84.332, 0.488, -132.564)
 
-[node name="@Marker3D@27705" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@36992" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -82.332, 0.488, -132.564)
 
-[node name="@Marker3D@27706" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@36993" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -80.332, 0.488, -132.564)
 
-[node name="@Marker3D@27707" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@36994" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -78.332, 0.488, -132.564)
 
-[node name="@Marker3D@27708" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@36995" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -76.332, 0.488, -132.564)
 
-[node name="@Marker3D@27709" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@36996" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -74.332, 0.488, -132.564)
 
-[node name="@Marker3D@27710" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@36997" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -72.332, 0.488, -132.564)
 
-[node name="@Marker3D@27711" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@36998" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -70.332, 0.488, -132.564)
 
-[node name="@Marker3D@27712" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@36999" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -68.332, 0.488, -132.564)
 
-[node name="@Marker3D@27713" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37000" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -66.332, 0.488, -132.564)
 
-[node name="@Marker3D@27714" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37001" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -64.332, 0.488, -132.564)
 
-[node name="@Marker3D@27715" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37002" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -62.332, 0.488, -132.564)
 
-[node name="@Marker3D@27716" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37003" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -60.332, 0.488, -132.564)
 
-[node name="@Marker3D@27717" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37004" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -58.332, 0.488, -132.564)
 
-[node name="@Marker3D@27718" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37005" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -56.332, 0.488, -132.564)
 
-[node name="@Marker3D@27719" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37006" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -54.332, 0.488, -132.564)
 
-[node name="@Marker3D@27720" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37007" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -52.332, 0.488, -132.564)
 
-[node name="@Marker3D@27721" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37008" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -50.332, 0.488, -132.564)
 
-[node name="@Marker3D@27722" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37009" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -48.332, 0.488, -132.564)
 
-[node name="@Marker3D@27723" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37010" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46.332, 0.488, -132.564)
 
-[node name="@Marker3D@27724" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37011" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -44.332, 0.488, -132.564)
 
-[node name="@Marker3D@27725" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37012" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -42.332, 0.488, -132.564)
 
-[node name="@Marker3D@27726" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37013" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40.332, 0.488, -132.564)
 
-[node name="@Marker3D@27727" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37014" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -38.332, 0.488, -132.564)
 
-[node name="@Marker3D@27728" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37015" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -36.332, 0.488, -132.564)
 
-[node name="@Marker3D@27729" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37016" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -34.332, 0.488, -132.564)
 
-[node name="@Marker3D@27730" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37017" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -32.332, 0.488, -132.564)
 
-[node name="@Marker3D@27731" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37018" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30.332, 0.488, -132.564)
 
-[node name="@Marker3D@27732" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37019" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -28.332, 0.488, -132.564)
 
-[node name="@Marker3D@27733" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37020" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26.332, 0.488, -132.564)
 
-[node name="@Marker3D@27734" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37021" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24.332, 0.488, -132.564)
 
-[node name="@Marker3D@27735" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37022" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.332, 0.488, -132.564)
 
-[node name="@Marker3D@27736" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37023" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.332, 0.488, -132.564)
 
-[node name="@Marker3D@27737" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37024" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.332, 0.488, -132.564)
 
-[node name="@Marker3D@27738" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37025" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.332, 0.488, -132.564)
 
-[node name="@Marker3D@27739" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37026" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.332, 0.488, -132.564)
 
-[node name="@Marker3D@27740" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37027" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.332, 0.488, -132.564)
 
-[node name="@Marker3D@27741" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37028" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.332, 0.488, -132.564)
 
-[node name="@Marker3D@27742" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37029" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.332, 0.488, -132.564)
 
-[node name="@Marker3D@27743" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37030" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.332, 0.488, -132.564)
 
-[node name="@Marker3D@27744" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37031" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.58205, 1.988, -0.814378)
 
-[node name="@Marker3D@27745" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37032" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.01955, 1.988, -1.06438)
 
-[node name="@Marker3D@27746" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37033" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.91795, 0.488, -0.814377)
 
-[node name="@Marker3D@27747" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37034" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.03486, 1.15262, -0.703607)
 
-[node name="@Marker3D@27748" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37035" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.457047, 1.988, -1.06438)
 
-[node name="@Marker3D@27749" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37036" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.16795, 0.488, -2.31438)
 
-[node name="@Marker3D@27750" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37037" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.17071, 0.488, -2.4195)
 
-[node name="@Marker3D@27751" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37038" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.58205, 0.488, -2.56438)
 
-[node name="@Marker3D@27752" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37039" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.58205, 0.488, -4.56438)
 
-[node name="@Marker3D@27753" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37040" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.58205, 0.488, -6.56438)
 
-[node name="@Marker3D@27754" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37041" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.58205, 0.488, -8.56438)
 
-[node name="@Marker3D@27755" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37042" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.33205, 0.488, -132.564)
 
-[node name="@Marker3D@27756" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37043" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.33205, 0.488, -132.564)
 
-[node name="@Marker3D@27757" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37044" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.66795, 0.488, -132.564)
 
-[node name="@Marker3D@27758" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37045" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.66795, 0.488, -132.564)
 
-[node name="@Marker3D@27759" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37046" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.66795, 0.488, -132.564)
 
-[node name="@Marker3D@27760" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37047" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.66795, 0.488, -132.564)
 
-[node name="@Marker3D@27761" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37048" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.66795, 0.488, -132.564)
 
-[node name="@Marker3D@27762" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37049" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.6679, 0.488, -132.564)
 
-[node name="@Marker3D@27763" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37050" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.6679, 0.488, -132.564)
 
-[node name="@Marker3D@27764" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37051" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.6679, 0.488, -132.564)
 
-[node name="@Marker3D@27765" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37052" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.6679, 0.488, -132.564)
 
-[node name="@Marker3D@27766" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37053" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.6679, 0.488, -132.564)
 
-[node name="@Marker3D@27767" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37054" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.6679, 0.488, -132.564)
 
-[node name="@Marker3D@27768" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37055" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.6679, 0.488, -132.564)
 
-[node name="@Marker3D@27769" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37056" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.04295, 0.488, -0.314377)
 
-[node name="@Marker3D@27770" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37057" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.04295, 0.488, -1.68938)
 
-[node name="@Marker3D@27771" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37058" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.95705, 0.488, -10.9394)
 
-[node name="@Marker3D@27772" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37059" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.58205, 0.488, 0.435623)
 
-[node name="@Marker3D@27773" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37060" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.415186, 0.488, 0.330505)
 
-[node name="@Marker3D@27774" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37061" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.58205, 0.488, 1.31062)
 
-[node name="@Marker3D@27775" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37062" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.418, 0.488, 2.18562)
 
-[node name="@Marker3D@27776" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37063" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.418, 0.488, 2.18562)
 
-[node name="@Marker3D@27777" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37064" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.418, 0.488, 2.18562)
 
-[node name="@Marker3D@27778" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37065" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.418, 0.488, 2.18562)
 
-[node name="@Marker3D@27779" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37066" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.418, 0.488, 2.18562)
 
-[node name="@Marker3D@27780" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37067" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.418, 0.488, 2.18562)
 
-[node name="@Marker3D@27781" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37068" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.418, 0.488, 2.18562)
 
-[node name="@Marker3D@27782" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37069" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.418, 0.488, 2.18562)
 
-[node name="@Marker3D@27783" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37070" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.418, 0.488, 2.18562)
 
-[node name="@Marker3D@27784" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37071" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.418, 0.488, 2.18562)
 
-[node name="@Marker3D@27785" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37072" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.418, 0.488, 2.18562)
 
-[node name="@Marker3D@27786" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37073" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.418, 0.488, 2.18562)
 
-[node name="@Marker3D@27787" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37074" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.418, 0.488, 2.18562)
 
-[node name="@Marker3D@27788" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37075" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.043, 0.488, 2.56062)
 
-[node name="@Marker3D@27789" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37076" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 134.918, 0.488, -132.564)
 
-[node name="@Marker3D@27790" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37077" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 134.918, 0.488, -130.564)
 
-[node name="@Marker3D@27791" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37078" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 134.918, 0.488, -128.564)
 
-[node name="@Marker3D@27792" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37079" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 134.918, 0.488, -126.564)
 
-[node name="@Marker3D@27793" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37080" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 134.918, 0.488, -124.564)
 
-[node name="@Marker3D@27794" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37081" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 134.918, 0.488, -122.564)
 
-[node name="@Marker3D@27795" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37082" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 134.918, 0.488, -120.564)
 
-[node name="@Marker3D@27796" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37083" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 134.918, 0.488, -118.564)
 
-[node name="@Marker3D@27797" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37084" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 134.918, 0.488, -116.564)
 
-[node name="@Marker3D@27798" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37085" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 134.918, 0.488, -114.564)
 
-[node name="@Marker3D@27799" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37086" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 134.918, 0.488, -112.564)
 
-[node name="@Marker3D@27800" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37087" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 134.918, 0.488, -110.564)
 
-[node name="@Marker3D@27801" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37088" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 134.918, 0.488, -108.564)
 
-[node name="@Marker3D@27802" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37089" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 134.918, 0.488, -106.564)
 
-[node name="@Marker3D@27803" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37090" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 134.918, 0.488, -104.564)
 
-[node name="@Marker3D@27804" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37091" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 134.918, 0.488, -102.564)
 
-[node name="@Marker3D@27805" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37092" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 134.918, 0.488, -100.564)
 
-[node name="@Marker3D@27806" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37093" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 134.918, 0.488, -98.564)
 
-[node name="@Marker3D@27807" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37094" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 134.918, 0.488, -96.564)
 
-[node name="@Marker3D@27808" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37095" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 134.918, 0.488, -94.564)
 
-[node name="@Marker3D@27809" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37096" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 134.918, 0.488, -92.564)
 
-[node name="@Marker3D@27810" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37097" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 134.918, 0.488, -90.564)
 
-[node name="@Marker3D@27811" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37098" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 134.918, 0.488, -88.564)
 
-[node name="@Marker3D@27812" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37099" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 134.918, 0.488, -86.564)
 
-[node name="@Marker3D@27813" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37100" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 134.918, 0.488, -84.564)
 
-[node name="@Marker3D@27814" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37101" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 134.918, 0.488, -82.564)
 
-[node name="@Marker3D@27815" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37102" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 134.918, 0.488, -80.564)
 
-[node name="@Marker3D@27816" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37103" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 134.918, 0.488, -78.564)
 
-[node name="@Marker3D@27817" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37104" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 134.918, 0.488, -76.564)
 
-[node name="@Marker3D@27818" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37105" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 134.918, 0.488, -74.564)
 
-[node name="@Marker3D@27819" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37106" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 134.918, 0.488, -72.564)
 
-[node name="@Marker3D@27820" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37107" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 134.918, 0.488, -70.564)
 
-[node name="@Marker3D@27821" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37108" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 134.918, 0.488, -68.564)
 
-[node name="@Marker3D@27822" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37109" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 134.918, 0.488, -66.564)
 
-[node name="@Marker3D@27823" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37110" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 134.918, 0.488, -64.564)
 
-[node name="@Marker3D@27824" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37111" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 134.918, 0.488, -62.564)
 
-[node name="@Marker3D@27825" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37112" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 134.918, 0.488, -60.564)
 
-[node name="@Marker3D@27826" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37113" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 134.918, 0.488, -58.564)
 
-[node name="@Marker3D@27827" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37114" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 134.918, 0.488, -56.564)
 
-[node name="@Marker3D@27828" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37115" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 134.918, 0.488, -54.564)
 
-[node name="@Marker3D@27829" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37116" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 134.918, 0.488, -52.564)
 
-[node name="@Marker3D@27830" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37117" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 134.918, 0.488, -50.564)
 
-[node name="@Marker3D@27831" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37118" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 134.918, 0.488, -48.564)
 
-[node name="@Marker3D@27832" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37119" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 134.918, 0.488, -46.564)
 
-[node name="@Marker3D@27833" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37120" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 134.918, 0.488, -44.564)
 
-[node name="@Marker3D@27834" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37121" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 134.918, 0.488, -42.564)
 
-[node name="@Marker3D@27835" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37122" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 134.918, 0.488, -40.564)
 
-[node name="@Marker3D@27836" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37123" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 134.918, 0.488, -38.564)
 
-[node name="@Marker3D@27837" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37124" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 134.918, 0.488, -36.564)
 
-[node name="@Marker3D@27838" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37125" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 134.918, 0.488, -34.564)
 
-[node name="@Marker3D@27839" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37126" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 134.918, 0.488, -32.564)
 
-[node name="@Marker3D@27840" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37127" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 134.918, 0.488, -30.564)
 
-[node name="@Marker3D@27841" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37128" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 134.918, 0.488, -28.564)
 
-[node name="@Marker3D@27842" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37129" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 134.918, 0.488, -26.564)
 
-[node name="@Marker3D@27843" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37130" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 134.918, 0.488, -24.564)
 
-[node name="@Marker3D@27844" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37131" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 134.918, 0.488, -22.564)
 
-[node name="@Marker3D@27845" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37132" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 134.918, 0.488, -20.564)
 
-[node name="@Marker3D@27846" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37133" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 134.918, 0.488, -18.564)
 
-[node name="@Marker3D@27847" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37134" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 134.918, 0.488, -16.564)
 
-[node name="@Marker3D@27848" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37135" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 134.918, 0.488, -14.564)
 
-[node name="@Marker3D@27849" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37136" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 134.918, 0.488, -12.564)
 
-[node name="@Marker3D@27850" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37137" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 134.918, 0.488, -10.564)
 
-[node name="@Marker3D@27851" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37138" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 134.918, 0.488, -8.564)
 
-[node name="@Marker3D@27852" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37139" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 134.918, 0.488, -6.564)
 
-[node name="@Marker3D@27853" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37140" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 134.918, 0.488, -4.564)
 
-[node name="@Marker3D@27854" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37141" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 134.918, 0.488, -2.564)
 
-[node name="@Marker3D@27855" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37142" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 134.918, 0.488, -0.563995)
 
-[node name="@Marker3D@27856" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37143" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.668, 0.488, -132.564)
 
-[node name="@Marker3D@27857" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37144" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.668, 0.488, -132.564)
 
-[node name="@Marker3D@27858" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37145" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.668, 0.488, -132.564)
 
-[node name="@Marker3D@27859" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37146" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31.668, 0.488, -132.564)
 
-[node name="@Marker3D@27860" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37147" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33.668, 0.488, -132.564)
 
-[node name="@Marker3D@27861" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37148" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 35.668, 0.488, -132.564)
 
-[node name="@Marker3D@27862" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37149" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 37.668, 0.488, -132.564)
 
-[node name="@Marker3D@27863" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37150" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 39.668, 0.488, -132.564)
 
-[node name="@Marker3D@27864" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37151" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 41.668, 0.488, -132.564)
 
-[node name="@Marker3D@27865" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37152" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 43.668, 0.488, -132.564)
 
-[node name="@Marker3D@27866" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37153" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 45.668, 0.488, -132.564)
 
-[node name="@Marker3D@27867" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37154" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 47.668, 0.488, -132.564)
 
-[node name="@Marker3D@27868" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37155" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 49.668, 0.488, -132.564)
 
-[node name="@Marker3D@27869" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37156" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 51.668, 0.488, -132.564)
 
-[node name="@Marker3D@27870" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37157" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 53.668, 0.488, -132.564)
 
-[node name="@Marker3D@27871" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37158" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 55.668, 0.488, -132.564)
 
-[node name="@Marker3D@27872" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37159" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 57.668, 0.488, -132.564)
 
-[node name="@Marker3D@27873" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37160" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 59.668, 0.488, -132.564)
 
-[node name="@Marker3D@27874" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37161" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 61.668, 0.488, -132.564)
 
-[node name="@Marker3D@27875" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37162" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 63.668, 0.488, -132.564)
 
-[node name="@Marker3D@27876" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37163" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 65.668, 0.488, -132.564)
 
-[node name="@Marker3D@27877" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37164" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 67.668, 0.488, -132.564)
 
-[node name="@Marker3D@27878" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37165" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 69.668, 0.488, -132.564)
 
-[node name="@Marker3D@27879" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37166" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 71.668, 0.488, -132.564)
 
-[node name="@Marker3D@27880" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37167" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 73.668, 0.488, -132.564)
 
-[node name="@Marker3D@27881" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37168" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 75.668, 0.488, -132.564)
 
-[node name="@Marker3D@27882" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37169" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 77.668, 0.488, -132.564)
 
-[node name="@Marker3D@27883" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37170" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 79.668, 0.488, -132.564)
 
-[node name="@Marker3D@27884" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37171" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 81.668, 0.488, -132.564)
 
-[node name="@Marker3D@27885" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37172" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 83.668, 0.488, -132.564)
 
-[node name="@Marker3D@27886" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37173" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 85.668, 0.488, -132.564)
 
-[node name="@Marker3D@27887" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37174" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 87.668, 0.488, -132.564)
 
-[node name="@Marker3D@27888" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37175" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 89.668, 0.488, -132.564)
 
-[node name="@Marker3D@27889" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37176" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 91.668, 0.488, -132.564)
 
-[node name="@Marker3D@27890" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37177" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 93.668, 0.488, -132.564)
 
-[node name="@Marker3D@27891" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37178" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 95.668, 0.488, -132.564)
 
-[node name="@Marker3D@27892" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37179" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 97.668, 0.488, -132.564)
 
-[node name="@Marker3D@27893" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37180" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 99.668, 0.488, -132.564)
 
-[node name="@Marker3D@27894" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37181" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 101.668, 0.488, -132.564)
 
-[node name="@Marker3D@27895" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37182" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 103.668, 0.488, -132.564)
 
-[node name="@Marker3D@27896" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37183" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 105.668, 0.488, -132.564)
 
-[node name="@Marker3D@27897" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37184" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 107.668, 0.488, -132.564)
 
-[node name="@Marker3D@27898" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37185" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 109.668, 0.488, -132.564)
 
-[node name="@Marker3D@27899" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37186" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 111.668, 0.488, -132.564)
 
-[node name="@Marker3D@27900" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37187" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 113.668, 0.488, -132.564)
 
-[node name="@Marker3D@27901" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37188" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 115.668, 0.488, -132.564)
 
-[node name="@Marker3D@27902" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37189" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 117.668, 0.488, -132.564)
 
-[node name="@Marker3D@27903" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37190" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 119.668, 0.488, -132.564)
 
-[node name="@Marker3D@27904" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37191" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 121.668, 0.488, -132.564)
 
-[node name="@Marker3D@27905" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37192" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 123.668, 0.488, -132.564)
 
-[node name="@Marker3D@27906" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37193" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 125.668, 0.488, -132.564)
 
-[node name="@Marker3D@27907" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37194" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 127.668, 0.488, -132.564)
 
-[node name="@Marker3D@27908" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37195" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 129.668, 0.488, -132.564)
 
-[node name="@Marker3D@27909" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37196" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 131.668, 0.488, -132.564)
 
-[node name="@Marker3D@27910" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37197" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26.168, 0.488, 2.18562)
 
-[node name="@Marker3D@27911" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37198" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.83205, 3.738, 10.9356)
 
-[node name="@Marker3D@27912" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37199" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.957048, 3.738, 10.8106)
 
-[node name="@Marker3D@27913" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37200" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.58205, 3.488, 1.93562)
 
-[node name="@Marker3D@27914" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37201" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.33205, 1.988, -0.564377)
 
-[node name="@Marker3D@27915" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37202" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1133, 3.738, 3.37312)
 
-[node name="@Marker3D@27916" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37203" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.58205, 3.738, 5.68562)
 
-[node name="@Marker3D@27917" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37204" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.08205, 3.738, 10.3106)
 
-[node name="@Marker3D@27918" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37205" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.95705, 3.738, 5.81062)
 
-[node name="@Marker3D@27919" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37206" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.04295, 3.738, 10.4356)
 
-[node name="@Marker3D@27920" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37207" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.91795, 3.738, 9.06062)
 
-[node name="@Marker3D@27921" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37208" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.042953, 3.738, 10.1856)
 
-[node name="@Marker3D@27922" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37209" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.08205, 3.738, 3.93562)
 
-[node name="@Marker3D@27923" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37210" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.91795, 3.738, 3.93562)
 
-[node name="@Marker3D@27924" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37211" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.91795, 3.738, 3.93562)
 
-[node name="@Marker3D@27925" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37212" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.29295, 3.738, 7.06062)
 
-[node name="@Marker3D@27926" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37213" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.66795, 3.738, 8.06062)
 
-[node name="@Marker3D@27927" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37214" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.457, 0.488, 3.43562)
 
-[node name="@Marker3D@27928" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37215" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -138.332, 0.488, 134.686)
 
-[node name="@Marker3D@27929" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37216" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -138.332, 0.488, 132.686)
 
-[node name="@Marker3D@27930" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37217" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -138.332, 0.488, 130.686)
 
-[node name="@Marker3D@27931" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37218" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -138.332, 0.488, 128.686)
 
-[node name="@Marker3D@27932" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37219" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -138.332, 0.488, 126.686)
 
-[node name="@Marker3D@27933" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37220" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -138.332, 0.488, 124.686)
 
-[node name="@Marker3D@27934" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37221" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -138.332, 0.488, 122.686)
 
-[node name="@Marker3D@27935" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37222" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -138.332, 0.488, 120.686)
 
-[node name="@Marker3D@27936" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37223" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -138.332, 0.488, 118.686)
 
-[node name="@Marker3D@27937" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37224" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -138.332, 0.488, 116.686)
 
-[node name="@Marker3D@27938" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37225" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -138.332, 0.488, 114.686)
 
-[node name="@Marker3D@27939" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37226" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -138.332, 0.488, 112.686)
 
-[node name="@Marker3D@27940" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37227" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -138.332, 0.488, 110.686)
 
-[node name="@Marker3D@27941" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37228" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -138.332, 0.488, 108.686)
 
-[node name="@Marker3D@27942" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37229" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -138.332, 0.488, 106.686)
 
-[node name="@Marker3D@27943" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37230" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -138.332, 0.488, 104.686)
 
-[node name="@Marker3D@27944" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37231" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -138.332, 0.488, 102.686)
 
-[node name="@Marker3D@27945" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37232" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -138.332, 0.488, 100.686)
 
-[node name="@Marker3D@27946" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37233" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -138.332, 0.488, 98.686)
 
-[node name="@Marker3D@27947" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37234" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -138.332, 0.488, 96.686)
 
-[node name="@Marker3D@27948" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37235" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -138.332, 0.488, 94.686)
 
-[node name="@Marker3D@27949" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37236" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -138.332, 0.488, 92.686)
 
-[node name="@Marker3D@27950" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37237" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -138.332, 0.488, 90.686)
 
-[node name="@Marker3D@27951" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37238" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -138.332, 0.488, 88.686)
 
-[node name="@Marker3D@27952" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37239" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -138.332, 0.488, 86.686)
 
-[node name="@Marker3D@27953" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37240" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -138.332, 0.488, 84.686)
 
-[node name="@Marker3D@27954" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37241" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -138.332, 0.488, 82.686)
 
-[node name="@Marker3D@27955" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37242" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -138.332, 0.488, 80.686)
 
-[node name="@Marker3D@27956" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37243" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -138.332, 0.488, 78.686)
 
-[node name="@Marker3D@27957" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37244" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -138.332, 0.488, 76.686)
 
-[node name="@Marker3D@27958" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37245" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -138.332, 0.488, 74.686)
 
-[node name="@Marker3D@27959" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37246" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -138.332, 0.488, 72.686)
 
-[node name="@Marker3D@27960" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37247" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -138.332, 0.488, 70.686)
 
-[node name="@Marker3D@27961" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37248" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -138.332, 0.488, 68.686)
 
-[node name="@Marker3D@27962" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37249" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -138.332, 0.488, 66.686)
 
-[node name="@Marker3D@27963" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37250" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -138.332, 0.488, 64.686)
 
-[node name="@Marker3D@27964" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37251" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -138.332, 0.488, 62.686)
 
-[node name="@Marker3D@27965" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37252" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -138.332, 0.488, 60.686)
 
-[node name="@Marker3D@27966" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37253" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -138.332, 0.488, 58.686)
 
-[node name="@Marker3D@27967" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37254" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -138.332, 0.488, 56.686)
 
-[node name="@Marker3D@27968" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37255" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -138.332, 0.488, 54.686)
 
-[node name="@Marker3D@27969" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37256" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -138.332, 0.488, 52.686)
 
-[node name="@Marker3D@27970" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37257" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -138.332, 0.488, 50.686)
 
-[node name="@Marker3D@27971" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37258" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -138.332, 0.488, 48.686)
 
-[node name="@Marker3D@27972" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37259" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -138.332, 0.488, 46.686)
 
-[node name="@Marker3D@27973" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37260" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -138.332, 0.488, 44.686)
 
-[node name="@Marker3D@27974" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37261" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -138.332, 0.488, 42.686)
 
-[node name="@Marker3D@27975" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37262" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -138.332, 0.488, 40.686)
 
-[node name="@Marker3D@27976" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37263" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -138.332, 0.488, 38.686)
 
-[node name="@Marker3D@27977" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37264" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -138.332, 0.488, 36.686)
 
-[node name="@Marker3D@27978" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37265" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -138.332, 0.488, 34.686)
 
-[node name="@Marker3D@27979" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37266" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -138.332, 0.488, 32.686)
 
-[node name="@Marker3D@27980" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37267" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -138.332, 0.488, 30.686)
 
-[node name="@Marker3D@27981" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37268" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -138.332, 0.488, 28.686)
 
-[node name="@Marker3D@27982" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37269" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -138.332, 0.488, 26.686)
 
-[node name="@Marker3D@27983" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37270" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -138.332, 0.488, 24.686)
 
-[node name="@Marker3D@27984" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37271" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -138.332, 0.488, 22.686)
 
-[node name="@Marker3D@27985" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37272" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -138.332, 0.488, 20.686)
 
-[node name="@Marker3D@27986" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37273" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -138.332, 0.488, 18.686)
 
-[node name="@Marker3D@27987" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37274" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -138.332, 0.488, 16.686)
 
-[node name="@Marker3D@27988" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37275" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -138.332, 0.488, 14.686)
 
-[node name="@Marker3D@27989" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37276" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -138.332, 0.488, 12.686)
 
-[node name="@Marker3D@27990" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37277" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -138.332, 0.488, 10.686)
 
-[node name="@Marker3D@27991" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37278" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -138.332, 0.488, 8.686)
 
-[node name="@Marker3D@27992" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37279" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -138.332, 0.488, 6.686)
 
-[node name="@Marker3D@27993" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37280" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.082, 0.488, 134.686)
 
-[node name="@Marker3D@27994" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37281" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.082, 0.488, 134.686)
 
-[node name="@Marker3D@27995" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37282" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.082, 0.488, 134.686)
 
-[node name="@Marker3D@27996" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37283" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25.082, 0.488, 134.686)
 
-[node name="@Marker3D@27997" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37284" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27.082, 0.488, 134.686)
 
-[node name="@Marker3D@27998" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37285" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -29.082, 0.488, 134.686)
 
-[node name="@Marker3D@27999" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37286" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.082, 0.488, 134.686)
 
-[node name="@Marker3D@28000" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37287" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33.082, 0.488, 134.686)
 
-[node name="@Marker3D@28001" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37288" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35.082, 0.488, 134.686)
 
-[node name="@Marker3D@28002" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37289" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -37.082, 0.488, 134.686)
 
-[node name="@Marker3D@28003" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37290" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -39.082, 0.488, 134.686)
 
-[node name="@Marker3D@28004" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37291" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -41.082, 0.488, 134.686)
 
-[node name="@Marker3D@28005" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37292" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -43.082, 0.488, 134.686)
 
-[node name="@Marker3D@28006" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37293" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -45.082, 0.488, 134.686)
 
-[node name="@Marker3D@28007" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37294" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -47.082, 0.488, 134.686)
 
-[node name="@Marker3D@28008" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37295" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -49.082, 0.488, 134.686)
 
-[node name="@Marker3D@28009" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37296" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -51.082, 0.488, 134.686)
 
-[node name="@Marker3D@28010" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37297" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -53.082, 0.488, 134.686)
 
-[node name="@Marker3D@28011" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37298" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -55.082, 0.488, 134.686)
 
-[node name="@Marker3D@28012" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37299" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -57.082, 0.488, 134.686)
 
-[node name="@Marker3D@28013" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37300" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -59.082, 0.488, 134.686)
 
-[node name="@Marker3D@28014" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37301" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -61.082, 0.488, 134.686)
 
-[node name="@Marker3D@28015" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37302" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -63.082, 0.488, 134.686)
 
-[node name="@Marker3D@28016" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37303" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -65.082, 0.488, 134.686)
 
-[node name="@Marker3D@28017" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37304" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -67.082, 0.488, 134.686)
 
-[node name="@Marker3D@28018" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37305" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -69.082, 0.488, 134.686)
 
-[node name="@Marker3D@28019" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37306" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -71.082, 0.488, 134.686)
 
-[node name="@Marker3D@28020" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37307" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -73.082, 0.488, 134.686)
 
-[node name="@Marker3D@28021" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37308" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -75.082, 0.488, 134.686)
 
-[node name="@Marker3D@28022" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37309" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -77.082, 0.488, 134.686)
 
-[node name="@Marker3D@28023" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37310" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -79.082, 0.488, 134.686)
 
-[node name="@Marker3D@28024" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37311" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -81.082, 0.488, 134.686)
 
-[node name="@Marker3D@28025" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37312" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -83.082, 0.488, 134.686)
 
-[node name="@Marker3D@28026" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37313" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -85.082, 0.488, 134.686)
 
-[node name="@Marker3D@28027" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37314" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -87.082, 0.488, 134.686)
 
-[node name="@Marker3D@28028" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37315" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -89.082, 0.488, 134.686)
 
-[node name="@Marker3D@28029" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37316" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -91.082, 0.488, 134.686)
 
-[node name="@Marker3D@28030" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37317" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -93.082, 0.488, 134.686)
 
-[node name="@Marker3D@28031" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37318" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -95.082, 0.488, 134.686)
 
-[node name="@Marker3D@28032" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37319" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -97.082, 0.488, 134.686)
 
-[node name="@Marker3D@28033" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37320" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -99.082, 0.488, 134.686)
 
-[node name="@Marker3D@28034" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37321" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -101.082, 0.488, 134.686)
 
-[node name="@Marker3D@28035" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37322" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -103.082, 0.488, 134.686)
 
-[node name="@Marker3D@28036" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37323" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -105.082, 0.488, 134.686)
 
-[node name="@Marker3D@28037" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37324" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -107.082, 0.488, 134.686)
 
-[node name="@Marker3D@28038" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37325" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -109.082, 0.488, 134.686)
 
-[node name="@Marker3D@28039" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37326" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -111.082, 0.488, 134.686)
 
-[node name="@Marker3D@28040" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37327" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -113.082, 0.488, 134.686)
 
-[node name="@Marker3D@28041" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37328" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -115.082, 0.488, 134.686)
 
-[node name="@Marker3D@28042" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37329" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -117.082, 0.488, 134.686)
 
-[node name="@Marker3D@28043" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37330" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -119.082, 0.488, 134.686)
 
-[node name="@Marker3D@28044" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37331" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -121.082, 0.488, 134.686)
 
-[node name="@Marker3D@28045" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37332" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -123.082, 0.488, 134.686)
 
-[node name="@Marker3D@28046" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37333" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -125.082, 0.488, 134.686)
 
-[node name="@Marker3D@28047" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37334" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -127.082, 0.488, 134.686)
 
-[node name="@Marker3D@28048" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37335" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -129.082, 0.488, 134.686)
 
-[node name="@Marker3D@28049" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37336" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -131.082, 0.488, 134.686)
 
-[node name="@Marker3D@28050" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37337" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -133.082, 0.488, 134.686)
 
-[node name="@Marker3D@28051" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37338" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -135.082, 0.488, 134.686)
 
-[node name="@Marker3D@28052" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37339" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.582, 0.488, 3.93562)
 
-[node name="@Marker3D@28053" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37340" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.043, 0.488, 3.43562)
 
-[node name="@Marker3D@28054" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37341" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 134.043, 0.488, 134.436)
 
-[node name="@Marker3D@28055" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37342" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 133.918, 0.488, 134.686)
 
-[node name="@Marker3D@28056" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37343" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 131.918, 0.488, 134.686)
 
-[node name="@Marker3D@28057" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37344" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 129.918, 0.488, 134.686)
 
-[node name="@Marker3D@28058" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37345" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 127.918, 0.488, 134.686)
 
-[node name="@Marker3D@28059" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37346" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 125.918, 0.488, 134.686)
 
-[node name="@Marker3D@28060" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37347" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 123.918, 0.488, 134.686)
 
-[node name="@Marker3D@28061" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37348" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 121.918, 0.488, 134.686)
 
-[node name="@Marker3D@28062" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37349" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 119.918, 0.488, 134.686)
 
-[node name="@Marker3D@28063" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37350" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 117.918, 0.488, 134.686)
 
-[node name="@Marker3D@28064" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37351" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 115.918, 0.488, 134.686)
 
-[node name="@Marker3D@28065" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37352" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 113.918, 0.488, 134.686)
 
-[node name="@Marker3D@28066" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37353" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 111.918, 0.488, 134.686)
 
-[node name="@Marker3D@28067" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37354" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 109.918, 0.488, 134.686)
 
-[node name="@Marker3D@28068" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37355" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 107.918, 0.488, 134.686)
 
-[node name="@Marker3D@28069" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37356" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 105.918, 0.488, 134.686)
 
-[node name="@Marker3D@28070" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37357" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 103.918, 0.488, 134.686)
 
-[node name="@Marker3D@28071" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37358" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 101.918, 0.488, 134.686)
 
-[node name="@Marker3D@28072" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37359" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 99.918, 0.488, 134.686)
 
-[node name="@Marker3D@28073" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37360" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 97.918, 0.488, 134.686)
 
-[node name="@Marker3D@28074" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37361" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 95.918, 0.488, 134.686)
 
-[node name="@Marker3D@28075" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37362" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 93.918, 0.488, 134.686)
 
-[node name="@Marker3D@28076" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37363" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 91.918, 0.488, 134.686)
 
-[node name="@Marker3D@28077" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37364" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 89.918, 0.488, 134.686)
 
-[node name="@Marker3D@28078" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37365" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 87.918, 0.488, 134.686)
 
-[node name="@Marker3D@28079" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37366" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 85.918, 0.488, 134.686)
 
-[node name="@Marker3D@28080" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37367" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 83.918, 0.488, 134.686)
 
-[node name="@Marker3D@28081" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37368" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 81.918, 0.488, 134.686)
 
-[node name="@Marker3D@28082" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37369" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 79.918, 0.488, 134.686)
 
-[node name="@Marker3D@28083" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37370" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 77.918, 0.488, 134.686)
 
-[node name="@Marker3D@28084" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37371" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 75.918, 0.488, 134.686)
 
-[node name="@Marker3D@28085" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37372" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 73.918, 0.488, 134.686)
 
-[node name="@Marker3D@28086" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37373" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 71.918, 0.488, 134.686)
 
-[node name="@Marker3D@28087" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37374" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 69.918, 0.488, 134.686)
 
-[node name="@Marker3D@28088" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37375" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 67.918, 0.488, 134.686)
 
-[node name="@Marker3D@28089" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37376" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 65.918, 0.488, 134.686)
 
-[node name="@Marker3D@28090" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37377" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 63.918, 0.488, 134.686)
 
-[node name="@Marker3D@28091" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37378" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 61.918, 0.488, 134.686)
 
-[node name="@Marker3D@28092" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37379" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 59.918, 0.488, 134.686)
 
-[node name="@Marker3D@28093" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37380" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 57.918, 0.488, 134.686)
 
-[node name="@Marker3D@28094" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37381" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 55.918, 0.488, 134.686)
 
-[node name="@Marker3D@28095" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37382" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 53.918, 0.488, 134.686)
 
-[node name="@Marker3D@28096" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37383" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 51.918, 0.488, 134.686)
 
-[node name="@Marker3D@28097" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37384" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 49.918, 0.488, 134.686)
 
-[node name="@Marker3D@28098" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37385" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 47.918, 0.488, 134.686)
 
-[node name="@Marker3D@28099" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37386" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 45.918, 0.488, 134.686)
 
-[node name="@Marker3D@28100" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37387" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 43.918, 0.488, 134.686)
 
-[node name="@Marker3D@28101" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37388" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 41.918, 0.488, 134.686)
 
-[node name="@Marker3D@28102" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37389" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 39.918, 0.488, 134.686)
 
-[node name="@Marker3D@28103" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37390" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 37.918, 0.488, 134.686)
 
-[node name="@Marker3D@28104" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37391" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 35.918, 0.488, 134.686)
 
-[node name="@Marker3D@28105" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37392" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33.918, 0.488, 134.686)
 
-[node name="@Marker3D@28106" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37393" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31.918, 0.488, 134.686)
 
-[node name="@Marker3D@28107" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37394" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.918, 0.488, 134.686)
 
-[node name="@Marker3D@28108" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37395" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.918, 0.488, 134.686)
 
-[node name="@Marker3D@28109" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37396" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 134.918, 0.488, 2.93562)
 
-[node name="@Marker3D@28110" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37397" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 134.918, 0.488, 4.93562)
 
-[node name="@Marker3D@28111" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37398" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 134.918, 0.488, 6.93562)
 
-[node name="@Marker3D@28112" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37399" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 134.918, 0.488, 8.93562)
 
-[node name="@Marker3D@28113" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37400" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 134.918, 0.488, 10.9356)
 
-[node name="@Marker3D@28114" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37401" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 134.918, 0.488, 12.9356)
 
-[node name="@Marker3D@28115" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37402" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 134.918, 0.488, 14.9356)
 
-[node name="@Marker3D@28116" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37403" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 134.918, 0.488, 16.9356)
 
-[node name="@Marker3D@28117" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37404" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 134.918, 0.488, 18.9356)
 
-[node name="@Marker3D@28118" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37405" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 134.918, 0.488, 20.9356)
 
-[node name="@Marker3D@28119" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37406" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 134.918, 0.488, 22.9356)
 
-[node name="@Marker3D@28120" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37407" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 134.918, 0.488, 24.9356)
 
-[node name="@Marker3D@28121" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37408" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 134.918, 0.488, 26.9356)
 
-[node name="@Marker3D@28122" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37409" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 134.918, 0.488, 28.9356)
 
-[node name="@Marker3D@28123" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37410" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 134.918, 0.488, 30.9356)
 
-[node name="@Marker3D@28124" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37411" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 134.918, 0.488, 32.9356)
 
-[node name="@Marker3D@28125" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37412" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 134.918, 0.488, 34.9356)
 
-[node name="@Marker3D@28126" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37413" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 134.918, 0.488, 36.9356)
 
-[node name="@Marker3D@28127" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37414" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 134.918, 0.488, 38.9356)
 
-[node name="@Marker3D@28128" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37415" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 134.918, 0.488, 40.9356)
 
-[node name="@Marker3D@28129" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37416" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 134.918, 0.488, 42.9356)
 
-[node name="@Marker3D@28130" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37417" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 134.918, 0.488, 44.9356)
 
-[node name="@Marker3D@28131" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37418" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 134.918, 0.488, 46.9356)
 
-[node name="@Marker3D@28132" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37419" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 134.918, 0.488, 48.9356)
 
-[node name="@Marker3D@28133" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37420" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 134.918, 0.488, 50.9356)
 
-[node name="@Marker3D@28134" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37421" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 134.918, 0.488, 52.9356)
 
-[node name="@Marker3D@28135" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37422" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 134.918, 0.488, 54.9356)
 
-[node name="@Marker3D@28136" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37423" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 134.918, 0.488, 56.9356)
 
-[node name="@Marker3D@28137" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37424" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 134.918, 0.488, 58.9356)
 
-[node name="@Marker3D@28138" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37425" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 134.918, 0.488, 60.9356)
 
-[node name="@Marker3D@28139" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37426" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 134.918, 0.488, 62.9356)
 
-[node name="@Marker3D@28140" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37427" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 134.918, 0.488, 64.9356)
 
-[node name="@Marker3D@28141" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37428" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 134.918, 0.488, 66.9356)
 
-[node name="@Marker3D@28142" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37429" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 134.918, 0.488, 68.9356)
 
-[node name="@Marker3D@28143" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37430" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 134.918, 0.488, 70.9356)
 
-[node name="@Marker3D@28144" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37431" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 134.918, 0.488, 72.9356)
 
-[node name="@Marker3D@28145" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37432" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 134.918, 0.488, 74.9356)
 
-[node name="@Marker3D@28146" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37433" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 134.918, 0.488, 76.9356)
 
-[node name="@Marker3D@28147" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37434" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 134.918, 0.488, 78.9356)
 
-[node name="@Marker3D@28148" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37435" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 134.918, 0.488, 80.9356)
 
-[node name="@Marker3D@28149" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37436" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 134.918, 0.488, 82.9356)
 
-[node name="@Marker3D@28150" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37437" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 134.918, 0.488, 84.9356)
 
-[node name="@Marker3D@28151" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37438" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 134.918, 0.488, 86.9356)
 
-[node name="@Marker3D@28152" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37439" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 134.918, 0.488, 88.9356)
 
-[node name="@Marker3D@28153" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37440" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 134.918, 0.488, 90.9356)
 
-[node name="@Marker3D@28154" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37441" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 134.918, 0.488, 92.9356)
 
-[node name="@Marker3D@28155" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37442" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 134.918, 0.488, 94.9356)
 
-[node name="@Marker3D@28156" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37443" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 134.918, 0.488, 96.9356)
 
-[node name="@Marker3D@28157" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37444" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 134.918, 0.488, 98.9356)
 
-[node name="@Marker3D@28158" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37445" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 134.918, 0.488, 100.936)
 
-[node name="@Marker3D@28159" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37446" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 134.918, 0.488, 102.936)
 
-[node name="@Marker3D@28160" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37447" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 134.918, 0.488, 104.936)
 
-[node name="@Marker3D@28161" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37448" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 134.918, 0.488, 106.936)
 
-[node name="@Marker3D@28162" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37449" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 134.918, 0.488, 108.936)
 
-[node name="@Marker3D@28163" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37450" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 134.918, 0.488, 110.936)
 
-[node name="@Marker3D@28164" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37451" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 134.918, 0.488, 112.936)
 
-[node name="@Marker3D@28165" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37452" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 134.918, 0.488, 114.936)
 
-[node name="@Marker3D@28166" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37453" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 134.918, 0.488, 116.936)
 
-[node name="@Marker3D@28167" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37454" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 134.918, 0.488, 118.936)
 
-[node name="@Marker3D@28168" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37455" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 134.918, 0.488, 120.936)
 
-[node name="@Marker3D@28169" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37456" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 134.918, 0.488, 122.936)
 
-[node name="@Marker3D@28170" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37457" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 134.918, 0.488, 124.936)
 
-[node name="@Marker3D@28171" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37458" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 134.918, 0.488, 126.936)
 
-[node name="@Marker3D@28172" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37459" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 134.918, 0.488, 128.936)
 
-[node name="@Marker3D@28173" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37460" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 134.918, 0.488, 130.936)
 
-[node name="@Marker3D@28174" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37461" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 134.543, 0.488, 134.186)
 
-[node name="@Marker3D@28175" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37462" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26.168, 0.488, 3.93562)
 
-[node name="@Marker3D@28176" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37463" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.832, 0.488, 3.93562)
 
-[node name="@Marker3D@28177" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37464" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.832, 0.488, 3.93562)
 
-[node name="@Marker3D@28178" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37465" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.832, 0.488, 3.93562)
 
-[node name="@Marker3D@28179" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37466" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.832, 0.488, 3.93562)
 
-[node name="@Marker3D@28180" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37467" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.832, 0.488, 3.93562)
 
-[node name="@Marker3D@28181" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37468" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.832, 0.488, 3.93562)
 
-[node name="@Marker3D@28182" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37469" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.832, 0.488, 3.93562)
 
-[node name="@Marker3D@28183" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37470" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.08205, 0.488, 4.81062)
 
-[node name="@Marker3D@28184" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37471" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.70705, 0.488, 5.81062)
 
-[node name="@Marker3D@28185" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37472" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.33205, 0.488, 134.686)
 
-[node name="@Marker3D@28186" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37473" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.33205, 0.488, 134.686)
 
-[node name="@Marker3D@28187" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37474" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.33205, 0.488, 134.686)
 
-[node name="@Marker3D@28188" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37475" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.33205, 0.488, 134.686)
 
-[node name="@Marker3D@28189" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37476" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.3321, 0.488, 134.686)
 
-[node name="@Marker3D@28190" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37477" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.3321, 0.488, 134.686)
 
-[node name="@Marker3D@28191" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37478" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.3321, 0.488, 134.686)
 
-[node name="@Marker3D@28192" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37479" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.3321, 0.488, 134.686)
 
-[node name="@Marker3D@28193" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37480" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.70705, 3.738, 5.81062)
 
-[node name="@Marker3D@28194" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37481" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.08205, 3.738, 10.1856)
 
-[node name="@Marker3D@28195" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37482" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.95705, 3.738, 10.8106)
 
-[node name="@Marker3D@28196" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37483" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.08205, 3.738, 4.81062)
 
-[node name="@Marker3D@28197" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37484" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.082, 3.738, 3.93562)
 
-[node name="@Marker3D@28198" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37485" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.082, 3.738, 3.93562)
 
-[node name="@Marker3D@28199" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37486" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.082, 3.738, 3.93562)
 
-[node name="@Marker3D@28200" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37487" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.082, 3.738, 3.93562)
 
-[node name="@Marker3D@28201" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37488" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.082, 3.738, 3.93562)
 
-[node name="@Marker3D@28202" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37489" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.082, 3.738, 11.4356)
 
-[node name="@Marker3D@28203" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37490" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.082, 3.738, 9.4356)
 
-[node name="@Marker3D@28204" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37491" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.082, 3.738, 7.4356)
 
-[node name="@Marker3D@28205" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37492" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.58205, 0.488, 4.81062)
 
-[node name="@Marker3D@28206" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37493" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.58205, 0.488, 3.93562)
 
-[node name="@Marker3D@28207" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37494" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.41795, 0.488, 3.93562)
 
-[node name="@Marker3D@28208" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37495" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.41795, 0.488, 3.93562)
 
-[node name="@Marker3D@28209" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37496" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.41795, 0.488, 3.93562)
 
-[node name="@Marker3D@28210" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37497" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.41795, 0.488, 3.93562)
 
-[node name="@Marker3D@28211" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37498" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.41795, 0.488, 3.93562)
 
-[node name="@Marker3D@28212" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37499" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.4179, 0.488, 3.93562)
 
-[node name="@Marker3D@28213" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37500" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.4179, 0.488, 3.93562)
 
-[node name="@Marker3D@28214" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37501" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.4179, 0.488, 3.93562)
 
-[node name="@Marker3D@28215" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37502" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.4179, 0.488, 3.93562)
 
-[node name="@Marker3D@28216" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37503" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.4179, 0.488, 3.93562)
 
-[node name="@Marker3D@28217" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37504" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.4179, 0.488, 3.93562)
 
-[node name="@Marker3D@28218" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37505" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.4179, 0.488, 3.93562)
 
-[node name="@Marker3D@28219" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37506" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.95705, 0.488, 5.81062)
 
-[node name="@Marker3D@28220" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37507" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.668, 0.488, 134.686)
 
-[node name="@Marker3D@28221" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37508" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.668, 0.488, 134.686)
 
-[node name="@Marker3D@28222" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37509" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.668, 0.488, 134.686)
 
-[node name="@Marker3D@28223" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37510" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.668, 0.488, 134.686)
 
-[node name="@Marker3D@28224" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37511" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.668, 0.488, 134.686)
 
-[node name="@Marker3D@28225" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37512" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.668, 0.488, 134.686)
 
-[node name="@Marker3D@28226" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37513" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.668, 0.488, 134.686)
 
-[node name="@Marker3D@28227" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37514" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.668, 0.488, 134.686)
 
-[node name="@Marker3D@28228" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37515" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.668, 0.488, 134.686)
 
-[node name="@Marker3D@28229" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37516" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.668, 0.488, 134.686)
 
-[node name="@Marker3D@28230" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37517" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.668, 0.488, 134.686)
 
-[node name="@Marker3D@28231" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37518" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.668, 0.488, 134.686)
 
-[node name="@Marker3D@28232" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37519" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.668, 0.488, 134.686)
 
-[node name="@Marker3D@28233" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37520" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.332001, 0.488, 134.686)
 
-[node name="@Marker3D@28234" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37521" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.957048, 3.738, 11.9356)
 
-[node name="@Marker3D@28235" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37522" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.95705, 3.738, 11.9356)
 
-[node name="@Marker3D@28236" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37523" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.91795, 3.738, 8.06062)
 
-[node name="@Marker3D@28237" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37524" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.41795, 3.738, 7.06062)
 
-[node name="@Marker3D@28238" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37525" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.91795, 3.738, 3.93562)
 
-[node name="@Marker3D@28239" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37526" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.91795, 3.738, 3.93562)
 
-[node name="@Marker3D@28240" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37527" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.91795, 3.738, 3.93562)
 
-[node name="@Marker3D@28241" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37528" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.9179, 3.738, 3.93562)
 
-[node name="@Marker3D@28242" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37529" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.9179, 3.738, 3.93562)
 
-[node name="@Marker3D@28243" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37530" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.9179, 3.738, 3.93562)
 
-[node name="@Marker3D@28244" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37531" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.9179, 3.738, 3.93562)
 
-[node name="@Marker3D@28245" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37532" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.04295, 3.738, 11.5606)
 
-[node name="@Marker3D@28246" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37533" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.04295, 3.738, 9.06062)
 
-[node name="@Marker3D@28247" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37534" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.918, 3.738, 3.93562)
 
-[node name="@Marker3D@28248" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37535" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.918, 3.738, 5.93562)
 
-[node name="@Marker3D@28249" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37536" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.918, 3.738, 7.93562)
 
-[node name="@Marker3D@28250" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37537" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.918, 3.738, 9.93562)
 
-[node name="@Marker3D@28251" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37538" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.918, 3.738, 11.9356)
 
-[node name="@Marker3D@28252" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37539" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.918, 3.738, 13.9356)
 
-[node name="@Marker3D@28253" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37540" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.918, 3.738, 15.9356)
 
-[node name="@Marker3D@28254" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37541" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.918, 3.738, 17.9356)
 
-[node name="@Marker3D@28255" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37542" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.918, 3.738, 19.9356)
 
-[node name="@Marker3D@28256" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37543" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.918, 3.738, 21.9356)
 
-[node name="@Marker3D@28257" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37544" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.918, 3.738, 23.9356)
 
-[node name="@Marker3D@28258" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37545" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.918, 3.738, 25.9356)
 
-[node name="@Marker3D@28259" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37546" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.918, 3.738, 27.9356)
 
-[node name="@Marker3D@28260" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37547" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.918, 3.738, 29.9356)
 
-[node name="@Marker3D@28261" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37548" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.918, 3.738, 31.9356)
 
-[node name="@Marker3D@28262" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37549" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.918, 3.738, 33.9356)
 
-[node name="@Marker3D@28263" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37550" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.918, 3.738, 35.9356)
 
-[node name="@Marker3D@28264" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37551" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.918, 3.738, 37.9356)
 
-[node name="@Marker3D@28265" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37552" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.918, 3.738, 39.9356)
 
-[node name="@Marker3D@28266" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37553" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.918, 3.738, 41.9356)
 
-[node name="@Marker3D@28267" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37554" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.918, 3.738, 43.9356)
 
-[node name="@Marker3D@28268" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37555" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.918, 3.738, 45.9356)
 
-[node name="@Marker3D@28269" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37556" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.918, 3.738, 47.9356)
 
-[node name="@Marker3D@28270" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37557" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.918, 3.738, 49.9356)
 
-[node name="@Marker3D@28271" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37558" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.918, 3.738, 51.9356)
 
-[node name="@Marker3D@28272" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37559" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.918, 3.738, 53.9356)
 
-[node name="@Marker3D@28273" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37560" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.918, 3.738, 55.9356)
 
-[node name="@Marker3D@28274" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37561" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.95705, 3.738, 11.9356)
 
-[node name="@Marker3D@28275" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37562" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.207, 3.738, 12.3106)
 
-[node name="@Marker3D@28276" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37563" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30.582, 3.738, 58.6856)
 
-[node name="@Marker3D@28277" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37564" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30.582, 3.738, 56.6856)
 
-[node name="@Marker3D@28278" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37565" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30.582, 3.738, 54.6856)
 
-[node name="@Marker3D@28279" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37566" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30.582, 3.738, 52.6856)
 
-[node name="@Marker3D@28280" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37567" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30.582, 3.738, 50.6856)
 
-[node name="@Marker3D@28281" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37568" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30.582, 3.738, 48.6856)
 
-[node name="@Marker3D@28282" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37569" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30.582, 3.738, 46.6856)
 
-[node name="@Marker3D@28283" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37570" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30.582, 3.738, 44.6856)
 
-[node name="@Marker3D@28284" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37571" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30.582, 3.738, 42.6856)
 
-[node name="@Marker3D@28285" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37572" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30.582, 3.738, 40.6856)
 
-[node name="@Marker3D@28286" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37573" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30.582, 3.738, 38.6856)
 
-[node name="@Marker3D@28287" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37574" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30.582, 3.738, 36.6856)
 
-[node name="@Marker3D@28288" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37575" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30.582, 3.738, 34.6856)
 
-[node name="@Marker3D@28289" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37576" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30.582, 3.738, 32.6856)
 
-[node name="@Marker3D@28290" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37577" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30.582, 3.738, 30.6856)
 
-[node name="@Marker3D@28291" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37578" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30.582, 3.738, 28.6856)
 
-[node name="@Marker3D@28292" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37579" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30.582, 3.738, 26.6856)
 
-[node name="@Marker3D@28293" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37580" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30.582, 3.738, 24.6856)
 
-[node name="@Marker3D@28294" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37581" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30.582, 3.738, 22.6856)
 
-[node name="@Marker3D@28295" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37582" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30.582, 3.738, 20.6856)
 
-[node name="@Marker3D@28296" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37583" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30.582, 3.738, 18.6856)
 
-[node name="@Marker3D@28297" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37584" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30.582, 3.738, 16.6856)
 
-[node name="@Marker3D@28298" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37585" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30.582, 3.738, 13.1856)
 
-[node name="@Marker3D@28299" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37586" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -28.582, 3.738, 13.1856)
 
-[node name="@Marker3D@28300" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37587" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26.582, 3.738, 13.1856)
 
-[node name="@Marker3D@28301" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37588" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24.582, 3.738, 13.1856)
 
-[node name="@Marker3D@28302" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37589" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.582, 3.738, 13.1856)
 
-[node name="@Marker3D@28303" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37590" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.582, 3.738, 13.1856)
 
-[node name="@Marker3D@28304" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37591" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.582, 3.738, 13.1856)
 
-[node name="@Marker3D@28305" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37592" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.582, 3.738, 13.1856)
 
-[node name="@Marker3D@28306" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37593" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.95705, 3.738, 12.4356)
 
-[node name="@Marker3D@28307" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37594" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.042953, 3.738, 12.4356)
 
-[node name="@Marker3D@28308" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37595" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.918, 3.738, 58.6856)
 
-[node name="@Marker3D@28309" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37596" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.918, 3.738, 58.6856)
 
-[node name="@Marker3D@28310" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37597" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.918, 3.738, 58.6856)
 
-[node name="@Marker3D@28311" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37598" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.918, 3.738, 58.6856)
 
-[node name="@Marker3D@28312" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37599" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.918, 3.738, 58.6856)
 
-[node name="@Marker3D@28313" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37600" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.918, 3.738, 58.6856)
 
-[node name="@Marker3D@28314" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37601" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.918, 3.738, 58.6856)
 
-[node name="@Marker3D@28315" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37602" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.918, 3.738, 58.6856)
 
-[node name="@Marker3D@28316" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37603" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.918, 3.738, 58.6856)
 
-[node name="@Marker3D@28317" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37604" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.917999, 3.738, 58.6856)
 
-[node name="@Marker3D@28318" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37605" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.082, 3.738, 58.6856)
 
-[node name="@Marker3D@28319" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37606" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.082, 3.738, 58.6856)
 
-[node name="@Marker3D@28320" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37607" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.082, 3.738, 58.6856)
 
-[node name="@Marker3D@28321" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37608" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.082, 3.738, 58.6856)
 
-[node name="@Marker3D@28322" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37609" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.082, 3.738, 58.6856)
 
-[node name="@Marker3D@28323" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37610" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.082, 3.738, 58.6856)
 
-[node name="@Marker3D@28324" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37611" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.082, 3.738, 58.6856)
 
-[node name="@Marker3D@28325" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37612" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.082, 3.738, 58.6856)
 
-[node name="@Marker3D@28326" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37613" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.082, 3.738, 58.6856)
 
-[node name="@Marker3D@28327" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37614" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.082, 3.738, 58.6856)
 
-[node name="@Marker3D@28328" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37615" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.082, 3.738, 58.6856)
 
-[node name="@Marker3D@28329" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37616" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.082, 3.738, 58.6856)
 
-[node name="@Marker3D@28330" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37617" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25.082, 3.738, 58.6856)
 
-[node name="@Marker3D@28331" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+[node name="@Marker3D@37618" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27.082, 3.738, 58.6856)
 
 [node name="PistolOutlaw" parent="." instance=ExtResource("27_rcudj")]

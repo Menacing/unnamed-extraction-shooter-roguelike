@@ -3,7 +3,7 @@ extends Node
 
 func _ready() -> void:
 	randomize()
-	
+
 func get_cell_size() -> int:
 	return 32
 
