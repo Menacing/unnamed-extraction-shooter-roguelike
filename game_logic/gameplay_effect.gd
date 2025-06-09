@@ -10,9 +10,9 @@ class_name GameplayEffect
 func apply_to(node:Node):
 	for effect in effect_lists:
 		effect.effect_target_node = node
-	EventBus.create_effect.emit(node, self)
+	EventBus.create_effect.emit(node.get_instance_id(), self)
 
 func remove_from(node:Node):
 	for effect in effect_lists:
 		effect.effect_target_node = node
-	EventBus.remove_effect.emit(node, self)
+	EventBus.remove_effect.emit(node.get_instance_id(), self)
