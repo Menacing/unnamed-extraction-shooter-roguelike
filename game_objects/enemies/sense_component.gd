@@ -99,7 +99,7 @@ func _on_bullet_detect_radius_body_entered(body: Node3D) -> void:
 	if body.is_in_group("attack"):
 		if body.firer and body.firer is Player:
 			shots_taken.append(Time.get_ticks_msec())
-			if targets[body.firer.get_instance_id()] == null:
+			if !targets.has(body.firer.get_instance_id()) or targets[body.firer.get_instance_id()] == null:
 				var target_information = TargetInformation.new()
 				target_information.last_known_position = body.firer.global_position
 				target_information.last_seen_mticks = Time.get_ticks_msec()
