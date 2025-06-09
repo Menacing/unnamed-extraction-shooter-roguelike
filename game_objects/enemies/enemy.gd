@@ -25,28 +25,32 @@ var _move_target_gpos:Vector3
 @export var nav_agent:NavigationAgent3D
 @export var move_target_distance:float = 1.0
 @export var nav_mesh_list_item:NavigationMeshListItem
-@export var max_idle_speed:float = 3.0
-@export var max_combat_speed:float = 6.0
-var _current_max_speed:float
-@export var acceleration:float = .25
-@export var body_rotation_speed:float = 1.0
+@export var max_speed:ModifiableStatFloat = ModifiableStatFloat.new(3.0)
+@export var acceleration:ModifiableStatFloat = ModifiableStatFloat.new(.25)
+@export var body_rotation_speed:ModifiableStatFloat = ModifiableStatFloat.new(1.0)
 var velocity:Vector3
+
+@export_category("Idle")
+@export var idle_effects:Array[GameplayEffect]
 
 @export_category("Combat")
 var _attack_target:Node3D
-@export var weapon_rotation_speed:float = 2.0
-@export var idle_reaction_time:float = 1.0
-@export var combat_reaction_time:float = 0.5
+@export var weapon_rotation_speed:ModifiableStatFloat = ModifiableStatFloat.new(2.0)
+@export var reaction_time:ModifiableStatFloat = ModifiableStatFloat.new(1.0)
 var _reaction_timer:float = 0.0
 @export var gun_scene:PackedScene
 @export var gun_node:Gun
 @export var magazine_size:int = 30
-@export var vert_moa:float = 600
-@export var hor_moa:float = 600
-@export var firing_cooldown:float = 1.0
-@export var melee_range:float = 1.0
+@export var vert_moa:ModifiableStatFloat = ModifiableStatFloat.new(600)
+@export var hor_moa:ModifiableStatFloat = ModifiableStatFloat.new(600)
+@export var firing_cooldown:ModifiableStatFloat = ModifiableStatFloat.new(1.0)
+@export var melee_range:ModifiableStatFloat = ModifiableStatFloat.new(1.0)
+@export var combat_effects:Array[GameplayEffect]
+
+@export_category("Suppressed")
 @export var suppression_threshold = 10
-@export var cover_radius:float = 25.0
+@export var cover_radius:ModifiableStatFloat = ModifiableStatFloat.new(25.0)
+@export var suppressed_effects:Array[GameplayEffect]
 
 @export_category("Death")
 @export var loot_fiesta:LootFiestaComponent
@@ -70,7 +74,7 @@ func _get_configuration_warnings():
 
 func _ready() -> void:
 	bt_player.blackboard.set_var("animation_player", animation_player)
-	bt_player.blackboard.set_var("firing_cooldown", firing_cooldown)
+	bt_player.blackboard.set_var("firing_cooldown", firing_cooldown.get_modified_value())
 	
 	if nav_agent: 
 		nav_agent.velocity_computed.connect(_on_velocity_computed)
@@ -182,7 +186,9 @@ func _on_load_game(save_data:TopLevelEntitySaveData):
 
 #region idle states
 func _on_idle_state_entered() -> void:
-	_current_max_speed = max_idle_speed
+	for gameplay_effect:GameplayEffect in idle_effects:
+		gameplay_effect.apply_to(self)
+		
 	pass # Replace with function body.
 	
 func _on_loitering_state_entered() -> void:
@@ -195,7 +201,7 @@ func _on_idle_state_physics_processing(delta: float) -> void:
 
 	if sensory_component.sees_enemy:
 		_reaction_timer += delta
-		if _reaction_timer > idle_reaction_time:
+		if _reaction_timer > reaction_time.get_modified_value():
 			state_chart.send_event("SpottedEnemy")
 			_reaction_timer = 0.0
 			return
@@ -211,11 +217,17 @@ func _on_patroling_state_entered() -> void:
 	_start_behavior_tree("patrol")
 	
 	pass # Replace with function body.
+
+func _on_idle_state_exited() -> void:
+	for gameplay_effect:GameplayEffect in idle_effects:
+		gameplay_effect.remove_from(self)
+	
 #endregion
 
 #region combat states
 func _on_combat_state_entered() -> void:
-	_current_max_speed = max_combat_speed
+	for gameplay_effect:GameplayEffect in combat_effects:
+		gameplay_effect.apply_to(self)
 	pass # Replace with function body.
 	
 func _on_spotted_enemy_state_entered() -> void:
@@ -245,7 +257,7 @@ func _on_chasing_state_physics_processing(delta: float) -> void:
 	
 	if sensory_component.sees_enemy:
 		_reaction_timer += delta
-		if _reaction_timer > combat_reaction_time:
+		if _reaction_timer > reaction_time.get_modified_value():
 			state_chart.send_event("SpottedEnemy")
 			_reaction_timer = 0.0
 			return
@@ -259,6 +271,10 @@ func _on_chasing_state_physics_processing(delta: float) -> void:
 			state_chart.send_event("Searching")
 		else:
 			state_chart.send_event("BT_Finished")
+			
+func _on_combat_state_exited() -> void:
+	for gameplay_effect:GameplayEffect in combat_effects:
+		gameplay_effect.remove_from(self)
 #endregion
 
 
@@ -306,7 +322,7 @@ func _on_searching_state_entered() -> void:
 func _on_searching_state_physics_processing(delta: float) -> void:
 	if sensory_component.sees_enemy:
 		_reaction_timer += delta
-		if _reaction_timer > combat_reaction_time:
+		if _reaction_timer > reaction_time.get_modified_value():
 			state_chart.send_event("SpottedEnemy")
 			_reaction_timer = 0.0
 			return
@@ -367,7 +383,6 @@ func _on_reloading_state_physics_processing(delta: float) -> void:
 		
 	
 
-
 func _on_monster_state_state_physics_processing(delta: float) -> void:
 	if gun_node and gun_node is Gun and gun_node.current_magazine_size == 0:
 		state_chart.send_event("Reload")
@@ -375,6 +390,7 @@ func _on_monster_state_state_physics_processing(delta: float) -> void:
 	if sensory_component.shots_taken.size() >= suppression_threshold:
 		state_chart.send_event("Suppressed") 
 
+#region Suppressed
 
 func find_cover_point() -> bool:
 	var start_time = Time.get_ticks_usec()
@@ -388,7 +404,7 @@ func find_cover_point() -> bool:
 		for point in cover_points:
 			if point is Node3D:
 				var distance_to_point = self.global_position.distance_to(point.global_position)
-				if distance_to_point <= cover_radius:
+				if distance_to_point <= cover_radius.get_modified_value():
 					var offset = Vector3.UP * 1.5
 					var offset_player_locations:Array[Vector3] = []
 					for pl in player_locations:
@@ -421,11 +437,39 @@ func find_cover_point() -> bool:
 	else:
 		return false
 
+func _on_suppressed_state_entered() -> void:
+	for gameplay_effect:GameplayEffect in suppressed_effects:
+		gameplay_effect.apply_to(self)
+	
 func _on_take_cover_state_entered() -> void:
 	#Find cover position
 	var cover_found = find_cover_point()
 	#start behavior tree
 	if cover_found:
 		_start_behavior_tree("take_cover")
+	else:
+		state_chart.send_event("BT_Finished")
 	
+
+
+func _on_take_cover_state_physics_processing(delta: float) -> void:
+	var bt_status:BT.Status = bt_player.get_bt_instance().get_last_status()
+	if bt_status != BT.Status.RUNNING:
+		state_chart.send_event("BT_Finished")
+
+
+func _on_suppressed_state_exited() -> void:
+	for gameplay_effect:GameplayEffect in suppressed_effects:
+		gameplay_effect.remove_from(self)
+
+
+func _on_hold_position_state_entered() -> void:
+		_start_behavior_tree("hold_position")
+		
+
+func _on_hold_position_state_physics_processing(delta: float) -> void:
+	if sensory_component.shots_taken.size() < suppression_threshold:
+		state_chart.send_event("Unsuppressed")
 	pass # Replace with function body.
+
+#endregion

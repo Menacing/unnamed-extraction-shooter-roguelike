@@ -1,4 +1,4 @@
-[gd_scene load_steps=117 format=4 uid="uid://dbl4pbq8ruw48"]
+[gd_scene load_steps=115 format=4 uid="uid://dbl4pbq8ruw48"]
 
 [ext_resource type="Script" uid="uid://bgipl8rrfxlg3" path="res://test/ai/patrol_testbed_many.gd" id="1_aaca3"]
 [ext_resource type="Script" uid="uid://dld574lvn7eun" path="res://levels/multi_agent_navigation_root.gd" id="2_qlkim"]
@@ -7,9 +7,7 @@
 [ext_resource type="Resource" uid="uid://hw8blc564g2i" path="res://levels/roomba_nav_mesh.tres" id="4_qflkg"]
 [ext_resource type="Resource" uid="uid://bkm06qpqovt7f" path="res://levels/humanoid_nav_mesh.tres" id="5_g06ac"]
 [ext_resource type="Script" uid="uid://fdkjo7y6gaw4" path="res://levels/entities/geo_ballistic_solid.gd" id="6_dysgf"]
-[ext_resource type="PackedScene" uid="uid://bv1jhh0d8fn5m" path="res://game_objects/enemies/unendliche/unendliche.tscn" id="6_gibq3"]
 [ext_resource type="PackedScene" uid="uid://bo5i75565y5co" path="res://game_objects/effects/hit_effects/bullet_hit_sparks.tscn" id="7_oabn2"]
-[ext_resource type="PackedScene" uid="uid://ciaqbr34myu5w" path="res://game_objects/enemies/robots/combat_roomba.tscn" id="7_rbnjl"]
 [ext_resource type="AudioStream" uid="uid://chvv4165nfb61" path="res://game_objects/effects/sounds/steps/footstep_concrete_001.ogg" id="8_5y1qm"]
 [ext_resource type="Material" uid="uid://tid6vrqw40j3" path="res://levels/textures/metal/metal_2.tres" id="9_wsic0"]
 [ext_resource type="Material" uid="uid://vn7ci1ie1l3o" path="res://levels/textures/metal/metal_3.tres" id="10_ov4pj"]
@@ -638,9 +636,11 @@ shape = SubResource("ConvexPolygonShape3D_227y8")
 shape = SubResource("ConvexPolygonShape3D_rq72o")
 
 [node name="entity_434_brush_37_collision_shape" type="CollisionShape3D" parent="NavigationRegion3D/MultiAgentNavigationRoot/entity_434_geo_ballistic_solid"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.38302, 10.4801)
 shape = SubResource("ConvexPolygonShape3D_34eif")
 
 [node name="entity_434_brush_38_collision_shape" type="CollisionShape3D" parent="NavigationRegion3D/MultiAgentNavigationRoot/entity_434_geo_ballistic_solid"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.38302, 10.4801)
 shape = SubResource("ConvexPolygonShape3D_newwj")
 
 [node name="entity_434_brush_39_collision_shape" type="CollisionShape3D" parent="NavigationRegion3D/MultiAgentNavigationRoot/entity_434_geo_ballistic_solid"]
@@ -938,29 +938,11 @@ one_shot = true
 autostart = true
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(-0.965926, 0, -0.258819, 0, 1, 0, 0.258819, 0, -0.965926, -0.238754, 3.18945, -8.22052)
+transform = Transform3D(-0.333363, 0.266491, -0.904352, 0, 0.95922, 0.28266, 0.942799, 0.0942281, -0.319768, -7.00033, 5.62867, 9.04727)
 fov = 52.2203
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 142.461, 0)
-
-[node name="Unendliche" parent="." instance=ExtResource("6_gibq3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.33464, 3.38387, 4.30798)
-
-[node name="combat_roomba" parent="." instance=ExtResource("7_rbnjl")]
-transform = Transform3D(1.00409, 0, 0, 0, 1.00409, 0, 0, 0, 1.00409, 12.088, 3.3338, 5.22192)
-
-[node name="combat_roomba2" parent="." instance=ExtResource("7_rbnjl")]
-transform = Transform3D(1.00409, 0, 0, 0, 1.00409, 0, 0, 0, 1.00409, 8.33652, 3.2888, 4.94149)
-
-[node name="combat_roomba3" parent="." instance=ExtResource("7_rbnjl")]
-transform = Transform3D(1.00409, 0, 0, 0, 1.00409, 0, 0, 0, 1.00409, 9.02701, 3.29904, 6.39245)
-
-[node name="combat_roomba4" parent="." instance=ExtResource("7_rbnjl")]
-transform = Transform3D(1.00409, 0, 0, 0, 1.00409, 0, 0, 0, 1.00409, 10.6522, 3.32341, 5.04695)
-
-[node name="combat_roomba5" parent="." instance=ExtResource("7_rbnjl")]
-transform = Transform3D(1.00409, 0, 0, 0, 1.00409, 0, 0, 0, 1.00409, 2.87244, 3.28774, 4.15117)
 
 [node name="Node3D" type="Node3D" parent="." node_paths=PackedStringArray("level_node")]
 script = ExtResource("25_wutxs")
@@ -1544,7 +1526,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.418, 0.488, 2.18562)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.418, 0.488, 2.18562)
 
 [node name="@Marker3D@37073" type="Marker3D" parent="Node3D" groups=["cover_point"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.418, 0.488, 2.18562)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.418, 3.87102, 12.6657)
 
 [node name="@Marker3D@37074" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.418, 0.488, 2.18562)
@@ -2810,7 +2792,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.58205, 0.488, 3.93562)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.41795, 0.488, 3.93562)
 
 [node name="@Marker3D@37495" type="Marker3D" parent="Node3D" groups=["cover_point"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.41795, 0.488, 3.93562)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.41795, 3.87102, 14.4157)
 
 [node name="@Marker3D@37496" type="Marker3D" parent="Node3D" groups=["cover_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.41795, 0.488, 3.93562)

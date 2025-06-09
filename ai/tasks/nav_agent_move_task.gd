@@ -11,13 +11,13 @@ func _generate_name() -> String:
 func _tick(p_delta: float) -> Status:
 	if agent is Enemy:
 		if (agent._move_target or agent._move_target_gpos) and agent.nav_agent and agent.move_target_distance \
-		and agent._current_max_speed and agent.acceleration and agent.body_rotation_speed:
+		and agent.max_speed and agent.acceleration and agent.body_rotation_speed:
 			
 			if is_near_move_target(agent._move_target, agent._move_target_gpos, agent.move_target_distance) or agent.nav_agent.is_navigation_finished():
 				return SUCCESS
 			if agent.animation_player.has_animation("walk"):
 				agent.animation_player.play("walk")
-			move_agent(p_delta, agent.nav_agent, agent._current_max_speed, agent.acceleration, agent.body_rotation_speed)
+			move_agent(p_delta, agent.nav_agent, agent.max_speed.get_modified_value(), agent.acceleration.get_modified_value(), agent.body_rotation_speed.get_modified_value())
 			return RUNNING
 		
 	return FAILURE

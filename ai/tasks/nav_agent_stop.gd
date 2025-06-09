@@ -17,7 +17,7 @@ func _tick(p_delta: float) -> Status:
 				agent.nav_agent.velocity = Vector3.ZERO
 				
 			if agent.velocity.length() > 0.001:  # Stop once it's very close to zero
-				agent.velocity = agent.velocity.move_toward(Vector3.ZERO, agent.acceleration)
+				agent.velocity = agent.velocity.move_toward(Vector3.ZERO, agent.acceleration.get_modified_value())
 				return RUNNING
 			else:
 				agent.velocity = Vector3.ZERO  # Prevent tiny values from lingering
