@@ -4,12 +4,12 @@ class_name CoverComponent
 
 #func _ready() -> void:
 	#create_cover_points()
+@export var use_scene:bool = false
 
 @export var level_node:Node3D
 @export var navigation_mesh:NavigationMesh
 
 @export_tool_button("Generate Cover Points", "Callable") var generate_cover_action = create_cover_points
-
 var edges:Dictionary[String, int] = {}
 
 func create_cover_points():
@@ -68,27 +68,31 @@ func create_cover_points():
 			#put a cover point at the mid point if the section is short
 			if section_length < 2.0:
 				var midpoint = start_point.lerp(end_point, 0.5)
-				
-				var cover_point:Marker3D = Marker3D.new()
-				self.add_child(cover_point)
-				cover_point.owner = get_tree().edited_scene_root
-				cover_point.global_position = midpoint
-				cover_point.add_to_group("cover_point", true)
+				create_and_add_cover_point(midpoint)
 			else:
 
 				var direction = (end_point - start_point).normalized()
 				var steps = int(section_length / 2.0)
 				for i in steps:
-					var cover_point:Marker3D = Marker3D.new()
-					self.add_child(cover_point)
-					cover_point.owner = get_tree().edited_scene_root
-					cover_point.global_position = start_point + direction * (i * 2.0)
-					cover_point.add_to_group("cover_point", true)
+					create_and_add_cover_point(start_point + direction * (i * 2.0))
 		pass
 	else:
 		printerr("NO LEVEL NODE OR NAV MESH DATA SET")
 
-
 static func create_edge_key(start:Vector3, end:Vector3) -> String:
 	return str(start)+ "*" + str(end)
+	
+
+func create_and_add_cover_point(cover_point_global_position:Vector3):
+	var cover_point:Node3D
+	if use_scene:
+		var cover_point_scene:PackedScene = load("res://components/cover_component/cover_point.tscn")
+		cover_point = cover_point_scene.instantiate()
+	else:
+		cover_point = Marker3D.new()
+	self.add_child(cover_point)
+	cover_point.owner = get_tree().edited_scene_root
+	cover_point.global_position = cover_point_global_position
+	cover_point.add_to_group("cover_point", true)
+	
 	

@@ -404,30 +404,39 @@ func find_cover_point() -> bool:
 		var cover_points = get_tree().get_nodes_in_group("cover_point")
 		var closest_distance:float = INF
 		for point in cover_points:
-			if point is Node3D:
+			if point is CoverPoint:
 				var distance_to_point = self.global_position.distance_to(point.global_position)
 				if distance_to_point <= cover_radius.get_modified_value():
-					var offset = Vector3.UP * 1.5
-					var offset_player_locations:Array[Vector3] = []
-					for pl in player_locations:
-						offset_player_locations.append(pl + offset)
-
-					var high_los = Helpers.los_to_point_vec(point, offset_player_locations, .9)
-					var low_los = Helpers.los_to_point_vec(point, player_locations, .9)
-					
+					var run_nav_check:bool = false
 					## If any cover and we haven't don't have a current point, select it
-					if (!high_los or !low_los) and closest_point == null:
-						closest_point = point
-						closest_distance = distance_to_point
+					if (point.is_high_cover or point.is_low_cover) and closest_point == null:
+						run_nav_check = true 
 					## else if high cover and no low cover
-					elif !high_los and !low_los and !low_cover_found:
-						closest_point = point
-						closest_distance = distance_to_point
-					## else if low cover and closer
-					elif high_los and !low_los and distance_to_point < closest_distance:
-						closest_point = point
-						closest_distance = distance_to_point
-						low_cover_found = true
+					elif point.is_high_cover and !low_cover_found:
+						run_nav_check = true
+					## else if low cover
+					elif point.is_low_cover:
+						run_nav_check = true
+
+					if run_nav_check:
+						var params := NavigationPathQueryParameters3D.new()
+						params.start_position = self.global_position
+						params.target_position = point.global_position
+						params.map = nav_agent.get_navigation_map()
+						
+						var nav_result = NavigationPathQueryResult3D.new()
+						NavigationServer3D.query_path(params, nav_result)
+						
+						if nav_result.path.size() > 0:
+							var distance := 0.0
+							for i in range(nav_result.path.size() - 1):
+								distance +=  nav_result.path[i].distance_to(nav_result.path[i + 1])
+								
+							if distance < closest_distance:
+								closest_distance = distance
+								closest_point = point
+								if point.is_low_cover:
+									low_cover_found = true
 	
 	var end_time = Time.get_ticks_usec()
 	var duration_ms := float(end_time - start_time) / 1000.0

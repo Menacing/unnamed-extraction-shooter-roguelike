@@ -78,6 +78,8 @@ func los_to_point_vec(target:Node3D, sources:Array[Vector3], threshold:float, ex
 				query.exclude = exclusions
 			if concealment_layer:
 				query.collision_mask = 0b00000000_00000000_00000000_00001000
+			else:
+				query.collision_mask = 0b00000000_00000000_00000000_00000010
 			var result:Dictionary = space_state.intersect_ray(query)
 			if result.is_empty():
 				num_los += 1.0
