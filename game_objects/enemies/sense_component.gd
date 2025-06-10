@@ -1,13 +1,10 @@
 extends Node3D
 class_name SenseComponent
 
-var _process_delay:float
-@export_range(1,60) var tick_rate:int = 20:
+var _process_delay:float:
 	get:
-		return tick_rate
-	set(value):
-		tick_rate = value
-		_process_delay = 1.0/float(tick_rate)
+		return 1.0/float(tick_rate)
+@export_range(1,60) var tick_rate:int = 20
 var elapsed_time:float = 0.0
 
 @export var view_cone:Area3D
@@ -16,7 +13,7 @@ var elapsed_time:float = 0.0
 @export var enemy_groups:Array[String]
 @export var memory_seconds:float = 10.0
 
-@onready var self_exclusions:Array[RID] = Helpers.get_all_collision_object_3d_recursive(self)
+@export var self_to_exclude:Node3D
 
 #target information
 var sees_enemy:bool = false
@@ -60,14 +57,14 @@ func _process_look() -> void:
 		if viewable_entity is PhysicsBody3D:
 			if view_cone.overlaps_body(viewable_entity):
 				for enemy_group in enemy_groups:
-					if viewable_entity.is_in_group(enemy_group):
-						var target_exclusions = Helpers.get_all_collision_object_3d_recursive(viewable_entity)
+					if viewable_entity.is_in_group(enemy_group) and viewable_entity.self_exclusions:
+						var target_exclusions = viewable_entity.self_exclusions
 						var los_comp = Helpers.get_component_of_type(viewable_entity, LOSTargetComponent)
 						var los_result = false
 						if los_comp:
-							los_result = Helpers.los_to_point(self,los_comp.los_targets,view_sensitivity, self_exclusions + target_exclusions,true)
+							los_result = Helpers.los_to_point(self,los_comp.los_targets,view_sensitivity, self_to_exclude.self_exclusions + target_exclusions,true)
 						else:
-							los_result = Helpers.los_to_point(self,[viewable_entity],view_sensitivity, self_exclusions + target_exclusions,true)
+							los_result = Helpers.los_to_point(self,[viewable_entity],view_sensitivity, self_to_exclude.self_exclusions + target_exclusions,true)
 						
 						if los_result:
 							sees_enemy = los_result

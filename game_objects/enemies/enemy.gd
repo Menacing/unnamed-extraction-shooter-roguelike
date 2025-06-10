@@ -57,6 +57,8 @@ var _reaction_timer:float = 0.0
 @export var physical_bone_simulator:PhysicalBoneSimulator3D
 @export var character_body_collision_shapes:Array[CollisionShape3D]
 
+@onready var self_exclusions:Array[RID] = Helpers.get_all_collision_object_3d_recursive(self)
+
 func _get_configuration_warnings():
 	var warnings = []
 
@@ -349,7 +351,7 @@ func _on_advancing_state_physics_processing(delta: float) -> void:
 	var dis_to_target = _attack_target.global_position.distance_to(self.global_position)
 	if _attack_target == null:
 		state_chart.send_event("LostTarget")
-	elif dis_to_target <= melee_range:
+	elif dis_to_target <= melee_range.get_modified_value():
 		state_chart.send_event("InMeleeRange")
 		
 	pass # Replace with function body.

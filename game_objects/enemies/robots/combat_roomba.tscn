@@ -285,16 +285,18 @@ modulate = Color(1, 0, 0, 1)
 double_sided = false
 texture = ExtResource("6_5orm7")
 
-[node name="SenseComponent" type="Node3D" parent="combat-roomba/Armature/Skeleton3D/PhysicalBoneSimulator3D/Head" node_paths=PackedStringArray("view_cone")]
+[node name="SenseComponent" type="Node3D" parent="combat-roomba/Armature/Skeleton3D/PhysicalBoneSimulator3D/Head" node_paths=PackedStringArray("view_cone", "self_to_exclude")]
 transform = Transform3D(1.00409, 0, 0, 0, 1.00409, 0, 0, 0, 1.00409, 0, -0.024083, 0)
 script = ExtResource("18_54ull")
 view_cone = NodePath("ViewArea3D")
 enemy_groups = Array[String](["players"])
+self_to_exclude = NodePath("../../../../../..")
 metadata/_custom_type_script = "uid://bx51vpuw5qrqt"
 
 [node name="ViewArea3D" type="Area3D" parent="combat-roomba/Armature/Skeleton3D/PhysicalBoneSimulator3D/Head/SenseComponent"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 0, 0, -69)
 collision_layer = 0
+collision_mask = 16
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="combat-roomba/Armature/Skeleton3D/PhysicalBoneSimulator3D/Head/SenseComponent/ViewArea3D"]
 shape = SubResource("BoxShape3D_mxgj2")

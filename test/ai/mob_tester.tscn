@@ -1,6 +1,7 @@
-[gd_scene load_steps=22 format=4 uid="uid://4mdathvlp5a5"]
+[gd_scene load_steps=24 format=4 uid="uid://4mdathvlp5a5"]
 
 [ext_resource type="Script" uid="uid://to07yl4k63kc" path="res://test/ai/concealment_tester.gd" id="1_dv7jw"]
+[ext_resource type="NavigationMesh" uid="uid://cq8qcamu7syop" path="res://test/ai/mob_tester_navigation_mesh.tres" id="2_fedvk"]
 [ext_resource type="Script" uid="uid://dld574lvn7eun" path="res://levels/multi_agent_navigation_root.gd" id="2_hgtva"]
 [ext_resource type="Script" uid="uid://c3ffaehlq01k0" path="res://levels/navigation_mesh_list_item.gd" id="3_vla63"]
 [ext_resource type="Resource" uid="uid://hw8blc564g2i" path="res://levels/roomba_nav_mesh.tres" id="4_6of7y"]
@@ -11,6 +12,7 @@
 [ext_resource type="Script" uid="uid://b2newdlaaj70t" path="res://game_objects/items/weapons/gun_stats.gd" id="10_fedvk"]
 [ext_resource type="PackedScene" uid="uid://c17uhpgl0dvt4" path="res://game_objects/items/ammo/fic/fic_box_fmj.tscn" id="11_2k45v"]
 [ext_resource type="PackedScene" uid="uid://by0xokh7wvpyg" path="res://game_objects/enemies/outlaw/pistol_outlaw.tscn" id="11_l0bi7"]
+[ext_resource type="Script" uid="uid://h4mwcwv5kksw" path="res://components/cover_component/cover_component.gd" id="13_2k45v"]
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_0qrmu"]
 data = PackedVector3Array(6.2442, 0.249, 7.3303, 6.2442, 0.249, -7.3303, 6.2442, -0.249, -7.3303, 6.2442, -0.249, -7.3303, 6.2442, -0.249, 7.3303, 6.2442, 0.249, 7.3303, 6.2442, 0.249, 7.3303, -6.2442, 0.249, 7.3303, -6.2442, 0.249, -7.3303, -6.2442, 0.249, -7.3303, 6.2442, 0.249, -7.3303, 6.2442, 0.249, 7.3303, 6.2442, 0.249, 7.3303, 6.2442, -0.249, 7.3303, -6.2442, -0.249, 7.3303, -6.2442, -0.249, 7.3303, -6.2442, 0.249, 7.3303, 6.2442, 0.249, 7.3303, -6.2442, 0.249, -7.3303, -6.2442, 0.249, 7.3303, -6.2442, -0.249, 7.3303, -6.2442, -0.249, 7.3303, -6.2442, -0.249, -7.3303, -6.2442, 0.249, -7.3303, -6.2442, -0.249, 7.3303, 6.2442, -0.249, 7.3303, 6.2442, -0.249, -7.3303, 6.2442, -0.249, -7.3303, -6.2442, -0.249, -7.3303, -6.2442, -0.249, 7.3303, 6.2442, -0.249, -7.3303, 6.2442, 0.249, -7.3303, -6.2442, 0.249, -7.3303, -6.2442, 0.249, -7.3303, -6.2442, -0.249, -7.3303, 6.2442, -0.249, -7.3303)
@@ -83,60 +85,63 @@ reload_thresholds = Array[float]([1.0])
 
 [node name="ConcealmentTester" type="Node3D" node_paths=PackedStringArray("mesh")]
 script = ExtResource("1_dv7jw")
-mesh = NodePath("MultiAgentNavigationRoot/MeshInstance3D")
+mesh = NodePath("NavigationRegion3D/MultiAgentNavigationRoot/MeshInstance3D")
 
-[node name="MultiAgentNavigationRoot" type="Node3D" parent="."]
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+navigation_mesh = ExtResource("2_fedvk")
+
+[node name="MultiAgentNavigationRoot" type="Node3D" parent="NavigationRegion3D"]
 script = ExtResource("2_hgtva")
 navigation_mesh_list_items = Array[ExtResource("3_vla63")]([ExtResource("4_6of7y"), ExtResource("5_l0bi7")])
 
-[node name="Floor1" type="StaticBody3D" parent="MultiAgentNavigationRoot"]
+[node name="Floor1" type="StaticBody3D" parent="NavigationRegion3D/MultiAgentNavigationRoot"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.17795, -0.250977, -0.293945)
 collision_layer = 11
 collision_mask = 11
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="MultiAgentNavigationRoot/Floor1"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/MultiAgentNavigationRoot/Floor1"]
 shape = SubResource("ConcavePolygonShape3D_0qrmu")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="MultiAgentNavigationRoot/Floor1"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/MultiAgentNavigationRoot/Floor1"]
 mesh = SubResource("ArrayMesh_3u3dp")
 
-[node name="Floor2" type="StaticBody3D" parent="MultiAgentNavigationRoot"]
+[node name="Floor2" type="StaticBody3D" parent="NavigationRegion3D/MultiAgentNavigationRoot"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.2147, -0.250977, -0.293945)
 collision_layer = 11
 collision_mask = 11
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="MultiAgentNavigationRoot/Floor2"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/MultiAgentNavigationRoot/Floor2"]
 shape = SubResource("ConcavePolygonShape3D_0qrmu")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="MultiAgentNavigationRoot/Floor2"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/MultiAgentNavigationRoot/Floor2"]
 mesh = SubResource("ArrayMesh_3u3dp")
 
-[node name="Wall1" type="StaticBody3D" parent="MultiAgentNavigationRoot"]
+[node name="Wall1" type="StaticBody3D" parent="NavigationRegion3D/MultiAgentNavigationRoot"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.38, 1.41577, 0)
 collision_layer = 8
 collision_mask = 8
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="MultiAgentNavigationRoot/Wall1"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/MultiAgentNavigationRoot/Wall1"]
 shape = SubResource("ConcavePolygonShape3D_jp3m5")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="MultiAgentNavigationRoot/Wall1"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/MultiAgentNavigationRoot/Wall1"]
 mesh = SubResource("ArrayMesh_0lwd8")
 
-[node name="ClearWall" type="StaticBody3D" parent="MultiAgentNavigationRoot"]
+[node name="ClearWall" type="StaticBody3D" parent="NavigationRegion3D/MultiAgentNavigationRoot"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.705293, 1.41577, 0)
 collision_layer = 3
 collision_mask = 3
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="MultiAgentNavigationRoot/ClearWall"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/MultiAgentNavigationRoot/ClearWall"]
 shape = SubResource("ConcavePolygonShape3D_c7gke")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="MultiAgentNavigationRoot/ClearWall"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/MultiAgentNavigationRoot/ClearWall"]
 mesh = SubResource("ArrayMesh_6we4t")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="MultiAgentNavigationRoot"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/MultiAgentNavigationRoot"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.31649, 0.524692, -7.09351)
 mesh = SubResource("BoxMesh_nb6a8")
-skeleton = NodePath("../..")
+skeleton = NodePath("../../..")
 
 [node name="Player" parent="." instance=ExtResource("6_2tam6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.04344, 0.907751, 3.47038)
@@ -201,3 +206,164 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.00354, 0, 1.74345)
 
 [node name="PistolOutlaw" parent="." instance=ExtResource("11_l0bi7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.566885, 0.0397083, -2.06648)
+
+[node name="Node3D" type="Node3D" parent="." node_paths=PackedStringArray("level_node")]
+script = ExtResource("13_2k45v")
+level_node = NodePath("../NavigationRegion3D/MultiAgentNavigationRoot")
+navigation_mesh = ExtResource("2_fedvk")
+
+[node name="@Marker3D@88818" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.54715, 0.250023, -0.499245)
+
+[node name="@Marker3D@88819" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.82785, 0.250023, -0.874245)
+
+[node name="@Marker3D@88820" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.17215, 0.250023, -0.874245)
+
+[node name="@Marker3D@88821" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.17215, 0.250023, -0.124245)
+
+[node name="@Marker3D@88822" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.17215, 0.250023, -2.12424)
+
+[node name="@Marker3D@88823" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.17215, 0.250023, -4.12425)
+
+[node name="@Marker3D@88824" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.17215, 0.250023, -7.37425)
+
+[node name="@Marker3D@88825" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.17215, 0.250023, -7.37425)
+
+[node name="@Marker3D@88826" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.17215, 0.250023, -7.37425)
+
+[node name="@Marker3D@88827" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.17215, 0.250023, -7.37425)
+
+[node name="@Marker3D@88828" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.17215, 0.250023, -7.37425)
+
+[node name="@Marker3D@88829" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.82785, 0.250023, 0.875755)
+
+[node name="@Marker3D@88830" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.3279, 0.250023, 6.87575)
+
+[node name="@Marker3D@88831" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.3279, 0.250023, 6.87575)
+
+[node name="@Marker3D@88832" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.3279, 0.250023, 6.87575)
+
+[node name="@Marker3D@88833" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.3279, 0.250023, 6.87575)
+
+[node name="@Marker3D@88834" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.32785, 0.250023, 6.87575)
+
+[node name="@Marker3D@88835" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.32785, 0.250023, 6.87575)
+
+[node name="@Marker3D@88836" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.32785, 0.250023, 6.87575)
+
+[node name="@Marker3D@88837" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.07785, 0.250023, -0.624245)
+
+[node name="@Marker3D@88838" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.82785, 0.250023, -7.37425)
+
+[node name="@Marker3D@88839" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.82785, 0.250023, -7.37425)
+
+[node name="@Marker3D@88840" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.82785, 0.250023, -7.37425)
+
+[node name="@Marker3D@88841" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.82785, 0.250023, -7.37425)
+
+[node name="@Marker3D@88842" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.82785, 0.250023, -7.37425)
+
+[node name="@Marker3D@88843" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.8279, 0.250023, -7.37425)
+
+[node name="@Marker3D@88844" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.8279, 0.250023, -7.37425)
+
+[node name="@Marker3D@88845" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.95285, 0.250023, 0.125755)
+
+[node name="@Marker3D@88846" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.3279, 0.250023, -7.37425)
+
+[node name="@Marker3D@88847" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.3279, 0.250023, -5.37425)
+
+[node name="@Marker3D@88848" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.3279, 0.250023, -3.37425)
+
+[node name="@Marker3D@88849" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.3279, 0.250023, -1.37425)
+
+[node name="@Marker3D@88850" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.3279, 0.250023, 0.625755)
+
+[node name="@Marker3D@88851" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.3279, 0.250023, 2.62575)
+
+[node name="@Marker3D@88852" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.3279, 0.250023, 4.62575)
+
+[node name="@Marker3D@88853" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.57785, 3.25002, 0.000755012)
+
+[node name="@Marker3D@88854" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.17215, 3.25002, -0.374245)
+
+[node name="@Marker3D@88855" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.17215, 3.25002, -0.374245)
+
+[node name="@Marker3D@88856" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.57785, 3.25002, 0.375755)
+
+[node name="@Marker3D@88857" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.57785, 3.25002, 0.375755)
+
+[node name="@Marker3D@88858" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.17215, 3.25002, 0.000755012)
+
+[node name="@Marker3D@88859" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.54715, 0.250023, 0.375755)
+
+[node name="@Marker3D@88860" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.42215, 0.250023, 0.875755)
+
+[node name="@Marker3D@88861" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.42215, 0.250023, 0.875755)
+
+[node name="@Marker3D@88862" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.17215, 0.250023, 6.87575)
+
+[node name="@Marker3D@88863" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.17215, 0.250023, 4.87575)
+
+[node name="@Marker3D@88864" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.17215, 0.250023, 2.87575)
+
+[node name="@Marker3D@88865" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.82785, 0.250023, 6.87575)
+
+[node name="@Marker3D@88866" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.17215, 0.250023, 6.87575)
+
+[node name="@Marker3D@88867" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.17215, 0.250023, 6.87575)
+
+[node name="@Marker3D@88868" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.17215, 0.250023, 6.87575)
+
+[node name="@Marker3D@88869" type="Marker3D" parent="Node3D" groups=["cover_point"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.17215, 0.250023, 6.87575)
