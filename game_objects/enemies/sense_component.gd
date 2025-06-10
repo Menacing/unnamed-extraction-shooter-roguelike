@@ -1,13 +1,12 @@
 extends Node3D
 class_name SenseComponent
 
-var _process_delay:float:
-	get:
-		return 1.0/float(tick_rate)
+var _process_delay:float = 0.05
 @export_range(1,60) var tick_rate:int = 20
 var elapsed_time:float = 0.0
 
-@export var view_cone:Area3D
+@export var view_distance:float = 100.0
+@export var fov_angle:float = 90.0
 @export_range(0.1,1.0, 0.1) var view_sensitivity = 0.5
 @export var listen_area:Area3D
 @export var enemy_groups:Array[String]
@@ -21,6 +20,7 @@ var targets:Dictionary[int,TargetInformation] = {}
 var shots_taken:Array[int] = []
 
 func _ready() -> void:
+	_process_delay = (1.0 / float(tick_rate)) + randf_range(-0.1, 0.1)
 	pass
 
 func _physics_process(delta: float) -> void:
@@ -55,27 +55,39 @@ func _process_memory() -> void:
 func _process_look() -> void:
 	for viewable_entity in LevelManager.viewable_entities:
 		if viewable_entity is PhysicsBody3D:
-			if view_cone.overlaps_body(viewable_entity):
-				for enemy_group in enemy_groups:
-					if viewable_entity.is_in_group(enemy_group) and viewable_entity.self_exclusions:
-						var target_exclusions = viewable_entity.self_exclusions
-						var los_comp = Helpers.get_component_of_type(viewable_entity, LOSTargetComponent)
-						var los_result = false
-						if los_comp:
-							los_result = Helpers.los_to_point(self,los_comp.los_targets,view_sensitivity, self_to_exclude.self_exclusions + target_exclusions,true)
-						else:
-							los_result = Helpers.los_to_point(self,[viewable_entity],view_sensitivity, self_to_exclude.self_exclusions + target_exclusions,true)
+			for enemy_group in enemy_groups:
+				if viewable_entity.is_in_group(enemy_group) and viewable_entity.self_exclusions:
+					
+					#if in view distance
+					var entity_pos:Vector3 = viewable_entity.global_position
+					var to_entity:Vector3 = entity_pos - self.global_position
+					var dist:float = to_entity.length()
+					if dist < view_distance:
 						
-						if los_result:
-							sees_enemy = los_result
-							var target_information = TargetInformation.new()
-							target_information.last_known_position = viewable_entity.global_position
-							target_information.last_seen_mticks = Time.get_ticks_msec()
-							target_information.target = viewable_entity
-							target_information.currently_has_los = los_result
-							targets[viewable_entity.get_instance_id()] = target_information
-				pass
-	
+						#and inside fov angle
+						var to_entity_dir:Vector3 = to_entity.normalized()
+						var forward_dir:Vector3 = get_parent().global_transform.basis.z * -1 #assuming -Z is forward
+						var angle_cos = forward_dir.dot(to_entity_dir)
+						
+						if angle_cos > cos(fov_angle * 0.5):
+							#and has line of sight
+							var target_exclusions = viewable_entity.self_exclusions
+							var los_comp = Helpers.get_component_of_type(viewable_entity, LOSTargetComponent)
+							var los_result = false
+							if los_comp:
+								los_result = Helpers.los_to_point(self,los_comp.los_targets,view_sensitivity, self_to_exclude.self_exclusions + target_exclusions,true)
+							else:
+								los_result = Helpers.los_to_point(self,[viewable_entity],view_sensitivity, self_to_exclude.self_exclusions + target_exclusions,true)
+							
+							if los_result:
+								sees_enemy = los_result
+								var target_information = TargetInformation.new()
+								target_information.last_known_position = viewable_entity.global_position
+								target_information.last_seen_mticks = Time.get_ticks_msec()
+								target_information.target = viewable_entity
+								target_information.currently_has_los = los_result
+								targets[viewable_entity.get_instance_id()] = target_information
+
 	pass
 
 func _on_bullet_detect_radius_body_shape_entered(body_rid: RID, body: Node3D, body_shape_index: int, local_shape_index: int) -> void:

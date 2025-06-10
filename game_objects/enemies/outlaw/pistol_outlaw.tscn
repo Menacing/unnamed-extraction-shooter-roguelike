@@ -1,4 +1,4 @@
-[gd_scene load_steps=108 format=3 uid="uid://by0xokh7wvpyg"]
+[gd_scene load_steps=107 format=3 uid="uid://by0xokh7wvpyg"]
 
 [ext_resource type="Script" uid="uid://bvqp78uoao257" path="res://game_objects/enemies/enemy.gd" id="1_1ywxy"]
 [ext_resource type="Resource" uid="uid://bkm06qpqovt7f" path="res://levels/humanoid_nav_mesh.tres" id="2_4av8o"]
@@ -3237,9 +3237,6 @@ _data = {
 &"walk": SubResource("Animation_vj21y")
 }
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_7j3he"]
-size = Vector3(100, 20, 100)
-
 [sub_resource type="SphereShape3D" id="SphereShape3D_p7ygx"]
 radius = 1.5
 
@@ -3666,8 +3663,8 @@ shape = SubResource("CapsuleShape3D_230oj")
 [node name="Physical Bone CoatRoot" type="PhysicalBone3D" parent="outlaw/Armature/GeneralSkeleton/PhysicalBoneSimulator3D"]
 transform = Transform3D(0.429589, 0.0536356, -0.90143, 0.441436, -0.883306, 0.157815, -0.787774, -0.465719, -0.403135, 0.113803, -0.0445869, -0.0647025)
 joint_type = 1
-joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000472099, -2.64051e-05, 0.126471)
-body_offset = Transform3D(0.429589, 0.0536356, -0.90143, -0.00011459, 0.998238, 0.059341, 0.903025, -0.0253889, 0.428838, 0.113803, -0.00747848, -0.0546623)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000472087, -2.64146e-05, 0.126471)
+body_offset = Transform3D(0.429589, 0.0536356, -0.90143, -0.00011459, 0.998238, 0.0593411, 0.903025, -0.0253889, 0.428838, 0.113803, -0.00747848, -0.0546623)
 bone_name = "CoatRoot"
 joint_constraints/bias = 0.3
 joint_constraints/damping = 1.0
@@ -3703,22 +3700,13 @@ bone_idx = 3
 use_external_skeleton = true
 external_skeleton = NodePath("../outlaw/Armature/GeneralSkeleton")
 
-[node name="SenseComponent" type="Node3D" parent="HeadBoneAttachment3D" node_paths=PackedStringArray("view_cone", "self_to_exclude")]
+[node name="SenseComponent" type="Node3D" parent="HeadBoneAttachment3D" node_paths=PackedStringArray("self_to_exclude")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0.779919, 0)
 script = ExtResource("3_u1gjc")
-view_cone = NodePath("ViewArea3D")
 enemy_groups = Array[String](["players"])
 memory_seconds = 30.0
 self_to_exclude = NodePath("../..")
 metadata/_custom_type_script = "uid://bx51vpuw5qrqt"
-
-[node name="ViewArea3D" type="Area3D" parent="HeadBoneAttachment3D/SenseComponent"]
-transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 0, 0, -69)
-collision_layer = 0
-collision_mask = 16
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="HeadBoneAttachment3D/SenseComponent/ViewArea3D"]
-shape = SubResource("BoxShape3D_7j3he")
 
 [node name="BulletDetectRadius" type="Area3D" parent="HeadBoneAttachment3D/SenseComponent"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.779919, 0)
