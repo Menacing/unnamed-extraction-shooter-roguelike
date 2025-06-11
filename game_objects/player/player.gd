@@ -173,6 +173,8 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 signal armor_equipped(armor:BodyArmor)
 signal armor_unequipped(armor:BodyArmor)
 
+@onready var self_exclusions:Array[RID] = Helpers.get_all_collision_object_3d_recursive(self)
+
 func _ready():
 	if gun_scene1:
 		equipped_gun = gun_scene1.instantiate()

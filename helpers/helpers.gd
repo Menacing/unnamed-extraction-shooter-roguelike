@@ -3,7 +3,7 @@ extends Node
 
 func _ready() -> void:
 	randomize()
-	
+
 func get_cell_size() -> int:
 	return 32
 
@@ -53,6 +53,33 @@ func los_to_point(target:Node3D, sources:Array[Node3D], threshold:float, exclusi
 				query.exclude = exclusions
 			if concealment_layer:
 				query.collision_mask = 0b00000000_00000000_00000000_00001000
+			var result:Dictionary = space_state.intersect_ray(query)
+			if result.is_empty():
+				num_los += 1.0
+			pass
+		if (num_los/num_sources > threshold):
+			return true
+		else:
+			return false
+	else:
+		return false
+		
+#Only call during _physics_process
+func los_to_point_vec(target:Node3D, sources:Array[Vector3], threshold:float, exclusions:Array[RID] = [], concealment_layer:bool = false) -> bool:
+	var num_sources:int = sources.size()
+	var num_los:float = 0.0
+	var space_state:PhysicsDirectSpaceState3D = target.get_world_3d().direct_space_state
+	if space_state:
+		var target_global_pos:Vector3 = target.global_position
+		for source in sources:
+			var query:PhysicsRayQueryParameters3D = PhysicsRayQueryParameters3D.create(source,\
+				target_global_pos)
+			if exclusions.size() > 0:
+				query.exclude = exclusions
+			if concealment_layer:
+				query.collision_mask = 0b00000000_00000000_00000000_00001000
+			else:
+				query.collision_mask = 0b00000000_00000000_00000000_00000010
 			var result:Dictionary = space_state.intersect_ray(query)
 			if result.is_empty():
 				num_los += 1.0
@@ -260,3 +287,13 @@ func clamp_int_to_enum(value:int, enumeration:Dictionary) -> int:
 	var enum_max = enum_values.max()
 	var enum_min = enum_values.min()
 	return clampi(value, enum_min, enum_max)
+	
+func string_to_vector3(s: String) -> Vector3:
+	var cleaned = s.strip_edges()
+	if cleaned.begins_with("(") and cleaned.ends_with(")"):
+		cleaned = cleaned.substr(1, cleaned.length() - 2)
+	var parts = cleaned.split(",")
+	if parts.size() != 3:
+		push_error("Invalid Vector3 string: " + s)
+		return Vector3.ZERO
+	return Vector3(parts[0].to_float(), parts[1].to_float(), parts[2].to_float())

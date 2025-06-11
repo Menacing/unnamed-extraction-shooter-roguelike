@@ -17,7 +17,7 @@ func _tick(delta) -> Status:
 				#Helpers.slow_rotate_to_point(head_node, attack_target.global_transform.origin, weapon_rotation_speed, delta)
 				#return SUCCESS
 			if agent.gun_node:
-				Helpers.slow_rotate_to_point(agent.gun_node, agent._attack_target.global_transform.origin, agent.weapon_rotation_speed, delta)
+				Helpers.slow_rotate_to_point(agent.gun_node, agent._attack_target.global_transform.origin, agent.weapon_rotation_speed.get_modified_value(), delta)
 				return SUCCESS
 
 	return FAILURE

@@ -1,0 +1,68 @@
+[gd_resource type="BehaviorTree" load_steps=21 format=3 uid="uid://cedrnox1p56yo"]
+
+[ext_resource type="Script" uid="uid://cswc6lsp2t4pk" path="res://ai/tasks/nav_agent_stop.gd" id="1_yu5bs"]
+[ext_resource type="Script" uid="uid://cvw7ocnvo1j4f" path="res://ai/tasks/set_fire_target_task.gd" id="2_art73"]
+[ext_resource type="Script" uid="uid://dmmuq2wf020yf" path="res://ai/tasks/slow_weapon_turn_task.gd" id="3_c83yu"]
+[ext_resource type="Script" uid="uid://t8jwxqkplgeb" path="res://ai/tasks/fire_weapon_task.gd" id="4_pjxxb"]
+[ext_resource type="Script" uid="uid://cm5govmktva06" path="res://ai/tasks/variable_cooldown.gd" id="5_7c74r"]
+
+[sub_resource type="BlackboardPlan" id="BlackboardPlan_lmspe"]
+
+[sub_resource type="BTAction" id="BTAction_5jg1r"]
+script = ExtResource("1_yu5bs")
+
+[sub_resource type="BTAction" id="BTAction_s1iwe"]
+script = ExtResource("2_art73")
+
+[sub_resource type="BBVariant" id="BBVariant_bn7y5"]
+type = 24
+value_source = 1
+variable = &"_attack_target"
+resource_name = "$_attack_target"
+
+[sub_resource type="BTSetAgentProperty" id="BTSetAgentProperty_p82ox"]
+property = &"_move_target"
+value = SubResource("BBVariant_bn7y5")
+
+[sub_resource type="BTDynamicSequence" id="BTDynamicSequence_7v2ne"]
+children = [SubResource("BTAction_s1iwe"), SubResource("BTSetAgentProperty_p82ox")]
+
+[sub_resource type="BTCooldown" id="BTCooldown_n1j0r"]
+duration = 5.0
+children = [SubResource("BTDynamicSequence_7v2ne")]
+
+[sub_resource type="BTAlwaysSucceed" id="BTAlwaysSucceed_ph4ey"]
+children = [SubResource("BTCooldown_n1j0r")]
+
+[sub_resource type="BTAction" id="BTAction_13ark"]
+script = ExtResource("3_c83yu")
+
+[sub_resource type="BTAction" id="BTAction_8epdt"]
+script = ExtResource("4_pjxxb")
+
+[sub_resource type="BBFloat" id="BBFloat_sbh57"]
+value_source = 1
+variable = &"firing_cooldown"
+resource_name = "$firing_cooldown"
+
+[sub_resource type="BTCooldown" id="BTCooldown_lclmw"]
+custom_name = "Firing Cooldown"
+children = [SubResource("BTAction_8epdt")]
+script = ExtResource("5_7c74r")
+cooldown_length = SubResource("BBFloat_sbh57")
+
+[sub_resource type="BTAlwaysSucceed" id="BTAlwaysSucceed_psbum"]
+custom_name = "Fire Weapon Cooldown"
+children = [SubResource("BTCooldown_lclmw")]
+
+[sub_resource type="BTDynamicSequence" id="BTDynamicSequence_gnfwb"]
+custom_name = "AttackPlayerSequence"
+children = [SubResource("BTAlwaysSucceed_ph4ey"), SubResource("BTAction_13ark"), SubResource("BTAlwaysSucceed_psbum")]
+
+[sub_resource type="BTSequence" id="BTSequence_yajlo"]
+custom_name = "HoldPositionSequence"
+children = [SubResource("BTAction_5jg1r"), SubResource("BTDynamicSequence_gnfwb")]
+
+[resource]
+blackboard_plan = SubResource("BlackboardPlan_lmspe")
+root_task = SubResource("BTSequence_yajlo")

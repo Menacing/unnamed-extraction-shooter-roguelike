@@ -10,7 +10,7 @@ func _generate_name():
 func _tick(delta) -> Status:
 	if agent is Enemy:
 		if agent.gun_node:
-			Helpers.random_angle_deviation_moa(agent.gun_node,agent.vert_moa,agent.hor_moa)
+			Helpers.random_angle_deviation_moa(agent.gun_node,agent.vert_moa.get_modified_value(),agent.hor_moa.get_modified_value())
 			agent.gun_node.fireGun()
 			return SUCCESS
 	return FAILURE

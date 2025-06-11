@@ -16,4 +16,3 @@ func _tick(delta) -> Status:
 		return SUCCESS
 		
 	return FAILURE
-
