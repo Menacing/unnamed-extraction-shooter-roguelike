@@ -12,7 +12,7 @@ var is_high_cover:bool:
 		return !_low_los and !_high_los
 
 
-var _process_delay:float = 0.5
+var _process_delay:float = 1.0
 
 var elapsed_time:float = 0.0
 
@@ -20,7 +20,7 @@ var _offset_origin:Vector3
 
 func _ready() -> void:
 	_offset_origin = self.global_position + (Vector3.UP * 1.5)
-	_process_delay + randf_range(-0.1, 0.1)
+	_process_delay + randf_range(-0.5, 0.5)
 	
 func _physics_process(delta: float) -> void:
 	elapsed_time += delta

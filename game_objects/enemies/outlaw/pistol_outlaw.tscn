@@ -3661,10 +3661,10 @@ transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, 0, 0, 0)
 shape = SubResource("CapsuleShape3D_230oj")
 
 [node name="Physical Bone CoatRoot" type="PhysicalBone3D" parent="outlaw/Armature/GeneralSkeleton/PhysicalBoneSimulator3D"]
-transform = Transform3D(0.429589, 0.0536356, -0.90143, 0.441436, -0.883306, 0.157815, -0.787774, -0.465719, -0.403135, 0.113803, -0.0445869, -0.0647025)
+transform = Transform3D(0.429589, 0.0536358, -0.90143, 0.441436, -0.883306, 0.157815, -0.787774, -0.465719, -0.403135, 0.113803, -0.044587, -0.0647025)
 joint_type = 1
-joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000472087, -2.64146e-05, 0.126471)
-body_offset = Transform3D(0.429589, 0.0536356, -0.90143, -0.00011459, 0.998238, 0.0593411, 0.903025, -0.0253889, 0.428838, 0.113803, -0.00747848, -0.0546623)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000472102, -2.6506e-05, 0.126471)
+body_offset = Transform3D(0.429589, 0.0536358, -0.90143, -0.00011459, 0.998238, 0.0593413, 0.903025, -0.025389, 0.428838, 0.113803, -0.00747842, -0.0546624)
 bone_name = "CoatRoot"
 joint_constraints/bias = 0.3
 joint_constraints/damping = 1.0
@@ -3918,9 +3918,9 @@ bone_idx = 3
 use_external_skeleton = true
 external_skeleton = NodePath("../../outlaw/Armature/GeneralSkeleton")
 
-[node name="Area3D" type="Area3D" parent="HurtBox/HeadBoneAttachment3D"]
+[node name="Area3D" type="StaticBody3D" parent="HurtBox/HeadBoneAttachment3D"]
 collision_layer = 2
-collision_mask = 2
+collision_mask = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="HurtBox/HeadBoneAttachment3D/Area3D"]
 shape = SubResource("CapsuleShape3D_a43ek")
@@ -3935,10 +3935,10 @@ bone_idx = 1
 use_external_skeleton = true
 external_skeleton = NodePath("../../outlaw/Armature/GeneralSkeleton")
 
-[node name="Area3D" type="Area3D" parent="HurtBox/ChestBoneAttachment3D"]
+[node name="Area3D" type="StaticBody3D" parent="HurtBox/ChestBoneAttachment3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.211748, 0)
 collision_layer = 2
-collision_mask = 2
+collision_mask = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="HurtBox/ChestBoneAttachment3D/Area3D"]
 shape = SubResource("CapsuleShape3D_2ijae")
@@ -3953,10 +3953,10 @@ bone_idx = 5
 use_external_skeleton = true
 external_skeleton = NodePath("../../outlaw/Armature/GeneralSkeleton")
 
-[node name="Area3D" type="Area3D" parent="HurtBox/LeftUpperArmBoneAttachment3D"]
+[node name="Area3D" type="StaticBody3D" parent="HurtBox/LeftUpperArmBoneAttachment3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.211748, 0)
 collision_layer = 2
-collision_mask = 2
+collision_mask = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="HurtBox/LeftUpperArmBoneAttachment3D/Area3D"]
 shape = SubResource("CapsuleShape3D_vu0r4")
@@ -3971,10 +3971,10 @@ bone_idx = 6
 use_external_skeleton = true
 external_skeleton = NodePath("../../outlaw/Armature/GeneralSkeleton")
 
-[node name="Area3D" type="Area3D" parent="HurtBox/LeftLowerArmBoneAttachment3D"]
+[node name="Area3D" type="StaticBody3D" parent="HurtBox/LeftLowerArmBoneAttachment3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.211748, 0)
 collision_layer = 2
-collision_mask = 2
+collision_mask = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="HurtBox/LeftLowerArmBoneAttachment3D/Area3D"]
 shape = SubResource("CapsuleShape3D_sbf8n")
@@ -3989,10 +3989,10 @@ bone_idx = 12
 use_external_skeleton = true
 external_skeleton = NodePath("../../outlaw/Armature/GeneralSkeleton")
 
-[node name="Area3D" type="Area3D" parent="HurtBox/LeftUpperLegBoneAttachment3D"]
+[node name="Area3D" type="StaticBody3D" parent="HurtBox/LeftUpperLegBoneAttachment3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.211748, 0)
 collision_layer = 2
-collision_mask = 2
+collision_mask = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="HurtBox/LeftUpperLegBoneAttachment3D/Area3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0518271, 0)
@@ -4008,10 +4008,10 @@ bone_idx = 13
 use_external_skeleton = true
 external_skeleton = NodePath("../../outlaw/Armature/GeneralSkeleton")
 
-[node name="Area3D" type="Area3D" parent="HurtBox/LeftLowerLegBoneAttachment3D"]
+[node name="Area3D" type="StaticBody3D" parent="HurtBox/LeftLowerLegBoneAttachment3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.211748, 0)
 collision_layer = 2
-collision_mask = 2
+collision_mask = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="HurtBox/LeftLowerLegBoneAttachment3D/Area3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0466964, 0)
@@ -4027,10 +4027,10 @@ bone_idx = 15
 use_external_skeleton = true
 external_skeleton = NodePath("../../outlaw/Armature/GeneralSkeleton")
 
-[node name="Area3D" type="Area3D" parent="HurtBox/RightUpperLegBoneAttachment3D"]
+[node name="Area3D" type="StaticBody3D" parent="HurtBox/RightUpperLegBoneAttachment3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.211748, 0)
 collision_layer = 2
-collision_mask = 2
+collision_mask = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="HurtBox/RightUpperLegBoneAttachment3D/Area3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0518271, 0)
@@ -4046,10 +4046,10 @@ bone_idx = 16
 use_external_skeleton = true
 external_skeleton = NodePath("../../outlaw/Armature/GeneralSkeleton")
 
-[node name="Area3D" type="Area3D" parent="HurtBox/RightLowerLegBoneAttachment3D"]
+[node name="Area3D" type="StaticBody3D" parent="HurtBox/RightLowerLegBoneAttachment3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.211748, 0)
 collision_layer = 2
-collision_mask = 2
+collision_mask = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="HurtBox/RightLowerLegBoneAttachment3D/Area3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0466964, 0)
@@ -4065,10 +4065,10 @@ bone_idx = 9
 use_external_skeleton = true
 external_skeleton = NodePath("../../outlaw/Armature/GeneralSkeleton")
 
-[node name="Area3D" type="Area3D" parent="HurtBox/RightUpperArmBoneAttachment3D"]
+[node name="Area3D" type="StaticBody3D" parent="HurtBox/RightUpperArmBoneAttachment3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.211748, 0)
 collision_layer = 2
-collision_mask = 2
+collision_mask = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="HurtBox/RightUpperArmBoneAttachment3D/Area3D"]
 shape = SubResource("CapsuleShape3D_xa4x7")
@@ -4083,10 +4083,10 @@ bone_idx = 10
 use_external_skeleton = true
 external_skeleton = NodePath("../../outlaw/Armature/GeneralSkeleton")
 
-[node name="Area3D" type="Area3D" parent="HurtBox/RightLowerArmBoneAttachment3D"]
+[node name="Area3D" type="StaticBody3D" parent="HurtBox/RightLowerArmBoneAttachment3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.211748, 0)
 collision_layer = 2
-collision_mask = 2
+collision_mask = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="HurtBox/RightLowerArmBoneAttachment3D/Area3D"]
 shape = SubResource("CapsuleShape3D_eu87e")

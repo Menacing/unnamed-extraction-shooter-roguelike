@@ -252,9 +252,9 @@ animate_physical_bones = false
 active = false
 
 [node name="Physical Bone Bone" type="PhysicalBone3D" parent="combat-roomba/Armature/Skeleton3D/PhysicalBoneSimulator3D"]
-transform = Transform3D(2.8455, 7.4268e-05, 0, 0, 0, -2.8455, -7.4268e-05, 2.8455, 0, 0, 0.222436, 0)
+transform = Transform3D(2.8455, 7.42681e-05, 0, 0, 0, -2.8455, -7.42681e-05, 2.8455, 0, 0, 0.222436, 0)
 joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.078171)
-body_offset = Transform3D(2.8455, 7.4268e-05, 0, 0, 0, -2.8455, -7.4268e-05, 2.8455, 0, 0, 0.222436, 0)
+body_offset = Transform3D(2.8455, 7.42681e-05, 0, 0, 0, -2.8455, -7.42681e-05, 2.8455, 0, 0, 0.222436, 0)
 bone_name = "Bone"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="combat-roomba/Armature/Skeleton3D/PhysicalBoneSimulator3D/Physical Bone Bone"]
@@ -285,10 +285,10 @@ modulate = Color(1, 0, 0, 1)
 double_sided = false
 texture = ExtResource("6_5orm7")
 
-[node name="SenseComponent" type="Node3D" parent="combat-roomba/Armature/Skeleton3D/PhysicalBoneSimulator3D/Head" node_paths=PackedStringArray("view_cone", "self_to_exclude")]
+[node name="SenseComponent" type="Node3D" parent="combat-roomba/Armature/Skeleton3D/PhysicalBoneSimulator3D/Head" node_paths=PackedStringArray("self_to_exclude")]
 transform = Transform3D(1.00409, 0, 0, 0, 1.00409, 0, 0, 0, 1.00409, 0, -0.024083, 0)
 script = ExtResource("18_54ull")
-view_cone = NodePath("ViewArea3D")
+tick_rate = 10
 enemy_groups = Array[String](["players"])
 self_to_exclude = NodePath("../../../../../..")
 metadata/_custom_type_script = "uid://bx51vpuw5qrqt"
@@ -316,9 +316,9 @@ shape = SubResource("CapsuleShape3D_4y1jg")
 [node name="HurtBox" type="Node3D" parent="."]
 unique_name_in_owner = true
 
-[node name="Area3D" type="Area3D" parent="HurtBox"]
+[node name="Area3D" type="StaticBody3D" parent="HurtBox"]
 collision_layer = 2
-collision_mask = 2
+collision_mask = 0
 
 [node name="DamageComponent" parent="HurtBox/Area3D" instance=ExtResource("8_vbip7")]
 location_type = 1
