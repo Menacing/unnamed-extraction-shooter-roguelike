@@ -7,6 +7,7 @@ signal toggle_inventory
 signal toggle_map_select
 signal toggle_stash
 signal toggle_printer
+signal toggle_workbench
 
 @onready var inventory_interface: Control = %InventoryInterface
 
@@ -212,6 +213,9 @@ func _ready():
 	
 	inventory_interface.set_player_inventory_data(inventory_data)
 	inventory_data.item_equipment_changed.connect(_on_item_equipment_changed)
+	
+	set_player_flashlight()
+	HideoutManager.flashlight_changed.connect(set_player_flashlight)
 
 func _on_item_equipment_changed(inventory_data:InventoryData, equipment_slot:EquipmentSlot):
 	match equipment_slot.slot_name:
@@ -639,6 +643,14 @@ func die():
 		pass
 	else:
 		MenuManager.load_menu(MenuManager.MENU_LEVEL.DIED)
+	
+func set_player_flashlight():
+	if HideoutManager.flashlight_upgraded:
+		%UpgradedPlayerLight.visible = true
+		%DefaultPlayerLight.visible = false
+	else:
+		%UpgradedPlayerLight.visible = false
+		%DefaultPlayerLight.visible = true
 	
 #region Movement Code
 

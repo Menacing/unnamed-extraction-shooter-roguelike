@@ -1,4 +1,4 @@
-[gd_scene load_steps=385 format=4 uid="uid://d2txigapsdl18"]
+[gd_scene load_steps=388 format=4 uid="uid://d2txigapsdl18"]
 
 [ext_resource type="Script" uid="uid://c7t5re1e03cfg" path="res://levels/level.gd" id="1_d1tug"]
 [ext_resource type="CameraAttributesPractical" uid="uid://jafbi2bjurvn" path="res://test/debug/vibe_check_camera.tres" id="2_7vsv1"]
@@ -43,8 +43,11 @@
 [ext_resource type="PackedScene" uid="uid://c58b7dwqutp75" path="res://game_objects/items/ammo/lpc/lpc_box_fmj.tscn" id="44_af1xf"]
 [ext_resource type="PackedScene" uid="uid://5ymni756p0xu" path="res://game_objects/props/printers/Printer.tscn" id="44_yhxea"]
 [ext_resource type="PackedScene" uid="uid://bpqgnht4fxljp" path="res://game_objects/props/clone_vat/clone_vat.tscn" id="45_af1xf"]
+[ext_resource type="PackedScene" uid="uid://mue3h2yq8han" path="res://game_objects/items/materials/scrap_metal_wheel/scrap_metal_wheel.tscn" id="46_htigg"]
 [ext_resource type="PackedScene" uid="uid://d3qu8ewdc1ye3" path="res://game_objects/props/lights/sodium_light/sodium_light.tscn" id="46_oudwg"]
+[ext_resource type="PackedScene" uid="uid://dspfcw4lx5gss" path="res://game_objects/items/materials/silicate_pile/silicate_pile.tscn" id="47_6kqsh"]
 [ext_resource type="PackedScene" uid="uid://dlmiqubqcqf0y" path="res://game_objects/props/lights/tube_light/tube_light.tscn" id="47_jg2x3"]
+[ext_resource type="PackedScene" uid="uid://c3p2cl0d4iokr" path="res://game_objects/props/workbench/hideout_workbench.tscn" id="48_6kqsh"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_miqso"]
 sky_top_color = Color(0, 0, 0, 1)
@@ -3732,3 +3735,21 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.7131, 0.83, -2.3156)
 
 [node name="CloneVat" parent="." instance=ExtResource("45_af1xf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.20379, 0, -3.1804)
+
+[node name="ScrapMetalWheel" parent="." instance=ExtResource("46_htigg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.06987, 0.2, -2.73321)
+
+[node name="ScrapMetalWheel2" parent="." instance=ExtResource("46_htigg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.95884, 0.2, -2.8126)
+
+[node name="silicate_pile" parent="." instance=ExtResource("47_6kqsh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.08399, 0.2, -2.54447)
+
+[node name="silicate_pile2" parent="." instance=ExtResource("47_6kqsh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.41176, 0.2, -3.39945)
+
+[node name="silicate_pile3" parent="." instance=ExtResource("47_6kqsh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.83564, 0.2, -3.45797)
+
+[node name="HideoutWorkbench" parent="." instance=ExtResource("48_6kqsh")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.534952, 0.2, 3.85767)

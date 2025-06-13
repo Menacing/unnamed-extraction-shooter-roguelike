@@ -20,6 +20,7 @@ stash_inventory_control = NodePath("STASH/VBoxContainer/InventoryMarginContainer
 map_select_tab_index = 1
 map_select_control = NodePath("NEXT MAP")
 printer_tab_index = 2
+workbench_tab_index = 3
 
 [node name="STASH" parent="." instance=ExtResource("1_csmx2")]
 layout_mode = 2
@@ -35,4 +36,5 @@ visible = false
 layout_mode = 2
 
 [node name="WORKBENCH" parent="." instance=ExtResource("5_jp2og")]
+visible = false
 layout_mode = 2

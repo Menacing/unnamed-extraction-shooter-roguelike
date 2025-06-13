@@ -15,6 +15,12 @@ layout_mode = 2
 [node name="MaterialContainer" parent="VBoxContainer" instance=ExtResource("2_777du")]
 layout_mode = 2
 
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "FLASHLIGHT UPGRADE"
+horizontal_alignment = 1
+
 [node name="FlashlightUpgradeHBoxContainer" parent="VBoxContainer" instance=ExtResource("9_yatq2")]
 layout_mode = 2
 upgrade_requirement = ExtResource("4_tpj72")

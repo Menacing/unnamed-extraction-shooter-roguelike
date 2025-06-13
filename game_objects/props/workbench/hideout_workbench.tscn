@@ -1,0 +1,32 @@
+[gd_scene load_steps=6 format=3 uid="uid://c3p2cl0d4iokr"]
+
+[ext_resource type="Script" uid="uid://buechgj5m0usb" path="res://game_objects/props/workbench/hideout_workbench.gd" id="1_c1cal"]
+[ext_resource type="PackedScene" uid="uid://btp4pq3vnnnjh" path="res://game_objects/props/workbench/workbench.tscn" id="1_cdga0"]
+[ext_resource type="PackedScene" uid="uid://b4ypdyyu3v5h7" path="res://game_objects/props/misc/toolbox/toolbox.tscn" id="2_c1cal"]
+[ext_resource type="PackedScene" uid="uid://cnl4bh4h10j5m" path="res://game_objects/props/crates/small_cardboard_box_1.tscn" id="3_qeqj4"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_c1cal"]
+size = Vector3(1.81458, 0.933594, 0.697327)
+
+[node name="HideoutWorkbench" type="StaticBody3D"]
+collision_layer = 7
+collision_mask = 7
+script = ExtResource("1_c1cal")
+
+[node name="Workbench" parent="." instance=ExtResource("1_cdga0")]
+collision_layer = 0
+collision_mask = 0
+
+[node name="Toolbox" parent="." instance=ExtResource("2_c1cal")]
+transform = Transform3D(0.460525, 0, 0.887647, 0, 1, 0, -0.887647, 0, 0.460525, 0.281684, 0.249841, 0.0755546)
+collision_layer = 0
+collision_mask = 0
+
+[node name="SmallCardboardBox1" parent="." instance=ExtResource("3_qeqj4")]
+transform = Transform3D(0.852257, 0, -0.523123, 0, 1, 0, 0.523123, 0, 0.852257, -0.625414, 0.93692, -0.235715)
+collision_layer = 0
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000915527, 0.469071, 9.15527e-05)
+shape = SubResource("BoxShape3D_c1cal")
