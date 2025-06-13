@@ -11,6 +11,8 @@ class_name HideoutMenu
 
 @export var printer_tab_index:int
 
+@export var workbench_tab_index:int
+
 
 func show_stash_tab():
 	tab_bar.current_tab = stash_tab_index
@@ -20,6 +22,9 @@ func show_map_select_tab():
 	
 func show_printer_tab():
 	tab_bar.current_tab = printer_tab_index
+	
+func show_workbench_tab():
+	tab_bar.current_tab = workbench_tab_index
 
 func save_run_data(run_data:RunSaveData):
 	if map_select_control:

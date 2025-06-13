@@ -1,8 +1,10 @@
-[gd_resource type="Resource" script_class="CraftingMaterialDefinition" load_steps=2 format=3 uid="uid://d2n10ewmfotrt"]
+[gd_resource type="Resource" script_class="CraftingMaterialDefinition" load_steps=3 format=3 uid="uid://d2n10ewmfotrt"]
 
+[ext_resource type="Texture2D" uid="uid://cqp78s0ry4dud" path="res://ui/icons/composite_fiber_icon.png" id="1_na1i0"]
 [ext_resource type="Script" uid="uid://74x3yntbybwr" path="res://game_objects/crafting_materials/crafting_material_definition.gd" id="1_qqrig"]
 
 [resource]
 script = ExtResource("1_qqrig")
 name = "Composite Fiber"
 rarity = 1
+icon = ExtResource("1_na1i0")

@@ -13,6 +13,12 @@ var current_map_number:int = 0
 var selected_difficulty:GameplayEnums.GameDifficulty
 
 var current_stash_size:StashContainer.StashSize = StashContainer.StashSize.SMALL
+var flashlight_upgraded:bool = false:
+	get:
+		return flashlight_upgraded
+	set(value):
+		flashlight_upgraded = value
+		flashlight_changed.emit()
 var inventory_data:InventoryData
 var remaining_lives:int = 0:
 	get:
@@ -31,6 +37,7 @@ var current_printer_size:PrinterStation.PrinterSize = PrinterStation.PrinterSize
 signal printer_size_changed
 signal print_item(item_to_print:ItemInformation)
 signal lives_changed
+signal flashlight_changed
 
 func _ready():
 	crafting_materials_resource_group.load_all_into(_crafting_material_definitions)
@@ -55,6 +62,7 @@ func _on_game_saving(save_file:SaveFile):
 	run_save_data.stash_size = current_stash_size
 	run_save_data.printer_level = current_printer_size
 	run_save_data.remaining_lives = remaining_lives
+	run_save_data.flashlight_upgraded = flashlight_upgraded
 	
 	save_file.run_save_data = run_save_data
 	pass
@@ -69,6 +77,8 @@ func _on_load_game(save_data:LevelEntitySaveData):
 	current_stash_size = run_save_data.stash_size
 	current_printer_size = run_save_data.printer_level
 	remaining_lives = run_save_data.remaining_lives
+	flashlight_upgraded = run_save_data.flashlight_upgraded
+	
 	#hideout_menu.load_run_data(run_save_data)
 	pass
 

@@ -1,8 +1,10 @@
-[gd_resource type="Resource" script_class="CraftingMaterialDefinition" load_steps=2 format=3 uid="uid://de6uyxc1elpy3"]
+[gd_resource type="Resource" script_class="CraftingMaterialDefinition" load_steps=3 format=3 uid="uid://de6uyxc1elpy3"]
 
+[ext_resource type="Texture2D" uid="uid://cp8inxlwfiaf6" path="res://ui/icons/silicate_icon.png" id="1_8w7jg"]
 [ext_resource type="Script" uid="uid://74x3yntbybwr" path="res://game_objects/crafting_materials/crafting_material_definition.gd" id="1_43465"]
 
 [resource]
 script = ExtResource("1_43465")
 name = "Silicate"
 rarity = 1
+icon = ExtResource("1_8w7jg")

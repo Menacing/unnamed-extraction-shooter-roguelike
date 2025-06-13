@@ -10,3 +10,4 @@ class_name RunSaveData
 @export var stash_size:int
 @export var printer_level:int
 @export var remaining_lives:int
+@export var flashlight_upgraded:bool
