@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://5cgjmdxllnhl"]
+[gd_scene load_steps=6 format=3 uid="uid://5cgjmdxllnhl"]
 
 [ext_resource type="PackedScene" uid="uid://jixiqnpe13py" path="res://ui/hideout/stash_inventory.tscn" id="1_csmx2"]
 [ext_resource type="Script" uid="uid://dammjov7agowf" path="res://ui/hideout/hideout_menu.gd" id="1_gn5or"]
 [ext_resource type="PackedScene" uid="uid://bi8x1bx1e8eh8" path="res://ui/hideout/printer.tscn" id="4_318y0"]
 [ext_resource type="PackedScene" uid="uid://b6qibk2bpsyd7" path="res://ui/hideout/map_selection_menu.tscn" id="4_ev05a"]
+[ext_resource type="PackedScene" uid="uid://nnc85bka8csh" path="res://ui/hideout/workbench.tscn" id="5_jp2og"]
 
 [node name="HideoutMenu" type="TabContainer" node_paths=PackedStringArray("tab_bar", "stash_inventory_control", "map_select_control")]
 anchors_preset = 15
@@ -31,4 +32,7 @@ metadata/_tab_index = 1
 
 [node name="PRINTER" parent="." instance=ExtResource("4_318y0")]
 visible = false
+layout_mode = 2
+
+[node name="WORKBENCH" parent="." instance=ExtResource("5_jp2og")]
 layout_mode = 2

@@ -1,0 +1,57 @@
+[gd_scene load_steps=9 format=3 uid="uid://btp4pq3vnnnjh"]
+
+[ext_resource type="PackedScene" uid="uid://p2qv0ctnfgpe" path="res://game_objects/props/workbench/workbench.gltf" id="1_n7l70"]
+[ext_resource type="Script" uid="uid://fdkjo7y6gaw4" path="res://levels/entities/geo_ballistic_solid.gd" id="1_pb5st"]
+[ext_resource type="PackedScene" uid="uid://64ippi50nu6t" path="res://components/damage_component/damage_component.tscn" id="3_reny4"]
+[ext_resource type="PackedScene" uid="uid://cliu3gfmcv7xd" path="res://components/damage_effect_component/damage_effect_component.tscn" id="4_m6hi3"]
+[ext_resource type="PackedScene" uid="uid://bn6v1rairpb6i" path="res://game_objects/effects/hit_effects/bullet_hit_wood.tscn" id="5_y8ufg"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_fowgw"]
+size = Vector3(1.80756, 0.0602875, 0.694824)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_n7l70"]
+size = Vector3(1.68737, 0.0602875, 0.433716)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_lxdiu"]
+size = Vector3(0.063385, 0.875061, 0.0609741)
+
+[node name="Workbench" type="StaticBody3D" node_paths=PackedStringArray("damage_component", "damage_effect_component")]
+collision_layer = 11
+script = ExtResource("1_pb5st")
+damage_component = NodePath("DamageComponent")
+damage_effect_component = NodePath("DamageEffectComponent")
+
+[node name="blockbench_export" parent="." instance=ExtResource("1_n7l70")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000396729, 0.906776, -0.000732422)
+shape = SubResource("BoxShape3D_fowgw")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00372887, 0.221101, -0.00311279)
+shape = SubResource("BoxShape3D_n7l70")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.81238, 0.437592, 0.250336)
+shape = SubResource("BoxShape3D_lxdiu")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.81238, 0.437592, -0.252534)
+shape = SubResource("BoxShape3D_lxdiu")
+
+[node name="CollisionShape3D5" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.813448, 0.437592, 0.250336)
+shape = SubResource("BoxShape3D_lxdiu")
+
+[node name="CollisionShape3D6" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.813448, 0.437592, -0.252534)
+shape = SubResource("BoxShape3D_lxdiu")
+
+[node name="DamageComponent" parent="." instance=ExtResource("3_reny4")]
+percent_penetrated = 0.6
+armor_rating = 4
+
+[node name="DamageEffectComponent" parent="." instance=ExtResource("4_m6hi3")]
+damage_effect_scene = ExtResource("5_y8ufg")
+
+[editable path="blockbench_export"]
