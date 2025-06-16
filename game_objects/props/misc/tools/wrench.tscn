@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://bolvdwfwv7xtf"]
+
+[ext_resource type="PackedScene" uid="uid://r3uwf186rcdc" path="res://game_objects/props/misc/tools/wrench.gltf" id="1_kha2p"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_fnsfq"]
+size = Vector3(0.0358276, 0.406494, 0.0820312)
+
+[node name="Wrench" type="RigidBody3D"]
+
+[node name="blockbench_export" parent="." instance=ExtResource("1_kha2p")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000762939, 0.172241, 0.0263672)
+shape = SubResource("BoxShape3D_fnsfq")
