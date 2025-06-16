@@ -8,9 +8,8 @@ size = Vector3(100, 20, 100)
 [sub_resource type="SphereShape3D" id="SphereShape3D_nws4b"]
 radius = 1.5
 
-[node name="SenseComponent" type="Node3D" node_paths=PackedStringArray("view_cone")]
+[node name="SenseComponent" type="Node3D"]
 script = ExtResource("1_nws4b")
-view_cone = NodePath("ViewArea3D")
 enemy_groups = Array[String](["players"])
 memory_seconds = 30.0
 metadata/_custom_type_script = "uid://bx51vpuw5qrqt"

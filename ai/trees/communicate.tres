@@ -1,0 +1,22 @@
+[gd_resource type="BehaviorTree" load_steps=5 format=3 uid="uid://c742lb0fu1ios"]
+
+[sub_resource type="BlackboardPlan" id="BlackboardPlan_k5c5d"]
+
+[sub_resource type="BBNode" id="BBNode_87qjq"]
+value_source = 1
+variable = &"animation_player"
+resource_name = "$animation_player"
+
+[sub_resource type="BTPlayAnimation" id="BTPlayAnimation_87qjq"]
+await_completion = 10.0
+animation_player = SubResource("BBNode_87qjq")
+animation_name = &"communicate"
+blend = 1.0
+custom_name = "Play Communicate Animation"
+
+[sub_resource type="BTSequence" id="BTSequence_mkuab"]
+children = [SubResource("BTPlayAnimation_87qjq")]
+
+[resource]
+blackboard_plan = SubResource("BlackboardPlan_k5c5d")
+root_task = SubResource("BTSequence_mkuab")

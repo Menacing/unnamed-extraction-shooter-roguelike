@@ -391,6 +391,9 @@ func _on_monster_state_state_physics_processing(delta: float) -> void:
 		
 	if sensory_component.shots_taken.size() >= suppression_threshold:
 		state_chart.send_event("Suppressed") 
+		
+	if sensory_component.neaby_allies.size() > 0 and sensory_component.targets.size() > 0:
+		state_chart.send_event("Communicate")
 
 #region Suppressed
 
@@ -475,7 +478,7 @@ func _on_suppressed_state_exited() -> void:
 
 
 func _on_hold_position_state_entered() -> void:
-		_start_behavior_tree("hold_position")
+	_start_behavior_tree("hold_position")
 		
 
 func _on_hold_position_state_physics_processing(delta: float) -> void:
@@ -484,3 +487,17 @@ func _on_hold_position_state_physics_processing(delta: float) -> void:
 	pass # Replace with function body.
 
 #endregion
+
+
+func _on_communicate_state_entered() -> void:
+	_start_behavior_tree("communicate")
+	
+	for ally in sensory_component.neaby_allies:
+		if ally is Enemy:
+			ally.sensory_component.communicate(self.sensory_component)
+
+
+func _on_communicate_state_physics_processing(delta: float) -> void:
+	var bt_status:BT.Status = bt_player.get_bt_instance().get_last_status()
+	if bt_status != BT.Status.RUNNING:
+		state_chart.send_event("BT_Finished")

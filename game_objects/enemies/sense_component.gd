@@ -11,6 +11,8 @@ var elapsed_time:float = 0.0
 @export var listen_area:Area3D
 @export var enemy_groups:Array[String]
 @export var memory_seconds:float = 10.0
+@export var ally_groups:Array[String]
+@export var ally_communication_distance:float = 25.0
 
 @export var self_to_exclude:Node3D
 
@@ -18,6 +20,8 @@ var elapsed_time:float = 0.0
 var sees_enemy:bool = false
 var targets:Dictionary[int,TargetInformation] = {}
 var shots_taken:Array[int] = []
+var neaby_allies:Array[Node3D] = []
+
 
 func _ready() -> void:
 	_process_delay = (1.0 / float(tick_rate)) + randf_range(-0.1, 0.1)
@@ -32,6 +36,7 @@ func _physics_process(delta: float) -> void:
 func _process_senses():
 	_process_memory()
 	_process_look()
+	_process_allies()
 	pass
 
 func _process_memory() -> void:
@@ -66,10 +71,14 @@ func _process_look() -> void:
 						
 						#and inside fov angle
 						var to_entity_dir:Vector3 = to_entity.normalized()
-						var forward_dir:Vector3 = get_parent().global_transform.basis.z * -1 #assuming -Z is forward
-						var angle_cos = forward_dir.dot(to_entity_dir)
+						var forward_dir:Vector3 = get_parent().global_transform.basis.z
+						var in_cone:bool = false
 						
-						if angle_cos > cos(fov_angle * 0.5):
+						var angle_between = rad_to_deg(forward_dir.angle_to(to_entity_dir))
+						
+						in_cone = angle_between <= fov_angle
+						
+						if in_cone:
 							#and has line of sight
 							var target_exclusions = viewable_entity.self_exclusions
 							var los_comp = Helpers.get_component_of_type(viewable_entity, LOSTargetComponent)
@@ -88,6 +97,16 @@ func _process_look() -> void:
 								target_information.currently_has_los = los_result
 								targets[viewable_entity.get_instance_id()] = target_information
 
+	pass
+	
+func _process_allies():
+	neaby_allies = []
+	for ally_group in ally_groups:
+		var allies = get_tree().get_nodes_in_group(ally_group)
+		for ally in allies:
+			if ally is Node3D and ally != self_to_exclude:
+				if ally.global_position.distance_to(self.global_position) <= ally_communication_distance:
+					neaby_allies.append(ally)
 	pass
 
 func _on_bullet_detect_radius_body_shape_entered(body_rid: RID, body: Node3D, body_shape_index: int, local_shape_index: int) -> void:
@@ -125,3 +144,16 @@ func get_last_known_locations() -> Array[Vector3]:
 		
 	return returnable
 		
+
+func communicate(new_sense_component:SenseComponent):
+	for new_target_key in new_sense_component.targets:
+		#if target doesn't exist, learn about it
+		if !targets.has(new_target_key):
+			targets[new_target_key] = new_sense_component.targets[new_target_key]
+		else:
+			var new_target_info:TargetInformation = new_sense_component.targets[new_target_key]
+			var old_target_info:TargetInformation = targets[new_target_key]
+			#if new target info is newer, update
+			if new_target_info.last_seen_mticks > old_target_info.last_seen_mticks:
+				targets[new_target_key] = new_target_info
+	pass
