@@ -207,6 +207,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.00354, 0, 1.74345)
 
 [node name="PistolOutlaw" parent="." node_paths=PackedStringArray("character_body_collision_shapes") instance=ExtResource("11_l0bi7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.566885, 0.0397083, -2.06648)
+magazine_size = 1
 character_body_collision_shapes = []
 
 [node name="Node3D" type="Node3D" parent="." node_paths=PackedStringArray("level_node")]

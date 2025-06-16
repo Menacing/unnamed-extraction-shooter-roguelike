@@ -11,6 +11,8 @@ var elapsed_time:float = 0.0
 @export var listen_area:Area3D
 @export var enemy_groups:Array[String]
 @export var memory_seconds:float = 10.0
+@export var friend_groups:Array[String]
+
 
 @export var self_to_exclude:Node3D
 
@@ -66,10 +68,14 @@ func _process_look() -> void:
 						
 						#and inside fov angle
 						var to_entity_dir:Vector3 = to_entity.normalized()
-						var forward_dir:Vector3 = get_parent().global_transform.basis.z * -1 #assuming -Z is forward
-						var angle_cos = forward_dir.dot(to_entity_dir)
+						var forward_dir:Vector3 = get_parent().global_transform.basis.z
+						var in_cone:bool = false
 						
-						if angle_cos > cos(fov_angle * 0.5):
+						var angle_between = rad_to_deg(forward_dir.angle_to(to_entity_dir))
+						
+						in_cone = angle_between <= fov_angle
+						
+						if in_cone:
 							#and has line of sight
 							var target_exclusions = viewable_entity.self_exclusions
 							var los_comp = Helpers.get_component_of_type(viewable_entity, LOSTargetComponent)

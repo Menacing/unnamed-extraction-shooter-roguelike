@@ -1,4 +1,4 @@
-[gd_scene load_steps=107 format=3 uid="uid://by0xokh7wvpyg"]
+[gd_scene load_steps=108 format=3 uid="uid://by0xokh7wvpyg"]
 
 [ext_resource type="Script" uid="uid://bvqp78uoao257" path="res://game_objects/enemies/enemy.gd" id="1_1ywxy"]
 [ext_resource type="Resource" uid="uid://bkm06qpqovt7f" path="res://levels/humanoid_nav_mesh.tres" id="2_4av8o"]
@@ -39,6 +39,7 @@
 [ext_resource type="Resource" uid="uid://dcejbnpeogafm" path="res://components/ammo_component/ammo_types/light_pistol_cartridge/light_pistol_cartridge.tres" id="17_rb88c"]
 [ext_resource type="Script" uid="uid://b2newdlaaj70t" path="res://game_objects/items/weapons/gun_stats.gd" id="18_13da7"]
 [ext_resource type="Script" uid="uid://c6y0q2j5ry1kg" path="res://game_logic/stat_modifier.gd" id="18_aguju"]
+[ext_resource type="Script" uid="uid://dsy0qd2fu7txd" path="res://addons/godot_state_charts/history_state.gd" id="28_aguju"]
 [ext_resource type="Script" uid="uid://u525ldwfgden" path="res://addons/godot_state_charts/state_is_active_guard.gd" id="31_i3nes"]
 [ext_resource type="Script" uid="uid://boa83iiplachx" path="res://addons/godot_state_charts/not_guard.gd" id="32_aguju"]
 
@@ -3247,7 +3248,7 @@ metadata/_custom_type_script = "uid://bvp226g4anyr2"
 
 [sub_resource type="Resource" id="Resource_i8q13"]
 script = ExtResource("31_i3nes")
-state = NodePath("../Suppressed")
+state = NodePath("../NormalActivities/Suppressed")
 metadata/_custom_type_script = "uid://u525ldwfgden"
 
 [sub_resource type="Resource" id="Resource_hjpqj"]
@@ -3661,10 +3662,10 @@ transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, 0, 0, 0)
 shape = SubResource("CapsuleShape3D_230oj")
 
 [node name="Physical Bone CoatRoot" type="PhysicalBone3D" parent="outlaw/Armature/GeneralSkeleton/PhysicalBoneSimulator3D"]
-transform = Transform3D(0.429589, 0.0536358, -0.90143, 0.441436, -0.883306, 0.157815, -0.787774, -0.465719, -0.403135, 0.113803, -0.044587, -0.0647025)
+transform = Transform3D(0.429589, 0.0536361, -0.90143, 0.441436, -0.883306, 0.157814, -0.787774, -0.465719, -0.403135, 0.113803, -0.0445873, -0.0647024)
 joint_type = 1
-joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000472102, -2.6506e-05, 0.126471)
-body_offset = Transform3D(0.429589, 0.0536358, -0.90143, -0.00011459, 0.998238, 0.0593413, 0.903025, -0.025389, 0.428838, 0.113803, -0.00747842, -0.0546624)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000472404, -2.67879e-05, 0.126471)
+body_offset = Transform3D(0.429589, 0.0536361, -0.90143, -0.00011462, 0.998238, 0.0593416, 0.903025, -0.0253892, 0.428838, 0.113803, -0.00747818, -0.0546627)
 bone_name = "CoatRoot"
 joint_constraints/bias = 0.3
 joint_constraints/damping = 1.0
@@ -3723,165 +3724,173 @@ metadata/_custom_type_script = "uid://dovxme4qyglfp"
 
 [node name="MonsterState" type="Node" parent="StateChart"]
 script = ExtResource("6_1ibv4")
+initial_state = NodePath("NormalActivities")
+
+[node name="NormalActivities" type="Node" parent="StateChart/MonsterState"]
+script = ExtResource("6_1ibv4")
 initial_state = NodePath("Idle")
 
-[node name="Idle" type="Node" parent="StateChart/MonsterState"]
+[node name="Resume" type="Node" parent="StateChart/MonsterState/NormalActivities"]
+script = ExtResource("28_aguju")
+default_state = NodePath("../Idle")
+
+[node name="Idle" type="Node" parent="StateChart/MonsterState/NormalActivities"]
 script = ExtResource("6_1ibv4")
 initial_state = NodePath("DecideNext")
 
-[node name="DecideNext" type="Node" parent="StateChart/MonsterState/Idle"]
+[node name="DecideNext" type="Node" parent="StateChart/MonsterState/NormalActivities/Idle"]
 script = ExtResource("7_ehqqj")
 
-[node name="ToPatroling" type="Node" parent="StateChart/MonsterState/Idle/DecideNext"]
+[node name="ToPatroling" type="Node" parent="StateChart/MonsterState/NormalActivities/Idle/DecideNext"]
 script = ExtResource("8_rb88c")
 to = NodePath("../../Patroling")
 guard = SubResource("Resource_xboyu")
 delay_in_seconds = "0.0"
 
-[node name="ToLoitering" type="Node" parent="StateChart/MonsterState/Idle/DecideNext"]
+[node name="ToLoitering" type="Node" parent="StateChart/MonsterState/NormalActivities/Idle/DecideNext"]
 script = ExtResource("8_rb88c")
 to = NodePath("../../Loitering")
 delay_in_seconds = "0.0"
 
-[node name="Patroling" type="Node" parent="StateChart/MonsterState/Idle"]
+[node name="Patroling" type="Node" parent="StateChart/MonsterState/NormalActivities/Idle"]
 script = ExtResource("7_ehqqj")
 
-[node name="ToDecideNext" type="Node" parent="StateChart/MonsterState/Idle/Patroling"]
+[node name="ToDecideNext" type="Node" parent="StateChart/MonsterState/NormalActivities/Idle/Patroling"]
 script = ExtResource("8_rb88c")
 to = NodePath("../../DecideNext")
 event = &"BT_Finished"
 delay_in_seconds = "0.0"
 
-[node name="Loitering" type="Node" parent="StateChart/MonsterState/Idle"]
+[node name="Loitering" type="Node" parent="StateChart/MonsterState/NormalActivities/Idle"]
 script = ExtResource("7_ehqqj")
 
-[node name="ToDecideNext" type="Node" parent="StateChart/MonsterState/Idle/Loitering"]
+[node name="ToDecideNext" type="Node" parent="StateChart/MonsterState/NormalActivities/Idle/Loitering"]
 script = ExtResource("8_rb88c")
 to = NodePath("../../DecideNext")
 event = &"BT_Finished"
 delay_in_seconds = "0.0"
 
-[node name="ToCombat" type="Node" parent="StateChart/MonsterState/Idle"]
+[node name="ToCombat" type="Node" parent="StateChart/MonsterState/NormalActivities/Idle"]
 script = ExtResource("8_rb88c")
 to = NodePath("../../Combat")
 event = &"SpottedEnemy"
 delay_in_seconds = "0.0"
 
-[node name="Combat" type="Node" parent="StateChart/MonsterState"]
+[node name="Combat" type="Node" parent="StateChart/MonsterState/NormalActivities"]
 script = ExtResource("6_1ibv4")
 initial_state = NodePath("SpottedEnemy")
 
-[node name="SpottedEnemy" type="Node" parent="StateChart/MonsterState/Combat"]
+[node name="SpottedEnemy" type="Node" parent="StateChart/MonsterState/NormalActivities/Combat"]
 script = ExtResource("7_ehqqj")
 
-[node name="ToFireAndAdvance" type="Node" parent="StateChart/MonsterState/Combat/SpottedEnemy"]
+[node name="ToFireAndAdvance" type="Node" parent="StateChart/MonsterState/NormalActivities/Combat/SpottedEnemy"]
 script = ExtResource("8_rb88c")
 to = NodePath("../../FireAndAdvance")
 event = &"BT_Finished"
 delay_in_seconds = "0.0"
 
-[node name="FireAndAdvance" type="Node" parent="StateChart/MonsterState/Combat"]
+[node name="FireAndAdvance" type="Node" parent="StateChart/MonsterState/NormalActivities/Combat"]
 script = ExtResource("7_ehqqj")
 
-[node name="ToChasing" type="Node" parent="StateChart/MonsterState/Combat/FireAndAdvance"]
+[node name="ToChasing" type="Node" parent="StateChart/MonsterState/NormalActivities/Combat/FireAndAdvance"]
 script = ExtResource("8_rb88c")
 to = NodePath("../../Chasing")
 event = &"LostTarget"
 delay_in_seconds = "0.0"
 
-[node name="Chasing" type="Node" parent="StateChart/MonsterState/Combat"]
+[node name="Chasing" type="Node" parent="StateChart/MonsterState/NormalActivities/Combat"]
 script = ExtResource("7_ehqqj")
 
-[node name="ToAttacking" type="Node" parent="StateChart/MonsterState/Combat/Chasing"]
+[node name="ToAttacking" type="Node" parent="StateChart/MonsterState/NormalActivities/Combat/Chasing"]
 script = ExtResource("8_rb88c")
 to = NodePath("../../FireAndAdvance")
 event = &"SpottedEnemy"
 delay_in_seconds = "0.0"
 
-[node name="ToIdle" type="Node" parent="StateChart/MonsterState/Combat/Chasing"]
+[node name="ToIdle" type="Node" parent="StateChart/MonsterState/NormalActivities/Combat/Chasing"]
 script = ExtResource("8_rb88c")
 to = NodePath("../../../Idle")
 event = &"BT_Finished"
 delay_in_seconds = "0.0"
 
-[node name="ToAlert" type="Node" parent="StateChart/MonsterState/Combat"]
+[node name="ToAlert" type="Node" parent="StateChart/MonsterState/NormalActivities/Combat"]
 script = ExtResource("8_rb88c")
 to = NodePath("../../Alert")
 event = &"Searching"
 delay_in_seconds = "0.0"
 
-[node name="Alert" type="Node" parent="StateChart/MonsterState"]
+[node name="Alert" type="Node" parent="StateChart/MonsterState/NormalActivities"]
 script = ExtResource("6_1ibv4")
 initial_state = NodePath("SelectSearchTarget")
 
-[node name="SelectSearchTarget" type="Node" parent="StateChart/MonsterState/Alert"]
+[node name="SelectSearchTarget" type="Node" parent="StateChart/MonsterState/NormalActivities/Alert"]
 script = ExtResource("7_ehqqj")
 
-[node name="ToSearching" type="Node" parent="StateChart/MonsterState/Alert/SelectSearchTarget"]
+[node name="ToSearching" type="Node" parent="StateChart/MonsterState/NormalActivities/Alert/SelectSearchTarget"]
 script = ExtResource("8_rb88c")
 to = NodePath("../../Searching")
 delay_in_seconds = "0.0"
 
-[node name="Searching" type="Node" parent="StateChart/MonsterState/Alert"]
+[node name="Searching" type="Node" parent="StateChart/MonsterState/NormalActivities/Alert"]
 script = ExtResource("7_ehqqj")
 
-[node name="ToSelectSearchTarget" type="Node" parent="StateChart/MonsterState/Alert/Searching"]
+[node name="ToSelectSearchTarget" type="Node" parent="StateChart/MonsterState/NormalActivities/Alert/Searching"]
 script = ExtResource("8_rb88c")
 to = NodePath("../../SelectSearchTarget")
 event = &"Searching"
 delay_in_seconds = "0.0"
 
-[node name="ToIdle" type="Node" parent="StateChart/MonsterState/Alert"]
+[node name="ToIdle" type="Node" parent="StateChart/MonsterState/NormalActivities/Alert"]
 script = ExtResource("8_rb88c")
 to = NodePath("../../Idle")
 event = &"BT_Finished"
 delay_in_seconds = "0.0"
 
-[node name="ToCombat" type="Node" parent="StateChart/MonsterState/Alert"]
+[node name="ToCombat" type="Node" parent="StateChart/MonsterState/NormalActivities/Alert"]
 script = ExtResource("8_rb88c")
 to = NodePath("../../Combat")
 event = &"SpottedEnemy"
 delay_in_seconds = "0.0"
 
-[node name="Reloading" type="Node" parent="StateChart/MonsterState"]
-script = ExtResource("7_ehqqj")
-
-[node name="ToFireAndAdvance" type="Node" parent="StateChart/MonsterState/Reloading"]
-script = ExtResource("8_rb88c")
-to = NodePath("../../Combat/FireAndAdvance")
-event = &"BT_Finished"
-delay_in_seconds = "0.0"
-
-[node name="Dead" type="Node" parent="StateChart/MonsterState"]
-script = ExtResource("7_ehqqj")
-
-[node name="Suppressed" type="Node" parent="StateChart/MonsterState"]
+[node name="Suppressed" type="Node" parent="StateChart/MonsterState/NormalActivities"]
 script = ExtResource("6_1ibv4")
 initial_state = NodePath("TakeCover")
 
-[node name="TakeCover" type="Node" parent="StateChart/MonsterState/Suppressed"]
+[node name="TakeCover" type="Node" parent="StateChart/MonsterState/NormalActivities/Suppressed"]
 script = ExtResource("7_ehqqj")
 
-[node name="ToHoldPosition" type="Node" parent="StateChart/MonsterState/Suppressed/TakeCover"]
+[node name="ToHoldPosition" type="Node" parent="StateChart/MonsterState/NormalActivities/Suppressed/TakeCover"]
 script = ExtResource("8_rb88c")
 to = NodePath("../../HoldPosition")
 event = &"BT_Finished"
 delay_in_seconds = "0.0"
 
-[node name="HoldPosition" type="Node" parent="StateChart/MonsterState/Suppressed"]
+[node name="HoldPosition" type="Node" parent="StateChart/MonsterState/NormalActivities/Suppressed"]
 script = ExtResource("7_ehqqj")
 
-[node name="ToCombat" type="Node" parent="StateChart/MonsterState/Suppressed/HoldPosition"]
+[node name="ToCombat" type="Node" parent="StateChart/MonsterState/NormalActivities/Suppressed/HoldPosition"]
 script = ExtResource("8_rb88c")
 to = NodePath("../../../Combat")
 event = &"Unsuppressed"
 delay_in_seconds = "3"
 
-[node name="ToTakeCover" type="Node" parent="StateChart/MonsterState/Suppressed/HoldPosition"]
+[node name="ToTakeCover" type="Node" parent="StateChart/MonsterState/NormalActivities/Suppressed/HoldPosition"]
 script = ExtResource("8_rb88c")
 to = NodePath("../../TakeCover")
 event = &"Exposed"
 delay_in_seconds = "0.0"
+
+[node name="Reloading" type="Node" parent="StateChart/MonsterState"]
+script = ExtResource("7_ehqqj")
+
+[node name="ToResume" type="Node" parent="StateChart/MonsterState/Reloading"]
+script = ExtResource("8_rb88c")
+to = NodePath("../../NormalActivities/Resume")
+event = &"BT_Finished"
+delay_in_seconds = "0.0"
+
+[node name="Dead" type="Node" parent="StateChart/MonsterState"]
+script = ExtResource("7_ehqqj")
 
 [node name="ToReloading" type="Node" parent="StateChart/MonsterState"]
 script = ExtResource("8_rb88c")
@@ -3897,7 +3906,7 @@ delay_in_seconds = "0.0"
 
 [node name="ToSuppressed" type="Node" parent="StateChart/MonsterState"]
 script = ExtResource("8_rb88c")
-to = NodePath("../Suppressed")
+to = NodePath("../NormalActivities/Suppressed")
 event = &"Suppressed"
 guard = SubResource("Resource_hjpqj")
 delay_in_seconds = "0.0"
@@ -4142,32 +4151,32 @@ _gun_stats = SubResource("Resource_meaca")
 [connection signal="body_entered" from="HeadBoneAttachment3D/SenseComponent/BulletDetectRadius" to="HeadBoneAttachment3D/SenseComponent" method="_on_bullet_detect_radius_body_entered"]
 [connection signal="body_shape_entered" from="HeadBoneAttachment3D/SenseComponent/BulletDetectRadius" to="HeadBoneAttachment3D/SenseComponent" method="_on_bullet_detect_radius_body_shape_entered"]
 [connection signal="state_physics_processing" from="StateChart/MonsterState" to="." method="_on_monster_state_state_physics_processing"]
-[connection signal="state_entered" from="StateChart/MonsterState/Idle" to="." method="_on_idle_state_entered"]
-[connection signal="state_exited" from="StateChart/MonsterState/Idle" to="." method="_on_idle_state_exited"]
-[connection signal="state_entered" from="StateChart/MonsterState/Idle/Patroling" to="." method="_on_patroling_state_entered"]
-[connection signal="state_physics_processing" from="StateChart/MonsterState/Idle/Patroling" to="." method="_on_idle_state_physics_processing"]
-[connection signal="state_entered" from="StateChart/MonsterState/Idle/Loitering" to="." method="_on_loitering_state_entered"]
-[connection signal="state_physics_processing" from="StateChart/MonsterState/Idle/Loitering" to="." method="_on_idle_state_physics_processing"]
-[connection signal="state_entered" from="StateChart/MonsterState/Combat" to="." method="_on_combat_state_entered"]
-[connection signal="state_exited" from="StateChart/MonsterState/Combat" to="." method="_on_combat_state_exited"]
-[connection signal="state_entered" from="StateChart/MonsterState/Combat/SpottedEnemy" to="." method="_on_spotted_enemy_state_entered"]
-[connection signal="state_physics_processing" from="StateChart/MonsterState/Combat/SpottedEnemy" to="." method="_on_spotted_enemy_state_physics_processing"]
-[connection signal="state_entered" from="StateChart/MonsterState/Combat/FireAndAdvance" to="." method="_on_fire_and_advance_state_entered"]
-[connection signal="state_physics_processing" from="StateChart/MonsterState/Combat/FireAndAdvance" to="." method="_on_attacking_state_physics_processing"]
-[connection signal="state_entered" from="StateChart/MonsterState/Combat/Chasing" to="." method="_on_chasing_state_entered"]
-[connection signal="state_physics_processing" from="StateChart/MonsterState/Combat/Chasing" to="." method="_on_chasing_state_physics_processing"]
-[connection signal="state_entered" from="StateChart/MonsterState/Alert/SelectSearchTarget" to="." method="_on_select_search_target_state_entered"]
-[connection signal="state_entered" from="StateChart/MonsterState/Alert/Searching" to="." method="_on_searching_state_entered"]
-[connection signal="state_physics_processing" from="StateChart/MonsterState/Alert/Searching" to="." method="_on_searching_state_physics_processing"]
+[connection signal="state_entered" from="StateChart/MonsterState/NormalActivities/Idle" to="." method="_on_idle_state_entered"]
+[connection signal="state_exited" from="StateChart/MonsterState/NormalActivities/Idle" to="." method="_on_idle_state_exited"]
+[connection signal="state_entered" from="StateChart/MonsterState/NormalActivities/Idle/Patroling" to="." method="_on_patroling_state_entered"]
+[connection signal="state_physics_processing" from="StateChart/MonsterState/NormalActivities/Idle/Patroling" to="." method="_on_idle_state_physics_processing"]
+[connection signal="state_entered" from="StateChart/MonsterState/NormalActivities/Idle/Loitering" to="." method="_on_loitering_state_entered"]
+[connection signal="state_physics_processing" from="StateChart/MonsterState/NormalActivities/Idle/Loitering" to="." method="_on_idle_state_physics_processing"]
+[connection signal="state_entered" from="StateChart/MonsterState/NormalActivities/Combat" to="." method="_on_combat_state_entered"]
+[connection signal="state_exited" from="StateChart/MonsterState/NormalActivities/Combat" to="." method="_on_combat_state_exited"]
+[connection signal="state_entered" from="StateChart/MonsterState/NormalActivities/Combat/SpottedEnemy" to="." method="_on_spotted_enemy_state_entered"]
+[connection signal="state_physics_processing" from="StateChart/MonsterState/NormalActivities/Combat/SpottedEnemy" to="." method="_on_spotted_enemy_state_physics_processing"]
+[connection signal="state_entered" from="StateChart/MonsterState/NormalActivities/Combat/FireAndAdvance" to="." method="_on_fire_and_advance_state_entered"]
+[connection signal="state_physics_processing" from="StateChart/MonsterState/NormalActivities/Combat/FireAndAdvance" to="." method="_on_attacking_state_physics_processing"]
+[connection signal="state_entered" from="StateChart/MonsterState/NormalActivities/Combat/Chasing" to="." method="_on_chasing_state_entered"]
+[connection signal="state_physics_processing" from="StateChart/MonsterState/NormalActivities/Combat/Chasing" to="." method="_on_chasing_state_physics_processing"]
+[connection signal="state_entered" from="StateChart/MonsterState/NormalActivities/Alert/SelectSearchTarget" to="." method="_on_select_search_target_state_entered"]
+[connection signal="state_entered" from="StateChart/MonsterState/NormalActivities/Alert/Searching" to="." method="_on_searching_state_entered"]
+[connection signal="state_physics_processing" from="StateChart/MonsterState/NormalActivities/Alert/Searching" to="." method="_on_searching_state_physics_processing"]
+[connection signal="state_entered" from="StateChart/MonsterState/NormalActivities/Suppressed" to="." method="_on_suppressed_state_entered"]
+[connection signal="state_exited" from="StateChart/MonsterState/NormalActivities/Suppressed" to="." method="_on_suppressed_state_exited"]
+[connection signal="state_entered" from="StateChart/MonsterState/NormalActivities/Suppressed/TakeCover" to="." method="_on_take_cover_state_entered"]
+[connection signal="state_physics_processing" from="StateChart/MonsterState/NormalActivities/Suppressed/TakeCover" to="." method="_on_take_cover_state_physics_processing"]
+[connection signal="state_entered" from="StateChart/MonsterState/NormalActivities/Suppressed/HoldPosition" to="." method="_on_hold_position_state_entered"]
+[connection signal="state_physics_processing" from="StateChart/MonsterState/NormalActivities/Suppressed/HoldPosition" to="." method="_on_hold_position_state_physics_processing"]
 [connection signal="state_entered" from="StateChart/MonsterState/Reloading" to="." method="_on_reloading_state_entered"]
 [connection signal="state_physics_processing" from="StateChart/MonsterState/Reloading" to="." method="_on_reloading_state_physics_processing"]
 [connection signal="state_entered" from="StateChart/MonsterState/Dead" to="." method="_on_dead_state_entered"]
-[connection signal="state_entered" from="StateChart/MonsterState/Suppressed" to="." method="_on_suppressed_state_entered"]
-[connection signal="state_exited" from="StateChart/MonsterState/Suppressed" to="." method="_on_suppressed_state_exited"]
-[connection signal="state_entered" from="StateChart/MonsterState/Suppressed/TakeCover" to="." method="_on_take_cover_state_entered"]
-[connection signal="state_physics_processing" from="StateChart/MonsterState/Suppressed/TakeCover" to="." method="_on_take_cover_state_physics_processing"]
-[connection signal="state_entered" from="StateChart/MonsterState/Suppressed/HoldPosition" to="." method="_on_hold_position_state_entered"]
-[connection signal="state_physics_processing" from="StateChart/MonsterState/Suppressed/HoldPosition" to="." method="_on_hold_position_state_physics_processing"]
 [connection signal="location_destroyed" from="HealthComponent" to="." method="_on_health_component_location_destroyed"]
 [connection signal="hit_occured" from="HurtBox/HeadBoneAttachment3D/Area3D/DamageComponent" to="HealthComponent" method="_on_hit_occured"]
 [connection signal="hit_occured" from="HurtBox/HeadBoneAttachment3D/Area3D/DamageComponent" to="DamageEffectComponent" method="create_effect"]
