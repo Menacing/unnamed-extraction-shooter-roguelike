@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="EnemySpawnMapping" load_steps=12 format=3 uid="uid://b31x7apo13230"]
+[gd_resource type="Resource" script_class="EnemySpawnMapping" load_steps=15 format=3 uid="uid://b31x7apo13230"]
 
 [ext_resource type="Script" uid="uid://bysvs08bv72xr" path="res://game_objects/enemies/enemy_spawn_mapping.gd" id="1_sskkg"]
 [ext_resource type="Script" uid="uid://b1vpwdv5tb7dx" path="res://game_objects/enemies/enemy_spawn_weight.gd" id="2_iv3af"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bv1jhh0d8fn5m" path="res://game_objects/enemies/unendliche/unendliche.tscn" id="4_ckef8"]
 [ext_resource type="Script" uid="uid://doe2dp4d5p5md" path="res://game_objects/enemies/enemy_spawn_information.gd" id="5_0bdoi"]
 [ext_resource type="PackedScene" uid="uid://by0xokh7wvpyg" path="res://game_objects/enemies/outlaw/pistol_outlaw.tscn" id="6_iv3af"]
+[ext_resource type="PackedScene" uid="uid://dhsdf5y3wswpg" path="res://game_objects/enemies/outlaw/smg_outlaw.tscn" id="7_jbcy2"]
 
 [sub_resource type="Resource" id="Resource_62lkn"]
 script = ExtResource("2_iv3af")
@@ -34,6 +35,18 @@ weight = 3
 enemy = SubResource("Resource_y6fy6")
 metadata/_custom_type_script = "uid://b1vpwdv5tb7dx"
 
+[sub_resource type="Resource" id="Resource_di002"]
+script = ExtResource("5_0bdoi")
+scene = ExtResource("7_jbcy2")
+test_radius = 0.5
+metadata/_custom_type_script = "uid://doe2dp4d5p5md"
+
+[sub_resource type="Resource" id="Resource_ckef8"]
+script = ExtResource("2_iv3af")
+weight = 1
+enemy = SubResource("Resource_di002")
+metadata/_custom_type_script = "uid://b1vpwdv5tb7dx"
+
 [resource]
 script = ExtResource("1_sskkg")
-spawn_weights = Array[ExtResource("2_iv3af")]([SubResource("Resource_62lkn"), SubResource("Resource_u4bqc"), SubResource("Resource_jbcy2")])
+spawn_weights = Array[ExtResource("2_iv3af")]([SubResource("Resource_62lkn"), SubResource("Resource_u4bqc"), SubResource("Resource_jbcy2"), SubResource("Resource_ckef8")])
