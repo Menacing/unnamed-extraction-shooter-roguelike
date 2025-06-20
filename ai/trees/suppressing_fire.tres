@@ -1,0 +1,60 @@
+[gd_resource type="BehaviorTree" load_steps=20 format=3 uid="uid://oeesteppi873"]
+
+[ext_resource type="Script" uid="uid://cswc6lsp2t4pk" path="res://ai/tasks/nav_agent_stop.gd" id="1_2qps5"]
+[ext_resource type="Script" uid="uid://cvw7ocnvo1j4f" path="res://ai/tasks/set_fire_target_task.gd" id="2_w5aee"]
+[ext_resource type="Script" uid="uid://dmmuq2wf020yf" path="res://ai/tasks/slow_weapon_turn_task.gd" id="3_5wxtt"]
+[ext_resource type="Script" uid="uid://t8jwxqkplgeb" path="res://ai/tasks/fire_weapon_task.gd" id="4_qymcq"]
+[ext_resource type="Script" uid="uid://cm5govmktva06" path="res://ai/tasks/variable_cooldown.gd" id="5_w5aee"]
+
+[sub_resource type="BlackboardPlan" id="BlackboardPlan_0tkrw"]
+
+[sub_resource type="BTAction" id="BTAction_0lfe8"]
+script = ExtResource("1_2qps5")
+
+[sub_resource type="BTAction" id="BTAction_pnwaa"]
+script = ExtResource("2_w5aee")
+
+[sub_resource type="BTDynamicSequence" id="BTDynamicSequence_733ue"]
+children = [SubResource("BTAction_pnwaa")]
+
+[sub_resource type="BTCooldown" id="BTCooldown_5f0oc"]
+duration = 5.0
+children = [SubResource("BTDynamicSequence_733ue")]
+
+[sub_resource type="BTAlwaysSucceed" id="BTAlwaysSucceed_jdx6e"]
+children = [SubResource("BTCooldown_5f0oc")]
+
+[sub_resource type="BTAction" id="BTAction_om4wo"]
+script = ExtResource("3_5wxtt")
+
+[sub_resource type="BTAction" id="BTAction_5wxtt"]
+script = ExtResource("4_qymcq")
+
+[sub_resource type="BBFloat" id="BBFloat_qymcq"]
+value_source = 1
+variable = &"firing_cooldown"
+resource_name = "$firing_cooldown"
+
+[sub_resource type="BTCooldown" id="BTCooldown_0tkrw"]
+custom_name = "Firing Cooldown"
+children = [SubResource("BTAction_5wxtt")]
+script = ExtResource("5_w5aee")
+cooldown_length = SubResource("BBFloat_qymcq")
+
+[sub_resource type="BTAlwaysSucceed" id="BTAlwaysSucceed_snjxv"]
+custom_name = "Fire Weapon"
+children = [SubResource("BTCooldown_0tkrw")]
+
+[sub_resource type="BTDynamicSequence" id="BTDynamicSequence_avfqq"]
+custom_name = "AttackPlayerSequence"
+children = [SubResource("BTAlwaysSucceed_jdx6e"), SubResource("BTAction_om4wo"), SubResource("BTAlwaysSucceed_snjxv")]
+
+[sub_resource type="BTRepeatUntilFailure" id="BTRepeatUntilFailure_mtw2o"]
+children = [SubResource("BTDynamicSequence_avfqq")]
+
+[sub_resource type="BTDynamicSequence" id="BTDynamicSequence_n03ph"]
+children = [SubResource("BTAction_0lfe8"), SubResource("BTRepeatUntilFailure_mtw2o")]
+
+[resource]
+blackboard_plan = SubResource("BlackboardPlan_0tkrw")
+root_task = SubResource("BTDynamicSequence_n03ph")
