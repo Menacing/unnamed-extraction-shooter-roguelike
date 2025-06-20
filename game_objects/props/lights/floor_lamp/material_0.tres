@@ -1,0 +1,17 @@
+[gd_resource type="StandardMaterial3D" load_steps=3 format=3 uid="uid://bj2epek7jcv14"]
+
+[ext_resource type="Texture2D" uid="uid://cbdn5vmtgo38v" path="res://game_objects/props/lights/floor_lamp/floor_lamp_emission.png" id="1_d2b20"]
+[ext_resource type="Texture2D" uid="uid://df5fe0vl8pxiu" path="res://game_objects/props/lights/floor_lamp/floor_lamp_0.png" id="1_poyoa"]
+
+[resource]
+resource_name = "material_0"
+transparency = 2
+alpha_scissor_threshold = 0.05
+alpha_antialiasing_mode = 0
+cull_mode = 2
+albedo_texture = ExtResource("1_d2b20")
+emission_enabled = true
+emission_energy_multiplier = 2.0
+emission_texture = ExtResource("1_poyoa")
+texture_filter = 0
+texture_repeat = false

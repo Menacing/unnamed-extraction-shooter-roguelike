@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://c4kf2jrwvfoa4"]
+
+[ext_resource type="PackedScene" uid="uid://tmfn7vl3lpad" path="res://game_objects/props/lights/floor_lamp/floor_lamp.gltf" id="1_55vae"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_55vae"]
+height = 1.87012
+radius = 0.0825195
+
+[node name="FloorLamp" type="StaticBody3D"]
+
+[node name="blockbench_export" parent="." instance=ExtResource("1_55vae")]
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.69538, 0)
+light_energy = 2.0
+shadow_enabled = true
+omni_attenuation = 2.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.938965, 0)
+shape = SubResource("CylinderShape3D_55vae")
+
+[editable path="blockbench_export"]
