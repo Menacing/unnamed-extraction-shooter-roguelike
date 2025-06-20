@@ -7,17 +7,17 @@ func _ready() -> void:
 func get_cell_size() -> int:
 	return 32
 
-func slow_rotate_to_point(node:Node3D, point:Vector3, rotation_speed:float, delta:float) -> void:
+func slow_rotate_to_point(node:Node3D, point:Vector3, rotation_speed:float, delta:float, model_front:bool = false) -> void:
 	const dot_threshold = .999
 	var T:Transform3D
 
 	var target_direction := (point-node.global_transform.origin).normalized()
 	if abs(target_direction.dot(Vector3.UP)) < dot_threshold:
 		#use Vector3.UP
-		T=node.global_transform.looking_at(point, Vector3.UP)
+		T=node.global_transform.looking_at(point, Vector3.UP, model_front)
 	else: 
 		#use Vector3.RIGHT
-		T=node.global_transform.looking_at(point, Vector3.RIGHT)
+		T=node.global_transform.looking_at(point, Vector3.RIGHT, model_front)
 		
 	
 	var sourceQ:Quaternion = Quaternion(node.global_transform.basis)

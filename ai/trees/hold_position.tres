@@ -1,8 +1,9 @@
-[gd_resource type="BehaviorTree" load_steps=21 format=3 uid="uid://cedrnox1p56yo"]
+[gd_resource type="BehaviorTree" load_steps=23 format=3 uid="uid://cedrnox1p56yo"]
 
 [ext_resource type="Script" uid="uid://cswc6lsp2t4pk" path="res://ai/tasks/nav_agent_stop.gd" id="1_yu5bs"]
 [ext_resource type="Script" uid="uid://cvw7ocnvo1j4f" path="res://ai/tasks/set_fire_target_task.gd" id="2_art73"]
 [ext_resource type="Script" uid="uid://dmmuq2wf020yf" path="res://ai/tasks/slow_weapon_turn_task.gd" id="3_c83yu"]
+[ext_resource type="Script" uid="uid://buxsbc182jjjo" path="res://ai/tasks/slow_agent_turn_task.gd" id="4_art73"]
 [ext_resource type="Script" uid="uid://t8jwxqkplgeb" path="res://ai/tasks/fire_weapon_task.gd" id="4_pjxxb"]
 [ext_resource type="Script" uid="uid://cm5govmktva06" path="res://ai/tasks/variable_cooldown.gd" id="5_7c74r"]
 
@@ -37,6 +38,9 @@ children = [SubResource("BTCooldown_n1j0r")]
 [sub_resource type="BTAction" id="BTAction_13ark"]
 script = ExtResource("3_c83yu")
 
+[sub_resource type="BTAction" id="BTAction_c83yu"]
+script = ExtResource("4_art73")
+
 [sub_resource type="BTAction" id="BTAction_8epdt"]
 script = ExtResource("4_pjxxb")
 
@@ -57,7 +61,7 @@ children = [SubResource("BTCooldown_lclmw")]
 
 [sub_resource type="BTDynamicSequence" id="BTDynamicSequence_gnfwb"]
 custom_name = "AttackPlayerSequence"
-children = [SubResource("BTAlwaysSucceed_ph4ey"), SubResource("BTAction_13ark"), SubResource("BTAlwaysSucceed_psbum")]
+children = [SubResource("BTAlwaysSucceed_ph4ey"), SubResource("BTAction_13ark"), SubResource("BTAction_c83yu"), SubResource("BTAlwaysSucceed_psbum")]
 
 [sub_resource type="BTSequence" id="BTSequence_yajlo"]
 custom_name = "HoldPositionSequence"

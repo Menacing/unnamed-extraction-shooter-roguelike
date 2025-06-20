@@ -301,6 +301,8 @@ func _on_dead_state_entered() -> void:
 		bt_player.active = false
 	if loot_fiesta:
 		loot_fiesta.fiesta()
+	if state_chart:
+		state_chart.process_mode = Node.PROCESS_MODE_DISABLED
 
 	if physical_bone_simulator:
 		animation_player.stop()
