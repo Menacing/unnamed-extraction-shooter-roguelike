@@ -1,4 +1,4 @@
-[gd_scene load_steps=388 format=4 uid="uid://d2txigapsdl18"]
+[gd_scene load_steps=389 format=4 uid="uid://d2txigapsdl18"]
 
 [ext_resource type="Script" uid="uid://c7t5re1e03cfg" path="res://levels/level.gd" id="1_d1tug"]
 [ext_resource type="CameraAttributesPractical" uid="uid://jafbi2bjurvn" path="res://test/debug/vibe_check_camera.tres" id="2_7vsv1"]
@@ -48,6 +48,7 @@
 [ext_resource type="PackedScene" uid="uid://dspfcw4lx5gss" path="res://game_objects/items/materials/silicate_pile/silicate_pile.tscn" id="47_6kqsh"]
 [ext_resource type="PackedScene" uid="uid://dlmiqubqcqf0y" path="res://game_objects/props/lights/tube_light/tube_light.tscn" id="47_jg2x3"]
 [ext_resource type="PackedScene" uid="uid://c3p2cl0d4iokr" path="res://game_objects/props/workbench/hideout_workbench.tscn" id="48_6kqsh"]
+[ext_resource type="PackedScene" uid="uid://6mt1m8u0kax3" path="res://game_objects/props/lights/banker_lamp/banker_lamp.tscn" id="50_2f5oh"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_miqso"]
 sky_top_color = Color(0, 0, 0, 1)
@@ -1894,6 +1895,7 @@ turn_speed = 25.0
 ammo_type = ExtResource("42_yhxea")
 reload_time_Sec = 1.5
 reload_thresholds = Array[float]([1.0])
+audible_range = 50.0
 
 [node name="Hideout" type="WorldEnvironment" node_paths=PackedStringArray("nodes_to_remove_medium", "nodes_to_remove_hard")]
 environment = SubResource("Environment_sspln")
@@ -3753,3 +3755,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.83564, 0.2, -3.45797)
 
 [node name="HideoutWorkbench" parent="." instance=ExtResource("48_6kqsh")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.534952, 0.2, 3.85767)
+
+[node name="BankerLamp" parent="." instance=ExtResource("50_2f5oh")]
+transform = Transform3D(0.589619, 0, -0.807681, 0, 1, 0, 0.807681, 0, 0.589619, 0.691815, 1.14636, 4.51675)
