@@ -45,3 +45,6 @@ func _on_populate_level():
 					scene.set_global_position.call_deferred(spawn_pos)
 
 	pass
+
+func _exit_tree() -> void:
+	EventBus.populate_level.disconnect(_on_populate_level)

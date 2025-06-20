@@ -4110,10 +4110,10 @@ transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, 0, 0, 0)
 shape = SubResource("CapsuleShape3D_230oj")
 
 [node name="Physical Bone CoatRoot" type="PhysicalBone3D" parent="outlaw/Armature/GeneralSkeleton/PhysicalBoneSimulator3D"]
-transform = Transform3D(0.429591, 0.0536435, -0.901429, 0.441435, -0.883307, 0.157808, -0.787773, -0.465715, -0.403141, 0.113553, 0.268069, -0.0246193)
+transform = Transform3D(0.429591, 0.0536436, -0.901429, 0.441435, -0.883307, 0.157808, -0.787773, -0.465715, -0.403141, 0.113553, 0.268069, -0.0246191)
 joint_type = 1
-joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000473119, -2.32651e-05, 0.126475)
-body_offset = Transform3D(0.429591, 0.0536435, -0.901429, -0.000114501, 0.998237, 0.05935, 0.903024, -0.025393, 0.42884, 0.113806, -0.00748301, -0.0546653)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000473298, -2.32121e-05, 0.126475)
+body_offset = Transform3D(0.429591, 0.0536436, -0.901429, -0.000114501, 0.998237, 0.05935, 0.903024, -0.025393, 0.42884, 0.113806, -0.00748307, -0.0546654)
 bone_name = "CoatRoot"
 joint_constraints/bias = 0.3
 joint_constraints/damping = 1.0
