@@ -16,3 +16,4 @@ class_name GunStats
 ## Thresholds at which the reload will restart at if interrupted for some reason. 
 ## Should be an ordered list from largest to smallest all smaller than reload_time_sec
 @export var reload_thresholds:Array[float]
+@export var audible_range:float = 50.0

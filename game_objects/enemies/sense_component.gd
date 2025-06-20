@@ -25,6 +25,7 @@ var neaby_allies:Array[Node3D] = []
 
 func _ready() -> void:
 	_process_delay = (1.0 / float(tick_rate)) + randf_range(-0.1, 0.1)
+	EventBus.sound_emitted.connect(process_sound)
 	pass
 
 func _physics_process(delta: float) -> void:
@@ -157,3 +158,24 @@ func communicate(new_sense_component:SenseComponent):
 			if new_target_info.last_seen_mticks > old_target_info.last_seen_mticks:
 				targets[new_target_key] = new_target_info
 	pass
+
+func process_sound(source:Node, global_position:Vector3, audible_distance:float):
+	if self.global_position.distance_to(global_position) <= audible_distance:
+		var real_source:Node3D
+		if source is Gun:
+			real_source = source.firer
+		elif source is FootstepComponent:
+			real_source = source.velocity_haver
+		elif source is Player:
+			real_source = source
+
+		if real_source:
+			for group in enemy_groups:
+				if real_source.is_in_group(group):
+					var target_information = TargetInformation.new()
+					target_information.last_known_position = global_position
+					target_information.last_seen_mticks = Time.get_ticks_msec()
+					target_information.currently_has_los = false
+					target_information.target = real_source
+					targets[real_source.get_instance_id()] = target_information
+			

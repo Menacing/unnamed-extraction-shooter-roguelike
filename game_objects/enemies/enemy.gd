@@ -207,6 +207,9 @@ func _on_idle_state_physics_processing(delta: float) -> void:
 			state_chart.send_event("SpottedEnemy")
 			_reaction_timer = 0.0
 			return
+	elif sensory_component.targets.keys().size() > 0:
+		state_chart.send_event("Searching")
+		return
 	else:
 		_reaction_timer = 0.0
 	

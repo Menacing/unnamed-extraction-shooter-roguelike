@@ -40,6 +40,8 @@ var scope:Scope
 
 @onready var rng: RandomNumberGenerator = RandomNumberGenerator.new()
 
+var _final_audible_range:ModifiableStatFloat = ModifiableStatFloat.new(50.0)
+
 func _ready():
 	var default_bullets_in_mag:int = _gun_stats.magazine_size
 	var set_default_bullets:bool = false
@@ -67,6 +69,8 @@ func _ready():
 	
 	if set_default_bullets:
 		current_magazine_size = default_bullets_in_mag
+		
+	_final_audible_range.base_value = _gun_stats.audible_range
 
 var current_fire_mode:String
 var reloading: bool = false
@@ -148,6 +152,7 @@ func fireGun() -> void:
 		fire_sound_player.play()
 		fire_timer.start()
 		fired.emit(generate_recoil())
+		EventBus.sound_emitted.emit(self, self.global_position, _final_audible_range.get_modified_value())
 	else:
 		#click
 		pass
