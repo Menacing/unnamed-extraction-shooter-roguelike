@@ -90,8 +90,10 @@ func add_crafting_material(material:SlotData) -> int:
 			if cme.material_definition.name == mat_info.crafting_material_definition.name:
 				cme.amount += material.quantity * mat_info.amount_per_stack
 				EventBus.material_changed.emit(cme)
+	elif material.item_data.item_type_id == "fuel_core":
+		return 0
 	else:
-		printerr("NO MAPPING FOR ITEM %s" % material.get_item_type_id())
+		printerr("NO MAPPING FOR ITEM %s" % material.item_data.item_type_id)
 	
 	return 0
 
