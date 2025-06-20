@@ -6,7 +6,7 @@ var _multiplicitive_modifiers = {}
 
 @export var base_value:float = 1.0
 
-func _init(val:float):
+func _init(val:float = 1.0):
 	base_value = val
 
 func get_modified_value() -> float:
