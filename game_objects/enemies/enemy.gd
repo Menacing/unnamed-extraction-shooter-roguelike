@@ -46,6 +46,8 @@ var _reaction_timer:float = 0.0
 @export var firing_cooldown:ModifiableStatFloat = ModifiableStatFloat.new(1.0)
 @export var melee_range:ModifiableStatFloat = ModifiableStatFloat.new(1.0)
 @export var combat_effects:Array[GameplayEffect]
+@export var suppressing_fire_effects:Array[GameplayEffect]
+
 
 @export_category("Suppressed")
 @export var suppression_threshold = 10
@@ -504,3 +506,18 @@ func _on_communicate_state_physics_processing(delta: float) -> void:
 	var bt_status:BT.Status = bt_player.get_bt_instance().get_last_status()
 	if bt_status != BT.Status.RUNNING:
 		state_chart.send_event("BT_Finished")
+
+
+func _on_suppressing_fire_state_entered() -> void:
+	for gameplay_effect:GameplayEffect in suppressing_fire_effects:
+		gameplay_effect.apply_to(self)
+	_start_behavior_tree("suppressing_fire")
+	bt_player.blackboard.set_var("firing_cooldown", firing_cooldown.get_modified_value())
+	
+
+func _on_suppressing_fire_state_exited() -> void:
+	for gameplay_effect:GameplayEffect in suppressing_fire_effects:
+		gameplay_effect.remove_from(self)
+	
+	bt_player.blackboard.set_var("firing_cooldown", firing_cooldown.get_modified_value())
+	
