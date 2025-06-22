@@ -12,7 +12,7 @@
 [ext_resource type="Script" uid="uid://b2newdlaaj70t" path="res://game_objects/items/weapons/gun_stats.gd" id="10_fedvk"]
 [ext_resource type="PackedScene" uid="uid://c17uhpgl0dvt4" path="res://game_objects/items/ammo/fic/fic_box_fmj.tscn" id="11_2k45v"]
 [ext_resource type="Script" uid="uid://h4mwcwv5kksw" path="res://components/cover_component/cover_component.gd" id="13_2k45v"]
-[ext_resource type="PackedScene" uid="uid://dhsdf5y3wswpg" path="res://game_objects/enemies/outlaw/smg_outlaw.tscn" id="14_2k45v"]
+[ext_resource type="PackedScene" uid="uid://ciaqbr34myu5w" path="res://game_objects/enemies/robots/combat_roomba.tscn" id="14_2k45v"]
 [ext_resource type="PackedScene" uid="uid://db4qc6xandhu3" path="res://components/cover_component/cover_point.tscn" id="14_lvvpd"]
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_0qrmu"]
@@ -368,5 +368,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.17215, 0.250023, 6.87575)
 [node name="@Marker3D@93159" parent="Node3D" instance=ExtResource("14_lvvpd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.17215, 0.250023, 6.87575)
 
-[node name="SmgOutlaw" parent="." instance=ExtResource("14_2k45v")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.23124, 0.13626, -3.21362)
+[node name="combat_roomba" parent="." instance=ExtResource("14_2k45v")]
+transform = Transform3D(1.00409, 0, 0, 0, 1.00409, 0, 0, 0, 1.00409, -1.30504, 0.0344017, -3.80247)

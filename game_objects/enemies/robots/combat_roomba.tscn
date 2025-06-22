@@ -1,7 +1,6 @@
-[gd_scene load_steps=44 format=3 uid="uid://ciaqbr34myu5w"]
+[gd_scene load_steps=46 format=3 uid="uid://ciaqbr34myu5w"]
 
 [ext_resource type="Script" uid="uid://bvqp78uoao257" path="res://game_objects/enemies/enemy.gd" id="1_kbenc"]
-[ext_resource type="PackedScene" uid="uid://dr48wela8mtxd" path="res://game_objects/items/weapons/hic_rifles/pm_52/pm_52.tscn" id="2_q4rc2"]
 [ext_resource type="PackedScene" uid="uid://o7vvmqxsny5t" path="res://game_objects/enemies/robots/combat-roomba.glb" id="3_wwy82"]
 [ext_resource type="Resource" uid="uid://hw8blc564g2i" path="res://levels/roomba_nav_mesh.tres" id="4_k7kme"]
 [ext_resource type="Texture2D" uid="uid://7fi0upsekmpy" path="res://game_objects/effects/assets/light_03.png" id="5_qdph4"]
@@ -22,6 +21,9 @@
 [ext_resource type="PackedScene" uid="uid://cliu3gfmcv7xd" path="res://components/damage_effect_component/damage_effect_component.tscn" id="19_k7rcm"]
 [ext_resource type="PackedScene" uid="uid://bo5i75565y5co" path="res://game_objects/effects/hit_effects/bullet_hit_sparks.tscn" id="20_3xthi"]
 [ext_resource type="Script" uid="uid://bvp226g4anyr2" path="res://addons/godot_state_charts/expression_guard.gd" id="20_4j8ty"]
+[ext_resource type="PackedScene" uid="uid://ct0uk7oo13ve0" path="res://game_objects/items/weapons/hic_rifles/pm_98/pm_98.tscn" id="22_oy2g4"]
+[ext_resource type="Resource" uid="uid://3nqgvhg4lre8" path="res://components/ammo_component/ammo_types/heavy_intermediate_cartridge/heavy_intermediate_cartridge.tres" id="23_omdr3"]
+[ext_resource type="Script" uid="uid://b2newdlaaj70t" path="res://game_objects/items/weapons/gun_stats.gd" id="24_baldp"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_mxgj2"]
 radius = 0.0521091
@@ -34,9 +36,6 @@ albedo_texture = ExtResource("6_5orm7")
 emission_enabled = true
 emission = Color(1, 0, 0, 1)
 emission_texture = ExtResource("6_5orm7")
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_mxgj2"]
-size = Vector3(100, 20, 100)
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_nws4b"]
 radius = 1.5
@@ -223,7 +222,25 @@ script = ExtResource("20_4j8ty")
 expression = "randf() < 0.5"
 metadata/_custom_type_script = "uid://bvp226g4anyr2"
 
-[node name="combat_roomba" type="StaticBody3D" node_paths=PackedStringArray("animation_player", "head_node", "sensory_component", "state_chart", "bt_player", "nav_agent", "loot_fiesta", "physical_bone_simulator", "character_body_collision_shapes")]
+[sub_resource type="Resource" id="Resource_4de65"]
+resource_local_to_scene = true
+script = ExtResource("24_baldp")
+weapon_category_name = "HIC Rifle"
+magazine_size = 30
+rpm = 600
+base_recoil = Vector2(0, 0.025)
+recoil_variability = Vector2(0.025, 0.013)
+fire_modes = ["semi", "auto"]
+ads_accel = 10.0
+ads_fov = 50.0
+moa = 5.0
+turn_speed = 25.0
+ammo_type = ExtResource("23_omdr3")
+reload_time_Sec = 2.5
+reload_thresholds = Array[float]([1.0])
+audible_range = 100.0
+
+[node name="combat_roomba" type="StaticBody3D" node_paths=PackedStringArray("animation_player", "head_node", "sensory_component", "state_chart", "bt_player", "nav_agent", "gun_node", "loot_fiesta", "physical_bone_simulator", "character_body_collision_shapes")]
 transform = Transform3D(1.00409, 0, 0, 0, 1.00409, 0, 0, 0, 1.00409, 0, 0, 0)
 script = ExtResource("1_kbenc")
 animation_player = NodePath("AnimationPlayer")
@@ -233,17 +250,17 @@ state_chart = NodePath("StateChart")
 bt_player = NodePath("BTPlayer")
 nav_agent = NodePath("NavigationAgent3D")
 nav_mesh_list_item = ExtResource("4_k7kme")
-gun_scene = ExtResource("2_q4rc2")
+gun_node = NodePath("BoneAttachment3D/Node3D/PM98")
 magazine_size = 3000
 loot_fiesta = NodePath("LootFiestaComponent")
 physical_bone_simulator = NodePath("combat-roomba/Armature/Skeleton3D/PhysicalBoneSimulator3D")
 character_body_collision_shapes = [NodePath("HurtBox/Area3D/CollisionShape3D"), NodePath("HurtBox/Area3D/CollisionShape3D2"), NodePath("HurtBox/Area3D/CollisionShape3D3")]
 
 [node name="combat-roomba" parent="." instance=ExtResource("3_wwy82")]
-transform = Transform3D(-0.35, 0, -3.0598e-08, 0, 0.35, 0, 3.0598e-08, 0, -0.35, 0, 0, 0)
+transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 0, 0, 0)
 
 [node name="Armature" parent="combat-roomba" index="0"]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0.242868, 0)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
 
 [node name="Skeleton3D" parent="combat-roomba/Armature" index="0"]
 animate_physical_bones = false
@@ -252,9 +269,9 @@ animate_physical_bones = false
 active = false
 
 [node name="Physical Bone Bone" type="PhysicalBone3D" parent="combat-roomba/Armature/Skeleton3D/PhysicalBoneSimulator3D"]
-transform = Transform3D(2.8455, 7.42681e-05, 0, 0, 0, -2.8455, -7.42681e-05, 2.8455, 0, 0, 0.222436, 0)
-joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.078171)
-body_offset = Transform3D(2.8455, 7.42681e-05, 0, 0, 0, -2.8455, -7.42681e-05, 2.8455, 0, 0, 0.222436, 0)
+transform = Transform3D(0.995927, 2.59941e-05, 5.58086e-18, 1.63858e-17, -4.13974e-13, -0.995927, -2.59941e-05, 0.995927, -4.13974e-13, 1.05975e-20, 0.222438, 5.88233e-14)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.11508e-19, -2.22045e-15, 0.13677)
+body_offset = Transform3D(0.995927, 2.596e-05, 8.80676e-16, 4.45178e-13, -1.7045e-08, -0.995927, -2.596e-05, 0.995927, -1.7045e-08, -1.19681e-16, 0.136213, 2.33125e-09)
 bone_name = "Bone"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="combat-roomba/Armature/Skeleton3D/PhysicalBoneSimulator3D/Physical Bone Bone"]
@@ -263,7 +280,7 @@ shape = SubResource("CapsuleShape3D_mxgj2")
 
 [node name="Head" type="Node3D" parent="combat-roomba/Armature/Skeleton3D/PhysicalBoneSimulator3D"]
 unique_name_in_owner = true
-transform = Transform3D(-2.8455, 0, 2.48762e-07, 0, 2.8455, 0, -2.48762e-07, 0, -2.8455, 0, 2.054, 0)
+transform = Transform3D(-2.8455, 0, 2.48762e-07, 0, 2.8455, 0, -2.48762e-07, 0, -2.8455, 0, 0.803071, 0)
 
 [node name="SpotLight3D" type="SpotLight3D" parent="combat-roomba/Armature/Skeleton3D/PhysicalBoneSimulator3D/Head"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.85033e-15, 0, -0.0526111)
@@ -286,23 +303,15 @@ double_sided = false
 texture = ExtResource("6_5orm7")
 
 [node name="SenseComponent" type="Node3D" parent="combat-roomba/Armature/Skeleton3D/PhysicalBoneSimulator3D/Head" node_paths=PackedStringArray("self_to_exclude")]
-transform = Transform3D(1.00409, 0, 0, 0, 1.00409, 0, 0, 0, 1.00409, 0, -0.024083, 0)
+transform = Transform3D(1.00409, 0, -1.42109e-14, 0, 1.00409, 0, 1.42109e-14, 0, 1.00409, 0, -0.00231168, 0)
 script = ExtResource("18_54ull")
 tick_rate = 10
 enemy_groups = Array[String](["players"])
 self_to_exclude = NodePath("../../../../../..")
 metadata/_custom_type_script = "uid://bx51vpuw5qrqt"
 
-[node name="ViewArea3D" type="Area3D" parent="combat-roomba/Armature/Skeleton3D/PhysicalBoneSimulator3D/Head/SenseComponent"]
-transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 0, 0, -69)
-collision_layer = 0
-collision_mask = 16
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="combat-roomba/Armature/Skeleton3D/PhysicalBoneSimulator3D/Head/SenseComponent/ViewArea3D"]
-shape = SubResource("BoxShape3D_mxgj2")
-
 [node name="BulletDetectRadius" type="Area3D" parent="combat-roomba/Armature/Skeleton3D/PhysicalBoneSimulator3D/Head/SenseComponent"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.779919, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0230507, 0)
 collision_layer = 2
 collision_mask = 2
 
@@ -540,6 +549,20 @@ delay_in_seconds = "0.0"
 
 [node name="Dead" type="Node" parent="StateChart/MonsterState"]
 script = ExtResource("18_0cxsc")
+
+[node name="BoneAttachment3D" type="BoneAttachment3D" parent="."]
+transform = Transform3D(1, 2.46342e-14, 4.79282e-07, 2.4298e-14, 1, -1.02095e-07, -4.79282e-07, 1.02095e-07, 1, -5.89727e-16, 0.24193, -2.66478e-09)
+bone_name = "Bone.001"
+bone_idx = 1
+use_external_skeleton = true
+external_skeleton = NodePath("../combat-roomba/Armature/Skeleton3D")
+
+[node name="Node3D" type="Node3D" parent="BoneAttachment3D"]
+transform = Transform3D(1, -4.06576e-20, -3.41061e-13, -1.35525e-20, 1, 0, 3.41061e-13, 0, 1, 0.105331, 0.514946, 0.0848113)
+
+[node name="PM98" parent="BoneAttachment3D/Node3D" instance=ExtResource("22_oy2g4")]
+transform = Transform3D(-1, -1.35525e-20, -8.74226e-08, 1.35525e-20, 1, -4.26326e-14, 8.74226e-08, -5.68434e-14, -1, 0, 0, 0)
+_gun_stats = SubResource("Resource_4de65")
 
 [connection signal="body_shape_entered" from="combat-roomba/Armature/Skeleton3D/PhysicalBoneSimulator3D/Head/SenseComponent/BulletDetectRadius" to="combat-roomba/Armature/Skeleton3D/PhysicalBoneSimulator3D/Head/SenseComponent" method="_on_bullet_detect_radius_body_shape_entered"]
 [connection signal="hit_occured" from="HurtBox/Area3D/DamageComponent" to="HealthComponent" method="_on_hit_occured"]
