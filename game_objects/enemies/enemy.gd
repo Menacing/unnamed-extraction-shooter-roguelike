@@ -58,6 +58,7 @@ var _reaction_timer:float = 0.0
 @export var loot_fiesta:LootFiestaComponent
 @export var physical_bone_simulator:PhysicalBoneSimulator3D
 @export var character_body_collision_shapes:Array[CollisionShape3D]
+@export var corpse_despawn_time:float = 60.0
 
 @onready var self_exclusions:Array[RID] = Helpers.get_all_collision_object_3d_recursive(self)
 
@@ -312,6 +313,15 @@ func _on_dead_state_entered() -> void:
 			cs3d.disabled = true
 		physical_bone_simulator.active = true
 		physical_bone_simulator.physical_bones_start_simulation()
+		
+	var death_timer:Timer = Timer.new()
+	death_timer.wait_time = corpse_despawn_time
+	self.add_child(death_timer)
+	death_timer.timeout.connect(_on_death_timer_timeout)
+	death_timer.start()
+		
+func _on_death_timer_timeout():
+	self.queue_free()
 
 #region alert states
 func _on_select_search_target_state_entered() -> void:
