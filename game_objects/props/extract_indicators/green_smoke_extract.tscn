@@ -1,0 +1,64 @@
+[gd_scene load_steps=10 format=3 uid="uid://o0dfc5k7ykt1"]
+
+[ext_resource type="Texture2D" uid="uid://duck0gc0mj86i" path="res://game_objects/effects/assets/scaled/smoke_07.png" id="1_bkqfa"]
+[ext_resource type="Texture2D" uid="uid://0hpamcuwkdae" path="res://game_objects/effects/assets/scaled/smoke_03.png" id="2_osgmc"]
+
+[sub_resource type="Gradient" id="Gradient_gqnsv"]
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_bv6pk"]
+gradient = SubResource("Gradient_gqnsv")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_5n8kt"]
+lifetime_randomness = 0.2
+angle_min = -76.0
+angle_max = 117.4
+initial_velocity_max = 0.5
+gravity = Vector3(0, 1, 0)
+color = Color(0.223529, 1, 0.0784314, 1)
+color_ramp = SubResource("GradientTexture1D_bv6pk")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_obkci"]
+transparency = 1
+cull_mode = 2
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("1_bkqfa")
+subsurf_scatter_strength = 1.0
+texture_filter = 0
+billboard_mode = 1
+
+[sub_resource type="QuadMesh" id="QuadMesh_pkaxq"]
+material = SubResource("StandardMaterial3D_obkci")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ueb2n"]
+transparency = 1
+cull_mode = 2
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("2_osgmc")
+subsurf_scatter_strength = 1.0
+texture_filter = 0
+billboard_mode = 1
+
+[sub_resource type="QuadMesh" id="QuadMesh_csusv"]
+material = SubResource("StandardMaterial3D_ueb2n")
+
+[node name="GreenSmokeExtract" type="Node3D"]
+
+[node name="SpotLight3D" type="SpotLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+light_color = Color(0.223529, 1, 0.0784314, 1)
+spot_range = 2.0
+spot_attenuation = 2.0
+spot_angle = 90.0
+spot_angle_attenuation = 2.2974
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+amount = 16
+lifetime = 5.0
+process_material = SubResource("ParticleProcessMaterial_5n8kt")
+draw_pass_1 = SubResource("QuadMesh_pkaxq")
+
+[node name="GPUParticles3D2" type="GPUParticles3D" parent="."]
+amount = 16
+lifetime = 5.0
+process_material = SubResource("ParticleProcessMaterial_5n8kt")
+draw_pass_1 = SubResource("QuadMesh_csusv")
