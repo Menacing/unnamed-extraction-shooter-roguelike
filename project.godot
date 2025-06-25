@@ -34,10 +34,12 @@ UiSounds="*res://game_logic/ui_sounds.gd"
 LevelManager="*res://game_logic/level_manager.gd"
 HideoutManager="*res://game_logic/hideout_manager.gd"
 DebugMenu="*res://addons/debug_menu/debug_menu.tscn"
+SteamManager="*res://game_logic/steam_manager.gd"
 
 [debug]
 
 settings/stdout/verbose_stdout=true
+file_logging/enable_file_logging=true
 shapes/collision/shape_color=Color(0, 0.6, 0.701961, 0.929412)
 
 [display]

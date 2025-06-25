@@ -144,6 +144,13 @@ mouse_filter = 1
 text = "GODOT GAME SETTINGS - PUNCHABLEPLUSHIE"
 horizontal_alignment = 1
 
+[node name="godot_steam_label" type="Label" parent="MarginContainer/VBoxContainer2/ScrollContainer/VBoxContainer/addons_section"]
+layout_mode = 2
+tooltip_text = "https://github.com/GodotSteam/GodotSteam"
+mouse_filter = 1
+text = "GODOT STEAM - GRAMPS"
+horizontal_alignment = 1
+
 [node name="gd_unit_label" type="Label" parent="MarginContainer/VBoxContainer2/ScrollContainer/VBoxContainer/addons_section"]
 layout_mode = 2
 tooltip_text = "https://github.com/MikeSchulze/gdUnit4"
