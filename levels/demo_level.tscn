@@ -358,6 +358,7 @@ turn_speed = 25.0
 ammo_type = ExtResource("10_q80ko")
 reload_time_Sec = 2.5
 reload_thresholds = Array[float]([1.0])
+audible_range = 50.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_34u7k"]
 albedo_color = Color(0.206777, 0.746646, 0.218838, 1)
@@ -394,6 +395,7 @@ turn_speed = 25.0
 ammo_type = ExtResource("10_q80ko")
 reload_time_Sec = 2.5
 reload_thresholds = Array[float]([1.0])
+audible_range = 50.0
 
 [sub_resource type="Resource" id="Resource_l1yld"]
 resource_local_to_scene = true
@@ -411,6 +413,7 @@ turn_speed = 25.0
 ammo_type = ExtResource("42_vqsrm")
 reload_time_Sec = 2.5
 reload_thresholds = Array[float]([1.0])
+audible_range = 50.0
 
 [sub_resource type="Resource" id="Resource_osn8e"]
 resource_local_to_scene = true
@@ -428,6 +431,7 @@ turn_speed = 25.0
 ammo_type = ExtResource("42_vqsrm")
 reload_time_Sec = 2.5
 reload_thresholds = Array[float]([1.0])
+audible_range = 50.0
 
 [sub_resource type="Resource" id="Resource_h3dqm"]
 resource_local_to_scene = true
@@ -445,6 +449,7 @@ turn_speed = 25.0
 ammo_type = ExtResource("10_q80ko")
 reload_time_Sec = 2.5
 reload_thresholds = Array[float]([1.0])
+audible_range = 50.0
 
 [sub_resource type="Resource" id="Resource_suppi"]
 resource_local_to_scene = true
@@ -462,6 +467,7 @@ turn_speed = 15.0
 ammo_type = ExtResource("56_nihu0")
 reload_time_Sec = 3.5
 reload_thresholds = Array[float]([1.0])
+audible_range = 50.0
 
 [sub_resource type="Resource" id="Resource_cb6ao"]
 resource_local_to_scene = true
@@ -479,6 +485,7 @@ turn_speed = 35.0
 ammo_type = ExtResource("58_buvc6")
 reload_time_Sec = 1.5
 reload_thresholds = Array[float]([1.0])
+audible_range = 50.0
 
 [sub_resource type="Resource" id="Resource_buvc6"]
 resource_local_to_scene = true
@@ -496,6 +503,7 @@ turn_speed = 35.0
 ammo_type = ExtResource("58_buvc6")
 reload_time_Sec = 1.5
 reload_thresholds = Array[float]([1.0])
+audible_range = 50.0
 
 [node name="Node3d" type="Node3D"]
 script = ExtResource("1_8448e")

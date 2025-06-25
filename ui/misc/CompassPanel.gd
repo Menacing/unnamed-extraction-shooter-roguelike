@@ -6,6 +6,7 @@ class_name CompassBar
 @onready var total_scrollbar_length = $ScrollContainer/CompassBackground.size.x
 @onready var pixels_per_360:int = total_scrollbar_length/4
 var vertical_offset:int = 4
+var flat_player_pos:Vector3
 var player_pos:Vector3
 var player_rotation_y:int
 var _player_compass_rotation:int = 0
@@ -46,16 +47,16 @@ func _on_level_populated():
 	var obj_marker_scene = load("res://ui/misc/ObjectiveMarker.tscn")
 	for i in extracts.size():
 		var obj_marker = obj_marker_scene.instantiate()
-		var obj_label = obj_marker.get_node("Label")
-		obj_label.text = str(i+1)
+		obj_marker.set_label(str(i+1))
 		compass_background.add_child(obj_marker)
 		obj_markers.append(obj_marker)
 	pass
 
 
 func _on_compass_player_pulse(player_position:Vector3, player_rotation:Vector3):
+	flat_player_pos = player_position
+	flat_player_pos.y = 0
 	player_pos = player_position
-	player_pos.y = 0
 	player_compass_rotation = Helpers.gddeg_to_compass_deg(int(round(player_rotation.y)))
 	player_rotation_y = Helpers.gddeg_to_compass_deg(int(round(player_rotation.y)))
 	recalculate_obj_marker_pos()
@@ -64,7 +65,7 @@ func recalculate_obj_marker_pos():
 	for i in extracts.size():
 		var extract_pos = extracts[i].global_position
 		var obj_marker = obj_markers[i]
-		var dir_to_obj = extract_pos - player_pos
+		var dir_to_obj = extract_pos - flat_player_pos
 		#remove vert
 		dir_to_obj.y = 0
 		var deg_to_obj = angle_to_deg(Vector3.FORWARD, dir_to_obj)
@@ -76,6 +77,9 @@ func recalculate_obj_marker_pos():
 		var hscroll_val = obj_degree_to_x(real_deg_to_obj, pixels_per_360, compass_bar.get_h_scroll())
 		obj_marker.position.y = vertical_offset
 		obj_marker.position.x = hscroll_val - obj_marker.get_rect().size.x/2
+		
+		if obj_marker.has_method("calculate_verticallity"):
+			obj_marker.calculate_verticallity(player_pos, extract_pos)
 
 static func angle_to_deg(source:Vector3, target:Vector3) -> int:
 	var rad_result = source.signed_angle_to(target, Vector3.UP)
