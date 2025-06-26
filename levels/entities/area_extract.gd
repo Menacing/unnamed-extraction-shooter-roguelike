@@ -10,6 +10,10 @@ var extract_message_template:String = "Extraction in %.3f"
 @export var target:String
 @export var targetname:String
 
+const GREEN_SMOKE_EXTRACT = preload("res://game_objects/props/extract_indicators/green_smoke_extract.tscn")
+
+var extract_marker:Node3D
+
 func _func_godot_apply_properties(entity_properties: Dictionary):
 	if 'target' in func_godot_properties and func_godot_properties.target != "":
 		self.name = func_godot_properties.target
@@ -25,6 +29,7 @@ func _ready():
 	body_entered.connect(_on_body_entered)
 	body_exited.connect(_on_body_exit)
 	extract_timer.timeout.connect(_on_extract_timer_timeout)
+	_spawn_extract_marker()
 
 func _physics_process(delta: float) -> void:
 	if !extract_timer.is_stopped():
@@ -64,8 +69,33 @@ func disable():
 	self.monitoring = false
 	self.monitorable = false
 	self.disabled = true
+	extract_marker.queue_free()
+	extract_marker = null
 	
 func enable():
 	self.monitoring = true
 	self.monitorable = true
 	self.disabled = false
+	_spawn_extract_marker()
+		
+func _spawn_extract_marker():
+	if extract_marker == null:
+		extract_marker = GREEN_SMOKE_EXTRACT.instantiate()
+		self.add_child(extract_marker)
+		var center_global_pos:Vector3 = Vector3.ZERO
+		
+		var aabb = Helpers.get_aabb_of_node(self)
+		
+		center_global_pos.y = self.global_position.y + aabb.position.y + 0.1
+		
+		var x_begin = aabb.position.x
+		var x_end = aabb.end.x
+		
+		center_global_pos.x = self.global_position.x + lerp(x_begin, x_end, 0.5)
+		
+		var z_begin = aabb.position.z
+		var z_end = aabb.end.z
+		
+		center_global_pos.z = self.global_position.z + lerp(z_begin, z_end, 0.5)
+		
+		extract_marker.global_position = center_global_pos

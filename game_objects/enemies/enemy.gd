@@ -365,10 +365,11 @@ func _on_advancing_state_entered() -> void:
 	pass # Replace with function body.
 
 func _on_advancing_state_physics_processing(delta: float) -> void:
-	var dis_to_target = _attack_target.global_position.distance_to(self.global_position)
 	if _attack_target == null:
 		state_chart.send_event("LostTarget")
-	elif dis_to_target <= melee_range.get_modified_value():
+		return
+	var dis_to_target = _attack_target.global_position.distance_to(self.global_position)
+	if dis_to_target <= melee_range.get_modified_value():
 		state_chart.send_event("InMeleeRange")
 		
 	pass # Replace with function body.
