@@ -1,0 +1,12 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://ctpqd6q3kahy1"]
+
+[ext_resource type="Texture2D" uid="uid://dp8oeka0syypn" path="res://game_objects/props/misc/tools/specimen_jar_1_0.png" id="1_31fja"]
+
+[resource]
+resource_name = "material_0"
+cull_mode = 2
+albedo_texture = ExtResource("1_31fja")
+metallic = 0.62
+roughness = 0.63
+texture_filter = 0
+texture_repeat = false

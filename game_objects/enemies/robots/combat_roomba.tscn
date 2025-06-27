@@ -269,9 +269,9 @@ animate_physical_bones = false
 active = false
 
 [node name="Physical Bone Bone" type="PhysicalBone3D" parent="combat-roomba/Armature/Skeleton3D/PhysicalBoneSimulator3D"]
-transform = Transform3D(0.995927, 2.59941e-05, 5.12337e-18, 1.65747e-17, -4.38742e-13, -0.995927, -2.59941e-05, 0.995927, -4.38742e-13, 1.1072e-20, 0.222438, 6.50152e-14)
-joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.75982e-19, -4.88498e-15, 0.13677)
-body_offset = Transform3D(0.995927, 2.596e-05, 8.80219e-16, 4.45178e-13, -1.7045e-08, -0.995927, -2.596e-05, 0.995927, -1.7045e-08, -1.19681e-16, 0.136213, 2.33125e-09)
+transform = Transform3D(0.995927, 2.596e-05, 8.80138e-16, 4.45178e-13, -1.7045e-08, -0.995927, -2.596e-05, 0.995927, -1.7045e-08, -1.19681e-16, 0.136213, 2.33125e-09)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.03087e-19, -3.55271e-15, 0.13677)
+body_offset = Transform3D(0.995927, 2.596e-05, 8.80165e-16, 4.45178e-13, -1.7045e-08, -0.995927, -2.596e-05, 0.995927, -1.7045e-08, -1.19681e-16, 0.136213, 2.33125e-09)
 bone_name = "Bone"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="combat-roomba/Armature/Skeleton3D/PhysicalBoneSimulator3D/Physical Bone Bone"]
@@ -551,7 +551,7 @@ delay_in_seconds = "0.0"
 script = ExtResource("18_0cxsc")
 
 [node name="BoneAttachment3D" type="BoneAttachment3D" parent="."]
-transform = Transform3D(1, 2.46343e-14, 4.79282e-07, 2.4298e-14, 1, -1.02095e-07, -4.79282e-07, 1.02095e-07, 1, -5.89727e-16, 0.24193, -2.66478e-09)
+transform = Transform3D(1, 3.20337e-14, 4.76837e-07, 3.20336e-14, 1, -1.34359e-07, -4.76837e-07, 1.34359e-07, 1, 0, 0.444872, 0)
 bone_name = "Bone.001"
 bone_idx = 1
 use_external_skeleton = true

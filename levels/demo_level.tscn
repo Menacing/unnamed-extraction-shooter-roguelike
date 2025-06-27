@@ -1,4 +1,4 @@
-[gd_scene load_steps=136 format=4 uid="uid://ctahsvj88g1om"]
+[gd_scene load_steps=140 format=4 uid="uid://ctahsvj88g1om"]
 
 [ext_resource type="Script" uid="uid://dwshafaid76mm" path="res://levels/demo_level.gd" id="1_8448e"]
 [ext_resource type="PackedScene" uid="uid://d08aatgxmymbf" path="res://game_objects/player/player.tscn" id="1_eisjc"]
@@ -34,6 +34,7 @@
 [ext_resource type="PackedScene" uid="uid://c2mgc1vc3603e" path="res://game_objects/items/armor/light/light_armor_1.tscn" id="24_bw0sj"]
 [ext_resource type="PackedScene" uid="uid://fetf2vb0h86g" path="res://game_objects/items/armor/medium/1/medium_armor_1.tscn" id="25_43i1p"]
 [ext_resource type="Script" uid="uid://byh2ktg4m1kyh" path="res://levels/tests/drop_everything_chest.gd" id="25_h3dqm"]
+[ext_resource type="PackedScene" uid="uid://dpwa7relcor8r" path="res://game_objects/props/misc/tools/vial_1.tscn" id="26_suppi"]
 [ext_resource type="PackedScene" uid="uid://2ggq36ut12jw" path="res://game_objects/items/attachments/foregrips/stable/stable_forgreip.tscn" id="26_vh55a"]
 [ext_resource type="PackedScene" uid="uid://d0o2yjbp3avaa" path="res://game_objects/items/attachments/magazines/extended/extended_magazine.tscn" id="27_phudk"]
 [ext_resource type="PackedScene" uid="uid://cwhv3r1tw0orw" path="res://game_objects/items/consumables/regel_pod/regel_pod.tscn" id="28_2kj4q"]
@@ -59,6 +60,9 @@
 [ext_resource type="PackedScene" uid="uid://cwbiqjd2dljr3" path="res://game_objects/items/weapons/lpc_smgs/geo_0/geo_0.tscn" id="57_xj6tr"]
 [ext_resource type="Resource" uid="uid://dcejbnpeogafm" path="res://components/ammo_component/ammo_types/light_pistol_cartridge/light_pistol_cartridge.tres" id="58_buvc6"]
 [ext_resource type="PackedScene" uid="uid://swvutukqgaxo" path="res://game_objects/items/weapons/lpc_smgs/manx_251Z/manx_251Z.tscn" id="59_xj6tr"]
+[ext_resource type="PackedScene" uid="uid://u14m044eh0c1" path="res://game_objects/props/misc/tools/beaker_1.tscn" id="61_cb6ao"]
+[ext_resource type="PackedScene" uid="uid://bolvdwfwv7xtf" path="res://game_objects/props/misc/tools/wrench.tscn" id="62_cb16m"]
+[ext_resource type="PackedScene" uid="uid://dx6alq062d7r0" path="res://game_objects/props/misc/tools/specimen_jar_1.tscn" id="63_34yx1"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_6g5uc"]
 
@@ -1455,6 +1459,9 @@ script = ExtResource("25_h3dqm")
 [node name="DamageComponent" type="Node" parent="MultiAgentNavigationRoot/LootChest2"]
 script = ExtResource("18_dvips")
 
+[node name="Vial1" parent="MultiAgentNavigationRoot" instance=ExtResource("26_suppi")]
+transform = Transform3D(0.192248, -0.981346, 0, 0.981346, 0.192248, 0, 0, 0, 1, 4.26273, 1.0935, -2.8027)
+
 [node name="Player" parent="." instance=ExtResource("1_eisjc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.48035, 1.04626, -2.63506)
 
@@ -1588,6 +1595,15 @@ _gun_stats = SubResource("Resource_cb6ao")
 [node name="Manx251Z" parent="." instance=ExtResource("59_xj6tr")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.0896, 0.491432, -6.94486)
 _gun_stats = SubResource("Resource_buvc6")
+
+[node name="Beaker1" parent="." instance=ExtResource("61_cb6ao")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.02544, 1.01423, -3.13358)
+
+[node name="Wrench" parent="." instance=ExtResource("62_cb16m")]
+transform = Transform3D(0.848944, 0.528483, 0, -0.528483, 0.848944, 0, 0, 0, 1, 4.08993, 1.04548, -2.53396)
+
+[node name="SpecimenJar1" parent="." instance=ExtResource("63_34yx1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.44039, 1.01423, -3.15693)
 
 [connection signal="hit_occured" from="MultiAgentNavigationRoot/FiestaBox/DamageComponent" to="MultiAgentNavigationRoot/FiestaBox" method="_on_damage_component_hit_occured"]
 [connection signal="hit_occured" from="MultiAgentNavigationRoot/LootChest/DamageComponent" to="MultiAgentNavigationRoot/LootChest" method="_on_damage_component_hit_occured"]
