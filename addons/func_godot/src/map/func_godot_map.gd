@@ -273,7 +273,8 @@ func unwrap_uv2(node: Node = null) -> void:
 			var mesh: Mesh = target_node.get_mesh()
 			if mesh is ArrayMesh:
 				mesh.lightmap_unwrap(Transform3D.IDENTITY, map_settings.uv_unwrap_texel_size * map_settings.scale_factor)
-	
+		else:
+			print("Skipping", target_node.name, "because gi_mode is", target_node.gi_mode)
 	for child in target_node.get_children():
 		unwrap_uv2(child)
 	

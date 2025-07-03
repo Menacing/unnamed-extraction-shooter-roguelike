@@ -135,8 +135,8 @@ light_color = Color(1, 0.862745, 0, 1)
 light_energy = 3.0
 light_indirect_energy = 2.0
 light_bake_mode = 1
-shadow_enabled = true
 distance_fade_enabled = true
 spot_range = 20.0
+spot_attenuation = 2.0
 
 [editable path="construction_lamp"]

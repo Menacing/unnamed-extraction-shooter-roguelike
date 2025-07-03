@@ -29,7 +29,10 @@ func _ready():
 	body_entered.connect(_on_body_entered)
 	body_exited.connect(_on_body_exit)
 	extract_timer.timeout.connect(_on_extract_timer_timeout)
-	_spawn_extract_marker()
+	if extract_marker:
+		extract_marker.queue_free()
+		extract_marker = null
+	#_spawn_extract_marker()
 
 func _physics_process(delta: float) -> void:
 	if !extract_timer.is_stopped():

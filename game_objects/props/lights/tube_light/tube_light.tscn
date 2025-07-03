@@ -1,7 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://dlmiqubqcqf0y"]
+[gd_scene load_steps=2 format=3 uid="uid://dlmiqubqcqf0y"]
 
 [ext_resource type="PackedScene" uid="uid://fud3as6esaox" path="res://game_objects/props/lights/tube_light/tube_light.blend" id="1_yyqcv"]
-[ext_resource type="PackedScene" uid="uid://c65jhr75ocbnv" path="res://components/fake_gi_component/fake_gi_component.tscn" id="2_1na4w"]
 
 [node name="TubeLight" type="Node3D"]
 
@@ -13,20 +12,9 @@ cast_shadow = 0
 [node name="SpotLight3D" type="SpotLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -0.246781, 0)
 light_bake_mode = 1
-shadow_enabled = true
 distance_fade_enabled = true
 spot_range = 20.0
+spot_attenuation = 2.0
 spot_angle = 80.0
-
-[node name="FakeGiComponent" parent="SpotLight3D" instance=ExtResource("2_1na4w")]
-range_factor = 1.2
-energy_factor = 0.1
-
-[node name="OmniLight3D" type="OmniLight3D" parent="SpotLight3D/FakeGiComponent"]
-light_energy = 0.1
-light_specular = 0.0
-light_bake_mode = 1
-distance_fade_enabled = true
-omni_range = 12.0
 
 [editable path="tube_light"]

@@ -1,7 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://c0twql8oogckr"]
+[gd_scene load_steps=2 format=3 uid="uid://c0twql8oogckr"]
 
 [ext_resource type="PackedScene" uid="uid://bkkh03hjpbwn5" path="res://game_objects/props/lights/sodium_dome_light/sodium_dome_light.blend" id="1_kw30s"]
-[ext_resource type="PackedScene" uid="uid://c65jhr75ocbnv" path="res://components/fake_gi_component/fake_gi_component.tscn" id="2_ou6os"]
 
 [node name="SodiumDomeLight" type="Node3D"]
 
@@ -11,20 +10,9 @@
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
 light_color = Color(1, 0.858824, 0.329412, 1)
 light_bake_mode = 1
-shadow_enabled = true
+distance_fade_enabled = true
 spot_range = 20.0
+spot_attenuation = 2.0
 spot_angle = 80.0
-
-[node name="FakeGiComponent" parent="SpotLight3D" instance=ExtResource("2_ou6os")]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
-range_factor = 1.1
-energy_factor = 0.1
-
-[node name="OmniLight3D" type="OmniLight3D" parent="SpotLight3D/FakeGiComponent"]
-light_color = Color(1, 0.858824, 0.329412, 1)
-light_energy = 0.1
-light_specular = 0.0
-light_bake_mode = 1
-omni_range = 22.0
 
 [editable path="sodium_dome_light"]
