@@ -1,13 +1,56 @@
-[gd_scene load_steps=7 format=3 uid="uid://dkf5pulqmheof"]
+[gd_scene load_steps=11 format=4 uid="uid://dkf5pulqmheof"]
 
 [ext_resource type="Script" uid="uid://fdkjo7y6gaw4" path="res://levels/entities/geo_ballistic_solid.gd" id="1_50f55"]
 [ext_resource type="PackedScene" uid="uid://64ippi50nu6t" path="res://components/damage_component/damage_component.tscn" id="2_5kxw1"]
 [ext_resource type="PackedScene" uid="uid://cliu3gfmcv7xd" path="res://components/damage_effect_component/damage_effect_component.tscn" id="3_pqj4n"]
 [ext_resource type="PackedScene" uid="uid://bn6v1rairpb6i" path="res://game_objects/effects/hit_effects/bullet_hit_wood.tscn" id="4_0gw30"]
 [ext_resource type="PackedScene" uid="uid://d00orhaq5q1pj" path="res://game_objects/props/crates/medium_cardboard_box_1.gltf" id="5_50f55"]
+[ext_resource type="Texture2D" uid="uid://cbyn2we3giqif" path="res://game_objects/props/crates/medium_cardboard_box_1_0.png" id="6_5kxw1"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_5kxw1"]
 size = Vector3(0.44165, 0.377411, 0.439148)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_p5vfs"]
+resource_name = "material_0"
+transparency = 2
+alpha_scissor_threshold = 0.05
+alpha_antialiasing_mode = 0
+cull_mode = 2
+albedo_texture = ExtResource("6_5kxw1")
+texture_filter = 0
+texture_repeat = false
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_fdp8j"]
+_surfaces = [{
+"aabb": AABB(-0.0625, 0, -0.0625, 0.4375, 0.375, 0.4375),
+"format": 34896613377,
+"index_count": 36,
+"index_data": PackedByteArray("AAABAAIAAwAAAAIAAgABAAQABQAAAAMABQABAAAAAwACAAYABgAFAAMABgACAAQABwABAAUABwAFAAYAAQAHAAQABAAHAAYA"),
+"name": "material_0",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 8,
+"vertex_data": PackedByteArray("////////AAD/////AAAAAP//AAD//wAAAAAAAP//AAD//wAAAAAAAAAA/////wAAAAAAAAAAAAAAAP//AAAAAA==")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_pqj4n"]
+resource_name = "blockbench_export_mesh"
+lightmap_size_hint = Vector2i(34, 22)
+_surfaces = [{
+"aabb": AABB(-0.0625, 0, -0.0625, 0.4375, 0.375, 0.4375),
+"attribute_data": PackedByteArray("4PxfPsD8Pz48PHw/jC56P+D+3z7A/D8+eHg4P4wuej/g/F8+wP6/Pjw8fD9ddBE/4P7fPsD+vz54eDg/XXQRPwAAAADg/t8+4uEhP4wuujzg/F8+4P7fPuLhIT9GF90+AAAAAKD/Hz88PLw+jC66POD8Xz6g/x8/PDy8PkYX3T7g/F8+4PxfPnh4OD9GF90+AAAAAOD8Xz54eDg/jC66POD8Xz4AAAAAPDx8P0YX3T4AAAAAAAAAADw8fD+MLro84PxfPuD8Xz4PD48+jC56PwAAAADg/F8+8fBwPIwuej/g/F8+4P7fPg8Pjz5ddBE/AAAAAOD+3z7x8HA8XXQRP+D8Xz7A/r8+4uEhP110ET/g/t8+wP6/PuLhIT+MLno/4PxfPpD/Dz88PLw+XXQRP+D+3z6Q/w8/PDy8Powuej/g/F8+AAAAAA8Pjz6MLro84P7fPgAAAAAPD48+RhfdPuD8Xz7A/D8+8fBwPIwuujzg/t8+wPw/PvHwcDxGF90+"),
+"format": 34359742519,
+"index_count": 36,
+"index_data": PackedByteArray("AAABAAIAAgABAAMABAAFAAYABgAFAAcACAAJAAoACgAJAAsADAANAA4ADgANAA8AEAARABIAEgARABMAFAAVABYAFgAVABcA"),
+"material": SubResource("StandardMaterial3D_p5vfs"),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 24,
+"vertex_data": PackedByteArray("AADAPgAAwD4AAMA+AADAPgAAwD4AAIC9AADAPgAAAAAAAMA+AADAPgAAAAAAAIC9AACAvQAAwD4AAIC9AACAvQAAwD4AAMA+AACAvQAAAAAAAIC9AACAvQAAAAAAAMA+AACAvQAAwD4AAIC9AADAPgAAwD4AAIC9AACAvQAAwD4AAMA+AADAPgAAwD4AAMA+AACAvQAAAAAAAMA+AADAPgAAAAAAAMA+AACAvQAAAAAAAIC9AADAPgAAAAAAAIC9AACAvQAAwD4AAMA+AADAPgAAwD4AAMA+AACAvQAAAAAAAMA+AADAPgAAAAAAAMA+AADAPgAAwD4AAIC9AACAvQAAwD4AAIC9AADAPgAAAAAAAIC9AACAvQAAAAAAAIC9/f8AgP7//v/9/wCA/v/+//3/AID+//7//f8AgP7//v8BAP9/AID/vwEA/38AgP+/AQD/fwCA/78BAP9/AID/v/5//v8AAP6//n/+/wAA/r/+f/7/AAD+v/5//v8AAP6/+n8BAAEA/j/6fwEAAQD+P/p/AQABAP4/+n8BAAEA/j/9f/9//f//v/1//3/9//+//X//f/3//7/9f/9//f//v/7/AAAAAP+//v8AAAAA/7/+/wAAAAD/v/7/AAAAAP+/")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_fdp8j")
 
 [node name="MediumCardboardBox1" type="StaticBody3D" node_paths=PackedStringArray("damage_component", "damage_effect_component")]
 collision_layer = 11
@@ -28,3 +71,8 @@ shape = SubResource("BoxShape3D_5kxw1")
 
 [node name="blockbench_export" parent="." instance=ExtResource("5_50f55")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.157763, 0, 0)
+
+[node name="cube" parent="blockbench_export/Node" index="0"]
+mesh = SubResource("ArrayMesh_pqj4n")
+
+[editable path="blockbench_export"]

@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://vbyfbill12i3"]
+
+[ext_resource type="Script" uid="uid://c7t5re1e03cfg" path="res://levels/level.gd" id="1_c5iu3"]
+[ext_resource type="Environment" uid="uid://s6q0fqlhuodl" path="res://test/debug/vibe_check_environment.tres" id="1_l7cl2"]
+
+[sub_resource type="LightmapGIData" id="LightmapGIData_p380f"]
+
+[node name="LightmapBakeErrorTest" type="WorldEnvironment"]
+environment = ExtResource("1_l7cl2")
+script = ExtResource("1_c5iu3")
+metadata/_custom_type_script = "uid://c7t5re1e03cfg"
+
+[node name="LightmapGI" type="LightmapGI" parent="."]
+quality = 0
+light_data = SubResource("LightmapGIData_p380f")

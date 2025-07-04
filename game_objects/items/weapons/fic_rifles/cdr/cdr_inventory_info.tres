@@ -24,7 +24,6 @@ signal_name = "context_menus_open_item_detail"
 
 [sub_resource type="Resource" id="Resource_oe4rk"]
 script = ExtResource("6_bg74d")
-loot_table = 0
 tier = 2
 rarity = 2
 metadata/_custom_type_script = "uid://cxtmia6d8edl0"
@@ -39,7 +38,6 @@ metadata/_custom_type_script = "uid://cxtmia6d8edl0"
 [sub_resource type="Resource" id="Resource_umu4s"]
 script = ExtResource("14_1rqtd")
 equipment_slots = Array[ExtResource("6_ruc23")]([ExtResource("7_shbr1"), ExtResource("8_ca85e"), ExtResource("9_3lrjg"), ExtResource("10_w2u2g"), ExtResource("11_qn14d"), ExtResource("12_x6fh8"), ExtResource("13_xj8oy")])
-slot_datas = Array[Array]([])
 
 [resource]
 script = ExtResource("15_fgr5l")
@@ -47,25 +45,14 @@ item_type_id = "cdr"
 show_name = true
 display_name = "Cazador de Ratas"
 display_short_name = "CDR"
-item_type = 0
 icon = ExtResource("4_1jcb3")
 icon_r = ExtResource("5_bg74d")
 model_internal_inventory = SubResource("Resource_umu4s")
 detail_scene = ExtResource("3_tgwd5")
 context_menu_items = Array[ExtResource("1_ww381")]([ExtResource("2_6gupb"), SubResource("Resource_6llv8")])
-max_stacks = 1
-has_stacks = false
-min_stack = 0
-max_stack = 0
-max_durability = 1
-has_durability = false
 column_span = 5
 row_span = 2
 description_text = "Modern at home manufacturing techniques led to the creation of numerous DIY designs in a wide variety of calibers. After the Filter these designs would allow those caught without a weapon another shot at self defense."
 flavor_text = "Get started at alt.blam.org!"
 slot_data_type = 1
 item_spawn_informations = Array[ExtResource("6_bg74d")]([SubResource("Resource_oe4rk"), SubResource("Resource_jj5fx")])
-test_radius = 0.0
-min_pickup_stacks = 1
-mean_pickup_stacks = 1
-stack_random_method = 0

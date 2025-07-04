@@ -15,22 +15,18 @@ signal_name = "context_menus_open_item_detail"
 
 [sub_resource type="Resource" id="Resource_76jfm"]
 script = ExtResource("6_jtygu")
-loot_table = 0
-tier = 0
 rarity = 2
 metadata/_custom_type_script = "uid://cxtmia6d8edl0"
 
 [sub_resource type="Resource" id="Resource_g8ynl"]
 script = ExtResource("6_jtygu")
 loot_table = 2
-tier = 0
 rarity = 2
 metadata/_custom_type_script = "uid://cxtmia6d8edl0"
 
 [sub_resource type="Resource" id="Resource_e2cb4"]
 script = ExtResource("6_jtygu")
 loot_table = 6
-tier = 0
 rarity = 2
 metadata/_custom_type_script = "uid://cxtmia6d8edl0"
 
@@ -47,25 +43,13 @@ item_type_id = "klingeln_80"
 show_name = true
 display_name = "Klingeln 80"
 display_short_name = "Kling80"
-item_type = 0
 icon = ExtResource("4_os0fo")
 icon_r = ExtResource("5_jtygu")
 detail_scene = ExtResource("2_5pv40")
 context_menu_items = Array[ExtResource("1_b4jk3")]([ExtResource("2_5am80"), SubResource("Resource_3vynl")])
-max_stacks = 1
-has_stacks = false
-min_stack = 0
-max_stack = 0
-max_durability = 1
-has_durability = false
 column_span = 2
-row_span = 1
 description_text = "Bursting onto the scene in the latter half of the last century, Mr. Klingeln’s pistol helped to introduce the world to plastics. Famously reliable and affordable, the Klingeln 80 could be found everywhere from law enforcement to the criminal underground."
 flavor_text = "I grew up in the streets without no heart
 I'm prayin' to my Kling and my carbon"
 slot_data_type = 1
 item_spawn_informations = Array[ExtResource("6_jtygu")]([SubResource("Resource_76jfm"), SubResource("Resource_g8ynl"), SubResource("Resource_e2cb4"), SubResource("Resource_n36fg")])
-test_radius = 0.0
-min_pickup_stacks = 1
-mean_pickup_stacks = 1
-stack_random_method = 0

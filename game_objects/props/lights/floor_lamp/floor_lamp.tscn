@@ -10,9 +10,13 @@ radius = 0.0825195
 
 [node name="blockbench_export" parent="." instance=ExtResource("1_55vae")]
 
+[node name="cylinder" parent="blockbench_export/Node" index="0"]
+gi_mode = 0
+
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.69538, 0)
 light_energy = 2.0
+light_bake_mode = 1
 omni_attenuation = 2.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]

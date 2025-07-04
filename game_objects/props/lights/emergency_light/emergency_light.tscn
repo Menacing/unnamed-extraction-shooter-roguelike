@@ -82,6 +82,7 @@ shadow_mesh = SubResource("ArrayMesh_ow0x5")
 
 [node name="Cylinder" parent="emergency_light" index="0"]
 cast_shadow = 0
+gi_mode = 0
 mesh = SubResource("ArrayMesh_it3h1")
 
 [node name="SpotLight3D" type="SpotLight3D" parent="."]

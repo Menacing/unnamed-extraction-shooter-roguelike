@@ -80,6 +80,7 @@ shadow_mesh = SubResource("ArrayMesh_nykg8")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.404582, 0)
 
 [node name="Cylinder" parent="industrial_hanging_lamp" index="0"]
+gi_mode = 0
 mesh = SubResource("ArrayMesh_f2qc1")
 
 [node name="SpotLight3D" type="SpotLight3D" parent="."]
