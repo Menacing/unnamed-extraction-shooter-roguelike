@@ -1,12 +1,17 @@
-[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://bcljjtgl7h5f3"]
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://duh64juykhb65"]
 
-[ext_resource type="Texture2D" uid="uid://dx4bauxvwohw1" path="res://game_objects/props/misc/tools/specimen_jar_1_2.png" id="1_546xr"]
+[ext_resource type="Texture2D" uid="uid://dskhk582vaqr5" path="res://game_objects/props/misc/tools/specimen_jar_1_2.png" id="1_546xr"]
 
 [resource]
 resource_name = "material_2"
+transparency = 2
+alpha_scissor_threshold = 0.05
+alpha_antialiasing_mode = 0
+cull_mode = 2
 albedo_texture = ExtResource("1_546xr")
-roughness = 0.45
+roughness = 0.24
 clearcoat_enabled = true
 clearcoat_roughness = 0.0
+refraction_scale = -1.0
 texture_filter = 0
 texture_repeat = false

@@ -3,7 +3,7 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://vwnhnknwipbc"
+uid="uid://cphjrlkevu1fc"
 path="res://.godot/imported/specimen_jar_1.gltf-f3999c98139ace09c27169090fc867a9.scn"
 
 [deps]
@@ -15,9 +15,11 @@ dest_files=["res://.godot/imported/specimen_jar_1.gltf-f3999c98139ace09c27169090
 
 nodes/root_type=""
 nodes/root_name=""
+nodes/root_script=null
 nodes/apply_root_scale=true
 nodes/root_scale=1.0
 nodes/import_as_skeleton_bones=false
+nodes/use_name_suffixes=true
 nodes/use_node_type_suffixes=true
 meshes/ensure_tangents=true
 meshes/generate_lods=true
@@ -32,19 +34,25 @@ animation/trimming=false
 animation/remove_immutable_tracks=true
 animation/import_rest_as_RESET=false
 import_script/path=""
+materials/extract=0
+materials/extract_format=0
+materials/extract_path=""
 _subresources={
 "materials": {
 "material_0": {
 "use_external/enabled": true,
-"use_external/path": "res://game_objects/props/misc/tools/material_0.tres"
+"use_external/fallback_path": "res://game_objects/props/misc/tools/specimen_jar_1_material_0.tres",
+"use_external/path": "uid://tx5lsqtabj3q"
 },
 "material_1": {
 "use_external/enabled": true,
-"use_external/path": "res://game_objects/props/misc/tools/material_1.tres"
+"use_external/fallback_path": "res://game_objects/props/misc/tools/material_1.tres",
+"use_external/path": "uid://1nbrtvk3ult"
 },
 "material_2": {
 "use_external/enabled": true,
-"use_external/path": "res://game_objects/props/misc/tools/material_2.tres"
+"use_external/fallback_path": "res://game_objects/props/misc/tools/material_2.tres",
+"use_external/path": "uid://duh64juykhb65"
 }
 }
 }

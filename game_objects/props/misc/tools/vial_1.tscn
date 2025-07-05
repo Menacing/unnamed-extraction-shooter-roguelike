@@ -1,15 +1,15 @@
-[gd_scene load_steps=3 format=3 uid="uid://dpwa7relcor8r"]
+[gd_scene load_steps=3 format=3 uid="uid://csjaso2v5rgk4"]
 
-[ext_resource type="PackedScene" uid="uid://efpk8wcr60du" path="res://game_objects/props/misc/tools/vial_1.gltf" id="1_8ygnh"]
+[ext_resource type="PackedScene" uid="uid://ubkuau4ht5po" path="res://game_objects/props/misc/tools/vial_1.gltf" id="1_8ygnh"]
 
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_r4v0g"]
-height = 0.191315
-radius = 0.0341797
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_8ygnh"]
+height = 0.18933105
+radius = 0.032714844
 
 [node name="Vial1" type="RigidBody3D"]
 
 [node name="blockbench_export" parent="." instance=ExtResource("1_8ygnh")]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0953522, 0)
-shape = SubResource("CylinderShape3D_r4v0g")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0960083, 0)
+shape = SubResource("CylinderShape3D_8ygnh")

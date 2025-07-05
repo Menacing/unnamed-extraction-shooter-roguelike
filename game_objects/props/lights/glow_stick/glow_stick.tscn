@@ -1,7 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://dd86i5eb0wejy"]
+[gd_scene load_steps=2 format=3 uid="uid://dd86i5eb0wejy"]
 
 [ext_resource type="PackedScene" uid="uid://cb0t3iu3nhvbh" path="res://game_objects/props/lights/glow_stick/glow_stick.blend" id="1_wnf7f"]
-[ext_resource type="PackedScene" uid="uid://c65jhr75ocbnv" path="res://components/fake_gi_component/fake_gi_component.tscn" id="2_j340i"]
 
 [node name="GlowStick" type="Node3D"]
 
@@ -9,43 +8,35 @@
 
 [node name="Cylinder" parent="glow_stick" index="0"]
 cast_shadow = 0
+gi_mode = 0
 
 [node name="glow_stick2" parent="." instance=ExtResource("1_wnf7f")]
 transform = Transform3D(-0.890729, 0, 0.454535, 0, 1, 0, -0.454535, 0, -0.890729, 0.0590647, 0, 0)
 
 [node name="Cylinder" parent="glow_stick2" index="0"]
 cast_shadow = 0
+gi_mode = 0
 
 [node name="glow_stick3" parent="." instance=ExtResource("1_wnf7f")]
 transform = Transform3D(0.589698, -0.254973, -0.766319, 0.155497, 0.966948, -0.20207, 0.792513, 0, 0.609855, -0.0147097, 0.0128525, -0.0225605)
 
 [node name="Cylinder" parent="glow_stick3" index="0"]
 cast_shadow = 0
+gi_mode = 0
 
 [node name="glow_stick4" parent="." instance=ExtResource("1_wnf7f")]
 transform = Transform3D(-0.550058, 0, 0.835126, 0, 1, 0, -0.835127, 0, -0.550058, 0.0378395, 0.0195896, 0.0291163)
 
 [node name="Cylinder" parent="glow_stick4" index="0"]
 cast_shadow = 0
+gi_mode = 0
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.000924144, 0)
 light_color = Color(0, 1, 0, 1)
 light_bake_mode = 1
-shadow_enabled = true
 distance_fade_enabled = true
 omni_range = 10.0
-omni_attenuation = 2.0
-
-[node name="FakeGiComponent" parent="OmniLight3D" instance=ExtResource("2_j340i")]
-
-[node name="OmniLight3D" type="OmniLight3D" parent="OmniLight3D/FakeGiComponent"]
-light_color = Color(0, 1, 0, 1)
-light_energy = 0.3
-light_specular = 0.0
-light_bake_mode = 1
-distance_fade_enabled = true
-omni_range = 14.0
 omni_attenuation = 2.0
 
 [editable path="glow_stick"]

@@ -1,10 +1,53 @@
-[gd_scene load_steps=7 format=3 uid="uid://cnl4bh4h10j5m"]
+[gd_scene load_steps=11 format=4 uid="uid://cnl4bh4h10j5m"]
 
 [ext_resource type="Script" uid="uid://fdkjo7y6gaw4" path="res://levels/entities/geo_ballistic_solid.gd" id="1_r8os1"]
 [ext_resource type="PackedScene" uid="uid://64ippi50nu6t" path="res://components/damage_component/damage_component.tscn" id="2_bts04"]
 [ext_resource type="PackedScene" uid="uid://cliu3gfmcv7xd" path="res://components/damage_effect_component/damage_effect_component.tscn" id="3_pvq2g"]
 [ext_resource type="PackedScene" uid="uid://bn6v1rairpb6i" path="res://game_objects/effects/hit_effects/bullet_hit_wood.tscn" id="4_h1oyj"]
 [ext_resource type="PackedScene" uid="uid://dody0snbicc23" path="res://game_objects/props/crates/small_cardboard_box_1.gltf" id="5_bts04"]
+[ext_resource type="Texture2D" uid="uid://bo48tf13m5aty" path="res://game_objects/props/crates/small_cardboard_box_1_0.png" id="6_pvq2g"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wtrd8"]
+resource_name = "material_0"
+transparency = 2
+alpha_scissor_threshold = 0.05
+alpha_antialiasing_mode = 0
+cull_mode = 2
+albedo_texture = ExtResource("6_pvq2g")
+texture_filter = 0
+texture_repeat = false
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_t7y2d"]
+_surfaces = [{
+"aabb": AABB(-0.0625, 0, -0.0625, 0.3125, 0.125, 0.25),
+"format": 34896613377,
+"index_count": 36,
+"index_data": PackedByteArray("AAABAAIAAwAAAAIAAgABAAQABQAAAAMABQABAAAAAwACAAYABgAFAAMABgACAAQABwABAAUABwAFAAYAAQAHAAQABAAHAAYA"),
+"name": "material_0",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 8,
+"vertex_data": PackedByteArray("////////AAD/////AAAAAP//AAD//wAAAAAAAP//AAD//wAAAAAAAAAA/////wAAAAAAAAAAAAAAAP//AAAAAA==")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_h1oyj"]
+resource_name = "blockbench_export_mesh"
+lightmap_size_hint = Vector2i(26, 22)
+_surfaces = [{
+"aabb": AABB(-0.0625, 0, -0.0625, 0.3125, 0.125, 0.25),
+"attribute_data": PackedByteArray("oP8fPwAAAACxE3s/RhcdP+D/Xz8AAAAAnthJP0YXHT+g/x8/APn/PbETez900cU+4P9fPwD5/z2e2Ek/dNHFPgAAAAAA/X8+O7FTP4wuujwA/X8+AP1/PjuxUz8AAIA+AAAAAMD+vz4ndiI/jC66PAD9fz7A/r8+J3YiPwAAgD6g/x8/AP1/PmIn9j6MLno/oP6fPgD9fz5iJ/Y+XXQRP6D/Hz8AAAAAxU4sP4wuej+g/p8+AAAAAMVOLD9ddBE/oP6fPgAAAABP7AQ/RhfdPgAAAAAAAAAAT+wEP4wuujyg/p8+AP1/PnZipz5GF90+AAAAAAD9fz52Yqc+jC66PAD9fz4A/X8+2YmdPOmiSz+Q/w8/AP1/PrETuz7poks/AP1/PsD+vz7ZiZ08XXQRP5D/Dz/A/r8+sRO7Pl10ET+Q/w8/AP1/PoqdWD6MLro84P9fPwD9fz6KnVg+RhfdPpD/Dz/A/r8+2YmdPIwuujzg/18/wP6/PtmJnTxGF90+"),
+"format": 34359742519,
+"index_count": 36,
+"index_data": PackedByteArray("AAABAAIAAgABAAMABAAFAAYABgAFAAcACAAJAAoACgAJAAsADAANAA4ADgANAA8AEAARABIAEgARABMAFAAVABYAFgAVABcA"),
+"material": SubResource("StandardMaterial3D_wtrd8"),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 24,
+"vertex_data": PackedByteArray("AACAPgAAAD4AAEA+AACAPgAAAD4AAIC9AACAPgAAAAAAAEA+AACAPgAAAAAAAIC9AACAvQAAAD4AAIC9AACAvQAAAD4AAEA+AACAvQAAAAAAAIC9AACAvQAAAAAAAEA+AACAvQAAAD4AAIC9AACAPgAAAD4AAIC9AACAvQAAAD4AAEA+AACAPgAAAD4AAEA+AACAvQAAAAAAAEA+AACAPgAAAAAAAEA+AACAvQAAAAAAAIC9AACAPgAAAAAAAIC9AACAvQAAAD4AAEA+AACAPgAAAD4AAEA+AACAvQAAAAAAAEA+AACAPgAAAAAAAEA+AACAPgAAAD4AAIC9AACAvQAAAD4AAIC9AACAPgAAAAAAAIC9AACAvQAAAAAAAIC9/f8AgP7//v/9/wCA/v/+//3/AID+//7//f8AgP7//v8BAP9/AID/vwEA/38AgP+/AQD/fwCA/78BAP9/AID/v/5//v8AAP6//n/+/wAA/r/+f/7/AAD+v/5//v8AAP6/+n8BAAEA/j/6fwEAAQD+P/p/AQABAP4/+n8BAAEA/j/9f/9//f//v/1//3/9//+//X//f/3//7/9f/9//f//v/7/AAAAAP+//v8AAAAA/7/+/wAAAAD/v/7/AAAAAP+/")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_t7y2d")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_pvq2g"]
 size = Vector3(0.313721, 0.127869, 0.249146)
@@ -23,6 +66,11 @@ damage_effect_scene = ExtResource("4_h1oyj")
 [node name="blockbench_export" parent="." instance=ExtResource("5_bts04")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0916709, 0, 0)
 
+[node name="cube" parent="blockbench_export/Node" index="0"]
+mesh = SubResource("ArrayMesh_h1oyj")
+
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0020752, 0.0628967, 0.0629272)
 shape = SubResource("BoxShape3D_pvq2g")
+
+[editable path="blockbench_export"]
