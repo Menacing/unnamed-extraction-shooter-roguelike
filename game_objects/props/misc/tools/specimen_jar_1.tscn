@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://cxalh4gioaij8"]
+
+[ext_resource type="PackedScene" uid="uid://cphjrlkevu1fc" path="res://game_objects/props/misc/tools/specimen_jar_1.gltf" id="1_j7hak"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_j7hak"]
+height = 0.43493652
+radius = 0.10644531
+
+[node name="SpecimenJar1" type="RigidBody3D"]
+
+[node name="blockbench_export" parent="." instance=ExtResource("1_j7hak")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.215271, 0)
+shape = SubResource("CylinderShape3D_j7hak")
