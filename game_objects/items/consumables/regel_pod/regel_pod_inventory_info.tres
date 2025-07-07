@@ -2,19 +2,14 @@
 
 [ext_resource type="Script" uid="uid://dw75el3q24f1f" path="res://ui/inventory/item_context_item.gd" id="1_umf2r"]
 [ext_resource type="Resource" uid="uid://o6tesi76nbth" path="res://ui/inventory/drop_item_context_item.tres" id="2_2n3fr"]
+[ext_resource type="Resource" uid="uid://xbkt064nsk18" path="res://game_objects/items/consumables/regel_pod/regel_use_item_context_item.tres" id="2_tarfw"]
 [ext_resource type="Texture2D" uid="uid://cymbjyvt8w6ot" path="res://game_objects/items/consumables/regel_pod/regel_pod_icon.png" id="4_ubb62"]
 [ext_resource type="PackedScene" uid="uid://son7demex4pt" path="res://ui/inventory/detail_scenes/simple_detail_popup.tscn" id="4_v1g1g"]
 [ext_resource type="Script" uid="uid://hxr8853lym5l" path="res://resource_access/item_information.gd" id="5_0snh8"]
 [ext_resource type="Script" uid="uid://cxtmia6d8edl0" path="res://resource_access/item_spawn_information.gd" id="5_pewen"]
 
-[sub_resource type="Resource" id="Resource_w7f3g"]
-script = ExtResource("1_umf2r")
-label = "Use"
-signal_name = "context_menus_use"
-
 [sub_resource type="Resource" id="Resource_tarfw"]
 script = ExtResource("5_pewen")
-loot_table = 0
 tier = 3
 rarity = 2
 metadata/_custom_type_script = "uid://cxtmia6d8edl0"
@@ -22,7 +17,6 @@ metadata/_custom_type_script = "uid://cxtmia6d8edl0"
 [sub_resource type="Resource" id="Resource_a2wk4"]
 script = ExtResource("5_pewen")
 loot_table = 4
-tier = 0
 rarity = 2
 metadata/_custom_type_script = "uid://cxtmia6d8edl0"
 
@@ -43,27 +37,16 @@ metadata/_custom_type_script = "uid://cxtmia6d8edl0"
 [resource]
 script = ExtResource("5_0snh8")
 item_type_id = "regel_pod"
-show_name = false
 display_name = "ReGel Pod"
-display_short_name = ""
 item_type = 2
 icon = ExtResource("4_ubb62")
 icon_r = ExtResource("4_ubb62")
 detail_scene = ExtResource("4_v1g1g")
-context_menu_items = Array[ExtResource("1_umf2r")]([SubResource("Resource_w7f3g"), ExtResource("2_2n3fr")])
+context_menu_items = Array[ExtResource("1_umf2r")]([ExtResource("2_tarfw"), ExtResource("2_2n3fr")])
 max_stacks = 5
 has_stacks = true
-min_stack = 0
-max_stack = 0
-max_durability = 1
-has_durability = false
-column_span = 1
-row_span = 1
 description_text = "Preprogrammed BioGel suspended in a spherical delivery mechanism. Simply Rupture the membrane and force into any traumatic wounds for instance relief!"
 flavor_text = "ReGel. For when it has to stop."
-slot_data_type = 0
 item_spawn_informations = Array[ExtResource("5_pewen")]([SubResource("Resource_tarfw"), SubResource("Resource_a2wk4"), SubResource("Resource_c2r3g"), SubResource("Resource_wturr")])
-test_radius = 0.0
-min_pickup_stacks = 1
 mean_pickup_stacks = 3
 stack_random_method = 1

@@ -72,8 +72,9 @@ func disable():
 	self.monitoring = false
 	self.monitorable = false
 	self.disabled = true
-	extract_marker.queue_free()
-	extract_marker = null
+	if extract_marker:
+		extract_marker.queue_free()
+		extract_marker = null
 	
 func enable():
 	self.monitoring = true

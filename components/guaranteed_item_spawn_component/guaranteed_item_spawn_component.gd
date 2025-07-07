@@ -1,7 +1,7 @@
 extends Node3D
-class_name GuaranteedItemSpawnComponent
+class_name GuaranteedSceneSpawnComponent
 
-@export var guaranteed_item_information:ItemInformation
+@export var guaranteed_scene:PackedScene
 @export var spawn_group_name:String
 @export var min_number_spawned:int = 1
 @export var max_number_spawned:int = 1
@@ -11,7 +11,7 @@ func _ready():
 		
 func _on_populate_level():
 	#only run if we have item info, a group name, and a min greater than 0
-	if guaranteed_item_information and spawn_group_name and min_number_spawned >= 0 and max_number_spawned >= min_number_spawned:
+	if guaranteed_scene and spawn_group_name and min_number_spawned >= 0 and max_number_spawned >= min_number_spawned:
 		#get number to spawn and nodes in spawn group. Shuffle nodes
 		var number_to_spawn := randi_range(min_number_spawned, max_number_spawned)
 		var pois = get_tree().get_nodes_in_group(spawn_group_name)
@@ -38,8 +38,7 @@ func _on_populate_level():
 					pass
 				
 				if spawn_pos:
-					var slot_data = SlotData.instantiate_from_item_information(guaranteed_item_information)
-					var scene = Item3D.instantiate_from_slot_data(slot_data)
+					var scene = guaranteed_scene.instantiate()
 					scene.set_as_top_level(true)
 					get_parent().add_child.call_deferred(scene)
 					scene.set_global_position.call_deferred(spawn_pos)
