@@ -12,6 +12,7 @@ signal item_equipment_changed(inventory_data:InventoryData, equipment_slot:Equip
 signal item_show_detail_scene(slot_data:SlotData, detail_scene:ItemDetailPopup)
 signal ammo_picked_up(inventory_data:InventoryData, slot_data:SlotData)
 signal material_picked_up(inventory_data:InventoryData, slot_data:SlotData)
+signal context_menu_callback_request(context_item:ItemContextItem, slot_data:SlotData)
 
 var width = 10
 @export var equipment_slots:Array[EquipmentSlot]
@@ -309,6 +310,9 @@ func handle_context_menu(menu_id:int, slot_index:int) -> void:
 				var detail_control:ItemDetailPopup = detail_scene.instantiate()
 				item_show_detail_scene.emit(slot_data, detail_control)
 				pass
+			_:
+				if item.use_custom_function:
+					context_menu_callback_request.emit(item, slot_data)
 	pass
 
 func handle_equipment_slot_context_menu(menu_id:int, slot_name:String) -> void:
@@ -328,6 +332,9 @@ func handle_equipment_slot_context_menu(menu_id:int, slot_name:String) -> void:
 				var detail_control:ItemDetailPopup = detail_scene.instantiate()
 				item_show_detail_scene.emit(slot_data, detail_control)
 				pass
+			_:
+				if item.use_custom_function:
+					context_menu_callback_request.emit(item, slot_data)
 	pass
 
 ##Checks for space to pick up an item into the inventory data. Returns true if successful

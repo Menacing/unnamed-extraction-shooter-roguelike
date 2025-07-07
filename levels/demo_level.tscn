@@ -1,4 +1,4 @@
-[gd_scene load_steps=140 format=4 uid="uid://ctahsvj88g1om"]
+[gd_scene load_steps=144 format=4 uid="uid://ctahsvj88g1om"]
 
 [ext_resource type="Script" uid="uid://dwshafaid76mm" path="res://levels/demo_level.gd" id="1_8448e"]
 [ext_resource type="PackedScene" uid="uid://d08aatgxmymbf" path="res://game_objects/player/player.tscn" id="1_eisjc"]
@@ -34,8 +34,9 @@
 [ext_resource type="PackedScene" uid="uid://c2mgc1vc3603e" path="res://game_objects/items/armor/light/light_armor_1.tscn" id="24_bw0sj"]
 [ext_resource type="PackedScene" uid="uid://fetf2vb0h86g" path="res://game_objects/items/armor/medium/1/medium_armor_1.tscn" id="25_43i1p"]
 [ext_resource type="Script" uid="uid://byh2ktg4m1kyh" path="res://levels/tests/drop_everything_chest.gd" id="25_h3dqm"]
-[ext_resource type="PackedScene" uid="uid://dpwa7relcor8r" path="res://game_objects/props/misc/tools/vial_1.tscn" id="26_suppi"]
+[ext_resource type="PackedScene" uid="uid://csjaso2v5rgk4" path="res://game_objects/props/misc/tools/vial_1.tscn" id="26_suppi"]
 [ext_resource type="PackedScene" uid="uid://2ggq36ut12jw" path="res://game_objects/items/attachments/foregrips/stable/stable_forgreip.tscn" id="26_vh55a"]
+[ext_resource type="Script" uid="uid://b48tfwbp3pebh" path="res://levels/entities/area_group_poi.gd" id="27_brenj"]
 [ext_resource type="PackedScene" uid="uid://d0o2yjbp3avaa" path="res://game_objects/items/attachments/magazines/extended/extended_magazine.tscn" id="27_phudk"]
 [ext_resource type="PackedScene" uid="uid://cwhv3r1tw0orw" path="res://game_objects/items/consumables/regel_pod/regel_pod.tscn" id="28_2kj4q"]
 [ext_resource type="PackedScene" uid="uid://b7b1goghrkw51" path="res://game_objects/items/key/fuel_core/fuel_core.tscn" id="29_6ciiy"]
@@ -60,9 +61,11 @@
 [ext_resource type="PackedScene" uid="uid://cwbiqjd2dljr3" path="res://game_objects/items/weapons/lpc_smgs/geo_0/geo_0.tscn" id="57_xj6tr"]
 [ext_resource type="Resource" uid="uid://dcejbnpeogafm" path="res://components/ammo_component/ammo_types/light_pistol_cartridge/light_pistol_cartridge.tres" id="58_buvc6"]
 [ext_resource type="PackedScene" uid="uid://swvutukqgaxo" path="res://game_objects/items/weapons/lpc_smgs/manx_251Z/manx_251Z.tscn" id="59_xj6tr"]
-[ext_resource type="PackedScene" uid="uid://u14m044eh0c1" path="res://game_objects/props/misc/tools/beaker_1.tscn" id="61_cb6ao"]
+[ext_resource type="PackedScene" uid="uid://dokwalqsmfsgw" path="res://game_objects/props/misc/tools/beaker_1.tscn" id="61_cb6ao"]
 [ext_resource type="PackedScene" uid="uid://bolvdwfwv7xtf" path="res://game_objects/props/misc/tools/wrench.tscn" id="62_cb16m"]
-[ext_resource type="PackedScene" uid="uid://dx6alq062d7r0" path="res://game_objects/props/misc/tools/specimen_jar_1.tscn" id="63_34yx1"]
+[ext_resource type="PackedScene" uid="uid://cxalh4gioaij8" path="res://game_objects/props/misc/tools/specimen_jar_1.tscn" id="63_34yx1"]
+[ext_resource type="Script" uid="uid://d2jvoci7qpvji" path="res://components/guaranteed_item_spawn_component/guaranteed_item_spawn_component.gd" id="65_5c8cr"]
+[ext_resource type="PackedScene" uid="uid://cutef7x26e4kh" path="res://game_objects/props/plants/secret_heather.tscn" id="66_48fan"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_6g5uc"]
 
@@ -349,7 +352,6 @@ points = PackedVector3Array(-0.166666, 0.1, 0.15, -0.166666, -0.35, 0.15, -0.116
 [sub_resource type="Resource" id="Resource_wdqrb"]
 resource_local_to_scene = true
 script = ExtResource("11_hh747")
-weapon_category_name = ""
 magazine_size = 30
 rpm = 800
 base_recoil = Vector2(0, 0.017)
@@ -362,7 +364,6 @@ turn_speed = 25.0
 ammo_type = ExtResource("10_q80ko")
 reload_time_Sec = 2.5
 reload_thresholds = Array[float]([1.0])
-audible_range = 50.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_34u7k"]
 albedo_color = Color(0.206777, 0.746646, 0.218838, 1)
@@ -370,18 +371,16 @@ albedo_color = Color(0.206777, 0.746646, 0.218838, 1)
 [sub_resource type="Resource" id="Resource_0qw6n"]
 script = ExtResource("23_3b7t8")
 item_data = ExtResource("22_nlrd0")
-quantity = 1
-durability = 1
-root_index = 0
-is_rotated = false
 
 [sub_resource type="Resource" id="Resource_pbdhj"]
 script = ExtResource("21_ym4ob")
-equipment_slots = Array[ExtResource("21_qlm4m")]([])
 slot_datas = Array[Array]([[SubResource("Resource_0qw6n"), null, null, null, null, null, null], [null, null, null, null, null, null, null], [null, null, null, null, null, null, null], [null, null, null, null, null, null, null]])
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_e4xtb"]
 albedo_color = Color(1, 0, 0.0117647, 1)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_0qbox"]
+points = PackedVector3Array(-0.4, 0.6, -0.4, -0.4, -0.6, -0.4, 0.4, -0.6, -0.4, 0.4, 0.6, -0.4, -0.4, 0.6, 0.4, -0.4, -0.6, 0.4, 0.4, -0.6, 0.4, 0.4, 0.6, 0.4)
 
 [sub_resource type="Resource" id="Resource_mdbm7"]
 resource_local_to_scene = true
@@ -399,7 +398,6 @@ turn_speed = 25.0
 ammo_type = ExtResource("10_q80ko")
 reload_time_Sec = 2.5
 reload_thresholds = Array[float]([1.0])
-audible_range = 50.0
 
 [sub_resource type="Resource" id="Resource_l1yld"]
 resource_local_to_scene = true
@@ -417,7 +415,6 @@ turn_speed = 25.0
 ammo_type = ExtResource("42_vqsrm")
 reload_time_Sec = 2.5
 reload_thresholds = Array[float]([1.0])
-audible_range = 50.0
 
 [sub_resource type="Resource" id="Resource_osn8e"]
 resource_local_to_scene = true
@@ -435,7 +432,6 @@ turn_speed = 25.0
 ammo_type = ExtResource("42_vqsrm")
 reload_time_Sec = 2.5
 reload_thresholds = Array[float]([1.0])
-audible_range = 50.0
 
 [sub_resource type="Resource" id="Resource_h3dqm"]
 resource_local_to_scene = true
@@ -453,7 +449,6 @@ turn_speed = 25.0
 ammo_type = ExtResource("10_q80ko")
 reload_time_Sec = 2.5
 reload_thresholds = Array[float]([1.0])
-audible_range = 50.0
 
 [sub_resource type="Resource" id="Resource_suppi"]
 resource_local_to_scene = true
@@ -471,7 +466,6 @@ turn_speed = 15.0
 ammo_type = ExtResource("56_nihu0")
 reload_time_Sec = 3.5
 reload_thresholds = Array[float]([1.0])
-audible_range = 50.0
 
 [sub_resource type="Resource" id="Resource_cb6ao"]
 resource_local_to_scene = true
@@ -489,7 +483,6 @@ turn_speed = 35.0
 ammo_type = ExtResource("58_buvc6")
 reload_time_Sec = 1.5
 reload_thresholds = Array[float]([1.0])
-audible_range = 50.0
 
 [sub_resource type="Resource" id="Resource_buvc6"]
 resource_local_to_scene = true
@@ -507,7 +500,6 @@ turn_speed = 35.0
 ammo_type = ExtResource("58_buvc6")
 reload_time_Sec = 1.5
 reload_thresholds = Array[float]([1.0])
-audible_range = 50.0
 
 [node name="Node3d" type="Node3D"]
 script = ExtResource("1_8448e")
@@ -1462,6 +1454,18 @@ script = ExtResource("18_dvips")
 [node name="Vial1" parent="MultiAgentNavigationRoot" instance=ExtResource("26_suppi")]
 transform = Transform3D(0.192248, -0.981346, 0, 0.981346, 0.192248, 0, 0, 0, 1, 4.26273, 1.0935, -2.8027)
 
+[node name="entity_1260_area_group_poi" type="Area3D" parent="MultiAgentNavigationRoot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.644156, 0.9871018, 5.331605)
+script = ExtResource("27_brenj")
+func_godot_properties = {
+"classname": "area_group_poi",
+"godot_group_names": "heather_spawn_location"
+}
+godot_group_names = Array[String](["heather_spawn_location"])
+
+[node name="entity_1260_brush_0_collision_shape" type="CollisionShape3D" parent="MultiAgentNavigationRoot/entity_1260_area_group_poi"]
+shape = SubResource("ConvexPolygonShape3D_0qbox")
+
 [node name="Player" parent="." instance=ExtResource("1_eisjc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.48035, 1.04626, -2.63506)
 
@@ -1604,6 +1608,14 @@ transform = Transform3D(0.848944, 0.528483, 0, -0.528483, 0.848944, 0, 0, 0, 1, 
 
 [node name="SpecimenJar1" parent="." instance=ExtResource("63_34yx1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.44039, 1.01423, -3.15693)
+
+[node name="GuaranteedItemSpawnComponent2" type="Node3D" parent="."]
+script = ExtResource("65_5c8cr")
+guaranteed_scene = ExtResource("66_48fan")
+spawn_group_name = "heather_spawn_location"
+
+[node name="RegelPod2" parent="." instance=ExtResource("28_2kj4q")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.942235, 0.12882988, -4.400792)
 
 [connection signal="hit_occured" from="MultiAgentNavigationRoot/FiestaBox/DamageComponent" to="MultiAgentNavigationRoot/FiestaBox" method="_on_damage_component_hit_occured"]
 [connection signal="hit_occured" from="MultiAgentNavigationRoot/LootChest/DamageComponent" to="MultiAgentNavigationRoot/LootChest" method="_on_damage_component_hit_occured"]

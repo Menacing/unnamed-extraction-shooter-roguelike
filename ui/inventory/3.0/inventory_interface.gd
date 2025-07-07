@@ -16,6 +16,7 @@ var external_inventory_owner
 ##only use for quick transfer
 var player_inventory_data:InventoryData
 var external_inventory_data:InventoryData
+@export var player:Player
 @onready var foley_audio_stream_player_3d: AudioStreamPlayer3D = $FoleyAudioStreamPlayer3D
 
 func _ready() -> void:
@@ -62,6 +63,7 @@ func set_player_inventory_data(inventory_data:InventoryData) -> void:
 	inventory_data.ammo_picked_up.connect(_on_ammo_picked_up)
 	player_inventory.set_inventory_data(inventory_data)
 	player_inventory_data = inventory_data
+	inventory_data.context_menu_callback_request.connect(_on_player_context_menu_callback_request)
 	
 func set_external_inventory(_external_inventory_owner) -> void:
 	external_inventory_owner = _external_inventory_owner
@@ -72,6 +74,9 @@ func set_external_inventory(_external_inventory_owner) -> void:
 	external_inventory_data = inventory_data
 	external_inventory.set_inventory_data(inventory_data)
 	external_inventory.show()
+	
+	inventory_data.context_menu_callback_request.connect(_on_external_context_menu_callback_request)
+	
 	
 func set_hideout_inventory() -> void:
 	external_inventory_owner = HideoutManager
@@ -84,11 +89,26 @@ func set_hideout_inventory() -> void:
 	hideout_menu.stash_inventory_control.set_inventory_data(inventory_data)
 	hideout_menu.show()
 	
+	inventory_data.context_menu_callback_request.connect(_on_external_context_menu_callback_request)
+	
+
+func _on_player_context_menu_callback_request(context_item:ItemContextItem, slot_data:SlotData):
+	context_item.custom_context_function(player_inventory_data, slot_data, player)
+	pass
+	#context_item.custom_context_function(inventory_data, slot_data, player)
+
+func _on_external_context_menu_callback_request(context_item:ItemContextItem, slot_data:SlotData):
+	context_item.custom_context_function(external_inventory_data, slot_data, player)
+	pass
+	#context_item.custom_context_function(inventory_data, slot_data, player)
+
 func clear_external_inventory() -> void:
 	if external_inventory_owner:
 		var inventory_data = external_inventory_owner.inventory_data
 		
 		_disconnect_inventory_data_signals(inventory_data)
+		inventory_data.context_menu_callback_request.disconnect(_on_external_context_menu_callback_request)
+		
 		if !HideoutManager.in_hideout:
 			external_inventory_data = null
 			external_inventory.clear_inventory_data(inventory_data)

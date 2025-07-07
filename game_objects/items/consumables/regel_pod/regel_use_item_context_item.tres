@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="RegelUseItemContextItem" load_steps=2 format=3 uid="uid://xbkt064nsk18"]
+
+[ext_resource type="Script" uid="uid://b1xd63vvyue27" path="res://game_objects/items/consumables/regel_pod/use_regel_pod_context_item.gd" id="1_cv41t"]
+
+[resource]
+script = ExtResource("1_cv41t")
+label = "Use (Heal)"
+use_custom_function = true
+metadata/_custom_type_script = "uid://b1xd63vvyue27"

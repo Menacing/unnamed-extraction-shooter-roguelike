@@ -12,7 +12,6 @@
 
 [sub_resource type="Resource" id="Resource_ocw2k"]
 script = ExtResource("7_s37gv")
-loot_table = 0
 tier = 2
 rarity = 2
 metadata/_custom_type_script = "uid://cxtmia6d8edl0"
@@ -20,23 +19,19 @@ metadata/_custom_type_script = "uid://cxtmia6d8edl0"
 [sub_resource type="Resource" id="Resource_dy5sx"]
 script = ExtResource("7_s37gv")
 loot_table = 4
-tier = 0
 rarity = 1
 metadata/_custom_type_script = "uid://cxtmia6d8edl0"
 
 [sub_resource type="Resource" id="Resource_m2qsw"]
 script = ExtResource("7_s37gv")
 loot_table = 5
-tier = 0
 rarity = 2
 metadata/_custom_type_script = "uid://cxtmia6d8edl0"
 
 [resource]
 script = ExtResource("8_2ilgf")
 crafting_material_definition = ExtResource("3_7osgd")
-amount_per_stack = 1
 item_type_id = "bio_gel_vial"
-show_name = false
 display_name = "BioGel Vial"
 display_short_name = "Gel Vial"
 item_type = 2
@@ -46,19 +41,10 @@ detail_scene = ExtResource("4_284bg")
 context_menu_items = Array[ExtResource("1_72wlm")]([ExtResource("2_ejfm8")])
 max_stacks = 10
 has_stacks = true
-min_stack = 0
-max_stack = 0
-max_durability = 1
-has_durability = false
-column_span = 1
-row_span = 1
 pickup_sound = ExtResource("9_dhox8")
 description_text = "Scrap plastic fortified with glass fiber ready to be used by a modern printer"
 flavor_text = "Polymer makes it possible"
 drop_sound = ExtResource("5_epqbf")
-slot_data_type = 0
 item_spawn_informations = Array[ExtResource("7_s37gv")]([SubResource("Resource_ocw2k"), SubResource("Resource_dy5sx"), SubResource("Resource_m2qsw")])
-test_radius = 0.0
-min_pickup_stacks = 1
 mean_pickup_stacks = 5
 stack_random_method = 1

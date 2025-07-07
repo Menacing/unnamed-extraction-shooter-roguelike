@@ -287,6 +287,7 @@ func _on_item_equipment_changed(inventory_data:InventoryData, equipment_slot:Equ
 				armor.picked_up()
 	pass
 
+
 func send_item_pickup_message(slot_data:SlotData):
 	var message_text:String = "Picked up " + slot_data.item_data.display_name
 	
