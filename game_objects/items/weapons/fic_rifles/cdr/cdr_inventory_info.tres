@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="ItemInformation" load_steps=21 format=3 uid="uid://boqgm4gxsicup"]
+[gd_resource type="Resource" script_class="ItemInformation" format=3 uid="uid://boqgm4gxsicup"]
 
 [ext_resource type="Script" uid="uid://dw75el3q24f1f" path="res://ui/inventory/item_context_item.gd" id="1_ww381"]
 [ext_resource type="Resource" uid="uid://o6tesi76nbth" path="res://ui/inventory/drop_item_context_item.tres" id="2_6gupb"]
@@ -20,7 +20,6 @@
 [sub_resource type="Resource" id="Resource_6llv8"]
 script = ExtResource("1_ww381")
 label = "Item Detail"
-signal_name = "context_menus_open_item_detail"
 
 [sub_resource type="Resource" id="Resource_oe4rk"]
 script = ExtResource("6_bg74d")

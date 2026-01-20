@@ -14,11 +14,11 @@ func _ready() -> void:
 	Steam.join_requested.connect(_on_lobby_join_requested)
 	Steam.lobby_chat_update.connect(_on_lobby_chat_update)
 	Steam.lobby_created.connect(_on_lobby_created)
-	Steam.lobby_data_update.connect(_on_lobby_data_update)
-	Steam.lobby_invite.connect(_on_lobby_invite)
+	#Steam.lobby_data_update.connect(_on_lobby_data_update)
+	#Steam.lobby_invite.connect(_on_lobby_invite)
 	Steam.lobby_joined.connect(_on_lobby_joined)
-	Steam.lobby_match_list.connect(_on_lobby_match_list)
-	Steam.lobby_message.connect(_on_lobby_message)
+	#Steam.lobby_match_list.connect(_on_lobby_match_list)
+	#Steam.lobby_message.connect(_on_lobby_message)
 	Steam.persona_state_change.connect(_on_persona_change)
 
 	# Check for command line arguments
@@ -143,7 +143,7 @@ func _on_persona_change(this_steam_id: int, _flag: int) -> void:
 func make_p2p_handshake() -> void:
 	print("Sending P2P handshake to the lobby")
 
-	send_p2p_packet(0, {"message": "handshake", "from": steam_id})
+	#send_p2p_packet(0, {"message": "handshake", "from": steam_id})
 
 func _on_lobby_chat_update(this_lobby_id: int, change_id: int, making_change_id: int, chat_state: int) -> void:
 	# Get the user who has made the lobby change
