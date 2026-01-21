@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://cjjul7cqr58l3"]
+
+[ext_resource type="Texture2D" uid="uid://bpymlo35r2x4l" path="res://ui/icons/White/add_player.png" id="1_67d36"]
+[ext_resource type="Texture2D" uid="uid://c11pie65571pq" path="res://ui/icons/White/add_player_pressed.png" id="2_rcxbb"]
+[ext_resource type="Texture2D" uid="uid://dwojaqqw3jucj" path="res://ui/icons/White/add_player_hover.png" id="3_7wspn"]
+
+[node name="AddPartyMemberButtonContainer" type="MarginContainer" unique_id=230109916]
+offset_right = 134.0
+offset_bottom = 134.0
+size_flags_vertical = 0
+theme_override_constants/margin_left = 3
+theme_override_constants/margin_top = 3
+theme_override_constants/margin_right = 3
+theme_override_constants/margin_bottom = 3
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=703423580]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="AddPartyMemberTextureButton" type="TextureButton" parent="PanelContainer" unique_id=1850895362]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+texture_normal = ExtResource("1_67d36")
+texture_pressed = ExtResource("2_rcxbb")
+texture_hover = ExtResource("3_7wspn")
+stretch_mode = 0

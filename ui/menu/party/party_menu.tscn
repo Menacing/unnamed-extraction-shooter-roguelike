@@ -1,0 +1,36 @@
+[gd_scene format=3 uid="uid://bxg2dfxwl8hcd"]
+
+[ext_resource type="Script" uid="uid://d1nd1rh1xkkd3" path="res://ui/menu/party/party_menu.gd" id="1_v8f27"]
+[ext_resource type="PackedScene" uid="uid://du6oo6d0r2vfl" path="res://ui/menu/party/player_badge.tscn" id="2_aitdt"]
+[ext_resource type="PackedScene" uid="uid://cjjul7cqr58l3" path="res://ui/menu/party/add_party_member_button.tscn" id="3_aitdt"]
+
+[node name="PartyMenu" type="ColorRect" unique_id=1135874375]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+script = ExtResource("1_v8f27")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=189705327]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+alignment = 2
+
+[node name="PlayerBadge" parent="HBoxContainer" unique_id=1795500416 instance=ExtResource("2_aitdt")]
+layout_mode = 2
+
+[node name="PlayerBadge2" parent="HBoxContainer" unique_id=502097339 instance=ExtResource("2_aitdt")]
+layout_mode = 2
+
+[node name="PlayerBadge3" parent="HBoxContainer" unique_id=1201525277 instance=ExtResource("2_aitdt")]
+layout_mode = 2
+
+[node name="PlayerBadge4" parent="HBoxContainer" unique_id=1678600854 instance=ExtResource("2_aitdt")]
+layout_mode = 2
+
+[node name="AddPartyMemberButtonContainer" parent="HBoxContainer" unique_id=230109916 instance=ExtResource("3_aitdt")]
+layout_mode = 2
